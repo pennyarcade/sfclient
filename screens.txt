@@ -1,0 +1,183 @@
+Taverne
+|-----------------|-------------------|----------------------------------------|
+|>Taverne<        |>Questgeber<       |>Munitionsmangel<                       |
+| Arena           | Hutmann           |  Gold:   1248  XP:    91600   Zeit:7:30|
+| Stadtwache      | Barkeeper         |  Item: Großmeisterhandschuhe           |
+| Waffenladen     | WC                |        Rüstung: 145    Gold: 1607,22   |
+| Zauberladen     |                   |        Aus: 180                        |
+| Stall           |                   |  GT:    2855,22  GZ:   6.3  GT:    203 |
+| Pilzdealer      |                   | Munitionsmangel                        |
+|                 |-------------------|  Gold:   1248  XP:    91600   Zeit:7:30|
+| Charakter       | Spieler: Chocokiko|  Item: Großmeisterhandschuhe           |
+| Post            |                   |        Rüstung: 145    Gold: 1607,22   |
+| Gilde           | Gold:  3761,22    |        Aus: 180                        |
+| Ehrenhalle      | Pilze: 112        |  GT:    2855,22  GZ:   6.3  GT:    203 |
+| Dungeon         |                   | Munitionsmangel                        |
+|                 | Level: 92         |  Gold:   1248  XP:    91600   Zeit:7:30|
+| Optionen        | Erf: |XXXXXXXXXX| |  Item: Großmeisterhandschuhe           |
+| System          |                   |        Rüstung: 145    Gold: 1607,22   |
+|                 | ALU:  40:30 min   |        Aus: 180                        |
+|                 | Bier: 3/10        |  GT:    2855,22  GZ:   6.3  GT:    203 |
+|-----------------|-------------------|----------------------------------------|
+
+
+
+Arena
+|-----------------|-------------------|----------------------------------------|
+| Taverne         |                   |                                        |
+| Arena           |                   |                                        |
+| Stadtwache      |                   |                                        |
+| Waffenladen     |                   |                                        |
+| Zauberladen     |                   |                                        |
+| Stall           |                   |                                        |
+| Pilzdealer      |                   |                                        |
+|                 |                   |                                        |
+| Charakter       |                   |                                        |
+| Post            |                   |                                        |
+| Gilde           |                   |                                        |
+| Ehrenhalle      |                   |                                        |
+| Dungeon         |                   |                                        |
+|                 |                   |                                        |
+| Optionen        |                   |                                        |
+| System          |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+|-----------------|-------------------|----------------------------------------|
+
+
+
+Stadtwache
+|-----------------|-------------------|----------------------------------------|
+| Taverne         |                   |                                        |
+| Arena           |                   |                                        |
+| Stadtwache      |                   |                                        |
+| Waffenladen     |                   |                                        |
+| Zauberladen     |                   |                                        |
+| Stall           |                   |                                        |
+| Pilzdealer      |                   |                                        |
+|                 |                   |                                        |
+| Charakter       |                   |                                        |
+| Post            |                   |                                        |
+| Gilde           |                   |                                        |
+| Ehrenhalle      |                   |                                        |
+| Dungeon         |                   |                                        |
+|                 |                   |                                        |
+| Optionen        |                   |                                        |
+| System          |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+|-----------------|-------------------|----------------------------------------|
+
+
+
+
+Waffenladen
+|-----------------|-------------------|----------------------------------------|
+| Taverne         | <HELM>            |                                        |
+| Arena           | <RÜSTUNG>         |                                        |
+| Stadtwache      | <HANDSCHUH>       |                                        |
+| Waffenladen     | <SCHUHE>          |                                        |
+| Zauberladen     | <Waffe>           |                                        |
+| Stall           | <Schild>          |                                        |
+| Pilzdealer      | <Kette>           |                                        |
+|                 | <Gürtel>          |                                        |
+| Charakter       | <Ring>            |                                        |
+| Post            | <Talisman>        |                                        |
+| Gilde           |                   |                                        |
+| Ehrenhalle      | <Inv 1>           |                                        |
+| Dungeon         | <Inv 2>           |                                        |
+|                 | <Inv 3>           |                                        |
+| Optionen        | <Inv 4>           |                                        |
+| System          | <Inv 5>           |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+|-----------------|-------------------|----------------------------------------|
+
+
+
+
+Zauberladen
+|                 |                   |                                        |
+| Taverne         |                   |                                        |
+| Arena           |                   |                                        |
+| Stadtwache      |                   |                                        |
+| Waffenladen     |                   |                                        |
+| Zauberladen     |                   |                                        |
+| Stall           |                   |                                        |
+| Pilzdealer      |                   |                                        |
+|                 |                   |                                        |
+| Charakter       |                   |                                        |
+| Post            |                   |                                        |
+| Gilde           |                   |                                        |
+| Ehrenhalle      |                   |                                        |
+| Dungeon         |                   |                                        |
+|                 |                   |                                        |
+| Optionen        |                   |                                        |
+| System          |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+
+
+
+
+Stall
+|                 |                   |                                        |
+| Taverne         |                   |                                        |
+| Arena           |                   |                                        |
+| Stadtwache      |                   |                                        |
+| Waffenladen     |                   |                                        |
+| Zauberladen     |                   |                                        |
+| Stall           |                   |                                        |
+| Pilzdealer      |                   |                                        |
+|                 |                   |                                        |
+| Charakter       |                   |                                        |
+| Post            |                   |                                        |
+| Gilde           |                   |                                        |
+| Ehrenhalle      |                   |                                        |
+| Dungeon         |                   |                                        |
+|                 |                   |                                        |
+| Optionen        |                   |                                        |
+| System          |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+
+
+
+
+Pilzdealer
+|                 |                   |                                        |
+| Taverne         |                   |                                        |
+| Arena           |                   |                                        |
+| Stadtwache      |                   |                                        |
+| Waffenladen     |                   |                                        |
+| Zauberladen     |                   |                                        |
+| Stall           |                   |                                        |
+| Pilzdealer      |                   |                                        |
+|                 |                   |                                        |
+| Charakter       |                   |                                        |
+| Post            |                   |                                        |
+| Gilde           |                   |                                        |
+| Ehrenhalle      |                   |                                        |
+| Dungeon         |                   |                                        |
+|                 |                   |                                        |
+| Optionen        |                   |                                        |
+| System          |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+|                 |                   |                                        |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
