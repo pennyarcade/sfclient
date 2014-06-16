@@ -4246,45 +4246,6 @@ class account:
         pass
 
 
-class Item:
-    def __init__(SGIndex=0, SG=False):
-        '''
-            setup item object
-
-            @param int SGIndex
-            @param list SG 
-
-            @return self
-        '''
-
-        #Preset values
-        self.Pic = 0
-        self.Typ = 0
-        self.Class = 1
-        self.Gold = 0
-        self.Mush = 0
-        self.Damage = {'max': 0, 'min': 0}
-        self.Attr = [
-            {'typ': 0, 'val': 0},
-            {'typ': 0, 'val': 0},
-            {'typ': 0, 'val': 0}
-        ]
-
-        if type(SG) is list:
-            self.Pic = int(SG[SGIndex + SG['ITM']['PIC']])
-            self.Typ = int(SG[SGIndex + SG['ITM']['TYP']])
-             
-            self.Gold = int(SG[SGIndex + SG['ITM']['GOLD']])
-            self.Mush = int(SG[SGIndex + SG['ITM']['MUSH']])
-            self.Damage['max'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MAX']])
-            self.Damage['min'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MIN']])
-
-            for i in range(3):
-                self.attr[i]['typ'] = SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]
-                self.attr[i]['val'] = SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]
-
-
-
 def md5hash(instr):
     '''
         Calculate MD5 Hash
@@ -5159,6 +5120,49 @@ def GetQuestBG():
 
 
 #------------------------------------------------------------------------------
+
+class Item:
+    def __init__(pic=0, typ=0, class=1, gold=0, max=0, min=0, attr=False):
+        pass
+
+    def fromSG(SGIndex=0, SG=False):
+        '''
+            setup item object from savegame
+
+            @param int SGIndex
+            @param list SG 
+
+            @return self
+        '''
+
+        #Preset values
+        self.Pic = 0
+        self.Typ = 0
+        self.Class = 1
+        self.Gold = 0
+        self.Mush = 0
+        self.Damage = {'max': 0, 'min': 0}
+        self.Attr = [
+            {'typ': 0, 'val': 0},
+            {'typ': 0, 'val': 0},
+            {'typ': 0, 'val': 0}
+        ]
+
+        if type(SG) is list:
+            self.Pic = int(SG[SGIndex + SG['ITM']['PIC']])
+            self.Typ = int(SG[SGIndex + SG['ITM']['TYP']])
+             
+            self.Gold = int(SG[SGIndex + SG['ITM']['GOLD']])
+            self.Mush = int(SG[SGIndex + SG['ITM']['MUSH']])
+            self.Damage['max'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MAX']])
+            self.Damage['min'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MIN']])
+
+            for i in range(3):
+                self.attr[i]['typ'] = SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]
+                self.attr[i]['val'] = SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]
+
+
+
 
 def GetItemName(SGIndex, SG, albumMode=-1):
     '''
