@@ -4247,10 +4247,23 @@ class account:
 
 
 class Item:
-    def __init__(SGIndex, SG):
+    def __init__(SGIndex=0, SG=False):
+        '''
+            setup item object
+
+            @param int SGIndex
+            @param list SG 
+
+            @return self
+        '''
+
+        #Preset values
         self.Pic = 0
         self.Typ = 0
         self.Class = 1
+        self.Gold = 0
+        self.Mush = 0
+        self.Damage = {'max': 0, 'min': 0}
         self.Attr = [
             {'typ': 0, 'val': 0},
             {'typ': 0, 'val': 0},
@@ -4260,10 +4273,16 @@ class Item:
         if type(SG) is list:
             self.Pic = int(SG[SGIndex + SG['ITM']['PIC']])
             self.Typ = int(SG[SGIndex + SG['ITM']['TYP']])
+             
+            self.Gold = int(SG[SGIndex + SG['ITM']['GOLD']])
+            self.Mush = int(SG[SGIndex + SG['ITM']['MUSH']])
+            self.Damage['max'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MAX']])
+            self.Damage['min'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MIN']])
 
             for i in range(3):
                 self.attr[i]['typ'] = SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]
                 self.attr[i]['val'] = SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]
+
 
 
 def md5hash(instr):
@@ -5150,24 +5169,17 @@ def GetItemName(SGIndex, SG, albumMode=-1):
         @param int albumMode
 
         @return str
-
-        TODO: Introduce Item Object
     '''
 
-    itmPic = 0
-    itmTyp = 0
-    itmClass = 1
     txtBase = 0
     txtSuffix = ""
 
-    if type(SG) is list:
-        itmPic = int(SG[SGIndex + SG['ITM']['PIC']])
-        itmTyp = int(SG[SGIndex + SG['ITM']['TYP']])
+    itm = Item(SGIndex, SG)
 
     if albumMode >= 0:
-        itmTyp = SGIndex
-        itmPic = SG
-        itmClass = albumMode
+        itm.Typ = SGIndex
+        itm.Pic = SG
+        itm.Class = albumMode
     else:
         domAttrTyp = -1
         domAttrVal = 0
@@ -5179,11 +5191,11 @@ def GetItemName(SGIndex, SG, albumMode=-1):
             attribIn[i] = False
 
         for i in range(3):
-            if int(SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]) > domAttrVal:
-                domAttrTyp = int(SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i])
-                domAttrVal = int(SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i])
-            if (int(SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]) > 0) and (int(SG[SGIndex + SG_ITM_ATTRIBVAL1 + i]) > 0):
-                attribIn[int(SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]) - 1] = True
+            if itm.Attr[i]['val'] > domAttrVal:
+                domAttrTyp = itm.Attr[i]['typ']
+                domAttrVal = itm.Attr[i]['val']
+            if (itm.Attr[i]['typ'] > 0) and (itm.Attr[i]['val'] > 0):
+                attribIn[itm.Attr[i]['typ'] - 1] = True
 
         attrValCode = pow(2, domAttrTyp - 1)
 
@@ -5201,36 +5213,34 @@ def GetItemName(SGIndex, SG, albumMode=-1):
         if attrValCode > 0:
             txtSuffix = texts[TXT['ITMNAME']['EXT'] + attrValCode + attrValOffs]
 
-        while itmPic >= 1000:
-            itmPic -= 1000
-            itmClass++
+        while itm.Pic >= 1000:
+            itm.Pic -= 1000
+            itm.Class++
 
-    if itmTyp >= 8:
-        txtBase = TXT['ITMNAME'][str(itmTyp)]
+    if itm.Typ >= 8:
+        txtBase = TXT['ITMNAME'][str(itm.Typ)]
     else:
-        txtBase = TXT['ITMNAME'][str(itmTyp)][str(itmClass)]
+        txtBase = TXT['ITMNAME'][str(itm.Typ)][str(itm.Class)]
 
-    if (itmPic >= 50) and (itmTyp != 14):
+    if (itm.Pic >= 50) and (itm.Typ != 14):
         txtBase += TXT_ITMNAME_1_1_EPIC - TXT_ITMNAME_1_1
-        itmPic -= 49
+        itm.Pic -= 49
         txtSuffix = ""
 
-    if (texts[txtBase + itmPic - 1] == undefined):
-        return "Unknown Item (base=%d, entry=%d)" % (txtBase, (txtBase + itmPic - 1))
+    if (texts[txtBase + itm.Pic - 1] == undefined):
+        return "Unknown Item (base=%d, entry=%d)" % (txtBase, (txtBase + itm.Pic - 1))
 
-    if texts[TXT_ITMNAME_EXT] == "1":
+    if texts[TXT['ITMNAME']['EXT']] == "1":
         if txtSuffix == "":
             return ""
         else:
-            return texts[txtBase + itmPic - 1]
+            return texts[txtBase + itm.Pic - 1]
 
-    if texts[TXT_ITMNAME_EXT] == "2":
+    if texts[TXT['ITMNAME']['EXT']] == "2":
         if txtSuffix == "":
-            return texts[txtBase + itmPic - 1]
+            return texts[txtBase + itm.Pic - 1]
         else:
-            # TODO: What exactly does this do?
-            # return txtSuffix.split("%1").join(this.txt[((txtBase + itmPic) - 1)]))
-            pass
+            return txtSuffix.replace("%1", texts[txtBase + itm.Pic - 1])
 
     if txtSuffix == "":
         return texts[txtBase + itmPic - 1]
