@@ -5122,8 +5122,27 @@ def GetQuestBG():
 #------------------------------------------------------------------------------
 
 class Item:
-    def __init__(pic=0, typ=0, class=1, gold=0, max=0, min=0, attr=False):
-        pass
+    def __init__(pic=0, typ=0, cclass=1, gold=0, maxd=0, mind=0, attr=False):
+        '''
+
+        '''
+        self.Pic = pic
+        self.Typ = typ
+        self.Class = cclass
+        self.Gold = gold
+        self.Damage['min'] = mind
+        self.Damage['max'] = maxd
+        if type(attr) is list:
+            self.Attr = attr
+        else:
+            self.Attr = [
+                {'typ': 0, 'val': 0},
+                {'typ': 0, 'val': 0},
+                {'typ': 0, 'val': 0}
+            ]
+
+        return self
+
 
     def fromSG(SGIndex=0, SG=False):
         '''
@@ -5134,7 +5153,6 @@ class Item:
 
             @return self
         '''
-
         #Preset values
         self.Pic = 0
         self.Typ = 0
