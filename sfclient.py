@@ -1188,8 +1188,8 @@ TXT = {
         "6": 265,
         "7": 266,
         "8": 267,
-        "9": 268
-        "10": 269,
+        "9": 268,
+        "10": 269
     },
     "RESEND": {
         "BTN1": 281,
@@ -2294,7 +2294,7 @@ CNT = {
             "6": 91,
             "7": 92,
             "8": 93,
-            "9": 94
+            "9": 94,
             "10": 95,
             "11": 96,
             "12": 97,
@@ -2510,8 +2510,8 @@ IMG = {
             "6": 23231,
             "7": 23232,
             "8": 23233,
-            "9": 23234}
-        ,
+            "9": 23234
+        },
         "PAYICONHOVER": {
             "1": 23235,
             "2": 23236,
@@ -2530,8 +2530,8 @@ IMG = {
             "1": 438,
             "9_1": 446,
             "9_2": 447,
-            "9_3": 448
-            "10": 449,
+            "9_3": 448,
+            "10": 449
         }
     },
     "FIDGET": {
@@ -2939,7 +2939,7 @@ IMG = {
 
 # Absolute positions X/Y
 POS = {
-    "BUBBLE" = {
+    "BUBBLE": {
         "ARENA_X": 375,
         "ARENA_Y": 228,
         "DEALER_X": 606,
@@ -2965,18 +2965,18 @@ POS = {
         "ZAUBERLADEN_X": 964,
         "ZAUBERLADEN_Y": 343
     },
-    "CHAR" = {
+    "CHAR": {
         "MOUNT_X": 805,
         "MOUNT_Y": 429,
         "NAME_X": 410,
         "NAME_Y": 345,
-        "PLAYER" = {
+        "PLAYER": {
             "X1": 830,
             "X2": 1030,
             "Y": 715
         },
-        "PROP" = {
-            "COLUMN" = {
+        "PROP": {
+            "COLUMN": {
                 "1_X": 304,
                 "2_X": 405,
                 "3_X": 470,
@@ -2986,7 +2986,7 @@ POS = {
             },
             "Y": 517
         },
-        "SLOTS" = {
+        "SLOTS": {
             "LEFT_X": 304,
             "R4C2_X": 441,
             "R4C3_X": 543,
@@ -3001,10 +3001,10 @@ POS = {
             "TOP_Y": 117
         }
     },
-    "CITY" = {
+    "CITY": {
         "ARENA_X": 280,
         "ARENA_Y": 100,
-        "CA" = {
+        "CA": {
             "ARENA_X": 280,
             "ARENA_Y": 170,
             "BUH_X": 1105,
@@ -3055,7 +3055,7 @@ POS = {
         "ZWERG_X": 480,
         "ZWERG_Y": 580
     },
-    "DEALER" = {
+    "DEALER": {
         "AKTION_X": 290,
         "AKTION_Y": 235,
         "ARM_X": 455,
@@ -3067,16 +3067,16 @@ POS = {
         "SPONSOR_X": 1080,
         "SPONSOR_Y": 520
     },
-    "DEMO" = {
+    "DEMO": {
         "X": 1050,
         "Y": 700,
         "Y": 380
     },
-    "FIGHT" = {
+    "FIGHT": {
         "Y": 710,
-        "CHAR" = {
-            "PROP" = {
-                "COLUMN" = {
+        "CHAR": {
+            "PROP": {
+                "COLUMN": {
                     "1_X": 324,
                     "2_X": 450,
                     "3_X": 1059,
@@ -3086,7 +3086,7 @@ POS = {
             },
             "X": 315
         },
-        "REWARD" = {
+        "REWARD": {
             "EXP_X": 535,
             "GOLD_X": 1000,
             "GOLD_Y": 640,
@@ -3096,10 +3096,10 @@ POS = {
         "SUMMARY_Y": 520,
         "WEAPONS_Y": 350
     },
-    "GILDE" = {
+    "GILDE": {
         "ATTACKX": 450,
         "ATTACKLABEL_X": 570,
-        "CHAT" = {
+        "CHAT": {
             "FIELD_Y": 743,
             "X": 305,
             "Y": 624
@@ -3109,7 +3109,7 @@ POS = {
         "GEBAEUDE_Y": 162,
         "GOLD_Y": 488,
         "GOLDMUSH_X": 670,
-        "LIST" = {
+        "LIST": {
             "SCROLLX": 1205,
             "SCROLLY": 520,
             "X": 997,
@@ -3121,10 +3121,10 @@ POS = {
         "TOOLX": 989,
         "TOOLY": 564
     },
-    "HALL" = {
+    "HALL": {
         "LIST_X": 580,
         "LIST_Y": 235,
-        "GOTO" = {
+        "GOTO": {
             "X": 875,
             "Y": 570,
             "GILDEN_X": 870,
@@ -3137,7 +3137,7 @@ POS = {
         "UP_Y": 195,
         "UPDOWN_X": 980
     },
-    "HUTMANN" = {
+    "HUTMANN": {
         "BACK_X": 1140,
         "BACK_Y": 620,
         "GOLD_Y": 660,
@@ -3150,7 +3150,7 @@ POS = {
         "OK_Y": 650,
         "TEXT_Y": 635
     },
-    "IF" = {
+    "IF": {
         "X": 20,
         "Y": 180,
         "ERROR_X": 770,
@@ -3165,19 +3165,19 @@ POS = {
         "WIN_X": 540,
         "WIN_Y": 250
     },
-    "MQ" = {
+    "MQ": {
         "CS_X": 680,
         "CS_Y": 450,
         "ERROR_Y": 735,
         "SQUARE_X": 470,
         "SQUARE_Y": 80
     },
-    "MQS" = {
+    "MQS": {
         "BUTTON_X": 380,
         "BUTTON_Y": 170,
         "TITLE_Y": 115
     },
-    "POST" = {
+    "POST": {
         "ADDRESS_Y": 190,
         "BUTTONS_X": 330,
         "BUTTONS_Y": 685,
@@ -3195,19 +3195,19 @@ POS = {
         "SUBJECT_Y": 220,
         "TEXT_Y": 250
     },
-    "QUEST" = {
+    "QUEST": {
         "CANCEL_X": 780,
         "CANCEL_Y": 700,
         "ERROR_Y": 540
     },
-    "QUESTBAR" = {
+    "QUESTBAR": {
         "LABEL_X": 778,
         "LABEL_Y": 625,
         "X": 390,
         "Y": 580
     },
-    "SCR" = {
-        "BUILDCHAR" = {
+    "SCR": {
+        "BUILDCHAR": {
             "1_X": 312,
             "1_Y": 134,
             "CASTE_X": 332,
@@ -3221,7 +3221,7 @@ POS = {
             "VOLK_X": 345,
             "VOLK_Y": 300
         },
-        "CHAR" = {
+        "CHAR": {
             "ACH_X": 795,
             "ACH_Y": 635,
             "CHARX": 408,
@@ -3229,22 +3229,22 @@ POS = {
         },
         "SHOP_BG_X": 780
     },
-    "SCREEN" = {
+    "SCREEN": {
         "BACK_BUTTON_X": 1120,
         "BACK_BUTTON_Y": 650,
         "RANDOM_BUTTON_X": 1030,
         "RANDOM_BUTTON_Y": 620,
-        "TITLE" = {
+        "TITLE": {
             "X": 770,
             "Y": 120,
             "Y_GUILD": 110,
             "Y_QUEST": 120
         }
     },
-    "SHOP" = {
+    "SHOP": {
         "ERROR_X": 1030,
         "ERROR_Y": 185,
-        "SLOTS" = {
+        "SLOTS": {
             "C1_X": 856,
             "C2_X": 972,
             "C3_X": 1088,
@@ -3253,7 +3253,7 @@ POS = {
         },
         "X": 860
     },
-    "STADT" = {
+    "STADT": {
         "BACKG_X": 280,
         "BACKG_Y": 101,
         "MAIN_X": 280,
@@ -3261,21 +3261,21 @@ POS = {
     },
     "STALL_ERROR_Y": 500,
     "STALL_SQUARE_Y": 560,
-    "TAVERNE" = {
+    "TAVERNE": {
         "BAR_X": 1030,
         "BAR_Y": 320,
         "BAROVL_X": 1093,
         "BAROVL_Y": 320
     },
-    "TIMEBAR" = {
+    "TIMEBAR": {
         "LABEL_X": 0x0300,
         "LABEL_Y": 705,
         "X": 380,
         "Y": 660
     },
-    "LBL" = {
-        "ARBEITEN" = {
-            "TEXT" = {
+    "LBL": {
+        "ARBEITEN": {
+            "TEXT": {
                 "2_Y": 475,
                 "X": 590,
                 "Y": 340
@@ -3329,28 +3329,28 @@ POS = {
 
 # Relative positions
 REL = {
-    "ARBEITEN" = {
+    "ARBEITEN": {
         "BAR_X": 55,
         "BAR_Y": 200,
         "Y": 270,
         "FILL_X": 110,
         "FILL_Y": 222
     },
-    "ARENA" = {
+    "ARENA": {
         "DELAY_X": 75,
         "DELAY_Y": 292,
         "INP_Y": 220,
         "OK_Y": 280,
         "TEXT_Y": 80
     },
-    "CHAR" = {
+    "CHAR": {
         "DELAY_X": 335,
         "DELAY_Y": 655,
         "EHRE_X": 20,
         "MOUNT_X": 274,
         "MOUNT_LINE_Y": 25,
         "PROP_Y": 32,
-        "RUESTUNG" = {
+        "RUESTUNG": {
             "TEXT_X": 45,
             "TEXT_Y": 7,
             "X": 15,
@@ -3359,7 +3359,7 @@ REL = {
         "X": 20,
         "Y": 51
     },
-    "FIDGET" = {
+    "FIDGET": {
         "AFFE_X": 425,
         "AFFE_Y": 128,
         "BLINZELN_X": 107,
@@ -3371,48 +3371,48 @@ REL = {
         "X": 74,
         "Y": 168
     },
-    "FIGHT" = {
-        "BOX" = {
+    "FIGHT": {
+        "BOX": {
             "1_X": -17,
             "1_Y": -15,
             "3_X": -17
         },
         "CHAR_PROP_Y": 32
     },
-    "GILDE" = {
+    "GILDE": {
         "BUILDING_Y": 100,
-        "CHAT" = {
+        "CHAT": {
             "CAPTION_Y": 32,
             "DOWN_Y": 75,
             "UP_Y": 5,
             "Y": 22
         },
         "DEFENSELABEL_Y": 24,
-        "GEBAEUDE" = {
+        "GEBAEUDE": {
             "IMPROVE_X": 105,
             "IMPROVE_Y": 53,
             "LINE": 24,
             "Y": 133
         },
-        "GOLDMUSH" = {
+        "GOLDMUSH": {
             "C1": 10,
             "C2": 205,
             "C3": 0
         },
-        "GRUENDEN" = {
+        "GRUENDEN": {
             "INP_Y": 220,
             "OK_Y": 280,
             "TEXT_Y": 80
         },
         "INP_Y": 220,
-        "LIST" = {
+        "LIST": {
             "C1": 23,
             "X": 200,
             "Y": 26
         },
         "MUSH_Y": 27,
         "OK_Y": 280,
-        "TEXT" = {
+        "TEXT": {
             "IMPROVE_X": 143,
             "X": 105,
             "Y": 80
@@ -3421,9 +3421,9 @@ REL = {
         "EHRE_X": 10,
         "EHRE_Y": 10
     },
-    "HALL" = {
-        "LIST" = {
-            "COLUMN" = {
+    "HALL": {
+        "LIST": {
+            "COLUMN": {
                 "1_X": 0,
                 "2_X": 60,
                 "3_X": 80,
@@ -3435,8 +3435,8 @@ REL = {
             "LINES_Y": 0
         }
     },
-    "HUTMANN" = {
-        "BECHER" = {
+    "HUTMANN": {
+        "BECHER": {
             "1_X": 204,
             "1_X2": 0,
             "1_X3": 0,
@@ -3459,17 +3459,17 @@ REL = {
         "FACE_X": 389,
         "FACE_Y": 115
     },
-    "IF" = {
+    "IF": {
         "1": 44,
         "2": 20,
         "GOTO_LOGIN_X": 450,
-        "WIN" = {
+        "WIN": {
             "2_Y": 35,
             "X": -87,
             "Y": 250,
             "CB_X": 70,
             "CB_Y": 245,
-            "INPUTS" = {
+            "INPUTS": {
                 "DISTANCE_Y": 55,
                 "FIELD_X": 80,
                 "FIELD_Y": -15,
@@ -3482,15 +3482,15 @@ REL = {
             "WELCOME_Y": 45
         }
     },
-    "MODIFY" = {
-        "CHARACTER" = {
+    "MODIFY": {
+        "CHARACTER": {
             "BUTTONS_1": 45,
             "BUTTONS_2": 55,
             "LABEL_X": 50,
             "LABEL_Y": 6
         }
     },
-    "MQ" = {
+    "MQ": {
         "BORDER_X": 10,
         "BORDER_Y": 10,
         "BUTTON_Y": -20,
@@ -3499,15 +3499,15 @@ REL = {
         "TEXT_Y": 130,
         "TITLE_Y": 90
     },
-    "OPTION" = {
-        "BOX" = {
+    "OPTION": {
+        "BOX": {
             "1_X": -5,
             "1_Y": -5,
             "2_X": -5,
             "2_Y": -5
         },
         "CHANGE_X": 230,
-        "DOCHANGE" = {
+        "DOCHANGE": {
             "X": 640,
             "FIELD_X": 570,
             "LABEL_X": 440,
@@ -3527,21 +3527,21 @@ REL = {
         "Y6": 380,
         "Y7": 430
     },
-    "POPUP" = {
+    "POPUP": {
         "TAB": 120,
         "TAB1": 35,
         "TAB2": 100,
         "TAB3": 130,
         "TAB_ADD": 17
     },
-    "POST" = {
+    "POST": {
         "BUTTONS_X": 5,
         "FENSTER_X": 479,
         "FENSTER_Y": 14,
         "LIMIT_X": -10,
         "LIMIT_Y": -55,
-        "LIST" = {
-            "COLUMN" = {
+        "LIST": {
+            "COLUMN": {
                 "1_X": 0,
                 "2_X": 160,
                 "3_X": 660
@@ -3554,7 +3554,7 @@ REL = {
         "VOGEL_X": 234,
         "VOGEL_Y": 100
     },
-    "QO" = {
+    "QO": {
         "CHOICES_Y": 40,
         "CHOOSE_X": 20,
         "CHOOSE_Y": 280,
@@ -3574,8 +3574,8 @@ REL = {
         "START_X": 550,
         "START_Y": 380
     },
-    "SCR" = {
-        "BUILDCHAR" = {
+    "SCR": {
+        "BUILDCHAR": {
             "CASTE_X": 80,
             "GENDER_X": 80,
             "VOLK_X": 130,
@@ -3584,7 +3584,7 @@ REL = {
         "CHAR_ACH_X": 55,
         "CHAR_ACH_X_BUFFED": 65
     },
-    "SHAKES" = {
+    "SHAKES": {
         "BLINZELN_X": 56,
         "BLINZELN_Y": 33,
         "IDLE2_X": 54,
@@ -3594,10 +3594,10 @@ REL = {
         "X": 171,
         "Y": 112
     },
-    "STALL" = {
+    "STALL": {
         "ARME_X": 373,
         "ARME_Y": 181,
-        "BOX" = {
+        "BOX": {
             "1_X": 0,
             "1_Y": 50,
             "2_X": 225,
@@ -3608,8 +3608,8 @@ REL = {
             "4_Y": 50
         },
         "GAIN_Y": 40,
-        "OVL" = {
-            "BOESE" = {
+        "OVL": {
+            "BOESE": {
                 "1_X": 100,
                 "1_Y": 305,
                 "2_X": 254,
@@ -3619,7 +3619,7 @@ REL = {
                 "4_X": 756,
                 "4_Y": 168
             },
-            "GUT" = {
+            "GUT": {
                 "1_X": 80,
                 "1_Y": 265,
                 "2_X": 303,
@@ -3636,7 +3636,7 @@ REL = {
         "TUER_Y": 96,
         "ZEILEN_Y": 10
     },
-    "TAVERNE" = {
+    "TAVERNE": {
         "BARKEEPER_X": 796,
         "BARKEEPER_Y": 322,
         "HUT_X": 136,
@@ -3647,7 +3647,7 @@ REL = {
         "KERZEN_Y": 21,
         "QUEST_X": 285,
         "QUEST_Y": 281,
-        "QUESTOVL" = {
+        "QUESTOVL": {
             "1_X": 182,
             "1_Y": 60,
             "2_X": 149,
@@ -3685,8 +3685,8 @@ REL = {
 
 # Element Sizes
 SIZE = {
-    "CITY" = {
-        "CA" = {
+    "CITY": {
+        "CA": {
             "ARENA_X": 360,
             "ARENA_Y": 220,
             "BUH_X": 45,
@@ -3709,13 +3709,13 @@ SIZE = {
             "ZAUBERLADEN_Y": 120
         }
     },
-    "DEALER" = {
+    "DEALER": {
         "AKTION_X": 190,
         "AKTION_Y": 170,
         "SPONSOR_X": 190,
         "SPONSOR_Y": 170
     },
-    "GILDE" = {
+    "GILDE": {
         "CHAT_EXT_X": 950,
         "GRUENDEN_TEXT_X": 400,
         "TEXT2_X": 400,
@@ -3723,8 +3723,8 @@ SIZE = {
         "EHRE_X": 375,
         "EHRE_Y": 40
     },
-    "STALL" = {
-        "BOX" = {
+    "STALL": {
+        "BOX": {
             "1_X": 200,
             "1_Y": 480,
             "2_X": 183,
@@ -3737,7 +3737,7 @@ SIZE = {
         "SQUARE_X": 700,
         "SQUARE_Y": 200
     },
-    "TAVERNE" = {
+    "TAVERNE": {
         "BAR_X": 200,
         "BAR_Y": 200,
         "HUT_X": 100,
@@ -3784,7 +3784,7 @@ C = {
 
 # ???
 CA = {
-    "CITY" = {
+    "CITY": {
         "ARENA": 227,
         "BUH": 259,
         "DEALER": 234,
@@ -3796,25 +3796,25 @@ CA = {
         "WACHE": 244,
         "ZAUBERLADEN": 219
     },
-    "HUTBECHER" = {
+    "HUTBECHER": {
         "1": 23562,
         "2": 23563,
         "3": 23564
     },
-    "SCR" = {
+    "SCR": {
         "ARBEITEN_BLOCKCITY": 295,
         "CHAR_EXPBAR": 360,
         "INVITE_BLOCKCITY": 22967
     },
-    "STALL" = {
-        "BOX" = {
-            "BOESE" = {
+    "STALL": {
+        "BOX": {
+            "BOESE": {
                 "1": 23337,
                 "2": 23338,
                 "3": 23339,
                 "4": 23340
             },
-            "GUT" = {
+            "GUT": {
                 "1": 23333,
                 "2": 23334,
                 "3": 23335,
@@ -3822,13 +3822,13 @@ CA = {
             }
         }
     },
-    "TAVERNE" = {
+    "TAVERNE": {
         "BAR": 23541,
         "HUTMANN": 23524,
         "QUESTOFFER": 23531,
         "TOILETTE": 24597
     },
-    "TOILET" = {
+    "TOILET": {
         "BOWL": 24616,
         "CHAIN": 24615,
         "LID": 24619,
@@ -3866,8 +3866,8 @@ CB = {
 
 # Color values
 CLR = {
-    "ATTACK" = {
-        "ERROR" = {
+    "ATTACK": {
+        "ERROR": {
             "OFFLINE": 0xA10000,
             "OFFLINE_HALF": 0xB04000,
             "ONLINE": 0xFF2000,
@@ -3875,7 +3875,7 @@ CLR = {
         },
         "OK": 8978312
     },
-    "SYSMSG" = {
+    "SYSMSG": {
         "CLR": 16746564,
         "GREEN": 4521796,
         "GREEN_HIGHLIGHT": 8978312,
@@ -3930,7 +3930,7 @@ GUILD = {
     "DEFENCE_TIME": 367,
     "EVENT_TRIGGER_COUNT": 368,
     "IS_RAID": 9,
-    "MEMBER" = {
+    "MEMBER": {
         "GOLDSPENT": 214,
         "HONOR": 164,
         "ID": 14,
@@ -3950,7 +3950,7 @@ INP = {
     "CHAR_INVITE2": 22971,
     "CHARDESC": 22959,
     "EMAIL": 53,
-    "GILDE" = {
+    "GILDE": {
         "CHAT": 23448,
         "DIALOG_INVITE": 23507,
         "GRUENDEN": 23362,
@@ -3959,8 +3959,8 @@ INP = {
     "HALLE_GOTO": 287,
     "LOGIN_PASSWORD": 60,
     "NAME": 51,
-    "OPTION" = {
-        "FIELD" = {
+    "OPTION": {
+        "FIELD": {
             "1": 24261,
             "2": 24262,
             "3": 24263
@@ -3990,10 +3990,10 @@ SHP = {
 
 #Slider Indices
 SLDR = {
-    "ARBEITEN" = {
+    "ARBEITEN": {
         "SLDR": 298,
         "BAR": 299,
-        "TICK" = {
+        "TICK": {
             "1": 300,
             "2": 301,
             "3": 302,
@@ -4006,7 +4006,7 @@ SLDR = {
             "10": 309
         }
     },
-    "OPTION" = {
+    "OPTION": {
         "BAR": 24270,
         "TICK1": 24271,
         "VOLUME": 24269
@@ -4089,7 +4089,7 @@ class switch(object):
 
 
 class session:
-    def __init__():
+    def __init__(self):
         self.baseuri = 'http://s31.sfgame.de/request.php'
         self.loginparams = '?req=&random=%%2&rnd=%s%s'
 
@@ -4101,7 +4101,7 @@ class session:
         self.pwdmd5 = 'c33def595b633a53fbb6a3987ab54a05'
         random.seed()
 
-    def login():
+    def login(self):
         action = '002'
 
         reqString = self.reqFormat % (self.sessionId + action + self.user, self.pwdmd5)
@@ -4119,7 +4119,7 @@ class session:
 
         return r.text.split('/')
 
-    def sendAction(action, *params):
+    def sendAction(self, action, *params):
         if action == ACT.GET_CHAT_HISTORY:
             if not self.OnStage(CNT.IF_LOGOUT):
                 return
@@ -4128,7 +4128,7 @@ class session:
                     return
             else:
                 if self.pollLock or self.sendLock or self.fightLock:
-                    returnaction
+                    return action
         else:
             if self.sendLock:
                 if (
@@ -4234,7 +4234,7 @@ class session:
                         self.sendLock = False
 
                     raise RequestFailedException()
-                failTry++
+                failTry += 1
 
 
 class character:
@@ -4242,7 +4242,7 @@ class character:
 
 
 class account:
-    def __init__():
+    def __init__(self):
         pass
 
 
@@ -5076,33 +5076,33 @@ def GetQuestText(questID):
     QuestText += '\"%s ' % (texts[idx['OPENER'] + GetQuestRandom(questID, 10, 3)])
 
     for case in switch(int(Savegame[SG.QUEST_OFFER_TYPE1 + questID])):
-        case(1):
+        if case(1):
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
             QuestText += texts[idx['SCOUT']['TASK1'] + GetQuestRandom(questID, 20, 0)] + " "
             QuestText += texts[idx['SCOUT']['TASK2'] + GetQuestRandom(questID, 10, 1)] + " "
             break
-        case(2):
+        if case(2):
             QuestText += texts[idx['COLLECT']['WHAT'] + GetQuestRandom(questID, 20, 0)] + " "
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
             QuestText += texts[idx['COLLECT']['AMOUNT'] + GetQuestRandom(questID, 11, 1)].replace("%", str(GetQuestRandom(questID, 10, 2) + 2)) + " "
             break
-        case(3):
+        if case(3):
             QuestText += texts[idx['FETCH']['WHAT'] + GetQuestRandom(questID, 20, 0)] + " "
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
             QuestText += texts[idx['FETCH']['FROM'] + GetQuestRandom(questID, 15, 1)] + " "
             QuestText += texts[idx['FETCH']['PRECLOSER'] + GetQuestRandom(questID, 20, 0)] + " "
             break
-        case(4):
+        if case(4):
             QuestText += texts[idx['KILL']['LOCATION'] + location - 1] + " "
             QuestText += texts[idx['KILL']['WHOM'] - Savegame[sgIdx['ENEMY1'] + questID] - 1] + " "
             QuestText += texts[idx['KILL']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)] + " "
             break
-        case(5):
+        if case(5):
             QuestText += texts[idx['TRANSPORT']['WHAT'] + GetQuestRandom(questID, 21, 0)] + " "
             QuestText += texts[idx['TRANSPORT']['LOCATION'] + location - 1] + " "
             QuestText += texts[idx['TRANSPORT']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)] + " "
             break
-        case():
+        if case():
             QuestText += texts[idx['ESCORT']['WHOM'] + GetQuestRandom(questID, 23, 0)] + " "
             QuestText += texts[idx['ESCORT']['LOCATION'] + location - 1] + " "
             QuestText += texts[idx['ESCORT']['PRECLOSER'] + GetQuestRandom(questID, 23, 0)] + " "
@@ -5124,7 +5124,7 @@ def GetQuestBG():
 #------------------------------------------------------------------------------
 
 class Item:
-    def __init__(pic=0, typ=0, cclass=1, gold=0, maxd=0, mind=0, color=0 attr=False):
+    def __init__(self, pic=0, typ=0, cclass=1, gold=0, maxd=0, mind=0, color=0, attr=False):
         '''
 
         '''
@@ -5145,11 +5145,11 @@ class Item:
             ]
         while self.Pic >= 1000:
             self.Pic -= 1000
-            self.Class++
+            self.Class += 1
 
         return self
 
-    def fromSG(SGIndex=0, SG=False):
+    def fromSG(self, SGIndex=0, SG=False):
         '''
             setup item object from savegame
 
@@ -5193,7 +5193,7 @@ class Item:
             Pic, Typ, Class, Gold, Mush, Damage['max'], Damage['min'], Color, Attr
         )
 
-    def getName():
+    def getName(self):
         '''
             get item name snippet
 
@@ -5273,7 +5273,7 @@ class Item:
         else:
             return texts[txtBase + self.Pic - 1] + " " + txtSuffix
 
-    def getFile(itmColor):
+    def getFile(self, itmColor):
         '''
             get item graphic relative url
 
@@ -5304,7 +5304,7 @@ class Item:
 
         return "res/gfx/itm/" + itemFile + ".png"
 
-    def getId():
+    def getId(self):
         '''
             get item ID
 
@@ -5378,8 +5378,8 @@ def GetArrowID(itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
         itmClass = 0
         while itmPic >= 1000:
             itmPic -= 1000
-            itmClass++
-        itmClass--
+            itmClass += 1
+        itmClass -= 1
     else:
         itmColor = int(someObj)
 
@@ -5403,16 +5403,16 @@ def GetArrowID(itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
 def GetWeaponSoundFile(wpnClass, wpnPic, useCase):
     useCaseStr = ""
     for case in switch(useCase):
-        case(0):
+        if case(0):
             useCaseStr = "s"
             break
-        case(1):
+        if case(1):
             useCaseStr = "n"
             break
-        case(2):
+        if case(2):
             useCaseStr = "b"
             break
-        case(3):
+        if case(3):
             useCaseStr = "k"
             break
 
@@ -5436,14 +5436,14 @@ def GetWeaponSound(wpnClass, wpnPic, useCase):
 
 def GetWeaponLevel(wpnClass, wpnPic):
     for case in switch(wpnClass):
-        case(1):
-            if wpnPic = -7:
+        if case(1):
+            if wpnPic == -7:
                 return (7)
-            elif wpnPic = -3:
+            elif wpnPic == -3:
                 return (6)
             elif wpnPic in (-2, -1, 54):
                 return (4)
-            elif wpnPic = 0:
+            elif wpnPic == 0:
                 return (5)
             elif wpnPic in (-5, -4, 1, 2, 3, 4):
                 return (0)
@@ -5453,23 +5453,23 @@ def GetWeaponLevel(wpnClass, wpnPic):
                 return (2)
             elif wpnPic in (9, 12, 14, 18):
                 return (3)
-            elif wpnPic = 53:
+            elif wpnPic == 53:
                 return (8)
-            elif wpnPic = 55:
+            elif wpnPic == 55:
                 return (9)
-            elif wpnPic = 56:
+            elif wpnPic == 56:
                 return (10)
-            elif wpnPic = 57:
+            elif wpnPic == 57:
                 return (11)
-            elif wpnPic = 58:
+            elif wpnPic == 58:
                 return (12)
-            elif wpnPic = 59:
+            elif wpnPic == 59:
                 return (13)
             break
-        case(2):
+        if case(2):
             if wpnPic in range(-5, 0):
                 return (4)
-            elif wpnPic = 0:
+            elif wpnPic == 0:
                 return (5)
             elif wpnPic in (1, 60):
                 return (0)
@@ -5479,41 +5479,41 @@ def GetWeaponLevel(wpnClass, wpnPic):
                 return (2)
             elif wpnPic in (3, 4, 5, 8, 50, 51):
                 return (3)
-            elif wpnPic = 53:
+            elif wpnPic == 53:
                 return (4)
-            elif wpnPic = 55:
+            elif wpnPic == 55:
                 return (9)
-            elif wpnPic = 56:
+            elif wpnPic == 56:
                 return (10)
-            elif wpnPic = 57:
+            elif wpnPic == 57:
                 return (11)
-            elif wpnPic = 58:
+            elif wpnPic == 58:
                 return (12)
-            elif wpnPic = 59:
+            elif wpnPic == 59:
                 return (13)
             break
-        case 3:
-            elif wpnPic in range(-5, 0):
+        if case(3):
+            if wpnPic in range(-5, 0):
                 return (4)
-            elif wpnPic = 0:
+            elif wpnPic == 0:
                 return (5)
             elif wpnPic in (1, 2):
                 return (0)
-            elif wpnPic = (3, 5, 6, 7, 50, 52, 53, 54):
+            elif wpnPic == (3, 5, 6, 7, 50, 52, 53, 54):
                 return (1)
             elif wpnPic in (4, 8, 9, 10, 59):
                 return (2)
-            elif wpnPic = 51:
+            elif wpnPic == 51:
                 return (3)
-            elif wpnPic = 55:
+            elif wpnPic == 55:
                 return (9)
-            elif wpnPic = 56:
+            elif wpnPic == 56:
                 return (10)
-            elif wpnPic = 57:
+            elif wpnPic == 57:
                 return (11)
-            elif wpnPic = 58:
+            elif wpnPic == 58:
                 return (12)
-            elif wpnPic = 60:
+            elif wpnPic == 60:
                 return (13)
             break
 
@@ -6001,6 +6001,7 @@ def ActionHandler(event):
         var event:* = event;
     '''
 
+    '''
     dataStr = str(event.data)
     isMine = False
     logInAfterPixel = False
@@ -6029,13 +6030,13 @@ def ActionHandler(event):
     skipAllowed = False
 
     for case in switch(act):
-        case(ERR_TOWER_CLOSED):
+        if case(ERR_TOWER_CLOSED):
             break
-        case(RESP_TOWER_SAVE):
+        if case(RESP_TOWER_SAVE):
             ParseSavegame(par[0])
             ShowTowerScreen(par)
             break
-        case(RESP_TOILET_LOCKED):
+        if case(RESP_TOILET_LOCKED):
             Remove(TAVERNE_BARKEEPER_HINT)
             Remove(TAVERNE_CAS)
             Add(BEEROFFER)
@@ -6045,7 +6046,7 @@ def ActionHandler(event):
             EnablePopup(LBL_QO_REWARDSILVER)
             EnablePopup(LBL_QO_REWARDEXP)
 
-            var _local3 = actor[LBL_QO_QUESTNAME]
+            _local3 = actor[LBL_QO_QUESTNAME]
 
             #with (_local3) do:
             #    text = txt[(TXT_TOILET_HINT + 5)];
@@ -6063,19 +6064,19 @@ def ActionHandler(event):
             Add(BO_PORTRAIT_TH)
             break
 
-        case(RESP_TOILET_UNLOCKED):
+        if case(RESP_TOILET_UNLOCKED):
             Play(SND_MAINQUESTS_UNLOCK)
-        case(RESP_TOILET_DROPPED):
+        if case(RESP_TOILET_DROPPED):
             pass
-        case(RESP_TOILET_FULL):
+        if case(RESP_TOILET_FULL):
             pass
-        case(RESP_TOILET_FLUSHED):
+        if case(RESP_TOILET_FLUSHED):
             pass
-        case(ACT_SCREEN_TOILET):
+        if case(ACT_SCREEN_TOILET):
             pass
-        case(RESP_TOILET_TANKFULL):
+        if case(RESP_TOILET_TANKFULL):
             pass
-        case(REPS_TOILET_DROPTWICE):
+        if case(REPS_TOILET_DROPTWICE):
             if (act == RESP_TOILET_DROPPED):
                 Play(SND_TOILET_DROP)
 
@@ -7210,7 +7211,7 @@ def ActionHandler(event):
         RequestLogin(event);
     };
 }
-
+'''
 
 '''
 
