@@ -4129,8 +4129,8 @@ class session:
         return r.text.split('/')
 
     def sendAction(self, action, *params):
-        if action == ACT.GET_CHAT_HISTORY:
-            if not self.OnStage(CNT.IF_LOGOUT):
+        if action == ACT['GET_CHAT_HISTORY']:
+            if not OnStage(CNT['IF_LOGOUT']):
                 return
             if self.param_poll_tunnel_url != "":
                 if self.pollLock:
@@ -4141,9 +4141,9 @@ class session:
         else:
             if self.sendLock:
                 if (
-                    (action != ACT.VALIDATE)
-                    and (action != ACT.SEND_CHAT)
-                    and (action != ACT.GUILD_DONATE)
+                    (action != ACT['VALIDATE'])
+                    and (action != ACT['SEND_CHAT'])
+                    and (action != ACT['GUILD']['DONATE'])
                     and (action != ACT.REQUEST_GUILD_NAMES)
                     and (action != ACT.REQUEST_CHAR)
                     and (action != ACT.POST_SEND)
@@ -5654,7 +5654,8 @@ def GetWeaponLevel(wpnClass, wpnPic):
 # TODO: How to do Event stuff?
 def RequestSignup(evt):
     if evt is KeyboardEvent:
-        if ((KeyboardEvent(evt).keyCode != 13)
+        if (
+            (KeyboardEvent(evt).keyCode != 13)
             and (KeyboardEvent(evt).keyCode != 10)
             and (KeyboardEvent(evt).keyCode != 16777230)
         ):
@@ -5706,97 +5707,101 @@ def LoadTrackingPixel(url=''):
     url += str(int((Math.random() * 100000)))
     #url += ("&had_account=") + ((hadAccount) ? "1" : "0")
 
-    pass
-
-
-'''
-LoadTrackingPixel:* = function (url:String){
-    if (param_reload_pixel){
-        trc("Tracking Pixel Reload Mode for:", url)
-        trc("CID userd", param_cid)
-        trc("Action", act)
-        req = new URLRequest("index.php")
-        req.method = URLRequestMethod.POST
-        variables = new URLVariables()
-        variables.pixel_url = url
-        variables.pixel_cid = param_cid
-        variables.pixel_player_id = Savegame[SG_PLAYER_ID]
-        variables.pixel_action = (((nextPxl == 0)) ? act : Math.abs(nextPxl))
-        req.data = variables
-        logInAfterPixel = false
-        navigateToURL(req, "_self")
-    } else {
-        if (param_internal_pixel){
-            pixel_success = function (evt:Event){
-                var pixelData:String
-                pixelData = pixelLoader.data
-                if ((((pixelData.toLowerCase().substr(0, 7) == "http://")) or ((pixelData.toLowerCase().substr(0, 8) == "https://")))){
-                    ExternalInterface.call("loadpixel", pixelData)
-                }
-                pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
-                pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-                pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
-            }
-            pixel_failed = function (evt:Event){
-                pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
-                pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-                pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
-            }
-            pixelLoader = new URLLoader()
-            pixelLoader.addEventListener(Event.COMPLETE, pixel_success)
-            pixelLoader.addEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-            pixelLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
-            pixelLoader.load(new URLRequest(url))
-        } else {
+    if param_reload_pixel:
+        #trc("Tracking Pixel Reload Mode for:", url)
+        #trc("CID userd", param_cid)
+        #trc("Action", act)
+        #req = new URLRequest("index.php")
+        #req.method = URLRequestMethod.POST
+        #variables = new URLVariables()
+        #variables.pixel_url = url
+        #variables.pixel_cid = param_cid
+        #variables.pixel_player_id = Savegame[SG_PLAYER_ID]
+        #variables.pixel_action = (((nextPxl == 0)) ? act : Math.abs(nextPxl))
+        #req.data = variables
+        logInAfterPixel = False
+        #navigateToURL(req, "_self")
+    else:
+        if param_internal_pixel:
+            # pixel_success = function (evt:Event){
+            #     var pixelData:String
+            #     pixelData = pixelLoader.data
+            #     if ((((pixelData.toLowerCase().substr(0, 7) == "http://")) or ((pixelData.toLowerCase().substr(0, 8) == "https://")))){
+            #         ExternalInterface.call("loadpixel", pixelData)
+            #     }
+            #     pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
+            #     pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+            #     pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            # }
+            # pixel_failed = function (evt:Event){
+            #     pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
+            #     pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+            #     pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            # }
+            # pixelLoader = new URLLoader()
+            # pixelLoader.addEventListener(Event.COMPLETE, pixel_success)
+            # pixelLoader.addEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+            # pixelLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            # pixelLoader.load(new URLRequest(url))
+            pass
+        else:
             ExternalInterface.call("loadpixel", url)
-        }
-    }
-}
 
-DoActZauberladen = function (){
+
+def DoActZauberladen():
     ErrorMessage(" ")
     Remove(CHAR_RIGHTPANE)
     Remove(FIDGET_EPCIOVL)
     Remove(SHAKES_EPCIOVL)
     Add(SCREEN_FIDGET)
-    if (Savegame[SG_LEVEL] >= 66){
+    if Savegame[SG_LEVEL] >= 66:
         Add(CA_GOTO_WITCH)
-    }
-    if ((((specialAction == 2)) or ((specialAction == 5)))){
+    if ((specialAction == 2) or (specialAction == 5)):
         Add(FIDGET_EPCIOVL)
-        actor[FIDGET_EPCIOVL].mouseEnabled = false
-    }
-    if (!SleepTime()){
+        actor[FIDGET_EPCIOVL].mouseEnabled = False
+    if (not SleepTime()):
         Remove(FIDGET_NIGHT)
-    } else {
+    else:
         Remove(FIDGET_DAY)
-    }
-    if (Capabilities.version.substr(0, 3) != "IOS"){
-        if (lightMode){
+    if Capabilities.version.substr(0, 3) != "IOS":
+        if lightMode:
             Remove(FIDGET_TAGKERZE)
             Remove(FIDGET_NACHTKERZE)
-        }
-    }
     Remove(FIDGET_BLINZELN)
-}
 
-DoActSchmiede = function (){
+
+def DoActSchmiede():
     ErrorMessage(" ")
     Remove(CHAR_RIGHTPANE)
     Remove(FIDGET_EPCIOVL)
     Remove(SHAKES_EPCIOVL)
     Add(SCREEN_SHAKES)
-    if ((((specialAction == 2)) or ((specialAction == 5)))){
+    if ((specialAction == 2) or (specialAction == 5)):
         Add(SHAKES_EPCIOVL)
         actor[SHAKES_EPCIOVL].mouseEnabled = false
-    }
     Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
-    if (!SleepTime()){
+    if not SleepTime():
         Remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
-    } else {
+    else:
         Remove(SHAKES_DAY)
-    }
-}
+
+
+def RequestPlayerScreen(evt):
+    selIndex = actor[HALL_LIST].getChildIndex(evt.target)
+    if selIndex < 5:
+        return
+
+    selRow = int((selIndex - 5) / 6) + 1
+    selName = HallListName[selRow]
+    selGilde = HallListGilde[selRow]
+    if selName == "":
+        return
+    SendAction(ACT_REQUEST_CHAR, selName)
+
+
+
+
+'''
 
 ParseSavegame:* = function (
     strSaveGame:String, FillFaceVariables:Boolean=true, noSpoil:Boolean=false
@@ -5987,21 +5992,6 @@ ParseSavegame:* = function (
     }
 }
 
-RequestPlayerScreen:* = function (evt:MouseEvent){
-    var selIndex:int
-    var selRow:int
-    selIndex = actor[HALL_LIST].getChildIndex(evt.target)
-    if (selIndex < 5){
-        return
-    }
-    selRow = (int(((selIndex - 5) / 6)) + 1)
-    selName = HallListName[selRow]
-    selGilde = HallListGilde[selRow]
-    if (selName == ""){
-        return
-    }
-    SendAction(ACT_REQUEST_CHAR, selName)
-}
 
 RequestPlayerGuildScreen:* = function (evt:MouseEvent){
     var selIndex:int
