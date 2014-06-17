@@ -4199,7 +4199,8 @@ class session:
             # self.param_php_tunnel_url
             reqString = self.sessionId + dataStr
             randomString = '%2'
-            rndString = str(round(random.random() * 0x77359400)) + str(int(time.time() * 1000))
+            rndString = str(round(random.random() * 0x77359400))
+            rndString += str(int(time.time() * 1000))
 
             payload = {
                 'req': reqString,
@@ -4812,7 +4813,9 @@ def initVars():
             tvAni = 0
             tvReturnValue = 0
             tvTimer = new Timer(100)
-            tvTimer.addEventListener(TimerEvent.TIMER, function (evt:TimerEvent){
+            tvTimer.addEventListener(
+                TimerEvent.TIMER, function (evt:TimerEvent)
+            {
                 var i:int
                 tvWobble = (tvWobble + 0.1)
                 while (tvWobble > (2 * Math.PI)) {
@@ -4871,7 +4874,9 @@ def initVars():
     '''
         witchAniStep = 0
         witchAniTimer = new Timer(50)
-        witchAniTimer.addEventListener(TimerEvent.TIMER, function (evt:TimerEvent){
+        witchAniTimer.addEventListener(
+            TimerEvent.TIMER, function (evt:TimerEvent)
+        {
             var i:int
             witchAniStep++
             if (witchAniStep >= 15){
