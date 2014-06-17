@@ -4195,7 +4195,7 @@ class session:
                 'rnd': rndString
             }
 
-            if action != this.ACT_GET_CHAT_HISTORY:
+            if action != ACT_GET_CHAT_HISTORY:
                 self.sendLock = True
 
         if self.mp_api_user_id != "notset":
@@ -5394,7 +5394,7 @@ class Item:
         itemID += self.Class
 
         if itemID >= ITM['MAX']:
-            #log.error("Fehler: Zu wenige Indizes für Items:", itemID, ">=", this.ITM_MAX, "Typ:", itmTyp, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass)
+            #log.error("Fehler: Zu wenige Indizes für Items:", itemID, ">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass)
             return 0
 
         if (isSG and (self.Typ == 0) and (slotNum > 0) and (slotNum <= 10)):
@@ -5426,7 +5426,7 @@ def GetArrowID(itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
             someObj = Savegame
 
         slotID = itmClass + itmPic * SG_ITM_SIZE
-        itmPic = someObj[slotID + this.SG_ITM_PIC]
+        itmPic = someObj[slotID + SG_ITM_PIC]
         itmColor = 0
 
         for i in range(8):
@@ -5451,7 +5451,7 @@ def GetArrowID(itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
 
     if arrowID >= ARROW_MAX:
         # log "Fehler: Zu wenige Indizes für Pfeile:", arrowID, ">=",
-        # this.ARROW_MAX, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass
+        # ARROW_MAX, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass
         return 0
 
     return arrowID
@@ -5607,7 +5607,7 @@ def RequestSignup(evt):
             pass
 
         # Create account
-        #SendAction(ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text, actor[INP_PASSWORD].getChildAt(1).text, this.actor[this.INP_EMAIL].getChildAt(1).text, this.param_rec, ((this.buffedReq) ? ("buf" + this.buffed_id) : this.param_adv), this.CharVolk, ((this.CharMann) ? 1 : 2), this.CharKaste, (((((((((((((((((this.CharMouth + "/") + this.CharHair) + "/") + this.CharBrows) + "/") + this.CharEyes) + "/") + this.CharBeard) + "/") + this.CharNose) + "/") + this.CharEars) + "/") + this.CharSpecial) + "/") + this.CharSpecial2) + "/"), this.param_cid)
+        #SendAction(ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text, actor[INP_PASSWORD].getChildAt(1).text, actor[INP_EMAIL].getChildAt(1).text, param_rec, ((buffedReq) ? ("buf" + buffed_id) : param_adv), CharVolk, ((CharMann) ? 1 : 2), CharKaste, (((((((((((((((((CharMouth + "/") + CharHair) + "/") + CharBrows) + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") + CharEars) + "/") + CharSpecial) + "/") + CharSpecial2) + "/"), param_cid)
     else:
         ErrorMessage(texts[TXT_ERROR_AGB])
 
@@ -6036,44 +6036,44 @@ def ActionHandler(event):
     '''
 
     '''
-        var dataStr:* = null
-        var act:* = 0
-        var parStr:* = null
-        var i:* = 0
-        var ii:* = 0
-        var tmpArray:* = null
-        var tmpFmt:* = null
-        var line:* = 0
-        var HallListName:* = null
-        var HallListGilde:* = null
-        var isMine:* = false
-        var logInAfterPixel:* = false
-        var par:* = null
-        var pa:* = null
-        var pas:* = null
-        var pxlStr:* = null
-        var pxlArr:* = null
-        var inVar:* = false
-        var pixel:* = undefined
-        var DoActZauberladen:* = null
-        var DoActSchmiede:* = null
-        var tmpByteArray:* = null
-        var bitArray:* = null
-        var PaymentLink:* = null
-        var externalWhisperer:* = null
-        var postReadText:* = null
-        var tmpFighterArray:* = undefined
-        var ichAnfg:* = undefined
-        var erAnfg:* = undefined
-        var tmpFightArray:* = undefined
-        var ichEnde:* = undefined
-        var erEnde:* = undefined
-        var rundenZahl:* = undefined
-        var tmpHonor:* = undefined
-        var tmpGold:* = undefined
-        var tmpSilver:* = undefined
-        var alertWords:* = null
-        var event:* = event
+        dataStr:* = null
+        act:* = 0
+        parStr:* = null
+        i:* = 0
+        ii:* = 0
+        tmpArray:* = null
+        tmpFmt:* = null
+        line:* = 0
+        HallListName:* = null
+        HallListGilde:* = null
+        isMine:* = false
+        logInAfterPixel:* = false
+        par:* = null
+        pa:* = null
+        pas:* = null
+        pxlStr:* = null
+        pxlArr:* = null
+        inVar:* = false
+        pixel:* = undefined
+        DoActZauberladen:* = null
+        DoActSchmiede:* = null
+        tmpByteArray:* = null
+        bitArray:* = null
+        PaymentLink:* = null
+        externalWhisperer:* = null
+        postReadText:* = null
+        tmpFighterArray:* = undefined
+        ichAnfg:* = undefined
+        erAnfg:* = undefined
+        tmpFightArray:* = undefined
+        ichEnde:* = undefined
+        erEnde:* = undefined
+        rundenZahl:* = undefined
+        tmpHonor:* = undefined
+        tmpGold:* = undefined
+        tmpSilver:* = undefined
+        alertWords:* = null
+        event:* = event
     '''
 
     '''
@@ -6162,7 +6162,7 @@ def ActionHandler(event):
                 else:
                     ShowToilet(par[1], par[2], par[3], par[4])
 
-            if (act == this.RESP_TOILET_FULL):
+            if (act == RESP_TOILET_FULL):
                 ErrorMessage(txt[TXT_TOILET_FULL])
             else:
                 if (act == RESP_TOILET_TANKFULL):
@@ -7297,62 +7297,62 @@ public function RequestLogin(evt:Event=undefined):void{
             return;
         };
     };
-    tmpPw = this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text;
-    if (this.C_MD5){
+    tmpPw = actor[INP_LOGIN_PASSWORD].getChildAt(1).text;
+    if (C_MD5){
         if (tmpPw.length < 32){
-            tmpPw = this.MD5(tmpPw);
+            tmpPw = MD5(tmpPw);
         };
     };
-    this.SendAction(this.ACT_LOGIN, this.actor[this.INP_NAME].getChildAt(1).text, tmpPw, "v1.70");
+    SendAction(ACT_LOGIN, actor[INP_NAME].getChildAt(1).text, tmpPw, "v1.70");
 }
 
 
 public function RequestLogout(evt:Event=undefined, keepData:Boolean=false):void{
-    this.RemoveAll();
-    this.nextPxl = 0;
-    this.actor[this.LBL_ERROR].text = "";
+    RemoveAll();
+    nextPxl = 0;
+    actor[LBL_ERROR].text = "";
     if (!keepData){
-        this.so.data.userName = "";
-        this.so.data.password = "";
-        this.actor[this.INP_NAME].getChildAt(1).text = "";
-        this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text = "";
-        this.so.flush();
-        this.actor[this.INP_EMAIL].getChildAt(1).text = "";
-        this.actor[this.INP_PASSWORD].getChildAt(1).text = "";
+        so.data.userName = "";
+        so.data.password = "";
+        actor[INP_NAME].getChildAt(1).text = "";
+        actor[INP_LOGIN_PASSWORD].getChildAt(1).text = "";
+        so.flush();
+        actor[INP_EMAIL].getChildAt(1).text = "";
+        actor[INP_PASSWORD].getChildAt(1).text = "";
     };
-    this.SendAction(this.ACT_LOGOUT);
-    this.Savegame = new Array();
-    this.CharVolk = 0;
-    this.Gilde = "";
-    this.myOwnRank = -1;
-    this.myOwnAttackTarget = -1;
-    this.myOwnGuildMoney = -1;
-    this.guildAttackTime = 0;
-    this.guildDefenceTime = 0;
-    this.guildAttacked = "";
-    this.guildAttacking = "";
-    this.PulseTaverne = false;
-    this.PulseArbeiten = false;
-    this.PulseGilde = false;
-    this.PulseGildeOnHistory = false;
-    this.PulsePost = false;
-    this.PulseDealer = false;
-    this.guildBlinkReady = false;
-    this.sessionId = "";
-    this.fightFlushMode = false;
+    SendAction(ACT_LOGOUT);
+    Savegame = new Array();
+    CharVolk = 0;
+    Gilde = "";
+    myOwnRank = -1;
+    myOwnAttackTarget = -1;
+    myOwnGuildMoney = -1;
+    guildAttackTime = 0;
+    guildDefenceTime = 0;
+    guildAttacked = "";
+    guildAttacking = "";
+    PulseTaverne = false;
+    PulseArbeiten = false;
+    PulseGilde = false;
+    PulseGildeOnHistory = false;
+    PulsePost = false;
+    PulseDealer = false;
+    guildBlinkReady = false;
+    sessionId = "";
+    fightFlushMode = false;
     if (!keepData){
-        this.ShowLoginScreen();
+        ShowLoginScreen();
     };
 }
 
 
 public function RequestCancelArbeiten(evt:Event=undefined):void{
-    this.SendAction(this.ACT_ARBEIT_CANCEL);
+    SendAction(ACT_ARBEIT_CANCEL);
 }
 
 
 public function RequestArbeiten(evt:Event=undefined):void{
-    this.SendAction(this.ACT_ARBEIT, this.GetSliderValue(this.SLDR_ARBEITEN));
+    SendAction(ACT_ARBEIT, GetSliderValue(SLDR_ARBEITEN));
 }
 
 
@@ -7361,17 +7361,17 @@ public function RequestCreateCharacter(evt:Event=undefined):void{
 
 
 public function RequestChangeFace(evt:Event=undefined):void{
-    if ((((((((((((((((((((((((this.CharVolk == this.revertCharVolk)) and ((this.CharMann == this.revertCharMann)))) and ((this.CharColor == this.revertCharColor)))) and ((this.CharMouth == this.revertCharMouth)))) and ((this.CharBeard == this.revertCharBeard)))) and ((this.CharNose == this.revertCharNose)))) and ((this.CharEyes == this.revertCharEyes)))) and ((this.CharBrows == this.revertCharBrows)))) and ((this.CharEars == this.revertCharEars)))) and ((this.CharHair == this.revertCharHair)))) and ((this.CharSpecial == this.revertCharSpecial)))) and ((this.CharSpecial2 == this.revertCharSpecial2)))){
-        this.SendAction(this.ACT_SCREEN_OPTIONEN);
+    if ((((((((((((((((((((((((CharVolk == revertCharVolk)) and ((CharMann == revertCharMann)))) and ((CharColor == revertCharColor)))) and ((CharMouth == revertCharMouth)))) and ((CharBeard == revertCharBeard)))) and ((CharNose == revertCharNose)))) and ((CharEyes == revertCharEyes)))) and ((CharBrows == revertCharBrows)))) and ((CharEars == revertCharEars)))) and ((CharHair == revertCharHair)))) and ((CharSpecial == revertCharSpecial)))) and ((CharSpecial2 == revertCharSpecial2)))){
+        SendAction(ACT_SCREEN_OPTIONEN);
     } else {
-        this.SendAction(this.ACT_CHANGE_FACE, this.actor[this.INP_NAME].getChildAt(1).text, this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text, this.CharVolk, ((this.CharMann) ? 1 : 2), (((((((((((((((((this.CharMouth + "/") + this.CharHair) + "/") + this.CharBrows) + "/") + this.CharEyes) + "/") + this.CharBeard) + "/") + this.CharNose) + "/") + this.CharEars) + "/") + this.CharSpecial) + "/") + this.CharSpecial2) + "/"));
+        SendAction(ACT_CHANGE_FACE, actor[INP_NAME].getChildAt(1).text, actor[INP_LOGIN_PASSWORD].getChildAt(1).text, CharVolk, ((CharMann) ? 1 : 2), (((((((((((((((((CharMouth + "/") + CharHair) + "/") + CharBrows) + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") + CharEars) + "/") + CharSpecial) + "/") + CharSpecial2) + "/"));
     };
 }
 
 
 public function RequestCharScreen(evt:Event=undefined):void{
-    this.arrowHallMode = false;
-    this.SendAction(this.ACT_SCREEN_CHAR);
+    arrowHallMode = false;
+    SendAction(ACT_SCREEN_CHAR);
 }
 
 
@@ -7483,8 +7483,8 @@ public function LoadLanguageFile():void{
         };
         load(new URLRequest(((((lang_url + "lang/sfgame_") + lang_code) + ".txt?rnd=") + String(Math.random()))));
     };
-    this.pendingLoaders = (this.pendingLoaders + 1);
-    this.pendingLanguageFile = true;
+    pendingLoaders = (pendingLoaders + 1);
+    pendingLanguageFile = true;
 }
 
 public function LoadOriginalLanguageFile():void{
@@ -7547,8 +7547,8 @@ public function LoadOriginalLanguageFile():void{
         addEventListener(Event.COMPLETE, OriginalLanguageFileLoaded);
         load(new URLRequest((((lang_url + "lang/sfgame_") + original_lang_code) + ".txt")));
     };
-    this.pendingLoaders = (this.pendingLoaders + 1);
-    this.pendingLanguageFile = true;
+    pendingLoaders = (pendingLoaders + 1);
+    pendingLanguageFile = true;
 }
 
 public function LoadConfigurationFile():void{
@@ -7772,7 +7772,7 @@ public function LoadConfigurationFile():void{
         };
         pendingConfigurationFiles--;
         if (pendingConfigurationFiles == 1){
-            loader2.load(new URLRequest("config_this.txt"));
+            loader2.load(new URLRequest("config_txt"));
         } else {
             pendingConfigurationFile = false;
             so = SharedObject.getLocal(("SFGame/" + server.split(".").join("/")), "/");
@@ -7962,9 +7962,9 @@ public function LoadConfigurationFile():void{
         dataFormat = URLLoaderDataFormat.TEXT;
         addEventListener(Event.COMPLETE, ConfigurationFileLoaded);
     };
-    this.pendingLoaders = (this.pendingLoaders + 2);
+    pendingLoaders = (pendingLoaders + 2);
     pendingConfigurationFiles = 1;
-    this.pendingConfigurationFile = true;
+    pendingConfigurationFile = true;
 }
 
 DoLoadLanguageFile = function (){
@@ -8011,10 +8011,10 @@ public function Load(... _args):void{
     };
     i = 0;
     while (i < actorIDs.length) {
-        if ((this.actor[actorIDs[i]] is Array)){
+        if ((actor[actorIDs[i]] is Array)){
             iBunch = 0;
-            while (iBunch < this.actor[actorIDs[i]].length) {
-                this.Load(this.actor[actorIDs[i]][iBunch]);
+            while (iBunch < actor[actorIDs[i]].length) {
+                Load(actor[actorIDs[i]][iBunch]);
                 iBunch = (iBunch + 1);
             };
             return;
@@ -8031,34 +8031,34 @@ public function WhenLoaded(fn:Function=undefined):void{
     var WhenLoadedFnTemp:Array;
     pending = false;
     if ((fn is Function)){
-        this.WhenLoadedFn[this.WhenLoadedFn.length] = fn;
-        this.WhenLoadedActive = true;
-        this.WhenLoadedTimeout.stop();
-        this.WhenLoadedTimeout.start();
+        WhenLoadedFn[WhenLoadedFn.length] = fn;
+        WhenLoadedActive = true;
+        WhenLoadedTimeout.stop();
+        WhenLoadedTimeout.start();
     };
     i = 0;
-    while (i < this.actor.length) {
-        if (this.actorLoaded[i] == 1){
+    while (i < actor.length) {
+        if (actorLoaded[i] == 1){
             pending = true;
             break;
         };
         i++;
     };
-    if (this.pendingLanguageFile){
+    if (pendingLanguageFile){
         pending = true;
     };
-    if (this.pendingDebugFile){
+    if (pendingDebugFile){
         pending = true;
     };
-    if (this.pendingConfigurationFile){
+    if (pendingConfigurationFile){
         pending = true;
     };
     if (!pending){
-        if (this.WhenLoadedActive){
-            this.WhenLoadedTimeout.stop();
-            this.WhenLoadedActive = false;
-            WhenLoadedFnTemp = this.WhenLoadedFn;
-            this.WhenLoadedFn = new Array();
+        if (WhenLoadedActive){
+            WhenLoadedTimeout.stop();
+            WhenLoadedActive = false;
+            WhenLoadedFnTemp = WhenLoadedFn;
+            WhenLoadedFn = new Array();
             i = 0;
             while (i < WhenLoadedFnTemp.length) {
                 tmpFn = WhenLoadedFnTemp[i];
@@ -8074,54 +8074,54 @@ public function WhenLoadedTimeoutEvent(evt:TimerEvent){
     var i:int;
     var old_img_url_index:int;
     var old_snd_url_index:int;
-    this.WhenLoadedTimeout.stop();
+    WhenLoadedTimeout.stop();
     i = 0;
-    while (i < this.actor.length) {
-        if ((this.actor[i] is Loader)){
-            if (this.actorLoaded[i] == 1){
-                this.trc("Fehler: Timeout beim Laden. Ladezustand wird zurückgesetzt für Aktor", i, this.actorURL[i]);
-                this.actorLoaded[i] = 0;
+    while (i < actor.length) {
+        if ((actor[i] is Loader)){
+            if (actorLoaded[i] == 1){
+                trc("Fehler: Timeout beim Laden. Ladezustand wird zurückgesetzt für Aktor", i, actorURL[i]);
+                actorLoaded[i] = 0;
             };
         };
         i++;
     };
-    this.WhenLoaded();
-    this.toErrorCount++;
-    if (this.toErrorCount == 10){
-        old_img_url_index = this.img_url_index;
-        if (this.img_url.length > 1){
+    WhenLoaded();
+    toErrorCount++;
+    if (toErrorCount == 10){
+        old_img_url_index = img_url_index;
+        if (img_url.length > 1){
             do  {
-                this.img_url_index = int((Math.random() * this.img_url.length));
-            } while (this.img_url_index == old_img_url_index);
+                img_url_index = int((Math.random() * img_url.length));
+            } while (img_url_index == old_img_url_index);
         };
-        old_snd_url_index = this.snd_url_index;
-        if (this.snd_url.length > 1){
+        old_snd_url_index = snd_url_index;
+        if (snd_url.length > 1){
             do  {
-                this.snd_url_index = int((Math.random() * this.snd_url.length));
-            } while (this.snd_url_index == old_snd_url_index);
+                snd_url_index = int((Math.random() * snd_url.length));
+            } while (snd_url_index == old_snd_url_index);
         };
-        if (this.img_url.length == this.snd_url.length){
-            this.snd_url_index = this.img_url_index;
+        if (img_url.length == snd_url.length){
+            snd_url_index = img_url_index;
         };
-        this.so.data.img_url_index = (this.img_url_index + 1);
-        this.so.data.snd_url_index = (this.snd_url_index + 1);
-        this.so.flush();
+        so.data.img_url_index = (img_url_index + 1);
+        so.data.snd_url_index = (snd_url_index + 1);
+        so.flush();
     };
 }
 
 public function LoaderComplete(evt:Event=undefined):void{
     var evt:* = evt;
     if ((evt.target is LoaderInfo)){
-        this.actorLoaded[this.GetActorID(evt.target.loader)] = 2;
+        actorLoaded[GetActorID(evt.target.loader)] = 2;
         Security.allowDomain(evt.target.loaderURL);
-        var _local3 = this.actor[this.GetActorID(evt.target.loader)].content;
+        var _local3 = actor[GetActorID(evt.target.loader)].content;
         with (_local3) {
             forceSmoothing = true;
             allowSmoothing = true;
             smoothing = true;
         };
     };
-    this.WhenLoaded();
+    WhenLoaded();
 }
 
 public function LoaderError(evt:ErrorEvent=undefined):void{
@@ -8130,37 +8130,37 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
     var old_snd_url_index:int;
     if ((evt.target is LoaderInfo)){
         i = 0;
-        while (i < this.actor.length) {
-            if ((this.actor[i] is Loader)){
-                if (this.actorLoaded[i] == 1){
-                    this.trc("Fehler: IO-Fehler beim Laden. Ladezustand wird zurückgesetzt für Aktor", i, this.actorURL[i]);
-                    this.actorLoaded[i] = 0;
+        while (i < actor.length) {
+            if ((actor[i] is Loader)){
+                if (actorLoaded[i] == 1){
+                    trc("Fehler: IO-Fehler beim Laden. Ladezustand wird zurückgesetzt für Aktor", i, actorURL[i]);
+                    actorLoaded[i] = 0;
                 };
             };
             i++;
         };
     };
-    this.WhenLoaded();
-    this.ioErrorCount++;
-    if (this.ioErrorCount == 10){
-        old_img_url_index = this.img_url_index;
-        if (this.img_url.length > 1){
+    WhenLoaded();
+    ioErrorCount++;
+    if (ioErrorCount == 10){
+        old_img_url_index = img_url_index;
+        if (img_url.length > 1){
             do  {
-                this.img_url_index = int((Math.random() * this.img_url.length));
-            } while (this.img_url_index == old_img_url_index);
+                img_url_index = int((Math.random() * img_url.length));
+            } while (img_url_index == old_img_url_index);
         };
-        old_snd_url_index = this.snd_url_index;
-        if (this.snd_url.length > 1){
+        old_snd_url_index = snd_url_index;
+        if (snd_url.length > 1){
             do  {
-                this.snd_url_index = int((Math.random() * this.snd_url.length));
-            } while (this.snd_url_index == old_snd_url_index);
+                snd_url_index = int((Math.random() * snd_url.length));
+            } while (snd_url_index == old_snd_url_index);
         };
-        if (this.img_url.length == this.snd_url.length){
-            this.snd_url_index = this.img_url_index;
+        if (img_url.length == snd_url.length){
+            snd_url_index = img_url_index;
         };
-        this.so.data.img_url_index = (this.img_url_index + 1);
-        this.so.data.snd_url_index = (this.snd_url_index + 1);
-        this.so.flush();
+        so.data.img_url_index = (img_url_index + 1);
+        so.data.snd_url_index = (snd_url_index + 1);
+        so.flush();
     };
 }
 
@@ -14826,11 +14826,11 @@ if __name__ == "__main__":
 
 '''
 public function IO_ErrorHandler(event:IOErrorEvent){
-    this.trc(event);
+    trc(event);
 }
 
 public function GetFileVersion(){
-    tmpStr = this.GetMyPath(1);
+    tmpStr = GetMyPath(1);
     numStr = "";
     result = "";
     tmpStr = tmpStr.split(".")[0];
@@ -14871,7 +14871,7 @@ public function GetIP():String{
 
 
 public function SetTitleBar(msg:String=""){
-    msg = (msg + (((((((msg == "")) ? "" : " - ") + this.txt[this.TXT_GAMETITLE]) + " (") + this.server.split(".")[0]) + ")"));
+    msg = (msg + (((((((msg == "")) ? "" : " - ") + txt[TXT_GAMETITLE]) + " (") + server.split(".")[0]) + ")"));
     ExternalInterface.call("set_title", msg);
 }
 
@@ -14884,7 +14884,7 @@ public function SwapWords(tmpStr:String):String{
     var punct1:String;
     var punct2:String;
     var oldStr:String = tmpStr;
-    if (this.textDir == "right"){
+    if (textDir == "right"){
         tmpArr = new Array();
         tmpStr2 = "";
         tmpChar = "";
@@ -14927,11 +14927,11 @@ public function SuperiorFont(Font1:String, Font2:String):String{
     rank1 = FontRanking.indexOf(Font1);
     rank2 = FontRanking.indexOf(Font2);
     if (rank1 < 0){
-        this.trc((("Warning: Font " + Font1) + " was unknown and could not be ranked."));
+        trc((("Warning: Font " + Font1) + " was unknown and could not be ranked."));
         rank1 = FontRanking.length;
     };
     if (rank2 < 0){
-        this.trc((("Warning: Font " + Font2) + " was unknown and could not be ranked."));
+        trc((("Warning: Font " + Font2) + " was unknown and could not be ranked."));
         rank2 = FontRanking.length;
     };
     return (((rank1)>rank2) ? Font1 : Font2);
@@ -14939,10 +14939,10 @@ public function SuperiorFont(Font1:String, Font2:String):String{
 
 public function DefineBunch(bunchID:int, ... _args):void{
     var i:int;
-    this.actor[bunchID] = new Array();
+    actor[bunchID] = new Array();
     i = 0;
     while (i < _args.length) {
-        this.actor[bunchID][i] = _args[i];
+        actor[bunchID][i] = _args[i];
         i++;
     };
 }
@@ -14951,14 +14951,14 @@ public function AddBunch(bunchID:int, ... _args):void{
     var i:int;
     i = 0;
     while (i < _args.length) {
-        this.actor[bunchID][this.actor[bunchID].length] = _args[i];
+        actor[bunchID][actor[bunchID].length] = _args[i];
         i++;
     };
 }
 
 public function SetVolume(vol:Number):void{
     var vol:* = vol;
-    var _local3 = this.stObject;
+    var _local3 = stObject;
     with (_local3) {
         stObject.volume = vol;
     };
@@ -14969,14 +14969,14 @@ public function DefineSnd(actorID:int, url:String, PreLoad:Boolean=false){
     if (url.toLowerCase().slice(0, 4) == "http:"){
         full_url = url;
     } else {
-        full_url = (this.snd_url[this.snd_url_index] + url);
+        full_url = (snd_url[snd_url_index] + url);
     };
-    this.actor[actorID] = new Sound();
-    this.actorSoundLoader[actorID] = new SoundLoaderContext();
-    this.actorURL[actorID] = full_url;
-    this.actorLoaded[actorID] = 0;
+    actor[actorID] = new Sound();
+    actorSoundLoader[actorID] = new SoundLoaderContext();
+    actorURL[actorID] = full_url;
+    actorLoaded[actorID] = 0;
     if (PreLoad){
-        this.Load(actorID);
+        Load(actorID);
     };
 }
 
@@ -14995,8 +14995,8 @@ public function DefineBtn(actorID:int, caption:String, handler:Function, btnClas
         Play(SND_CLICK);
     };
     i = actorID;
-    this.actor[i] = new (btnClass)();
-    var _local11 = this.actor[i];
+    actor[i] = new (btnClass)();
+    var _local11 = actor[i];
     with (_local11) {
         addEventListener(MouseEvent.MOUSE_DOWN, playClickSound);
         if (btnClass == btnClassPlus){
@@ -15015,7 +15015,7 @@ public function DefineBtn(actorID:int, caption:String, handler:Function, btnClas
         smoothing = true;
     };
     if (caption != ""){
-        this.SetBtnText(actorID, caption);
+        SetBtnText(actorID, caption);
     };
 }
 
@@ -15092,38 +15092,38 @@ public function SetBtnText(actorID:int, caption:String){
     var offs:* = 0;
     offsy = 0;
     var specialFontSize:* = 0;
-    if ((this.actor[i] is btnClassBasic)){
+    if ((actor[i] is btnClassBasic)){
         offs = -2;
     };
-    if ((this.actor[i] is btnClassBasic)){
+    if ((actor[i] is btnClassBasic)){
         offsy = 1;
     };
-    if ((this.actor[i] is btnClassInterface)){
+    if ((actor[i] is btnClassInterface)){
         offs = 5;
     };
-    if ((this.actor[i] is btnClassInterface)){
+    if ((actor[i] is btnClassInterface)){
         offsy = 0;
     };
-    if ((this.actor[i] is btnClassLogin)){
+    if ((actor[i] is btnClassLogin)){
         offs = -2;
     };
-    if ((this.actor[i] is btnClassLogin)){
+    if ((actor[i] is btnClassLogin)){
         offsy = 1;
     };
-    if ((this.actor[i] is btnClassBack)){
+    if ((actor[i] is btnClassBack)){
         offsy = 50;
     };
-    if (this.gameFont == "Verdana"){
+    if (gameFont == "Verdana"){
         offsy = (offsy - 6);
     };
-    if (this.gameFont == "Arial Narrow"){
+    if (gameFont == "Arial Narrow"){
         specialFontSize = 16;
         offsy = (offsy - 4);
     };
-    CenterTextField(this.actor[i].upState);
-    CenterTextField(this.actor[i].downState, 1, 2);
-    CenterTextField(this.actor[i].overState);
-    CenterTextField(this.actor[i].hitTestState);
+    CenterTextField(actor[i].upState);
+    CenterTextField(actor[i].downState, 1, 2);
+    CenterTextField(actor[i].overState);
+    CenterTextField(actor[i].hitTestState);
 }
 
 public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=true):void{
@@ -15136,11 +15136,11 @@ public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0,
     var fmt:* = fmt;
     var vis:Boolean = vis;
     i = actorID;
-    this.actor[i] = new TextField();
+    actor[i] = new TextField();
     if (!fmt){
-        fmt = this.FontFormat_Default;
+        fmt = FontFormat_Default;
     };
-    var _local8 = this.actor[i];
+    var _local8 = actor[i];
     with (_local8) {
         defaultTextFormat = fmt;
         autoSize = TextFieldAutoSize.LEFT;
@@ -15176,15 +15176,15 @@ public function DefineImg(actorID:int, url:String, PreLoad:Boolean=true, pos_x:i
     if (url.toLowerCase().slice(0, 4) == "http:"){
         full_url = url;
     } else {
-        full_url = (this.img_url[this.img_url_index] + url);
+        full_url = (img_url[img_url_index] + url);
     };
-    this.actor[i] = new Loader();
-    this.actor[i].contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this.LoaderError);
-    this.actor[i].contentLoaderInfo.addEventListener(Event.COMPLETE, this.LoaderComplete);
-    this.actor[i].contentLoaderInfo.addEventListener(Event.COMPLETE, LoaderCompleteLocal);
-    this.actorLoaded[i] = 0;
-    this.actorURL[i] = full_url;
-    var _local10 = this.actor[i];
+    actor[i] = new Loader();
+    actor[i].contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, LoaderError);
+    actor[i].contentLoaderInfo.addEventListener(Event.COMPLETE, LoaderComplete);
+    actor[i].contentLoaderInfo.addEventListener(Event.COMPLETE, LoaderCompleteLocal);
+    actorLoaded[i] = 0;
+    actorURL[i] = full_url;
+    var _local10 = actor[i];
     with (_local10) {
         tabEnabled = false;
         x = pos_x;
@@ -15197,7 +15197,7 @@ public function DefineImg(actorID:int, url:String, PreLoad:Boolean=true, pos_x:i
         visible = Boolean(vis);
     };
     if (PreLoad){
-        this.Load(i);
+        Load(i);
     };
 }
 
@@ -15233,8 +15233,8 @@ public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:
             outFn();
         };
     };
-    this.actor[actorID] = new MovieClip();
-    var _local13 = this.actor[actorID];
+    actor[actorID] = new MovieClip();
+    var _local13 = actor[actorID];
     with (_local13) {
         tabEnabled = false;
         x = pos_x;
@@ -15271,9 +15271,9 @@ public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:
         };
     };
     i = actorID;
-    this.actor[i] = new (imgClass)();
-    this.actorLoaded[i] = 2;
-    var _local8 = this.actor[i];
+    actor[i] = new (imgClass)();
+    actorLoaded[i] = 2;
+    var _local8 = actor[i];
     with (_local8) {
         x = pos_x;
         y = pos_y;
@@ -15283,10 +15283,10 @@ public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:
         visible = true;
     };
     if (txtManip == 1){
-        ManipTextField(this.actor[i].getChildAt(0));
+        ManipTextField(actor[i].getChildAt(0));
     } else {
         if (txtManip == 2){
-            ManipTextField(this.actor[i].getChildAt(1));
+            ManipTextField(actor[i].getChildAt(1));
         };
     };
 }
@@ -15298,8 +15298,8 @@ public function DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=tru
     var pos_y:int = pos_y;
     var vis:Boolean = vis;
     i = actorID;
-    this.actor[i] = new MovieClip();
-    var _local6 = this.actor[i];
+    actor[i] = new MovieClip();
+    var _local6 = actor[i];
     with (_local6) {
         tabEnabled = false;
         x = pos_x;
@@ -15350,11 +15350,11 @@ public function DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Fu
         };
         oldSliderVal = sliderVal;
     };
-    this.actorBitmap[actorID] = Ticks;
-    this.actorBitmap[(actorID + 1)] = [fn];
-    this.DefineFromClass((actorID + 1), DragonSlider, pos_x, pos_y);
-    this.DefineBunch(actorID, (actorID + 1));
-    var _local7 = this.actor[(actorID + 1)];
+    actorBitmap[actorID] = Ticks;
+    actorBitmap[(actorID + 1)] = [fn];
+    DefineFromClass((actorID + 1), DragonSlider, pos_x, pos_y);
+    DefineBunch(actorID, (actorID + 1));
+    var _local7 = actor[(actorID + 1)];
     with (_local7) {
         addEventListener(MouseEvent.MOUSE_DOWN, SliderMove);
         addEventListener(MouseEvent.MOUSE_MOVE, SliderMove);
@@ -15363,33 +15363,33 @@ public function DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Fu
     };
     i = 1;
     while (i <= Ticks) {
-        this.DefineFromClass(((actorID + 1) + i), SliderTick, (((pos_x + 40) + int((198 * ((i - 1) / (Ticks - 1))))) - 5), (pos_y - 10));
-        _local7 = this.actor[((actorID + 1) + i)];
+        DefineFromClass(((actorID + 1) + i), SliderTick, (((pos_x + 40) + int((198 * ((i - 1) / (Ticks - 1))))) - 5), (pos_y - 10));
+        _local7 = actor[((actorID + 1) + i)];
         with (_local7) {
             addEventListener(MouseEvent.MOUSE_DOWN, ClickTick);
             buttonMode = true;
             useHandCursor = true;
         };
-        this.AddBunch(actorID, ((actorID + 1) + i));
+        AddBunch(actorID, ((actorID + 1) + i));
         i = (i + 1);
     };
-    fn(this.GetSliderValue(actorID));
+    fn(GetSliderValue(actorID));
 }
 
 public function GetSliderValue(actorID:int):int{
     var tmpX:int;
-    tmpX = (this.actor[(actorID + 1)].getChildAt(1).x + 5);
-    return ((int(((((tmpX - 40) / 198) * (this.actorBitmap[actorID] - 1)) + 0.5)) + 1));
+    tmpX = (actor[(actorID + 1)].getChildAt(1).x + 5);
+    return ((int(((((tmpX - 40) / 198) * (actorBitmap[actorID] - 1)) + 0.5)) + 1));
 }
 
 public function SetSliderValue(actorID:int, value:int):void{
     var tmpX:int;
     var oldVal:int;
-    oldVal = this.GetSliderValue(actorID);
-    tmpX = (int((((value - 1) / (this.actorBitmap[actorID] - 1)) * 198)) + 40);
-    this.actor[(actorID + 1)].getChildAt(1).x = (tmpX - 7);
+    oldVal = GetSliderValue(actorID);
+    tmpX = (int((((value - 1) / (actorBitmap[actorID] - 1)) * 198)) + 40);
+    actor[(actorID + 1)].getChildAt(1).x = (tmpX - 7);
     if (oldVal != value){
-        var _local5 = this.actorBitmap[(actorID + 1)];
+        var _local5 = actorBitmap[(actorID + 1)];
         _local5[0](value);
     };
 }
@@ -15399,15 +15399,15 @@ public function MakePersistent(... _args):void{
     var iBunch:int;
     i = 0;
     while (i < _args.length) {
-        if ((this.actor[_args[i]] is Array)){
+        if ((actor[_args[i]] is Array)){
             iBunch = 0;
-            while (iBunch < this.actor[_args[i]].length) {
-                this.MakePersistent(this.actor[_args[i]][iBunch]);
+            while (iBunch < actor[_args[i]].length) {
+                MakePersistent(actor[_args[i]][iBunch]);
                 iBunch++;
             };
             return;
         };
-        this.actorPersistent[_args[i]] = true;
+        actorPersistent[_args[i]] = true;
         i++;
     };
 }
@@ -15417,15 +15417,15 @@ public function MakeTemporary(... _args):void{
     var iBunch:int;
     i = 0;
     while (i < _args.length) {
-        if ((this.actor[_args[i]] is Array)){
+        if ((actor[_args[i]] is Array)){
             iBunch = 0;
-            while (iBunch < this.actor[_args[i]].length) {
-                this.MakeTemporary(this.actor[_args[i]][iBunch]);
+            while (iBunch < actor[_args[i]].length) {
+                MakeTemporary(actor[_args[i]][iBunch]);
                 iBunch++;
             };
             return;
         };
-        this.actorPersistent[_args[i]] = false;
+        actorPersistent[_args[i]] = false;
         i++;
     };
 }
@@ -15517,26 +15517,26 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
             evt.target.y = old_y;
         };
     };
-    old_x = this.actor[actorID].x;
-    old_y = this.actor[actorID].y;
-    if ((this.actor[actorID] is Array)){
+    old_x = actor[actorID].x;
+    old_y = actor[actorID].y;
+    if ((actor[actorID] is Array)){
         iBunch = 0;
-        while (iBunch < this.actor[actorID].length) {
-            if ((((this.actor[this.actor[actorID][iBunch]] is MovieClip)) or ((this.actor[this.actor[actorID][iBunch]] is Sprite)))){
-                this.actor[this.actor[actorID][iBunch]].addEventListener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-                this.actor[this.actor[actorID][iBunch]].addEventListener(MouseEvent.MOUSE_UP, MouseBtnUp);
+        while (iBunch < actor[actorID].length) {
+            if ((((actor[actor[actorID][iBunch]] is MovieClip)) or ((actor[actor[actorID][iBunch]] is Sprite)))){
+                actor[actor[actorID][iBunch]].addEventListener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+                actor[actor[actorID][iBunch]].addEventListener(MouseEvent.MOUSE_UP, MouseBtnUp);
             } else {
-                this.trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + this.actor[actorID][iBunch]));
+                trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor[actorID][iBunch]));
             };
             iBunch = (iBunch + 1);
         };
         return;
     };
-    if ((((this.actor[actorID] is MovieClip)) or ((this.actor[actorID] is Sprite)))){
-        this.actor[actorID].addEventListener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-        this.actor[actorID].addEventListener(MouseEvent.MOUSE_UP, MouseBtnUp);
+    if ((((actor[actorID] is MovieClip)) or ((actor[actorID] is Sprite)))){
+        actor[actorID].addEventListener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+        actor[actorID].addEventListener(MouseEvent.MOUSE_UP, MouseBtnUp);
     } else {
-        this.trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actorID));
+        trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actorID));
     };
     dragResetTimer = new Timer(500);
     dragResetTimer.addEventListener(TimerEvent.TIMER, dragReset);
@@ -15550,38 +15550,38 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
     var pos_x:int = pos_x;
     var pos_y:int = pos_y;
     var center:Boolean = center;
-    if (!(this.actor[ImgID] is Loader)){
-        if (this.actorBitmap[cntID]){
-            this.actor[cntID].removeChild(this.actorBitmap[cntID]);
-            this.actorBitmap[cntID] = undefined;
+    if (!(actor[ImgID] is Loader)){
+        if (actorBitmap[cntID]){
+            actor[cntID].removeChild(actorBitmap[cntID]);
+            actorBitmap[cntID] = undefined;
         };
         return;
     };
-    if ((this.actor[cntID] is Array)){
+    if ((actor[cntID] is Array)){
         iBunch = 0;
-        while (iBunch < this.actor[cntID].length) {
-            this.SetCnt(this.actor[cntID][iBunch], ImgID);
+        while (iBunch < actor[cntID].length) {
+            SetCnt(actor[cntID][iBunch], ImgID);
             iBunch = (iBunch + 1);
         };
         return;
     };
-    if (this.actorBitmap[cntID]){
-        this.actor[cntID].removeChild(this.actorBitmap[cntID]);
-        this.actorBitmap[cntID] = undefined;
+    if (actorBitmap[cntID]){
+        actor[cntID].removeChild(actorBitmap[cntID]);
+        actorBitmap[cntID] = undefined;
     };
     if (ImgID != 0){
-        if (this.actorLoaded[ImgID] == 2){
-            if ((((((ImgID == this.ITM_EMPTY)) or ((ImgID == this.ITM_OFFS)))) and ((this.actor[cntID].width == 0)))){
-                var _local7 = this.actor[cntID];
+        if (actorLoaded[ImgID] == 2){
+            if ((((((ImgID == ITM_EMPTY)) or ((ImgID == ITM_OFFS)))) and ((actor[cntID].width == 0)))){
+                var _local7 = actor[cntID];
                 with (_local7) {
                     graphics.beginFill(0, 0);
                     graphics.drawRect(0, 0, 90, 90);
                 };
             };
-            if ((this.actor[ImgID].content is Bitmap)){
-                this.actorBitmap[cntID] = new Bitmap();
-                this.actorBitmap[cntID].bitmapData = this.actor[ImgID].content.bitmapData;
-                _local7 = this.actorBitmap[cntID];
+            if ((actor[ImgID].content is Bitmap)){
+                actorBitmap[cntID] = new Bitmap();
+                actorBitmap[cntID].bitmapData = actor[ImgID].content.bitmapData;
+                _local7 = actorBitmap[cntID];
                 with (_local7) {
                     allowSmoothing = true;
                     forceSmoothing = true;
@@ -15589,12 +15589,12 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
-                this.actor[cntID].addChild(this.actorBitmap[cntID]);
+                actor[cntID].addChild(actorBitmap[cntID]);
             } else {
-                this.actorBitmap[cntID] = new Bitmap();
-                this.actorBitmap[cntID].bitmapData = new BitmapData(this.actor[ImgID].width, this.actor[ImgID].height, true, 0);
-                this.actorBitmap[cntID].bitmapData.draw((this.actor[ImgID] as IBitmapDrawable));
-                _local7 = this.actorBitmap[cntID];
+                actorBitmap[cntID] = new Bitmap();
+                actorBitmap[cntID].bitmapData = new BitmapData(actor[ImgID].width, actor[ImgID].height, true, 0);
+                actorBitmap[cntID].bitmapData.draw((actor[ImgID] as IBitmapDrawable));
+                _local7 = actorBitmap[cntID];
                 with (_local7) {
                     allowSmoothing = true;
                     forceSmoothing = true;
@@ -15602,16 +15602,16 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
-                this.actor[cntID].addChild(this.actorBitmap[cntID]);
+                actor[cntID].addChild(actorBitmap[cntID]);
             };
         } else {
             CntImgLoaded = function (evt:Event):void{
                 actorLoaded[ImgID] = 2;
                 SetCnt(cntID, ImgID, pos_x, pos_y, center);
             };
-            this.actor[ImgID].contentLoaderInfo.addEventListener(Event.COMPLETE, CntImgLoaded);
-            if (this.actorLoaded[ImgID] == 0){
-                this.Load(ImgID);
+            actor[ImgID].contentLoaderInfo.addEventListener(Event.COMPLETE, CntImgLoaded);
+            if (actorLoaded[ImgID] == 0){
+                Load(ImgID);
             };
         };
     };
@@ -15621,16 +15621,16 @@ public function Play(actorID:int, endless:Boolean=false):void{
     var SoundLoaded:* = null;
     var actorID:* = actorID;
     var endless:Boolean = endless;
-    if (this.actorLoaded[actorID] == 2){
-        this.actor[actorID].play(0, ((endless) ? 30000 : 0), this.stObject);
+    if (actorLoaded[actorID] == 2){
+        actor[actorID].play(0, ((endless) ? 30000 : 0), stObject);
     } else {
         SoundLoaded = function (evt:Event){
             trc((("Sound " + actorID) + " geladen."));
             actor[actorID].play(0, ((endless) ? 30000 : 0), stObject);
         };
-        this.trc((("Warnung: Sound " + actorID) + " nicht geladen! Wird geladen..."));
-        this.actor[actorID].addEventListener(Event.COMPLETE, SoundLoaded);
-        this.Load(actorID);
+        trc((("Warnung: Sound " + actorID) + " nicht geladen! Wird geladen..."));
+        actor[actorID].addEventListener(Event.COMPLETE, SoundLoaded);
+        Load(actorID);
     };
 }
 
@@ -15646,26 +15646,26 @@ public function Add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale
     var vis:* = vis;
     var containerID:int = containerID;
     i = actorID;
-    if ((this.actor[actorID] is Sound)){
+    if ((actor[actorID] is Sound)){
         return;
     };
-    if ((this.actor[actorID] is Array)){
+    if ((actor[actorID] is Array)){
         iBunch = 0;
-        while (iBunch < this.actor[actorID].length) {
-            if (this.actor[actorID][iBunch] == actorID){
+        while (iBunch < actor[actorID].length) {
+            if (actor[actorID][iBunch] == actorID){
                 return;
             };
-            this.Add(this.actor[actorID][iBunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
+            Add(actor[actorID][iBunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
             iBunch = (iBunch + 1);
         };
         return;
     };
-    if ((this.actor[i] is Loader)){
-        if (this.actorLoaded[i] == 0){
-            this.Load(i);
+    if ((actor[i] is Loader)){
+        if (actorLoaded[i] == 0){
+            Load(i);
         };
     };
-    var _local9 = this.actor[i];
+    var _local9 = actor[i];
     with (_local9) {
         if (pos_x){
             x = pos_x;
@@ -15684,20 +15684,20 @@ public function Add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale
         };
     };
     if (containerID == -1){
-        addChild(this.actor[i]);
+        addChild(actor[i]);
     } else {
-        this.actor[containerID].addChild(this.actor[i]);
+        actor[containerID].addChild(actor[i]);
     };
 }
 
 public function AddBMO(bunchID:int, offset:int){
     var i:int;
     i = 0;
-    while (i < this.actor[bunchID].length) {
-        if ((this.actor[this.actor[bunchID][i]] is Array)){
-            this.AddBMO(this.actor[bunchID][i], offset);
+    while (i < actor[bunchID].length) {
+        if ((actor[actor[bunchID][i]] is Array)){
+            AddBMO(actor[bunchID][i], offset);
         } else {
-            this.Add((this.actor[bunchID][i] + offset));
+            Add((actor[bunchID][i] + offset));
         };
         i++;
     };
@@ -15709,16 +15709,16 @@ public function VisibleToFront(... _args):void{
     var actorIDs:* = _args;
     i = 0;
     while (i < actorIDs.length) {
-        if (this.actor[actorIDs[i]]){
-            if ((this.actor[actorIDs[i]] is Array)){
+        if (actor[actorIDs[i]]){
+            if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
-                while (iBunch < this.actor[actorIDs[i]].length) {
-                    this.VisibleToFront(this.actor[actorIDs[i]][iBunch]);
+                while (iBunch < actor[actorIDs[i]].length) {
+                    VisibleToFront(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
             };
-            var _local3 = this.actor[actorIDs[i]];
+            var _local3 = actor[actorIDs[i]];
             with (_local3) {
                 if (OnStage(actorIDs[i])){
                     Add(actorIDs[i]);
@@ -15734,14 +15734,14 @@ public function Move(actorID:int, pos_x:int, pos_y:int):void{
     var actorID:* = actorID;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
-    if ((this.actor[actorID] is Array)){
+    if ((actor[actorID] is Array)){
         i = 0;
-        while (i < this.actor[actorID].length) {
-            this.Move(this.actor[actorID][i], pos_x, pos_y);
+        while (i < actor[actorID].length) {
+            Move(actor[actorID][i], pos_x, pos_y);
             i = (i + 1);
         };
     } else {
-        var _local5 = this.actor[actorID];
+        var _local5 = actor[actorID];
         with (_local5) {
             x = pos_x;
             y = pos_y;
@@ -15754,16 +15754,16 @@ public function AddSome(... _args):void{
     var iBunch:int;
     i = 0;
     while (i < _args.length) {
-        if (this.actor[_args[i]]){
-            if ((this.actor[_args[i]] is Array)){
+        if (actor[_args[i]]){
+            if ((actor[_args[i]] is Array)){
                 iBunch = 0;
-                while (iBunch < this.actor[_args[i]].length) {
-                    this.Add(this.actor[_args[i]][iBunch]);
+                while (iBunch < actor[_args[i]].length) {
+                    Add(actor[_args[i]][iBunch]);
                     iBunch++;
                 };
                 return;
             };
-            this.Add(_args[i]);
+            Add(_args[i]);
         };
         i++;
     };
@@ -15775,19 +15775,19 @@ public function Remove(... _args):void{
     var actorIDs:* = _args;
     i = 0;
     while (i < actorIDs.length) {
-        if (this.actor[actorIDs[i]]){
-            if ((this.actor[actorIDs[i]] is Array)){
+        if (actor[actorIDs[i]]){
+            if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
-                while (iBunch < this.actor[actorIDs[i]].length) {
-                    this.Remove(this.actor[actorIDs[i]][iBunch]);
+                while (iBunch < actor[actorIDs[i]].length) {
+                    Remove(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
             };
-            if ((this.actor[actorIDs[i]] is Sound)){
+            if ((actor[actorIDs[i]] is Sound)){
                 return;
             };
-            var _local3 = this.actor[actorIDs[i]];
+            var _local3 = actor[actorIDs[i]];
             with (_local3) {
                 if (parent){
                     parent.removeChild(actor[actorIDs[i]]);
@@ -15801,11 +15801,11 @@ public function Remove(... _args):void{
 public function RemoveAll(alsoPersistent:Boolean=false):void{
     var i:int;
     i = 0;
-    while (i < this.actor.length) {
-        if (this.actor[i]){
-            if (!(this.actor[i] is Array)){
-                if (((!(this.actorPersistent[i])) or (alsoPersistent))){
-                    this.Remove(i);
+    while (i < actor.length) {
+        if (actor[i]){
+            if (!(actor[i] is Array)){
+                if (((!(actorPersistent[i])) or (alsoPersistent))){
+                    Remove(i);
                 };
             };
         };
@@ -15817,10 +15817,10 @@ public function RemoveAll(alsoPersistent:Boolean=false):void{
 public function GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
     var i:int;
     var res:int;
-    res = this.C_EMPTY;
+    res = C_EMPTY;
     i = iStart;
-    while (i <= ((iEnde)==-1) ? (this.actor.length - 1) : iEnde) {
-        if (actorObj == this.actor[i]){
+    while (i <= ((iEnde)==-1) ? (actor.length - 1) : iEnde) {
+        if (actorObj == actor[i]){
             res = i;
             break;
         };
@@ -15833,7 +15833,7 @@ public function GetActorName(actorID:int=0):String{
     var loader:* = null;
     var actorID:int = actorID;
     loader = new URLLoader();
-    if (!(this.actorName is Array)){
+    if (!(actorName is Array)){
         var ConstFileLoaded:* = function (evt:Event):void{
             var strData:String;
             var constName:String;
@@ -15871,29 +15871,29 @@ public function GetActorName(actorID:int=0):String{
             pendingDebugFile = false;
             LoaderComplete(evt);
         };
-        this.actorName = new Array();
+        actorName = new Array();
         var _local3 = loader;
         with (_local3) {
             dataFormat = URLLoaderDataFormat.TEXT;
             addEventListener(Event.COMPLETE, ConstFileLoaded);
             load(new URLRequest("constants.as"));
         };
-        this.pendingLoaders = (this.pendingLoaders + 1);
-        this.pendingDebugFile = true;
+        pendingLoaders = (pendingLoaders + 1);
+        pendingDebugFile = true;
     };
-    return (this.actorName[actorID]);
+    return (actorName[actorID]);
 }
 
 public function OnStage(actorID):Boolean{
-    if ((this.actor[actorID] is DisplayObject)){
-        return (Boolean(getChildByName(this.actor[actorID].name)));
+    if ((actor[actorID] is DisplayObject)){
+        return (Boolean(getChildByName(actor[actorID].name)));
     };
     return (false);
 }
 
 public function Visible(actorID):Boolean{
-    if ((this.actor[actorID] is DisplayObject)){
-        return (((Boolean(getChildByName(this.actor[actorID].name))) and (this.actor[actorID].visible)));
+    if ((actor[actorID] is DisplayObject)){
+        return (((Boolean(getChildByName(actor[actorID].name))) and (actor[actorID].visible)));
     };
     return (false);
 }
@@ -15904,16 +15904,16 @@ public function Show(... _args):void{
     var actorIDs:* = _args;
     i = 0;
     while (i < actorIDs.length) {
-        if (this.actor[actorIDs[i]]){
-            if ((this.actor[actorIDs[i]] is Array)){
+        if (actor[actorIDs[i]]){
+            if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
-                while (iBunch < this.actor[actorIDs[i]].length) {
-                    this.Show(this.actor[actorIDs[i]][iBunch]);
+                while (iBunch < actor[actorIDs[i]].length) {
+                    Show(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
             };
-            var _local3 = this.actor[actorIDs[i]];
+            var _local3 = actor[actorIDs[i]];
             with (_local3) {
                 visible = true;
             };
@@ -15928,16 +15928,16 @@ public function Hide(... _args):void{
     var actorIDs:* = _args;
     i = 0;
     while (i < actorIDs.length) {
-        if (this.actor[actorIDs[i]]){
-            if ((this.actor[actorIDs[i]] is Array)){
+        if (actor[actorIDs[i]]){
+            if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
-                while (iBunch < this.actor[actorIDs[i]].length) {
-                    this.Hide(this.actor[actorIDs[i]][iBunch]);
+                while (iBunch < actor[actorIDs[i]].length) {
+                    Hide(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
             };
-            var _local3 = this.actor[actorIDs[i]];
+            var _local3 = actor[actorIDs[i]];
             with (_local3) {
                 visible = false;
             };
@@ -15948,15 +15948,15 @@ public function Hide(... _args):void{
 
 public function SetAlpha(actorID:int, alphaValue:Number){
     var i:int;
-    if ((this.actor[actorID] is Array)){
+    if ((actor[actorID] is Array)){
         i = 0;
-        while (i < this.actor[actorID].length) {
-            this.SetAlpha(this.actor[actorID][i], alphaValue);
+        while (i < actor[actorID].length) {
+            SetAlpha(actor[actorID][i], alphaValue);
             i++;
         };
     } else {
-        if (this.actor[actorID].hasOwnProperty("alpha")){
-            this.actor[actorID].alpha = alphaValue;
+        if (actor[actorID].hasOwnProperty("alpha")){
+            actor[actorID].alpha = alphaValue;
         };
     };
 }
@@ -15965,18 +15965,18 @@ public function GetAlpha(actorID:int):Number{
     var i:int;
     var tmpAlpha:Number;
     tmpAlpha = 0;
-    if ((this.actor[actorID] is Array)){
+    if ((actor[actorID] is Array)){
         i = 0;
-        while (i < this.actor[actorID].length) {
-            if (this.GetAlpha(this.actor[actorID][i]) > tmpAlpha){
-                tmpAlpha = this.GetAlpha(this.actor[actorID][i]);
+        while (i < actor[actorID].length) {
+            if (GetAlpha(actor[actorID][i]) > tmpAlpha){
+                tmpAlpha = GetAlpha(actor[actorID][i]);
             };
             i++;
         };
         return (tmpAlpha);
     };
-    if (this.actor[actorID].hasOwnProperty("alpha")){
-        return (this.actor[actorID].alpha);
+    if (actor[actorID].hasOwnProperty("alpha")){
+        return (actor[actorID].alpha);
     };
     return (0);
 }
@@ -15999,13 +15999,13 @@ public function FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05,
         SetAlpha(actorID, currentAlpha);
     };
     fadeTimer = new Timer(timerInterval);
-    currentAlpha = this.GetAlpha(actorID);
+    currentAlpha = GetAlpha(actorID);
     if (alphaStep <= 0){
         return;
     };
     fadeTimer.addEventListener(TimerEvent.TIMER, FadeInEvent);
     fadeTimer.start();
-    this.SetAlpha(actorID, currentAlpha);
+    SetAlpha(actorID, currentAlpha);
 }
 
 public function FadeOut(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=false){
@@ -16030,29 +16030,29 @@ public function FadeOut(actorID:int, timerInterval:int=20, alphaStep:Number=0.05
         SetAlpha(actorID, currentAlpha);
     };
     fadeTimer = new Timer(timerInterval);
-    currentAlpha = this.GetAlpha(actorID);
+    currentAlpha = GetAlpha(actorID);
     if (alphaStep <= 0){
         return;
     };
     fadeTimer.addEventListener(TimerEvent.TIMER, FadeOutEvent);
     fadeTimer.start();
-    this.SetAlpha(actorID, currentAlpha);
+    SetAlpha(actorID, currentAlpha);
 }
 
 public function AddFilter(actorID:int, filter:Array):void{
-    this.actor[actorID].filters = filter;
+    actor[actorID].filters = filter;
 }
 
 public function SetFont(fontName:String){
     var fontName:* = fontName;
-    this.gameFont = fontName;
-    this.fontEmbedded = true;
+    gameFont = fontName;
+    fontEmbedded = true;
     if ((((((fontName == "Verdana")) or ((fontName == "Arial Narrow")))) or ((fontName == "Geeza Pro")))){
-        this.fontEmbedded = false;
-        this.sizeMod = -6;
+        fontEmbedded = false;
+        sizeMod = -6;
     };
-    this.trc(("Font chosen: " + fontName));
-    var _local3 = this.FontFormat_ToiletAura;
+    trc(("Font chosen: " + fontName));
+    var _local3 = FontFormat_ToiletAura;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 35);
@@ -16061,7 +16061,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackErrorHalf;
+    _local3 = FontFormat_GuildListTextAttackErrorHalf;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16070,7 +16070,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackErrorOnlineHalf;
+    _local3 = FontFormat_GuildListTextAttackErrorOnlineHalf;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16079,7 +16079,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Error;
+    _local3 = FontFormat_Error;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16088,7 +16088,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Default;
+    _local3 = FontFormat_Default;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16097,7 +16097,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HighStakes;
+    _local3 = FontFormat_HighStakes;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16106,7 +16106,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HighStakesHighLight;
+    _local3 = FontFormat_HighStakesHighLight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16115,7 +16115,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HighStakesGrayed;
+    _local3 = FontFormat_HighStakesGrayed;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16124,7 +16124,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HighStakesHighLightGrayed;
+    _local3 = FontFormat_HighStakesHighLightGrayed;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16133,7 +16133,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Book;
+    _local3 = FontFormat_Book;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16142,7 +16142,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_BookHint;
+    _local3 = FontFormat_BookHint;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 18);
@@ -16151,7 +16151,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_BookLeft;
+    _local3 = FontFormat_BookLeft;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 16);
@@ -16160,7 +16160,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Bullshit;
+    _local3 = FontFormat_Bullshit;
     with (_local3) {
         font = fontName;
         size = 14;
@@ -16169,7 +16169,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_AttackLabel;
+    _local3 = FontFormat_AttackLabel;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16178,7 +16178,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Speech;
+    _local3 = FontFormat_Speech;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16187,7 +16187,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Grayed;
+    _local3 = FontFormat_Grayed;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16196,7 +16196,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GrayedHighLight;
+    _local3 = FontFormat_GrayedHighLight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16205,7 +16205,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_ClassError;
+    _local3 = FontFormat_ClassError;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16214,7 +16214,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Chat;
+    _local3 = FontFormat_Chat;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16223,7 +16223,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_ChatWhisper;
+    _local3 = FontFormat_ChatWhisper;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16232,7 +16232,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_ChatError;
+    _local3 = FontFormat_ChatError;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16241,7 +16241,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildBuilding;
+    _local3 = FontFormat_GuildBuilding;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16250,7 +16250,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildMoney;
+    _local3 = FontFormat_GuildMoney;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16259,7 +16259,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_DefaultLeft;
+    _local3 = FontFormat_DefaultLeft;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16268,7 +16268,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Highlight;
+    _local3 = FontFormat_Highlight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16277,7 +16277,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HighlightWhisper;
+    _local3 = FontFormat_HighlightWhisper;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16286,7 +16286,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Heading;
+    _local3 = FontFormat_Heading;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 30);
@@ -16295,7 +16295,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_ScreenTitle;
+    _local3 = FontFormat_ScreenTitle;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 34);
@@ -16304,7 +16304,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Popup;
+    _local3 = FontFormat_Popup;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16313,7 +16313,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PopupCompare;
+    _local3 = FontFormat_PopupCompare;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16322,7 +16322,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PopupCompareSum;
+    _local3 = FontFormat_PopupCompareSum;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16331,7 +16331,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PopupCompareBetter;
+    _local3 = FontFormat_PopupCompareBetter;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16340,7 +16340,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PopupCompareWorse;
+    _local3 = FontFormat_PopupCompareWorse;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16349,7 +16349,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PopupCompareBetterHL;
+    _local3 = FontFormat_PopupCompareBetterHL;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16358,7 +16358,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PopupCompareWorseHL;
+    _local3 = FontFormat_PopupCompareWorseHL;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16367,7 +16367,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_EpicItemQuote;
+    _local3 = FontFormat_EpicItemQuote;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16376,7 +16376,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_ItemEnchantment;
+    _local3 = FontFormat_ItemEnchantment;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16385,7 +16385,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_LogoutLink;
+    _local3 = FontFormat_LogoutLink;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 22);
@@ -16394,7 +16394,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_LogoutLinkHighLight;
+    _local3 = FontFormat_LogoutLinkHighLight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 22);
@@ -16403,7 +16403,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HallListHeading;
+    _local3 = FontFormat_HallListHeading;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16412,7 +16412,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HallListText;
+    _local3 = FontFormat_HallListText;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16421,7 +16421,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildHallNoAttack;
+    _local3 = FontFormat_GuildHallNoAttack;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16430,7 +16430,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_HallListHighLight;
+    _local3 = FontFormat_HallListHighLight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16439,7 +16439,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_AttribBonus;
+    _local3 = FontFormat_AttribBonus;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16448,7 +16448,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_AttribTemp;
+    _local3 = FontFormat_AttribTemp;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16457,7 +16457,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Attrib;
+    _local3 = FontFormat_Attrib;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16466,7 +16466,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PayIcon;
+    _local3 = FontFormat_PayIcon;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 19);
@@ -16475,7 +16475,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListHeading;
+    _local3 = FontFormat_PostListHeading;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 26);
@@ -16485,7 +16485,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListText;
+    _local3 = FontFormat_PostListText;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16494,7 +16494,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListTextSys;
+    _local3 = FontFormat_PostListTextSys;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16503,7 +16503,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListText;
+    _local3 = FontFormat_GuildListText;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16512,7 +16512,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextOnline;
+    _local3 = FontFormat_GuildListTextOnline;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16521,7 +16521,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackError;
+    _local3 = FontFormat_GuildListTextAttackError;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16530,7 +16530,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackErrorOnline;
+    _local3 = FontFormat_GuildListTextAttackErrorOnline;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16539,7 +16539,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackErrorOnlinePopup;
+    _local3 = FontFormat_GuildListTextAttackErrorOnlinePopup;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16548,7 +16548,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackOk;
+    _local3 = FontFormat_GuildListTextAttackOk;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16557,7 +16557,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_GuildListTextAttackOkPopup;
+    _local3 = FontFormat_GuildListTextAttackOkPopup;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16566,7 +16566,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListHighLight;
+    _local3 = FontFormat_PostListHighLight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16575,7 +16575,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListHighLightSys;
+    _local3 = FontFormat_PostListHighLightSys;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16584,7 +16584,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListTextSysRed;
+    _local3 = FontFormat_PostListTextSysRed;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16593,7 +16593,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListHighLightSysRed;
+    _local3 = FontFormat_PostListHighLightSysRed;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16602,7 +16602,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListTextSysGreen;
+    _local3 = FontFormat_PostListTextSysGreen;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16611,7 +16611,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_PostListHighLightSysGreen;
+    _local3 = FontFormat_PostListHighLightSysGreen;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16620,7 +16620,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_QuestBar;
+    _local3 = FontFormat_QuestBar;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16629,7 +16629,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_TimeBar;
+    _local3 = FontFormat_TimeBar;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 24);
@@ -16638,7 +16638,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_LifeBar;
+    _local3 = FontFormat_LifeBar;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 20);
@@ -16647,7 +16647,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_Damage;
+    _local3 = FontFormat_Damage;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 30);
@@ -16656,7 +16656,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_CriticalDamage;
+    _local3 = FontFormat_CriticalDamage;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 34);
@@ -16665,7 +16665,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = this.FontFormat_CatapultDamage;
+    _local3 = FontFormat_CatapultDamage;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 38);
@@ -16700,8 +16700,8 @@ public function ShowEmailNagScreen(valMode:int=-1){
             Add(EMAIL_RESEND);
         };
     };
-    this.Load(this.SCREEN_EMAIL_NAG);
-    this.WhenLoaded(doShowEmailNagScreen);
+    Load(SCREEN_EMAIL_NAG);
+    WhenLoaded(doShowEmailNagScreen);
 }
 
 
@@ -16716,14 +16716,14 @@ public function ShowDisconnectScreen(){
             ReconnectTimer.removeEventListener(TimerEvent.TIMER, TryReconnect);
         };
     };
-    if (this.OnStage(this.LBL_DISCONNECTED)){
+    if (OnStage(LBL_DISCONNECTED)){
         return;
     };
-    this.RemoveAll();
-    this.Remove(this.IF_LOGOUT);
-    this.Add(this.SCREEN_DISCONNECTED);
-    this.sessionId = "";
-    ReconnectTimer = new Timer(this.param_reconnect);
+    RemoveAll();
+    Remove(IF_LOGOUT);
+    Add(SCREEN_DISCONNECTED);
+    sessionId = "";
+    ReconnectTimer = new Timer(param_reconnect);
     ReconnectTimer.addEventListener(TimerEvent.TIMER, TryReconnect);
     ReconnectTimer.start();
 }
@@ -16735,10 +16735,10 @@ public function RemoveIllegalChars(inpStr:String):String{
     var thisChar:String;
     var outStr:String;
     var pass:Boolean;
-    if (this.txt[this.TXT_LEGALCHARS] == ""){
+    if (txt[TXT_LEGALCHARS] == ""){
         return (inpStr);
     };
-    LegalChars = this.txt[this.TXT_LEGALCHARS];
+    LegalChars = txt[TXT_LEGALCHARS];
     thisChar = "";
     outStr = "";
     pass = false;
@@ -16813,28 +16813,28 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     var recipients:* = null;
     var evt:* = evt;
     var actorID:int = actorID;
-    this.Remove(this.LBL_ERROR);
+    Remove(LBL_ERROR);
     GuildMsg = false;
     if (evt){
-        actorID = this.GetActorID(evt.target);
+        actorID = GetActorID(evt.target);
     };
     thisRecipient = "";
     recipients = new Array();
     switch (actorID){
-        case this.POST_SEND:
-            this.lastMessageTarget = "";
-            if (!this.OnStage(this.INP_POST_ADDRESS)){
+        case POST_SEND:
+            lastMessageTarget = "";
+            if (!OnStage(INP_POST_ADDRESS)){
                 GuildMsg = true;
             } else {
-                this.lastMessageTarget = this.actor[this.INP_POST_ADDRESS].getChildAt(1).text;
+                lastMessageTarget = actor[INP_POST_ADDRESS].getChildAt(1).text;
             };
-            if (this.actor[this.INP_POST_TEXT].getChildAt(1).text.indexOf(this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text) != -1){
-                this.ErrorMessage(((this.txt[this.TXT_ERROR_COMPROMISED_ACCOUNT]) ? this.txt[this.TXT_ERROR_COMPROMISED_ACCOUNT] : "You should never give your password away."));
+            if (actor[INP_POST_TEXT].getChildAt(1).text.indexOf(actor[INP_LOGIN_PASSWORD].getChildAt(1).text) != -1){
+                ErrorMessage(((txt[TXT_ERROR_COMPROMISED_ACCOUNT]) ? txt[TXT_ERROR_COMPROMISED_ACCOUNT] : "You should never give your password away."));
             } else {
-                if (this.actor[this.INP_POST_ADDRESS].getChildAt(1).text == this.txt[this.TXT_EMPFAENGER]){
-                    this.ErrorMessage(this.txt[this.TXT_ERROR_RECIPIENT_NOT_FOUND]);
+                if (actor[INP_POST_ADDRESS].getChildAt(1).text == txt[TXT_EMPFAENGER]){
+                    ErrorMessage(txt[TXT_ERROR_RECIPIENT_NOT_FOUND]);
                 } else {
-                    thisRecipient = this.actor[this.INP_POST_ADDRESS].getChildAt(1).text;
+                    thisRecipient = actor[INP_POST_ADDRESS].getChildAt(1).text;
                     if (thisRecipient.indexOf(",") != -1){
                         recipients = thisRecipient.split(",");
                     } else {
@@ -16848,214 +16848,214 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                         while (thisRecipient.substr((thisRecipient.length - 1), 1) == " ") {
                             thisRecipient = thisRecipient.substr(0, (thisRecipient.length - 1));
                         };
-                        this.SendAction(((GuildMsg) ? this.ACT_POST_SEND_GUILD : this.ACT_POST_SEND), this.RemoveIllegalChars(this.SemiStrip(thisRecipient)), this.RemoveIllegalChars(this.SemiStrip(this.actor[this.INP_POST_SUBJECT].getChildAt(1).text.split("/").join(""))), this.RemoveIllegalChars(this.SemiStrip(this.actor[this.INP_POST_TEXT].getChildAt(1).text)));
+                        SendAction(((GuildMsg) ? ACT_POST_SEND_GUILD : ACT_POST_SEND), RemoveIllegalChars(SemiStrip(thisRecipient)), RemoveIllegalChars(SemiStrip(actor[INP_POST_SUBJECT].getChildAt(1).text.split("/").join(""))), RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT].getChildAt(1).text)));
                     };
                 };
             };
             break;
-        case this.POST_UP:
-            if (this.PostScroll > 1){
-                this.oldSel = -1;
-                this.PostScroll = (this.PostScroll - 15);
-                if (this.PostScroll < 1){
-                    this.PostScroll = 1;
+        case POST_UP:
+            if (PostScroll > 1){
+                oldSel = -1;
+                PostScroll = (PostScroll - 15);
+                if (PostScroll < 1){
+                    PostScroll = 1;
                 };
-                this.SendAction(this.ACT_SCREEN_POST, this.PostScroll);
+                SendAction(ACT_SCREEN_POST, PostScroll);
             };
             break;
-        case this.POST_DOWN:
-            if (this.PostScrollDown){
-                this.PostScroll = (this.PostScroll + 15);
-                this.PostScrollDown = false;
-                if (this.PostScroll > 86){
-                    this.PostScroll = 86;
+        case POST_DOWN:
+            if (PostScrollDown){
+                PostScroll = (PostScroll + 15);
+                PostScrollDown = false;
+                if (PostScroll > 86){
+                    PostScroll = 86;
                 };
-                if (this.PostScroll < 1){
-                    this.PostScroll = 1;
+                if (PostScroll < 1){
+                    PostScroll = 1;
                 };
-                this.SendAction(this.ACT_SCREEN_POST, this.PostScroll);
+                SendAction(ACT_SCREEN_POST, PostScroll);
             };
             break;
-        case this.POST_READ:
-            if (this.textDir == "right"){
-                this.MakeRightTextArea(this.INP_POST_ADDRESS, 1);
-                this.MakeRightTextArea(this.INP_POST_SUBJECT, 1);
-                this.MakeRightTextArea(this.INP_POST_TEXT, 1);
+        case POST_READ:
+            if (textDir == "right"){
+                MakeRightTextArea(INP_POST_ADDRESS, 1);
+                MakeRightTextArea(INP_POST_SUBJECT, 1);
+                MakeRightTextArea(INP_POST_TEXT, 1);
             };
-            if (this.PostSel > 0){
-                this.SendAction(this.ACT_POST_READ, ((this.PostSel + this.PostScroll) - 1));
+            if (PostSel > 0){
+                SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             };
             break;
-        case this.POST_READ_NEXT:
-            this.PostSel++;
-            if (this.PostSel > 15){
-                this.PostScroll = (this.PostScroll + 1);
-                this.PostSel = 15;
+        case POST_READ_NEXT:
+            PostSel++;
+            if (PostSel > 15){
+                PostScroll = (PostScroll + 1);
+                PostSel = 15;
             };
-            this.SendAction(this.ACT_POST_READ, ((this.PostSel + this.PostScroll) - 1));
+            SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             break;
-        case this.POST_READ_PREV:
-            this.PostSel--;
-            if (this.PostSel < 1){
-                this.PostScroll = (this.PostScroll - 1);
-                this.PostSel = 1;
+        case POST_READ_PREV:
+            PostSel--;
+            if (PostSel < 1){
+                PostScroll = (PostScroll - 1);
+                PostSel = 1;
             };
-            this.SendAction(this.ACT_POST_READ, ((this.PostSel + this.PostScroll) - 1));
+            SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             break;
-        case this.POST_DELETE:
-        case this.POST_DELETEREAD:
-            if (this.PostSel > 0){
-                this.SendAction(this.ACT_POST_DELETE, ((this.PostSel + this.PostScroll) - 1));
-                if (int(this.Savegame[this.SG_MSG_COUNT]) > 0){
-                    this.Savegame[this.SG_MSG_COUNT] = String((int(this.Savegame[this.SG_MSG_COUNT]) - 1));
+        case POST_DELETE:
+        case POST_DELETEREAD:
+            if (PostSel > 0){
+                SendAction(ACT_POST_DELETE, ((PostSel + PostScroll) - 1));
+                if (int(Savegame[SG_MSG_COUNT]) > 0){
+                    Savegame[SG_MSG_COUNT] = String((int(Savegame[SG_MSG_COUNT]) - 1));
                 };
             };
             break;
-        case this.POST_FLUSH:
-            var _local4 = this.actor[this.LBL_WINDOW_TITLE];
+        case POST_FLUSH:
+            var _local4 = actor[LBL_WINDOW_TITLE];
             with (_local4) {
                 text = txt[TXT_POST_FLUSH_TEXT];
                 x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
             };
-            this.Add(this.POST_FLUSHMSG);
+            Add(POST_FLUSHMSG);
             break;
-        case this.POST_FLUSH_CANCEL:
-            this.Remove(this.POST_FLUSHMSG);
-            this.Add(this.IF_EXIT);
+        case POST_FLUSH_CANCEL:
+            Remove(POST_FLUSHMSG);
+            Add(IF_EXIT);
             break;
-        case this.POST_FLUSH_OK:
-            this.Remove(this.POST_FLUSHMSG);
-            this.SendAction(this.ACT_POST_DELETE, -1);
+        case POST_FLUSH_OK:
+            Remove(POST_FLUSHMSG);
+            SendAction(ACT_POST_DELETE, -1);
             break;
-        case this.POST_PROFILE:
-            if (this.ReplyAddress != ""){
-                this.selName = this.ReplyAddress;
-                this.SendAction(this.ACT_REQUEST_CHAR, this.ReplyAddress);
+        case POST_PROFILE:
+            if (ReplyAddress != ""){
+                selName = ReplyAddress;
+                SendAction(ACT_REQUEST_CHAR, ReplyAddress);
             };
             break;
-        case this.POST_WRITE:
-            this.actor[this.INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
-            this.actor[this.INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
-            this.actor[this.INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-            this.Remove(this.POST_LIST);
-            this.Add(this.POST_WRITE);
-            if (this.Gilde != ""){
-                if (this.textDir == "right"){
-                    this.actor[this.POST_GUILD].x = (this.POST_INP_X + 5);
+        case POST_WRITE:
+            actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
+            actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
+            actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
+            Remove(POST_LIST);
+            Add(POST_WRITE);
+            if (Gilde != ""){
+                if (textDir == "right"){
+                    actor[POST_GUILD].x = (POST_INP_X + 5);
                 } else {
-                    this.actor[this.POST_GUILD].x = (((this.POST_INP_X + this.actor[this.INP_POST_ADDRESS].width) - this.actor[this.POST_GUILD].width) - 5);
+                    actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                 };
-                this.Show(this.POST_GUILD);
+                Show(POST_GUILD);
             } else {
-                this.Hide(this.POST_GUILD);
+                Hide(POST_GUILD);
             };
-            this.actor[this.INP_POST_ADDRESS].getChildAt(1).text = this.txt[this.TXT_EMPFAENGER];
-            this.actor[this.INP_POST_SUBJECT].getChildAt(1).text = this.txt[this.TXT_BETREFF];
-            this.actor[this.INP_POST_TEXT].getChildAt(1).text = this.txt[this.TXT_NACHRICHT];
-            if (this.textDir == "right"){
-                this.MakeRightTextArea(this.INP_POST_ADDRESS, 1);
-                this.MakeRightTextArea(this.INP_POST_SUBJECT, 1);
-                this.MakeRightTextArea(this.INP_POST_TEXT, 1);
+            actor[INP_POST_ADDRESS].getChildAt(1).text = txt[TXT_EMPFAENGER];
+            actor[INP_POST_SUBJECT].getChildAt(1).text = txt[TXT_BETREFF];
+            actor[INP_POST_TEXT].getChildAt(1).text = txt[TXT_NACHRICHT];
+            if (textDir == "right"){
+                MakeRightTextArea(INP_POST_ADDRESS, 1);
+                MakeRightTextArea(INP_POST_SUBJECT, 1);
+                MakeRightTextArea(INP_POST_TEXT, 1);
             };
             break;
-        case this.POST_CANCEL:
-        case this.POST_RETURN:
-            if (this.PostReturnToPlayer != ""){
-                this.SendAction(this.ACT_REQUEST_CHAR, this.PostReturnToPlayer);
+        case POST_CANCEL:
+        case POST_RETURN:
+            if (PostReturnToPlayer != ""){
+                SendAction(ACT_REQUEST_CHAR, PostReturnToPlayer);
             } else {
-                this.Remove(this.POST_WRITE);
-                this.Remove(this.POST_READ);
-                this.Remove(this.POST_ACCEPT);
-                this.Remove(this.POST_REPLY);
-                this.Add(this.POST_LIST);
+                Remove(POST_WRITE);
+                Remove(POST_READ);
+                Remove(POST_ACCEPT);
+                Remove(POST_REPLY);
+                Add(POST_LIST);
             };
             break;
-        case this.POST_ACCEPT:
-            if (this.InviteGildenID > 0){
-                this.SendAction(this.ACT_GUILD_JOIN, this.actor[this.INP_NAME].getChildAt(1).text, this.InviteGildenID, this.MD5(this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text));
+        case POST_ACCEPT:
+            if (InviteGildenID > 0){
+                SendAction(ACT_GUILD_JOIN, actor[INP_NAME].getChildAt(1).text, InviteGildenID, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
             };
             break;
-        case this.POST_REPLY:
-            if (this.ReplyAddress != ""){
-                this.actor[this.INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
-                this.actor[this.INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
-                this.actor[this.INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-                this.Remove(this.POST_READ);
-                this.Remove(this.POST_REPLY);
-                this.Remove(this.POST_FORWARD);
-                if (this.Gilde != ""){
-                    if (this.textDir == "right"){
-                        this.actor[this.POST_GUILD].x = (this.POST_INP_X + 5);
+        case POST_REPLY:
+            if (ReplyAddress != ""){
+                actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
+                Remove(POST_READ);
+                Remove(POST_REPLY);
+                Remove(POST_FORWARD);
+                if (Gilde != ""){
+                    if (textDir == "right"){
+                        actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
-                        this.actor[this.POST_GUILD].x = (((this.POST_INP_X + this.actor[this.INP_POST_ADDRESS].width) - this.actor[this.POST_GUILD].width) - 5);
+                        actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                     };
-                    this.Show(this.POST_GUILD);
+                    Show(POST_GUILD);
                 } else {
-                    this.Hide(this.POST_GUILD);
+                    Hide(POST_GUILD);
                 };
-                this.Add(this.POST_WRITE);
-                this.Show(this.POST_GUILD);
-                this.actor[this.INP_POST_ADDRESS].getChildAt(1).text = this.ReplyAddress;
-                this.actor[this.INP_POST_TEXT].getChildAt(1).text = this.txt[this.TXT_NACHRICHT];
-                if (this.textDir == "right"){
-                    if (this.actor[this.INP_POST_SUBJECT].getChildAt(1).text.indexOf(this.txt[this.TXT_RE]) == -1){
-                        this.actor[this.INP_POST_SUBJECT].getChildAt(1).text = ((this.ReplySubject + " ") + this.txt[this.TXT_RE]);
+                Add(POST_WRITE);
+                Show(POST_GUILD);
+                actor[INP_POST_ADDRESS].getChildAt(1).text = ReplyAddress;
+                actor[INP_POST_TEXT].getChildAt(1).text = txt[TXT_NACHRICHT];
+                if (textDir == "right"){
+                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.indexOf(txt[TXT_RE]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((ReplySubject + " ") + txt[TXT_RE]);
                     };
-                    this.MakeRightTextArea(this.INP_POST_ADDRESS, 1);
-                    this.MakeRightTextArea(this.INP_POST_SUBJECT, 1);
-                    this.MakeRightTextArea(this.INP_POST_TEXT, 1);
+                    MakeRightTextArea(INP_POST_ADDRESS, 1);
+                    MakeRightTextArea(INP_POST_SUBJECT, 1);
+                    MakeRightTextArea(INP_POST_TEXT, 1);
                 } else {
-                    if (this.actor[this.INP_POST_SUBJECT].getChildAt(1).text.indexOf(this.txt[this.TXT_RE]) == -1){
-                        this.actor[this.INP_POST_SUBJECT].getChildAt(1).text = ((this.txt[this.TXT_RE] + " ") + this.ReplySubject);
+                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.indexOf(txt[TXT_RE]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((txt[TXT_RE] + " ") + ReplySubject);
                     };
                 };
             };
             break;
-        case this.POST_FORWARD:
-            if (this.forwardText != ""){
-                this.actor[this.INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
-                this.actor[this.INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
-                this.actor[this.INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-                this.Remove(this.POST_READ);
-                this.Remove(this.POST_REPLY);
-                this.Remove(this.POST_FORWARD);
-                if (this.Gilde != ""){
-                    if (this.textDir == "right"){
-                        this.actor[this.POST_GUILD].x = (this.POST_INP_X + 5);
+        case POST_FORWARD:
+            if (forwardText != ""){
+                actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
+                Remove(POST_READ);
+                Remove(POST_REPLY);
+                Remove(POST_FORWARD);
+                if (Gilde != ""){
+                    if (textDir == "right"){
+                        actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
-                        this.actor[this.POST_GUILD].x = (((this.POST_INP_X + this.actor[this.INP_POST_ADDRESS].width) - this.actor[this.POST_GUILD].width) - 5);
+                        actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                     };
-                    this.Show(this.POST_GUILD);
+                    Show(POST_GUILD);
                 } else {
-                    this.Hide(this.POST_GUILD);
+                    Hide(POST_GUILD);
                 };
-                this.Add(this.POST_WRITE);
-                this.Show(this.POST_GUILD);
-                stage.focus = this.actor[this.INP_POST_ADDRESS].getChildAt(1);
-                this.actor[this.INP_POST_ADDRESS].getChildAt(1).text = "";
-                this.actor[this.INP_POST_TEXT].getChildAt(1).text = this.txt[(this.TXT_POST_FORWARD + 2)].split("%1").join(this.ReplyAddress).split("%2").join(this.forwardText).split("#").join(String.fromCharCode(13));
-                if (this.textDir == "right"){
-                    if (this.actor[this.INP_POST_SUBJECT].getChildAt(1).text.indexOf(this.txt[(this.TXT_POST_FORWARD + 1)]) == -1){
-                        this.actor[this.INP_POST_SUBJECT].getChildAt(1).text = ((this.ReplySubject + " ") + this.txt[(this.TXT_POST_FORWARD + 1)]);
+                Add(POST_WRITE);
+                Show(POST_GUILD);
+                stage.focus = actor[INP_POST_ADDRESS].getChildAt(1);
+                actor[INP_POST_ADDRESS].getChildAt(1).text = "";
+                actor[INP_POST_TEXT].getChildAt(1).text = txt[(TXT_POST_FORWARD + 2)].split("%1").join(ReplyAddress).split("%2").join(forwardText).split("#").join(String.fromCharCode(13));
+                if (textDir == "right"){
+                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.indexOf(txt[(TXT_POST_FORWARD + 1)]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((ReplySubject + " ") + txt[(TXT_POST_FORWARD + 1)]);
                     };
-                    this.MakeRightTextArea(this.INP_POST_ADDRESS, 1);
-                    this.MakeRightTextArea(this.INP_POST_SUBJECT, 1);
-                    this.MakeRightTextArea(this.INP_POST_TEXT, 1);
+                    MakeRightTextArea(INP_POST_ADDRESS, 1);
+                    MakeRightTextArea(INP_POST_SUBJECT, 1);
+                    MakeRightTextArea(INP_POST_TEXT, 1);
                 } else {
-                    if (this.actor[this.INP_POST_SUBJECT].getChildAt(1).text.indexOf(this.txt[(this.TXT_POST_FORWARD + 1)]) == -1){
-                        this.actor[this.INP_POST_SUBJECT].getChildAt(1).text = ((this.txt[(this.TXT_POST_FORWARD + 1)] + " ") + this.ReplySubject);
+                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.indexOf(txt[(TXT_POST_FORWARD + 1)]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((txt[(TXT_POST_FORWARD + 1)] + " ") + ReplySubject);
                     };
                 };
             };
             break;
-        case this.POST_VIEWFIGHT:
-            par = this.tmpBattleInfo.split("#");
-            this.PostFightMode = true;
-            this.ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), true);
+        case POST_VIEWFIGHT:
+            par = tmpBattleInfo.split("#");
+            PostFightMode = true;
+            ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), true);
             break;
         default:
-            if (this.PostSel > 0){
-                this.SendAction(this.ACT_POST_READ, ((this.PostSel + this.PostScroll) - 1));
+            if (PostSel > 0){
+                SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             };
     };
 }
@@ -17143,29 +17143,29 @@ public function ShowAlbumContent(evt:Event=undefined){
     entryText = "";
     hintText = "";
     hunterOffs = 0;
-    this.AlbumClear();
+    AlbumClear();
     actorID = 0;
     if (evt){
-        actorID = this.GetActorID(evt.target);
+        actorID = GetActorID(evt.target);
     };
-    if (actorID == this.ALBUM_PREV){
-        this.albumPage--;
+    if (actorID == ALBUM_PREV){
+        albumPage--;
     };
-    if (actorID == this.ALBUM_NEXT){
-        this.albumPage++;
+    if (actorID == ALBUM_NEXT){
+        albumPage++;
     };
-    if ((((actorID >= this.ALBUM_CAT_OUT)) and ((actorID <= (this.ALBUM_CAT_OUT + 4))))){
-        this.albumCat = (actorID - this.ALBUM_CAT_OUT);
-        this.albumPage = 0;
+    if ((((actorID >= ALBUM_CAT_OUT)) and ((actorID <= (ALBUM_CAT_OUT + 4))))){
+        albumCat = (actorID - ALBUM_CAT_OUT);
+        albumPage = 0;
     };
-    this.Hide(this.ALBUM_CAT_IN);
-    this.Show((this.ALBUM_CAT_IN + this.albumCat));
+    Hide(ALBUM_CAT_IN);
+    Show((ALBUM_CAT_IN + albumCat));
     contentCount = 0;
     catMax = [252, 246, 506, 348, 348];
     catCount = [0, 0, 0, 0, 0];
     i = 0;
-    while (i < this.AlbumContent.length) {
-        if (this.AlbumContent[i] == 1){
+    while (i < AlbumContent.length) {
+        if (AlbumContent[i] == 1){
             if (i < 300){
                 var _local3 = catCount;
                 var _local4:int;
@@ -17202,8 +17202,8 @@ public function ShowAlbumContent(evt:Event=undefined){
         };
         i = (i + 1);
     };
-    if (contentCount > this.contentMax){
-        contentCount = this.contentMax;
+    if (contentCount > contentMax){
+        contentCount = contentMax;
     };
     i = 0;
     while (i < 5) {
@@ -17212,78 +17212,78 @@ public function ShowAlbumContent(evt:Event=undefined){
         };
         i = (i + 1);
     };
-    this.actor[this.LBL_ALBUM_COLLECTION].text = this.txt[this.TXT_COLLECTION].split("%1").join(String(contentCount)).split("%2").join(String(this.contentMax)).split("%3").join(String((Math.round(((contentCount / this.contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13));
+    actor[LBL_ALBUM_COLLECTION].text = txt[TXT_COLLECTION].split("%1").join(String(contentCount)).split("%2").join(String(contentMax)).split("%3").join(String((Math.round(((contentCount / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13));
     i = 0;
     while (i < 5) {
-        this.EnablePopup((this.ALBUM_CAT_IN + i), (((((((this.txt[((this.TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
-        this.EnablePopup((this.ALBUM_CAT_OUT + i), (((((((this.txt[((this.TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
+        EnablePopup((ALBUM_CAT_IN + i), (((((((txt[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
+        EnablePopup((ALBUM_CAT_OUT + i), (((((((txt[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
         i = (i + 1);
     };
-    this.EnablePopup(this.LBL_ALBUM_COLLECTION, this.txt[(this.TXT_COLLECTION + 7)]);
+    EnablePopup(LBL_ALBUM_COLLECTION, txt[(TXT_COLLECTION + 7)]);
     i = 0;
     while (i < 4) {
         hintText = "";
-        this.EnablePopup((this.LBL_ALBUM_HEADING + i));
-        this.EnablePopup((this.ALBUM_MONSTER_FRAME + i));
-        if (this.albumCat == 0){
-            this.Show((this.ALBUM_MONSTER_FRAME + i));
-            if (this.albumPage > 62){
-                this.albumPage = 0;
+        EnablePopup((LBL_ALBUM_HEADING + i));
+        EnablePopup((ALBUM_MONSTER_FRAME + i));
+        if (albumCat == 0){
+            Show((ALBUM_MONSTER_FRAME + i));
+            if (albumPage > 62){
+                albumPage = 0;
             };
-            if (this.albumPage < 0){
-                this.albumPage = 62;
+            if (albumPage < 0){
+                albumPage = 62;
             };
-            if (this.AlbumContent[((this.albumPage * 4) + i)] == 1){
-                this.SetCnt((this.ALBUM_MONSTER + i), ((this.OPPMONSTER + (this.albumPage * 4)) + i));
-                if (((this.albumPage * 4) + i) >= 220){
-                    entryText = this.txt[(((this.TXT_NEW_MONSTER_NAMES + (this.albumPage * 4)) + i) - 220)];
+            if (AlbumContent[((albumPage * 4) + i)] == 1){
+                SetCnt((ALBUM_MONSTER + i), ((OPPMONSTER + (albumPage * 4)) + i));
+                if (((albumPage * 4) + i) >= 220){
+                    entryText = txt[(((TXT_NEW_MONSTER_NAMES + (albumPage * 4)) + i) - 220)];
                 } else {
-                    entryText = this.txt[((this.TXT_MONSTER_NAME + (this.albumPage * 4)) + i)];
+                    entryText = txt[((TXT_MONSTER_NAME + (albumPage * 4)) + i)];
                 };
             } else {
-                this.SetCnt((this.ALBUM_MONSTER + i), this.UNKNOWN_ENEMY);
-                entryText = this.txt[this.TXT_UNKNOWN];
+                SetCnt((ALBUM_MONSTER + i), UNKNOWN_ENEMY);
+                entryText = txt[TXT_UNKNOWN];
             };
-            if (this.showAlbumOffset){
-                this.EnablePopup((this.ALBUM_MONSTER_FRAME + i), String(((this.albumPage * 4) + i)));
+            if (showAlbumOffset){
+                EnablePopup((ALBUM_MONSTER_FRAME + i), String(((albumPage * 4) + i)));
             };
-            if (this.showAlbumOffset){
-                this.EnablePopup((this.LBL_ALBUM_HEADING + i), String(((this.albumPage * 4) + i)));
+            if (showAlbumOffset){
+                EnablePopup((LBL_ALBUM_HEADING + i), String(((albumPage * 4) + i)));
             };
         } else {
-            if (this.albumCat == 1){
-                entryText = this.txt[this.TXT_UNKNOWN];
-                if (this.albumPage > 25){
-                    this.albumPage = 0;
+            if (albumCat == 1){
+                entryText = txt[TXT_UNKNOWN];
+                if (albumPage > 25){
+                    albumPage = 0;
                 };
-                if (this.albumPage < 0){
-                    this.albumPage = 25;
+                if (albumPage < 0){
+                    albumPage = 25;
                 };
-                if (this.albumPage <= 5){
-                    if ((((this.albumPage < 5)) or ((i <= 0)))){
-                        SetAlbumItems(((300 + (this.albumPage * 20)) + (i * 5)), 8, ((1 + (this.albumPage * 4)) + i), 0);
+                if (albumPage <= 5){
+                    if ((((albumPage < 5)) or ((i <= 0)))){
+                        SetAlbumItems(((300 + (albumPage * 20)) + (i * 5)), 8, ((1 + (albumPage * 4)) + i), 0);
                     } else {
                         entryText = "";
                     };
                 } else {
-                    if (this.albumPage <= 7){
-                        SetAlbumEpic(((510 + ((this.albumPage - 6) * 4)) + i), 8, ((50 + ((this.albumPage - 6) * 4)) + i), 0);
+                    if (albumPage <= 7){
+                        SetAlbumEpic(((510 + ((albumPage - 6) * 4)) + i), 8, ((50 + ((albumPage - 6) * 4)) + i), 0);
                     } else {
-                        if (this.albumPage <= 11){
-                            SetAlbumItems(((526 + ((this.albumPage - 8) * 20)) + (i * 5)), 9, ((1 + ((this.albumPage - 8) * 4)) + i), 0);
+                        if (albumPage <= 11){
+                            SetAlbumItems(((526 + ((albumPage - 8) * 20)) + (i * 5)), 9, ((1 + ((albumPage - 8) * 4)) + i), 0);
                         } else {
-                            if (this.albumPage <= 13){
-                                SetAlbumEpic(((686 + ((this.albumPage - 12) * 4)) + i), 9, ((50 + ((this.albumPage - 12) * 4)) + i), 0);
+                            if (albumPage <= 13){
+                                SetAlbumEpic(((686 + ((albumPage - 12) * 4)) + i), 9, ((50 + ((albumPage - 12) * 4)) + i), 0);
                             } else {
-                                if (this.albumPage <= 23){
-                                    if ((((this.albumPage < 23)) or ((i <= 0)))){
-                                        SetAlbumEpic(((702 + ((this.albumPage - 14) * 4)) + i), 10, ((1 + ((this.albumPage - 14) * 4)) + i), 0);
+                                if (albumPage <= 23){
+                                    if ((((albumPage < 23)) or ((i <= 0)))){
+                                        SetAlbumEpic(((702 + ((albumPage - 14) * 4)) + i), 10, ((1 + ((albumPage - 14) * 4)) + i), 0);
                                     } else {
                                         entryText = "";
                                     };
                                 } else {
-                                    if (this.albumPage <= 25){
-                                        SetAlbumEpic((((760 + 16) + ((this.albumPage - 24) * 4)) + i), 10, ((50 + ((this.albumPage - 24) * 4)) + i), 0);
+                                    if (albumPage <= 25){
+                                        SetAlbumEpic((((760 + 16) + ((albumPage - 24) * 4)) + i), 10, ((50 + ((albumPage - 24) * 4)) + i), 0);
                                     };
                                 };
                             };
@@ -17291,83 +17291,83 @@ public function ShowAlbumContent(evt:Event=undefined){
                     };
                 };
             } else {
-                if (this.albumCat == 2){
-                    entryText = this.txt[this.TXT_UNKNOWN];
-                    if (this.albumPage > 39){
-                        this.albumPage = 0;
+                if (albumCat == 2){
+                    entryText = txt[TXT_UNKNOWN];
+                    if (albumPage > 39){
+                        albumPage = 0;
                     };
-                    if (this.albumPage < 0){
-                        this.albumPage = 39;
+                    if (albumPage < 0){
+                        albumPage = 39;
                     };
-                    if (this.albumPage <= 7){
-                        if ((((this.albumPage < 7)) or ((i <= 1)))){
-                            SetAlbumItems((((776 + 16) + (this.albumPage * 20)) + (i * 5)), 1, ((1 + (this.albumPage * 4)) + i), 1);
+                    if (albumPage <= 7){
+                        if ((((albumPage < 7)) or ((i <= 1)))){
+                            SetAlbumItems((((776 + 16) + (albumPage * 20)) + (i * 5)), 1, ((1 + (albumPage * 4)) + i), 1);
                         } else {
                             entryText = "";
                         };
                     } else {
-                        if (this.albumPage <= 9){
-                            SetAlbumEpic((((1076 + 16) + ((this.albumPage - 8) * 4)) + i), 1, ((50 + ((this.albumPage - 8) * 4)) + i), 1);
+                        if (albumPage <= 9){
+                            SetAlbumEpic((((1076 + 16) + ((albumPage - 8) * 4)) + i), 1, ((50 + ((albumPage - 8) * 4)) + i), 1);
                         } else {
-                            if (this.albumPage <= 12){
-                                if ((((this.albumPage < 12)) or ((i <= 1)))){
-                                    SetAlbumItems((((1092 + 16) + ((this.albumPage - 10) * 20)) + (i * 5)), 2, ((1 + ((this.albumPage - 10) * 4)) + i), 1);
+                            if (albumPage <= 12){
+                                if ((((albumPage < 12)) or ((i <= 1)))){
+                                    SetAlbumItems((((1092 + 16) + ((albumPage - 10) * 20)) + (i * 5)), 2, ((1 + ((albumPage - 10) * 4)) + i), 1);
                                 } else {
                                     entryText = "";
                                 };
                             } else {
-                                if (this.albumPage <= 14){
-                                    SetAlbumEpic((((1192 + 16) + ((this.albumPage - 13) * 4)) + i), 2, ((50 + ((this.albumPage - 13) * 4)) + i), 1);
+                                if (albumPage <= 14){
+                                    SetAlbumEpic((((1192 + 16) + ((albumPage - 13) * 4)) + i), 2, ((50 + ((albumPage - 13) * 4)) + i), 1);
                                 } else {
-                                    if (this.albumPage <= 17){
-                                        if ((((this.albumPage < 17)) or ((i <= 1)))){
-                                            SetAlbumItems((((1208 + 16) + ((this.albumPage - 15) * 20)) + (i * 5)), 3, ((1 + ((this.albumPage - 15) * 4)) + i), 1);
+                                    if (albumPage <= 17){
+                                        if ((((albumPage < 17)) or ((i <= 1)))){
+                                            SetAlbumItems((((1208 + 16) + ((albumPage - 15) * 20)) + (i * 5)), 3, ((1 + ((albumPage - 15) * 4)) + i), 1);
                                         } else {
                                             entryText = "";
                                         };
                                     } else {
-                                        if (this.albumPage <= 19){
-                                            SetAlbumEpic((((1308 + 16) + ((this.albumPage - 18) * 4)) + i), 3, ((50 + ((this.albumPage - 18) * 4)) + i), 1);
+                                        if (albumPage <= 19){
+                                            SetAlbumEpic((((1308 + 16) + ((albumPage - 18) * 4)) + i), 3, ((50 + ((albumPage - 18) * 4)) + i), 1);
                                         } else {
-                                            if (this.albumPage <= 22){
-                                                if ((((this.albumPage < 22)) or ((i <= 1)))){
-                                                    SetAlbumItems((((1324 + 16) + ((this.albumPage - 20) * 20)) + (i * 5)), 4, ((1 + ((this.albumPage - 20) * 4)) + i), 1);
+                                            if (albumPage <= 22){
+                                                if ((((albumPage < 22)) or ((i <= 1)))){
+                                                    SetAlbumItems((((1324 + 16) + ((albumPage - 20) * 20)) + (i * 5)), 4, ((1 + ((albumPage - 20) * 4)) + i), 1);
                                                 } else {
                                                     entryText = "";
                                                 };
                                             } else {
-                                                if (this.albumPage <= 24){
-                                                    SetAlbumEpic((((1424 + 16) + ((this.albumPage - 23) * 4)) + i), 4, ((50 + ((this.albumPage - 23) * 4)) + i), 1);
+                                                if (albumPage <= 24){
+                                                    SetAlbumEpic((((1424 + 16) + ((albumPage - 23) * 4)) + i), 4, ((50 + ((albumPage - 23) * 4)) + i), 1);
                                                 } else {
-                                                    if (this.albumPage <= 27){
-                                                        if ((((this.albumPage < 27)) or ((i <= 1)))){
-                                                            SetAlbumItems((((1440 + 16) + ((this.albumPage - 25) * 20)) + (i * 5)), 5, ((1 + ((this.albumPage - 25) * 4)) + i), 1);
+                                                    if (albumPage <= 27){
+                                                        if ((((albumPage < 27)) or ((i <= 1)))){
+                                                            SetAlbumItems((((1440 + 16) + ((albumPage - 25) * 20)) + (i * 5)), 5, ((1 + ((albumPage - 25) * 4)) + i), 1);
                                                         } else {
                                                             entryText = "";
                                                         };
                                                     } else {
-                                                        if (this.albumPage <= 29){
-                                                            SetAlbumEpic((((1540 + 16) + ((this.albumPage - 28) * 4)) + i), 5, ((50 + ((this.albumPage - 28) * 4)) + i), 1);
+                                                        if (albumPage <= 29){
+                                                            SetAlbumEpic((((1540 + 16) + ((albumPage - 28) * 4)) + i), 5, ((50 + ((albumPage - 28) * 4)) + i), 1);
                                                         } else {
-                                                            if (this.albumPage <= 32){
-                                                                if ((((this.albumPage < 32)) or ((i <= 1)))){
-                                                                    SetAlbumItems((((1556 + 16) + ((this.albumPage - 30) * 20)) + (i * 5)), 6, ((1 + ((this.albumPage - 30) * 4)) + i), 1);
+                                                            if (albumPage <= 32){
+                                                                if ((((albumPage < 32)) or ((i <= 1)))){
+                                                                    SetAlbumItems((((1556 + 16) + ((albumPage - 30) * 20)) + (i * 5)), 6, ((1 + ((albumPage - 30) * 4)) + i), 1);
                                                                 } else {
                                                                     entryText = "";
                                                                 };
                                                             } else {
-                                                                if (this.albumPage <= 34){
-                                                                    SetAlbumEpic((((1656 + 16) + ((this.albumPage - 33) * 4)) + i), 6, ((50 + ((this.albumPage - 33) * 4)) + i), 1);
+                                                                if (albumPage <= 34){
+                                                                    SetAlbumEpic((((1656 + 16) + ((albumPage - 33) * 4)) + i), 6, ((50 + ((albumPage - 33) * 4)) + i), 1);
                                                                 } else {
-                                                                    if (this.albumPage <= 37){
-                                                                        if ((((this.albumPage < 37)) or ((i <= 1)))){
-                                                                            SetAlbumItems((((1672 + 16) + ((this.albumPage - 35) * 20)) + (i * 5)), 7, ((1 + ((this.albumPage - 35) * 4)) + i), 1);
+                                                                    if (albumPage <= 37){
+                                                                        if ((((albumPage < 37)) or ((i <= 1)))){
+                                                                            SetAlbumItems((((1672 + 16) + ((albumPage - 35) * 20)) + (i * 5)), 7, ((1 + ((albumPage - 35) * 4)) + i), 1);
                                                                         } else {
                                                                             entryText = "";
                                                                         };
                                                                     } else {
-                                                                        if (this.albumPage <= 39){
-                                                                            SetAlbumEpic((((1772 + 16) + ((this.albumPage - 38) * 4)) + i), 7, ((50 + ((this.albumPage - 38) * 4)) + i), 1);
+                                                                        if (albumPage <= 39){
+                                                                            SetAlbumEpic((((1772 + 16) + ((albumPage - 38) * 4)) + i), 7, ((50 + ((albumPage - 38) * 4)) + i), 1);
                                                                         };
                                                                     };
                                                                 };
@@ -17383,74 +17383,74 @@ public function ShowAlbumContent(evt:Event=undefined){
                         };
                     };
                 } else {
-                    if ((((this.albumCat == 3)) or ((this.albumCat == 4)))){
-                        entryText = this.txt[this.TXT_UNKNOWN];
-                        if (this.albumPage > 29){
-                            this.albumPage = 0;
+                    if ((((albumCat == 3)) or ((albumCat == 4)))){
+                        entryText = txt[TXT_UNKNOWN];
+                        if (albumPage > 29){
+                            albumPage = 0;
                         };
-                        if (this.albumPage < 0){
-                            this.albumPage = 29;
+                        if (albumPage < 0){
+                            albumPage = 29;
                         };
-                        hunterOffs = (((this.albumCat)==3) ? 0 : 696 + 16);
-                        if (this.albumPage <= 2){
-                            if ((((this.albumPage < 2)) or ((i <= 1)))){
-                                SetAlbumItems((((1788 + hunterOffs) + (this.albumPage * 20)) + (i * 5)), 1, ((1 + (this.albumPage * 4)) + i), (this.albumCat - 1));
+                        hunterOffs = (((albumCat)==3) ? 0 : 696 + 16);
+                        if (albumPage <= 2){
+                            if ((((albumPage < 2)) or ((i <= 1)))){
+                                SetAlbumItems((((1788 + hunterOffs) + (albumPage * 20)) + (i * 5)), 1, ((1 + (albumPage * 4)) + i), (albumCat - 1));
                             } else {
                                 entryText = "";
                             };
                         } else {
-                            if (this.albumPage <= 4){
-                                SetAlbumEpic((((1888 + hunterOffs) + ((this.albumPage - 3) * 4)) + i), 1, ((50 + ((this.albumPage - 3) * 4)) + i), (this.albumCat - 1));
+                            if (albumPage <= 4){
+                                SetAlbumEpic((((1888 + hunterOffs) + ((albumPage - 3) * 4)) + i), 1, ((50 + ((albumPage - 3) * 4)) + i), (albumCat - 1));
                             } else {
-                                if (this.albumPage <= 7){
-                                    if ((((this.albumPage < 7)) or ((i <= 1)))){
-                                        SetAlbumItems((((1904 + hunterOffs) + ((this.albumPage - 5) * 20)) + (i * 5)), 3, ((1 + ((this.albumPage - 5) * 4)) + i), (this.albumCat - 1));
+                                if (albumPage <= 7){
+                                    if ((((albumPage < 7)) or ((i <= 1)))){
+                                        SetAlbumItems((((1904 + hunterOffs) + ((albumPage - 5) * 20)) + (i * 5)), 3, ((1 + ((albumPage - 5) * 4)) + i), (albumCat - 1));
                                     } else {
                                         entryText = "";
                                     };
                                 } else {
-                                    if (this.albumPage <= 9){
-                                        SetAlbumEpic((((2004 + hunterOffs) + ((this.albumPage - 8) * 4)) + i), 3, ((50 + ((this.albumPage - 8) * 4)) + i), (this.albumCat - 1));
+                                    if (albumPage <= 9){
+                                        SetAlbumEpic((((2004 + hunterOffs) + ((albumPage - 8) * 4)) + i), 3, ((50 + ((albumPage - 8) * 4)) + i), (albumCat - 1));
                                     } else {
-                                        if (this.albumPage <= 12){
-                                            if ((((this.albumPage < 12)) or ((i <= 1)))){
-                                                SetAlbumItems((((2020 + hunterOffs) + ((this.albumPage - 10) * 20)) + (i * 5)), 4, ((1 + ((this.albumPage - 10) * 4)) + i), (this.albumCat - 1));
+                                        if (albumPage <= 12){
+                                            if ((((albumPage < 12)) or ((i <= 1)))){
+                                                SetAlbumItems((((2020 + hunterOffs) + ((albumPage - 10) * 20)) + (i * 5)), 4, ((1 + ((albumPage - 10) * 4)) + i), (albumCat - 1));
                                             } else {
                                                 entryText = "";
                                             };
                                         } else {
-                                            if (this.albumPage <= 14){
-                                                SetAlbumEpic((((2120 + hunterOffs) + ((this.albumPage - 13) * 4)) + i), 4, ((50 + ((this.albumPage - 13) * 4)) + i), (this.albumCat - 1));
+                                            if (albumPage <= 14){
+                                                SetAlbumEpic((((2120 + hunterOffs) + ((albumPage - 13) * 4)) + i), 4, ((50 + ((albumPage - 13) * 4)) + i), (albumCat - 1));
                                             } else {
-                                                if (this.albumPage <= 17){
-                                                    if ((((this.albumPage < 17)) or ((i <= 1)))){
-                                                        SetAlbumItems((((2136 + hunterOffs) + ((this.albumPage - 15) * 20)) + (i * 5)), 5, ((1 + ((this.albumPage - 15) * 4)) + i), (this.albumCat - 1));
+                                                if (albumPage <= 17){
+                                                    if ((((albumPage < 17)) or ((i <= 1)))){
+                                                        SetAlbumItems((((2136 + hunterOffs) + ((albumPage - 15) * 20)) + (i * 5)), 5, ((1 + ((albumPage - 15) * 4)) + i), (albumCat - 1));
                                                     } else {
                                                         entryText = "";
                                                     };
                                                 } else {
-                                                    if (this.albumPage <= 19){
-                                                        SetAlbumEpic((((2236 + hunterOffs) + ((this.albumPage - 18) * 4)) + i), 5, ((50 + ((this.albumPage - 18) * 4)) + i), (this.albumCat - 1));
+                                                    if (albumPage <= 19){
+                                                        SetAlbumEpic((((2236 + hunterOffs) + ((albumPage - 18) * 4)) + i), 5, ((50 + ((albumPage - 18) * 4)) + i), (albumCat - 1));
                                                     } else {
-                                                        if (this.albumPage <= 22){
-                                                            if ((((this.albumPage < 22)) or ((i <= 1)))){
-                                                                SetAlbumItems((((2252 + hunterOffs) + ((this.albumPage - 20) * 20)) + (i * 5)), 6, ((1 + ((this.albumPage - 20) * 4)) + i), (this.albumCat - 1));
+                                                        if (albumPage <= 22){
+                                                            if ((((albumPage < 22)) or ((i <= 1)))){
+                                                                SetAlbumItems((((2252 + hunterOffs) + ((albumPage - 20) * 20)) + (i * 5)), 6, ((1 + ((albumPage - 20) * 4)) + i), (albumCat - 1));
                                                             } else {
                                                                 entryText = "";
                                                             };
                                                         } else {
-                                                            if (this.albumPage <= 24){
-                                                                SetAlbumEpic((((2352 + hunterOffs) + ((this.albumPage - 23) * 4)) + i), 6, ((50 + ((this.albumPage - 23) * 4)) + i), (this.albumCat - 1));
+                                                            if (albumPage <= 24){
+                                                                SetAlbumEpic((((2352 + hunterOffs) + ((albumPage - 23) * 4)) + i), 6, ((50 + ((albumPage - 23) * 4)) + i), (albumCat - 1));
                                                             } else {
-                                                                if (this.albumPage <= 27){
-                                                                    if ((((this.albumPage < 27)) or ((i <= 1)))){
-                                                                        SetAlbumItems((((2368 + hunterOffs) + ((this.albumPage - 25) * 20)) + (i * 5)), 7, ((1 + ((this.albumPage - 25) * 4)) + i), (this.albumCat - 1));
+                                                                if (albumPage <= 27){
+                                                                    if ((((albumPage < 27)) or ((i <= 1)))){
+                                                                        SetAlbumItems((((2368 + hunterOffs) + ((albumPage - 25) * 20)) + (i * 5)), 7, ((1 + ((albumPage - 25) * 4)) + i), (albumCat - 1));
                                                                     } else {
                                                                         entryText = "";
                                                                     };
                                                                 } else {
-                                                                    if (this.albumPage <= 29){
-                                                                        SetAlbumEpic((((2468 + hunterOffs) + ((this.albumPage - 28) * 4)) + i), 7, ((50 + ((this.albumPage - 28) * 4)) + i), (this.albumCat - 1));
+                                                                    if (albumPage <= 29){
+                                                                        SetAlbumEpic((((2468 + hunterOffs) + ((albumPage - 28) * 4)) + i), 7, ((50 + ((albumPage - 28) * 4)) + i), (albumCat - 1));
                                                                     };
                                                                 };
                                                             };
@@ -17467,22 +17467,22 @@ public function ShowAlbumContent(evt:Event=undefined){
                 };
             };
         };
-        this.actor[this.LBL_ALBUM_PAGENUMBER_LEFT].text = String(((this.albumPage * 2) + 1));
-        this.actor[this.LBL_ALBUM_PAGENUMBER_RIGHT].text = String(((this.albumPage * 2) + 2));
-        this.actor[this.LBL_ALBUM_PAGENUMBER_RIGHT].x = (1205 - this.actor[this.LBL_ALBUM_PAGENUMBER_RIGHT].textWidth);
-        this.actor[(this.LBL_ALBUM_HEADING + i)].text = entryText;
-        this.actor[(this.LBL_ALBUM_HEADING + i)].x = (((i)<=1) ? 535 : 1005 - (this.actor[(this.LBL_ALBUM_HEADING + i)].textWidth / 2));
-        this.actor[(this.LBL_ALBUM_HINT + i)].text = hintText;
-        this.actor[(this.LBL_ALBUM_HINT + i)].x = (((i)<=1) ? 535 : 1005 - (this.actor[(this.LBL_ALBUM_HINT + i)].textWidth / 2));
+        actor[LBL_ALBUM_PAGENUMBER_LEFT].text = String(((albumPage * 2) + 1));
+        actor[LBL_ALBUM_PAGENUMBER_RIGHT].text = String(((albumPage * 2) + 2));
+        actor[LBL_ALBUM_PAGENUMBER_RIGHT].x = (1205 - actor[LBL_ALBUM_PAGENUMBER_RIGHT].textWidth);
+        actor[(LBL_ALBUM_HEADING + i)].text = entryText;
+        actor[(LBL_ALBUM_HEADING + i)].x = (((i)<=1) ? 535 : 1005 - (actor[(LBL_ALBUM_HEADING + i)].textWidth / 2));
+        actor[(LBL_ALBUM_HINT + i)].text = hintText;
+        actor[(LBL_ALBUM_HINT + i)].x = (((i)<=1) ? 535 : 1005 - (actor[(LBL_ALBUM_HINT + i)].textWidth / 2));
         i = (i + 1);
     };
-    if (((!((hintText == ""))) and (((this.actor[this.LBL_ALBUM_COLLECTION].x + this.actor[this.LBL_ALBUM_COLLECTION].textWidth) > (this.actor[this.LBL_ALBUM_HINT].x - 5))))){
-        this.actor[this.LBL_ALBUM_COLLECTION].y = ((this.actor[this.LBL_ALBUM_HINT].y + this.actor[this.LBL_ALBUM_HINT].textHeight) + 5);
+    if (((!((hintText == ""))) and (((actor[LBL_ALBUM_COLLECTION].x + actor[LBL_ALBUM_COLLECTION].textWidth) > (actor[LBL_ALBUM_HINT].x - 5))))){
+        actor[LBL_ALBUM_COLLECTION].y = ((actor[LBL_ALBUM_HINT].y + actor[LBL_ALBUM_HINT].textHeight) + 5);
     } else {
-        if ((this.actor[this.LBL_ALBUM_COLLECTION].x + this.actor[this.LBL_ALBUM_COLLECTION].textWidth) > (this.actor[this.LBL_ALBUM_HEADING].x - 5)){
-            this.actor[this.LBL_ALBUM_COLLECTION].y = ((this.actor[this.LBL_ALBUM_HEADING].y + this.actor[this.LBL_ALBUM_HEADING].textHeight) + 5);
+        if ((actor[LBL_ALBUM_COLLECTION].x + actor[LBL_ALBUM_COLLECTION].textWidth) > (actor[LBL_ALBUM_HEADING].x - 5)){
+            actor[LBL_ALBUM_COLLECTION].y = ((actor[LBL_ALBUM_HEADING].y + actor[LBL_ALBUM_HEADING].textHeight) + 5);
         } else {
-            this.actor[this.LBL_ALBUM_COLLECTION].y = 135;
+            actor[LBL_ALBUM_COLLECTION].y = 135;
         };
     };
 }
@@ -17491,21 +17491,21 @@ public function AlbumClear(){
     var i:int;
     i = 0;
     while (i < 4) {
-        this.Hide((this.ALBUM_MONSTER_FRAME + i));
-        this.SetCnt((this.ALBUM_MONSTER + i), this.C_EMPTY);
-        this.SetCnt((this.ALBUM_WEAPON_1 + i), this.C_EMPTY);
-        this.SetCnt((this.ALBUM_WEAPON_2 + i), this.C_EMPTY);
-        this.SetCnt((this.ALBUM_WEAPON_3 + i), this.C_EMPTY);
-        this.SetCnt((this.ALBUM_WEAPON_4 + i), this.C_EMPTY);
-        this.SetCnt((this.ALBUM_WEAPON_5 + i), this.C_EMPTY);
-        this.actor[(this.ALBUM_WEAPON_1 + i)].alpha = 1;
-        this.actor[(this.ALBUM_WEAPON_2 + i)].alpha = 1;
-        this.actor[(this.ALBUM_WEAPON_3 + i)].alpha = 1;
-        this.actor[(this.ALBUM_WEAPON_4 + i)].alpha = 1;
-        this.actor[(this.ALBUM_WEAPON_5 + i)].alpha = 1;
-        this.SetCnt((this.ALBUM_WEAPON_EPIC + i), this.C_EMPTY);
-        this.actor[(this.LBL_ALBUM_HEADING + i)].text = "";
-        this.actor[(this.LBL_ALBUM_HINT + i)].text = "";
+        Hide((ALBUM_MONSTER_FRAME + i));
+        SetCnt((ALBUM_MONSTER + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_1 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_2 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_3 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_4 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_5 + i), C_EMPTY);
+        actor[(ALBUM_WEAPON_1 + i)].alpha = 1;
+        actor[(ALBUM_WEAPON_2 + i)].alpha = 1;
+        actor[(ALBUM_WEAPON_3 + i)].alpha = 1;
+        actor[(ALBUM_WEAPON_4 + i)].alpha = 1;
+        actor[(ALBUM_WEAPON_5 + i)].alpha = 1;
+        SetCnt((ALBUM_WEAPON_EPIC + i), C_EMPTY);
+        actor[(LBL_ALBUM_HEADING + i)].text = "";
+        actor[(LBL_ALBUM_HINT + i)].text = "";
         i++;
     };
 }
@@ -17524,99 +17524,99 @@ public function ShowScreenAlbum(){
         RemoveAll();
         Add(SCREEN_ALBUM);
     };
-    this.Load(this.FIGHT_CHAR_BORDER);
-    this.Load(this.UNKNOWN_ENEMY);
+    Load(FIGHT_CHAR_BORDER);
+    Load(UNKNOWN_ENEMY);
     i = 0;
     while (i < 5) {
-        this.Load((this.ALBUM_CAT_OUT + i));
+        Load((ALBUM_CAT_OUT + i));
         i = (i + 1);
     };
-    this.WhenLoaded(DoShowScreenAlbum);
+    WhenLoaded(DoShowScreenAlbum);
 }
 
 public function TowerBtnHandler(evt:Event){
     var i:int;
-    switch (this.GetActorID(evt.target)){
-        case this.PREV_COPYCAT:
-            this.copyCatSel--;
-            if (this.copyCatSel < 0){
-                this.copyCatSel = 2;
+    switch (GetActorID(evt.target)){
+        case PREV_COPYCAT:
+            copyCatSel--;
+            if (copyCatSel < 0){
+                copyCatSel = 2;
             };
-            this.DisplayInventory(this.towerSG, true, true, this.copyCatSel);
+            DisplayInventory(towerSG, true, true, copyCatSel);
             break;
-        case this.NEXT_COPYCAT:
-            this.copyCatSel++;
-            if (this.copyCatSel > 2){
-                this.copyCatSel = 0;
+        case NEXT_COPYCAT:
+            copyCatSel++;
+            if (copyCatSel > 2){
+                copyCatSel = 0;
             };
-            this.DisplayInventory(this.towerSG, true, true, this.copyCatSel);
+            DisplayInventory(towerSG, true, true, copyCatSel);
             break;
-        case this.TOWER_TRY:
-            this.ShowMainQuestScreen(100, (399 + this.towerLevel));
+        case TOWER_TRY:
+            ShowMainQuestScreen(100, (399 + towerLevel));
             break;
     };
 }
 
 public function TowerScrollGrab(evt:MouseEvent){
-    this.towerScrollGrabPos = evt.localY;
-    this.towerScrollSpeed = 0;
+    towerScrollGrabPos = evt.localY;
+    towerScrollSpeed = 0;
 }
 
 public function TowerScrollMove(evt:MouseEvent){
-    if (this.towerScrollGrabPos != -1){
-        this.towerScrollSpeed = (evt.localY - this.towerScrollGrabPos);
-        this.towerScroll = (this.towerScroll + (this.towerScrollSpeed / 375));
-        this.towerScrollDest = this.towerScroll;
-        this.towerScrollTimer.start();
-        this.towerScrollGrabPos = evt.localY;
+    if (towerScrollGrabPos != -1){
+        towerScrollSpeed = (evt.localY - towerScrollGrabPos);
+        towerScroll = (towerScroll + (towerScrollSpeed / 375));
+        towerScrollDest = towerScroll;
+        towerScrollTimer.start();
+        towerScrollGrabPos = evt.localY;
     };
 }
 
 public function TowerScrollRelease(evt:MouseEvent){
-    if (this.towerScrollGrabPos != -1){
-        this.towerScrollDest = (this.towerScrollDest + (this.towerScrollSpeed / 40));
-        this.towerScrollTimer.start();
-        this.towerScrollGrabPos = -1;
+    if (towerScrollGrabPos != -1){
+        towerScrollDest = (towerScrollDest + (towerScrollSpeed / 40));
+        towerScrollTimer.start();
+        towerScrollGrabPos = -1;
     };
 }
 
 public function TowerScrollOut(evt:MouseEvent){
-    if (this.towerScrollGrabPos != -1){
+    if (towerScrollGrabPos != -1){
     };
 }
 
 public function TowerScrollCurrent(evt:MouseEvent){
-    this.towerScrollDest = (this.towerSG[this.TSG_TOWER_LEVEL] + 1);
-    this.towerScrollTimer.start();
-    this.towerScrollGrabPos = -1;
+    towerScrollDest = (towerSG[TSG_TOWER_LEVEL] + 1);
+    towerScrollTimer.start();
+    towerScrollGrabPos = -1;
 }
 
 public function TowerScrollWheel(evt:MouseEvent){
-    this.towerScrollSpeed = (evt.delta * 10);
-    this.towerScroll = (this.towerScroll + (this.towerScrollSpeed / 375));
-    this.towerScrollDest = this.towerScroll;
-    this.towerScrollTimer.start();
+    towerScrollSpeed = (evt.delta * 10);
+    towerScroll = (towerScroll + (towerScrollSpeed / 375));
+    towerScrollDest = towerScroll;
+    towerScrollTimer.start();
 }
 
 public function TowerKeyEvent(evt:KeyboardEvent){
     var evt:* = evt;
-    if (this.OnStage(this.TOWER_SCROLLAREA)){
+    if (OnStage(TOWER_SCROLLAREA)){
         if (evt.keyCode == Keyboard.ENTER){
-            this.towerScrollDest = this.towerSG[this.TSG_TOWER_LEVEL];
-            this.towerScrollTimer.start();
+            towerScrollDest = towerSG[TSG_TOWER_LEVEL];
+            towerScrollTimer.start();
         } else {
             if (evt.keyCode == Keyboard.UP){
-                this.towerScrollDest = (Math.round(this.towerScrollDest) + 1);
-                this.towerScrollTimer.start();
+                towerScrollDest = (Math.round(towerScrollDest) + 1);
+                towerScrollTimer.start();
             } else {
                 if (evt.keyCode == Keyboard.DOWN){
-                    this.towerScrollDest = (Math.round(this.towerScrollDest) - 1);
-                    this.towerScrollTimer.start();
+                    towerScrollDest = (Math.round(towerScrollDest) - 1);
+                    towerScrollTimer.start();
                 };
             };
         };
     } else {
-        var _local3 = this.actor[this.TOWER_SCROLLAREA];
+        var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
             removeEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
             removeEventListener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
@@ -17626,10 +17626,10 @@ public function TowerKeyEvent(evt:KeyboardEvent){
 
 public function TowerScrollSetFocus(evt:Event){
     var evt:* = evt;
-    if (this.OnStage(this.TOWER_SCROLLAREA)){
-        stage.focus = this.actor[this.TOWER_SCROLLAREA];
+    if (OnStage(TOWER_SCROLLAREA)){
+        stage.focus = actor[TOWER_SCROLLAREA];
     } else {
-        var _local3 = this.actor[this.TOWER_SCROLLAREA];
+        var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
             removeEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
             removeEventListener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
@@ -17643,33 +17643,33 @@ public function TowerTimerFn(evt:Event=undefined){
     var towerScrollLvl:Array;
     var thisFloor:*;
     towerScrollMax = 100;
-    if (!this.OnStage(this.TOWER_SCROLLAREA)){
-        this.towerScrollTimer.stop();
+    if (!OnStage(TOWER_SCROLLAREA)){
+        towerScrollTimer.stop();
     };
-    if (this.towerScrollDest > towerScrollMax){
-        this.towerScrollDest = towerScrollMax;
+    if (towerScrollDest > towerScrollMax){
+        towerScrollDest = towerScrollMax;
     };
-    if (this.towerScrollDest < 0){
-        this.towerScrollDest = 0;
+    if (towerScrollDest < 0){
+        towerScrollDest = 0;
     };
-    if (Math.abs((this.towerScroll - this.towerScrollDest)) > 0.01){
-        this.towerScroll = (((this.towerScroll * 9) + this.towerScrollDest) / 10);
+    if (Math.abs((towerScroll - towerScrollDest)) > 0.01){
+        towerScroll = (((towerScroll * 9) + towerScrollDest) / 10);
     } else {
-        this.towerScroll = this.towerScrollDest;
-        this.towerScrollTimer.stop();
+        towerScroll = towerScrollDest;
+        towerScrollTimer.stop();
     };
-    if (this.towerScroll > towerScrollMax){
-        this.towerScroll = towerScrollMax;
+    if (towerScroll > towerScrollMax){
+        towerScroll = towerScrollMax;
     };
-    if (this.towerScroll < 0){
-        this.towerScroll = 0;
+    if (towerScroll < 0){
+        towerScroll = 0;
     };
-    this.actor[this.TOWER_BG].y = (-700 + ((this.towerScroll / towerScrollMax) * 700));
-    this.actor[this.TOWER_BASE].y = (this.towerScroll * 375);
+    actor[TOWER_BG].y = (-700 + ((towerScroll / towerScrollMax) * 700));
+    actor[TOWER_BASE].y = (towerScroll * 375);
     towerScrollLvl = new Array();
     i = 0;
     while (i < 3) {
-        towerScrollLvl[i] = (this.towerScroll - 0.7);
+        towerScrollLvl[i] = (towerScroll - 0.7);
         while (towerScrollLvl[i] > (3 - i)) {
             towerScrollLvl[i] = (towerScrollLvl[i] - 3);
         };
@@ -17682,16 +17682,16 @@ public function TowerTimerFn(evt:Event=undefined){
     thisFloor = 0;
     i = 0;
     while (i < 3) {
-        thisFloor = Math.floor((this.towerScroll - 0.7));
+        thisFloor = Math.floor((towerScroll - 0.7));
         if (thisFloor < 0){
             thisFloor = 0;
         };
         thisFloor = (thisFloor + i);
-        this.SetCnt((this.TOWER_WINDOW + i), (((thisFloor < (int(this.towerSG[this.TSG_TOWER_LEVEL]) + 1))) ? this.TOWER_WINDOW_BURNT : (((thisFloor == (int(this.towerSG[this.TSG_TOWER_LEVEL]) + 1))) ? this.TOWER_WINDOW_OPEN : this.TOWER_WINDOW_CLOSED)));
-        this.SetCnt((this.TOWER_FACE + i), ((this.OPPMONSTER + int(this.towerSG[this.TSG_TOWER_LEVEL])) + 399));
-        this.actor[(this.TOWER_LEVEL + i)].y = towerScrollLvl[(2 - i)];
-        this.actor[(this.TOWER_WINDOW + i)].y = towerScrollLvl[(2 - i)];
-        this.actor[(this.TOWER_FACE + i)].y = (towerScrollLvl[(2 - i)] + 277);
+        SetCnt((TOWER_WINDOW + i), (((thisFloor < (int(towerSG[TSG_TOWER_LEVEL]) + 1))) ? TOWER_WINDOW_BURNT : (((thisFloor == (int(towerSG[TSG_TOWER_LEVEL]) + 1))) ? TOWER_WINDOW_OPEN : TOWER_WINDOW_CLOSED)));
+        SetCnt((TOWER_FACE + i), ((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399));
+        actor[(TOWER_LEVEL + i)].y = towerScrollLvl[(2 - i)];
+        actor[(TOWER_WINDOW + i)].y = towerScrollLvl[(2 - i)];
+        actor[(TOWER_FACE + i)].y = (towerScrollLvl[(2 - i)] + 277);
         i++;
     };
 }
@@ -17742,22 +17742,22 @@ public function ShowTowerScreen(towerData:Array){
         };
         DisplayInventory(towerSG, true, true, copyCatSel);
     };
-    this.towerSG = towerData[1].split("/");
+    towerSG = towerData[1].split("/");
     thisCpc = 0;
     while (thisCpc < 3) {
         thisSlot = 0;
         while (thisSlot < 10) {
-            this.ExpandItemStructure(this.towerSG, (((this.TSG_COPYCATS + (thisCpc * this.COPYCAT)) + this.CPC_ITEMS) + (thisSlot * this.SG_ITM_SIZE)));
+            ExpandItemStructure(towerSG, (((TSG_COPYCATS + (thisCpc * COPYCAT)) + CPC_ITEMS) + (thisSlot * SG_ITM_SIZE)));
             thisSlot = (thisSlot + 1);
         };
         thisCpc = (thisCpc + 1);
     };
-    this.Load(this.SCREEN_TOWER);
-    this.Load(this.TOWER_PIECES);
-    if (this.towerSG[this.TSG_TOWER_LEVEL] < 100){
-        this.Load(((this.OPPMONSTER + int(this.towerSG[this.TSG_TOWER_LEVEL])) + 399));
+    Load(SCREEN_TOWER);
+    Load(TOWER_PIECES);
+    if (towerSG[TSG_TOWER_LEVEL] < 100){
+        Load(((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399));
     };
-    this.WhenLoaded(DoShowTowerScreen);
+    WhenLoaded(DoShowTowerScreen);
 }
 
 public function ShowDemoScreen(){
@@ -17772,8 +17772,8 @@ public function ShowDemoScreen(){
         };
         Remove(IF_STATS, IF_LOGOUT);
     };
-    this.Load(this.SCREEN_DEMO);
-    this.WhenLoaded(DoShowDemoScreen);
+    Load(SCREEN_DEMO);
+    WhenLoaded(DoShowDemoScreen);
 }
 
 
@@ -17837,11 +17837,11 @@ public function ShowOptionScreen(evt:Event=undefined){
             Remove(LBL_TV_CHECKBOX);
         };
     };
-    this.Load(this.SCREEN_OPTION);
-    this.Load(this.PASSWORD_SMILEY_SAD);
-    this.Load(this.PASSWORD_SMILEY_NEUTRAL);
-    this.Load(this.PASSWORD_SMILEY_HAPPY);
-    this.WhenLoaded(DoShowOptionScreen);
+    Load(SCREEN_OPTION);
+    Load(PASSWORD_SMILEY_SAD);
+    Load(PASSWORD_SMILEY_NEUTRAL);
+    Load(PASSWORD_SMILEY_HAPPY);
+    WhenLoaded(DoShowOptionScreen);
 }
 
 public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=false, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=false, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
@@ -19240,28 +19240,28 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     if (GuildBattleData){
         isGuildBattle = true;
     };
-    this.hasFoughtGuildBattle = isGuildBattle;
-    charWeapon = weaponData[this.SG_ITM_PIC];
-    oppWeapon = weaponData[(this.SG_ITM_SIZE + this.SG_ITM_PIC)];
-    charHasWeapon = (((int(weaponData[this.SG_ITM_TYP]) > 0)) and ((int(weaponData[this.SG_ITM_PIC]) > 0)));
-    oppHasWeapon = (((int(weaponData[(this.SG_ITM_SIZE + this.SG_ITM_TYP)]) > 0)) and ((int(weaponData[(this.SG_ITM_SIZE + this.SG_ITM_PIC)]) > 0)));
+    hasFoughtGuildBattle = isGuildBattle;
+    charWeapon = weaponData[SG_ITM_PIC];
+    oppWeapon = weaponData[(SG_ITM_SIZE + SG_ITM_PIC)];
+    charHasWeapon = (((int(weaponData[SG_ITM_TYP]) > 0)) and ((int(weaponData[SG_ITM_PIC]) > 0)));
+    oppHasWeapon = (((int(weaponData[(SG_ITM_SIZE + SG_ITM_TYP)]) > 0)) and ((int(weaponData[(SG_ITM_SIZE + SG_ITM_PIC)]) > 0)));
     charWeaponType = 1;
     oppWeaponType = 1;
-    tz = this.Tageszeit();
-    this.hasLostMQ = false;
-    this.actor[this.LBL_ERROR].text = "";
+    tz = Tageszeit();
+    hasLostMQ = false;
+    actor[LBL_ERROR].text = "";
     if (isGuildBattle){
-        this.Remove(this.GILDE_CHAT);
+        Remove(GILDE_CHAT);
     };
     switch (tz){
         case 0:
-            this.Load(this.SCREEN_ARENA_NIGHT);
+            Load(SCREEN_ARENA_NIGHT);
             break;
         case 1:
-            this.Load(this.SCREEN_ARENA_DAWN);
+            Load(SCREEN_ARENA_DAWN);
             break;
         case 2:
-            this.Load(this.SCREEN_ARENA_DAY);
+            Load(SCREEN_ARENA_DAY);
             break;
     };
     while (charWeapon > 1000) {
@@ -19272,44 +19272,44 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         oppWeapon = (oppWeapon - 1000);
         oppWeaponType = (oppWeaponType + 1);
     };
-    charShield = (int(weaponData[((this.SG_ITM_SIZE * 2) + this.SG_ITM_PIC)]) * (((int(weaponData[((this.SG_ITM_SIZE * 2) + this.SG_ITM_TYP)]) == 0)) ? 0 : 1));
-    oppShield = (weaponData[((this.SG_ITM_SIZE * 3) + this.SG_ITM_PIC)] * (((int(weaponData[((this.SG_ITM_SIZE * 3) + this.SG_ITM_TYP)]) == 0)) ? 0 : 1));
+    charShield = (int(weaponData[((SG_ITM_SIZE * 2) + SG_ITM_PIC)]) * (((int(weaponData[((SG_ITM_SIZE * 2) + SG_ITM_TYP)]) == 0)) ? 0 : 1));
+    oppShield = (weaponData[((SG_ITM_SIZE * 3) + SG_ITM_PIC)] * (((int(weaponData[((SG_ITM_SIZE * 3) + SG_ITM_TYP)]) == 0)) ? 0 : 1));
     if (charHasWeapon){
-        this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 0));
-        this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 1));
+        Load(GetWeaponSound(charWeaponType, charWeapon, 0));
+        Load(GetWeaponSound(charWeaponType, charWeapon, 1));
         if (((!((charWeaponType == 2))) and (!((oppShield == 0))))){
-            this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 2));
+            Load(GetWeaponSound(charWeaponType, charWeapon, 2));
         };
-        this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 3));
+        Load(GetWeaponSound(charWeaponType, charWeapon, 3));
     };
     if (oppHasWeapon){
-        this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 0));
-        this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 1));
+        Load(GetWeaponSound(oppWeaponType, oppWeapon, 0));
+        Load(GetWeaponSound(oppWeaponType, oppWeapon, 1));
         if (((!((oppWeaponType == 2))) and (!((charShield == 0))))){
-            this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 2));
+            Load(GetWeaponSound(oppWeaponType, oppWeapon, 2));
         };
-        this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 3));
+        Load(GetWeaponSound(oppWeaponType, oppWeapon, 3));
     } else {
         if (oppWeapon == -1){
-            this.Load(this.WEAPON_CLAW, this.WEAPON_CLAW2, this.WEAPON_CLAW3, this.WEAPON_CLAW4);
+            Load(WEAPON_CLAW, WEAPON_CLAW2, WEAPON_CLAW3, WEAPON_CLAW4);
         } else {
             if (oppWeapon == -3){
-                this.Load(this.WEAPON_SPLAT, this.WEAPON_SPLAT2, this.WEAPON_SPLAT3);
+                Load(WEAPON_SPLAT, WEAPON_SPLAT2, WEAPON_SPLAT3);
             } else {
                 if (oppWeapon == -4){
-                    this.Load(this.WEAPON_STICK);
+                    Load(WEAPON_STICK);
                 } else {
                     if (oppWeapon == -5){
-                        this.Load(this.WEAPON_BONE);
+                        Load(WEAPON_BONE);
                     } else {
                         if (oppWeapon == -6){
-                            this.Load(this.WEAPON_STONEFIST);
+                            Load(WEAPON_STONEFIST);
                         } else {
                             if (oppWeapon == -7){
-                                this.Load(this.WEAPON_FIRE, this.WEAPON_FIRE2, this.WEAPON_FIRE3);
+                                Load(WEAPON_FIRE, WEAPON_FIRE2, WEAPON_FIRE3);
                             } else {
                                 if (oppWeapon == -2){
-                                    this.Load(this.WEAPON_SWOOSH, this.WEAPON_SWOOSH2, this.WEAPON_SWOOSH3);
+                                    Load(WEAPON_SWOOSH, WEAPON_SWOOSH2, WEAPON_SWOOSH3);
                                 };
                             };
                         };
@@ -19320,93 +19320,93 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     };
     i = 0;
     while (i < 6) {
-        this.Load((this.FIGHT_ONO + i));
+        Load((FIGHT_ONO + i));
         i = (i + 1);
     };
     if ((((charWeaponType == 3)) or ((oppWeaponType == 3)))){
-        this.Load(this.FIGHT_ARROW_SMASH);
+        Load(FIGHT_ARROW_SMASH);
     };
-    this.Load(this.SCREEN_FIGHT);
-    if (int(this.Savegame[this.SG_ACTION_STATUS]) == 2){
-        this.Load(this.GetQuestBG());
+    Load(SCREEN_FIGHT);
+    if (int(Savegame[SG_ACTION_STATUS]) == 2){
+        Load(GetQuestBG());
     };
     if (!charHasWeapon){
-        charWeapon = int(weaponData[this.SG_ITM_TYP]);
-        this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 0));
-        this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 1));
+        charWeapon = int(weaponData[SG_ITM_TYP]);
+        Load(GetWeaponSound(charWeaponType, charWeapon, 0));
+        Load(GetWeaponSound(charWeaponType, charWeapon, 1));
         if (((!((charWeaponType == 2))) and (!((oppShield == 0))))){
-            this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 2));
+            Load(GetWeaponSound(charWeaponType, charWeapon, 2));
         };
-        this.Load(this.GetWeaponSound(charWeaponType, charWeapon, 3));
-        this.SetCnt(this.WEAPON_CHAR, (((charWeapon == 0)) ? this.WEAPON_FIST : (((charWeapon == -1)) ? this.WEAPON_CLAW : this.WEAPON_SWOOSH)), -30, -30, true);
-        this.SetCnt(this.BULLET_CHAR, this.C_EMPTY);
+        Load(GetWeaponSound(charWeaponType, charWeapon, 3));
+        SetCnt(WEAPON_CHAR, (((charWeapon == 0)) ? WEAPON_FIST : (((charWeapon == -1)) ? WEAPON_CLAW : WEAPON_SWOOSH)), -30, -30, true);
+        SetCnt(BULLET_CHAR, C_EMPTY);
         charWeaponType = 1;
     } else {
         if (charWeaponType == 1){
-            this.SetCnt(this.WEAPON_CHAR, this.GetItemID(0, 0, weaponData), -30, -30, true);
-            this.SetCnt(this.BULLET_CHAR, this.C_EMPTY);
+            SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), -30, -30, true);
+            SetCnt(BULLET_CHAR, C_EMPTY);
         } else {
             if (charWeaponType == 2){
-                this.SetCnt(this.WEAPON_CHAR, this.GetItemID(0, 0, weaponData), 30, -30, true);
-                this.SetCnt(this.BULLET_CHAR, this.GetArrowID(0, 0, weaponData, true, 0));
-                this.Load(this.GetArrowID(0, 0, weaponData, true, 1), this.GetArrowID(0, 0, weaponData, true, 2), this.GetArrowID(0, 0, weaponData, true, 3));
+                SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), 30, -30, true);
+                SetCnt(BULLET_CHAR, GetArrowID(0, 0, weaponData, true, 0));
+                Load(GetArrowID(0, 0, weaponData, true, 1), GetArrowID(0, 0, weaponData, true, 2), GetArrowID(0, 0, weaponData, true, 3));
             } else {
                 if (charWeaponType == 3){
-                    this.SetCnt(this.WEAPON_CHAR, this.GetItemID(0, 0, weaponData));
-                    this.SetCnt(this.BULLET_CHAR, this.GetArrowID(0, 0, weaponData, true));
+                    SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData));
+                    SetCnt(BULLET_CHAR, GetArrowID(0, 0, weaponData, true));
                 };
             };
         };
     };
     if (!oppHasWeapon){
-        oppWeapon = int(weaponData[(this.SG_ITM_SIZE + this.SG_ITM_TYP)]);
-        this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 0));
-        this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 1));
+        oppWeapon = int(weaponData[(SG_ITM_SIZE + SG_ITM_TYP)]);
+        Load(GetWeaponSound(oppWeaponType, oppWeapon, 0));
+        Load(GetWeaponSound(oppWeaponType, oppWeapon, 1));
         if (((!((oppWeaponType == 2))) and (!((charShield == 0))))){
-            this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 2));
+            Load(GetWeaponSound(oppWeaponType, oppWeapon, 2));
         };
-        this.Load(this.GetWeaponSound(oppWeaponType, oppWeapon, 3));
+        Load(GetWeaponSound(oppWeaponType, oppWeapon, 3));
         if (oppWeapon == -4){
-            this.SetCnt(this.WEAPON_OPP, this.WEAPON_STICK, -30, -30, true);
+            SetCnt(WEAPON_OPP, WEAPON_STICK, -30, -30, true);
         } else {
             if (oppWeapon == -5){
-                this.SetCnt(this.WEAPON_OPP, this.WEAPON_BONE, -30, -30, true);
+                SetCnt(WEAPON_OPP, WEAPON_BONE, -30, -30, true);
             } else {
                 if (oppWeapon == -6){
-                    this.SetCnt(this.WEAPON_OPP, this.WEAPON_STONEFIST, -30, -30, true);
+                    SetCnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, true);
                 } else {
-                    this.SetCnt(this.WEAPON_OPP, (((oppWeapon == 0)) ? this.WEAPON_FIST : this.C_EMPTY), -30, -30, true);
+                    SetCnt(WEAPON_OPP, (((oppWeapon == 0)) ? WEAPON_FIST : C_EMPTY), -30, -30, true);
                 };
             };
         };
-        this.SetCnt(this.BULLET_OPP, this.C_EMPTY);
+        SetCnt(BULLET_OPP, C_EMPTY);
         oppWeaponType = 1;
     } else {
         if (oppWeaponType == 1){
-            this.SetCnt(this.WEAPON_OPP, this.GetItemID(0, 1, weaponData), -30, -30, true);
-            this.SetCnt(this.BULLET_OPP, this.C_EMPTY);
+            SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), -30, -30, true);
+            SetCnt(BULLET_OPP, C_EMPTY);
         } else {
             if (oppWeaponType == 2){
-                this.SetCnt(this.WEAPON_OPP, this.GetItemID(0, 1, weaponData), 30, -30, true);
-                this.SetCnt(this.BULLET_OPP, this.GetArrowID(0, 1, weaponData, true, 0));
-                this.Load(this.GetArrowID(0, 1, weaponData, true, 1), this.GetArrowID(0, 1, weaponData, true, 2), this.GetArrowID(0, 1, weaponData, true, 3));
+                SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), 30, -30, true);
+                SetCnt(BULLET_OPP, GetArrowID(0, 1, weaponData, true, 0));
+                Load(GetArrowID(0, 1, weaponData, true, 1), GetArrowID(0, 1, weaponData, true, 2), GetArrowID(0, 1, weaponData, true, 3));
             } else {
                 if (oppWeaponType == 3){
-                    this.SetCnt(this.WEAPON_OPP, this.GetItemID(0, 1, weaponData));
-                    this.SetCnt(this.BULLET_OPP, this.GetArrowID(0, 1, weaponData, true));
+                    SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData));
+                    SetCnt(BULLET_OPP, GetArrowID(0, 1, weaponData, true));
                 };
             };
         };
     };
     if (charShield > 0){
-        this.SetCnt(this.SHIELD_CHAR, this.GetItemID(0, 2, weaponData), 0, 0, true);
+        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weaponData), 0, 0, true);
     } else {
-        this.SetCnt(this.SHIELD_CHAR, this.C_EMPTY);
+        SetCnt(SHIELD_CHAR, C_EMPTY);
     };
     if (oppShield > 0){
-        this.SetCnt(this.SHIELD_OPP, this.GetItemID(0, 3, weaponData), 0, 0, true);
+        SetCnt(SHIELD_OPP, GetItemID(0, 3, weaponData), 0, 0, true);
     } else {
-        this.SetCnt(this.SHIELD_OPP, this.C_EMPTY);
+        SetCnt(SHIELD_OPP, C_EMPTY);
     };
     oppVolk = int(faceData[17]);
     oppMann = (int(faceData[18]) == 1);
@@ -19438,24 +19438,24 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     oppName = "";
     if (oppMonster > 0){
         if (oppMonster >= 400){
-            oppName = this.txt[((this.TXT_TOWER_ENEMY_NAMES + oppMonster) - 400)].split("|")[0];
+            oppName = txt[((TXT_TOWER_ENEMY_NAMES + oppMonster) - 400)].split("|")[0];
         } else {
             if (oppMonster > 220){
-                oppName = this.txt[((this.TXT_NEW_MONSTER_NAMES + oppMonster) - 221)];
+                oppName = txt[((TXT_NEW_MONSTER_NAMES + oppMonster) - 221)];
             } else {
-                oppName = this.txt[((this.TXT_MONSTER_NAME + oppMonster) - 1)];
+                oppName = txt[((TXT_MONSTER_NAME + oppMonster) - 1)];
             };
         };
     } else {
         oppName = faceData[15];
         if (!isGuildBattle){
-            this.addSuggestNames(oppName);
+            addSuggestNames(oppName);
         };
     };
-    thisCharName = (((faceData[0] == "")) ? this.actor[this.INP_NAME].getChildAt(1).text : faceData[0]);
-    if (((isGuildBattle) and (this.towerFightMode))){
+    thisCharName = (((faceData[0] == "")) ? actor[INP_NAME].getChildAt(1).text : faceData[0]);
+    if (((isGuildBattle) and (towerFightMode))){
         if (thisCharMonster >= 391){
-            thisCharName = this.txt[((this.TXT_COPYCAT_NAME + thisCharMonster) - 391)];
+            thisCharName = txt[((TXT_COPYCAT_NAME + thisCharMonster) - 391)];
         };
     };
     charFullLife = fighterData[0];
@@ -19471,33 +19471,33 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     var charLevel:* = int(faceData[(16 - 15)]);
     isRaid = false;
     if (!isGuildBattle){
-        this.alternateCharOppImg = false;
+        alternateCharOppImg = false;
     };
     if (((isGuildBattle) and ((ownGuild == "")))){
         isRaid = true;
     };
     if (oppMonster > 0){
-        this.Load(((this.OPPMONSTER + oppMonster) - 1));
+        Load(((OPPMONSTER + oppMonster) - 1));
     } else {
-        this.LoadCharacterImage(((this.alternateCharOppImg) ? this.OPPBACKGROUND2 : this.OPPBACKGROUND), true, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
+        LoadCharacterImage(((alternateCharOppImg) ? OPPBACKGROUND2 : OPPBACKGROUND), true, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
     };
     if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
-        this.Load(((this.FIGHT_COPYCAT + thisCharMonster) - 391));
+        Load(((FIGHT_COPYCAT + thisCharMonster) - 391));
     } else {
-        this.LoadCharacterImage(((this.alternateCharOppImg) ? this.CHARBACKGROUND2 : this.CHARBACKGROUND), true, thisCharVolk, thisCharMann, thisCharKaste, thisCharMouth, thisCharBeard, thisCharNose, thisCharEyes, thisCharBrows, thisCharEars, thisCharHair, thisCharSpecial, thisCharSpecial2);
+        LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), true, thisCharVolk, thisCharMann, thisCharKaste, thisCharMouth, thisCharBeard, thisCharNose, thisCharEyes, thisCharBrows, thisCharEars, thisCharHair, thisCharSpecial, thisCharSpecial2);
     };
     if (isGuildBattle){
-        if (this.towerFightMode){
-            this.Load(this.SCR_TOWER_BG);
+        if (towerFightMode){
+            Load(SCR_TOWER_BG);
         } else {
             if (isRaid){
-                this.Load(this.GUILD_RAID_BG);
+                Load(GUILD_RAID_BG);
             } else {
-                this.Load(this.GUILD_BATTLE_BG);
+                Load(GUILD_BATTLE_BG);
             };
         };
     };
-    this.WhenLoaded(DoShowFightScreen);
+    WhenLoaded(DoShowFightScreen);
 }
 
 public function GetAdvent():int{
@@ -19505,7 +19505,7 @@ public function GetAdvent():int{
     var tmpAdventEnd:Date;
     var tmpDate:Date;
     var advent:int;
-    switch (this.lang_code){
+    switch (lang_code){
         case "de":
             break;
         default:
@@ -19590,12 +19590,12 @@ public function ShowQuestScreen(evt:Event=undefined){
         CheckWrongPage(ACT_SCREEN_TAVERNE);
         TryShowTV();
     };
-    this.Load(this.SCREEN_QUEST);
-    this.Load(this.GetQuestBG());
-    if (this.textDir == "right"){
-        this.SetBtnText(this.QUEST_SKIP, ("~P " + this.txt[this.TXT_SKIP_FIGHT]));
+    Load(SCREEN_QUEST);
+    Load(GetQuestBG());
+    if (textDir == "right"){
+        SetBtnText(QUEST_SKIP, ("~P " + txt[TXT_SKIP_FIGHT]));
     };
-    this.WhenLoaded(DoShowQuestScreen);
+    WhenLoaded(DoShowQuestScreen);
 }
 
 public function RefreshTimeBar(OfferTime:Number=0){
@@ -19604,11 +19604,11 @@ public function RefreshTimeBar(OfferTime:Number=0){
     var OfferTime:int = OfferTime;
     var tmpX:* = 0;
     if (OfferTime < 0){
-        if ((Number(this.Savegame[this.SG_TIMEBAR]) + OfferTime) < 0){
+        if ((Number(Savegame[SG_TIMEBAR]) + OfferTime) < 0){
             OfferTime = 0;
         };
     };
-    var _local3 = this.actor[this.TIMEBAR_FILL];
+    var _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
         if (OfferTime < 0){
             tmpX = (((Number(Savegame[SG_TIMEBAR]) + OfferTime) / 6000) * 555);
@@ -19618,7 +19618,7 @@ public function RefreshTimeBar(OfferTime:Number=0){
         width = int(tmpX);
         tmpX = int((x + width));
     };
-    _local3 = this.actor[this.TIMEBAR_FILL];
+    _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
         if (OfferTime < 0){
             width = int(((-(OfferTime) / 6000) * 555));
@@ -19628,7 +19628,7 @@ public function RefreshTimeBar(OfferTime:Number=0){
             x = tmpX;
         };
     };
-    tmpTime = int(this.Savegame[this.SG_TIMEBAR]);
+    tmpTime = int(Savegame[SG_TIMEBAR]);
     tmpText = "";
     if (tmpTime > (60 * 60)){
         tmpText = (tmpText + (String(int((tmpTime / (60 * 60)))) + ":"));
@@ -19643,10 +19643,10 @@ public function RefreshTimeBar(OfferTime:Number=0){
         tmpText = (tmpText + "0");
     };
     tmpText = (tmpText + String(int(tmpTime)));
-    if (this.textDir == "right"){
-        tmpText = ((tmpText + " :") + this.txt[this.TXT_AUSDAUER]);
+    if (textDir == "right"){
+        tmpText = ((tmpText + " :") + txt[TXT_AUSDAUER]);
     } else {
-        tmpText = ((this.txt[this.TXT_AUSDAUER] + ": ") + tmpText);
+        tmpText = ((txt[TXT_AUSDAUER] + ": ") + tmpText);
     };
     if (OfferTime != 0){
         tmpText = (tmpText + (" (" + (((OfferTime > 0)) ? "+" : "-")));
@@ -19656,16 +19656,16 @@ public function RefreshTimeBar(OfferTime:Number=0){
         };
         tmpText = (tmpText + (String(int((Math.abs(OfferTime) % 60))) + ")"));
     };
-    tmpTime = Number(this.Savegame[this.SG_TIMEBAR]);
-    if (this.textDir == "right"){
-        tmpText = (" :" + this.txt[this.TXT_AUSDAUER]);
+    tmpTime = Number(Savegame[SG_TIMEBAR]);
+    if (textDir == "right"){
+        tmpText = (" :" + txt[TXT_AUSDAUER]);
         tmpText = (String(Number((tmpTime / 60)).toFixed(1)).split(".0")[0] + tmpText);
     } else {
-        tmpText = (this.txt[this.TXT_AUSDAUER] + ": ");
+        tmpText = (txt[TXT_AUSDAUER] + ": ");
         tmpText = (tmpText + String(Number((tmpTime / 60)).toFixed(1)).split(".0")[0]);
     };
     if (OfferTime != 0){
-        if (this.textDir == "right"){
+        if (textDir == "right"){
             tmpText = (((((OfferTime > 0)) ? "+" : "-") + ") ") + tmpText);
             tmpText = (("(" + String(Number((Math.abs(OfferTime) / 60)).toFixed(1)).split(".0")[0]) + tmpText);
         } else {
@@ -19673,7 +19673,7 @@ public function RefreshTimeBar(OfferTime:Number=0){
             tmpText = (tmpText + (String(Number((Math.abs(OfferTime) / 60)).toFixed(1)).split(".0")[0] + ")"));
         };
     };
-    _local3 = this.actor[this.LBL_TIMEBAR_TEXT];
+    _local3 = actor[LBL_TIMEBAR_TEXT];
     with (_local3) {
         text = tmpText;
         x = int((TIMEBAR_LABEL_X - (textWidth / 2)));
@@ -19681,62 +19681,62 @@ public function RefreshTimeBar(OfferTime:Number=0){
 }
 
 public function RequestTV(evt:Event=undefined){
-    if (this.tvFunctionName != ""){
-        this.trc((("Calling TV function \"" + this.tvFunctionName) + "\" with parameter \"showtv\"!"));
-        ExternalInterface.call(this.tvFunctionName, "showtv", (((((this.Savegame[this.SG_PLAYER_ID] + "_") + this.Savegame[this.SG_PAYMENT_ID]) + "_") + this.ServerID) + "_1"), this.Savegame[this.SG_GENDER], this.tvReturnValue);
-        this.tvPollTimer.delay = this.tvPollLong;
+    if (tvFunctionName != ""){
+        trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"showtv\"!"));
+        ExternalInterface.call(tvFunctionName, "showtv", (((((Savegame[SG_PLAYER_ID] + "_") + Savegame[SG_PAYMENT_ID]) + "_") + ServerID) + "_1"), Savegame[SG_GENDER], tvReturnValue);
+        tvPollTimer.delay = tvPollLong;
     } else {
-        this.trc("Error: No TV function set!");
+        trc("Error: No TV function set!");
     };
-    this.tvStatusDest = 0;
+    tvStatusDest = 0;
 }
 
 public function TryShowTV(evt:Event=undefined){
     var evt:* = evt;
-    if (this.tvTest){
-        this.tvStatusDest = 1;
-        this.tvTimer.start();
-        this.tvTest = false;
+    if (tvTest){
+        tvStatusDest = 1;
+        tvTimer.start();
+        tvTest = false;
     } else {
-        if (((((!((this.tvFunctionName == ""))) and (!(this.disableTV)))) and (!(this.preventTv)))){
+        if (((((!((tvFunctionName == ""))) and (!(disableTV)))) and (!(preventTv)))){
             if (!evt){
-                this.tvPollTimer.start();
-                this.tvPollTimer.delay = this.tvPollNormal;
+                tvPollTimer.start();
+                tvPollTimer.delay = tvPollNormal;
             } else {
-                if (((!(this.OnStage(this.TAVERNE_BG))) and (!(this.OnStage(this.QUESTBAR_BG))))){
-                    this.tvPollTimer.stop();
+                if (((!(OnStage(TAVERNE_BG))) and (!(OnStage(QUESTBAR_BG))))){
+                    tvPollTimer.stop();
                     return;
                 };
             };
-            this.trc((("Calling TV function \"" + this.tvFunctionName) + "\" with parameter \"requesttv\"!"));
+            trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"requesttv\"!"));
             try {
-                this.tvReturnValue = ExternalInterface.call(this.tvFunctionName, "requesttv", (((((this.Savegame[this.SG_PLAYER_ID] + "_") + this.Savegame[this.SG_PAYMENT_ID]) + "_") + this.ServerID) + "_1"), this.Savegame[this.SG_GENDER], 0);
+                tvReturnValue = ExternalInterface.call(tvFunctionName, "requesttv", (((((Savegame[SG_PLAYER_ID] + "_") + Savegame[SG_PAYMENT_ID]) + "_") + ServerID) + "_1"), Savegame[SG_GENDER], 0);
             } catch(e:Error) {
                 trc(("There was an error: " + e.message));
                 tvPollTimer.delay = tvPollLong;
             };
-            this.trc(("Return value is " + String(this.tvReturnValue)));
-            if (this.tvReturnValue > 0){
-                this.tvStatusDest = 1;
-                this.tvPollTimer.delay = this.tvPollLong;
+            trc(("Return value is " + String(tvReturnValue)));
+            if (tvReturnValue > 0){
+                tvStatusDest = 1;
+                tvPollTimer.delay = tvPollLong;
             } else {
-                this.tvStatusDest = 0;
-                if (this.tvReturnValue == -2){
-                    this.tvPollTimer.stop();
+                tvStatusDest = 0;
+                if (tvReturnValue == -2){
+                    tvPollTimer.stop();
                 } else {
-                    if (this.tvReturnValue == -1){
-                        this.tvPollTimer.delay = this.tvPollLong;
+                    if (tvReturnValue == -1){
+                        tvPollTimer.delay = tvPollLong;
                     } else {
-                        this.tvPollTimer.delay = this.tvPollNormal;
+                        tvPollTimer.delay = tvPollNormal;
                     };
                 };
             };
-            if (this.tvStatusDest != this.tvStatus){
-                this.tvTimer.start();
+            if (tvStatusDest != tvStatus){
+                tvTimer.start();
             };
         } else {
-            if (((!(this.disableTV)) and (!(this.preventTv)))){
-                this.trc("Notice: No TV function set!");
+            if (((!(disableTV)) and (!(preventTv)))){
+                trc("Notice: No TV function set!");
             };
         };
     };
@@ -19849,33 +19849,33 @@ public function ShowTaverneScreen(evt:Event=undefined){
             HutBlinzelTimer.stop();
         };
     };
-    if (int(this.Savegame[this.SG_ACTION_STATUS]) == 2){
-        this.ShowQuestScreen();
+    if (int(Savegame[SG_ACTION_STATUS]) == 2){
+        ShowQuestScreen();
         return;
     };
-    this.forceAdventure = false;
-    this.actor[this.QUEST_SLOT].alpha = 1;
-    if (this.OnStage(this.TAVERNE_BG)){
-        this.Remove(this.QUESTOFFER);
-        this.Remove(this.BEEROFFER);
-        this.Add(this.TAVERNE_CAS);
-        this.RefreshTimeBar();
+    forceAdventure = false;
+    actor[QUEST_SLOT].alpha = 1;
+    if (OnStage(TAVERNE_BG)){
+        Remove(QUESTOFFER);
+        Remove(BEEROFFER);
+        Add(TAVERNE_CAS);
+        RefreshTimeBar();
         return;
     };
-    this.Load(this.SCREEN_TAVERNE);
-    this.Load(this.QUESTOFFER);
-    this.Load(this.BEEROFFER);
-    if (this.beerFest){
-        this.Load(this.BEERFEST);
+    Load(SCREEN_TAVERNE);
+    Load(QUESTOFFER);
+    Load(BEEROFFER);
+    if (beerFest){
+        Load(BEERFEST);
     };
-    if (this.specialAction > 0){
-        this.Load(((this.SPECIAL_ACTION + this.specialAction) - 1));
-        this.Load(this.TAVERNE_BARKEEPER_HINT);
+    if (specialAction > 0){
+        Load(((SPECIAL_ACTION + specialAction) - 1));
+        Load(TAVERNE_BARKEEPER_HINT);
     };
-    if (this.GetAdvent() != 0){
-        this.Load(((this.TAVERN_ADVENT + this.GetAdvent()) - 1));
+    if (GetAdvent() != 0){
+        Load(((TAVERN_ADVENT + GetAdvent()) - 1));
     };
-    this.WhenLoaded(DoShowTaverneScreen);
+    WhenLoaded(DoShowTaverneScreen);
 }
 
 public function ShowStallScreen(evt:Event=undefined){
@@ -19924,28 +19924,28 @@ public function ShowStallScreen(evt:Event=undefined){
         HandTimer.addEventListener(TimerEvent.TIMER, BauerHandEvent);
         HandTimer.start();
     };
-    if (((this.OnStage(this.STALL_BG_GUT)) or (this.OnStage(this.STALL_BG_BOESE)))){
+    if (((OnStage(STALL_BG_GUT)) or (OnStage(STALL_BG_BOESE)))){
         return;
     };
-    this.Load(this.SCREEN_STALL);
-    if ((((this.CharVolk >= 5)) and (!(this.param_censored)))){
-        this.Load(this.STALL_BOESE);
-        this.Load(this.STALL_OVL_BOESE1, this.STALL_OVL_BOESE2, this.STALL_OVL_BOESE3, this.STALL_OVL_BOESE4);
+    Load(SCREEN_STALL);
+    if ((((CharVolk >= 5)) and (!(param_censored)))){
+        Load(STALL_BOESE);
+        Load(STALL_OVL_BOESE1, STALL_OVL_BOESE2, STALL_OVL_BOESE3, STALL_OVL_BOESE4);
         i = 0;
         while (i < 4) {
-            this.Load(((this.SND_MOUNT_1 + i) + 4));
+            Load(((SND_MOUNT_1 + i) + 4));
             i = (i + 1);
         };
     } else {
-        this.Load(this.STALL_GUT);
-        this.Load(this.STALL_OVL_GUT1, this.STALL_OVL_GUT2, this.STALL_OVL_GUT3, this.STALL_OVL_GUT4);
+        Load(STALL_GUT);
+        Load(STALL_OVL_GUT1, STALL_OVL_GUT2, STALL_OVL_GUT3, STALL_OVL_GUT4);
         i = 0;
         while (i < 4) {
-            this.Load((this.SND_MOUNT_1 + i));
+            Load((SND_MOUNT_1 + i));
             i = (i + 1);
         };
     };
-    this.WhenLoaded(DoShowStall);
+    WhenLoaded(DoShowStall);
 }
 
 public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
@@ -20021,28 +20021,28 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
             PvPDelayTimer.stop();
         };
     };
-    tz = this.Tageszeit();
-    if ((((int(this.Savegame[this.SG_ACTION_STATUS]) == 1)) and (!(this.hasMirror)))){
-        this.ShowWorkScreen();
+    tz = Tageszeit();
+    if ((((int(Savegame[SG_ACTION_STATUS]) == 1)) and (!(hasMirror)))){
+        ShowWorkScreen();
         return;
     };
-    if ((((int(this.Savegame[this.SG_ACTION_STATUS]) == 2)) and (!(this.hasMirror)))){
-        this.ShowQuestScreen();
+    if ((((int(Savegame[SG_ACTION_STATUS]) == 2)) and (!(hasMirror)))){
+        ShowQuestScreen();
         return;
     };
-    this.Load(this.SCREEN_ARENA);
+    Load(SCREEN_ARENA);
     switch (tz){
         case 0:
-            this.Load(this.SCREEN_ARENA_NIGHT);
+            Load(SCREEN_ARENA_NIGHT);
             break;
         case 1:
-            this.Load(this.SCREEN_ARENA_DAWN);
+            Load(SCREEN_ARENA_DAWN);
             break;
         case 2:
-            this.Load(this.SCREEN_ARENA_DAY);
+            Load(SCREEN_ARENA_DAY);
             break;
     };
-    this.WhenLoaded(DoShowArenaScreen);
+    WhenLoaded(DoShowArenaScreen);
 }
 
 public function Arabize(actorID:int){
@@ -20054,16 +20054,16 @@ public function Arabize(actorID:int){
     var dontCrash:int;
     lines = new Array();
     dontCrash = 0;
-    if (this.textDir != "right"){
+    if (textDir != "right"){
         return;
     };
-    this.actor[actorID].width = (this.actor[actorID].width - 5);
+    actor[actorID].width = (actor[actorID].width - 5);
     i = 0;
-    while (i < this.actor[actorID].numLines) {
-        lines.push(this.actor[actorID].getLineText(i));
+    while (i < actor[actorID].numLines) {
+        lines.push(actor[actorID].getLineText(i));
         i++;
     };
-    this.actor[actorID].width = (this.actor[actorID].width + 5);
+    actor[actorID].width = (actor[actorID].width + 5);
     dontCrash = 0;
     i = 0;
     while (i < lines.length) {
@@ -20083,10 +20083,10 @@ public function Arabize(actorID:int){
         };
         i++;
     };
-    this.actor[actorID].text = "";
+    actor[actorID].text = "";
     i = 0;
     while (i < lines.length) {
-        this.actor[actorID].text = ((lines[i] + String.fromCharCode(13)) + this.actor[actorID].text);
+        actor[actorID].text = ((lines[i] + String.fromCharCode(13)) + actor[actorID].text);
         i++;
     };
 }
@@ -20102,21 +20102,21 @@ public function ShowDealerScreen(evt:Event=undefined, loadOnly:Boolean=false){
         Add(SCREEN_DEALER);
     };
     papaya_firebug = "0";
-    if (this.paramObj["firebug"]){
-        if (this.paramObj["firebug"] != ""){
+    if (paramObj["firebug"]){
+        if (paramObj["firebug"] != ""){
             papaya_firebug = "1";
         };
     };
-    url = ((((((((((((((((((((((this.param_papaya_path + "?playerid=") + this.Savegame[this.SG_PLAYER_ID]) + "&paymentid=") + this.Savegame[this.SG_PAYMENT_ID]) + "&serverid=") + this.ServerID) + "&serverdomain=") + this.server) + "&sessionId=") + this.sessionId) + "&special=") + this.DealerAktion) + "&langcode=") + this.lang_code) + "&volume=") + String((this.so.data.volume / 10))) + "&mpproject=") + this.MPProject) + "&cfgfile=") + this.param_papaya_cfg_file) + "&firebug=") + papaya_firebug);
-    if (this.actorURL[this.SCR_DEALER_BG] != url){
-        this.actorURL[this.SCR_DEALER_BG] = url;
-        this.actorLoaded[this.SCR_DEALER_BG] = 0;
+    url = ((((((((((((((((((((((param_papaya_path + "?playerid=") + Savegame[SG_PLAYER_ID]) + "&paymentid=") + Savegame[SG_PAYMENT_ID]) + "&serverid=") + ServerID) + "&serverdomain=") + server) + "&sessionId=") + sessionId) + "&special=") + DealerAktion) + "&langcode=") + lang_code) + "&volume=") + String((so.data.volume / 10))) + "&mpproject=") + MPProject) + "&cfgfile=") + param_papaya_cfg_file) + "&firebug=") + papaya_firebug);
+    if (actorURL[SCR_DEALER_BG] != url){
+        actorURL[SCR_DEALER_BG] = url;
+        actorLoaded[SCR_DEALER_BG] = 0;
     };
-    this.actor[this.SCR_DEALER_BG].mouseChildren = true;
-    this.actor[this.SCR_DEALER_BG].mouseEnabled = true;
-    this.Load(this.SCREEN_DEALER);
+    actor[SCR_DEALER_BG].mouseChildren = true;
+    actor[SCR_DEALER_BG].mouseEnabled = true;
+    Load(SCREEN_DEALER);
     if (!loadOnly){
-        this.WhenLoaded(DoShowDealerScreen);
+        WhenLoaded(DoShowDealerScreen);
     };
 }
 
@@ -20137,23 +20137,23 @@ public function ShowScreenGildeGruenden(evt:Event=undefined){
         };
         Add(SCREEN_GILDE_GRUENDEN);
     };
-    this.Load(this.SCREEN_GILDE_GRUENDEN);
-    this.WhenLoaded(DoShowScreenGilden);
+    Load(SCREEN_GILDE_GRUENDEN);
+    WhenLoaded(DoShowScreenGilden);
 }
 
 public function GetSpendAmount():String{
     var amount:int;
     amount = 1;
-    if (int(this.Savegame[this.SG_LEVEL]) >= 120){
+    if (int(Savegame[SG_LEVEL]) >= 120){
         amount = 100;
     } else {
-        if (int(this.Savegame[this.SG_LEVEL]) >= 100){
+        if (int(Savegame[SG_LEVEL]) >= 100){
             amount = 50;
         } else {
-            if (int(this.Savegame[this.SG_LEVEL]) >= 50){
+            if (int(Savegame[SG_LEVEL]) >= 50){
                 amount = 10;
             } else {
-                if (int(this.Savegame[this.SG_LEVEL]) >= 25){
+                if (int(Savegame[SG_LEVEL]) >= 25){
                     amount = 5;
                 };
             };
@@ -20169,15 +20169,15 @@ public function addSuggestNames(addArray){
     };
     i = 0;
     while (i < addArray.length) {
-        if (this.suggestNames.indexOf(addArray[i]) == -1){
-            this.suggestNames.push(addArray[i]);
+        if (suggestNames.indexOf(addArray[i]) == -1){
+            suggestNames.push(addArray[i]);
         };
         i++;
     };
     i = 0;
-    while (i < this.suggestNames.length) {
-        if (this.suggestNames[i].toLowerCase() == this.actor[this.INP_NAME].getChildAt(1).text.toLowerCase()){
-            this.suggestNames.splice(i, 1);
+    while (i < suggestNames.length) {
+        if (suggestNames[i].toLowerCase() == actor[INP_NAME].getChildAt(1).text.toLowerCase()){
+            suggestNames.splice(i, 1);
             i--;
         };
         i++;
@@ -20185,13 +20185,13 @@ public function addSuggestNames(addArray){
 }
 
 public function crestMoveFn(evt:TimerEvent){
-    if (this.actor[this.GILDE_CREST].y > this.crestMoveDest){
-        this.actor[this.GILDE_CREST].y = (this.actor[this.GILDE_CREST].y - 5);
+    if (actor[GILDE_CREST].y > crestMoveDest){
+        actor[GILDE_CREST].y = (actor[GILDE_CREST].y - 5);
     } else {
-        if (this.actor[this.GILDE_CREST].y < this.crestMoveDest){
-            this.actor[this.GILDE_CREST].y = (this.actor[this.GILDE_CREST].y + 5);
+        if (actor[GILDE_CREST].y < crestMoveDest){
+            actor[GILDE_CREST].y = (actor[GILDE_CREST].y + 5);
         } else {
-            this.crestMoveTimer.stop();
+            crestMoveTimer.stop();
         };
     };
 }
@@ -20202,8 +20202,8 @@ public function getRandomCrest(){
     var guildChecksum:* = 0;
     result = new Array();
     i = 0;
-    while (i < this.crestElementPos.length) {
-        result.push(int((Math.random() * this.crestElementPos[i][4])));
+    while (i < crestElementPos.length) {
+        result.push(int((Math.random() * crestElementPos[i][4])));
         i++;
     };
     return (result);
@@ -20219,18 +20219,18 @@ public function setDefaultCrest(){
         return (result);
     };
     lastResult = 0;
-    this.crest = new Array();
+    crest = new Array();
     i = 0;
-    while (i < this.crestElementPos.length) {
-        this.crest.push(int(GuildRandom(this.crestElementPos[i][4])));
+    while (i < crestElementPos.length) {
+        crest.push(int(GuildRandom(crestElementPos[i][4])));
         i = (i + 1);
     };
     i = 0;
-    while (i < this.crestColor.length) {
-        this.crestColor[i] = GuildRandom(this.heraldicColors.length);
+    while (i < crestColor.length) {
+        crestColor[i] = GuildRandom(heraldicColors.length);
         i = (i + 1);
     };
-    this.loadCrest();
+    loadCrest();
 }
 
 public function getCrestStr():String{
@@ -20250,13 +20250,13 @@ public function getCrestStr():String{
     };
     result = "";
     i = 0;
-    while (i < this.crest.length) {
-        result = (result + dec2hex(this.crest[i]));
+    while (i < crest.length) {
+        result = (result + dec2hex(crest[i]));
         i = (i + 1);
     };
     i = 0;
-    while (i < this.crestColor.length) {
-        result = (result + dec2hex(this.crestColor[i]));
+    while (i < crestColor.length) {
+        result = (result + dec2hex(crestColor[i]));
         i = (i + 1);
     };
     return (result);
@@ -20267,34 +20267,34 @@ public function setCrestStr(str:String){
     var hex:String;
     var val:int;
     i = 0;
-    while (i < this.crest.length) {
+    while (i < crest.length) {
         hex = str.substr(0, 2);
         str = str.substr(2);
         val = int(("0x" + hex));
         if (val < 0){
             val = 0;
         };
-        if (val >= this.crestElementPos[i][4]){
+        if (val >= crestElementPos[i][4]){
             val = 0;
         };
-        this.crest[i] = val;
+        crest[i] = val;
         i++;
     };
     i = 0;
-    while (i < this.crestColor.length) {
+    while (i < crestColor.length) {
         hex = str.substr(0, 2);
         str = str.substr(2);
         val = int(("0x" + hex));
         if (val < 0){
             val = 0;
         };
-        if (val >= this.heraldicColors.length){
+        if (val >= heraldicColors.length){
             val = 0;
         };
-        this.crestColor[i] = val;
+        crestColor[i] = val;
         i++;
     };
-    this.loadCrest();
+    loadCrest();
 }
 
 public function loadCrest(){
@@ -20305,37 +20305,37 @@ public function loadCrest(){
     var tmpFltFigure:* = null;
     var tmpFltShield:* = null;
     var tmpFlt:* = null;
-    tmpFltFigure = new ColorMatrixFilter([this.heraldicColors[this.crestColor[3]][0], 0, 0, 0, 0, this.heraldicColors[this.crestColor[3]][1], 0, 0, 0, 0, this.heraldicColors[this.crestColor[3]][2], 0, 0, 0, 0, 0, 0, 0, 1, 0]);
-    tmpFltShield = new ColorMatrixFilter([0, this.heraldicColors[this.crestColor[1]][0], this.heraldicColors[this.crestColor[2]][0], 0, 0, 0, this.heraldicColors[this.crestColor[1]][1], this.heraldicColors[this.crestColor[2]][1], 0, 0, 0, this.heraldicColors[this.crestColor[1]][2], this.heraldicColors[this.crestColor[2]][2], 0, 0, 0, 0, 0, 1, 0]);
+    tmpFltFigure = new ColorMatrixFilter([heraldicColors[crestColor[3]][0], 0, 0, 0, 0, heraldicColors[crestColor[3]][1], 0, 0, 0, 0, heraldicColors[crestColor[3]][2], 0, 0, 0, 0, 0, 0, 0, 1, 0]);
+    tmpFltShield = new ColorMatrixFilter([0, heraldicColors[crestColor[1]][0], heraldicColors[crestColor[2]][0], 0, 0, 0, heraldicColors[crestColor[1]][1], heraldicColors[crestColor[2]][1], 0, 0, 0, heraldicColors[crestColor[1]][2], heraldicColors[crestColor[2]][2], 0, 0, 0, 0, 0, 1, 0]);
     i = 1;
     while (i < 4) {
-        tmpFlt = new ColorMatrixFilter([0, this.heraldicColors[this.crestColor[i]][0], 0, 0, 0, 0, this.heraldicColors[this.crestColor[i]][1], 0, 0, 0, 0, this.heraldicColors[this.crestColor[i]][2], 0, 0, 0, 0, 0, 0, 1, 0]);
-        this.actor[(this.GILDE_CREST_COLOR_FILLIN + i)].filters = [tmpFlt];
-        this.EnablePopup((this.GILDE_CREST_COLOR + i), this.txt[(this.TXT_CREST_TINCTUREBOXES + i)].split("%1").join(this.txt[(this.TXT_CREST_TINCTURES + this.crestColor[i])]));
+        tmpFlt = new ColorMatrixFilter([0, heraldicColors[crestColor[i]][0], 0, 0, 0, 0, heraldicColors[crestColor[i]][1], 0, 0, 0, 0, heraldicColors[crestColor[i]][2], 0, 0, 0, 0, 0, 0, 1, 0]);
+        actor[(GILDE_CREST_COLOR_FILLIN + i)].filters = [tmpFlt];
+        EnablePopup((GILDE_CREST_COLOR + i), txt[(TXT_CREST_TINCTUREBOXES + i)].split("%1").join(txt[(TXT_CREST_TINCTURES + crestColor[i])]));
         i = (i + 1);
     };
     i = 0;
-    while (i < this.crestElementPos.length) {
-        localActorID = (this.GILDE_CREST + i);
-        url = (((((this.img_url[this.img_url_index] + "res/gfx/scr/gilde/crest/tiles/crest_") + String((i + 1))) + "_") + String((this.crest[i] + 1))) + ".png");
-        newLoad = !((this.actorURL[localActorID] == url));
-        this.actorURL[localActorID] = url;
+    while (i < crestElementPos.length) {
+        localActorID = (GILDE_CREST + i);
+        url = (((((img_url[img_url_index] + "res/gfx/scr/gilde/crest/tiles/crest_") + String((i + 1))) + "_") + String((crest[i] + 1))) + ".png");
+        newLoad = !((actorURL[localActorID] == url));
+        actorURL[localActorID] = url;
         if (newLoad){
-            this.actorLoaded[localActorID] = 0;
-            this.Load(localActorID);
+            actorLoaded[localActorID] = 0;
+            Load(localActorID);
         };
         if (i == 2){
-            url = (((((this.img_url[this.img_url_index] + "res/gfx/scr/gilde/crest/tiles/crest_") + String((i + 1))) + "_") + String((this.crest[i] + 1))) + "_color.png");
-            newLoad = !((this.actorURL[this.GILDE_CREST_SHIELDCOLOR] == url));
-            this.actorURL[this.GILDE_CREST_SHIELDCOLOR] = url;
+            url = (((((img_url[img_url_index] + "res/gfx/scr/gilde/crest/tiles/crest_") + String((i + 1))) + "_") + String((crest[i] + 1))) + "_color.png");
+            newLoad = !((actorURL[GILDE_CREST_SHIELDCOLOR] == url));
+            actorURL[GILDE_CREST_SHIELDCOLOR] = url;
             if (newLoad){
-                this.actorLoaded[this.GILDE_CREST_SHIELDCOLOR] = 0;
-                this.Load(this.GILDE_CREST_SHIELDCOLOR);
+                actorLoaded[GILDE_CREST_SHIELDCOLOR] = 0;
+                Load(GILDE_CREST_SHIELDCOLOR);
             };
-            this.actor[this.GILDE_CREST_SHIELDCOLOR].filters = [tmpFltShield];
+            actor[GILDE_CREST_SHIELDCOLOR].filters = [tmpFltShield];
         };
         if (i == 3){
-            var _local2 = this.actor[this.LBL_GILDE_CREST_INSCRIPTION];
+            var _local2 = actor[LBL_GILDE_CREST_INSCRIPTION];
             with (_local2) {
                 y = 210;
                 switch ((crest[i] + 1)){
@@ -20360,23 +20360,23 @@ public function loadCrest(){
             };
         };
         if (i == 6){
-            if (this.selecterCrestElement == i){
-                this.actor[(this.GILDE_CREST + i)].filters = [tmpFltFigure, this.Filter_CrestSelected];
+            if (selecterCrestElement == i){
+                actor[(GILDE_CREST + i)].filters = [tmpFltFigure, Filter_CrestSelected];
             } else {
-                this.actor[(this.GILDE_CREST + i)].filters = [tmpFltFigure];
+                actor[(GILDE_CREST + i)].filters = [tmpFltFigure];
             };
         } else {
-            if (this.selecterCrestElement == i){
-                this.actor[(this.GILDE_CREST + i)].filters = [this.Filter_CrestSelected];
+            if (selecterCrestElement == i){
+                actor[(GILDE_CREST + i)].filters = [Filter_CrestSelected];
             } else {
-                this.actor[(this.GILDE_CREST + i)].filters = [];
+                actor[(GILDE_CREST + i)].filters = [];
             };
         };
         i = (i + 1);
     };
-    if (this.selecterCrestElement >= 0){
-        this.actor[this.LBL_GILDE_CREST_ELEMENT].text = this.txt[(this.TXT_CREST_ELEMENT + this.selecterCrestElement)].split("%1").join(String((this.crest[this.selecterCrestElement] + 1))).split("%2").join(String(this.crestElementPos[this.selecterCrestElement][4]));
-        this.actor[this.LBL_GILDE_CREST_ELEMENT].x = ((this.GILDE_GEBAEUDE_X + 120) - (this.actor[this.LBL_GILDE_CREST_ELEMENT].textWidth / 2));
+    if (selecterCrestElement >= 0){
+        actor[LBL_GILDE_CREST_ELEMENT].text = txt[(TXT_CREST_ELEMENT + selecterCrestElement)].split("%1").join(String((crest[selecterCrestElement] + 1))).split("%2").join(String(crestElementPos[selecterCrestElement][4]));
+        actor[LBL_GILDE_CREST_ELEMENT].x = ((GILDE_GEBAEUDE_X + 120) - (actor[LBL_GILDE_CREST_ELEMENT].textWidth / 2));
     };
 }
 
@@ -20388,23 +20388,23 @@ public function clickChatLine(evt){
     } else {
         lineText = evt;
     };
-    if (this.crestSuggestion[lineText]){
-        this.Remove(this.GILDE_GEBAEUDE);
-        this.Add(this.GILDE_CREST);
-        if (this.actor[this.GILDE_CREST].y == this.GILDE_GEBAEUDE_Y){
-            this.SetAlpha(this.GILDE_CREST_CONTROLS, 1);
-            this.Add(this.GILDE_CREST_CONTROLS);
+    if (crestSuggestion[lineText]){
+        Remove(GILDE_GEBAEUDE);
+        Add(GILDE_CREST);
+        if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
+            SetAlpha(GILDE_CREST_CONTROLS, 1);
+            Add(GILDE_CREST_CONTROLS);
         } else {
-            this.selecterCrestElement = -1;
+            selecterCrestElement = -1;
         };
-        if (this.myOwnRank == 1){
-            this.crestSuggested = true;
-            this.SetBtnText(this.GILDE_CREST_OK, this.txt[this.TXT_CREST_APPLY]);
+        if (myOwnRank == 1){
+            crestSuggested = true;
+            SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_APPLY]);
         } else {
-            this.crestSuggested = false;
-            this.SetBtnText(this.GILDE_CREST_OK, this.txt[this.TXT_CREST_SUGGEST]);
+            crestSuggested = false;
+            SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
         };
-        this.setCrestStr(this.crestSuggestion[lineText]);
+        setCrestStr(crestSuggestion[lineText]);
         return;
     };
     chatAuthor = lineText.substr(6);
@@ -20412,14 +20412,14 @@ public function clickChatLine(evt){
         chatAuthor = chatAuthor.substr(0, chatAuthor.indexOf(":"));
         if (chatAuthor.length <= 20){
             if (chatAuthor.indexOf(" > ") == -1){
-                if (this.actor[this.INP_GILDE_CHAT].getChildAt(0).text == ""){
-                    this.actor[this.INP_GILDE_CHAT].getChildAt(0).text = (("/w " + chatAuthor.split(" ").join("#")) + " ");
+                if (actor[INP_GILDE_CHAT].getChildAt(0).text == ""){
+                    actor[INP_GILDE_CHAT].getChildAt(0).text = (("/w " + chatAuthor.split(" ").join("#")) + " ");
                 };
-                this.actor[this.INP_GILDE_CHAT].getChildAt(0).setSelection(this.actor[this.INP_GILDE_CHAT].getChildAt(0).text.length, this.actor[this.INP_GILDE_CHAT].getChildAt(0).text.length);
+                actor[INP_GILDE_CHAT].getChildAt(0).setSelection(actor[INP_GILDE_CHAT].getChildAt(0).text.length, actor[INP_GILDE_CHAT].getChildAt(0).text.length);
             };
         };
     };
-    stage.focus = this.actor[this.INP_GILDE_CHAT].getChildAt(0);
+    stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
 }
 
 public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, isMine:Boolean=true, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
@@ -21820,33 +21820,33 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             Remove(GILDE_SCHATZ);
         };
     };
-    this.arrowHallMode = false;
+    arrowHallMode = false;
     if (isMine){
-        if (int(guildData[0]) != this.GildenID){
-            this.GildenID = int(guildData[0]);
-            this.SendAction(this.ACT_REQUEST_GUILD, guildData[0]);
+        if (int(guildData[0]) != GildenID){
+            GildenID = int(guildData[0]);
+            SendAction(ACT_REQUEST_GUILD, guildData[0]);
         };
     };
-    this.lastGuildShown = ThisGilde;
-    this.lastGuildMembers = guildMembers.join("#").split("#");
-    this.addSuggestNames(this.lastGuildMembers);
-    this.Load(this.SCREEN_GILDEN);
-    this.Load(this.GILDE_SET_MEMBER);
-    this.Load(this.GILDE_SET_MASTER);
-    this.Load(this.GILDE_RANK, (this.GILDE_RANK + 1), (this.GILDE_RANK + 2));
-    this.Load(this.GILDE_DIALOG_INVITE, this.GILDE_DIALOG_KICK, this.GILDE_DIALOG_MASTER);
-    this.WhenLoaded(DoShowScreenGilden);
+    lastGuildShown = ThisGilde;
+    lastGuildMembers = guildMembers.join("#").split("#");
+    addSuggestNames(lastGuildMembers);
+    Load(SCREEN_GILDEN);
+    Load(GILDE_SET_MEMBER);
+    Load(GILDE_SET_MASTER);
+    Load(GILDE_RANK, (GILDE_RANK + 1), (GILDE_RANK + 2));
+    Load(GILDE_DIALOG_INVITE, GILDE_DIALOG_KICK, GILDE_DIALOG_MASTER);
+    WhenLoaded(DoShowScreenGilden);
 }
 
 public function ShowWorkSuccessScreen(evt:Event=undefined):void{
-    this.ShowCityScreen();
-    this.Add(this.SCREEN_ARBEITEN_SUCCESS);
-    this.actor[this.LBL_WINDOW_TITLE].text = this.txt[this.TXT_TITLE_WORK];
-    this.actor[this.LBL_WINDOW_TITLE].x = ((this.IF_WIN_X + this.IF_WIN_WELCOME_X) - int((this.actor[this.LBL_WINDOW_TITLE].textWidth / 2)));
-    this.actor[this.LBL_SCR_ARBEITEN_TEXT].text = this.txt[this.TXT_ARBEIT_TEXT5];
-    this.actor[this.LBL_SCR_ARBEITEN_TEXT2].text = ((((this.txt[this.TXT_ARBEIT_TEXT6] + " ") + this.Geld(this.VerdientesGeld)) + " ") + this.txt[this.TXT_ARBEIT_TEXT7]);
-    this.Play(this.SND_JINGLE);
-    this.CheckWrongPage(this.ACT_SCREEN_ARBEITEN);
+    ShowCityScreen();
+    Add(SCREEN_ARBEITEN_SUCCESS);
+    actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_WORK];
+    actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
+    actor[LBL_SCR_ARBEITEN_TEXT].text = txt[TXT_ARBEIT_TEXT5];
+    actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((txt[TXT_ARBEIT_TEXT6] + " ") + Geld(VerdientesGeld)) + " ") + txt[TXT_ARBEIT_TEXT7]);
+    Play(SND_JINGLE);
+    CheckWrongPage(ACT_SCREEN_ARBEITEN);
 }
 
 public function ShowWorkScreen(evt:Event=undefined):void{
@@ -21854,8 +21854,8 @@ public function ShowWorkScreen(evt:Event=undefined):void{
     var DoShowWorking:* = null;
     var evt:* = evt;
     ArbeitCountdown = new Timer(100);
-    this.ShowCityScreen();
-    if (this.Savegame[this.SG_ACTION_STATUS] == 1){
+    ShowCityScreen();
+    if (Savegame[SG_ACTION_STATUS] == 1){
         DoShowWorking = function (){
             var ArbeitCountdownEvent:* = null;
             ArbeitCountdownEvent = function (evt:Event):void{
@@ -21899,33 +21899,33 @@ public function ShowWorkScreen(evt:Event=undefined):void{
             ArbeitCountdown.start();
             CheckWrongPage(ACT_SCREEN_ARBEITEN);
         };
-        this.Add(this.SCREEN_ARBEITEN_WAIT);
-        this.SetCnt(this.SCR_ARBEITEN_BAR, this.QUESTBAR_BG);
-        this.SetCnt(this.SCR_ARBEITEN_FILL, this.QUESTBAR_FILL);
-        this.WhenLoaded(DoShowWorking);
+        Add(SCREEN_ARBEITEN_WAIT);
+        SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
+        SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
+        WhenLoaded(DoShowWorking);
     } else {
-        if (this.Savegame[this.SG_ACTION_STATUS] == 0){
-            this.Add(this.SCREEN_ARBEITEN);
-            this.actor[this.LBL_WINDOW_TITLE].text = this.txt[this.TXT_TITLE_WORK];
-            this.actor[this.LBL_WINDOW_TITLE].x = ((this.IF_WIN_X + this.IF_WIN_WELCOME_X) - int((this.actor[this.LBL_WINDOW_TITLE].textWidth / 2)));
-            this.actor[this.LBL_SCR_ARBEITEN_TEXT].text = this.txt[this.TXT_ARBEIT_TEXT];
-            this.SetSliderValue(this.SLDR_ARBEITEN, 1);
-            this.ArbeitenSliderChange(1);
+        if (Savegame[SG_ACTION_STATUS] == 0){
+            Add(SCREEN_ARBEITEN);
+            actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_WORK];
+            actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
+            actor[LBL_SCR_ARBEITEN_TEXT].text = txt[TXT_ARBEIT_TEXT];
+            SetSliderValue(SLDR_ARBEITEN, 1);
+            ArbeitenSliderChange(1);
         };
     };
 }
 
 public function ArbeitenSliderChange(value:int):void{
     var txtWorkDur:String;
-    if (this.txt[this.TXT_ARBEIT_TEXT3] == ""){
-        txtWorkDur = this.txt[this.TXT_ARBEIT_TEXT2].split("%hours").join(String(value)).split("%reward").join(this.Geld((value * this.Stundenlohn)));
-        if (this.txt[this.TXT_WORK_FINISH]){
-            this.actor[this.LBL_SCR_ARBEITEN_TEXT2].text = this.txt[this.TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(this.TimeStr((int((this.GameTime.getTime() / 1000)) + (((value + 1) * 60) * 60)), true));
+    if (txt[TXT_ARBEIT_TEXT3] == ""){
+        txtWorkDur = txt[TXT_ARBEIT_TEXT2].split("%hours").join(String(value)).split("%reward").join(Geld((value * Stundenlohn)));
+        if (txt[TXT_WORK_FINISH]){
+            actor[LBL_SCR_ARBEITEN_TEXT2].text = txt[TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(TimeStr((int((GameTime.getTime() / 1000)) + (((value + 1) * 60) * 60)), true));
         } else {
-            this.actor[this.LBL_SCR_ARBEITEN_TEXT2].text = txtWorkDur;
+            actor[LBL_SCR_ARBEITEN_TEXT2].text = txtWorkDur;
         };
     } else {
-        this.actor[this.LBL_SCR_ARBEITEN_TEXT2].text = ((((((value + " ") + this.txt[this.TXT_ARBEIT_TEXT2]) + " ") + this.Geld((value * this.Stundenlohn))) + " ") + this.txt[this.TXT_ARBEIT_TEXT3]);
+        actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((((value + " ") + txt[TXT_ARBEIT_TEXT2]) + " ") + Geld((value * Stundenlohn))) + " ") + txt[TXT_ARBEIT_TEXT3]);
     };
 }
 
@@ -21944,8 +21944,8 @@ public function ShowHallScreen(evt:Event=undefined):void{
         actor[INP_HALLE_GOTO].getChildAt(1).text = txt[TXT_HALLE_SUCHFELD_TEXT];
         Add(SCREEN_HALLE);
     };
-    this.Load(this.SCREEN_HALLE);
-    this.WhenLoaded(DoShowHallScreen);
+    Load(SCREEN_HALLE);
+    WhenLoaded(DoShowHallScreen);
 }
 
 public function ShowCityScreen(evt:Event=undefined):void{
@@ -22005,23 +22005,23 @@ public function ShowCityScreen(evt:Event=undefined):void{
         ShowDealerScreen(undefined, true);
     };
     StatistenBleiben = false;
-    this.Load(this.BUBBLES);
-    switch (this.Tageszeit()){
+    Load(BUBBLES);
+    switch (Tageszeit()){
         case 0:
-            this.Load(this.SCREEN_CITY_NIGHT);
+            Load(SCREEN_CITY_NIGHT);
             break;
         case 1:
-            this.Load(this.SCREEN_CITY_DAWN);
+            Load(SCREEN_CITY_DAWN);
             break;
         case 2:
-            this.Load(this.SCREEN_CITY_DAY);
+            Load(SCREEN_CITY_DAY);
             break;
     };
-    this.Load(this.SCREEN_CITY);
-    this.Load(this.CITY_ESEL2);
-    this.Load(this.CITY_SANDWICH1);
-    this.Load(this.CITY_SANDWICH2);
-    this.WhenLoaded(doShowCityScreen);
+    Load(SCREEN_CITY);
+    Load(CITY_ESEL2);
+    Load(CITY_SANDWICH1);
+    Load(CITY_SANDWICH2);
+    WhenLoaded(doShowCityScreen);
 }
 
 public function ShowPostScreen(par:Array=undefined){
@@ -22335,8 +22335,8 @@ public function ShowPostScreen(par:Array=undefined){
         DoubleClickHandler(tmpLbl, BuildPostList, PostBtnHandler);
         actor[POST_LIST].addChild(tmpLbl);
     };
-    this.Load(this.SCREEN_POST);
-    this.WhenLoaded(DoShowPost);
+    Load(SCREEN_POST);
+    WhenLoaded(DoShowPost);
 }
 
 public function DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function){
@@ -22380,31 +22380,31 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
     var i:* = 0;
     var evt:* = evt;
     RebuildMode = false;
-    if ((((evt is MouseEvent)) and ((this.GetActorID(evt.target) == this.OPTION_CHANGEIMG)))){
+    if ((((evt is MouseEvent)) and ((GetActorID(evt.target) == OPTION_CHANGEIMG)))){
         RebuildMode = true;
     };
-    if ((((evt is MouseEvent)) and ((((this.GetActorID(evt.target) == this.GOTO_LOGIN)) or ((this.GetActorID(evt.target) == this.GOTO_SIGNUP)))))){
-        this.so.data.skipAutoLogin = true;
+    if ((((evt is MouseEvent)) and ((((GetActorID(evt.target) == GOTO_LOGIN)) or ((GetActorID(evt.target) == GOTO_SIGNUP)))))){
+        so.data.skipAutoLogin = true;
     };
-    if (((((this.so.data.HasAccount) and (!(this.so.data.skipAutoLogin)))) and (!(RebuildMode)))){
-        if (this.so.data.userName){
-            this.actor[this.INP_NAME].getChildAt(1).text = String(this.so.data.userName);
+    if (((((so.data.HasAccount) and (!(so.data.skipAutoLogin)))) and (!(RebuildMode)))){
+        if (so.data.userName){
+            actor[INP_NAME].getChildAt(1).text = String(so.data.userName);
         };
-        if (this.so.data.password){
-            this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text = String(this.so.data.password);
+        if (so.data.password){
+            actor[INP_LOGIN_PASSWORD].getChildAt(1).text = String(so.data.password);
         };
-        this.Add(this.BLACK_SQUARE);
-        this.RequestLogin();
+        Add(BLACK_SQUARE);
+        RequestLogin();
         return;
     };
-    if (((((this.buffedMode) and (!(this.buffedReq)))) and (!(RebuildMode)))){
-        this.ShowLoginScreen();
+    if (((((buffedMode) and (!(buffedReq)))) and (!(RebuildMode)))){
+        ShowLoginScreen();
         return;
     };
-    this.RemoveAll();
+    RemoveAll();
     i = 0;
     while (i < 10) {
-        var _local3 = this.actor[(this.CHARBACKGROUND + i)];
+        var _local3 = actor[(CHARBACKGROUND + i)];
         with (_local3) {
             x = ((SCREEN_TITLE_X - 150) + CHARX);
             y = (SCREEN_TITLE_Y + CHARY);
@@ -22413,36 +22413,36 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
         };
         i = (i + 1);
     };
-    _local3 = this.actor[this.LBL_SCREEN_TITLE];
+    _local3 = actor[LBL_SCREEN_TITLE];
     with (_local3) {
         text = txt[TXT_CREATE_CHARACTER];
         x = (SCREEN_TITLE_X - int((textWidth / 2)));
         y = SCREEN_TITLE_Y;
     };
-    this.Add(this.SCREEN_BUILDCHAR);
-    if (this.DemoMode){
-        this.Remove(this.CREATE_GOTO_LOGIN, this.IF_LOGOUT);
+    Add(SCREEN_BUILDCHAR);
+    if (DemoMode){
+        Remove(CREATE_GOTO_LOGIN, IF_LOGOUT);
     };
-    if (this.CharVolk == 0){
-        this.RandomizeCharacter();
+    if (CharVolk == 0){
+        RandomizeCharacter();
     };
     if (RebuildMode){
-        this.Remove(this.CREATE_CHARACTER);
-        this.revertCharVolk = this.CharVolk;
-        this.revertCharMann = this.CharMann;
-        this.revertCharColor = this.CharColor;
-        this.revertCharMouth = this.CharMouth;
-        this.revertCharBeard = this.CharBeard;
-        this.revertCharNose = this.CharNose;
-        this.revertCharEyes = this.CharEyes;
-        this.revertCharBrows = this.CharBrows;
-        this.revertCharEars = this.CharEars;
-        this.revertCharHair = this.CharHair;
-        this.revertCharSpecial = this.CharSpecial;
-        this.revertCharSpecial2 = this.CharSpecial2;
-        this.KlasseGewählt = true;
+        Remove(CREATE_CHARACTER);
+        revertCharVolk = CharVolk;
+        revertCharMann = CharMann;
+        revertCharColor = CharColor;
+        revertCharMouth = CharMouth;
+        revertCharBeard = CharBeard;
+        revertCharNose = CharNose;
+        revertCharEyes = CharEyes;
+        revertCharBrows = CharBrows;
+        revertCharEars = CharEars;
+        revertCharHair = CharHair;
+        revertCharSpecial = CharSpecial;
+        revertCharSpecial2 = CharSpecial2;
+        KlasseGewählt = true;
     };
-    this.LoadCharacterImage();
+    LoadCharacterImage();
 }
 
 public function achLevel(SG:Array, achIndex:int, almode:int=0):int{
@@ -22453,363 +22453,363 @@ public function achLevel(SG:Array, achIndex:int, almode:int=0):int{
     switch (achIndex){
         case 0:
             alnext = 2;
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 2){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 2){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 5){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 10){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 10){
                 alresult = 3;
                 alnext = 20;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 20){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 20){
                 alresult = 4;
                 alnext = 30;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 30){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 30){
                 alresult = 5;
                 alnext = 40;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 40){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 40){
                 alresult = 6;
                 alnext = 50;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 50){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 50){
                 alresult = 7;
                 alnext = 60;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 60){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 60){
                 alresult = 8;
                 alnext = 70;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 70){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 70){
                 alresult = 9;
                 alnext = 80;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 80){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 80){
                 alresult = 10;
                 alnext = 90;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 90){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 90){
                 alresult = 11;
                 alnext = 100;
             };
-            if (int(SG[this.SG_ACHIEVEMENTS]) >= 100){
+            if (int(SG[SG_ACHIEVEMENTS]) >= 100){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 1:
             alnext = 1;
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 1){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 5){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 10){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 10){
                 alresult = 3;
                 alnext = 20;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 20){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 20){
                 alresult = 4;
                 alnext = 30;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 30){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 30){
                 alresult = 5;
                 alnext = 40;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 40){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 40){
                 alresult = 6;
                 alnext = 50;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 50){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 50){
                 alresult = 7;
                 alnext = 60;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 60){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 60){
                 alresult = 8;
                 alnext = 70;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 70){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 70){
                 alresult = 9;
                 alnext = 80;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 80){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 80){
                 alresult = 10;
                 alnext = 90;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 90){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 90){
                 alresult = 11;
                 alnext = 100;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 1)]) >= 100){
+            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 100){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 2:
             alnext = 1;
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 1){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 5){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 10){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 10){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 25){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 25){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 50){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 50){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 100){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 100){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 250){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 250){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 500){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 500){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 1000){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 1000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 2500){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 2500){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 5000){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 5000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 2)]) >= 10000){
+            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 10000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 3:
             alnext = 1;
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 1){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 5){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 10){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 10){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 25){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 25){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 50){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 50){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 100){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 100){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 250){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 250){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 500){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 500){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 1000){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 1000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 2500){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 2500){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 5000){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 5000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 3)]) >= 10000){
+            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 10000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 4:
             alnext = 1;
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 1){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 5){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 10){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 10){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 25){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 25){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 50){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 50){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 100){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 100){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 250){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 250){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 500){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 500){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 1000){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 1000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 2500){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 2500){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 5000){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 5000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 4)]) >= 10000){
+            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 10000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 5:
             alnext = 1;
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 100){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 100){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 500){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 500){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 1000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 1000){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 2500){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 2500){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 5000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 5000){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 10000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 10000){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 25000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 25000){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 50000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 50000){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 100000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 100000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 250000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 250000){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 500000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 500000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 5)]) >= 1000000){
+            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 1000000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 6:
             alnext = 1000;
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 1000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 1000){
                 alresult = 1;
                 alnext = 1500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 1500){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 1500){
                 alresult = 2;
                 alnext = 2500;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 2500){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 2500){
                 alresult = 3;
                 alnext = 5000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 5000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 5000){
                 alresult = 4;
                 alnext = 10000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 10000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 10000){
                 alresult = 5;
                 alnext = 15000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 15000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 15000){
                 alresult = 6;
                 alnext = 20000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 20000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 20000){
                 alresult = 7;
                 alnext = 25000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 25000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 25000){
                 alresult = 8;
                 alnext = 30000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 30000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 30000){
                 alresult = 9;
                 alnext = 35000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 35000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 35000){
                 alresult = 10;
                 alnext = 40000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 40000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 40000){
                 alresult = 11;
                 alnext = 50000;
             };
-            if (int(SG[(this.SG_ACHIEVEMENTS + 6)]) >= 50000){
+            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 50000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         case 7:
-            alresult = int(SG[(this.SG_ACHIEVEMENTS + 7)]);
+            alresult = int(SG[(SG_ACHIEVEMENTS + 7)]);
             alnext = (alresult + 1);
             if (alresult >= 12){
                 alresult = 12;
@@ -22839,9 +22839,9 @@ public function achLevel(SG:Array, achIndex:int, almode:int=0):int{
     };
     if (almode == 4){
         if (achIndex == 1){
-            return ((((int(SG[(this.SG_ACHIEVEMENTS + achIndex)]) + (((int(SG[this.SG_NEW_DUNGEONS]) >= 2)) ? (int(SG[this.SG_NEW_DUNGEONS]) - 2) : 0)) + (((int(SG[(this.SG_NEW_DUNGEONS + 1)]) >= 2)) ? (int(SG[(this.SG_NEW_DUNGEONS + 1)]) - 2) : 0)) + (((int(SG[this.SG_DUNGEON_13]) >= 122)) ? (int(SG[this.SG_DUNGEON_13]) - 122) : 0)));
+            return ((((int(SG[(SG_ACHIEVEMENTS + achIndex)]) + (((int(SG[SG_NEW_DUNGEONS]) >= 2)) ? (int(SG[SG_NEW_DUNGEONS]) - 2) : 0)) + (((int(SG[(SG_NEW_DUNGEONS + 1)]) >= 2)) ? (int(SG[(SG_NEW_DUNGEONS + 1)]) - 2) : 0)) + (((int(SG[SG_DUNGEON_13]) >= 122)) ? (int(SG[SG_DUNGEON_13]) - 122) : 0)));
         };
-        return ((int(SG[(this.SG_ACHIEVEMENTS + achIndex)]) / (((achIndex == 5)) ? 100 : 1)));
+        return ((int(SG[(SG_ACHIEVEMENTS + achIndex)]) / (((achIndex == 5)) ? 100 : 1)));
     };
     return (alresult);
 }
@@ -22901,64 +22901,64 @@ public function DoAchievements(SG:Array):Boolean{
     var achAusf:int;
     var achCurrentGrade:String;
     var OneUp:Boolean;
-    this.Remove(this.CHAR_ACH);
+    Remove(CHAR_ACH);
     achAusfM = "";
     achAusfF = "";
     achAusf = 0;
     achCurrentGrade = "";
     OneUp = false;
     i = 0;
-    while (i < ((this.buffedMode) ? 7 : 8)) {
-        achAusf = this.achLevel(SG, (i % 8), 1);
-        this.Add(((this.CHAR_ACH + i) + (achAusf * 8)));
-        if (this.oldAch[(i % 8)] < 0){
-            this.oldAch[(i % 8)] = -(this.oldAch[(i % 8)]);
-            this.AnimateAch(((this.CHAR_ACH + i) + (achAusf * 8)));
+    while (i < ((buffedMode) ? 7 : 8)) {
+        achAusf = achLevel(SG, (i % 8), 1);
+        Add(((CHAR_ACH + i) + (achAusf * 8)));
+        if (oldAch[(i % 8)] < 0){
+            oldAch[(i % 8)] = -(oldAch[(i % 8)]);
+            AnimateAch(((CHAR_ACH + i) + (achAusf * 8)));
             OneUp = true;
         };
         switch (achAusf){
             case 0:
                 achAusfM = "";
                 achAusfF = "";
-                achCurrentGrade = this.txt[this.TXT_ACH_5];
+                achCurrentGrade = txt[TXT_ACH_5];
                 break;
             default:
-                achAusfM = (this.txt[((this.TXT_ACH_5 + (achAusf * 2)) - 1)] + " ");
-                achAusfF = (this.txt[(this.TXT_ACH_5 + (achAusf * 2))] + " ");
-                achCurrentGrade = this.txt[(this.TXT_ACH_2 + (i % 8))].split("%1").join(String(this.achLevel(SG, (i % 8), 0))).split("%2").join(String(this.achLevel(SG, (i % 8), 4)));
+                achAusfM = (txt[((TXT_ACH_5 + (achAusf * 2)) - 1)] + " ");
+                achAusfF = (txt[(TXT_ACH_5 + (achAusf * 2))] + " ");
+                achCurrentGrade = txt[(TXT_ACH_2 + (i % 8))].split("%1").join(String(achLevel(SG, (i % 8), 0))).split("%2").join(String(achLevel(SG, (i % 8), 4)));
                 if (i == 6){
-                    achCurrentGrade = this.txt[this.TXT_NEW_HONOR_ACH].split("%1").join(String(this.achLevel(SG, (i % 8), 0))).split("%2").join(String(this.achLevel(SG, (i % 8), 4)));
+                    achCurrentGrade = txt[TXT_NEW_HONOR_ACH].split("%1").join(String(achLevel(SG, (i % 8), 0))).split("%2").join(String(achLevel(SG, (i % 8), 4)));
                 };
         };
         achPop = new Array();
-        if (this.txt[(this.TXT_ACH_4 + 4)]){
-            achPop[achPop.length] = this.txt[(this.TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join("");
+        if (txt[(TXT_ACH_4 + 4)]){
+            achPop[achPop.length] = txt[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join("");
         } else {
-            achPop[achPop.length] = this.txt[(this.TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join(this.txt[(this.TXT_ACH_4 + 3)].split("%1").join(this.FriendLink));
+            achPop[achPop.length] = txt[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join(txt[(TXT_ACH_4 + 3)].split("%1").join(FriendLink));
         };
-        achPop[achPop.length] = this.SingPlur(achCurrentGrade, this.achLevel(SG, (i % 8), 4));
+        achPop[achPop.length] = SingPlur(achCurrentGrade, achLevel(SG, (i % 8), 4));
         if (i == 1){
-            if (SG[this.SG_PLAYER_ID] == this.Savegame[this.SG_PLAYER_ID]){
-                if (this.towerLevel > 0){
-                    achPop[achPop.length] = this.SingPlur(this.txt[(this.TXT_ACH_2 + 8)].split("%1").join(String(this.towerLevel)), this.towerLevel);
+            if (SG[SG_PLAYER_ID] == Savegame[SG_PLAYER_ID]){
+                if (towerLevel > 0){
+                    achPop[achPop.length] = SingPlur(txt[(TXT_ACH_2 + 8)].split("%1").join(String(towerLevel)), towerLevel);
                 };
             } else {
-                if (this.playerTowerLevel > 0){
-                    achPop[achPop.length] = this.SingPlur(this.txt[(this.TXT_ACH_2 + 8)].split("%1").join(String(this.playerTowerLevel)), this.playerTowerLevel);
+                if (playerTowerLevel > 0){
+                    achPop[achPop.length] = SingPlur(txt[(TXT_ACH_2 + 8)].split("%1").join(String(playerTowerLevel)), playerTowerLevel);
                 };
             };
         };
-        if (this.achLevel(SG, (i % 8), 2) > 0){
+        if (achLevel(SG, (i % 8), 2) > 0){
             if (i == 6){
-                achPop[achPop.length] = this.SingPlur(this.txt[this.TXT_NEW_HONOR_ACH2].split("%1").join(String(this.achLevel(SG, (i % 8), 2))).split("%2").join(this.txt[(this.TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), this.achLevel(SG, (i % 8), 2));
+                achPop[achPop.length] = SingPlur(txt[TXT_NEW_HONOR_ACH2].split("%1").join(String(achLevel(SG, (i % 8), 2))).split("%2").join(txt[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), achLevel(SG, (i % 8), 2));
             } else {
-                achPop[achPop.length] = this.SingPlur(this.txt[(this.TXT_ACH_3 + (i % 8))].split("%1").join(String(this.achLevel(SG, (i % 8), 2))).split("%2").join(this.txt[(this.TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), this.achLevel(SG, (i % 8), 2));
+                achPop[achPop.length] = SingPlur(txt[(TXT_ACH_3 + (i % 8))].split("%1").join(String(achLevel(SG, (i % 8), 2))).split("%2").join(txt[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), achLevel(SG, (i % 8), 2));
             };
         };
-        if (this.achLevel(SG, (i % 8), 3) > 0){
-            achPop[achPop.length] = this.txt[this.TXT_ACH_4].split("%1").join(String(this.achLevel(SG, (i % 8), 3)));
+        if (achLevel(SG, (i % 8), 3) > 0){
+            achPop[achPop.length] = txt[TXT_ACH_4].split("%1").join(String(achLevel(SG, (i % 8), 3)));
         };
-        this.EnablePopup(((this.CHAR_ACH + i) + (this.achLevel(SG, (i % 8), 1) * 8)), achPop);
+        EnablePopup(((CHAR_ACH + i) + (achLevel(SG, (i % 8), 1) * 8)), achPop);
         i++;
     };
     return (OneUp);
@@ -22966,15 +22966,15 @@ public function DoAchievements(SG:Array):Boolean{
 
 public function MirrorAniFn(evt:Event){
     var i:int;
-    this.mirrorFadeAmount = (this.mirrorFadeAmount - 0.002);
-    if (this.mirrorFadeAmount <= 0){
-        this.mirrorFadeAmount = 0;
-        this.mirrorAniTimer.stop();
+    mirrorFadeAmount = (mirrorFadeAmount - 0.002);
+    if (mirrorFadeAmount <= 0){
+        mirrorFadeAmount = 0;
+        mirrorAniTimer.stop();
     };
-    this.mirrorAniStep = (this.mirrorAniStep + 0.1);
+    mirrorAniStep = (mirrorAniStep + 0.1);
     i = 0;
     while (i < 13) {
-        this.actor[(this.MIRROR_PIECE + i)].alpha = (0.3 + (Math.sin((this.mirrorAniStep + (((i / 13) * 2) * Math.PI))) * this.mirrorFadeAmount));
+        actor[(MIRROR_PIECE + i)].alpha = (0.3 + (Math.sin((mirrorAniStep + (((i / 13) * 2) * Math.PI))) * mirrorFadeAmount));
         i++;
     };
 }
@@ -23263,11 +23263,11 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
             };
         };
     };
-    if ((((((uint(this.Savegame[this.SG_NEW_FLAGS]) & 32)) and ((int(this.so.data.vanityMode) == 0)))) or ((int(this.so.data.vanityMode) > 1)))){
-        this.Load(this.SCR_CHAR_BG_GOLDEN, this.GOLDEN_FRAME);
+    if ((((((uint(Savegame[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) > 1)))){
+        Load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
-    this.Load(this.SCR_CHAR_BG, this.SCR_CHAR_EXPBAR, this.SCR_CHAR_BG_RIGHT);
-    this.WhenLoaded(DoShowCharacterScreen);
+    Load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
+    WhenLoaded(DoShowCharacterScreen);
 }
 
 public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:String, PlayerComment:String):void{
@@ -23510,9 +23510,9 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             };
         };
     };
-    this.playerTowerLevel = int((PlayerSG[this.SG_MOUNT] / 65536));
-    PlayerSG[this.SG_MOUNT] = (PlayerSG[this.SG_MOUNT] - (this.playerTowerLevel * 65536));
-    binStr = Number(PlayerSG[this.SG_GENDER]).toString(2);
+    playerTowerLevel = int((PlayerSG[SG_MOUNT] / 65536));
+    PlayerSG[SG_MOUNT] = (PlayerSG[SG_MOUNT] - (playerTowerLevel * 65536));
+    binStr = Number(PlayerSG[SG_GENDER]).toString(2);
     while (binStr.length < 32) {
         binStr = ("0" + binStr);
     };
@@ -23524,36 +23524,36 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
     };
     var playerHasMirror:* = (binStr.substr(23, 1) == "1");
     if (binStr.substr(31) == "1"){
-        PlayerSG[this.SG_GENDER] = 1;
+        PlayerSG[SG_GENDER] = 1;
     } else {
-        PlayerSG[this.SG_GENDER] = 2;
+        PlayerSG[SG_GENDER] = 2;
     };
     i = 0;
-    while (i < this.SG_BACKPACK_SIZE) {
-        this.ExpandItemStructure(PlayerSG, (this.SG_BACKPACK_OFFS + (i * this.SG_ITM_SIZE)));
+    while (i < SG_BACKPACK_SIZE) {
+        ExpandItemStructure(PlayerSG, (SG_BACKPACK_OFFS + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     i = 0;
-    while (i < this.SG_INVENTORY_SIZE) {
-        this.ExpandItemStructure(PlayerSG, (this.SG_INVENTORY_OFFS + (i * this.SG_ITM_SIZE)));
+    while (i < SG_INVENTORY_SIZE) {
+        ExpandItemStructure(PlayerSG, (SG_INVENTORY_OFFS + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     i = 0;
     while (i < 6) {
-        this.ExpandItemStructure(PlayerSG, (this.SG_SHAKES_ITEM1 + (i * this.SG_ITM_SIZE)));
-        this.ExpandItemStructure(PlayerSG, (this.SG_FIDGET_ITEM1 + (i * this.SG_ITM_SIZE)));
+        ExpandItemStructure(PlayerSG, (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)));
+        ExpandItemStructure(PlayerSG, (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     i = 0;
     while (i < 3) {
-        this.ExpandItemStructure(PlayerSG, (this.SG_QUEST_OFFER_REWARD_ITM1 + (i * this.SG_ITM_SIZE)));
+        ExpandItemStructure(PlayerSG, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
-    if ((((((uint(PlayerSG[this.SG_NEW_FLAGS]) & 32)) and ((int(this.so.data.vanityMode) == 0)))) or ((int(this.so.data.vanityMode) > 1)))){
-        this.Load(this.SCR_CHAR_BG_GOLDEN, this.GOLDEN_FRAME);
+    if ((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) > 1)))){
+        Load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
-    this.Load(this.SCR_CHAR_BG, this.SCR_CHAR_EXPBAR, this.SCR_CHAR_BG_RIGHT);
-    this.WhenLoaded(DoShowPlayerScreen);
+    Load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
+    WhenLoaded(DoShowPlayerScreen);
 }
 
 public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
@@ -23564,7 +23564,7 @@ public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
     var actorIDObj:* = actorIDObj;
     var maxWidth:* = maxWidth;
     Shortened = false;
-    var _local4 = (((actorIDObj is int)) ? this.actor[actorIDObj] : actorIDObj);
+    var _local4 = (((actorIDObj is int)) ? actor[actorIDObj] : actorIDObj);
     with (_local4) {
         tmpStr = text;
         remainLength = tmpStr.length;
@@ -23586,9 +23586,9 @@ public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
     };
     if ((actorIDObj is int)){
         if (Shortened){
-            this.EnablePopup(int(actorIDObj), tmpStr);
+            EnablePopup(int(actorIDObj), tmpStr);
         } else {
-            this.EnablePopup(int(actorIDObj));
+            EnablePopup(int(actorIDObj));
         };
     };
     return (((Shortened) ? tmpStr : ""));
@@ -23596,34 +23596,34 @@ public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
 
 
 public function CheckWrongPage(correctAct:int){
-    if (correctAct != this.lastAct){
-        if (correctAct == this.ACT_SCREEN_TAVERNE){
-            switch (this.lastAct){
-                case this.ACT_SCREEN_ARENA:
-                    if (!this.hasMirror){
-                        this.ErrorMessage(this.txt[this.TXT_ERROR_TAVERNE_ARENA]);
+    if (correctAct != lastAct){
+        if (correctAct == ACT_SCREEN_TAVERNE){
+            switch (lastAct){
+                case ACT_SCREEN_ARENA:
+                    if (!hasMirror){
+                        ErrorMessage(txt[TXT_ERROR_TAVERNE_ARENA]);
                     };
                     break;
-                case this.ACT_SCREEN_ARBEITEN:
-                    this.ErrorMessage(this.txt[this.TXT_ERROR_TAVERNE_ARBEITEN]);
+                case ACT_SCREEN_ARBEITEN:
+                    ErrorMessage(txt[TXT_ERROR_TAVERNE_ARBEITEN]);
                     break;
-                case this.ACT_SCREEN_WELTKARTE:
-                    if (!this.hasMirror){
-                        this.ErrorMessage(this.txt[this.TXT_ERROR_TAVERNE_MAINQUEST]);
+                case ACT_SCREEN_WELTKARTE:
+                    if (!hasMirror){
+                        ErrorMessage(txt[TXT_ERROR_TAVERNE_MAINQUEST]);
                     };
                     break;
             };
         } else {
-            if (correctAct == this.ACT_SCREEN_ARBEITEN){
-                switch (this.lastAct){
-                    case this.ACT_SCREEN_ARENA:
-                        this.ErrorMessage(this.txt[this.TXT_ERROR_ARBEITEN_ARENA]);
+            if (correctAct == ACT_SCREEN_ARBEITEN){
+                switch (lastAct){
+                    case ACT_SCREEN_ARENA:
+                        ErrorMessage(txt[TXT_ERROR_ARBEITEN_ARENA]);
                         break;
-                    case this.ACT_SCREEN_TAVERNE:
-                        this.ErrorMessage(this.txt[this.TXT_ERROR_ARBEITEN_TAVERNE]);
+                    case ACT_SCREEN_TAVERNE:
+                        ErrorMessage(txt[TXT_ERROR_ARBEITEN_TAVERNE]);
                         break;
-                    case this.ACT_SCREEN_WELTKARTE:
-                        this.ErrorMessage(this.txt[this.TXT_ERROR_ARBEITEN_MAINQUEST]);
+                    case ACT_SCREEN_WELTKARTE:
+                        ErrorMessage(txt[TXT_ERROR_ARBEITEN_MAINQUEST]);
                         break;
                 };
             };
@@ -23905,36 +23905,36 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
     countDone = 0;
     i = 0;
     while (i < 10) {
-        if (int(this.Savegame[(this.SG_DUNGEON_LEVEL + i)]) >= 12){
+        if (int(Savegame[(SG_DUNGEON_LEVEL + i)]) >= 12){
             countDone = (countDone + 1);
         };
         i = (i + 1);
     };
     i = 0;
     while (i < 2) {
-        if (int(this.Savegame[(this.SG_NEW_DUNGEONS + i)]) >= 12){
+        if (int(Savegame[(SG_NEW_DUNGEONS + i)]) >= 12){
             countDone = (countDone + 1);
         };
         i = (i + 1);
     };
-    if (int(this.Savegame[this.SG_DUNGEON_13]) >= (120 + 12)){
+    if (int(Savegame[SG_DUNGEON_13]) >= (120 + 12)){
         countDone = (countDone + 1);
     };
-    Background = (this.SCR_QUEST_BG_1 + 50);
-    this.Load(Background);
-    this.Load((((countDone >= 9)) ? this.SCREEN_HLMAINQUESTS : this.SCREEN_MAINQUESTS));
-    this.Load(this.MQS_DISABLED);
-    this.Load(this.MQS_COMPLETED);
+    Background = (SCR_QUEST_BG_1 + 50);
+    Load(Background);
+    Load((((countDone >= 9)) ? SCREEN_HLMAINQUESTS : SCREEN_MAINQUESTS));
+    Load(MQS_DISABLED);
+    Load(MQS_COMPLETED);
     if (countDone >= 9){
-        this.Load(this.HLMQS_TOWER_DISABLED);
-        this.Load(this.HLMQS_TOWER_COMPLETED);
+        Load(HLMQS_TOWER_DISABLED);
+        Load(HLMQS_TOWER_COMPLETED);
     };
     i = 0;
     while (i < 9) {
-        this.Load((this.MQS_BUTTON + i));
+        Load((MQS_BUTTON + i));
         i = (i + 1);
     };
-    this.WhenLoaded(DoShowMainQuestsScreen);
+    WhenLoaded(DoShowMainQuestsScreen);
 }
 
 public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
@@ -24046,36 +24046,36 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         };
     };
     var questText:* = "";
-    if (this.Savegame[this.SG_DUNGEON_13] < 122){
-        this.Savegame[this.SG_DUNGEON_13] = 122;
+    if (Savegame[SG_DUNGEON_13] < 122){
+        Savegame[SG_DUNGEON_13] = 122;
     };
     if (DungeonNr == 100){
-        questText = this.txt[(this.TXT_TOWER_ENEMY_NAMES + this.towerLevel)].split("|")[1];
+        questText = txt[(TXT_TOWER_ENEMY_NAMES + towerLevel)].split("|")[1];
     } else {
         if (DungeonNr == 12){
-            questText = this.txt[((this.TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(this.Savegame[this.SG_DUNGEON_13]) - 2) < 120)) ? 0 : ((int(this.Savegame[this.SG_DUNGEON_13]) - 2) - 120)))];
+            questText = txt[((TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(Savegame[SG_DUNGEON_13]) - 2) < 120)) ? 0 : ((int(Savegame[SG_DUNGEON_13]) - 2) - 120)))];
         } else {
             if (DungeonNr >= 10){
-                questText = this.txt[((this.TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(this.Savegame[((this.SG_NEW_DUNGEONS + DungeonNr) - 10)]) - 2) < 0)) ? 0 : (int(this.Savegame[((this.SG_NEW_DUNGEONS + DungeonNr) - 10)]) - 2)))];
+                questText = txt[((TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(Savegame[((SG_NEW_DUNGEONS + DungeonNr) - 10)]) - 2) < 0)) ? 0 : (int(Savegame[((SG_NEW_DUNGEONS + DungeonNr) - 10)]) - 2)))];
             } else {
-                questText = this.txt[((this.TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(this.Savegame[(this.SG_DUNGEON_LEVEL + DungeonNr)]) - 2) < 0)) ? 0 : (int(this.Savegame[(this.SG_DUNGEON_LEVEL + DungeonNr)]) - 2)))];
+                questText = txt[((TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(Savegame[(SG_DUNGEON_LEVEL + DungeonNr)]) - 2) < 0)) ? 0 : (int(Savegame[(SG_DUNGEON_LEVEL + DungeonNr)]) - 2)))];
             };
         };
     };
-    this.hasLostMQ = false;
-    this.LastDungeonNr = DungeonNr;
-    this.LastDungeonEnemy = Enemy;
-    this.Load(this.SCREEN_MAINQUEST);
+    hasLostMQ = false;
+    LastDungeonNr = DungeonNr;
+    LastDungeonEnemy = Enemy;
+    Load(SCREEN_MAINQUEST);
     if (DungeonNr == 100){
-        this.Load(this.SCR_TOWER_BG);
+        Load(SCR_TOWER_BG);
     } else {
-        this.Load(((this.SCR_QUEST_BG_1 + 50) + DungeonNr));
+        Load(((SCR_QUEST_BG_1 + 50) + DungeonNr));
     };
-    this.Load(this.FIGHT_CHAR_BORDER);
+    Load(FIGHT_CHAR_BORDER);
     if (Enemy >= 0){
-        this.Load((this.OPPMONSTER + Enemy));
+        Load((OPPMONSTER + Enemy));
     };
-    this.WhenLoaded(DoShowMainQuestScreen);
+    WhenLoaded(DoShowMainQuestScreen);
 }
 
 public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=true){
@@ -24086,18 +24086,18 @@ public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolea
     var makeRightHandler:* = function (evt:Event){
         MakeRightTextArea(actorID, child, false);
     };
-    if (this.textDir != "right"){
+    if (textDir != "right"){
         return;
     };
-    tmpTextFormat = this.actor[actorID].getChildAt(child).defaultTextFormat;
+    tmpTextFormat = actor[actorID].getChildAt(child).defaultTextFormat;
     tmpTextFormat.align = "right";
-    if (!this.actor[actorID].hasHandler){
+    if (!actor[actorID].hasHandler){
         if (createHandler){
-            this.actor[actorID].hasHandler = true;
+            actor[actorID].hasHandler = true;
         };
     };
-    this.actor[actorID].getChildAt(child).defaultTextFormat = tmpTextFormat;
-    this.actor[actorID].getChildAt(child).setTextFormat(tmpTextFormat);
+    actor[actorID].getChildAt(child).defaultTextFormat = tmpTextFormat;
+    actor[actorID].getChildAt(child).setTextFormat(tmpTextFormat);
 }
 
 public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, towerMode:Boolean=false, copyCatIdRaw:int=0, witchMode:Boolean=false):void{
@@ -24143,20 +24143,20 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     potionDuration = "";
     copyCatId = 0;
     if (towerMode){
-        copyCatId = (this.TSG_COPYCATS + (this.COPYCAT * copyCatIdRaw));
+        copyCatId = (TSG_COPYCATS + (COPYCAT * copyCatIdRaw));
         i = 0;
         while (i < 3) {
             if (i == copyCatIdRaw){
-                if (int(SG[(copyCatId + this.CPC_LEVEL)]) >= int(this.Savegame[this.SG_LEVEL])){
-                    this.Hide((this.TOWER_STEIGERN1 + i));
-                    this.Hide((this.LBL_TOWER_BOOSTPRICELABEL + i));
+                if (int(SG[(copyCatId + CPC_LEVEL)]) >= int(Savegame[SG_LEVEL])){
+                    Hide((TOWER_STEIGERN1 + i));
+                    Hide((LBL_TOWER_BOOSTPRICELABEL + i));
                 } else {
-                    this.Show((this.TOWER_STEIGERN1 + i));
-                    this.Show((this.LBL_TOWER_BOOSTPRICELABEL + i));
+                    Show((TOWER_STEIGERN1 + i));
+                    Show((LBL_TOWER_BOOSTPRICELABEL + i));
                 };
             } else {
-                this.Hide((this.TOWER_STEIGERN1 + i));
-                this.Hide((this.LBL_TOWER_BOOSTPRICELABEL + i));
+                Hide((TOWER_STEIGERN1 + i));
+                Hide((LBL_TOWER_BOOSTPRICELABEL + i));
             };
             i = (i + 1);
         };
@@ -24164,38 +24164,38 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
         while (i < 5) {
             ii = 0;
             while (ii < 12) {
-                SG[((this.TSG_LOOT_SACK + (i * 12)) + ii)] = this.Savegame[((this.SG_BACKPACK_OFFS + (i * 12)) + ii)];
+                SG[((TSG_LOOT_SACK + (i * 12)) + ii)] = Savegame[((SG_BACKPACK_OFFS + (i * 12)) + ii)];
                 ii = (ii + 1);
             };
             i = (i + 1);
         };
-        if (SG[(copyCatId + this.CPC_LEVEL)] != 0){
-            this.actor[this.LBL_SCR_CHAR_NAME].text = this.txt[(this.TXT_COPYCAT_NAME + copyCatIdRaw)];
+        if (SG[(copyCatId + CPC_LEVEL)] != 0){
+            actor[LBL_SCR_CHAR_NAME].text = txt[(TXT_COPYCAT_NAME + copyCatIdRaw)];
         } else {
-            this.actor[this.LBL_SCR_CHAR_NAME].text = "";
+            actor[LBL_SCR_CHAR_NAME].text = "";
         };
-        this.actor[this.SCR_CHAR_NAME].x = ((this.SCR_CHAR_CHARX + 128) - int((this.actor[this.LBL_SCR_CHAR_NAME].textWidth / 2)));
-        var _local7 = this.actor[this.SCR_CHAR_EXPBAR];
+        actor[SCR_CHAR_NAME].x = ((SCR_CHAR_CHARX + 128) - int((actor[LBL_SCR_CHAR_NAME].textWidth / 2)));
+        var _local7 = actor[SCR_CHAR_EXPBAR];
         with (_local7) {
             width = int(((Number(SG[(copyCatId + CPC_GOLD_STOLEN)]) / Number(SG[(copyCatId + CPC_GOLD_STOLEN_NEXT)])) * 254));
         };
         i = 0;
         while (i < 3) {
-            this.Hide((this.TOWER_NO_PORTRAIT + i));
-            this.Hide((this.TOWER_PORTRAIT + i));
-            _local7 = this.actor[(this.TOWER_NO_PORTRAIT + i)];
+            Hide((TOWER_NO_PORTRAIT + i));
+            Hide((TOWER_PORTRAIT + i));
+            _local7 = actor[(TOWER_NO_PORTRAIT + i)];
             with (_local7) {
                 scaleX = 0.86;
                 scaleY = 0.86;
             };
-            _local7 = this.actor[(this.TOWER_PORTRAIT + i)];
+            _local7 = actor[(TOWER_PORTRAIT + i)];
             with (_local7) {
                 scaleX = 0.86;
                 scaleY = 0.86;
             };
             i = (i + 1);
         };
-        _local7 = this.actor[this.LBL_TOWER_EXPLABEL];
+        _local7 = actor[LBL_TOWER_EXPLABEL];
         with (_local7) {
             if (SG[(copyCatId + CPC_LEVEL)] != 0){
                 Show((TOWER_PORTRAIT + copyCatIdRaw));
@@ -24215,10 +24215,10 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             };
         };
         popupLinesCpc = new Array();
-        popupLinesCpc.push([this.POPUP_BEGIN_LINE, ((this.txt[163] + ": ") + SG[(copyCatId + this.CPC_ARMOR)]), this.POPUP_END_LINE]);
-        DamageReductionCpc = int((Number(SG[(copyCatId + this.CPC_ARMOR)]) / Number(SG[(copyCatId + this.CPC_LEVEL)])));
+        popupLinesCpc.push([POPUP_BEGIN_LINE, ((txt[163] + ": ") + SG[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
+        DamageReductionCpc = int((Number(SG[(copyCatId + CPC_ARMOR)]) / Number(SG[(copyCatId + CPC_LEVEL)])));
         DamageReductionMaxCpc = 50;
-        switch (int(SG[(copyCatId + this.CPC_CLASS)])){
+        switch (int(SG[(copyCatId + CPC_CLASS)])){
             case 2:
                 DamageReductionMaxCpc = 10;
                 break;
@@ -24229,100 +24229,100 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
         if (DamageReductionCpc > DamageReductionMaxCpc){
             DamageReductionCpc = DamageReductionMaxCpc;
         };
-        if (this.textDir == "right"){
-            popupLinesCpc[popupLinesCpc.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, ((((((((("(" + this.txt[this.TXT_MAX]) + " -") + String(DamageReductionMaxCpc)) + "%) ") + String(DamageReductionCpc)) + "% :") + SG[(copyCatId + this.CPC_LEVEL)]) + " ") + this.txt[this.TXT_RUESTUNG_SUM_HINT]), this.POPUP_END_LINE];
+        if (textDir == "right"){
+            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, ((((((((("(" + txt[TXT_MAX]) + " -") + String(DamageReductionMaxCpc)) + "%) ") + String(DamageReductionCpc)) + "% :") + SG[(copyCatId + CPC_LEVEL)]) + " ") + txt[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
-            popupLinesCpc[popupLinesCpc.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((((((((this.txt[this.TXT_RUESTUNG_SUM_HINT] + " ") + SG[(copyCatId + this.CPC_LEVEL)]) + ": -") + String(DamageReductionCpc)) + "% (") + this.txt[this.TXT_MAX]) + " -") + String(DamageReductionMaxCpc)) + "%)"), this.POPUP_END_LINE];
+            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((((txt[TXT_RUESTUNG_SUM_HINT] + " ") + SG[(copyCatId + CPC_LEVEL)]) + ": -") + String(DamageReductionCpc)) + "% (") + txt[TXT_MAX]) + " -") + String(DamageReductionMaxCpc)) + "%)"), POPUP_END_LINE];
         };
-        if (this.txt[this.TXT_SHIELD_FORMULA]){
-            popupLinesCpc[popupLinesCpc.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_SHIELD_FORMULA], this.POPUP_END_LINE];
+        if (txt[TXT_SHIELD_FORMULA]){
+            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
-        this.EnablePopup(this.LBL_TOWER_EXPLABEL, popupLinesCpc);
+        EnablePopup(LBL_TOWER_EXPLABEL, popupLinesCpc);
         i = 0;
         while (i < 3) {
-            _local7 = this.actor[(this.LBL_TOWER_BOOSTPRICELABEL + i)];
+            _local7 = actor[(LBL_TOWER_BOOSTPRICELABEL + i)];
             with (_local7) {
                 x = ((EXPERIENCE_BAR_X + 196) - textWidth);
             };
             i = (i + 1);
         };
-        this.SetCnt(this.TOWER_BOOSTCOIN, this.IF_GOLD);
+        SetCnt(TOWER_BOOSTCOIN, IF_GOLD);
     } else {
         if (!(SG is Array)){
-            SG = this.Savegame;
+            SG = Savegame;
         } else {
             HideBackPack = true;
         };
     };
     i = 0;
     while (i < 5) {
-        if (int(SG[(((towerMode) ? (copyCatId + this.CPC_ATTRIBS_BONUS) : this.SG_ATTR_STAERKE_BONUS) + i)]) > 0){
-            this.actor[(this.LBL_SCR_CHAR_STAERKE + i)].defaultTextFormat = this.FontFormat_AttribBonus;
+        if (int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)]) > 0){
+            actor[(LBL_SCR_CHAR_STAERKE + i)].defaultTextFormat = FontFormat_AttribBonus;
         } else {
-            this.actor[(this.LBL_SCR_CHAR_STAERKE + i)].defaultTextFormat = this.FontFormat_Attrib;
+            actor[(LBL_SCR_CHAR_STAERKE + i)].defaultTextFormat = FontFormat_Attrib;
         };
-        this.actor[(this.LBL_SCR_CHAR_STAERKE + i)].text = String((int(SG[(((towerMode) ? (copyCatId + this.CPC_ATTRIBS) : this.SG_ATTR_STAERKE) + i)]) + int(SG[(((towerMode) ? (copyCatId + this.CPC_ATTRIBS_BONUS) : this.SG_ATTR_STAERKE_BONUS) + i)])));
+        actor[(LBL_SCR_CHAR_STAERKE + i)].text = String((int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE) + i)]) + int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)])));
         popupLines = new Array();
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[(this.TXT_CHAR_SCHADEN + i)], this.POPUP_END_LINE];
-        if (this.textDir == "right"){
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + i)].text + " ÷ 2 ="), this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[(TXT_CHAR_SCHADEN + i)], POPUP_END_LINE];
+        if (textDir == "right"){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text + " ÷ 2 ="), POPUP_END_LINE];
         } else {
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (("= " + this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + i)].text) + " / 2"), this.POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text) + " / 2"), POPUP_END_LINE];
         };
-        this.EnablePopup((this.LBL_SCR_CHAR_SCHADEN + i), popupLines);
-        this.EnablePopup((this.LBL_SCR_CHAR_SCHADEN_CAPTION + i), popupLines);
+        EnablePopup((LBL_SCR_CHAR_SCHADEN + i), popupLines);
+        EnablePopup((LBL_SCR_CHAR_SCHADEN_CAPTION + i), popupLines);
         popupLines = new Array();
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, this.POPUP_END_LINE];
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[(this.TXT_ATTRIBHELP + i)], this.POPUP_END_LINE];
-        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[this.SG_CLASS])) == 1)) and ((i == 0)))){
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_ATTRIBHELP_WARRIOR], this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
+        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 1)) and ((i == 0)))){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
         } else {
-            if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[this.SG_CLASS])) == 3)) and ((i == 1)))){
-                popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_ATTRIBHELP_HUNTER], this.POPUP_END_LINE];
+            if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 3)) and ((i == 1)))){
+                popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_ATTRIBHELP_HUNTER], POPUP_END_LINE];
             } else {
-                if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[this.SG_CLASS])) == 2)) and ((i == 2)))){
-                    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_ATTRIBHELP_MAGE], this.POPUP_END_LINE];
+                if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 2)) and ((i == 2)))){
+                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
                 } else {
                     if (i <= 2){
-                        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[(this.TXT_ATTRIBHELP_EXT + i)], this.POPUP_END_LINE];
+                        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[(TXT_ATTRIBHELP_EXT + i)], POPUP_END_LINE];
                     };
                 };
             };
         };
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_BASIS], this.POPUP_TAB, String(int(SG[(((towerMode) ? (copyCatId + this.CPC_ATTRIBS) : this.SG_ATTR_STAERKE) + i)])), this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_BASIS], POPUP_TAB, String(int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE) + i)])), POPUP_END_LINE];
         tempBonus = 0;
-        tempBonus = int(SG[(((towerMode) ? (copyCatId + this.CPC_ATTRIBS_BONUS) : this.SG_ATTR_STAERKE_BONUS) + i)]);
+        tempBonus = int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)]);
         if (!towerMode){
             ii = 0;
             while (ii < 3) {
-                if (int(SG[(this.SG_POTION_TYPE + ii)]) == 16){
-                    tmpHealth = int(SG[(this.SG_POTION_GAIN + ii)]);
+                if (int(SG[(SG_POTION_TYPE + ii)]) == 16){
+                    tmpHealth = int(SG[(SG_POTION_GAIN + ii)]);
                 } else {
-                    if (((int(SG[(this.SG_POTION_TYPE + ii)]) - 1) % 5) == i){
-                        potionDuration = this.TimeStr(SG[(this.SG_POTION_DURATION + ii)], true);
-                        if (int(SG[(this.SG_POTION_GAIN + ii)]) <= 25){
-                            tempBonus = ((int(SG[(this.SG_ATTR_STAERKE + i)]) + int(SG[(this.SG_ATTR_STAERKE_BONUS + i)])) / ((100 + int(SG[(this.SG_POTION_GAIN + ii)])) / 100));
+                    if (((int(SG[(SG_POTION_TYPE + ii)]) - 1) % 5) == i){
+                        potionDuration = TimeStr(SG[(SG_POTION_DURATION + ii)], true);
+                        if (int(SG[(SG_POTION_GAIN + ii)]) <= 25){
+                            tempBonus = ((int(SG[(SG_ATTR_STAERKE + i)]) + int(SG[(SG_ATTR_STAERKE_BONUS + i)])) / ((100 + int(SG[(SG_POTION_GAIN + ii)])) / 100));
                             if (HideBackPack){
-                                popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribTemp, this.txt[this.TXT_TEMPORARY], this.POPUP_TAB, String(Math.round(((int(SG[(this.SG_POTION_GAIN + ii)]) / 100) * tempBonus))), this.POPUP_END_LINE];
+                                popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, txt[TXT_TEMPORARY], POPUP_TAB, String(Math.round(((int(SG[(SG_POTION_GAIN + ii)]) / 100) * tempBonus))), POPUP_END_LINE];
                             } else {
-                                if (this.textDir == "right"){
-                                    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribTemp, this.txt[this.TXT_TEMPORARY], this.POPUP_TAB, ((((("(" + potionDuration) + " ") + this.txt[this.TXT_UNTIL]) + ") ") + String(Math.round(((int(SG[(this.SG_POTION_GAIN + ii)]) / 100) * tempBonus)))), this.POPUP_END_LINE];
+                                if (textDir == "right"){
+                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, txt[TXT_TEMPORARY], POPUP_TAB, ((((("(" + potionDuration) + " ") + txt[TXT_UNTIL]) + ") ") + String(Math.round(((int(SG[(SG_POTION_GAIN + ii)]) / 100) * tempBonus)))), POPUP_END_LINE];
                                 } else {
-                                    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribTemp, this.txt[this.TXT_TEMPORARY], this.POPUP_TAB, (((((String(Math.round(((int(SG[(this.SG_POTION_GAIN + ii)]) / 100) * tempBonus))) + " (") + this.txt[this.TXT_UNTIL]) + " ") + potionDuration) + ")"), this.POPUP_END_LINE];
+                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, txt[TXT_TEMPORARY], POPUP_TAB, (((((String(Math.round(((int(SG[(SG_POTION_GAIN + ii)]) / 100) * tempBonus))) + " (") + txt[TXT_UNTIL]) + " ") + potionDuration) + ")"), POPUP_END_LINE];
                                 };
                             };
-                            tempBonus = (tempBonus - int(SG[(this.SG_ATTR_STAERKE + i)]));
+                            tempBonus = (tempBonus - int(SG[(SG_ATTR_STAERKE + i)]));
                         } else {
                             if (HideBackPack){
-                                popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribTemp, this.txt[this.TXT_TEMPORARY], this.POPUP_TAB, String(int(SG[(this.SG_POTION_GAIN + ii)])), this.POPUP_END_LINE];
+                                popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, txt[TXT_TEMPORARY], POPUP_TAB, String(int(SG[(SG_POTION_GAIN + ii)])), POPUP_END_LINE];
                             } else {
-                                if (this.textDir == "right"){
-                                    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribTemp, this.txt[this.TXT_TEMPORARY], this.POPUP_TAB, ((((("(" + potionDuration) + " ") + this.txt[this.TXT_UNTIL]) + ") ") + String(int(SG[(this.SG_POTION_GAIN + ii)]))), this.POPUP_END_LINE];
+                                if (textDir == "right"){
+                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, txt[TXT_TEMPORARY], POPUP_TAB, ((((("(" + potionDuration) + " ") + txt[TXT_UNTIL]) + ") ") + String(int(SG[(SG_POTION_GAIN + ii)]))), POPUP_END_LINE];
                                 } else {
-                                    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribTemp, this.txt[this.TXT_TEMPORARY], this.POPUP_TAB, (((((String(int(SG[(this.SG_POTION_GAIN + ii)])) + " (") + this.txt[this.TXT_UNTIL]) + " ") + potionDuration) + ")"), this.POPUP_END_LINE];
+                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, txt[TXT_TEMPORARY], POPUP_TAB, (((((String(int(SG[(SG_POTION_GAIN + ii)])) + " (") + txt[TXT_UNTIL]) + " ") + potionDuration) + ")"), POPUP_END_LINE];
                                 };
                             };
-                            tempBonus = (int(SG[(this.SG_ATTR_STAERKE_BONUS + i)]) - int(SG[(this.SG_POTION_GAIN + ii)]));
+                            tempBonus = (int(SG[(SG_ATTR_STAERKE_BONUS + i)]) - int(SG[(SG_POTION_GAIN + ii)]));
                         };
                         break;
                     };
@@ -24331,25 +24331,25 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             };
         };
         if (tempBonus > 0){
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_AttribBonus, this.txt[this.TXT_BONUS], this.POPUP_TAB, String(tempBonus), this.POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribBonus, txt[TXT_BONUS], POPUP_TAB, String(tempBonus), POPUP_END_LINE];
         };
-        this.EnablePopup((this.LBL_SCR_CHAR_STAERKE + i), popupLines);
-        this.EnablePopup((this.LBL_SCR_CHAR_STAERKE_CAPTION + i), popupLines);
+        EnablePopup((LBL_SCR_CHAR_STAERKE + i), popupLines);
+        EnablePopup((LBL_SCR_CHAR_STAERKE_CAPTION + i), popupLines);
         if (!towerMode){
-            boostPrice = GetBoostPrice(SG[(this.SG_ATTR_STAERKE_GEKAUFT + i)]);
+            boostPrice = GetBoostPrice(SG[(SG_ATTR_STAERKE_GEKAUFT + i)]);
             if (boostPrice > 9999){
                 boostPrice = (int((boostPrice / 100)) * 100);
             };
             if (boostPrice > 0x3B9ACA00){
                 boostPrice = 0x3B9ACA00;
             };
-            this.canBoost[i] = Boolean((boostPrice <= Number(SG[this.SG_GOLD])));
+            canBoost[i] = Boolean((boostPrice <= Number(SG[SG_GOLD])));
             boostGold = int((boostPrice / 100));
             boostSilver = (boostPrice % 100);
-            this.Hide((this.LBL_SCR_CHAR_PREIS1 + i), (this.SCR_CHAR_GOLD1 + i), (this.LBL_SCR_CHAR_SILBER1 + i), (this.SCR_CHAR_SILBER1 + i));
-            preisX = (this.CHAR_PROP_COLUMN_4_X + (((this.textDir == "right")) ? 240 : 0));
+            Hide((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i), (LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
+            preisX = (CHAR_PROP_COLUMN_4_X + (((textDir == "right")) ? 240 : 0));
             if (boostGold > 0){
-                _local7 = this.actor[(this.LBL_SCR_CHAR_PREIS1 + i)];
+                _local7 = actor[(LBL_SCR_CHAR_PREIS1 + i)];
                 with (_local7) {
                     text = String(boostGold);
                     if (textDir == "right"){
@@ -24360,7 +24360,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                         preisX = ((x + textWidth) + 8);
                     };
                 };
-                _local7 = this.actor[(this.SCR_CHAR_GOLD1 + i)];
+                _local7 = actor[(SCR_CHAR_GOLD1 + i)];
                 with (_local7) {
                     if (textDir == "right"){
                         x = (preisX - width);
@@ -24370,10 +24370,10 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                         preisX = ((x + width) + 10);
                     };
                 };
-                this.Show((this.LBL_SCR_CHAR_PREIS1 + i), (this.SCR_CHAR_GOLD1 + i));
+                Show((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i));
             };
             if (boostSilver > 0){
-                _local7 = this.actor[(this.LBL_SCR_CHAR_SILBER1 + i)];
+                _local7 = actor[(LBL_SCR_CHAR_SILBER1 + i)];
                 with (_local7) {
                     text = String(boostSilver);
                     if (textDir == "right"){
@@ -24384,7 +24384,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                         preisX = ((x + textWidth) + 8);
                     };
                 };
-                _local7 = this.actor[(this.SCR_CHAR_SILBER1 + i)];
+                _local7 = actor[(SCR_CHAR_SILBER1 + i)];
                 with (_local7) {
                     if (textDir == "right"){
                         x = (preisX - width);
@@ -24394,158 +24394,158 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                         preisX = ((x + width) + 10);
                     };
                 };
-                this.Show((this.LBL_SCR_CHAR_SILBER1 + i), (this.SCR_CHAR_SILBER1 + i));
+                Show((LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
             };
         };
         i = (i + 1);
     };
-    tmpKritische = (Math.round(((((int(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS) + 4) : this.SG_ATTR_WILLENSKRAFT)]) + int(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS_BONUS) + 4) : this.SG_ATTR_WILLENSKRAFT_BONUS)])) * 25) / (Number(SG[((towerMode) ? (copyCatId + this.CPC_LEVEL) : this.SG_LEVEL)]) * 10)) * 100)) / 100);
+    tmpKritische = (Math.round(((((int(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 4) : SG_ATTR_WILLENSKRAFT)]) + int(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 4) : SG_ATTR_WILLENSKRAFT_BONUS)])) * 25) / (Number(SG[((towerMode) ? (copyCatId + CPC_LEVEL) : SG_LEVEL)]) * 10)) * 100)) / 100);
     if (tmpKritische < 0){
         tmpKritische = 0;
     };
     if (tmpKritische > 50){
         tmpKritische = 50;
     };
-    tmpDamageMin = SG[((towerMode) ? (copyCatId + this.CPC_DAMAGE_MIN) : this.SG_DAMAGE_MIN)];
-    tmpDamageMax = SG[((towerMode) ? (copyCatId + this.CPC_DAMAGE_MAX) : this.SG_DAMAGE_MAX)];
+    tmpDamageMin = SG[((towerMode) ? (copyCatId + CPC_DAMAGE_MIN) : SG_DAMAGE_MIN)];
+    tmpDamageMax = SG[((towerMode) ? (copyCatId + CPC_DAMAGE_MAX) : SG_DAMAGE_MAX)];
     tmpDamageFactor = 0;
     tmpLifeFactor = 5;
     SchadenLblID = 0;
-    switch (int(((towerMode) ? (copyCatIdRaw + 1) : SG[this.SG_CLASS]))){
+    switch (int(((towerMode) ? (copyCatIdRaw + 1) : SG[SG_CLASS]))){
         case 1:
-            SchadenLblID = this.LBL_SCR_CHAR_SCHADEN_CAPTION;
-            SchadenID = this.LBL_SCR_CHAR_SCHADEN;
-            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? (copyCatId + this.CPC_ATTRIBS) : this.SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + this.CPC_ATTRIBS_BONUS) : this.SG_ATTR_STAERKE_BONUS)])) / 10));
+            SchadenLblID = LBL_SCR_CHAR_SCHADEN_CAPTION;
+            SchadenID = LBL_SCR_CHAR_SCHADEN;
+            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS)])) / 10));
             tmpLifeFactor = 5;
             break;
         case 2:
-            SchadenLblID = this.LBL_SCR_CHAR_LEBEN_CAPTION;
-            SchadenID = this.LBL_SCR_CHAR_LEBEN;
-            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS) + 2) : this.SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS_BONUS) + 2) : this.SG_ATTR_AUSDAUER_BONUS)])) / 10));
+            SchadenLblID = LBL_SCR_CHAR_LEBEN_CAPTION;
+            SchadenID = LBL_SCR_CHAR_LEBEN;
+            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 2) : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2) : SG_ATTR_AUSDAUER_BONUS)])) / 10));
             tmpLifeFactor = 2;
             break;
         case 3:
-            SchadenLblID = this.LBL_SCR_CHAR_KAMPFWERT_CAPTION;
-            SchadenID = this.LBL_SCR_CHAR_KAMPFWERT;
-            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS) + 1) : this.SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS_BONUS) + 1) : this.SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 10));
+            SchadenLblID = LBL_SCR_CHAR_KAMPFWERT_CAPTION;
+            SchadenID = LBL_SCR_CHAR_KAMPFWERT;
+            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 1) : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1) : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 10));
             tmpLifeFactor = 4;
             break;
     };
     tmpDamageMin = Math.round((tmpDamageMin * tmpDamageFactor));
     tmpDamageMax = Math.round((tmpDamageMax * tmpDamageFactor));
-    this.actor[this.LBL_SCR_CHAR_SCHADEN].text = int(((Number(SG[((towerMode) ? (copyCatId + this.CPC_ATTRIBS) : this.SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + this.CPC_ATTRIBS_BONUS) : this.SG_ATTR_STAERKE_BONUS)])) / 2));
-    this.actor[this.LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS) + 1) : this.SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS_BONUS) + 1) : this.SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
-    this.actor[this.LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS) + 2) : this.SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS_BONUS) + 2) : this.SG_ATTR_AUSDAUER_BONUS)])) / 2));
-    this.actor[this.LBL_SCR_CHAR_RUESTUNG].defaultTextFormat = (((tmpHealth > 0)) ? this.FontFormat_AttribBonus : this.FontFormat_Attrib);
-    this.actor[this.LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS) + 3) : this.SG_ATTR_INTELLIGENZ)]) + Number(SG[((towerMode) ? ((copyCatId + this.CPC_ATTRIBS_BONUS) + 3) : this.SG_ATTR_INTELLIGENZ_BONUS)])) * (tmpLifeFactor * 2)) * (((tmpHealth > 0)) ? (Number((tmpHealth + 100)) / 100) : 1)) * (0.5 + (SG[((towerMode) ? (copyCatId + this.CPC_LEVEL) : this.SG_LEVEL)] / 2))));
-    this.actor[this.LBL_SCR_CHAR_WIDERSTAND].text = (String(tmpKritische) + String("%"));
+    actor[LBL_SCR_CHAR_SCHADEN].text = int(((Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS)])) / 2));
+    actor[LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 1) : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1) : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
+    actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 2) : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2) : SG_ATTR_AUSDAUER_BONUS)])) / 2));
+    actor[LBL_SCR_CHAR_RUESTUNG].defaultTextFormat = (((tmpHealth > 0)) ? FontFormat_AttribBonus : FontFormat_Attrib);
+    actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 3) : SG_ATTR_INTELLIGENZ)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 3) : SG_ATTR_INTELLIGENZ_BONUS)])) * (tmpLifeFactor * 2)) * (((tmpHealth > 0)) ? (Number((tmpHealth + 100)) / 100) : 1)) * (0.5 + (SG[((towerMode) ? (copyCatId + CPC_LEVEL) : SG_LEVEL)] / 2))));
+    actor[LBL_SCR_CHAR_WIDERSTAND].text = (String(tmpKritische) + String("%"));
     popupLines = new Array();
-    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_SCHADEN], this.POPUP_END_LINE];
-    if (this.textDir == "right"){
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((this.txt[this.TXT_WAFFENSCHADEN] + " × (1 + ") + this.actor[((this.LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - this.LBL_SCR_CHAR_SCHADEN)].text) + " ÷ 10) ="), this.POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_SCHADEN], POPUP_END_LINE];
+    if (textDir == "right"){
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((txt[TXT_WAFFENSCHADEN] + " × (1 + ") + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - LBL_SCR_CHAR_SCHADEN)].text) + " ÷ 10) ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((("= " + this.txt[this.TXT_WAFFENSCHADEN]) + " * (1 + ") + this.actor[((this.LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - this.LBL_SCR_CHAR_SCHADEN)].text) + " / 10)"), this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((("= " + txt[TXT_WAFFENSCHADEN]) + " * (1 + ") + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - LBL_SCR_CHAR_SCHADEN)].text) + " / 10)"), POPUP_END_LINE];
     };
-    this.EnablePopup(SchadenID, popupLines);
-    this.EnablePopup(SchadenLblID, popupLines);
+    EnablePopup(SchadenID, popupLines);
+    EnablePopup(SchadenLblID, popupLines);
     popupLines = new Array();
-    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.actor[this.LBL_SCR_CHAR_RUESTUNG_CAPTION].text, this.POPUP_END_LINE];
-    if (this.textDir == "right"){
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((((((((((tmpHealth > 0)) ? "(" : "") + this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " × ") + String(tmpLifeFactor)) + " × (") + this.txt[this.TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + String(tmpHealth)) + "%") : "")) + " ="), this.POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text, POPUP_END_LINE];
+    if (textDir == "right"){
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((((((tmpHealth > 0)) ? "(" : "") + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " × ") + String(tmpLifeFactor)) + " × (") + txt[TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + String(tmpHealth)) + "%") : "")) + " ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((((((("= " + (((tmpHealth > 0)) ? "(" : "")) + this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " * ") + String(tmpLifeFactor)) + " * (") + this.txt[this.TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + String(tmpHealth)) + "%") : "")), this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((("= " + (((tmpHealth > 0)) ? "(" : "")) + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " * ") + String(tmpLifeFactor)) + " * (") + txt[TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + String(tmpHealth)) + "%") : "")), POPUP_END_LINE];
     };
-    this.EnablePopup((this.LBL_SCR_CHAR_SCHADEN + 3), popupLines);
-    this.EnablePopup((this.LBL_SCR_CHAR_SCHADEN_CAPTION + 3), popupLines);
+    EnablePopup((LBL_SCR_CHAR_SCHADEN + 3), popupLines);
+    EnablePopup((LBL_SCR_CHAR_SCHADEN_CAPTION + 3), popupLines);
     popupLines = new Array();
-    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.actor[this.LBL_SCR_CHAR_WIDERSTAND_CAPTION].text, this.POPUP_END_LINE];
-    if (this.textDir == "right"){
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text + " × 5 ÷ (") + this.txt[this.TXT_GEGNERSTUFE]) + " × 2) ="), this.POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text, POPUP_END_LINE];
+    if (textDir == "right"){
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text + " × 5 ÷ (") + txt[TXT_GEGNERSTUFE]) + " × 2) ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((("= " + this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text) + " * 5 / (") + this.txt[this.TXT_GEGNERSTUFE]) + " * 2)"), this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text) + " * 5 / (") + txt[TXT_GEGNERSTUFE]) + " * 2)"), POPUP_END_LINE];
     };
-    popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_KRITISCHMINMAX], this.POPUP_END_LINE];
-    this.EnablePopup((this.LBL_SCR_CHAR_SCHADEN + 4), popupLines);
-    this.EnablePopup((this.LBL_SCR_CHAR_SCHADEN_CAPTION + 4), popupLines);
-    this.actor[this.LBL_SCR_CHAR_SCHADEN_CAPTION].text = this.txt[this.TXT_CHAR_SCHADEN];
-    this.actor[this.LBL_SCR_CHAR_LEBEN_CAPTION].text = this.txt[this.TXT_CHAR_LEBEN];
-    this.actor[this.LBL_SCR_CHAR_KAMPFWERT_CAPTION].text = this.txt[this.TXT_CHAR_KAMPFWERT];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_KRITISCHMINMAX], POPUP_END_LINE];
+    EnablePopup((LBL_SCR_CHAR_SCHADEN + 4), popupLines);
+    EnablePopup((LBL_SCR_CHAR_SCHADEN_CAPTION + 4), popupLines);
+    actor[LBL_SCR_CHAR_SCHADEN_CAPTION].text = txt[TXT_CHAR_SCHADEN];
+    actor[LBL_SCR_CHAR_LEBEN_CAPTION].text = txt[TXT_CHAR_LEBEN];
+    actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].text = txt[TXT_CHAR_KAMPFWERT];
     if (SchadenLblID > 0){
-        this.actor[SchadenLblID].text = this.txt[this.TXT_SCHADEN];
-        this.actor[SchadenID].text = ((tmpDamageMin + (((String(tmpDamageMin).length >= 6)) ? "-" : " - ")) + tmpDamageMax);
+        actor[SchadenLblID].text = txt[TXT_SCHADEN];
+        actor[SchadenID].text = ((tmpDamageMin + (((String(tmpDamageMin).length >= 6)) ? "-" : " - ")) + tmpDamageMax);
     };
-    if (this.textDir == "right"){
-        this.actor[this.LBL_SCR_CHAR_SCHADEN].x = ((this.CHAR_PROP_COLUMN_6_X - 15) - this.actor[this.LBL_SCR_CHAR_SCHADEN].textWidth);
-        this.actor[this.LBL_SCR_CHAR_KAMPFWERT].x = ((this.CHAR_PROP_COLUMN_6_X - 15) - this.actor[this.LBL_SCR_CHAR_KAMPFWERT].textWidth);
-        this.actor[this.LBL_SCR_CHAR_LEBEN].x = ((this.CHAR_PROP_COLUMN_6_X - 15) - this.actor[this.LBL_SCR_CHAR_LEBEN].textWidth);
-        this.actor[this.LBL_SCR_CHAR_RUESTUNG].x = ((this.CHAR_PROP_COLUMN_6_X - 15) - this.actor[this.LBL_SCR_CHAR_RUESTUNG].textWidth);
-        this.actor[this.LBL_SCR_CHAR_WIDERSTAND].x = ((this.CHAR_PROP_COLUMN_6_X - 15) - this.actor[this.LBL_SCR_CHAR_WIDERSTAND].textWidth);
-        this.actor[this.LBL_SCR_CHAR_SCHADEN_CAPTION].x = ((this.CHAR_PROP_COLUMN_6_X + 110) - this.actor[this.LBL_SCR_CHAR_SCHADEN_CAPTION].textWidth);
-        this.actor[this.LBL_SCR_CHAR_KAMPFWERT_CAPTION].x = ((this.CHAR_PROP_COLUMN_6_X + 110) - this.actor[this.LBL_SCR_CHAR_KAMPFWERT_CAPTION].textWidth);
-        this.actor[this.LBL_SCR_CHAR_LEBEN_CAPTION].x = ((this.CHAR_PROP_COLUMN_6_X + 110) - this.actor[this.LBL_SCR_CHAR_LEBEN_CAPTION].textWidth);
-        this.actor[this.LBL_SCR_CHAR_RUESTUNG_CAPTION].x = ((this.CHAR_PROP_COLUMN_6_X + 110) - this.actor[this.LBL_SCR_CHAR_RUESTUNG_CAPTION].textWidth);
-        this.actor[this.LBL_SCR_CHAR_WIDERSTAND_CAPTION].x = ((this.CHAR_PROP_COLUMN_6_X + 110) - this.actor[this.LBL_SCR_CHAR_WIDERSTAND_CAPTION].textWidth);
+    if (textDir == "right"){
+        actor[LBL_SCR_CHAR_SCHADEN].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_SCHADEN].textWidth);
+        actor[LBL_SCR_CHAR_KAMPFWERT].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_KAMPFWERT].textWidth);
+        actor[LBL_SCR_CHAR_LEBEN].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_LEBEN].textWidth);
+        actor[LBL_SCR_CHAR_RUESTUNG].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_RUESTUNG].textWidth);
+        actor[LBL_SCR_CHAR_WIDERSTAND].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_WIDERSTAND].textWidth);
+        actor[LBL_SCR_CHAR_SCHADEN_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_SCHADEN_CAPTION].textWidth);
+        actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].textWidth);
+        actor[LBL_SCR_CHAR_LEBEN_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_LEBEN_CAPTION].textWidth);
+        actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].textWidth);
+        actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].textWidth);
         i = 0;
         while (i < 5) {
-            this.actor[(this.LBL_SCR_CHAR_STAERKE + i)].x = ((this.CHAR_PROP_COLUMN_1_X + 50) - this.actor[(this.LBL_SCR_CHAR_STAERKE + i)].textWidth);
-            this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + i)].x = ((this.CHAR_PROP_COLUMN_1_X + 150) - this.actor[(this.LBL_SCR_CHAR_STAERKE_CAPTION + i)].textWidth);
+            actor[(LBL_SCR_CHAR_STAERKE + i)].x = ((CHAR_PROP_COLUMN_1_X + 50) - actor[(LBL_SCR_CHAR_STAERKE + i)].textWidth);
+            actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].x = ((CHAR_PROP_COLUMN_1_X + 150) - actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].textWidth);
             i = (i + 1);
         };
         if (!towerMode){
-            this.actor[this.LBL_CHAR_MOUNT_NAME].x = (((this.CHAR_MOUNT_X + this.CHAR_MOUNT_X) - 20) - this.actor[this.LBL_CHAR_MOUNT_NAME].textWidth);
-            this.actor[this.LBL_CHAR_MOUNT_DESCR].width = (this.CHAR_MOUNT_X - 20);
-            this.actor[this.LBL_CHAR_MOUNT_RUNTIME].x = (((this.CHAR_MOUNT_X + this.CHAR_MOUNT_X) - 20) - this.actor[this.LBL_CHAR_MOUNT_RUNTIME].textWidth);
-            this.actor[this.LBL_CHAR_MOUNT_GAIN].x = (((this.CHAR_MOUNT_X + this.CHAR_MOUNT_X) - 20) - this.actor[this.LBL_CHAR_MOUNT_GAIN].textWidth);
-            this.MakeRightTextArea(this.INP_CHARDESC);
-            this.actor[this.SCR_CHAR_GILDE].x = ((((this.GILDEEHRE_X + this.GILDEEHRE_X) + 40) + 280) - this.actor[this.LBL_SCR_CHAR_GILDE].textWidth);
+            actor[LBL_CHAR_MOUNT_NAME].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20) - actor[LBL_CHAR_MOUNT_NAME].textWidth);
+            actor[LBL_CHAR_MOUNT_DESCR].width = (CHAR_MOUNT_X - 20);
+            actor[LBL_CHAR_MOUNT_RUNTIME].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20) - actor[LBL_CHAR_MOUNT_RUNTIME].textWidth);
+            actor[LBL_CHAR_MOUNT_GAIN].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20) - actor[LBL_CHAR_MOUNT_GAIN].textWidth);
+            MakeRightTextArea(INP_CHARDESC);
+            actor[SCR_CHAR_GILDE].x = ((((GILDEEHRE_X + GILDEEHRE_X) + 40) + 280) - actor[LBL_SCR_CHAR_GILDE].textWidth);
         };
     };
     if (!towerMode){
         i = 0;
         while (i < 3) {
-            this.SetCnt((this.CHAR_POTION + i), ((int(SG[(this.SG_POTION_TYPE + i)]))==0) ? this.C_EMPTY : this.GetItemID(12, int(SG[(this.SG_POTION_TYPE + i)]), 0, 0));
-            if (int(SG[(this.SG_POTION_TYPE + i)]) == 0){
-                this.EnablePopup((this.CHAR_POTION + i));
+            SetCnt((CHAR_POTION + i), ((int(SG[(SG_POTION_TYPE + i)]))==0) ? C_EMPTY : GetItemID(12, int(SG[(SG_POTION_TYPE + i)]), 0, 0));
+            if (int(SG[(SG_POTION_TYPE + i)]) == 0){
+                EnablePopup((CHAR_POTION + i));
             } else {
                 if (HideBackPack){
-                    this.EnablePopup((this.CHAR_POTION + i), this.POPUP_BEGIN_LINE, this.txt[((this.TXT_ITMNAME_12 + int(SG[(this.SG_POTION_TYPE + i)])) - 1)], this.POPUP_END_LINE, this.POPUP_BEGIN_LINE, this.txt[(((int(SG[(this.SG_POTION_TYPE + i)]) == 16)) ? this.TXT_ITEM_ATTRIB_CLASS_12 : (this.TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(this.SG_POTION_TYPE + i)]) - 1) % 5)))], this.POPUP_TAB, (("+ " + SG[(this.SG_POTION_GAIN + i)]) + (((((int(SG[(this.SG_POTION_TYPE + i)]) == 16)) or ((SG[(this.SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), this.POPUP_END_LINE);
+                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE);
                 } else {
-                    this.EnablePopup((this.CHAR_POTION + i), this.POPUP_BEGIN_LINE, this.txt[((this.TXT_ITMNAME_12 + int(SG[(this.SG_POTION_TYPE + i)])) - 1)], this.POPUP_END_LINE, this.POPUP_BEGIN_LINE, this.txt[(((int(SG[(this.SG_POTION_TYPE + i)]) == 16)) ? this.TXT_ITEM_ATTRIB_CLASS_12 : (this.TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(this.SG_POTION_TYPE + i)]) - 1) % 5)))], this.POPUP_TAB, (("+ " + SG[(this.SG_POTION_GAIN + i)]) + (((((int(SG[(this.SG_POTION_TYPE + i)]) == 16)) or ((SG[(this.SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), this.POPUP_END_LINE, this.POPUP_BEGIN_LINE, this.txt[this.TXT_REMAINING], this.POPUP_TAB, this.TimeStr(SG[(this.SG_POTION_DURATION + i)], true), this.POPUP_END_LINE, this.POPUP_BEGIN_LINE, this.txt[this.TXT_POTION_KILL_INSTRUCTIONS], this.POPUP_END_LINE);
+                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, TimeStr(SG[(SG_POTION_DURATION + i)], true), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
                 };
             };
             i = (i + 1);
         };
     };
-    this.Move(this.CHAR_SLOT_1, this.CHAR_SLOTS_LEFT_X, this.CHAR_SLOTS_TOP_Y);
-    this.Move(this.CHAR_SLOT_2, this.CHAR_SLOTS_LEFT_X, this.CHAR_SLOTS_ROW2_Y);
-    this.Move(this.CHAR_SLOT_3, this.CHAR_SLOTS_LEFT_X, this.CHAR_SLOTS_ROW3_Y);
-    this.Move(this.CHAR_SLOT_4, this.CHAR_SLOTS_LEFT_X, this.CHAR_SLOTS_ROW4_Y);
-    this.Move(this.CHAR_SLOT_5, this.CHAR_SLOTS_RIGHT_X, this.CHAR_SLOTS_TOP_Y);
-    this.Move(this.CHAR_SLOT_6, this.CHAR_SLOTS_RIGHT_X, this.CHAR_SLOTS_ROW2_Y);
-    this.Move(this.CHAR_SLOT_7, this.CHAR_SLOTS_RIGHT_X, this.CHAR_SLOTS_ROW3_Y);
-    this.Move(this.CHAR_SLOT_8, this.CHAR_SLOTS_RIGHT_X, this.CHAR_SLOTS_ROW4_Y);
-    this.Move(this.CHAR_SLOT_9, this.CHAR_SLOTS_R4C2_X, this.CHAR_SLOTS_ROW4_Y);
-    this.Move(this.CHAR_SLOT_10, this.CHAR_SLOTS_R4C3_X, this.CHAR_SLOTS_ROW4_Y);
-    this.Move(this.CHAR_SLOT_11, this.CHAR_SLOTS_LEFT_X, this.CHAR_SLOTS_ROW5_Y);
-    this.Move(this.CHAR_SLOT_12, this.CHAR_SLOTS_R5C2_X, this.CHAR_SLOTS_ROW5_Y);
-    this.Move(this.CHAR_SLOT_13, this.CHAR_SLOTS_R5C3_X, this.CHAR_SLOTS_ROW5_Y);
-    this.Move(this.CHAR_SLOT_14, this.CHAR_SLOTS_R5C4_X, this.CHAR_SLOTS_ROW5_Y);
-    this.Move(this.CHAR_SLOT_15, this.CHAR_SLOTS_RIGHT_X, this.CHAR_SLOTS_ROW5_Y);
-    this.Move(this.CHAR_SLOT_FIDGET_1, this.SHOP_SLOTS_C1_X, this.SHOP_SLOTS_R1_Y);
-    this.Move(this.CHAR_SLOT_FIDGET_2, this.SHOP_SLOTS_C2_X, this.SHOP_SLOTS_R1_Y);
-    this.Move(this.CHAR_SLOT_FIDGET_3, this.SHOP_SLOTS_C3_X, this.SHOP_SLOTS_R1_Y);
-    this.Move(this.CHAR_SLOT_FIDGET_4, this.SHOP_SLOTS_C1_X, this.SHOP_SLOTS_R2_Y);
-    this.Move(this.CHAR_SLOT_FIDGET_5, this.SHOP_SLOTS_C2_X, this.SHOP_SLOTS_R2_Y);
-    this.Move(this.CHAR_SLOT_FIDGET_6, this.SHOP_SLOTS_C3_X, this.SHOP_SLOTS_R2_Y);
-    this.Move(this.CHAR_SLOT_SHAKES_1, this.SHOP_SLOTS_C1_X, this.SHOP_SLOTS_R1_Y);
-    this.Move(this.CHAR_SLOT_SHAKES_2, this.SHOP_SLOTS_C2_X, this.SHOP_SLOTS_R1_Y);
-    this.Move(this.CHAR_SLOT_SHAKES_3, this.SHOP_SLOTS_C3_X, this.SHOP_SLOTS_R1_Y);
-    this.Move(this.CHAR_SLOT_SHAKES_4, this.SHOP_SLOTS_C1_X, this.SHOP_SLOTS_R2_Y);
-    this.Move(this.CHAR_SLOT_SHAKES_5, this.SHOP_SLOTS_C2_X, this.SHOP_SLOTS_R2_Y);
-    this.Move(this.CHAR_SLOT_SHAKES_6, this.SHOP_SLOTS_C3_X, this.SHOP_SLOTS_R2_Y);
+    Move(CHAR_SLOT_1, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_TOP_Y);
+    Move(CHAR_SLOT_2, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW2_Y);
+    Move(CHAR_SLOT_3, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW3_Y);
+    Move(CHAR_SLOT_4, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW4_Y);
+    Move(CHAR_SLOT_5, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_TOP_Y);
+    Move(CHAR_SLOT_6, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW2_Y);
+    Move(CHAR_SLOT_7, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW3_Y);
+    Move(CHAR_SLOT_8, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW4_Y);
+    Move(CHAR_SLOT_9, CHAR_SLOTS_R4C2_X, CHAR_SLOTS_ROW4_Y);
+    Move(CHAR_SLOT_10, CHAR_SLOTS_R4C3_X, CHAR_SLOTS_ROW4_Y);
+    Move(CHAR_SLOT_11, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW5_Y);
+    Move(CHAR_SLOT_12, CHAR_SLOTS_R5C2_X, CHAR_SLOTS_ROW5_Y);
+    Move(CHAR_SLOT_13, CHAR_SLOTS_R5C3_X, CHAR_SLOTS_ROW5_Y);
+    Move(CHAR_SLOT_14, CHAR_SLOTS_R5C4_X, CHAR_SLOTS_ROW5_Y);
+    Move(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
+    Move(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
+    Move(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
+    Move(CHAR_SLOT_FIDGET_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
+    Move(CHAR_SLOT_FIDGET_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
+    Move(CHAR_SLOT_FIDGET_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
+    Move(CHAR_SLOT_FIDGET_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
+    Move(CHAR_SLOT_SHAKES_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
+    Move(CHAR_SLOT_SHAKES_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
+    Move(CHAR_SLOT_SHAKES_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
+    Move(CHAR_SLOT_SHAKES_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
+    Move(CHAR_SLOT_SHAKES_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
+    Move(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
     tmpItmClass = 0;
     tmpItmPic = 0;
-    tmpItmPic = int(SG[((((towerMode) ? (copyCatId + this.CPC_ITEMS) : this.SG_INVENTORY_OFFS) + (8 * this.SG_ITM_SIZE)) + this.SG_ITM_PIC)]);
+    tmpItmPic = int(SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (8 * SG_ITM_SIZE)) + SG_ITM_PIC)]);
     tmpItmClass = 0;
     while (tmpItmPic >= 1000) {
         tmpItmPic = (tmpItmPic - 1000);
@@ -24554,27 +24554,27 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     i = 0;
     while (i < 15) {
         if ((((i < 10)) or (!(towerMode)))){
-            if (int(SG[((((towerMode) ? (copyCatId + this.CPC_ITEMS) : this.SG_INVENTORY_OFFS) + (i * this.SG_ITM_SIZE)) + this.SG_ITM_TYP)]) == 0){
-                SG[((((towerMode) ? (copyCatId + this.CPC_ITEMS) : this.SG_INVENTORY_OFFS) + (i * this.SG_ITM_SIZE)) + this.SG_ITM_PIC)] = 0;
+            if (int(SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (i * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0){
+                SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (i * SG_ITM_SIZE)) + SG_ITM_PIC)] = 0;
             };
         };
         if ((((i > 9)) and (HideBackPack))){
-            this.SetCnt((this.CHAR_SLOT_1 + i), this.C_EMPTY);
-            this.EnablePopup((this.CHAR_SLOT_1 + i));
+            SetCnt((CHAR_SLOT_1 + i), C_EMPTY);
+            EnablePopup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
-                this.SetCnt((this.CHAR_SLOT_1 + i), this.GetArrowID(((towerMode) ? (copyCatId + this.CPC_ITEMS) : this.SG_INVENTORY_OFFS), 8, SG, true, ((tmpItmClass)==1) ? 1 : -1));
-                this.actor[(this.CHAR_SLOT_1 + i)].mouseEnabled = false;
+                SetCnt((CHAR_SLOT_1 + i), GetArrowID(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, true, ((tmpItmClass)==1) ? 1 : -1));
+                actor[(CHAR_SLOT_1 + i)].mouseEnabled = false;
             } else {
-                this.SetCnt((this.CHAR_SLOT_1 + i), this.GetItemID(((towerMode) ? (((i > 9)) ? this.TSG_LOOT_SACK : (copyCatId + this.CPC_ITEMS)) : this.SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9)))) ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1 : (-(this.copyCatSel) - 3)) : -2)));
-                this.ItemPopup((this.CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9)) ? this.TSG_LOOT_SACK : (copyCatId + this.CPC_ITEMS)) : this.SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * this.SG_ITM_SIZE)), SG, HideBackPack, NoPrices, towerMode, witchMode);
-                this.actor[(this.CHAR_SLOT_1 + i)].mouseEnabled = !((int(SG[((((towerMode) ? (((i > 9)) ? this.TSG_LOOT_SACK : (copyCatId + this.CPC_ITEMS)) : this.SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * this.SG_ITM_SIZE)) + this.SG_ITM_TYP)]) == 0));
+                SetCnt((CHAR_SLOT_1 + i), GetItemID(((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9)))) ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1 : (-(copyCatSel) - 3)) : -2)));
+                ItemPopup((CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG_ITM_SIZE)), SG, HideBackPack, NoPrices, towerMode, witchMode);
+                actor[(CHAR_SLOT_1 + i)].mouseEnabled = !((int(SG[((((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0));
             };
         };
         if (HideBackPack){
-            this.dragDropProhibit = true;
+            dragDropProhibit = true;
         } else {
-            this.dragDropProhibit = false;
+            dragDropProhibit = false;
         };
         i = (i + 1);
     };
@@ -24588,41 +24588,41 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
         hasEpic = false;
         i = 0;
         while (i < 6) {
-            if (int(SG[((this.SG_FIDGET_ITEM1 + (i * this.SG_ITM_SIZE)) + this.SG_ITM_TYP)]) == 0){
-                SG[((this.SG_FIDGET_ITEM1 + (i * this.SG_ITM_SIZE)) + this.SG_ITM_PIC)] = 0;
+            if (int(SG[((SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0){
+                SG[((SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)] = 0;
             };
-            this.SetCnt((this.CHAR_SLOT_FIDGET_1 + i), this.GetItemID(this.SG_FIDGET_ITEM1, i, SG));
-            this.ItemPopup((this.CHAR_SLOT_FIDGET_1 + i), (this.SG_FIDGET_ITEM1 + (i * this.SG_ITM_SIZE)), SG, HideBackPack);
-            if (((IsEpic(SG[((this.SG_FIDGET_ITEM1 + (i * this.SG_ITM_SIZE)) + this.SG_ITM_PIC)])) and (this.OnStage(this.SCR_FIDGET_BG)))){
+            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG));
+            ItemPopup((CHAR_SLOT_FIDGET_1 + i), (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)), SG, HideBackPack);
+            if (((IsEpic(SG[((SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)])) and (OnStage(SCR_FIDGET_BG)))){
                 hasEpic = true;
             };
-            if (int(SG[((this.SG_SHAKES_ITEM1 + (i * this.SG_ITM_SIZE)) + this.SG_ITM_TYP)]) == 0){
-                SG[((this.SG_SHAKES_ITEM1 + (i * this.SG_ITM_SIZE)) + this.SG_ITM_PIC)] = 0;
+            if (int(SG[((SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0){
+                SG[((SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)] = 0;
             };
-            this.SetCnt((this.CHAR_SLOT_SHAKES_1 + i), this.GetItemID(this.SG_SHAKES_ITEM1, i, SG));
-            this.ItemPopup((this.CHAR_SLOT_SHAKES_1 + i), (this.SG_SHAKES_ITEM1 + (i * this.SG_ITM_SIZE)), SG, HideBackPack);
-            if (((IsEpic(SG[((this.SG_SHAKES_ITEM1 + (i * this.SG_ITM_SIZE)) + this.SG_ITM_PIC)])) and (this.OnStage(this.SCR_SHAKES_BG)))){
+            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG));
+            ItemPopup((CHAR_SLOT_SHAKES_1 + i), (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)), SG, HideBackPack);
+            if (((IsEpic(SG[((SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)])) and (OnStage(SCR_SHAKES_BG)))){
                 hasEpic = true;
             };
             i = (i + 1);
         };
         if (!hasEpic){
-            this.BlockReroll = false;
+            BlockReroll = false;
         } else {
-            if (this.RollFrenzy.running){
-                this.ErrorMessage("Yay!");
-                this.Play(this.SND_JINGLE);
-                this.RollFrenzy.stop();
+            if (RollFrenzy.running){
+                ErrorMessage("Yay!");
+                Play(SND_JINGLE);
+                RollFrenzy.stop();
             };
         };
-        if (this.textDir == "right"){
-            this.actor[this.LBL_CHAR_RUESTUNG].text = ((SG[this.SG_ARMOR] + " :") + this.txt[this.TXT_RUESTUNG_SUM]);
+        if (textDir == "right"){
+            actor[LBL_CHAR_RUESTUNG].text = ((SG[SG_ARMOR] + " :") + txt[TXT_RUESTUNG_SUM]);
         } else {
-            this.actor[this.LBL_CHAR_RUESTUNG].text = ((this.txt[this.TXT_RUESTUNG_SUM] + ": ") + SG[this.SG_ARMOR]);
+            actor[LBL_CHAR_RUESTUNG].text = ((txt[TXT_RUESTUNG_SUM] + ": ") + SG[SG_ARMOR]);
         };
-        DamageReduction = int((Number(SG[this.SG_ARMOR]) / Number(SG[this.SG_LEVEL])));
+        DamageReduction = int((Number(SG[SG_ARMOR]) / Number(SG[SG_LEVEL])));
         DamageReductionMax = 50;
-        switch (int(SG[this.SG_CLASS])){
+        switch (int(SG[SG_CLASS])){
             case 2:
                 DamageReductionMax = 10;
                 break;
@@ -24634,17 +24634,17 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             DamageReduction = DamageReductionMax;
         };
         popupLines = new Array();
-        popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_RUESTUNG_SUM], this.POPUP_END_LINE];
-        if (this.textDir == "right"){
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, ((((((((("(" + this.txt[this.TXT_MAX]) + " -") + String(DamageReductionMax)) + "%) ") + String(DamageReduction)) + "% :") + SG[this.SG_LEVEL]) + " ") + this.txt[this.TXT_RUESTUNG_SUM_HINT]), this.POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_RUESTUNG_SUM], POPUP_END_LINE];
+        if (textDir == "right"){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, ((((((((("(" + txt[TXT_MAX]) + " -") + String(DamageReductionMax)) + "%) ") + String(DamageReduction)) + "% :") + SG[SG_LEVEL]) + " ") + txt[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, (((((((((this.txt[this.TXT_RUESTUNG_SUM_HINT] + " ") + SG[this.SG_LEVEL]) + ": -") + String(DamageReduction)) + "% (") + this.txt[this.TXT_MAX]) + " -") + String(DamageReductionMax)) + "%)"), this.POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((((txt[TXT_RUESTUNG_SUM_HINT] + " ") + SG[SG_LEVEL]) + ": -") + String(DamageReduction)) + "% (") + txt[TXT_MAX]) + " -") + String(DamageReductionMax)) + "%)"), POPUP_END_LINE];
         };
-        if (this.txt[this.TXT_SHIELD_FORMULA]){
-            popupLines[popupLines.length] = [this.POPUP_BEGIN_LINE, this.FontFormat_Attrib, this.txt[this.TXT_SHIELD_FORMULA], this.POPUP_END_LINE];
+        if (txt[TXT_SHIELD_FORMULA]){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
-        this.EnablePopup(this.LBL_CHAR_RUESTUNG, popupLines);
-        this.EnablePopup(this.CHAR_RUESTUNG, popupLines);
+        EnablePopup(LBL_CHAR_RUESTUNG, popupLines);
+        EnablePopup(CHAR_RUESTUNG, popupLines);
     };
 }
 
@@ -24674,18 +24674,18 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
     var itmName:String;
     var itmQuote:String;
     var quoteArray:Array;
-    towerMode = this.OnStage(this.PREV_COPYCAT);
+    towerMode = OnStage(PREV_COPYCAT);
     attribLines = new Array();
     shopLines = new Array();
     if (!(SG is Array)){
-        SG = this.Savegame;
+        SG = Savegame;
     };
-    if (SG[(sgIndex + this.SG_ITM_TYP)] > 0){
+    if (SG[(sgIndex + SG_ITM_TYP)] > 0){
         ii = 0;
         iii = 0;
-        goldRaw = SG[(sgIndex + this.SG_ITM_GOLD)];
+        goldRaw = SG[(sgIndex + SG_ITM_GOLD)];
         if (witchMode){
-            if (SG[(sgIndex + this.SG_ITM_TYP)] == this.witchDesiredType){
+            if (SG[(sgIndex + SG_ITM_TYP)] == witchDesiredType){
                 goldRaw = (goldRaw * 2);
             } else {
                 goldRaw = 0;
@@ -24693,46 +24693,46 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
         };
         gold = int((goldRaw / 100));
         silber = int((goldRaw % 100));
-        pilze = int((SG[(sgIndex + this.SG_ITM_MUSH)] % 100));
+        pilze = int((SG[(sgIndex + SG_ITM_MUSH)] % 100));
         compareIndex = 0;
         compareFound = false;
         lossFound = false;
-        socket = int(SG[(sgIndex + this.SG_ITM_EXT_SOCKET)]);
-        socketPower = int(SG[(sgIndex + this.SG_ITM_EXT_SOCKET_POWER)]);
-        enchant = int(SG[(sgIndex + this.SG_ITM_EXT_ENCHANT)]);
-        enchantPower = int(SG[(sgIndex + this.SG_ITM_EXT_ENCHANT_POWER)]);
+        socket = int(SG[(sgIndex + SG_ITM_EXT_SOCKET)]);
+        socketPower = int(SG[(sgIndex + SG_ITM_EXT_SOCKET_POWER)]);
+        enchant = int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)]);
+        enchantPower = int(SG[(sgIndex + SG_ITM_EXT_ENCHANT_POWER)]);
         if (((!(HideBackPack)) and (!(NoPrices)))){
-            shopLines[shopLines.length] = this.FontFormat_Popup;
+            shopLines[shopLines.length] = FontFormat_Popup;
             if (gold > 0){
                 if (silber > 0){
-                    shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, String(gold), this.actor[this.IF_GOLD], String(silber), this.actor[this.IF_SILBER], this.POPUP_END_LINE];
+                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, String(gold), actor[IF_GOLD], String(silber), actor[IF_SILBER], POPUP_END_LINE];
                 } else {
-                    shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, String(gold), this.actor[this.IF_GOLD], this.POPUP_END_LINE];
+                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, String(gold), actor[IF_GOLD], POPUP_END_LINE];
                 };
             } else {
                 if (silber > 0){
-                    shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, String(silber), this.actor[this.IF_SILBER], this.POPUP_END_LINE];
+                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, String(silber), actor[IF_SILBER], POPUP_END_LINE];
                 };
             };
             if (pilze > 0){
-                shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, String(pilze), this.actor[this.IF_PILZE], this.POPUP_END_LINE];
+                shopLines[shopLines.length] = [POPUP_BEGIN_LINE, String(pilze), actor[IF_PILZE], POPUP_END_LINE];
             };
             if (witchMode){
-                if (SG[(sgIndex + this.SG_ITM_TYP)] != this.witchDesiredType){
-                    shopLines.push([this.POPUP_BEGIN_LINE, this.txt[this.TXT_WITCH_WRONGTYPE], this.POPUP_END_LINE]);
+                if (SG[(sgIndex + SG_ITM_TYP)] != witchDesiredType){
+                    shopLines.push([POPUP_BEGIN_LINE, txt[TXT_WITCH_WRONGTYPE], POPUP_END_LINE]);
                 };
             } else {
-                if ((((((pilze + gold) + silber) == 0)) and ((SG[(sgIndex + this.SG_ITM_TYP)] <= 10)))){
-                    shopLines.push([this.POPUP_BEGIN_LINE, this.txt[this.TXT_TOILET_ITEM], this.POPUP_END_LINE]);
+                if ((((((pilze + gold) + silber) == 0)) and ((SG[(sgIndex + SG_ITM_TYP)] <= 10)))){
+                    shopLines.push([POPUP_BEGIN_LINE, txt[TXT_TOILET_ITEM], POPUP_END_LINE]);
                 };
             };
         };
         itmColor = 0;
         itmClass = 0;
-        itmPic = int(SG[(sgIndex + this.SG_ITM_PIC)]);
+        itmPic = int(SG[(sgIndex + SG_ITM_PIC)]);
         i = 0;
         while (i < 8) {
-            itmColor = (itmColor + Number(SG[((sgIndex + this.SG_ITM_SCHADEN_MIN) + i)]));
+            itmColor = (itmColor + Number(SG[((sgIndex + SG_ITM_SCHADEN_MIN) + i)]));
             i++;
         };
         itmColor = (itmColor % 5);
@@ -24740,26 +24740,26 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
             itmPic = (itmPic - 1000);
             itmClass++;
         };
-        if (this.C_DISPLAY_ITEM_INFO){
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, this.actorURL[this.GetItemID(sgIndex, 0, SG)], this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "Typ: ", this.POPUP_TAB, String(SG[(sgIndex + this.SG_ITM_TYP)]), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "Pic: ", this.POPUP_TAB, String(itmPic), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "Color: ", this.POPUP_TAB, String((itmColor + 1)), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "Class: ", this.POPUP_TAB, String((itmClass + 1)), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "Sock: ", this.POPUP_TAB, String(socket), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "SockPwr: ", this.POPUP_TAB, String(socketPower), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "Enchant: ", this.POPUP_TAB, String(enchant), this.POPUP_END_LINE];
-            shopLines[shopLines.length] = [this.POPUP_BEGIN_LINE, "EnchantPwr: ", this.POPUP_TAB, String(enchantPower), this.POPUP_END_LINE];
+        if (C_DISPLAY_ITEM_INFO){
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, actorURL[GetItemID(sgIndex, 0, SG)], POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Typ: ", POPUP_TAB, String(SG[(sgIndex + SG_ITM_TYP)]), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Pic: ", POPUP_TAB, String(itmPic), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Color: ", POPUP_TAB, String((itmColor + 1)), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Class: ", POPUP_TAB, String((itmClass + 1)), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Sock: ", POPUP_TAB, String(socket), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "SockPwr: ", POPUP_TAB, String(socketPower), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Enchant: ", POPUP_TAB, String(enchant), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "EnchantPwr: ", POPUP_TAB, String(enchantPower), POPUP_END_LINE];
         };
         i = 0;
         while (i < 10) {
-            this.suggestionSlot[slotID] = 0;
-            if (int(SG[(sgIndex + this.SG_ITM_TYP)]) == this.CorrectItemType[i]){
-                if ((((slotID >= this.CHAR_SLOT_11)) and ((slotID <= this.CHAR_SLOT_SHAKES_6)))){
-                    this.suggestionSlot[slotID] = (i + this.CHAR_SLOT_1);
-                    if (SG[((this.SG_INVENTORY_OFFS + (this.SG_ITM_SIZE * i)) + this.SG_ITM_TYP)] > 0){
-                        if (((this.compareItems) and (!(towerMode)))){
-                            compareIndex = (this.SG_INVENTORY_OFFS + (this.SG_ITM_SIZE * i));
+            suggestionSlot[slotID] = 0;
+            if (int(SG[(sgIndex + SG_ITM_TYP)]) == CorrectItemType[i]){
+                if ((((slotID >= CHAR_SLOT_11)) and ((slotID <= CHAR_SLOT_SHAKES_6)))){
+                    suggestionSlot[slotID] = (i + CHAR_SLOT_1);
+                    if (SG[((SG_INVENTORY_OFFS + (SG_ITM_SIZE * i)) + SG_ITM_TYP)] > 0){
+                        if (((compareItems) and (!(towerMode)))){
+                            compareIndex = (SG_INVENTORY_OFFS + (SG_ITM_SIZE * i));
                         };
                     };
                 };
@@ -24770,68 +24770,68 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
         attribSum = 0;
         i = 0;
         while (i < 3) {
-            if ((((int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)]) > 0)) and ((int(SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+            if ((((int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0)) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
                 var _temp1 = ii;
                 ii = (ii + 1);
                 var _local33 = _temp1;
-                attribLines[_local33] = this.POPUP_BEGIN_LINE;
-                if (int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)]) <= 6){
+                attribLines[_local33] = POPUP_BEGIN_LINE;
+                if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) <= 6){
                     var _temp2 = ii;
                     ii = (ii + 1);
                     var _local34 = _temp2;
-                    attribLines[_local34] = this.FontFormat_Popup;
+                    attribLines[_local34] = FontFormat_Popup;
                 } else {
                     var _temp3 = ii;
                     ii = (ii + 1);
                     _local34 = _temp3;
-                    attribLines[_local34] = this.FontFormat_Popup;
+                    attribLines[_local34] = FontFormat_Popup;
                 };
                 var _temp4 = ii;
                 ii = (ii + 1);
                 _local34 = _temp4;
-                attribLines[_local34] = this.txt[(this.TXT_ITEM_ATTRIB_CLASSES + int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)]))];
+                attribLines[_local34] = txt[(TXT_ITEM_ATTRIB_CLASSES + int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))];
                 var _temp5 = ii;
                 ii = (ii + 1);
                 var _local35 = _temp5;
-                attribLines[_local35] = (this.POPUP_TAB + this.POPUP_TAB_ADD);
-                if (int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)]) == 11){
-                    hours = int(SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]);
+                attribLines[_local35] = (POPUP_TAB + POPUP_TAB_ADD);
+                if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) == 11){
+                    hours = int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]);
                     var _temp6 = ii;
                     ii = (ii + 1);
                     var _local36 = _temp6;
-                    attribLines[_local36] = (((int((hours / 24)))>0) ? (((String(int((hours / 24))) + " ") + this.txt[(((int((hours / 24)) == 1)) ? this.TXT_DAY : this.TXT_DAYS)]) + ((((hours % 24) > 0)) ? ", " : "")) : "" + ((((hours % 24) > 0)) ? ((String((hours % 24)) + " ") + this.txt[((((hours % 24) == 1)) ? this.TXT_HOUR : this.TXT_HOURS)]) : ""));
+                    attribLines[_local36] = (((int((hours / 24)))>0) ? (((String(int((hours / 24))) + " ") + txt[(((int((hours / 24)) == 1)) ? TXT_DAY : TXT_DAYS)]) + ((((hours % 24) > 0)) ? ", " : "")) : "" + ((((hours % 24) > 0)) ? ((String((hours % 24)) + " ") + txt[((((hours % 24) == 1)) ? TXT_HOUR : TXT_HOURS)]) : ""));
                 } else {
-                    if (int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)]) == 12){
+                    if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) == 12){
                         var _temp7 = ii;
                         ii = (ii + 1);
                         _local36 = _temp7;
-                        attribLines[_local36] = this.POPUP_TAB;
+                        attribLines[_local36] = POPUP_TAB;
                         var _temp8 = ii;
                         ii = (ii + 1);
                         var _local37 = _temp8;
-                        attribLines[_local37] = (("+ " + SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]) + "%");
+                        attribLines[_local37] = (("+ " + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) + "%");
                     } else {
-                        if (SG[(sgIndex + this.SG_ITM_TYP)] == 12){
+                        if (SG[(sgIndex + SG_ITM_TYP)] == 12){
                             var _temp9 = ii;
                             ii = (ii + 1);
                             _local36 = _temp9;
-                            attribLines[_local36] = this.POPUP_TAB;
-                            if (SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)] <= 25){
+                            attribLines[_local36] = POPUP_TAB;
+                            if (SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)] <= 25){
                                 var _temp10 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp10;
-                                attribLines[_local37] = (("+ " + SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]) + "%");
+                                attribLines[_local37] = (("+ " + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) + "%");
                             } else {
                                 var _temp11 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp11;
-                                attribLines[_local37] = ("+ " + SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]);
+                                attribLines[_local37] = ("+ " + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]);
                             };
                         } else {
                             var _temp12 = ii;
                             ii = (ii + 1);
                             _local36 = _temp12;
-                            attribLines[_local36] = SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)];
+                            attribLines[_local36] = SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)];
                         };
                     };
                 };
@@ -24839,20 +24839,20 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                     compareFound = false;
                     iii = 0;
                     while (iii < 3) {
-                        if ((((((int(SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + iii)]) == int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)]))) and ((int(SG[((compareIndex + this.SG_ITM_ATTRIBVAL1) + iii)]) > 0)))) and ((int(SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
-                            compareVal = (int(SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)]) - int(SG[((compareIndex + this.SG_ITM_ATTRIBVAL1) + iii)]));
-                            if (int(SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + iii)]) == 6){
+                        if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + iii)]) == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + iii)]) > 0)))) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+                            compareVal = (int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) - int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + iii)]));
+                            if (int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + iii)]) == 6){
                                 compareVal = (compareVal * 5);
                             };
                             attribSum = (attribSum + compareVal);
                             var _temp13 = ii;
                             ii = (ii + 1);
                             _local36 = _temp13;
-                            attribLines[_local36] = (((compareVal == 0)) ? this.FontFormat_Popup : (((compareVal > 0)) ? this.FontFormat_PopupCompareBetter : this.FontFormat_PopupCompareWorse));
+                            attribLines[_local36] = (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse));
                             var _temp14 = ii;
                             ii = (ii + 1);
                             _local37 = _temp14;
-                            attribLines[_local37] = this.COMPARE_TAB;
+                            attribLines[_local37] = COMPARE_TAB;
                             var _temp15 = ii;
                             ii = (ii + 1);
                             var _local38 = _temp15;
@@ -24864,7 +24864,7 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                             var _temp17 = ii;
                             ii = (ii + 1);
                             var _local40 = _temp17;
-                            attribLines[_local40] = this.FontFormat_Popup;
+                            attribLines[_local40] = FontFormat_Popup;
                             compareFound = true;
                             break;
                         };
@@ -24874,11 +24874,11 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                         var _temp18 = ii;
                         ii = (ii + 1);
                         _local36 = _temp18;
-                        attribLines[_local36] = this.FontFormat_PopupCompareBetter;
+                        attribLines[_local36] = FontFormat_PopupCompareBetter;
                         var _temp19 = ii;
                         ii = (ii + 1);
                         _local37 = _temp19;
-                        attribLines[_local37] = this.COMPARE_TAB;
+                        attribLines[_local37] = COMPARE_TAB;
                         var _temp20 = ii;
                         ii = (ii + 1);
                         _local38 = _temp20;
@@ -24886,24 +24886,24 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                         var _temp21 = ii;
                         ii = (ii + 1);
                         _local39 = _temp21;
-                        attribLines[_local39] = String((SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                        attribLines[_local39] = String((SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
                         var _temp22 = ii;
                         ii = (ii + 1);
                         _local40 = _temp22;
-                        attribLines[_local40] = this.FontFormat_Popup;
-                        attribSum = (attribSum + (SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                        attribLines[_local40] = FontFormat_Popup;
+                        attribSum = (attribSum + (SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
                     };
                 };
                 var _temp23 = ii;
                 ii = (ii + 1);
                 _local36 = _temp23;
-                attribLines[_local36] = this.POPUP_END_LINE;
+                attribLines[_local36] = POPUP_END_LINE;
             };
-            if ((((((compareIndex > 0)) and ((int(SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + i)]) > 0)))) and ((int(SG[((compareIndex + this.SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+            if ((((((compareIndex > 0)) and ((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0)))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
                 lossFound = false;
                 iii = 0;
                 while (iii < 3) {
-                    if ((((((int(SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + i)]) == int(SG[((sgIndex + this.SG_ITM_ATTRIBTYP1) + iii)]))) and ((int(SG[((compareIndex + this.SG_ITM_ATTRIBVAL1) + i)]) > 0)))) and ((int(SG[((sgIndex + this.SG_ITM_ATTRIBVAL1) + iii)]) > 0)))){
+                    if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]) == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + iii)]))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + iii)]) > 0)))){
                         lossFound = true;
                         break;
                     };
@@ -24913,15 +24913,15 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                     var _temp24 = ii;
                     ii = (ii + 1);
                     _local33 = _temp24;
-                    attribLines[_local33] = this.POPUP_BEGIN_LINE;
+                    attribLines[_local33] = POPUP_BEGIN_LINE;
                     var _temp25 = ii;
                     ii = (ii + 1);
                     _local34 = _temp25;
-                    attribLines[_local34] = this.txt[(this.TXT_ITEM_ATTRIB_CLASSES + int(SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + i)]))];
+                    attribLines[_local34] = txt[(TXT_ITEM_ATTRIB_CLASSES + int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]))];
                     var _temp26 = ii;
                     ii = (ii + 1);
                     _local35 = _temp26;
-                    attribLines[_local35] = (this.POPUP_TAB + this.POPUP_TAB_ADD);
+                    attribLines[_local35] = (POPUP_TAB + POPUP_TAB_ADD);
                     var _temp27 = ii;
                     ii = (ii + 1);
                     _local36 = _temp27;
@@ -24929,11 +24929,11 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                     var _temp28 = ii;
                     ii = (ii + 1);
                     _local37 = _temp28;
-                    attribLines[_local37] = this.FontFormat_PopupCompareWorse;
+                    attribLines[_local37] = FontFormat_PopupCompareWorse;
                     var _temp29 = ii;
                     ii = (ii + 1);
                     _local38 = _temp29;
-                    attribLines[_local38] = this.COMPARE_TAB;
+                    attribLines[_local38] = COMPARE_TAB;
                     var _temp30 = ii;
                     ii = (ii + 1);
                     _local39 = _temp30;
@@ -24941,96 +24941,96 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                     var _temp31 = ii;
                     ii = (ii + 1);
                     _local40 = _temp31;
-                    attribLines[_local40] = String((SG[((compareIndex + this.SG_ITM_ATTRIBVAL1) + i)] * (((SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                    attribLines[_local40] = String((SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
                     var _temp32 = ii;
                     ii = (ii + 1);
                     var _local41 = _temp32;
-                    attribLines[_local41] = this.FontFormat_Popup;
+                    attribLines[_local41] = FontFormat_Popup;
                     var _temp33 = ii;
                     ii = (ii + 1);
                     var _local42 = _temp33;
-                    attribLines[_local42] = this.POPUP_END_LINE;
-                    attribSum = (attribSum - (SG[((compareIndex + this.SG_ITM_ATTRIBVAL1) + i)] * (((SG[((compareIndex + this.SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                    attribLines[_local42] = POPUP_END_LINE;
+                    attribSum = (attribSum - (SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
                 };
             };
             i++;
         };
-        itmName = this.GetItemName(sgIndex, SG);
+        itmName = GetItemName(sgIndex, SG);
         itmQuote = "";
         quoteArray = new Array();
         if (itmName.indexOf("|") > 0){
             itmQuote = itmName.split("|")[1];
             itmName = itmName.split("|")[0];
-            quoteArray[0] = this.POPUP_BEGIN_LINE;
-            quoteArray[1] = ((SG[(sgIndex + this.SG_ITM_TYP)])==14) ? this.FontFormat_ItemEnchantment : this.FontFormat_EpicItemQuote;
+            quoteArray[0] = POPUP_BEGIN_LINE;
+            quoteArray[1] = ((SG[(sgIndex + SG_ITM_TYP)])==14) ? FontFormat_ItemEnchantment : FontFormat_EpicItemQuote;
             quoteArray[2] = itmQuote;
-            quoteArray[3] = this.FontFormat_Popup;
-            quoteArray[4] = this.POPUP_END_LINE;
+            quoteArray[3] = FontFormat_Popup;
+            quoteArray[4] = POPUP_END_LINE;
         };
-        if (SG[(sgIndex + this.SG_ITM_TYP)] < 8){
-            if ((itmClass + 1) != ((towerMode) ? (this.copyCatSel + 1) : this.Savegame[this.SG_CLASS])){
-                quoteArray.push(this.POPUP_BEGIN_LINE);
-                quoteArray.push(this.FontFormat_Error);
-                quoteArray.push(this.txt[this.TXT_NECESSARY_CLASS].split("%1").join(this.txt[((this.TXT_NECESSARY_CLASS + itmClass) + 1)]));
-                quoteArray.push(this.FontFormat_Popup);
-                quoteArray.push(this.POPUP_END_LINE);
+        if (SG[(sgIndex + SG_ITM_TYP)] < 8){
+            if ((itmClass + 1) != ((towerMode) ? (copyCatSel + 1) : Savegame[SG_CLASS])){
+                quoteArray.push(POPUP_BEGIN_LINE);
+                quoteArray.push(FontFormat_Error);
+                quoteArray.push(txt[TXT_NECESSARY_CLASS].split("%1").join(txt[((TXT_NECESSARY_CLASS + itmClass) + 1)]));
+                quoteArray.push(FontFormat_Popup);
+                quoteArray.push(POPUP_END_LINE);
             };
         };
-        if (SG[(sgIndex + this.SG_ITM_EXT_ENCHANT)] > 0){
-            if (SG[(sgIndex + this.SG_ITM_TYP)] == 14){
-                itmName = this.txt[this.TXT_SCROLL_NAME].split("%1").join(itmName);
+        if (SG[(sgIndex + SG_ITM_EXT_ENCHANT)] > 0){
+            if (SG[(sgIndex + SG_ITM_TYP)] == 14){
+                itmName = txt[TXT_SCROLL_NAME].split("%1").join(itmName);
             } else {
-                quoteArray.push(this.POPUP_BEGIN_LINE);
-                quoteArray.push(this.FontFormat_ItemEnchantment);
-                quoteArray.push(this.txt[this.TXT_ENCHANT_HINT]);
-                quoteArray.push((this.POPUP_TAB + this.POPUP_TAB_ADD));
-                quoteArray.push(this.txt[((this.TXT_ITMNAME_14 + int(SG[(sgIndex + this.SG_ITM_EXT_ENCHANT)])) - 1)].split("|")[0]);
-                quoteArray.push(this.FontFormat_Popup);
-                quoteArray.push(this.POPUP_END_LINE);
+                quoteArray.push(POPUP_BEGIN_LINE);
+                quoteArray.push(FontFormat_ItemEnchantment);
+                quoteArray.push(txt[TXT_ENCHANT_HINT]);
+                quoteArray.push((POPUP_TAB + POPUP_TAB_ADD));
+                quoteArray.push(txt[((TXT_ITMNAME_14 + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)].split("|")[0]);
+                quoteArray.push(FontFormat_Popup);
+                quoteArray.push(POPUP_END_LINE);
             };
-            quoteArray.push(this.POPUP_BEGIN_LINE);
-            quoteArray.push(this.FontFormat_ItemEnchantment);
-            quoteArray.push(this.txt[((this.TXT_ENCHANT_NAMES + int(SG[(sgIndex + this.SG_ITM_EXT_ENCHANT)])) - 1)]);
-            quoteArray.push((this.POPUP_TAB + this.POPUP_TAB_ADD));
-            quoteArray.push(this.txt[((this.TXT_ENCHANT_VALUES + int(SG[(sgIndex + this.SG_ITM_EXT_ENCHANT)])) - 1)].split("%1").join(String(SG[(sgIndex + this.SG_ITM_EXT_ENCHANT_POWER)])));
-            quoteArray.push(this.FontFormat_Popup);
-            quoteArray.push(this.POPUP_END_LINE);
+            quoteArray.push(POPUP_BEGIN_LINE);
+            quoteArray.push(FontFormat_ItemEnchantment);
+            quoteArray.push(txt[((TXT_ENCHANT_NAMES + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)]);
+            quoteArray.push((POPUP_TAB + POPUP_TAB_ADD));
+            quoteArray.push(txt[((TXT_ENCHANT_VALUES + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)].split("%1").join(String(SG[(sgIndex + SG_ITM_EXT_ENCHANT_POWER)])));
+            quoteArray.push(FontFormat_Popup);
+            quoteArray.push(POPUP_END_LINE);
         };
-        if (int(SG[(sgIndex + this.SG_ITM_TYP)]) == 1){
+        if (int(SG[(sgIndex + SG_ITM_TYP)]) == 1){
             if (compareIndex > 0){
-                compareVal = (Math.round(((Number(SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + this.SG_ITM_SCHADEN_MAX)])) / 2)) - Math.round(((Number(SG[(compareIndex + this.SG_ITM_SCHADEN_MIN)]) + Number(SG[(compareIndex + this.SG_ITM_SCHADEN_MAX)])) / 2)));
-                this.EnablePopup(slotID, itmName, quoteArray, this.POPUP_BEGIN_LINE, this.txt[this.TXT_SCHADEN], (this.POPUP_TAB + this.POPUP_TAB_ADD), ((SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + this.SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + this.SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? this.FontFormat_Popup : (((compareVal > 0)) ? this.FontFormat_PopupCompareBetter : this.FontFormat_PopupCompareWorse)), this.COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), this.FontFormat_Popup, this.POPUP_END_LINE, attribLines, shopLines);
+                compareVal = (Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)) - Math.round(((Number(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
+                EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
             } else {
-                this.EnablePopup(slotID, itmName, quoteArray, this.POPUP_BEGIN_LINE, this.txt[this.TXT_SCHADEN], (this.POPUP_TAB + this.POPUP_TAB_ADD), ((SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + this.SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + this.SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), this.POPUP_END_LINE, attribLines, shopLines);
+                EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), POPUP_END_LINE, attribLines, shopLines);
             };
         } else {
-            if (int(SG[(sgIndex + this.SG_ITM_TYP)]) == 2){
+            if (int(SG[(sgIndex + SG_ITM_TYP)]) == 2){
                 if (compareIndex > 0){
-                    compareVal = (int(SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + this.SG_ITM_SCHADEN_MIN)]));
-                    this.EnablePopup(slotID, itmName, quoteArray, this.POPUP_BEGIN_LINE, this.txt[this.TXT_BLOCKEN], (this.POPUP_TAB + this.POPUP_TAB_ADD), (SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)] + " %"), (((compareVal == 0)) ? this.FontFormat_Popup : (((compareVal > 0)) ? this.FontFormat_PopupCompareBetter : this.FontFormat_PopupCompareWorse)), this.COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), this.FontFormat_Popup, this.POPUP_END_LINE, attribLines, shopLines);
+                    compareVal = (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]));
+                    EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
                 } else {
-                    this.EnablePopup(slotID, itmName, quoteArray, this.POPUP_BEGIN_LINE, this.txt[this.TXT_BLOCKEN], (this.POPUP_TAB + this.POPUP_TAB_ADD), (SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)] + " %"), this.POPUP_END_LINE, attribLines, shopLines);
+                    EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), POPUP_END_LINE, attribLines, shopLines);
                 };
             } else {
-                if (int(SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)]) > 0){
+                if (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) > 0){
                     if (compareIndex > 0){
-                        compareVal = (int(SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + this.SG_ITM_SCHADEN_MIN)]));
-                        this.EnablePopup(slotID, itmName, quoteArray, this.POPUP_BEGIN_LINE, this.txt[this.TXT_RUESTUNG], (this.POPUP_TAB + this.POPUP_TAB_ADD), SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)], (((compareVal == 0)) ? this.FontFormat_Popup : (((compareVal > 0)) ? this.FontFormat_PopupCompareBetter : this.FontFormat_PopupCompareWorse)), this.COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), this.FontFormat_Popup, this.POPUP_END_LINE, attribLines, shopLines);
+                        compareVal = (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]));
+                        EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
                     } else {
-                        this.EnablePopup(slotID, itmName, quoteArray, this.POPUP_BEGIN_LINE, this.txt[this.TXT_RUESTUNG], (this.POPUP_TAB + this.POPUP_TAB_ADD), SG[(sgIndex + this.SG_ITM_SCHADEN_MIN)], this.POPUP_END_LINE, attribLines, shopLines);
+                        EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], POPUP_END_LINE, attribLines, shopLines);
                     };
                 } else {
-                    this.EnablePopup(slotID, itmName, quoteArray, attribLines, shopLines);
+                    EnablePopup(slotID, itmName, quoteArray, attribLines, shopLines);
                 };
             };
         };
     } else {
-        this.EnablePopup(slotID);
+        EnablePopup(slotID);
     };
 }
 
 public function getHlIndex(inStr:String):int{
-    return (int(this.DecodeChat(inStr, true)));
+    return (int(DecodeChat(inStr, true)));
 }
 
 public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Boolean=false):String{
@@ -25039,7 +25039,7 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
     var crestStr:String;
     var authorStr:String;
     var dateStr:String;
-    if (this.textDir == "right"){
+    if (textDir == "right"){
         if (inStr.indexOf("§") != -1){
             namePart = inStr.split("§")[0];
             if (namePart.substr(-1, 1) == ":"){
@@ -25057,94 +25057,94 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
         dateStr = inStr.substr(0, 5);
         authorStr = authorStr.substr(6);
         authorStr = authorStr.substr(0, (authorStr.length - 3));
-        inStr = ((dateStr + " ") + this.txt[this.TXT_CREST_SUGGESTION].split("%1").join(authorStr));
-        if (!this.crestSuggestion[inStr]){
-            this.newCrestSuggested = inStr;
+        inStr = ((dateStr + " ") + txt[TXT_CREST_SUGGESTION].split("%1").join(authorStr));
+        if (!crestSuggestion[inStr]){
+            newCrestSuggested = inStr;
         };
-        this.crestSuggestion[inStr] = crestStr;
+        crestSuggestion[inStr] = crestStr;
     };
     inStr = inStr.split("#{").join("/");
     inStr = inStr.split("#}").join(";");
     inStr = inStr.split("##").join("#");
     inStr = inStr.split("%u20AC").join("€");
     if (inStr.substr(0, 1) == "#"){
-        if (this.textDir == "right"){
+        if (textDir == "right"){
             if (inStr.substr(0, 4) == "#dg#"){
-                inStr = ((((((((this.txt[this.TXT_DONATE_GOLD_2] + " ") + String((Number(inStr.split("#")[3]) / 100))) + " ") + this.txt[this.TXT_DONATE_GOLD_1]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                inStr = ((((((((txt[TXT_DONATE_GOLD_2] + " ") + String((Number(inStr.split("#")[3]) / 100))) + " ") + txt[TXT_DONATE_GOLD_1]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
             } else {
                 if (inStr.substr(0, 4) == "#dm#"){
-                    inStr = ((((((((this.txt[this.TXT_DONATE_MUSH_2] + " ") + inStr.split("#")[3]) + " ") + this.txt[this.TXT_DONATE_MUSH_1]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                    inStr = ((((((((txt[TXT_DONATE_MUSH_2] + " ") + inStr.split("#")[3]) + " ") + txt[TXT_DONATE_MUSH_1]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
                 } else {
                     if (inStr.substr(0, 4) == "#sr#"){
-                        if (this.txt[this.TXT_SERVER_STARTED]){
-                            inStr = this.txt[this.TXT_SERVER_STARTED].split("%1").join(this.TimeStr(int(inStr.split("#")[2])));
+                        if (txt[TXT_SERVER_STARTED]){
+                            inStr = txt[TXT_SERVER_STARTED].split("%1").join(TimeStr(int(inStr.split("#")[2])));
                         } else {
-                            inStr = "Server restarted at %1".split("%1").join(this.TimeStr(int(inStr.split("#")[2])));
+                            inStr = "Server restarted at %1".split("%1").join(TimeStr(int(inStr.split("#")[2])));
                         };
                     } else {
                         if (inStr.substr(0, 4) == "#bd#"){
                             if (int(inStr.split("#")[3]) == 0){
-                                inStr = this.txt[(this.TXT_CATAPULT + 7)];
+                                inStr = txt[(TXT_CATAPULT + 7)];
                             } else {
-                                inStr = ((((this.txt[this.TXT_BUILDING_1].split("%1").join(this.txt[((this.TXT_GILDE_GEBAEUDE_NAME1 + int(inStr.split("#")[3])) - 1)]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                                inStr = ((((txt[TXT_BUILDING_1].split("%1").join(txt[((TXT_GILDE_GEBAEUDE_NAME1 + int(inStr.split("#")[3])) - 1)]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
                             };
                         } else {
                             if (inStr.substr(0, 4) == "#ra#"){
-                                inStr = ((((((((this.txt[(this.TXT_RANKMSG_6 + int(inStr.split("#")[3]))] + " ") + inStr.split("#")[4]) + " ") + this.txt[(this.TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                                inStr = ((((((((txt[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))] + " ") + inStr.split("#")[4]) + " ") + txt[(TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
                             } else {
                                 if (inStr.substr(0, 4) == "#in#"){
-                                    inStr = ((((this.txt[this.TXT_GUILD_JOINED] + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                                    inStr = ((((txt[TXT_GUILD_JOINED] + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
                                 } else {
                                     if (inStr.substr(0, 4) == "#ou#"){
-                                        inStr = ((((this.txt[this.TXT_GUILD_QUIT] + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                                        inStr = ((((txt[TXT_GUILD_QUIT] + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
                                     } else {
                                         if (inStr.substr(0, 4) == "#rv#"){
-                                            inStr = this.txt[this.TXT_REVOLT_CHAT_MSG].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]).split("%3").join(inStr.split("#")[4]);
+                                            inStr = txt[TXT_REVOLT_CHAT_MSG].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]).split("%3").join(inStr.split("#")[4]);
                                         } else {
                                             if (inStr.substr(0, 4) == "#a+#"){
-                                                inStr = this.txt[this.TXT_GUILD_ATTACK_SUCCESS].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
+                                                inStr = txt[TXT_GUILD_ATTACK_SUCCESS].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
                                                 if (getGBMode){
                                                     return ("1");
                                                 };
                                             } else {
                                                 if (inStr.substr(0, 4) == "#a-#"){
-                                                    inStr = this.txt[this.TXT_GUILD_ATTACK_FAIL].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
+                                                    inStr = txt[TXT_GUILD_ATTACK_FAIL].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
                                                     if (getGBMode){
                                                         return ("1");
                                                     };
                                                 } else {
                                                     if (inStr.substr(0, 4) == "#d+#"){
-                                                        inStr = this.txt[this.TXT_GUILD_DEFENSE_SUCCESS].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
+                                                        inStr = txt[TXT_GUILD_DEFENSE_SUCCESS].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
                                                         if (getGBMode){
                                                             return ("1");
                                                         };
                                                     } else {
                                                         if (inStr.substr(0, 4) == "#d-#"){
-                                                            inStr = this.txt[this.TXT_GUILD_DEFENSE_FAIL].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
+                                                            inStr = txt[TXT_GUILD_DEFENSE_FAIL].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
                                                             if (getGBMode){
                                                                 return ("1");
                                                             };
                                                         } else {
                                                             if (inStr.substr(0, 4) == "#r+#"){
-                                                                inStr = this.txt[this.TXT_GUILD_RAID_SUCCESS].split("%1").join(((("(50/" + inStr.split("#")[2]) + ") ") + this.txt[((this.TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]));
+                                                                inStr = txt[TXT_GUILD_RAID_SUCCESS].split("%1").join(((("(50/" + inStr.split("#")[2]) + ") ") + txt[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]));
                                                                 if (getGBMode){
                                                                     return ("1");
                                                                 };
                                                             } else {
                                                                 if (inStr.substr(0, 4) == "#r-#"){
-                                                                    inStr = this.txt[this.TXT_GUILD_RAID_FAIL].split("%1").join(((("(50/" + inStr.split("#")[2]) + ") ") + this.txt[((this.TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]));
+                                                                    inStr = txt[TXT_GUILD_RAID_FAIL].split("%1").join(((("(50/" + inStr.split("#")[2]) + ") ") + txt[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]));
                                                                     if (getGBMode){
                                                                         return ("1");
                                                                     };
                                                                 } else {
                                                                     if (inStr.substr(0, 4) == "#lu#"){
-                                                                        inStr = this.txt[this.TXT_GUILD_LEVEL_UP].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
+                                                                        inStr = txt[TXT_GUILD_LEVEL_UP].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
                                                                     } else {
                                                                         if (inStr.substr(0, 4) == "#du#"){
-                                                                            inStr = this.txt[this.TXT_GUILD_DUNGEON_COMPLETED].split("%1").join(inStr.split("#")[2]).split("%2").join(this.txt[(((inStr.split("#")[3] == 100)) ? 9538 : ((this.TXT_DUNGEON_NAME + (1 * inStr.split("#")[3])) - 1))].split("|")[0]).split("%3").join(inStr.split("#")[4]);
+                                                                            inStr = txt[TXT_GUILD_DUNGEON_COMPLETED].split("%1").join(inStr.split("#")[2]).split("%2").join(txt[(((inStr.split("#")[3] == 100)) ? 9538 : ((TXT_DUNGEON_NAME + (1 * inStr.split("#")[3])) - 1))].split("|")[0]).split("%3").join(inStr.split("#")[4]);
                                                                         } else {
                                                                             if (inStr.substr(0, 4) == "#ep#"){
-                                                                                inStr = this.txt[this.TXT_GUILD_EPICITEM].split("%1").join(inStr.split("#")[2]).split("%2").join(this.GetItemName(0, inStr.split("#")[3].split("/")));
+                                                                                inStr = txt[TXT_GUILD_EPICITEM].split("%1").join(inStr.split("#")[2]).split("%2").join(GetItemName(0, inStr.split("#")[3].split("/")));
                                                                             };
                                                                         };
                                                                     };
@@ -25164,81 +25164,81 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
             };
         } else {
             if (inStr.substr(0, 4) == "#dg#"){
-                inStr = ((((((inStr.split("#")[2] + " ") + this.txt[this.TXT_DONATE_GOLD_1]) + " ") + String((Number(inStr.split("#")[3]) / 100))) + " ") + this.txt[this.TXT_DONATE_GOLD_2]);
+                inStr = ((((((inStr.split("#")[2] + " ") + txt[TXT_DONATE_GOLD_1]) + " ") + String((Number(inStr.split("#")[3]) / 100))) + " ") + txt[TXT_DONATE_GOLD_2]);
             } else {
                 if (inStr.substr(0, 4) == "#dm#"){
-                    inStr = ((((((inStr.split("#")[2] + " ") + this.txt[this.TXT_DONATE_MUSH_1]) + " ") + inStr.split("#")[3]) + " ") + this.txt[this.TXT_DONATE_MUSH_2]);
+                    inStr = ((((((inStr.split("#")[2] + " ") + txt[TXT_DONATE_MUSH_1]) + " ") + inStr.split("#")[3]) + " ") + txt[TXT_DONATE_MUSH_2]);
                 } else {
                     if (inStr.substr(0, 4) == "#sr#"){
-                        if (this.txt[this.TXT_SERVER_STARTED]){
-                            inStr = this.txt[this.TXT_SERVER_STARTED].split("%1").join(this.TimeStr(int(inStr.split("#")[2])));
+                        if (txt[TXT_SERVER_STARTED]){
+                            inStr = txt[TXT_SERVER_STARTED].split("%1").join(TimeStr(int(inStr.split("#")[2])));
                         } else {
-                            inStr = "Server restarted at %1".split("%1").join(this.TimeStr(int(inStr.split("#")[2])));
+                            inStr = "Server restarted at %1".split("%1").join(TimeStr(int(inStr.split("#")[2])));
                         };
                     } else {
                         if (inStr.substr(0, 4) == "#bd#"){
                             if (int(inStr.split("#")[3]) == 0){
-                                inStr = ((inStr.split("#")[2] + " ") + this.txt[(this.TXT_CATAPULT + 7)]);
+                                inStr = ((inStr.split("#")[2] + " ") + txt[(TXT_CATAPULT + 7)]);
                             } else {
-                                inStr = ((inStr.split("#")[2] + " ") + this.txt[this.TXT_BUILDING_1].split("%1").join(this.txt[((this.TXT_GILDE_GEBAEUDE_NAME1 + int(inStr.split("#")[3])) - 1)]));
+                                inStr = ((inStr.split("#")[2] + " ") + txt[TXT_BUILDING_1].split("%1").join(txt[((TXT_GILDE_GEBAEUDE_NAME1 + int(inStr.split("#")[3])) - 1)]));
                             };
                         } else {
                             if (inStr.substr(0, 4) == "#ra#"){
-                                inStr = ((((((inStr.split("#")[2] + " ") + this.txt[(this.TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ") + inStr.split("#")[4]) + " ") + this.txt[(this.TXT_RANKMSG_6 + int(inStr.split("#")[3]))]);
+                                inStr = ((((((inStr.split("#")[2] + " ") + txt[(TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ") + inStr.split("#")[4]) + " ") + txt[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))]);
                             } else {
                                 if (inStr.substr(0, 4) == "#in#"){
-                                    inStr = ((inStr.split("#")[2] + " ") + this.txt[this.TXT_GUILD_JOINED]);
+                                    inStr = ((inStr.split("#")[2] + " ") + txt[TXT_GUILD_JOINED]);
                                 } else {
                                     if (inStr.substr(0, 4) == "#ou#"){
-                                        inStr = ((inStr.split("#")[2] + " ") + this.txt[this.TXT_GUILD_QUIT]);
+                                        inStr = ((inStr.split("#")[2] + " ") + txt[TXT_GUILD_QUIT]);
                                     } else {
                                         if (inStr.substr(0, 4) == "#rv#"){
-                                            inStr = this.txt[this.TXT_REVOLT_CHAT_MSG].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]).split("%3").join(inStr.split("#")[4]);
+                                            inStr = txt[TXT_REVOLT_CHAT_MSG].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]).split("%3").join(inStr.split("#")[4]);
                                         } else {
                                             if (inStr.substr(0, 4) == "#a+#"){
-                                                inStr = this.txt[this.TXT_GUILD_ATTACK_SUCCESS].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
+                                                inStr = txt[TXT_GUILD_ATTACK_SUCCESS].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
                                                 if (getGBMode){
                                                     return ("1");
                                                 };
                                             } else {
                                                 if (inStr.substr(0, 4) == "#a-#"){
-                                                    inStr = this.txt[this.TXT_GUILD_ATTACK_FAIL].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
+                                                    inStr = txt[TXT_GUILD_ATTACK_FAIL].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
                                                     if (getGBMode){
                                                         return ("1");
                                                     };
                                                 } else {
                                                     if (inStr.substr(0, 4) == "#d+#"){
-                                                        inStr = this.txt[this.TXT_GUILD_DEFENSE_SUCCESS].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
+                                                        inStr = txt[TXT_GUILD_DEFENSE_SUCCESS].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
                                                         if (getGBMode){
                                                             return ("1");
                                                         };
                                                     } else {
                                                         if (inStr.substr(0, 4) == "#d-#"){
-                                                            inStr = this.txt[this.TXT_GUILD_DEFENSE_FAIL].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
+                                                            inStr = txt[TXT_GUILD_DEFENSE_FAIL].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
                                                             if (getGBMode){
                                                                 return ("1");
                                                             };
                                                         } else {
                                                             if (inStr.substr(0, 4) == "#r+#"){
-                                                                inStr = this.txt[this.TXT_GUILD_RAID_SUCCESS].split("%1").join((((this.txt[((this.TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)] + " (") + inStr.split("#")[2]) + "/50)"));
+                                                                inStr = txt[TXT_GUILD_RAID_SUCCESS].split("%1").join((((txt[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)] + " (") + inStr.split("#")[2]) + "/50)"));
                                                                 if (getGBMode){
                                                                     return ("1");
                                                                 };
                                                             } else {
                                                                 if (inStr.substr(0, 4) == "#r-#"){
-                                                                    inStr = this.txt[this.TXT_GUILD_RAID_FAIL].split("%1").join((((this.txt[((this.TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)] + " (") + inStr.split("#")[2]) + "/50)"));
+                                                                    inStr = txt[TXT_GUILD_RAID_FAIL].split("%1").join((((txt[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)] + " (") + inStr.split("#")[2]) + "/50)"));
                                                                     if (getGBMode){
                                                                         return ("1");
                                                                     };
                                                                 } else {
                                                                     if (inStr.substr(0, 4) == "#lu#"){
-                                                                        inStr = this.txt[this.TXT_GUILD_LEVEL_UP].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
+                                                                        inStr = txt[TXT_GUILD_LEVEL_UP].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
                                                                     } else {
                                                                         if (inStr.substr(0, 4) == "#du#"){
-                                                                            inStr = this.txt[this.TXT_GUILD_DUNGEON_COMPLETED].split("%1").join(inStr.split("#")[2]).split("%2").join(this.txt[(((inStr.split("#")[3] == 100)) ? 9538 : ((this.TXT_DUNGEON_NAME + (1 * inStr.split("#")[3])) - 1))].split("|")[0]).split("%3").join(inStr.split("#")[4]);
+                                                                            inStr = txt[TXT_GUILD_DUNGEON_COMPLETED].split("%1").join(inStr.split("#")[2]).split("%2").join(txt[(((inStr.split("#")[3] == 100)) ? 9538 : ((TXT_DUNGEON_NAME + (1 * inStr.split("#")[3])) - 1))].split("|")[0]).split("%3").join(inStr.split("#")[4]);
                                                                         } else {
                                                                             if (inStr.substr(0, 4) == "#ep#"){
-                                                                                inStr = this.txt[this.TXT_GUILD_EPICITEM].split("%1").join(inStr.split("#")[2]).split("%2").join(this.GetItemName(0, inStr.split("#")[3].split("/")));
+                                                                                inStr = txt[TXT_GUILD_EPICITEM].split("%1").join(inStr.split("#")[2]).split("%2").join(GetItemName(0, inStr.split("#")[3].split("/")));
                                                                             };
                                                                         };
                                                                     };
@@ -25257,8 +25257,8 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
                 };
             };
         };
-        if (this.OnStage(this.LBL_GILDE_TITEL)){
-            this.SendAction(this.ACT_SCREEN_GILDEN);
+        if (OnStage(LBL_GILDE_TITEL)){
+            SendAction(ACT_SCREEN_GILDEN);
         };
         if (getGBMode){
             return ("0");
@@ -25284,19 +25284,19 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
     var seekSpace:* = false;
     var noSpace:* = false;
     var indent:* = 0;
-    if (this.GildeChatScroll > 0){
-        this.GildeChatScroll++;
+    if (GildeChatScroll > 0){
+        GildeChatScroll++;
     };
-    if (this.GildeChatScroll > 35){
-        this.GildeChatScroll = 35;
+    if (GildeChatScroll > 35){
+        GildeChatScroll = 35;
     };
-    line = this.SwapWords(line);
+    line = SwapWords(line);
     while (line.split("  ").length > 1) {
         line = line.split("  ").join(" ");
     };
     i = 0;
     while (i < 39) {
-        var _local6 = this.actor[(this.LBL_GILDE_CHAT + i)];
+        var _local6 = actor[(LBL_GILDE_CHAT + i)];
         with (_local6) {
             defaultTextFormat = actor[((LBL_GILDE_CHAT + i) + 1)].defaultTextFormat;
             htmlText = actor[((LBL_GILDE_CHAT + i) + 1)].htmlText;
@@ -25305,7 +25305,7 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
         };
         i = (i + 1);
     };
-    _local6 = this.actor[(this.LBL_GILDE_CHAT + 39)];
+    _local6 = actor[(LBL_GILDE_CHAT + 39)];
     with (_local6) {
         defaultTextFormat = ((isError) ? FontFormat_ChatError : FontFormat_Chat);
         if (isWhisper){
@@ -25356,15 +25356,15 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
         };
     };
     if (nextLine != ""){
-        this.ChatLine(nextLine, isError, -1, isWhisper);
+        ChatLine(nextLine, isError, -1, isWhisper);
     };
 }
 
 public function PayMethod(DealerMenu:int):int{
-    if (DealerMenu > (this.PayMethods.length - 1)){
+    if (DealerMenu > (PayMethods.length - 1)){
         return (0);
     };
-    return (this.PayMethods[DealerMenu]);
+    return (PayMethods[DealerMenu]);
 }
 
 public function ShowBetResult(won:Boolean){
@@ -25420,34 +25420,34 @@ public function ShowBetResult(won:Boolean){
             actor[LBL_HUTMANN_MUSHBET].text = "0";
         };
     };
-    this.Load(((won) ? this.HUTMANN_WON : this.HUTMANN_LOST));
-    switch (this.CupChosen){
+    Load(((won) ? HUTMANN_WON : HUTMANN_LOST));
+    switch (CupChosen){
         case 0:
-            this.Load(this.HUTBECHER_1_CLICK);
+            Load(HUTBECHER_1_CLICK);
             break;
         case 1:
-            this.Load(this.HUTBECHER_2_CLICK);
+            Load(HUTBECHER_2_CLICK);
             break;
         case 2:
-            this.Load(this.HUTBECHER_3_CLICK);
+            Load(HUTBECHER_3_CLICK);
             break;
     };
     if (won){
-        this.Load(this.HUTKUGEL);
+        Load(HUTKUGEL);
     };
-    this.WhenLoaded(doShowBetResults);
+    WhenLoaded(doShowBetResults);
 }
 
 public function toiletTankAdjustEvent(evt:TimerEvent=undefined){
-    this.actor[(this.TOILET + 1)].y = ((190 + 122) - (this.toiletTankCurrent * 118));
-    if (this.toiletTankCurrent > (this.toiletTankDest + 0.01)){
-        this.toiletTankCurrent = (this.toiletTankCurrent - 0.01);
+    actor[(TOILET + 1)].y = ((190 + 122) - (toiletTankCurrent * 118));
+    if (toiletTankCurrent > (toiletTankDest + 0.01)){
+        toiletTankCurrent = (toiletTankCurrent - 0.01);
     } else {
-        if (this.toiletTankCurrent < (this.toiletTankDest - 0.01)){
-            this.toiletTankCurrent = (this.toiletTankCurrent + 0.01);
+        if (toiletTankCurrent < (toiletTankDest - 0.01)){
+            toiletTankCurrent = (toiletTankCurrent + 0.01);
         } else {
-            this.toiletTankCurrent = this.toiletTankDest;
-            this.toiletTankAdjustTimer.stop();
+            toiletTankCurrent = toiletTankDest;
+            toiletTankAdjustTimer.stop();
         };
     };
 }
@@ -25550,13 +25550,13 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
             actor[gatheredItemId].y = 590;
         };
     };
-    if (this.OnStage(this.TOILET)){
+    if (OnStage(TOILET)){
         doShowToilet(false);
         return;
     };
-    this.Load(this.SCREEN_TOILET);
-    this.ShowCharacterScreen();
-    this.WhenLoaded(doShowToilet);
+    Load(SCREEN_TOILET);
+    ShowCharacterScreen();
+    WhenLoaded(doShowToilet);
 }
 
 public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchantCost:int=0){
@@ -25612,15 +25612,15 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchant
         };
     };
     if (chaldronBubble){
-        this.Play(this.SND_TOILET_DROP);
+        Play(SND_TOILET_DROP);
     };
-    if (this.OnStage(this.WITCH)){
+    if (OnStage(WITCH)){
         doShowWitch(false);
         return;
     };
-    this.Load(this.SCREEN_WITCH);
-    this.ShowCharacterScreen(undefined, true);
-    this.WhenLoaded(doShowWitch);
+    Load(SCREEN_WITCH);
+    ShowCharacterScreen(undefined, true);
+    WhenLoaded(doShowWitch);
 }
 
 public function NextFight(evt:TimerEvent){
@@ -25632,87 +25632,87 @@ public function NextFight(evt:TimerEvent){
     var tmpStr:*;
     guildFightExp = 0;
     guildFightHonor = 0;
-    if (this.fights.length < 2){
-        this.fights = new Array();
+    if (fights.length < 2){
+        fights = new Array();
         return;
     };
     thisRoundFighterName = "";
     var nextRoundFighterName:String = "";
     var thisRoundOppName:String = "";
-    if (this.skipGuildFights > 0){
-        while (this.fights.length > 3) {
+    if (skipGuildFights > 0){
+        while (fights.length > 3) {
             if (thisRoundFighterName != ""){
-                this.lastRoundFighterName = thisRoundFighterName;
+                lastRoundFighterName = thisRoundFighterName;
             };
-            if (this.fights[0].split(";")[2].split("/")[5] > 0){
-                thisRoundFighterName = this.fights[0].split(";")[2].split("/")[0];
+            if (fights[0].split(";")[2].split("/")[5] > 0){
+                thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
             } else {
                 thisRoundFighterName = "?";
             };
-            thisRoundOppName = this.fights[0].split(";")[2].split("/")[15];
-            if (thisRoundFighterName.toLowerCase() == this.actor[this.INP_NAME].getChildAt(1).text.toLowerCase()){
-                if (this.skipGuildFights == 1){
-                    this.skipGuildFights = -1;
+            thisRoundOppName = fights[0].split(";")[2].split("/")[15];
+            if (thisRoundFighterName.toLowerCase() == actor[INP_NAME].getChildAt(1).text.toLowerCase()){
+                if (skipGuildFights == 1){
+                    skipGuildFights = -1;
                     break;
                 };
             };
-            if (this.fights[2]){
-                nextRoundFighterName = this.fights[2].split(";")[2].split("/")[0];
-                if (this.lastRoundFighterName == thisRoundFighterName){
-                    if (this.winners[("name_" + thisRoundFighterName)]){
-                        var _local10 = this.winners;
+            if (fights[2]){
+                nextRoundFighterName = fights[2].split(";")[2].split("/")[0];
+                if (lastRoundFighterName == thisRoundFighterName){
+                    if (winners[("name_" + thisRoundFighterName)]){
+                        var _local10 = winners;
                         var _local11 = ("name_" + thisRoundFighterName);
                         var _local12 = (_local10[_local11] + 1);
                         _local10[_local11] = _local12;
                     } else {
-                        this.winners[("name_" + thisRoundFighterName)] = 1;
+                        winners[("name_" + thisRoundFighterName)] = 1;
                     };
                 };
             };
-            this.fights.shift();
-            this.fights.shift();
+            fights.shift();
+            fights.shift();
         };
     };
-    thisRoundFighterName = this.fights[0].split(";")[2].split("/")[0];
-    if (thisRoundFighterName.toLowerCase() == this.actor[this.INP_NAME].getChildAt(1).text.toLowerCase()){
-        if (this.skipGuildFights == 1){
-            this.skipGuildFights = -1;
+    thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
+    if (thisRoundFighterName.toLowerCase() == actor[INP_NAME].getChildAt(1).text.toLowerCase()){
+        if (skipGuildFights == 1){
+            skipGuildFights = -1;
         };
     };
-    par = this.fights.shift().split(";");
-    GuildBattleData = this.fights.shift().split("/");
-    if (this.fights.length == 1){
-        tmpStr = this.fights.pop();
+    par = fights.shift().split(";");
+    GuildBattleData = fights.shift().split("/");
+    if (fights.length == 1){
+        tmpStr = fights.pop();
         guildFightExp = tmpStr.split(";")[1];
         guildFightHonor = tmpStr.split(";")[2];
     };
-    this.PostFightMode = false;
-    this.fightNumber = ((this.guildFightCount - int(((this.fights.length + 1) / 2))) + (((this.guildFightCount % 2))==0) ? 1 : 0);
-    if (this.fightNumber > this.guildFightCount){
-        this.fightNumber = 1;
+    PostFightMode = false;
+    fightNumber = ((guildFightCount - int(((fights.length + 1) / 2))) + (((guildFightCount % 2))==0) ? 1 : 0);
+    if (fightNumber > guildFightCount){
+        fightNumber = 1;
     };
-    this.ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9]), GuildBattleData, (this.fights.length <= 1), guildFightExp, guildFightHonor, par[10], par[11], par[12]);
+    ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9]), GuildBattleData, (fights.length <= 1), guildFightExp, guildFightHonor, par[10], par[11], par[12]);
 }
 
 public function guildFightTimerFn(evt:TimerEvent){
-    if (this.guildAttackTime != 0){
-        if (!this.WaitingFor(this.guildAttackTime)){
-            if (this.OnStage(this.LBL_GILDE_CHAT_CAPTION)){
-                this.SendAction(this.ACT_SCREEN_GILDEN);
+    if (guildAttackTime != 0){
+        if (!WaitingFor(guildAttackTime)){
+            if (OnStage(LBL_GILDE_CHAT_CAPTION)){
+                SendAction(ACT_SCREEN_GILDEN);
             } else {
-                this.PulseGilde = true;
+                PulseGilde = true;
             };
-            this.guildAttackTime = 0;
+            guildAttackTime = 0;
         };
     };
-    if (this.guildDefenceTime != 0){
-        if (!this.WaitingFor(this.guildDefenceTime)){
-            if (this.OnStage(this.LBL_GILDE_CHAT_CAPTION)){
-                this.SendAction(this.ACT_SCREEN_GILDEN);
+    if (guildDefenceTime != 0){
+        if (!WaitingFor(guildDefenceTime)){
+            if (OnStage(LBL_GILDE_CHAT_CAPTION)){
+                SendAction(ACT_SCREEN_GILDEN);
             } else {
-                this.PulseGilde = true;
+                PulseGilde = true;
             };
-            this.guildDefenceTime = 0;
+            guildDefenceTime = 0;
         };
     };
 }
@@ -25726,9 +25726,9 @@ public function ExpandItemStructure(arr:Array, offset:int){
     var socket:int;
     var enchantmentPower:int;
     var socketPower:int;
-    typeOriginal = arr[(offset + this.SG_ITM_TYP)];
-    picOriginal = arr[(offset + this.SG_ITM_PIC)];
-    mushOriginal = arr[(offset + this.SG_ITM_MUSH)];
+    typeOriginal = arr[(offset + SG_ITM_TYP)];
+    picOriginal = arr[(offset + SG_ITM_PIC)];
+    mushOriginal = arr[(offset + SG_ITM_MUSH)];
     enchantment = int((typeOriginal / Math.pow(2, 24)));
     socket = (typeOriginal - (enchantment * Math.pow(2, 24)));
     socket = (socket / Math.pow(2, 16));
@@ -25737,20 +25737,20 @@ public function ExpandItemStructure(arr:Array, offset:int){
     picOriginal = (picOriginal - (enchantmentPower * Math.pow(2, 16)));
     socketPower = int((mushOriginal / Math.pow(2, 16)));
     mushOriginal = (mushOriginal - (socketPower * Math.pow(2, 16)));
-    arr[(offset + this.SG_ITM_TYP)] = typeOriginal;
-    arr[(offset + this.SG_ITM_PIC)] = picOriginal;
-    arr[(offset + this.SG_ITM_MUSH)] = mushOriginal;
-    arr[(offset + this.SG_ITM_EXT_SOCKET)] = socket;
-    arr[(offset + this.SG_ITM_EXT_ENCHANT)] = enchantment;
-    arr[(offset + this.SG_ITM_EXT_ENCHANT_POWER)] = enchantmentPower;
-    arr[(offset + this.SG_ITM_EXT_SOCKET_POWER)] = socketPower;
+    arr[(offset + SG_ITM_TYP)] = typeOriginal;
+    arr[(offset + SG_ITM_PIC)] = picOriginal;
+    arr[(offset + SG_ITM_MUSH)] = mushOriginal;
+    arr[(offset + SG_ITM_EXT_SOCKET)] = socket;
+    arr[(offset + SG_ITM_EXT_ENCHANT)] = enchantment;
+    arr[(offset + SG_ITM_EXT_ENCHANT_POWER)] = enchantmentPower;
+    arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
 }
 
 public function WaitingFor(targetTime:Number):Boolean{
     var tmpTime:Date;
     tmpTime = new Date();
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
-    return ((this.GameTime.getTime() < tmpTime.getTime()));
+    return ((GameTime.getTime() < tmpTime.getTime()));
 }
 
 public function WaitingTime(targetTime:Number):String{
@@ -25761,7 +25761,7 @@ public function WaitingTime(targetTime:Number):String{
     timeDiff = new Date();
     var diffDays:* = 0;
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
-    timeDiff.setTime((tmpTime.getTime() - this.GameTime.getTime()));
+    timeDiff.setTime((tmpTime.getTime() - GameTime.getTime()));
     var _local3 = timeDiff;
     diffDays = ((((timeDiff.getTime() / 1000) / 60) / 60) / 24);
     return ((((diffDays > 0)) ? ((String((diffDays + 1)) + " ") + txt[(((diffDays == 0)) ? TXT_TAG : TXT_TAGE)]) : ((((((getUTCHours())>0) ? (String((getUTCHours() - 0)) + ":") : "" + ((getUTCMinutes())<10) ? "0" : "") + String(getUTCMinutes())) + ((getUTCSeconds())<10) ? ":0" : ":") + String(getUTCSeconds()))));
@@ -25774,7 +25774,7 @@ public function WaitingProgress(startTime:Number, targetTime:Number):Number{
     tmpTime2 = new Date();
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
     tmpTime2.setTime(((startTime * 1000) - ((1000 * 60) * 60)));
-    return (((this.GameTime.getTime() - tmpTime2.getTime()) / (tmpTime.getTime() - tmpTime2.getTime())));
+    return (((GameTime.getTime() - tmpTime2.getTime()) / (tmpTime.getTime() - tmpTime2.getTime())));
 }
 
 
@@ -25782,49 +25782,49 @@ public function WaitingProgress(startTime:Number, targetTime:Number):Number{
 
 public function ShowLoginScreen(evt:Event=undefined, noBC:Boolean=false, noCookie:Boolean=false):void{
     var playername:String;
-    if (((((((((!(this.so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(this.buffedMode)))) and (!(this.ssoMode)))){
-        this.ShowBuildCharacterScreen();
+    if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffedMode)))) and (!(ssoMode)))){
+        ShowBuildCharacterScreen();
         return;
     };
-    this.RemoveAll();
-    this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).visible = true;
-    this.actor[this.LBL_WINDOW_TITLE].text = this.txt[this.TXT_WELCOME];
-    this.actor[this.LBL_WINDOW_TITLE].x = ((this.IF_WIN_X + this.IF_WIN_WELCOME_X) - int((this.actor[this.LBL_WINDOW_TITLE].textWidth / 2)));
-    this.actor[this.INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, this.RequestLogin);
-    this.actor[this.INP_LOGIN_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, this.RequestLogin);
+    RemoveAll();
+    actor[INP_LOGIN_PASSWORD].getChildAt(1).visible = true;
+    actor[LBL_WINDOW_TITLE].text = txt[TXT_WELCOME];
+    actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
+    actor[INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, RequestLogin);
+    actor[INP_LOGIN_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, RequestLogin);
     if (!noCookie){
-        if (this.so.data.userName){
-            this.actor[this.INP_NAME].getChildAt(1).text = String(this.so.data.userName);
+        if (so.data.userName){
+            actor[INP_NAME].getChildAt(1).text = String(so.data.userName);
         };
-        if (this.so.data.password){
-            this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text = String(this.so.data.password);
+        if (so.data.password){
+            actor[INP_LOGIN_PASSWORD].getChildAt(1).text = String(so.data.password);
         };
     };
-    this.Add(this.WINDOW_LOGIN);
-    this.LogonRTL();
-    if (this.buffedMode){
-        this.actor[this.LBL_GOTO_SIGNUP].htmlText = this.buffedLinkText;
-        this.actor[this.GOTO_SIGNUP].x = ((this.IF_WIN_X + this.IF_WIN_WELCOME_X) - int((this.actor[this.LBL_GOTO_SIGNUP].textWidth / 2)));
+    Add(WINDOW_LOGIN);
+    LogonRTL();
+    if (buffedMode){
+        actor[LBL_GOTO_SIGNUP].htmlText = buffedLinkText;
+        actor[GOTO_SIGNUP].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_GOTO_SIGNUP].textWidth / 2)));
     };
-    if (this.ssoMode){
-        this.actor[this.INP_NAME].getChildAt(1).type = TextFieldType.DYNAMIC;
-        this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).type = TextFieldType.DYNAMIC;
+    if (ssoMode){
+        actor[INP_NAME].getChildAt(1).type = TextFieldType.DYNAMIC;
+        actor[INP_LOGIN_PASSWORD].getChildAt(1).type = TextFieldType.DYNAMIC;
         playername = ExternalInterface.call("sso_get_uid");
-        this.actor[this.INP_NAME].getChildAt(1).text = playername;
-        this.actor[this.INP_LOGIN_PASSWORD].getChildAt(1).text = this.mp_api_user_token;
+        actor[INP_NAME].getChildAt(1).text = playername;
+        actor[INP_LOGIN_PASSWORD].getChildAt(1).text = mp_api_user_token;
     };
 }
 
 public function LogonRTL(){
-    if (this.textDir == "right"){
-        this.actor[this.LBL_NAME].x = (((this.IF_WIN_X + this.IF_GOTO_LOGIN_X) - 15) - this.actor[this.LBL_NAME].textWidth);
-        this.actor[this.LBL_LOGIN_PASSWORD].x = (((this.IF_WIN_X + this.IF_GOTO_LOGIN_X) - 15) - this.actor[this.LBL_LOGIN_PASSWORD].textWidth);
-        this.actor[this.LBL_EMAIL].x = (((this.IF_WIN_X + this.IF_GOTO_LOGIN_X) - 15) - this.actor[this.LBL_EMAIL].textWidth);
-        this.actor[this.LBL_PASSWORD].x = (((this.IF_WIN_X + this.IF_GOTO_LOGIN_X) - 15) - this.actor[this.LBL_PASSWORD].textWidth);
-        this.actor[this.INP_NAME].x = (this.IF_WIN_X + this.IF_WIN_INPUTS_X);
-        this.actor[this.INP_LOGIN_PASSWORD].x = (this.IF_WIN_X + this.IF_WIN_INPUTS_X);
-        this.actor[this.INP_EMAIL].x = (this.IF_WIN_X + this.IF_WIN_INPUTS_X);
-        this.actor[this.INP_PASSWORD].x = (this.IF_WIN_X + this.IF_WIN_INPUTS_X);
+    if (textDir == "right"){
+        actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_NAME].textWidth);
+        actor[LBL_LOGIN_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_LOGIN_PASSWORD].textWidth);
+        actor[LBL_EMAIL].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_EMAIL].textWidth);
+        actor[LBL_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_PASSWORD].textWidth);
+        actor[INP_NAME].x = (IF_WIN_X + IF_WIN_INPUTS_X);
+        actor[INP_LOGIN_PASSWORD].x = (IF_WIN_X + IF_WIN_INPUTS_X);
+        actor[INP_EMAIL].x = (IF_WIN_X + IF_WIN_INPUTS_X);
+        actor[INP_PASSWORD].x = (IF_WIN_X + IF_WIN_INPUTS_X);
     };
 }
 
@@ -25837,36 +25837,36 @@ public function ShowSignupScreen(evt:Event=undefined):void{
     var DoJump:* = null;
     var evt:* = evt;
     jumpTimer = new Timer(200, 20);
-    if (this.KlasseGewählt){
-        this.RemoveAll();
-        this.actor[this.INP_PASSWORD].getChildAt(1).visible = true;
-        this.actor[this.LBL_WINDOW_TITLE].text = this.txt[this.TXT_TITLE_SIGNUP];
-        this.actor[this.LBL_WINDOW_TITLE].x = ((this.IF_WIN_X + this.IF_WIN_WELCOME_X) - int((this.actor[this.LBL_WINDOW_TITLE].textWidth / 2)));
-        this.actor[this.INP_NAME].addEventListener(KeyboardEvent.KEY_UP, this.RequestSignup);
-        this.actor[this.INP_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, this.RequestSignup);
-        this.actor[this.INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, this.RequestSignup);
-        if (this.buffedReq){
-            this.actor[this.INP_NAME].getChildAt(1).text = this.buffed_name;
-            this.actor[this.INP_EMAIL].getChildAt(1).text = this.buffed_email;
+    if (KlasseGewählt){
+        RemoveAll();
+        actor[INP_PASSWORD].getChildAt(1).visible = true;
+        actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_SIGNUP];
+        actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
+        actor[INP_NAME].addEventListener(KeyboardEvent.KEY_UP, RequestSignup);
+        actor[INP_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, RequestSignup);
+        actor[INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, RequestSignup);
+        if (buffedReq){
+            actor[INP_NAME].getChildAt(1).text = buffed_name;
+            actor[INP_EMAIL].getChildAt(1).text = buffed_email;
         };
-        if (this.ssoMode){
-            this.actor[this.INP_EMAIL].getChildAt(1).type = TextFieldType.DYNAMIC;
-            this.actor[this.INP_PASSWORD].getChildAt(1).type = TextFieldType.DYNAMIC;
+        if (ssoMode){
+            actor[INP_EMAIL].getChildAt(1).type = TextFieldType.DYNAMIC;
+            actor[INP_PASSWORD].getChildAt(1).type = TextFieldType.DYNAMIC;
             playername = ExternalInterface.call("sso_get_uid");
-            this.actor[this.INP_NAME].getChildAt(1).text = playername;
+            actor[INP_NAME].getChildAt(1).text = playername;
             email = ExternalInterface.call("sso_get_email");
-            this.actor[this.INP_EMAIL].getChildAt(1).text = email;
-            this.actor[this.INP_PASSWORD].getChildAt(1).text = this.mp_api_user_token;
+            actor[INP_EMAIL].getChildAt(1).text = email;
+            actor[INP_PASSWORD].getChildAt(1).text = mp_api_user_token;
         };
-        this.LogonRTL();
-        this.Hide(this.PASSWORD_SMILEY_SAD, this.PASSWORD_SMILEY_NEUTRAL, this.PASSWORD_SMILEY_HAPPY);
-        this.Add(this.WINDOW_SIGNUP);
-        if (this.param_bullshit_text != ""){
-            this.Add(this.FUCK);
+        LogonRTL();
+        Hide(PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_HAPPY);
+        Add(WINDOW_SIGNUP);
+        if (param_bullshit_text != ""){
+            Add(FUCK);
         };
     } else {
-        this.ErrorMessage(this.txt[this.TXT_ERROR_SELECTCLASS]);
-        if (!this.SignupJumpRunning){
+        ErrorMessage(txt[TXT_ERROR_SELECTCLASS]);
+        if (!SignupJumpRunning){
             DoJump = function (evt:TimerEvent){
                 if (j <= 2){
                     i = 0;
@@ -25882,7 +25882,7 @@ public function ShowSignupScreen(evt:Event=undefined):void{
                     SignupJumpRunning = false;
                 };
             };
-            this.SignupJumpRunning = true;
+            SignupJumpRunning = true;
             jumpTimer.addEventListener(TimerEvent.TIMER, DoJump);
             j = 0;
             jumpTimer.start();
@@ -25907,138 +25907,138 @@ public function ModifyCharacter(evt:Event):void{
         };
         return (val);
     };
-    actorID = this.GetActorID(evt.target);
-    this.CharHair = RemoveColorOffset(this.CharHair, this.C_HAIR);
-    this.CharBrows = RemoveColorOffset(this.CharBrows, this.C_BROWS);
-    this.CharBeard = RemoveColorOffset(this.CharBeard, this.C_BEARD);
-    this.CharSpecial2 = RemoveColorOffset(this.CharSpecial2, this.C_SPECIAL2);
+    actorID = GetActorID(evt.target);
+    CharHair = RemoveColorOffset(CharHair, C_HAIR);
+    CharBrows = RemoveColorOffset(CharBrows, C_BROWS);
+    CharBeard = RemoveColorOffset(CharBeard, C_BEARD);
+    CharSpecial2 = RemoveColorOffset(CharSpecial2, C_SPECIAL2);
     switch (actorID){
-        case this.MOUTH_MINUS:
-            this.CharMouth--;
-            if (this.CharMouth < 1){
-                this.CharMouth = this.getCharImageBound(this.CharVolk, this.CharMann, 1);
+        case MOUTH_MINUS:
+            CharMouth--;
+            if (CharMouth < 1){
+                CharMouth = getCharImageBound(CharVolk, CharMann, 1);
             };
             break;
-        case this.MOUTH_PLUS:
-            this.CharMouth++;
-            if (this.CharMouth > this.getCharImageBound(this.CharVolk, this.CharMann, 1)){
-                this.CharMouth = 1;
+        case MOUTH_PLUS:
+            CharMouth++;
+            if (CharMouth > getCharImageBound(CharVolk, CharMann, 1)){
+                CharMouth = 1;
             };
             break;
-        case this.HAIR_MINUS:
-            this.CharHair--;
-            if (this.CharHair < 1){
-                this.CharHair = this.getCharImageBound(this.CharVolk, this.CharMann, 7);
+        case HAIR_MINUS:
+            CharHair--;
+            if (CharHair < 1){
+                CharHair = getCharImageBound(CharVolk, CharMann, 7);
             };
             break;
-        case this.HAIR_PLUS:
-            this.CharHair++;
-            if (this.CharHair > this.getCharImageBound(this.CharVolk, this.CharMann, 7)){
-                this.CharHair = 1;
+        case HAIR_PLUS:
+            CharHair++;
+            if (CharHair > getCharImageBound(CharVolk, CharMann, 7)){
+                CharHair = 1;
             };
             break;
-        case this.BROWS_MINUS:
-            this.CharBrows--;
-            if (this.CharBrows < 1){
-                this.CharBrows = this.getCharImageBound(this.CharVolk, this.CharMann, 5);
+        case BROWS_MINUS:
+            CharBrows--;
+            if (CharBrows < 1){
+                CharBrows = getCharImageBound(CharVolk, CharMann, 5);
             };
             break;
-        case this.BROWS_PLUS:
-            this.CharBrows++;
-            if (this.CharBrows > this.getCharImageBound(this.CharVolk, this.CharMann, 5)){
-                this.CharBrows = 1;
+        case BROWS_PLUS:
+            CharBrows++;
+            if (CharBrows > getCharImageBound(CharVolk, CharMann, 5)){
+                CharBrows = 1;
             };
             break;
-        case this.EYES_MINUS:
-            this.CharEyes--;
-            if (this.CharEyes < 1){
-                this.CharEyes = this.getCharImageBound(this.CharVolk, this.CharMann, 4);
+        case EYES_MINUS:
+            CharEyes--;
+            if (CharEyes < 1){
+                CharEyes = getCharImageBound(CharVolk, CharMann, 4);
             };
             break;
-        case this.EYES_PLUS:
-            this.CharEyes++;
-            if (this.CharEyes > this.getCharImageBound(this.CharVolk, this.CharMann, 4)){
-                this.CharEyes = 1;
+        case EYES_PLUS:
+            CharEyes++;
+            if (CharEyes > getCharImageBound(CharVolk, CharMann, 4)){
+                CharEyes = 1;
             };
             break;
-        case this.BEARD_MINUS:
-            this.CharBeard--;
-            if (this.CharBeard < 1){
-                this.CharBeard = this.getCharImageBound(this.CharVolk, this.CharMann, 2);
+        case BEARD_MINUS:
+            CharBeard--;
+            if (CharBeard < 1){
+                CharBeard = getCharImageBound(CharVolk, CharMann, 2);
             };
             break;
-        case this.BEARD_PLUS:
-            this.CharBeard++;
-            if (this.CharBeard > this.getCharImageBound(this.CharVolk, this.CharMann, 2)){
-                this.CharBeard = 1;
+        case BEARD_PLUS:
+            CharBeard++;
+            if (CharBeard > getCharImageBound(CharVolk, CharMann, 2)){
+                CharBeard = 1;
             };
             break;
-        case this.NOSE_MINUS:
-            this.CharNose--;
-            if (this.CharNose < 1){
-                this.CharNose = this.getCharImageBound(this.CharVolk, this.CharMann, 3);
+        case NOSE_MINUS:
+            CharNose--;
+            if (CharNose < 1){
+                CharNose = getCharImageBound(CharVolk, CharMann, 3);
             };
             break;
-        case this.NOSE_PLUS:
-            this.CharNose++;
-            if (this.CharNose > this.getCharImageBound(this.CharVolk, this.CharMann, 3)){
-                this.CharNose = 1;
+        case NOSE_PLUS:
+            CharNose++;
+            if (CharNose > getCharImageBound(CharVolk, CharMann, 3)){
+                CharNose = 1;
             };
             break;
-        case this.EARS_MINUS:
-            this.CharEars--;
-            if (this.CharEars < 1){
-                this.CharEars = this.getCharImageBound(this.CharVolk, this.CharMann, 6);
+        case EARS_MINUS:
+            CharEars--;
+            if (CharEars < 1){
+                CharEars = getCharImageBound(CharVolk, CharMann, 6);
             };
             break;
-        case this.EARS_PLUS:
-            this.CharEars++;
-            if (this.CharEars > this.getCharImageBound(this.CharVolk, this.CharMann, 6)){
-                this.CharEars = 1;
+        case EARS_PLUS:
+            CharEars++;
+            if (CharEars > getCharImageBound(CharVolk, CharMann, 6)){
+                CharEars = 1;
             };
             break;
-        case this.SPECIAL_MINUS:
-            this.CharSpecial--;
-            if (this.CharSpecial < 1){
-                this.CharSpecial = this.getCharImageBound(this.CharVolk, this.CharMann, 8);
+        case SPECIAL_MINUS:
+            CharSpecial--;
+            if (CharSpecial < 1){
+                CharSpecial = getCharImageBound(CharVolk, CharMann, 8);
             };
             break;
-        case this.SPECIAL_PLUS:
-            this.CharSpecial++;
-            if (this.CharSpecial > this.getCharImageBound(this.CharVolk, this.CharMann, 8)){
-                this.CharSpecial = 1;
+        case SPECIAL_PLUS:
+            CharSpecial++;
+            if (CharSpecial > getCharImageBound(CharVolk, CharMann, 8)){
+                CharSpecial = 1;
             };
             break;
-        case this.SPECIAL2_MINUS:
-            this.CharSpecial2--;
-            if (this.CharSpecial2 < 1){
-                this.CharSpecial2 = this.getCharImageBound(this.CharVolk, this.CharMann, 9);
+        case SPECIAL2_MINUS:
+            CharSpecial2--;
+            if (CharSpecial2 < 1){
+                CharSpecial2 = getCharImageBound(CharVolk, CharMann, 9);
             };
             break;
-        case this.SPECIAL2_PLUS:
-            this.CharSpecial2++;
-            if (this.CharSpecial2 > this.getCharImageBound(this.CharVolk, this.CharMann, 9)){
-                this.CharSpecial2 = 1;
+        case SPECIAL2_PLUS:
+            CharSpecial2++;
+            if (CharSpecial2 > getCharImageBound(CharVolk, CharMann, 9)){
+                CharSpecial2 = 1;
             };
             break;
-        case this.COLOR_PLUS:
-            this.CharColor++;
-            if (this.CharColor > this.getCharImageBound(this.CharVolk, this.CharMann, 10)){
-                this.CharColor = 1;
+        case COLOR_PLUS:
+            CharColor++;
+            if (CharColor > getCharImageBound(CharVolk, CharMann, 10)){
+                CharColor = 1;
             };
             break;
-        case this.COLOR_MINUS:
-            this.CharColor--;
-            if (this.CharColor < 1){
-                this.CharColor = this.getCharImageBound(this.CharVolk, this.CharMann, 10);
+        case COLOR_MINUS:
+            CharColor--;
+            if (CharColor < 1){
+                CharColor = getCharImageBound(CharVolk, CharMann, 10);
             };
             break;
     };
-    this.CharHair = AddColorOffset(this.CharHair, this.C_HAIR);
-    this.CharBrows = AddColorOffset(this.CharBrows, this.C_BROWS);
-    this.CharBeard = AddColorOffset(this.CharBeard, this.C_BEARD);
-    this.CharSpecial2 = AddColorOffset(this.CharSpecial2, this.C_SPECIAL2);
-    this.LoadCharacterImage();
+    CharHair = AddColorOffset(CharHair, C_HAIR);
+    CharBrows = AddColorOffset(CharBrows, C_BROWS);
+    CharBeard = AddColorOffset(CharBeard, C_BEARD);
+    CharSpecial2 = AddColorOffset(CharSpecial2, C_SPECIAL2);
+    LoadCharacterImage();
 }
 
 public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk:int=0, isMann:Boolean=false, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
@@ -26073,23 +26073,23 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk
             Load(localActorID);
         };
     };
-    charPrefix = this.getCharPrefix(false, isVolk, isMann, isKaste);
-    if (actorID == this.C_EMPTY){
-        if (this.OnStage(this.SCR_BUILDCHAR_BACKGROUND)){
-            var _local16 = this.actor[this.LBL_CREATE_RACE];
+    charPrefix = getCharPrefix(false, isVolk, isMann, isKaste);
+    if (actorID == C_EMPTY){
+        if (OnStage(SCR_BUILDCHAR_BACKGROUND)){
+            var _local16 = actor[LBL_CREATE_RACE];
             with (_local16) {
                 text = txt[((TXT_RACENAME + CharVolk) - 1)];
                 if (textDir == "right"){
                     x = ((actor[LBL_CREATE_RACE_DESC].x + actor[LBL_CREATE_RACE_DESC].width) - textWidth);
                 };
             };
-            _local16 = this.actor[this.LBL_CREATE_RACE_DESC];
+            _local16 = actor[LBL_CREATE_RACE_DESC];
             with (_local16) {
                 text = txt[((TXT_RACEDESC + CharVolk) - 1)];
                 y = ((actor[LBL_CREATE_RACE].y + actor[LBL_CREATE_RACE].textHeight) + BUILDCHAR_LINES_Y);
             };
-            this.Arabize(this.LBL_CREATE_RACE_DESC);
-            _local16 = this.actor[this.LBL_CREATE_CLASS];
+            Arabize(LBL_CREATE_RACE_DESC);
+            _local16 = actor[LBL_CREATE_CLASS];
             with (_local16) {
                 text = txt[((KlasseGewählt) ? ((TXT_CLASSNAME + CharKaste) - 1) : TXT_NOCLASS)];
                 y = ((actor[LBL_CREATE_RACE_DESC].y + actor[LBL_CREATE_RACE_DESC].textHeight) + BUILDCHAR_LINES_Y);
@@ -26097,99 +26097,99 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk
                     x = ((actor[LBL_CREATE_RACE_DESC].x + actor[LBL_CREATE_RACE_DESC].width) - textWidth);
                 };
             };
-            _local16 = this.actor[this.LBL_CREATE_CLASS_DESC];
+            _local16 = actor[LBL_CREATE_CLASS_DESC];
             with (_local16) {
                 text = txt[((KlasseGewählt) ? ((TXT_CLASSDESC + CharKaste) - 1) : TXT_NOCLASS_DESC)];
                 y = ((actor[LBL_CREATE_CLASS].y + actor[LBL_CREATE_CLASS].textHeight) + BUILDCHAR_LINES_Y);
             };
-            this.Arabize(this.LBL_CREATE_CLASS_DESC);
+            Arabize(LBL_CREATE_CLASS_DESC);
         };
-        this.LoadCharacterImage(this.CHARBACKGROUND, loadOnly, this.CharVolk, this.CharMann, this.CharKaste, this.CharMouth, this.CharBeard, this.CharNose, this.CharEyes, this.CharBrows, this.CharEars, this.CharHair, this.CharSpecial, this.CharSpecial2);
-        if (this.OnStage(this.SCR_BUILDCHAR_BACKGROUND)){
-            this.Remove(this.VOLK_BTNS_ALL);
-            this.Add(this.F_IDLE);
-            this.Add(this.M_IDLE);
-            if (this.CharMann){
-                this.Add(this.VOLK_BTNS_M);
-                this.Add(((this.VOLK_1_M_ACT + this.CharVolk) - 1));
-                this.Add(this.M_ACT);
+        LoadCharacterImage(CHARBACKGROUND, loadOnly, CharVolk, CharMann, CharKaste, CharMouth, CharBeard, CharNose, CharEyes, CharBrows, CharEars, CharHair, CharSpecial, CharSpecial2);
+        if (OnStage(SCR_BUILDCHAR_BACKGROUND)){
+            Remove(VOLK_BTNS_ALL);
+            Add(F_IDLE);
+            Add(M_IDLE);
+            if (CharMann){
+                Add(VOLK_BTNS_M);
+                Add(((VOLK_1_M_ACT + CharVolk) - 1));
+                Add(M_ACT);
             } else {
-                this.Add(this.VOLK_BTNS_F);
-                this.Add(((this.VOLK_1_F_ACT + this.CharVolk) - 1));
-                this.Add(this.F_ACT);
+                Add(VOLK_BTNS_F);
+                Add(((VOLK_1_F_ACT + CharVolk) - 1));
+                Add(F_ACT);
             };
-            this.Add(this.KASTE_1_IDLE);
-            this.Add(this.KASTE_2_IDLE);
-            this.Add(this.KASTE_3_IDLE);
-            if (this.KlasseGewählt){
-                this.Add((this.KASTE_1_ACT + ((this.CharKaste - 1) * 2)));
+            Add(KASTE_1_IDLE);
+            Add(KASTE_2_IDLE);
+            Add(KASTE_3_IDLE);
+            if (KlasseGewählt){
+                Add((KASTE_1_ACT + ((CharKaste - 1) * 2)));
             };
             i = 1;
             while (i < 11) {
-                if (this.getCharImageBound(this.CharVolk, this.CharMann, i) == 0){
-                    this.Remove((this.MOUTH_MINUS + ((i - 1) * 2)));
-                    this.Remove((this.MOUTH_PLUS + ((i - 1) * 2)));
-                    this.Remove((this.LBL_MOUTH + (i - 1)));
+                if (getCharImageBound(CharVolk, CharMann, i) == 0){
+                    Remove((MOUTH_MINUS + ((i - 1) * 2)));
+                    Remove((MOUTH_PLUS + ((i - 1) * 2)));
+                    Remove((LBL_MOUTH + (i - 1)));
                 } else {
-                    this.Add((this.MOUTH_MINUS + ((i - 1) * 2)));
-                    this.Add((this.MOUTH_PLUS + ((i - 1) * 2)));
-                    this.Add((this.LBL_MOUTH + (i - 1)));
+                    Add((MOUTH_MINUS + ((i - 1) * 2)));
+                    Add((MOUTH_PLUS + ((i - 1) * 2)));
+                    Add((LBL_MOUTH + (i - 1)));
                 };
                 i = (i + 1);
             };
-            this.PositionModifyCharacterButtons();
-            if (!this.OnStage(this.CREATE_CHARACTER)){
-                this.Remove(this.CREATE_GOTO_LOGIN, this.KASTE_1_IDLE, this.KASTE_2_IDLE, this.KASTE_3_IDLE, this.KASTE_1_ACT, this.KASTE_2_ACT, this.KASTE_3_ACT, this.CREATE_CHARACTER, this.BLACK_SQUARE);
-                this.AddSome(this.MODIFY_CHARACTER, this.IF_EXIT);
+            PositionModifyCharacterButtons();
+            if (!OnStage(CREATE_CHARACTER)){
+                Remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE, KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT, CREATE_CHARACTER, BLACK_SQUARE);
+                AddSome(MODIFY_CHARACTER, IF_EXIT);
             };
         };
         return;
     };
-    LoadCharacterItemImage(actorID, (charPrefix + this.getCharSuffix(0, isKaste)), 0);
-    LoadCharacterItemImage((actorID + 1), (charPrefix + this.getCharSuffix(1, isMouth)), 1);
-    LoadCharacterItemImage((actorID + 2), (charPrefix + this.getCharSuffix(2, isBeard)), 2);
-    LoadCharacterItemImage((actorID + 3), (charPrefix + this.getCharSuffix(3, isNose)), 3);
-    LoadCharacterItemImage((actorID + 4), (charPrefix + this.getCharSuffix(4, isEyes)), 4);
-    LoadCharacterItemImage((actorID + 5), (charPrefix + this.getCharSuffix(5, isBrows)), 5);
-    LoadCharacterItemImage((actorID + 6), (charPrefix + this.getCharSuffix(6, isEars)), 6);
-    LoadCharacterItemImage((actorID + 7), (charPrefix + this.getCharSuffix(7, isHair)), 7);
-    LoadCharacterItemImage((actorID + 8), (charPrefix + this.getCharSuffix(8, isSpecial)), 8);
-    LoadCharacterItemImage((actorID + 9), (charPrefix + this.getCharSuffix(9, isSpecial2)), 9);
-    actorOffset = (actorID - this.CHARBACKGROUND);
+    LoadCharacterItemImage(actorID, (charPrefix + getCharSuffix(0, isKaste)), 0);
+    LoadCharacterItemImage((actorID + 1), (charPrefix + getCharSuffix(1, isMouth)), 1);
+    LoadCharacterItemImage((actorID + 2), (charPrefix + getCharSuffix(2, isBeard)), 2);
+    LoadCharacterItemImage((actorID + 3), (charPrefix + getCharSuffix(3, isNose)), 3);
+    LoadCharacterItemImage((actorID + 4), (charPrefix + getCharSuffix(4, isEyes)), 4);
+    LoadCharacterItemImage((actorID + 5), (charPrefix + getCharSuffix(5, isBrows)), 5);
+    LoadCharacterItemImage((actorID + 6), (charPrefix + getCharSuffix(6, isEars)), 6);
+    LoadCharacterItemImage((actorID + 7), (charPrefix + getCharSuffix(7, isHair)), 7);
+    LoadCharacterItemImage((actorID + 8), (charPrefix + getCharSuffix(8, isSpecial)), 8);
+    LoadCharacterItemImage((actorID + 9), (charPrefix + getCharSuffix(9, isSpecial2)), 9);
+    actorOffset = (actorID - CHARBACKGROUND);
     if (!loadOnly){
-        this.Add((this.CHARIMG + actorOffset));
+        Add((CHARIMG + actorOffset));
         if ((((isVolk == 2)) and (isMann))){
-            this.AddBMO(this.CHARSPECIALOVL_ELF_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_ELF_M, actorOffset);
         };
         if ((((isVolk == 7)) and (isMann))){
-            this.AddBMO(this.CHARSPECIALOVL_GOBLIN_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_GOBLIN_M, actorOffset);
         };
         if ((((isVolk == 6)) and (isMann))){
-            this.AddBMO(this.CHARSPECIALOVL_DARKELF_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_DARKELF_M, actorOffset);
         };
         if ((((isVolk == 3)) and (isMann))){
-            this.AddBMO(this.CHARSPECIALOVL_DWARF_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_DWARF_M, actorOffset);
         };
         if ((((isVolk == 1)) and (isMann))){
-            this.AddBMO(this.CHARSPECIALOVL_HUMAN_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_HUMAN_M, actorOffset);
         };
         if ((((isVolk == 4)) and (isMann))){
-            this.AddBMO(this.CHARSPECIALOVL_GNOM_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_GNOM_M, actorOffset);
         };
         if ((((isVolk == 7)) and (!(isMann)))){
-            this.AddBMO(this.CHARSPECIALOVL_GOBLIN_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_GOBLIN_F, actorOffset);
         };
         if ((((isVolk == 5)) and (!(isMann)))){
-            this.AddBMO(this.CHARSPECIALOVL_ORC_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_ORC_F, actorOffset);
         };
         if ((((isVolk == 2)) and (!(isMann)))){
-            this.AddBMO(this.CHARSPECIALOVL_ELF_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_ELF_F, actorOffset);
         };
         if ((((isVolk == 1)) and (!(isMann)))){
-            this.AddBMO(this.CHARSPECIALOVL_HUMAN_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_HUMAN_F, actorOffset);
         };
         if ((((isVolk == 3)) and (!(isMann)))){
-            this.AddBMO(this.CHARSPECIALOVL_DWARF_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_DWARF_F, actorOffset);
         };
     };
 }
@@ -26202,30 +26202,30 @@ public function PositionModifyCharacterButtons():void{
         };
     };
     var iPosi:* = 0;
-    positionModifyCharacterBtn(this.EYES_PLUS);
-    positionModifyCharacterBtn(this.BROWS_PLUS);
-    positionModifyCharacterBtn(this.MOUTH_PLUS);
-    positionModifyCharacterBtn(this.NOSE_PLUS);
-    positionModifyCharacterBtn(this.EARS_PLUS);
-    positionModifyCharacterBtn(this.HAIR_PLUS);
-    positionModifyCharacterBtn(this.COLOR_PLUS);
-    positionModifyCharacterBtn(this.BEARD_PLUS);
-    positionModifyCharacterBtn(this.SPECIAL_PLUS);
-    positionModifyCharacterBtn(this.SPECIAL2_PLUS);
+    positionModifyCharacterBtn(EYES_PLUS);
+    positionModifyCharacterBtn(BROWS_PLUS);
+    positionModifyCharacterBtn(MOUTH_PLUS);
+    positionModifyCharacterBtn(NOSE_PLUS);
+    positionModifyCharacterBtn(EARS_PLUS);
+    positionModifyCharacterBtn(HAIR_PLUS);
+    positionModifyCharacterBtn(COLOR_PLUS);
+    positionModifyCharacterBtn(BEARD_PLUS);
+    positionModifyCharacterBtn(SPECIAL_PLUS);
+    positionModifyCharacterBtn(SPECIAL2_PLUS);
     i = 0;
     while (i < 10) {
-        if (this.textDir == "right"){
-            this.actor[(this.LBL_MOUTH + i)].x = ((this.MODIFY_CHARACTER_BUTTONS_X - this.actor[(this.LBL_MOUTH + i)].textWidth) + 20);
-            this.actor[(this.MOUTH_MINUS + (i * 2))].x = (this.MODIFY_CHARACTER_BUTTONS_X + this.MODIFY_CHARACTER_LABEL_X);
-            this.actor[(this.MOUTH_PLUS + (i * 2))].x = (this.actor[(this.MOUTH_MINUS + (i * 2))].x + this.MODIFY_CHARACTER_BUTTONS_2);
-            this.actor[(this.MOUTH_MINUS + (i * 2))].y = this.actor[(this.MOUTH_PLUS + (i * 2))].y;
-            this.actor[(this.LBL_MOUTH + i)].y = (this.actor[(this.MOUTH_PLUS + (i * 2))].y + this.MODIFY_CHARACTER_LABEL_Y);
+        if (textDir == "right"){
+            actor[(LBL_MOUTH + i)].x = ((MODIFY_CHARACTER_BUTTONS_X - actor[(LBL_MOUTH + i)].textWidth) + 20);
+            actor[(MOUTH_MINUS + (i * 2))].x = (MODIFY_CHARACTER_BUTTONS_X + MODIFY_CHARACTER_LABEL_X);
+            actor[(MOUTH_PLUS + (i * 2))].x = (actor[(MOUTH_MINUS + (i * 2))].x + MODIFY_CHARACTER_BUTTONS_2);
+            actor[(MOUTH_MINUS + (i * 2))].y = actor[(MOUTH_PLUS + (i * 2))].y;
+            actor[(LBL_MOUTH + i)].y = (actor[(MOUTH_PLUS + (i * 2))].y + MODIFY_CHARACTER_LABEL_Y);
         } else {
-            this.actor[(this.MOUTH_MINUS + (i * 2))].x = this.MODIFY_CHARACTER_BUTTONS_X;
-            this.actor[(this.MOUTH_PLUS + (i * 2))].x = (this.actor[(this.MOUTH_MINUS + (i * 2))].x + this.MODIFY_CHARACTER_BUTTONS_2);
-            this.actor[(this.MOUTH_MINUS + (i * 2))].y = this.actor[(this.MOUTH_PLUS + (i * 2))].y;
-            this.actor[(this.LBL_MOUTH + i)].x = (this.actor[(this.MOUTH_PLUS + (i * 2))].x + this.MODIFY_CHARACTER_LABEL_X);
-            this.actor[(this.LBL_MOUTH + i)].y = (this.actor[(this.MOUTH_PLUS + (i * 2))].y + this.MODIFY_CHARACTER_LABEL_Y);
+            actor[(MOUTH_MINUS + (i * 2))].x = MODIFY_CHARACTER_BUTTONS_X;
+            actor[(MOUTH_PLUS + (i * 2))].x = (actor[(MOUTH_MINUS + (i * 2))].x + MODIFY_CHARACTER_BUTTONS_2);
+            actor[(MOUTH_MINUS + (i * 2))].y = actor[(MOUTH_PLUS + (i * 2))].y;
+            actor[(LBL_MOUTH + i)].x = (actor[(MOUTH_PLUS + (i * 2))].x + MODIFY_CHARACTER_LABEL_X);
+            actor[(LBL_MOUTH + i)].y = (actor[(MOUTH_PLUS + (i * 2))].y + MODIFY_CHARACTER_LABEL_Y);
         };
         i = (i + 1);
     };
@@ -26236,7 +26236,7 @@ public function getCharSuffix(itemIndex:int, itemValue:int):String{
     var strExt:String;
     var colorIndex:int;
     var colorString:String;
-    strExt = this.C_CHAREXT;
+    strExt = C_CHAREXT;
     colorIndex = 0;
     colorString = "";
     while (itemValue > 100) {
@@ -26296,22 +26296,22 @@ public function getCharSuffix(itemIndex:int, itemValue:int):String{
 }
 
 public function RandomizeCharacter(evt:Event=undefined):void{
-    this.CharVolk = (int((Math.random() * 8)) + 1);
-    this.CharMann = (Math.random() > 0.5);
-    if (this.paramObj["playerclass"]){
-        this.CharKaste = int(this.paramObj["playerclass"]);
-        if (this.CharKaste < 1){
-            this.CharKaste = 1;
+    CharVolk = (int((Math.random() * 8)) + 1);
+    CharMann = (Math.random() > 0.5);
+    if (paramObj["playerclass"]){
+        CharKaste = int(paramObj["playerclass"]);
+        if (CharKaste < 1){
+            CharKaste = 1;
         };
-        if (this.CharKaste > 3){
-            this.CharKaste = 3;
+        if (CharKaste > 3){
+            CharKaste = 3;
         };
-        this.KlasseGewählt = true;
+        KlasseGewählt = true;
     } else {
-        this.CharKaste = (int((Math.random() * 3)) + 1);
-        this.KlasseGewählt = false;
+        CharKaste = (int((Math.random() * 3)) + 1);
+        KlasseGewählt = false;
     };
-    this.RandomizeCharImage();
+    RandomizeCharImage();
 }
 
 public function RandomizeCharImage(evt:Event=undefined):void{
@@ -26322,17 +26322,17 @@ public function RandomizeCharImage(evt:Event=undefined):void{
         };
         return (0);
     };
-    this.CharColor = int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 10)) + 1));
-    this.CharMouth = int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 1)) + 1));
-    this.CharBeard = (int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 2)) + 1)) + ColorOffset(this.C_BEARD));
-    this.CharNose = int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 3)) + 1));
-    this.CharEyes = int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 4)) + 1));
-    this.CharBrows = (int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 5)) + 1)) + ColorOffset(this.C_BROWS));
-    this.CharEars = int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 6)) + 1));
-    this.CharHair = (int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 7)) + 1)) + ColorOffset(this.C_HAIR));
-    this.CharSpecial = int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 8)) + 1));
-    this.CharSpecial2 = (int(((Math.random() * this.getCharImageBound(this.CharVolk, this.CharMann, 9)) + 1)) + ColorOffset(this.C_SPECIAL2));
-    this.LoadCharacterImage();
+    CharColor = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 10)) + 1));
+    CharMouth = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 1)) + 1));
+    CharBeard = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 2)) + 1)) + ColorOffset(C_BEARD));
+    CharNose = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 3)) + 1));
+    CharEyes = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 4)) + 1));
+    CharBrows = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 5)) + 1)) + ColorOffset(C_BROWS));
+    CharEars = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 6)) + 1));
+    CharHair = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 7)) + 1)) + ColorOffset(C_HAIR));
+    CharSpecial = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 8)) + 1));
+    CharSpecial2 = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 9)) + 1)) + ColorOffset(C_SPECIAL2));
+    LoadCharacterImage();
 }
 
 public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
@@ -26361,7 +26361,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (5);
                     case 11:
-                        return (((this.C_BROWS + this.C_HAIR) + this.C_BEARD));
+                        return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
             case 2:
                 switch (itemIndex){
@@ -26386,7 +26386,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (3);
                     case 11:
-                        return (((this.C_HAIR + this.C_BROWS) + this.C_BEARD));
+                        return (((C_HAIR + C_BROWS) + C_BEARD));
                 };
             case 3:
                 switch (itemIndex){
@@ -26411,7 +26411,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (5);
                     case 11:
-                        return (((this.C_BROWS + this.C_HAIR) + this.C_BEARD));
+                        return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
             case 4:
                 switch (itemIndex){
@@ -26436,7 +26436,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (5);
                     case 11:
-                        return (((this.C_HAIR + this.C_BEARD) + this.C_BROWS));
+                        return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
             case 5:
                 switch (itemIndex){
@@ -26461,7 +26461,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (5);
                     case 11:
-                        return ((this.C_HAIR + this.C_BEARD));
+                        return ((C_HAIR + C_BEARD));
                 };
             case 6:
                 switch (itemIndex){
@@ -26486,7 +26486,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (3);
                     case 11:
-                        return (((this.C_HAIR + this.C_BEARD) + this.C_BROWS));
+                        return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
             case 7:
                 switch (itemIndex){
@@ -26536,7 +26536,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (5);
                     case 11:
-                        return ((this.C_BEARD + this.C_SPECIAL2));
+                        return ((C_BEARD + C_SPECIAL2));
                 };
         };
     } else {
@@ -26564,7 +26564,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (4);
                     case 11:
-                        return ((this.C_BROWS + this.C_HAIR));
+                        return ((C_BROWS + C_HAIR));
                 };
             case 2:
                 switch (itemIndex){
@@ -26589,7 +26589,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (4);
                     case 11:
-                        return ((this.C_HAIR + this.C_BROWS));
+                        return ((C_HAIR + C_BROWS));
                 };
             case 3:
                 switch (itemIndex){
@@ -26614,7 +26614,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (4);
                     case 11:
-                        return ((this.C_HAIR + this.C_BROWS));
+                        return ((C_HAIR + C_BROWS));
                 };
             case 4:
                 switch (itemIndex){
@@ -26639,7 +26639,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (4);
                     case 11:
-                        return ((this.C_HAIR + this.C_BROWS));
+                        return ((C_HAIR + C_BROWS));
                 };
             case 5:
                 switch (itemIndex){
@@ -26664,7 +26664,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (4);
                     case 11:
-                        return (this.C_HAIR);
+                        return (C_HAIR);
                 };
             case 6:
                 switch (itemIndex){
@@ -26689,7 +26689,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (3);
                     case 11:
-                        return (this.C_HAIR);
+                        return (C_HAIR);
                 };
             case 7:
                 switch (itemIndex){
@@ -26714,7 +26714,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (4);
                     case 11:
-                        return (this.C_HAIR);
+                        return (C_HAIR);
                 };
             case 8:
                 switch (itemIndex){
@@ -26739,7 +26739,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                     case 10:
                         return (3);
                     case 11:
-                        return (this.C_HAIR);
+                        return (C_HAIR);
                 };
         };
     };
@@ -26791,34 +26791,34 @@ public function DrachenSetzen():void{
     var d:int;
     var x:int;
     var y:int;
-    i = this.IF_DRAGON_1;
-    while (i <= this.IF_DRAGON_13) {
-        x = this.actor[i].x;
-        y = this.actor[i].y;
-        delete this.actor[i];
+    i = IF_DRAGON_1;
+    while (i <= IF_DRAGON_13) {
+        x = actor[i].x;
+        y = actor[i].y;
+        delete actor[i];
         d = (Math.random() * 5);
-        this.actorBitmap[i] = d;
+        actorBitmap[i] = d;
         switch (d){
             case 0:
-                this.actor[i] = new interface_dragon1_png();
+                actor[i] = new interface_dragon1_png();
                 break;
             case 1:
-                this.actor[i] = new interface_dragon2_png();
+                actor[i] = new interface_dragon2_png();
                 break;
             case 2:
-                this.actor[i] = new interface_dragon3_png();
+                actor[i] = new interface_dragon3_png();
                 break;
             case 3:
-                this.actor[i] = new interface_dragon4_png();
+                actor[i] = new interface_dragon4_png();
                 break;
             case 4:
             case 5:
-                this.actor[i] = new interface_dragon6_png();
+                actor[i] = new interface_dragon6_png();
                 break;
         };
-        this.actor[i].x = x;
-        this.actor[i].y = y;
-        addChild(this.actor[i]);
+        actor[i].x = x;
+        actor[i].y = y;
+        addChild(actor[i]);
         i++;
     };
 }
@@ -26827,9 +26827,9 @@ public function ErrorMessage(msg:String=""):void{
     var msg:String = msg;
     if (msg == ""){
     } else {
-        this.trc(("Error message: " + msg));
-        if (this.OnStage(this.SHP_FUCK_BLACK_SQUARE)){
-            var _local3 = this.actor[this.LBL_ERROR];
+        trc(("Error message: " + msg));
+        if (OnStage(SHP_FUCK_BLACK_SQUARE)){
+            var _local3 = actor[LBL_ERROR];
             with (_local3) {
                 text = msg;
                 scaleX = 1;
@@ -26837,24 +26837,24 @@ public function ErrorMessage(msg:String=""):void{
                 x = (IF_ERROR_X - int((textWidth / 2)));
                 y = (IF_ERROR_Y + 60);
             };
-            this.Add(this.LBL_ERROR);
+            Add(LBL_ERROR);
         } else {
-            if (this.OnStage(this.GILDE_LIST)){
+            if (OnStage(GILDE_LIST)){
                 if (msg.split(" ").join("") != ""){
-                    this.ChatLine(msg, true);
+                    ChatLine(msg, true);
                 };
             } else {
-                if (((this.OnStage(this.CREATE_CHARACTER)) and (!(this.OnStage(this.IF_WINDOW))))){
-                    _local3 = this.actor[this.LBL_CREATE_RACE_DESC];
+                if (((OnStage(CREATE_CHARACTER)) and (!(OnStage(IF_WINDOW))))){
+                    _local3 = actor[LBL_CREATE_RACE_DESC];
                     with (_local3) {
                         defaultTextFormat = FontFormat_ClassError;
                         text = msg;
                         defaultTextFormat = FontFormat_DefaultLeft;
                     };
-                    this.actor[this.LBL_CREATE_CLASS].text = "";
-                    this.actor[this.LBL_CREATE_CLASS_DESC].text = "";
+                    actor[LBL_CREATE_CLASS].text = "";
+                    actor[LBL_CREATE_CLASS_DESC].text = "";
                 } else {
-                    _local3 = this.actor[this.LBL_ERROR];
+                    _local3 = actor[LBL_ERROR];
                     with (_local3) {
                         text = msg;
                         scaleX = 1;
@@ -26899,7 +26899,7 @@ public function ErrorMessage(msg:String=""):void{
                             };
                         };
                     };
-                    this.Add(this.LBL_ERROR);
+                    Add(LBL_ERROR);
                 };
             };
         };
@@ -26909,82 +26909,82 @@ public function ErrorMessage(msg:String=""):void{
 public function InterfaceBtnHandler(evt:Event):void{
     var tmpAction:int;
     tmpAction = 0;
-    switch (this.GetActorID(evt.target)){
-        case this.CA_CITY_SHAKES:
-        case this.IF_SCHMIEDE:
-            tmpAction = this.ACT_SCREEN_SCHMIEDE;
+    switch (GetActorID(evt.target)){
+        case CA_CITY_SHAKES:
+        case IF_SCHMIEDE:
+            tmpAction = ACT_SCREEN_SCHMIEDE;
             break;
-        case this.CA_CITY_RUHMESHALLE:
-        case this.IF_EHRENHALLE:
-            this.ruhmesHalleSuchString = this.actor[this.INP_NAME].getChildAt(1).text;
-            this.SendAction(this.ACT_SCREEN_EHRENHALLE, this.actor[this.INP_NAME].getChildAt(1).text, -1);
+        case CA_CITY_RUHMESHALLE:
+        case IF_EHRENHALLE:
+            ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
+            SendAction(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
             break;
-        case this.CA_CITY_ARENA:
-        case this.IF_ARENA:
-            tmpAction = this.ACT_SCREEN_ARENA;
+        case CA_CITY_ARENA:
+        case IF_ARENA:
+            tmpAction = ACT_SCREEN_ARENA;
             break;
-        case this.CA_CITY_ESEL:
-        case this.IF_STALL:
-            tmpAction = this.ACT_SCREEN_STALL;
+        case CA_CITY_ESEL:
+        case IF_STALL:
+            tmpAction = ACT_SCREEN_STALL;
             break;
-        case this.CA_CITY_POST:
-        case this.IF_POST:
-            this.PostScroll = 1;
-            this.SendAction(this.ACT_SCREEN_POST, 1);
+        case CA_CITY_POST:
+        case IF_POST:
+            PostScroll = 1;
+            SendAction(ACT_SCREEN_POST, 1);
             break;
-        case this.CA_CITY_WACHE:
-        case this.IF_ARBEITEN:
-            tmpAction = this.ACT_SCREEN_ARBEITEN;
+        case CA_CITY_WACHE:
+        case IF_ARBEITEN:
+            tmpAction = ACT_SCREEN_ARBEITEN;
             break;
-        case this.IF_TAVERNE:
-        case this.CA_CITY_TAVERNE:
-        case this.HUTMANN_BACK:
-            tmpAction = this.ACT_SCREEN_TAVERNE;
+        case IF_TAVERNE:
+        case CA_CITY_TAVERNE:
+        case HUTMANN_BACK:
+            tmpAction = ACT_SCREEN_TAVERNE;
             break;
-        case this.CA_CITY_ZAUBERLADEN:
-        case this.IF_ZAUBERLADEN:
-            tmpAction = this.ACT_SCREEN_ZAUBERLADEN;
+        case CA_CITY_ZAUBERLADEN:
+        case IF_ZAUBERLADEN:
+            tmpAction = ACT_SCREEN_ZAUBERLADEN;
             break;
-        case this.IF_PILZDEALER:
-        case this.CA_CITY_DEALER:
-            tmpAction = this.ACT_SCREEN_PILZDEALER;
+        case IF_PILZDEALER:
+        case CA_CITY_DEALER:
+            tmpAction = ACT_SCREEN_PILZDEALER;
             break;
-        case this.FIGHT_OK:
-            tmpAction = ((this.PostFightMode) ? this.ACT_SCREEN_POST : this.ACT_SCREEN_CHAR);
-            if (this.hasFoughtGuildBattle){
-                if (this.towerFightMode){
-                    tmpAction = this.ACT_SCREEN_TOWER;
+        case FIGHT_OK:
+            tmpAction = ((PostFightMode) ? ACT_SCREEN_POST : ACT_SCREEN_CHAR);
+            if (hasFoughtGuildBattle){
+                if (towerFightMode){
+                    tmpAction = ACT_SCREEN_TOWER;
                 } else {
-                    tmpAction = this.ACT_SCREEN_GILDEN;
+                    tmpAction = ACT_SCREEN_GILDEN;
                 };
             };
-            if (this.hasLostMQ){
-                this.hasLostMQ = false;
+            if (hasLostMQ){
+                hasLostMQ = false;
                 tmpAction = 0;
-                this.ShowMainQuestScreen(this.LastDungeonNr, this.LastDungeonEnemy);
+                ShowMainQuestScreen(LastDungeonNr, LastDungeonEnemy);
             };
             break;
-        case this.IF_CHARAKTER:
-            this.arrowHallMode = false;
-            tmpAction = this.ACT_SCREEN_CHAR;
+        case IF_CHARAKTER:
+            arrowHallMode = false;
+            tmpAction = ACT_SCREEN_CHAR;
             break;
-        case this.IF_GILDEN:
-            this.PulseGilde = false;
-            this.PulseGildeOnHistory = false;
-            tmpAction = this.ACT_SCREEN_GILDEN;
+        case IF_GILDEN:
+            PulseGilde = false;
+            PulseGildeOnHistory = false;
+            tmpAction = ACT_SCREEN_GILDEN;
             break;
-        case this.IF_WELTKARTE:
-            tmpAction = this.ACT_SCREEN_WELTKARTE;
+        case IF_WELTKARTE:
+            tmpAction = ACT_SCREEN_WELTKARTE;
             break;
-        case this.IF_OPTIONEN:
-            tmpAction = this.ACT_SCREEN_OPTIONEN;
+        case IF_OPTIONEN:
+            tmpAction = ACT_SCREEN_OPTIONEN;
             break;
-        case this.CA_CITY_BUH:
-            this.slmCount++;
+        case CA_CITY_BUH:
+            slmCount++;
             break;
     };
     if (tmpAction > 0){
-        this.SendAction(tmpAction);
+        SendAction(tmpAction);
     };
 }
 
@@ -27212,12 +27212,12 @@ public function EnablePopup(actorID:int, ... _args){
         Remove(SLOT_SUGGESTION);
         Remove(POPUP_INFO);
     };
-    myStamp = this.popupStamp++;
-    if (this.popupStamp > 10000){
-        this.popupStamp = 0;
+    myStamp = popupStamp++;
+    if (popupStamp > 10000){
+        popupStamp = 0;
     };
     if (args.length > 0){
-        var _local4 = this.actor[actorID];
+        var _local4 = actor[actorID];
         with (_local4) {
             addEventListener(MouseEvent.MOUSE_OVER, ShowPopup);
             addEventListener(MouseEvent.MOUSE_MOVE, PositionPopup);
@@ -27226,37 +27226,37 @@ public function EnablePopup(actorID:int, ... _args){
             addEventListener(MouseEvent.MOUSE_UP, HidePopup);
         };
     };
-    this.actorPopupStamp[actorID] = myStamp;
+    actorPopupStamp[actorID] = myStamp;
 }
 
 public function GuildChatPollFn(e:Event){
-    if (this.param_poll_tunnel_url == ""){
-        if (this.Gilde == ""){
-            this.GuildChatPoll.delay = 1000;
+    if (param_poll_tunnel_url == ""){
+        if (Gilde == ""){
+            GuildChatPoll.delay = 1000;
             return;
         };
-        if (this.OnStage(this.INP_GILDE_CHAT)){
-            this.GuildChatPoll.delay = (1000 * this.intervalMultiplierChat);
+        if (OnStage(INP_GILDE_CHAT)){
+            GuildChatPoll.delay = (1000 * intervalMultiplierChat);
         } else {
-            if (this.param_idle_polling > 0){
-                this.GuildChatPoll.delay = (1000 * this.param_idle_polling);
+            if (param_idle_polling > 0){
+                GuildChatPoll.delay = (1000 * param_idle_polling);
             } else {
-                this.GuildChatPoll.delay = (1000 * 60);
+                GuildChatPoll.delay = (1000 * 60);
             };
         };
     } else {
-        this.GuildChatPoll.delay = 1000;
-        if (this.Gilde == ""){
+        GuildChatPoll.delay = 1000;
+        if (Gilde == ""){
             return;
         };
     };
-    this.SendAction(this.ACT_GET_CHAT_HISTORY, this.lastChatIndex);
+    SendAction(ACT_GET_CHAT_HISTORY, lastChatIndex);
 }
 
 public function ChatPollIntervalReset(){
-    if (this.param_poll_tunnel_url != ""){
-        this.GuildChatPoll.stop();
-        this.GuildChatPoll.start();
+    if (param_poll_tunnel_url != ""){
+        GuildChatPoll.stop();
+        GuildChatPoll.start();
     };
 }
 
@@ -27271,8 +27271,8 @@ public function trc(... _args){
     };
     outStr = outStr.substr(0, (outStr.length - 1));
     trace(outStr);
-    if (this.paramObj["firebug"]){
-        if (this.paramObj["firebug"] != ""){
+    if (paramObj["firebug"]){
+        if (paramObj["firebug"] != ""){
             ExternalInterface.call("console.log", outStr);
         };
     };
