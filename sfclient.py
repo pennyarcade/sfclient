@@ -1,4 +1,9 @@
 #!/usr/bin/python
+'''
+    Shakes & Fidget command line client_cfg
+
+    by Chocokiko
+'''
 
 import requests
 import time
@@ -384,6 +389,7 @@ SG = {
         "LOGIN_IP": 504
     },
     "MUSH": {
+        "MUSH": 15,
         "BOUGHT_SINCE_LAST_LOGIN": 446,
         "GAINED": 16,
         "SPENT": 17
@@ -447,7 +453,6 @@ SG = {
     "MQ_REROLL_TIME": 460,
     "MQ_STATE": 459,
     "MSG_COUNT": 6,
-    "MUSH": 15,
     "MUSHROOM_BOUGHT_AMOUNT": 507,
     "MUSHROOM_BOUGHT_DATE": 508,
     "MUSHROOMS_MAY_DONATE": 438,
@@ -630,7 +635,7 @@ TXT = {
     },
     "CREATE": {
         "ACCOUNT": 21,
-        "CHARACTER": 18,
+        "CHAR": 18,
         "CHARACTER": 36,
         "GOTO_LOGIN": 117
     },
@@ -666,6 +671,7 @@ TXT = {
             "TITLE": 137
         },
         "NAME": {
+            "NAME": 156,
             "FIELD": {
                 "1": 134,
                 "2": 135,
@@ -681,7 +687,6 @@ TXT = {
             },
             "TITLE": 141
         },
-        "NAME": 156
     },
     "DONATE": {
         "GOLD": {
@@ -856,6 +861,7 @@ TXT = {
         "MASTER_TITLE": 173,
         "MUSH": 0x0101,
         "QUIT": 176,
+        "QUIT_1": 271,
         "QUIT_TITLE": 177,
         "RAIDSTART": 9101,
         "RAIDSTART_TITLE": 9100,
@@ -880,7 +886,6 @@ TXT = {
         "JOINED": 270,
         "JOINED_TOO_RECENTLY": 8660,
         "LEVEL_UP": 9448,
-        "QUIT": 271,
         "RAID_FAIL": 8991,
         "RAID_SUCCESS": 8990
     },
@@ -1220,6 +1225,7 @@ TXT = {
         "TITLE": 9206
     },
     "STALL": {
+        "STALL": 5,
         "BUY": 112,
         "LAUFZEIT": 111,
         "MOUNTTEXT": 2430,
@@ -1425,7 +1431,6 @@ TXT = {
     "SKIP_FIGHT": 105,
     "SPECIAL": 45,
     "SPECIAL2": 46,
-    "STALL": 5,
     "TAG": 197,
     "TAGE": 198,
     "TATTOO": 38,
@@ -1609,7 +1614,7 @@ LBL = {
         "MUSHHINT": 24360,
         "TEXT": 24359,
         "TITLE": 24358,
-        "TITLE": 24309
+        "TITLE1": 24309
     },
     "OPTION": {
         "CHANGE": 24250,
@@ -2823,7 +2828,7 @@ IMG = {
         "BG": 24715,
         "LEVEL": 24745,
         "PORTRAIT": 24756,
-        "PORTRAIT": 24717,
+        "PORTRAIT1": 24717,
         "ROOF": 24748,
         "WINDOW": {
             "BURNT": 24751,
@@ -3070,7 +3075,7 @@ POS = {
     "DEMO": {
         "X": 1050,
         "Y": 700,
-        "Y": 380
+        "Y1": 380
     },
     "FIGHT": {
         "Y": 710,
@@ -3511,7 +3516,7 @@ REL = {
             "X": 640,
             "FIELD_X": 570,
             "LABEL_X": 440,
-            "X": 430
+            "X1": 430
         },
         "IMAGE_X": 20,
         "TEXT_Y": 13,
@@ -4065,22 +4070,32 @@ RES_X = 0x0500
 RES_Y = 800
 
 # global for logger
-log = ''
+Log = ''
 
 
-# Make switch statements possible
-class switch(object):
+class Switch(object):
+    '''
+        Make Switch statements possible
+        TODO: Credits for this classs?
+    '''
     def __init__(self, value):
+        '''
+            Constructor to Switch
+        '''
         self.value = value
         self.fall = False
 
     def __iter__(self):
-        """Return the match method once, then stop"""
+        '''
+            Return the match method once, then stop
+        '''
         yield self.match
         raise StopIteration
 
     def match(self, *args):
-        """Indicate whether or not to enter a case suite"""
+        '''
+            Indicate whether or not to enter a case suite
+        '''
         if self.fall or not args:
             return True
         # changed for v1.5, see below
@@ -4091,55 +4106,69 @@ class switch(object):
             return False
 
 
-class session:
+class Session:
+    '''
+        Session object to handle request stuff
+    '''
     def __init__(self):
+        '''
+            Constructor to Session object
+        '''
         self.baseuri = 'http://s31.sfgame.de/request.php'
         self.loginparams = '?req=&random=%%2&rnd=%s%s'
 
-        self.reqFormat = '%s%%3B%s%%3bv1.70'
-        self.rndFormat = '%s%s'
+        self.req_format = '%s%%3B%s%%3bv1.70'
+        self.rnd_format = '%s%s'
 
-        self.sessionId = '00000000000000000000000000000000'
+        self.session_id = '00000000000000000000000000000000'
         self.user = 'chocokiko'
         self.pwdmd5 = 'c33def595b633a53fbb6a3987ab54a05'
         random.seed()
 
     def login(self):
+        '''
+            login to server
+
+            TODO: refactor to use sendAction()
+        '''
         action = '002'
 
-        reqString = self.reqFormat % (
-            self.sessionId + action + self.user, self.pwdmd5
+        req_string = self.req_format % (
+            self.session_id + action + self.user, self.pwdmd5
         )
 
-        randomString = '%2'
+        random_string = '%2'
         # TODO: rework random number generation
-        rndString = self.rndFormat % (
+        rnd_string = self.rnd_format % (
             random.randint(0, 9999999999),
             int(time.time() * 1000)
         )
 
         payload = {
-            'req': reqString,
-            'random': randomString,
-            'rnd': rndString
+            'req': req_string,
+            'random': random_string,
+            'rnd': rnd_string
         }
 
         r = requests.get(self.baseuri, params=payload)
 
         return r.text.split('/')
 
-    def sendAction(self, action, *params):
+    def send_action(self, action, *params):
+        '''
+            Send formatted request to server
+        '''
         if action == ACT['GET_CHAT_HISTORY']:
-            if not OnStage(CNT['IF_LOGOUT']):
+            if not on_stage(CNT['IF_LOGOUT']):
                 return
             if self.param_poll_tunnel_url != "":
                 if self.pollLock:
                     return
             else:
-                if self.pollLock or self.sendLock or self.fightLock:
+                if self.poll_lock or self.send_lock or self.fight_lock:
                     return action
         else:
-            if self.sendLock:
+            if self.send_lock:
                 if (
                     (action != ACT['VALIDATE'])
                     and (action != ACT['SEND_CHAT'])
@@ -4148,7 +4177,7 @@ class session:
                     and (action != ACT.REQUEST_CHAR)
                     and (action != ACT.POST_SEND)
                 ):
-                    log.warning(''.join([
+                    Log.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil noch auf eine ",
                         "Serverantwort gewartet wird: ",
                         str(action)
@@ -4156,24 +4185,24 @@ class session:
                     return
             else:
                 if fightLock:
-                    log.warning(''.join([
+                    Log.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
                         "Ereignis stattfindet:",
                         str(act)
                     ]))
                     return
 
-        dataStr = str(action).zfill(3) + ';'.join(params)
-        lastAct = action
+        data_str = str(action).zfill(3) + ';'.join(params)
+        last_act = action
 
-        failTry = 1
+        fail_try = 1
 
-        if self.sessionId == "":
-            self.sessionId = "00000000000000000000000000000000"
+        if self.session_id == "":
+            self.session_id = "00000000000000000000000000000000"
 
-            log.debug("SID: %s" % self.sessionId)
-            log.debug("Action: %s" % act)
-            log.debug("Action+Daten: %s" % dataStr)
+            Log.debug("SID: %s" % self.session_id)
+            Log.debug("Action: %s" % act)
+            Log.debug("Action+Daten: %s" % data_str)
 
         # TODO: This "if" switches base URL
         # self.param_poll_tunnel_url / param_php_tunnel_url
@@ -4183,33 +4212,33 @@ class session:
         ):
             # TODO: move payload creation to method
             # self.param_poll_tunnel_url
-            reqString = self.sessionId + dataStr
-            randomString = '%2'
-            rndString = str(round(random.random() * 0x77359400))
-            rndString += str(int(time.time() * 1000))
+            req_string = self.session_id + data_str
+            random_string = '%2'
+            rnd_string = str(round(random.random() * 0x77359400))
+            rnd_string += str(int(time.time() * 1000))
 
             payload = {
-                'req': reqString,
-                'random': randomString,
-                'rnd': rndString
+                'req': req_string,
+                'random': random_string,
+                'rnd': rnd_string
             }
 
-            self.pollLock = True
+            self.poll_lock = True
         else:
             # self.param_php_tunnel_url
-            reqString = self.sessionId + dataStr
-            randomString = '%2'
-            rndString = str(round(random.random() * 0x77359400))
-            rndString += str(int(time.time() * 1000))
+            req_string = self.session_id + data_str
+            random_string = '%2'
+            rnd_string = str(round(random.random() * 0x77359400))
+            rnd_string += str(int(time.time() * 1000))
 
             payload = {
-                'req': reqString,
-                'random': randomString,
-                'rnd': rndString
+                'req': req_string,
+                'random': random_string,
+                'rnd': rnd_string
             }
 
             if action != ACT_GET_CHAT_HISTORY:
-                self.sendLock = True
+                self.send_lock = True
 
         if self.mp_api_user_id != "notset":
             payload['mp_api_user_id'] = self.mp_api_user_id
@@ -4217,9 +4246,9 @@ class session:
         if self.mp_api_user_token != "notset":
             payload['mp_api_user_token'] = self.mp_api_user_token
 
-        while failTry < param_fail_tries:
-            r = requests.get(self.baseuri, params=payload)
-            log.debug(r.url)
+        while fail_try < param_fail_tries:
+            resp = requests.get(self.baseuri, params=payload)
+            Log.debug(resp.url)
 
             # TODO : test success of request here !!
 
@@ -4228,53 +4257,53 @@ class session:
                     (act == ACT_GET_CHAT_HISTORY)
                     and (param_poll_tunnel_url != "")
                 ):
-                    self.pollLock = False
+                    self.poll_lock = False
                 else:
-                    self.sendLock = False
+                    self.send_lock = False
 
-                data = r.text()
+                data = resp.text()
 
-                log.debug("Antwort auf %s: %s" % (act, php_tunnel.data))
+                Log.debug("Antwort auf %s: %s" % (act, php_tunnel.data))
 
                 if data == "":
-                    log.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
+                    Log.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
                     success = False
                 else:
                     return data
 
             if not success:
-                if failTry < param_fail_tries:
-                    log.warning(''.join([
+                if fail_try < param_fail_tries:
+                    Log.warning(''.join([
                         "PHP-Request fehlgeschlagen (Versuch",
-                        str(failTry), "/",
+                        str(fail_try), "/",
                         str(param_fail_tries) + ").",
                         evt, "Erneutes Senden..."
                     ]))
-                    log.info("Erneut gesendet.")
+                    Log.info("Erneut gesendet.")
                     pass
                 else:
-                    log.warning(''.join([
+                    Log.warning(''.join([
                         "PHP Tunneling fehlgeschlagen. ",
                         "Versuche, neu zu verbinden."
                     ]))
-                    self.sessionId = ""
+                    self.session_id = ""
                     if (
                         (act == ACT_GET_CHAT_HISTORY)
                         and (param_poll_tunnel_url != "")
                     ):
-                        self.pollLock = False
+                        self.poll_lock = False
                     else:
-                        self.sendLock = False
+                        self.send_lock = False
 
                     raise RequestFailedException()
-                failTry += 1
+                fail_try += 1
 
 
-class character:
+class Character:
     pass
 
 
-class account:
+class Account:
     def __init__(self):
         pass
 
@@ -4298,8 +4327,8 @@ def setupLogging():
 
     # TODO: make configurable
     # create logger
-    log = logging.getLogger('simple_example')
-    log.setLevel(logging.DEBUG)
+    Log = logging.getLogger('simple_example')
+    Log.setLevel(logging.DEBUG)
 
     # Console Logging
     # create console handler and set level to debug
@@ -4315,11 +4344,11 @@ def setupLogging():
     ch.setFormatter(formatter)
 
     # add ch to logger
-    log.addHandler(ch)
+    Log.addHandler(ch)
 
     # File Logger
     # create console handler and set level to debug
-    ch = logging.FileHandler('sfclient.log')
+    ch = logging.FileHandler('sfclient.Log')
     ch.setLevel(logging.DEBUG)
 
     # create formatter
@@ -4331,9 +4360,9 @@ def setupLogging():
     ch.setFormatter(formatter)
 
     # add ch to logger
-    log.addHandler(ch)
+    Log.addHandler(ch)
 
-    return log
+    return Log
 
 
 def initVars():
@@ -5088,7 +5117,7 @@ def GetQuestTitle(questID):
     offs = qst['SCOUT']['TITLE']
     questType = int(Savegame[sgIdx['TYPE1'] + questID])
 
-    for case in switch(questType):
+    for case in Switch(questType):
         if case(1):
             offs = qst['SCOUT']['TITLE'] + GetQuestRandom(questID, 20, 0)
             break
@@ -5167,7 +5196,7 @@ def GetQuestText(questID):
         texts[idx['OPENER'] + GetQuestRandom(questID, 10, 3)]
     )
 
-    for case in switch(int(Savegame[SG.QUEST_OFFER_TYPE1 + questID])):
+    for case in Switch(int(Savegame[SG.QUEST_OFFER_TYPE1 + questID])):
         if case(1):
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
             QuestText += texts[
@@ -5464,7 +5493,7 @@ class Item:
         itemID += self.Class
 
         if itemID >= ITM['MAX']:
-            #log.error("Fehler: Zu wenige Indizes für Items:", itemID,
+            #Log.error("Fehler: Zu wenige Indizes für Items:", itemID,
             #">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itmPic, "Color:",
             #itmColor, "Class:", itmClass)
             return 0
@@ -5524,7 +5553,7 @@ def GetArrowID(
     arrowID += arrowID + itmColor
 
     if arrowID >= ARROW_MAX:
-        # log "Fehler: Zu wenige Indizes für Pfeile:", arrowID, ">=",
+        # Log "Fehler: Zu wenige Indizes für Pfeile:", arrowID, ">=",
         # ARROW_MAX, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass
         return 0
 
@@ -5536,7 +5565,7 @@ def GetArrowID(
 
 def GetWeaponSoundFile(wpnClass, wpnPic, useCase):
     useCaseStr = ""
-    for case in switch(useCase):
+    for case in Switch(useCase):
         if case(0):
             useCaseStr = "s"
             break
@@ -5569,7 +5598,7 @@ def GetWeaponSound(wpnClass, wpnPic, useCase):
 
 
 def GetWeaponLevel(wpnClass, wpnPic):
-    for case in switch(wpnClass):
+    for case in Switch(wpnClass):
         if case(1):
             if wpnPic == -7:
                 return (7)
@@ -5705,7 +5734,7 @@ def LoadTrackingPixel(url=''):
     pixel_failed = null
     url = url
 
-    log.debug("Tracking Pixel Load:" + url)
+    Log.debug("Tracking Pixel Load:" + url)
 
     if (url.indexOf("?") == -1):
         url = url + "?random="
@@ -6194,7 +6223,7 @@ def ActionHandler(event):
 
     skipAllowed = False
 
-    for case in switch(act):
+    for case in Switch(act):
         if case(ERR_TOWER_CLOSED):
             break
         if case(RESP_TOWER_SAVE):
@@ -6423,7 +6452,7 @@ def ActionHandler(event):
             guildAttacking = par[1]
             break
         case ERR_SESSION_ID_EXPIRED:
-            #log trc("Achtung, sessionId ist abgelaufen.")
+            #Log trc("Achtung, sessionId ist abgelaufen.")
             sessionId = ""
             fightFlushMode = False
             ShowLoginScreen()
@@ -6514,7 +6543,7 @@ def ActionHandler(event):
         case RESP_VALIDATE_OK:
             if (par[0]):
                 param_cid = par[0]
-                #log trc("cid set by server:", param_cid)
+                #Log trc("cid set by server:", param_cid)
             ShowEmailNagScreen(1)
             break
         case ERR_VALIDATE:
@@ -6956,7 +6985,7 @@ def ActionHandler(event):
             with (_local3) {
                 type = TextFieldType.DYNAMIC
                 ReplyAddress = par[0]
-                switch (par[1]){
+                Switch (par[1]){
                     case "1  ":
                     case "2  ":
                     case "3  ":
@@ -7700,7 +7729,7 @@ var LanguageFileLoaded:* = function (evt:Event):void{
     i = 0;
     while (i < (strData.length - 1)) {
         c = strData.charCodeAt(i);
-        switch (c){
+        Switch (c){
             case 10:
             case 13:
                 inValue = false;
@@ -7794,7 +7823,7 @@ public function LoadOriginalLanguageFile():void{
         i = 0;
         while (i < (strData.length - 1)) {
             c = strData.charCodeAt(i);
-            switch (c){
+            Switch (c){
                 case 10:
                 case 13:
                     inValue = false;
@@ -7860,12 +7889,12 @@ public function LoadConfigurationFile():void{
         i = 0;
         while (i < (strData.length - 1)) {
             c = strData.charCodeAt(i);
-            switch (c){
+            Switch (c){
                 case 10:
                 case 13:
                     inValue = false;
                     if (tmpStr.length > 0){
-                        switch (lastIndex){
+                        Switch (lastIndex){
                             case LANG_CODE:
                                 lang_code = tmpStr;
                                 original_lang_code = lang_code;
@@ -8773,7 +8802,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     if (HutmannAniStep < 100){
                         HutmannAniStep++;
                     };
-                    switch (HutmannAniStep){
+                    Switch (HutmannAniStep){
                         case 2:
                         case 8:
                         case 14:
@@ -8846,7 +8875,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     removeChild(actor[i]);
                     delete actor[i];
                     d = actorBitmap[i];
-                    switch (d){
+                    Switch (d){
                         case 0:
                             actor[i] = new interface_dragon1_png();
                             break;
@@ -9273,7 +9302,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             evt.target.addEventListener(MouseEvent.MOUSE_OUT, EndMimickInterfaceButtonHover);
-            switch (GetActorID(evt.target)){
+            Switch (GetActorID(evt.target)){
                 case CA_CITY_SHAKES:
                     MimickHover(IF_SCHMIEDE);
                     break;
@@ -9593,7 +9622,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         DealerStep = function (evt:Event):void{
             if (((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))){
-                switch (DealerAniStep){
+                Switch (DealerAniStep){
                     case 1:
                         Add(CITY_DEALER_ANI2);
                         break;
@@ -9689,7 +9718,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         InterfaceButtonHover = function (evt:MouseEvent):void{
             if (((((((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))) and (!(OnStage(CA_SCR_ARBEITEN_BLOCKCITY))))) and (!(OnStage(CA_SCR_INVITE_BLOCKCITY))))){
-                switch (GetActorID(evt.target)){
+                Switch (GetActorID(evt.target)){
                     case IF_SCHMIEDE:
                         Add(CITY_SHAKES);
                         break;
@@ -9764,7 +9793,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     return;
                 };
             };
-            switch (GetActorID(evt.target)){
+            Switch (GetActorID(evt.target)){
                 case HALL_GOTO_SPIELER:
                     ruhmesHalleSuchName = true;
                     ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
@@ -10024,7 +10053,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 } else {
                     ClickCount++;
-                    switch (ClickCount){
+                    Switch (ClickCount){
                         case 1:
                             BoostBtnRepeatTimer.delay = 500;
                             break;
@@ -10277,7 +10306,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         ShakesIdleStep = 0;
                     } else {
                         ShakesIdleStep++;
-                        switch (int(ShakesIdleStep)){
+                        Switch (int(ShakesIdleStep)){
                             case 1:
                             case 5:
                             case 9:
@@ -10369,7 +10398,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             Remove(SHAKES_NIGHT);
                             Remove(SHAKES_DAY);
                             Remove(SHAKES_BLINZELN1, SHAKES_BLINZELN2);
-                            switch (ShakesIdlePhase){
+                            Switch (ShakesIdlePhase){
                                 case 1:
                                     Remove(SHAKES_IDLE, SHAKES_IDLE2, SHAKES_IDLE3);
                                     break;
@@ -10570,7 +10599,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (!OnStage(LBL_STALL_LAUFZEIT)){
                 OldMount = 0;
             };
-            switch (actorID){
+            Switch (actorID){
                 case CA_STALL_BOX_GUT1:
                     SelectedMount = 3;
                     break;
@@ -10639,7 +10668,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[LBL_STALL_SCHATZ].x = tmpX;
                 };
             };
-            switch ((SelectedMount + (((CharVolk >= 5)) ? 4 : 0))){
+            Switch ((SelectedMount + (((CharVolk >= 5)) ? 4 : 0))){
                 case 1:
                     if ((((ststep == 0)) or ((ststep == 4)))){
                         ststep++;
@@ -11172,7 +11201,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         GildeBtnHandler = function (evt:Event=undefined){
             var i:* = 0;
             var evt:* = evt;
-            switch (GetActorID(evt.target)){
+            Switch (GetActorID(evt.target)){
                 case (GILDE_CREST_COLOR + 1):
                 case (GILDE_CREST_COLOR + 2):
                 case (GILDE_CREST_COLOR + 3):
@@ -11399,7 +11428,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 } else {
                     ClickCount++;
-                    switch (ClickCount){
+                    Switch (ClickCount){
                         case 1:
                             HutBtnRepeatTimer.delay = 500;
                             break;
@@ -11465,7 +11494,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             Remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
             AddSome(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
-            switch (GetActorID(evt.target)){
+            Switch (GetActorID(evt.target)){
                 case HUTMANN_GOLDBET:
                     if (int((int(Savegame[SG_GOLD]) / 100)) > int(actor[LBL_HUTMANN_GOLDBET2].text)){
                         actor[LBL_HUTMANN_GOLDBET].text = String((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_GOLDBET2].text)));
@@ -11723,7 +11752,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             i = 0;
             while (i < 3) {
                 highStakes = false;
-                switch (Math.abs(int(Savegame[(SG_QUEST_OFFER_ENEMY1 + i)]))){
+                Switch (Math.abs(int(Savegame[(SG_QUEST_OFFER_ENEMY1 + i)]))){
                     case 139:
                     case 145:
                     case 148:
@@ -12060,7 +12089,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             Remove(LUXURY_SELLER);
-            switch (GetActorID(evt.target)){
+            Switch (GetActorID(evt.target)){
                 case OPTION_LUXURY:
                     Remove(OPTION_DOCHANGE);
                     optionMenuSelect = 6;
@@ -12157,7 +12186,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     ShowBuildCharacterScreen(evt);
                     break;
                 default:
-                    switch (optionMenuSelect){
+                    Switch (optionMenuSelect){
                         case 1:
                             if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
                                 SendAction(ACT_CHANGE_NAME, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
@@ -12797,7 +12826,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         while (i <= 7) {
             pos_x = (SCR_BUILDCHAR_VOLK_X + ((i)<4) ? 0 : SCR_BUILDCHAR_VOLK_X);
             pos_y = (SCR_BUILDCHAR_VOLK_Y + (((i)<4) ? i : (i - 4) * SCR_BUILDCHAR_VOLK_Y));
-            switch ((i + 1)){
+            Switch ((i + 1)){
                 case 1:
                     volk = "human";
                     break;
@@ -13394,7 +13423,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             while (itmPic < C_ITEMS_PER_TYPE) {
                 itmColor = 0;
                 while (itmColor < 5) {
-                    switch (itmTyp){
+                    Switch (itmTyp){
                         case 1:
                         case 2:
                         case 3:
@@ -13834,7 +13863,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (actor[actorID].getChildAt(1).type == TextFieldType.DYNAMIC){
                 return;
             };
-            switch (actorID){
+            Switch (actorID){
                 case INP_POST_ADDRESS:
                     if (actor[actorID].getChildAt(1).text == txt[TXT_EMPFAENGER]){
                         actor[actorID].getChildAt(1).text = "";
@@ -13855,7 +13884,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         fillFieldContent = function (evt:Event){
             var actorID:int;
             actorID = GetActorID(evt.target.parent);
-            switch (actorID){
+            Switch (actorID){
                 case INP_POST_ADDRESS:
                     if (actor[actorID].getChildAt(1).text == ""){
                         actor[actorID].getChildAt(1).text = txt[TXT_EMPFAENGER];
@@ -15093,12 +15122,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
 
 
 def main():
-    log = setupLogging()
+    Log = setupLogging()
 
     initVars()
     configure()
 
-    #s = session()
+    #s = Session()
     #response = s.login()
 
 
@@ -15139,7 +15168,7 @@ public function GetMyPath(mode:int=0):String{
     sections = fullPath.split("/");
     fileName = sections[(sections.length - 1)];
     folderName = fullPath.substr(0, (fullPath.length - fileName.length));
-    switch (mode){
+    Switch (mode){
         case 0:
             return (folderName);
         case 1:
@@ -16133,7 +16162,7 @@ public function GetActorName(actorID:int=0):String{
             i = 0;
             while (i < (strData.length - 1)) {
                 c = strData.charCodeAt(i);
-                switch (c){
+                Switch (c){
                     case 10:
                     case 13:
                         if (constName != ""){
@@ -17105,7 +17134,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     };
     thisRecipient = "";
     recipients = new Array();
-    switch (actorID){
+    Switch (actorID){
         case POST_SEND:
             lastMessageTarget = "";
             if (!OnStage(INP_POST_ADDRESS)){
@@ -17821,7 +17850,7 @@ public function ShowScreenAlbum(){
 
 public function TowerBtnHandler(evt:Event){
     var i:int;
-    switch (GetActorID(evt.target)){
+    Switch (GetActorID(evt.target)){
         case PREV_COPYCAT:
             copyCatSel--;
             if (copyCatSel < 0){
@@ -18766,10 +18795,10 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     StrikeAniTimer.removeEventListener(TimerEvent.TIMER, StrikeAniTimerEvent);
                     return;
                 };
-                switch (((catapultStrike) ? 4 : weaponType)){
+                Switch (((catapultStrike) ? 4 : weaponType)){
                     case 1:
                         if ((((((((opponent) ? oppWeapon : charWeapon) < 0)) and ((((opponent) ? oppWeapon : charWeapon) > -4)))) or ((((opponent) ? oppWeapon : charWeapon) < -6)))){
-                            switch (strikePhase){
+                            Switch (strikePhase){
                                 case 0:
                                     if ((strikeVal == 0)){
                                         Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
@@ -18835,7 +18864,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     break;
                             };
                         } else {
-                            switch (strikePhase){
+                            Switch (strikePhase){
                                 case 0:
                                     if ((strikeVal == 0)){
                                         Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
@@ -18909,7 +18938,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                         break;
                     case 2:
-                        switch (strikePhase){
+                        Switch (strikePhase){
                             case 0:
                                 strikeVal = (strikeVal + 0.15);
                                 if (strikeVal >= 0.4){
@@ -18982,7 +19011,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                         break;
                     case 3:
-                        switch (strikePhase){
+                        Switch (strikePhase){
                             case 0:
                                 strikeVal = (strikeVal + 0.05);
                                 BulletAlpha = 1;
@@ -19055,7 +19084,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                         break;
                     case 4:
-                        switch (strikePhase){
+                        Switch (strikePhase){
                             case 0:
                                 if (strikeVal == 0){
                                     Play(SND_CATAPULT_LAUNCH);
@@ -19229,7 +19258,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     _local3 = actor[FIGHT_ONO];
                     with (_local3) {
                         visible = (((((opponent) ? oppFlag : charFlag) == 0)) or ((((opponent) ? oppFlag : charFlag) == 3)));
-                        switch (weaponType){
+                        Switch (weaponType){
                             case 1:
                                 x = (SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200));
                                 y = (FIGHT_WEAPONS_Y - 20);
@@ -19348,7 +19377,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             } else {
                 if (isPvP){
                     RemoveAll();
-                    switch (tz){
+                    Switch (tz){
                         case 0:
                             Add(SCREEN_ARENA_NIGHT);
                             break;
@@ -19538,7 +19567,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     if (isGuildBattle){
         Remove(GILDE_CHAT);
     };
-    switch (tz){
+    Switch (tz){
         case 0:
             Load(SCREEN_ARENA_NIGHT);
             break;
@@ -19790,7 +19819,7 @@ public function GetAdvent():int{
     var tmpAdventEnd:Date;
     var tmpDate:Date;
     var advent:int;
-    switch (lang_code){
+    Switch (lang_code){
         case "de":
             break;
         default:
@@ -20243,7 +20272,7 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
     DoShowArenaScreen = function (evt:Event=undefined){
         var evt:* = evt;
         RemoveAll();
-        switch (tz){
+        Switch (tz){
             case 0:
                 Add(SCREEN_ARENA_NIGHT);
                 break;
@@ -20316,7 +20345,7 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
         return;
     };
     Load(SCREEN_ARENA);
-    switch (tz){
+    Switch (tz){
         case 0:
             Load(SCREEN_ARENA_NIGHT);
             break;
@@ -20623,7 +20652,7 @@ public function loadCrest(){
             var _local2 = actor[LBL_GILDE_CREST_INSCRIPTION];
             with (_local2) {
                 y = 210;
-                switch ((crest[i] + 1)){
+                Switch ((crest[i] + 1)){
                     case 7:
                     case 1:
                     case 4:
@@ -20859,7 +20888,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     };
                 } else {
                     ClickCount++;
-                    switch (ClickCount){
+                    Switch (ClickCount){
                         case 1:
                             GuildBtnRepeatTimer.delay = 500;
                             break;
@@ -20927,7 +20956,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         };
         var PlaceButtonSet:* = function (){
             var selRank:int;
-            switch (myRank){
+            Switch (myRank){
                 case 1:
                     Add(GILDE_SET_MASTER);
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
@@ -20989,7 +21018,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             var typematic:Boolean = typematic;
             actorID = GetActorID(evt.target);
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
-            switch (actorID){
+            Switch (actorID){
                 case GILDE_SCROLL_UP:
                     scrollLevel = (scrollLevel - 15);
                     if (scrollLevel < 0){
@@ -21540,7 +21569,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             AusbaustufeEx = (Ausbaustufe + ((i)==0) ? 0 : int(guildData[GUILD_RAID_LEVEL]));
             GoldKosten = int((GildeBuildingGold[(Ausbaustufe + 1)] / 100));
             PilzKosten = GildeBuildingPilz[(Ausbaustufe + 1)];
-            switch (i){
+            Switch (i){
                 case 0:
                     if (AusbaustufeEx > 50){
                         Nutzen = "50";
@@ -22243,7 +22272,7 @@ public function ShowCityScreen(evt:Event=undefined):void{
             StatistenBleiben = true;
         };
         RemoveAll();
-        switch (Tageszeit()){
+        Switch (Tageszeit()){
             case 0:
                 Add(SCREEN_CITY_NIGHT);
                 break;
@@ -22291,7 +22320,7 @@ public function ShowCityScreen(evt:Event=undefined):void{
     };
     StatistenBleiben = false;
     Load(BUBBLES);
-    switch (Tageszeit()){
+    Switch (Tageszeit()){
         case 0:
             Load(SCREEN_CITY_NIGHT);
             break;
@@ -22499,7 +22528,7 @@ public function ShowPostScreen(par:Array=undefined){
                 fightFlushMode = false;
                 return;
             };
-            switch (tmpArray[(i + 1)]){
+            Switch (tmpArray[(i + 1)]){
                 case "1":
                     tmpArray[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED];
                     break;
@@ -22735,7 +22764,7 @@ public function achLevel(SG:Array, achIndex:int, almode:int=0):int{
     var alnext:int;
     alresult = 0;
     alnext = 0;
-    switch (achIndex){
+    Switch (achIndex){
         case 0:
             alnext = 2;
             if (int(SG[SG_ACHIEVEMENTS]) >= 2){
@@ -23201,7 +23230,7 @@ public function DoAchievements(SG:Array):Boolean{
             AnimateAch(((CHAR_ACH + i) + (achAusf * 8)));
             OneUp = true;
         };
-        switch (achAusf){
+        Switch (achAusf){
             case 0:
                 achAusfM = "";
                 achAusfF = "";
@@ -23883,7 +23912,7 @@ public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
 public function CheckWrongPage(correctAct:int){
     if (correctAct != lastAct){
         if (correctAct == ACT_SCREEN_TAVERNE){
-            switch (lastAct){
+            Switch (lastAct){
                 case ACT_SCREEN_ARENA:
                     if (!hasMirror){
                         ErrorMessage(txt[TXT_ERROR_TAVERNE_ARENA]);
@@ -23900,7 +23929,7 @@ public function CheckWrongPage(correctAct:int){
             };
         } else {
             if (correctAct == ACT_SCREEN_ARBEITEN){
-                switch (lastAct){
+                Switch (lastAct){
                     case ACT_SCREEN_ARENA:
                         ErrorMessage(txt[TXT_ERROR_ARBEITEN_ARENA]);
                         break;
@@ -24047,7 +24076,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                                 actor[(HLMQS_DISABLED + i)].visible = false;
                             };
                         };
-                        switch (DungeonLevel){
+                        Switch (DungeonLevel){
                             case "1":
                                 NextEnemy = txt[2300];
                                 break;
@@ -24503,7 +24532,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
         popupLinesCpc.push([POPUP_BEGIN_LINE, ((txt[163] + ": ") + SG[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
         DamageReductionCpc = int((Number(SG[(copyCatId + CPC_ARMOR)]) / Number(SG[(copyCatId + CPC_LEVEL)])));
         DamageReductionMaxCpc = 50;
-        switch (int(SG[(copyCatId + CPC_CLASS)])){
+        Switch (int(SG[(copyCatId + CPC_CLASS)])){
             case 2:
                 DamageReductionMaxCpc = 10;
                 break;
@@ -24696,7 +24725,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     tmpDamageFactor = 0;
     tmpLifeFactor = 5;
     SchadenLblID = 0;
-    switch (int(((towerMode) ? (copyCatIdRaw + 1) : SG[SG_CLASS]))){
+    Switch (int(((towerMode) ? (copyCatIdRaw + 1) : SG[SG_CLASS]))){
         case 1:
             SchadenLblID = LBL_SCR_CHAR_SCHADEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_SCHADEN;
@@ -24907,7 +24936,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
         };
         DamageReduction = int((Number(SG[SG_ARMOR]) / Number(SG[SG_LEVEL])));
         DamageReductionMax = 50;
-        switch (int(SG[SG_CLASS])){
+        Switch (int(SG[SG_CLASS])){
             case 2:
                 DamageReductionMax = 10;
                 break;
@@ -25665,7 +25694,7 @@ public function ShowBetResult(won:Boolean){
             text = txt[((won) ? TXT_HUTMANN_WIN : TXT_HUTMANN_LOSE)];
             x = (SCREEN_TITLE_X - (textWidth / 2));
         };
-        switch (CupChosen){
+        Switch (CupChosen){
             case 0:
                 Add(HUTBECHER_1_CLICK);
                 Remove(HUTBECHER_1_IDLE);
@@ -25706,7 +25735,7 @@ public function ShowBetResult(won:Boolean){
         };
     };
     Load(((won) ? HUTMANN_WON : HUTMANN_LOST));
-    switch (CupChosen){
+    Switch (CupChosen){
         case 0:
             Load(HUTBECHER_1_CLICK);
             break;
@@ -25808,7 +25837,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
             toiletItemAddTimer.addEventListener(TimerEvent.TIMER, toiletItemAddFrameEvent);
             toiletItemAddTimer.start();
             gatheredItemId = (CHAR_SLOT_11 + itemAdded);
-            switch (itemAdded){
+            Switch (itemAdded){
                 case 0:
                     itemDestX = CHAR_SLOTS_LEFT_X;
                     itemDestY = CHAR_SLOTS_ROW5_Y;
@@ -26197,7 +26226,7 @@ public function ModifyCharacter(evt:Event):void{
     CharBrows = RemoveColorOffset(CharBrows, C_BROWS);
     CharBeard = RemoveColorOffset(CharBeard, C_BEARD);
     CharSpecial2 = RemoveColorOffset(CharSpecial2, C_SPECIAL2);
-    switch (actorID){
+    Switch (actorID){
         case MOUTH_MINUS:
             CharMouth--;
             if (CharMouth < 1){
@@ -26531,10 +26560,10 @@ public function getCharSuffix(itemIndex:int, itemValue:int):String{
     if (colorIndex > 0){
         colorString = (("_" + String(colorIndex)) + "_");
     };
-    switch (itemIndex){
+    Switch (itemIndex){
         case 0:
             strExt = ".jpg";
-            switch (itemValue){
+            Switch (itemValue){
                 case 1:
                     strItem = "body_hunter";
                     break;
@@ -26622,9 +26651,9 @@ public function RandomizeCharImage(evt:Event=undefined):void{
 
 public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
     if (isMann){
-        switch (isVolk){
+        Switch (isVolk){
             case 1:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (9);
                     case 2:
@@ -26649,7 +26678,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
             case 2:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (8);
                     case 2:
@@ -26674,7 +26703,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (((C_HAIR + C_BROWS) + C_BEARD));
                 };
             case 3:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (5);
                     case 2:
@@ -26699,7 +26728,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
             case 4:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (10);
                     case 2:
@@ -26724,7 +26753,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
             case 5:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (7);
                     case 2:
@@ -26749,7 +26778,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return ((C_HAIR + C_BEARD));
                 };
             case 6:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (6);
                     case 2:
@@ -26774,7 +26803,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
             case 7:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (6);
                     case 2:
@@ -26799,7 +26828,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (0);
                 };
             case 8:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (9);
                     case 2:
@@ -26825,9 +26854,9 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                 };
         };
     } else {
-        switch (isVolk){
+        Switch (isVolk){
             case 1:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (8);
                     case 2:
@@ -26852,7 +26881,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return ((C_BROWS + C_HAIR));
                 };
             case 2:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (8);
                     case 2:
@@ -26877,7 +26906,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return ((C_HAIR + C_BROWS));
                 };
             case 3:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (9);
                     case 2:
@@ -26902,7 +26931,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return ((C_HAIR + C_BROWS));
                 };
             case 4:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (7);
                     case 2:
@@ -26927,7 +26956,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return ((C_HAIR + C_BROWS));
                 };
             case 5:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (7);
                     case 2:
@@ -26952,7 +26981,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (C_HAIR);
                 };
             case 6:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (9);
                     case 2:
@@ -26977,7 +27006,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (C_HAIR);
                 };
             case 7:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (9);
                     case 2:
@@ -27002,7 +27031,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
                         return (C_HAIR);
                 };
             case 8:
-                switch (itemIndex){
+                Switch (itemIndex){
                     case 1:
                         return (8);
                     case 2:
@@ -27036,7 +27065,7 @@ public function getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste
     var strRace:String;
     strTemp = "res/gfx/char/";
     strRace = "";
-    switch (isVolk){
+    Switch (isVolk){
         case 1:
             strRace = "human";
             break;
@@ -27083,7 +27112,7 @@ public function DrachenSetzen():void{
         delete actor[i];
         d = (Math.random() * 5);
         actorBitmap[i] = d;
-        switch (d){
+        Switch (d){
             case 0:
                 actor[i] = new interface_dragon1_png();
                 break;
@@ -27194,7 +27223,7 @@ public function ErrorMessage(msg:String=""):void{
 public function InterfaceBtnHandler(evt:Event):void{
     var tmpAction:int;
     tmpAction = 0;
-    switch (GetActorID(evt.target)){
+    Switch (GetActorID(evt.target)){
         case CA_CITY_SHAKES:
         case IF_SCHMIEDE:
             tmpAction = ACT_SCREEN_SCHMIEDE;
@@ -27558,7 +27587,7 @@ public function trc(... _args){
     trace(outStr);
     if (paramObj["firebug"]){
         if (paramObj["firebug"] != ""){
-            ExternalInterface.call("console.log", outStr);
+            ExternalInterface.call("console.Log", outStr);
         };
     };
 }
