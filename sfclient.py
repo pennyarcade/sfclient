@@ -5420,8 +5420,8 @@ class Item:
         itemFile += str(self.Typ) + "-" + str(self.Pic)
 
         if self.Typ in range(1, 8):
-            itemFile = str(self.Typ) + "-" + str(self.Class + 1) + "/" + itemFile + "-"
-            itemFile += str(itmColor + 1)
+            itemFile = str(self.Typ) + "-" + str(self.Class + 1) + "/"
+            itemFile += itemFile + "-" + str(itmColor + 1)
             itemFile += "-" + str(self.Class + 1)
         else:
             if self.Typ in range(8, 15):
@@ -5464,7 +5464,9 @@ class Item:
         itemID += self.Class
 
         if itemID >= ITM['MAX']:
-            #log.error("Fehler: Zu wenige Indizes für Items:", itemID, ">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass)
+            #log.error("Fehler: Zu wenige Indizes für Items:", itemID,
+            #">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itmPic, "Color:",
+            #itmColor, "Class:", itmClass)
             return 0
 
         if (isSG and (self.Typ == 0) and (slotNum > 0) and (slotNum <= 10)):
@@ -5666,7 +5668,8 @@ def RequestSignup(evt):
         ):
             #inpText = actor[INP_NAME].getChildAt(1).text
             if (inpText.substr(0, 7) == "xxxtest"):
-                #actor[INP_EMAIL].getChildAt(1).text = (inpText + "@playagames.com")
+                #actor[INP_EMAIL].getChildAt(1).text =
+                #   (inpText + "@playagames.com")
                 #actor[INP_PASSWORD].getChildAt(1).text = "12345"
                 #Add(CB_AGB_CHECKED)
                 pass
@@ -5731,22 +5734,33 @@ def LoadTrackingPixel(url=''):
             # pixel_success = function (evt:Event){
             #     var pixelData:String
             #     pixelData = pixelLoader.data
-            #     if ((((pixelData.toLowerCase().substr(0, 7) == "http://")) or ((pixelData.toLowerCase().substr(0, 8) == "https://")))){
+            #     if ((((pixelData.toLowerCase().substr(0, 7) == "http://"))
+            #     or ((pixelData.toLowerCase().substr(0, 8) == "https://")))){
             #         ExternalInterface.call("loadpixel", pixelData)
             #     }
             #     pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
-            #     pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-            #     pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            #     pixelLoader.removeEventListener(
+            #           IOErrorEvent.IO_ERROR, pixel_failed
+            #     )
+            #     pixelLoader.removeEventListener(
+            #       SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+            #     )
             # }
             # pixel_failed = function (evt:Event){
             #     pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
-            #     pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-            #     pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            #     pixelLoader.removeEventListener(
+            #       IOErrorEvent.IO_ERROR, pixel_failed
+            #     )
+            #     pixelLoader.removeEventListener(
+            #       SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+            #     )
             # }
             # pixelLoader = new URLLoader()
             # pixelLoader.addEventListener(Event.COMPLETE, pixel_success)
             # pixelLoader.addEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-            # pixelLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            # pixelLoader.addEventListener(
+            #   SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+            # )
             # pixelLoader.load(new URLRequest(url))
             pass
         else:
@@ -6201,12 +6215,16 @@ def ActionHandler(event):
 
             #with (_local3) do:
             #    text = txt[(TXT_TOILET_HINT + 5)]
-            #    x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2)))
+            #    x = (
+            #        (QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2))
+            #    )
 
             _local3 = actor[LBL_QO_QUESTTEXT]
 
             #with (_local3) {
-            #    text = texts[(TXT_TOILET_HINT + 6)].split("#").join(String.fromCharCode(13))
+            #    text = texts[(TXT_TOILET_HINT + 6)].split("#").join(
+            #        String.fromCharCode(13)
+            #    )
 
             Arabize(LBL_QO_QUESTTEXT)
             actor[LBL_QO_TIME].text = ""
@@ -6251,7 +6269,10 @@ def ActionHandler(event):
             break
         case RESP_SCREEN_WITCH:
             ParseSavegame(par[0])
-            # ShowWitch(par[1].split("/"), (par[2].split("/")[0] == "1"), par[2].split("/")[1])
+            # ShowWitch(
+            #    par[1].split("/"),
+            #    (par[2].split("/")[0] == "1"),
+            #    par[2].split("/")[1])
             break
         case ERR_NO_SLOT_FOR_FLUSHING:
             ErrorMessage(txt[TXT_ERR_NO_SLOT_FOR_FLUSHING])
@@ -6296,18 +6317,24 @@ def ActionHandler(event):
         case ERR_INVITE_TOO_MANY:
             pass
         case ERR_INVITE_EMAIL_REJECTED:
-            ErrorMessage(txt[((TXT_ERROR_INVITE_NOT_VALIDATED - act) + ERR_INVITE_NOT_VALIDATED)])
+            ErrorMessage(txt[
+                TXT_ERROR_INVITE_NOT_VALIDATED - act + ERR_INVITE_NOT_VALIDATED
+            ])
             break
         case RESP_LOGOUT_SUCCESS:
             break
         case ERR_SERVER_DOWN:
             ShowDisconnectScreen()
-            if ((param_reconnect * intervalMultiplierReconnect) < ((1000 * 60) * 2)):
-                intervalMultiplierReconnect = (intervalMultiplierReconnect + 0.1)
+            if (
+                (param_reconnect * intervalMultiplierReconnect) < (1000 * 120)
+            ):
+                intervalMultiplierReconnect = intervalMultiplierReconnect + 0.1
             break
         case ERR_JOINED_TOO_RECENTLY:
             ParseSavegame(par[0])
-            #ErrorMessage(txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)))
+            #ErrorMessage(txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(
+            #      TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]
+            #      ) + ((60 * 60) * 24)), true)))
             break
         case RESP_ATTACK_NOT_EXIST:
             ErrorMessage(txt[TXT_ERROR_PLAYER_NOT_FOUND])
@@ -6321,34 +6348,69 @@ def ActionHandler(event):
         case ERR_GUILD_ALREADY_ATTACKING:
             pass
         case ERR_GUILD_ATTACK_STATUS:
-            ErrorMessage(txt[((TXT_ERROR_GUILD_FIGHT_TOO_EXPENSIVE - act) + ERR_GUILD_FIGHT_TOO_EXPENSIVE)])
+            ErrorMessage(txt[
+                ((TXT_ERROR_GUILD_FIGHT_TOO_EXPENSIVE - act)
+                + ERR_GUILD_FIGHT_TOO_EXPENSIVE)
+            ])
             break
         case RESP_GUILD_NAMES:
             if par[0] == "":
                 if (lastGuildData[GUILD_IS_RAID] != 0):
                     if (txt[TXT_RAID_TEXT]):
-                        #actor[LBL_GILDE_ATTACK].text = txt[(TXT_RAID_TEXT + ((IsToday(lastGuildData[GUILD_ATTACK_TIME])) ? 13 : 12))].split("%1").join(txt[(TXT_DUNGEON_NAMES + int(lastGuildData[GUILD_RAID_LEVEL]))]).split("%2").join(TimeStr(lastGuildData[GUILD_ATTACK_TIME], true))
+                        #actor[LBL_GILDE_ATTACK].text = txt[
+                        #    (TXT_RAID_TEXT
+                        #     + ((IsToday(lastGuildData[GUILD_ATTACK_TIME]))
+                        #        ? 13
+                        #        : 12))
+                        #].split("%1").join(
+                        #   txt[(TXT_DUNGEON_NAMES
+                        #        + int(lastGuildData[GUILD_RAID_LEVEL
+                        #   ]))
+                        #]).split("%2").join(
+                        #  TimeStr(lastGuildData[GUILD_ATTACK_TIME], true)
+                        #)
                         pass
                     else:
                         actor[LBL_GILDE_ATTACK].text = ""
                 else:
                     actor[LBL_GILDE_ATTACK].text = ""
             else:
-                #actor[LBL_GILDE_ATTACK].text = txt[(TXT_GUILD_BATTLE_MSG + ((IsToday(lastGuildData[GUILD_ATTACK_TIME])) ? 2 : 0))].split("%1").join(par[0]).split("%2").join(TimeStr(lastGuildData[GUILD_ATTACK_TIME], true))
+                #actor[LBL_GILDE_ATTACK].text = txt[
+                #    (TXT_GUILD_BATTLE_MSG + ((IsToday(
+                #        lastGuildData[GUILD_ATTACK_TIME])
+                #        ) ? 2 : 0))].split("%1")
+                #        .join(par[0])
+                #        .split("%2")
+                #        .join(TimeStr(lastGuildData[GUILD_ATTACK_TIME], true))
                 pass
 
-            #actor[LBL_GILDE_DEFENCE].text = ((par[1])=="") ? "" : txt[((TXT_GUILD_BATTLE_MSG + 1) + ((IsToday(lastGuildData[GUILD_DEFENCE_TIME])) ? 2 : 0))].split("%1").join(par[1]).split("%2").join(TimeStr(lastGuildData[GUILD_DEFENCE_TIME], true))
+            #actor[LBL_GILDE_DEFENCE].text = ((par[1])=="")
+            #    ? ""
+            #    : txt[
+            #    ((TXT_GUILD_BATTLE_MSG + 1)
+            #     + ((IsToday(lastGuildData[GUILD_DEFENCE_TIME]))
+            #        ? 2
+            #        : 0))]
+            #        .split("%1")
+            #        .join(par[1])
+            #        .split("%2")
+            #        .join(TimeStr(lastGuildData[GUILD_DEFENCE_TIME], true))
             if par[2]:
                 if lastGuildData[GUILD_IS_RAID] != 0:
                     if txt[TXT_RAID_TEXT]:
-                        #EnablePopup(GILDE_ATTACK, txt[(TXT_RAID_TEXT + 14)].split("%1").join(par[2]))
+                        #EnablePopup(GILDE_ATTACK, txt[(TXT_RAID_TEXT + 14)]
+                        #             .split("%1").join(par[2]))
                         pass
                 else:
                     if (par[0] == "") or (par[2] == ""):
                         EnablePopup(GILDE_ATTACK)
                     else:
                         if (txt[TXT_GUILD_ATTACK_PLAYER]):
-                            #EnablePopup(GILDE_ATTACK, txt[TXT_GUILD_ATTACK_PLAYER].split("%1").join(par[2]))
+                            #EnablePopup(
+                            #    GILDE_ATTACK,
+                            #    txt[TXT_GUILD_ATTACK_PLAYER]
+                            #        .split("%1")
+                            #        .join(par[2]))
                             pass
                         else:
                             EnablePopup(GILDE_ATTACK, par[2])
@@ -6370,13 +6432,18 @@ def ActionHandler(event):
             if (txt[TXT_ERROR_MSG_LEVEL_TOO_LOW]):
                 ErrorMessage(txt[TXT_ERROR_MSG_LEVEL_TOO_LOW])
             else:
-                ErrorMessage("Error: You need to reach at least level 10 to send messages.")
+                ErrorMessage(
+                  "Error: You need to reach at least level 10 to send messages."
+                )
             break
         case ERR_MSG_NOT_VALIDATED:
             if (txt[TXT_ERROR_MSG_NOT_VALIDATED]):
                 ErrorMessage(txt[TXT_ERROR_MSG_NOT_VALIDATED])
             else:
-                ErrorMessage("Error: Your email address has to be validated in order to send messages.")
+                ErrorMessage(
+                  "Error: Your email address has to be validated in order
+                  to send messages."
+                )
             break
         case ERR_INVENTORY_FULL:
             ErrorMessage(txt[TXT_ERROR_INVENTORY_FULL])
@@ -6406,12 +6473,18 @@ def ActionHandler(event):
         case ERR_TOO_SOON:
             break
         case ERR_LOCKED_PAYMENT:
-            #ErrorMessage(txt[TXT_ERRROR_LOCKED_PAYMENT].split("%supportemail%").join(param_support_email).split("%gamestaffemail%").join(param_gamestaff_email))
+            #ErrorMessage(txt[TXT_ERRROR_LOCKED_PAYMENT]
+            #   .split("%supportemail%")
+            #   .join(param_support_email)
+            #   .split("%gamestaffemail%")
+            #   .join(param_gamestaff_email))
             break
         case ERR_LOCKED_ADMIN:
             if (par[2]):
                 if (txt[((TXT_LOCK_REASON + int(par[1])) - 1)]):
-                    ErrorMessage(txt[((TXT_LOCK_REASON + int(par[1])) - 1)].split("%1").join(String((1 + int((par[2] / ((60 * 60) * 24)))))))
+                    #ErrorMessage(txt[((TXT_LOCK_REASON + int(par[1])) - 1)]
+                    #    .split("%1")
+                    #    .join(String((1 + int((par[2] / ((60 * 60) * 24)))))))
                 else:
                     ErrorMessage(txt[TXT_ERRROR_LOCKED_ADMIN])
             else:
@@ -6454,7 +6527,12 @@ def ActionHandler(event):
             ErrorMessage(txt[TXT_ERROR_REQUEST_PW])
             break
         case RESP_TRANS_COUNT:
-            PaymentLink = ((((((("http://www.payment.playa-games.com/legal/wiretransfer_" + lang_code) + ".php?amount=") + String(int((tmpAmount / 100)))) + (((lang_code == "de")) ? "," : ".")) + String((tmpAmount % 100))) + "&use=") + par[0])
+            #PaymentLink = ((((((
+            #   ("http://www.payment.playa-games.com/legal/wiretransfer_"
+            #    + lang_code) + ".php?amount=")
+            #    + String(int((tmpAmount / 100))))
+            #    + (((lang_code == "de")) ? "," : "."))
+            #    + String((tmpAmount % 100))) + "&use=") + par[0])
             navigateToURL(new URLRequest(PaymentLink), "_blank")
             break
         case RESP_DEALER_AKTION:
@@ -6497,15 +6575,26 @@ def ActionHandler(event):
                 i = (tmpArray.length - 1)
                 while (i >= 0):
                     if (!par[3]):
-                        if (((!((lastChatIndex == 0))) and ((DecodeChat(tmpArray[i], false, true) == "1")))):
+                        if (((lastChatIndex != 0)
+                            and (DecodeChat(tmpArray[i], false, true) == "1"))
+                        ):
                             Remove(GILDE_CHAT)
-                        ChatLine(DecodeChat(tmpArray[i]), false, getHlIndex(tmpArray[i]))
-                        if (((((!((tmpArray[i].indexOf("§") == -1))) or (!(so.data.noPulseOnSysMsg)))) and (PulseGildeOnHistory))):
+                        ChatLine(
+                            DecodeChat(tmpArray[i]),
+                            false,
+                            getHlIndex(tmpArray[i])
+                        )
+                        if (((((tmpArray[i].indexOf("§") != -1)
+                            or (!(so.data.noPulseOnSysMsg))))
+                            and (PulseGildeOnHistory))):
                             PulseGilde = True
                         if (lastChatIndex != 0):
                             ii = 0
                             while (ii < offlineGuildMembers.length):
-                                if (tmpArray[i].toLowerCase().indexOf((offlineGuildMembers[ii].toLowerCase() + ":§")) != -1):
+                                if (tmpArray[i].toLowerCase().indexOf(
+                                    (offlineGuildMembers[ii].toLowerCase()
+                                     + ":§")) != -1
+                                ):
                                     if (OnStage(INP_GILDE_CHAT)):
                                         SendAction(ACT_SCREEN_GILDEN)
                                     break
@@ -6516,14 +6605,30 @@ def ActionHandler(event):
                                 Play(SND_ERROR)
 
                             lastChatIndex = par[3].split("/")[i]
-                            if (((!((lastChatIndex == 0))) and ((DecodeChat(tmpArray[i], false, true) == "1")))):
+                            if (((!((lastChatIndex == 0)))
+                                and (DecodeChat(
+                                     tmpArray[i], false, true
+                                     ) == "1"))
+                            ):
                                 Remove(GILDE_CHAT)
-                            ChatLine(DecodeChat(tmpArray[i]), false, getHlIndex(tmpArray[i]))
-                            if (((((!((tmpArray[i].indexOf("§") == -1))) or (!(so.data.noPulseOnSysMsg)))) and (PulseGildeOnHistory))):
+                            ChatLine(
+                                DecodeChat(
+                                    tmpArray[i]
+                                ),
+                                false,
+                                getHlIndex(tmpArray[i])
+                            )
+                            if (((((tmpArray[i].indexOf("§") != -1)
+                                or (!(so.data.noPulseOnSysMsg))))
+                                and (PulseGildeOnHistory))
+                            ):
                                 PulseGilde = True
                             ii = 0
                             while (ii < offlineGuildMembers.length):
-                                if (tmpArray[i].toLowerCase().indexOf((offlineGuildMembers[ii].toLowerCase() + ":§")) != -1):
+                                if (tmpArray[i].toLowerCase().indexOf(
+                                    (offlineGuildMembers[ii].toLowerCase()
+                                     + ":§")) != -1
+                                ):
                                     if (OnStage(INP_GILDE_CHAT)):
                                         SendAction(ACT_SCREEN_GILDEN)
                                     break
@@ -6543,13 +6648,20 @@ def ActionHandler(event):
                 while (i >= 0):
                     PulseGilde = True
                     externalWhisperer = tmpArray[i].substr(6)
-                    externalWhisperer = externalWhisperer.substr(0, externalWhisperer.indexOf(":§"))
-                    ChatLine(DecodeChat(tmpArray[i]), false, getHlIndex(tmpArray[i]), true)
+                    externalWhisperer = externalWhisperer.substr(
+                            0, externalWhisperer.indexOf(":§")
+                    )
+                    ChatLine(DecodeChat(
+                        tmpArray[i]), false, getHlIndex(tmpArray[i]), true
+                    )
                     addSuggestNames(externalWhisperer)
                     if (lastChatIndex != 0):
                         ii = 0
                         while (ii < offlineGuildMembers.length):
-                            if (tmpArray[i].toLowerCase().indexOf((offlineGuildMembers[ii].toLowerCase() + ":§")) != -1):
+                            if (tmpArray[i].toLowerCase().indexOf(
+                                (offlineGuildMembers[ii].toLowerCase()
+                                 + ":§")) != -1
+                            ):
                                 if (OnStage(INP_GILDE_CHAT)):
                                     SendAction(ACT_SCREEN_GILDEN)
                                 }
@@ -6562,7 +6674,9 @@ def ActionHandler(event):
                 }
             }
             guildBlinkReady = true
-            if (((((!((newCrestSuggested == ""))) and (!(firstChatFill)))) and (OnStage(INP_GILDE_CHAT)))){
+            if (((((!((newCrestSuggested == "")))
+                and (!(firstChatFill)))) and (OnStage(INP_GILDE_CHAT)))
+            ){
                 clickChatLine(newCrestSuggested)
             }
             newCrestSuggested = ""
@@ -6634,7 +6748,10 @@ def ActionHandler(event):
             ShowDemoScreen()
             break
         case RESP_PLAYER_SCREEN:
-            ShowPlayerScreen(("0/" + par[0]).split("/"), selName, par[2], resolveBreaks(par[1]))
+            ShowPlayerScreen(
+                ("0/" + par[0]).split("/"),
+                selName, par[2], resolveBreaks(par[1])
+            )
             break
         case RESP_PLAYER_DESC_SUCCESS:
             PlayerDesc = actor[INP_CHARDESC].getChildAt(0).text
@@ -6657,7 +6774,12 @@ def ActionHandler(event):
         case RESP_QUEST_DONE_PIXEL_2:
             fightLock = true
             PostFightMode = false
-            ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9]))
+            ShowFightScreen(
+                par[0].split("/"), par[1].split("/"),
+                (par[6] == "1"), par[2].split("/"),
+                (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"),
+                int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9])
+            )
             break
         case RESP_GUILD_FIGHT:
             towerFightMode = false
@@ -6746,7 +6868,11 @@ def ActionHandler(event):
             intervalMultiplierChat = 1
         case RESP_OTHER_GUILD:
             DestroyGuildBtnTimer = true
-            if (((((((!(OnStage(GILDE_CREST))) or ((act == RESP_OTHER_GUILD)))) or (!((lastGuildCrestId == par[0].split("/")[0]))))) or (((isMine) and ((oldCrestStr == getCrestStr())))))){
+            if (((((((!(OnStage(GILDE_CREST)))
+                or ((act == RESP_OTHER_GUILD))))
+                or (!((lastGuildCrestId == par[0].split("/")[0])))))
+                or (((isMine) and ((oldCrestStr == getCrestStr())))))
+            ){
                 if (par[1].indexOf("§") != -1){
                     setCrestStr(par[1].split("§")[0])
                     par[1] = par[1].substr((par[1].indexOf("§") + 1))
@@ -6763,7 +6889,14 @@ def ActionHandler(event):
             if (lastGuildCrestId != par[0].split("/")[0]){
                 oldCrestStr = getCrestStr()
             }
-            ShowScreenGilden(par[0].split("/"), ((isMine) ? par[1] : (((par[1].indexOf("///") > -1)) ? par[1].split("///")[1] : par[1])), par[2].split("/"), par[3], isMine, int(par[5]), int(par[4]), ((par[6]) ? par[6] : 0))
+            ShowScreenGilden(
+                par[0].split("/"),
+                ((isMine) ? par[1] :
+                (((par[1].indexOf("///") > -1)) ? par[1].split("///")[1] :
+                par[1])), par[2].split("/"),
+                par[3], isMine, int(par[5]), int(par[4]),
+                ((par[6]) ? par[6] : 0)
+            )
             break
         case ACT_SCREEN_STALL:
             Stundenlohn = Number(par[0])
@@ -6814,7 +6947,10 @@ def ActionHandler(event):
             _local3 = actor[INP_POST_ADDRESS].getChildAt(1)
             with (_local3) {
                 type = TextFieldType.DYNAMIC
-                text = ((((((txt[TXT_POST_FROM] + " ") + par[0]) + " ") + txt[TXT_POST_TIME]) + " ") + TimeStr(par[2]))
+                text = (
+                    (((((txt[TXT_POST_FROM] + " ") + par[0]) + " ")
+                     + txt[TXT_POST_TIME]) + " ") + TimeStr(par[2])
+                )
             }
             _local3 = actor[INP_POST_SUBJECT].getChildAt(1)
             with (_local3) {
@@ -6835,29 +6971,41 @@ def ActionHandler(event):
                         break
                     case "1":
                         par[1] = txt[TXT_SUBJECT_GUILD_DELETED]
-                        par[3] = txt[TXT_BODY_GUILD_DELETED].replace("%1", par[0]).replace("%2", par[3])
+                        par[3] = txt[TXT_BODY_GUILD_DELETED]
+                            .replace("%1", par[0])
+                            .replace("%2", par[3])
                         break
                     case "2":
                         par[1] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN]
-                        par[3] = txt[TXT_BODY_GUILD_DELETED_BY_ADMIN].replace("%1", par[0]).replace("%2", par[3])
+                        par[3] = txt[TXT_BODY_GUILD_DELETED_BY_ADMIN]
+                            .replace("%1", par[0])
+                            .replace("%2", par[3])
                         break
                     case "3":
                         par[1] = txt[TXT_SUBJECT_GUILD_EXPELLED];
-                        par[3] = txt[TXT_BODY_GUILD_EXPELLED].replace("%1", par[0]).replace("%2", par[3]);
+                        par[3] = txt[TXT_BODY_GUILD_EXPELLED]
+                            .replace("%1", par[0])
+                            .replace("%2", par[3]);
                         break;
                     case "4":
                         par[1] = txt[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN];
-                        par[3] = txt[TXT_BODY_GUILD_EXPELLED_BY_ADMIN].replace("%1", par[0]).replace("%2", par[3]);
+                        par[3] = txt[TXT_BODY_GUILD_EXPELLED_BY_ADMIN]
+                            .replace("%1", par[0])
+                            .replace("%2", par[3]);
                         break;
                     case "5":
                         par[1] = txt[TXT_SUBJECT_GUILD_INVITE];
-                        par[3] = txt[TXT_BODY_GUILD_INVITE].replace("%1", par[0]).replace("%2", par[3]);
+                        par[3] = txt[TXT_BODY_GUILD_INVITE]
+                            .replace("%1", par[0])
+                            .replace("%2", par[3]);
                         break;
                     case "6":
                     case "7":
                         par[1] = txt[TXT_SUBJECT_PVP].replace("%1", par[0]);
                         tmpBattleInfo = par[3];
-                        tmpFighterArray = tmpBattleInfo.split("#")[0].split("/");
+                        tmpFighterArray = tmpBattleInfo
+                            .split("#")[0]
+                            .split("/");
                         ichAnfg = tmpFighterArray[0];
                         erAnfg = tmpFighterArray[6];
                         tmpFightArray = tmpBattleInfo.split("#")[1].split("/");
@@ -6865,28 +7013,59 @@ def ActionHandler(event):
                         erEnde = tmpFightArray[(tmpFightArray.length - 4)];
                         rundenZahl = int((tmpFightArray.length / 6));
                         tmpHonor = Math.abs(tmpBattleInfo.split("#")[7]);
-                        tmpGold = Math.abs(int((tmpBattleInfo.split("#")[8] / 100)));
-                        tmpSilver = Math.abs(int((tmpBattleInfo.split("#")[8] % 100)));
-                        par[3] = txt[TXT_BODY_PVP].replace("%1", par[0]).replace("%2", par[3]).replace("%3", String(ichAnfg)).replace("%4", String(erAnfg)).replace("%5", String(ichEnde)).replace("%6", String(erEnde)).replace("%7", String(rundenZahl)).replace("%8", txt[(((ichEnde > erEnde)) ? TXT_DU_GEWONNEN : TXT_DU_VERLOREN)]).replace("%9", (((rundenZahl == 1)) ? "" : txt[TXT_ROUNDS_PLURAL])).split("%10").join(String(tmpHonor)).split("%11").join(String(tmpGold)).split("%12").join(String(tmpSilver)).split("%13").join(txt[(((ichEnde > erEnde)) ? TXT_DU_WAS_GEWONNEN : TXT_DU_WAS_VERLOREN)]).split("#").join(String.fromCharCode(13));
+                        tmpGold = Math.abs(
+                            int((tmpBattleInfo.split("#")[8] / 100))
+                        );
+                        tmpSilver = Math.abs(
+                            int((tmpBattleInfo.split("#")[8] % 100))
+                        );
+                        par[3] = txt[TXT_BODY_PVP]
+                            .replace("%1", par[0])
+                            .replace("%2", par[3])
+                            .replace("%3", String(ichAnfg))
+                            .replace("%4", String(erAnfg))
+                            .replace("%5", String(ichEnde))
+                            .replace("%6", String(erEnde))
+                            .replace("%7", String(rundenZahl))
+                            .replace("%8", txt[(((ichEnde > erEnde))
+                                     ? TXT_DU_GEWONNEN : TXT_DU_VERLOREN)])
+                            .replace("%9", (((rundenZahl == 1))
+                                     ? "" : txt[TXT_ROUNDS_PLURAL]))
+                            .split("%10").join(String(tmpHonor))
+                            .split("%11").join(String(tmpGold))
+                            .split("%12").join(String(tmpSilver))
+                            .split("%13").join(txt[(((ichEnde > erEnde))
+                                 ? TXT_DU_WAS_GEWONNEN : TXT_DU_WAS_VERLOREN)])
+                                .split("#").join(String.fromCharCode(13));
                         Add(POST_VIEWFIGHT);
                         break;
                     case "8":
                         if (txt[TXT_INV_ACC_TITLE] != ""){
                             par[1] = txt[TXT_INV_ACC_TITLE];
-                            par[3] = txt[TXT_INV_ACC_TEXT].split("%1").join(par[0]);
+                            par[3] = txt[TXT_INV_ACC_TEXT]
+                                .split("%1")
+                                .join(par[0]);
                         } else {
                             par[1] = "FRIEND_LINK_ACCEPTED";
-                            par[3] = (((("You are seeing this message in english because it has not been translated for your location yet. " + par[0]) + " has accepted your invitation to the game. Please wait for ") + par[0]) + " to verify email address in order to get your bonus.");
+                            par[3] = (((("You are seeing this message in
+                                english because it has not been translated
+                                for your location yet. " + par[0]) +
+                                " has accepted your invitation to the game.
+                                Please wait for ") + par[0]) + " to verify
+                                email address in order to get your bonus.");
                         };
                         Add(POST_REPLY);
                         break;
                     case "9":
                         if (txt[TXT_INV_VAL_TITLE] != ""){
                             par[1] = txt[TXT_INV_VAL_TITLE];
-                            par[3] = txt[TXT_INV_VAL_TEXT].split("%1").join(par[0]);
+                            par[3] = txt[TXT_INV_VAL_TEXT]
+                                .split("%1")
+                                .join(par[0]);
                         } else {
                             par[1] = "FRIEND_EMAIL_VERIFIED";
-                            par[3] = (par[0] + " has verified his/her email address.");
+                            par[3] = (par[0] + " has verified
+                                      his/her email address.");
                         };
                         Add(POST_REPLY);
                         break;
@@ -6901,8 +7080,11 @@ def ActionHandler(event):
                 alertWords = txt[TXT_ALERT_WORDS].split(" ");
                 i = 0;
                 while (i < alertWords.length) {
-                    if (postReadText.toLowerCase().indexOf(alertWords[i].toLowerCase()) != -1){
-                        postReadText = txt[TXT_ALERT_TEXT].split("%1").join(postReadText);
+                    if (postReadText.toLowerCase()
+                        .indexOf(alertWords[i].toLowerCase()) != -1
+                    ){
+                        postReadText = txt[TXT_ALERT_TEXT]
+                            .split("%1").join(postReadText);
                         break;
                     };
                     i = (i + 1);
@@ -6911,7 +7093,8 @@ def ActionHandler(event):
             _local3 = actor[INP_POST_TEXT].getChildAt(1);
             with (_local3) {
                 type = TextFieldType.DYNAMIC;
-                text = SwapWords(postReadText).split("#").join(String.fromCharCode(13)).split("%u20AC").join("€");
+                text = SwapWords(postReadText).split("#")
+                    .join(String.fromCharCode(13)).split("%u20AC").join("€");
             };
             forwardText = postReadText;
             break;
@@ -6958,13 +7141,41 @@ def ActionHandler(event):
                 };
             };
             if (textDir == "right"){
-                HallListAddField((HALL_LIST_COLUMN_6_X + 40), HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_1], FontFormat_HallListHeading);
-                HallListAddField((HALL_LIST_COLUMN_6_X - 10), HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_HALL_LIST_COLUMN_3 : TXT_HALL_LIST_COLUMN_2)], FontFormat_HallListHeading);
-                HallListAddField((HALL_LIST_COLUMN_2_X - 10), HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_5], FontFormat_HallListHeading);
-                HallListAddField((HALL_LIST_COLUMN_4_X + 20), HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_LEADER : TXT_HALL_LIST_COLUMN_3)], FontFormat_HallListHeading);
-                HallListAddField((HALL_LIST_COLUMN_3_X + 25), HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_MEMBERS : TXT_HALL_LIST_COLUMN_4)], FontFormat_HallListHeading);
+                HallListAddField(
+                    (HALL_LIST_COLUMN_6_X + 40),
+                    HALL_LIST_LINES_Y,
+                    txt[TXT_HALL_LIST_COLUMN_1],
+                    FontFormat_HallListHeading
+                );
+                HallListAddField(
+                    (HALL_LIST_COLUMN_6_X - 10),
+                    HALL_LIST_LINES_Y,
+                    txt[((GuildHallMode)
+                         ? TXT_HALL_LIST_COLUMN_3
+                         : TXT_HALL_LIST_COLUMN_2)],
+                    FontFormat_HallListHeading);
+                HallListAddField(
+                    (HALL_LIST_COLUMN_2_X - 10),
+                    HALL_LIST_LINES_Y,
+                    txt[TXT_HALL_LIST_COLUMN_5],
+                    FontFormat_HallListHeading);
+                HallListAddField(
+                     (HALL_LIST_COLUMN_4_X + 20),
+                     HALL_LIST_LINES_Y,
+                     txt[((GuildHallMode)
+                          ? TXT_GUILDHALL_LEADER
+                          : TXT_HALL_LIST_COLUMN_3)],
+                    FontFormat_HallListHeading);
+                HallListAddField(
+                    (HALL_LIST_COLUMN_3_X + 25),
+                    HALL_LIST_LINES_Y,
+                    txt[((GuildHallMode)
+                         ? TXT_GUILDHALL_MEMBERS
+                         : TXT_HALL_LIST_COLUMN_4)],
+                    FontFormat_HallListHeading);
             } else {
-                HallListAddField(HALL_LIST_COLUMN_1_X, HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_1], FontFormat_HallListHeading);
+                HallListAddField(
+                    HALL_LIST_COLUMN_1_X, HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_1], FontFormat_HallListHeading);
                 HallListAddField(HALL_LIST_COLUMN_2_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_HALL_LIST_COLUMN_3 : TXT_HALL_LIST_COLUMN_2)], FontFormat_HallListHeading);
                 HallListAddField(HALL_LIST_COLUMN_6_X, HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_5], FontFormat_HallListHeading);
                 HallListAddField(HALL_LIST_COLUMN_4_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_LEADER : TXT_HALL_LIST_COLUMN_3)], FontFormat_HallListHeading);
