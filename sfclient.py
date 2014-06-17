@@ -4064,6 +4064,9 @@ POPUP_INFO = 41
 RES_X = 0x0500
 RES_Y = 800
 
+# global for logger
+log = ''
+
 
 # Make switch statements possible
 class switch(object):
@@ -4138,21 +4141,26 @@ class session:
         else:
             if self.sendLock:
                 if (
-                    (
-                        (
-                            (
-                                (
-                                    (action != ACT.VALIDATE) and (action != ACT.SEND_CHAT)
-                                ) and (action != ACT.GUILD_DONATE)
-                            ) and (action != ACT.REQUEST_GUILD_NAMES)
-                        ) and (action != ACT.REQUEST_CHAR)
-                    ) and (action != ACT.POST_SEND)
+                    (action != ACT.VALIDATE)
+                    and (action != ACT.SEND_CHAT)
+                    and (action != ACT.GUILD_DONATE)
+                    and (action != ACT.REQUEST_GUILD_NAMES)
+                    and (action != ACT.REQUEST_CHAR)
+                    and (action != ACT.POST_SEND)
                 ):
-                    log.warning("Aktionsbefehl wird ignoriert, weil noch auf eine Serverantwort gewartet wird:" + str(act))
+                    log.warning(''.join([
+                        "Aktionsbefehl wird ignoriert, weil noch auf eine ",
+                        "Serverantwort gewartet wird: ",
+                        str(action)
+                    ]))
                     return
             else:
                 if fightLock:
-                    log.warning("Aktionsbefehl wird ignoriert, weil ein wichtiges Ereignis stattfindet:" + str(act))
+                    log.warning(''.join([
+                        "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
+                        "Ereignis stattfindet:",
+                        str(act)
+                    ]))
                     return
 
         dataStr = str(action).zfill(3) + ';'.join(params)
@@ -4169,12 +4177,16 @@ class session:
 
         # TODO: This "if" switches base URL
         # self.param_poll_tunnel_url / param_php_tunnel_url
-        if (action == ACT.GET_CHAT_HISTORY) and (self.param_poll_tunnel_url != ""):
+        if (
+            (action == ACT.GET_CHAT_HISTORY)
+            and (self.param_poll_tunnel_url != "")
+        ):
             # TODO: move payload creation to method
             # self.param_poll_tunnel_url
             reqString = self.sessionId + dataStr
             randomString = '%2'
-            rndString = str(round(random.random() * 0x77359400)) + str(int(time.time() * 1000))
+            rndString = str(round(random.random() * 0x77359400))
+            rndString += str(int(time.time() * 1000))
 
             payload = {
                 'req': reqString,
@@ -4206,12 +4218,15 @@ class session:
 
         while failTry < param_fail_tries:
             r = requests.get(self.baseuri, params=payload)
-            log.debug(str(r.url))
+            log.debug(r.url)
 
             # TODO : test success of request here !!
 
             if success:
-                if (act == ACT_GET_CHAT_HISTORY) and (param_poll_tunnel_url != ""):
+                if (
+                    (act == ACT_GET_CHAT_HISTORY)
+                    and (param_poll_tunnel_url != "")
+                ):
                     self.pollLock = False
                 else:
                     self.sendLock = False
@@ -4222,19 +4237,30 @@ class session:
 
                 if data == "":
                     log.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
-                    sucess = False
+                    success = False
                 else:
                     return data
 
             if not success:
                 if failTry < param_fail_tries:
-                    # log.warning (((("PHP-Request fehlgeschlagen (Versuch" + str(failTry)) + "/") + str(param_fail_tries)) + ")."), evt, "Erneutes Senden...")
+                    log.warning(''.join([
+                        "PHP-Request fehlgeschlagen (Versuch",
+                        str(failTry), "/",
+                        str(param_fail_tries) + ").",
+                        evt, "Erneutes Senden..."
+                    ]))
                     log.info("Erneut gesendet.")
                     pass
                 else:
-                    log.warning("PHP Tunneling fehlgeschlagen. Versuche, neu zu verbinden.")
+                    log.warning(''.join([
+                        "PHP Tunneling fehlgeschlagen. ",
+                        "Versuche, neu zu verbinden."
+                    ]))
                     self.sessionId = ""
-                    if (act == ACT_GET_CHAT_HISTORY) and (param_poll_tunnel_url != ""):
+                    if (
+                        (act == ACT_GET_CHAT_HISTORY)
+                        and (param_poll_tunnel_url != "")
+                    ):
                         self.pollLock = False
                     else:
                         self.sendLock = False
@@ -4755,7 +4781,7 @@ def initVars():
 
     # pre populate text snippet list
     '''
-        txt = new Array()
+        texts = new Array()
         while (txt.length < 20000) {
             txt.push("")
         }
@@ -4883,13 +4909,14 @@ def initVars():
     pass
 
 
-# Start()
 def configure():
     '''
         Load configuration from server
         Load language file from server
 
         TODO: check event stuff??
+
+        @oldname Start
     '''
     LoadConfigurationFile()
     WhenLoaded(DoLoadLanguageFile)
@@ -5053,34 +5080,35 @@ def GetQuestTitle(questID):
     '''
     sgIdx = SG['QUEST']['OFFER']
     qst = TXT['QUEST']
-    questTitleOffset = qst['SCOUT']['TITLE']
+    offs = qst['SCOUT']['TITLE']
     questType = int(Savegame[sgIdx['TYPE1'] + questID])
 
     for case in switch(questType):
         if case(1):
-            questTitleOffset = qst['SCOUT']['TITLE'] + GetQuestRandom(questID, 20, 0)
+            offs = qst['SCOUT']['TITLE'] + GetQuestRandom(questID, 20, 0)
             break
         if case(2):
-            questTitleOffset = qst['COLLECT']['TITLE'] + GetQuestRandom(questID, 20, 0)
+            offs = qst['COLLECT']['TITLE'] + GetQuestRandom(questID, 20, 0)
             break
         if case(3):
-            questTitleOffset = qst['FETCH']['TITLE'] + GetQuestRandom(questID, 20, 0)
+            offs = qst['FETCH']['TITLE'] + GetQuestRandom(questID, 20, 0)
         if case(4):
-            questTitleOffset = qst['KILL']['TITLE'] + -1 * int(Savegame[sgIdx['ENEMY1'] + questID]) - 1
+            offs = qst['KILL']['TITLE']
+            offs -= int(Savegame[sgIdx['ENEMY1'] + questID]) - 1
             break
         if case(5):
-            questTitleOffset = qst['TRANSPORT']['TITLE'] + GetQuestRandom(questID, 21, 0)
+            offs = qst['TRANSPORT']['TITLE'] + GetQuestRandom(questID, 21, 0)
             break
         if case(6):
-            questTitleOffset = qst['ESCORT']['TITLE'] + GetQuestRandom(questID, 23, 0)
+            offs = qst['ESCORT']['TITLE'] + GetQuestRandom(questID, 23, 0)
             break
 
-    if texts[questTitleOffset]:
-        return texts[questTitleOffset]
+    if texts[offs]:
+        return texts[offs]
 
     # Error msg if no quest title found
     return 'ERR QID=%d QT=%d OFS=%d' % (
-        questID, questType, questTitleOffset
+        questID, questType, offs
     )
 
 
@@ -5108,8 +5136,12 @@ def GetQuestRandom(questID, randomRange, randomMod):
     CheckSum += Savegame[qIndex['DURATION1'] + questID]
     CheckSum += Savegame[qIndex['EXP1'] + questID]
     CheckSum += Savegame[qIndex['GOLD1'] + questID]
-    CheckSum += Savegame[qIndex['REWARD_ITM1'] + SG['ITM']['TYP'] + questID * SG['ITM']['SIZE']]
-    CheckSum += Savegame[qIndex['REWARD_ITM1'] + SG['ITM']['PIC'] + questID * SG['ITM']['SIZE']]
+    CheckSum += Savegame[
+        qIndex['REWARD_ITM1'] + SG['ITM']['TYP'] + questID * SG['ITM']['SIZE']
+    ]
+    CheckSum += Savegame[
+        qIndex['REWARD_ITM1'] + SG['ITM']['PIC'] + questID * SG['ITM']['SIZE']
+    ]
 
     return CheckSum % randomRange
 
@@ -5126,39 +5158,71 @@ def GetQuestText(questID):
     location = int(Savegame[sgIdx['LOCATION1'] + questID])
 
     QuestText = ''
-    QuestText += '\"%s ' % (texts[idx['OPENER'] + GetQuestRandom(questID, 10, 3)])
+    QuestText += '\"%s ' % (
+        texts[idx['OPENER'] + GetQuestRandom(questID, 10, 3)]
+    )
 
     for case in switch(int(Savegame[SG.QUEST_OFFER_TYPE1 + questID])):
         if case(1):
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
-            QuestText += texts[idx['SCOUT']['TASK1'] + GetQuestRandom(questID, 20, 0)] + " "
-            QuestText += texts[idx['SCOUT']['TASK2'] + GetQuestRandom(questID, 10, 1)] + " "
+            QuestText += texts[
+                idx['SCOUT']['TASK1'] + GetQuestRandom(questID, 20, 0)
+            ] + " "
+            QuestText += texts[
+                idx['SCOUT']['TASK2'] + GetQuestRandom(questID, 10, 1)
+            ] + " "
             break
         if case(2):
-            QuestText += texts[idx['COLLECT']['WHAT'] + GetQuestRandom(questID, 20, 0)] + " "
+            QuestText += texts[
+                idx['COLLECT']['WHAT'] + GetQuestRandom(questID, 20, 0)
+            ] + " "
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
-            QuestText += texts[idx['COLLECT']['AMOUNT'] + GetQuestRandom(questID, 11, 1)].replace("%", str(GetQuestRandom(questID, 10, 2) + 2)) + " "
+            QuestText += texts[
+                idx['COLLECT']['AMOUNT'] + GetQuestRandom(questID, 11, 1)
+            ].replace("%", str(GetQuestRandom(questID, 10, 2) + 2)) + " "
             break
         if case(3):
-            QuestText += texts[idx['FETCH']['WHAT'] + GetQuestRandom(questID, 20, 0)] + " "
+            QuestText += texts[
+                idx['FETCH']['WHAT'] + GetQuestRandom(questID, 20, 0)
+            ] + " "
             QuestText += texts[idx['LOCATION'] + location - 1] + " "
-            QuestText += texts[idx['FETCH']['FROM'] + GetQuestRandom(questID, 15, 1)] + " "
-            QuestText += texts[idx['FETCH']['PRECLOSER'] + GetQuestRandom(questID, 20, 0)] + " "
+            QuestText += texts[
+                idx['FETCH']['FROM'] + GetQuestRandom(questID, 15, 1)
+            ] + " "
+            QuestText += texts[
+                idx['FETCH']['PRECLOSER'] + GetQuestRandom(questID, 20, 0)
+            ] + " "
             break
         if case(4):
             QuestText += texts[idx['KILL']['LOCATION'] + location - 1] + " "
-            QuestText += texts[idx['KILL']['WHOM'] - Savegame[sgIdx['ENEMY1'] + questID] - 1] + " "
-            QuestText += texts[idx['KILL']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)] + " "
+            QuestText += texts[
+                idx['KILL']['WHOM'] - Savegame[sgIdx['ENEMY1'] + questID] - 1
+            ] + " "
+            QuestText += texts[
+                idx['KILL']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)
+            ] + " "
             break
         if case(5):
-            QuestText += texts[idx['TRANSPORT']['WHAT'] + GetQuestRandom(questID, 21, 0)] + " "
-            QuestText += texts[idx['TRANSPORT']['LOCATION'] + location - 1] + " "
-            QuestText += texts[idx['TRANSPORT']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)] + " "
+            QuestText += texts[
+                idx['TRANSPORT']['WHAT'] + GetQuestRandom(questID, 21, 0)
+            ] + " "
+            QuestText += texts[
+                idx['TRANSPORT']['LOCATION'] + location - 1
+            ] + " "
+            QuestText += texts[
+                idx['TRANSPORT']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)
+            ] + " "
             break
         if case():
-            QuestText += texts[idx['ESCORT']['WHOM'] + GetQuestRandom(questID, 23, 0)] + " "
-            QuestText += texts[idx['ESCORT']['LOCATION'] + location - 1] + " "
-            QuestText += texts[idx['ESCORT']['PRECLOSER'] + GetQuestRandom(questID, 23, 0)] + " "
+            QuestText += texts[
+                idx['ESCORT']['WHOM'] + GetQuestRandom(questID, 23, 0)
+            ] + " "
+            QuestText += texts[
+                idx['ESCORT']['LOCATION'] + location - 1
+            ] + " "
+            QuestText += texts[
+                idx['ESCORT']['PRECLOSER'] + GetQuestRandom(questID, 23, 0)
+            ] + " "
 
     return QuestText
 
@@ -5247,7 +5311,8 @@ class Item:
             Color = Color % 5
 
         return self.__init__(
-            Pic, Typ, Class, Gold, Mush, Damage['max'], Damage['min'], Color, Attr
+            Pic, Typ, Class, Gold, Mush, Damage['max'],
+            Damage['min'], Color, Attr
         )
 
     def getName(self):
@@ -5419,7 +5484,9 @@ class Item:
         return (itemID)
 
 
-def GetArrowID(itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1):
+def GetArrowID(
+    itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
+):
     arrowID = ARROW_OFFS
     if slotMode:
         if not (type(someObj) is list):
@@ -5607,29 +5674,43 @@ def RequestSignup(evt):
             pass
 
         # Create account
-        #SendAction(ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text, actor[INP_PASSWORD].getChildAt(1).text, actor[INP_EMAIL].getChildAt(1).text, param_rec, ((buffedReq) ? ("buf" + buffed_id) : param_adv), CharVolk, ((CharMann) ? 1 : 2), CharKaste, (((((((((((((((((CharMouth + "/") + CharHair) + "/") + CharBrows) + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") + CharEars) + "/") + CharSpecial) + "/") + CharSpecial2) + "/"), param_cid)
+        # SendAction(
+        #   ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text,
+        #   actor[INP_PASSWORD].getChildAt(1).text,
+        #   actor[INP_EMAIL].getChildAt(1).text,
+        #   param_rec, ((buffedReq) ? ("buf" + buffed_id) : param_adv),
+        #   CharVolk, ((CharMann) ? 1 : 2), CharKaste,
+        #   (((((((((((((((((CharMouth + "/") + CharHair) + "/") + CharBrows)
+        #   + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") +
+        #   CharEars) + "/") + CharSpecial) + "/") +
+        #   CharSpecial2) + "/"), param_cid)
     else:
         ErrorMessage(texts[TXT_ERROR_AGB])
 
 
+def LoadTrackingPixel(url=''):
+    req = null
+    variables = null
+    pixelLoader = null
+    pixel_success = null
+    pixel_failed = null
+    url = url
+
+    log.debug("Tracking Pixel Load:" + url)
+
+    if (url.indexOf("?") == -1):
+        url = url + "?random="
+    else:
+        url = url + "&random="
+
+    url += str(int((Math.random() * 100000)))
+    #url += ("&had_account=") + ((hadAccount) ? "1" : "0")
+
+    pass
 
 
 '''
 LoadTrackingPixel:* = function (url:String){
-    var req:* = null
-    var variables:* = null
-    var pixelLoader:* = null
-    var pixel_success:* = null
-    var pixel_failed:* = null
-    var url:* = url
-    trc("Tracking Pixel Load:", url)
-    if (url.indexOf("?") == -1){
-        url = (url + "?random=")
-    } else {
-        url = (url + "&random=")
-    }
-    url = (url + String(int((Math.random() * 100000))))
-    url = (url + (("&" + "had_account=") + ((hadAccount) ? "1" : "0")))
     if (param_reload_pixel){
         trc("Tracking Pixel Reload Mode for:", url)
         trc("CID userd", param_cid)
@@ -8169,10 +8250,6 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
 
 
 #------------------------------------------------------------------------------
-
-
-
-
 
 '''
     BuildInterface = function (){
@@ -14810,6 +14887,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
 
 
 def main():
+    log = setupLogging()
+
     initVars()
     configure()
 
