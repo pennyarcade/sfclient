@@ -3769,14 +3769,14 @@ SIZE = {
 
 # ???
 C = {
-    "AUTO_LOGIN": true,
+    "AUTO_LOGIN": True,
     "BEARD": 1,
     "BROWS": 2,
     "CHAREXT": ".png",
-    "DISPLAY_ITEM_INFO": false,
+    "DISPLAY_ITEM_INFO": False,
     "HAIR": 4,
     "ITEMS_PER_TYPE": 110,
-    "SHOW_CA": false,
+    "SHOW_CA": False,
     "SPECIAL2": 8,
     "TIMEOFDAY": -1
 }
@@ -4104,10 +4104,16 @@ class session:
     def login(self):
         action = '002'
 
-        reqString = self.reqFormat % (self.sessionId + action + self.user, self.pwdmd5)
+        reqString = self.reqFormat % (
+            self.sessionId + action + self.user, self.pwdmd5
+        )
+
         randomString = '%2'
         # TODO: rework random number generation
-        rndString = self.rndFormat % (random.randint(0, 9999999999), int(time.time() * 1000))
+        rndString = self.rndFormat % (
+            random.randint(0, 9999999999),
+            int(time.time() * 1000)
+        )
 
         payload = {
             'req': reqString,
@@ -4274,7 +4280,9 @@ def setupLogging():
     ch.setLevel(logging.DEBUG)
 
     # create formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
 
     # add formatter to ch
     ch.setFormatter(formatter)
@@ -4288,13 +4296,17 @@ def setupLogging():
     ch.setLevel(logging.DEBUG)
 
     # create formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
 
     # add formatter to ch
     ch.setFormatter(formatter)
 
     # add ch to logger
-    logger.addHandler(ch)
+    log.addHandler(ch)
+
+    return log
 
 
 def initVars():
@@ -4306,528 +4318,568 @@ def initVars():
     '''
 
     '''
-        this.paramObj = LoaderInfo(this.root.loaderInfo).parameters;
-        this.mp_api_user_id = "notset";
-        this.mp_api_user_token = "notset";
-        this.ssoMode = false;
-        this.param_id = "";
-        this.param_rec = "";
-        this.param_adv = "";
-        this.param_valid = "";
-        this.param_hall = "";
-        this.param_cid = "";
-        this.param_cid_original = false;
-        this.param_imgsvr = 0;
-        this.param_forceport = 0;
-        this.view_player = "";
-        this.admin_login = "";
-        this.PayMethods = new Array();
-        this.ServerID = 0;
-        this.MPProject = "sfgame2";
-        this.image_timeout = 3;
-        this.response_timeout = 10;
-        this.param_sponsor = "";
-        this.param_sponsor_url = "";
-        this.param_reroll_img = 0;
-        this.param_reconnect = 5000;
-        this.param_php_tunnel_url = "";
-        this.param_poll_tunnel_url = "";
-        this.trackPixels = new Array();
-        this.intervalMultiplierChat = 1;
-        this.intervalMultiplierReconnect = 1;
-        this.param_support_email = "support@sfgame.de";
-        this.param_gamestaff_email = this.param_support_email;
-        this.param_papaya_path = "";
-        this.param_papaya_cfg_file = "";
-        this.param_fail_tries = 1;
-        this.param_idle_polling = 0;
-        this.param_allow_skip_quest = false;
-        this.param_happy_hour = false;
-        this.param_censored = false;
-        this.param_internal_pixel = false;
-        this.param_reload_pixel = false;
-        this.noMush = false;
-        this.param_server_version_cfg = "unknown";
-        this.param_server_version_act = "unknown";
-        this.param_no_cid_save = false;
-        this.hadAccount = false;
-        this.param_languages = new Array();
-        this.param_language_names = new Array();
-        this.param_lowres_url = "";
-        this.param_bullshit_text = "";
-        this.param_bullshit_cid = "";
-        this.param_social_buttons = new Array();
-        this.defined_pixel_calls = new Array();
-        this.beerFest = false;
-        this.towerLevelLabelPos = (this.SCR_CHAR_CHARX + 127);
-        this.login_background_id = "3";
-        this.worlds = new Array();
-        this.preventTv = false;
+        paramObj = LoaderInfo(root.loaderInfo).parameters
+        mp_api_user_id = "notset"
+        mp_api_user_token = "notset"
+        ssoMode = false
+        param_id = ""
+        param_rec = ""
+        param_adv = ""
+        param_valid = ""
+        param_hall = ""
+        param_cid = ""
+        param_cid_original = false
+        param_imgsvr = 0
+        param_forceport = 0
+        view_player = ""
+        admin_login = ""
+        PayMethods = new Array()
+        ServerID = 0
+        MPProject = "sfgame2"
+        image_timeout = 3
+        response_timeout = 10
+        param_sponsor = ""
+        param_sponsor_url = ""
+        param_reroll_img = 0
+        param_reconnect = 5000
+        param_php_tunnel_url = ""
+        param_poll_tunnel_url = ""
+        trackPixels = new Array()
+        intervalMultiplierChat = 1
+        intervalMultiplierReconnect = 1
+        param_support_email = "support@sfgame.de"
+        param_gamestaff_email = param_support_email
+        param_papaya_path = ""
+        param_papaya_cfg_file = ""
+        param_fail_tries = 1
+        param_idle_polling = 0
+        param_allow_skip_quest = false
+        param_happy_hour = false
+        param_censored = false
+        param_internal_pixel = false
+        param_reload_pixel = false
+        noMush = false
+        param_server_version_cfg = "unknown"
+        param_server_version_act = "unknown"
+        param_no_cid_save = false
+        hadAccount = false
+        param_languages = new Array()
+        param_language_names = new Array()
+        param_lowres_url = ""
+        param_bullshit_text = ""
+        param_bullshit_cid = ""
+        param_social_buttons = new Array()
+        defined_pixel_calls = new Array()
+        beerFest = false
+        towerLevelLabelPos = (SCR_CHAR_CHARX + 127)
+        login_background_id = "3"
+        worlds = new Array()
+        preventTv = false
 
-        this.buffed_reg = "";
-        this.buffed_stuff = new Array();
-        this.buffed_id = "";
-        this.buffed_name = "";
-        this.buffed_email = "";
-        this.buffedReq = false;
-        this.buffedMode = false;
-        this.buffedLinkText = "";
-        this.buffedLinkURL = "";
-        this.lang_code = "de";
-        this.original_lang_code = "de";
-        this.smoothing = true;
-        this.forceSmoothing = true;
-        this.allowSmoothing = true;
-        this.img_url = new Array();
-        this.snd_url = new Array();
-        this.img_url_index = 0;
-        this.snd_url_index = 0;
-        this.lang_url = "";
-        this.forum_url = "";
-        this.shop_url = "";
-        this.imprint_url = "";
-        this.legal_url = "";
-        this.dataprot_url = "";
-        this.instr_url = "";
-        this.no_crossdomain = false;
-        this.FriendLink = "";
-        this.sessionId = "";
-        this.server = "localhost";
-        this.lastAct = 0;
-        this.sendLock = false;
-        this.fightLock = false;
-        this.pollLock = false;
-        this.pendingLanguageFile = false;
-        this.chosenLangFont = "Komika Text";
-        this.countryName = new Array();
-        this.pendingConfigurationFile = false;
-        this.actor = new Array();
-        this.actorURL = new Array();
-        this.actorLoaded = new Array();
-        this.actorPersistent = new Array();
-        this.actorBitmap = new Array();
-        this.actorSoundLoader = new Array();
-        this.actorPopupStamp = new Array();
-        this.stObject = new SoundTransform();
-        this.pendingLoaders = 0;
-        this.dragDropActive = false;
-        this.dragDropProhibit = false;
-        this.dragNotYet = false;
-        this.toErrorCount = 0;
-        this.ioErrorCount = 0;
-        this.pendingDebugFile = false;
-        this.FontFormat_Error = new TextFormat();
-        this.FontFormat_Book = new TextFormat();
-        this.FontFormat_BookHint = new TextFormat();
-        this.FontFormat_BookLeft = new TextFormat();
-        this.FontFormat_Default = new TextFormat();
-        this.FontFormat_AttackLabel = new TextFormat();
-        this.FontFormat_Speech = new TextFormat();
-        this.FontFormat_Grayed = new TextFormat();
-        this.FontFormat_GrayedHighLight = new TextFormat();
-        this.FontFormat_ClassError = new TextFormat();
-        this.FontFormat_Chat = new TextFormat();
-        this.FontFormat_ChatWhisper = new TextFormat();
-        this.FontFormat_ChatError = new TextFormat();
-        this.FontFormat_GuildBuilding = new TextFormat();
-        this.FontFormat_GuildMoney = new TextFormat();
-        this.FontFormat_DefaultLeft = new TextFormat();
-        this.FontFormat_Highlight = new TextFormat();
-        this.FontFormat_HighlightWhisper = new TextFormat();
-        this.FontFormat_Heading = new TextFormat();
-        this.FontFormat_ScreenTitle = new TextFormat();
-        this.FontFormat_Popup = new TextFormat();
-        this.FontFormat_PopupCompare = new TextFormat();
-        this.FontFormat_PopupCompareSum = new TextFormat();
-        this.FontFormat_PopupCompareBetter = new TextFormat();
-        this.FontFormat_PopupCompareWorse = new TextFormat();
-        this.FontFormat_PopupCompareBetterHL = new TextFormat();
-        this.FontFormat_PopupCompareWorseHL = new TextFormat();
-        this.FontFormat_EpicItemQuote = new TextFormat();
-        this.FontFormat_ItemEnchantment = new TextFormat();
-        this.FontFormat_LogoutLink = new TextFormat();
-        this.FontFormat_LogoutLinkHighLight = new TextFormat();
-        this.FontFormat_HallListHeading = new TextFormat();
-        this.FontFormat_HallListText = new TextFormat();
-        this.FontFormat_GuildHallNoAttack = new TextFormat();
-        this.FontFormat_HallListHighLight = new TextFormat();
-        this.FontFormat_AttribBonus = new TextFormat();
-        this.FontFormat_AttribTemp = new TextFormat();
-        this.FontFormat_Attrib = new TextFormat();
-        this.FontFormat_PayIcon = new TextFormat();
-        this.FontFormat_PostListHeading = new TextFormat();
-        this.FontFormat_PostListText = new TextFormat();
-        this.FontFormat_PostListTextSys = new TextFormat();
-        this.FontFormat_GuildListText = new TextFormat();
-        this.FontFormat_GuildListTextOnline = new TextFormat();
-        this.FontFormat_GuildListTextAttackError = new TextFormat();
-        this.FontFormat_GuildListTextAttackErrorOnline = new TextFormat();
-        this.FontFormat_GuildListTextAttackErrorHalf = new TextFormat();
-        this.FontFormat_GuildListTextAttackErrorOnlineHalf = new TextFormat();
-        this.FontFormat_GuildListTextAttackErrorOnlinePopup = new TextFormat();
-        this.FontFormat_GuildListTextAttackOk = new TextFormat();
-        this.FontFormat_GuildListTextAttackOkPopup = new TextFormat();
-        this.FontFormat_PostListHighLight = new TextFormat();
-        this.FontFormat_PostListHighLightSys = new TextFormat();
-        this.FontFormat_PostListTextSysRed = new TextFormat();
-        this.FontFormat_PostListHighLightSysRed = new TextFormat();
-        this.FontFormat_PostListTextSysGreen = new TextFormat();
-        this.FontFormat_PostListHighLightSysGreen = new TextFormat();
-        this.FontFormat_QuestBar = new TextFormat();
-        this.FontFormat_TimeBar = new TextFormat();
-        this.FontFormat_LifeBar = new TextFormat();
-        this.FontFormat_Damage = new TextFormat();
-        this.FontFormat_CriticalDamage = new TextFormat();
-        this.FontFormat_Bullshit = new TextFormat();
-        this.FontFormat_CatapultDamage = new TextFormat();
-        this.FontFormat_HighStakes = new TextFormat();
-        this.FontFormat_HighStakesHighLight = new TextFormat();
-        this.FontFormat_HighStakesGrayed = new TextFormat();
-        this.FontFormat_HighStakesHighLightGrayed = new TextFormat();
-        this.FontFormat_ToiletAura = new TextFormat();
-        this.textDir = "left";
-        this.SetFont(new SFGameFont().fontName);
-        this.gameFont = "";
-        this.fontEmbedded = true;
-        this.sizeMod = 0;
-        this.Filter_Shadow = [new DropShadowFilter(3, 45, 0, 0.8), new GradientGlowFilter(0, 45, [this.CLR_BLACK, this.CLR_BLACK], [0, 0.3], [0, 32], 1, 1, 5, 15, "outer")];
-        this.Filter_HeavyShadow = [new DropShadowFilter(2, 45, 0, 1, 5, 5, 3, 3), new GradientGlowFilter(0, 45, [this.CLR_BLACK, this.CLR_BLACK], [0, 0.3], [0, 32], 1, 1, 5, 15, "outer")];
-        this.CharVolk = 0;
-        this.CharMann = true;
-        this.CharKaste = 1;
-        this.CharColor = 1;
-        this.CharMouth = 1;
-        this.CharBeard = 1;
-        this.CharNose = 1;
-        this.CharEyes = 1;
-        this.CharBrows = 1;
-        this.CharEars = 1;
-        this.CharHair = 1;
-        this.CharSpecial = 1;
-        this.CharSpecial2 = 1;
-        this.revertCharVolk = 0;
-        this.revertCharMann = true;
-        this.slmCount = 0;
-        this.ststep = 0;
-        this.revertCharColor = 1;
-        this.revertCharMouth = 1;
-        this.revertCharBeard = 1;
-        this.revertCharNose = 1;
-        this.revertCharEyes = 1;
-        this.revertCharBrows = 1;
-        this.revertCharEars = 1;
-        this.revertCharHair = 1;
-        this.revertCharSpecial = 1;
-        this.revertCharSpecial2 = 1;
-        this.Savegame = new Array();
-        this.MirrorPieces = new Array();
-        this.hasMirror = false;
-        this.canRob = false;
-        this.towerLevel = 0;
-        this.ServerTime = new Date();
-        this.LocalTime = new Date();
-        this.GameTime = new Date();
-        this.Stundenlohn = 10;
-        this.VerdientesGeld = 0;
-        this.Gilde = "";
-        this.GildenID = 0;
-        this.PostScroll = 1;
-        this.PostMax = 1;
-        this.PostSel = 0;
-        this.PostScrollDown = false;
-        this.DealerMenuSelect = 0;
-        this.SelectedQuest = 1;
-        this.PlayerDesc = "";
-        this.PreviousLogin = false;
-        this.DemoMode = false;
-        this.selName = "";
-        this.selGilde = "";
-        this.InviteGildenID = 0;
-        this.ReplyAddress = "";
-        this.ReplySubject = "";
-        this.optionNewData = "";
-        this.ruhmesHalleSuchString = "";
-        this.ruhmesHalleSuchName = true;
-        this.GildeBuildingGold = new Array();
-        this.GildeBuildingPilz = new Array();
-        this.GildeChatScroll = 0;
-        this.tmpBattleInfo = "";
-        this.KlasseGewählt = false;
-        this.PostFightMode = false;
-        this.tmpAmount = 0;
-        this.PulseTaverne = false;
-        this.PulseArbeiten = false;
-        this.PulseGilde = false;
-        this.PulseGildeOnHistory = false;
-        this.PulsePost = false;
-        this.PulseChar = false;
-        this.PulseDealer = false;
-        this.notFirstVolChange = true;
-        this.notSecondVolChange = true;
-        this.LevelUp = false;
-        this.LastLevel = 0;
-        this.canBoost = new Array();
-        this.GuildHallMode = false;
-        this.DealerAktion = 0;
-        this.SelectedGuild = "";
-        this.SelectedDungeon = 0;
-        this.lightMode = false;
-        this.chatSound = false;
-        this.compareItems = false;
-        this.light_mode_default = false;
-        this.disableTV = false;
-        this.tvTest = false;
-        this.tvFunctionName = "";
-        this.tvPollNormal = 5000;
-        this.tvPollLong = 300000;
-        this.CupChosen = 0;
-        this.oldAlbum = -1;
-        this.PresetGold = 0;
-        this.PresetMush = 0;
-        this.MushBought = 0;
-        this.specialAction = 0;
-        this.nextPxl = 0;
-        this.BlockReroll = false;
-        this.FrenzyMode = false;
-        this.fightFlushMode = false;
-        this.RollFrenzy = new Timer(1000);
-        this.forceAdventure = false;
-        this.lastAttacked = new Array();
-        this.forwardText = "";
-        this.albumCat = 0;
-        this.albumPage = 0;
-        this.contentMax = 1700;
-        this.copyCatSel = 0;
-        this.towerScroll = 0;
-        this.towerScrollDest = 0;
-        this.towerScrollSpeed = 0;
-        this.towerScrollTimer = new Timer(25);
-        this.towerScrollGrabPos = -1;
-        this.towerScrollTimer.addEventListener(TimerEvent.TIMER, this.TowerTimerFn);
-        this.alternateCharOppImg = false;
-        this.hasFoughtGuildBattle = false;
-        this.skipAllowed = false;
-        this.specialActionHint = false;
-        this.suggestNames = new Array();
-        this.crestElementPos = [[55, 8, 130, 90, 21], [0, 50, 240, 150, 34], [65, 75, 108, 114, 23], [15, 194, 210, 45, 12], [85, 17, 73, 70, 24], [98, 176, 43, 40, 16], [85, 100, 70, 70, 68]];
-        this.selecterCrestElement = -1;
-        this.crestSuggested = false;
-        this.crestColorSelection = 0;
-        this.crest = this.getRandomCrest();
-        this.heraldicColors = [[0, 0, 1], [1, 0, 0], [0.7, 0, 0.8], [0.1, 0.1, 0.1], [0, 0.6, 0], [1, 0.8, 0], [0.9, 0.9, 0.9], [0.7, 0.4, 0.2], [0.5, 0.5, 0.5], [0.7, 0, 0], [0.5, 0, 0.3], [1, 0.6, 0], [1, 0.8, 0.8]];
-        this.crestColor = [0, 0, 0, 0];
-        this.crestMoveTimer = new Timer(25);
-        this.Filter_CrestSelected = new GradientGlowFilter(0, 0, [16777026, 16777026], [0, 0.6], [0, 127], 26, 26, 1, 1, "outer");
-        this.crestMoveTimer.addEventListener(TimerEvent.TIMER, this.crestMoveFn);
-        this.oldCrestStr = "";
-        this.guildInstanceID = 0;
-        this.myOwnRank = -1;
-        this.myOwnAttackTarget = -1;
-        this.myOwnGuildMoney = -1;
-        this.lastGuildShown = "";
-        this.lastGuildData = new Array();
-        this.lastRaidCost = 0;
-        this.lastGuildMembers = new Array();
-        this.lastHallMembers = new Array();
-        this.arrowHallMode = false;
-        this.offlineGuildMembers = new Array();
-        this.showActivityTime = false;
-        this.guildForumLink = "";
-        this.showAlbumOffset = false;
-        this.avgLevel = 0;
-        this.DestroyGuildBtnTimer = false;
-        this.PostReturnToPlayer = "";
-        this.oldSel = 0;
-        this.postInstance = 0;
-        this.mirrorFadeAmount = 0.2;
-        this.mirrorAniTimer = new Timer(25);
-        this.mirrorAniTimer.addEventListener(TimerEvent.TIMER, this.MirrorAniFn);
-        this.lastPlayer = "";
-        this.AlbumEffect = false;
-        this.mirrorAniStep = 0;
-        this.indexInGuild = 0;
-        this.indexInHall = 0;
-        this.playerTowerLevel = 0;
-        this.MQSInstance = 0;
-        this.MQDelayTimer = new Timer(500);
-        this.LastDungeonNr = 0;
-        this.LastDungeonEnemy = 0;
-        this.hasLostMQ = false;
-        this.CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2];
-        this.crestSuggestion = new Array();
-        this.newCrestSuggested = "";
-        this.ChatHist = new Array();
-        this.toiletTankAdjustTimer = new Timer(25);
-        this.toiletTankCurrent = 0;
-        this.toiletTankDest = 0;
-        this.toiletTankAdjustTimer.addEventListener(TimerEvent.TIMER, this.toiletTankAdjustEvent);
-        this.witchDesiredType = -1;
-        this.nextFightTimer = new Timer(10, 1);
-        this.towerFightMode = false;
-        this.fights = new Array();
-        this.guildFightCount = 0;
-        this.fightNumber = 0;
-        this.skipGuildFights = 0;
-        this.lastRoundFighterName = "";
-        this.lastWhisperTarget = "";
-        this.lastMessageTarget = "";
-        this.guildAttackTime = 0;
-        this.guildDefenceTime = 0;
-        this.guildAttacked = "";
-        this.guildAttacking = "";
-        this.lastChatHist = "";
-        this.lastChatIndex = 0;
-        this.guildBlinkReady = false;
-        this.firstChatFill = false;
-        this.SignupJumpRunning = false;
-        this.suggestionSlot = new Array();
-        this.popupStamp = 0;
+        buffed_reg = ""
+        buffed_stuff = new Array()
+        buffed_id = ""
+        buffed_name = ""
+        buffed_email = ""
+        buffedReq = false
+        buffedMode = false
+        buffedLinkText = ""
+        buffedLinkURL = ""
+        lang_code = "de"
+        original_lang_code = "de"
+        smoothing = true
+        forceSmoothing = true
+        allowSmoothing = true
+        img_url = new Array()
+        snd_url = new Array()
+        img_url_index = 0
+        snd_url_index = 0
+        lang_url = ""
+        forum_url = ""
+        shop_url = ""
+        imprint_url = ""
+        legal_url = ""
+        dataprot_url = ""
+        instr_url = ""
+        no_crossdomain = false
+        FriendLink = ""
+        sessionId = ""
+        server = "localhost"
+        lastAct = 0
+        sendLock = false
+        fightLock = false
+        pollLock = false
+        pendingLanguageFile = false
+        chosenLangFont = "Komika Text"
+        countryName = new Array()
+        pendingConfigurationFile = false
+        actor = new Array()
+        actorURL = new Array()
+        actorLoaded = new Array()
+        actorPersistent = new Array()
+        actorBitmap = new Array()
+        actorSoundLoader = new Array()
+        actorPopupStamp = new Array()
+        stObject = new SoundTransform()
+        pendingLoaders = 0
+        dragDropActive = false
+        dragDropProhibit = false
+        dragNotYet = false
+        toErrorCount = 0
+        ioErrorCount = 0
+        pendingDebugFile = false
+        FontFormat_Error = new TextFormat()
+        FontFormat_Book = new TextFormat()
+        FontFormat_BookHint = new TextFormat()
+        FontFormat_BookLeft = new TextFormat()
+        FontFormat_Default = new TextFormat()
+        FontFormat_AttackLabel = new TextFormat()
+        FontFormat_Speech = new TextFormat()
+        FontFormat_Grayed = new TextFormat()
+        FontFormat_GrayedHighLight = new TextFormat()
+        FontFormat_ClassError = new TextFormat()
+        FontFormat_Chat = new TextFormat()
+        FontFormat_ChatWhisper = new TextFormat()
+        FontFormat_ChatError = new TextFormat()
+        FontFormat_GuildBuilding = new TextFormat()
+        FontFormat_GuildMoney = new TextFormat()
+        FontFormat_DefaultLeft = new TextFormat()
+        FontFormat_Highlight = new TextFormat()
+        FontFormat_HighlightWhisper = new TextFormat()
+        FontFormat_Heading = new TextFormat()
+        FontFormat_ScreenTitle = new TextFormat()
+        FontFormat_Popup = new TextFormat()
+        FontFormat_PopupCompare = new TextFormat()
+        FontFormat_PopupCompareSum = new TextFormat()
+        FontFormat_PopupCompareBetter = new TextFormat()
+        FontFormat_PopupCompareWorse = new TextFormat()
+        FontFormat_PopupCompareBetterHL = new TextFormat()
+        FontFormat_PopupCompareWorseHL = new TextFormat()
+        FontFormat_EpicItemQuote = new TextFormat()
+        FontFormat_ItemEnchantment = new TextFormat()
+        FontFormat_LogoutLink = new TextFormat()
+        FontFormat_LogoutLinkHighLight = new TextFormat()
+        FontFormat_HallListHeading = new TextFormat()
+        FontFormat_HallListText = new TextFormat()
+        FontFormat_GuildHallNoAttack = new TextFormat()
+        FontFormat_HallListHighLight = new TextFormat()
+        FontFormat_AttribBonus = new TextFormat()
+        FontFormat_AttribTemp = new TextFormat()
+        FontFormat_Attrib = new TextFormat()
+        FontFormat_PayIcon = new TextFormat()
+        FontFormat_PostListHeading = new TextFormat()
+        FontFormat_PostListText = new TextFormat()
+        FontFormat_PostListTextSys = new TextFormat()
+        FontFormat_GuildListText = new TextFormat()
+        FontFormat_GuildListTextOnline = new TextFormat()
+        FontFormat_GuildListTextAttackError = new TextFormat()
+        FontFormat_GuildListTextAttackErrorOnline = new TextFormat()
+        FontFormat_GuildListTextAttackErrorHalf = new TextFormat()
+        FontFormat_GuildListTextAttackErrorOnlineHalf = new TextFormat()
+        FontFormat_GuildListTextAttackErrorOnlinePopup = new TextFormat()
+        FontFormat_GuildListTextAttackOk = new TextFormat()
+        FontFormat_GuildListTextAttackOkPopup = new TextFormat()
+        FontFormat_PostListHighLight = new TextFormat()
+        FontFormat_PostListHighLightSys = new TextFormat()
+        FontFormat_PostListTextSysRed = new TextFormat()
+        FontFormat_PostListHighLightSysRed = new TextFormat()
+        FontFormat_PostListTextSysGreen = new TextFormat()
+        FontFormat_PostListHighLightSysGreen = new TextFormat()
+        FontFormat_QuestBar = new TextFormat()
+        FontFormat_TimeBar = new TextFormat()
+        FontFormat_LifeBar = new TextFormat()
+        FontFormat_Damage = new TextFormat()
+        FontFormat_CriticalDamage = new TextFormat()
+        FontFormat_Bullshit = new TextFormat()
+        FontFormat_CatapultDamage = new TextFormat()
+        FontFormat_HighStakes = new TextFormat()
+        FontFormat_HighStakesHighLight = new TextFormat()
+        FontFormat_HighStakesGrayed = new TextFormat()
+        FontFormat_HighStakesHighLightGrayed = new TextFormat()
+        FontFormat_ToiletAura = new TextFormat()
+        textDir = "left"
+        SetFont(new SFGameFont().fontName)
+        gameFont = ""
+        fontEmbedded = true
+        sizeMod = 0
+        Filter_Shadow = [
+            new DropShadowFilter(3, 45, 0, 0.8),
+            new GradientGlowFilter(
+                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
+                [0, 32], 1, 1, 5, 15, "outer")
+        ]
+        Filter_HeavyShadow = [
+            new DropShadowFilter(2, 45, 0, 1, 5, 5, 3, 3),
+            new GradientGlowFilter(
+                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
+                [0, 32], 1, 1, 5, 15, "outer")
+        ]
+        CharVolk = 0
+        CharMann = true
+        CharKaste = 1
+        CharColor = 1
+        CharMouth = 1
+        CharBeard = 1
+        CharNose = 1
+        CharEyes = 1
+        CharBrows = 1
+        CharEars = 1
+        CharHair = 1
+        CharSpecial = 1
+        CharSpecial2 = 1
+        revertCharVolk = 0
+        revertCharMann = true
+        slmCount = 0
+        ststep = 0
+        revertCharColor = 1
+        revertCharMouth = 1
+        revertCharBeard = 1
+        revertCharNose = 1
+        revertCharEyes = 1
+        revertCharBrows = 1
+        revertCharEars = 1
+        revertCharHair = 1
+        revertCharSpecial = 1
+        revertCharSpecial2 = 1
+        Savegame = new Array()
+        MirrorPieces = new Array()
+        hasMirror = false
+        canRob = false
+        towerLevel = 0
+        ServerTime = new Date()
+        LocalTime = new Date()
+        GameTime = new Date()
+        Stundenlohn = 10
+        VerdientesGeld = 0
+        Gilde = ""
+        GildenID = 0
+        PostScroll = 1
+        PostMax = 1
+        PostSel = 0
+        PostScrollDown = false
+        DealerMenuSelect = 0
+        SelectedQuest = 1
+        PlayerDesc = ""
+        PreviousLogin = false
+        DemoMode = false
+        selName = ""
+        selGilde = ""
+        InviteGildenID = 0
+        ReplyAddress = ""
+        ReplySubject = ""
+        optionNewData = ""
+        ruhmesHalleSuchString = ""
+        ruhmesHalleSuchName = true
+        GildeBuildingGold = new Array()
+        GildeBuildingPilz = new Array()
+        GildeChatScroll = 0
+        tmpBattleInfo = ""
+        KlasseGewählt = false
+        PostFightMode = false
+        tmpAmount = 0
+        PulseTaverne = false
+        PulseArbeiten = false
+        PulseGilde = false
+        PulseGildeOnHistory = false
+        PulsePost = false
+        PulseChar = false
+        PulseDealer = false
+        notFirstVolChange = true
+        notSecondVolChange = true
+        LevelUp = false
+        LastLevel = 0
+        canBoost = new Array()
+        GuildHallMode = false
+        DealerAktion = 0
+        SelectedGuild = ""
+        SelectedDungeon = 0
+        lightMode = false
+        chatSound = false
+        compareItems = false
+        light_mode_default = false
+        disableTV = false
+        tvTest = false
+        tvFunctionName = ""
+        tvPollNormal = 5000
+        tvPollLong = 300000
+        CupChosen = 0
+        oldAlbum = -1
+        PresetGold = 0
+        PresetMush = 0
+        MushBought = 0
+        specialAction = 0
+        nextPxl = 0
+        BlockReroll = false
+        FrenzyMode = false
+        fightFlushMode = false
+        RollFrenzy = new Timer(1000)
+        forceAdventure = false
+        lastAttacked = new Array()
+        forwardText = ""
+        albumCat = 0
+        albumPage = 0
+        contentMax = 1700
+        copyCatSel = 0
+        towerScroll = 0
+        towerScrollDest = 0
+        towerScrollSpeed = 0
+        towerScrollTimer = new Timer(25)
+        towerScrollGrabPos = -1
+        towerScrollTimer.addEventListener(
+            TimerEvent.TIMER, TowerTimerFn
+        )
+        alternateCharOppImg = false
+        hasFoughtGuildBattle = false
+        skipAllowed = false
+        specialActionHint = false
+        suggestNames = new Array()
+        crestElementPos = [
+            [55, 8, 130, 90, 21],
+            [0, 50, 240, 150, 34],
+            [65, 75, 108, 114, 23],
+            [15, 194, 210, 45, 12],
+            [85, 17, 73, 70, 24],
+            [98, 176, 43, 40, 16],
+            [85, 100, 70, 70, 68]
+        ]
+        selecterCrestElement = -1
+        crestSuggested = false
+        crestColorSelection = 0
+        crest = getRandomCrest()
+        heraldicColors = [
+            [0, 0, 1],
+            [1, 0, 0],
+            [0.7, 0, 0.8],
+            [0.1, 0.1, 0.1],
+            [0, 0.6, 0],
+            [1, 0.8, 0],
+            [0.9, 0.9, 0.9],
+            [0.7, 0.4, 0.2],
+            [0.5, 0.5, 0.5],
+            [0.7, 0, 0],
+            [0.5, 0, 0.3],
+            [1, 0.6, 0],
+            [1, 0.8, 0.8]
+        ]
+        crestColor = [0, 0, 0, 0]
+        crestMoveTimer = new Timer(25)
+        Filter_CrestSelected = new GradientGlowFilter(
+            0, 0, [16777026, 16777026], [0, 0.6], [0, 127],
+            26, 26, 1, 1, "outer"
+        )
+        crestMoveTimer.addEventListener(TimerEvent.TIMER, crestMoveFn)
+        oldCrestStr = ""
+        guildInstanceID = 0
+        myOwnRank = -1
+        myOwnAttackTarget = -1
+        myOwnGuildMoney = -1
+        lastGuildShown = ""
+        lastGuildData = new Array()
+        lastRaidCost = 0
+        lastGuildMembers = new Array()
+        lastHallMembers = new Array()
+        arrowHallMode = false
+        offlineGuildMembers = new Array()
+        showActivityTime = false
+        guildForumLink = ""
+        showAlbumOffset = false
+        avgLevel = 0
+        DestroyGuildBtnTimer = false
+        PostReturnToPlayer = ""
+        oldSel = 0
+        postInstance = 0
+        mirrorFadeAmount = 0.2
+        mirrorAniTimer = new Timer(25)
+        mirrorAniTimer.addEventListener(TimerEvent.TIMER, MirrorAniFn)
+        lastPlayer = ""
+        AlbumEffect = false
+        mirrorAniStep = 0
+        indexInGuild = 0
+        indexInHall = 0
+        playerTowerLevel = 0
+        MQSInstance = 0
+        MQDelayTimer = new Timer(500)
+        LastDungeonNr = 0
+        LastDungeonEnemy = 0
+        hasLostMQ = false
+        CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
+        crestSuggestion = new Array()
+        newCrestSuggested = ""
+        ChatHist = new Array()
+        toiletTankAdjustTimer = new Timer(25)
+        toiletTankCurrent = 0
+        toiletTankDest = 0
+        toiletTankAdjustTimer.addEventListener(
+            TimerEvent.TIMER,
+            toiletTankAdjustEvent
+        )
+        witchDesiredType = -1
+        nextFightTimer = new Timer(10, 1)
+        towerFightMode = false
+        fights = new Array()
+        guildFightCount = 0
+        fightNumber = 0
+        skipGuildFights = 0
+        lastRoundFighterName = ""
+        lastWhisperTarget = ""
+        lastMessageTarget = ""
+        guildAttackTime = 0
+        guildDefenceTime = 0
+        guildAttacked = ""
+        guildAttacking = ""
+        lastChatHist = ""
+        lastChatIndex = 0
+        guildBlinkReady = false
+        firstChatFill = false
+        SignupJumpRunning = false
+        suggestionSlot = new Array()
+        popupStamp = 0
 
     '''
 
     # get buffered registration?
     '''
-        if (this.paramObj["reg"] != undefined){
-            this.buffedReq = true;
-            this.buffed_reg = ExternalInterface.call("get_base64");
-            if (((this.buffed_reg) and (!((this.buffed_reg == ""))))){
-                this.buffed_stuff = this.buffed_reg.split(";");
-                if (this.buffed_stuff.length == 3){
-                    this.buffed_id = this.buffed_stuff[0];
-                    this.buffed_name = this.buffed_stuff[1];
-                    this.buffed_email = this.buffed_stuff[2];
-                };
-            };
-        };
+        if (paramObj["reg"] != undefined){
+            buffedReq = true
+            buffed_reg = ExternalInterface.call("get_base64")
+            if (((buffed_reg) and (!((buffed_reg == ""))))){
+                buffed_stuff = buffed_reg.split("")
+                if (buffed_stuff.length == 3){
+                    buffed_id = buffed_stuff[0]
+                    buffed_name = buffed_stuff[1]
+                    buffed_email = buffed_stuff[2]
+                }
+            }
+        }
     '''
 
     # pre populate text snippet list
     '''
-        this.txt = new Array();
-        while (this.txt.length < 20000) {
-            this.txt.push("");
-        };
+        txt = new Array()
+        while (txt.length < 20000) {
+            txt.push("")
+        }
     '''
 
     # setup image loading timeout event
     '''
-        this.WhenLoadedFn = new Array();
-        this.WhenLoadedActive = false;
-        this.WhenLoadedTimeout = new Timer((1000 * this.image_timeout), 1);
-        this.WhenLoadedTimeout.addEventListener(TimerEvent.TIMER, this.WhenLoadedTimeoutEvent);
+        WhenLoadedFn = new Array()
+        WhenLoadedActive = false
+        WhenLoadedTimeout = new Timer((1000 * image_timeout), 1)
+        WhenLoadedTimeout.addEventListener(
+            TimerEvent.TIMER,
+            WhenLoadedTimeoutEvent
+        )
     '''
 
     # timer event to generate Ticks
     '''
-        this.TimeCalc = new Timer(50);
-        this.TimeCalc.addEventListener(TimerEvent.TIMER, this.TimeCalcEvent);
+        TimeCalc = new Timer(50)
+        TimeCalc.addEventListener(TimerEvent.TIMER, TimeCalcEvent)
     '''
 
     # TV Stuff
     '''
-            this.tvStatus = 0;
-            this.tvStatusDest = 0;
-            this.tvWobble = 0;
-            this.tvAni = 0;
-            this.tvReturnValue = 0;
-            this.tvTimer = new Timer(100);
-            this.tvTimer.addEventListener(TimerEvent.TIMER, function (evt:TimerEvent){
-                var i:int;
-                tvWobble = (tvWobble + 0.1);
+            tvStatus = 0
+            tvStatusDest = 0
+            tvWobble = 0
+            tvAni = 0
+            tvReturnValue = 0
+            tvTimer = new Timer(100)
+            tvTimer.addEventListener(TimerEvent.TIMER, function (evt:TimerEvent){
+                var i:int
+                tvWobble = (tvWobble + 0.1)
                 while (tvWobble > (2 * Math.PI)) {
-                    tvWobble = (tvWobble - (2 * Math.PI));
-                };
+                    tvWobble = (tvWobble - (2 * Math.PI))
+                }
                 if ((tvStatusDest - tvStatus) >= 0.1){
-                    tvStatus = (tvStatus + 0.1);
+                    tvStatus = (tvStatus + 0.1)
                 } else {
                     if ((tvStatus - tvStatusDest) >= 0.1){
-                        tvStatus = (tvStatus - 0.1);
+                        tvStatus = (tvStatus - 0.1)
                     } else {
-                        tvStatus = tvStatusDest;
-                    };
-                };
-                tvAni++;
+                        tvStatus = tvStatusDest
+                    }
+                }
+                tvAni++
                 if (tvAni >= 4){
-                    tvAni = 0;
-                };
+                    tvAni = 0
+                }
                 if (tvStatus == 1){
-                    Show(CA_TV);
-                };
+                    Show(CA_TV)
+                }
                 if (tvStatus == 0){
-                    Hide(CA_TV);
-                };
-                i = 0;
+                    Hide(CA_TV)
+                }
+                i = 0
                 while (i < 4) {
-                    actor[(TV + i)].scaleX = tvStatus;
-                    actor[(TV + i)].scaleY = tvStatus;
-                    actor[(TV + i)].rotation = (Math.sin(tvWobble) * 5);
-                    actor[(TV + i)].alpha = tvStatus;
+                    actor[(TV + i)].scaleX = tvStatus
+                    actor[(TV + i)].scaleY = tvStatus
+                    actor[(TV + i)].rotation = (Math.sin(tvWobble) * 5)
+                    actor[(TV + i)].alpha = tvStatus
                     if ((((i == tvAni)) and ((tvStatus > 0)))){
-                        Show((TV + i));
+                        Show((TV + i))
                     } else {
-                        Hide((TV + i));
-                    };
-                    i++;
-                };
+                        Hide((TV + i))
+                    }
+                    i++
+                }
                 if (!OnStage(TV)){
-                    tvTimer.stop();
-                    i = 0;
+                    tvTimer.stop()
+                    i = 0
                     while (i < 4) {
-                        Hide((TV + i));
-                        i++;
-                    };
-                    tvStatus = 0;
-                    tvStatusDest = 0;
-                };
-            });
-            this.tvPollTimer = new Timer(5000);
-            this.tvPollTimer.addEventListener(TimerEvent.TIMER, this.TryShowTV);
+                        Hide((TV + i))
+                        i++
+                    }
+                    tvStatus = 0
+                    tvStatusDest = 0
+                }
+            })
+            tvPollTimer = new Timer(5000)
+            tvPollTimer.addEventListener(TimerEvent.TIMER, TryShowTV)
     '''
 
-    # this.PvPDelayTimer = new Timer(500);
+    # PvPDelayTimer = new Timer(500)
 
     # Witch Animation Timer
     '''
-        this.witchAniStep = 0;
-        this.witchAniTimer = new Timer(50);
-        this.witchAniTimer.addEventListener(TimerEvent.TIMER, function (evt:TimerEvent){
-            var i:int;
-            witchAniStep++;
+        witchAniStep = 0
+        witchAniTimer = new Timer(50)
+        witchAniTimer.addEventListener(TimerEvent.TIMER, function (evt:TimerEvent){
+            var i:int
+            witchAniStep++
             if (witchAniStep >= 15){
-                witchAniStep = 0;
-            };
-            i = 0;
+                witchAniStep = 0
+            }
+            i = 0
             while (i < 15) {
                 if (i == witchAniStep){
-                    Show((WITCH_ANI + i));
+                    Show((WITCH_ANI + i))
                 } else {
-                    Hide((WITCH_ANI + i));
-                };
-                i++;
-            };
+                    Hide((WITCH_ANI + i))
+                }
+                i++
+            }
             if (!OnStage(WITCH)){
-                witchAniTimer.stop();
-            };
-        });
+                witchAniTimer.stop()
+            }
+        })
     '''
 
     # Fight timers
     '''
-        this.nextFightTimer.addEventListener(TimerEvent.TIMER, this.NextFight);
-        this.guildFightTimer = new Timer(1000);
-        this.guildFightTimer.addEventListener(TimerEvent.TIMER, this.guildFightTimerFn);
-        this.guildFightTimer.start();
+        nextFightTimer.addEventListener(TimerEvent.TIMER, NextFight)
+        guildFightTimer = new Timer(1000)
+        guildFightTimer.addEventListener(TimerEvent.TIMER, guildFightTimerFn)
+        guildFightTimer.start()
     '''
 
     # Guild chat poll
     '''
-            this.GuildChatPoll = new Timer(1000);
-            this.GuildChatPoll.addEventListener(TimerEvent.TIMER, this.GuildChatPollFn);
-            this.GuildChatPoll.start();
+            GuildChatPoll = new Timer(1000)
+            GuildChatPoll.addEventListener(TimerEvent.TIMER, GuildChatPollFn)
+            GuildChatPoll.start()
     '''
-
-
-
     pass
 
 
@@ -4937,7 +4989,8 @@ def IsToday(reqTime):
     '''
         checks if timestamp is today
     '''
-    return datetime.fromtimestamp(reqTime/1000).date() == datetime.today().date()
+    reqDate = datetime.fromtimestamp(reqTime/1000)
+    return reqDate.date() == datetime.today().date()
 
 
 def TimeStr(reqTime, short=False):
@@ -5124,7 +5177,10 @@ def GetQuestBG():
 #------------------------------------------------------------------------------
 
 class Item:
-    def __init__(self, pic=0, typ=0, cclass=1, gold=0, maxd=0, mind=0, color=0, attr=False):
+    def __init__(
+        self, pic=0, typ=0, cclass=1, gold=0,
+        maxd=0, mind=0, color=0, attr=False
+    ):
         '''
 
         '''
@@ -5163,6 +5219,7 @@ class Item:
         Typ = 0
         Class = 1
         Gold = 0
+        Color = 0
         Mush = 0
         Damage = {'max': 0, 'min': 0}
         Attr = [
@@ -5181,8 +5238,8 @@ class Item:
             Damage['min'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MIN']])
 
             for i in range(3):
-                attr[i]['typ'] = SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]
-                attr[i]['val'] = SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]
+                self.attr[i]['typ'] = SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]
+                self.attr[i]['val'] = SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]
 
             for i in range(8):
                 Color += int(SG[SGIndex + SG['ITM']['SCHADEN_MIN'] + i])
@@ -5254,7 +5311,9 @@ class Item:
             txtSuffix = ""
 
         if (texts[txtBase + self.Pic - 1] == undefined):
-            return "Unknown Item (base=%d, entry=%d)" % (txtBase, (txtBase + self.Pic - 1))
+            return "Unknown Item (base=%d, entry=%d)" % (
+                txtBase, (txtBase + self.Pic - 1)
+            )
 
         if texts[txtIdx['EXT']] == "1":
             if txtSuffix == "":
@@ -5391,7 +5450,8 @@ def GetArrowID(itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
     arrowID += arrowID + itmColor
 
     if arrowID >= ARROW_MAX:
-        # log "Fehler: Zu wenige Indizes für Pfeile:", arrowID, ">=", this.ARROW_MAX, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass
+        # log "Fehler: Zu wenige Indizes für Pfeile:", arrowID, ">=",
+        # this.ARROW_MAX, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass
         return 0
 
     return arrowID
@@ -5447,7 +5507,9 @@ def GetWeaponLevel(wpnClass, wpnPic):
                 return (5)
             elif wpnPic in (-5, -4, 1, 2, 3, 4):
                 return (0)
-            elif wpnPic in (5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60):
+            elif wpnPic in (
+                5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60
+            ):
                 return (1)
             elif wpnPic in (-6, 7, 10, 13, 16, 20, 23, 25, 28, 52):
                 return (2)
@@ -5525,7 +5587,10 @@ def GetWeaponLevel(wpnClass, wpnPic):
 # TODO: How to do Event stuff?
 def RequestSignup(evt):
     if evt is KeyboardEvent:
-        if (KeyboardEvent(evt).keyCode != 13) and (KeyboardEvent(evt).keyCode != 10) and (KeyboardEvent(evt).keyCode != 16777230):
+        if ((KeyboardEvent(evt).keyCode != 13)
+            and (KeyboardEvent(evt).keyCode != 10)
+            and (KeyboardEvent(evt).keyCode != 16777230)
+        ):
             #inpText = actor[INP_NAME].getChildAt(1).text
             if (inpText.substr(0, 7) == "xxxtest"):
                 #actor[INP_EMAIL].getChildAt(1).text = (inpText + "@playagames.com")
@@ -5542,416 +5607,426 @@ def RequestSignup(evt):
             pass
 
         # Create account
-        #SendAction(ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text, actor[INP_PASSWORD].getChildAt(1).text, this.actor[this.INP_EMAIL].getChildAt(1).text, this.param_rec, ((this.buffedReq) ? ("buf" + this.buffed_id) : this.param_adv), this.CharVolk, ((this.CharMann) ? 1 : 2), this.CharKaste, (((((((((((((((((this.CharMouth + "/") + this.CharHair) + "/") + this.CharBrows) + "/") + this.CharEyes) + "/") + this.CharBeard) + "/") + this.CharNose) + "/") + this.CharEars) + "/") + this.CharSpecial) + "/") + this.CharSpecial2) + "/"), this.param_cid);
+        #SendAction(ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text, actor[INP_PASSWORD].getChildAt(1).text, this.actor[this.INP_EMAIL].getChildAt(1).text, this.param_rec, ((this.buffedReq) ? ("buf" + this.buffed_id) : this.param_adv), this.CharVolk, ((this.CharMann) ? 1 : 2), this.CharKaste, (((((((((((((((((this.CharMouth + "/") + this.CharHair) + "/") + this.CharBrows) + "/") + this.CharEyes) + "/") + this.CharBeard) + "/") + this.CharNose) + "/") + this.CharEars) + "/") + this.CharSpecial) + "/") + this.CharSpecial2) + "/"), this.param_cid)
     else:
         ErrorMessage(texts[TXT_ERROR_AGB])
 
 
+
+
 '''
-    var LoadTrackingPixel:* = function (url:String){
-        var req:* = null;
-        var variables:* = null;
-        var pixelLoader:* = null;
-        var pixel_success:* = null;
-        var pixel_failed:* = null;
-        var url:* = url;
-        trc("Tracking Pixel Load:", url);
-        if (url.indexOf("?") == -1){
-            url = (url + "?random=");
+LoadTrackingPixel:* = function (url:String){
+    var req:* = null
+    var variables:* = null
+    var pixelLoader:* = null
+    var pixel_success:* = null
+    var pixel_failed:* = null
+    var url:* = url
+    trc("Tracking Pixel Load:", url)
+    if (url.indexOf("?") == -1){
+        url = (url + "?random=")
+    } else {
+        url = (url + "&random=")
+    }
+    url = (url + String(int((Math.random() * 100000))))
+    url = (url + (("&" + "had_account=") + ((hadAccount) ? "1" : "0")))
+    if (param_reload_pixel){
+        trc("Tracking Pixel Reload Mode for:", url)
+        trc("CID userd", param_cid)
+        trc("Action", act)
+        req = new URLRequest("index.php")
+        req.method = URLRequestMethod.POST
+        variables = new URLVariables()
+        variables.pixel_url = url
+        variables.pixel_cid = param_cid
+        variables.pixel_player_id = Savegame[SG_PLAYER_ID]
+        variables.pixel_action = (((nextPxl == 0)) ? act : Math.abs(nextPxl))
+        req.data = variables
+        logInAfterPixel = false
+        navigateToURL(req, "_self")
+    } else {
+        if (param_internal_pixel){
+            pixel_success = function (evt:Event){
+                var pixelData:String
+                pixelData = pixelLoader.data
+                if ((((pixelData.toLowerCase().substr(0, 7) == "http://")) or ((pixelData.toLowerCase().substr(0, 8) == "https://")))){
+                    ExternalInterface.call("loadpixel", pixelData)
+                }
+                pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
+                pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+                pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            }
+            pixel_failed = function (evt:Event){
+                pixelLoader.removeEventListener(Event.COMPLETE, pixel_success)
+                pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+                pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            }
+            pixelLoader = new URLLoader()
+            pixelLoader.addEventListener(Event.COMPLETE, pixel_success)
+            pixelLoader.addEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+            pixelLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed)
+            pixelLoader.load(new URLRequest(url))
         } else {
-            url = (url + "&random=");
-        };
-        url = (url + String(int((Math.random() * 100000))));
-        url = (url + (("&" + "had_account=") + ((hadAccount) ? "1" : "0")));
-        if (param_reload_pixel){
-            trc("Tracking Pixel Reload Mode for:", url);
-            trc("CID userd", param_cid);
-            trc("Action", act);
-            req = new URLRequest("index.php");
-            req.method = URLRequestMethod.POST;
-            variables = new URLVariables();
-            variables.pixel_url = url;
-            variables.pixel_cid = param_cid;
-            variables.pixel_player_id = Savegame[SG_PLAYER_ID];
-            variables.pixel_action = (((nextPxl == 0)) ? act : Math.abs(nextPxl));
-            req.data = variables;
-            logInAfterPixel = false;
-            navigateToURL(req, "_self");
-        } else {
-            if (param_internal_pixel){
-                pixel_success = function (evt:Event){
-                    var pixelData:String;
-                    pixelData = pixelLoader.data;
-                    if ((((pixelData.toLowerCase().substr(0, 7) == "http://")) or ((pixelData.toLowerCase().substr(0, 8) == "https://")))){
-                        ExternalInterface.call("loadpixel", pixelData);
-                    };
-                    pixelLoader.removeEventListener(Event.COMPLETE, pixel_success);
-                    pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed);
-                    pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed);
-                };
-                pixel_failed = function (evt:Event){
-                    pixelLoader.removeEventListener(Event.COMPLETE, pixel_success);
-                    pixelLoader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed);
-                    pixelLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed);
-                };
-                pixelLoader = new URLLoader();
-                pixelLoader.addEventListener(Event.COMPLETE, pixel_success);
-                pixelLoader.addEventListener(IOErrorEvent.IO_ERROR, pixel_failed);
-                pixelLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, pixel_failed);
-                pixelLoader.load(new URLRequest(url));
+            ExternalInterface.call("loadpixel", url)
+        }
+    }
+}
+
+DoActZauberladen = function (){
+    ErrorMessage(" ")
+    Remove(CHAR_RIGHTPANE)
+    Remove(FIDGET_EPCIOVL)
+    Remove(SHAKES_EPCIOVL)
+    Add(SCREEN_FIDGET)
+    if (Savegame[SG_LEVEL] >= 66){
+        Add(CA_GOTO_WITCH)
+    }
+    if ((((specialAction == 2)) or ((specialAction == 5)))){
+        Add(FIDGET_EPCIOVL)
+        actor[FIDGET_EPCIOVL].mouseEnabled = false
+    }
+    if (!SleepTime()){
+        Remove(FIDGET_NIGHT)
+    } else {
+        Remove(FIDGET_DAY)
+    }
+    if (Capabilities.version.substr(0, 3) != "IOS"){
+        if (lightMode){
+            Remove(FIDGET_TAGKERZE)
+            Remove(FIDGET_NACHTKERZE)
+        }
+    }
+    Remove(FIDGET_BLINZELN)
+}
+
+DoActSchmiede = function (){
+    ErrorMessage(" ")
+    Remove(CHAR_RIGHTPANE)
+    Remove(FIDGET_EPCIOVL)
+    Remove(SHAKES_EPCIOVL)
+    Add(SCREEN_SHAKES)
+    if ((((specialAction == 2)) or ((specialAction == 5)))){
+        Add(SHAKES_EPCIOVL)
+        actor[SHAKES_EPCIOVL].mouseEnabled = false
+    }
+    Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
+    if (!SleepTime()){
+        Remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
+    } else {
+        Remove(SHAKES_DAY)
+    }
+}
+
+ParseSavegame:* = function (
+    strSaveGame:String, FillFaceVariables:Boolean=true, noSpoil:Boolean=false
+){
+    var i:* = 0
+    var debugInfo:* = null
+    var binStr:* = null
+    var strSaveGame:* = strSaveGame
+    var FillFaceVariables:Boolean = FillFaceVariables
+    var noSpoil:Boolean = noSpoil
+    debugInfo = ""
+    Savegame = ("0/" + strSaveGame).split("/")
+    if (!noSpoil){
+        towerLevel = int((Savegame[SG_MOUNT] / 65536))
+    }
+    Savegame[SG_MOUNT] = (Savegame[SG_MOUNT] - (towerLevel * 65536))
+    binStr = Number(Savegame[SG_GENDER]).toString(2)
+    while (binStr.length < 32) {
+        binStr = ("0" + binStr)
+    }
+    i = 0
+    while (i < 13) {
+        MirrorPieces[i] = (binStr.substr((i + 1), 1) == "1")
+        i = (i + 1)
+    }
+    hasMirror = (binStr.substr(23, 1) == "1")
+    canRob = (binStr.substr(22, 1) == "1")
+    if (binStr.substr(31) == "1"){
+        Savegame[SG_GENDER] = 1
+    } else {
+        Savegame[SG_GENDER] = 2
+    }
+    if ((Savegame[SG_ALBUM] - 10000) > contentMax){
+        Savegame[SG_ALBUM] = (contentMax + 10000)
+    }
+    i = 0
+    while (i < SG_BACKPACK_SIZE) {
+        ExpandItemStructure(Savegame, (SG_BACKPACK_OFFS + (i * SG_ITM_SIZE)))
+        i = (i + 1)
+    }
+    i = 0
+    while (i < SG_INVENTORY_SIZE) {
+        ExpandItemStructure(Savegame, (SG_INVENTORY_OFFS + (i * SG_ITM_SIZE)))
+        i = (i + 1)
+    }
+    i = 0
+    while (i < 6) {
+        ExpandItemStructure(Savegame, (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)))
+        ExpandItemStructure(Savegame, (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)))
+        i = (i + 1)
+    }
+    i = 0
+    while (i < 3) {
+        ExpandItemStructure(Savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)))
+        i = (i + 1)
+    }
+    i = 0
+    while (i < Savegame.length) {
+        debugInfo = (debugInfo + (((String(i) + "=") + Savegame[i]) + ", "))
+        i = (i + 1)
+    }
+    if (((!((LastLevel == 0))) and ((int(Savegame[SG_LEVEL]) > LastLevel)))){
+        LevelUp = true
+        PulseChar = true
+    }
+    LastLevel = int(Savegame[SG_LEVEL])
+    FriendLink = ((("http://" + server) + "/index.php?rec=") + Savegame[SG_PLAYER_ID])
+    if (oldAch.length != 0){
+        i = 0
+        while (i < 8) {
+            if (achLevel(Savegame, i) > oldAch[i]){
+                oldAch[i] = -(achLevel(Savegame, i))
             } else {
-                ExternalInterface.call("loadpixel", url);
-            };
-        };
-    };
-    DoActZauberladen = function (){
-        ErrorMessage(" ");
-        Remove(CHAR_RIGHTPANE);
-        Remove(FIDGET_EPCIOVL);
-        Remove(SHAKES_EPCIOVL);
-        Add(SCREEN_FIDGET);
-        if (Savegame[SG_LEVEL] >= 66){
-            Add(CA_GOTO_WITCH);
-        };
-        if ((((specialAction == 2)) or ((specialAction == 5)))){
-            Add(FIDGET_EPCIOVL);
-            actor[FIDGET_EPCIOVL].mouseEnabled = false;
-        };
-        if (!SleepTime()){
-            Remove(FIDGET_NIGHT);
+                oldAch[i] = achLevel(Savegame, i)
+            }
+            i = (i + 1)
+        }
+    } else {
+        i = 0
+        while (i < 8) {
+            oldAch[i] = achLevel(Savegame, i)
+            i = (i + 1)
+        }
+    }
+    if ((((oldAlbum >= 0)) and ((Savegame[SG_ALBUM] > oldAlbum)))){
+        AlbumEffect = true
+    }
+    oldAlbum = Savegame[SG_ALBUM]
+    if (FillFaceVariables){
+        CharVolk = Savegame[SG_RACE]
+        CharMann = (Savegame[SG_GENDER] == 1)
+        CharKaste = Savegame[SG_CLASS]
+        CharMouth = Savegame[SG_FACE_1]
+        CharBeard = Savegame[SG_FACE_5]
+        CharNose = Savegame[SG_FACE_6]
+        CharEyes = Savegame[SG_FACE_4]
+        CharBrows = Savegame[SG_FACE_3]
+        CharEars = Savegame[SG_FACE_7]
+        CharHair = Savegame[SG_FACE_2]
+        CharSpecial = Savegame[SG_FACE_8]
+        CharSpecial2 = Savegame[SG_FACE_9]
+        i = CharHair
+        CharColor = 0
+        while (i > 100) {
+            i = (i - 100)
+            CharColor++
+        }
+    }
+    if (!noSpoil){
+        if (textDir == "right"){
+            var _local5 = actor[IF_GOLD]
+            with (_local5) {
+                x = IF_LBL_GOLDPILZE_X
+            }
+            _local5 = actor[LBL_IF_GOLD]
+            with (_local5) {
+                text = String(int((Savegame[SG_GOLD] / 100)))
+                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
+            }
+            _local5 = actor[IF_SILBER]
+            with (_local5) {
+                x = ((actor[LBL_IF_GOLD].x - width) - 10)
+            }
+            _local5 = actor[LBL_IF_SILBER]
+            with (_local5) {
+                text = ((((int((Savegame[SG_GOLD] % 100)) < 10)) ? "0" : "") + String(int((Savegame[SG_GOLD] % 100))))
+                x = ((actor[IF_SILBER].x - textWidth) - 10)
+            }
+            _local5 = actor[LBL_IF_PILZE]
+            with (_local5) {
+                text = Savegame[SG_MUSH]
+                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
+            }
+            if (txt[TXT_MUSHROOMS_BOUGHT]){
+                EnablePopup(LBL_IF_PILZE, txt[TXT_MUSHROOMS_BOUGHT].split("%1").join(Savegame[SG_MUSHROOMS_MAY_DONATE]))
+            }
         } else {
-            Remove(FIDGET_DAY);
-        };
-        if (Capabilities.version.substr(0, 3) != "IOS"){
-            if (lightMode){
-                Remove(FIDGET_TAGKERZE);
-                Remove(FIDGET_NACHTKERZE);
-            };
-        };
-        Remove(FIDGET_BLINZELN);
-    };
-    DoActSchmiede = function (){
-        ErrorMessage(" ");
-        Remove(CHAR_RIGHTPANE);
-        Remove(FIDGET_EPCIOVL);
-        Remove(SHAKES_EPCIOVL);
-        Add(SCREEN_SHAKES);
-        if ((((specialAction == 2)) or ((specialAction == 5)))){
-            Add(SHAKES_EPCIOVL);
-            actor[SHAKES_EPCIOVL].mouseEnabled = false;
-        };
-        Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
-        if (!SleepTime()){
-            Remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2);
+            _local5 = actor[LBL_IF_SILBER]
+            with (_local5) {
+                text = ((((int((Savegame[SG_GOLD] % 100)) < 10)) ? "0" : "") + String(int((Savegame[SG_GOLD] % 100))))
+                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
+            }
+            _local5 = actor[IF_GOLD]
+            with (_local5) {
+                x = ((actor[LBL_IF_SILBER].x - 24) - 10)
+            }
+            _local5 = actor[LBL_IF_GOLD]
+            with (_local5) {
+                text = String(int((Savegame[SG_GOLD] / 100)))
+                x = ((actor[IF_GOLD].x - textWidth) - 10)
+            }
+            _local5 = actor[LBL_IF_PILZE]
+            with (_local5) {
+                text = Savegame[SG_MUSH]
+                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
+            }
+            if (txt[TXT_MUSHROOMS_BOUGHT]){
+                EnablePopup(LBL_IF_PILZE, txt[TXT_MUSHROOMS_BOUGHT].split("%1").join(Savegame[SG_MUSHROOMS_MAY_DONATE]))
+            }
+        }
+    }
+    Add(IF_STATS)
+    if (Number(Savegame[SG_SERVER_TIME]) > 0){
+        ServerTime.setTime(((1000 * Number(Savegame[SG_SERVER_TIME])) - ((1000 * 60) * 60)))
+        LocalTime = new Date()
+        TimeCalc.start()
+    }
+    if (sessionId == ""){
+        trc("Fehler: Keine Session ID für PHP-Tunneling vergeben. PHP-Tunneling wird deaktiviert.")
+        ShowLoginScreen()
+    } else {
+        trc("Session ID für PHP Tunneling:", sessionId)
+    }
+    if (int(Savegame[SG_GUILD_INDEX]) != GildenID){
+        GildenID = int(Savegame[SG_GUILD_INDEX])
+        if (GildenID != 0){
+            SendAction(ACT_REQUEST_GUILD, Savegame[SG_GUILD_INDEX])
+        }
+    }
+    if ((((int(Savegame[SG_UNREAD_MESSAGES]) > 0)) and (!(OnStage(POST_LIST))))){
+        PulsePost = true
+    }
+    if (int(Savegame[SG_LOCKDURATION]) != 0){
+        RequestLogout()
+    }
+    if (nextPxl < 0){
+        nextPxl = Math.abs(nextPxl)
+    }
+}
+
+RequestPlayerScreen:* = function (evt:MouseEvent){
+    var selIndex:int
+    var selRow:int
+    selIndex = actor[HALL_LIST].getChildIndex(evt.target)
+    if (selIndex < 5){
+        return
+    }
+    selRow = (int(((selIndex - 5) / 6)) + 1)
+    selName = HallListName[selRow]
+    selGilde = HallListGilde[selRow]
+    if (selName == ""){
+        return
+    }
+    SendAction(ACT_REQUEST_CHAR, selName)
+}
+
+RequestPlayerGuildScreen:* = function (evt:MouseEvent){
+    var selIndex:int
+    var selRow:int
+    selIndex = actor[HALL_LIST].getChildIndex(evt.target)
+    if (selIndex < 5){
+        return
+    }
+    selRow = (int(((selIndex - 5) / 6)) + 1)
+    selName = HallListName[selRow]
+    selGilde = HallListGilde[selRow]
+    if (selGilde == txt[TXT_NOGUILD]){
+        return
+    }
+    if (selGilde == ""){
+        return
+    }
+    if (selGilde == Gilde){
+        SendAction(ACT_SCREEN_GILDEN)
+    } else {
+        SendAction(ACT_SCREEN_FREMDGILDE, selGilde)
+    }
+}
+
+HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat, maxWidth:int=0, isGuild:Boolean=false):void{
+    var tmpObj:* = null
+    var thisFieldPopup:* = null
+    var pos_x:* = pos_x
+    var pos_y:* = pos_y
+    var txt:* = txt
+    var fmt:* = fmt
+    var maxWidth:int = maxWidth
+    var isGuild:Boolean = isGuild
+    var InstallHallPopup:* = function (evt:Event){
+        if (thisFieldPopup != ""){
+            EnablePopup(HALL_LIST, thisFieldPopup)
         } else {
-            Remove(SHAKES_DAY);
-        };
-    };
-    var ParseSavegame:* = function (strSaveGame:String, FillFaceVariables:Boolean=true, noSpoil:Boolean=false){
-        var i:* = 0;
-        var debugInfo:* = null;
-        var binStr:* = null;
-        var strSaveGame:* = strSaveGame;
-        var FillFaceVariables:Boolean = FillFaceVariables;
-        var noSpoil:Boolean = noSpoil;
-        debugInfo = "";
-        Savegame = ("0/" + strSaveGame).split("/");
-        if (!noSpoil){
-            towerLevel = int((Savegame[SG_MOUNT] / 65536));
-        };
-        Savegame[SG_MOUNT] = (Savegame[SG_MOUNT] - (towerLevel * 65536));
-        binStr = Number(Savegame[SG_GENDER]).toString(2);
-        while (binStr.length < 32) {
-            binStr = ("0" + binStr);
-        };
-        i = 0;
-        while (i < 13) {
-            MirrorPieces[i] = (binStr.substr((i + 1), 1) == "1");
-            i = (i + 1);
-        };
-        hasMirror = (binStr.substr(23, 1) == "1");
-        canRob = (binStr.substr(22, 1) == "1");
-        if (binStr.substr(31) == "1"){
-            Savegame[SG_GENDER] = 1;
-        } else {
-            Savegame[SG_GENDER] = 2;
-        };
-        if ((Savegame[SG_ALBUM] - 10000) > contentMax){
-            Savegame[SG_ALBUM] = (contentMax + 10000);
-        };
-        i = 0;
-        while (i < SG_BACKPACK_SIZE) {
-            ExpandItemStructure(Savegame, (SG_BACKPACK_OFFS + (i * SG_ITM_SIZE)));
-            i = (i + 1);
-        };
-        i = 0;
-        while (i < SG_INVENTORY_SIZE) {
-            ExpandItemStructure(Savegame, (SG_INVENTORY_OFFS + (i * SG_ITM_SIZE)));
-            i = (i + 1);
-        };
-        i = 0;
-        while (i < 6) {
-            ExpandItemStructure(Savegame, (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)));
-            ExpandItemStructure(Savegame, (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)));
-            i = (i + 1);
-        };
-        i = 0;
-        while (i < 3) {
-            ExpandItemStructure(Savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)));
-            i = (i + 1);
-        };
-        i = 0;
-        while (i < Savegame.length) {
-            debugInfo = (debugInfo + (((String(i) + "=") + Savegame[i]) + ", "));
-            i = (i + 1);
-        };
-        if (((!((LastLevel == 0))) and ((int(Savegame[SG_LEVEL]) > LastLevel)))){
-            LevelUp = true;
-            PulseChar = true;
-        };
-        LastLevel = int(Savegame[SG_LEVEL]);
-        FriendLink = ((("http://" + server) + "/index.php?rec=") + Savegame[SG_PLAYER_ID]);
-        if (oldAch.length != 0){
-            i = 0;
-            while (i < 8) {
-                if (achLevel(Savegame, i) > oldAch[i]){
-                    oldAch[i] = -(achLevel(Savegame, i));
-                } else {
-                    oldAch[i] = achLevel(Savegame, i);
-                };
-                i = (i + 1);
-            };
-        } else {
-            i = 0;
-            while (i < 8) {
-                oldAch[i] = achLevel(Savegame, i);
-                i = (i + 1);
-            };
-        };
-        if ((((oldAlbum >= 0)) and ((Savegame[SG_ALBUM] > oldAlbum)))){
-            AlbumEffect = true;
-        };
-        oldAlbum = Savegame[SG_ALBUM];
-        if (FillFaceVariables){
-            CharVolk = Savegame[SG_RACE];
-            CharMann = (Savegame[SG_GENDER] == 1);
-            CharKaste = Savegame[SG_CLASS];
-            CharMouth = Savegame[SG_FACE_1];
-            CharBeard = Savegame[SG_FACE_5];
-            CharNose = Savegame[SG_FACE_6];
-            CharEyes = Savegame[SG_FACE_4];
-            CharBrows = Savegame[SG_FACE_3];
-            CharEars = Savegame[SG_FACE_7];
-            CharHair = Savegame[SG_FACE_2];
-            CharSpecial = Savegame[SG_FACE_8];
-            CharSpecial2 = Savegame[SG_FACE_9];
-            i = CharHair;
-            CharColor = 0;
-            while (i > 100) {
-                i = (i - 100);
-                CharColor++;
-            };
-        };
-        if (!noSpoil){
-            if (textDir == "right"){
-                var _local5 = actor[IF_GOLD];
-                with (_local5) {
-                    x = IF_LBL_GOLDPILZE_X;
-                };
-                _local5 = actor[LBL_IF_GOLD];
-                with (_local5) {
-                    text = String(int((Savegame[SG_GOLD] / 100)));
-                    x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
-                };
-                _local5 = actor[IF_SILBER];
-                with (_local5) {
-                    x = ((actor[LBL_IF_GOLD].x - width) - 10);
-                };
-                _local5 = actor[LBL_IF_SILBER];
-                with (_local5) {
-                    text = ((((int((Savegame[SG_GOLD] % 100)) < 10)) ? "0" : "") + String(int((Savegame[SG_GOLD] % 100))));
-                    x = ((actor[IF_SILBER].x - textWidth) - 10);
-                };
-                _local5 = actor[LBL_IF_PILZE];
-                with (_local5) {
-                    text = Savegame[SG_MUSH];
-                    x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
-                };
-                if (txt[TXT_MUSHROOMS_BOUGHT]){
-                    EnablePopup(LBL_IF_PILZE, txt[TXT_MUSHROOMS_BOUGHT].split("%1").join(Savegame[SG_MUSHROOMS_MAY_DONATE]));
-                };
-            } else {
-                _local5 = actor[LBL_IF_SILBER];
-                with (_local5) {
-                    text = ((((int((Savegame[SG_GOLD] % 100)) < 10)) ? "0" : "") + String(int((Savegame[SG_GOLD] % 100))));
-                    x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
-                };
-                _local5 = actor[IF_GOLD];
-                with (_local5) {
-                    x = ((actor[LBL_IF_SILBER].x - 24) - 10);
-                };
-                _local5 = actor[LBL_IF_GOLD];
-                with (_local5) {
-                    text = String(int((Savegame[SG_GOLD] / 100)));
-                    x = ((actor[IF_GOLD].x - textWidth) - 10);
-                };
-                _local5 = actor[LBL_IF_PILZE];
-                with (_local5) {
-                    text = Savegame[SG_MUSH];
-                    x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
-                };
-                if (txt[TXT_MUSHROOMS_BOUGHT]){
-                    EnablePopup(LBL_IF_PILZE, txt[TXT_MUSHROOMS_BOUGHT].split("%1").join(Savegame[SG_MUSHROOMS_MAY_DONATE]));
-                };
-            };
-        };
-        Add(IF_STATS);
-        if (Number(Savegame[SG_SERVER_TIME]) > 0){
-            ServerTime.setTime(((1000 * Number(Savegame[SG_SERVER_TIME])) - ((1000 * 60) * 60)));
-            LocalTime = new Date();
-            TimeCalc.start();
-        };
-        if (sessionId == ""){
-            trc("Fehler: Keine Session ID für PHP-Tunneling vergeben. PHP-Tunneling wird deaktiviert.");
-            ShowLoginScreen();
-        } else {
-            trc("Session ID für PHP Tunneling:", sessionId);
-        };
-        if (int(Savegame[SG_GUILD_INDEX]) != GildenID){
-            GildenID = int(Savegame[SG_GUILD_INDEX]);
-            if (GildenID != 0){
-                SendAction(ACT_REQUEST_GUILD, Savegame[SG_GUILD_INDEX]);
-            };
-        };
-        if ((((int(Savegame[SG_UNREAD_MESSAGES]) > 0)) and (!(OnStage(POST_LIST))))){
-            PulsePost = true;
-        };
-        if (int(Savegame[SG_LOCKDURATION]) != 0){
-            RequestLogout();
-        };
-        if (nextPxl < 0){
-            nextPxl = Math.abs(nextPxl);
-        };
-    };
-    var RequestPlayerScreen:* = function (evt:MouseEvent){
-        var selIndex:int;
-        var selRow:int;
-        selIndex = actor[HALL_LIST].getChildIndex(evt.target);
-        if (selIndex < 5){
-            return;
-        };
-        selRow = (int(((selIndex - 5) / 6)) + 1);
-        selName = HallListName[selRow];
-        selGilde = HallListGilde[selRow];
-        if (selName == ""){
-            return;
-        };
-        SendAction(ACT_REQUEST_CHAR, selName);
-    };
-    var RequestPlayerGuildScreen:* = function (evt:MouseEvent){
-        var selIndex:int;
-        var selRow:int;
-        selIndex = actor[HALL_LIST].getChildIndex(evt.target);
-        if (selIndex < 5){
-            return;
-        };
-        selRow = (int(((selIndex - 5) / 6)) + 1);
-        selName = HallListName[selRow];
-        selGilde = HallListGilde[selRow];
-        if (selGilde == txt[TXT_NOGUILD]){
-            return;
-        };
-        if (selGilde == ""){
-            return;
-        };
-        if (selGilde == Gilde){
-            SendAction(ACT_SCREEN_GILDEN);
-        } else {
-            SendAction(ACT_SCREEN_FREMDGILDE, selGilde);
-        };
-    };
-    var HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat, maxWidth:int=0, isGuild:Boolean=false):void{
-        var tmpObj:* = null;
-        var thisFieldPopup:* = null;
-        var pos_x:* = pos_x;
-        var pos_y:* = pos_y;
-        var txt:* = txt;
-        var fmt:* = fmt;
-        var maxWidth:int = maxWidth;
-        var isGuild:Boolean = isGuild;
-        var InstallHallPopup:* = function (evt:Event){
-            if (thisFieldPopup != ""){
-                EnablePopup(HALL_LIST, thisFieldPopup);
-            } else {
-                EnablePopup(HALL_LIST);
-            };
-        };
-        thisFieldPopup = "";
-        if (txt == "[K]"){
-            tmpObj = new Bitmap(actor[IF_KRIEGER].content.bitmapData.clone());
-            var _local8 = tmpObj;
-            with (_local8) {
-                allowSmoothing = true;
-                forceSmoothing = true;
-                smoothing = true;
-                mouseEnabled = true;
-            };
-        } else {
-            if (txt == "[M]"){
-                tmpObj = new Bitmap(actor[IF_MAGIER].content.bitmapData.clone());
-                _local8 = tmpObj;
-                with (_local8) {
-                    allowSmoothing = true;
-                    forceSmoothing = true;
-                    smoothing = true;
-                    mouseEnabled = true;
-                };
-            } else {
-                if (txt == "[J]"){
-                    tmpObj = new Bitmap(actor[IF_JAEGER].content.bitmapData.clone());
-                    _local8 = tmpObj;
-                    with (_local8) {
-                        allowSmoothing = true;
-                        forceSmoothing = true;
-                        smoothing = true;
-                        mouseEnabled = true;
-                    };
-                } else {
-                    tmpObj = new TextField();
-                    _local8 = tmpObj;
-                    with (_local8) {
-                        defaultTextFormat = fmt;
-                        autoSize = TextFieldAutoSize.LEFT;
-                        background = false;
-                        selectable = false;
-                        embedFonts = fontEmbedded;
-                        antiAliasType = AntiAliasType.ADVANCED;
-                        text = txt;
-                    };
-                    if (maxWidth > 0){
-                        thisFieldPopup = TrimTooLong(tmpObj, maxWidth);
-                    };
-                };
-            };
-        };
-        _local8 = tmpObj;
+            EnablePopup(HALL_LIST)
+        }
+    }
+    thisFieldPopup = ""
+    if (txt == "[K]"){
+        tmpObj = new Bitmap(actor[IF_KRIEGER].content.bitmapData.clone())
+        var _local8 = tmpObj
         with (_local8) {
-            if (isGuild){
-                addEventListener(MouseEvent.CLICK, RequestPlayerGuildScreen);
+            allowSmoothing = true
+            forceSmoothing = true
+            smoothing = true
+            mouseEnabled = true
+        }
+    } else {
+        if (txt == "[M]"){
+            tmpObj = new Bitmap(actor[IF_MAGIER].content.bitmapData.clone())
+            _local8 = tmpObj
+            with (_local8) {
+                allowSmoothing = true
+                forceSmoothing = true
+                smoothing = true
+                mouseEnabled = true
+            }
+        } else {
+            if (txt == "[J]"){
+                tmpObj = new Bitmap(actor[IF_JAEGER].content.bitmapData.clone())
+                _local8 = tmpObj
+                with (_local8) {
+                    allowSmoothing = true
+                    forceSmoothing = true
+                    smoothing = true
+                    mouseEnabled = true
+                }
             } else {
-                addEventListener(MouseEvent.CLICK, RequestPlayerScreen);
-            };
-            addEventListener(MouseEvent.MOUSE_OVER, InstallHallPopup);
-            if (textDir == "right"){
-                x = (pos_x - width);
-            } else {
-                x = pos_x;
-            };
-            y = pos_y;
-            visible = true;
-        };
-        actor[HALL_LIST].addChild(tmpObj);
-    };
+                tmpObj = new TextField()
+                _local8 = tmpObj
+                with (_local8) {
+                    defaultTextFormat = fmt
+                    autoSize = TextFieldAutoSize.LEFT
+                    background = false
+                    selectable = false
+                    embedFonts = fontEmbedded
+                    antiAliasType = AntiAliasType.ADVANCED
+                    text = txt
+                }
+                if (maxWidth > 0){
+                    thisFieldPopup = TrimTooLong(tmpObj, maxWidth)
+                }
+            }
+        }
+    }
+    _local8 = tmpObj
+    with (_local8) {
+        if (isGuild){
+            addEventListener(MouseEvent.CLICK, RequestPlayerGuildScreen)
+        } else {
+            addEventListener(MouseEvent.CLICK, RequestPlayerScreen)
+        }
+        addEventListener(MouseEvent.MOUSE_OVER, InstallHallPopup)
+        if (textDir == "right"){
+            x = (pos_x - width)
+        } else {
+            x = pos_x
+        }
+        y = pos_y
+        visible = true
+    }
+    actor[HALL_LIST].addChild(tmpObj)
+}
 '''
 
 
@@ -5961,44 +6036,44 @@ def ActionHandler(event):
     '''
 
     '''
-        var dataStr:* = null;
-        var act:* = 0;
-        var parStr:* = null;
-        var i:* = 0;
-        var ii:* = 0;
-        var tmpArray:* = null;
-        var tmpFmt:* = null;
-        var line:* = 0;
-        var HallListName:* = null;
-        var HallListGilde:* = null;
-        var isMine:* = false;
-        var logInAfterPixel:* = false;
-        var par:* = null;
-        var pa:* = null;
-        var pas:* = null;
-        var pxlStr:* = null;
-        var pxlArr:* = null;
-        var inVar:* = false;
-        var pixel:* = undefined;
-        var DoActZauberladen:* = null;
-        var DoActSchmiede:* = null;
-        var tmpByteArray:* = null;
-        var bitArray:* = null;
-        var PaymentLink:* = null;
-        var externalWhisperer:* = null;
-        var postReadText:* = null;
-        var tmpFighterArray:* = undefined;
-        var ichAnfg:* = undefined;
-        var erAnfg:* = undefined;
-        var tmpFightArray:* = undefined;
-        var ichEnde:* = undefined;
-        var erEnde:* = undefined;
-        var rundenZahl:* = undefined;
-        var tmpHonor:* = undefined;
-        var tmpGold:* = undefined;
-        var tmpSilver:* = undefined;
-        var alertWords:* = null;
-        var event:* = event;
+        var dataStr:* = null
+        var act:* = 0
+        var parStr:* = null
+        var i:* = 0
+        var ii:* = 0
+        var tmpArray:* = null
+        var tmpFmt:* = null
+        var line:* = 0
+        var HallListName:* = null
+        var HallListGilde:* = null
+        var isMine:* = false
+        var logInAfterPixel:* = false
+        var par:* = null
+        var pa:* = null
+        var pas:* = null
+        var pxlStr:* = null
+        var pxlArr:* = null
+        var inVar:* = false
+        var pixel:* = undefined
+        var DoActZauberladen:* = null
+        var DoActSchmiede:* = null
+        var tmpByteArray:* = null
+        var bitArray:* = null
+        var PaymentLink:* = null
+        var externalWhisperer:* = null
+        var postReadText:* = null
+        var tmpFighterArray:* = undefined
+        var ichAnfg:* = undefined
+        var erAnfg:* = undefined
+        var tmpFightArray:* = undefined
+        var ichEnde:* = undefined
+        var erEnde:* = undefined
+        var rundenZahl:* = undefined
+        var tmpHonor:* = undefined
+        var tmpGold:* = undefined
+        var tmpSilver:* = undefined
+        var alertWords:* = null
+        var event:* = event
     '''
 
     '''
@@ -6019,7 +6094,7 @@ def ActionHandler(event):
         act = int(dataStr.slice(0, 3))
         parStr = dataStr.slice(3)
 
-    par = parStr.split(";")
+    par = parStr.split("")
     if (OnStage(FIGHT_SKIP)):
         return
 
@@ -6049,8 +6124,8 @@ def ActionHandler(event):
             _local3 = actor[LBL_QO_QUESTNAME]
 
             #with (_local3) do:
-            #    text = txt[(TXT_TOILET_HINT + 5)];
-            #    x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2)));
+            #    text = txt[(TXT_TOILET_HINT + 5)]
+            #    x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2)))
 
             _local3 = actor[LBL_QO_QUESTTEXT]
 
@@ -6400,172 +6475,172 @@ def ActionHandler(event):
                         while (ii < offlineGuildMembers.length):
                             if (tmpArray[i].toLowerCase().indexOf((offlineGuildMembers[ii].toLowerCase() + ":§")) != -1):
                                 if (OnStage(INP_GILDE_CHAT)):
-                                    SendAction(ACT_SCREEN_GILDEN);
-                                };
-                                break;
-                            };
-                            ii = (ii + 1);
-                        };
-                    };
-                    i = (i - 1);
-                };
-            };
-            guildBlinkReady = true;
+                                    SendAction(ACT_SCREEN_GILDEN)
+                                }
+                                break
+                            }
+                            ii = (ii + 1)
+                        }
+                    }
+                    i = (i - 1)
+                }
+            }
+            guildBlinkReady = true
             if (((((!((newCrestSuggested == ""))) and (!(firstChatFill)))) and (OnStage(INP_GILDE_CHAT)))){
-                clickChatLine(newCrestSuggested);
-            };
-            newCrestSuggested = "";
-            break;
+                clickChatLine(newCrestSuggested)
+            }
+            newCrestSuggested = ""
+            break
         case RESP_WHISPER_SUCCESS:
-            addSuggestNames(lastWhisperTarget);
-            ChatLine(DecodeChat(par[0]), false, getHlIndex(par[0]), true);
-            break;
+            addSuggestNames(lastWhisperTarget)
+            ChatLine(DecodeChat(par[0]), false, getHlIndex(par[0]), true)
+            break
         case ERR_GUILD_NAME_REJECTED:
-            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_REJECTED]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_REJECTED])
+            break
         case ERR_GUILD_NAME_LENGTH:
-            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_LENGTH]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_LENGTH])
+            break
         case ERR_GUILD_NAME_CHARACTERS:
-            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_CHARACTERS]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_CHARACTERS])
+            break
         case ERR_GUILD_EMAIL_VALIDATE:
-            ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE])
+            break
         case ERR_GUILD_MUSH_FREE:
-            ErrorMessage(txt[TXT_ERROR_GUILD_MUSH_FREE]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_GUILD_MUSH_FREE])
+            break
         case RESP_CHAT_LINE:
             if (DecodeChat(par[0], false, true) == "1"){
-                Remove(GILDE_CHAT);
-            };
-            ChatLine(DecodeChat(par[0]), false, getHlIndex(par[0]));
+                Remove(GILDE_CHAT)
+            }
+            ChatLine(DecodeChat(par[0]), false, getHlIndex(par[0]))
             if (!OnStage(INP_GILDE_CHAT)){
-                PulseGilde = true;
-            };
-            break;
+                PulseGilde = true
+            }
+            break
         case RESP_GUILD_DONATE_SUCCESS:
-            ParseSavegame(par[0]);
-            SendAction(ACT_SCREEN_GILDEN);
-            break;
+            ParseSavegame(par[0])
+            SendAction(ACT_SCREEN_GILDEN)
+            break
         case RESP_NO_LOGIN:
-            RequestLogout(undefined, true);
-            ShowLoginScreen();
-            break;
+            RequestLogout(undefined, true)
+            ShowLoginScreen()
+            break
         case RESP_DELETE_ACCOUNT_OK:
-            RequestLogout();
-            break;
+            RequestLogout()
+            break
         case RESP_CHANGE_PASS_OK:
-            so.data.password = optionNewData;
-            so.flush();
-            actor[INP_LOGIN_PASSWORD].getChildAt(1).text = optionNewData;
-            ShowOptionScreen();
-            ErrorMessage(txt[TXT_PASSWORD_CHANGED]);
-            break;
+            so.data.password = optionNewData
+            so.flush()
+            actor[INP_LOGIN_PASSWORD].getChildAt(1).text = optionNewData
+            ShowOptionScreen()
+            ErrorMessage(txt[TXT_PASSWORD_CHANGED])
+            break
         case RESP_CHANGE_NAME_OK:
-            so.data.userName = optionNewData;
-            so.flush();
-            actor[INP_NAME].getChildAt(1).text = optionNewData;
-            ParseSavegame(par[0]);
-            ShowOptionScreen();
-            ErrorMessage(txt[TXT_NAME_CHANGED]);
-            break;
+            so.data.userName = optionNewData
+            so.flush()
+            actor[INP_NAME].getChildAt(1).text = optionNewData
+            ParseSavegame(par[0])
+            ShowOptionScreen()
+            ErrorMessage(txt[TXT_NAME_CHANGED])
+            break
         case RESP_CHANGE_MAIL_OK:
-            ShowOptionScreen();
-            ErrorMessage(txt[TXT_EMAIL_CHANGED]);
-            break;
+            ShowOptionScreen()
+            ErrorMessage(txt[TXT_EMAIL_CHANGED])
+            break
         case RESP_CHANGE_FACE_OK:
-            ParseSavegame(par[0]);
+            ParseSavegame(par[0])
         case ACT_SCREEN_OPTIONEN:
-            ShowOptionScreen();
-            break;
+            ShowOptionScreen()
+            break
         case RESP_DEMO_SCREEN:
-            ShowDemoScreen();
-            break;
+            ShowDemoScreen()
+            break
         case RESP_PLAYER_SCREEN:
-            ShowPlayerScreen(("0/" + par[0]).split("/"), selName, par[2], resolveBreaks(par[1]));
-            break;
+            ShowPlayerScreen(("0/" + par[0]).split("/"), selName, par[2], resolveBreaks(par[1]))
+            break
         case RESP_PLAYER_DESC_SUCCESS:
-            PlayerDesc = actor[INP_CHARDESC].getChildAt(0).text;
-            break;
+            PlayerDesc = actor[INP_CHARDESC].getChildAt(0).text
+            break
         case RESP_GUILD_CHANGE_DESC_SUCCESS:
-            break;
+            break
         case RESP_GUILD_DATA:
             if (int(par[1]) == int(Savegame[SG_GUILD_INDEX])){
-                Gilde = par[0];
-            };
-            lastChatIndex = 0;
-            SendAction(ACT_GET_CHAT_HISTORY);
-            break;
+                Gilde = par[0]
+            }
+            lastChatIndex = 0
+            SendAction(ACT_GET_CHAT_HISTORY)
+            break
         case RESP_MAINQUEST:
-            Hide(IF_STATS);
-            ParseSavegame(par[10]);
-            PulseChar = false;
+            Hide(IF_STATS)
+            ParseSavegame(par[10])
+            PulseChar = false
         case RESP_QUEST_DONE:
         case RESP_QUEST_DONE_PIXEL:
         case RESP_QUEST_DONE_PIXEL_2:
-            fightLock = true;
-            PostFightMode = false;
-            ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9]));
-            break;
+            fightLock = true
+            PostFightMode = false
+            ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9]))
+            break
         case RESP_GUILD_FIGHT:
-            towerFightMode = false;
-            alternateCharOppImg = true;
-            fightLock = true;
-            winners = new Array();
-            lastRoundFighterName = "";
-            fights = parStr.split("§");
-            guildFightCount = int(((fights.length - 1) / 2));
-            skipGuildFights = 0;
-            nextFightTimer.start();
-            break;
+            towerFightMode = false
+            alternateCharOppImg = true
+            fightLock = true
+            winners = new Array()
+            lastRoundFighterName = ""
+            fights = parStr.split("§")
+            guildFightCount = int(((fights.length - 1) / 2))
+            skipGuildFights = 0
+            nextFightTimer.start()
+            break
         case RESP_TOWER_FIGHT:
-            towerFightMode = true;
-            alternateCharOppImg = true;
-            fightLock = true;
-            winners = new Array();
-            lastRoundFighterName = "";
-            fights = parStr.split("§");
-            ParseSavegame(fights.pop(), true, true);
-            guildFightCount = int(((fights.length - 1) / 2));
-            skipGuildFights = 0;
-            nextFightTimer.start();
-            break;
+            towerFightMode = true
+            alternateCharOppImg = true
+            fightLock = true
+            winners = new Array()
+            lastRoundFighterName = ""
+            fights = parStr.split("§")
+            ParseSavegame(fights.pop(), true, true)
+            guildFightCount = int(((fights.length - 1) / 2))
+            skipGuildFights = 0
+            nextFightTimer.start()
+            break
         case RESP_QUEST_SKIP_ALLOWED_START:
-            skipAllowed = true;
+            skipAllowed = true
         case RESP_QUEST_START:
-            ParseSavegame(par[0]);
-            ShowQuestScreen();
-            break;
+            ParseSavegame(par[0])
+            ShowQuestScreen()
+            break
         case RESP_QUEST_SKIP_ALLOWED:
-            skipAllowed = true;
+            skipAllowed = true
         case ACT_SCREEN_TAVERNE:
         case RESP_QUEST_STOP:
-            ParseSavegame(par[0]);
+            ParseSavegame(par[0])
             if (par[1]){
-                specialAction = par[1];
+                specialAction = par[1]
             } else {
                 if (act != RESP_QUEST_STOP){
-                    specialAction = 0;
+                    specialAction = 0
                 } else {
-                    trc("Quest cancelled, preserving special action flag!");
-                };
-            };
-            trc("Tavern says special action is", specialAction);
+                    trc("Quest cancelled, preserving special action flag!")
+                }
+            }
+            trc("Tavern says special action is", specialAction)
             if (par[2] != undefined){
-                preventTv = (par[2] == 1);
-            };
-            ShowTaverneScreen();
-            break;
+                preventTv = (par[2] == 1)
+            }
+            ShowTaverneScreen()
+            break
         case ACT_SCREEN_GILDE_GRUENDEN:
-            ShowScreenGildeGruenden();
-            break;
+            ShowScreenGildeGruenden()
+            break
         case RESP_GUILD_FOUND_SUCCESS:
-            _local3 = actor[LBL_IF_GOLD];
+            _local3 = actor[LBL_IF_GOLD]
             with (_local3) {
-                text = String((int(text) - 10));
-                x = ((actor[IF_GOLD].x - textWidth) - 10);
-            };
+                text = String((int(text) - 10))
+                x = ((actor[IF_GOLD].x - textWidth) - 10)
+            }
         case RESP_GUILD_RENAME_SUCCESS:
         case RESP_GUILD_IMPROVE_SUCCESS:
         case RESP_GUILD_OFFICER_SUCCESS:
@@ -6573,102 +6648,102 @@ def ActionHandler(event):
         case RESP_GUILD_INVITE_SUCCESS:
         case RESP_GUILD_MASTER_SUCCESS:
         case RESP_GUILD_JOIN_SUCCESS:
-            SendAction(ACT_SCREEN_GILDEN);
-            break;
+            SendAction(ACT_SCREEN_GILDEN)
+            break
         case RESP_GUILD_DELETE_SUCCESS:
-            Gilde = "";
-            myOwnRank = -1;
-            myOwnAttackTarget = -1;
-            myOwnGuildMoney = -1;
-            ShowCityScreen();
-            break;
+            Gilde = ""
+            myOwnRank = -1
+            myOwnAttackTarget = -1
+            myOwnGuildMoney = -1
+            ShowCityScreen()
+            break
         case RESP_GUILD_COMMENCE_ATTACK_OK:
         case RESP_GUILD_JOIN_ATTACK_OK:
         case RESP_GUILD_JOIN_DEFENSE_OK:
-            ParseSavegame(par[0]);
-            SendAction(ACT_SCREEN_GILDEN);
-            break;
+            ParseSavegame(par[0])
+            SendAction(ACT_SCREEN_GILDEN)
+            break
         case ACT_SCREEN_GILDEN:
-            Savegame[SG_GUILD_INDEX] = par[0].split("/")[0];
-            Gilde = par[3];
-            isMine = true;
-            intervalMultiplierChat = 1;
+            Savegame[SG_GUILD_INDEX] = par[0].split("/")[0]
+            Gilde = par[3]
+            isMine = true
+            intervalMultiplierChat = 1
         case RESP_OTHER_GUILD:
-            DestroyGuildBtnTimer = true;
+            DestroyGuildBtnTimer = true
             if (((((((!(OnStage(GILDE_CREST))) or ((act == RESP_OTHER_GUILD)))) or (!((lastGuildCrestId == par[0].split("/")[0]))))) or (((isMine) and ((oldCrestStr == getCrestStr())))))){
                 if (par[1].indexOf("§") != -1){
-                    setCrestStr(par[1].split("§")[0]);
-                    par[1] = par[1].substr((par[1].indexOf("§") + 1));
+                    setCrestStr(par[1].split("§")[0])
+                    par[1] = par[1].substr((par[1].indexOf("§") + 1))
                 } else {
-                    lastGuildData = par[0].split("/");
-                    setDefaultCrest();
-                };
-                oldCrestStr = getCrestStr();
+                    lastGuildData = par[0].split("/")
+                    setDefaultCrest()
+                }
+                oldCrestStr = getCrestStr()
             } else {
                 if (par[1].indexOf("§") != -1){
-                    par[1] = par[1].substr((par[1].indexOf("§") + 1));
-                };
-            };
+                    par[1] = par[1].substr((par[1].indexOf("§") + 1))
+                }
+            }
             if (lastGuildCrestId != par[0].split("/")[0]){
-                oldCrestStr = getCrestStr();
-            };
-            ShowScreenGilden(par[0].split("/"), ((isMine) ? par[1] : (((par[1].indexOf("///") > -1)) ? par[1].split("///")[1] : par[1])), par[2].split("/"), par[3], isMine, int(par[5]), int(par[4]), ((par[6]) ? par[6] : 0));
-            break;
+                oldCrestStr = getCrestStr()
+            }
+            ShowScreenGilden(par[0].split("/"), ((isMine) ? par[1] : (((par[1].indexOf("///") > -1)) ? par[1].split("///")[1] : par[1])), par[2].split("/"), par[3], isMine, int(par[5]), int(par[4]), ((par[6]) ? par[6] : 0))
+            break
         case ACT_SCREEN_STALL:
-            Stundenlohn = Number(par[0]);
-            ShowStallScreen();
-            break;
+            Stundenlohn = Number(par[0])
+            ShowStallScreen()
+            break
         case ERR_ATTACK_AGAIN:
-            ErrorMessage(txt[TXT_ERROR_ATTACK_AGAIN]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_ATTACK_AGAIN])
+            break
         case ACT_SCREEN_ARENA:
-            ShowArenaScreen(par[0], par[2], par[1]);
-            break;
+            ShowArenaScreen(par[0], par[2], par[1])
+            break
         case ERR_INBOX_FULL:
-            ErrorMessage(txt[TXT_ERROR_INBOX_FULL]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_INBOX_FULL])
+            break
         case ERR_RECIPIENT_NOT_FOUND:
-            ErrorMessage(txt[TXT_ERROR_RECIPIENT_NOT_FOUND]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_RECIPIENT_NOT_FOUND])
+            break
         case ERR_RECIPIENT_SELF:
-            ErrorMessage(txt[TXT_ERROR_RECIPIENT_SELF]);
-            break;
+            ErrorMessage(txt[TXT_ERROR_RECIPIENT_SELF])
+            break
         case RESP_MESSAGE_SENT:
-            addSuggestNames(lastMessageTarget);
-            Remove(POST_WRITE);
-            Remove(POST_READ);
-            Add(POST_LIST);
-            break;
+            addSuggestNames(lastMessageTarget)
+            Remove(POST_WRITE)
+            Remove(POST_READ)
+            Add(POST_LIST)
+            break
         case RESP_READ_MESSAGE:
-            RemoveAll();
-            Add(SCREEN_POST);
+            RemoveAll()
+            Add(SCREEN_POST)
             if (Tageszeit() != 0){
-                Remove(POST_NIGHT);
-            };
+                Remove(POST_NIGHT)
+            }
             if (Tageszeit() != 1){
-                Remove(POST_DAWN);
-            };
-            Remove(POST_LIST);
-            Add(POST_READ);
+                Remove(POST_DAWN)
+            }
+            Remove(POST_LIST)
+            Add(POST_READ)
             if (((PostSel + PostScroll) - 1) == 1){
-                Remove(POST_READ_PREV);
-            };
+                Remove(POST_READ_PREV)
+            }
             if (((PostSel + PostScroll) - 1) == Savegame[SG_MSG_COUNT]){
-                Remove(POST_READ_NEXT);
-            };
+                Remove(POST_READ_NEXT)
+            }
             if (int(par[4]) > 0){
-                InviteGildenID = int(par[4]);
-                Add(POST_ACCEPT);
-            };
-            _local3 = actor[INP_POST_ADDRESS].getChildAt(1);
+                InviteGildenID = int(par[4])
+                Add(POST_ACCEPT)
+            }
+            _local3 = actor[INP_POST_ADDRESS].getChildAt(1)
             with (_local3) {
-                type = TextFieldType.DYNAMIC;
-                text = ((((((txt[TXT_POST_FROM] + " ") + par[0]) + " ") + txt[TXT_POST_TIME]) + " ") + TimeStr(par[2]));
-            };
-            _local3 = actor[INP_POST_SUBJECT].getChildAt(1);
+                type = TextFieldType.DYNAMIC
+                text = ((((((txt[TXT_POST_FROM] + " ") + par[0]) + " ") + txt[TXT_POST_TIME]) + " ") + TimeStr(par[2]))
+            }
+            _local3 = actor[INP_POST_SUBJECT].getChildAt(1)
             with (_local3) {
-                type = TextFieldType.DYNAMIC;
-                ReplyAddress = par[0];
+                type = TextFieldType.DYNAMIC
+                ReplyAddress = par[0]
                 switch (par[1]){
                     case "1  ":
                     case "2  ":
@@ -6679,17 +6754,17 @@ def ActionHandler(event):
                     case "7  ":
                     case "8  ":
                     case "9  ":
-                        par[1] = "Moo!";
-                        par[3] = "Holy Cow!";
-                        break;
+                        par[1] = "Moo!"
+                        par[3] = "Holy Cow!"
+                        break
                     case "1":
-                        par[1] = txt[TXT_SUBJECT_GUILD_DELETED];
-                        par[3] = txt[TXT_BODY_GUILD_DELETED].replace("%1", par[0]).replace("%2", par[3]);
-                        break;
+                        par[1] = txt[TXT_SUBJECT_GUILD_DELETED]
+                        par[3] = txt[TXT_BODY_GUILD_DELETED].replace("%1", par[0]).replace("%2", par[3])
+                        break
                     case "2":
-                        par[1] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN];
-                        par[3] = txt[TXT_BODY_GUILD_DELETED_BY_ADMIN].replace("%1", par[0]).replace("%2", par[3]);
-                        break;
+                        par[1] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN]
+                        par[3] = txt[TXT_BODY_GUILD_DELETED_BY_ADMIN].replace("%1", par[0]).replace("%2", par[3])
+                        break
                     case "3":
                         par[1] = txt[TXT_SUBJECT_GUILD_EXPELLED];
                         par[3] = txt[TXT_BODY_GUILD_EXPELLED].replace("%1", par[0]).replace("%2", par[3]);
