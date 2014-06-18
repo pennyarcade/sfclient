@@ -4414,14 +4414,14 @@ def init_vars():
 
     '''
         paramObj = LoaderInfo(root.loaderInfo).parameters
-        ssoMode = false
+        ssoMode = False
         param_id = ""
         param_rec = ""
         param_adv = ""
         param_valid = ""
         param_hall = ""
         param_cid = ""
-        param_cid_original = false
+        param_cid_original = False
         param_imgsvr = 0
         param_forceport = 0
         view_player = ""
@@ -4446,16 +4446,16 @@ def init_vars():
         param_papaya_cfg_file = ""
         param_fail_tries = 1
         param_idle_polling = 0
-        param_allow_skip_quest = false
-        param_happy_hour = false
-        param_censored = false
-        param_internal_pixel = false
-        param_reload_pixel = false
-        noMush = false
+        param_allow_skip_quest = False
+        param_happy_hour = False
+        param_censored = False
+        param_internal_pixel = False
+        param_reload_pixel = False
+        noMush = False
         param_server_version_cfg = "unknown"
         param_server_version_act = "unknown"
-        param_no_cid_save = false
-        hadAccount = false
+        param_no_cid_save = False
+        hadAccount = False
         param_languages = new Array()
         param_language_names = new Array()
         param_lowres_url = ""
@@ -4463,26 +4463,26 @@ def init_vars():
         param_bullshit_cid = ""
         param_social_buttons = new Array()
         defined_pixel_calls = new Array()
-        beerFest = false
+        beerFest = False
         tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
         login_background_id = "3"
         worlds = new Array()
-        preventTv = false
+        preventTv = False
 
         buffed_reg = ""
         buffed_stuff = new Array()
         buffed_id = ""
         buffed_name = ""
         buffed_email = ""
-        buffedReq = false
-        buffedMode = false
+        buffedReq = False
+        buffedMode = False
         buffedLinkText = ""
         buffedLinkURL = ""
         lang_code = "de"
         original_lang_code = "de"
-        smoothing = true
-        forceSmoothing = true
-        allowSmoothing = true
+        smoothing = True
+        force_smoothing = True
+        allow_smoothing = True
         img_url = new Array()
         snd_url = new Array()
         img_url_index = 0
@@ -4494,18 +4494,18 @@ def init_vars():
         legal_url = ""
         dataprot_url = ""
         instr_url = ""
-        no_crossdomain = false
+        no_crossdomain = False
         friend_link = ""
         sessionId = ""
         server = "localhost"
         lastAct = 0
-        sendLock = false
-        fightLock = false
-        pollLock = false
-        pendingLanguageFile = false
+        sendLock = False
+        fightLock = False
+        pollLock = False
+        pendingLanguageFile = False
         chosenLangFont = "Komika Text"
         countryName = new Array()
-        pendingConfigurationFile = false
+        pendingConfigurationFile = False
         actor = new Array()
         actorURL = new Array()
         actorLoaded = new Array()
@@ -4515,12 +4515,12 @@ def init_vars():
         actorPopupStamp = new Array()
         stObject = new SoundTransform()
         pendingLoaders = 0
-        dragDropActive = false
-        dragDropProhibit = false
-        dragNotYet = false
+        dragDropActive = False
+        dragDropProhibit = False
+        dragNotYet = False
         toErrorCount = 0
         ioErrorCount = 0
-        pendingDebugFile = false
+        pendingDebugFile = False
         FontFormat_Error = new TextFormat()
         FontFormat_Book = new TextFormat()
         FontFormat_BookHint = new TextFormat()
@@ -4593,7 +4593,7 @@ def init_vars():
         textDir = "left"
         SetFont(new SFGameFont().fontName)
         gameFont = ""
-        fontEmbedded = true
+        font_embedded = True
         sizeMod = 0
         Filter_Shadow = [
             new DropShadowFilter(3, 45, 0, 0.8),
@@ -4608,7 +4608,7 @@ def init_vars():
                 [0, 32], 1, 1, 5, 15, "outer")
         ]
         char_volk = 0
-        char_male = true
+        char_male = True
         char_class = 1
         char_color = 1
         char_mouth = 1
@@ -4621,7 +4621,7 @@ def init_vars():
         char_special = 1
         char_special2 = 1
         revertchar_volk = 0
-        revertchar_male = true
+        revertchar_male = True
         slmCount = 0
         ststep = 0
         revertchar_color = 1
@@ -4636,8 +4636,8 @@ def init_vars():
         revertchar_special2 = 1
         Savegame = new Array()
         mirror_pieces = new Array()
-        has_mirror = false
-        can_rob = false
+        has_mirror = False
+        can_rob = False
         tower_level = 0
         server_time = new Date()
         local_time = new Date()
@@ -4649,12 +4649,12 @@ def init_vars():
         PostScroll = 1
         PostMax = 1
         PostSel = 0
-        PostScrollDown = false
+        PostScrollDown = False
         DealerMenuSelect = 0
         SelectedQuest = 1
         PlayerDesc = ""
-        PreviousLOGin = false
-        DemoMode = false
+        PreviousLOGin = False
+        DemoMode = False
         sel_name = ""
         sel_guild = ""
         Invitegilden_id = 0
@@ -4662,36 +4662,36 @@ def init_vars():
         ReplySubject = ""
         optionNewData = ""
         ruhmesHalleSuchString = ""
-        ruhmesHalleSuchName = true
+        ruhmesHalleSuchName = True
         GildeBuildingGold = new Array()
         GildeBuildingPilz = new Array()
         GildeChatScroll = 0
         tmpBattleInfo = ""
-        KlasseGewählt = false
-        PostFightMode = false
+        KlasseGewählt = False
+        PostFightMode = False
         tmpAmount = 0
-        PulseTaverne = false
-        PulseArbeiten = false
-        PulseGilde = false
-        PulseGildeOnHistory = false
-        pulse_post = false
-        pulse_char = false
-        PulseDealer = false
-        notFirstVolChange = true
-        notSecondVolChange = true
-        level_up = false
+        PulseTaverne = False
+        PulseArbeiten = False
+        PulseGilde = False
+        PulseGildeOnHistory = False
+        pulse_post = False
+        pulse_char = False
+        PulseDealer = False
+        notFirstVolChange = True
+        notSecondVolChange = True
+        level_up = False
         last_level = 0
         canBoost = new Array()
-        GuildHallMode = false
+        GuildHallMode = False
         DealerAktion = 0
         SelectedGuild = ""
         SelectedDungeon = 0
-        lightMode = false
-        chatSound = false
-        compareItems = false
-        light_mode_default = false
-        disableTV = false
-        tvTest = false
+        lightMode = False
+        chatSound = False
+        compareItems = False
+        light_mode_default = False
+        disableTV = False
+        tvTest = False
         tvFunctionName = ""
         tvPollNormal = 5000
         tvPollLong = 300000
@@ -4702,11 +4702,11 @@ def init_vars():
         MushBought = 0
         specialAction = 0
         next_pxl = 0
-        BlockReroll = false
-        FrenzyMode = false
-        fightFlushMode = false
+        BlockReroll = False
+        FrenzyMode = False
+        fightFlushMode = False
         RollFrenzy = new Timer(1000)
-        forceAdventure = false
+        forceAdventure = False
         lastAttacked = new Array()
         forwardText = ""
         albumCat = 0
@@ -4718,13 +4718,13 @@ def init_vars():
         towerScrollSpeed = 0
         towerScrollTimer = new Timer(25)
         towerScrollGrabPos = -1
-        towerScrollTimer.addEventListener(
+        towerScrollTimer.add_event_listener(
             TimerEvent.TIMER, TowerTimerFn
         )
-        alternateCharOppImg = false
-        hasFoughtGuildBattle = false
-        skipAllowed = false
-        specialActionHint = false
+        alternateCharOppImg = False
+        hasFoughtGuildBattle = False
+        skipAllowed = False
+        specialActionHint = False
         suggestNames = new Array()
         crestElementPos = [
             [55, 8, 130, 90, 21],
@@ -4736,7 +4736,7 @@ def init_vars():
             [85, 100, 70, 70, 68]
         ]
         selecterCrestElement = -1
-        crestSuggested = false
+        crestSuggested = False
         crestColorSelection = 0
         crest = getRandomCrest()
         heraldicColors = [
@@ -4760,7 +4760,7 @@ def init_vars():
             0, 0, [16777026, 16777026], [0, 0.6], [0, 127],
             26, 26, 1, 1, "outer"
         )
-        crestMoveTimer.addEventListener(TimerEvent.TIMER, crestMoveFn)
+        crestMoveTimer.add_event_listener(TimerEvent.TIMER, crestMoveFn)
         oldCrestStr = ""
         guildInstanceID = 0
         myOwnRank = -1
@@ -4771,21 +4771,21 @@ def init_vars():
         lastRaidCost = 0
         lastGuildMembers = new Array()
         lastHallMembers = new Array()
-        arrowHallMode = false
+        arrowHallMode = False
         offlineGuildMembers = new Array()
-        showActivityTime = false
+        showActivityTime = False
         guildForumLink = ""
-        showAlbumOffset = false
+        showAlbumOffset = False
         avgLevel = 0
-        DestroyGuildBtnTimer = false
+        DestroyGuildBtnTimer = False
         PostReturnToPlayer = ""
         oldSel = 0
         postInstance = 0
         mirrorFadeAmount = 0.2
         mirrorAniTimer = new Timer(25)
-        mirrorAniTimer.addEventListener(TimerEvent.TIMER, MirrorAniFn)
+        mirrorAniTimer.add_event_listener(TimerEvent.TIMER, MirrorAniFn)
         lastPlayer = ""
-        album_effect = false
+        album_effect = False
         mirrorAniStep = 0
         indexInGuild = 0
         indexInHall = 0
@@ -4794,7 +4794,7 @@ def init_vars():
         MQDelayTimer = new Timer(500)
         LastDungeonNr = 0
         LastDungeonEnemy = 0
-        hasLostMQ = false
+        hasLostMQ = False
         CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
         crestSuggestion = new Array()
         newCrestSuggested = ""
@@ -4802,13 +4802,13 @@ def init_vars():
         toiletTankAdjustTimer = new Timer(25)
         toiletTankCurrent = 0
         toiletTankDest = 0
-        toiletTankAdjustTimer.addEventListener(
+        toiletTankAdjustTimer.add_event_listener(
             TimerEvent.TIMER,
             toiletTankAdjustEvent
         )
         witchDesiredType = -1
         nextFightTimer = new Timer(10, 1)
-        towerFightMode = false
+        towerFightMode = False
         fights = new Array()
         guildFightCount = 0
         fightNumber = 0
@@ -4822,9 +4822,9 @@ def init_vars():
         guildAttacking = ""
         lastChatHist = ""
         lastChatIndex = 0
-        guildBlinkReady = false
-        firstChatFill = false
-        SignupJumpRunning = false
+        guildBlinkReady = False
+        firstChatFill = False
+        SignupJumpRunning = False
         suggestionSlot = new Array()
         popupStamp = 0
 
@@ -4833,7 +4833,7 @@ def init_vars():
     # get buffered registration?
     '''
         if (paramObj["reg"] != undefined){
-            buffedReq = true
+            buffedReq = True
             buffed_reg = ExternalInterface.call("get_base64")
             if (((buffed_reg) and (!((buffed_reg == ""))))){
                 buffed_stuff = buffed_reg.split("")
@@ -4857,9 +4857,9 @@ def init_vars():
     # setup image loading timeout event
     '''
         when_loadedFn = new Array()
-        when_loadedActive = false
+        when_loadedActive = False
         when_loadedTimeout = new Timer((1000 * image_timeout), 1)
-        when_loadedTimeout.addEventListener(
+        when_loadedTimeout.add_event_listener(
             TimerEvent.TIMER,
             when_loadedTimeoutEvent
         )
@@ -4868,7 +4868,7 @@ def init_vars():
     # timer event to generate Ticks
     '''
         TimeCalc = new Timer(50)
-        TimeCalc.addEventListener(TimerEvent.TIMER, TimeCalcEvent)
+        TimeCalc.add_event_listener(TimerEvent.TIMER, TimeCalcEvent)
     '''
 
     # TV Stuff
@@ -4879,7 +4879,7 @@ def init_vars():
             tvAni = 0
             tvReturnValue = 0
             tvTimer = new Timer(100)
-            tvTimer.addEventListener(
+            tvTimer.add_event_listener(
                 TimerEvent.TIMER, function (evt:TimerEvent)
             {
                 var i:int
@@ -4931,7 +4931,7 @@ def init_vars():
                 }
             })
             tvPollTimer = new Timer(5000)
-            tvPollTimer.addEventListener(TimerEvent.TIMER, TryShowTV)
+            tvPollTimer.add_event_listener(TimerEvent.TIMER, TryShowTV)
     '''
 
     # PvPDelayTimer = new Timer(500)
@@ -4940,7 +4940,7 @@ def init_vars():
     '''
         witchAniStep = 0
         witchAniTimer = new Timer(50)
-        witchAniTimer.addEventListener(
+        witchAniTimer.add_event_listener(
             TimerEvent.TIMER, function (evt:TimerEvent)
         {
             var i:int
@@ -4965,16 +4965,16 @@ def init_vars():
 
     # Fight timers
     '''
-        nextFightTimer.addEventListener(TimerEvent.TIMER, NextFight)
+        nextFightTimer.add_event_listener(TimerEvent.TIMER, NextFight)
         guildFightTimer = new Timer(1000)
-        guildFightTimer.addEventListener(TimerEvent.TIMER, guildFightTimerFn)
+        guildFightTimer.add_event_listener(TimerEvent.TIMER, guildFightTimerFn)
         guildFightTimer.start()
     '''
 
     # Guild chat poll
     '''
             GuildChatPoll = new Timer(1000)
-            GuildChatPoll.addEventListener(TimerEvent.TIMER, GuildChatPollFn)
+            GuildChatPoll.add_event_listener(TimerEvent.TIMER, GuildChatPollFn)
             GuildChatPoll.start()
     '''
     pass
@@ -5844,9 +5844,9 @@ def load_tracking_pixel(url=''):
             #     )
             # }
             # pixelLoader = new URLLoader()
-            # pixelLoader.addEventListener(Event.COMPLETE, pixel_success)
-            # pixelLoader.addEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-            # pixelLoader.addEventListener(
+            # pixelLoader.add_event_listener(Event.COMPLETE, pixel_success)
+            # pixelLoader.add_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
+            # pixelLoader.add_event_listener(
             #   SecurityErrorEvent.SECURITY_ERROR, pixel_failed
             # )
             # pixelLoader.load(new URLRequest(url))
@@ -5868,7 +5868,7 @@ def do_act_zauberladen():
         Add(CA_GOTO_WITCH)
     if ((specialAction == 2) or (specialAction == 5)):
         Add(FIDGET_EPCIOVL)
-        actor[FIDGET_EPCIOVL].mouseEnabled = False
+        actor[FIDGET_EPCIOVL].mouse_enabled = False
     if (not sleep_time()):
         Remove(FIDGET_NIGHT)
     else:
@@ -5891,7 +5891,7 @@ def do_act_schmiede():
     Add(SCREEN_SHAKES)
     if ((specialAction == 2) or (specialAction == 5)):
         Add(SHAKES_EPCIOVL)
-        actor[SHAKES_EPCIOVL].mouseEnabled = false
+        actor[SHAKES_EPCIOVL].mouse_enabled = False
     Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
     if not sleep_time():
         Remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
@@ -5977,8 +5977,8 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
         debug_info += str(i) + "=" + savegame[i] + ", "
 
     if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
-        level_up = true
-        pulse_char = true
+        level_up = True
+        pulse_char = True
 
     last_level = int(savegame[SG['LEVEL']])
 
@@ -6134,79 +6134,59 @@ def install_hall_popup(evt):
 
 def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
     tmp_obj = null
-    this_field_popup = null
-
-
-'''
-
-
     this_field_popup = ""
-    if (txt == "[K]"){
-        tmp_obj = new Bitmap(actor[IF_KRIEGER].content.bitmapData.clone())
-        var _local8 = tmp_obj
-        with (_local8) {
-            allowSmoothing = true
-            forceSmoothing = true
-            smoothing = true
-            mouseEnabled = true
-        }
-    } else {
-        if (txt == "[M]"){
-            tmp_obj = new Bitmap(actor[IF_MAGIER].content.bitmapData.clone())
-            _local8 = tmp_obj
-            with (_local8) {
-                allowSmoothing = true
-                forceSmoothing = true
-                smoothing = true
-                mouseEnabled = true
-            }
-        } else {
-            if (txt == "[J]"){
-                tmp_obj = new Bitmap(actor[IF_JAEGER].content.bitmapData.clone())
-                _local8 = tmp_obj
-                with (_local8) {
-                    allowSmoothing = true
-                    forceSmoothing = true
-                    smoothing = true
-                    mouseEnabled = true
-                }
-            } else {
-                tmp_obj = new TextField()
-                _local8 = tmp_obj
-                with (_local8) {
-                    defaultTextFormat = fmt
-                    autoSize = TextFieldAutoSize.LEFT
-                    background = false
-                    selectable = false
-                    embedFonts = fontEmbedded
-                    antiAliasType = AntiAliasType.ADVANCED
-                    text = txt
-                }
-                if (max_width > 0){
-                    this_field_popup = TrimTooLong(tmp_obj, max_width)
-                }
-            }
-        }
-    }
-    _local8 = tmp_obj
-    with (_local8) {
-        if (is_guild){
-            addEventListener(MouseEvent.CLICK, RequestPlayerGuildScreen)
-        } else {
-            addEventListener(MouseEvent.CLICK, RequestPlayerScreen)
-        }
-        addEventListener(MouseEvent.MOUSE_OVER, InstallHallPopup)
-        if (textDir == "right"){
-            x = (pos_x - width)
-        } else {
+
+    if txt == "[K]":
+        tmp_obj = Bitmap(actor[IF['KRIEGER']].content.bitmapData.clone())
+        with (tmp_obj):
+            allow_smoothing = True
+            force_smoothing = True
+            smoothing = True
+            mouse_enabled = True
+    elif txt == "[M]":
+        tmp_obj = Bitmap(actor[IF['MAGIER']].content.bitmapData.clone())
+        with (tmp_obj):
+            allow_smoothing = True
+            force_smoothing = True
+            smoothing = True
+            mouse_enabled = True
+    elif txt == "[J]":
+        tmp_obj = Bitmap(actor[IF['JAEGER']].content.bitmapData.clone())
+        with tmp_obj:
+            allow_smoothing = True
+            force_smoothing = True
+            smoothing = True
+            mouse_enabled = True
+    else:
+        tmp_obj = TextField()
+        with tmp_obj:
+            default_text_format = fmt
+            auto_size = TextFieldAutoSize.LEFT
+            background = False
+            selectable = False
+            embed_fonts = font_embedded
+            anti_alias_type = AntiAliasType.ADVANCED
+            text = txt
+
+        if max_width > 0:
+            this_field_popup = trim_too_long(tmp_obj, max_width)
+
+    with tmp_obj:
+        if is_guild:
+            add_event_listener(MouseEvent.CLICK, request_player_guild_screen)
+        else:
+            add_event_listener(MouseEvent.CLICK, request_player_screen)
+
+        add_event_listener(MouseEvent.MOUSE_OVER, install_hall_popup)
+        if text_dir == "right":
+            x = pos_x - width
+        else:
             x = pos_x
-        }
+
         y = pos_y
-        visible = true
-    }
+        visible = True
+
     actor[HALL_LIST].addChild(tmp_obj)
-}
-'''
 
 
 def ActionHandler(event):
@@ -6225,14 +6205,14 @@ def ActionHandler(event):
         line:* = 0
         HallListName:* = null
         HallListGilde:* = null
-        isMine:* = false
-        logInAfterPixel:* = false
+        isMine:* = False
+        logInAfterPixel:* = False
         par:* = null
         pa:* = null
         pas:* = null
         pxlStr:* = null
         pxlArr:* = null
-        inVar:* = false
+        inVar:* = False
         pixel:* = undefined
         DoActZauberladen:* = null
         DoActSchmiede:* = null
@@ -6423,7 +6403,7 @@ def ActionHandler(event):
             parse_savgame(par[0])
             #ErrorMessage(txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(
             #      time_str((Number(Savegame[SG_GUILD_JOIN_DATE]
-            #      ) + ((60 * 60) * 24)), true)))
+            #      ) + ((60 * 60) * 24)), True)))
             break
         case RESP_ATTACK_NOT_EXIST:
             ErrorMessage(txt[TXT_ERROR_PLAYER_NOT_FOUND])
@@ -6456,7 +6436,7 @@ def ActionHandler(event):
                         #        + int(lastGuildData[GUILD_RAID_LEVEL
                         #   ]))
                         #]).split("%2").join(
-                        #  time_str(lastGuildData[GUILD_ATTACK_TIME], true)
+                        #  time_str(lastGuildData[GUILD_ATTACK_TIME], True)
                         #)
                         pass
                     else:
@@ -6470,7 +6450,7 @@ def ActionHandler(event):
                 #        ) ? 2 : 0))].split("%1")
                 #        .join(par[0])
                 #        .split("%2")
-                #        .join(time_str(lastGuildData[GUILD_ATTACK_TIME], true))
+                #        .join(time_str(lastGuildData[GUILD_ATTACK_TIME], True))
                 pass
 
             #actor[LBL_GILDE_DEFENCE].text = ((par[1])=="")
@@ -6483,7 +6463,7 @@ def ActionHandler(event):
             #        .split("%1")
             #        .join(par[1])
             #        .split("%2")
-            #        .join(time_str(lastGuildData[GUILD_DEFENCE_TIME], true))
+            #        .join(time_str(lastGuildData[GUILD_DEFENCE_TIME], True))
             if par[2]:
                 if lastGuildData[GUILD_IS_RAID] != 0:
                     if txt[TXT_RAID_TEXT]:
@@ -6550,11 +6530,11 @@ def ActionHandler(event):
             break
         case RESP_BET_WON:
             parse_savgame(par[0])
-            ShowBetResult(true)
+            ShowBetResult(True)
             break
         case RESP_BET_LOST:
             parse_savgame(par[0])
-            ShowBetResult(false)
+            ShowBetResult(False)
             break
         case ERR_ACCOUNTS_PER_IP:
             ErrorMessage(txt[TXT_ERRROR_ACCOUNTS_PER_IP])
@@ -6656,7 +6636,7 @@ def ActionHandler(event):
                 while (i < 40):
                     _local3 = actor[(LBL_GILDE_CHAT + i)]
                     with (_local3):
-                        defaultTextFormat = FontFormat_Chat
+                        default_text_format = FontFormat_Chat
                         text = ""
 
                     i = (i + 1)
@@ -6665,12 +6645,12 @@ def ActionHandler(event):
                 while (i >= 0):
                     if (!par[3]):
                         if (((lastChatIndex != 0)
-                            and (DecodeChat(tmpArray[i], false, true) == "1"))
+                            and (DecodeChat(tmpArray[i], False, True) == "1"))
                         ):
                             Remove(GILDE_CHAT)
                         ChatLine(
                             DecodeChat(tmpArray[i]),
-                            false,
+                            False,
                             getHlIndex(tmpArray[i])
                         )
                         if (((((tmpArray[i].indexOf("§") != -1)
@@ -6696,7 +6676,7 @@ def ActionHandler(event):
                             lastChatIndex = par[3].split("/")[i]
                             if (((!((lastChatIndex == 0)))
                                 and (DecodeChat(
-                                     tmpArray[i], false, true
+                                     tmpArray[i], False, True
                                      ) == "1"))
                             ):
                                 Remove(GILDE_CHAT)
@@ -6704,7 +6684,7 @@ def ActionHandler(event):
                                 DecodeChat(
                                     tmpArray[i]
                                 ),
-                                false,
+                                False,
                                 getHlIndex(tmpArray[i])
                             )
                             if (((((tmpArray[i].indexOf("§") != -1)
@@ -6741,7 +6721,7 @@ def ActionHandler(event):
                             0, externalWhisperer.indexOf(":§")
                     )
                     ChatLine(DecodeChat(
-                        tmpArray[i]), false, getHlIndex(tmpArray[i]), true
+                        tmpArray[i]), False, getHlIndex(tmpArray[i]), True
                     )
                     addSuggestNames(externalWhisperer)
                     if (lastChatIndex != 0):
@@ -6762,7 +6742,7 @@ def ActionHandler(event):
                     i = (i - 1)
                 }
             }
-            guildBlinkReady = true
+            guildBlinkReady = True
             if (((((!((newCrestSuggested == "")))
                 and (!(firstChatFill)))) and (OnStage(INP_GILDE_CHAT)))
             ){
@@ -6772,7 +6752,7 @@ def ActionHandler(event):
             break
         case RESP_WHISPER_SUCCESS:
             addSuggestNames(lastWhisperTarget)
-            ChatLine(DecodeChat(par[0]), false, getHlIndex(par[0]), true)
+            ChatLine(DecodeChat(par[0]), False, getHlIndex(par[0]), True)
             break
         case ERR_GUILD_NAME_REJECTED:
             ErrorMessage(txt[TXT_ERROR_GUILD_NAME_REJECTED])
@@ -6790,12 +6770,12 @@ def ActionHandler(event):
             ErrorMessage(txt[TXT_ERROR_GUILD_MUSH_FREE])
             break
         case RESP_CHAT_LINE:
-            if (DecodeChat(par[0], false, true) == "1"){
+            if (DecodeChat(par[0], False, True) == "1"){
                 Remove(GILDE_CHAT)
             }
-            ChatLine(DecodeChat(par[0]), false, getHlIndex(par[0]))
+            ChatLine(DecodeChat(par[0]), False, getHlIndex(par[0]))
             if (!OnStage(INP_GILDE_CHAT)){
-                PulseGilde = true
+                PulseGilde = True
             }
             break
         case RESP_GUILD_DONATE_SUCCESS:
@@ -6803,7 +6783,7 @@ def ActionHandler(event):
             send_action(ACT_SCREEN_GILDEN)
             break
         case RESP_NO_LOGIN:
-            RequestLOGout(undefined, true)
+            RequestLOGout(undefined, True)
             ShowLOGinScreen()
             break
         case RESP_DELETE_ACCOUNT_OK:
@@ -6857,23 +6837,23 @@ def ActionHandler(event):
         case RESP_MAINQUEST:
             Hide(IF_STATS)
             parse_savgame(par[10])
-            pulse_char = false
+            pulse_char = False
         case RESP_QUEST_DONE:
         case RESP_QUEST_DONE_PIXEL:
         case RESP_QUEST_DONE_PIXEL_2:
-            fightLock = true
-            PostFightMode = false
+            fightLock = True
+            PostFightMode = False
             ShowFightScreen(
                 par[0].split("/"), par[1].split("/"),
                 (par[6] == "1"), par[2].split("/"),
                 (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"),
-                int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9])
+                int(par[7]), int(par[8]), (par[5] == "3"), False, int(par[9])
             )
             break
         case RESP_GUILD_FIGHT:
-            towerFightMode = false
-            alternateCharOppImg = true
-            fightLock = true
+            towerFightMode = False
+            alternateCharOppImg = True
+            fightLock = True
             winners = new Array()
             lastRoundFighterName = ""
             fights = parStr.split("§")
@@ -6882,25 +6862,25 @@ def ActionHandler(event):
             nextFightTimer.start()
             break
         case RESP_TOWER_FIGHT:
-            towerFightMode = true
-            alternateCharOppImg = true
-            fightLock = true
+            towerFightMode = True
+            alternateCharOppImg = True
+            fightLock = True
             winners = new Array()
             lastRoundFighterName = ""
             fights = parStr.split("§")
-            parse_savgame(fights.pop(), true, true)
+            parse_savgame(fights.pop(), True, True)
             guildFightCount = int(((fights.length - 1) / 2))
             skipGuildFights = 0
             nextFightTimer.start()
             break
         case RESP_QUEST_SKIP_ALLOWED_START:
-            skipAllowed = true
+            skipAllowed = True
         case RESP_QUEST_START:
             parse_savgame(par[0])
             ShowQuestScreen()
             break
         case RESP_QUEST_SKIP_ALLOWED:
-            skipAllowed = true
+            skipAllowed = True
         case ACT_SCREEN_TAVERNE:
         case RESP_QUEST_STOP:
             parse_savgame(par[0])
@@ -6953,10 +6933,10 @@ def ActionHandler(event):
         case ACT_SCREEN_GILDEN:
             Savegame[SG_GUILD_INDEX] = par[0].split("/")[0]
             Gilde = par[3]
-            isMine = true
+            isMine = True
             intervalMultiplierChat = 1
         case RESP_OTHER_GUILD:
-            DestroyGuildBtnTimer = true
+            DestroyGuildBtnTimer = True
             if (((((((!(OnStage(GILDE_CREST)))
                 or ((act == RESP_OTHER_GUILD))))
                 or (!((lastGuildCrestId == par[0].split("/")[0])))))
@@ -7196,7 +7176,7 @@ def ActionHandler(event):
             } else {
                 DealerAktion = 0;
             };
-            PulseDealer = false;
+            PulseDealer = False;
             ShowDealerScreen();
             break;
         case ACT_SCREEN_WELTKARTE:
@@ -7218,7 +7198,7 @@ def ActionHandler(event):
             };
             if (par[1]){
                 ruhmesHalleSuchString = par[1];
-                ruhmesHalleSuchName = true;
+                ruhmesHalleSuchName = True;
             };
             if (!OnStage(SCR_HALLE_BG)){
                 ShowHallScreen();
@@ -7290,7 +7270,7 @@ def ActionHandler(event):
                     };
                 };
                 lastHallMembers.push(tmpArray[(i + 1)]);
-                arrowHallMode = true;
+                arrowHallMode = True;
                 if (textDir == "right"){
                     hall_list_add_field((HALL_LIST_COLUMN_6_X + 40), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
                     hall_list_add_field((HALL_LIST_COLUMN_6_X - 10), ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
@@ -7300,7 +7280,7 @@ def ActionHandler(event):
                     hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_4_X + 20) : (HALL_LIST_COLUMN_6_X - 30)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
                     HallListGilde[line] = tmpArray[i];
                     i = (i + 1);
-                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_6_X - 10) : (HALL_LIST_COLUMN_4_X + 20)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), true);
+                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_6_X - 10) : (HALL_LIST_COLUMN_4_X + 20)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), True);
                     i = (i + 1);
                     hall_list_add_field((HALL_LIST_COLUMN_3_X + 25), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
                     hall_list_add_field((HALL_LIST_COLUMN_2_X - 10), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
@@ -7313,7 +7293,7 @@ def ActionHandler(event):
                     hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_4_X : HALL_LIST_COLUMN_3_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
                     HallListGilde[line] = tmpArray[i];
                     i = (i + 1);
-                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_2_X : HALL_LIST_COLUMN_4_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), true);
+                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_2_X : HALL_LIST_COLUMN_4_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), True);
                     i = (i + 1);
                     hall_list_add_field(HALL_LIST_COLUMN_5_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
                     hall_list_add_field(HALL_LIST_COLUMN_6_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
@@ -7374,7 +7354,7 @@ def ActionHandler(event):
             if (Savegame[SG_FACE_1] == 0){
                 ShowBuildCharacterScreen();
             } else {
-                ShowCharacterScreen(undefined, true);
+                ShowCharacterScreen(undefined, True);
             };
             break;
         case ACT_SCREEN_ZAUBERLADEN:
@@ -7421,7 +7401,7 @@ def ActionHandler(event):
             } else {
                 MushBought = 0;
             };
-            beerFest = false;
+            beerFest = False;
             if (par[5]){
                 beerFest = !((int(par[5]) == 0));
             };
@@ -7432,29 +7412,29 @@ def ActionHandler(event):
             if (par[2]){
                 sessionId = par[2];
             };
-            level_up = false;
+            level_up = False;
             last_level = 0;
             old_ach = new Array();
             old_album = -1;
-            album_effect = false;
-            PreviousLOGin = true;
+            album_effect = False;
+            PreviousLOGin = True;
             gilden_id = 0;
-            parse_savgame(par[0], false);
+            parse_savgame(par[0], False);
             if (par[1]){
                 DealerAktion = int(par[1]);
             } else {
                 DealerAktion = 0;
             };
             if (DealerAktion > 0){
-                PulseDealer = true;
+                PulseDealer = True;
             } else {
-                PulseDealer = false;
+                PulseDealer = False;
             };
-            so.data.skipAutoLOGin = false;
+            so.data.skipAutoLOGin = False;
             if (!so.data.HasAccount){
                 so.data.PaymentMethod = 4;
             };
-            so.data.HasAccount = true;
+            so.data.HasAccount = True;
             so.data.userName = actor[INP_NAME].getChildAt(1).text;
             so.data.password = actor[INP_LOGIN_PASSWORD].getChildAt(1).text;
             so.flush();
@@ -7534,14 +7514,14 @@ def ActionHandler(event):
             break;
         case RESP_ACCOUNT_SUCCESS:
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = actor[INP_PASSWORD].getChildAt(1).text;
-            so.data.skipAutoLOGin = false;
-            so.data.HasAccount = true;
-            so.data.hadAccount = true;
+            so.data.skipAutoLOGin = False;
+            so.data.HasAccount = True;
+            so.data.hadAccount = True;
             so.data.userName = actor[INP_NAME].getChildAt(1).text;
             so.data.password = actor[INP_LOGIN_PASSWORD].getChildAt(1).text;
             so.data.advpar = paramObj;
             so.flush();
-            logInAfterPixel = true;
+            logInAfterPixel = True;
             break;
         case ERR_NAME_EXISTS:
             ErrorMessage(txt[TXT_ERROR_NAME_EXISTS]);
@@ -7559,13 +7539,13 @@ def ActionHandler(event):
             ErrorMessage(txt[TXT_ERROR_NAME_REJECTED]);
             break;
         case ERR_LOGIN_FAILED:
-            so.data.skipAutoLOGin = true;
+            so.data.skipAutoLOGin = True;
             so.data.password = "";
             so.flush();
             actor[INP_EMAIL].getChildAt(1).text = "";
             actor[INP_PASSWORD].getChildAt(1).text = "";
             char_volk = 0;
-            ShowLOGinScreen(undefined, true, true);
+            ShowLOGinScreen(undefined, True, True);
             ErrorMessage(txt[TXT_ERROR_LOGIN_FAILED]);
             break;
         case ERR_TOO_EXPENSIVE:
@@ -7609,7 +7589,7 @@ def ActionHandler(event):
     };
     pas = new Array();
     pxlStr = "";
-    inVar = false;
+    inVar = False;
     for each (pixel in trackPixels) {
         if ((((int(pixel[0]) == act)) or ((((next_pxl > 0)) and ((next_pxl == int(pixel[0]))))))){
             pas = new Array();
@@ -7631,7 +7611,7 @@ def ActionHandler(event):
                 if (so.data.advpar){
                     pxlArr = pxlStr.split("<").join(">").split(">");
                     pxlStr = "";
-                    inVar = false;
+                    inVar = False;
                     i = 0;
                     while (i < pxlArr.length) {
                         if (inVar){
@@ -7683,7 +7663,7 @@ public function RequestLOGin(evt:Event=undefined):void{
 }
 
 
-public function RequestLOGout(evt:Event=undefined, keepData:Boolean=false):void{
+public function RequestLOGout(evt:Event=undefined, keepData:Boolean=False):void{
     RemoveAll();
     next_pxl = 0;
     actor[LBL_ERROR].text = "";
@@ -7707,15 +7687,15 @@ public function RequestLOGout(evt:Event=undefined, keepData:Boolean=false):void{
     guildDefenceTime = 0;
     guildAttacked = "";
     guildAttacking = "";
-    PulseTaverne = false;
-    PulseArbeiten = false;
-    PulseGilde = false;
-    PulseGildeOnHistory = false;
-    pulse_post = false;
-    PulseDealer = false;
-    guildBlinkReady = false;
+    PulseTaverne = False;
+    PulseArbeiten = False;
+    PulseGilde = False;
+    PulseGildeOnHistory = False;
+    pulse_post = False;
+    PulseDealer = False;
+    guildBlinkReady = False;
     sessionId = "";
-    fightFlushMode = false;
+    fightFlushMode = False;
     if (!keepData){
         ShowLOGinScreen();
     };
@@ -7746,7 +7726,7 @@ public function RequestChangeFace(evt:Event=undefined):void{
 
 
 public function RequestCharScreen(evt:Event=undefined):void{
-    arrowHallMode = false;
+    arrowHallMode = False;
     send_action(ACT_SCREEN_CHAR);
 }
 
@@ -7783,7 +7763,7 @@ var LanguageFileLoaded:* = function (evt:Event):void{
     var tmpStr:String;
     var lastIndex:int;
     strData = loader.data;
-    inValue = false;
+    inValue = False;
     tmpStr = "";
     lastIndex = 0;
     i = 0;
@@ -7792,7 +7772,7 @@ var LanguageFileLoaded:* = function (evt:Event):void{
         Switch (c){
             case 10:
             case 13:
-                inValue = false;
+                inValue = False;
                 if (tmpStr.length > 0){
                     txt[lastIndex] = SwapWords(tmpStr);
                     tmpStr = "";
@@ -7807,7 +7787,7 @@ var LanguageFileLoaded:* = function (evt:Event):void{
                 if (!inValue){
                     lastIndex = int(tmpStr);
                     tmpStr = "";
-                    inValue = true;
+                    inValue = True;
                 } else {
                     tmpStr = (tmpStr + strData.charAt(i));
                 };
@@ -7819,7 +7799,7 @@ var LanguageFileLoaded:* = function (evt:Event):void{
         };
         i++;
     };
-    pendingLanguageFile = false;
+    pendingLanguageFile = False;
     if (lang_code == original_lang_code){
         if (txt[TXT_FONT_NAME] != ""){
             SetFont(txt[TXT_FONT_NAME]);
@@ -7851,16 +7831,16 @@ public function LoadLanguageFile():void{
     var _local2 = loader;
     with (_local2) {
         dataFormat = URLLoaderDataFormat.TEXT;
-        addEventListener(Event.COMPLETE, LanguageFileLoaded);
-        addEventListener(IOErrorEvent.IO_ERROR, LanguageFileError);
-        addEventListener(SecurityErrorEvent.SECURITY_ERROR, LanguageFileError);
+        add_event_listener(Event.COMPLETE, LanguageFileLoaded);
+        add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError);
+        add_event_listener(SecurityErrorEvent.SECURITY_ERROR, LanguageFileError);
         if (lang_code == "ar"){
             textDir = "right";
         };
         load(new URLRequest(((((lang_url + "lang/sfgame_") + lang_code) + ".txt?rnd=") + String(Math.random()))));
     };
     pendingLoaders = (pendingLoaders + 1);
-    pendingLanguageFile = true;
+    pendingLanguageFile = True;
 }
 
 public function LoadOriginalLanguageFile():void{
@@ -7876,7 +7856,7 @@ public function LoadOriginalLanguageFile():void{
         var w:int;
         var originalFont:String;
         strData = loader.data;
-        inValue = false;
+        inValue = False;
         tmpStr = "";
         lastIndex = 0;
         originalFont = "Komika Text";
@@ -7886,7 +7866,7 @@ public function LoadOriginalLanguageFile():void{
             Switch (c){
                 case 10:
                 case 13:
-                    inValue = false;
+                    inValue = False;
                     if (tmpStr.length > 0){
                         oldStr = tmpStr;
                         if (lastIndex == TXT_FONT_NAME){
@@ -7900,7 +7880,7 @@ public function LoadOriginalLanguageFile():void{
                     if (!inValue){
                         lastIndex = int(tmpStr);
                         tmpStr = "";
-                        inValue = true;
+                        inValue = True;
                     } else {
                         tmpStr = (tmpStr + strData.charAt(i));
                     };
@@ -7912,7 +7892,7 @@ public function LoadOriginalLanguageFile():void{
             };
             i++;
         };
-        pendingLanguageFile = false;
+        pendingLanguageFile = False;
         SetFont(SuperiorFont(chosenLangFont, originalFont));
         LoaderComplete(evt);
     };
@@ -7920,11 +7900,11 @@ public function LoadOriginalLanguageFile():void{
     var _local2 = loader;
     with (_local2) {
         dataFormat = URLLoaderDataFormat.TEXT;
-        addEventListener(Event.COMPLETE, OriginalLanguageFileLoaded);
+        add_event_listener(Event.COMPLETE, OriginalLanguageFileLoaded);
         load(new URLRequest((((lang_url + "lang/sfgame_") + original_lang_code) + ".txt")));
     };
     pendingLoaders = (pendingLoaders + 1);
-    pendingLanguageFile = true;
+    pendingLanguageFile = True;
 }
 
 public function load_configuration_file():void{
@@ -7943,7 +7923,7 @@ public function load_configuration_file():void{
         var tmpWorld:Array;
         var forceReroll:Boolean;
         strData = evt.target.data;
-        inValue = false;
+        inValue = False;
         tmpStr = "";
         lastIndex = 0;
         i = 0;
@@ -7952,7 +7932,7 @@ public function load_configuration_file():void{
             Switch (c){
                 case 10:
                 case 13:
-                    inValue = false;
+                    inValue = False;
                     if (tmpStr.length > 0){
                         Switch (lastIndex){
                             case LANG_CODE:
@@ -8134,7 +8114,7 @@ public function load_configuration_file():void{
                     if (!inValue){
                         lastIndex = int(tmpStr);
                         tmpStr = "";
-                        inValue = true;
+                        inValue = True;
                     } else {
                         tmpStr = (tmpStr + strData.charAt(i));
                     };
@@ -8150,38 +8130,38 @@ public function load_configuration_file():void{
         if (pendingConfigurationFiles == 1){
             loader2.load(new URLRequest("config_txt"));
         } else {
-            pendingConfigurationFile = false;
+            pendingConfigurationFile = False;
             so = SharedObject.getLocal(("SFGame/" + server.split(".").join("/")), "/");
             if (so.data.lang_code){
                 lang_code = so.data.lang_code;
             };
             lightMode = light_mode_default;
-            chatSound = false;
-            compareItems = false;
-            disableTV = false;
-            if (so.data.lightMode === false){
-                lightMode = false;
+            chatSound = False;
+            compareItems = False;
+            disableTV = False;
+            if (so.data.lightMode === False){
+                lightMode = False;
             };
-            if (so.data.lightMode === true){
-                lightMode = true;
+            if (so.data.lightMode === True){
+                lightMode = True;
             };
-            if (so.data.chatSound === false){
-                chatSound = false;
+            if (so.data.chatSound === False){
+                chatSound = False;
             };
-            if (so.data.chatSound === true){
-                chatSound = true;
+            if (so.data.chatSound === True){
+                chatSound = True;
             };
-            if (so.data.compareItems === false){
-                compareItems = false;
+            if (so.data.compareItems === False){
+                compareItems = False;
             };
-            if (so.data.compareItems === true){
-                compareItems = true;
+            if (so.data.compareItems === True){
+                compareItems = True;
             };
-            if (so.data.disableTV === false){
-                disableTV = false;
+            if (so.data.disableTV === False){
+                disableTV = False;
             };
-            if (so.data.disableTV === true){
-                disableTV = true;
+            if (so.data.disableTV === True){
+                disableTV = True;
             };
             if (paramObj["lang"] != undefined){
                 lang_code = paramObj["lang"];
@@ -8208,23 +8188,23 @@ public function load_configuration_file():void{
                 mp_api_user_token = String(paramObj["mp_api_user_token"]);
             };
             if (((!((paramObj["mp_api_user_id"] == undefined))) and (!((paramObj["mp_api_user_token"] == undefined))))){
-                ssoMode = true;
+                ssoMode = True;
             };
             if (paramObj["cid"] != undefined){
                 param_cid = String(paramObj["cid"]);
-                param_cid_original = true;
+                param_cid_original = True;
                 so.data.cid = param_cid;
                 so.flush();
             } else {
                 if (paramObj["CID"] != undefined){
                     param_cid = String(paramObj["CID"]);
-                    param_cid_original = true;
+                    param_cid_original = True;
                     so.data.cid = param_cid;
                     so.flush();
                 } else {
                     if (paramObj["Cid"] != undefined){
                         param_cid = String(paramObj["Cid"]);
-                        param_cid_original = true;
+                        param_cid_original = True;
                         so.data.cid = param_cid;
                         so.flush();
                     } else {
@@ -8330,17 +8310,17 @@ public function load_configuration_file():void{
     var _local2 = loader;
     with (_local2) {
         dataFormat = URLLoaderDataFormat.TEXT;
-        addEventListener(Event.COMPLETE, ConfigurationFileLoaded);
+        add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
         load(new URLRequest("client_cfg.php"));
     };
     _local2 = loader2;
     with (_local2) {
         dataFormat = URLLoaderDataFormat.TEXT;
-        addEventListener(Event.COMPLETE, ConfigurationFileLoaded);
+        add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
     };
     pendingLoaders = (pendingLoaders + 2);
     pendingConfigurationFiles = 1;
-    pendingConfigurationFile = true;
+    pendingConfigurationFile = True;
 }
 
 do_load_language_file = function (){
@@ -8372,12 +8352,12 @@ public function Load(... _args):void{
             } else {
                 if (actorLoaded[actorID] != 0){
                 };
-                actor[actorID].contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, LoaderError);
-                actor[actorID].contentLoaderInfo.addEventListener(Event.COMPLETE, LoaderComplete);
+                actor[actorID].contentLoaderInfo.add_event_listener(IOErrorEvent.IO_ERROR, LoaderError);
+                actor[actorID].contentLoaderInfo.add_event_listener(Event.COMPLETE, LoaderComplete);
                 Security.allowDomain(actorURL[actorID]);
                 req = new URLRequest(actorURL[actorID]);
                 if ((((actorURL[actorID].substr(-4) == ".png")) and (!(no_crossdomain)))){
-                    actor[actorID].load(req, new LoaderContext(true, new ApplicationDomain(null), SecurityDomain.currentDomain));
+                    actor[actorID].load(req, new LoaderContext(True, new ApplicationDomain(null), SecurityDomain.currentDomain));
                 } else {
                     actor[actorID].load(req);
                 };
@@ -8405,34 +8385,34 @@ public function when_loaded(fn:Function=undefined):void{
     var pending:Boolean;
     var tmpFn:Function;
     var when_loadedFnTemp:Array;
-    pending = false;
+    pending = False;
     if ((fn is Function)){
         when_loadedFn[when_loadedFn.length] = fn;
-        when_loadedActive = true;
+        when_loadedActive = True;
         when_loadedTimeout.stop();
         when_loadedTimeout.start();
     };
     i = 0;
     while (i < actor.length) {
         if (actorLoaded[i] == 1){
-            pending = true;
+            pending = True;
             break;
         };
         i++;
     };
     if (pendingLanguageFile){
-        pending = true;
+        pending = True;
     };
     if (pendingDebugFile){
-        pending = true;
+        pending = True;
     };
     if (pendingConfigurationFile){
-        pending = true;
+        pending = True;
     };
     if (!pending){
         if (when_loadedActive){
             when_loadedTimeout.stop();
-            when_loadedActive = false;
+            when_loadedActive = False;
             when_loadedFnTemp = when_loadedFn;
             when_loadedFn = new Array();
             i = 0;
@@ -8492,9 +8472,9 @@ public function LoaderComplete(evt:Event=undefined):void{
         Security.allowDomain(evt.target.loaderURL);
         var _local3 = actor[GetActorID(evt.target.loader)].content;
         with (_local3) {
-            forceSmoothing = true;
-            allowSmoothing = true;
-            smoothing = true;
+            force_smoothing = True;
+            allow_smoothing = True;
+            smoothing = True;
         };
     };
     when_loaded();
@@ -8551,7 +8531,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var i:* = 0;
         var ii:* = 0;
         var iii:* = 0;
-        var attPriceLimitation:* = false;
+        var attPriceLimitation:* = False;
         var iPosi:* = undefined;
         var yOffs:* = undefined;
         var dungeonBtnUpdateDelayTimer:* = null;
@@ -8571,8 +8551,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var arenaBtnLeave:* = null;
         var arenaBtnUpdateDelay:* = null;
         var HutmannLinkTimer:* = null;
-        var HutmannLinkVis:* = false;
-        var HutmannLinkOver:* = false;
+        var HutmannLinkVis:* = False;
+        var HutmannLinkOver:* = False;
         var HutmannRelY:* = 0;
         var HutmannAniStep:* = 0;
         var HutmannCountdown:* = 0;
@@ -8596,7 +8576,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var SelectGender:* = null;
         var SelectCaste:* = null;
         var MimickInterfaceButtonHover:* = null;
-        var Buh:* = false;
+        var Buh:* = False;
         var BuhHover:* = null;
         var BuhOut:* = null;
         var BubbleTimer:* = null;
@@ -8625,7 +8605,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var LastOno:* = 0;
         var ThisOno:* = 0;
         var OnoPopupTimer:* = null;
-        var PopupDir:* = false;
+        var PopupDir:* = False;
         var ShowArenaOno:* = null;
         var HideArenaOno:* = null;
         var PopupArenaOno:* = null;
@@ -8647,9 +8627,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var PlayerAttack:* = null;
         var PlayerInvite:* = null;
         var BoostBtnRepeatTimer:* = null;
-        var DestroyBoostBtnTimer:* = false;
+        var DestroyBoostBtnTimer:* = False;
         var BoostAttribute:* = null;
-        var inBoostBtn:* = false;
+        var inBoostBtn:* = False;
         var BoostBtnChange:* = 0;
         var BoostBtnTimer:* = null;
         var BoostBtnTimerFunction:* = null;
@@ -8677,7 +8657,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var ShakesIdlePhase:* = 0;
         var WasIdleCount:* = 0;
         var ShopIdle:* = NaN;
-        var PlayerIdle:* = false;
+        var PlayerIdle:* = False;
         var ShopAniTimer:* = null;
         var SaleRecoverTime:* = NaN;
         var ShopAniFrame:* = null;
@@ -8685,7 +8665,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var ShopMouseUpEvent:* = null;
         var RequestNewWarez:* = null;
         var RequestWitchScreen:* = null;
-        var spellClicking:* = false;
+        var spellClicking:* = False;
         var CancelQuest:* = null;
         var SkipQuest:* = null;
         var AttackEnemy:* = null;
@@ -8700,12 +8680,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var AdvancedChatHandler:* = null;
         var SendChatMsg:* = null;
         var nextSuggestionTimer:* = null;
-        var suggestionAllowed:* = false;
+        var suggestionAllowed:* = False;
         var nextSuggestionAllow:* = null;
         var GildeBtnHandler:* = null;
         var GildeGruenden:* = null;
         var HutBtnRepeatTimer:* = null;
-        var DestroyHutBtnTimer:* = false;
+        var DestroyHutBtnTimer:* = False;
         var HutFaceResetTimer:* = null;
         var HutFaceReset:* = null;
         var HutBtnHandler:* = null;
@@ -8839,12 +8819,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             actor[IF_HUTMANN].visible = !(OnStage(HUTMANN_BG));
             if (((!((int(Savegame[SG_ACTION_STATUS]) == 0))) and (!(PulseTaverne)))){
                 HutmannCountdown = 20;
-                HutmannLinkOver = true;
+                HutmannLinkOver = True;
             };
         };
         var TaverneBtnOut:* = function (evt:Event){
             HutmannCountdown = 1;
-            HutmannLinkOver = false;
+            HutmannLinkOver = False;
         };
         HutmannLinkAniEvent = function (evt:Event){
             var i:* = 0;
@@ -8985,10 +8965,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             DefineBtn(actorID, txt[txtID], InterfaceBtnHandler, btnClassInterface, IF_X, ((IF_Y + (IF_1 * iPosi++)) + yOffs));
             DefineFromClass(((IF_DRAGON_1 + iPosi) - 1), interface_dragon1_png, (actor[actorID].x + DRAGON_X), (actor[actorID].y + DRAGON_Y));
             dragonID = ((IF_DRAGON_1 + iPosi) - 1);
-            actor[actorID].addEventListener(MouseEvent.MOUSE_DOWN, InterfaceButtonDown);
-            actor[actorID].addEventListener(MouseEvent.MOUSE_UP, InterfaceButtonUp);
-            actor[actorID].addEventListener(MouseEvent.MOUSE_OUT, InterfaceButtonUp);
-            actor[actorID].addEventListener(MouseEvent.MOUSE_OVER, InterfaceButtonHover);
+            actor[actorID].add_event_listener(MouseEvent.MOUSE_DOWN, InterfaceButtonDown);
+            actor[actorID].add_event_listener(MouseEvent.MOUSE_UP, InterfaceButtonUp);
+            actor[actorID].add_event_listener(MouseEvent.MOUSE_OUT, InterfaceButtonUp);
+            actor[actorID].add_event_listener(MouseEvent.MOUSE_OVER, InterfaceButtonHover);
             MakePersistent(((IF_DRAGON_1 + iPosi) - 1), actorID);
         };
         gradePassword = function (evt:Event=undefined, pwd_str:String=""){
@@ -9057,7 +9037,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             pwd = newPwd;
             newPwd = "";
-            hasBadSequence = false;
+            hasBadSequence = False;
             i = 0;
             while (i < pwd.length) {
                 if (i >= 2){
@@ -9066,11 +9046,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     cmp = "";
                     newPwd = (newPwd + pwd.substr(i, 1));
                 };
-                hasBadSequence = false;
+                hasBadSequence = False;
                 ii = 0;
                 while (ii < badSequences.length) {
                     if (badSequences[ii].indexOf(cmp) != -1){
-                        hasBadSequence = true;
+                        hasBadSequence = True;
                         break;
                     };
                     ii++;
@@ -9106,22 +9086,22 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
             };
-            hasNumerals = false;
-            hasUpperCase = false;
-            hasLowerCase = false;
-            hasSpecial = false;
+            hasNumerals = False;
+            hasUpperCase = False;
+            hasLowerCase = False;
+            hasSpecial = False;
             i = 0;
             while (i < pwd.length) {
                 if (pwd.substr(i, 1) == String(int(pwd.substr(i, 1)))){
-                    hasNumerals = true;
+                    hasNumerals = True;
                 } else {
                     if (pwd.substr(i, 1) != pwd.substr(i, 1).toLowerCase()){
-                        hasUpperCase = true;
+                        hasUpperCase = True;
                     } else {
                         if (pwd.substr(i, 1) != pwd.substr(i, 1).toUpperCase()){
-                            hasLowerCase = true;
+                            hasLowerCase = True;
                         } else {
-                            hasSpecial = true;
+                            hasSpecial = True;
                         };
                     };
                 };
@@ -9187,8 +9167,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             RemoveAll();
             actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_FORGOT_PASSWORD];
             actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-            actor[INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, RequestPassword);
-            actor[INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, RequestPassword);
+            actor[INP_NAME].add_event_listener(KeyboardEvent.KEY_DOWN, RequestPassword);
+            actor[INP_EMAIL].add_event_listener(KeyboardEvent.KEY_DOWN, RequestPassword);
             LOGonRTL();
             Add(WINDOW_FORGOT_PASSWORD);
         };
@@ -9241,32 +9221,32 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (int(Savegame[SG_ACTION_STATUS]) == 1){
                 if (!WaitingFor(Savegame[SG_ACTION_ENDTIME])){
-                    PulseArbeiten = true;
+                    PulseArbeiten = True;
                 };
             };
             if (int(Savegame[SG_ACTION_STATUS]) == 2){
                 if (!WaitingFor(Savegame[SG_ACTION_ENDTIME])){
-                    PulseTaverne = true;
+                    PulseTaverne = True;
                 };
             };
             if (((((OnStage(TAVERNE_BG)) or (OnStage(FIGHT_BOX1)))) or (OnStage(QUESTBAR_BG)))){
-                PulseTaverne = false;
+                PulseTaverne = False;
             };
             if (OnStage(LBL_SCR_ARBEITEN_TEXT)){
-                PulseArbeiten = false;
+                PulseArbeiten = False;
             };
             if (OnStage(GILDEN_BG)){
-                PulseGilde = false;
-                PulseGildeOnHistory = false;
+                PulseGilde = False;
+                PulseGildeOnHistory = False;
             };
             if (OnStage(SCR_DEALER_BG)){
-                PulseDealer = false;
+                PulseDealer = False;
             };
             if (OnStage(POST_LIST)){
-                pulse_post = false;
+                pulse_post = False;
             };
             if (((((OnStage(SCR_CHAR_BG_RIGHT)) or (OnStage(SCR_SHAKES_BG)))) or (OnStage(SCR_FIDGET_BG)))){
-                pulse_char = false;
+                pulse_char = False;
             };
             if (((((((((((PulseTaverne) or (PulseArbeiten))) or (PulseGilde))) or (pulse_post))) or (pulse_char))) or (PulseDealer))){
                 PulseTimer.delay = 20;
@@ -9299,11 +9279,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             actorID = GetActorID(evt.target);
             if ((((actorID >= VOLK_1_M_IDLE)) and ((actorID <= VOLK_8_M_IDLE)))){
                 char_volk = ((actorID - VOLK_1_M_IDLE) + 1);
-                char_male = true;
+                char_male = True;
             };
             if ((((actorID >= VOLK_1_F_IDLE)) and ((actorID <= VOLK_8_F_IDLE)))){
                 char_volk = ((actorID - VOLK_1_F_IDLE) + 1);
-                char_male = false;
+                char_male = False;
             };
             RandomizeCharImage();
             if (OnStage(POPUP_INFO)){
@@ -9314,10 +9294,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var actorID:int;
             actorID = GetActorID(evt.target);
             if (actorID == M_IDLE){
-                char_male = true;
+                char_male = True;
             };
             if (actorID == F_IDLE){
-                char_male = false;
+                char_male = False;
             };
             RandomizeCharImage();
             if (OnStage(POPUP_INFO)){
@@ -9327,7 +9307,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         SelectCaste = function (evt:MouseEvent):void{
             var actorID:int;
             actorID = GetActorID(evt.target);
-            KlasseGewählt = true;
+            KlasseGewählt = True;
             if (actorID == KASTE_1_IDLE){
                 char_class = 1;
             };
@@ -9343,7 +9323,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         var AddMimickInterfaceButtonHoverHandler:* = function (actorID:int){
-            actor[actorID].addEventListener(MouseEvent.MOUSE_OVER, MimickInterfaceButtonHover);
+            actor[actorID].add_event_listener(MouseEvent.MOUSE_OVER, MimickInterfaceButtonHover);
         };
         MimickInterfaceButtonHover = function (evt:MouseEvent):void{
             var tmpContainer:* = null;
@@ -9361,7 +9341,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     removeChild(tmpContainer);
                 };
             };
-            evt.target.addEventListener(MouseEvent.MOUSE_OUT, EndMimickInterfaceButtonHover);
+            evt.target.add_event_listener(MouseEvent.MOUSE_OUT, EndMimickInterfaceButtonHover);
             Switch (GetActorID(evt.target)){
                 case CA_CITY_SHAKES:
                     MimickHover(IF_SCHMIEDE);
@@ -9393,10 +9373,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         BuhHover = function ():void{
-            Buh = true;
+            Buh = True;
         };
         BuhOut = function ():void{
-            Buh = false;
+            Buh = False;
         };
         Bubbles = function (evt:Event):void{
             var evt:* = evt;
@@ -9596,12 +9576,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         WacheOver = function ():void{
-            SchildTimer.addEventListener(TimerEvent.TIMER, SchildFrame);
+            SchildTimer.add_event_listener(TimerEvent.TIMER, SchildFrame);
             SchildTimer.start();
             SchildDir = 1;
         };
         WacheOut = function ():void{
-            SchildTimer.addEventListener(TimerEvent.TIMER, SchildFrame);
+            SchildTimer.add_event_listener(TimerEvent.TIMER, SchildFrame);
             SchildTimer.start();
             SchildDir = -1;
         };
@@ -9667,7 +9647,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var DealerAni:* = function (evt:Event):void{
             if (((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))){
                 if (!getChildByName(actor[CITY_DEALER].name)){
-                    DealerStepTimer.addEventListener(TimerEvent.TIMER, DealerStep);
+                    DealerStepTimer.add_event_listener(TimerEvent.TIMER, DealerStep);
                     if (int((Math.random() * 5)) == 0){
                         DealerAniStep = 5;
                     } else {
@@ -9739,7 +9719,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         ShowArenaOno = function ():void{
             OnoTimer = new Timer(2000);
-            OnoTimer.addEventListener(TimerEvent.TIMER, PopupArenaOno);
+            OnoTimer.add_event_listener(TimerEvent.TIMER, PopupArenaOno);
             OnoTimer.start();
             PopupArenaOno();
         };
@@ -9755,7 +9735,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 ThisOno = (CITY_ARENA_ONO1 + int((Math.random() * 4)));
             };
             LastOno = ThisOno;
-            OnoPopupTimer.addEventListener(TimerEvent.TIMER, StepArenaOno);
+            OnoPopupTimer.add_event_listener(TimerEvent.TIMER, StepArenaOno);
             OnoPopupTimer.start();
             Add(ThisOno);
             Add(CA_CITY_ARENA);
@@ -9765,14 +9745,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (PopupDir){
                 actor[ThisOno].alpha = (actor[ThisOno].alpha - 0.1);
                 if (actor[ThisOno].alpha <= 0){
-                    PopupDir = false;
+                    PopupDir = False;
                     Remove(ThisOno);
                     OnoPopupTimer.removeEventListener(TimerEvent.TIMER, StepArenaOno);
                 };
             } else {
                 actor[ThisOno].alpha = (actor[ThisOno].alpha + 0.1);
                 if (actor[ThisOno].alpha >= 1){
-                    PopupDir = true;
+                    PopupDir = True;
                 };
             };
         };
@@ -9855,17 +9835,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             Switch (GetActorID(evt.target)){
                 case HALL_GOTO_SPIELER:
-                    ruhmesHalleSuchName = true;
+                    ruhmesHalleSuchName = True;
                     ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
                     send_action(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
                     break;
                 case HALL_GOTO_GILDEN:
                     if (Savegame[SG_GUILD_INDEX] > 0){
-                        ruhmesHalleSuchName = true;
+                        ruhmesHalleSuchName = True;
                         ruhmesHalleSuchString = Gilde;
                         send_action(ACT_SCREEN_GILDENHALLE, "", Savegame[SG_GUILD_INDEX], 0);
                     } else {
-                        ruhmesHalleSuchName = false;
+                        ruhmesHalleSuchName = False;
                         ruhmesHalleSuchString = "";
                         send_action(ACT_SCREEN_GILDENHALLE, "", 0, 1);
                     };
@@ -9938,14 +9918,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         };
                     };
                     if (int(actor[INP_HALLE_GOTO].getChildAt(1).text) > 0){
-                        ruhmesHalleSuchName = false;
+                        ruhmesHalleSuchName = False;
                         if (GuildHallMode){
                             send_action(ACT_SCREEN_GILDENHALLE, "", "0", int(actor[INP_HALLE_GOTO].getChildAt(1).text));
                         } else {
                             send_action(ACT_SCREEN_EHRENHALLE, "", int(actor[INP_HALLE_GOTO].getChildAt(1).text));
                         };
                     } else {
-                        ruhmesHalleSuchName = true;
+                        ruhmesHalleSuchName = True;
                         if (GuildHallMode){
                             send_action(ACT_SCREEN_GILDENHALLE, actor[INP_HALLE_GOTO].getChildAt(1).text, "0", "0");
                         } else {
@@ -10002,7 +9982,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         var JumpToPlayerHall:* = function (evt:Event=undefined){
             ruhmesHalleSuchString = lastPlayer;
-            ruhmesHalleSuchName = true;
+            ruhmesHalleSuchName = True;
             send_action(ACT_SCREEN_EHRENHALLE, ruhmesHalleSuchString, -1);
         };
         var EnterPlayerDesc:* = function (evt:FocusEvent){
@@ -10104,7 +10084,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var DoPushBoostBtn:* = function (timerevt:Event){
                 var timerevt:* = timerevt;
                 if (DestroyBoostBtnTimer){
-                    DestroyBoostBtnTimer = false;
+                    DestroyBoostBtnTimer = False;
                     var _local3 = BoostBtnRepeatTimer;
                     with (_local3) {
                         stop();
@@ -10130,17 +10110,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (BoostBtnRepeatTimer.running){
                 return;
             };
-            DestroyBoostBtnTimer = false;
+            DestroyBoostBtnTimer = False;
             var _local3 = BoostBtnRepeatTimer;
             with (_local3) {
                 delay = 1000;
-                addEventListener(TimerEvent.TIMER, DoPushBoostBtn);
+                add_event_listener(TimerEvent.TIMER, DoPushBoostBtn);
                 start();
             };
         };
         var BoostBtnUpHandler:* = function (evt:Event){
             if (BoostBtnRepeatTimer.running){
-                DestroyBoostBtnTimer = true;
+                DestroyBoostBtnTimer = True;
             };
         };
         BoostAttribute = function (evt:Event):Boolean{
@@ -10189,13 +10169,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (!inBoostBtn){
                 BoostBtnChange = 6;
             };
-            inBoostBtn = true;
+            inBoostBtn = True;
         };
         var BoostBtnOut:* = function (evt:Event){
             if (inBoostBtn){
                 BoostBtnChange = 6;
             };
-            inBoostBtn = false;
+            inBoostBtn = False;
         };
         InventoryItemMouseDown = function (evt:MouseEvent){
             if (((((OnStage(SCR_FIDGET_BG)) or (OnStage(SCR_SHAKES_BG)))) or (OnStage(TOWER_SCROLLAREA)))){
@@ -10224,10 +10204,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
                     if (towerMode){
                         trc("impossible here");
-                        return (false);
+                        return (False);
                     };
                     send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 0, 0);
-                    return (true);
+                    return (True);
                 };
                 trc("wrong source");
             } else {
@@ -10241,7 +10221,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         } else {
                             send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 1, -1);
                         };
-                        return (true);
+                        return (True);
                     };
                     trc("wrong source");
                 } else {
@@ -10251,10 +10231,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
                             if (towerMode){
                                 trc("impossible here");
-                                return (false);
+                                return (False);
                             };
                             send_action(ACT_WITCH_DONATE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))));
-                            return (true);
+                            return (True);
                         };
                         trc("wrong source");
                     } else {
@@ -10269,14 +10249,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                     if (towerSG[(((((sourceSlot <= 10)) ? ((TSG_COPYCATS + (copyCatSel * COPYCAT)) + CPC_ITEMS) : TSG_LOOT_SACK) + ((((sourceSlot <= 10)) ? (sourceSlot - 1) : (sourceSlot - 11)) * SG_ITM_SIZE)) + SG_ITM_TYP)] > 0){
                                         trc("do it");
                                         send_action(ACT_MOVE_COPYCAT_ITEM, (((sourceSlot <= 10)) ? (copyCatSel + 101) : 2), (((sourceSlot <= 10)) ? sourceSlot : (sourceSlot - 10)), (((targetSlot <= 10)) ? (copyCatSel + 101) : 2), (((targetSlot <= 10)) ? targetSlot : (targetSlot - 10)));
-                                        return (true);
+                                        return (True);
                                     };
                                     trc("source slot empty");
                                 } else {
                                     if (Savegame[(((((sourceSlot <= 15)) ? SG_INVENTORY_OFFS : (((sourceSlot <= 21)) ? SG_FIDGET_ITEM1 : SG_SHAKES_ITEM1)) + ((sourceSlot - (((sourceSlot <= 15)) ? 1 : (((sourceSlot <= 21)) ? 16 : 22))) * SG_ITM_SIZE)) + SG_ITM_TYP)] > 0){
                                         trc("do it");
                                         send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), (((targetSlot <= 10)) ? 1 : (((targetSlot <= 15)) ? 2 : (((targetSlot <= 21)) ? 4 : 3))), (targetSlot - (((targetSlot <= 10)) ? 0 : (((targetSlot <= 15)) ? 10 : (((targetSlot <= 21)) ? 15 : 21)))));
-                                        return (true);
+                                        return (True);
                                     };
                                     trc("source slot empty");
                                 };
@@ -10290,7 +10270,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                     sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
                                     send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 10, 0);
                                     Show(TOILET_DROP);
-                                    return (true);
+                                    return (True);
                                 };
                             } else {
                                 trc("source wrong");
@@ -10299,7 +10279,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
             };
-            return (false);
+            return (False);
         };
         PotionSingleClick = function (evt:Event=undefined){
         };
@@ -10347,9 +10327,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var ShakesAugenZu:int;
             var WasPassiert:Boolean;
             pv = OnStage(POPUP_INFO);
-            WasPassiert = false;
+            WasPassiert = False;
             if (dragDropActive){
-                PlayerIdle = false;
+                PlayerIdle = False;
                 WasIdleCount = 0;
                 ShopIdle = 0;
                 Remove(FIDGET_DAY);
@@ -10358,8 +10338,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             if (ShopIdle == 400){
-                PlayerIdle = true;
-                WasPassiert = true;
+                PlayerIdle = True;
+                WasPassiert = True;
                 if (OnStage(SCR_SHAKES_BG)){
                     if (WasIdleCount > 2){
                         ShakesIdlePhase = 4;
@@ -10406,13 +10386,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 break;
                             case 35:
                                 WasIdleCount++;
-                                PlayerIdle = false;
+                                PlayerIdle = False;
                                 ShakesIdlePhase = 0;
                                 ShopIdle = 0;
                                 ShakesIdleStep = 0;
                                 break;
                             default:
-                                WasPassiert = false;
+                                WasPassiert = False;
                         };
                     };
                 };
@@ -10422,26 +10402,26 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (SaleRecoverTime > 0){
                 SaleRecoverTime--;
                 if (SaleRecoverTime == 0){
-                    WasPassiert = true;
+                    WasPassiert = True;
                 };
             };
             if (OnStage(SCR_SHAKES_BG)){
                 ShakesBlinzeln++;
                 if (ShakesBlinzeln > 73){
                     ShakesBlinzeln = int((Math.random() * 30));
-                    WasPassiert = true;
+                    WasPassiert = True;
                     ShakesAugenZu = 0;
                 } else {
                     if (ShakesBlinzeln > 72){
-                        WasPassiert = true;
+                        WasPassiert = True;
                         ShakesAugenZu = 0;
                     } else {
                         if (ShakesBlinzeln > 71){
-                            WasPassiert = true;
+                            WasPassiert = True;
                             ShakesAugenZu = 0;
                         } else {
                             if (ShakesBlinzeln > 70){
-                                WasPassiert = true;
+                                WasPassiert = True;
                                 ShakesAugenZu = 2;
                             };
                         };
@@ -10451,7 +10431,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     Add(SCREEN_SHAKES);
                     if ((((specialAction == 2)) or ((specialAction == 5)))){
                         Add(SHAKES_EPCIOVL);
-                        actor[SHAKES_EPCIOVL].mouseEnabled = false;
+                        actor[SHAKES_EPCIOVL].mouse_enabled = False;
                     };
                     if (!sleep_time()){
                         if (((PlayerIdle) and (!((ShakesIdlePhase == 0))))){
@@ -10499,26 +10479,26 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         AffeBlinzeln = int((Math.random() * 30));
                         if (int((Math.random() * 2)) == 1){
                             AffeStep = 1;
-                            WasPassiert = true;
+                            WasPassiert = True;
                         } else {
                             AffeStep = 3;
-                            WasPassiert = true;
+                            WasPassiert = True;
                         };
                     } else {
                         if (AffeBlinzeln > 70){
                             AffeStep = 2;
-                            WasPassiert = true;
+                            WasPassiert = True;
                         };
                     };
                     if (FidgetBlinzeln > 73){
                         FidgetBlinzeln = int((Math.random() * 30));
-                        FidgetAugenZu = false;
-                        WasPassiert = true;
+                        FidgetAugenZu = False;
+                        WasPassiert = True;
                     } else {
                         if (FidgetBlinzeln > 70){
                             if (OnStage(FIDGET_DAY)){
-                                FidgetAugenZu = true;
-                                WasPassiert = true;
+                                FidgetAugenZu = True;
+                                WasPassiert = True;
                             };
                         };
                     };
@@ -10529,7 +10509,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         };
                         if ((((specialAction == 2)) or ((specialAction == 5)))){
                             Add(FIDGET_EPCIOVL);
-                            actor[FIDGET_EPCIOVL].mouseEnabled = false;
+                            actor[FIDGET_EPCIOVL].mouse_enabled = False;
                         };
                         if (AffeStep >= 2){
                             Remove(FIDGET_AFFE1);
@@ -10554,7 +10534,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     Add(LBL_ERROR);
                 } else {
-                    PlayerIdle = false;
+                    PlayerIdle = False;
                     WasIdleCount = 0;
                     ShopIdle = 0;
                 };
@@ -10571,7 +10551,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var RerollReset:* = null;
             var evt:* = evt;
             RerollReset = function (evt:Event){
-                BlockReroll = false;
+                BlockReroll = False;
                 RerollResetTimer.removeEventListener(TimerEvent.TIMER, RerollReset);
             };
             if ((((evt is MouseEvent)) and (FrenzyMode))){
@@ -10584,11 +10564,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 RollFrenzy.start();
             };
             if (!BlockReroll){
-                BlockReroll = true;
+                BlockReroll = True;
                 RerollResetTimer = new Timer(5000, 1);
-                RerollResetTimer.addEventListener(TimerEvent.TIMER, RerollReset);
+                RerollResetTimer.add_event_listener(TimerEvent.TIMER, RerollReset);
                 RerollResetTimer.start();
-                PlayerIdle = false;
+                PlayerIdle = False;
                 ShopIdle = 0;
                 Remove(FIDGET_DAY);
                 Remove(FIDGET_IDLE);
@@ -10841,7 +10821,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         var JumpToGuildHall:* = function (evt:Event=undefined){
             ruhmesHalleSuchString = lastGuildShown;
-            ruhmesHalleSuchName = true;
+            ruhmesHalleSuchName = True;
             send_action(ACT_SCREEN_GILDENHALLE, ruhmesHalleSuchString, "0", "0");
         };
         var AttackLinkClick:* = function (evt:Event){
@@ -10874,8 +10854,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             var _local3 = actor[actorID];
             with (_local3) {
-                addEventListener(KeyboardEvent.KEY_UP, FixContent);
-                addEventListener(KeyboardEvent.KEY_DOWN, FixContent);
+                add_event_listener(KeyboardEvent.KEY_UP, FixContent);
+                add_event_listener(KeyboardEvent.KEY_DOWN, FixContent);
             };
         };
         ShowExtendedHistory = function (evt:Event){
@@ -10973,7 +10953,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (textToSend.toLowerCase() == "/delfights"){
                 PostScroll = 1;
-                fightFlushMode = true;
+                fightFlushMode = True;
                 send_action(ACT_SCREEN_POST);
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
@@ -11083,14 +11063,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             if (textToSend.toLowerCase() == "/sysblink off"){
-                so.data.noPulseOnSysMsg = true;
+                so.data.noPulseOnSysMsg = True;
                 so.flush();
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 ChatLine("/sysblink mode is now off");
                 return;
             };
             if (textToSend.toLowerCase() == "/sysblink on"){
-                so.data.noPulseOnSysMsg = false;
+                so.data.noPulseOnSysMsg = False;
                 so.flush();
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 ChatLine("/sysblink mode is now on");
@@ -11124,13 +11104,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             if (textToSend.toLowerCase() == "/pudo shroomster"){
-                FrenzyMode = false;
+                FrenzyMode = False;
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 ChatLine("Also nope.");
                 return;
             };
             if (textToSend.toLowerCase() == "/frenzy"){
-                FrenzyMode = false;
+                FrenzyMode = False;
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 ChatLine("Nope.");
                 return;
@@ -11151,7 +11131,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             if (textToSend.toLowerCase() == "/tvtest"){
-                tvTest = true;
+                tvTest = True;
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 ChatLine("TV test");
                 return;
@@ -11256,7 +11236,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         nextSuggestionAllow = function (evt:TimerEvent){
             nextSuggestionTimer.stop();
-            suggestionAllowed = true;
+            suggestionAllowed = True;
         };
         GildeBtnHandler = function (evt:Event=undefined){
             var i:* = 0;
@@ -11278,7 +11258,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     loadCrest();
                     break;
                 case GILDE_CREST_COLOR_PREV:
-                    crestSuggested = false;
+                    crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     var _local3 = crestColor;
                     var _local4 = crestColorSelection;
@@ -11290,7 +11270,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     loadCrest();
                     break;
                 case GILDE_CREST_COLOR_NEXT:
-                    crestSuggested = false;
+                    crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     _local3 = crestColor;
                     _local4 = crestColorSelection;
@@ -11302,7 +11282,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     loadCrest();
                     break;
                 case GILDE_CREST_CHANGE_PREV:
-                    crestSuggested = false;
+                    crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     _local3 = crest;
                     _local4 = selecterCrestElement;
@@ -11314,7 +11294,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     loadCrest();
                     break;
                 case GILDE_CREST_CHANGE_NEXT:
-                    crestSuggested = false;
+                    crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     _local3 = crest;
                     _local4 = selecterCrestElement;
@@ -11332,9 +11312,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     } else {
                         if (suggestionAllowed){
                             nextSuggestionTimer.start();
-                            suggestionAllowed = false;
+                            suggestionAllowed = False;
                             if (myOwnRank == 1){
-                                crestSuggested = true;
+                                crestSuggested = True;
                                 SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_APPLY]);
                             };
                             send_action(ACT_SEND_CHAT, ("#?" + getCrestStr()), lastChatIndex);
@@ -11386,7 +11366,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         setCrestStr(oldCrestStr);
                         selecterCrestElement = -1;
                     };
-                    crestSuggested = false;
+                    crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     loadCrest();
                     break;
@@ -11404,7 +11384,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             Add(GILDE_DIALOG_RAID);
                             _local3 = actor[LBL_GILDE_DIALOG_TEXT_RAID];
                             with (_local3) {
-                                wordWrap = true;
+                                wordWrap = True;
                                 width = GILDE_TEXT2_X;
                                 text = txt[TXT_GILDE_RAIDSTART].split("%1").join(txt[(TXT_DUNGEON_NAMES + int(lastGuildData[GUILD_RAID_LEVEL]))]).split("%2").join(String(lastRaidCost));
                             };
@@ -11479,7 +11459,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var DoPushHutBtn:* = function (timerevt:Event){
                 var timerevt:* = timerevt;
                 if (DestroyHutBtnTimer){
-                    DestroyHutBtnTimer = false;
+                    DestroyHutBtnTimer = False;
                     var _local3 = HutBtnRepeatTimer;
                     with (_local3) {
                         stop();
@@ -11511,17 +11491,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (HutBtnRepeatTimer.running){
                 return;
             };
-            DestroyHutBtnTimer = false;
+            DestroyHutBtnTimer = False;
             var _local3 = HutBtnRepeatTimer;
             with (_local3) {
                 delay = 1000;
-                addEventListener(TimerEvent.TIMER, DoPushHutBtn);
+                add_event_listener(TimerEvent.TIMER, DoPushHutBtn);
                 start();
             };
         };
         var HutBtnUpHandler:* = function (evt:Event){
             if (HutBtnRepeatTimer.running){
-                DestroyHutBtnTimer = true;
+                DestroyHutBtnTimer = True;
             };
         };
         HutFaceReset = function (evt:TimerEvent){
@@ -11569,9 +11549,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         HutFaceResetTimer.stop();
                         HutFaceResetTimer.start();
                         if (HutBtnRepeatTimer.running){
-                            DestroyHutBtnTimer = true;
+                            DestroyHutBtnTimer = True;
                         };
-                        return (false);
+                        return (False);
                     };
                     break;
                 case HUTMANN_MUSHBET:
@@ -11588,16 +11568,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         HutFaceResetTimer.stop();
                         HutFaceResetTimer.start();
                         if (HutBtnRepeatTimer.running){
-                            DestroyHutBtnTimer = true;
+                            DestroyHutBtnTimer = True;
                         };
-                        return (false);
+                        return (False);
                     };
                     break;
                 case HUTMANN_OK:
                     if (((((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0)) and (OnStage(HUTMANN_GOLDBET)))){
                         Remove(HUTMANN_OK, HUTMANN_PLACEBET);
                         Add(HUTMANN_BECHERCHOOSE);
-                        PlaceHutBet(true);
+                        PlaceHutBet(True);
                         HutFaceResetTimer.stop();
                         _local3 = actor[LBL_HUTMANN_TEXT];
                         with (_local3) {
@@ -11621,7 +11601,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     break;
             };
-            return (true);
+            return (True);
         };
         ChooseCup = function (evt:Event=undefined){
             Remove(HUTMANN_BECHERCHOOSE);
@@ -11629,7 +11609,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             CupChosen = (GetActorID(evt.target) - CA_HUTBECHER_1);
             send_action(ACT_PLACE_BET, String((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
         };
-        var PlaceHutBet:* = function (LeftToCenter:Boolean=false){
+        var PlaceHutBet:* = function (LeftToCenter:Boolean=False){
             var LeftBoxWidth:* = 0;
             var RightBoxWidth:* = 0;
             var LeftToCenter:Boolean = LeftToCenter;
@@ -11711,19 +11691,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         ShowBeerOffer = function (evt:Event=undefined){
             var i:* = 0;
-            var canBuy:* = false;
-            var tooHealthy:* = false;
+            var canBuy:* = False;
+            var tooHealthy:* = False;
             var evt:* = evt;
             canBuy = (int(Savegame[SG_BEERS]) < 10);
             if (Savegame[((SG_INVENTORY_OFFS + (SG_ITM_SIZE * 5)) + SG_ITM_EXT_ENCHANT)] == 71){
                 canBuy = (int(Savegame[SG_BEERS]) < 11);
             };
-            tooHealthy = false;
-            specialActionHint = true;
+            tooHealthy = False;
+            specialActionHint = True;
             Remove(TAVERNE_BARKEEPER_HINT);
             if (((canBuy) and ((int(Savegame[SG_TIMEBAR]) > (80 * 60))))){
-                canBuy = false;
-                tooHealthy = true;
+                canBuy = False;
+                tooHealthy = True;
             };
             RefreshTimeBar(((canBuy) ? (20 * 60) : 0));
             Remove(TAVERNE_CAS);
@@ -11811,7 +11791,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var highStakes:Boolean;
             i = 0;
             while (i < 3) {
-                highStakes = false;
+                highStakes = False;
                 Switch (Math.abs(int(Savegame[(SG_QUEST_OFFER_ENEMY1 + i)]))){
                     case 139:
                     case 145:
@@ -11819,25 +11799,25 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     case 152:
                     case 155:
                     case 157:
-                        highStakes = true;
+                        highStakes = True;
                         break;
                 };
                 enoughTime = (int(Savegame[(SG_QUEST_OFFER_DURATION1 + i)]) <= int(Savegame[SG_TIMEBAR]));
                 if (highStakes){
                     if (enoughTime){
-                        actor[(LBL_QO_CHOICE1 + i)].defaultTextFormat = FontFormat_HighStakes;
-                        actor[(LBL_QO_CHOICE1_HL + i)].defaultTextFormat = FontFormat_HighStakesHighLight;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_HighStakes;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_HighStakesHighLight;
                     } else {
-                        actor[(LBL_QO_CHOICE1 + i)].defaultTextFormat = FontFormat_HighStakesGrayed;
-                        actor[(LBL_QO_CHOICE1_HL + i)].defaultTextFormat = FontFormat_HighStakesHighLightGrayed;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_HighStakesGrayed;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_HighStakesHighLightGrayed;
                     };
                 } else {
                     if (enoughTime){
-                        actor[(LBL_QO_CHOICE1 + i)].defaultTextFormat = FontFormat_Default;
-                        actor[(LBL_QO_CHOICE1_HL + i)].defaultTextFormat = FontFormat_Highlight;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_Default;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_Highlight;
                     } else {
-                        actor[(LBL_QO_CHOICE1 + i)].defaultTextFormat = FontFormat_Grayed;
-                        actor[(LBL_QO_CHOICE1_HL + i)].defaultTextFormat = FontFormat_GrayedHighLight;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_Grayed;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_GrayedHighLight;
                     };
                 };
                 actor[(LBL_QO_CHOICE1 + i)].text = get_quest_title(i);
@@ -11856,7 +11836,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         ReturnQuest = function (evt:Event=undefined){
             actor[QUEST_SLOT].alpha = 1;
-            forceAdventure = false;
+            forceAdventure = False;
             Add(TAVERNE_CAS);
             Remove(QUESTOFFER);
             Remove(BEEROFFER);
@@ -11916,7 +11896,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if (gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                     _local3 = actor[QO_REWARDGOLD];
                     with (_local3) {
-                        visible = true;
+                        visible = True;
                         if (textDir == "right"){
                             x = (rewardX - width);
                             rewardX = (x - 8);
@@ -11927,7 +11907,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     _local3 = actor[LBL_QO_REWARDGOLD];
                     with (_local3) {
-                        visible = true;
+                        visible = True;
                         text = gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                         if (textDir == "right"){
                             x = (rewardX - textWidth);
@@ -11941,7 +11921,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if (silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                     _local3 = actor[QO_REWARDSILVER];
                     with (_local3) {
-                        visible = true;
+                        visible = True;
                         if (textDir == "right"){
                             x = (rewardX - width);
                             rewardX = (x - 8);
@@ -11952,7 +11932,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     _local3 = actor[LBL_QO_REWARDSILVER];
                     with (_local3) {
-                        visible = true;
+                        visible = True;
                         text = silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                         if (textDir == "right"){
                             x = (rewardX - textWidth);
@@ -11995,7 +11975,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
                 if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
                     SetCnt(QUEST_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, quest_id));
-                    ItemPopup(QUEST_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, false, false, false);
+                    ItemPopup(QUEST_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, False, False, False);
                 } else {
                     SetCnt(QUEST_SLOT, C_EMPTY);
                     EnablePopup(FIGHT_SLOT);
@@ -12045,7 +12025,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         CheckLM = function (evt:Event=undefined){
             var req:URLRequest;
             Add(CB_LM_CHECKED);
-            lightMode = true;
+            lightMode = True;
             so.data.lightMode = lightMode;
             so.flush();
             if (param_lowres_url != ""){
@@ -12056,7 +12036,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         UncheckLM = function (evt:Event=undefined){
             var req:URLRequest;
             Remove(CB_LM_CHECKED);
-            lightMode = false;
+            lightMode = False;
             so.data.lightMode = lightMode;
             so.flush();
             if (param_lowres_url != ""){
@@ -12066,45 +12046,45 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         CheckCS = function (evt:Event=undefined){
             Add(CB_CS_CHECKED);
-            chatSound = true;
+            chatSound = True;
             so.data.chatSound = chatSound;
             so.flush();
             Play(SND_ERROR);
         };
         UncheckCS = function (evt:Event=undefined){
             Remove(CB_CS_CHECKED);
-            chatSound = false;
+            chatSound = False;
             so.data.chatSound = chatSound;
             so.flush();
         };
         CheckCompare = function (evt:Event=undefined){
             Add(CB_COMPARE_CHECKED);
-            compareItems = true;
+            compareItems = True;
             so.data.compareItems = compareItems;
             so.flush();
         };
         UncheckCompare = function (evt:Event=undefined){
             Remove(CB_COMPARE_CHECKED);
-            compareItems = false;
+            compareItems = False;
             so.data.compareItems = compareItems;
             so.flush();
         };
         CheckTV = function (evt:Event=undefined){
             Add(CB_TV_CHECKED);
-            disableTV = true;
+            disableTV = True;
             so.data.disableTV = disableTV;
             so.flush();
         };
         UncheckTV = function (evt:Event=undefined){
             Remove(CB_TV_CHECKED);
-            disableTV = false;
+            disableTV = False;
             so.data.disableTV = disableTV;
             so.flush();
         };
         VolumeChange = function (value:int):void{
             var value:* = value;
             if (notFirstVolChange){
-                notFirstVolChange = false;
+                notFirstVolChange = False;
                 if (so.data.volume == undefined){
                     so.data.volume = 5;
                 };
@@ -12116,7 +12096,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 so.flush();
                 SetVolume((so.data.volume / 10));
                 if (notSecondVolChange){
-                    notSecondVolChange = false;
+                    notSecondVolChange = False;
                 } else {
                     Play(SND_TEST);
                 };
@@ -12174,9 +12154,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = true;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = false;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = false;
+                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = False;
+                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
                     Add(OPTION_DOCHANGE);
                     break;
                 case OPTION_CHANGE_EMAIL:
@@ -12194,9 +12174,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = true;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = false;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = false;
+                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = False;
+                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
                     Add(OPTION_DOCHANGE);
                     break;
                 case OPTION_CHANGE_PASSWORD:
@@ -12209,9 +12189,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = true;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = true;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = true;
+                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = True;
                     Add(OPTION_DOCHANGE);
                     break;
                 case OPTION_DELETE:
@@ -12224,9 +12204,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = true;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = true;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = false;
+                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
                     Add(OPTION_DOCHANGE);
                     break;
                 case OPTION_RESEND:
@@ -12340,7 +12320,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var ResendConfirmationEmail:* = function (evt:Event=undefined){
             send_action(ACT_RESEND_EMAIL);
         };
-        attPriceLimitation = false;
+        attPriceLimitation = False;
         GoldKurve = new Array();
         TrueAttPreis = new Array();
         GoldKurve[1] = 25;
@@ -12369,7 +12349,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 TrueAttPreis[i] = int((TrueAttPreis[i] * 5));
                 if (TrueAttPreis[i] > 0x3B9ACA00){
                     TrueAttPreis[i] = 0x3B9ACA00;
-                    attPriceLimitation = true;
+                    attPriceLimitation = True;
                 };
             };
             i = (i + 1);
@@ -12396,14 +12376,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             i = (i + 1);
         };
-        DefineSnd(SND_CLICK, "res/sfx/click.mp3", true);
-        DefineSnd(SND_ERROR, "res/sfx/error.mp3", false);
-        DefineSnd(SND_JINGLE, "res/sfx/jingle.mp3", true);
-        DefineImg(IF_BACKGROUND, (("res/gfx/if/login" + login_background_id) + ".jpg"), true, 280, 100);
+        DefineSnd(SND_CLICK, "res/sfx/click.mp3", True);
+        DefineSnd(SND_ERROR, "res/sfx/error.mp3", False);
+        DefineSnd(SND_JINGLE, "res/sfx/jingle.mp3", True);
+        DefineImg(IF_BACKGROUND, (("res/gfx/if/login" + login_background_id) + ".jpg"), True, 280, 100);
         DefineFromClass(IF_LEFT, interface_left_jpg, 0, 100);
         DefineFromClass(IF_TOP, interface_top_jpg, 0, 0);
         DefineFromClass(IF_MAIN, interface_main_jpg, 280, 100);
-        actor[IF_MAIN].mouseEnabled = false;
+        actor[IF_MAIN].mouse_enabled = False;
         DefineBunch(IF_MAIN, IF_BACKGROUND, IF_LEFT, IF_TOP, IF_MAIN, IF_IMPRESSUM, IF_FORUM, IF_AGB, IF_DATENSCHUTZ, IF_ANLEITUNG);
         if (shop_url != ""){
             AddBunch(IF_MAIN, IF_SHOP);
@@ -12411,16 +12391,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 0;
         while (i < param_social_buttons.length) {
             DefineCnt((SOCIAL + i), (120 + (i * 40)), 2);
-            DefineImg((SOCIAL + i), (("res/gfx/if/social_" + param_social_buttons[i].split(":")[0]) + ".png"), true, 0, 0);
+            DefineImg((SOCIAL + i), (("res/gfx/if/social_" + param_social_buttons[i].split(":")[0]) + ".png"), True, 0, 0);
             MakePersistent((SOCIAL + i), (SOCIAL + i));
             var _local2 = actor[(SOCIAL + i)];
             with (_local2) {
                 addChild(actor[(SOCIAL + i)]);
                 textLinkMakeClickable(getChildAt(0).parent);
-                addEventListener(MouseEvent.CLICK, ShowSocial);
-                buttonMode = true;
-                useHandCursor = true;
-                mouseChildren = false;
+                add_event_listener(MouseEvent.CLICK, ShowSocial);
+                buttonMode = True;
+                useHandCursor = True;
+                mouseChildren = False;
             };
             if (param_social_buttons[i].split(":").length > 1){
                 if (txt[int(param_social_buttons[i].split(":")[1])]){
@@ -12436,17 +12416,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 navigateToURL(new URLRequest(param_sponsor_url), "_blank");
             };
             DefineCnt(IF_SPONSOR, SPONSOR_X, SPONSOR_Y);
-            DefineImg(IF_SPONSOR, (("res/gfx/if/sponsor_" + param_sponsor) + ".png"), true, 0, 0);
+            DefineImg(IF_SPONSOR, (("res/gfx/if/sponsor_" + param_sponsor) + ".png"), True, 0, 0);
             if (param_sponsor_url != ""){
                 MakePersistent(IF_SPONSOR, IF_SPONSOR);
                 AddBunch(IF_MAIN, IF_SPONSOR);
                 _local2 = actor[IF_SPONSOR];
                 with (_local2) {
                     addChild(actor[IF_SPONSOR]);
-                    addEventListener(MouseEvent.CLICK, ShowSponsor);
-                    mouseChildren = false;
-                    useHandCursor = true;
-                    buttonMode = true;
+                    add_event_listener(MouseEvent.CLICK, ShowSponsor);
+                    mouseChildren = False;
+                    useHandCursor = True;
+                    buttonMode = True;
                 };
             } else {
                 MakePersistent(IF_SPONSOR);
@@ -12467,10 +12447,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_LOGOUT]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (((shop_url)!="") ? LOGOUT_X_WITH_SHOP : LOGOUT_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, RequestLOGout);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, RequestLOGout);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(IF_IMPRESSUM, IMPRESSUM_X, LOGOUT_Y);
         DefineLbl(LBL_IF_IMPRESSUM, txt[TXT_IMPRESSUM_LINK], 0, 0, FontFormat_LOGoutLink);
@@ -12481,10 +12461,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_IMPRESSUM]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (IMPRESSUM_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, ShowImpressum);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowImpressum);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(IF_FORUM, ((shop_url)!="") ? FORUM_X_WITH_SHOP : FORUM_X, LOGOUT_Y);
         DefineLbl(LBL_IF_FORUM, txt[TXT_FORUM_LINK], 0, 0, FontFormat_LOGoutLink);
@@ -12495,10 +12475,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_FORUM]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (((shop_url)!="") ? FORUM_X_WITH_SHOP : FORUM_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, ShowForum);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowForum);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(IF_AGB, AGB_X, LOGOUT_Y);
         DefineLbl(LBL_IF_AGB, txt[TXT_AGB_LINK], 0, 0, FontFormat_LOGoutLink);
@@ -12509,10 +12489,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_AGB]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (AGB_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, ShowAGB);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowAGB);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(IF_DATENSCHUTZ, DATENSCHUTZ_X, LOGOUT_Y);
         DefineLbl(LBL_IF_DATENSCHUTZ, txt[TXT_DATENSCHUTZ_LINK], 0, 0, FontFormat_LOGoutLink);
@@ -12523,10 +12503,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_DATENSCHUTZ]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (DATENSCHUTZ_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, ShowDatenschutz);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowDatenschutz);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(IF_ANLEITUNG, ((shop_url)!="") ? ANLEITUNG_X_WITH_SHOP : ANLEITUNG_X, LOGOUT_Y);
         DefineLbl(LBL_IF_ANLEITUNG, txt[TXT_ANLEITUNG_LINK], 0, 0, FontFormat_LOGoutLink);
@@ -12537,10 +12517,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_ANLEITUNG]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (((shop_url)!="") ? ANLEITUNG_X_WITH_SHOP : ANLEITUNG_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, ShowAnleitung);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowAnleitung);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(IF_SHOP, SHOP_X, LOGOUT_Y);
         DefineLbl(LBL_IF_SHOP, txt[TXT_SHOP_LINK], 0, 0, FontFormat_LOGoutLink);
@@ -12551,29 +12531,29 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_SHOP]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (SHOP_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, ShowShop);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowShop);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
-        DefineImg(IF_KRIEGER, "res/gfx/scr/hall/punkt_krieger.png", true, 0, 0);
-        DefineImg(IF_JAEGER, "res/gfx/scr/hall/punkt_dieb.png", true, 0, 0);
-        DefineImg(IF_MAGIER, "res/gfx/scr/hall/punkt_magier.png", true, 0, 0);
-        DefineImg(IF_GOLD, "res/gfx/if/icon_gold.png", true, 0, IF_LBL_GOLD_Y);
+        DefineImg(IF_KRIEGER, "res/gfx/scr/hall/punkt_krieger.png", True, 0, 0);
+        DefineImg(IF_JAEGER, "res/gfx/scr/hall/punkt_dieb.png", True, 0, 0);
+        DefineImg(IF_MAGIER, "res/gfx/scr/hall/punkt_magier.png", True, 0, 0);
+        DefineImg(IF_GOLD, "res/gfx/if/icon_gold.png", True, 0, IF_LBL_GOLD_Y);
         DefineLbl(LBL_IF_GOLD, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
-        DefineImg(IF_SILBER, "res/gfx/if/icon_silber.png", true, IF_LBL_GOLDPILZE_X, IF_LBL_GOLD_Y);
+        DefineImg(IF_SILBER, "res/gfx/if/icon_silber.png", True, IF_LBL_GOLDPILZE_X, IF_LBL_GOLD_Y);
         DefineLbl(LBL_IF_SILBER, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
         EnablePopup(LBL_IF_SILBER, txt[TXT_SILVER_HINT]);
         EnablePopup(IF_SILBER, txt[TXT_SILVER_HINT]);
-        DefineImg(IF_PILZE, "res/gfx/if/icon_pilz.png", true, IF_LBL_GOLDPILZE_X, IF_LBL_PILZE_Y);
+        DefineImg(IF_PILZE, "res/gfx/if/icon_pilz.png", True, IF_LBL_GOLDPILZE_X, IF_LBL_PILZE_Y);
         DefineLbl(LBL_IF_PILZE, "", 0, IF_LBL_PILZE_Y, FontFormat_Default);
         MakePersistent(LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER, IF_GOLD, IF_SILBER, IF_PILZE);
         DefineBunch(IF_STATS, LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER, IF_GOLD, IF_SILBER, IF_PILZE);
-        DefineImg(IF_HUTMANN1, "res/gfx/scr/taverne/huetchenspieler/hatplayer1.png", true, 0, 0);
-        DefineImg(IF_HUTMANN2, "res/gfx/scr/taverne/huetchenspieler/hatplayer2.png", true, 0, 0);
-        DefineImg(IF_HUTMANN_OVL, "res/gfx/scr/taverne/huetchenspieler/hatplayer_ovl.jpg", true, IF_HUTLINK_X, IF_HUTLINK_Y);
+        DefineImg(IF_HUTMANN1, "res/gfx/scr/taverne/huetchenspieler/hatplayer1.png", True, 0, 0);
+        DefineImg(IF_HUTMANN2, "res/gfx/scr/taverne/huetchenspieler/hatplayer2.png", True, 0, 0);
+        DefineImg(IF_HUTMANN_OVL, "res/gfx/scr/taverne/huetchenspieler/hatplayer_ovl.jpg", True, IF_HUTLINK_X, IF_HUTLINK_Y);
         DefineCnt(IF_HUTMANN, IF_HUTLINK_X, IF_HUTLINK_Y);
-        DefineImg(IF_TOILET, "res/gfx/scr/taverne/wc_sign.png", true, 0, 0);
+        DefineImg(IF_TOILET, "res/gfx/scr/taverne/wc_sign.png", True, 0, 0);
         DefineCnt(IF_TOILET, (IF_HUTLINK_X + 90), (IF_HUTLINK_Y + 40));
         MakePersistent(IF_HUTMANN1, IF_HUTMANN2, IF_HUTMANN_OVL, IF_HUTMANN, IF_TOILET, IF_TOILET);
         _local2 = actor[IF_HUTMANN];
@@ -12601,22 +12581,22 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefiniereInterfaceButton(IF_EHRENHALLE, TXT_EHRENHALLE);
         DefiniereInterfaceButton(IF_WELTKARTE, TXT_WELTKARTE);
         DefiniereInterfaceButton(IF_OPTIONEN, TXT_OPTIONEN);
-        actor[IF_WELTKARTE].addEventListener(MouseEvent.MOUSE_OVER, dungeonBtnHover);
-        actor[IF_WELTKARTE].addEventListener(MouseEvent.MOUSE_OUT, dungeonBtnLeave);
+        actor[IF_WELTKARTE].add_event_listener(MouseEvent.MOUSE_OVER, dungeonBtnHover);
+        actor[IF_WELTKARTE].add_event_listener(MouseEvent.MOUSE_OUT, dungeonBtnLeave);
         dungeonBtnUpdateDelayTimer = new Timer(500);
-        dungeonBtnUpdateDelayTimer.addEventListener(TimerEvent.TIMER, dungeonBtnUpdateDelay);
-        actor[IF_ARBEITEN].addEventListener(MouseEvent.MOUSE_OVER, workBtnHover);
-        actor[IF_ARBEITEN].addEventListener(MouseEvent.MOUSE_OUT, workBtnLeave);
+        dungeonBtnUpdateDelayTimer.add_event_listener(TimerEvent.TIMER, dungeonBtnUpdateDelay);
+        actor[IF_ARBEITEN].add_event_listener(MouseEvent.MOUSE_OVER, workBtnHover);
+        actor[IF_ARBEITEN].add_event_listener(MouseEvent.MOUSE_OUT, workBtnLeave);
         workBtnUpdateDelayTimer = new Timer(500);
-        workBtnUpdateDelayTimer.addEventListener(TimerEvent.TIMER, workBtnUpdateDelay);
-        actor[IF_TAVERNE].addEventListener(MouseEvent.MOUSE_OVER, tavBtnHover);
-        actor[IF_TAVERNE].addEventListener(MouseEvent.MOUSE_OUT, tavBtnLeave);
+        workBtnUpdateDelayTimer.add_event_listener(TimerEvent.TIMER, workBtnUpdateDelay);
+        actor[IF_TAVERNE].add_event_listener(MouseEvent.MOUSE_OVER, tavBtnHover);
+        actor[IF_TAVERNE].add_event_listener(MouseEvent.MOUSE_OUT, tavBtnLeave);
         tavBtnUpdateDelayTimer = new Timer(500);
-        tavBtnUpdateDelayTimer.addEventListener(TimerEvent.TIMER, tavBtnUpdateDelay);
-        actor[IF_ARENA].addEventListener(MouseEvent.MOUSE_OVER, arenaBtnHover);
-        actor[IF_ARENA].addEventListener(MouseEvent.MOUSE_OUT, arenaBtnLeave);
+        tavBtnUpdateDelayTimer.add_event_listener(TimerEvent.TIMER, tavBtnUpdateDelay);
+        actor[IF_ARENA].add_event_listener(MouseEvent.MOUSE_OVER, arenaBtnHover);
+        actor[IF_ARENA].add_event_listener(MouseEvent.MOUSE_OUT, arenaBtnLeave);
         arenaBtnUpdateDelayTimer = new Timer(500);
-        arenaBtnUpdateDelayTimer.addEventListener(TimerEvent.TIMER, arenaBtnUpdateDelay);
+        arenaBtnUpdateDelayTimer.add_event_listener(TimerEvent.TIMER, arenaBtnUpdateDelay);
         DefineBunch(IF_BUTTONS, IF_HUTMANN, IF_TOILET, IF_HUTMANN_OVL, IF_TAVERNE, IF_ARENA, IF_ARBEITEN, IF_SCHMIEDE, IF_ZAUBERLADEN);
         AddBunch(IF_BUTTONS, IF_STALL, IF_PILZDEALER, IF_CHARAKTER, IF_POST, IF_GILDEN, IF_EHRENHALLE, IF_WELTKARTE, IF_OPTIONEN);
         i = IF_DRAGON_1;
@@ -12625,39 +12605,39 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             i = (i + 1);
         };
         HutmannLinkTimer = new Timer(50);
-        HutmannLinkTimer.addEventListener(TimerEvent.TIMER, HutmannLinkAniEvent);
+        HutmannLinkTimer.add_event_listener(TimerEvent.TIMER, HutmannLinkAniEvent);
         HutmannLinkTimer.start();
-        HutmannLinkVis = false;
-        HutmannLinkOver = false;
+        HutmannLinkVis = False;
+        HutmannLinkOver = False;
         HutmannRelY = 0;
         var HutmannFrame:* = 0;
         HutmannAniStep = 0;
         HutmannCountdown = 0;
         _local2 = actor[IF_TAVERNE];
         with (_local2) {
-            addEventListener(MouseEvent.MOUSE_OVER, TaverneBtnIn);
-            addEventListener(MouseEvent.MOUSE_OUT, TaverneBtnOut);
-            addEventListener(MouseEvent.MOUSE_UP, TaverneBtnOut);
+            add_event_listener(MouseEvent.MOUSE_OVER, TaverneBtnIn);
+            add_event_listener(MouseEvent.MOUSE_OUT, TaverneBtnOut);
+            add_event_listener(MouseEvent.MOUSE_UP, TaverneBtnOut);
         };
         _local2 = actor[IF_HUTMANN];
         with (_local2) {
-            addEventListener(MouseEvent.MOUSE_OVER, TaverneBtnIn);
-            addEventListener(MouseEvent.MOUSE_OUT, TaverneBtnOut);
-            addEventListener(MouseEvent.MOUSE_UP, TaverneBtnOut);
-            addEventListener(MouseEvent.MOUSE_DOWN, ShowHutmann);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.MOUSE_OVER, TaverneBtnIn);
+            add_event_listener(MouseEvent.MOUSE_OUT, TaverneBtnOut);
+            add_event_listener(MouseEvent.MOUSE_UP, TaverneBtnOut);
+            add_event_listener(MouseEvent.MOUSE_DOWN, ShowHutmann);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         _local2 = actor[IF_TOILET];
         with (_local2) {
-            addEventListener(MouseEvent.MOUSE_OVER, TaverneBtnIn);
-            addEventListener(MouseEvent.MOUSE_OUT, TaverneBtnOut);
-            addEventListener(MouseEvent.MOUSE_UP, TaverneBtnOut);
-            addEventListener(MouseEvent.MOUSE_DOWN, RequestToilet);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.MOUSE_OVER, TaverneBtnIn);
+            add_event_listener(MouseEvent.MOUSE_OUT, TaverneBtnOut);
+            add_event_listener(MouseEvent.MOUSE_UP, TaverneBtnOut);
+            add_event_listener(MouseEvent.MOUSE_DOWN, RequestToilet);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         MakePersistent(IF_BACKGROUND, IF_LEFT, IF_TOP, IF_MAIN);
         DefineFromClass(IF_WINDOW, interface_window_png, IF_WIN_X, IF_WIN_Y);
@@ -12684,14 +12664,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineFromClass(INP_LOGIN_PASSWORD, text_input2, (actor[LBL_LOGIN_PASSWORD].x + IF_WIN_INPUTS_FIELD_X), (actor[LBL_LOGIN_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y), 2, "password");
         DefineFromClass(INP_EMAIL, text_input2, (actor[LBL_EMAIL].x + IF_WIN_INPUTS_FIELD_X), (actor[LBL_EMAIL].y + IF_WIN_INPUTS_FIELD_Y), 2, "email");
         DefineFromClass(INP_PASSWORD, text_input1, (actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X), (actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y), 2, "password");
-        DefineImg(FILLSPACE, (("res/gfx/if/file" + "space.pn") + "g"), false, 280, 100);
-        DefineImg(PASSWORD_SMILEY_SAD, "res/gfx/if/smiley_sad.png", false, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
-        DefineImg(PASSWORD_SMILEY_NEUTRAL, "res/gfx/if/smiley_neutral.png", false, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
-        DefineImg(PASSWORD_SMILEY_HAPPY, "res/gfx/if/smiley_happy.png", false, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
+        DefineImg(FILLSPACE, (("res/gfx/if/file" + "space.pn") + "g"), False, 280, 100);
+        DefineImg(PASSWORD_SMILEY_SAD, "res/gfx/if/smiley_sad.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
+        DefineImg(PASSWORD_SMILEY_NEUTRAL, "res/gfx/if/smiley_neutral.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
+        DefineImg(PASSWORD_SMILEY_HAPPY, "res/gfx/if/smiley_happy.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
         EnablePopup(PASSWORD_SMILEY_SAD, txt[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
         EnablePopup(PASSWORD_SMILEY_NEUTRAL, txt[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
         EnablePopup(PASSWORD_SMILEY_HAPPY, txt[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
-        actor[INP_PASSWORD].addEventListener(KeyboardEvent.KEY_UP, gradePassword);
+        actor[INP_PASSWORD].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
         DefineCnt(FORGOT_PASSWORD, 0, (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_1_Y) + AIRRelMoveY));
         DefineLbl(LBL_FORGOT_PASSWORD, txt[TXT_FORGOT_PASSWORD], 0, 0, FontFormat_Default);
         AddFilter(LBL_FORGOT_PASSWORD, Filter_Shadow);
@@ -12707,37 +12687,37 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_FORGOT_PASSWORD].textWidth / 2)));
             addChild(actor[LBL_FORGOT_PASSWORD]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, ShowForgotPasswordScreen);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowForgotPasswordScreen);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         _local2 = actor[GOTO_LOGIN];
         with (_local2) {
             x = ((IF_WIN_X + IF_GOTO_LOGIN_X) - int(actor[LBL_GOTO_LOGIN].textWidth));
             addChild(actor[LBL_GOTO_LOGIN]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, ShowBuildCharacterScreen);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowBuildCharacterScreen);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         _local2 = actor[GOTO_SIGNUP];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_GOTO_SIGNUP].textWidth / 2)));
             addChild(actor[LBL_GOTO_SIGNUP]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, DoGotoSignup);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, DoGotoSignup);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
-        actor[INP_PASSWORD].getChildAt(1).displayAsPassword = true;
-        actor[INP_LOGIN_PASSWORD].getChildAt(1).displayAsPassword = true;
+        actor[INP_PASSWORD].getChildAt(1).displayAsPassword = True;
+        actor[INP_LOGIN_PASSWORD].getChildAt(1).displayAsPassword = True;
         DefineFromClass(CB_AGB_UNCHECKED, cb_unchecked, (IF_WIN_X + IF_WIN_CB_X), ((IF_WIN_Y + IF_WIN_CB_Y) + AIRRelMoveY));
-        actor[CB_AGB_UNCHECKED].addEventListener(MouseEvent.CLICK, CheckAGB);
+        actor[CB_AGB_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckAGB);
         DefineFromClass(CB_AGB_CHECKED, cb_checked, (IF_WIN_X + IF_WIN_CB_X), ((IF_WIN_Y + IF_WIN_CB_Y) + AIRRelMoveY));
-        actor[CB_AGB_CHECKED].addEventListener(MouseEvent.CLICK, UncheckAGB);
+        actor[CB_AGB_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckAGB);
         DefineLbl(LBL_LOGIN_LEGAL_0, (((txt[TXT_LOGIN_LEGAL_2] == "")) ? txt[TXT_LOGIN_LEGAL_1].split("%link")[0] : ""), (actor[CB_AGB_UNCHECKED].x + AGB_LBL_X), (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
         AddFilter(LBL_LOGIN_LEGAL_0, Filter_Shadow);
         DefineCnt(AGB, ((actor[LBL_LOGIN_LEGAL_0].x + 6) + actor[LBL_LOGIN_LEGAL_0].width), (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
@@ -12747,10 +12727,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[AGB];
         with (_local2) {
             addChild(actor[LBL_AGB]);
-            addEventListener(MouseEvent.CLICK, ShowAGB);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowAGB);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineLbl(LBL_LOGIN_LEGAL_1, (((txt[TXT_LOGIN_LEGAL_2] == "")) ? txt[TXT_LOGIN_LEGAL_1].split("%link")[1] : txt[TXT_LOGIN_LEGAL_1]), ((actor[AGB].x + 6) + actor[AGB].width), (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
         AddFilter(LBL_LOGIN_LEGAL_1, Filter_Shadow);
@@ -12761,10 +12741,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[DATENSCHUTZ];
         with (_local2) {
             addChild(actor[LBL_DATENSCHUTZ]);
-            addEventListener(MouseEvent.CLICK, ShowDatenschutz);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, ShowDatenschutz);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineLbl(LBL_LOGIN_LEGAL_2, (((txt[TXT_LOGIN_LEGAL_2] == "")) ? txt[TXT_LOGIN_LEGAL_1].split("%link")[2] : txt[TXT_LOGIN_LEGAL_2]), ((actor[DATENSCHUTZ].x + 6) + actor[DATENSCHUTZ].width), (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
         AddFilter(LBL_LOGIN_LEGAL_2, Filter_Shadow);
@@ -12778,15 +12758,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             alpha = 0.6;
         };
         DefineFromClass(CB_FUCK_UNCHECKED, cb_unchecked, 320, ((IF_WIN_Y + IF_WIN_CB_Y) + 150));
-        actor[CB_FUCK_UNCHECKED].addEventListener(MouseEvent.CLICK, CheckFuck);
+        actor[CB_FUCK_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckFuck);
         DefineFromClass(CB_FUCK_CHECKED, cb_checked, 320, ((IF_WIN_Y + IF_WIN_CB_Y) + 150));
-        actor[CB_FUCK_CHECKED].addEventListener(MouseEvent.CLICK, UncheckFuck);
+        actor[CB_FUCK_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckFuck);
         DefineLbl(LBL_FUCK, param_bullshit_text, 380, ((IF_WIN_Y + IF_WIN_CB_Y) + 150), FontFormat_Bullshit);
         AddFilter(LBL_FUCK, Filter_Shadow);
         _local2 = actor[LBL_FUCK];
         with (_local2) {
             width = 840;
-            wordWrap = true;
+            wordWrap = True;
         };
         DefineBunch(FUCK, SHP_FUCK_BLACK_SQUARE, CB_FUCK_UNCHECKED, LBL_FUCK);
         DefineBtn(IF_LOGIN, txt[TXT_LOGIN], RequestLOGin, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveYButton2));
@@ -12806,10 +12786,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         PulseLevel = 0;
         _local2 = PulseTimer;
         with (_local2) {
-            addEventListener(TimerEvent.TIMER, PulseEvent);
+            add_event_listener(TimerEvent.TIMER, PulseEvent);
             start();
         };
-        DefineImg(SCR_BUILDCHAR_BACKGROUND, "res/gfx/scr/buildchar/char_erstellung.png", false, SCR_BUILDCHAR_1_X, SCR_BUILDCHAR_1_Y);
+        DefineImg(SCR_BUILDCHAR_BACKGROUND, "res/gfx/scr/buildchar/char_erstellung.png", False, SCR_BUILDCHAR_1_X, SCR_BUILDCHAR_1_Y);
         DefineBunch(SCR_BUILDCHAR, SCR_BUILDCHAR_BACKGROUND, IF_MAIN);
         DefineLbl(LBL_SCREEN_TITLE, txt[TXT_CREATE_CHARACTER], SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_SCREEN_TITLE, Filter_Shadow);
@@ -12822,14 +12802,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[LBL_CREATE_RACE_DESC];
         with (_local2) {
             width = BUILDCHAR_LINES_X;
-            wordWrap = true;
+            wordWrap = True;
         };
         DefineLbl(LBL_CREATE_CLASS, "", CREATE_RACE_X, 0, FontFormat_Default);
         DefineLbl(LBL_CREATE_CLASS_DESC, "", CREATE_RACE_X, 0, FontFormat_DefaultLeft);
         _local2 = actor[LBL_CREATE_CLASS_DESC];
         with (_local2) {
             width = BUILDCHAR_LINES_X;
-            wordWrap = true;
+            wordWrap = True;
         };
         AddFilter(LBL_CREATE_RACE, Filter_Shadow);
         AddFilter(LBL_CREATE_RACE_DESC, Filter_Shadow);
@@ -12843,34 +12823,34 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_CREATE_GOTO_LOGIN]);
             textLinkMakeClickable(getChildAt(0).parent);
-            mouseChildren = false;
-            mouseEnabled = true;
-            buttonMode = true;
-            useHandCursor = true;
-            addEventListener(MouseEvent.CLICK, ShowLOGinScreen);
+            mouseChildren = False;
+            mouse_enabled = True;
+            buttonMode = True;
+            useHandCursor = True;
+            add_event_listener(MouseEvent.CLICK, ShowLOGinScreen);
             x = (SCR_BUILDCHAR_LOGIN_X - actor[LBL_CREATE_GOTO_LOGIN].textWidth);
         };
-        DefineImg(M_IDLE, "res/gfx/scr/buildchar/button_male_idle.jpg", false, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
+        DefineImg(M_IDLE, "res/gfx/scr/buildchar/button_male_idle.jpg", False, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
         DefineCnt(M_ACT, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
-        DefineImg(F_IDLE, "res/gfx/scr/buildchar/button_female_idle.jpg", false, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X), SCR_BUILDCHAR_GENDER_Y);
+        DefineImg(F_IDLE, "res/gfx/scr/buildchar/button_female_idle.jpg", False, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X), SCR_BUILDCHAR_GENDER_Y);
         DefineCnt(F_ACT, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X), SCR_BUILDCHAR_GENDER_Y);
-        actor[M_IDLE].addEventListener(MouseEvent.CLICK, SelectGender);
-        actor[F_IDLE].addEventListener(MouseEvent.CLICK, SelectGender);
+        actor[M_IDLE].add_event_listener(MouseEvent.CLICK, SelectGender);
+        actor[F_IDLE].add_event_listener(MouseEvent.CLICK, SelectGender);
         i = 0;
         while (i < 2) {
             EnablePopup((M_IDLE + (i * 2)), txt[(TXT_GENDER_M + i)]);
             EnablePopup((M_ACT + (i * 2)), txt[(TXT_GENDER_M + i)]);
             i = (i + 1);
         };
-        DefineImg(KASTE_1_IDLE, "res/gfx/scr/buildchar/button_warrior_idle.jpg", false, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
+        DefineImg(KASTE_1_IDLE, "res/gfx/scr/buildchar/button_warrior_idle.jpg", False, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
         DefineCnt(KASTE_1_ACT, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
-        DefineImg(KASTE_2_IDLE, "res/gfx/scr/buildchar/button_mage_idle.jpg", false, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X), SCR_BUILDCHAR_CASTE_Y);
+        DefineImg(KASTE_2_IDLE, "res/gfx/scr/buildchar/button_mage_idle.jpg", False, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X), SCR_BUILDCHAR_CASTE_Y);
         DefineCnt(KASTE_2_ACT, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X), SCR_BUILDCHAR_CASTE_Y);
-        DefineImg(KASTE_3_IDLE, "res/gfx/scr/buildchar/button_hunter_idle.jpg", false, (SCR_BUILDCHAR_CASTE_X + (SCR_BUILDCHAR_CASTE_X * 2)), SCR_BUILDCHAR_CASTE_Y);
+        DefineImg(KASTE_3_IDLE, "res/gfx/scr/buildchar/button_hunter_idle.jpg", False, (SCR_BUILDCHAR_CASTE_X + (SCR_BUILDCHAR_CASTE_X * 2)), SCR_BUILDCHAR_CASTE_Y);
         DefineCnt(KASTE_3_ACT, (SCR_BUILDCHAR_CASTE_X + (SCR_BUILDCHAR_CASTE_X * 2)), SCR_BUILDCHAR_CASTE_Y);
-        actor[KASTE_1_IDLE].addEventListener(MouseEvent.CLICK, SelectCaste);
-        actor[KASTE_2_IDLE].addEventListener(MouseEvent.CLICK, SelectCaste);
-        actor[KASTE_3_IDLE].addEventListener(MouseEvent.CLICK, SelectCaste);
+        actor[KASTE_1_IDLE].add_event_listener(MouseEvent.CLICK, SelectCaste);
+        actor[KASTE_2_IDLE].add_event_listener(MouseEvent.CLICK, SelectCaste);
+        actor[KASTE_3_IDLE].add_event_listener(MouseEvent.CLICK, SelectCaste);
         i = 0;
         while (i < 3) {
             EnablePopup((KASTE_1_IDLE + (i * 2)), txt[(TXT_CLASSNAME + i)]);
@@ -12880,7 +12860,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(VOLK_BTNS_M);
         DefineBunch(VOLK_BTNS_F);
         DefineBunch(VOLK_BTNS_ALL);
-        DefineImg(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", true);
+        DefineImg(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", True);
         when_loaded(CloneMarker);
         i = 0;
         while (i <= 7) {
@@ -12912,15 +12892,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     volk = "demon";
                     break;
             };
-            DefineImg((VOLK_1_M_IDLE + i), (("res/gfx/scr/buildchar/button_" + volk) + "_male_idle.jpg"), false, pos_x, pos_y);
+            DefineImg((VOLK_1_M_IDLE + i), (("res/gfx/scr/buildchar/button_" + volk) + "_male_idle.jpg"), False, pos_x, pos_y);
             DefineCnt((VOLK_1_M_ACT + i), pos_x, pos_y);
-            DefineImg((VOLK_1_F_IDLE + i), (("res/gfx/scr/buildchar/button_" + volk) + "_female_idle.jpg"), false, pos_x, pos_y);
+            DefineImg((VOLK_1_F_IDLE + i), (("res/gfx/scr/buildchar/button_" + volk) + "_female_idle.jpg"), False, pos_x, pos_y);
             DefineCnt((VOLK_1_F_ACT + i), pos_x, pos_y);
             AddBunch(VOLK_BTNS_M, (VOLK_1_M_IDLE + i));
             AddBunch(VOLK_BTNS_F, (VOLK_1_F_IDLE + i));
             AddBunch(VOLK_BTNS_ALL, (VOLK_1_M_IDLE + i), (VOLK_1_M_ACT + i), (VOLK_1_F_IDLE + i), (VOLK_1_F_ACT + i));
-            actor[(VOLK_1_M_IDLE + i)].addEventListener(MouseEvent.CLICK, SelectRace);
-            actor[(VOLK_1_F_IDLE + i)].addEventListener(MouseEvent.CLICK, SelectRace);
+            actor[(VOLK_1_M_IDLE + i)].add_event_listener(MouseEvent.CLICK, SelectRace);
+            actor[(VOLK_1_F_IDLE + i)].add_event_listener(MouseEvent.CLICK, SelectRace);
             EnablePopup((VOLK_1_M_IDLE + i), txt[(TXT_RACENAME + i)]);
             EnablePopup((VOLK_1_M_ACT + i), txt[(TXT_RACENAME + i)]);
             EnablePopup((VOLK_1_F_IDLE + i), txt[(TXT_RACENAME + i)]);
@@ -12929,8 +12909,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         i = 0;
         while (i < 10) {
-            DefineImg((CHARBACKGROUND + i), "", false, ((SCREEN_TITLE_X - 150) + CHARX), (SCREEN_TITLE_Y + CHARY));
-            DefineImg((CHARBACKGROUND2 + i), "", false, ((SCREEN_TITLE_X - 150) + CHARX), (SCREEN_TITLE_Y + CHARY));
+            DefineImg((CHARBACKGROUND + i), "", False, ((SCREEN_TITLE_X - 150) + CHARX), (SCREEN_TITLE_Y + CHARY));
+            DefineImg((CHARBACKGROUND2 + i), "", False, ((SCREEN_TITLE_X - 150) + CHARX), (SCREEN_TITLE_Y + CHARY));
             i = (i + 1);
         };
         DefineBtn(MOUTH_MINUS, "", ModifyCharacter, btnClassArrowLeft);
@@ -12989,61 +12969,61 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             AddBunch(SCREEN_BUILDCHAR, (LBL_MOUTH + i));
             i = (i + 1);
         };
-        DefineImg(SCR_CITY_BACKG_NIGHT, "res/gfx/scr/stadt/stadt_nacht_background.jpg", false, STADT_BACKG_X, STADT_BACKG_Y);
-        DefineImg(SCR_CITY_BACKG_DAWN, "res/gfx/scr/stadt/stadt_abend_background.jpg", false, STADT_BACKG_X, STADT_BACKG_Y);
-        DefineImg(SCR_CITY_BACKG_DAY, "res/gfx/scr/stadt/stadt_tag_background.jpg", false, STADT_BACKG_X, STADT_BACKG_Y);
-        DefineImg(SCR_CITY_MAIN_NIGHT, "res/gfx/scr/stadt/stadt_nacht_unten.jpg", false, STADT_MAIN_X, STADT_MAIN_Y);
-        DefineImg(SCR_CITY_MAIN_DAWN, "res/gfx/scr/stadt/stadt_abend_unten.jpg", false, STADT_MAIN_X, STADT_MAIN_Y);
-        DefineImg(SCR_CITY_MAIN_DAY, "res/gfx/scr/stadt/stadt_tag_unten.jpg", false, STADT_MAIN_X, STADT_MAIN_Y);
-        DefineImg(SCR_CITY_FOREG_NIGHT, "res/gfx/scr/stadt/stadt_nacht_vordergrund.png", false, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
-        DefineImg(SCR_CITY_FOREG_DAWN, "res/gfx/scr/stadt/stadt_abend_vordergrund.png", false, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
-        DefineImg(SCR_CITY_FOREG_DAY, "res/gfx/scr/stadt/stadt_tag_vordergrund.png", false, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
+        DefineImg(SCR_CITY_BACKG_NIGHT, "res/gfx/scr/stadt/stadt_nacht_background.jpg", False, STADT_BACKG_X, STADT_BACKG_Y);
+        DefineImg(SCR_CITY_BACKG_DAWN, "res/gfx/scr/stadt/stadt_abend_background.jpg", False, STADT_BACKG_X, STADT_BACKG_Y);
+        DefineImg(SCR_CITY_BACKG_DAY, "res/gfx/scr/stadt/stadt_tag_background.jpg", False, STADT_BACKG_X, STADT_BACKG_Y);
+        DefineImg(SCR_CITY_MAIN_NIGHT, "res/gfx/scr/stadt/stadt_nacht_unten.jpg", False, STADT_MAIN_X, STADT_MAIN_Y);
+        DefineImg(SCR_CITY_MAIN_DAWN, "res/gfx/scr/stadt/stadt_abend_unten.jpg", False, STADT_MAIN_X, STADT_MAIN_Y);
+        DefineImg(SCR_CITY_MAIN_DAY, "res/gfx/scr/stadt/stadt_tag_unten.jpg", False, STADT_MAIN_X, STADT_MAIN_Y);
+        DefineImg(SCR_CITY_FOREG_NIGHT, "res/gfx/scr/stadt/stadt_nacht_vordergrund.png", False, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
+        DefineImg(SCR_CITY_FOREG_DAWN, "res/gfx/scr/stadt/stadt_abend_vordergrund.png", False, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
+        DefineImg(SCR_CITY_FOREG_DAY, "res/gfx/scr/stadt/stadt_tag_vordergrund.png", False, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
         if (Capabilities.version.substr(0, 3) == "IOS"){
             DefineBunch(SCREEN_CITY_NIGHT, SCR_CITY_BACKG_NIGHT, SCR_CITY_MAIN_NIGHT, SCR_CITY_FOREG_NIGHT, CITY_WACHE_NIGHT);
             DefineBunch(SCREEN_CITY_DAWN, SCR_CITY_BACKG_DAWN, SCR_CITY_MAIN_DAWN, SCR_CITY_FOREG_DAWN, CITY_WACHE_NIGHT);
             DefineBunch(SCREEN_CITY_DAY, SCR_CITY_BACKG_DAY, SCR_CITY_MAIN_DAY, SCR_CITY_FOREG_DAY, CITY_WACHE_DAY);
         } else {
-            DefineImg(SCR_CITY_CLOUDS_NIGHT, "res/gfx/scr/stadt/wolken_nacht.swf", false, STADT_BACKG_X, STADT_BACKG_Y);
-            DefineImg(SCR_CITY_CLOUDS_DAWN, "res/gfx/scr/stadt/wolken_abend.swf", false, STADT_BACKG_X, STADT_BACKG_Y);
-            DefineImg(SCR_CITY_CLOUDS_DAY, "res/gfx/scr/stadt/wolken_tag.swf", false, STADT_BACKG_X, STADT_BACKG_Y);
+            DefineImg(SCR_CITY_CLOUDS_NIGHT, "res/gfx/scr/stadt/wolken_nacht.swf", False, STADT_BACKG_X, STADT_BACKG_Y);
+            DefineImg(SCR_CITY_CLOUDS_DAWN, "res/gfx/scr/stadt/wolken_abend.swf", False, STADT_BACKG_X, STADT_BACKG_Y);
+            DefineImg(SCR_CITY_CLOUDS_DAY, "res/gfx/scr/stadt/wolken_tag.swf", False, STADT_BACKG_X, STADT_BACKG_Y);
             DefineBunch(SCREEN_CITY_NIGHT, SCR_CITY_BACKG_NIGHT, SCR_CITY_MAIN_NIGHT, SCR_CITY_CLOUDS_NIGHT, SCR_CITY_FOREG_NIGHT, CITY_WACHE_NIGHT);
             DefineBunch(SCREEN_CITY_DAWN, SCR_CITY_BACKG_DAWN, SCR_CITY_MAIN_DAWN, SCR_CITY_CLOUDS_DAWN, SCR_CITY_FOREG_DAWN, CITY_WACHE_NIGHT);
             DefineBunch(SCREEN_CITY_DAY, SCR_CITY_BACKG_DAY, SCR_CITY_MAIN_DAY, SCR_CITY_CLOUDS_DAY, SCR_CITY_FOREG_DAY, CITY_WACHE_DAY);
         };
-        DefineImg(CITY_SHAKES, "res/gfx/scr/stadt/overlay_waffenladen.png", false, CITY_SHAKES_X, CITY_SHAKES_Y);
-        DefineImg(CITY_ZAUBERLADEN, "res/gfx/scr/stadt/overlay_zauberladen.png", false, CITY_ZAUBERLADEN_X, CITY_ZAUBERLADEN_Y);
-        DefineImg(CITY_RUHMESHALLE, "res/gfx/scr/stadt/overlay_ruhmeshalle.png", false, CITY_RUHMESHALLE_X, CITY_RUHMESHALLE_Y);
-        DefineImg(CITY_ARENA, "res/gfx/scr/stadt/arena_glow.png", false, CITY_ARENA_X, CITY_ARENA_Y);
-        DefineImg(CITY_ARENA_ONO1, "res/gfx/scr/stadt/arena2.png", false, CITY_ARENA_X, CITY_ARENA_Y);
-        DefineImg(CITY_ARENA_ONO2, "res/gfx/scr/stadt/arena3.png", false, CITY_ARENA_X, CITY_ARENA_Y);
-        DefineImg(CITY_ARENA_ONO3, "res/gfx/scr/stadt/arena4.png", false, CITY_ARENA_X, CITY_ARENA_Y);
-        DefineImg(CITY_ARENA_ONO4, "res/gfx/scr/stadt/arena5.png", false, CITY_ARENA_X, CITY_ARENA_Y);
-        DefineImg(CITY_DEALER, "res/gfx/scr/stadt/dealer_mouseover.png", false, CITY_DEALER_X, CITY_DEALER_Y);
-        DefineImg(CITY_DEALER_ANI1, "res/gfx/scr/stadt/dealer1.png", false, CITY_DEALER_X, CITY_DEALER_Y);
-        DefineImg(CITY_DEALER_ANI2, "res/gfx/scr/stadt/dealer2.png", false, CITY_DEALER_X, CITY_DEALER_Y);
-        DefineImg(CITY_DEALER_ANI3, "res/gfx/scr/stadt/dealer3.png", false, CITY_DEALER_X, CITY_DEALER_Y);
-        DefineImg(CITY_DEALER_ANI4, "res/gfx/scr/stadt/dealer4.png", false, CITY_DEALER_X, CITY_DEALER_Y);
-        DefineImg(CITY_DEALER_ANI5, "res/gfx/scr/stadt/dealer5.png", false, CITY_DEALER_X, CITY_DEALER_Y);
-        DefineImg(CITY_ESEL1, "res/gfx/scr/stadt/esel1.png", false, CITY_ESEL_X, CITY_ESEL_Y);
-        DefineImg(CITY_ESEL2, "res/gfx/scr/stadt/esel2.png", true, CITY_ESEL_X, CITY_ESEL_Y);
-        DefineImg(CITY_TAVERNE, "res/gfx/scr/stadt/kneipe.png", false, CITY_TAVERNE_X, CITY_TAVERNE_Y);
-        DefineImg(CITY_POST, "res/gfx/scr/stadt/post.png", false, CITY_POST_X, CITY_POST_Y);
-        DefineImg(CITY_WACHE_DAY, "res/gfx/scr/stadt/stadtwache_tag.png", false, CITY_WACHE_X, CITY_WACHE_Y);
-        DefineImg(CITY_WACHE_NIGHT, "res/gfx/scr/stadt/stadtwache_abend_nacht.png", false, CITY_WACHE_X, CITY_WACHE_Y);
-        DefineImg(CITY_SCHILD1, "res/gfx/scr/stadt/schild1.png", true, CITY_SCHILD_X, CITY_SCHILD_Y);
-        DefineImg(CITY_SCHILD2, "res/gfx/scr/stadt/schild2.png", true, CITY_SCHILD_X, CITY_SCHILD_Y);
-        DefineImg(CITY_SCHILD3, "res/gfx/scr/stadt/schild3.png", true, CITY_SCHILD_X, CITY_SCHILD_Y);
-        DefineImg(CITY_SCHILD4, "res/gfx/scr/stadt/schild4.png", true, CITY_SCHILD_X, CITY_SCHILD_Y);
-        DefineImg(CITY_MAGIER1, "res/gfx/scr/stadt/magier1.png", false, CITY_MAGIER_X, CITY_MAGIER_Y);
-        DefineImg(CITY_MAGIER2, "res/gfx/scr/stadt/magier2.png", true, CITY_MAGIER_X, CITY_MAGIER_Y);
-        DefineImg(CITY_ORK1, "res/gfx/scr/stadt/ork1.png", false, CITY_ORK_X, CITY_ORK_Y);
-        DefineImg(CITY_ORK2, "res/gfx/scr/stadt/ork2.png", true, CITY_ORK_X, CITY_ORK_Y);
-        DefineImg(CITY_SANDWICH1, "res/gfx/scr/stadt/sandwichtyp1.png", false, CITY_SANDWICH_X, CITY_SANDWICH_Y);
-        DefineImg(CITY_SANDWICH2, "res/gfx/scr/stadt/sandwichtyp2.png", true, CITY_SANDWICH_X, CITY_SANDWICH_Y);
-        DefineImg(CITY_ZWERG1, "res/gfx/scr/stadt/zwerg2.png", false, CITY_ZWERG_X, CITY_ZWERG_Y);
-        DefineImg(CITY_ZWERG2, "res/gfx/scr/stadt/zwerg1.png", true, CITY_ZWERG_X, CITY_ZWERG_Y);
-        DefineImg(CITY_ELF1, "res/gfx/scr/stadt/elf1.png", false, CITY_ELF_X, CITY_ELF_Y);
-        DefineImg(CITY_ELF2, "res/gfx/scr/stadt/elf2.png", true, CITY_ELF_X, CITY_ELF_Y);
+        DefineImg(CITY_SHAKES, "res/gfx/scr/stadt/overlay_waffenladen.png", False, CITY_SHAKES_X, CITY_SHAKES_Y);
+        DefineImg(CITY_ZAUBERLADEN, "res/gfx/scr/stadt/overlay_zauberladen.png", False, CITY_ZAUBERLADEN_X, CITY_ZAUBERLADEN_Y);
+        DefineImg(CITY_RUHMESHALLE, "res/gfx/scr/stadt/overlay_ruhmeshalle.png", False, CITY_RUHMESHALLE_X, CITY_RUHMESHALLE_Y);
+        DefineImg(CITY_ARENA, "res/gfx/scr/stadt/arena_glow.png", False, CITY_ARENA_X, CITY_ARENA_Y);
+        DefineImg(CITY_ARENA_ONO1, "res/gfx/scr/stadt/arena2.png", False, CITY_ARENA_X, CITY_ARENA_Y);
+        DefineImg(CITY_ARENA_ONO2, "res/gfx/scr/stadt/arena3.png", False, CITY_ARENA_X, CITY_ARENA_Y);
+        DefineImg(CITY_ARENA_ONO3, "res/gfx/scr/stadt/arena4.png", False, CITY_ARENA_X, CITY_ARENA_Y);
+        DefineImg(CITY_ARENA_ONO4, "res/gfx/scr/stadt/arena5.png", False, CITY_ARENA_X, CITY_ARENA_Y);
+        DefineImg(CITY_DEALER, "res/gfx/scr/stadt/dealer_mouseover.png", False, CITY_DEALER_X, CITY_DEALER_Y);
+        DefineImg(CITY_DEALER_ANI1, "res/gfx/scr/stadt/dealer1.png", False, CITY_DEALER_X, CITY_DEALER_Y);
+        DefineImg(CITY_DEALER_ANI2, "res/gfx/scr/stadt/dealer2.png", False, CITY_DEALER_X, CITY_DEALER_Y);
+        DefineImg(CITY_DEALER_ANI3, "res/gfx/scr/stadt/dealer3.png", False, CITY_DEALER_X, CITY_DEALER_Y);
+        DefineImg(CITY_DEALER_ANI4, "res/gfx/scr/stadt/dealer4.png", False, CITY_DEALER_X, CITY_DEALER_Y);
+        DefineImg(CITY_DEALER_ANI5, "res/gfx/scr/stadt/dealer5.png", False, CITY_DEALER_X, CITY_DEALER_Y);
+        DefineImg(CITY_ESEL1, "res/gfx/scr/stadt/esel1.png", False, CITY_ESEL_X, CITY_ESEL_Y);
+        DefineImg(CITY_ESEL2, "res/gfx/scr/stadt/esel2.png", True, CITY_ESEL_X, CITY_ESEL_Y);
+        DefineImg(CITY_TAVERNE, "res/gfx/scr/stadt/kneipe.png", False, CITY_TAVERNE_X, CITY_TAVERNE_Y);
+        DefineImg(CITY_POST, "res/gfx/scr/stadt/post.png", False, CITY_POST_X, CITY_POST_Y);
+        DefineImg(CITY_WACHE_DAY, "res/gfx/scr/stadt/stadtwache_tag.png", False, CITY_WACHE_X, CITY_WACHE_Y);
+        DefineImg(CITY_WACHE_NIGHT, "res/gfx/scr/stadt/stadtwache_abend_nacht.png", False, CITY_WACHE_X, CITY_WACHE_Y);
+        DefineImg(CITY_SCHILD1, "res/gfx/scr/stadt/schild1.png", True, CITY_SCHILD_X, CITY_SCHILD_Y);
+        DefineImg(CITY_SCHILD2, "res/gfx/scr/stadt/schild2.png", True, CITY_SCHILD_X, CITY_SCHILD_Y);
+        DefineImg(CITY_SCHILD3, "res/gfx/scr/stadt/schild3.png", True, CITY_SCHILD_X, CITY_SCHILD_Y);
+        DefineImg(CITY_SCHILD4, "res/gfx/scr/stadt/schild4.png", True, CITY_SCHILD_X, CITY_SCHILD_Y);
+        DefineImg(CITY_MAGIER1, "res/gfx/scr/stadt/magier1.png", False, CITY_MAGIER_X, CITY_MAGIER_Y);
+        DefineImg(CITY_MAGIER2, "res/gfx/scr/stadt/magier2.png", True, CITY_MAGIER_X, CITY_MAGIER_Y);
+        DefineImg(CITY_ORK1, "res/gfx/scr/stadt/ork1.png", False, CITY_ORK_X, CITY_ORK_Y);
+        DefineImg(CITY_ORK2, "res/gfx/scr/stadt/ork2.png", True, CITY_ORK_X, CITY_ORK_Y);
+        DefineImg(CITY_SANDWICH1, "res/gfx/scr/stadt/sandwichtyp1.png", False, CITY_SANDWICH_X, CITY_SANDWICH_Y);
+        DefineImg(CITY_SANDWICH2, "res/gfx/scr/stadt/sandwichtyp2.png", True, CITY_SANDWICH_X, CITY_SANDWICH_Y);
+        DefineImg(CITY_ZWERG1, "res/gfx/scr/stadt/zwerg2.png", False, CITY_ZWERG_X, CITY_ZWERG_Y);
+        DefineImg(CITY_ZWERG2, "res/gfx/scr/stadt/zwerg1.png", True, CITY_ZWERG_X, CITY_ZWERG_Y);
+        DefineImg(CITY_ELF1, "res/gfx/scr/stadt/elf1.png", False, CITY_ELF_X, CITY_ELF_Y);
+        DefineImg(CITY_ELF2, "res/gfx/scr/stadt/elf2.png", True, CITY_ELF_X, CITY_ELF_Y);
         DefineBunch(CITY_STATISTEN, CITY_MAGIER1, CITY_MAGIER2, CITY_ORK1, CITY_ORK2, CITY_SANDWICH1, CITY_SANDWICH2);
         AddBunch(CITY_STATISTEN, CITY_ZWERG1, CITY_ZWERG2, CITY_ELF1, CITY_ELF2, CITY_ZWERG, CITY_ORK);
         AddBunch(CITY_STATISTEN, CITY_SCHILD1, CITY_SCHILD2, CITY_SCHILD3, CITY_SCHILD4);
@@ -13071,45 +13051,45 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(SCREEN_CITY, IF_MAIN, CA_CITY_SHAKES, CA_CITY_ZAUBERLADEN, CA_CITY_RUHMESHALLE, CA_CITY_ARENA, CITY_DEALER_ANI5, CA_CITY_DEALER, CITY_ESEL1, CA_CITY_ESEL, CITY_CA_OVL, CA_CITY_TAVERNE, CA_CITY_POST, CA_CITY_BUH);
         DefineBunch(CITY_ZWERG);
         DefineBunch(CITY_ORK);
-        Buh = false;
+        Buh = False;
         if (lang_code == "de"){
-            DefineImg(BUBBLE_ARENA, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_arena.png"), false, BUBBLE_ARENA_X, BUBBLE_ARENA_Y);
-            DefineImg(BUBBLE_ESEL, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_esel.png"), false, BUBBLE_ESEL_X, BUBBLE_ESEL_Y);
-            DefineImg(BUBBLE_TAVERNE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_gasthaus.png"), false, BUBBLE_TAVERNE_X, BUBBLE_TAVERNE_Y);
-            DefineImg(BUBBLE_RUHMESHALLE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_heldenhalle.png"), false, BUBBLE_RUHMESHALLE_X, BUBBLE_RUHMESHALLE_Y);
-            DefineImg(BUBBLE_KRISTALL, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_kristall.png"), false, BUBBLE_KRISTALL_X, BUBBLE_KRISTALL_Y);
-            DefineImg(BUBBLE_ORAKEL, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_orakel.png"), false, BUBBLE_ORAKEL_X, BUBBLE_ORAKEL_Y);
-            DefineImg(BUBBLE_DEALER, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_pilzdealer.png"), false, BUBBLE_DEALER_X, BUBBLE_DEALER_Y);
-            DefineImg(BUBBLE_POST, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_post.png"), false, BUBBLE_POST_X, BUBBLE_POST_Y);
-            DefineImg(BUBBLE_WACHE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_stadtwache.png"), false, BUBBLE_WACHE_X, BUBBLE_WACHE_Y);
-            DefineImg(BUBBLE_STATUE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_statue.png"), false, BUBBLE_STATUE_X, BUBBLE_STATUE_Y);
-            DefineImg(BUBBLE_SHAKES, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_waffenladen.png"), false, BUBBLE_SHAKES_X, BUBBLE_SHAKES_Y);
-            DefineImg(BUBBLE_ZAUBERLADEN, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_zauberladen.png"), false, BUBBLE_ZAUBERLADEN_X, BUBBLE_ZAUBERLADEN_Y);
+            DefineImg(BUBBLE_ARENA, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_arena.png"), False, BUBBLE_ARENA_X, BUBBLE_ARENA_Y);
+            DefineImg(BUBBLE_ESEL, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_esel.png"), False, BUBBLE_ESEL_X, BUBBLE_ESEL_Y);
+            DefineImg(BUBBLE_TAVERNE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_gasthaus.png"), False, BUBBLE_TAVERNE_X, BUBBLE_TAVERNE_Y);
+            DefineImg(BUBBLE_RUHMESHALLE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_heldenhalle.png"), False, BUBBLE_RUHMESHALLE_X, BUBBLE_RUHMESHALLE_Y);
+            DefineImg(BUBBLE_KRISTALL, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_kristall.png"), False, BUBBLE_KRISTALL_X, BUBBLE_KRISTALL_Y);
+            DefineImg(BUBBLE_ORAKEL, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_orakel.png"), False, BUBBLE_ORAKEL_X, BUBBLE_ORAKEL_Y);
+            DefineImg(BUBBLE_DEALER, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_pilzdealer.png"), False, BUBBLE_DEALER_X, BUBBLE_DEALER_Y);
+            DefineImg(BUBBLE_POST, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_post.png"), False, BUBBLE_POST_X, BUBBLE_POST_Y);
+            DefineImg(BUBBLE_WACHE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_stadtwache.png"), False, BUBBLE_WACHE_X, BUBBLE_WACHE_Y);
+            DefineImg(BUBBLE_STATUE, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_statue.png"), False, BUBBLE_STATUE_X, BUBBLE_STATUE_Y);
+            DefineImg(BUBBLE_SHAKES, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_waffenladen.png"), False, BUBBLE_SHAKES_X, BUBBLE_SHAKES_Y);
+            DefineImg(BUBBLE_ZAUBERLADEN, (("res/gfx/scr/stadt/" + lang_code) + "/bubble_zauberladen.png"), False, BUBBLE_ZAUBERLADEN_X, BUBBLE_ZAUBERLADEN_Y);
         } else {
-            DefineImg(BUBBLE_ARENA, "res/gfx/empty.png", false, BUBBLE_ARENA_X, BUBBLE_ARENA_Y);
-            DefineImg(BUBBLE_ESEL, "res/gfx/empty.png", false, BUBBLE_ESEL_X, BUBBLE_ESEL_Y);
-            DefineImg(BUBBLE_TAVERNE, "res/gfx/empty.png", false, BUBBLE_TAVERNE_X, BUBBLE_TAVERNE_Y);
-            DefineImg(BUBBLE_RUHMESHALLE, "res/gfx/empty.png", false, BUBBLE_RUHMESHALLE_X, BUBBLE_RUHMESHALLE_Y);
-            DefineImg(BUBBLE_KRISTALL, "res/gfx/empty.png", false, BUBBLE_KRISTALL_X, BUBBLE_KRISTALL_Y);
-            DefineImg(BUBBLE_ORAKEL, "res/gfx/empty.png", false, BUBBLE_ORAKEL_X, BUBBLE_ORAKEL_Y);
-            DefineImg(BUBBLE_DEALER, "res/gfx/empty.png", false, BUBBLE_DEALER_X, BUBBLE_DEALER_Y);
-            DefineImg(BUBBLE_POST, "res/gfx/empty.png", false, BUBBLE_POST_X, BUBBLE_POST_Y);
-            DefineImg(BUBBLE_WACHE, "res/gfx/empty.png", false, BUBBLE_WACHE_X, BUBBLE_WACHE_Y);
-            DefineImg(BUBBLE_STATUE, "res/gfx/empty.png", false, BUBBLE_STATUE_X, BUBBLE_STATUE_Y);
-            DefineImg(BUBBLE_SHAKES, "res/gfx/empty.png", false, BUBBLE_SHAKES_X, BUBBLE_SHAKES_Y);
-            DefineImg(BUBBLE_ZAUBERLADEN, "res/gfx/empty.png", false, BUBBLE_ZAUBERLADEN_X, BUBBLE_ZAUBERLADEN_Y);
+            DefineImg(BUBBLE_ARENA, "res/gfx/empty.png", False, BUBBLE_ARENA_X, BUBBLE_ARENA_Y);
+            DefineImg(BUBBLE_ESEL, "res/gfx/empty.png", False, BUBBLE_ESEL_X, BUBBLE_ESEL_Y);
+            DefineImg(BUBBLE_TAVERNE, "res/gfx/empty.png", False, BUBBLE_TAVERNE_X, BUBBLE_TAVERNE_Y);
+            DefineImg(BUBBLE_RUHMESHALLE, "res/gfx/empty.png", False, BUBBLE_RUHMESHALLE_X, BUBBLE_RUHMESHALLE_Y);
+            DefineImg(BUBBLE_KRISTALL, "res/gfx/empty.png", False, BUBBLE_KRISTALL_X, BUBBLE_KRISTALL_Y);
+            DefineImg(BUBBLE_ORAKEL, "res/gfx/empty.png", False, BUBBLE_ORAKEL_X, BUBBLE_ORAKEL_Y);
+            DefineImg(BUBBLE_DEALER, "res/gfx/empty.png", False, BUBBLE_DEALER_X, BUBBLE_DEALER_Y);
+            DefineImg(BUBBLE_POST, "res/gfx/empty.png", False, BUBBLE_POST_X, BUBBLE_POST_Y);
+            DefineImg(BUBBLE_WACHE, "res/gfx/empty.png", False, BUBBLE_WACHE_X, BUBBLE_WACHE_Y);
+            DefineImg(BUBBLE_STATUE, "res/gfx/empty.png", False, BUBBLE_STATUE_X, BUBBLE_STATUE_Y);
+            DefineImg(BUBBLE_SHAKES, "res/gfx/empty.png", False, BUBBLE_SHAKES_X, BUBBLE_SHAKES_Y);
+            DefineImg(BUBBLE_ZAUBERLADEN, "res/gfx/empty.png", False, BUBBLE_ZAUBERLADEN_X, BUBBLE_ZAUBERLADEN_Y);
         };
         DefineBunch(BUBBLES, BUBBLE_ARENA, BUBBLE_ESEL, BUBBLE_TAVERNE, BUBBLE_RUHMESHALLE, BUBBLE_KRISTALL, BUBBLE_ORAKEL);
         AddBunch(BUBBLES, BUBBLE_DEALER, BUBBLE_POST, BUBBLE_WACHE, BUBBLE_STATUE, BUBBLE_SHAKES, BUBBLE_ZAUBERLADEN);
         BubbleTimer = new Timer(20);
         BubbleWait = 0;
-        BubbleTimer.addEventListener(TimerEvent.TIMER, Bubbles);
+        BubbleTimer.add_event_listener(TimerEvent.TIMER, Bubbles);
         BubbleTimer.start();
         CityAniTimer = new Timer(400);
         CityAniFrame = 0;
         SandwichPause = 0;
         ZwergFussTapp = 0;
-        CityAniTimer.addEventListener(TimerEvent.TIMER, CityAni);
+        CityAniTimer.add_event_listener(TimerEvent.TIMER, CityAni);
         CityAniTimer.start();
         iFrame = -1;
         SchildDir = 1;
@@ -13119,7 +13099,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DealerAniStep = 0;
         _local2 = DealerAniTimer;
         with (_local2) {
-            addEventListener(TimerEvent.TIMER, DealerAni);
+            add_event_listener(TimerEvent.TIMER, DealerAni);
             if (!lightMode){
                 start();
             } else {
@@ -13129,15 +13109,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         LastOno = 0;
         ThisOno = LastOno;
         OnoPopupTimer = new Timer(50);
-        PopupDir = false;
+        PopupDir = False;
         DefineBtn(IF_EXIT, "", ExitScreen, btnClassExitScreen, IF_EXIT_X, IF_EXIT_Y);
-        DefineImg(SCR_HALLE_BG, "res/gfx/scr/hall/heldenhalle.jpg", false, 280, 100);
+        DefineImg(SCR_HALLE_BG, "res/gfx/scr/hall/heldenhalle.jpg", False, 280, 100);
         DefineBtn(HALLE_UP, "", RuhmesHalleScroll, btnClassArrowUp, HALLE_UPDOWN_X, HALLE_UP_Y);
         DefineBtn(HALLE_DOWN, "", RuhmesHalleScroll, btnClassArrowDown, HALLE_UPDOWN_X, HALLE_DOWN_Y);
         DefineBtn(HALLE_GOTO, txt[TXT_HALLE_GOTO], RuhmesHalleScroll, btnClassLOGin, HALLE_GOTO_X, HALLE_GOTO_Y);
         DefineFromClass(INP_HALLE_GOTO, text_input1, HALLE_INP_GOTO_X, HALLE_INP_GOTO_Y, 2, "name");
-        actor[INP_HALLE_GOTO].addEventListener(KeyboardEvent.KEY_DOWN, RuhmesHalleScroll);
-        actor[INP_HALLE_GOTO].addEventListener(MouseEvent.CLICK, HalleSuchClick);
+        actor[INP_HALLE_GOTO].add_event_listener(KeyboardEvent.KEY_DOWN, RuhmesHalleScroll);
+        actor[INP_HALLE_GOTO].add_event_listener(MouseEvent.CLICK, HalleSuchClick);
         DefineCnt(HALL_GOTO_SPIELER, 0, HALLE_GOTO_SPIELERGILDEN_Y);
         DefineCnt(HALL_GOTO_GILDEN, HALLE_GOTO_GILDEN_X, HALLE_GOTO_SPIELERGILDEN_Y);
         DefineLbl(LBL_HALL_GOTO_SPIELER, txt[TXT_GOTO_SPIELER], 0, 0, FontFormat_LOGoutLink);
@@ -13155,36 +13135,36 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_HALL_GOTO_SPIELER]);
             addChild(actor[LBL_HALL_GOTO_SPIELER_HL]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, RuhmesHalleScroll);
+            add_event_listener(MouseEvent.CLICK, RuhmesHalleScroll);
             x = (HALLE_GOTO_SPIELER_X - actor[LBL_HALL_GOTO_SPIELER].textWidth);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         _local2 = actor[HALL_GOTO_GILDEN];
         with (_local2) {
             addChild(actor[LBL_HALL_GOTO_GILDEN]);
             addChild(actor[LBL_HALL_GOTO_GILDEN_HL]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, RuhmesHalleScroll);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, RuhmesHalleScroll);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineCnt(HALL_LIST, HALL_LIST_X, HALL_LIST_Y);
         DefineBunch(SCREEN_HALLE, SCR_HALLE_BG, IF_OVL, IF_EXIT, HALLE_UP, HALLE_DOWN, HALLE_GOTO, INP_HALLE_GOTO, HALL_LIST, HALL_GOTO_SPIELER, HALL_GOTO_GILDEN);
         DefineClickArea(CA_SCR_ARBEITEN_BLOCKCITY, C_EMPTY, InterfaceBtnHandler, 280, 100, (RES_X - 280), (RES_Y - 100));
         _local2 = actor[CA_SCR_ARBEITEN_BLOCKCITY];
         with (_local2) {
-            useHandCursor = false;
-            buttonMode = false;
+            useHandCursor = False;
+            buttonMode = False;
         };
         DefineLbl(LBL_SCR_ARBEITEN_TEXT, txt[TXT_ARBEIT_TEXT], LBL_ARBEITEN_TEXT_X, LBL_ARBEITEN_TEXT_Y, FontFormat_Default);
         DefineLbl(LBL_SCR_ARBEITEN_TEXT2, "", LBL_ARBEITEN_TEXT_X, LBL_ARBEITEN_TEXT2_Y, FontFormat_Default);
         actor[LBL_SCR_ARBEITEN_TEXT].width = LBL_ARBEITEN_TEXT_X;
-        actor[LBL_SCR_ARBEITEN_TEXT].wordWrap = true;
+        actor[LBL_SCR_ARBEITEN_TEXT].wordWrap = True;
         actor[LBL_SCR_ARBEITEN_TEXT2].width = LBL_ARBEITEN_TEXT_X;
-        actor[LBL_SCR_ARBEITEN_TEXT2].wordWrap = true;
+        actor[LBL_SCR_ARBEITEN_TEXT2].wordWrap = True;
         AddFilter(LBL_SCR_ARBEITEN_TEXT, Filter_Shadow);
         AddFilter(LBL_SCR_ARBEITEN_TEXT2, Filter_Shadow);
         DefineLbl(LBL_SCR_ARBEITEN_TIME, "", 0, (IF_WIN_Y + LBL_ARBEITEN_TIME_Y), FontFormat_Default);
@@ -13201,14 +13181,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineClickArea(CA_SCR_INVITE_BLOCKCITY, C_EMPTY, InterfaceBtnHandler, 280, 100, (RES_X - 280), (RES_Y - 100));
         _local2 = actor[CA_SCR_INVITE_BLOCKCITY];
         with (_local2) {
-            useHandCursor = false;
-            buttonMode = false;
+            useHandCursor = False;
+            buttonMode = False;
         };
         DefineLbl(LBL_INVITE_SUCCESS, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (420 / 2)), ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY), FontFormat_Default);
         AddFilter(LBL_INVITE_SUCCESS, Filter_Shadow);
         _local2 = actor[LBL_INVITE_SUCCESS];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = 420;
             text = txt[TXT_INVITESUCCESS];
         };
@@ -13216,7 +13196,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(LBL_INVITE_TEXT, Filter_Shadow);
         _local2 = actor[LBL_INVITE_TEXT];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = 420;
             text = txt[TXT_INVITEINSTR];
         };
@@ -13225,7 +13205,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             getChildAt(1).text = "";
             x = (((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2))) + 40);
-            addEventListener(KeyboardEvent.KEY_DOWN, SendPlayerInvite);
+            add_event_listener(KeyboardEvent.KEY_DOWN, SendPlayerInvite);
         };
         DefineLbl(LBL_INVITE_TEXT2, txt[TXT_INVITEEMAIL], 0, ((actor[INP_CHAR_INVITE].y + 10) + AIRRelMoveY), FontFormat_Default);
         AddFilter(LBL_INVITE_TEXT2, Filter_Shadow);
@@ -13235,7 +13215,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             getChildAt(1).text = "";
             x = (((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2))) + 40);
-            addEventListener(KeyboardEvent.KEY_DOWN, SendPlayerInvite);
+            add_event_listener(KeyboardEvent.KEY_DOWN, SendPlayerInvite);
         };
         DefineLbl(LBL_INVITE_TEXT3, txt[TXT_INVITESUBJECT], 0, ((actor[INP_CHAR_INVITE2].y + 10) + AIRRelMoveY), FontFormat_Default);
         AddFilter(LBL_INVITE_TEXT3, Filter_Shadow);
@@ -13245,12 +13225,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(SCREEN_INVITE, CA_SCR_INVITE_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_INVITE_TEXT, INP_CHAR_INVITE, LBL_INVITE_TEXT2, INP_CHAR_INVITE2, LBL_INVITE_TEXT3, SCR_INVITE_OK, IF_EXIT, LBL_INVITE_SUCCESS, INVITE_SUCCESS_OK);
         DefineBunch(INVITE_INPUTDIALOGUE, LBL_INVITE_TEXT, INP_CHAR_INVITE, LBL_INVITE_TEXT2, INP_CHAR_INVITE2, LBL_INVITE_TEXT3, SCR_INVITE_OK);
         DefineBunch(INVITE_SUCCESS, LBL_INVITE_SUCCESS, INVITE_SUCCESS_OK);
-        DefineImg(ALBUM_BG, "res/gfx/scr/album/album.jpg", false, 280, 100);
+        DefineImg(ALBUM_BG, "res/gfx/scr/album/album.jpg", False, 280, 100);
         DefineLbl(LBL_ALBUM_PAGENUMBER_LEFT, "", 340, 690, FontFormat_Book);
         DefineLbl(LBL_ALBUM_PAGENUMBER_RIGHT, "", 0, 690, FontFormat_Book);
         DefineLbl(LBL_ALBUM_COLLECTION, "", 330, 135, FontFormat_BookLeft);
         DefineBunch(SCREEN_ALBUM, ALBUM_BG, IF_OVL, IF_EXIT, LBL_ALBUM_PAGENUMBER_LEFT, LBL_ALBUM_PAGENUMBER_RIGHT, LBL_ALBUM_COLLECTION);
-        DefineImg(UNKNOWN_ENEMY, "res/gfx/scr/fight/monster/unknown.jpg", false, 0, 0);
+        DefineImg(UNKNOWN_ENEMY, "res/gfx/scr/fight/monster/unknown.jpg", False, 0, 0);
         i = 0;
         while (i < 4) {
             DefineLbl((LBL_ALBUM_HEADING + i), "", 0, (((i % 2))==0) ? 135 : 440, FontFormat_Book);
@@ -13275,17 +13255,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(ALBUM_CAT_IN);
         i = 0;
         while (i < 5) {
-            DefineImg((ALBUM_CAT_OUT + i), (("res/gfx/scr/album/tab_" + String(i)) + "_out.jpg"), false, 0, 0);
-            DefineImg((ALBUM_CAT_IN + i), (("res/gfx/scr/album/tab_" + String(i)) + "_in.jpg"), false, 290, (300 + (i * 80)));
+            DefineImg((ALBUM_CAT_OUT + i), (("res/gfx/scr/album/tab_" + String(i)) + "_out.jpg"), False, 0, 0);
+            DefineImg((ALBUM_CAT_IN + i), (("res/gfx/scr/album/tab_" + String(i)) + "_in.jpg"), False, 290, (300 + (i * 80)));
             DefineCnt((ALBUM_CAT_OUT + i), 290, (300 + (i * 80)));
             MakePersistent((ALBUM_CAT_OUT + i));
             _local2 = actor[(ALBUM_CAT_OUT + i)];
             with (_local2) {
                 addChild(actor[(ALBUM_CAT_OUT + i)]);
-                addEventListener(MouseEvent.CLICK, ShowAlbumContent);
-                mouseChildren = false;
-                buttonMode = true;
-                useHandCursor = true;
+                add_event_listener(MouseEvent.CLICK, ShowAlbumContent);
+                mouseChildren = False;
+                buttonMode = True;
+                useHandCursor = True;
             };
             EnablePopup((ALBUM_CAT_IN + i), txt[((TXT_COLLECTION + 2) + i)]);
             EnablePopup((ALBUM_CAT_OUT + i), txt[((TXT_COLLECTION + 2) + i)]);
@@ -13296,17 +13276,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(ALBUM_PREV, "", ShowAlbumContent, btnClassArrowLeft, 340, 715);
         DefineBtn(ALBUM_NEXT, "", ShowAlbumContent, btnClassArrowRight, 1180, 715);
         AddBunch(SCREEN_ALBUM, ALBUM_PREV, ALBUM_NEXT);
-        DefineImg(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg", false, 280, 100);
-        DefineImg(SCR_CHAR_BG_GOLDEN, "res/gfx/scr/char/gold_bg.jpg", false, 280, 100);
-        DefineImg(SCR_CHAR_BG_RIGHT, "res/gfx/scr/char/character_right_new.jpg", false, (280 + 500), 100);
+        DefineImg(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg", False, 280, 100);
+        DefineImg(SCR_CHAR_BG_GOLDEN, "res/gfx/scr/char/gold_bg.jpg", False, 280, 100);
+        DefineImg(SCR_CHAR_BG_RIGHT, "res/gfx/scr/char/character_right_new.jpg", False, (280 + 500), 100);
         i = 0;
         while (i < 13) {
-            DefineImg((MIRROR_PIECE + i), (("res/gfx/scr/char/mirror/mirror" + String((i + 1))) + ".png"), false, SCR_CHAR_CHARX, SCR_CHAR_CHARY);
+            DefineImg((MIRROR_PIECE + i), (("res/gfx/scr/char/mirror/mirror" + String((i + 1))) + ".png"), False, SCR_CHAR_CHARX, SCR_CHAR_CHARY);
             actor[(MIRROR_PIECE + i)].alpha = 0.3;
-            actor[(MIRROR_PIECE + i)].mouseEnabled = false;
+            actor[(MIRROR_PIECE + i)].mouse_enabled = False;
             i = (i + 1);
         };
-        DefineImg(GOLDEN_FRAME, "res/gfx/scr/char/gold_frame.png", false, (SCR_CHAR_CHARX - 3), (SCR_CHAR_CHARY - 5));
+        DefineImg(GOLDEN_FRAME, "res/gfx/scr/char/gold_frame.png", False, (SCR_CHAR_CHARX - 3), (SCR_CHAR_CHARY - 5));
         DefineClickArea(CA_SELL_ITEM, C_EMPTY, undefined, (280 + 550), 100, 450, 700);
         DefineClickArea(CA_USE_ITEM, C_EMPTY, undefined, 280, 100, 500, 415);
         DefineCnt(SCR_CHAR_NAME, CHAR_NAME_X, CHAR_NAME_Y);
@@ -13316,10 +13296,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_SCR_CHAR_NAME]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, GotoPlayerGilde);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, GotoPlayerGilde);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineBtn(PREV_PLAYER, "", PrevPlayer, btnClassArrowLeft, (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
         DefineBtn(NEXT_PLAYER, "", NextPlayer, btnClassArrowRight, (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
@@ -13337,18 +13317,18 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_SCR_CHAR_GILDE]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, JumpToPlayerHall);
-            mouseEnabled = true;
-            buttonMode = true;
-            useHandCursor = true;
-            mouseChildren = false;
+            add_event_listener(MouseEvent.CLICK, JumpToPlayerHall);
+            mouse_enabled = True;
+            buttonMode = True;
+            useHandCursor = True;
+            mouseChildren = False;
         };
-        DefineImg(SLOT_SUGGESTION, "res/gfx/scr/char/slot_suggestion.png", false, 0, 0);
-        actor[SLOT_SUGGESTION].mouseEnabled = false;
+        DefineImg(SLOT_SUGGESTION, "res/gfx/scr/char/slot_suggestion.png", False, 0, 0);
+        actor[SLOT_SUGGESTION].mouse_enabled = False;
         DefineLbl(LBL_SCR_CHAR_EHRE, "", 0, (GILDEEHRE_Y + GILDEEHRE_Y), FontFormat_Default);
-        DefineImg(SCR_CHAR_KLASSE_1, "res/gfx/scr/char/char_krieger.jpg", false, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
-        DefineImg(SCR_CHAR_KLASSE_2, "res/gfx/scr/char/char_magier.jpg", false, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
-        DefineImg(SCR_CHAR_KLASSE_3, "res/gfx/scr/char/char_dieb.jpg", false, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
+        DefineImg(SCR_CHAR_KLASSE_1, "res/gfx/scr/char/char_krieger.jpg", False, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
+        DefineImg(SCR_CHAR_KLASSE_2, "res/gfx/scr/char/char_magier.jpg", False, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
+        DefineImg(SCR_CHAR_KLASSE_3, "res/gfx/scr/char/char_dieb.jpg", False, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
         EnablePopup(SCR_CHAR_KLASSE_1, txt[TXT_CLASSNAME]);
         EnablePopup(SCR_CHAR_KLASSE_2, txt[(TXT_CLASSNAME + 1)]);
         EnablePopup(SCR_CHAR_KLASSE_3, txt[(TXT_CLASSNAME + 2)]);
@@ -13364,9 +13344,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(INP_CHARDESC, Filter_Shadow);
         _local2 = actor[INP_CHARDESC];
         with (_local2) {
-            mouseEnabled = true;
-            addEventListener(FocusEvent.FOCUS_IN, EnterPlayerDesc);
-            addEventListener(FocusEvent.FOCUS_OUT, LeavePlayerDesc);
+            mouse_enabled = True;
+            add_event_listener(FocusEvent.FOCUS_IN, EnterPlayerDesc);
+            add_event_listener(FocusEvent.FOCUS_OUT, LeavePlayerDesc);
         };
         DefineLbl(LBL_CHAR_DELAY, "", 0, (100 + CHAR_DELAY_Y), FontFormat_Default);
         AddFilter(LBL_CHAR_DELAY, Filter_Shadow);
@@ -13374,7 +13354,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(LBL_SCR_CHAR_NAME, Filter_Shadow);
         AddFilter(LBL_SCR_CHAR_GILDE, Filter_Shadow);
         AddFilter(LBL_SCR_CHAR_EHRE, Filter_Shadow);
-        DefineImg(SCR_CHAR_EXPBAR, "res/gfx/scr/char/experience.jpg", false, EXPERIENCE_BAR_X, EXPERIENCE_BAR_Y);
+        DefineImg(SCR_CHAR_EXPBAR, "res/gfx/scr/char/experience.jpg", False, EXPERIENCE_BAR_X, EXPERIENCE_BAR_Y);
         DefineLbl(LBL_SCR_CHAR_EXPLABEL, "", 0, (EXPERIENCE_BAR_Y + 2), FontFormat_LifeBar);
         AddFilter(LBL_SCR_CHAR_EXPLABEL, Filter_Shadow);
         DefineClickArea(CA_SCR_CHAR_EXPBAR, C_EMPTY, undefined, EXPERIENCE_BAR_X, EXPERIENCE_BAR_Y, 254, 24);
@@ -13388,10 +13368,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         EnablePopup(CHAR_INVITE, txt[(TXT_ACH_4 + 5)]);
         i = 0;
         while (i < 8) {
-            DefineImg((CHAR_MOUNT_1 + i), (("res/gfx/scr/char/mount_portrait_" + String((i + 1))) + ".jpg"), false, (CHAR_MOUNT_X + CHAR_MOUNT_X), CHAR_MOUNT_Y);
+            DefineImg((CHAR_MOUNT_1 + i), (("res/gfx/scr/char/mount_portrait_" + String((i + 1))) + ".jpg"), False, (CHAR_MOUNT_X + CHAR_MOUNT_X), CHAR_MOUNT_Y);
             _local2 = actor[(CHAR_MOUNT_1 + i)];
             with (_local2) {
-                addEventListener(MouseEvent.CLICK, RequestStableScreen);
+                add_event_listener(MouseEvent.CLICK, RequestStableScreen);
             };
             AddBunch(CHAR_RIGHTPANE, (CHAR_MOUNT_1 + i));
             i = (i + 1);
@@ -13401,7 +13381,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_CHAR_MOUNT_DESCR, "", CHAR_MOUNT_X, (CHAR_MOUNT_Y + CHAR_MOUNT_LINE_Y), FontFormat_DefaultLeft);
         _local2 = actor[LBL_CHAR_MOUNT_DESCR];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = (CHAR_MOUNT_X - 5);
         };
         AddFilter(LBL_CHAR_MOUNT_DESCR, Filter_Shadow);
@@ -13409,17 +13389,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(LBL_CHAR_MOUNT_RUNTIME, Filter_Shadow);
         DefineLbl(LBL_CHAR_MOUNT_GAIN, "", CHAR_MOUNT_X, (CHAR_MOUNT_Y + (CHAR_MOUNT_LINE_Y * 4)), FontFormat_Default);
         AddFilter(LBL_CHAR_MOUNT_GAIN, Filter_Shadow);
-        DefineImg(CHAR_RUESTUNG, "res/gfx/scr/char/icon_schild.jpg", false, ((280 + 500) + CHAR_RUESTUNG_X), (100 + CHAR_RUESTUNG_Y));
+        DefineImg(CHAR_RUESTUNG, "res/gfx/scr/char/icon_schild.jpg", False, ((280 + 500) + CHAR_RUESTUNG_X), (100 + CHAR_RUESTUNG_Y));
         DefineLbl(LBL_CHAR_RUESTUNG, "", (((280 + 500) + CHAR_RUESTUNG_X) + CHAR_RUESTUNG_TEXT_X), ((100 + CHAR_RUESTUNG_Y) + CHAR_RUESTUNG_TEXT_Y), FontFormat_Default);
         AddFilter(LBL_CHAR_RUESTUNG, Filter_Shadow);
-        DefineImg(CHAR_ALBUM, "res/gfx/scr/char/icon_foliant.png", false, ((280 + 500) + 350), (100 + 20));
+        DefineImg(CHAR_ALBUM, "res/gfx/scr/char/icon_foliant.png", False, ((280 + 500) + 350), (100 + 20));
         AddBunch(CHAR_RIGHTPANE, LBL_CHAR_MOUNT_NAME, LBL_CHAR_MOUNT_RUNTIME, LBL_CHAR_MOUNT_GAIN, LBL_CHAR_MOUNT_DESCR, CHAR_RUESTUNG, LBL_CHAR_RUESTUNG);
         DefineBunch(SCREEN_CHAR, SCR_CHAR_BG, SCR_CHAR_EXPBAR, IF_OVL, CHAR_RIGHTPANE, LBL_SCR_CHAR_EXPLABEL, CA_SCR_CHAR_EXPBAR, SCR_CHAR_NAME, IF_EXIT);
         DefineBunch(SCREEN_CHAR_GOLDEN, SCR_CHAR_BG, SCR_CHAR_BG_GOLDEN, SCR_CHAR_EXPBAR, IF_OVL, CHAR_RIGHTPANE, LBL_SCR_CHAR_EXPLABEL, CA_SCR_CHAR_EXPBAR, SCR_CHAR_NAME, IF_EXIT);
         DefineBunch(CHAR_SECONDPROP);
         DefineBunch(CHAR_PREISE);
         BoostBtnRepeatTimer = new Timer(1000);
-        DestroyBoostBtnTimer = false;
+        DestroyBoostBtnTimer = False;
         i = 0;
         while (i < 5) {
             DefineLbl((LBL_SCR_CHAR_STAERKE_CAPTION + i), txt[(TXT_CHAR_STAERKE + i)], CHAR_PROP_COLUMN_1_X, (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
@@ -13427,11 +13407,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             DefineBtn((SCR_CHAR_STEIGERN1 + i), "", BoostAttribute, btnClassPlus, CHAR_PROP_COLUMN_3_X, ((CHAR_PROP_Y + (i * CHAR_PROP_Y)) - 3));
             _local2 = actor[(SCR_CHAR_STEIGERN1 + i)];
             with (_local2) {
-                addEventListener(MouseEvent.MOUSE_DOWN, BoostBtnDownHandler);
-                addEventListener(MouseEvent.MOUSE_UP, BoostBtnUpHandler);
-                addEventListener(MouseEvent.MOUSE_OUT, BoostBtnUpHandler);
-                addEventListener(MouseEvent.MOUSE_OVER, BoostBtnOver);
-                addEventListener(MouseEvent.MOUSE_OUT, BoostBtnOut);
+                add_event_listener(MouseEvent.MOUSE_DOWN, BoostBtnDownHandler);
+                add_event_listener(MouseEvent.MOUSE_UP, BoostBtnUpHandler);
+                add_event_listener(MouseEvent.MOUSE_OUT, BoostBtnUpHandler);
+                add_event_listener(MouseEvent.MOUSE_OVER, BoostBtnOver);
+                add_event_listener(MouseEvent.MOUSE_OUT, BoostBtnOut);
             };
             DefineLbl((LBL_SCR_CHAR_PREIS1 + i), "", 0, (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
             DefineCnt((SCR_CHAR_GOLD1 + i), 0, (CHAR_PROP_Y + (i * CHAR_PROP_Y)));
@@ -13450,7 +13430,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         BoostBtnChange = 0;
         BoostBtnTimer = new Timer(40);
-        BoostBtnTimer.addEventListener(TimerEvent.TIMER, BoostBtnTimerFunction);
+        BoostBtnTimer.add_event_listener(TimerEvent.TIMER, BoostBtnTimerFunction);
         BoostBtnTimer.start();
         DefineCnt(CHAR_SLOT_1, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_TOP_Y);
         DefineCnt(CHAR_SLOT_2, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW2_Y);
@@ -13469,14 +13449,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
         i = 0;
         while (i < 8) {
-            DefineImg((EMPTY_SLOT_1 + i), (("res/gfx/scr/char/slot" + String((i + 1))) + ".png"), false, 0, 0);
+            DefineImg((EMPTY_SLOT_1 + i), (("res/gfx/scr/char/slot" + String((i + 1))) + ".png"), False, 0, 0);
             i = (i + 1);
         };
-        DefineImg(EMPTY_SLOT_9_1, "res/gfx/scr/char/slot9_1.png", false, 0, 0);
-        DefineImg(EMPTY_SLOT_9_2, "res/gfx/scr/char/slot9_2.png", false, 0, 0);
-        DefineImg(EMPTY_SLOT_9_3, "res/gfx/scr/char/slot9_3.png", false, 0, 0);
-        DefineImg(EMPTY_SLOT_10, "res/gfx/scr/char/slot10.png", false, 0, 0);
-        DefineImg(NO_SHIELD, "res/gfx/itm/no_shield.png", false, 0, 0);
+        DefineImg(EMPTY_SLOT_9_1, "res/gfx/scr/char/slot9_1.png", False, 0, 0);
+        DefineImg(EMPTY_SLOT_9_2, "res/gfx/scr/char/slot9_2.png", False, 0, 0);
+        DefineImg(EMPTY_SLOT_9_3, "res/gfx/scr/char/slot9_3.png", False, 0, 0);
+        DefineImg(EMPTY_SLOT_10, "res/gfx/scr/char/slot10.png", False, 0, 0);
+        DefineImg(NO_SHIELD, "res/gfx/itm/no_shield.png", False, 0, 0);
         itmTyp = 0;
         while (itmTyp <= 14) {
             itm_pic = 0;
@@ -13493,12 +13473,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         case 7:
                             itm_class = 0;
                             while (itm_class < 3) {
-                                DefineImg(GetItemID(itmTyp, itm_pic, itm_color, itm_class), GetItemFile(itmTyp, itm_pic, itm_color, itm_class), false, 0, 0);
+                                DefineImg(GetItemID(itmTyp, itm_pic, itm_color, itm_class), GetItemFile(itmTyp, itm_pic, itm_color, itm_class), False, 0, 0);
                                 itm_class = (itm_class + 1);
                             };
                             break;
                         default:
-                            DefineImg(GetItemID(itmTyp, itm_pic, itm_color, 0), GetItemFile(itmTyp, itm_pic, itm_color, 0), false, 0, 0);
+                            DefineImg(GetItemID(itmTyp, itm_pic, itm_color, 0), GetItemFile(itmTyp, itm_pic, itm_color, 0), False, 0, 0);
                     };
                     itm_color = (itm_color + 1);
                 };
@@ -13512,7 +13492,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             while (itm_pic < C_ITEMS_PER_TYPE) {
                 itm_color = 0;
                 while (itm_color < 5) {
-                    DefineImg(get_arrow_id(itmTyp, itm_pic, itm_color), (((((((("res/gfx/itm/1-" + String((itmTyp + 2))) + "/shot") + (((itmTyp == 0)) ? 2 : 1)) + "-") + String(itm_pic)) + "-") + String(((((itm_pic >= 50)) ? (((itmTyp == 0)) ? (((itm_color == 3)) ? 3 : 0) : 0) : itm_color) + 1))) + ".png"), false, 0, 0);
+                    DefineImg(get_arrow_id(itmTyp, itm_pic, itm_color), (((((((("res/gfx/itm/1-" + String((itmTyp + 2))) + "/shot") + (((itmTyp == 0)) ? 2 : 1)) + "-") + String(itm_pic)) + "-") + String(((((itm_pic >= 50)) ? (((itmTyp == 0)) ? (((itm_color == 3)) ? 3 : 0) : 0) : itm_color) + 1))) + ".png"), False, 0, 0);
                     itm_color = (itm_color + 1);
                 };
                 itm_pic = (itm_pic + 1);
@@ -13522,31 +13502,31 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 0;
         while (i < 15) {
             SetCnt((CHAR_SLOT_1 + i), ITM_OFFS);
-            actor[(CHAR_SLOT_1 + i)].addEventListener(MouseEvent.MOUSE_DOWN, InventoryItemMouseDown);
+            actor[(CHAR_SLOT_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN, InventoryItemMouseDown);
             if (i >= 10){
-                actor[(CHAR_SLOT_1 + i)].addEventListener(MouseEvent.MOUSE_DOWN, BackpackItemMouseDown);
+                actor[(CHAR_SLOT_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN, BackpackItemMouseDown);
             };
             AddBunch(SCREEN_CHAR, (CHAR_SLOT_1 + i));
             AddBunch(SCREEN_CHAR_GOLDEN, (CHAR_SLOT_1 + i));
             EnableDragDrop((CHAR_SLOT_1 + i), DropHandler);
-            actor[(CHAR_SLOT_1 + i)].addEventListener(MouseEvent.MOUSE_UP, InventoryItemMouseUp);
+            actor[(CHAR_SLOT_1 + i)].add_event_listener(MouseEvent.MOUSE_UP, InventoryItemMouseUp);
             i = (i + 1);
         };
         DefineBunch(CHAR_ACH);
         i = 0;
         while (i < 40) {
             DefineCnt((CHAR_ACH + i), (SCR_CHAR_ACH_X + (((buffedMode) ? SCR_CHAR_ACH_X_BUFFED : SCR_CHAR_ACH_X) * (i % 8))), SCR_CHAR_ACH_Y);
-            DefineImg((CHAR_ACH + i), (((("res/gfx/scr/char/ach/ach-" + String(((i % 8) + 1))) + "-") + String(int((i / 8)))) + ".png"), false, 0, 0);
+            DefineImg((CHAR_ACH + i), (((("res/gfx/scr/char/ach/ach-" + String(((i % 8) + 1))) + "-") + String(int((i / 8)))) + ".png"), False, 0, 0);
             SetCnt((CHAR_ACH + i), (CHAR_ACH + i));
             MakePersistent((CHAR_ACH + i));
             if (!txt[(TXT_ACH_4 + 4)]){
                 if ((i % 8) == 7){
                     _local2 = actor[(CHAR_ACH + i)];
                     with (_local2) {
-                        addEventListener(MouseEvent.CLICK, Openfriend_link);
-                        buttonMode = true;
-                        useHandCursor = true;
-                        mouseChildren = false;
+                        add_event_listener(MouseEvent.CLICK, Openfriend_link);
+                        buttonMode = True;
+                        useHandCursor = True;
+                        mouseChildren = False;
                     };
                 };
             };
@@ -13574,27 +13554,27 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[TOWER_SCROLLAREA];
         with (_local2) {
             scrollRect = new Rectangle(0, 0, 500, 700);
-            mouseChildren = false;
-            tabEnabled = false;
-            tabChildren = false;
-            focuseRect = false;
+            mouseChildren = False;
+            tabEnabled = False;
+            tabChildren = False;
+            focuseRect = False;
         };
         DefineBtn(TOWER_TRY, txt[TXT_TOWER_TRY], TowerBtnHandler, btnClassBasic, 940, 700);
-        DefineImg(SCR_TOWER_BG, "res/gfx/scr/quest/locations/location_tower.jpg", false, 280, 100);
+        DefineImg(SCR_TOWER_BG, "res/gfx/scr/quest/locations/location_tower.jpg", False, 280, 100);
         DefineBunch(SCREEN_TOWER, SCR_CHAR_BG, TOWER_SCROLLAREA, TOWER_TRY, IF_OVL, IF_EXIT);
         tower_levelLabelTimer = new Timer(25);
-        tower_levelLabelTimer.addEventListener(TimerEvent.TIMER, tower_levelLabelMoveFn);
+        tower_levelLabelTimer.add_event_listener(TimerEvent.TIMER, tower_levelLabelMoveFn);
         towerBoostPriceFadeoutTimer = new Timer(250, 1);
-        towerBoostPriceFadeoutTimer.addEventListener(TimerEvent.TIMER, towerBoostPriceFadeout);
+        towerBoostPriceFadeoutTimer.add_event_listener(TimerEvent.TIMER, towerBoostPriceFadeout);
         i = 0;
         while (i < 3) {
-            DefineImg((TOWER_PORTRAIT + i), (("res/gfx/npc/copycat_" + String((i + 1))) + ".jpg"), false, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
-            DefineImg((TOWER_NO_PORTRAIT + i), (("res/gfx/npc/copycat_" + String((i + 1))) + "_empty.jpg"), false, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
+            DefineImg((TOWER_PORTRAIT + i), (("res/gfx/npc/copycat_" + String((i + 1))) + ".jpg"), False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
+            DefineImg((TOWER_NO_PORTRAIT + i), (("res/gfx/npc/copycat_" + String((i + 1))) + "_empty.jpg"), False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
             DefineBtn((TOWER_STEIGERN1 + i), "", BoostCopycat, btnClassPlus, (SCR_CHAR_CHARX + 232), (SCR_CHAR_CHARY + 260));
             actor[(TOWER_STEIGERN1 + i)].scaleX = 0.8;
             actor[(TOWER_STEIGERN1 + i)].scaleY = 0.8;
-            actor[(TOWER_STEIGERN1 + i)].addEventListener(MouseEvent.MOUSE_OVER, ShowTowerBoostPrices);
-            actor[(TOWER_STEIGERN1 + i)].addEventListener(MouseEvent.MOUSE_OUT, HideTowerBoostPrices);
+            actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OVER, ShowTowerBoostPrices);
+            actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OUT, HideTowerBoostPrices);
             EnablePopup((TOWER_STEIGERN1 + i), txt[TXT_BOOST_COPYCAT]);
             DefineLbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0, (EXPERIENCE_BAR_Y + 2), FontFormat_Default);
             AddFilter((LBL_TOWER_BOOSTPRICELABEL + i), Filter_Shadow);
@@ -13621,15 +13601,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             AddBunch(SCREEN_TOWER, (LBL_SCR_CHAR_STAERKE + i), (LBL_SCR_CHAR_STAERKE_CAPTION + i), (LBL_SCR_CHAR_SCHADEN + i), (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
             i = (i + 1);
         };
-        DefineImg(TOWER_BG, "res/gfx/scr/tower/tower_back.jpg", false, 0, 0);
-        DefineImg(TOWER_BASE, "res/gfx/scr/tower/tower_base.png", false, 0, 0);
-        DefineImg(TOWER_LEVEL, "res/gfx/scr/tower/tower_level.png", false, 0, 0);
-        DefineImg((TOWER_LEVEL + 1), "res/gfx/scr/tower/tower_level.png", false, 0, 0);
-        DefineImg((TOWER_LEVEL + 2), "res/gfx/scr/tower/tower_level.png", false, 0, 0);
-        DefineImg(TOWER_ROOF, "res/gfx/scr/tower/tower_roof.png", false, 0, 0);
-        DefineImg(TOWER_WINDOW_OPEN, "res/gfx/scr/tower/tower_window_open.png", false, 0, 0);
-        DefineImg(TOWER_WINDOW_CLOSED, "res/gfx/scr/tower/tower_window_closed.png", false, 0, 0);
-        DefineImg(TOWER_WINDOW_BURNT, "res/gfx/scr/tower/tower_window_destroyed.png", false, 0, 0);
+        DefineImg(TOWER_BG, "res/gfx/scr/tower/tower_back.jpg", False, 0, 0);
+        DefineImg(TOWER_BASE, "res/gfx/scr/tower/tower_base.png", False, 0, 0);
+        DefineImg(TOWER_LEVEL, "res/gfx/scr/tower/tower_level.png", False, 0, 0);
+        DefineImg((TOWER_LEVEL + 1), "res/gfx/scr/tower/tower_level.png", False, 0, 0);
+        DefineImg((TOWER_LEVEL + 2), "res/gfx/scr/tower/tower_level.png", False, 0, 0);
+        DefineImg(TOWER_ROOF, "res/gfx/scr/tower/tower_roof.png", False, 0, 0);
+        DefineImg(TOWER_WINDOW_OPEN, "res/gfx/scr/tower/tower_window_open.png", False, 0, 0);
+        DefineImg(TOWER_WINDOW_CLOSED, "res/gfx/scr/tower/tower_window_closed.png", False, 0, 0);
+        DefineImg(TOWER_WINDOW_BURNT, "res/gfx/scr/tower/tower_window_destroyed.png", False, 0, 0);
         DefineCnt(TOWER_WINDOW, 0, 0);
         DefineCnt((TOWER_WINDOW + 1), 0, 0);
         DefineCnt((TOWER_WINDOW + 2), 0, 0);
@@ -13644,37 +13624,37 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddBunch(TOWER_PIECES, TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2), TOWER_WINDOW_OPEN, TOWER_WINDOW_CLOSED, TOWER_WINDOW_BURNT);
         MakePersistent(TOWER_BG, TOWER_BASE, TOWER_LEVEL, (TOWER_LEVEL + 1), (TOWER_LEVEL + 2), TOWER_ROOF);
         MakePersistent(TOWER_WINDOW, (TOWER_WINDOW + 1), (TOWER_WINDOW + 2), TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2));
-        DefineImg(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", false, SCR_SHOP_BG_X, 100);
-        DefineImg(FIDGET_AFFE1, "res/gfx/scr/shops/fidget_affe1.jpg", false, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-        DefineImg(FIDGET_AFFE2, "res/gfx/scr/shops/fidget_affe2.jpg", false, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-        DefineImg(FIDGET_AFFE3, "res/gfx/scr/shops/fidget_affe3.jpg", false, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-        actor[FIDGET_AFFE1].mouseEnabled = false;
-        actor[FIDGET_AFFE2].mouseEnabled = false;
-        actor[FIDGET_AFFE3].mouseEnabled = false;
+        DefineImg(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", False, SCR_SHOP_BG_X, 100);
+        DefineImg(FIDGET_AFFE1, "res/gfx/scr/shops/fidget_affe1.jpg", False, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
+        DefineImg(FIDGET_AFFE2, "res/gfx/scr/shops/fidget_affe2.jpg", False, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
+        DefineImg(FIDGET_AFFE3, "res/gfx/scr/shops/fidget_affe3.jpg", False, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
+        actor[FIDGET_AFFE1].mouse_enabled = False;
+        actor[FIDGET_AFFE2].mouse_enabled = False;
+        actor[FIDGET_AFFE3].mouse_enabled = False;
         if (Capabilities.version.substr(0, 3) != "IOS"){
-            DefineImg(FIDGET_TAGKERZE, "res/gfx/scr/shops/tagkerze.swf", false, (SCR_SHOP_BG_X + FIDGET_TAGKERZE_X), (100 + FIDGET_TAGKERZE_Y));
-            DefineImg(FIDGET_NACHTKERZE, "res/gfx/scr/shops/nachtkerze.swf", false, (SCR_SHOP_BG_X + FIDGET_NACHTKERZE_X), (100 + FIDGET_NACHTKERZE_Y));
-            actor[FIDGET_TAGKERZE].mouseEnabled = false;
-            actor[FIDGET_NACHTKERZE].mouseEnabled = false;
+            DefineImg(FIDGET_TAGKERZE, "res/gfx/scr/shops/tagkerze.swf", False, (SCR_SHOP_BG_X + FIDGET_TAGKERZE_X), (100 + FIDGET_TAGKERZE_Y));
+            DefineImg(FIDGET_NACHTKERZE, "res/gfx/scr/shops/nachtkerze.swf", False, (SCR_SHOP_BG_X + FIDGET_NACHTKERZE_X), (100 + FIDGET_NACHTKERZE_Y));
+            actor[FIDGET_TAGKERZE].mouse_enabled = False;
+            actor[FIDGET_NACHTKERZE].mouse_enabled = False;
         };
-        DefineImg(FIDGET_DAY, "res/gfx/scr/shops/fidget_normal.jpg", false, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        DefineImg(FIDGET_IDLE, "res/gfx/scr/shops/fidget_langeweile.jpg", false, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        DefineImg(FIDGET_SALE, "res/gfx/scr/shops/fidget_wasverkauft.jpg", false, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        DefineImg(FIDGET_NIGHT, "res/gfx/scr/shops/fidget_nachts.jpg", false, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        actor[FIDGET_DAY].mouseEnabled = false;
-        actor[FIDGET_IDLE].mouseEnabled = false;
-        actor[FIDGET_SALE].mouseEnabled = false;
-        actor[FIDGET_NIGHT].mouseEnabled = false;
-        DefineImg(FIDGET_BLINZELN, "res/gfx/scr/shops/fidget_normal_blinzeln.jpg", false, ((SCR_SHOP_BG_X + FIDGET_X) + FIDGET_BLINZELN_X), ((100 + FIDGET_Y) + FIDGET_BLINZELN_Y));
-        actor[FIDGET_BLINZELN].mouseEnabled = false;
-        DefineImg(SHAKES_DAY, "res/gfx/scr/shops/shakes_normal.jpg", false, (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
-        DefineImg(SHAKES_NIGHT, "res/gfx/scr/shops/shakes_nacht.jpg", false, (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
-        DefineImg(SHAKES_IDLE, "res/gfx/scr/shops/shakes_gelangweilt.jpg", false, (SCR_SHOP_BG_X + SHAKES_IDLE_X), (100 + SHAKES_IDLE_Y));
-        DefineImg(SHAKES_IDLE1, "res/gfx/scr/shops/shakes_spielt1.jpg", false, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-        DefineImg(SHAKES_IDLE2, "res/gfx/scr/shops/shakes_spielt2.jpg", false, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-        DefineImg(SHAKES_IDLE3, "res/gfx/scr/shops/shakes_spielt3.jpg", false, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-        DefineImg(SHAKES_BLINZELN1, "res/gfx/scr/shops/shakes_augen1.jpg", false, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X), ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
-        DefineImg(SHAKES_BLINZELN2, "res/gfx/scr/shops/shakes_augen2.jpg", false, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X), ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
+        DefineImg(FIDGET_DAY, "res/gfx/scr/shops/fidget_normal.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_IDLE, "res/gfx/scr/shops/fidget_langeweile.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_SALE, "res/gfx/scr/shops/fidget_wasverkauft.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_NIGHT, "res/gfx/scr/shops/fidget_nachts.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        actor[FIDGET_DAY].mouse_enabled = False;
+        actor[FIDGET_IDLE].mouse_enabled = False;
+        actor[FIDGET_SALE].mouse_enabled = False;
+        actor[FIDGET_NIGHT].mouse_enabled = False;
+        DefineImg(FIDGET_BLINZELN, "res/gfx/scr/shops/fidget_normal_blinzeln.jpg", False, ((SCR_SHOP_BG_X + FIDGET_X) + FIDGET_BLINZELN_X), ((100 + FIDGET_Y) + FIDGET_BLINZELN_Y));
+        actor[FIDGET_BLINZELN].mouse_enabled = False;
+        DefineImg(SHAKES_DAY, "res/gfx/scr/shops/shakes_normal.jpg", False, (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
+        DefineImg(SHAKES_NIGHT, "res/gfx/scr/shops/shakes_nacht.jpg", False, (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
+        DefineImg(SHAKES_IDLE, "res/gfx/scr/shops/shakes_gelangweilt.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE_X), (100 + SHAKES_IDLE_Y));
+        DefineImg(SHAKES_IDLE1, "res/gfx/scr/shops/shakes_spielt1.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
+        DefineImg(SHAKES_IDLE2, "res/gfx/scr/shops/shakes_spielt2.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
+        DefineImg(SHAKES_IDLE3, "res/gfx/scr/shops/shakes_spielt3.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
+        DefineImg(SHAKES_BLINZELN1, "res/gfx/scr/shops/shakes_augen1.jpg", False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X), ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
+        DefineImg(SHAKES_BLINZELN2, "res/gfx/scr/shops/shakes_augen2.jpg", False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X), ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
         if (Capabilities.version.substr(0, 3) == "IOS"){
             DefineBunch(FIDGET_DAY, FIDGET_DAY);
             DefineBunch(FIDGET_NIGHT, FIDGET_NIGHT);
@@ -13682,7 +13662,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             DefineBunch(FIDGET_DAY, FIDGET_DAY, FIDGET_TAGKERZE);
             DefineBunch(FIDGET_NIGHT, FIDGET_NIGHT, FIDGET_NACHTKERZE);
         };
-        DefineImg(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", false, SCR_SHOP_BG_X, 100);
+        DefineImg(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", False, SCR_SHOP_BG_X, 100);
         DefineBtn(SHOPS_NEWWAREZ, txt[TXT_SHOPS_NEWWAREZ], RequestNewWarez, btnClassBasic, 0, NEW_WAREZ_Y);
         actor[SHOPS_NEWWAREZ].x = (NEW_WAREZ_X - int((actor[SHOPS_NEWWAREZ].width / 2)));
         DefineCnt(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
@@ -13699,8 +13679,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
         DefineBunch(SCREEN_FIDGET, SCR_FIDGET_BG, FIDGET_AFFE2, FIDGET_AFFE3, FIDGET_AFFE1, FIDGET_SALE, FIDGET_IDLE, FIDGET_DAY, FIDGET_BLINZELN, FIDGET_NIGHT, IF_OVL, SHOPS_NEWWAREZ, CA_SCR_CHAR_EXPBAR, IF_EXIT);
         DefineBunch(SCREEN_SHAKES, SCR_SHAKES_BG, SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3, SHAKES_DAY, SHAKES_BLINZELN1, SHAKES_BLINZELN2, SHAKES_NIGHT, IF_OVL, SHOPS_NEWWAREZ, CA_SCR_CHAR_EXPBAR, IF_EXIT);
-        DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png", false, (SCR_SHOP_BG_X - 65), (100 + 210));
-        DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png", false, (SCR_SHOP_BG_X + 200), (100 + 250));
+        DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png", False, (SCR_SHOP_BG_X - 65), (100 + 210));
+        DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png", False, (SCR_SHOP_BG_X + 200), (100 + 250));
         AffeBlinzeln = int((Math.random() * 30));
         FidgetBlinzeln = int((Math.random() * 30));
         ShakesBlinzeln = int((Math.random() * 30));
@@ -13708,10 +13688,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         ShakesIdlePhase = 0;
         WasIdleCount = 0;
         ShopIdle = 0;
-        PlayerIdle = false;
+        PlayerIdle = False;
         ShopAniTimer = new Timer(100);
         SaleRecoverTime = 0;
-        ShopAniTimer.addEventListener(TimerEvent.TIMER, ShopAniFrame);
+        ShopAniTimer.add_event_listener(TimerEvent.TIMER, ShopAniFrame);
         if (!lightMode){
             ShopAniTimer.start();
         } else {
@@ -13729,12 +13709,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             SetCnt((CHAR_SLOT_SHAKES_1 + i), ITM_OFFS);
             AddBunch(SCREEN_FIDGET, (CHAR_SLOT_FIDGET_1 + i));
             AddBunch(SCREEN_SHAKES, (CHAR_SLOT_SHAKES_1 + i));
-            actor[(CHAR_SLOT_FIDGET_1 + i)].addEventListener(MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
-            actor[(CHAR_SLOT_SHAKES_1 + i)].addEventListener(MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
+            actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
+            actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
             EnableDragDrop((CHAR_SLOT_FIDGET_1 + i), DropHandler);
             EnableDragDrop((CHAR_SLOT_SHAKES_1 + i), DropHandler);
-            actor[(CHAR_SLOT_FIDGET_1 + i)].addEventListener(MouseEvent.MOUSE_UP, ShopMouseUpEvent);
-            actor[(CHAR_SLOT_SHAKES_1 + i)].addEventListener(MouseEvent.MOUSE_UP, ShopMouseUpEvent);
+            actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(MouseEvent.MOUSE_UP, ShopMouseUpEvent);
+            actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(MouseEvent.MOUSE_UP, ShopMouseUpEvent);
             i = (i + 1);
         };
         i = 0;
@@ -13743,15 +13723,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             AddBunch(SCREEN_SHAKES, (CHAR_SLOT_1 + i));
             i = (i + 1);
         };
-        RollFrenzy.addEventListener(TimerEvent.TIMER, RequestNewWarez);
-        DefineImg(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", false, ((280 + 500) + 360), (100 + 220));
-        actor[GOTO_WITCH_OVL].mouseEnabled = false;
+        RollFrenzy.add_event_listener(TimerEvent.TIMER, RequestNewWarez);
+        DefineImg(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", False, ((280 + 500) + 360), (100 + 220));
+        actor[GOTO_WITCH_OVL].mouse_enabled = False;
         DefineClickArea(CA_GOTO_WITCH, GOTO_WITCH_OVL, RequestWitchScreen, ((280 + 500) + 359), (100 + 215), 45, 65);
         EnablePopup(CA_GOTO_WITCH, txt[TXT_WITCH_BOOK]);
         DefineBunch(SCREEN_WITCH);
-        DefineSnd(SND_WITCH_DROP, "res/sfx/toilet/drop.mp3", false);
+        DefineSnd(SND_WITCH_DROP, "res/sfx/toilet/drop.mp3", False);
         AddBunch(SCREEN_WITCH, SND_WITCH_DROP);
-        DefineImg(WITCH, "res/gfx/scr/shops/witch.jpg", false, SCR_SHOP_BG_X, 100);
+        DefineImg(WITCH, "res/gfx/scr/shops/witch.jpg", False, SCR_SHOP_BG_X, 100);
         AddBunch(SCREEN_WITCH, WITCH);
         i = 0;
         while (i < 15) {
@@ -13760,35 +13740,35 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         i = 0;
         while (i < 15) {
-            DefineImg((WITCH_ANI + i), (("res/gfx/scr/shops/witch_animation/witch" + String(((i * 2) + 1))) + ".jpg"), false, (280 + 500), (100 + 380));
+            DefineImg((WITCH_ANI + i), (("res/gfx/scr/shops/witch_animation/witch" + String(((i * 2) + 1))) + ".jpg"), False, (280 + 500), (100 + 380));
             Hide((WITCH_ANI + i));
             AddBunch(SCREEN_WITCH, (WITCH_ANI + i));
             i = (i + 1);
         };
-        spellClicking = false;
+        spellClicking = False;
         i = 0;
         while (i < 10) {
             DefineCnt((WITCH_SCROLL + i), (((280 + 500) + 37) + ((i % 5) * 83)), ((100 + 11) + (Math.floor((i / 5)) * 95)));
-            actor[(WITCH_SCROLL + i)].useHandCursor = true;
-            actor[(WITCH_SCROLL + i)].buttonMode = true;
-            actor[(WITCH_SCROLL + i)].addEventListener(MouseEvent.CLICK, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].useHandCursor = True;
+            actor[(WITCH_SCROLL + i)].buttonMode = True;
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.CLICK, function (evt:MouseEvent){
                 var id:int;
                 id = ((GetActorID(evt.target) - WITCH_SCROLL) + 1);
                 if (spellClicking){
                     send_action(ACT_WITCH_ENCHANT, id);
                 };
-                spellClicking = false;
+                spellClicking = False;
             });
-            actor[(WITCH_SCROLL + i)].addEventListener(MouseEvent.MOUSE_DOWN, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_DOWN, function (evt:MouseEvent){
                 var actorId:int;
                 var i:int;
                 actorId = GetActorID(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = ((((280 + 500) + 37) + ((i % 5) * 83)) + 1);
                 actor[actorId].y = (((100 + 11) + (Math.floor((i / 5)) * 95)) + 2);
-                spellClicking = true;
+                spellClicking = True;
             });
-            actor[(WITCH_SCROLL + i)].addEventListener(MouseEvent.MOUSE_UP, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_UP, function (evt:MouseEvent){
                 var actorId:int;
                 var i:int;
                 actorId = GetActorID(evt.target);
@@ -13796,14 +13776,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
                 actor[actorId].y = ((100 + 11) + (Math.floor((i / 5)) * 95));
             });
-            actor[(WITCH_SCROLL + i)].addEventListener(MouseEvent.MOUSE_OUT, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_OUT, function (evt:MouseEvent){
                 var actorId:int;
                 var i:int;
                 actorId = GetActorID(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
                 actor[actorId].y = ((100 + 11) + (Math.floor((i / 5)) * 95));
-                spellClicking = false;
+                spellClicking = False;
             });
             i = (i + 1);
         };
@@ -13811,21 +13791,21 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineClickArea(CA_CHALDRON, C_EMPTY, undefined, (SCR_SHOP_BG_X + 120), 585, 260, 160);
         EnablePopup(CA_WITCH, txt[TXT_WITCH_HINT]);
         EnablePopup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 1)]);
-        actor[CA_WITCH].useHandCursor = false;
-        actor[CA_CHALDRON].useHandCursor = false;
+        actor[CA_WITCH].useHandCursor = False;
+        actor[CA_CHALDRON].useHandCursor = False;
         AddBunch(SCREEN_WITCH, IF_OVL, CA_WITCH, CA_CHALDRON, IF_EXIT);
-        DefineImg(SCR_DEALER_BG, "", false, 280, 100);
+        DefineImg(SCR_DEALER_BG, "", False, 280, 100);
         DefineBunch(SCREEN_DEALER, SCR_DEALER_BG, IF_OVL, IF_EXIT);
-        DefineImg(SCR_WORLDMAP_BG, "res/gfx/scr/map/worldmap.jpg", false, 280, 100);
+        DefineImg(SCR_WORLDMAP_BG, "res/gfx/scr/map/worldmap.jpg", False, 280, 100);
         DefineBunch(SCREEN_WORLDMAP, SCR_WORLDMAP_BG, IF_OVL, IF_EXIT);
         i = 0;
         while (i < 100) {
-            DefineImg((SCR_QUEST_BG_1 + i), (("res/gfx/scr/quest/locations/location" + String((i + 1))) + ".jpg"), false, 280, 100);
+            DefineImg((SCR_QUEST_BG_1 + i), (("res/gfx/scr/quest/locations/location" + String((i + 1))) + ".jpg"), False, 280, 100);
             i = (i + 1);
         };
-        DefineImg(QUESTBAR_BG, "res/gfx/if/adventurebar.png", false, QUESTBAR_X, QUESTBAR_Y);
-        DefineImg(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", false, (QUESTBAR_X + 110), (QUESTBAR_Y + 44));
-        DefineImg(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", false, ((QUESTBAR_X + 110) - 5), (QUESTBAR_Y + 44));
+        DefineImg(QUESTBAR_BG, "res/gfx/if/adventurebar.png", False, QUESTBAR_X, QUESTBAR_Y);
+        DefineImg(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", False, (QUESTBAR_X + 110), (QUESTBAR_Y + 44));
+        DefineImg(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", False, ((QUESTBAR_X + 110) - 5), (QUESTBAR_Y + 44));
         DefineLbl(LBL_QUESTBAR_TEXT, "", 0, QUESTBAR_LABEL_Y, FontFormat_QuestBar);
         DefineBtn(QUEST_CANCEL, txt[TXT_QUEST_CANCEL], CancelQuest, btnClassBasic, 0, QUEST_CANCEL_Y);
         DefineBtn(QUEST_SKIP, (txt[TXT_SKIP_FIGHT] + " ~P"), SkipQuest, btnClassBasic, 0, QUEST_CANCEL_Y);
@@ -13838,11 +13818,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddBunch(SCREEN_QUEST, CA_TV);
         actor[QUEST_SKIP].x = int(((QUEST_CANCEL_X - actor[QUEST_SKIP].width) - 5));
         actor[QUESTBAR_FILL].scaleX = 0;
-        DefineImg(POST_BG, "res/gfx/scr/post/postamt.jpg", false, 280, 100);
-        DefineImg(POST_DAWN1, "res/gfx/scr/post/postamt_abend1.jpg", false, (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
-        DefineImg(POST_DAWN2, "res/gfx/scr/post/postamt_abend2.jpg", false, (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
-        DefineImg(POST_NIGHT1, "res/gfx/scr/post/postamt_nacht1.jpg", false, (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
-        DefineImg(POST_NIGHT2, "res/gfx/scr/post/postamt_nacht2.jpg", false, (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
+        DefineImg(POST_BG, "res/gfx/scr/post/postamt.jpg", False, 280, 100);
+        DefineImg(POST_DAWN1, "res/gfx/scr/post/postamt_abend1.jpg", False, (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
+        DefineImg(POST_DAWN2, "res/gfx/scr/post/postamt_abend2.jpg", False, (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
+        DefineImg(POST_NIGHT1, "res/gfx/scr/post/postamt_nacht1.jpg", False, (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
+        DefineImg(POST_NIGHT2, "res/gfx/scr/post/postamt_nacht2.jpg", False, (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
         DefineBunch(POST_DAWN, POST_DAWN1, POST_DAWN2);
         DefineBunch(POST_NIGHT, POST_NIGHT1, POST_NIGHT2);
         DefineFromClass(SHP_POST_BLACK_SQUARE, black_square, POST_SQUARE_X, POST_SQUARE_Y);
@@ -13891,8 +13871,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineClickArea(CA_POST_BLOCK, C_EMPTY, undefined, 280, 100, (RES_X - 280), (RES_Y - 100));
         _local2 = actor[CA_POST_BLOCK];
         with (_local2) {
-            useHandCursor = false;
-            buttonMode = false;
+            useHandCursor = False;
+            buttonMode = False;
         };
         DefineFromClass(INP_POST_SUBJECT, SimpleTextField, POST_INP_X, POST_SUBJECT_Y, 2, "text");
         DefineFromClass(INP_POST_ADDRESS, SimpleTextField, POST_INP_X, POST_ADDRESS_Y, 2, "name");
@@ -13962,13 +13942,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
             };
         };
-        actor[INP_POST_ADDRESS].getChildAt(1).addEventListener(TextEvent.TEXT_INPUT, AdvancedPostHandler);
-        actor[INP_POST_SUBJECT].addEventListener(MouseEvent.MOUSE_DOWN, killFieldContent);
-        actor[INP_POST_ADDRESS].addEventListener(MouseEvent.MOUSE_DOWN, killFieldContent);
-        actor[INP_POST_TEXT].addEventListener(MouseEvent.MOUSE_DOWN, killFieldContent);
-        actor[INP_POST_SUBJECT].addEventListener(FocusEvent.FOCUS_OUT, fillFieldContent);
-        actor[INP_POST_ADDRESS].addEventListener(FocusEvent.FOCUS_OUT, fillFieldContent);
-        actor[INP_POST_TEXT].addEventListener(FocusEvent.FOCUS_OUT, fillFieldContent);
+        actor[INP_POST_ADDRESS].getChildAt(1).add_event_listener(TextEvent.TEXT_INPUT, AdvancedPostHandler);
+        actor[INP_POST_SUBJECT].add_event_listener(MouseEvent.MOUSE_DOWN, killFieldContent);
+        actor[INP_POST_ADDRESS].add_event_listener(MouseEvent.MOUSE_DOWN, killFieldContent);
+        actor[INP_POST_TEXT].add_event_listener(MouseEvent.MOUSE_DOWN, killFieldContent);
+        actor[INP_POST_SUBJECT].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
+        actor[INP_POST_ADDRESS].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
+        actor[INP_POST_TEXT].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
         DefineBtn(POST_SEND, txt[TXT_POST_SEND], PostBtnHandler, btnClassBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
         DefineBtn(POST_CANCEL, txt[TXT_POST_CANCEL], PostBtnHandler, btnClassBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
         DefineBtn(POST_RETURN, txt[TXT_POST_RETURN], PostBtnHandler, btnClassBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
@@ -13986,20 +13966,20 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_POST_GUILD]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - width) - 5);
-            addEventListener(MouseEvent.CLICK, GuildMsgMode);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.CLICK, GuildMsgMode);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineBunch(POST_LIST, LBL_POST_TITLE_INBOX, POST_LIST, POST_READ, POST_DELETE, POST_FLUSH, POST_WRITE, POST_UP, POST_DOWN, LBL_POST_LIMIT);
         DefineBunch(POST_WRITE, LBL_POST_TITLE_WRITE, INP_POST_SUBJECT, INP_POST_ADDRESS, POST_GUILD, INP_POST_TEXT, POST_SEND, POST_CANCEL);
         DefineBunch(POST_READ, LBL_POST_TITLE_READ, INP_POST_SUBJECT, INP_POST_ADDRESS, INP_POST_TEXT, POST_RETURN, POST_DELETEREAD, POST_READ_NEXT, POST_READ_PREV, POST_PROFILE, POST_FORWARD);
         DefineBunch(SCREEN_POST, POST_BG, IF_OVL, POST_NIGHT, POST_DAWN, SHP_POST_BLACK_SQUARE, POST_LIST, IF_EXIT);
-        DefineImg(ARENA_BG_DAY, "res/gfx/scr/arena/arena_tag.jpg", false, 280, 100);
-        DefineImg(ARENA_BG_DAWN, "res/gfx/scr/arena/arena_abend.jpg", false, 280, 100);
-        DefineImg(ARENA_BG_NIGHT, "res/gfx/scr/arena/arena_nacht.jpg", false, 280, 100);
+        DefineImg(ARENA_BG_DAY, "res/gfx/scr/arena/arena_tag.jpg", False, 280, 100);
+        DefineImg(ARENA_BG_DAWN, "res/gfx/scr/arena/arena_abend.jpg", False, 280, 100);
+        DefineImg(ARENA_BG_NIGHT, "res/gfx/scr/arena/arena_nacht.jpg", False, 280, 100);
         if (Capabilities.version.substr(0, 3) != "IOS"){
-            DefineImg(ARENA_FEUER, "res/gfx/scr/arena/arenafeuer.swf", false, ARENA_FEUER_X, ARENA_FEUER_Y);
+            DefineImg(ARENA_FEUER, "res/gfx/scr/arena/arenafeuer.swf", False, ARENA_FEUER_X, ARENA_FEUER_Y);
         };
         DefineLbl(LBL_ARENA_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY), FontFormat_Default);
         DefineLbl(LBL_ARENA_DELAY, "", (IF_WIN_X + ARENA_DELAY_X), ((IF_WIN_Y + ARENA_DELAY_Y) + AIRRelMoveY), FontFormat_Default);
@@ -14007,7 +13987,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(LBL_ARENA_DELAY, Filter_Shadow);
         _local2 = actor[LBL_ARENA_TEXT];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = ARENA_TEXT_X;
             text = txt[TXT_ARENA_1];
         };
@@ -14016,7 +13996,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             getChildAt(1).text = "";
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
-            addEventListener(KeyboardEvent.KEY_DOWN, AttackEnemy);
+            add_event_listener(KeyboardEvent.KEY_DOWN, AttackEnemy);
         };
         DefineBtn(ARENA_OK, txt[TXT_OK], AttackEnemy, btnClassBasic, 0, ((IF_WIN_Y + ARENA_OK_Y) + AIRRelMoveY));
         _local2 = actor[ARENA_OK];
@@ -14032,23 +14012,23 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         } else {
             DefineBunch(SCREEN_ARENA, ARENA_FEUER, IF_OVL, WINDOW_ARENA, IF_EXIT);
         };
-        DefineImg(STALL_BG_GUT, "res/gfx/scr/stall/stall_gut.jpg", false, 280, 100);
-        DefineImg(STALL_BG_BOESE, "res/gfx/scr/stall/stall_boese.jpg", false, 280, 100);
-        DefineImg(STALL_DAWN, "res/gfx/scr/stall/stall_abend.jpg", false, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
-        DefineImg(STALL_NIGHT, "res/gfx/scr/stall/stall_nacht.jpg", false, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
-        DefineImg(STALL_ARME1, "res/gfx/scr/stall/stall_arme1.png", false, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME2, "res/gfx/scr/stall/stall_arme2.png", false, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME3, "res/gfx/scr/stall/stall_arme3.png", false, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME4, "res/gfx/scr/stall/stall_arme4.png", false, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME5, "res/gfx/scr/stall/stall_arme5.png", false, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_OVL_GUT1, "res/gfx/scr/stall/tiger2_mouseover.jpg", false, (280 + STALL_OVL_GUT1_X), (100 + STALL_OVL_GUT1_Y));
-        DefineImg(STALL_OVL_GUT2, "res/gfx/scr/stall/kuh_mouseover.jpg", false, (280 + STALL_OVL_GUT2_X), (100 + STALL_OVL_GUT2_Y));
-        DefineImg(STALL_OVL_GUT3, "res/gfx/scr/stall/horse_mouseover.jpg", false, (280 + STALL_OVL_GUT3_X), (100 + STALL_OVL_GUT3_Y));
-        DefineImg(STALL_OVL_GUT4, "res/gfx/scr/stall/greif_mouseover.jpg", false, (280 + STALL_OVL_GUT4_X), (100 + STALL_OVL_GUT4_Y));
-        DefineImg(STALL_OVL_BOESE1, "res/gfx/scr/stall/pig_mouseover.jpg", false, (280 + STALL_OVL_BOESE1_X), (100 + STALL_OVL_BOESE1_Y));
-        DefineImg(STALL_OVL_BOESE2, "res/gfx/scr/stall/wolf_mouseover.jpg", false, (280 + STALL_OVL_BOESE2_X), (100 + STALL_OVL_BOESE2_Y));
-        DefineImg(STALL_OVL_BOESE3, "res/gfx/scr/stall/raptor_mouseover.jpg", false, (280 + STALL_OVL_BOESE3_X), (100 + STALL_OVL_BOESE3_Y));
-        DefineImg(STALL_OVL_BOESE4, "res/gfx/scr/stall/dragon_mouseover.jpg", false, (280 + STALL_OVL_BOESE4_X), (100 + STALL_OVL_BOESE4_Y));
+        DefineImg(STALL_BG_GUT, "res/gfx/scr/stall/stall_gut.jpg", False, 280, 100);
+        DefineImg(STALL_BG_BOESE, "res/gfx/scr/stall/stall_boese.jpg", False, 280, 100);
+        DefineImg(STALL_DAWN, "res/gfx/scr/stall/stall_abend.jpg", False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
+        DefineImg(STALL_NIGHT, "res/gfx/scr/stall/stall_nacht.jpg", False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
+        DefineImg(STALL_ARME1, "res/gfx/scr/stall/stall_arme1.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME2, "res/gfx/scr/stall/stall_arme2.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME3, "res/gfx/scr/stall/stall_arme3.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME4, "res/gfx/scr/stall/stall_arme4.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME5, "res/gfx/scr/stall/stall_arme5.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_OVL_GUT1, "res/gfx/scr/stall/tiger2_mouseover.jpg", False, (280 + STALL_OVL_GUT1_X), (100 + STALL_OVL_GUT1_Y));
+        DefineImg(STALL_OVL_GUT2, "res/gfx/scr/stall/kuh_mouseover.jpg", False, (280 + STALL_OVL_GUT2_X), (100 + STALL_OVL_GUT2_Y));
+        DefineImg(STALL_OVL_GUT3, "res/gfx/scr/stall/horse_mouseover.jpg", False, (280 + STALL_OVL_GUT3_X), (100 + STALL_OVL_GUT3_Y));
+        DefineImg(STALL_OVL_GUT4, "res/gfx/scr/stall/greif_mouseover.jpg", False, (280 + STALL_OVL_GUT4_X), (100 + STALL_OVL_GUT4_Y));
+        DefineImg(STALL_OVL_BOESE1, "res/gfx/scr/stall/pig_mouseover.jpg", False, (280 + STALL_OVL_BOESE1_X), (100 + STALL_OVL_BOESE1_Y));
+        DefineImg(STALL_OVL_BOESE2, "res/gfx/scr/stall/wolf_mouseover.jpg", False, (280 + STALL_OVL_BOESE2_X), (100 + STALL_OVL_BOESE2_Y));
+        DefineImg(STALL_OVL_BOESE3, "res/gfx/scr/stall/raptor_mouseover.jpg", False, (280 + STALL_OVL_BOESE3_X), (100 + STALL_OVL_BOESE3_Y));
+        DefineImg(STALL_OVL_BOESE4, "res/gfx/scr/stall/dragon_mouseover.jpg", False, (280 + STALL_OVL_BOESE4_X), (100 + STALL_OVL_BOESE4_Y));
         DefineClickArea(CA_STALL_BOX_GUT1, STALL_OVL_GUT1, ClickMount, (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100), STALL_BOX1_X, STALL_BOX1_Y);
         DefineClickArea(CA_STALL_BOX_GUT2, STALL_OVL_GUT2, ClickMount, (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100), STALL_BOX2_X, STALL_BOX2_Y);
         DefineClickArea(CA_STALL_BOX_GUT3, STALL_OVL_GUT3, ClickMount, (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100), STALL_BOX3_X, STALL_BOX3_Y);
@@ -14076,7 +14056,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_STALL_TEXT, txt[TXT_STALL_TEXT], (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), ((actor[LBL_STALL_TITEL].y + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y), FontFormat_DefaultLeft);
         _local2 = actor[LBL_STALL_TEXT];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = (STALL_SQUARE_X - (STALL_TITEL_X * 2));
         };
         DefineLbl(LBL_STALL_GAIN, "", (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), (((actor[LBL_STALL_TITEL].y + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y) + STALL_GAIN_Y), FontFormat_DefaultLeft);
@@ -14103,13 +14083,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddBunch(SCREEN_STALL, SHP_STALL_BLACK_SQUARE, LBL_STALL_TITEL, LBL_STALL_TEXT, LBL_STALL_GAIN);
         SelectedMount = 0;
         OldMount = 0;
-        DefineImg(GILDEN_BG, "res/gfx/scr/gilde/gilde.jpg", false, 280, 100);
-        DefineImg(GILDE_RAHMEN, "res/gfx/scr/gilde/gilde_interface.png", false, 280, 100);
+        DefineImg(GILDEN_BG, "res/gfx/scr/gilde/gilde.jpg", False, 280, 100);
+        DefineImg(GILDE_RAHMEN, "res/gfx/scr/gilde/gilde_interface.png", False, 280, 100);
         DefineLbl(LBL_GILDE_GRUENDEN_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_GRUENDEN_TEXT_X / 2)), ((IF_WIN_Y + GILDE_GRUENDEN_TEXT_Y) + AIRRelMoveY), FontFormat_Default);
         AddFilter(LBL_GILDE_GRUENDEN_TEXT, Filter_Shadow);
         _local2 = actor[LBL_GILDE_GRUENDEN_TEXT];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = GILDE_GRUENDEN_TEXT_X;
             text = txt[TXT_GILDE_GRUENDEN];
         };
@@ -14128,7 +14108,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(GILDE_GEBAEUDE);
         i = 0;
         while (i < 3) {
-            DefineImg((GILDE_GEBAEUDE + i), (("res/gfx/scr/gilde/building" + String((i + 1))) + ".png"), false, GILDE_GEBAEUDE_X, (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)));
+            DefineImg((GILDE_GEBAEUDE + i), (("res/gfx/scr/gilde/building" + String((i + 1))) + ".png"), False, GILDE_GEBAEUDE_X, (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)));
             DefineLbl((LBL_GILDE_GEBAEUDE_NAME + i), txt[(TXT_GILDE_GEBAEUDE_NAME1 + i)], (GILDE_GEBAEUDE_X + GILDE_TEXT_X), (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)), FontFormat_GuildBuilding);
             DefineLbl((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), txt[(TXT_GILDE_GEBAEUDE_WERT1 + i)], (GILDE_GEBAEUDE_X + GILDE_TEXT_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 1)), FontFormat_GuildBuilding);
             DefineLbl((LBL_GILDE_GEBAEUDE_WERT + i), "", (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 2)), FontFormat_GuildBuilding);
@@ -14139,7 +14119,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             DefineCnt((GILDE_GEBAEUDE_GOLD + i), 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)));
             DefineCnt((GILDE_GEBAEUDE_MUSH + i), 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)));
             DefineBtn((GILDE_GEBAEUDE_IMPROVE + i), "", GildeBtnHandler, btnClassPlus, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
-            DefineImg((GILDE_GEBAEUDE_IMPROVE_GRAY + i), "res/gfx/scr/gilde/plus_disabled.png", false, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
+            DefineImg((GILDE_GEBAEUDE_IMPROVE_GRAY + i), "res/gfx/scr/gilde/plus_disabled.png", False, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
             AddFilter((LBL_GILDE_GEBAEUDE_NAME + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_WERT + i), Filter_Shadow);
@@ -14170,8 +14150,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(GILDE_CREST, (GILDE_GEBAEUDE_X - 2), (GILDE_GEBAEUDE_Y + 60));
         i = 0;
         while (i < crestElementPos.length) {
-            DefineImg((GILDE_CREST + i), "", false, 0, 0);
-            actor[(GILDE_CREST + i)].mouseEnabled = false;
+            DefineImg((GILDE_CREST + i), "", False, 0, 0);
+            actor[(GILDE_CREST + i)].mouse_enabled = False;
             MakePersistent((GILDE_CREST + i));
             crestClaI = i;
             if (crestClaI == 1){
@@ -14181,21 +14161,21 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     crestClaI = 1;
                 };
             };
-            DefineClickArea((CLA_GILDE_CREST + crestClaI), C_EMPTY, GildeBtnHandler, crestElementPos[crestClaI][0], crestElementPos[crestClaI][1], crestElementPos[crestClaI][2], crestElementPos[crestClaI][3], 0, undefined, undefined, true);
+            DefineClickArea((CLA_GILDE_CREST + crestClaI), C_EMPTY, GildeBtnHandler, crestElementPos[crestClaI][0], crestElementPos[crestClaI][1], crestElementPos[crestClaI][2], crestElementPos[crestClaI][3], 0, undefined, undefined, True);
             MakePersistent((CLA_GILDE_CREST + crestClaI));
             _local2 = actor[GILDE_CREST];
             with (_local2) {
                 addChild(actor[(GILDE_CREST + i)]);
                 addChild(actor[(CLA_GILDE_CREST + crestClaI)]);
                 if (i == 2){
-                    DefineImg(GILDE_CREST_SHIELDCOLOR, "", false, 0, 0);
-                    actor[GILDE_CREST_SHIELDCOLOR].mouseEnabled = false;
+                    DefineImg(GILDE_CREST_SHIELDCOLOR, "", False, 0, 0);
+                    actor[GILDE_CREST_SHIELDCOLOR].mouse_enabled = False;
                     MakePersistent(GILDE_CREST_SHIELDCOLOR);
                     addChild(actor[GILDE_CREST_SHIELDCOLOR]);
                 };
                 if (i == 3){
                     DefineLbl(LBL_GILDE_CREST_INSCRIPTION, "Gildenname", 15, 210, FontFormat_Book);
-                    actor[LBL_GILDE_CREST_INSCRIPTION].mouseEnabled = false;
+                    actor[LBL_GILDE_CREST_INSCRIPTION].mouse_enabled = False;
                     MakePersistent(LBL_GILDE_CREST_INSCRIPTION);
                     addChild(actor[LBL_GILDE_CREST_INSCRIPTION]);
                 };
@@ -14221,9 +14201,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 1;
         while (i < 4) {
             DefineCnt((GILDE_CREST_COLOR + i), ((GILDE_GEBAEUDE_X + 23) + (i * 40)), (GILDE_GEBAEUDE_Y + 296));
-            DefineImg((GILDE_CREST_COLOR_UNSELECTED + i), "res/gfx/scr/gilde/crest/color_idle.jpg", false, 0, 0);
-            DefineImg((GILDE_CREST_COLOR_SELECTED + i), "res/gfx/scr/gilde/crest/color_hover.jpg", false, 0, 0);
-            DefineImg((GILDE_CREST_COLOR_FILLIN + i), "res/gfx/scr/gilde/crest/color_field.jpg", false, 2, 2);
+            DefineImg((GILDE_CREST_COLOR_UNSELECTED + i), "res/gfx/scr/gilde/crest/color_idle.jpg", False, 0, 0);
+            DefineImg((GILDE_CREST_COLOR_SELECTED + i), "res/gfx/scr/gilde/crest/color_hover.jpg", False, 0, 0);
+            DefineImg((GILDE_CREST_COLOR_FILLIN + i), "res/gfx/scr/gilde/crest/color_field.jpg", False, 2, 2);
             MakePersistent((GILDE_CREST_COLOR_UNSELECTED + i));
             MakePersistent((GILDE_CREST_COLOR_SELECTED + i));
             MakePersistent((GILDE_CREST_COLOR_FILLIN + i));
@@ -14233,10 +14213,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 addChild(actor[(GILDE_CREST_COLOR_SELECTED + i)]);
                 addChild(actor[(GILDE_CREST_COLOR_FILLIN + i)]);
             };
-            actor[(GILDE_CREST_COLOR + i)].addEventListener(MouseEvent.CLICK, GildeBtnHandler);
-            actor[(GILDE_CREST_COLOR + i)].buttonMode = true;
-            actor[(GILDE_CREST_COLOR + i)].useHandCursor = true;
-            actor[(GILDE_CREST_COLOR + i)].mouseChildren = false;
+            actor[(GILDE_CREST_COLOR + i)].add_event_listener(MouseEvent.CLICK, GildeBtnHandler);
+            actor[(GILDE_CREST_COLOR + i)].buttonMode = True;
+            actor[(GILDE_CREST_COLOR + i)].useHandCursor = True;
+            actor[(GILDE_CREST_COLOR + i)].mouseChildren = False;
             AddBunch(GILDE_CREST_CONTROLS, (GILDE_CREST_COLOR + i));
             i = (i + 1);
         };
@@ -14285,55 +14265,55 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_GILDE_RANG]);
             textLinkMakeClickable(getChildAt(0).parent);
-            mouseChildren = false;
-            mouseEnabled = true;
-            buttonMode = true;
-            useHandCursor = true;
-            addEventListener(MouseEvent.CLICK, JumpToGuildHall);
+            mouseChildren = False;
+            mouse_enabled = True;
+            buttonMode = True;
+            useHandCursor = True;
+            add_event_listener(MouseEvent.CLICK, JumpToGuildHall);
         };
         MakePersistent(LBL_GILDE_RANG);
         DefineFromClass(INP_GILDE_TEXT, SimpleTextAreaGuild, GILDE_TEXT_X, GILDE_LIST_Y, 1, "text");
         CleanupField(INP_GILDE_TEXT);
         AddFilter(INP_GILDE_TEXT, Filter_Shadow);
         DefineCnt(GILDE_LIST, GILDE_LIST_X, GILDE_LIST_Y);
-        DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png", false, 0, 0);
-        DefineImg((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png", false, 0, 0);
-        DefineImg((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png", false, 0, 0);
+        DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png", False, 0, 0);
+        DefineImg((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png", False, 0, 0);
+        DefineImg((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png", False, 0, 0);
         DefineBtn(GILDE_SCROLL_UP, "", GildeBtnHandler, btnClassArrowUp, GILDE_LIST_SCROLLX, GILDE_LIST_Y);
         DefineBtn(GILDE_SCROLL_DOWN, "", GildeBtnHandler, btnClassArrowDown, GILDE_LIST_SCROLLX, GILDE_LIST_SCROLLY);
         i = 0;
-        DefineImg(GILDE_INVITE_GRAY, "res/gfx/scr/gilde/button_gilde_einladen_grau.jpg", false, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_INVITE_GRAY, "res/gfx/scr/gilde/button_gilde_einladen_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
         DefineBtn(GILDE_INVITE, "", GildeBtnHandler, btnClassInvite, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
         DefineBtn(GILDE_PROFILE, "", GildeBtnHandler, btnClassView, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        DefineImg(GILDE_KICK_GRAY, "res/gfx/scr/gilde/button_gilde_rauswerfen_grau.jpg", false, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_KICK_GRAY, "res/gfx/scr/gilde/button_gilde_rauswerfen_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
         DefineBtn(GILDE_KICK, "", GildeBtnHandler, btnClassKick, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        DefineImg(GILDE_PROMOTE_GRAY, "res/gfx/scr/gilde/button_gilde_orden_grau.jpg", false, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_PROMOTE_GRAY, "res/gfx/scr/gilde/button_gilde_orden_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         DefineBtn(GILDE_PROMOTE, "", GildeBtnHandler, btnClassPromote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
         DefineBtn(GILDE_DEMOTE, "", GildeBtnHandler, btnClassDemote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        DefineImg(GILDE_MASTER_GRAY, "res/gfx/scr/gilde/button_gilde_gildenleiter_grau.jpg", false, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_MASTER_GRAY, "res/gfx/scr/gilde/button_gilde_gildenleiter_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         DefineBtn(GILDE_MASTER, "", GildeBtnHandler, btnClassMaster, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
         DefineBtn(GILDE_REVOLT, "", GildeBtnHandler, btnClassRevolt, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         DefineBtn(GILDE_RAID, "", GildeBtnHandler, btnClassRaid, (GILDE_ATTACKX - 50), GILDE_TOOLY);
-        DefineImg(GILDE_RAID_GRAY, "res/gfx/scr/gilde/button_gilde_raid_grey.jpg", false, (GILDE_ATTACKX - 50), GILDE_TOOLY);
-        DefineImg(GILDE_RAID_OK, "res/gfx/scr/gilde/button_gilde_raid_check.jpg", false, (GILDE_ATTACKX - 50), GILDE_TOOLY);
+        DefineImg(GILDE_RAID_GRAY, "res/gfx/scr/gilde/button_gilde_raid_grey.jpg", False, (GILDE_ATTACKX - 50), GILDE_TOOLY);
+        DefineImg(GILDE_RAID_OK, "res/gfx/scr/gilde/button_gilde_raid_check.jpg", False, (GILDE_ATTACKX - 50), GILDE_TOOLY);
         DefineBtn(GILDE_ATTACK, "", GildeBtnHandler, btnClassAttack, (GILDE_ATTACKX + 5), GILDE_TOOLY);
         DefineBtn(GILDE_DEFEND, "", GildeBtnHandler, btnClassDefend, (GILDE_DEFENDX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_ATTACK_GRAY, "res/gfx/scr/gilde/button_gilde_attack_grau.jpg", false, (GILDE_ATTACKX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_ATTACK_OK, "res/gfx/scr/gilde/button_gilde_attack_check.jpg", false, (GILDE_ATTACKX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_DEFEND_GRAY, "res/gfx/scr/gilde/button_gilde_defend_grau.jpg", false, (GILDE_DEFENDX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_DEFEND_OK, "res/gfx/scr/gilde/button_gilde_defend_check.jpg", false, (GILDE_DEFENDX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_ATTACK_GRAY, "res/gfx/scr/gilde/button_gilde_attack_grau.jpg", False, (GILDE_ATTACKX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_ATTACK_OK, "res/gfx/scr/gilde/button_gilde_attack_check.jpg", False, (GILDE_ATTACKX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_DEFEND_GRAY, "res/gfx/scr/gilde/button_gilde_defend_grau.jpg", False, (GILDE_DEFENDX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_DEFEND_OK, "res/gfx/scr/gilde/button_gilde_defend_check.jpg", False, (GILDE_DEFENDX + 5), GILDE_TOOLY);
         DefineBtn(GILDE_KATAPULT, "", GildeBtnHandler, btnClassCatapult0, (GILDE_ATTACKX - 105), GILDE_TOOLY);
         DefineBtn((GILDE_KATAPULT + 1), "", GildeBtnHandler, btnClassCatapult1, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
         DefineBtn((GILDE_KATAPULT + 2), "", GildeBtnHandler, btnClassCatapult2, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg(GILDE_KATAPULT_GRAY, "res/gfx/scr/gilde/button_gilde_catapult0_grau.png", false, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg(GILDE_KATAPULT_OK, "res/gfx/scr/gilde/button_gilde_catapult1_idle.png", false, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg((GILDE_KATAPULT_OK + 1), "res/gfx/scr/gilde/button_gilde_catapult2_idle.png", false, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg((GILDE_KATAPULT_OK + 2), "res/gfx/scr/gilde/button_gilde_catapult3_idle.png", false, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg(GILDE_KATAPULT_GRAY, "res/gfx/scr/gilde/button_gilde_catapult0_grau.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg(GILDE_KATAPULT_OK, "res/gfx/scr/gilde/button_gilde_catapult1_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg((GILDE_KATAPULT_OK + 1), "res/gfx/scr/gilde/button_gilde_catapult2_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg((GILDE_KATAPULT_OK + 2), "res/gfx/scr/gilde/button_gilde_catapult3_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
         DefineBunch(GILDE_KATAPULT, GILDE_KATAPULT, (GILDE_KATAPULT + 1), (GILDE_KATAPULT + 2), GILDE_KATAPULT_GRAY, GILDE_KATAPULT_OK, (GILDE_KATAPULT_OK + 1), (GILDE_KATAPULT_OK + 2));
         DefineCnt(GILDE_ATTACK, GILDE_ATTACKLABEL_X, GILDE_TOOLY);
         DefineCnt(GILDE_DEFENCE, GILDE_ATTACKLABEL_X, (GILDE_TOOLY + GILDE_DEFENSELABEL_Y));
@@ -14346,19 +14326,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_GILDE_ATTACK]);
             textLinkMakeClickable(getChildAt(0).parent);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
-            addEventListener(MouseEvent.CLICK, AttackLinkClick);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
+            add_event_listener(MouseEvent.CLICK, AttackLinkClick);
         };
         _local2 = actor[GILDE_DEFENCE];
         with (_local2) {
             addChild(actor[LBL_GILDE_DEFENCE]);
             textLinkMakeClickable(getChildAt(0).parent);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
-            addEventListener(MouseEvent.CLICK, DefenceLinkClick);
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
+            add_event_listener(MouseEvent.CLICK, DefenceLinkClick);
         };
         EnablePopup(GILDE_INVITE, txt[TXT_POPUP_INVITE]);
         EnablePopup(GILDE_INVITE_GRAY, txt[TXT_POPUP_INVITE]);
@@ -14388,11 +14368,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_GILDE_LINK]);
             textLinkMakeClickable(getChildAt(0).parent);
-            addEventListener(MouseEvent.CLICK, OpenGuildLink);
+            add_event_listener(MouseEvent.CLICK, OpenGuildLink);
             x = ((GILDE_LIST_SCROLLX - 30) - actor[LBL_GILDE_LINK].textWidth);
-            mouseChildren = false;
-            useHandCursor = true;
-            buttonMode = true;
+            mouseChildren = False;
+            useHandCursor = True;
+            buttonMode = True;
         };
         DefineBtn(GILDE_CHAT_UP, "", GildeBtnHandler, btnClassArrowUp, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_UP_Y));
         DefineBtn(GILDE_CHAT_DOWN, "", GildeBtnHandler, btnClassArrowDown, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_DOWN_Y));
@@ -14401,7 +14381,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         while (i < 40) {
             DefineLbl((LBL_GILDE_CHAT + i), "", GILDE_CHAT_X, (GILDE_CHAT_Y + ((i - 35) * GILDE_CHAT_Y)));
             actor[(LBL_GILDE_CHAT + i)].visible = (i >= 35);
-            actor[(LBL_GILDE_CHAT + i)].addEventListener(MouseEvent.CLICK, clickChatLine);
+            actor[(LBL_GILDE_CHAT + i)].add_event_listener(MouseEvent.CLICK, clickChatLine);
             AddFilter((LBL_GILDE_CHAT + i), Filter_Shadow);
             AddBunch(SCREEN_GILDEN, (LBL_GILDE_CHAT + i));
             AddBunch(GILDE_CHAT, (LBL_GILDE_CHAT + i));
@@ -14410,20 +14390,20 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineFromClass(INP_GILDE_CHAT, ChatInputField, GILDE_CHAT_X, GILDE_CHAT_FIELD_Y, 1, "chat");
         actor[INP_GILDE_CHAT].getChildAt(0).text = "";
         AddFilter(INP_GILDE_CHAT, Filter_Shadow);
-        actor[INP_GILDE_CHAT].addEventListener(KeyboardEvent.KEY_DOWN, SendChatMsg);
-        actor[INP_GILDE_CHAT].addEventListener(KeyboardEvent.KEY_UP, AdvancedChatHandler);
-        actor[INP_GILDE_CHAT].addEventListener(FocusEvent.FOCUS_IN, ShowExtendedHistory);
-        actor[INP_GILDE_CHAT].addEventListener(FocusEvent.FOCUS_OUT, HideExtendedHistory);
+        actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_DOWN, SendChatMsg);
+        actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_UP, AdvancedChatHandler);
+        actor[INP_GILDE_CHAT].add_event_listener(FocusEvent.FOCUS_IN, ShowExtendedHistory);
+        actor[INP_GILDE_CHAT].add_event_listener(FocusEvent.FOCUS_OUT, HideExtendedHistory);
         CleanupField(INP_GILDE_CHAT);
         lastChatLine = "";
         nextSuggestionTimer = new Timer((62 * 1000));
-        suggestionAllowed = true;
-        nextSuggestionTimer.addEventListener(TimerEvent.TIMER, nextSuggestionAllow);
+        suggestionAllowed = True;
+        nextSuggestionTimer.add_event_listener(TimerEvent.TIMER, nextSuggestionAllow);
         DefineClickArea(CA_GILDE_DIALOG_BLOCK, C_EMPTY, undefined, 280, 100, (RES_X - 280), (RES_Y - 100));
         _local2 = actor[CA_GILDE_DIALOG_BLOCK];
         with (_local2) {
-            useHandCursor = false;
-            buttonMode = false;
+            useHandCursor = False;
+            buttonMode = False;
         };
         DefineLbl(LBL_GILDE_DIALOG_TEXT_KICK, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
         DefineLbl(LBL_GILDE_DIALOG_TEXT_QUIT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
@@ -14433,31 +14413,31 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_GILDE_DIALOG_TEXT_RAID, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
         _local2 = actor[LBL_GILDE_DIALOG_TEXT_KICK];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = GILDE_TEXT2_X;
             text = txt[TXT_GILDE_KICK];
         };
         _local2 = actor[LBL_GILDE_DIALOG_TEXT_QUIT];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = GILDE_TEXT2_X;
             text = txt[TXT_GILDE_QUIT];
         };
         _local2 = actor[LBL_GILDE_DIALOG_TEXT_MASTER];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = GILDE_TEXT2_X;
             text = txt[TXT_GILDE_MASTER];
         };
         _local2 = actor[LBL_GILDE_DIALOG_TEXT_INVITE];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = GILDE_TEXT2_X;
             text = txt[TXT_GILDE_INVITE];
         };
         _local2 = actor[LBL_GILDE_DIALOG_TEXT_REVOLT];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = GILDE_TEXT2_X;
             text = txt[TXT_REVOLT_WARNING];
         };
@@ -14502,32 +14482,32 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(GILDE_DIALOG_INVITE, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_INVITE, INP_GILDE_DIALOG_INVITE, GILDE_DIALOG_OK_INVITE, GILDE_DIALOG_CANCEL);
         DefineBunch(GILDE_DIALOG_REVOLT, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_REVOLT, GILDE_DIALOG_OK_REVOLT, GILDE_DIALOG_CANCEL);
         DefineBunch(GILDE_DIALOG_RAID, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_RAID, GILDE_DIALOG_OK_RAID, GILDE_DIALOG_CANCEL);
-        actor[GILDE_DIALOG_CANCEL].addEventListener(MouseEvent.CLICK, PlayerGuildInviteCancel);
-        actor[GILDE_DIALOG_OK_INVITE].addEventListener(MouseEvent.CLICK, PlayerGuildInviteOK);
-        DefineImg(HUTMANN_BG, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler.jpg", false, 280, 100);
-        DefineImg(HUTFACE_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_neutral.jpg", false, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_keinelust.jpg", false, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_WIN, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_gewonnen.jpg", false, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_LOSE1, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren.jpg", false, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_LOSE2, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren2.jpg", false, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_LOSE3, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren3.jpg", false, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTBECHER_1_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_1.jpg", false, (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y));
-        DefineImg(HUTBECHER_1_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_2.jpg", false, ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X2), ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y2));
-        DefineImg(HUTBECHER_1_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_3.jpg", false, ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X3), ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y3));
+        actor[GILDE_DIALOG_CANCEL].add_event_listener(MouseEvent.CLICK, PlayerGuildInviteCancel);
+        actor[GILDE_DIALOG_OK_INVITE].add_event_listener(MouseEvent.CLICK, PlayerGuildInviteOK);
+        DefineImg(HUTMANN_BG, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler.jpg", False, 280, 100);
+        DefineImg(HUTFACE_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_neutral.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_keinelust.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_WIN, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_gewonnen.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_LOSE1, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_LOSE2, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren2.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_LOSE3, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren3.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTBECHER_1_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_1.jpg", False, (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y));
+        DefineImg(HUTBECHER_1_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_2.jpg", False, ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X2), ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y2));
+        DefineImg(HUTBECHER_1_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_3.jpg", False, ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X3), ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y3));
         DefineBunch(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTFACE_HOVER);
         DefineClickArea(CA_HUTBECHER_1, HUTBECHER_1_HOVER, ChooseCup, (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y), HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-        DefineImg(HUTBECHER_2_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_1.jpg", false, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y));
-        DefineImg(HUTBECHER_2_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_2.jpg", false, ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X2), ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y2));
-        DefineImg(HUTBECHER_2_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_3.jpg", false, ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X3), ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y3));
+        DefineImg(HUTBECHER_2_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_1.jpg", False, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y));
+        DefineImg(HUTBECHER_2_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_2.jpg", False, ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X2), ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y2));
+        DefineImg(HUTBECHER_2_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_3.jpg", False, ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X3), ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y3));
         DefineBunch(HUTBECHER_2_HOVER, HUTBECHER_2_HOVER, HUTFACE_HOVER);
         DefineClickArea(CA_HUTBECHER_2, HUTBECHER_2_HOVER, ChooseCup, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y), HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-        DefineImg(HUTBECHER_3_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_1.jpg", false, (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y));
-        DefineImg(HUTBECHER_3_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_2.jpg", false, ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X2), ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y2));
-        DefineImg(HUTBECHER_3_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_3.jpg", false, ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X3), ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y3));
+        DefineImg(HUTBECHER_3_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_1.jpg", False, (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y));
+        DefineImg(HUTBECHER_3_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_2.jpg", False, ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X2), ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y2));
+        DefineImg(HUTBECHER_3_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_3.jpg", False, ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X3), ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y3));
         DefineBunch(HUTBECHER_3_HOVER, HUTBECHER_3_HOVER, HUTFACE_HOVER);
         DefineClickArea(CA_HUTBECHER_3, HUTBECHER_3_HOVER, ChooseCup, (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y), HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
         DefineBunch(HUTMANN_BECHERCHOOSE, CA_HUTBECHER_1, CA_HUTBECHER_2, CA_HUTBECHER_3, HUTFACE_IDLE);
-        DefineImg(HUTKUGEL, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_ball.png", false, 0, (100 + HUTKUGEL_Y));
+        DefineImg(HUTKUGEL, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_ball.png", False, 0, (100 + HUTKUGEL_Y));
         DefineLbl(LBL_HUTMANN_TEXT, txt[TXT_HUTMANN_OFFER], 0, (100 + HUTMANN_TEXT_Y), FontFormat_Default);
         actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X - (actor[LBL_HUTMANN_TEXT].textWidth / 2));
         AddFilter(LBL_HUTMANN_TEXT, Filter_Shadow);
@@ -14544,7 +14524,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             scaleY = 0.8;
         };
         EnablePopup(HUTMANN_GOLDBET, txt[TXT_HUTMANN_GOLDBET]);
-        DefineImg(HUTMANN_MUSHBET_DISABLED, "res/gfx/scr/gilde/plus_disabled.png", false, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
+        DefineImg(HUTMANN_MUSHBET_DISABLED, "res/gfx/scr/gilde/plus_disabled.png", False, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         EnablePopup(HUTMANN_MUSHBET_DISABLED, txt[TXT_MUSHBET_BOUGHT]);
         DefineBtn(HUTMANN_MUSHBET, "", HutBtnHandler, btnClassPlus, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[HUTMANN_MUSHBET];
@@ -14573,18 +14553,18 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(HUTMANN_OK, txt[TXT_HUTMANN_START], HutBtnHandler, btnClassLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
         DefineBtn(HUTMANN_BACK, txt[TXT_HUTMANN_BACK], InterfaceBtnHandler, btnClassBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
         HutBtnRepeatTimer = new Timer(1000);
-        DestroyHutBtnTimer = false;
+        DestroyHutBtnTimer = False;
         _local2 = actor[HUTMANN_GOLDBET];
         with (_local2) {
-            addEventListener(MouseEvent.MOUSE_DOWN, HutBtnDownHandler);
-            addEventListener(MouseEvent.MOUSE_UP, HutBtnUpHandler);
-            addEventListener(MouseEvent.MOUSE_OUT, HutBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_DOWN, HutBtnDownHandler);
+            add_event_listener(MouseEvent.MOUSE_UP, HutBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_OUT, HutBtnUpHandler);
         };
         _local2 = actor[HUTMANN_MUSHBET];
         with (_local2) {
-            addEventListener(MouseEvent.MOUSE_DOWN, HutBtnDownHandler);
-            addEventListener(MouseEvent.MOUSE_UP, HutBtnUpHandler);
-            addEventListener(MouseEvent.MOUSE_OUT, HutBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_DOWN, HutBtnDownHandler);
+            add_event_listener(MouseEvent.MOUSE_UP, HutBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_OUT, HutBtnUpHandler);
         };
         DefineBunch(HUTMANN_WON, HUTFACE_WIN);
         DefineBunch(HUTMANN_LOST, HUTFACE_LOSE1);
@@ -14594,26 +14574,26 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddBunch(SCREEN_HUTMANN, LBL_HUTMANN_TEXT, LBL_HUTMANN_GOLDBET, LBL_HUTMANN_MUSHBET, LBL_HUTMANN_GOLDBET2, LBL_HUTMANN_MUSHBET2, LBL_HUTMANN_INSTR, HUTMANN_BACK);
         AddBunch(SCREEN_HUTMANN, HUTMANN_GOLDBET, HUTMANN_MUSHBET, HUTMANN_GOLDBET2, HUTMANN_MUSHBET2, HUTMANN_GOLDBET, HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET);
         HutFaceResetTimer = new Timer(2000, 1);
-        HutFaceResetTimer.addEventListener(TimerEvent.TIMER, HutFaceReset);
-        DefineImg(TAVERNE_BG, "res/gfx/scr/taverne/taverne.jpg", false, 280, 100);
-        DefineImg(TAVERNE_BARKEEPER1, "res/gfx/scr/taverne/taverne_barkeeper1.jpg", false, (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
-        DefineImg(TAVERNE_BARKEEPER2, "res/gfx/scr/taverne/taverne_barkeeper2.jpg", false, (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
-        DefineImg(TAVERNE_BARKEEPER_HINT, "res/gfx/scr/taverne/exclamation.png", false, ((280 + TAVERNE_BARKEEPER_X) + 50), ((100 + TAVERNE_BARKEEPER_Y) - 215));
-        DefineImg(TAVERNE_HUTMANN_BLINZELN, "res/gfx/scr/taverne/huetchenspieler_blink.jpg", false, (280 + TAVERNE_HUTAUGEN_X), (100 + TAVERNE_HUTAUGEN_Y));
-        DefineImg(TAVERNE_HUTMANN_OVL, "res/gfx/scr/taverne/huetchenspieler_mouseover.jpg", false, (280 + TAVERNE_HUTAUGEN_X), (100 + TAVERNE_HUTAUGEN_Y));
+        HutFaceResetTimer.add_event_listener(TimerEvent.TIMER, HutFaceReset);
+        DefineImg(TAVERNE_BG, "res/gfx/scr/taverne/taverne.jpg", False, 280, 100);
+        DefineImg(TAVERNE_BARKEEPER1, "res/gfx/scr/taverne/taverne_barkeeper1.jpg", False, (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
+        DefineImg(TAVERNE_BARKEEPER2, "res/gfx/scr/taverne/taverne_barkeeper2.jpg", False, (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
+        DefineImg(TAVERNE_BARKEEPER_HINT, "res/gfx/scr/taverne/exclamation.png", False, ((280 + TAVERNE_BARKEEPER_X) + 50), ((100 + TAVERNE_BARKEEPER_Y) - 215));
+        DefineImg(TAVERNE_HUTMANN_BLINZELN, "res/gfx/scr/taverne/huetchenspieler_blink.jpg", False, (280 + TAVERNE_HUTAUGEN_X), (100 + TAVERNE_HUTAUGEN_Y));
+        DefineImg(TAVERNE_HUTMANN_OVL, "res/gfx/scr/taverne/huetchenspieler_mouseover.jpg", False, (280 + TAVERNE_HUTAUGEN_X), (100 + TAVERNE_HUTAUGEN_Y));
         DefineClickArea(CA_TAVERNE_HUTMANN, TAVERNE_HUTMANN_OVL, ShowHutmann, (TAVERNE_HUT_X + 280), (TAVERNE_HUT_Y + 100), TAVERNE_HUT_X, TAVERNE_HUT_Y);
         DefineClickArea(CA_TAVERNE_QUESTOFFER, TAVERNE_QUESTOVL, ShowQuestOffer, (TAVERNE_QUEST_X + 280), (TAVERNE_QUEST_Y + 100), TAVERNE_QUEST_X, TAVERNE_QUEST_Y);
         DefineClickArea(CA_TAVERNE_TOILETTE, C_EMPTY, RequestToilet, (280 + 470), (100 + 195), 36, 30);
-        DefineImg(TAVERNE_KERZEN, "res/gfx/scr/taverne/taverne_kerzen.jpg", false, (280 + TAVERNE_KERZEN_X), (100 + TAVERNE_KERZEN_Y));
-        DefineImg(TAVERNE_QUESTOVL1, "res/gfx/scr/taverne/taverne_orc_mouseover.jpg", false, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL1_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL1_Y));
-        DefineImg(TAVERNE_QUESTOVL2, "res/gfx/scr/taverne/taverne_bauer_mouseover.jpg", false, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL2_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL2_Y));
-        DefineImg(TAVERNE_QUESTOVL3, "res/gfx/scr/taverne/taverne_zauberin_mouseover.jpg", false, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL3_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL3_Y));
-        DefineImg(TAVERNE_QUESTOVL4, "res/gfx/scr/taverne/taverne_questgeber_mouseover.jpg", false, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL4_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL4_Y));
-        DefineImg(TAVERNE_QUESTOVL5, "res/gfx/scr/taverne/taverne_tourist_mouseover.jpg", false, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL5_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL5_Y));
-        DefineImg(TAVERNE_BAROVL, "res/gfx/scr/taverne/barkeeper_mouseover.jpg", false, TAVERNE_BAROVL_X, TAVERNE_BAROVL_Y);
+        DefineImg(TAVERNE_KERZEN, "res/gfx/scr/taverne/taverne_kerzen.jpg", False, (280 + TAVERNE_KERZEN_X), (100 + TAVERNE_KERZEN_Y));
+        DefineImg(TAVERNE_QUESTOVL1, "res/gfx/scr/taverne/taverne_orc_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL1_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL1_Y));
+        DefineImg(TAVERNE_QUESTOVL2, "res/gfx/scr/taverne/taverne_bauer_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL2_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL2_Y));
+        DefineImg(TAVERNE_QUESTOVL3, "res/gfx/scr/taverne/taverne_zauberin_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL3_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL3_Y));
+        DefineImg(TAVERNE_QUESTOVL4, "res/gfx/scr/taverne/taverne_questgeber_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL4_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL4_Y));
+        DefineImg(TAVERNE_QUESTOVL5, "res/gfx/scr/taverne/taverne_tourist_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL5_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL5_Y));
+        DefineImg(TAVERNE_BAROVL, "res/gfx/scr/taverne/barkeeper_mouseover.jpg", False, TAVERNE_BAROVL_X, TAVERNE_BAROVL_Y);
         DefineClickArea(CA_TAVERNE_BAR, TAVERNE_BAROVL, ShowBeerOffer, TAVERNE_BAR_X, TAVERNE_BAR_Y, TAVERNE_BAR_X, TAVERNE_BAR_Y);
-        DefineImg(TIMEBAR_BG, "res/gfx/if/adventurebar.png", false, TIMEBAR_X, TIMEBAR_Y);
-        DefineImg(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", false, (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
+        DefineImg(TIMEBAR_BG, "res/gfx/if/adventurebar.png", False, TIMEBAR_X, TIMEBAR_Y);
+        DefineImg(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", False, (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
         DefineCnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
         DefineLbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar);
         AddFilter(LBL_TIMEBAR_TEXT, Filter_Shadow);
@@ -14623,12 +14603,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         EnablePopup(LBL_TIMEBAR_TEXT, txt[TXT_TIMEBAR]);
         DefineBunch(SCREEN_TAVERNE, TAVERNE_BG, IF_OVL, TAVERNE_BARKEEPER1, TAVERNE_BARKEEPER2, TAVERNE_HUTMANN_BLINZELN, CA_TAVERNE_BAR);
         DefineBunch(TAVERNE_CAS, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN, CA_TAVERNE_TOILETTE, CA_TAVERNE_BAR);
-        DefineImg(BEERFEST, "res/gfx/scr/taverne/beerfest.png", false, 280, 100);
-        actor[BEERFEST].mouseEnabled = false;
+        DefineImg(BEERFEST, "res/gfx/scr/taverne/beerfest.png", False, 280, 100);
+        actor[BEERFEST].mouse_enabled = False;
         DefineBunch(BEERFEST, BEERFEST, TIMEBAR_BG, TIMEBAR_FILL, TIMEBAR_FILL, LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
         i = 0;
         while (i < 4) {
-            DefineImg((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" + String((i + 1))) + ".png"), false, (280 + 20), (100 + 20));
+            DefineImg((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" + String((i + 1))) + ".png"), False, (280 + 20), (100 + 20));
             Hide((TV + i));
             AddBunch(SCREEN_TAVERNE, (TV + i));
             i = (i + 1);
@@ -14643,19 +14623,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         EnablePopup(CA_TV, POPUP_BEGIN_LINE, txt[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[TXT_TV_HINT].split("|")[1].split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
         i = 0;
         while (i < 4) {
-            DefineImg((TAVERN_ADVENT + i), (("res/gfx/scr/taverne/advent_wreath_" + String((i + 1))) + ".jpg"), false, (280 + 337), 100);
-            actor[(TAVERN_ADVENT + i)].mouseEnabled = false;
+            DefineImg((TAVERN_ADVENT + i), (("res/gfx/scr/taverne/advent_wreath_" + String((i + 1))) + ".jpg"), False, (280 + 337), 100);
+            actor[(TAVERN_ADVENT + i)].mouse_enabled = False;
             i = (i + 1);
         };
         i = 0;
         while (i < 5) {
-            DefineImg((SPECIAL_ACTION + i), (("res/gfx/scr/taverne/event_ovl_" + String((i + 1))) + ".png"), false, 280, 100);
+            DefineImg((SPECIAL_ACTION + i), (("res/gfx/scr/taverne/event_ovl_" + String((i + 1))) + ".png"), False, 280, 100);
             DefineBunch((SPECIAL_ACTION + i), (SPECIAL_ACTION + i), TIMEBAR_BG, TIMEBAR_FILL, TIMEBAR_FILL, LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
             i = (i + 1);
         };
         i = 0;
         while (i < 5) {
-            DefineImg((TAVERNE_QUEST1 + i), (("res/gfx/scr/taverne/taverne_quest" + String((i + 1))) + ".jpg"), false, (280 + TAVERNE_QUEST_X), (100 + TAVERNE_QUEST_Y));
+            DefineImg((TAVERNE_QUEST1 + i), (("res/gfx/scr/taverne/taverne_quest" + String((i + 1))) + ".jpg"), False, (280 + TAVERNE_QUEST_X), (100 + TAVERNE_QUEST_Y));
             AddBunch(SCREEN_TAVERNE, (TAVERNE_QUEST1 + i));
             i = (i + 1);
         };
@@ -14679,10 +14659,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             with (_local2) {
                 addChild(actor[(LBL_QO_CHOICE1 + i)]);
                 addChild(actor[(LBL_QO_CHOICE1_HL + i)]);
-                addEventListener(MouseEvent.CLICK, ChooseQuest);
-                mouseChildren = false;
-                useHandCursor = true;
-                buttonMode = true;
+                add_event_listener(MouseEvent.CLICK, ChooseQuest);
+                mouseChildren = False;
+                useHandCursor = True;
+                buttonMode = True;
             };
             i = (i + 1);
         };
@@ -14690,8 +14670,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_QO_QUESTNAME, "QuestName", 0, (QO_BLACK_SQUARE_Y + QO_QUESTNAME_Y), FontFormat_Heading);
         DefineLbl(LBL_QO_QUESTTEXT, "quest_text", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_QUESTTEXT_Y), FontFormat_DefaultLeft);
         actor[LBL_QO_QUESTTEXT].width = LBL_QO_TEXT_X;
-        actor[LBL_QO_QUESTTEXT].wordWrap = true;
-        actor[LBL_QO_QUESTTEXT].defaultTextFormat.align = "right";
+        actor[LBL_QO_QUESTTEXT].wordWrap = True;
+        actor[LBL_QO_QUESTTEXT].default_text_format.align = "right";
         DefineLbl(LBL_QO_REWARD, txt[TXT_QO_REWARD], (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_REWARD_Y), FontFormat_Default);
         DefineCnt(QO_REWARDGOLD, 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
         DefineCnt(QO_REWARDSILVER, 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
@@ -14708,40 +14688,40 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddBunch(QUESTOFFER, LBL_QO_REWARD, LBL_QO_REWARDGOLD, LBL_QO_REWARDSILVER, QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDEXP, LBL_QO_TIME, QUEST_SLOT, QO_START, QO_RETURN, LBL_QO_QUESTSTODAY);
         i = 0;
         while (i < 5) {
-            DefineImg((QO_PORTRAIT1 + i), (("res/gfx/scr/taverne/portrait_questgeber_" + String((i + 1))) + ".png"), false, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+            DefineImg((QO_PORTRAIT1 + i), (("res/gfx/scr/taverne/portrait_questgeber_" + String((i + 1))) + ".png"), False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
             AddBunch(QUESTOFFER, (QO_PORTRAIT1 + i));
             i = (i + 1);
         };
-        DefineImg(BO_PORTRAIT_OK, "res/gfx/scr/taverne/portrait_barkeeper_2.png", false, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-        DefineImg(BO_PORTRAIT_NO, "res/gfx/scr/taverne/portrait_barkeeper_3.png", false, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-        DefineImg(BO_PORTRAIT_TH, "res/gfx/scr/taverne/portrait_barkeeper_1.png", false, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+        DefineImg(BO_PORTRAIT_OK, "res/gfx/scr/taverne/portrait_barkeeper_2.png", False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+        DefineImg(BO_PORTRAIT_NO, "res/gfx/scr/taverne/portrait_barkeeper_3.png", False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+        DefineImg(BO_PORTRAIT_TH, "res/gfx/scr/taverne/portrait_barkeeper_1.png", False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
         DefineBunch(BEEROFFER, SHP_QO_BLACK_SQUARE, LBL_QO_QUESTNAME, LBL_QO_QUESTTEXT, LBL_QO_TIME, LBL_QO_REWARDEXP, BO_BUY, BO_BUY, QO_RETURN, BO_PORTRAIT_OK, BO_PORTRAIT_NO, BO_PORTRAIT_TH);
         TimeBarAniTimer = new Timer(20);
-        TimeBarAniTimer.addEventListener(TimerEvent.TIMER, TimeBarAniEvent);
+        TimeBarAniTimer.add_event_listener(TimerEvent.TIMER, TimeBarAniEvent);
         TimeBarAniTimer.start();
         timeBarAni = 0;
         DefineBunch(SCREEN_TOILET);
-        DefineSnd(SND_TOILET_FLUSHTRY, "res/sfx/toilet/flush_try.mp3", false);
-        DefineSnd(SND_TOILET_FLUSH, "res/sfx/toilet/flush.mp3", false);
-        DefineSnd(SND_TOILET_DROP, "res/sfx/toilet/drop.mp3", false);
+        DefineSnd(SND_TOILET_FLUSHTRY, "res/sfx/toilet/flush_try.mp3", False);
+        DefineSnd(SND_TOILET_FLUSH, "res/sfx/toilet/flush.mp3", False);
+        DefineSnd(SND_TOILET_DROP, "res/sfx/toilet/drop.mp3", False);
         AddBunch(SCREEN_TOILET, SND_TOILET_FLUSHTRY, SND_TOILET_FLUSH, SND_TOILET_DROP);
-        DefineImg(TOILET, "res/gfx/scr/taverne/toilet/toilet_bg.png", false, SCR_SHOP_BG_X, 100);
-        DefineImg((TOILET + 1), "res/gfx/scr/taverne/toilet/tank_content.png", false, (SCR_SHOP_BG_X + 170), 190);
-        DefineImg((TOILET + 2), "res/gfx/scr/taverne/toilet/toilet_ovl.png", false, SCR_SHOP_BG_X, 100);
+        DefineImg(TOILET, "res/gfx/scr/taverne/toilet/toilet_bg.png", False, SCR_SHOP_BG_X, 100);
+        DefineImg((TOILET + 1), "res/gfx/scr/taverne/toilet/tank_content.png", False, (SCR_SHOP_BG_X + 170), 190);
+        DefineImg((TOILET + 2), "res/gfx/scr/taverne/toilet/toilet_ovl.png", False, SCR_SHOP_BG_X, 100);
         i = 0;
         while (i < 3) {
             AddBunch(SCREEN_TOILET, (TOILET + i));
             i = (i + 1);
         };
-        DefineImg(TOILET_IDLE, "res/gfx/scr/taverne/toilet/bowl_idle.png", false, SCR_SHOP_BG_X, 100);
-        DefineImg(TOILET_DROP, "res/gfx/scr/taverne/toilet/bowl_dropitem.png", false, SCR_SHOP_BG_X, 100);
+        DefineImg(TOILET_IDLE, "res/gfx/scr/taverne/toilet/bowl_idle.png", False, SCR_SHOP_BG_X, 100);
+        DefineImg(TOILET_DROP, "res/gfx/scr/taverne/toilet/bowl_dropitem.png", False, SCR_SHOP_BG_X, 100);
         AddBunch(SCREEN_TOILET, TOILET_IDLE, TOILET_DROP);
         DefineBunch(TOILET_OVERLAYS, TOILET_IDLE, TOILET_DROP);
         DefineLbl(LBL_TOILET_AURA, "0", (SCR_SHOP_BG_X + 240), 430, FontFormat_ToiletAura);
         AddBunch(SCREEN_TOILET, LBL_TOILET_AURA);
         i = 0;
         while (i < 7) {
-            DefineImg((TOILET_FLUSH + i), (("res/gfx/scr/taverne/toilet/bowl_flush_" + String((i + 1))) + ".png"), false, SCR_SHOP_BG_X, 100);
+            DefineImg((TOILET_FLUSH + i), (("res/gfx/scr/taverne/toilet/bowl_flush_" + String((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
             Hide((TOILET_FLUSH + i));
             AddBunch(SCREEN_TOILET, (TOILET_FLUSH + i));
             AddBunch(TOILET_OVERLAYS, (TOILET_FLUSH + i));
@@ -14749,7 +14729,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         i = 0;
         while (i < 3) {
-            DefineImg((TOILET_CHAIN + i), (("res/gfx/scr/taverne/toilet/chain_" + String((i + 1))) + ".png"), false, SCR_SHOP_BG_X, 100);
+            DefineImg((TOILET_CHAIN + i), (("res/gfx/scr/taverne/toilet/chain_" + String((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
             Hide((TOILET_CHAIN + i));
             AddBunch(SCREEN_TOILET, (TOILET_CHAIN + i));
             AddBunch(TOILET_OVERLAYS, (TOILET_CHAIN + i));
@@ -14767,18 +14747,18 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         EnablePopup(CA_TOILET_CHAIN, txt[(TXT_TOILET_HINT + 1)]);
         EnablePopup(CA_TOILET_BOWL, txt[(TXT_TOILET_HINT + 2)]);
         EnablePopup(CA_TOILET_LID, txt[(TXT_TOILET_HINT + 3)]);
-        actor[CA_TOILET_TANK].useHandCursor = false;
-        actor[CA_TOILET_BOWL].useHandCursor = false;
+        actor[CA_TOILET_TANK].useHandCursor = False;
+        actor[CA_TOILET_BOWL].useHandCursor = False;
         AddBunch(SCREEN_TOILET, IF_OVL, CA_TOILET_LID, CA_TOILET_TANK, CA_TOILET_CHAIN, CA_TOILET_BOWL, IF_EXIT);
         toiletChainTimer = new Timer(50);
         toiletChainFrame = 0;
-        toiletChainTimer.addEventListener(TimerEvent.TIMER, toiletChainAni);
+        toiletChainTimer.add_event_listener(TimerEvent.TIMER, toiletChainAni);
         i = 0;
         while (i < 6) {
-            DefineImg((FIGHT_ONO + i), (("res/gfx/scr/fight/smash" + String((i + 1))) + ".png"), false, 0, 0);
+            DefineImg((FIGHT_ONO + i), (("res/gfx/scr/fight/smash" + String((i + 1))) + ".png"), False, 0, 0);
             i = (i + 1);
         };
-        DefineImg(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png", false, 0, 0);
+        DefineImg(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png", False, 0, 0);
         DefineCnt(FIGHT_ONO, 0, 0);
         DefineLbl(LBL_FIGHT_PLAYERGUILD, "", 0, (OPPY + 5), FontFormat_ScreenTitle);
         DefineLbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5), FontFormat_ScreenTitle);
@@ -14788,9 +14768,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(OPPIMG2);
         i = 0;
         while (i < 10) {
-            DefineImg((OPPBACKGROUND + i), "", false, OPPX, OPPY);
+            DefineImg((OPPBACKGROUND + i), "", False, OPPX, OPPY);
             AddBunch(OPPIMG, (OPPBACKGROUND + i));
-            DefineImg((OPPBACKGROUND2 + i), "", false, OPPX, OPPY);
+            DefineImg((OPPBACKGROUND2 + i), "", False, OPPX, OPPY);
             AddBunch(OPPIMG2, (OPPBACKGROUND2 + i));
             i = (i + 1);
         };
@@ -14811,9 +14791,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (i >= 399){
                 monsterChecksum = MD5((String(i) + "ScriptKiddieLovesToPeek"));
-                DefineImg((OPPMONSTER + k), (("res/gfx/scr/fight/monster/monster" + monsterChecksum) + ".jpg"), false, OPPX, OPPY);
+                DefineImg((OPPMONSTER + k), (("res/gfx/scr/fight/monster/monster" + monsterChecksum) + ".jpg"), False, OPPX, OPPY);
             } else {
-                DefineImg((OPPMONSTER + k), (("res/gfx/scr/fight/monster/monster" + String((i + 1))) + ".jpg"), false, OPPX, OPPY);
+                DefineImg((OPPMONSTER + k), (("res/gfx/scr/fight/monster/monster" + String((i + 1))) + ".jpg"), False, OPPX, OPPY);
             };
             k = (k + 1);
         };
@@ -14834,13 +14814,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(LBL_NAMERANK_CHAR, Filter_Shadow);
         DefineLbl(LBL_NAMERANK_OPP, "", 0, OPPY, FontFormat_Default);
         AddFilter(LBL_NAMERANK_OPP, Filter_Shadow);
-        DefineImg(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", false, FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
-        DefineImg(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png", false, (FIGHT_CHARX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
+        DefineImg(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", False, FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
+        DefineImg(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png", False, (FIGHT_CHARX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
         DefineCnt(LIFEBAR_OPP, OPPX, ((OPPY + 300) + LIFEBAR_Y));
         DefineCnt(LIFEBAR_FILL_OPP, (OPPX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
         DefineLbl(LBL_LIFEBAR_CHAR, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y), FontFormat_LifeBar);
         DefineLbl(LBL_LIFEBAR_OPP, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y), FontFormat_LifeBar);
-        DefineImg(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png", false, (FIGHT_CHARX - 10), (OPPY - 10));
+        DefineImg(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png", False, (FIGHT_CHARX - 10), (OPPY - 10));
         DefineCnt(FIGHT_OPP_BORDER, (OPPX - 10), (OPPY - 10));
         DefineCnt(BULLET_CHAR, 0, 0);
         SetCnt(BULLET_CHAR, ITM_OFFS);
@@ -14854,23 +14834,23 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         SetCnt(WEAPON_OPP, ITM_OFFS);
         DefineCnt(SHIELD_OPP, 0, 0);
         SetCnt(SHIELD_OPP, ITM_OFFS);
-        DefineImg(WEAPON_FIST, "res/gfx/itm/kampf_faust.png", false, 0, 0);
-        DefineImg(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png", false, 0, 0);
-        DefineImg(WEAPON_BONE, "res/gfx/itm/kampf_knochen.png", false, 0, 0);
-        DefineImg(WEAPON_STICK, "res/gfx/itm/kampf_stock.png", false, 0, 0);
-        DefineImg(WEAPON_CLAW, "res/gfx/itm/kampf_kralle1.png", false, 0, 0);
-        DefineImg(WEAPON_CLAW2, "res/gfx/itm/kampf_kralle2.png", false, 0, 0);
-        DefineImg(WEAPON_CLAW3, "res/gfx/itm/kampf_kralle3.png", false, 0, 0);
-        DefineImg(WEAPON_CLAW4, "res/gfx/itm/kampf_kralle4.png", false, 0, 0);
-        DefineImg(WEAPON_SWOOSH, "res/gfx/itm/kampf_swoosh1.png", false, 0, 0);
-        DefineImg(WEAPON_SWOOSH2, "res/gfx/itm/kampf_swoosh2.png", false, 0, 0);
-        DefineImg(WEAPON_SWOOSH3, "res/gfx/itm/kampf_swoosh3.png", false, 0, 0);
-        DefineImg(WEAPON_SPLAT, "res/gfx/itm/kampf_splat1.png", false, 0, 0);
-        DefineImg(WEAPON_SPLAT2, "res/gfx/itm/kampf_splat2.png", false, 0, 0);
-        DefineImg(WEAPON_SPLAT3, "res/gfx/itm/kampf_splat3.png", false, 0, 0);
-        DefineImg(WEAPON_FIRE, "res/gfx/itm/kampf_feuer1.png", false, 0, 0);
-        DefineImg(WEAPON_FIRE2, "res/gfx/itm/kampf_feuer2.png", false, 0, 0);
-        DefineImg(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", false, 0, 0);
+        DefineImg(WEAPON_FIST, "res/gfx/itm/kampf_faust.png", False, 0, 0);
+        DefineImg(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png", False, 0, 0);
+        DefineImg(WEAPON_BONE, "res/gfx/itm/kampf_knochen.png", False, 0, 0);
+        DefineImg(WEAPON_STICK, "res/gfx/itm/kampf_stock.png", False, 0, 0);
+        DefineImg(WEAPON_CLAW, "res/gfx/itm/kampf_kralle1.png", False, 0, 0);
+        DefineImg(WEAPON_CLAW2, "res/gfx/itm/kampf_kralle2.png", False, 0, 0);
+        DefineImg(WEAPON_CLAW3, "res/gfx/itm/kampf_kralle3.png", False, 0, 0);
+        DefineImg(WEAPON_CLAW4, "res/gfx/itm/kampf_kralle4.png", False, 0, 0);
+        DefineImg(WEAPON_SWOOSH, "res/gfx/itm/kampf_swoosh1.png", False, 0, 0);
+        DefineImg(WEAPON_SWOOSH2, "res/gfx/itm/kampf_swoosh2.png", False, 0, 0);
+        DefineImg(WEAPON_SWOOSH3, "res/gfx/itm/kampf_swoosh3.png", False, 0, 0);
+        DefineImg(WEAPON_SPLAT, "res/gfx/itm/kampf_splat1.png", False, 0, 0);
+        DefineImg(WEAPON_SPLAT2, "res/gfx/itm/kampf_splat2.png", False, 0, 0);
+        DefineImg(WEAPON_SPLAT3, "res/gfx/itm/kampf_splat3.png", False, 0, 0);
+        DefineImg(WEAPON_FIRE, "res/gfx/itm/kampf_feuer1.png", False, 0, 0);
+        DefineImg(WEAPON_FIRE2, "res/gfx/itm/kampf_feuer2.png", False, 0, 0);
+        DefineImg(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", False, 0, 0);
         DefineLbl(LBL_DAMAGE_INDICATOR, "", 0, 0, FontFormat_Damage);
         AddFilter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
         DefineBtn(FIGHT_SKIP, txt[TXT_SKIP_FIGHT], SkipFight, btnClassBasic, 0, 0);
@@ -14899,12 +14879,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         DefineLbl(LBL_FIGHT_SUMMARY, "", 0, FIGHT_SUMMARY_Y, FontFormat_Default);
         AddFilter(LBL_FIGHT_SUMMARY, Filter_Shadow);
-        DefineImg(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg", false, 280, 100);
-        DefineImg(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", false, 280, 100);
+        DefineImg(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg", False, 280, 100);
+        DefineImg(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", False, 280, 100);
         DefineBunch(SCREEN_FIGHT, BLACK_SQUARE, LBL_NAMERANK_CHAR, LIFEBAR_CHAR, LIFEBAR_FILL_CHAR, LBL_LIFEBAR_CHAR, LBL_NAMERANK_OPP, IF_EXIT);
         AddBunch(SCREEN_FIGHT, LIFEBAR_OPP, LIFEBAR_FILL_OPP, LBL_LIFEBAR_OPP, IF_OVL, FIGHT_SKIP, FIGHT_CHAR_BORDER, FIGHT_OPP_BORDER);
-        DefineImg(FIGHT_BOX1, "res/gfx/scr/fight/box1.png", false, (FIGHT_CHAR_PROP_COLUMN_1_X + FIGHT_BOX1_X), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
-        DefineImg(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", false, (SCREEN_TITLE_X - 254), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
+        DefineImg(FIGHT_BOX1, "res/gfx/scr/fight/box1.png", False, (FIGHT_CHAR_PROP_COLUMN_1_X + FIGHT_BOX1_X), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
+        DefineImg(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", False, (SCREEN_TITLE_X - 254), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
         DefineCnt(FIGHT_BOX3, (FIGHT_CHAR_PROP_COLUMN_3_X + FIGHT_BOX3_X), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
         DefineCnt(FIGHT_SLOT, (SCREEN_TITLE_X - 45), FIGHT_SLOT_Y);
         DefineCnt(FIGHT_REWARDGOLD, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
@@ -14923,7 +14903,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_HERO_OF_THE_DAY_TITLE, ((txt[TXT_HERO_OF_THE_DAY_TITLE]) ? txt[TXT_HERO_OF_THE_DAY_TITLE] : ""), 0, 120, FontFormat_Heading);
         actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
         DefineLbl(LBL_HERO_OF_THE_DAY, "", 0, 160, FontFormat_Default);
-        actor[LBL_HERO_OF_THE_DAY].defaultTextFormat.align = "center";
+        actor[LBL_HERO_OF_THE_DAY].default_text_format.align = "center";
         AddFilter(LBL_HERO_OF_THE_DAY_TITLE, Filter_Shadow);
         AddFilter(LBL_HERO_OF_THE_DAY, Filter_Shadow);
         DefineBunch(HERO_OF_THE_DAY, LBL_HERO_OF_THE_DAY_TITLE, LBL_HERO_OF_THE_DAY);
@@ -14940,15 +14920,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             AddBunch(SCREEN_FIGHT, (LBL_FIGHT_CHAR_STAERKE + i), (LBL_FIGHT_CHAR_STAERKE_CAPTION + i), (LBL_FIGHT_OPP_STAERKE + i), (LBL_FIGHT_OPP_STAERKE_CAPTION + i));
             i = (i + 1);
         };
-        DefineImg(FIGHT_MUSH, "res/gfx/scr/fight/bigmush.png", false, 0, 0);
+        DefineImg(FIGHT_MUSH, "res/gfx/scr/fight/bigmush.png", False, 0, 0);
         DefineSnd(SND_CATAPULT_LAUNCH, "res/sfx/catapult_launch.mp3");
         DefineSnd(SND_CATAPULT_HIT, "res/sfx/catapult_hit.mp3");
         i = 0;
         while (i < 3) {
-            DefineImg((FIGHT_COPYCAT + i), (("res/gfx/npc/copycat_" + String((i + 1))) + ".jpg"), false, FIGHT_CHARX, OPPY);
+            DefineImg((FIGHT_COPYCAT + i), (("res/gfx/npc/copycat_" + String((i + 1))) + ".jpg"), False, FIGHT_CHARX, OPPY);
             i = (i + 1);
         };
-        DefineImg(BG_DEMO, "res/gfx/scr/demo/demo.png", false, 0, DEMO_Y);
+        DefineImg(BG_DEMO, "res/gfx/scr/demo/demo.png", False, 0, DEMO_Y);
         DefineBtn(DEMO_LOGOFF, txt[TXT_OK], RequestLOGout, btnClassBasic, DEMO_X, DEMO_Y);
         DefineBunch(SCREEN_DEMO, BG_DEMO, IF_OVL, DEMO_LOGOFF, BLACK_SQUARE);
         DefineFromClass(SHP_OPTION_BLACK, black_square_neutral, OPTION_X, OPTION_Y);
@@ -14962,7 +14942,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddFilter(LBL_OPTION_TITLE, Filter_Shadow);
         DefineLbl(LBL_OPTION_IMAGE, txt[TXT_CHARIMG], (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
         AddFilter(LBL_OPTION_IMAGE, Filter_Shadow);
-        DefineImg(OPTION_IMAGEBORDER, "res/gfx/scr/option/character_border_small.png", false, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
+        DefineImg(OPTION_IMAGEBORDER, "res/gfx/scr/option/character_border_small.png", False, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
         DefineBtn(OPTION_CHANGEIMG, txt[TXT_CHANGEIMG], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_IMAGE_X), ((OPTION_Y + OPTION_Y5) - 2));
         DefineLbl(LBL_OPTION_CHANGE, txt[TXT_CHANGE], (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
         AddFilter(LBL_OPTION_CHANGE, Filter_Shadow);
@@ -14972,29 +14952,29 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(OPTION_CHANGE_PASSWORD, txt[TXT_CHANGE_PASSWORD], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y3));
         DefineBtn(OPTION_DELETE, txt[TXT_DELETE_ACCOUNT], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y5));
         DefineBtn(OPTION_LUXURY, txt[TXT_LUXURY_BUTTON], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), ((OPTION_Y + OPTION_Y5) - 2));
-        DefineImg(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg", false, 1100, 190);
+        DefineImg(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg", False, 1100, 190);
         DefineFromClass(CB_LM_UNCHECKED, cb_unchecked, LM_X, LM_Y);
-        actor[CB_LM_UNCHECKED].addEventListener(MouseEvent.CLICK, CheckLM);
+        actor[CB_LM_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckLM);
         DefineFromClass(CB_LM_CHECKED, cb_checked, LM_X, LM_Y);
-        actor[CB_LM_CHECKED].addEventListener(MouseEvent.CLICK, UncheckLM);
+        actor[CB_LM_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckLM);
         DefineLbl(LBL_LM, txt[TXT_LM], (LM_X + LM_X), (LM_Y + LM_Y), FontFormat_Default);
         AddFilter(LBL_LM, Filter_Shadow);
         DefineFromClass(CB_CS_UNCHECKED, cb_unchecked, LM_X, (LM_Y - 50));
-        actor[CB_CS_UNCHECKED].addEventListener(MouseEvent.CLICK, CheckCS);
+        actor[CB_CS_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckCS);
         DefineFromClass(CB_CS_CHECKED, cb_checked, LM_X, (LM_Y - 50));
-        actor[CB_CS_CHECKED].addEventListener(MouseEvent.CLICK, UncheckCS);
+        actor[CB_CS_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckCS);
         DefineLbl(LBL_CS, ((txt[TXT_CS]) ? txt[TXT_CS] : "Chat Sound"), (LM_X + LM_X), ((LM_Y + LM_Y) - 50), FontFormat_Default);
         AddFilter(LBL_CS, Filter_Shadow);
         DefineFromClass(CB_COMPARE_UNCHECKED, cb_unchecked, (LM_X + 250), (LM_Y - 50));
-        actor[CB_COMPARE_UNCHECKED].addEventListener(MouseEvent.CLICK, CheckCompare);
+        actor[CB_COMPARE_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckCompare);
         DefineFromClass(CB_COMPARE_CHECKED, cb_checked, (LM_X + 250), (LM_Y - 50));
-        actor[CB_COMPARE_CHECKED].addEventListener(MouseEvent.CLICK, UncheckCompare);
+        actor[CB_COMPARE_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckCompare);
         DefineLbl(LBL_COMPARE, txt[TXT_COMPARE], ((LM_X + LM_X) + 250), ((LM_Y + LM_Y) - 50), FontFormat_Default);
         AddFilter(LBL_COMPARE, Filter_Shadow);
         DefineFromClass(CB_TV_UNCHECKED, cb_unchecked, (LM_X + 250), LM_Y);
-        actor[CB_TV_UNCHECKED].addEventListener(MouseEvent.CLICK, CheckTV);
+        actor[CB_TV_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckTV);
         DefineFromClass(CB_TV_CHECKED, cb_checked, (LM_X + 250), LM_Y);
-        actor[CB_TV_CHECKED].addEventListener(MouseEvent.CLICK, UncheckTV);
+        actor[CB_TV_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckTV);
         DefineLbl(LBL_TV_CHECKBOX, txt[TXT_TV_DISABLE], ((LM_X + LM_X) + 250), (LM_Y + LM_Y), FontFormat_Default);
         AddFilter(LBL_TV_CHECKBOX, Filter_Shadow);
         DefineLbl(LBL_OPTION_DOCHANGE, "", (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
@@ -15002,7 +14982,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_OPTION_FIELD1, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X), ((OPTION_Y + OPTION_Y2) + OPTION_TEXT_Y), FontFormat_DefaultLeft);
         _local2 = actor[LBL_OPTION_FIELD1];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = 300;
         };
         DefineLbl(LBL_OPTION_FIELD2, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X), ((OPTION_Y + OPTION_Y3) + OPTION_TEXT_Y), FontFormat_Default);
@@ -15013,11 +14993,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineFromClass(INP_OPTION_FIELD1, text_input1, (OPTION_X + OPTION_DOCHANGE_FIELD_X), (OPTION_Y + OPTION_Y2), 2, "name");
         DefineFromClass(INP_OPTION_FIELD2, text_input2, (OPTION_X + OPTION_DOCHANGE_FIELD_X), (OPTION_Y + OPTION_Y3), 2, "name");
         DefineFromClass(INP_OPTION_FIELD3, text_input1, (OPTION_X + OPTION_DOCHANGE_FIELD_X), (OPTION_Y + OPTION_Y4), 2, "name");
-        actor[INP_OPTION_FIELD1].addEventListener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
-        actor[INP_OPTION_FIELD2].addEventListener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
-        actor[INP_OPTION_FIELD3].addEventListener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
-        actor[INP_OPTION_FIELD2].addEventListener(KeyboardEvent.KEY_UP, gradePassword);
-        actor[INP_OPTION_FIELD3].addEventListener(KeyboardEvent.KEY_UP, gradePassword);
+        actor[INP_OPTION_FIELD1].add_event_listener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
+        actor[INP_OPTION_FIELD2].add_event_listener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
+        actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
+        actor[INP_OPTION_FIELD2].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
+        actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
         DefineCnt(CHANGE_PASSWORD_SMILEY_SAD, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
         DefineCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
         DefineCnt(CHANGE_PASSWORD_SMILEY_HAPPY, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
@@ -15040,11 +15020,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         Filter_Glow = [new GradientGlowFilter(0, 45, [16777026, 16777026], [0, 0.4], [0, 127], 16, 16, 1, 1, "outer")];
         i = 0;
         while (i < param_languages.length) {
-            DefineImg((OPTION_FLAG + i), (("res/gfx/if/flags/flag_" + param_languages[i]) + ".png"), false, ((LM_X + (35 * i)) - ((lang_code)==param_languages[i]) ? 8 : 0), (LM_Y + ((lang_code)==param_languages[i]) ? 53 : 60), ((lang_code)==param_languages[i]) ? 0.9 : 0.6, ((lang_code)==param_languages[i]) ? 0.9 : 0.6);
+            DefineImg((OPTION_FLAG + i), (("res/gfx/if/flags/flag_" + param_languages[i]) + ".png"), False, ((LM_X + (35 * i)) - ((lang_code)==param_languages[i]) ? 8 : 0), (LM_Y + ((lang_code)==param_languages[i]) ? 53 : 60), ((lang_code)==param_languages[i]) ? 0.9 : 0.6, ((lang_code)==param_languages[i]) ? 0.9 : 0.6);
             if (lang_code == param_languages[i]){
                 AddFilter((OPTION_FLAG + i), Filter_Glow);
             };
-            actor[(OPTION_FLAG + i)].addEventListener(MouseEvent.CLICK, ChooseLanguageIcon);
+            actor[(OPTION_FLAG + i)].add_event_listener(MouseEvent.CLICK, ChooseLanguageIcon);
             AddBunch(SCREEN_OPTION, (OPTION_FLAG + i));
             EnablePopup((OPTION_FLAG + i), param_language_names[i]);
             i = (i + 1);
@@ -15052,21 +15032,21 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         optionMenuSelect = 0;
         DefineLbl(LBL_HLMAINQUESTS_TITLE, txt[TXT_HL_MAINQUESTS_TITLE], 0, MQS_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_HLMAINQUESTS_TITLE, Filter_Shadow);
-        DefineImg(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png", false, 0, 0);
-        DefineImg(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png", false, 0, 0);
-        DefineImg(HLMQS_TOWER_DISABLED, "res/gfx/scr/dungeons/unknown.png", false, 0, 0);
-        DefineImg(HLMQS_TOWER_COMPLETED, "res/gfx/scr/dungeons/done_tower.png", false, 0, 0);
+        DefineImg(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
+        DefineImg(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png", False, 0, 0);
+        DefineImg(HLMQS_TOWER_DISABLED, "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
+        DefineImg(HLMQS_TOWER_COMPLETED, "res/gfx/scr/dungeons/done_tower.png", False, 0, 0);
         DefineBunch(SCREEN_HLMAINQUESTS, IF_OVL, IF_EXIT, LBL_HLMAINQUESTS_TITLE, SND_MAINQUESTS_UNLOCK);
         i = 0;
         while (i < 5) {
             if (i == 4){
                 DefineCnt((HLMQS_BUTTON + 4), ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-                DefineImg((HLMQS_BUTTON + 4), "res/gfx/scr/dungeons/button_tower.jpg", false, ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
+                DefineImg((HLMQS_BUTTON + 4), "res/gfx/scr/dungeons/button_tower.jpg", False, ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
                 DefineCnt((HLMQS_DISABLED + 4), ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
                 DefineCnt((HLMQS_COMPLETED + 4), ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
             } else {
                 DefineCnt((HLMQS_BUTTON + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-                DefineImg((HLMQS_BUTTON + i), (("res/gfx/scr/dungeons/button" + String((60 + i))) + ".jpg"), false, (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
+                DefineImg((HLMQS_BUTTON + i), (("res/gfx/scr/dungeons/button" + String((60 + i))) + ".jpg"), False, (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
                 DefineCnt((HLMQS_DISABLED + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
                 DefineCnt((HLMQS_COMPLETED + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
             };
@@ -15077,14 +15057,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         DefineLbl(LBL_MAINQUESTS_TITLE, txt[(TXT_DUNGEON_INFO + 4)], 0, MQS_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_MAINQUESTS_TITLE, Filter_Shadow);
-        DefineSnd(SND_MAINQUESTS_UNLOCK, "res/sfx/unlock.mp3", false);
-        DefineImg(MQS_DISABLED, "res/gfx/scr/dungeons/unknown.png", false, 0, 0);
-        DefineImg(MQS_COMPLETED, "res/gfx/scr/dungeons/done.png", false, 0, 0);
+        DefineSnd(SND_MAINQUESTS_UNLOCK, "res/sfx/unlock.mp3", False);
+        DefineImg(MQS_DISABLED, "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
+        DefineImg(MQS_COMPLETED, "res/gfx/scr/dungeons/done.png", False, 0, 0);
         DefineBunch(SCREEN_MAINQUESTS, IF_OVL, IF_EXIT, LBL_MAINQUESTS_TITLE, SND_MAINQUESTS_UNLOCK);
         i = 0;
         while (i < 9) {
             DefineCnt((MQS_BUTTON + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-            DefineImg((MQS_BUTTON + i), (("res/gfx/scr/dungeons/button" + String((51 + i))) + ".jpg"), false, (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
+            DefineImg((MQS_BUTTON + i), (("res/gfx/scr/dungeons/button" + String((51 + i))) + ".jpg"), False, (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
             DefineCnt((MQS_DISABLED + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
             DefineCnt((MQS_COMPLETED + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
             AddBunch(SCREEN_MAINQUESTS, (MQS_BUTTON + i), (MQS_DISABLED + i), (MQS_COMPLETED + i));
@@ -15092,10 +15072,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             EnablePopup((MQS_COMPLETED + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
             i = (i + 1);
         };
-        DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg", false, 280, 100);
+        DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg", False, 280, 100);
         DefineLbl(LBL_DUNGEON_CONGRATS, ((txt[TXT_CONGRATS]) ? txt[TXT_CONGRATS].split("#").join(String.fromCharCode(13)) : ""), 1000, 600, FontFormat_Default);
-        actor[LBL_DUNGEON_CONGRATS].wordWrap = true;
-        actor[LBL_DUNGEON_CONGRATS].defaultTextFormat.align = "right";
+        actor[LBL_DUNGEON_CONGRATS].wordWrap = True;
+        actor[LBL_DUNGEON_CONGRATS].default_text_format.align = "right";
         AddFilter(LBL_DUNGEON_CONGRATS, Filter_Shadow);
         DefineBunch(DUNGEON_CONGRATS, DUNGEON_CONGRATS, LBL_DUNGEON_CONGRATS, IF_OVL, IF_EXIT);
         DefineFromClass(SHP_MAINQUEST, black_square, MQ_SQUARE_X, MQ_SQUARE_Y);
@@ -15111,7 +15091,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[LBL_MAINQUEST_TEXT];
         with (_local2) {
             width = (MQ_SQUARE_X - (MQ_TEXT_X * 2));
-            wordWrap = true;
+            wordWrap = True;
         };
         AddFilter(LBL_MAINQUEST_TEXT, Filter_Shadow);
         DefineBtn(MAINQUEST_START, "", RequestMainQuest, btnClassBasic, 0, ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_BUTTON_Y));
@@ -15123,7 +15103,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[LBL_MAINQUEST_MUSHHINT];
         with (_local2) {
             width = ((MQ_SQUARE_X - (MQ_TEXT_X * 3)) - actor[MAINQUEST_START].width);
-            wordWrap = true;
+            wordWrap = True;
         };
         AddFilter(LBL_MAINQUEST_MUSHHINT, Filter_Shadow);
         DefineCnt(MAINQUEST_ENEMY, MAINQUEST_ENEMY_X, MAINQUEST_ENEMY_Y);
@@ -15132,7 +15112,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_DISCONNECTED, txt[TXT_DISCONNECTED], ((DISCONNECTED_X - (DISCONNECTED_X / 2)) + 10), (DISCONNECTED_Y + 10), FontFormat_Error);
         _local2 = actor[LBL_DISCONNECTED];
         with (_local2) {
-            wordWrap = true;
+            wordWrap = True;
             width = (DISCONNECTED_X - 20);
         };
         AddFilter(LBL_DISCONNECTED, Filter_Shadow);
@@ -15146,7 +15126,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(SCREEN_DISCONNECTED, BLACK_SQUARE, SHP_DISCONNECTED, LBL_DISCONNECTED);
         DefineLbl(LBL_EMAIL_NAG, txt[TXT_EMAIL_NAG], EMAIL_NAG_X, EMAIL_NAG_Y, FontFormat_DefaultLeft);
         actor[LBL_EMAIL_NAG].width = EMAIL_NAG_TEXT_X;
-        actor[LBL_EMAIL_NAG].wordWrap = true;
+        actor[LBL_EMAIL_NAG].wordWrap = True;
         AddFilter(LBL_EMAIL_NAG, Filter_Shadow);
         DefineLbl(LBL_EMAIL_RESEND, txt[TXT_EMAIL_RESEND], 0, 0, FontFormat_Default);
         AddFilter(LBL_EMAIL_RESEND, Filter_Shadow);
@@ -15156,11 +15136,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         with (_local2) {
             addChild(actor[LBL_EMAIL_RESEND]);
             textLinkMakeClickable(getChildAt(0).parent);
-            mouseChildren = false;
-            mouseEnabled = true;
-            buttonMode = true;
-            useHandCursor = true;
-            addEventListener(MouseEvent.CLICK, ResendConfirmationEmail);
+            mouseChildren = False;
+            mouse_enabled = True;
+            buttonMode = True;
+            useHandCursor = True;
+            add_event_listener(MouseEvent.CLICK, ResendConfirmationEmail);
         };
         DefineBtn(EMAIL_NAG, txt[TXT_OK], ShowCityScreen, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + EMAIL_NAG_Y));
         DefineBunch(SCREEN_EMAIL_NAG, IF_WINDOW, LBL_WINDOW_TITLE, LBL_EMAIL_NAG, EMAIL_NAG, IF_EXIT);
@@ -15172,7 +15152,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         Add(IF_MAIN);
         Add(IF_BUTTONS);
         if (paramObj["login"]){
-            ShowLOGinScreen(undefined, true);
+            ShowLOGinScreen(undefined, True);
         } else {
             ShowBuildCharacterScreen();
         };
@@ -15338,7 +15318,7 @@ public function SetVolume(vol:Number):void{
     };
 }
 
-public function DefineSnd(actorID:int, url:String, PreLoad:Boolean=false){
+public function DefineSnd(actorID:int, url:String, PreLoad:Boolean=False){
     var full_url:String;
     if (url.toLowerCase().slice(0, 4) == "http:"){
         full_url = url;
@@ -15354,7 +15334,7 @@ public function DefineSnd(actorID:int, url:String, PreLoad:Boolean=false){
     };
 }
 
-public function DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=true):void{
+public function DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
     var actorID:* = actorID;
     var caption:* = caption;
@@ -15372,21 +15352,21 @@ public function DefineBtn(actorID:int, caption:String, handler:Function, btnClas
     actor[i] = new (btnClass)();
     var _local11 = actor[i];
     with (_local11) {
-        addEventListener(MouseEvent.MOUSE_DOWN, playClickSound);
+        add_event_listener(MouseEvent.MOUSE_DOWN, playClickSound);
         if (btnClass == btnClassPlus){
-            addEventListener(MouseEvent.MOUSE_DOWN, handler);
+            add_event_listener(MouseEvent.MOUSE_DOWN, handler);
         } else {
-            addEventListener(MouseEvent.CLICK, handler);
+            add_event_listener(MouseEvent.CLICK, handler);
         };
         x = pos_x;
         y = pos_y;
         scaleX = scale_x;
         scaleY = scale_y;
         visible = Boolean(vis);
-        tabEnabled = false;
-        allowSmoothing = true;
-        forceSmoothing = true;
-        smoothing = true;
+        tabEnabled = False;
+        allow_smoothing = True;
+        force_smoothing = True;
+        smoothing = True;
     };
     if (caption != ""){
         SetBtnText(actorID, caption);
@@ -15451,9 +15431,9 @@ public function SetBtnText(actorID:int, caption:String){
         };
         var _local5 = obj.getChildAt(1);
         with (_local5) {
-            autoSize = TextFieldAutoSize.LEFT;
-            embedFonts = fontEmbedded;
-            defaultTextFormat = new TextFormat(gameFont, (((specialFontSize == 0)) ? defaultTextFormat.size : specialFontSize), defaultTextFormat.color);
+            auto_size = TextFieldAutoSize.LEFT;
+            embed_fonts = font_embedded;
+            default_text_format = new TextFormat(gameFont, (((specialFontSize == 0)) ? default_text_format.size : specialFontSize), default_text_format.color);
             text = btnText;
             x = int(((((obj.getChildAt(0).width / 2) - (textWidth / 2)) + offs) + aoffsx));
             y = int(((((obj.getChildAt(0).height / 2) - (textHeight / 2)) + offsy) + aoffsy));
@@ -15500,7 +15480,7 @@ public function SetBtnText(actorID:int, caption:String){
     CenterTextField(actor[i].hitTestState);
 }
 
-public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=true):void{
+public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=True):void{
     var i:* = 0;
     var fmtUL:* = null;
     var actorID:* = actorID;
@@ -15516,12 +15496,12 @@ public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0,
     };
     var _local8 = actor[i];
     with (_local8) {
-        defaultTextFormat = fmt;
-        autoSize = TextFieldAutoSize.LEFT;
-        background = false;
-        selectable = false;
-        embedFonts = fontEmbedded;
-        antiAliasType = AntiAliasType.ADVANCED;
+        default_text_format = fmt;
+        auto_size = TextFieldAutoSize.LEFT;
+        background = False;
+        selectable = False;
+        embed_fonts = font_embedded;
+        anti_alias_type = AntiAliasType.ADVANCED;
         if (caption){
             htmlText = caption;
         };
@@ -15531,7 +15511,7 @@ public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0,
     };
 }
 
-public function DefineImg(actorID:int, url:String, PreLoad:Boolean=true, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=true):void{
+public function DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
     var full_url:* = null;
     var LoaderCompleteLocal:* = null;
@@ -15544,7 +15524,7 @@ public function DefineImg(actorID:int, url:String, PreLoad:Boolean=true, pos_x:i
     var scale_y:int = scale_y;
     var vis:Boolean = vis;
     LoaderCompleteLocal = function (evt:Event){
-        actor[i].cacheAsBitmap = true;
+        actor[i].cacheAsBitmap = True;
     };
     i = actorID;
     if (url.toLowerCase().slice(0, 4) == "http:"){
@@ -15553,19 +15533,19 @@ public function DefineImg(actorID:int, url:String, PreLoad:Boolean=true, pos_x:i
         full_url = (img_url[img_url_index] + url);
     };
     actor[i] = new Loader();
-    actor[i].contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, LoaderError);
-    actor[i].contentLoaderInfo.addEventListener(Event.COMPLETE, LoaderComplete);
-    actor[i].contentLoaderInfo.addEventListener(Event.COMPLETE, LoaderCompleteLocal);
+    actor[i].contentLoaderInfo.add_event_listener(IOErrorEvent.IO_ERROR, LoaderError);
+    actor[i].contentLoaderInfo.add_event_listener(Event.COMPLETE, LoaderComplete);
+    actor[i].contentLoaderInfo.add_event_listener(Event.COMPLETE, LoaderCompleteLocal);
     actorLoaded[i] = 0;
     actorURL[i] = full_url;
     var _local10 = actor[i];
     with (_local10) {
-        tabEnabled = false;
+        tabEnabled = False;
         x = pos_x;
         y = pos_y;
-        forceSmoothing = true;
-        allowSmoothing = true;
-        smoothing = true;
+        force_smoothing = True;
+        allow_smoothing = True;
+        smoothing = True;
         scaleX = scale_x;
         scaleY = scale_y;
         visible = Boolean(vis);
@@ -15575,7 +15555,7 @@ public function DefineImg(actorID:int, url:String, PreLoad:Boolean=true, pos_x:i
     };
 }
 
-public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=undefined, outFn:Function=undefined, stayPut:Boolean=false):void{
+public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=undefined, outFn:Function=undefined, stayPut:Boolean=False):void{
     var actorID:* = actorID;
     var imgActorID:* = imgActorID;
     var fn:* = fn;
@@ -15610,20 +15590,20 @@ public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:
     actor[actorID] = new MovieClip();
     var _local13 = actor[actorID];
     with (_local13) {
-        tabEnabled = false;
+        tabEnabled = False;
         x = pos_x;
         y = pos_y;
         graphics.beginFill(0xFF0000);
         graphics.drawRect(0, 0, size_x, size_y);
         alpha = ((C_SHOW_CA) ? 0.3 : 0);
-        mouseChildren = false;
-        mouseEnabled = true;
+        mouseChildren = False;
+        mouse_enabled = True;
         if ((fn is Function)){
-            addEventListener(MouseEvent.MOUSE_OVER, ClickAreaHover);
-            addEventListener(MouseEvent.MOUSE_OUT, ClickAreaOut);
-            addEventListener(MouseEvent.CLICK, fn);
-            useHandCursor = true;
-            buttonMode = true;
+            add_event_listener(MouseEvent.MOUSE_OVER, ClickAreaHover);
+            add_event_listener(MouseEvent.MOUSE_OUT, ClickAreaOut);
+            add_event_listener(MouseEvent.CLICK, fn);
+            useHandCursor = True;
+            buttonMode = True;
         };
     };
 }
@@ -15640,8 +15620,8 @@ public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:
         var field:* = field;
         var _local3 = field;
         with (_local3) {
-            embedFonts = fontEmbedded;
-            defaultTextFormat = new TextFormat(gameFont, (defaultTextFormat.size + sizeMod), defaultTextFormat.color);
+            embed_fonts = font_embedded;
+            default_text_format = new TextFormat(gameFont, (default_text_format.size + sizeMod), default_text_format.color);
         };
     };
     i = actorID;
@@ -15651,10 +15631,10 @@ public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:
     with (_local8) {
         x = pos_x;
         y = pos_y;
-        allowSmoothing = true;
-        forceSmoothing = true;
-        smoothing = true;
-        visible = true;
+        allow_smoothing = True;
+        force_smoothing = True;
+        smoothing = True;
+        visible = True;
     };
     if (txtManip == 1){
         ManipTextField(actor[i].getChildAt(0));
@@ -15665,7 +15645,7 @@ public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:
     };
 }
 
-public function DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=true):void{
+public function DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
     var i:* = 0;
     var actorID:* = actorID;
     var pos_x:int = pos_x;
@@ -15675,13 +15655,13 @@ public function DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=tru
     actor[i] = new MovieClip();
     var _local6 = actor[i];
     with (_local6) {
-        tabEnabled = false;
+        tabEnabled = False;
         x = pos_x;
         y = pos_y;
         visible = Boolean(vis);
-        forceSmoothing = true;
-        allowSmoothing = true;
-        smoothing = true;
+        force_smoothing = True;
+        allow_smoothing = True;
+        smoothing = True;
     };
 }
 
@@ -15730,19 +15710,19 @@ public function DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Fu
     DefineBunch(actorID, (actorID + 1));
     var _local7 = actor[(actorID + 1)];
     with (_local7) {
-        addEventListener(MouseEvent.MOUSE_DOWN, SliderMove);
-        addEventListener(MouseEvent.MOUSE_MOVE, SliderMove);
-        buttonMode = true;
-        useHandCursor = true;
+        add_event_listener(MouseEvent.MOUSE_DOWN, SliderMove);
+        add_event_listener(MouseEvent.MOUSE_MOVE, SliderMove);
+        buttonMode = True;
+        useHandCursor = True;
     };
     i = 1;
     while (i <= Ticks) {
         DefineFromClass(((actorID + 1) + i), SliderTick, (((pos_x + 40) + int((198 * ((i - 1) / (Ticks - 1))))) - 5), (pos_y - 10));
         _local7 = actor[((actorID + 1) + i)];
         with (_local7) {
-            addEventListener(MouseEvent.MOUSE_DOWN, ClickTick);
-            buttonMode = true;
-            useHandCursor = true;
+            add_event_listener(MouseEvent.MOUSE_DOWN, ClickTick);
+            buttonMode = True;
+            useHandCursor = True;
         };
         AddBunch(actorID, ((actorID + 1) + i));
         i = (i + 1);
@@ -15781,7 +15761,7 @@ public function MakePersistent(... _args):void{
             };
             return;
         };
-        actorPersistent[_args[i]] = true;
+        actorPersistent[_args[i]] = True;
         i++;
     };
 }
@@ -15799,7 +15779,7 @@ public function MakeTemporary(... _args):void{
             };
             return;
         };
-        actorPersistent[_args[i]] = false;
+        actorPersistent[_args[i]] = False;
         i++;
     };
 }
@@ -15824,10 +15804,10 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
         topPosition = (evt.target.parent.numChildren - 1);
         evt.target.parent.setChildIndex(evt.target, topPosition);
         evt.target.startDrag();
-        dragDropActive = true;
+        dragDropActive = True;
     };
     dragReset = function (evt:Event){
-        dragNotYet = false;
+        dragNotYet = False;
         dragResetTimer.stop();
     };
     MouseBtnUp = function (evt:MouseEvent):void{
@@ -15837,9 +15817,9 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
         if (!dragDropActive){
             return;
         };
-        dropped = false;
-        dragDropActive = false;
-        dragNotYet = true;
+        dropped = False;
+        dragDropActive = False;
+        dragNotYet = True;
         dragResetTimer.start();
         evt.target.stopDrag();
         if (evt.target.dropTarget != null){
@@ -15849,7 +15829,7 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
                     iBunch = 0;
                     while (iBunch < actor[Targets[i]].length) {
                         if (actor[actor[Targets[i]][iBunch]] == evt.target.dropTarget.parent){
-                            dropped = true;
+                            dropped = True;
                             droppedOn = actor[Targets[i]][iBunch];
                             break;
                         };
@@ -15857,7 +15837,7 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
                     };
                 } else {
                     if (actor[Targets[i]] == evt.target.dropTarget.parent){
-                        dropped = true;
+                        dropped = True;
                         droppedOn = Targets[i];
                         break;
                     };
@@ -15869,7 +15849,7 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
                 while (i < actor.length) {
                     if ((actor[i] is DisplayObject)){
                         if ((((actor[i] == evt.target.dropTarget.parent)) or ((actor[i] == evt.target.dropTarget)))){
-                            dropped = true;
+                            dropped = True;
                             droppedOn = i;
                             break;
                         };
@@ -15897,8 +15877,8 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
         iBunch = 0;
         while (iBunch < actor[actorID].length) {
             if ((((actor[actor[actorID][iBunch]] is MovieClip)) or ((actor[actor[actorID][iBunch]] is Sprite)))){
-                actor[actor[actorID][iBunch]].addEventListener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-                actor[actor[actorID][iBunch]].addEventListener(MouseEvent.MOUSE_UP, MouseBtnUp);
+                actor[actor[actorID][iBunch]].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+                actor[actor[actorID][iBunch]].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
             } else {
                 trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor[actorID][iBunch]));
             };
@@ -15907,16 +15887,16 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
         return;
     };
     if ((((actor[actorID] is MovieClip)) or ((actor[actorID] is Sprite)))){
-        actor[actorID].addEventListener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-        actor[actorID].addEventListener(MouseEvent.MOUSE_UP, MouseBtnUp);
+        actor[actorID].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+        actor[actorID].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
     } else {
         trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actorID));
     };
     dragResetTimer = new Timer(500);
-    dragResetTimer.addEventListener(TimerEvent.TIMER, dragReset);
+    dragResetTimer.add_event_listener(TimerEvent.TIMER, dragReset);
 }
 
-public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=false):void{
+public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=False):void{
     var iBunch:* = 0;
     var CntImgLoaded:* = null;
     var cntID:* = cntID;
@@ -15957,22 +15937,22 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
                 actorBitmap[cntID].bitmapData = actor[ImgID].content.bitmapData;
                 _local7 = actorBitmap[cntID];
                 with (_local7) {
-                    allowSmoothing = true;
-                    forceSmoothing = true;
-                    smoothing = true;
+                    allow_smoothing = True;
+                    force_smoothing = True;
+                    smoothing = True;
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
                 actor[cntID].addChild(actorBitmap[cntID]);
             } else {
                 actorBitmap[cntID] = new Bitmap();
-                actorBitmap[cntID].bitmapData = new BitmapData(actor[ImgID].width, actor[ImgID].height, true, 0);
+                actorBitmap[cntID].bitmapData = new BitmapData(actor[ImgID].width, actor[ImgID].height, True, 0);
                 actorBitmap[cntID].bitmapData.draw((actor[ImgID] as IBitmapDrawable));
                 _local7 = actorBitmap[cntID];
                 with (_local7) {
-                    allowSmoothing = true;
-                    forceSmoothing = true;
-                    smoothing = true;
+                    allow_smoothing = True;
+                    force_smoothing = True;
+                    smoothing = True;
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
@@ -15983,7 +15963,7 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
                 actorLoaded[ImgID] = 2;
                 SetCnt(cntID, ImgID, pos_x, pos_y, center);
             };
-            actor[ImgID].contentLoaderInfo.addEventListener(Event.COMPLETE, CntImgLoaded);
+            actor[ImgID].contentLoaderInfo.add_event_listener(Event.COMPLETE, CntImgLoaded);
             if (actorLoaded[ImgID] == 0){
                 Load(ImgID);
             };
@@ -15991,7 +15971,7 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
     };
 }
 
-public function Play(actorID:int, endless:Boolean=false):void{
+public function Play(actorID:int, endless:Boolean=False):void{
     var SoundLoaded:* = null;
     var actorID:* = actorID;
     var endless:Boolean = endless;
@@ -16003,7 +15983,7 @@ public function Play(actorID:int, endless:Boolean=false):void{
             actor[actorID].play(0, ((endless) ? 30000 : 0), stObject);
         };
         trc((("Warnung: Sound " + actorID) + " nicht geladen! Wird geladen..."));
-        actor[actorID].addEventListener(Event.COMPLETE, SoundLoaded);
+        actor[actorID].add_event_listener(Event.COMPLETE, SoundLoaded);
         Load(actorID);
     };
 }
@@ -16172,7 +16152,7 @@ public function Remove(... _args):void{
     };
 }
 
-public function RemoveAll(alsoPersistent:Boolean=false):void{
+public function RemoveAll(alsoPersistent:Boolean=False):void{
     var i:int;
     i = 0;
     while (i < actor.length) {
@@ -16242,18 +16222,18 @@ public function GetActorName(actorID:int=0):String{
                 };
                 i++;
             };
-            pendingDebugFile = false;
+            pendingDebugFile = False;
             LoaderComplete(evt);
         };
         actorName = new Array();
         var _local3 = loader;
         with (_local3) {
             dataFormat = URLLoaderDataFormat.TEXT;
-            addEventListener(Event.COMPLETE, ConstFileLoaded);
+            add_event_listener(Event.COMPLETE, ConstFileLoaded);
             load(new URLRequest("constants.as"));
         };
         pendingLoaders = (pendingLoaders + 1);
-        pendingDebugFile = true;
+        pendingDebugFile = True;
     };
     return (actorName[actorID]);
 }
@@ -16262,14 +16242,14 @@ public function OnStage(actorID):Boolean{
     if ((actor[actorID] is DisplayObject)){
         return (Boolean(getChildByName(actor[actorID].name)));
     };
-    return (false);
+    return (False);
 }
 
 public function Visible(actorID):Boolean{
     if ((actor[actorID] is DisplayObject)){
         return (((Boolean(getChildByName(actor[actorID].name))) and (actor[actorID].visible)));
     };
-    return (false);
+    return (False);
 }
 
 public function Show(... _args):void{
@@ -16289,7 +16269,7 @@ public function Show(... _args):void{
             };
             var _local3 = actor[actorIDs[i]];
             with (_local3) {
-                visible = true;
+                visible = True;
             };
         };
         i = (i + 1);
@@ -16313,7 +16293,7 @@ public function Hide(... _args):void{
             };
             var _local3 = actor[actorIDs[i]];
             with (_local3) {
-                visible = false;
+                visible = False;
             };
         };
         i = (i + 1);
@@ -16377,12 +16357,12 @@ public function FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05,
     if (alphaStep <= 0){
         return;
     };
-    fadeTimer.addEventListener(TimerEvent.TIMER, FadeInEvent);
+    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeInEvent);
     fadeTimer.start();
     SetAlpha(actorID, currentAlpha);
 }
 
-public function FadeOut(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=false){
+public function FadeOut(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
     var fadeTimer:* = null;
     var currentAlpha:* = NaN;
     var FadeOutEvent:* = null;
@@ -16408,7 +16388,7 @@ public function FadeOut(actorID:int, timerInterval:int=20, alphaStep:Number=0.05
     if (alphaStep <= 0){
         return;
     };
-    fadeTimer.addEventListener(TimerEvent.TIMER, FadeOutEvent);
+    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
     fadeTimer.start();
     SetAlpha(actorID, currentAlpha);
 }
@@ -16420,9 +16400,9 @@ public function AddFilter(actorID:int, filter:Array):void{
 public function SetFont(fontName:String){
     var fontName:* = fontName;
     gameFont = fontName;
-    fontEmbedded = true;
+    font_embedded = True;
     if ((((((fontName == "Verdana")) or ((fontName == "Arial Narrow")))) or ((fontName == "Geeza Pro")))){
-        fontEmbedded = false;
+        font_embedded = False;
         sizeMod = -6;
     };
     trc(("Font chosen: " + fontName));
@@ -16433,7 +16413,7 @@ public function SetFont(fontName:String){
         color = CLR_BLACK;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackErrorHalf;
     with (_local3) {
@@ -16442,7 +16422,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_ERROR_OFFLINE_HALF;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackErrorOnlineHalf;
     with (_local3) {
@@ -16451,7 +16431,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_ERROR_ONLINE_HALF;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Error;
     with (_local3) {
@@ -16460,7 +16440,7 @@ public function SetFont(fontName:String){
         color = CLR_ERROR;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Default;
     with (_local3) {
@@ -16469,7 +16449,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HighStakes;
     with (_local3) {
@@ -16478,7 +16458,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HighStakesHighLight;
     with (_local3) {
@@ -16487,7 +16467,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED_HIGHLIGHT;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HighStakesGrayed;
     with (_local3) {
@@ -16496,7 +16476,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED_GRAYED;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HighStakesHighLightGrayed;
     with (_local3) {
@@ -16505,7 +16485,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED_HIGHLIGHT_GRAYED;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Book;
     with (_local3) {
@@ -16514,7 +16494,7 @@ public function SetFont(fontName:String){
         color = 0;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_BookHint;
     with (_local3) {
@@ -16523,7 +16503,7 @@ public function SetFont(fontName:String){
         color = 136;
         align = "center";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_BookLeft;
     with (_local3) {
@@ -16532,7 +16512,7 @@ public function SetFont(fontName:String){
         color = 0;
         align = "left";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Bullshit;
     with (_local3) {
@@ -16541,7 +16521,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = "left";
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_AttackLabel;
     with (_local3) {
@@ -16550,7 +16530,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Speech;
     with (_local3) {
@@ -16559,7 +16539,7 @@ public function SetFont(fontName:String){
         color = CLR_WHITE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Grayed;
     with (_local3) {
@@ -16568,7 +16548,7 @@ public function SetFont(fontName:String){
         color = CLR_GRAYED;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GrayedHighLight;
     with (_local3) {
@@ -16577,7 +16557,7 @@ public function SetFont(fontName:String){
         color = CLR_GRAYED_HL;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_ClassError;
     with (_local3) {
@@ -16586,7 +16566,7 @@ public function SetFont(fontName:String){
         color = CLR_ERROR;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Chat;
     with (_local3) {
@@ -16595,7 +16575,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_ChatWhisper;
     with (_local3) {
@@ -16604,7 +16584,7 @@ public function SetFont(fontName:String){
         color = CLR_CHAT_WHISPER;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_ChatError;
     with (_local3) {
@@ -16613,7 +16593,7 @@ public function SetFont(fontName:String){
         color = CLR_ERROR;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildBuilding;
     with (_local3) {
@@ -16622,7 +16602,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildMoney;
     with (_local3) {
@@ -16631,7 +16611,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_DefaultLeft;
     with (_local3) {
@@ -16640,7 +16620,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Highlight;
     with (_local3) {
@@ -16649,7 +16629,7 @@ public function SetFont(fontName:String){
         color = CLR_SFHIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HighlightWhisper;
     with (_local3) {
@@ -16658,7 +16638,7 @@ public function SetFont(fontName:String){
         color = CLR_SFHIGHLIGHT_WHISPER;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Heading;
     with (_local3) {
@@ -16667,7 +16647,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_ScreenTitle;
     with (_local3) {
@@ -16676,7 +16656,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Popup;
     with (_local3) {
@@ -16685,7 +16665,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PopupCompare;
     with (_local3) {
@@ -16694,7 +16674,7 @@ public function SetFont(fontName:String){
         color = CLR_OFFLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PopupCompareSum;
     with (_local3) {
@@ -16703,7 +16683,7 @@ public function SetFont(fontName:String){
         color = CLR_ONLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PopupCompareBetter;
     with (_local3) {
@@ -16712,7 +16692,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_GREEN;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PopupCompareWorse;
     with (_local3) {
@@ -16721,7 +16701,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PopupCompareBetterHL;
     with (_local3) {
@@ -16730,7 +16710,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_GREEN_HIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PopupCompareWorseHL;
     with (_local3) {
@@ -16739,7 +16719,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED_HIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_EpicItemQuote;
     with (_local3) {
@@ -16748,7 +16728,7 @@ public function SetFont(fontName:String){
         color = CLR_EPICITEMQUOTE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_ItemEnchantment;
     with (_local3) {
@@ -16757,7 +16737,7 @@ public function SetFont(fontName:String){
         color = CLR_ITEMENCHANTMENT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_LOGoutLink;
     with (_local3) {
@@ -16766,7 +16746,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_LOGoutLinkHighLight;
     with (_local3) {
@@ -16775,7 +16755,7 @@ public function SetFont(fontName:String){
         color = CLR_SFHIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HallListHeading;
     with (_local3) {
@@ -16784,7 +16764,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HallListText;
     with (_local3) {
@@ -16793,7 +16773,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildHallNoAttack;
     with (_local3) {
@@ -16802,7 +16782,7 @@ public function SetFont(fontName:String){
         color = CLR_NOATTACK;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_HallListHighLight;
     with (_local3) {
@@ -16811,7 +16791,7 @@ public function SetFont(fontName:String){
         color = CLR_SFHIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_AttribBonus;
     with (_local3) {
@@ -16820,7 +16800,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTRIBBONUS;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_AttribTemp;
     with (_local3) {
@@ -16829,7 +16809,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_GREEN;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Attrib;
     with (_local3) {
@@ -16838,7 +16818,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PayIcon;
     with (_local3) {
@@ -16847,7 +16827,7 @@ public function SetFont(fontName:String){
         color = CLR_WHITE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListHeading;
     with (_local3) {
@@ -16855,9 +16835,9 @@ public function SetFont(fontName:String){
         size = (sizeMod + 26);
         color = CLR_SFORANGE;
         align = textDir;
-        bold = true;
+        bold = True;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListText;
     with (_local3) {
@@ -16866,7 +16846,7 @@ public function SetFont(fontName:String){
         color = CLR_SFORANGE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListTextSys;
     with (_local3) {
@@ -16875,7 +16855,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListText;
     with (_local3) {
@@ -16884,7 +16864,7 @@ public function SetFont(fontName:String){
         color = CLR_OFFLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextOnline;
     with (_local3) {
@@ -16893,7 +16873,7 @@ public function SetFont(fontName:String){
         color = CLR_ONLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackError;
     with (_local3) {
@@ -16902,7 +16882,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_ERROR_OFFLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackErrorOnline;
     with (_local3) {
@@ -16911,7 +16891,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_ERROR_ONLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackErrorOnlinePopup;
     with (_local3) {
@@ -16920,7 +16900,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_ERROR_ONLINE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackOk;
     with (_local3) {
@@ -16929,7 +16909,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_OK;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_GuildListTextAttackOkPopup;
     with (_local3) {
@@ -16938,7 +16918,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_OK;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListHighLight;
     with (_local3) {
@@ -16947,7 +16927,7 @@ public function SetFont(fontName:String){
         color = CLR_SFHIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListHighLightSys;
     with (_local3) {
@@ -16956,7 +16936,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSGHIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListTextSysRed;
     with (_local3) {
@@ -16965,7 +16945,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListHighLightSysRed;
     with (_local3) {
@@ -16974,7 +16954,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_RED_HIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListTextSysGreen;
     with (_local3) {
@@ -16983,7 +16963,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_GREEN;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_PostListHighLightSysGreen;
     with (_local3) {
@@ -16992,7 +16972,7 @@ public function SetFont(fontName:String){
         color = CLR_SYSMSG_GREEN_HIGHLIGHT;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_QuestBar;
     with (_local3) {
@@ -17001,7 +16981,7 @@ public function SetFont(fontName:String){
         color = CLR_WHITE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_TimeBar;
     with (_local3) {
@@ -17010,7 +16990,7 @@ public function SetFont(fontName:String){
         color = CLR_WHITE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_LifeBar;
     with (_local3) {
@@ -17019,7 +16999,7 @@ public function SetFont(fontName:String){
         color = CLR_WHITE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_Damage;
     with (_local3) {
@@ -17028,7 +17008,7 @@ public function SetFont(fontName:String){
         color = CLR_WHITE;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_CriticalDamage;
     with (_local3) {
@@ -17037,7 +17017,7 @@ public function SetFont(fontName:String){
         color = CLR_RED;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
     _local3 = FontFormat_CatapultDamage;
     with (_local3) {
@@ -17046,7 +17026,7 @@ public function SetFont(fontName:String){
         color = CLR_ATTACK_ERROR_ONLINE_HALF;
         align = textDir;
         leftMargin = 0;
-        kerning = true;
+        kerning = True;
     };
 }
 
@@ -17098,7 +17078,7 @@ public function ShowDisconnectScreen(){
     Add(SCREEN_DISCONNECTED);
     sessionId = "";
     ReconnectTimer = new Timer(param_reconnect);
-    ReconnectTimer.addEventListener(TimerEvent.TIMER, TryReconnect);
+    ReconnectTimer.add_event_listener(TimerEvent.TIMER, TryReconnect);
     ReconnectTimer.start();
 }
 
@@ -17115,19 +17095,19 @@ public function RemoveIllegalChars(inpStr:String):String{
     LegalChars = txt[TXT_LEGALCHARS];
     thisChar = "";
     outStr = "";
-    pass = false;
+    pass = False;
     i = 0;
     while (i < inpStr.length) {
         thisChar = inpStr.substr(i, 1);
-        pass = false;
+        pass = False;
         j = 0;
         while (j < LegalChars.length) {
             if ((((thisChar.charCodeAt() == 13)) or ((thisChar.charCodeAt() == 10)))){
-                pass = true;
+                pass = True;
                 break;
             };
             if (thisChar == LegalChars.substr(j, 1)){
-                pass = true;
+                pass = True;
                 break;
             };
             j++;
@@ -17182,13 +17162,13 @@ public function resolveBreaks(inpStr:String):String{
 
 public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     var par:* = null;
-    var GuildMsg:* = false;
+    var GuildMsg:* = False;
     var thisRecipient:* = null;
     var recipients:* = null;
     var evt:* = evt;
     var actorID:int = actorID;
     Remove(LBL_ERROR);
-    GuildMsg = false;
+    GuildMsg = False;
     if (evt){
         actorID = GetActorID(evt.target);
     };
@@ -17198,7 +17178,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
         case POST_SEND:
             lastMessageTarget = "";
             if (!OnStage(INP_POST_ADDRESS)){
-                GuildMsg = true;
+                GuildMsg = True;
             } else {
                 lastMessageTarget = actor[INP_POST_ADDRESS].getChildAt(1).text;
             };
@@ -17240,7 +17220,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
         case POST_DOWN:
             if (PostScrollDown){
                 PostScroll = (PostScroll + 15);
-                PostScrollDown = false;
+                PostScrollDown = False;
                 if (PostScroll > 86){
                     PostScroll = 86;
                 };
@@ -17424,8 +17404,8 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             break;
         case POST_VIEWFIGHT:
             par = tmpBattleInfo.split("#");
-            PostFightMode = true;
-            ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), true);
+            PostFightMode = True;
+            ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), True);
             break;
         default:
             if (PostSel > 0){
@@ -17449,12 +17429,12 @@ public function ShowAlbumContent(evt:Event=undefined){
         var anyItem:Boolean;
         var j:int;
         itemSet = new Array();
-        anyItem = false;
+        anyItem = False;
         j = 0;
         while (j < 5) {
             itemSet[j] = AlbumContent[(aOffs + j)];
             if (itemSet[j] == 1){
-                anyItem = true;
+                anyItem = True;
             };
             j++;
         };
@@ -17916,14 +17896,14 @@ public function TowerBtnHandler(evt:Event){
             if (copyCatSel < 0){
                 copyCatSel = 2;
             };
-            DisplayInventory(towerSG, true, true, copyCatSel);
+            DisplayInventory(towerSG, True, True, copyCatSel);
             break;
         case NEXT_COPYCAT:
             copyCatSel++;
             if (copyCatSel > 2){
                 copyCatSel = 0;
             };
-            DisplayInventory(towerSG, true, true, copyCatSel);
+            DisplayInventory(towerSG, True, True, copyCatSel);
             break;
         case TOWER_TRY:
             ShowMainQuestScreen(100, (399 + tower_level));
@@ -18090,7 +18070,7 @@ public function ShowTowerScreen(towerData:Array){
             addChild(actor[(TOWER_WINDOW + 1)]);
             addChild(actor[(TOWER_WINDOW + 2)]);
             addChild(actor[TOWER_BASE]);
-            addEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
+            add_event_listener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
         };
         stage.focus = actor[TOWER_SCROLLAREA];
         if (!OnStage(TOWER_SCROLLAREA)){
@@ -18114,7 +18094,7 @@ public function ShowTowerScreen(towerData:Array){
             actor[(LBL_TOWER_BOOSTPRICELABEL + i)].text = String(int((towerSG[((TSG_COPYCATS + (i * COPYCAT)) + CPC_PRICE_NEXT_LEVEL)] / 100)));
             i = (i + 1);
         };
-        DisplayInventory(towerSG, true, true, copyCatSel);
+        DisplayInventory(towerSG, True, True, copyCatSel);
     };
     towerSG = towerData[1].split("/");
     thisCpc = 0;
@@ -18138,7 +18118,7 @@ public function ShowDemoScreen(){
     var DoShowDemoScreen:* = null;
     DoShowDemoScreen = function (){
         RemoveAll();
-        DemoMode = true;
+        DemoMode = True;
         Add(SCREEN_DEMO);
         var _local2 = actor[BG_DEMO];
         with (_local2) {
@@ -18218,12 +18198,12 @@ public function ShowOptionScreen(evt:Event=undefined){
     when_loaded(DoShowOptionScreen);
 }
 
-public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=false, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=false, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
-    var is_guildBattle:* = false;
+public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=False, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=False, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
+    var is_guildBattle:* = False;
     var charWeapon:* = 0;
     var oppWeapon:* = 0;
-    var charHasWeapon:* = false;
-    var oppHasWeapon:* = false;
+    var charHasWeapon:* = False;
+    var oppHasWeapon:* = False;
     var charWeaponType:* = 0;
     var oppWeaponType:* = 0;
     var tz:* = 0;
@@ -18231,10 +18211,10 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     var oppShield:* = 0;
     var i:* = 0;
     var oppVolk:* = 0;
-    var oppMann:* = false;
+    var oppMann:* = False;
     var oppKaste:* = 0;
     var thischar_volk:* = 0;
-    var thischar_male:* = false;
+    var thischar_male:* = False;
     var thischar_class:* = 0;
     var thischar_mouth:* = undefined;
     var thischar_beard:* = undefined;
@@ -18266,8 +18246,8 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     var charFlag:* = 0;
     var oppFlag:* = 0;
     var fightRound:* = 0;
-    var oppStrike:* = false;
-    var isRaid:* = false;
+    var oppStrike:* = False;
+    var isRaid:* = False;
     var DoShowFightScreen:* = null;
     var fighterData:* = fighterData;
     var fightData:* = fightData;
@@ -18291,14 +18271,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         var i:* = 0;
         var DoStrikeTimer:* = null;
         var DoSkipFight:* = null;
-        var strikeBreak:* = false;
+        var strikeBreak:* = False;
         var DoStrikeEvent:* = null;
         var evt:* = evt;
-        DoSkipFight = function (evt:MouseEvent=undefined, fightDone:Boolean=false){
+        DoSkipFight = function (evt:MouseEvent=undefined, fightDone:Boolean=False){
             var quest_id:* = 0;
-            var PilzBekommen:* = false;
+            var PilzBekommen:* = False;
             var i:* = 0;
-            var charWin:* = false;
+            var charWin:* = False;
             var lastHero:* = null;
             var lastHeroWins:* = 0;
             var heroCount:* = 0;
@@ -18311,7 +18291,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             var pilzX:* = FIGHT_REWARDGOLD_X;
             var rewardGoldText:* = "";
             var fightStyle:* = 5;
-            fightLock = false;
+            fightLock = False;
             DoStrikeTimer.stop();
             DoStrikeTimer.removeEventListener(TimerEvent.TIMER, DoStrikeEvent);
             actor[FIGHT_SKIP].removeEventListener(MouseEvent.CLICK, DoSkipFight);
@@ -18357,7 +18337,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 };
                 if (((towerFightMode) and ((guildFightHonor >= 0)))){
                     SetCnt(FIGHT_SLOT, GetItemID(SG_INVENTORY_OFFS, (guildFightHonor + 10), Savegame));
-                    ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((guildFightHonor + 10) * SG_ITM_SIZE)), undefined, false, true, false);
+                    ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((guildFightHonor + 10) * SG_ITM_SIZE)), undefined, False, True, False);
                     guildFightHonor = 0;
                 } else {
                     SetCnt(FIGHT_SLOT, C_EMPTY);
@@ -18400,19 +18380,19 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (towerFightMode){
                             _local4 = actor[LBL_FIGHT_REWARDGOLD];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 text = String(guildFightExp);
                                 x = (rewardX - textWidth);
                             };
                             _local4 = actor[FIGHT_REWARDGOLD];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = ((actor[LBL_FIGHT_REWARDGOLD].x - width) - 8);
                             };
                         } else {
                             _local4 = actor[LBL_FIGHT_REWARDEXP];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 if (textDir == "right"){
                                     text = ((String(Math.abs(guildFightExp)) + " :") + txt[TXT_EXP]);
                                 } else {
@@ -18424,7 +18404,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     if (!isRaid){
                         _local4 = actor[LBL_FIGHT_REWARDGOLD];
                         with (_local4) {
-                            visible = true;
+                            visible = True;
                             if (textDir == "right"){
                                 text = ((String(Math.abs(guildFightHonor)) + " ") + txt[(((guildFightHonor > 0)) ? TXT_GUILD_HONOR_GAINED : TXT_GUILD_HONOR_LOST)]);
                             } else {
@@ -18447,7 +18427,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     if (HonorGain != 0){
                         _local4 = actor[LBL_FIGHT_REWARDEXP];
                         with (_local4) {
-                            visible = true;
+                            visible = True;
                             if (textDir == "right"){
                                 text = ((String(Math.abs(HonorGain)) + " ") + txt[(((HonorGain > 0)) ? TXT_HONOR_GAINED : TXT_HONOR_LOST)]);
                             } else {
@@ -18474,14 +18454,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (textDir != "right"){
                             _local4 = actor[FIGHT_REWARDSILVER];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (rewardX - width);
                                 rewardX = (x - 8);
                             };
                         };
                         _local4 = actor[LBL_FIGHT_REWARDSILVER];
                         with (_local4) {
-                            visible = true;
+                            visible = True;
                             if (textDir == "right"){
                                 text = (silber_anteil(Math.abs(GoldGain)) + rewardGoldText);
                             } else {
@@ -18493,7 +18473,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (textDir == "right"){
                             _local4 = actor[FIGHT_REWARDSILVER];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (rewardX - width);
                                 rewardX = (x - 14);
                             };
@@ -18503,14 +18483,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (textDir != "right"){
                             _local4 = actor[FIGHT_REWARDGOLD];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (rewardX - width);
                                 rewardX = (x - 8);
                             };
                         };
                         _local4 = actor[LBL_FIGHT_REWARDGOLD];
                         with (_local4) {
-                            visible = true;
+                            visible = True;
                             if (textDir == "right"){
                                 text = (gold_anteil(Math.abs(GoldGain)) + (((silber_anteil(Math.abs(GoldGain)) > 0)) ? "" : rewardGoldText));
                             } else {
@@ -18522,7 +18502,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (textDir == "right"){
                             _local4 = actor[FIGHT_REWARDGOLD];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (rewardX - width);
                                 rewardX = (x - 14);
                             };
@@ -18537,7 +18517,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (HonorGain > 0){
                             _local4 = actor[LBL_FIGHT_REWARDEXP];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 if (textDir == "right"){
                                     text = ((String(HonorGain) + " :") + txt[TXT_EXP]);
                                 } else {
@@ -18548,13 +18528,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (PilzBekommen){
                             _local4 = actor[FIGHT_REWARDMUSH];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (pilzX - width);
                                 pilzX = (x - 8);
                             };
                             _local4 = actor[LBL_FIGHT_REWARDMUSH];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 text = "1";
                                 x = (pilzX - textWidth);
                                 pilzX = (x - 14);
@@ -18564,13 +18544,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (silber_anteil(GoldGain) > 0){
                             _local4 = actor[FIGHT_REWARDSILVER];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (rewardX - width);
                                 rewardX = (x - 8);
                             };
                             _local4 = actor[LBL_FIGHT_REWARDSILVER];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 text = silber_anteil(GoldGain);
                                 x = (rewardX - textWidth);
                                 rewardX = (x - 14);
@@ -18579,13 +18559,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (gold_anteil(GoldGain) > 0){
                             _local4 = actor[FIGHT_REWARDGOLD];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 x = (rewardX - width);
                                 rewardX = (x - 8);
                             };
                             _local4 = actor[LBL_FIGHT_REWARDGOLD];
                             with (_local4) {
-                                visible = true;
+                                visible = True;
                                 text = gold_anteil(GoldGain);
                                 x = (rewardX - textWidth);
                                 rewardX = (x - 14);
@@ -18593,14 +18573,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                         if (BackPackSlot >= 0){
                             SetCnt(FIGHT_SLOT, GetItemID(SG_INVENTORY_OFFS, (BackPackSlot + 10), Savegame));
-                            ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((BackPackSlot + 10) * SG_ITM_SIZE)), undefined, false, true, false);
+                            ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((BackPackSlot + 10) * SG_ITM_SIZE)), undefined, False, True, False);
                         } else {
                             SetCnt(FIGHT_SLOT, C_EMPTY);
                             EnablePopup(FIGHT_SLOT);
                         };
                     } else {
                         if (isMQ){
-                            hasLostMQ = true;
+                            hasLostMQ = True;
                         } else {
                             if (((charWin) and ((Savegame[SG_ACTION_STATUS] == 2)))){
                                 Add(FIGHT_REWARDS);
@@ -18608,7 +18588,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 if (int(Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]) > 0){
                                     _local4 = actor[LBL_FIGHT_REWARDEXP];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         if (textDir == "right"){
                                             text = ((Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)] + " :") + txt[TXT_EXP]);
                                         } else {
@@ -18619,13 +18599,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 if (PilzBekommen){
                                     _local4 = actor[FIGHT_REWARDMUSH];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         x = (pilzX - width);
                                         pilzX = (x - 8);
                                     };
                                     _local4 = actor[LBL_FIGHT_REWARDMUSH];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         text = "1";
                                         x = (pilzX - textWidth);
                                         pilzX = (x - 14);
@@ -18635,13 +18615,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 if (silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                                     _local4 = actor[FIGHT_REWARDSILVER];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         x = (rewardX - width);
                                         rewardX = (x - 8);
                                     };
                                     _local4 = actor[LBL_FIGHT_REWARDSILVER];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         text = silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                                         x = (rewardX - textWidth);
                                         rewardX = (x - 14);
@@ -18650,13 +18630,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 if (gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                                     _local4 = actor[FIGHT_REWARDGOLD];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         x = (rewardX - width);
                                         rewardX = (x - 8);
                                     };
                                     _local4 = actor[LBL_FIGHT_REWARDGOLD];
                                     with (_local4) {
-                                        visible = true;
+                                        visible = True;
                                         text = gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                                         x = (rewardX - textWidth);
                                         rewardX = (x - 14);
@@ -18664,7 +18644,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 };
                                 if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
                                     SetCnt(FIGHT_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, quest_id));
-                                    ItemPopup(FIGHT_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, false, true, false);
+                                    ItemPopup(FIGHT_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, False, True, False);
                                 } else {
                                     SetCnt(FIGHT_SLOT, C_EMPTY);
                                     EnablePopup(FIGHT_SLOT);
@@ -18706,7 +18686,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             _local4 = actor[LBL_FIGHT_SUMMARY];
             with (_local4) {
                 width = FIGHT_RESULT_TEXT_X;
-                wordWrap = true;
+                wordWrap = True;
                 if (is_guildBattle){
                     if (lastFight){
                         if (towerFightMode){
@@ -18734,7 +18714,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         if (!inStrikeAni){
                             nextFightTimer.start();
                         } else {
-                            strikeBreak = true;
+                            strikeBreak = True;
                         };
                         return;
                     };
@@ -18806,7 +18786,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 return;
             };
             if (fightRound > (int((fightData.length / 6)) - 1)){
-                DoSkipFight(undefined, true);
+                DoSkipFight(undefined, True);
                 return;
             };
             charLife = fightData[(fightRound * 6)];
@@ -18816,7 +18796,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             oppDamage = fightData[((fightRound * 6) + 4)];
             oppFlag = fightData[((fightRound * 6) + 5)];
             if ((((((((fightRound == 0)) and (!(oppStrike)))) and ((charDamage == 0)))) and ((charFlag == 0)))){
-                oppStrike = true;
+                oppStrike = True;
             };
             DoStrikeTimer.stop();
             WeaponStrike(oppStrike);
@@ -18828,7 +18808,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 fightRound++;
             };
         };
-        var WeaponStrike:* = function (opponent:Boolean=false){
+        var WeaponStrike:* = function (opponent:Boolean=False){
             var StrikeAniTimer:* = null;
             var StrikeAlpha:* = NaN;
             var BulletAlpha:* = NaN;
@@ -18837,17 +18817,17 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             var OnoAlpha:* = NaN;
             var strikeVal:* = NaN;
             var strikePhase:* = 0;
-            var damageIndicatorActive:* = false;
+            var damageIndicatorActive:* = False;
             var weaponType:* = 0;
             var onoID:* = 0;
-            var DoSkip:* = false;
-            var catapultStrike:* = false;
+            var DoSkip:* = False;
+            var catapultStrike:* = False;
             var StrikeAniTimerEvent:* = null;
             var opponent:Boolean = opponent;
             StrikeAniTimerEvent = function (evt:TimerEvent){
                 var evt:* = evt;
                 if (!OnStage(FIGHT_BOX1)){
-                    inStrikeAni = false;
+                    inStrikeAni = False;
                     if (strikeBreak){
                         nextFightTimer.start();
                     };
@@ -18876,7 +18856,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     if (strikeVal >= 1){
                                         strikeVal = 1;
                                         strikePhase++;
-                                        damageIndicatorActive = true;
+                                        damageIndicatorActive = True;
                                         DamageAlpha = 1;
                                         SetLifeBars(((opponent) ? 1 : 2));
                                         var _local3 = actor[LBL_DAMAGE_INDICATOR];
@@ -18896,7 +18876,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                             y = (FIGHT_WEAPONS_Y - 100);
                                         };
                                         if (((((opponent) and ((charLife <= 0)))) or (((!(opponent)) and ((oppLife <= 0)))))){
-                                            DoSkip = true;
+                                            DoSkip = True;
                                         };
                                     };
                                     break;
@@ -18913,7 +18893,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     };
                                     if (DamageAlpha <= 0){
                                         DamageAlpha = 0;
-                                        inStrikeAni = false;
+                                        inStrikeAni = False;
                                         if (strikeBreak){
                                             nextFightTimer.start();
                                         };
@@ -18940,11 +18920,11 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 case 1:
                                     strikeVal = (strikeVal + 0.15);
                                     if (strikeVal >= 1){
-                                        SetCnt(FIGHT_ONO, onoID, 0, 0, true);
+                                        SetCnt(FIGHT_ONO, onoID, 0, 0, True);
                                         OnoAlpha = 1;
                                         strikeVal = 1;
                                         strikePhase++;
-                                        damageIndicatorActive = true;
+                                        damageIndicatorActive = True;
                                         DamageAlpha = 1;
                                         SetLifeBars(((opponent) ? 1 : 2));
                                         _local3 = actor[LBL_DAMAGE_INDICATOR];
@@ -18964,7 +18944,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                             y = (FIGHT_WEAPONS_Y - 100);
                                         };
                                         if (((((opponent) and ((charLife <= 0)))) or (((!(opponent)) and ((oppLife <= 0)))))){
-                                            DoSkip = true;
+                                            DoSkip = True;
                                         };
                                     };
                                     break;
@@ -18985,7 +18965,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     };
                                     if (DamageAlpha <= 0){
                                         DamageAlpha = 0;
-                                        inStrikeAni = false;
+                                        inStrikeAni = False;
                                         if (strikeBreak){
                                             nextFightTimer.start();
                                         };
@@ -19013,12 +18993,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     ShieldAlpha = 1;
                                 };
                                 if (strikeVal >= 1){
-                                    SetCnt(FIGHT_ONO, onoID, 0, 0, true);
+                                    SetCnt(FIGHT_ONO, onoID, 0, 0, True);
                                     OnoAlpha = 1;
                                     strikeVal = 1;
                                     strikePhase++;
                                     DamageAlpha = 1;
-                                    damageIndicatorActive = true;
+                                    damageIndicatorActive = True;
                                     SetLifeBars(((opponent) ? 1 : 2));
                                     _local3 = actor[LBL_DAMAGE_INDICATOR];
                                     with (_local3) {
@@ -19037,7 +19017,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         y = (FIGHT_WEAPONS_Y - 100);
                                     };
                                     if (((((opponent) and ((charLife <= 0)))) or (((!(opponent)) and ((oppLife <= 0)))))){
-                                        DoSkip = true;
+                                        DoSkip = True;
                                     };
                                 };
                                 break;
@@ -19059,7 +19039,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 };
                                 if (DamageAlpha <= 0){
                                     DamageAlpha = 0;
-                                    inStrikeAni = false;
+                                    inStrikeAni = False;
                                     if (strikeBreak){
                                         nextFightTimer.start();
                                     };
@@ -19086,12 +19066,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     ShieldAlpha = 1;
                                 };
                                 if (strikeVal >= 1){
-                                    SetCnt(FIGHT_ONO, onoID, 0, 0, true);
+                                    SetCnt(FIGHT_ONO, onoID, 0, 0, True);
                                     OnoAlpha = 1;
                                     strikeVal = 1;
                                     strikePhase++;
                                     DamageAlpha = 1;
-                                    damageIndicatorActive = true;
+                                    damageIndicatorActive = True;
                                     SetLifeBars(((opponent) ? 1 : 2));
                                     _local3 = actor[LBL_DAMAGE_INDICATOR];
                                     with (_local3) {
@@ -19110,7 +19090,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         y = (FIGHT_WEAPONS_Y - 100);
                                     };
                                     if (((((opponent) and ((charLife <= 0)))) or (((!(opponent)) and ((oppLife <= 0)))))){
-                                        DoSkip = true;
+                                        DoSkip = True;
                                     };
                                 };
                                 break;
@@ -19132,7 +19112,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 };
                                 if (DamageAlpha <= 0){
                                     DamageAlpha = 0;
-                                    inStrikeAni = false;
+                                    inStrikeAni = False;
                                     if (strikeBreak){
                                         nextFightTimer.start();
                                     };
@@ -19162,7 +19142,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     strikeVal = 1;
                                     strikePhase++;
                                     DamageAlpha = 1;
-                                    damageIndicatorActive = true;
+                                    damageIndicatorActive = True;
                                     SetLifeBars(((opponent) ? 1 : 2));
                                     Play(SND_CATAPULT_HIT);
                                     _local3 = actor[LBL_DAMAGE_INDICATOR];
@@ -19172,7 +19152,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         y = (FIGHT_WEAPONS_Y - 100);
                                     };
                                     if (((((opponent) and ((charLife <= 0)))) or (((!(opponent)) and ((oppLife <= 0)))))){
-                                        DoSkip = true;
+                                        DoSkip = True;
                                     };
                                 };
                                 break;
@@ -19182,7 +19162,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 actor[LBL_DAMAGE_INDICATOR].y = (actor[LBL_DAMAGE_INDICATOR].y - 2);
                                 if (DamageAlpha <= 0){
                                     DamageAlpha = 0;
-                                    inStrikeAni = false;
+                                    inStrikeAni = False;
                                     if (strikeBreak){
                                         nextFightTimer.start();
                                     };
@@ -19226,7 +19206,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 x = (((SCREEN_TITLE_X + ((opponent) ? 231 : 0)) - 115) + ((((opponent) ? -1 : 1) * 560) * ((((opponent) ? oppFlag : charFlag))==1) ? 0.7 : 1));
                                 rotation = (0 * ((opponent) ? -1 : 1));
                                 alpha = StrikeAlpha;
-                                visible = true;
+                                visible = True;
                             } else {
                                 scaleX = (((opponent) ? 1 : -1) * SPRITE_SCALE);
                                 scaleY = SPRITE_SCALE;
@@ -19234,7 +19214,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 x = (((SCREEN_TITLE_X + ((opponent) ? 231 : 0)) - 115) + (((((opponent) ? -1 : 1) * 230) * strikeVal) * ((((opponent) ? oppFlag : charFlag))==1) ? 0.7 : 1));
                                 rotation = ((280 + (100 * strikeVal)) * ((opponent) ? -1 : 1));
                                 alpha = StrikeAlpha;
-                                visible = true;
+                                visible = True;
                             };
                         } else {
                             if (weaponType == 2){
@@ -19244,7 +19224,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 x = (SCREEN_TITLE_X + (((opponent) ? 1 : -1) * 170));
                                 rotation = (((opponent) ? -1 : 1) * (-30 + (70 * strikeVal)));
                                 alpha = StrikeAlpha;
-                                visible = true;
+                                visible = True;
                             } else {
                                 if (weaponType == 3){
                                     scaleX = (((opponent) ? -1 : 1) * SPRITE_SCALE);
@@ -19257,13 +19237,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     };
                                     rotation = ((opponent) ? -42 : 42);
                                     alpha = StrikeAlpha;
-                                    visible = true;
+                                    visible = True;
                                 };
                             };
                         };
                     };
                     if (weaponType == 2){
-                        SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR), get_arrow_id(0, ((opponent) ? 1 : 0), weaponData, true, int((Math.random() * 3))));
+                        SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR), get_arrow_id(0, ((opponent) ? 1 : 0), weaponData, True, int((Math.random() * 3))));
                     };
                     _local3 = actor[((opponent) ? BULLET_OPP : BULLET_CHAR)];
                     with (_local3) {
@@ -19302,15 +19282,15 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 if (damageIndicatorActive){
                     _local3 = actor[LBL_DAMAGE_INDICATOR];
                     with (_local3) {
-                        visible = true;
+                        visible = True;
                         alpha = DamageAlpha;
                         if (((opponent) ? oppFlag : charFlag) == 4){
-                            defaultTextFormat = FontFormat_CatapultDamage;
+                            default_text_format = FontFormat_CatapultDamage;
                         } else {
                             if (((opponent) ? oppFlag : charFlag) == 3){
-                                defaultTextFormat = FontFormat_CriticalDamage;
+                                default_text_format = FontFormat_CriticalDamage;
                             } else {
-                                defaultTextFormat = FontFormat_Damage;
+                                default_text_format = FontFormat_Damage;
                             };
                         };
                         text = text;
@@ -19363,7 +19343,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     };
                     if (DoSkip){
                         DoSkipFight();
-                        DoSkip = false;
+                        DoSkip = False;
                     };
                 };
             };
@@ -19377,25 +19357,25 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             const TWOPI:Number = (Math.PI * 2);
             strikeVal = 0;
             strikePhase = 0;
-            damageIndicatorActive = false;
+            damageIndicatorActive = False;
             weaponType = ((opponent) ? oppWeaponType : charWeaponType);
             onoID = (int((Math.random() * 6)) + FIGHT_ONO);
-            DoSkip = false;
-            catapultStrike = false;
+            DoSkip = False;
+            catapultStrike = False;
             if (((opponent) ? oppFlag : charFlag) == 4){
-                catapultStrike = true;
+                catapultStrike = True;
             } else {
                 if (weaponType == 2){
-                    onoID = get_arrow_id(0, ((opponent) ? 1 : 0), weaponData, true, 3);
+                    onoID = get_arrow_id(0, ((opponent) ? 1 : 0), weaponData, True, 3);
                 } else {
                     if (weaponType == 3){
                         onoID = FIGHT_ARROW_SMASH;
                     };
                 };
             };
-            StrikeAniTimer.addEventListener(TimerEvent.TIMER, StrikeAniTimerEvent);
+            StrikeAniTimer.add_event_listener(TimerEvent.TIMER, StrikeAniTimerEvent);
             StrikeAniTimer.start();
-            inStrikeAni = true;
+            inStrikeAni = True;
         };
         DoStrikeTimer = new Timer(200);
         if (((((isPvP) and (!(isReplay)))) and (!(is_guildBattle)))){
@@ -19513,12 +19493,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         if (oppMonster > 0){
             Add(((OPPMONSTER + oppMonster) - 1));
         } else {
-            LoadCharacterImage(((alternateCharOppImg) ? OPPBACKGROUND2 : OPPBACKGROUND), false, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
+            LoadCharacterImage(((alternateCharOppImg) ? OPPBACKGROUND2 : OPPBACKGROUND), False, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
         };
         if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
             Add(((FIGHT_COPYCAT + thisCharMonster) - 391));
         } else {
-            LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), false, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
+            LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), False, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
         };
         if (is_guildBattle){
             alternateCharOppImg = !(alternateCharOppImg);
@@ -19528,9 +19508,9 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         Hide(SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR, WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
         AddSome(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
         Hide(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
-        actor[FIGHT_SKIP].addEventListener(MouseEvent.CLICK, DoSkipFight);
-        actor[BATTLE_SKIP].addEventListener(MouseEvent.CLICK, DoSkipFight);
-        actor[BATTLE_SKIPONE].addEventListener(MouseEvent.CLICK, DoSkipFight);
+        actor[FIGHT_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
+        actor[BATTLE_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
+        actor[BATTLE_SKIPONE].add_event_listener(MouseEvent.CLICK, DoSkipFight);
         if (is_guildBattle){
             Add(BATTLE_SKIP);
             Add(BATTLE_SKIPONE);
@@ -19605,14 +19585,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 i = (i + 1);
             };
         };
-        strikeBreak = false;
-        var inStrikeAni:* = false;
-        DoStrikeTimer.addEventListener(TimerEvent.TIMER, DoStrikeEvent);
+        strikeBreak = False;
+        var inStrikeAni:* = False;
+        DoStrikeTimer.add_event_listener(TimerEvent.TIMER, DoStrikeEvent);
         DoStrikeTimer.start();
     };
-    is_guildBattle = false;
+    is_guildBattle = False;
     if (GuildBattleData){
-        is_guildBattle = true;
+        is_guildBattle = True;
     };
     hasFoughtGuildBattle = is_guildBattle;
     charWeapon = weaponData[SG_ITM_PIC];
@@ -19622,7 +19602,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     charWeaponType = 1;
     oppWeaponType = 1;
     tz = tageszeit();
-    hasLostMQ = false;
+    hasLostMQ = False;
     actor[LBL_ERROR].text = "";
     if (is_guildBattle){
         Remove(GILDE_CHAT);
@@ -19712,22 +19692,22 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             Load(get_weapon_sound(charWeaponType, charWeapon, 2));
         };
         Load(get_weapon_sound(charWeaponType, charWeapon, 3));
-        SetCnt(WEAPON_CHAR, (((charWeapon == 0)) ? WEAPON_FIST : (((charWeapon == -1)) ? WEAPON_CLAW : WEAPON_SWOOSH)), -30, -30, true);
+        SetCnt(WEAPON_CHAR, (((charWeapon == 0)) ? WEAPON_FIST : (((charWeapon == -1)) ? WEAPON_CLAW : WEAPON_SWOOSH)), -30, -30, True);
         SetCnt(BULLET_CHAR, C_EMPTY);
         charWeaponType = 1;
     } else {
         if (charWeaponType == 1){
-            SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), -30, -30, true);
+            SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), -30, -30, True);
             SetCnt(BULLET_CHAR, C_EMPTY);
         } else {
             if (charWeaponType == 2){
-                SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), 30, -30, true);
-                SetCnt(BULLET_CHAR, get_arrow_id(0, 0, weaponData, true, 0));
-                Load(get_arrow_id(0, 0, weaponData, true, 1), get_arrow_id(0, 0, weaponData, true, 2), get_arrow_id(0, 0, weaponData, true, 3));
+                SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), 30, -30, True);
+                SetCnt(BULLET_CHAR, get_arrow_id(0, 0, weaponData, True, 0));
+                Load(get_arrow_id(0, 0, weaponData, True, 1), get_arrow_id(0, 0, weaponData, True, 2), get_arrow_id(0, 0, weaponData, True, 3));
             } else {
                 if (charWeaponType == 3){
                     SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData));
-                    SetCnt(BULLET_CHAR, get_arrow_id(0, 0, weaponData, true));
+                    SetCnt(BULLET_CHAR, get_arrow_id(0, 0, weaponData, True));
                 };
             };
         };
@@ -19741,15 +19721,15 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         };
         Load(get_weapon_sound(oppWeaponType, oppWeapon, 3));
         if (oppWeapon == -4){
-            SetCnt(WEAPON_OPP, WEAPON_STICK, -30, -30, true);
+            SetCnt(WEAPON_OPP, WEAPON_STICK, -30, -30, True);
         } else {
             if (oppWeapon == -5){
-                SetCnt(WEAPON_OPP, WEAPON_BONE, -30, -30, true);
+                SetCnt(WEAPON_OPP, WEAPON_BONE, -30, -30, True);
             } else {
                 if (oppWeapon == -6){
-                    SetCnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, true);
+                    SetCnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, True);
                 } else {
-                    SetCnt(WEAPON_OPP, (((oppWeapon == 0)) ? WEAPON_FIST : C_EMPTY), -30, -30, true);
+                    SetCnt(WEAPON_OPP, (((oppWeapon == 0)) ? WEAPON_FIST : C_EMPTY), -30, -30, True);
                 };
             };
         };
@@ -19757,28 +19737,28 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         oppWeaponType = 1;
     } else {
         if (oppWeaponType == 1){
-            SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), -30, -30, true);
+            SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), -30, -30, True);
             SetCnt(BULLET_OPP, C_EMPTY);
         } else {
             if (oppWeaponType == 2){
-                SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), 30, -30, true);
-                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, true, 0));
-                Load(get_arrow_id(0, 1, weaponData, true, 1), get_arrow_id(0, 1, weaponData, true, 2), get_arrow_id(0, 1, weaponData, true, 3));
+                SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), 30, -30, True);
+                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, True, 0));
+                Load(get_arrow_id(0, 1, weaponData, True, 1), get_arrow_id(0, 1, weaponData, True, 2), get_arrow_id(0, 1, weaponData, True, 3));
             } else {
                 if (oppWeaponType == 3){
                     SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData));
-                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, true));
+                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, True));
                 };
             };
         };
     };
     if (charShield > 0){
-        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weaponData), 0, 0, true);
+        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weaponData), 0, 0, True);
     } else {
         SetCnt(SHIELD_CHAR, C_EMPTY);
     };
     if (oppShield > 0){
-        SetCnt(SHIELD_OPP, GetItemID(0, 3, weaponData), 0, 0, true);
+        SetCnt(SHIELD_OPP, GetItemID(0, 3, weaponData), 0, 0, True);
     } else {
         SetCnt(SHIELD_OPP, C_EMPTY);
     };
@@ -19841,24 +19821,24 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     charFlag = 0;
     oppFlag = 0;
     fightRound = 0;
-    oppStrike = false;
+    oppStrike = False;
     var charLevel:* = int(faceData[(16 - 15)]);
-    isRaid = false;
+    isRaid = False;
     if (!is_guildBattle){
-        alternateCharOppImg = false;
+        alternateCharOppImg = False;
     };
     if (((is_guildBattle) and ((ownGuild == "")))){
-        isRaid = true;
+        isRaid = True;
     };
     if (oppMonster > 0){
         Load(((OPPMONSTER + oppMonster) - 1));
     } else {
-        LoadCharacterImage(((alternateCharOppImg) ? OPPBACKGROUND2 : OPPBACKGROUND), true, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
+        LoadCharacterImage(((alternateCharOppImg) ? OPPBACKGROUND2 : OPPBACKGROUND), True, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
     };
     if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
         Load(((FIGHT_COPYCAT + thisCharMonster) - 391));
     } else {
-        LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), true, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
+        LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), True, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
     };
     if (is_guildBattle){
         if (towerFightMode){
@@ -19951,7 +19931,7 @@ public function ShowQuestScreen(evt:Event=undefined){
         };
         actor[QUESTBAR_FILL].width = 0;
         actor[QUESTBAR_LIGHT].x = (actor[QUESTBAR_FILL].x - 5);
-        questBarTimer.addEventListener(TimerEvent.TIMER, QuestBarUpdate);
+        questBarTimer.add_event_listener(TimerEvent.TIMER, QuestBarUpdate);
         questBarTimer.start();
         QuestBarUpdate();
         if (skipAllowed){
@@ -20070,7 +20050,7 @@ public function TryShowTV(evt:Event=undefined){
     if (tvTest){
         tvStatusDest = 1;
         tvTimer.start();
-        tvTest = false;
+        tvTest = False;
     } else {
         if (((((!((tvFunctionName == ""))) and (!(disableTV)))) and (!(preventTv)))){
             if (!evt){
@@ -20191,10 +20171,10 @@ public function ShowTaverneScreen(evt:Event=undefined){
         };
         if (specialAction > 0){
             Add(((SPECIAL_ACTION + specialAction) - 1));
-            actor[((SPECIAL_ACTION + specialAction) - 1)].mouseEnabled = false;
+            actor[((SPECIAL_ACTION + specialAction) - 1)].mouse_enabled = False;
             if (!specialActionHint){
                 Add(TAVERNE_BARKEEPER_HINT);
-                actor[TAVERNE_BARKEEPER_HINT].mouseEnabled = false;
+                actor[TAVERNE_BARKEEPER_HINT].mouse_enabled = False;
                 AnimateAch(TAVERNE_BARKEEPER_HINT, ((100 + TAVERNE_BARKEEPER_Y) - 215));
             };
             i = 0;
@@ -20215,7 +20195,7 @@ public function ShowTaverneScreen(evt:Event=undefined){
             i = (i + 1);
         };
         DefineBunch(TAVERNE_QUESTOVL, (TAVERNE_QUESTOVL1 + quest_type));
-        HutBlinzelTimer.addEventListener(TimerEvent.TIMER, HutBlinzelTimerEvent);
+        HutBlinzelTimer.add_event_listener(TimerEvent.TIMER, HutBlinzelTimerEvent);
         TryShowTV();
         if (!lightMode){
             HutBlinzelTimer.start();
@@ -20227,7 +20207,7 @@ public function ShowTaverneScreen(evt:Event=undefined){
         ShowQuestScreen();
         return;
     };
-    forceAdventure = false;
+    forceAdventure = False;
     actor[QUEST_SLOT].alpha = 1;
     if (OnStage(TAVERNE_BG)){
         Remove(QUESTOFFER);
@@ -20295,7 +20275,7 @@ public function ShowStallScreen(evt:Event=undefined){
                 Remove(STALL_NIGHT, STALL_DAWN);
             };
         };
-        HandTimer.addEventListener(TimerEvent.TIMER, BauerHandEvent);
+        HandTimer.add_event_listener(TimerEvent.TIMER, BauerHandEvent);
         HandTimer.start();
     };
     if (((OnStage(STALL_BG_GUT)) or (OnStage(STALL_BG_BOESE)))){
@@ -20355,7 +20335,7 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
                     Remove(ARENA_FEUER);
                 };
             };
-            PvPDelayTimer.addEventListener(TimerEvent.TIMER, PvPDelayCheck);
+            PvPDelayTimer.add_event_listener(TimerEvent.TIMER, PvPDelayCheck);
             PvPDelayTimer.start();
             PvPDelayCheck();
             actor[INP_ARENA_ENEMY].getChildAt(1).text = oppName;
@@ -20465,7 +20445,7 @@ public function Arabize(actorID:int){
     };
 }
 
-public function ShowDealerScreen(evt:Event=undefined, loadOnly:Boolean=false){
+public function ShowDealerScreen(evt:Event=undefined, loadOnly:Boolean=False){
     var papaya_firebug:* = null;
     var url:* = null;
     var DoShowDealerScreen:* = null;
@@ -20486,8 +20466,8 @@ public function ShowDealerScreen(evt:Event=undefined, loadOnly:Boolean=false){
         actorURL[SCR_DEALER_BG] = url;
         actorLoaded[SCR_DEALER_BG] = 0;
     };
-    actor[SCR_DEALER_BG].mouseChildren = true;
-    actor[SCR_DEALER_BG].mouseEnabled = true;
+    actor[SCR_DEALER_BG].mouseChildren = True;
+    actor[SCR_DEALER_BG].mouse_enabled = True;
     Load(SCREEN_DEALER);
     if (!loadOnly){
         when_loaded(DoShowDealerScreen);
@@ -20673,7 +20653,7 @@ public function setCrestStr(str:String){
 
 public function loadCrest(){
     var i:* = 0;
-    var newLoad:* = false;
+    var newLoad:* = False;
     var url:* = null;
     var localActorID:* = 0;
     var tmpFltFigure:* = null;
@@ -20772,10 +20752,10 @@ public function clickChatLine(evt){
             selecterCrestElement = -1;
         };
         if (myOwnRank == 1){
-            crestSuggested = true;
+            crestSuggested = True;
             SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_APPLY]);
         } else {
-            crestSuggested = false;
+            crestSuggested = False;
             SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
         };
         setCrestStr(crestSuggestion[lineText]);
@@ -20796,7 +20776,7 @@ public function clickChatLine(evt){
     stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
 }
 
-public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, isMine:Boolean=true, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
+public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, isMine:Boolean=True, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
     var DoShowScreenGilden:* = null;
     var guildData:* = guildData;
     var guildDescr:* = guildDescr;
@@ -20828,11 +20808,11 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         var countCompleted:* = 0;
         var LeftBoxWidth:* = 0;
         var RightBoxWidth:* = 0;
-        var crestView:* = false;
-        var startWithCrest:* = false;
+        var crestView:* = False;
+        var startWithCrest:* = False;
         var GuildBtnRepeatTimer:* = null;
         var raidCost:* = NaN;
-        var isRaid:* = false;
+        var isRaid:* = False;
         var GuildBtnHandler:* = null;
         var DoDonate:* = null;
         var RequestPlayerScreen:* = null;
@@ -20939,7 +20919,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             var DoPushGuildBtn:* = function (timerevt:Event){
                 var timerevt:* = timerevt;
                 if (DestroyGuildBtnTimer){
-                    DestroyGuildBtnTimer = false;
+                    DestroyGuildBtnTimer = False;
                     var _local3 = GuildBtnRepeatTimer;
                     with (_local3) {
                         stop();
@@ -20962,11 +20942,11 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                             GuildBtnRepeatTimer.delay = 62;
                             break;
                     };
-                    if (GuildBtnHandler(evt, true)){
+                    if (GuildBtnHandler(evt, True)){
                         Play(SND_CLICK);
                     } else {
                         if (GuildBtnRepeatTimer.running){
-                            DestroyGuildBtnTimer = true;
+                            DestroyGuildBtnTimer = True;
                         };
                     };
                 };
@@ -20975,17 +20955,17 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             if (GuildBtnRepeatTimer.running){
                 return;
             };
-            DestroyGuildBtnTimer = false;
+            DestroyGuildBtnTimer = False;
             var _local3 = GuildBtnRepeatTimer;
             with (_local3) {
                 delay = 1000;
-                addEventListener(TimerEvent.TIMER, DoPushGuildBtn);
+                add_event_listener(TimerEvent.TIMER, DoPushGuildBtn);
                 start();
             };
         };
         var GuildBtnUpHandler:* = function (evt:Event){
             if (GuildBtnRepeatTimer.running){
-                DestroyGuildBtnTimer = true;
+                DestroyGuildBtnTimer = True;
             };
         };
         var EnterGuildDesc:* = function (evt:FocusEvent){
@@ -21071,7 +21051,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 Add(GILDE_REVOLT);
             };
         };
-        GuildBtnHandler = function (evt:Event, typematic:Boolean=false):Boolean{
+        GuildBtnHandler = function (evt:Event, typematic:Boolean=False):Boolean{
             var actorID:* = 0;
             var selRank:* = 0;
             var evt:* = evt;
@@ -21200,11 +21180,11 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                                     ErrorMessage(txt[TXT_ERROR_GUILD_TOO_EXPENSIVE]);
                                 };
                             };
-                            return (false);
+                            return (False);
                         };
                     } else {
                         ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
-                        return (false);
+                        return (False);
                     };
                     break;
                 case GILDE_MUSH:
@@ -21222,19 +21202,19 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                                 if (!typematic){
                                     ErrorMessage(txt[TXT_ERROR_GUILD_TOO_EXPENSIVE]);
                                 };
-                                return (false);
+                                return (False);
                             };
                         } else {
                             ErrorMessage(txt[TXT_ERROR_GUILD_MUSH_FREE]);
-                            return (false);
+                            return (False);
                         };
                     } else {
                         ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
-                        return (false);
+                        return (False);
                     };
                     break;
             };
-            return (true);
+            return (True);
         };
         DoDonate = function (evt:Event=undefined){
             DonateTimeout.stop();
@@ -21307,8 +21287,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             var i:* = 0;
             var j:* = 0;
             var tmpBalken:* = null;
-            var isOnline:* = false;
-            var attackError:* = false;
+            var isOnline:* = False;
+            var attackError:* = False;
             var lvl:* = 0;
             var attackStatus:* = 0;
             var avgCount:* = undefined;
@@ -21323,10 +21303,10 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 tmp_obj = new Bitmap(actor[((GILDE_RANK + (((rank < 4)) ? rank : 3)) - 1)].content.bitmapData.clone());
                 var _local4 = tmp_obj;
                 with (_local4) {
-                    allowSmoothing = true;
-                    forceSmoothing = true;
-                    smoothing = true;
-                    mouseEnabled = true;
+                    allow_smoothing = True;
+                    force_smoothing = True;
+                    smoothing = True;
+                    mouse_enabled = True;
                     if (textDir == "right"){
                         x = 180;
                     } else {
@@ -21346,7 +21326,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 hoverLevel = int(((actor[GILDE_LIST].getChildIndex(evt.target) - 1) / 2));
                 lvl = int(guildData[((GUILD_MEMBERLEVEL + hoverLevel) + scrollLevel)]);
                 attackStatus = 0;
-                attackError = false;
+                attackError = False;
                 attackHint = "";
                 while (lvl > 1000) {
                     lvl = (lvl - 1000);
@@ -21354,17 +21334,17 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 };
                 if (guildData[0] == Savegame[SG_GUILD_INDEX]){
                     if ((((int(guildData[GUILD_ATTACK_TARGET]) > 0)) and (!((attackStatus & 1))))){
-                        attackError = true;
+                        attackError = True;
                     };
                     if ((((int(guildData[GUILD_DEFENCE_TARGET]) > 0)) and (!((attackStatus & 2))))){
-                        attackError = true;
+                        attackError = True;
                     };
                 } else {
                     if ((((int(guildData[GUILD_ATTACK_TARGET]) == int(Savegame[SG_GUILD_INDEX]))) and ((attackStatus & 1)))){
-                        attackError = true;
+                        attackError = True;
                     };
                     if ((((int(guildData[GUILD_DEFENCE_TARGET]) == int(Savegame[SG_GUILD_INDEX]))) and ((attackStatus & 2)))){
-                        attackError = true;
+                        attackError = True;
                     };
                 };
                 if (((showActivityTime) and (isMine))){
@@ -21443,31 +21423,31 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 DoubleClickHandler(tmp_obj, BuildGuildList, RequestPlayerScreen);
                 var _local8 = tmp_obj;
                 with (_local8) {
-                    addEventListener(MouseEvent.MOUSE_OVER, BuildGuildPopup);
-                    addEventListener(MouseEvent.MOUSE_OUT, RemoveGuildPopup);
+                    add_event_listener(MouseEvent.MOUSE_OVER, BuildGuildPopup);
+                    add_event_listener(MouseEvent.MOUSE_OUT, RemoveGuildPopup);
                     if (thisAttackError){
                         if (isMine){
                             if ((((thisAttackStatus & 1)) or ((thisAttackStatus & 2)))){
-                                tmp_obj.defaultTextFormat = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnlineHalf : FontFormat_GuildListTextAttackErrorHalf);
+                                tmp_obj.default_text_format = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnlineHalf : FontFormat_GuildListTextAttackErrorHalf);
                             } else {
-                                tmp_obj.defaultTextFormat = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnline : FontFormat_GuildListTextAttackError);
+                                tmp_obj.default_text_format = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnline : FontFormat_GuildListTextAttackError);
                             };
                         } else {
                             if (!(((thisAttackStatus & 1)) and ((thisAttackStatus & 2)))){
-                                tmp_obj.defaultTextFormat = FontFormat_GuildListTextAttackErrorHalf;
+                                tmp_obj.default_text_format = FontFormat_GuildListTextAttackErrorHalf;
                             } else {
-                                tmp_obj.defaultTextFormat = FontFormat_GuildListTextAttackError;
+                                tmp_obj.default_text_format = FontFormat_GuildListTextAttackError;
                             };
                         };
                     } else {
-                        tmp_obj.defaultTextFormat = ((((onlineStatus) and (isMine))) ? FontFormat_GuildListTextOnline : FontFormat_GuildListText);
+                        tmp_obj.default_text_format = ((((onlineStatus) and (isMine))) ? FontFormat_GuildListTextOnline : FontFormat_GuildListText);
                     };
-                    autoSize = TextFieldAutoSize.LEFT;
-                    background = false;
-                    selectable = false;
-                    embedFonts = fontEmbedded;
-                    antiAliasType = AntiAliasType.ADVANCED;
-                    mouseEnabled = true;
+                    auto_size = TextFieldAutoSize.LEFT;
+                    background = False;
+                    selectable = False;
+                    embed_fonts = font_embedded;
+                    anti_alias_type = AntiAliasType.ADVANCED;
+                    mouse_enabled = True;
                     filters = Filter_Shadow;
                     text = memberName;
                     if (textDir == "right"){
@@ -21482,8 +21462,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             };
             i = 0;
             j = 0;
-            isOnline = false;
-            attackError = false;
+            isOnline = False;
+            attackError = False;
             lvl = 0;
             attackStatus = 0;
             if (guildData[0] == Savegame[SG_GUILD_INDEX]){
@@ -21497,9 +21477,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 while (numChildren > 0) {
                     removeChildAt(0);
                 };
-                mouseEnabled = true;
-                doubleClickEnabled = true;
-                mouseChildren = true;
+                mouse_enabled = True;
+                doubleClickEnabled = True;
+                mouseChildren = True;
             };
             tmpBalken = new MovieClip();
             _local3 = tmpBalken.graphics;
@@ -21512,8 +21492,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             with (_local3) {
                 x = 0;
                 y = (selectLevel * GILDE_LIST_Y);
-                mouseEnabled = true;
-                doubleClickEnabled = true;
+                mouse_enabled = True;
+                doubleClickEnabled = True;
             };
             actor[GILDE_LIST].addChild(tmpBalken);
             j = 0;
@@ -21539,7 +21519,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 isOnline = WaitingFor((Number(guildData[(GUILD_MEMBERONLINE + i)]) + (60 * 5)));
                 lvl = int(guildData[(GUILD_MEMBERLEVEL + i)]);
                 attackStatus = 0;
-                attackError = false;
+                attackError = False;
                 while (lvl > 1000) {
                     lvl = (lvl - 1000);
                     attackStatus = (attackStatus + 1);
@@ -21557,17 +21537,17 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                         offlineGuildMembers.push(guildMembers[(i + 1)]);
                     };
                     if ((((int(guildData[GUILD_ATTACK_TARGET]) > 0)) and (!((attackStatus & 1))))){
-                        attackError = true;
+                        attackError = True;
                     };
                     if ((((int(guildData[GUILD_DEFENCE_TARGET]) > 0)) and (!((attackStatus & 2))))){
-                        attackError = true;
+                        attackError = True;
                     };
                 } else {
                     if ((((int(guildData[GUILD_ATTACK_TARGET]) == int(Savegame[SG_GUILD_INDEX]))) and ((attackStatus & 1)))){
-                        attackError = true;
+                        attackError = True;
                     };
                     if ((((int(guildData[GUILD_DEFENCE_TARGET]) == int(Savegame[SG_GUILD_INDEX]))) and ((attackStatus & 2)))){
-                        attackError = true;
+                        attackError = True;
                     };
                 };
                 if ((((i >= scrollLevel)) and ((i < (scrollLevel + 15))))){
@@ -21589,7 +21569,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 i = 0;
                 while (i < 40) {
                     actor[(LBL_GILDE_CHAT + i)].x = ((actor[INP_GILDE_CHAT].x + actor[INP_GILDE_CHAT].width) - actor[(LBL_GILDE_CHAT + i)].textWidth);
-                    actor[(LBL_GILDE_CHAT + i)].autoSize = "right";
+                    actor[(LBL_GILDE_CHAT + i)].auto_size = "right";
                     i = (i + 1);
                 };
             };
@@ -21602,7 +21582,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         GoldToDonate = 0;
         MushToDonate = 0;
         DonateTimeout = new Timer(2000, 1);
-        DonateTimeout.addEventListener(TimerEvent.TIMER, DoDonate);
+        DonateTimeout.add_event_listener(TimerEvent.TIMER, DoDonate);
         guildInstanceID++;
         if (guildInstanceID > 10000){
             guildInstanceID = 0;
@@ -21611,7 +21591,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         removeListenersTimer = new Timer(20);
         var _local3 = removeListenersTimer;
         with (_local3) {
-            addEventListener(TimerEvent.TIMER, removeListeners);
+            add_event_listener(TimerEvent.TIMER, removeListeners);
             start();
         };
         GoldKosten = 10;
@@ -21762,7 +21742,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         crestView = OnStage(GILDE_CREST);
         startWithCrest = ((((((((((isMine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))) and ((guildData[5] >= 50)))) and ((guildData[6] >= 50)))) and ((guildData[7] >= 50)))) and (!(OnStage(GILDE_SCROLL_UP))));
         if (guildData[0] != lastGuildCrestId){
-            crestView = false;
+            crestView = False;
         };
         lastGuildCrestId = guildData[0];
         RemoveAll();
@@ -21782,16 +21762,16 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 } else {
                     Remove(GILDE_CREST);
                 };
-                actor[GILDE_CREST].mouseChildren = true;
+                actor[GILDE_CREST].mouseChildren = True;
             } else {
                 Remove(GILDE_CREST_GOTO_GEBAEUDE);
-                actor[GILDE_CREST].mouseChildren = false;
+                actor[GILDE_CREST].mouseChildren = False;
             };
             loadCrest();
         };
         if (!((isMine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))){
             Remove(GILDE_CREST_GOTO_GEBAEUDE);
-            actor[GILDE_CREST].mouseChildren = false;
+            actor[GILDE_CREST].mouseChildren = False;
         };
         if (textDir == "right"){
             actor[LBL_GILDE_CHAT_CAPTION].x = ((actor[GILDE_RAID].x - actor[LBL_GILDE_CHAT_CAPTION].textWidth) - 5);
@@ -21810,42 +21790,42 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             i = (i + 1);
         };
         GuildBtnRepeatTimer = new Timer(1000);
-        actor[GILDE_SCROLL_UP].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_SCROLL_DOWN].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DIALOG_CANCEL].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DIALOG_OK_KICK].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DIALOG_OK_MASTER].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DIALOG_OK_INVITE].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DIALOG_OK_REVOLT].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DIALOG_OK_RAID].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_INVITE].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_PROFILE].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_KICK].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_PROMOTE].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_DEMOTE].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_MASTER].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_REVOLT].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_GEBAEUDE_IMPROVE].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[(GILDE_GEBAEUDE_IMPROVE + 1)].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[(GILDE_GEBAEUDE_IMPROVE + 2)].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_KATAPULT].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[(GILDE_KATAPULT + 1)].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[(GILDE_KATAPULT + 2)].addEventListener(MouseEvent.CLICK, GuildBtnHandler);
-        actor[GILDE_GOLD].addEventListener(MouseEvent.MOUSE_DOWN, GuildBtnHandler);
-        actor[GILDE_MUSH].addEventListener(MouseEvent.MOUSE_DOWN, GuildBtnHandler);
-        actor[GILDE_GOLD].addEventListener(MouseEvent.MOUSE_OUT, DoDonate);
-        actor[GILDE_MUSH].addEventListener(MouseEvent.MOUSE_OUT, DoDonate);
+        actor[GILDE_SCROLL_UP].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_SCROLL_DOWN].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DIALOG_CANCEL].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DIALOG_OK_KICK].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DIALOG_OK_MASTER].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DIALOG_OK_INVITE].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DIALOG_OK_REVOLT].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DIALOG_OK_RAID].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_INVITE].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_PROFILE].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_KICK].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_PROMOTE].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_DEMOTE].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_MASTER].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_REVOLT].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_GEBAEUDE_IMPROVE].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[(GILDE_GEBAEUDE_IMPROVE + 1)].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[(GILDE_GEBAEUDE_IMPROVE + 2)].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_KATAPULT].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[(GILDE_KATAPULT + 1)].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[(GILDE_KATAPULT + 2)].add_event_listener(MouseEvent.CLICK, GuildBtnHandler);
+        actor[GILDE_GOLD].add_event_listener(MouseEvent.MOUSE_DOWN, GuildBtnHandler);
+        actor[GILDE_MUSH].add_event_listener(MouseEvent.MOUSE_DOWN, GuildBtnHandler);
+        actor[GILDE_GOLD].add_event_listener(MouseEvent.MOUSE_OUT, DoDonate);
+        actor[GILDE_MUSH].add_event_listener(MouseEvent.MOUSE_OUT, DoDonate);
         _local3 = actor[GILDE_GOLD];
         with (_local3) {
-            addEventListener(MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
-            addEventListener(MouseEvent.MOUSE_UP, GuildBtnUpHandler);
-            addEventListener(MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
+            add_event_listener(MouseEvent.MOUSE_UP, GuildBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
         };
         _local3 = actor[GILDE_MUSH];
         with (_local3) {
-            addEventListener(MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
-            addEventListener(MouseEvent.MOUSE_UP, GuildBtnUpHandler);
-            addEventListener(MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
+            add_event_listener(MouseEvent.MOUSE_UP, GuildBtnUpHandler);
+            add_event_listener(MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
         };
         BuildGuildList();
         if (myRank > 2){
@@ -21905,11 +21885,11 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         with (_local3) {
             getChildAt(0).text = ((guildDescr)=="") ? (((myRank == 1)) ? txt[TXT_ENTERGUILDDESC] : txt[TXT_GUILDNOTEXT]) : resolveBreaks(guildDescr);
             getChildAt(0).type = (((((myRank == 1)) and (isMine))) ? TextFieldType.INPUT : TextFieldType.DYNAMIC);
-            mouseEnabled = true;
-            addEventListener(FocusEvent.FOCUS_IN, EnterGuildDesc);
-            addEventListener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
+            mouse_enabled = True;
+            add_event_listener(FocusEvent.FOCUS_IN, EnterGuildDesc);
+            add_event_listener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
             if (textDir == "right"){
-                getChildAt(0).wordWrap = false;
+                getChildAt(0).wordWrap = False;
             };
         };
         Add(GILDE_RAID_GRAY);
@@ -22109,9 +22089,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     };
                 };
             } else {
-                EnablePopup(GILDE_RAID_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
-                EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
-                EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                EnablePopup(GILDE_RAID_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
             };
         } else {
             Remove(GILDE_RAID);
@@ -22175,8 +22155,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     Remove(GILDE_ATTACK_GRAY);
                     Remove(GILDE_DEFEND_GRAY);
                 } else {
-                    EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
-                    EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                    EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                    EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
                 };
             };
         };
@@ -22194,7 +22174,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             Remove(GILDE_SCHATZ);
         };
     };
-    arrowHallMode = false;
+    arrowHallMode = False;
     if (isMine){
         if (int(guildData[0]) != gilden_id){
             gilden_id = int(guildData[0]);
@@ -22238,7 +22218,7 @@ public function ShowWorkScreen(evt:Event=undefined):void{
                 with (_local3) {
                     if (WaitingFor(Savegame[SG_ACTION_ENDTIME])){
                         if (txt[TXT_WORK_FINISH]){
-                            text = txt[TXT_WORK_FINISH].split("%1").join(WaitingTime(Savegame[SG_ACTION_ENDTIME])).split("%2").join(time_str(Savegame[SG_ACTION_ENDTIME], true));
+                            text = txt[TXT_WORK_FINISH].split("%1").join(WaitingTime(Savegame[SG_ACTION_ENDTIME])).split("%2").join(time_str(Savegame[SG_ACTION_ENDTIME], True));
                         } else {
                             text = WaitingTime(Savegame[SG_ACTION_ENDTIME]);
                         };
@@ -22269,7 +22249,7 @@ public function ShowWorkScreen(evt:Event=undefined):void{
             actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_WORK];
             actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
             actor[LBL_SCR_ARBEITEN_TEXT].text = txt[TXT_ARBEIT_TEXT4];
-            ArbeitCountdown.addEventListener(TimerEvent.TIMER, ArbeitCountdownEvent);
+            ArbeitCountdown.add_event_listener(TimerEvent.TIMER, ArbeitCountdownEvent);
             ArbeitCountdown.start();
             CheckWrongPage(ACT_SCREEN_ARBEITEN);
         };
@@ -22294,7 +22274,7 @@ public function ArbeitenSliderChange(value:int):void{
     if (txt[TXT_ARBEIT_TEXT3] == ""){
         txtWorkDur = txt[TXT_ARBEIT_TEXT2].split("%hours").join(String(value)).split("%reward").join(Geld((value * Stundenlohn)));
         if (txt[TXT_WORK_FINISH]){
-            actor[LBL_SCR_ARBEITEN_TEXT2].text = txt[TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(time_str((int((GameTime.getTime() / 1000)) + (((value + 1) * 60) * 60)), true));
+            actor[LBL_SCR_ARBEITEN_TEXT2].text = txt[TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(time_str((int((GameTime.getTime() / 1000)) + (((value + 1) * 60) * 60)), True));
         } else {
             actor[LBL_SCR_ARBEITEN_TEXT2].text = txtWorkDur;
         };
@@ -22310,10 +22290,10 @@ public function ShowHallScreen(evt:Event=undefined):void{
         RemoveAll();
         if (GuildHallMode){
             ruhmesHalleSuchString = Gilde;
-            ruhmesHalleSuchName = true;
+            ruhmesHalleSuchName = True;
         } else {
             ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
-            ruhmesHalleSuchName = true;
+            ruhmesHalleSuchName = True;
         };
         actor[INP_HALLE_GOTO].getChildAt(1).text = txt[TXT_HALLE_SUCHFELD_TEXT];
         Add(SCREEN_HALLE);
@@ -22323,13 +22303,13 @@ public function ShowHallScreen(evt:Event=undefined):void{
 }
 
 public function ShowCityScreen(evt:Event=undefined):void{
-    var StatistenBleiben:* = false;
+    var StatistenBleiben:* = False;
     var doShowCityScreen:* = null;
     var evt:* = evt;
     doShowCityScreen = function (){
         if (((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))){
             MakePersistent(CITY_STATISTEN, BUBBLES);
-            StatistenBleiben = true;
+            StatistenBleiben = True;
         };
         RemoveAll();
         Switch (tageszeit()){
@@ -22376,9 +22356,9 @@ public function ShowCityScreen(evt:Event=undefined):void{
                 Remove(SCR_CITY_CLOUDS_DAY);
             };
         };
-        ShowDealerScreen(undefined, true);
+        ShowDealerScreen(undefined, True);
     };
-    StatistenBleiben = false;
+    StatistenBleiben = False;
     Load(BUBBLES);
     Switch (tageszeit()){
         case 0:
@@ -22404,7 +22384,7 @@ public function ShowPostScreen(par:Array=undefined){
     var par:* = par;
     DoShowPost = function (evt:Event=undefined){
         var thisInstance:* = 0;
-        var postSchonDa:* = false;
+        var postSchonDa:* = False;
         var evt:* = evt;
         var PostSetFocus:* = function (evt:Event=undefined){
             var evt:* = evt;
@@ -22418,7 +22398,7 @@ public function ShowPostScreen(par:Array=undefined){
                     removeEventListener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
             } else {
-                stage.stageFocusRect = false;
+                stage.stageFocusRect = False;
                 stage.focus = actor[POST_LIST];
             };
         };
@@ -22463,8 +22443,8 @@ public function ShowPostScreen(par:Array=undefined){
         Add(SCREEN_POST);
         var _local3 = actor[POST_LIST];
         with (_local3) {
-            addEventListener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
-            addEventListener(FocusEvent.FOCUS_OUT, PostSetFocus);
+            add_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+            add_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
         };
         PostSetFocus();
         if (!(par is Array)){
@@ -22508,9 +22488,9 @@ public function ShowPostScreen(par:Array=undefined){
         var _local3 = actor[LBL_POST_LIMIT];
         with (_local3) {
             if (int(Savegame[SG_MSG_COUNT]) >= 100){
-                defaultTextFormat = FontFormat_Error;
+                default_text_format = FontFormat_Error;
             } else {
-                defaultTextFormat = FontFormat_Default;
+                default_text_format = FontFormat_Default;
             };
             text = (Savegame[SG_MSG_COUNT] + " / 100");
             x = (((POST_SQUARE_X + POST_SQUARE_X) - width) + POST_LIMIT_X);
@@ -22544,9 +22524,9 @@ public function ShowPostScreen(par:Array=undefined){
             while (numChildren > 0) {
                 removeChildAt(0);
             };
-            mouseEnabled = true;
-            doubleClickEnabled = true;
-            mouseChildren = true;
+            mouse_enabled = True;
+            doubleClickEnabled = True;
+            mouseChildren = True;
         };
         if (textDir == "right"){
             PostListAddField((POST_LIST_COLUMN_1_X + 180), POST_LIST_LINES_Y, txt[TXT_POST_LIST_COLUMN_1], FontFormat_PostListHeading);
@@ -22578,14 +22558,14 @@ public function ShowPostScreen(par:Array=undefined){
             with (_local3) {
                 x = (POST_LIST_COLUMN_1_X - 5);
                 y = ((POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)) - 3);
-                mouseEnabled = true;
-                doubleClickEnabled = true;
-                mouseChildren = false;
+                mouse_enabled = True;
+                doubleClickEnabled = True;
+                mouseChildren = False;
                 alpha = (((sel_row == line)) ? 1 : 0);
             };
             DoubleClickHandler(tmpBalken, BuildPostList, PostBtnHandler);
             if (tmpArray[i] == ""){
-                fightFlushMode = false;
+                fightFlushMode = False;
                 return;
             };
             Switch (tmpArray[(i + 1)]){
@@ -22677,7 +22657,7 @@ public function ShowPostScreen(par:Array=undefined){
             line = (line + 1);
             i = (i + 1);
         };
-        fightFlushMode = false;
+        fightFlushMode = False;
     };
     var PostListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat):void{
         var tmpLbl:* = null;
@@ -22688,14 +22668,14 @@ public function ShowPostScreen(par:Array=undefined){
         tmpLbl = new TextField();
         var _local6 = tmpLbl;
         with (_local6) {
-            defaultTextFormat = fmt;
-            autoSize = TextFieldAutoSize.LEFT;
-            background = false;
-            selectable = false;
-            embedFonts = fontEmbedded;
-            antiAliasType = AntiAliasType.ADVANCED;
-            mouseEnabled = true;
-            doubleClickEnabled = true;
+            default_text_format = fmt;
+            auto_size = TextFieldAutoSize.LEFT;
+            background = False;
+            selectable = False;
+            embed_fonts = font_embedded;
+            anti_alias_type = AntiAliasType.ADVANCED;
+            mouse_enabled = True;
+            doubleClickEnabled = True;
             text = txt;
             if (textDir == "right"){
                 x = (pos_x - (((tmpLbl is TextField)) ? textWidth : width));
@@ -22703,7 +22683,7 @@ public function ShowPostScreen(par:Array=undefined){
                 x = pos_x;
             };
             y = pos_y;
-            visible = true;
+            visible = True;
             filters = Filter_Shadow;
         };
         DoubleClickHandler(tmpLbl, BuildPostList, PostBtnHandler);
@@ -22715,7 +22695,7 @@ public function ShowPostScreen(par:Array=undefined){
 
 public function DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function){
     var dblClickTimer:* = null;
-    var waiting:* = false;
+    var waiting:* = False;
     var tmpEvt:* = null;
     var dblClickTimerEvent:* = null;
     var dispObj:* = dispObj;
@@ -22727,38 +22707,38 @@ public function DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleCli
             fnDoubleClick(evt);
             dblClickTimer.stop();
             dblClickTimer.removeEventListener(TimerEvent.TIMER, dblClickTimerEvent);
-            waiting = false;
+            waiting = False;
         } else {
             tmpEvt = evt;
-            dblClickTimer.addEventListener(TimerEvent.TIMER, dblClickTimerEvent);
+            dblClickTimer.add_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
             dblClickTimer.start();
-            waiting = true;
+            waiting = True;
         };
     };
     dblClickTimerEvent = function (evt:TimerEvent){
-        waiting = false;
+        waiting = False;
         dblClickTimer.removeEventListener(TimerEvent.TIMER, dblClickTimerEvent);
         fnClick(tmpEvt);
     };
     dblClickTimer = new Timer(300, 1);
-    waiting = false;
+    waiting = False;
     var _local5 = dispObj;
     with (_local5) {
-        mouseEnabled = true;
-        addEventListener(MouseEvent.MOUSE_DOWN, dblClickEvent);
+        mouse_enabled = True;
+        add_event_listener(MouseEvent.MOUSE_DOWN, dblClickEvent);
     };
 }
 
 public function ShowBuildCharacterScreen(evt:Event=undefined):void{
-    var RebuildMode:* = false;
+    var RebuildMode:* = False;
     var i:* = 0;
     var evt:* = evt;
-    RebuildMode = false;
+    RebuildMode = False;
     if ((((evt is MouseEvent)) and ((GetActorID(evt.target) == OPTION_CHANGEIMG)))){
-        RebuildMode = true;
+        RebuildMode = True;
     };
     if ((((evt is MouseEvent)) and ((((GetActorID(evt.target) == GOTO_LOGIN)) or ((GetActorID(evt.target) == GOTO_SIGNUP)))))){
-        so.data.skipAutoLOGin = true;
+        so.data.skipAutoLOGin = True;
     };
     if (((((so.data.HasAccount) and (!(so.data.skipAutoLOGin)))) and (!(RebuildMode)))){
         if (so.data.userName){
@@ -22814,7 +22794,7 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
         revertchar_hair = char_hair;
         revertchar_special = char_special;
         revertchar_special2 = char_special2;
-        KlasseGewählt = true;
+        KlasseGewählt = True;
     };
     LoadCharacterImage();
 }
@@ -23262,7 +23242,7 @@ public function AnimateAch(actorID:int, y_level:int=635, AchAniPow:Number=-10){
     var AchAniStep:* = 0;
     var _local5 = AchAniTimer;
     with (_local5) {
-        addEventListener(TimerEvent.TIMER, AchAniEvent);
+        add_event_listener(TimerEvent.TIMER, AchAniEvent);
         start();
     };
 }
@@ -23280,7 +23260,7 @@ public function DoAchievements(SG:Array):Boolean{
     achAusfF = "";
     achAusf = 0;
     achCurrentGrade = "";
-    OneUp = false;
+    OneUp = False;
     i = 0;
     while (i < ((buffedMode) ? 7 : 8)) {
         achAusf = ach_level(SG, (i % 8), 1);
@@ -23288,7 +23268,7 @@ public function DoAchievements(SG:Array):Boolean{
         if (old_ach[(i % 8)] < 0){
             old_ach[(i % 8)] = -(old_ach[(i % 8)]);
             AnimateAch(((CHAR_ACH + i) + (achAusf * 8)));
-            OneUp = true;
+            OneUp = True;
         };
         Switch (achAusf){
             case 0:
@@ -23353,13 +23333,13 @@ public function MirrorAniFn(evt:Event){
     };
 }
 
-public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false):void{
+public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False):void{
     var DoShowCharacterScreen:* = null;
     var evt:* = evt;
     var NoPrices:Boolean = NoPrices;
     DoShowCharacterScreen = function (){
         var i:* = 0;
-        var OneUp:* = false;
+        var OneUp:* = False;
         var level_upTimer:* = null;
         var MountTimeTimer:* = null;
         var MountTimeEvent:* = null;
@@ -23422,7 +23402,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
             Remove(LBL_CHAR_MOUNT_RUNTIME);
         };
         MountTimeTimer = new Timer(500);
-        MountTimeTimer.addEventListener(TimerEvent.TIMER, MountTimeEvent);
+        MountTimeTimer.add_event_listener(TimerEvent.TIMER, MountTimeEvent);
         MountTimeTimer.start();
         i = 0;
         while (i < 8) {
@@ -23451,12 +23431,12 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
         lastPlayer = actor[INP_NAME].getChildAt(1).text;
         if (Gilde){
             SelectedGuild = Gilde;
-            actor[SCR_CHAR_NAME].useHandCursor = true;
+            actor[SCR_CHAR_NAME].useHandCursor = True;
         } else {
             SelectedGuild = "";
-            actor[SCR_CHAR_NAME].useHandCursor = false;
+            actor[SCR_CHAR_NAME].useHandCursor = False;
         };
-        TrimTooLong(LBL_SCR_CHAR_NAME, 260);
+        trim_too_long(LBL_SCR_CHAR_NAME, 260);
         i = 0;
         while (i < 3) {
             if ((int(Savegame[SG_CLASS]) - 1) == i){
@@ -23477,7 +23457,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
             getChildAt(0).text = ((PlayerDesc)=="") ? txt[TXT_ENTERDESC] : PlayerDesc;
             getChildAt(0).type = TextFieldType.INPUT;
             if (textDir == "right"){
-                getChildAt(0).wordWrap = false;
+                getChildAt(0).wordWrap = False;
             };
         };
         actor[SCR_CHAR_NAME].x = ((SCR_CHAR_CHARX + 128) - int((actor[LBL_SCR_CHAR_NAME].textWidth / 2)));
@@ -23537,7 +23517,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
                 EnablePopup(CHAR_ALBUM, POPUP_BEGIN_LINE, txt[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_COLLECTION].split("%1").join(String((Savegame[SG_ALBUM] - 10000))).split("%2").join(String(contentMax)).split("%3").join(String((Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_COLLECTION + 7)], POPUP_END_LINE);
                 if (album_effect){
                     AnimateAch(CHAR_ALBUM, CHAR_PLAYERY);
-                    album_effect = false;
+                    album_effect = False;
                 };
             };
         };
@@ -23578,11 +23558,11 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
             level_upAniStep = 25;
             kickIn = 0;
             Add(LBL_SCR_CHAR_EXPLABEL);
-            OneUp = true;
-            level_up = false;
+            OneUp = True;
+            level_up = False;
             _local2 = level_upTimer;
             with (_local2) {
-                addEventListener(TimerEvent.TIMER, level_upAniEvent);
+                add_event_listener(TimerEvent.TIMER, level_upAniEvent);
                 start();
             };
         };
@@ -23687,10 +23667,10 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             };
         };
         RemoveAll();
-        dragDropProhibit = true;
+        dragDropProhibit = True;
         i = 0;
         while (i < 15) {
-            actor[(CHAR_SLOT_1 + i)].mouseEnabled = false;
+            actor[(CHAR_SLOT_1 + i)].mouse_enabled = False;
             i = (i + 1);
         };
         i = 0;
@@ -23741,14 +23721,14 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
         } else {
             actor[LBL_SCR_CHAR_NAME].text = (PlayerName + (((PlayerGilde == "")) ? "" : ((" [" + PlayerGilde) + "]")));
         };
-        TrimTooLong(LBL_SCR_CHAR_NAME, 260);
+        trim_too_long(LBL_SCR_CHAR_NAME, 260);
         lastPlayer = PlayerName;
         if (PlayerGilde){
             SelectedGuild = PlayerGilde;
-            actor[SCR_CHAR_NAME].useHandCursor = true;
+            actor[SCR_CHAR_NAME].useHandCursor = True;
         } else {
             SelectedGuild = "";
-            actor[SCR_CHAR_NAME].useHandCursor = false;
+            actor[SCR_CHAR_NAME].useHandCursor = False;
         };
         i = 0;
         while (i < 3) {
@@ -23817,7 +23797,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             };
         };
         DoAchievements(PlayerSG);
-        PvPDelayTimer.addEventListener(TimerEvent.TIMER, PvPDelayCheck);
+        PvPDelayTimer.add_event_listener(TimerEvent.TIMER, PvPDelayCheck);
         PvPDelayTimer.start();
         PvPDelayCheck();
         i = 0;
@@ -23826,7 +23806,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             i = (i + 1);
         };
         Remove(LBL_CHAR_MOUNT_RUNTIME);
-        LoadCharacterImage(CHARBACKGROUND, false, PlayerSG[SG_RACE], (int(PlayerSG[SG_GENDER]) == 1), PlayerSG[SG_CLASS], PlayerSG[SG_FACE_1], PlayerSG[SG_FACE_5], PlayerSG[SG_FACE_6], PlayerSG[SG_FACE_4], PlayerSG[SG_FACE_3], PlayerSG[SG_FACE_7], PlayerSG[SG_FACE_2], PlayerSG[SG_FACE_8], PlayerSG[SG_FACE_9]);
+        LoadCharacterImage(CHARBACKGROUND, False, PlayerSG[SG_RACE], (int(PlayerSG[SG_GENDER]) == 1), PlayerSG[SG_CLASS], PlayerSG[SG_FACE_1], PlayerSG[SG_FACE_5], PlayerSG[SG_FACE_6], PlayerSG[SG_FACE_4], PlayerSG[SG_FACE_3], PlayerSG[SG_FACE_7], PlayerSG[SG_FACE_2], PlayerSG[SG_FACE_8], PlayerSG[SG_FACE_9]);
         AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         if ((((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) == 2)))) or ((((int(so.data.vanityMode) == 3)) and ((vanityRandom < 0.5)))))){
             AddSome(GOLDEN_FRAME, SCR_CHAR_NAME);
@@ -23930,21 +23910,21 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
     when_loaded(DoShowPlayerScreen);
 }
 
-public function TrimTooLong(actorIDObj:Object, max_width:int):String{
+public function trim_too_long(actorIDObj:Object, max_width:int):String{
     var tmpStr:* = null;
     var remainLength:* = 0;
     var actorID:* = 0;
-    var Shortened:* = false;
+    var Shortened:* = False;
     var actorIDObj:* = actorIDObj;
     var max_width:* = max_width;
-    Shortened = false;
+    Shortened = False;
     var _local4 = (((actorIDObj is int)) ? actor[actorIDObj] : actorIDObj);
     with (_local4) {
         tmpStr = text;
         remainLength = tmpStr.length;
         while (textWidth > max_width) {
             remainLength--;
-            Shortened = true;
+            Shortened = True;
             if (textDir == "right"){
                 text = ("..." + tmpStr.substr(-(remainLength), remainLength));
                 if (tmpStr.indexOf("]") >= 0){
@@ -24019,7 +23999,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
         var thisMQSInstance:* = 0;
         var DungeonLevel:* = null;
         var NextEnemy:* = null;
-        var PlayUnlockSound:* = false;
+        var PlayUnlockSound:* = False;
         var i:* = undefined;
         var MainQuestsClick:* = function (evt:MouseEvent){
             var evt:* = evt;
@@ -24063,7 +24043,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
         thisMQSInstance = MQSInstance;
         DungeonLevel = "";
         NextEnemy = "";
-        PlayUnlockSound = false;
+        PlayUnlockSound = False;
         RemoveAll();
         Add(Background);
         Add((((countDone >= 9)) ? SCREEN_HLMAINQUESTS : SCREEN_MAINQUESTS));
@@ -24098,17 +24078,17 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                 SetCnt((MQS_BUTTON + i), (MQS_BUTTON + i));
                 DungeonLevel = String((int(Savegame[(SG_DUNGEON_LEVEL + i)]) - 1));
                 if (DungeonLevel == "0"){
-                    PlayUnlockSound = true;
-                    FadeOut((MQS_DISABLED + i), 20, 0.05, 0, true);
+                    PlayUnlockSound = True;
+                    FadeOut((MQS_DISABLED + i), 20, 0.05, 0, True);
                     DungeonLevel = "1";
                 };
                 EnablePopup((MQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_DUNGEON_INFO].split("%1").join(DungeonLevel).split("%2").join(NextEnemy), POPUP_END_LINE);
                 _local2 = actor[(MQS_BUTTON + i)];
                 with (_local2) {
-                    addEventListener(MouseEvent.CLICK, MainQuestsClick);
-                    buttonMode = true;
-                    useHandCursor = true;
-                    mouseChildren = false;
+                    add_event_listener(MouseEvent.CLICK, MainQuestsClick);
+                    buttonMode = True;
+                    useHandCursor = True;
+                    mouseChildren = False;
                 };
                 i = (i + 1);
             };
@@ -24121,19 +24101,19 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                     if (i == 0){
                         DungeonLevel = Savegame[(SG_DUNGEON_LEVEL + 9)];
                         if (countDone > 9){
-                            actor[(HLMQS_DISABLED + i)].visible = false;
-                            actor[(HLMQS_COMPLETED + i)].visible = true;
+                            actor[(HLMQS_DISABLED + i)].visible = False;
+                            actor[(HLMQS_COMPLETED + i)].visible = True;
                         } else {
-                            actor[(HLMQS_COMPLETED + i)].visible = false;
+                            actor[(HLMQS_COMPLETED + i)].visible = False;
                             actor[(HLMQS_DISABLED + i)].alpha = 1;
                             if (DungeonLevel == "0"){
-                                actor[(HLMQS_DISABLED + i)].visible = true;
-                                PlayUnlockSound = true;
-                                FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, true);
+                                actor[(HLMQS_DISABLED + i)].visible = True;
+                                PlayUnlockSound = True;
+                                FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, True);
                                 DungeonLevel = "1";
                             } else {
                                 DungeonLevel = String((int(DungeonLevel) - 1));
-                                actor[(HLMQS_DISABLED + i)].visible = false;
+                                actor[(HLMQS_DISABLED + i)].visible = False;
                             };
                         };
                         Switch (DungeonLevel){
@@ -24171,78 +24151,78 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                     } else {
                         if (i == 1){
                             if (countDone > 10){
-                                actor[(HLMQS_DISABLED + i)].visible = false;
-                                actor[(HLMQS_COMPLETED + i)].visible = true;
+                                actor[(HLMQS_DISABLED + i)].visible = False;
+                                actor[(HLMQS_COMPLETED + i)].visible = True;
                             } else {
                                 if (countDone == 10){
-                                    actor[(HLMQS_COMPLETED + i)].visible = false;
+                                    actor[(HLMQS_COMPLETED + i)].visible = False;
                                     actor[(HLMQS_DISABLED + i)].alpha = 1;
                                     DungeonLevel = Savegame[(SG_NEW_DUNGEONS + 0)];
                                     if (DungeonLevel == "0"){
-                                        actor[(HLMQS_DISABLED + i)].visible = true;
-                                        PlayUnlockSound = true;
-                                        FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, true);
+                                        actor[(HLMQS_DISABLED + i)].visible = True;
+                                        PlayUnlockSound = True;
+                                        FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, True);
                                         DungeonLevel = "1";
                                     } else {
                                         DungeonLevel = String((int(DungeonLevel) - 1));
-                                        actor[(HLMQS_DISABLED + i)].visible = false;
+                                        actor[(HLMQS_DISABLED + i)].visible = False;
                                     };
                                 } else {
-                                    actor[(HLMQS_COMPLETED + i)].visible = false;
+                                    actor[(HLMQS_COMPLETED + i)].visible = False;
                                     actor[(HLMQS_DISABLED + i)].alpha = 1;
-                                    actor[(HLMQS_DISABLED + i)].visible = true;
+                                    actor[(HLMQS_DISABLED + i)].visible = True;
                                 };
                             };
                             NextEnemy = txt[((2372 + int(DungeonLevel)) - 1)];
                         } else {
                             if (i == 2){
                                 if (countDone > 11){
-                                    actor[(HLMQS_DISABLED + i)].visible = false;
-                                    actor[(HLMQS_COMPLETED + i)].visible = true;
+                                    actor[(HLMQS_DISABLED + i)].visible = False;
+                                    actor[(HLMQS_COMPLETED + i)].visible = True;
                                 } else {
                                     if (countDone == 11){
-                                        actor[(HLMQS_COMPLETED + i)].visible = false;
+                                        actor[(HLMQS_COMPLETED + i)].visible = False;
                                         actor[(HLMQS_DISABLED + i)].alpha = 1;
                                         DungeonLevel = Savegame[(SG_NEW_DUNGEONS + 1)];
                                         if (DungeonLevel == "0"){
-                                            actor[(HLMQS_DISABLED + i)].visible = true;
-                                            PlayUnlockSound = true;
-                                            FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, true);
+                                            actor[(HLMQS_DISABLED + i)].visible = True;
+                                            PlayUnlockSound = True;
+                                            FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, True);
                                             DungeonLevel = "1";
                                         } else {
                                             DungeonLevel = String((int(DungeonLevel) - 1));
-                                            actor[(HLMQS_DISABLED + i)].visible = false;
+                                            actor[(HLMQS_DISABLED + i)].visible = False;
                                         };
                                     } else {
-                                        actor[(HLMQS_COMPLETED + i)].visible = false;
+                                        actor[(HLMQS_COMPLETED + i)].visible = False;
                                         actor[(HLMQS_DISABLED + i)].alpha = 1;
-                                        actor[(HLMQS_DISABLED + i)].visible = true;
+                                        actor[(HLMQS_DISABLED + i)].visible = True;
                                     };
                                 };
                                 NextEnemy = txt[((2382 + int(DungeonLevel)) - 1)];
                             } else {
                                 if (i == 3){
                                     if (countDone > 12){
-                                        actor[(HLMQS_DISABLED + i)].visible = false;
-                                        actor[(HLMQS_COMPLETED + i)].visible = true;
+                                        actor[(HLMQS_DISABLED + i)].visible = False;
+                                        actor[(HLMQS_COMPLETED + i)].visible = True;
                                     } else {
                                         if (countDone == 12){
-                                            actor[(HLMQS_COMPLETED + i)].visible = false;
+                                            actor[(HLMQS_COMPLETED + i)].visible = False;
                                             actor[(HLMQS_DISABLED + i)].alpha = 1;
                                             DungeonLevel = String((int(Savegame[SG_DUNGEON_13]) - 120));
                                             if (DungeonLevel == "0"){
-                                                actor[(HLMQS_DISABLED + i)].visible = true;
-                                                PlayUnlockSound = true;
-                                                FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, true);
+                                                actor[(HLMQS_DISABLED + i)].visible = True;
+                                                PlayUnlockSound = True;
+                                                FadeOut((HLMQS_DISABLED + i), 20, 0.05, 0, True);
                                                 DungeonLevel = "1";
                                             } else {
                                                 DungeonLevel = String((int(DungeonLevel) - 1));
-                                                actor[(HLMQS_DISABLED + i)].visible = false;
+                                                actor[(HLMQS_DISABLED + i)].visible = False;
                                             };
                                         } else {
-                                            actor[(HLMQS_COMPLETED + i)].visible = false;
+                                            actor[(HLMQS_COMPLETED + i)].visible = False;
                                             actor[(HLMQS_DISABLED + i)].alpha = 1;
-                                            actor[(HLMQS_DISABLED + i)].visible = true;
+                                            actor[(HLMQS_DISABLED + i)].visible = True;
                                         };
                                     };
                                     NextEnemy = txt[((9032 + int(DungeonLevel)) - 1)];
@@ -24255,19 +24235,19 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                     NextEnemy = txt[(TXT_TOWER_ENEMY_NAMES + tower_level)].split("|")[0];
                     DungeonLevel = String((tower_level + 1));
                     if (tower_level >= 100){
-                        actor[(HLMQS_COMPLETED + i)].visible = true;
+                        actor[(HLMQS_COMPLETED + i)].visible = True;
                     } else {
-                        actor[(HLMQS_COMPLETED + i)].visible = false;
+                        actor[(HLMQS_COMPLETED + i)].visible = False;
                     };
                 };
                 SetCnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
                 EnablePopup((HLMQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((i == 4)) ? TXT_TOWER_INFO : TXT_DUNGEON_INFO)].split("%1").join(DungeonLevel).split("%2").join(NextEnemy).split("%3").join(String(tower_level)), POPUP_END_LINE);
                 _local2 = actor[(HLMQS_BUTTON + i)];
                 with (_local2) {
-                    addEventListener(MouseEvent.CLICK, MainQuestsClick);
-                    buttonMode = true;
-                    useHandCursor = true;
-                    mouseChildren = false;
+                    add_event_listener(MouseEvent.CLICK, MainQuestsClick);
+                    buttonMode = True;
+                    useHandCursor = True;
+                    mouseChildren = False;
                 };
                 i = (i + 1);
             };
@@ -24367,7 +24347,7 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
             Show(LBL_MAINQUEST_MUSHHINT);
             actor[LBL_MAINQUEST_MUSHHINT].text = txt[TXT_MQ_MUSHHINT].split("%1").join(WaitingTime(Savegame[SG_MQ_REROLL_TIME]));
             Arabize(LBL_MAINQUEST_MUSHHINT);
-            MQDelayTimer.addEventListener(TimerEvent.TIMER, MQDelayCheck);
+            MQDelayTimer.add_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.start();
         } else {
             Hide(LBL_MAINQUEST_MUSHHINT);
@@ -24436,7 +24416,7 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
             };
         };
     };
-    hasLostMQ = false;
+    hasLostMQ = False;
     LastDungeonNr = DungeonNr;
     LastDungeonEnemy = Enemy;
     Load(SCREEN_MAINQUEST);
@@ -24452,32 +24432,32 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     when_loaded(DoShowMainQuestScreen);
 }
 
-public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=true){
+public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=True){
     var tmpTextFormat:* = null;
     var actorID:* = actorID;
     var child:int = child;
     var createHandler:Boolean = createHandler;
     var makeRightHandler:* = function (evt:Event){
-        MakeRightTextArea(actorID, child, false);
+        MakeRightTextArea(actorID, child, False);
     };
     if (textDir != "right"){
         return;
     };
-    tmpTextFormat = actor[actorID].getChildAt(child).defaultTextFormat;
+    tmpTextFormat = actor[actorID].getChildAt(child).default_text_format;
     tmpTextFormat.align = "right";
     if (!actor[actorID].hasHandler){
         if (createHandler){
-            actor[actorID].hasHandler = true;
+            actor[actorID].hasHandler = True;
         };
     };
-    actor[actorID].getChildAt(child).defaultTextFormat = tmpTextFormat;
+    actor[actorID].getChildAt(child).default_text_format = tmpTextFormat;
     actor[actorID].getChildAt(child).setTextFormat(tmpTextFormat);
 }
 
-public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, towerMode:Boolean=false, copyCatIdRaw:int=0, witchMode:Boolean=false):void{
+public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
     var i:* = 0;
     var ii:* = 0;
-    var HideBackPack:* = false;
+    var HideBackPack:* = False;
     var boostPrice:* = 0;
     var boostGold:* = 0;
     var boostSilver:* = 0;
@@ -24499,7 +24479,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     var SchadenID:* = 0;
     var tmpItmClass:* = 0;
     var tmpItmPic:* = 0;
-    var hasEpic:* = false;
+    var hasEpic:* = False;
     var DamageReduction:* = 0;
     var DamageReductionMax:* = 0;
     var SG:* = SG;
@@ -24510,7 +24490,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     var GetBoostPrice:* = function (boostCount:int):Number{
         return (int(TrueAttPreis[boostCount]));
     };
-    HideBackPack = false;
+    HideBackPack = False;
     tempBonus = 0;
     tmpHealth = 0;
     var hours:* = 0;
@@ -24625,15 +24605,15 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
         if (!(SG is Array)){
             SG = Savegame;
         } else {
-            HideBackPack = true;
+            HideBackPack = True;
         };
     };
     i = 0;
     while (i < 5) {
         if (int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)]) > 0){
-            actor[(LBL_SCR_CHAR_STAERKE + i)].defaultTextFormat = FontFormat_AttribBonus;
+            actor[(LBL_SCR_CHAR_STAERKE + i)].default_text_format = FontFormat_AttribBonus;
         } else {
-            actor[(LBL_SCR_CHAR_STAERKE + i)].defaultTextFormat = FontFormat_Attrib;
+            actor[(LBL_SCR_CHAR_STAERKE + i)].default_text_format = FontFormat_Attrib;
         };
         actor[(LBL_SCR_CHAR_STAERKE + i)].text = String((int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE) + i)]) + int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)])));
         popupLines = new Array();
@@ -24673,7 +24653,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                     tmpHealth = int(SG[(SG_POTION_GAIN + ii)]);
                 } else {
                     if (((int(SG[(SG_POTION_TYPE + ii)]) - 1) % 5) == i){
-                        potionDuration = time_str(SG[(SG_POTION_DURATION + ii)], true);
+                        potionDuration = time_str(SG[(SG_POTION_DURATION + ii)], True);
                         if (int(SG[(SG_POTION_GAIN + ii)]) <= 25){
                             tempBonus = ((int(SG[(SG_ATTR_STAERKE + i)]) + int(SG[(SG_ATTR_STAERKE_BONUS + i)])) / ((100 + int(SG[(SG_POTION_GAIN + ii)])) / 100));
                             if (HideBackPack){
@@ -24810,7 +24790,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     actor[LBL_SCR_CHAR_SCHADEN].text = int(((Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS)])) / 2));
     actor[LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 1) : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1) : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
     actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 2) : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2) : SG_ATTR_AUSDAUER_BONUS)])) / 2));
-    actor[LBL_SCR_CHAR_RUESTUNG].defaultTextFormat = (((tmpHealth > 0)) ? FontFormat_AttribBonus : FontFormat_Attrib);
+    actor[LBL_SCR_CHAR_RUESTUNG].default_text_format = (((tmpHealth > 0)) ? FontFormat_AttribBonus : FontFormat_Attrib);
     actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 3) : SG_ATTR_INTELLIGENZ)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 3) : SG_ATTR_INTELLIGENZ_BONUS)])) * (tmpLifeFactor * 2)) * (((tmpHealth > 0)) ? (Number((tmpHealth + 100)) / 100) : 1)) * (0.5 + (SG[((towerMode) ? (copyCatId + CPC_LEVEL) : SG_LEVEL)] / 2))));
     actor[LBL_SCR_CHAR_WIDERSTAND].text = (String(tmpKritische) + String("%"));
     popupLines = new Array();
@@ -24884,7 +24864,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                 if (HideBackPack){
                     EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE);
                 } else {
-                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)], true), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
+                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)], True), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
                 };
             };
             i = (i + 1);
@@ -24937,18 +24917,18 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             EnablePopup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
-                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, true, ((tmpItmClass)==1) ? 1 : -1));
-                actor[(CHAR_SLOT_1 + i)].mouseEnabled = false;
+                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, True, ((tmpItmClass)==1) ? 1 : -1));
+                actor[(CHAR_SLOT_1 + i)].mouse_enabled = False;
             } else {
                 SetCnt((CHAR_SLOT_1 + i), GetItemID(((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9)))) ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1 : (-(copyCatSel) - 3)) : -2)));
                 ItemPopup((CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG_ITM_SIZE)), SG, HideBackPack, NoPrices, towerMode, witchMode);
-                actor[(CHAR_SLOT_1 + i)].mouseEnabled = !((int(SG[((((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0));
+                actor[(CHAR_SLOT_1 + i)].mouse_enabled = !((int(SG[((((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0));
             };
         };
         if (HideBackPack){
-            dragDropProhibit = true;
+            dragDropProhibit = True;
         } else {
-            dragDropProhibit = false;
+            dragDropProhibit = False;
         };
         i = (i + 1);
     };
@@ -24959,7 +24939,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             };
             return ((pic >= 50));
         };
-        hasEpic = false;
+        hasEpic = False;
         i = 0;
         while (i < 6) {
             if (int(SG[((SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0){
@@ -24968,7 +24948,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG));
             ItemPopup((CHAR_SLOT_FIDGET_1 + i), (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)), SG, HideBackPack);
             if (((IsEpic(SG[((SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)])) and (OnStage(SCR_FIDGET_BG)))){
-                hasEpic = true;
+                hasEpic = True;
             };
             if (int(SG[((SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_TYP)]) == 0){
                 SG[((SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)] = 0;
@@ -24976,12 +24956,12 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG));
             ItemPopup((CHAR_SLOT_SHAKES_1 + i), (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)), SG, HideBackPack);
             if (((IsEpic(SG[((SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)) + SG_ITM_PIC)])) and (OnStage(SCR_SHAKES_BG)))){
-                hasEpic = true;
+                hasEpic = True;
             };
             i = (i + 1);
         };
         if (!hasEpic){
-            BlockReroll = false;
+            BlockReroll = False;
         } else {
             if (RollFrenzy.running){
                 ErrorMessage("Yay!");
@@ -25022,7 +25002,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     };
 }
 
-public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean=false, NoPrices:Boolean=false, towerMode:Boolean=false, witchMode:Boolean=false){
+public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean=False, NoPrices:Boolean=False, towerMode:Boolean=False, witchMode:Boolean=False){
     var attribLines:Array;
     var shopLines:Array;
     var i:int;
@@ -25069,8 +25049,8 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
         silber = int((goldRaw % 100));
         pilze = int((SG[(sgIndex + SG_ITM_MUSH)] % 100));
         compareIndex = 0;
-        compareFound = false;
-        lossFound = false;
+        compareFound = False;
+        lossFound = False;
         socket = int(SG[(sgIndex + SG_ITM_EXT_SOCKET)]);
         socketPower = int(SG[(sgIndex + SG_ITM_EXT_SOCKET_POWER)]);
         enchant = int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)]);
@@ -25210,7 +25190,7 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
                     };
                 };
                 if (compareIndex > 0){
-                    compareFound = false;
+                    compareFound = False;
                     iii = 0;
                     while (iii < 3) {
                         if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + iii)]) == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + iii)]) > 0)))) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
@@ -25239,7 +25219,7 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
                             ii = (ii + 1);
                             var _local40 = _temp17;
                             attribLines[_local40] = FontFormat_Popup;
-                            compareFound = true;
+                            compareFound = True;
                             break;
                         };
                         iii++;
@@ -25274,11 +25254,11 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
                 attribLines[_local36] = POPUP_END_LINE;
             };
             if ((((((compareIndex > 0)) and ((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0)))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
-                lossFound = false;
+                lossFound = False;
                 iii = 0;
                 while (iii < 3) {
                     if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]) == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + iii)]))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + iii)]) > 0)))){
-                        lossFound = true;
+                        lossFound = True;
                         break;
                     };
                     iii++;
@@ -25404,10 +25384,10 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
 }
 
 public function getHlIndex(inStr:String):int{
-    return (int(DecodeChat(inStr, true)));
+    return (int(DecodeChat(inStr, True)));
 }
 
-public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Boolean=false):String{
+public function DecodeChat(inStr:String, getHLMode:Boolean=False, getGBMode:Boolean=False):String{
     var namePart:String;
     var timePart:String;
     var crestStr:String;
@@ -25647,7 +25627,7 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
     return (inStr);
 }
 
-public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isWhisper:Boolean=false){
+public function ChatLine(line:String, isError:Boolean=False, hlIndex:int=-1, isWhisper:Boolean=False){
     var i:* = 0;
     var nextLine:* = null;
     var line:* = line;
@@ -25655,8 +25635,8 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
     var hlIndex:int = hlIndex;
     var isWhisper:Boolean = isWhisper;
     nextLine = "";
-    var seekSpace:* = false;
-    var noSpace:* = false;
+    var seekSpace:* = False;
+    var noSpace:* = False;
     var indent:* = 0;
     if (GildeChatScroll > 0){
         GildeChatScroll++;
@@ -25672,7 +25652,7 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
     while (i < 39) {
         var _local6 = actor[(LBL_GILDE_CHAT + i)];
         with (_local6) {
-            defaultTextFormat = actor[((LBL_GILDE_CHAT + i) + 1)].defaultTextFormat;
+            default_text_format = actor[((LBL_GILDE_CHAT + i) + 1)].default_text_format;
             htmlText = actor[((LBL_GILDE_CHAT + i) + 1)].htmlText;
             y = (GILDE_CHAT_Y + (((i + GildeChatScroll) - 35) * GILDE_CHAT_Y));
             visible = ((((i + GildeChatScroll) >= 35)) and (((i + GildeChatScroll) < 40)));
@@ -25681,18 +25661,18 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
     };
     _local6 = actor[(LBL_GILDE_CHAT + 39)];
     with (_local6) {
-        defaultTextFormat = ((isError) ? FontFormat_ChatError : FontFormat_Chat);
+        default_text_format = ((isError) ? FontFormat_ChatError : FontFormat_Chat);
         if (isWhisper){
-            defaultTextFormat = FontFormat_ChatWhisper;
+            default_text_format = FontFormat_ChatWhisper;
         };
         do  {
             text = line;
             if ((((textWidth > GILDE_TEXT_X)) or (seekSpace))){
                 if (!noSpace){
-                    seekSpace = true;
+                    seekSpace = True;
                 };
                 if ((((textWidth <= GILDE_TEXT_X)) and ((line.substr((line.length - 1)) == " ")))){
-                    seekSpace = false;
+                    seekSpace = False;
                 } else {
                     nextLine = (line.substr((line.length - 1)) + nextLine);
                 };
@@ -25700,8 +25680,8 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
                 if (line == ""){
                     line = nextLine;
                     nextLine = "";
-                    noSpace = true;
-                    seekSpace = false;
+                    noSpace = True;
+                    seekSpace = False;
                     text = line;
                 };
             };
@@ -25726,7 +25706,7 @@ public function ChatLine(line:String, isError:Boolean=false, hlIndex:int=-1, isW
         };
         if (GildeChatScroll == 0){
             y = (GILDE_CHAT_Y + ((39 - 35) * GILDE_CHAT_Y));
-            visible = true;
+            visible = True;
         };
     };
     if (nextLine != ""){
@@ -25833,7 +25813,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
     var toiletExp:* = toiletExp;
     var toiletMaxExp:* = toiletMaxExp;
     var itemAdded:int = itemAdded;
-    doShowToilet = function (buildScreen:Boolean=true){
+    doShowToilet = function (buildScreen:Boolean=True){
         var i:* = 0;
         var toiletItemAddFrame:* = 0;
         var toiletItemAddTimer:* = null;
@@ -25851,7 +25831,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
             Hide(TOILET_OVERLAYS);
             Show(TOILET_CHAIN);
         };
-        DisplayInventory(undefined, true);
+        DisplayInventory(undefined, True);
         EnablePopup(CA_TOILET_TANK, txt[TXT_TOILET_HINT].split("%1").join(String(int((toiletTankDest * 100)))).split("%2").join(String(toiletExp)).split("%3").join(String(toiletMaxExp)));
         if (isFull == 0){
             Hide(TOILET_IDLE);
@@ -25894,7 +25874,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
             toiletItemAddFrame = 0;
             toiletItemAddTimer = new Timer(25);
             Play(SND_TOILET_FLUSH);
-            toiletItemAddTimer.addEventListener(TimerEvent.TIMER, toiletItemAddFrameEvent);
+            toiletItemAddTimer.add_event_listener(TimerEvent.TIMER, toiletItemAddFrameEvent);
             toiletItemAddTimer.start();
             gatheredItemId = (CHAR_SLOT_11 + itemAdded);
             Switch (itemAdded){
@@ -25925,7 +25905,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
         };
     };
     if (OnStage(TOILET)){
-        doShowToilet(false);
+        doShowToilet(False);
         return;
     };
     Load(SCREEN_TOILET);
@@ -25933,12 +25913,12 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
     when_loaded(doShowToilet);
 }
 
-public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchantCost:int=0){
+public function ShowWitch(witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0){
     var doShowWitch:* = null;
     var witchData:* = witchData;
     var chaldronBubble:Boolean = chaldronBubble;
     var enchantCost:int = enchantCost;
-    doShowWitch = function (buildScreen:Boolean=true){
+    doShowWitch = function (buildScreen:Boolean=True){
         var i:int;
         if (buildScreen){
             Remove(CHAR_RIGHTPANE);
@@ -25948,7 +25928,7 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchant
             witchAniTimer.start();
         };
         witchDesiredType = witchData[3];
-        DisplayInventory(undefined, false, false, 0, true);
+        DisplayInventory(undefined, False, False, 0, True);
         i = 0;
         while (i < int(witchData[7])) {
             Load(GetItemID(14, int(witchData[(9 + (3 * i))]), undefined, 0));
@@ -25957,14 +25937,14 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchant
             trace(i, Savegame[((SG_INVENTORY_OFFS + (CorrectItemType.indexOf(Math.floor((int(witchData[(9 + (3 * i))]) / 10))) * SG_ITM_SIZE)) + SG_ITM_EXT_ENCHANT)]);
             if (Savegame[((SG_INVENTORY_OFFS + (CorrectItemType.indexOf(Math.floor((int(witchData[(9 + (3 * i))]) / 10))) * SG_ITM_SIZE)) + SG_ITM_EXT_ENCHANT)] != 0){
                 actor[(WITCH_SCROLL + i)].alpha = 0.5;
-                EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BOUGHT], POPUP_END_LINE);
+                EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BOUGHT], POPUP_END_LINE);
             } else {
                 if (enchantCost){
                     actor[(WITCH_SCROLL + i)].alpha = 1;
-                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYNOW], POPUP_END_LINE, POPUP_BEGIN_LINE, actor[IF_GOLD], String(Math.floor((enchantCost / 100))), POPUP_END_LINE);
+                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYNOW], POPUP_END_LINE, POPUP_BEGIN_LINE, actor[IF_GOLD], String(Math.floor((enchantCost / 100))), POPUP_END_LINE);
                 } else {
                     actor[(WITCH_SCROLL + i)].alpha = 1;
-                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYHINT], POPUP_END_LINE);
+                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYHINT], POPUP_END_LINE);
                 };
             };
             actor[(WITCH_SCROLL + i)].scaleX = 0.8;
@@ -25989,11 +25969,11 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchant
         Play(SND_TOILET_DROP);
     };
     if (OnStage(WITCH)){
-        doShowWitch(false);
+        doShowWitch(False);
         return;
     };
     Load(SCREEN_WITCH);
-    ShowCharacterScreen(undefined, true);
+    ShowCharacterScreen(undefined, True);
     when_loaded(doShowWitch);
 }
 
@@ -26060,12 +26040,12 @@ public function NextFight(evt:TimerEvent){
         guildFightExp = tmpStr.split(";")[1];
         guildFightHonor = tmpStr.split(";")[2];
     };
-    PostFightMode = false;
+    PostFightMode = False;
     fightNumber = ((guildFightCount - int(((fights.length + 1) / 2))) + (((guildFightCount % 2))==0) ? 1 : 0);
     if (fightNumber > guildFightCount){
         fightNumber = 1;
     };
-    ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), false, int(par[9]), GuildBattleData, (fights.length <= 1), guildFightExp, guildFightHonor, par[10], par[11], par[12]);
+    ShowFightScreen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), False, int(par[9]), GuildBattleData, (fights.length <= 1), guildFightExp, guildFightHonor, par[10], par[11], par[12]);
 }
 
 public function guildFightTimerFn(evt:TimerEvent){
@@ -26074,7 +26054,7 @@ public function guildFightTimerFn(evt:TimerEvent){
             if (OnStage(LBL_GILDE_CHAT_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
             } else {
-                PulseGilde = true;
+                PulseGilde = True;
             };
             guildAttackTime = 0;
         };
@@ -26084,7 +26064,7 @@ public function guildFightTimerFn(evt:TimerEvent){
             if (OnStage(LBL_GILDE_CHAT_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
             } else {
-                PulseGilde = true;
+                PulseGilde = True;
             };
             guildDefenceTime = 0;
         };
@@ -26154,18 +26134,18 @@ public function WaitingProgress(startTime:Number, targetTime:Number):Number{
 
 
 
-public function ShowLOGinScreen(evt:Event=undefined, noBC:Boolean=false, noCookie:Boolean=false):void{
+public function ShowLOGinScreen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=False):void{
     var playername:String;
     if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffedMode)))) and (!(ssoMode)))){
         ShowBuildCharacterScreen();
         return;
     };
     RemoveAll();
-    actor[INP_LOGIN_PASSWORD].getChildAt(1).visible = true;
+    actor[INP_LOGIN_PASSWORD].getChildAt(1).visible = True;
     actor[LBL_WINDOW_TITLE].text = txt[TXT_WELCOME];
     actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-    actor[INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, RequestLOGin);
-    actor[INP_LOGIN_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, RequestLOGin);
+    actor[INP_NAME].add_event_listener(KeyboardEvent.KEY_DOWN, RequestLOGin);
+    actor[INP_LOGIN_PASSWORD].add_event_listener(KeyboardEvent.KEY_DOWN, RequestLOGin);
     if (!noCookie){
         if (so.data.userName){
             actor[INP_NAME].getChildAt(1).text = String(so.data.userName);
@@ -26213,12 +26193,12 @@ public function ShowSignupScreen(evt:Event=undefined):void{
     jumpTimer = new Timer(200, 20);
     if (KlasseGewählt){
         RemoveAll();
-        actor[INP_PASSWORD].getChildAt(1).visible = true;
+        actor[INP_PASSWORD].getChildAt(1).visible = True;
         actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_SIGNUP];
         actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-        actor[INP_NAME].addEventListener(KeyboardEvent.KEY_UP, request_signup);
-        actor[INP_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, request_signup);
-        actor[INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, request_signup);
+        actor[INP_NAME].add_event_listener(KeyboardEvent.KEY_UP, request_signup);
+        actor[INP_PASSWORD].add_event_listener(KeyboardEvent.KEY_DOWN, request_signup);
+        actor[INP_EMAIL].add_event_listener(KeyboardEvent.KEY_DOWN, request_signup);
         if (buffedReq){
             actor[INP_NAME].getChildAt(1).text = buffed_name;
             actor[INP_EMAIL].getChildAt(1).text = buffed_email;
@@ -26253,11 +26233,11 @@ public function ShowSignupScreen(evt:Event=undefined):void{
                 if (j > 10){
                     jumpTimer.stop();
                     jumpTimer.removeEventListener(TimerEvent.TIMER, DoJump);
-                    SignupJumpRunning = false;
+                    SignupJumpRunning = False;
                 };
             };
-            SignupJumpRunning = true;
-            jumpTimer.addEventListener(TimerEvent.TIMER, DoJump);
+            SignupJumpRunning = True;
+            jumpTimer.add_event_listener(TimerEvent.TIMER, DoJump);
             j = 0;
             jumpTimer.start();
         };
@@ -26415,7 +26395,7 @@ public function ModifyCharacter(evt:Event):void{
     LoadCharacterImage();
 }
 
-public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk:int=0, isMann:Boolean=false, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
+public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMann:Boolean=False, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
     var charPrefix:* = null;
     var i:* = 0;
     var actorOffset:* = 0;
@@ -26447,7 +26427,7 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk
             Load(localActorID);
         };
     };
-    charPrefix = getCharPrefix(false, isVolk, isMann, isKaste);
+    charPrefix = getCharPrefix(False, isVolk, isMann, isKaste);
     if (actorID == C_EMPTY){
         if (OnStage(SCR_BUILDCHAR_BACKGROUND)){
             var _local16 = actor[LBL_CREATE_RACE];
@@ -26680,10 +26660,10 @@ public function RandomizeCharacter(evt:Event=undefined):void{
         if (char_class > 3){
             char_class = 3;
         };
-        KlasseGewählt = true;
+        KlasseGewählt = True;
     } else {
         char_class = (int((Math.random() * 3)) + 1);
-        KlasseGewählt = false;
+        KlasseGewählt = False;
     };
     RandomizeCharImage();
 }
@@ -27215,15 +27195,15 @@ public function ErrorMessage(msg:String=""):void{
         } else {
             if (OnStage(GILDE_LIST)){
                 if (msg.split(" ").join("") != ""){
-                    ChatLine(msg, true);
+                    ChatLine(msg, True);
                 };
             } else {
                 if (((OnStage(CREATE_CHARACTER)) and (!(OnStage(IF_WINDOW))))){
                     _local3 = actor[LBL_CREATE_RACE_DESC];
                     with (_local3) {
-                        defaultTextFormat = FontFormat_ClassError;
+                        default_text_format = FontFormat_ClassError;
                         text = msg;
-                        defaultTextFormat = FontFormat_DefaultLeft;
+                        default_text_format = FontFormat_DefaultLeft;
                     };
                     actor[LBL_CREATE_CLASS].text = "";
                     actor[LBL_CREATE_CLASS_DESC].text = "";
@@ -27333,18 +27313,18 @@ public function InterfaceBtnHandler(evt:Event):void{
                 };
             };
             if (hasLostMQ){
-                hasLostMQ = false;
+                hasLostMQ = False;
                 tmpAction = 0;
                 ShowMainQuestScreen(LastDungeonNr, LastDungeonEnemy);
             };
             break;
         case IF_CHARAKTER:
-            arrowHallMode = false;
+            arrowHallMode = False;
             tmpAction = ACT_SCREEN_CHAR;
             break;
         case IF_GILDEN:
-            PulseGilde = false;
-            PulseGildeOnHistory = false;
+            PulseGilde = False;
+            PulseGildeOnHistory = False;
             tmpAction = ACT_SCREEN_GILDEN;
             break;
         case IF_WELTKARTE:
@@ -27475,11 +27455,11 @@ public function EnablePopup(actorID:int, ... _args){
                                     tmpTextField = new TextField();
                                     _local3 = tmpTextField;
                                     with (_local3) {
-                                        autoSize = ((textDir)=="right") ? TextFieldAutoSize.RIGHT : TextFieldAutoSize.LEFT;
-                                        background = false;
-                                        selectable = false;
-                                        embedFonts = fontEmbedded;
-                                        defaultTextFormat = tmpTextFormat;
+                                        auto_size = ((textDir)=="right") ? TextFieldAutoSize.RIGHT : TextFieldAutoSize.LEFT;
+                                        background = False;
+                                        selectable = False;
+                                        embed_fonts = font_embedded;
+                                        default_text_format = tmpTextFormat;
                                         htmlText = arg;
                                         lastTextHeight = textHeight;
                                         if (textDir == "right"){
@@ -27534,11 +27514,11 @@ public function EnablePopup(actorID:int, ... _args){
                 };
                 i++;
             };
-            mouseEnabled = false;
-            mouseChildren = false;
-            allowSmoothing = true;
-            forceSmoothing = true;
-            smoothing = true;
+            mouse_enabled = False;
+            mouseChildren = False;
+            allow_smoothing = True;
+            force_smoothing = True;
+            smoothing = True;
         };
         _local3 = actor[POPUP_INFO].graphics;
         with (_local3) {
@@ -27593,11 +27573,11 @@ public function EnablePopup(actorID:int, ... _args){
     if (args.length > 0){
         var _local4 = actor[actorID];
         with (_local4) {
-            addEventListener(MouseEvent.MOUSE_OVER, ShowPopup);
-            addEventListener(MouseEvent.MOUSE_MOVE, PositionPopup);
-            addEventListener(MouseEvent.MOUSE_OUT, HidePopup);
-            addEventListener(MouseEvent.MOUSE_DOWN, HidePopup);
-            addEventListener(MouseEvent.MOUSE_UP, HidePopup);
+            add_event_listener(MouseEvent.MOUSE_OVER, ShowPopup);
+            add_event_listener(MouseEvent.MOUSE_MOVE, PositionPopup);
+            add_event_listener(MouseEvent.MOUSE_OUT, HidePopup);
+            add_event_listener(MouseEvent.MOUSE_DOWN, HidePopup);
+            add_event_listener(MouseEvent.MOUSE_UP, HidePopup);
         };
     };
     actorPopupStamp[actorID] = myStamp;
