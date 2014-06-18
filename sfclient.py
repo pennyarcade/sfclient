@@ -4767,7 +4767,7 @@ def init_vars():
         myOwnAttackTarget = -1
         myOwnGuildMoney = -1
         lastGuildShown = ""
-        lastGuildData = new Array()
+        last_guild_data = new Array()
         lastRaidCost = 0
         lastGuildMembers = new Array()
         lastHallMembers = new Array()
@@ -6202,7 +6202,6 @@ def action_handler(event):
     external_whisperer = null
     hall_list_guild = null
     hall_list_name = null
-    i = 0
     ich_anfg = undefined
     ich_ende = undefined
     ii = 0
@@ -6425,53 +6424,59 @@ def action_handler(event):
             ])
             break
 
+        if case(RESP['GUILD']['NAMES']):
+            if par[0] == "":
+                if last_guild_data[GUILD['IS_RAID']] != 0:
+                    if texts[TXT['RAID']['TEXT']]:
+                        last_attack = last_guild_data[GUILD['ATTACK_TIME']]
+
+                        if is_today(last_attack):
+                            offset = 13
+                        else:
+                            offset = 12
+
+                        last_raid = int(last_guild_data[GUILD['RAID_LEVEL']])
+
+                        actor[LBL['GILDE']['ATTACK']].text = texts[
+                            TXT['RAID']['TEXT'] + offset
+                        ].replace(
+                            "%1", texts[TXT['DUNGEON']['NAMES'] + last_raid]
+                        ).replace(
+                            "%2", time_str(last_attack, True)
+                        )
+                    else:
+                        actor[LBL['GILDE']['ATTACK']].text = ""
+                else:
+                    actor[LBL['GILDE']['ATTACK']].text = ""
+
+
+
 
     '''
 
-        case RESP_GUILD_NAMES:
-            if par[0] == "":
-                if (lastGuildData[GUILD_IS_RAID] != 0):
-                    if (txt[TXT_RAID_TEXT]):
-                        #actor[LBL_GILDE_ATTACK].text = txt[
-                        #    (TXT_RAID_TEXT
-                        #     + ((is_today(lastGuildData[GUILD_ATTACK_TIME]))
-                        #        ? 13
-                        #        : 12))
-                        #].split("%1").join(
-                        #   txt[(TXT_DUNGEON_NAMES
-                        #        + int(lastGuildData[GUILD_RAID_LEVEL
-                        #   ]))
-                        #]).split("%2").join(
-                        #  time_str(lastGuildData[GUILD_ATTACK_TIME], True)
-                        #)
-                        pass
-                    else:
-                        actor[LBL_GILDE_ATTACK].text = ""
-                else:
-                    actor[LBL_GILDE_ATTACK].text = ""
             else:
                 #actor[LBL_GILDE_ATTACK].text = txt[
                 #    (TXT_GUILD_BATTLE_MSG + ((is_today(
-                #        lastGuildData[GUILD_ATTACK_TIME])
+                #        last_guild_data[GUILD_ATTACK_TIME])
                 #        ) ? 2 : 0))].split("%1")
                 #        .join(par[0])
                 #        .split("%2")
-                #        .join(time_str(lastGuildData[GUILD_ATTACK_TIME], True))
+                #        .join(time_str(last_guild_data[GUILD_ATTACK_TIME], True))
                 pass
 
             #actor[LBL_GILDE_DEFENCE].text = ((par[1])=="")
             #    ? ""
             #    : txt[
             #    ((TXT_GUILD_BATTLE_MSG + 1)
-            #     + ((is_today(lastGuildData[GUILD_DEFENCE_TIME]))
+            #     + ((is_today(last_guild_data[GUILD_DEFENCE_TIME]))
             #        ? 2
             #        : 0))]
             #        .split("%1")
             #        .join(par[1])
             #        .split("%2")
-            #        .join(time_str(lastGuildData[GUILD_DEFENCE_TIME], True))
+            #        .join(time_str(last_guild_data[GUILD_DEFENCE_TIME], True))
             if par[2]:
-                if lastGuildData[GUILD_IS_RAID] != 0:
+                if last_guild_data[GUILD_IS_RAID] != 0:
                     if txt[TXT_RAID_TEXT]:
                         #enable_popup(GILDE_ATTACK, txt[(TXT_RAID_TEXT + 14)]
                         #             .split("%1").join(par[2]))
@@ -6492,8 +6497,8 @@ def action_handler(event):
             else:
                 enable_popup(GILDE_ATTACK)
 
-            guildAttackTime = lastGuildData[GUILD_ATTACK_TIME]
-            guildDefenceTime = lastGuildData[GUILD_DEFENCE_TIME]
+            guildAttackTime = last_guild_data[GUILD_ATTACK_TIME]
+            guildDefenceTime = last_guild_data[GUILD_DEFENCE_TIME]
             guildAttacked = par[0]
             guildAttacking = par[1]
             break
@@ -6952,7 +6957,7 @@ def action_handler(event):
                     setCrestStr(par[1].split("§")[0])
                     par[1] = par[1].substr((par[1].indexOf("§") + 1))
                 } else {
-                    lastGuildData = par[0].split("/")
+                    last_guild_data = par[0].split("/")
                     setDefaultCrest()
                 }
                 oldCrestStr = getCrestStr()
@@ -11144,7 +11149,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (textToSend.toLowerCase() == "/gid"){
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
-                ChatLine(("Guild id: " + lastGuildData[0]));
+                ChatLine(("Guild id: " + last_guild_data[0]));
                 return;
             };
             if (textToSend.toLowerCase() == "/pid"){
@@ -11392,7 +11397,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             with (_local3) {
                                 wordWrap = True;
                                 width = GILDE_TEXT2_X;
-                                text = txt[TXT_GILDE_RAIDSTART].split("%1").join(txt[(TXT_DUNGEON_NAMES + int(lastGuildData[GUILD_RAID_LEVEL]))]).split("%2").join(String(lastRaidCost));
+                                text = txt[TXT_GILDE_RAIDSTART].split("%1").join(txt[(TXT_DUNGEON_NAMES + int(last_guild_data[GUILD_RAID_LEVEL]))]).split("%2").join(String(lastRaidCost));
                             };
                             _local3 = actor[LBL_WINDOW_TITLE];
                             with (_local3) {
@@ -20574,7 +20579,7 @@ public function setDefaultCrest(){
     var lastResult:* = 0;
     var GuildRandom:* = function (val:int):int{
         var result:int;
-        result = Math.abs(((lastGuildData[0] + lastResult) % val));
+        result = Math.abs(((last_guild_data[0] + lastResult) % val));
         lastResult = result;
         return (result);
     };
@@ -21974,7 +21979,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         enable_popup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 6)]);
         actor[LBL_GILDE_ATTACK].text = "";
         actor[LBL_GILDE_DEFENCE].text = "";
-        lastGuildData = guildData;
+        last_guild_data = guildData;
         isRaid = !((guildData[GUILD_IS_RAID] == 0));
         send_action(ACT_REQUEST_GUILD_NAMES, guildData[GUILD_ATTACK_TARGET], guildData[GUILD_DEFENCE_TARGET], ((is_mine) ? 0 : 1));
         if (guildData[0] == Savegame[SG_GUILD_INDEX]){
@@ -21998,9 +22003,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                         };
                     } else {
                         if (int(guildData[GUILD_ATTACK_TARGET]) < 0){
-                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(last_guild_data[GUILD_ATTACK_TIME])));
                             if (txt[TXT_RAID_TEXT]){
-                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(last_guild_data[GUILD_ATTACK_TIME])));
                             };
                         } else {
                             if ((myAttackStatus & 1)){
@@ -22042,9 +22047,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     if (int(guildData[GUILD_ATTACK_TARGET]) == 0){
                     } else {
                         if (int(guildData[GUILD_ATTACK_TARGET]) < 0){
-                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(last_guild_data[GUILD_ATTACK_TIME])));
                             if (txt[TXT_RAID_TEXT]){
-                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(last_guild_data[GUILD_ATTACK_TIME])));
                             };
                         } else {
                             if (isRaid){
@@ -23617,7 +23622,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
                 if (indexInGuild > 0){
                     add(PREV_PLAYER);
                 };
-                if (indexInGuild < (int(lastGuildData[3]) - 1)){
+                if (indexInGuild < (int(last_guild_data[3]) - 1)){
                     add(NEXT_PLAYER);
                 };
             };
@@ -23864,7 +23869,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
                 if (indexInGuild > 0){
                     add(PREV_PLAYER);
                 };
-                if (indexInGuild < (int(lastGuildData[3]) - 1)){
+                if (indexInGuild < (int(last_guild_data[3]) - 1)){
                     add(NEXT_PLAYER);
                 };
             };
@@ -27619,28 +27624,6 @@ public function ChatPollIntervalReset(){
         GuildChatPoll.start();
     };
 }
-
-public function trc(... _args){
-    var i:uint;
-    var outStr:String;
-    outStr = "";
-    i = 0;
-    while (i < _args.length) {
-        outStr = (outStr + (String(_args[i]) + " "));
-        i++;
-    };
-    outStr = outStr.substr(0, (outStr.length - 1));
-    trace(outStr);
-    if (paramObj["firebug"]){
-        if (paramObj["firebug"] != ""){
-            ExternalInterface.call("console.LOG", outStr);
-        };
-    };
-}
-
-    }
-}//package sfgame_fla
-﻿
 
 
 '''
