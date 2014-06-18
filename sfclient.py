@@ -4070,7 +4070,14 @@ RES_X = 0x0500
 RES_Y = 800
 
 # global for logger
-Log = ''
+LOG = logging.getLogger()
+
+
+class RequestFailedException(Exception):
+    '''
+        Request to server failed
+    '''
+    pass
 
 
 class Switch(object):
@@ -4106,7 +4113,7 @@ class Switch(object):
             return False
 
 
-class Session:
+class Session():
     '''
         Session object to handle request stuff
     '''
@@ -4114,6 +4121,15 @@ class Session:
         '''
             Constructor to Session object
         '''
+        #TODO: Check if needed?
+        self.param_poll_tunnel_url = ""
+        self.poll_lock = False
+        self.send_lock = False
+        self.fight_lock = False
+        self.mp_api_user_id = 'notset'
+        self.mp_api_user_token = 'notset'
+
+
         self.baseuri = 'http://s31.sfgame.de/request.php'
         self.loginparams = '?req=&random=%%2&rnd=%s%s'
 
@@ -4150,9 +4166,9 @@ class Session:
             'rnd': rnd_string
         }
 
-        r = requests.get(self.baseuri, params=payload)
+        resp = requests.get(self.baseuri, params=payload)
 
-        return r.text.split('/')
+        return resp.text.split('/')
 
     def send_action(self, action, *params):
         '''
@@ -4162,7 +4178,7 @@ class Session:
             if not on_stage(CNT['IF_LOGOUT']):
                 return
             if self.param_poll_tunnel_url != "":
-                if self.pollLock:
+                if self.poll_lock:
                     return
             else:
                 if self.poll_lock or self.send_lock or self.fight_lock:
@@ -4173,22 +4189,22 @@ class Session:
                     (action != ACT['VALIDATE'])
                     and (action != ACT['SEND_CHAT'])
                     and (action != ACT['GUILD']['DONATE'])
-                    and (action != ACT.REQUEST_GUILD_NAMES)
-                    and (action != ACT.REQUEST_CHAR)
-                    and (action != ACT.POST_SEND)
+                    and (action != ACT['REQUEST']['GUILD_NAMES'])
+                    and (action != ACT['REQUEST']['CHAR'])
+                    and (action != ACT['POST']['SEND'])
                 ):
-                    Log.warning(''.join([
+                    LOG.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil noch auf eine ",
                         "Serverantwort gewartet wird: ",
                         str(action)
                     ]))
                     return
             else:
-                if fightLock:
-                    Log.warning(''.join([
+                if fight_lock:
+                    LOG.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
                         "Ereignis stattfindet:",
-                        str(act)
+                        str(action)
                     ]))
                     return
 
@@ -4200,14 +4216,14 @@ class Session:
         if self.session_id == "":
             self.session_id = "00000000000000000000000000000000"
 
-            Log.debug("SID: %s" % self.session_id)
-            Log.debug("Action: %s" % act)
-            Log.debug("Action+Daten: %s" % data_str)
+            LOG.debug("SID: %s" % self.session_id)
+            LOG.debug("Action: %s" % action)
+            LOG.debug("Action+Daten: %s" % data_str)
 
         # TODO: This "if" switches base URL
         # self.param_poll_tunnel_url / param_php_tunnel_url
         if (
-            (action == ACT.GET_CHAT_HISTORY)
+            (action == ACT['GET_CHAT_HISTORY'])
             and (self.param_poll_tunnel_url != "")
         ):
             # TODO: move payload creation to method
@@ -4237,7 +4253,7 @@ class Session:
                 'rnd': rnd_string
             }
 
-            if action != ACT_GET_CHAT_HISTORY:
+            if action != ACT['GET_CHAT_HISTORY']:
                 self.send_lock = True
 
         if self.mp_api_user_id != "notset":
@@ -4248,14 +4264,15 @@ class Session:
 
         while fail_try < param_fail_tries:
             resp = requests.get(self.baseuri, params=payload)
-            Log.debug(resp.url)
+            LOG.debug(resp.url)
 
             # TODO : test success of request here !!
+            sucess = True
 
             if success:
                 if (
-                    (act == ACT_GET_CHAT_HISTORY)
-                    and (param_poll_tunnel_url != "")
+                    (action == ACT['GET_CHAT_HISTORY'])
+                    and (self.param_poll_tunnel_url != "")
                 ):
                     self.poll_lock = False
                 else:
@@ -4263,33 +4280,32 @@ class Session:
 
                 data = resp.text()
 
-                Log.debug("Antwort auf %s: %s" % (act, php_tunnel.data))
+                LOG.debug("Antwort auf %s: %s" % (action, data))
 
                 if data == "":
-                    Log.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
+                    LOG.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
                     success = False
                 else:
                     return data
 
             if not success:
                 if fail_try < param_fail_tries:
-                    Log.warning(''.join([
+                    LOG.warning(''.join([
                         "PHP-Request fehlgeschlagen (Versuch",
                         str(fail_try), "/",
                         str(param_fail_tries) + ").",
                         evt, "Erneutes Senden..."
                     ]))
-                    Log.info("Erneut gesendet.")
-                    pass
+                    LOG.info("Erneut gesendet.")
                 else:
-                    Log.warning(''.join([
+                    LOG.warning(''.join([
                         "PHP Tunneling fehlgeschlagen. ",
                         "Versuche, neu zu verbinden."
                     ]))
                     self.session_id = ""
                     if (
-                        (act == ACT_GET_CHAT_HISTORY)
-                        and (param_poll_tunnel_url != "")
+                        (action == ACT['GET_CHAT_HISTORY'])
+                        and (self.param_poll_tunnel_url != "")
                     ):
                         self.poll_lock = False
                     else:
@@ -4299,12 +4315,36 @@ class Session:
                 fail_try += 1
 
 
-class Character:
-    pass
-
-
-class Account:
+class Character():
+    '''
+        Character information
+    '''
     def __init__(self):
+        '''
+            Setup Character object
+        '''
+        pass
+
+
+class Account():
+    '''
+        Account information
+    '''
+    def __init__(self):
+        '''
+            Setup account object
+        '''
+        pass
+
+
+class Quest():
+    '''
+        handle quest data
+    '''
+    def __init__(self):
+        '''
+            Setup Quest object
+        '''
         pass
 
 
@@ -4320,52 +4360,51 @@ def md5hash(instr):
 #------------------------------------------------------------------------------
 
 
-def setupLogging():
+def setup_logging():
     '''
         Setup logging module for console and file logging
     '''
 
     # TODO: make configurable
     # create logger
-    Log = logging.getLogger('simple_example')
-    Log.setLevel(logging.DEBUG)
+    LOG.setLevel(logging.DEBUG)
 
-    # Console Logging
+    # Console LOGging
     # create console handler and set level to debug
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
 
     # create formatter
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
 
-    # add formatter to ch
-    ch.setFormatter(formatter)
+    # add formatter to handler
+    handler.setFormatter(formatter)
 
-    # add ch to logger
-    Log.addHandler(ch)
+    # add handler to logger
+    LOG.addHandler(handler)
 
-    # File Logger
+    # File LOGger
     # create console handler and set level to debug
-    ch = logging.FileHandler('sfclient.Log')
-    ch.setLevel(logging.DEBUG)
+    handler = logging.FileHandler('sfclient.LOG')
+    handler.setLevel(logging.DEBUG)
 
     # create formatter
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
 
-    # add formatter to ch
-    ch.setFormatter(formatter)
+    # add formatter to handler
+    handler.setFormatter(formatter)
 
-    # add ch to logger
-    Log.addHandler(ch)
+    # add handler to logger
+    LOG.addHandler(handler)
 
-    return Log
+    return LOG
 
 
-def initVars():
+def init_vars():
     '''
         Initialize tons of Variables
         ex frame1()
@@ -4375,8 +4414,6 @@ def initVars():
 
     '''
         paramObj = LoaderInfo(root.loaderInfo).parameters
-        mp_api_user_id = "notset"
-        mp_api_user_token = "notset"
         ssoMode = false
         param_id = ""
         param_rec = ""
@@ -4427,7 +4464,7 @@ def initVars():
         param_social_buttons = new Array()
         defined_pixel_calls = new Array()
         beerFest = false
-        towerLevelLabelPos = (SCR_CHAR_CHARX + 127)
+        tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
         login_background_id = "3"
         worlds = new Array()
         preventTv = false
@@ -4458,7 +4495,7 @@ def initVars():
         dataprot_url = ""
         instr_url = ""
         no_crossdomain = false
-        FriendLink = ""
+        friend_link = ""
         sessionId = ""
         server = "localhost"
         lastAct = 0
@@ -4513,8 +4550,8 @@ def initVars():
         FontFormat_PopupCompareWorseHL = new TextFormat()
         FontFormat_EpicItemQuote = new TextFormat()
         FontFormat_ItemEnchantment = new TextFormat()
-        FontFormat_LogoutLink = new TextFormat()
-        FontFormat_LogoutLinkHighLight = new TextFormat()
+        FontFormat_LOGoutLink = new TextFormat()
+        FontFormat_LOGoutLinkHighLight = new TextFormat()
         FontFormat_HallListHeading = new TextFormat()
         FontFormat_HallListText = new TextFormat()
         FontFormat_GuildHallNoAttack = new TextFormat()
@@ -4570,45 +4607,45 @@ def initVars():
                 0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
                 [0, 32], 1, 1, 5, 15, "outer")
         ]
-        CharVolk = 0
-        CharMann = true
-        CharKaste = 1
-        CharColor = 1
-        CharMouth = 1
-        CharBeard = 1
-        CharNose = 1
-        CharEyes = 1
-        CharBrows = 1
-        CharEars = 1
-        CharHair = 1
-        CharSpecial = 1
-        CharSpecial2 = 1
-        revertCharVolk = 0
-        revertCharMann = true
+        char_volk = 0
+        char_male = true
+        char_class = 1
+        char_color = 1
+        char_mouth = 1
+        char_beard = 1
+        char_nose = 1
+        char_eyes = 1
+        char_brows = 1
+        char_ears = 1
+        char_hair = 1
+        char_special = 1
+        char_special2 = 1
+        revertchar_volk = 0
+        revertchar_male = true
         slmCount = 0
         ststep = 0
-        revertCharColor = 1
-        revertCharMouth = 1
-        revertCharBeard = 1
-        revertCharNose = 1
-        revertCharEyes = 1
-        revertCharBrows = 1
-        revertCharEars = 1
-        revertCharHair = 1
-        revertCharSpecial = 1
-        revertCharSpecial2 = 1
+        revertchar_color = 1
+        revertchar_mouth = 1
+        revertchar_beard = 1
+        revertchar_nose = 1
+        revertchar_eyes = 1
+        revertchar_brows = 1
+        revertchar_ears = 1
+        revertchar_hair = 1
+        revertchar_special = 1
+        revertchar_special2 = 1
         Savegame = new Array()
-        MirrorPieces = new Array()
-        hasMirror = false
-        canRob = false
-        towerLevel = 0
-        ServerTime = new Date()
-        LocalTime = new Date()
+        mirror_pieces = new Array()
+        has_mirror = false
+        can_rob = false
+        tower_level = 0
+        server_time = new Date()
+        local_time = new Date()
         GameTime = new Date()
         Stundenlohn = 10
         VerdientesGeld = 0
         Gilde = ""
-        GildenID = 0
+        gilden_id = 0
         PostScroll = 1
         PostMax = 1
         PostSel = 0
@@ -4616,11 +4653,11 @@ def initVars():
         DealerMenuSelect = 0
         SelectedQuest = 1
         PlayerDesc = ""
-        PreviousLogin = false
+        PreviousLOGin = false
         DemoMode = false
-        selName = ""
-        selGilde = ""
-        InviteGildenID = 0
+        sel_name = ""
+        sel_guild = ""
+        Invitegilden_id = 0
         ReplyAddress = ""
         ReplySubject = ""
         optionNewData = ""
@@ -4637,13 +4674,13 @@ def initVars():
         PulseArbeiten = false
         PulseGilde = false
         PulseGildeOnHistory = false
-        PulsePost = false
-        PulseChar = false
+        pulse_post = false
+        pulse_char = false
         PulseDealer = false
         notFirstVolChange = true
         notSecondVolChange = true
-        LevelUp = false
-        LastLevel = 0
+        level_up = false
+        last_level = 0
         canBoost = new Array()
         GuildHallMode = false
         DealerAktion = 0
@@ -4659,12 +4696,12 @@ def initVars():
         tvPollNormal = 5000
         tvPollLong = 300000
         CupChosen = 0
-        oldAlbum = -1
+        old_album = -1
         PresetGold = 0
         PresetMush = 0
         MushBought = 0
         specialAction = 0
-        nextPxl = 0
+        next_pxl = 0
         BlockReroll = false
         FrenzyMode = false
         fightFlushMode = false
@@ -4748,7 +4785,7 @@ def initVars():
         mirrorAniTimer = new Timer(25)
         mirrorAniTimer.addEventListener(TimerEvent.TIMER, MirrorAniFn)
         lastPlayer = ""
-        AlbumEffect = false
+        album_effect = false
         mirrorAniStep = 0
         indexInGuild = 0
         indexInHall = 0
@@ -4819,12 +4856,12 @@ def initVars():
 
     # setup image loading timeout event
     '''
-        WhenLoadedFn = new Array()
-        WhenLoadedActive = false
-        WhenLoadedTimeout = new Timer((1000 * image_timeout), 1)
-        WhenLoadedTimeout.addEventListener(
+        when_loadedFn = new Array()
+        when_loadedActive = false
+        when_loadedTimeout = new Timer((1000 * image_timeout), 1)
+        when_loadedTimeout.addEventListener(
             TimerEvent.TIMER,
-            WhenLoadedTimeoutEvent
+            when_loadedTimeoutEvent
         )
     '''
 
@@ -4952,36 +4989,35 @@ def configure():
 
         @oldname Start
     '''
-    LoadConfigurationFile()
-    WhenLoaded(DoLoadLanguageFile)
-    pass
+    load_configuration_file()
+    when_loaded(do_load_language_file)
 
 
 #------------------------------------------------------------------------------
 
-def Geld(amount):
+def geld(amount):
     '''
         Format money amout in silver into a string
 
         @param int amount
         @return str formatted money string
     '''
-    gold = GoldAnteil()
-    silber = SilberAnteil()
+    gold = gold_anteil(amount)
+    silber = silber_anteil(amount)
 
-    GeldStr = ''
+    geld_str = ''
 
     if gold > 0:
-        GeldStr += '%d %s' % (gold, texts[TXT["GOLD"]])
+        geld_str += '%d %s' % (gold, texts[TXT["GOLD"]])
         if silber > 0:
-            GeldStr += ' %s ' % (texts[TXT['UND']])
+            geld_str += ' %s ' % (texts[TXT['UND']])
     if silber > 0:
-        GeldStr += '%d %s' % (texts[TXT['SILBER']])
+        geld_str += '%d %s' % (texts[TXT['SILBER']])
 
-    return GeldStr
+    return geld_str
 
 
-def GoldAnteil(amount):
+def gold_anteil(amount):
     '''
         get gold part of money value
 
@@ -4991,7 +5027,7 @@ def GoldAnteil(amount):
     return int(amount / 100)
 
 
-def SilberAnteil(amount):
+def silber_anteil(amount):
     '''
         get silver part of money value
 
@@ -5003,7 +5039,7 @@ def SilberAnteil(amount):
 #------------------------------------------------------------------------------
 
 
-def Tageszeit():
+def tageszeit():
     '''
         get time of day
         0 - night
@@ -5027,7 +5063,7 @@ def Tageszeit():
         return 0
 
 
-def SleepTime():
+def sleep_time():
     '''
         get charakters sleeping time
 
@@ -5036,8 +5072,8 @@ def SleepTime():
     #TODO: make this a parameter?
     hours = time.strftime('%H')
 
-    if C.TIMEOFDAY >= 0:
-        return C.TIMEOFDAY
+    if C['TIMEOFDAY'] >= 0:
+        return C['TIMEOFDAY']
     elif hours < 7:
         return True
     elif hours < 23:
@@ -5046,95 +5082,95 @@ def SleepTime():
         return True
 
 
-def IsToday(reqTime):
+def is_today(req_time):
     '''
         checks if timestamp is today
     '''
-    reqDate = datetime.fromtimestamp(reqTime/1000)
-    return reqDate.date() == datetime.today().date()
+    req_date = datetime.fromtimestamp(req_time/1000)
+    return req_date.date() == datetime.today().date()
 
 
-def TimeStr(reqTime, short=False):
+def time_str(req_time, short=False):
     '''
         convert datetime object to formatted string
 
     '''
 
-    reqDate = datetime.fromtimestamp(reqTime/1000)
+    req_date = datetime.fromtimestamp(req_time/1000)
 
     if lang_code == "de":
         if short:
-            if IsToday(reqTime):
+            if is_today(req_time):
                 return ''
             else:
-                return reqDate.strftime('%d.%m. %H:%M')
+                return req_date.strftime('%d.%m. %H:%M')
         else:
-            return reqDate.strftime('%d.%m.%Y %H:%M:%S')
+            return req_date.strftime('%d.%m.%Y %H:%M:%S')
 
     if lang_code == "pl":
         if short:
-            if IsToday(reqTime):
+            if is_today(req_time):
                 return ''
             else:
-                return reqDate.strftime('%d/%m/ %H:%M')
+                return req_date.strftime('%d/%m/ %H:%M')
         else:
-            return reqDate.strftime('%d/%m/%Y %H:%M:%S')
+            return req_date.strftime('%d/%m/%Y %H:%M:%S')
 
     if short:
-        if IsToday(reqTime):
+        if is_today(req_time):
             return ''
         else:
-            return reqDate.strftime('%m/%d/ %H:%M')
+            return req_date.strftime('%m/%d/ %H:%M')
     else:
-        return reqDate.strftime('%m/%d/%Y %H:%M:%S')
+        return req_date.strftime('%m/%d/%Y %H:%M:%S')
 
 
-def TimeCalcEvent(evt):
+def time_calc_event(evt):
     '''
         Time Event Callback
     '''
-    currentTime = datetime.now()
+    current_time = datetime.now()
     if (slmCount > 23) and (ststep == 8):
         Add(FILLSPACE)
         slmCount = 0
 
     GameTime.setTime(
-        currentTime.getTime() + ServerTime.getTime() - LocalTime.getTime()
+        current_time.getTime() + server_time.getTime() - local_time.getTime()
     )
 
 #------------------------------------------------------------------------------
 
 
-def GetQuestTitle(questID):
+def get_quest_title(quest_id):
     '''
         gets quest title snippet
 
-        @param int questID
+        @param int quest_id
         @return string
     '''
-    sgIdx = SG['QUEST']['OFFER']
+    sg_idx = SG['QUEST']['OFFER']
     qst = TXT['QUEST']
     offs = qst['SCOUT']['TITLE']
-    questType = int(Savegame[sgIdx['TYPE1'] + questID])
+    quest_type = int(Savegame[sg_idx['TYPE1'] + quest_id])
 
-    for case in Switch(questType):
+    for case in Switch(quest_type):
         if case(1):
-            offs = qst['SCOUT']['TITLE'] + GetQuestRandom(questID, 20, 0)
+            offs = qst['SCOUT']['TITLE'] + get_quest_random(quest_id, 20, 0)
             break
         if case(2):
-            offs = qst['COLLECT']['TITLE'] + GetQuestRandom(questID, 20, 0)
+            offs = qst['COLLECT']['TITLE'] + get_quest_random(quest_id, 20, 0)
             break
         if case(3):
-            offs = qst['FETCH']['TITLE'] + GetQuestRandom(questID, 20, 0)
+            offs = qst['FETCH']['TITLE'] + get_quest_random(quest_id, 20, 0)
         if case(4):
             offs = qst['KILL']['TITLE']
-            offs -= int(Savegame[sgIdx['ENEMY1'] + questID]) - 1
+            offs -= int(Savegame[sg_idx['ENEMY1'] + quest_id]) - 1
             break
         if case(5):
-            offs = qst['TRANSPORT']['TITLE'] + GetQuestRandom(questID, 21, 0)
+            offs = qst['TRANSPORT']['TITLE'] + get_quest_random(quest_id, 21, 0)
             break
         if case(6):
-            offs = qst['ESCORT']['TITLE'] + GetQuestRandom(questID, 23, 0)
+            offs = qst['ESCORT']['TITLE'] + get_quest_random(quest_id, 23, 0)
             break
 
     if texts[offs]:
@@ -5142,126 +5178,126 @@ def GetQuestTitle(questID):
 
     # Error msg if no quest title found
     return 'ERR QID=%d QT=%d OFS=%d' % (
-        questID, questType, offs
+        quest_id, quest_type, offs
     )
 
 
-def GetQuestRandom(questID, randomRange, randomMod):
+def get_quest_random(quest_id, random_range, random_mod):
     '''
         Get quest random number
 
-        @param int questID
-        @param int randomRange
-        @param int randomMod
+        @param int quest_id
+        @param int random_range
+        @param int random_mod
         @return int
     '''
-    qIndex = SG['QUEST']['OFFER']
-    CheckSum = 0
+    q_index = SG['QUEST']['OFFER']
+    checksum = 0
 
-    if randomMod != 1:
-        modIdx += qIndex['LEVEL1']
-    if randomMod != 2:
-        modIdx += qIndex['TYPE1']
-    if randomMod != 3:
-        modIdx += qIndex['ENEMY1']
+    if random_mod != 1:
+        mod_idx += q_index['LEVEL1']
+    if random_mod != 2:
+        mod_idx += q_index['TYPE1']
+    if random_mod != 3:
+        mod_idx += q_index['ENEMY1']
 
-    CheckSum += Savegame[modIdx + questID]
-    CheckSum += Savegame[qIndex['LOCATION1'] + questID]
-    CheckSum += Savegame[qIndex['DURATION1'] + questID]
-    CheckSum += Savegame[qIndex['EXP1'] + questID]
-    CheckSum += Savegame[qIndex['GOLD1'] + questID]
-    CheckSum += Savegame[
-        qIndex['REWARD_ITM1'] + SG['ITM']['TYP'] + questID * SG['ITM']['SIZE']
+    checksum += Savegame[mod_idx + quest_id]
+    checksum += Savegame[q_index['LOCATION1'] + quest_id]
+    checksum += Savegame[q_index['DURATION1'] + quest_id]
+    checksum += Savegame[q_index['EXP1'] + quest_id]
+    checksum += Savegame[q_index['GOLD1'] + quest_id]
+    checksum += Savegame[
+        q_index['REWARD_ITM1'] + SG['ITM']['TYP'] + quest_id * SG['ITM']['SIZE']
     ]
-    CheckSum += Savegame[
-        qIndex['REWARD_ITM1'] + SG['ITM']['PIC'] + questID * SG['ITM']['SIZE']
+    checksum += Savegame[
+        q_index['REWARD_ITM1'] + SG['ITM']['PIC'] + quest_id * SG['ITM']['SIZE']
     ]
 
-    return CheckSum % randomRange
+    return checksum % random_range
 
 
-def GetQuestText(questID):
+def get_quest_text(quest_id):
     '''
         get quest description
 
-        @param int questID
+        @param int quest_id
         @return str
     '''
-    sgIdx = SG['QUEST']['OFFER']
+    sg_idx = SG['QUEST']['OFFER']
     idx = TXT['QUEST']
-    location = int(Savegame[sgIdx['LOCATION1'] + questID])
+    location = int(Savegame[sg_idx['LOCATION1'] + quest_id])
 
-    QuestText = ''
-    QuestText += '\"%s ' % (
-        texts[idx['OPENER'] + GetQuestRandom(questID, 10, 3)]
+    quest_text = ''
+    quest_text += '\"%s ' % (
+        texts[idx['OPENER'] + get_quest_random(quest_id, 10, 3)]
     )
 
-    for case in Switch(int(Savegame[SG.QUEST_OFFER_TYPE1 + questID])):
+    for case in Switch(int(Savegame[SG.QUEST_OFFER_TYPE1 + quest_id])):
         if case(1):
-            QuestText += texts[idx['LOCATION'] + location - 1] + " "
-            QuestText += texts[
-                idx['SCOUT']['TASK1'] + GetQuestRandom(questID, 20, 0)
+            quest_text += texts[idx['LOCATION'] + location - 1] + " "
+            quest_text += texts[
+                idx['SCOUT']['TASK1'] + get_quest_random(quest_id, 20, 0)
             ] + " "
-            QuestText += texts[
-                idx['SCOUT']['TASK2'] + GetQuestRandom(questID, 10, 1)
+            quest_text += texts[
+                idx['SCOUT']['TASK2'] + get_quest_random(quest_id, 10, 1)
             ] + " "
             break
         if case(2):
-            QuestText += texts[
-                idx['COLLECT']['WHAT'] + GetQuestRandom(questID, 20, 0)
+            quest_text += texts[
+                idx['COLLECT']['WHAT'] + get_quest_random(quest_id, 20, 0)
             ] + " "
-            QuestText += texts[idx['LOCATION'] + location - 1] + " "
-            QuestText += texts[
-                idx['COLLECT']['AMOUNT'] + GetQuestRandom(questID, 11, 1)
-            ].replace("%", str(GetQuestRandom(questID, 10, 2) + 2)) + " "
+            quest_text += texts[idx['LOCATION'] + location - 1] + " "
+            quest_text += texts[
+                idx['COLLECT']['AMOUNT'] + get_quest_random(quest_id, 11, 1)
+            ].replace("%", str(get_quest_random(quest_id, 10, 2) + 2)) + " "
             break
         if case(3):
-            QuestText += texts[
-                idx['FETCH']['WHAT'] + GetQuestRandom(questID, 20, 0)
+            quest_text += texts[
+                idx['FETCH']['WHAT'] + get_quest_random(quest_id, 20, 0)
             ] + " "
-            QuestText += texts[idx['LOCATION'] + location - 1] + " "
-            QuestText += texts[
-                idx['FETCH']['FROM'] + GetQuestRandom(questID, 15, 1)
+            quest_text += texts[idx['LOCATION'] + location - 1] + " "
+            quest_text += texts[
+                idx['FETCH']['FROM'] + get_quest_random(quest_id, 15, 1)
             ] + " "
-            QuestText += texts[
-                idx['FETCH']['PRECLOSER'] + GetQuestRandom(questID, 20, 0)
+            quest_text += texts[
+                idx['FETCH']['PRECLOSER'] + get_quest_random(quest_id, 20, 0)
             ] + " "
             break
         if case(4):
-            QuestText += texts[idx['KILL']['LOCATION'] + location - 1] + " "
-            QuestText += texts[
-                idx['KILL']['WHOM'] - Savegame[sgIdx['ENEMY1'] + questID] - 1
+            quest_text += texts[idx['KILL']['LOCATION'] + location - 1] + " "
+            quest_text += texts[
+                idx['KILL']['WHOM'] - Savegame[sg_idx['ENEMY1'] + quest_id] - 1
             ] + " "
-            QuestText += texts[
-                idx['KILL']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)
+            quest_text += texts[
+                idx['KILL']['PRECLOSER'] + get_quest_random(quest_id, 10, 1)
             ] + " "
             break
         if case(5):
-            QuestText += texts[
-                idx['TRANSPORT']['WHAT'] + GetQuestRandom(questID, 21, 0)
+            quest_text += texts[
+                idx['TRANSPORT']['WHAT'] + get_quest_random(quest_id, 21, 0)
             ] + " "
-            QuestText += texts[
+            quest_text += texts[
                 idx['TRANSPORT']['LOCATION'] + location - 1
             ] + " "
-            QuestText += texts[
-                idx['TRANSPORT']['PRECLOSER'] + GetQuestRandom(questID, 10, 1)
+            quest_text += texts[
+                idx['TRANSPORT']['PRECLOSER'] + get_quest_random(quest_id, 10, 1)
             ] + " "
             break
         if case():
-            QuestText += texts[
-                idx['ESCORT']['WHOM'] + GetQuestRandom(questID, 23, 0)
+            quest_text += texts[
+                idx['ESCORT']['WHOM'] + get_quest_random(quest_id, 23, 0)
             ] + " "
-            QuestText += texts[
+            quest_text += texts[
                 idx['ESCORT']['LOCATION'] + location - 1
             ] + " "
-            QuestText += texts[
-                idx['ESCORT']['PRECLOSER'] + GetQuestRandom(questID, 23, 0)
+            quest_text += texts[
+                idx['ESCORT']['PRECLOSER'] + get_quest_random(quest_id, 23, 0)
             ] + " "
 
-    return QuestText
+    return quest_text
 
 
-def GetQuestBG():
+def get_quest_bg():
     '''
         Get quest background index
 
@@ -5269,91 +5305,96 @@ def GetQuestBG():
     '''
     action = Savegame[SG['ACTION']['INDEX']]
     location = Savegame[SG['QUEST']['OFFER']['LOCATION1'] + action - 1]
-    return SCR['QUEST']['BG'][str(location)]
+    return LBL['SCR']['QUEST']['BG'][str(location)]
 
 
 #------------------------------------------------------------------------------
 
 class Item:
+    '''
+        handle Item data
+    '''
     def __init__(
         self, pic=0, typ=0, cclass=1, gold=0,
         maxd=0, mind=0, color=0, attr=False
     ):
         '''
+            setup Item object
 
+            TODO: documentation
         '''
-        self.Pic = pic
-        self.Typ = typ
-        self.Class = cclass
-        self.Gold = gold
-        self.Damage['min'] = mind
-        self.Damage['max'] = maxd
-        self.Color = color
+        self.pic = pic
+        self.typ = typ
+        self.cclass = cclass
+        self.gold = gold
+        self.color = color
+        self.damage = {
+            'min': mind,
+            'max': maxd
+        }
         if type(attr) is list:
-            self.Attr = attr
+            self.attr = attr
         else:
-            self.Attr = [
+            self.attr = [
                 {'typ': 0, 'val': 0},
                 {'typ': 0, 'val': 0},
                 {'typ': 0, 'val': 0}
             ]
-        while self.Pic >= 1000:
-            self.Pic -= 1000
-            self.Class += 1
+        while self.pic >= 1000:
+            self.pic -= 1000
+            self.cclass += 1
 
-        return self
-
-    def fromSG(self, SGIndex=0, SG=False):
+    def from_sg(self, sg_index=0, sg=False):
         '''
             setup item object from savegame
 
-            @param int SGIndex
-            @param list SG
+            @param int sg_index
+            @param list sg
 
             @return self
         '''
         #Preset values
-        Pic = 0
-        Typ = 0
-        Class = 1
-        Gold = 0
-        Color = 0
-        Mush = 0
-        Damage = {'max': 0, 'min': 0}
-        Attr = [
+        pic = 0
+        typ = 0
+        cclass = 1
+        gold = 0
+        color = 0
+        mush = 0
+        damage = {'max': 0, 'min': 0}
+        attr = [
             {'typ': 0, 'val': 0},
             {'typ': 0, 'val': 0},
             {'typ': 0, 'val': 0}
         ]
 
-        if type(SG) is list:
-            Pic = int(SG[SGIndex + SG['ITM']['PIC']])
-            Typ = int(SG[SGIndex + SG['ITM']['TYP']])
+        if type(sg) is list:
+            pic = int(sg[sg_index + SG['ITM']['PIC']])
+            typ = int(sg[sg_index + SG['ITM']['TYP']])
 
-            Gold = int(SG[SGIndex + SG['ITM']['GOLD']])
-            Mush = int(SG[SGIndex + SG['ITM']['MUSH']])
-            Damage['max'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MAX']])
-            Damage['min'] = int(SG[SGIndex + SG['ITM']['SCHADEN_MIN']])
+            gold = int(sg[sg_index + SG['ITM']['GOLD']])
+            mush = int(sg[sg_index + SG['ITM']['MUSH']])
+            damage['max'] = int(sg[sg_index + SG['ITM']['SCHADEN_MAX']])
+            damage['min'] = int(sg[sg_index + SG['ITM']['SCHADEN_MIN']])
 
             for i in range(3):
-                self.attr[i]['typ'] = SG[SGIndex + SG['ITM']['ATTRIBTYP1'] + i]
-                self.attr[i]['val'] = SG[SGIndex + SG['ITM']['ATTRIBVAL1'] + i]
+                attr[i]['typ'] = sg[sg_index + SG['ITM']['ATTRIBTYP1'] + i]
+                attr[i]['val'] = sg[sg_index + SG['ITM']['ATTRIBVAL1'] + i]
 
             for i in range(8):
-                Color += int(SG[SGIndex + SG['ITM']['SCHADEN_MIN'] + i])
+                color += int(sg[sg_index + SG['ITM']['SCHADEN_MIN'] + i])
 
-            Color = Color % 5
+            color = color % 5
 
         return self.__init__(
-            Pic, Typ, Class, Gold, Mush, Damage['max'],
-            Damage['min'], Color, Attr
+            pic, typ, cclass, gold, mush, damage['max'],
+            damage['min'], color, attr
         )
 
-    def getName(self):
+    def get_name(self):
         '''
             get item name snippet
 
-            @param int SGIndex index of item in savegame
+            @param int sg_index index of item in savegame
             @param list SG savegame
             @param int albumMode
 
@@ -5362,107 +5403,107 @@ class Item:
             @oldname GetItemName
         '''
 
-        txtIdx = TXT['ITMNAME']
-        txtBase = 0
-        txtSuffix = ""
+        txt_idx = TXT['ITMNAME']
+        txt_base = 0
+        txt_suffix = ""
 
-        if self.Class <= 0:
-            domAttrTyp = -1
-            domAttrVal = 0
-            attrValCode = 0
-            attrValOffs = 0
+        if self.cclass <= 0:
+            dom_attr_typ = -1
+            dom_attr_val = 0
+            attr_val_code = 0
+            attr_val_offs = 0
 
-            attribIn = list()
+            attrim_in = list()
             for i in range(10):
-                attribIn[i] = False
+                attrim_in[i] = False
 
             for i in range(3):
-                if self.Attr[i]['val'] > domAttrVal:
-                    domAttrTyp = self.Attr[i]['typ']
-                    domAttrVal = self.Attr[i]['val']
-                if (self.Attr[i]['typ'] > 0) and (self.Attr[i]['val'] > 0):
-                    attribIn[self.Attr[i]['typ'] - 1] = True
+                if self.attr[i]['val'] > dom_attr_val:
+                    dom_attr_typ = self.attr[i]['typ']
+                    dom_attr_val = self.attr[i]['val']
+                if (self.attr[i]['typ'] > 0) and (self.attr[i]['val'] > 0):
+                    attrim_in[self.attr[i]['typ'] - 1] = True
 
-            attrValCode = pow(2, domAttrTyp - 1)
+            attr_val_code = pow(2, dom_attr_typ - 1)
 
-            if domAttrVal >= 25:
-                attrValOffs = 250
-            elif domAttrVal >= 16:
-                attrValOffs = 200
-            elif domAttrVal >= 11:
-                attrValOffs = 150
-            elif domAttrVal >= 6:
-                attrValOffs = 100
-            elif domAttrVal >= 3:
-                attrValOffs = 50
+            if dom_attr_val >= 25:
+                attr_val_offs = 250
+            elif dom_attr_val >= 16:
+                attr_val_offs = 200
+            elif dom_attr_val >= 11:
+                attr_val_offs = 150
+            elif dom_attr_val >= 6:
+                attr_val_offs = 100
+            elif dom_attr_val >= 3:
+                attr_val_offs = 50
 
-            if attrValCode > 0:
-                txtSuffix = texts[txtIdx['EXT'] + attrValCode + attrValOffs]
+            if attr_val_code > 0:
+                txt_suffix = texts[txt_idx['EXT'] + attr_val_code + attr_val_offs]
 
-        if self.Typ >= 8:
-            txtBase = txtIdx[str(self.Typ)]
+        if self.typ >= 8:
+            txt_base = txt_idx[str(self.typ)]
         else:
-            txtBase = txtIdx[str(self.Typ)][str(self.Class)]
+            txt_base = txt_idx[str(self.typ)][str(self.cclass)]
 
-        if (self.Pic >= 50) and (self.Typ != 14):
-            txtBase += txtIdx['1']['1']['EPIC'] - txtIdx['1']['1']
-            self.Pic -= 49
-            txtSuffix = ""
+        if (self.pic >= 50) and (self.typ != 14):
+            txt_base += txt_idx['1']['1']['EPIC'] - txt_idx['1']['1']
+            self.pic -= 49
+            txt_suffix = ""
 
-        if (texts[txtBase + self.Pic - 1] == undefined):
+        if (texts[txt_base + self.pic - 1] == undefined):
             return "Unknown Item (base=%d, entry=%d)" % (
-                txtBase, (txtBase + self.Pic - 1)
+                txt_base, (txt_base + self.pic - 1)
             )
 
-        if texts[txtIdx['EXT']] == "1":
-            if txtSuffix == "":
+        if texts[txt_idx['EXT']] == "1":
+            if txt_suffix == "":
                 return ""
             else:
-                return texts[txtBase + self.Pic - 1]
+                return texts[txt_base + self.pic - 1]
 
-        if texts[txtIdx['EXT']] == "2":
-            if txtSuffix == "":
-                return texts[txtBase + self.Pic - 1]
+        if texts[txt_idx['EXT']] == "2":
+            if txt_suffix == "":
+                return texts[txt_base + self.pic - 1]
             else:
-                return txtSuffix.replace("%1", texts[txtBase + self.Pic - 1])
+                return txt_suffix.replace("%1", texts[txt_base + self.pic - 1])
 
-        if txtSuffix == "":
-            return texts[txtBase + self.Pic - 1]
+        if txt_suffix == "":
+            return texts[txt_base + self.pic - 1]
         else:
-            return texts[txtBase + self.Pic - 1] + " " + txtSuffix
+            return texts[txt_base + self.pic - 1] + " " + txt_suffix
 
-    def getFile(self, itmColor):
+    def get_file(self, itm_color):
         '''
             get item graphic relative url
 
             @oldname GetItemFile
-            @param int itmColor
+            @param int itm_color
             @return str
 
-            TODO: itmColor ???
+            TODO: itm_color ???
         '''
-        itemFile = "itm"
+        item_file = "itm"
 
-        if (self.Pic >= 50) and (self.Typ != 14):
-            itmColor = 0
+        if (self.pic >= 50) and (self.typ != 14):
+            itm_color = 0
 
-        itemFile += str(self.Typ) + "-" + str(self.Pic)
+        item_file += str(self.typ) + "-" + str(self.pic)
 
-        if self.Typ in range(1, 8):
-            itemFile = str(self.Typ) + "-" + str(self.Class + 1) + "/"
-            itemFile += itemFile + "-" + str(itmColor + 1)
-            itemFile += "-" + str(self.Class + 1)
+        if self.typ in range(1, 8):
+            item_file = str(self.typ) + "-" + str(self.cclass + 1) + "/"
+            item_file += item_file + "-" + str(itm_color + 1)
+            item_file += "-" + str(self.cclass + 1)
         else:
-            if self.Typ in range(8, 15):
-                itemFile = str(self.Typ) + "-1/" + itemFile + "-"
-                if self.Typ < 10:
-                    itemFile += str(self.Color + 1) + "-"
+            if self.typ in range(8, 15):
+                item_file = str(self.typ) + "-1/" + item_file + "-"
+                if self.typ < 10:
+                    item_file += str(self.color + 1) + "-"
 
-                itemFile += "1"
+                item_file += "1"
 
-        return "res/gfx/itm/" + itemFile + ".png"
+        return "res/gfx/itm/" + item_file + ".png"
 
-    def getId(self):
+    def get_id(self):
         '''
             get item ID
 
@@ -5470,215 +5511,227 @@ class Item:
             @oldname GetItemID
 
         '''
-        itemID = ITM['OFFS']
-        slotNum = 0
-        ownerClass = 0
-        isSG = False
-        noShieldFlag = False
+        item_id = ITM['OFFS']
+        slot_num = 0
+        owner_class = 0
+        is_sg = False
+        no_shield_flag = False
 
-        if self.Class < 0:
-            slotID = self.Typ + self.Pic * SG['ITM']['SIZE']
-            slotNum = self.Pic + 1
+        if self.cclass < 0:
+            slot_id = self.typ + self.pic * SG['ITM']['SIZE']
+            slot_num = self.pic + 1
 
-            if self.Class == -2:
-                isSG = True
-            elif self.Class <= -3:
-                ownerClass = -1 * self.Class - 2
-                noShieldFlag = True
-                isSG = True
+            if self.cclass == -2:
+                is_sg = True
+            elif self.cclass <= -3:
+                owner_class = -1 * self.cclass - 2
+                no_shield_flag = True
+                is_sg = True
 
-        itemID += self.Typ * C['ITEMS_PER_TYPE'] * 5 * 3
-        itemID += self.Pic * 5 * 3
-        itemID += self.Color * 3
-        itemID += self.Class
+        item_id += self.typ * C['ITEMS_PER_TYPE'] * 5 * 3
+        item_id += self.pic * 5 * 3
+        item_id += self.color * 3
+        item_id += self.cclass
 
-        if itemID >= ITM['MAX']:
-            #Log.error("Fehler: Zu wenige Indizes für Items:", itemID,
-            #">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itmPic, "Color:",
-            #itmColor, "Class:", itmClass)
+        if item_id >= ITM['MAX']:
+            #LOG.error("Fehler: Zu wenige Indizes für Items:", item_id,
+            #">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
+            #itm_color, "Class:", itm_class)
             return 0
 
-        if (isSG and (self.Typ == 0) and (slotNum > 0) and (slotNum <= 10)):
-            if slotNum <= 8:
-                itemID = IMG['EMPTY']['SLOT']['1'] + slotNum - 1
+        if (is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10)):
+            if slot_num <= 8:
+                item_id = IMG['EMPTY']['SLOT']['1'] + slot_num - 1
             else:
-                if ownerClass == 1:
-                    if slotNum == 9:
-                        itemID = IMG['EMPTY']['SLOT']['9_1']
+                if owner_class == 1:
+                    if slot_num == 9:
+                        item_id = IMG['EMPTY']['SLOT']['9_1']
                     else:
-                        if noShieldFlag:
-                            itemID = IMG['NO_SHIELD']
+                        if no_shield_flag:
+                            item_id = IMG['NO_SHIELD']
                         else:
-                            itemID = IMG['EMPTY']['SLOT']['10']
-                elif ownerClass == 2:
-                    if slotNum == 9:
-                        itemID = IMG['EMPTY']['SLOT']['9_2']
-                elif ownerClass == 3:
-                    if slotNum == 9:
-                        itemID = IMG['EMPTY']['SLOT']['9_3']
+                            item_id = IMG['EMPTY']['SLOT']['10']
+                elif owner_class == 2:
+                    if slot_num == 9:
+                        item_id = IMG['EMPTY']['SLOT']['9_2']
+                elif owner_class == 3:
+                    if slot_num == 9:
+                        item_id = IMG['EMPTY']['SLOT']['9_3']
 
-        return (itemID)
+        return (item_id)
 
 
-def GetArrowID(
-    itmClass, itmPic, someObj=False, slotMode=False, colorOverride=-1
+def get_arrow_id(
+    itm_class, itm_pic, some_obj=False, slot_mode=False, color_override=-1
 ):
-    arrowID = ARROW_OFFS
-    if slotMode:
-        if not (type(someObj) is list):
-            someObj = Savegame
+    '''
+        calculate id for arrow/bolt shots
+    '''
+    arrow_id = ARROW_OFFS
+    if slot_mode:
+        if not (type(some_obj) is list):
+            some_obj = Savegame
 
-        slotID = itmClass + itmPic * SG_ITM_SIZE
-        itmPic = someObj[slotID + SG_ITM_PIC]
-        itmColor = 0
+        slot_id = itm_class + itm_pic * SG_ITM_SIZE
+        itm_pic = some_obj[slot_id + SG_ITM_PIC]
+        itm_color = 0
 
         for i in range(8):
-            itmColor += int(someObj[slotID + SG_ITM_SCHADEN_MIN + i])
+            itm_color += int(some_obj[slot_id + SG_ITM_SCHADEN_MIN + i])
 
-        itmColor = itmColor % 5
+        itm_color = itm_color % 5
 
-        itmClass = 0
-        while itmPic >= 1000:
-            itmPic -= 1000
-            itmClass += 1
-        itmClass -= 1
+        itm_class = 0
+        while itm_pic >= 1000:
+            itm_pic -= 1000
+            itm_class += 1
+        itm_class -= 1
     else:
-        itmColor = int(someObj)
+        itm_color = int(some_obj)
 
-    if colorOverride >= 0:
-        itmColor = colorOverride
+    if color_override >= 0:
+        itm_color = color_override
 
-    arrowID += itmClass * 5 * 100
-    arrowID += itmPic * 5
-    arrowID += arrowID + itmColor
+    arrow_id += itm_class * 5 * 100
+    arrow_id += itm_pic * 5
+    arrow_id += arrow_id + itm_color
 
-    if arrowID >= ARROW_MAX:
-        # Log "Fehler: Zu wenige Indizes für Pfeile:", arrowID, ">=",
-        # ARROW_MAX, "Pic:", itmPic, "Color:", itmColor, "Class:", itmClass
+    if arrow_id >= ARROW_MAX:
+        # LOG "Fehler: Zu wenige Indizes für Pfeile:", arrow_id, ">=",
+        # ARROW_MAX, "Pic:", itm_pic, "Color:", itm_color, "Class:", itm_class
         return 0
 
-    return arrowID
+    return arrow_id
 
 
 #------------------------------------------------------------------------------
 
 
-def GetWeaponSoundFile(wpnClass, wpnPic, useCase):
-    useCaseStr = ""
-    for case in Switch(useCase):
+def get_weapon_sound_file(wpn_class, wpn_pic, use_case):
+    '''
+        get weapon sound file url
+    '''
+    use_case_str = ""
+    for case in Switch(use_case):
         if case(0):
-            useCaseStr = "s"
+            use_case_str = "s"
             break
         if case(1):
-            useCaseStr = "n"
+            use_case_str = "n"
             break
         if case(2):
-            useCaseStr = "b"
+            use_case_str = "b"
             break
         if case(3):
-            useCaseStr = "k"
+            use_case_str = "k"
             break
 
-    fileName = 'res/sfx/wpn/wpn'
-    if wpnPic < 1:
-        fileName += str(1)
+    file_name = 'res/sfx/wpn/wpn'
+    if wpn_pic < 1:
+        file_name += str(1)
     else:
-        fileName += str(wpnClass)
+        file_name += str(wpn_class)
 
-    return fileName + "-%d-%s.mp3" % (
-        GetWeaponLevel(wpnClass, wpnPic) + 1, useCaseStr
+    return file_name + "-%d-%s.mp3" % (
+        get_weapon_level(wpn_class, wpn_pic) + 1, use_case_str
     )
 
 
-def GetWeaponSound(wpnClass, wpnPic, useCase):
-    sndActor = SND['WEAPON']
-    sndActor += (wpnClass - 1) * 4 * 14 + GetWeaponLevel(wpnClass, wpnPic) * 4
-    sndActor += sndActor + useCase
-    return sndActor
+def get_weapon_sound(wpn_class, wpn_pic, use_case):
+    '''
+        get sound actor
+    '''
+    snd_actor = SND['WEAPON']
+    snd_actor += (wpn_class - 1) * 4 * 14 + get_weapon_level(wpn_class, wpn_pic) * 4
+    snd_actor += snd_actor + use_case
+    return snd_actor
 
 
-def GetWeaponLevel(wpnClass, wpnPic):
-    for case in Switch(wpnClass):
+def get_weapon_level(wpn_class, wpn_pic):
+    '''
+        calculate weapon level
+    '''
+    for case in Switch(wpn_class):
         if case(1):
-            if wpnPic == -7:
+            if wpn_pic == -7:
                 return (7)
-            elif wpnPic == -3:
+            elif wpn_pic == -3:
                 return (6)
-            elif wpnPic in (-2, -1, 54):
+            elif wpn_pic in (-2, -1, 54):
                 return (4)
-            elif wpnPic == 0:
+            elif wpn_pic == 0:
                 return (5)
-            elif wpnPic in (-5, -4, 1, 2, 3, 4):
+            elif wpn_pic in (-5, -4, 1, 2, 3, 4):
                 return (0)
-            elif wpnPic in (
+            elif wpn_pic in (
                 5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60
             ):
                 return (1)
-            elif wpnPic in (-6, 7, 10, 13, 16, 20, 23, 25, 28, 52):
+            elif wpn_pic in (-6, 7, 10, 13, 16, 20, 23, 25, 28, 52):
                 return (2)
-            elif wpnPic in (9, 12, 14, 18):
+            elif wpn_pic in (9, 12, 14, 18):
                 return (3)
-            elif wpnPic == 53:
+            elif wpn_pic == 53:
                 return (8)
-            elif wpnPic == 55:
+            elif wpn_pic == 55:
                 return (9)
-            elif wpnPic == 56:
+            elif wpn_pic == 56:
                 return (10)
-            elif wpnPic == 57:
+            elif wpn_pic == 57:
                 return (11)
-            elif wpnPic == 58:
+            elif wpn_pic == 58:
                 return (12)
-            elif wpnPic == 59:
+            elif wpn_pic == 59:
                 return (13)
             break
         if case(2):
-            if wpnPic in range(-5, 0):
+            if wpn_pic in range(-5, 0):
                 return (4)
-            elif wpnPic == 0:
+            elif wpn_pic == 0:
                 return (5)
-            elif wpnPic in (1, 60):
+            elif wpn_pic in (1, 60):
                 return (0)
-            elif wpnPic in (2, 9):
+            elif wpn_pic in (2, 9):
                 return (1)
-            elif wpnPic in (6, 7, 10, 52, 54):
+            elif wpn_pic in (6, 7, 10, 52, 54):
                 return (2)
-            elif wpnPic in (3, 4, 5, 8, 50, 51):
+            elif wpn_pic in (3, 4, 5, 8, 50, 51):
                 return (3)
-            elif wpnPic == 53:
+            elif wpn_pic == 53:
                 return (4)
-            elif wpnPic == 55:
+            elif wpn_pic == 55:
                 return (9)
-            elif wpnPic == 56:
+            elif wpn_pic == 56:
                 return (10)
-            elif wpnPic == 57:
+            elif wpn_pic == 57:
                 return (11)
-            elif wpnPic == 58:
+            elif wpn_pic == 58:
                 return (12)
-            elif wpnPic == 59:
+            elif wpn_pic == 59:
                 return (13)
             break
         if case(3):
-            if wpnPic in range(-5, 0):
+            if wpn_pic in range(-5, 0):
                 return (4)
-            elif wpnPic == 0:
+            elif wpn_pic == 0:
                 return (5)
-            elif wpnPic in (1, 2):
+            elif wpn_pic in (1, 2):
                 return (0)
-            elif wpnPic == (3, 5, 6, 7, 50, 52, 53, 54):
+            elif wpn_pic == (3, 5, 6, 7, 50, 52, 53, 54):
                 return (1)
-            elif wpnPic in (4, 8, 9, 10, 59):
+            elif wpn_pic in (4, 8, 9, 10, 59):
                 return (2)
-            elif wpnPic == 51:
+            elif wpn_pic == 51:
                 return (3)
-            elif wpnPic == 55:
+            elif wpn_pic == 55:
                 return (9)
-            elif wpnPic == 56:
+            elif wpn_pic == 56:
                 return (10)
-            elif wpnPic == 57:
+            elif wpn_pic == 57:
                 return (11)
-            elif wpnPic == 58:
+            elif wpn_pic == 58:
                 return (12)
-            elif wpnPic == 60:
+            elif wpn_pic == 60:
                 return (13)
             break
 
@@ -5688,7 +5741,10 @@ def GetWeaponLevel(wpnClass, wpnPic):
 #------------------------------------------------------------------------------
 
 # TODO: How to do Event stuff?
-def RequestSignup(evt):
+def request_signup(evt):
+    '''
+        TODO: Documentation
+    '''
     if evt is KeyboardEvent:
         if (
             (KeyboardEvent(evt).keyCode != 13)
@@ -5712,21 +5768,24 @@ def RequestSignup(evt):
             pass
 
         # Create account
-        # SendAction(
+        # send_action(
         #   ACT_ACCOUNT_CREATE, actor[INP_NAME].getChildAt(1).text,
         #   actor[INP_PASSWORD].getChildAt(1).text,
         #   actor[INP_EMAIL].getChildAt(1).text,
         #   param_rec, ((buffedReq) ? ("buf" + buffed_id) : param_adv),
-        #   CharVolk, ((CharMann) ? 1 : 2), CharKaste,
-        #   (((((((((((((((((CharMouth + "/") + CharHair) + "/") + CharBrows)
-        #   + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") +
-        #   CharEars) + "/") + CharSpecial) + "/") +
-        #   CharSpecial2) + "/"), param_cid)
+        #   char_volk, ((char_male) ? 1 : 2), char_class,
+        #   (((((((((((((((((char_mouth + "/") + char_hair) + "/") + char_brows)
+        #   + "/") + char_eyes) + "/") + char_beard) + "/") + char_nose) + "/") +
+        #   char_ears) + "/") + char_special) + "/") +
+        #   char_special2) + "/"), param_cid)
     else:
         ErrorMessage(texts[TXT_ERROR_AGB])
 
 
 def LoadTrackingPixel(url=''):
+    '''
+        load tracking pixel
+    '''
     req = null
     variables = null
     pixelLoader = null
@@ -5734,7 +5793,7 @@ def LoadTrackingPixel(url=''):
     pixel_failed = null
     url = url
 
-    Log.debug("Tracking Pixel Load:" + url)
+    LOG.debug("Tracking Pixel Load:" + url)
 
     if (url.indexOf("?") == -1):
         url = url + "?random="
@@ -5754,7 +5813,7 @@ def LoadTrackingPixel(url=''):
         #variables.pixel_url = url
         #variables.pixel_cid = param_cid
         #variables.pixel_player_id = Savegame[SG_PLAYER_ID]
-        #variables.pixel_action = (((nextPxl == 0)) ? act : Math.abs(nextPxl))
+        #variables.pixel_action = (((next_pxl == 0)) ? act : Math.abs(next_pxl))
         #req.data = variables
         logInAfterPixel = False
         #navigateToURL(req, "_self")
@@ -5797,6 +5856,9 @@ def LoadTrackingPixel(url=''):
 
 
 def DoActZauberladen():
+    '''
+        setup magic shop actors
+    '''
     ErrorMessage(" ")
     Remove(CHAR_RIGHTPANE)
     Remove(FIDGET_EPCIOVL)
@@ -5807,7 +5869,7 @@ def DoActZauberladen():
     if ((specialAction == 2) or (specialAction == 5)):
         Add(FIDGET_EPCIOVL)
         actor[FIDGET_EPCIOVL].mouseEnabled = False
-    if (not SleepTime()):
+    if (not sleep_time()):
         Remove(FIDGET_NIGHT)
     else:
         Remove(FIDGET_DAY)
@@ -5819,6 +5881,9 @@ def DoActZauberladen():
 
 
 def DoActSchmiede():
+    '''
+        setup weapon shop actors
+    '''
     ErrorMessage(" ")
     Remove(CHAR_RIGHTPANE)
     Remove(FIDGET_EPCIOVL)
@@ -5828,241 +5893,240 @@ def DoActSchmiede():
         Add(SHAKES_EPCIOVL)
         actor[SHAKES_EPCIOVL].mouseEnabled = false
     Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
-    if not SleepTime():
+    if not sleep_time():
         Remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
     else:
         Remove(SHAKES_DAY)
 
 
 def RequestPlayerScreen(evt):
-    selIndex = actor[HALL_LIST].getChildIndex(evt.target)
-    if selIndex < 5:
+    '''
+        request player screen
+    '''
+    sel_index = actor[HALL_LIST].getChildIndex(evt.target)
+    if sel_index < 5:
         return
 
-    selRow = int((selIndex - 5) / 6) + 1
-    selName = HallListName[selRow]
-    selGilde = HallListGilde[selRow]
-    if selName == "":
+    sel_row = int((sel_index - 5) / 6) + 1
+    sel_name = HallListName[sel_row]
+    sel_guild = HallListGilde[sel_row]
+    if sel_name == "":
         return
-    SendAction(ACT_REQUEST_CHAR, selName)
+    send_action(ACT_REQUEST_CHAR, sel_name)
 
+
+def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
+    '''
+        parse savegame string
+    '''
+
+    # parse into array of (mostly) numbers
+    savegame = ("0/" + str_save_game).split("/")
+
+    # Extract tower level from mount id
+    if not no_spoil:
+        tower_level = int((savegame[SG['MOUNT']] / 65536))
+
+    savegame[SG['MOUNT']] -= tower_level * 65536
+
+    # Extract mirror pieces from gender entry
+    bin_str = int(savegame[SG['GENDER']]).toString(2)
+
+    # TODO: better way to zero fill?
+    while (len(bin_str) < 32):
+        bin_str = "0" + bin_str
+
+    mirror_pieces = list()
+    for i in range(13):
+        mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
+
+    has_mirror = bin_str.substr(23, 1) == "1"
+    can_rob = bin_str.substr(22, 1) == "1"
+
+    if bin_str.substr(31) == "1":
+        savegame[SG['GENDER']] = 1
+    else:
+        savegame[SG['GENDER']] = 2
+
+    if (savegame[SG['ALBUM']] - 10000) > content_max:
+        savegame[SG['ALBUM']] = content_max + 10000
+
+    for i in range(SG['BACKPACK']['SIZE']):
+        expand_item_structure(
+            savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(SG['INVENTORY']['SIZE']):
+        expand_item_structure(
+            savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
+        )
+
+    for i in range(6):
+        expand_item_structure(
+            savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+        expand_item_structure(
+            savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(3):
+        expand_item_structure(Savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)))
+
+    debug_info = ""
+    for i in range(len(savegame)):
+        debug_info += str(i) + "=" + savegame[i] + ", "
+
+    if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
+        level_up = true
+        pulse_char = true
+
+    last_level = int(savegame[SG['LEVEL']])
+
+    friend_link = "http://" + server + "/index.php?rec="
+    friend_link += savegame[SG['PLAYER']['ID']]
+
+    if len(old_ach) != 0:
+        for i in range(8):
+            if ach_level(savegame, i) > old_ach[i]:
+                old_ach[i] = -1 * ach_level(savegame, i)
+            else:
+                old_ach[i] = ach_level(savegame, i)
+    else:
+        for i in range(8):
+            old_ach[i] = ach_level(savegame, i)
+
+    if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
+        album_effect = True
+    old_album = savegame[SG['ALBUM']]
+
+    if fill_face_variables:
+        char_volk = savegame[SG['RACE']]
+        char_male = (savegame[SG['GENDER']] == 1)
+        char_class = savegame[SG['CLASS']]
+        char_mouth = savegame[SG['FACE']['1']]
+        char_beard = savegame[SG['FACE']['5']]
+        char_nose = savegame[SG['FACE']['6']]
+        char_eyes = savegame[SG['FACE']['4']]
+        char_brows = savegame[SG['FACE']['3']]
+        char_ears = savegame[SG['FACE']['7']]
+        char_hair = savegame[SG['FACE']['2']]
+        char_special = savegame[SG['FACE']['8']]
+        char_special2 = savegame[SG['FACE']['9']]
+
+        i = char_hair
+
+        char_color = 0
+        while i > 100:
+            i -= 100
+            char_color += 1
+
+    if not no_spoil:
+        if textDir == "right":
+            actor[IF['GOLD']].x = IF['LBL']['GOLDPILZE_X']
+
+            with actor[LBL['IF']['GOLD']]:
+                text = str(int(savegame[SG['GOLD']] / 100))
+                x = IF['LBL']['GOLDPILZE_X'] - textWidth - 10
+            actor[IF['SILBER']].x = actor[LBL['IF']['GOLD']].x - width - 10
+
+            with (actor[LBL['IF']['SILBER']]):
+                if int(Savegame[SG_GOLD] % 100) < 10:
+                    text = "0"
+                else:
+                    text = ""
+                text += str(int(Savegame[SG['GOLD']] % 100))
+                x = actor[IF['SILBER']].x - textWidth - 10
+
+            with actor[LBL['IF']['PILZE']]:
+                text = savegame[SG['MUSH']]
+                x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
+
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                EnablePopup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+        else:
+            with (actor[LBL['IF']['SILBER']]):
+                if int(Savegame[SG_GOLD] % 100) < 10:
+                    text = "0"
+                else:
+                    text = ""
+                text += str(int(Savegame[SG['GOLD']] % 100))
+                x = actor[IF['SILBER']].x - textWidth - 10
+
+            actor[IF['GOLD']].x = actor[LBL['IF']['SILBER']].x - 24 - 10
+
+            with actor[LBL['IF']['GOLD']]:
+                text = str(int(savegame[SG['GOLD']] / 100))
+                x = actor[IF['GOLD']].x - textWidth - 10
+
+            with actor[LBL['IF']['PILZE']]:
+                text = savegame[SG['MUSH']]
+                x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
+
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                EnablePopup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+
+    Add(IF['STATS'])
+    if int(Savegame[SG['SERVER']['TIME']]) > 0:
+        server_time.setTime(
+            1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
+        )
+        local_time = datetime.now()
+        TimeCalc.start()
+
+    if sessionId == "":
+        log.error("Fehler: Keine Session ID für PHP-Tunneling vergeben. PHP-Tunneling wird deaktiviert.")
+        show_login_screen()
+    else:
+        log.debug("Session ID für PHP Tunneling:", sessionId)
+
+    if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
+        gilden_id = int(savegame[SG['GUILD']['INDEX']])
+        if gilden_id != 0:
+            send_action(ACT['REQUEST']['GUILD'], savegame[SG['GUILD']['INDEX']])
+
+    if (int(savegame[SG['UNREAD']['MESSAGES']]) > 0) and (not OnStage(POST['LIST'])):
+        pulse_post = True
+
+    if int(savegame[SG['LOCKDURATION']]) != 0:
+        request_logout()
+
+    if next_pxl < 0:
+        next_pxl = abs(next_pxl)
+
+
+def request_player_guild_screen(evt):
+    sel_index = actor[HALL['LIST']].getChildIndex(evt.target)
+    if sel_index < 5:
+        return
+
+    sel_row = int((sel_index - 5) / 6 + 1)
+    sel_name = HallListName[sel_row]
+    sel_guild = HallListGilde[sel_row]
+
+    if sel_guild == texts[TXT['NOGUILD']]:
+        return
+
+    if sel_guild == "":
+        return
+
+    if sel_guild == Gilde:
+        send_action(ACT['SCREEN']['GILDEN'])
+    else:
+        send_action(ACT['SCREEN']['FREMDGILDE'], sel_guild)
 
 
 
 '''
-
-ParseSavegame:* = function (
-    strSaveGame:String, FillFaceVariables:Boolean=true, noSpoil:Boolean=false
-){
-    var i:* = 0
-    var debugInfo:* = null
-    var binStr:* = null
-    var strSaveGame:* = strSaveGame
-    var FillFaceVariables:Boolean = FillFaceVariables
-    var noSpoil:Boolean = noSpoil
-    debugInfo = ""
-    Savegame = ("0/" + strSaveGame).split("/")
-    if (!noSpoil){
-        towerLevel = int((Savegame[SG_MOUNT] / 65536))
-    }
-    Savegame[SG_MOUNT] = (Savegame[SG_MOUNT] - (towerLevel * 65536))
-    binStr = Number(Savegame[SG_GENDER]).toString(2)
-    while (binStr.length < 32) {
-        binStr = ("0" + binStr)
-    }
-    i = 0
-    while (i < 13) {
-        MirrorPieces[i] = (binStr.substr((i + 1), 1) == "1")
-        i = (i + 1)
-    }
-    hasMirror = (binStr.substr(23, 1) == "1")
-    canRob = (binStr.substr(22, 1) == "1")
-    if (binStr.substr(31) == "1"){
-        Savegame[SG_GENDER] = 1
-    } else {
-        Savegame[SG_GENDER] = 2
-    }
-    if ((Savegame[SG_ALBUM] - 10000) > contentMax){
-        Savegame[SG_ALBUM] = (contentMax + 10000)
-    }
-    i = 0
-    while (i < SG_BACKPACK_SIZE) {
-        ExpandItemStructure(Savegame, (SG_BACKPACK_OFFS + (i * SG_ITM_SIZE)))
-        i = (i + 1)
-    }
-    i = 0
-    while (i < SG_INVENTORY_SIZE) {
-        ExpandItemStructure(Savegame, (SG_INVENTORY_OFFS + (i * SG_ITM_SIZE)))
-        i = (i + 1)
-    }
-    i = 0
-    while (i < 6) {
-        ExpandItemStructure(Savegame, (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)))
-        ExpandItemStructure(Savegame, (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)))
-        i = (i + 1)
-    }
-    i = 0
-    while (i < 3) {
-        ExpandItemStructure(Savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)))
-        i = (i + 1)
-    }
-    i = 0
-    while (i < Savegame.length) {
-        debugInfo = (debugInfo + (((String(i) + "=") + Savegame[i]) + ", "))
-        i = (i + 1)
-    }
-    if (((!((LastLevel == 0))) and ((int(Savegame[SG_LEVEL]) > LastLevel)))){
-        LevelUp = true
-        PulseChar = true
-    }
-    LastLevel = int(Savegame[SG_LEVEL])
-    FriendLink = ((("http://" + server) + "/index.php?rec=") + Savegame[SG_PLAYER_ID])
-    if (oldAch.length != 0){
-        i = 0
-        while (i < 8) {
-            if (achLevel(Savegame, i) > oldAch[i]){
-                oldAch[i] = -(achLevel(Savegame, i))
-            } else {
-                oldAch[i] = achLevel(Savegame, i)
-            }
-            i = (i + 1)
-        }
-    } else {
-        i = 0
-        while (i < 8) {
-            oldAch[i] = achLevel(Savegame, i)
-            i = (i + 1)
-        }
-    }
-    if ((((oldAlbum >= 0)) and ((Savegame[SG_ALBUM] > oldAlbum)))){
-        AlbumEffect = true
-    }
-    oldAlbum = Savegame[SG_ALBUM]
-    if (FillFaceVariables){
-        CharVolk = Savegame[SG_RACE]
-        CharMann = (Savegame[SG_GENDER] == 1)
-        CharKaste = Savegame[SG_CLASS]
-        CharMouth = Savegame[SG_FACE_1]
-        CharBeard = Savegame[SG_FACE_5]
-        CharNose = Savegame[SG_FACE_6]
-        CharEyes = Savegame[SG_FACE_4]
-        CharBrows = Savegame[SG_FACE_3]
-        CharEars = Savegame[SG_FACE_7]
-        CharHair = Savegame[SG_FACE_2]
-        CharSpecial = Savegame[SG_FACE_8]
-        CharSpecial2 = Savegame[SG_FACE_9]
-        i = CharHair
-        CharColor = 0
-        while (i > 100) {
-            i = (i - 100)
-            CharColor++
-        }
-    }
-    if (!noSpoil){
-        if (textDir == "right"){
-            var _local5 = actor[IF_GOLD]
-            with (_local5) {
-                x = IF_LBL_GOLDPILZE_X
-            }
-            _local5 = actor[LBL_IF_GOLD]
-            with (_local5) {
-                text = String(int((Savegame[SG_GOLD] / 100)))
-                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
-            }
-            _local5 = actor[IF_SILBER]
-            with (_local5) {
-                x = ((actor[LBL_IF_GOLD].x - width) - 10)
-            }
-            _local5 = actor[LBL_IF_SILBER]
-            with (_local5) {
-                text = ((((int((Savegame[SG_GOLD] % 100)) < 10)) ? "0" : "") + String(int((Savegame[SG_GOLD] % 100))))
-                x = ((actor[IF_SILBER].x - textWidth) - 10)
-            }
-            _local5 = actor[LBL_IF_PILZE]
-            with (_local5) {
-                text = Savegame[SG_MUSH]
-                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
-            }
-            if (txt[TXT_MUSHROOMS_BOUGHT]){
-                EnablePopup(LBL_IF_PILZE, txt[TXT_MUSHROOMS_BOUGHT].split("%1").join(Savegame[SG_MUSHROOMS_MAY_DONATE]))
-            }
-        } else {
-            _local5 = actor[LBL_IF_SILBER]
-            with (_local5) {
-                text = ((((int((Savegame[SG_GOLD] % 100)) < 10)) ? "0" : "") + String(int((Savegame[SG_GOLD] % 100))))
-                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
-            }
-            _local5 = actor[IF_GOLD]
-            with (_local5) {
-                x = ((actor[LBL_IF_SILBER].x - 24) - 10)
-            }
-            _local5 = actor[LBL_IF_GOLD]
-            with (_local5) {
-                text = String(int((Savegame[SG_GOLD] / 100)))
-                x = ((actor[IF_GOLD].x - textWidth) - 10)
-            }
-            _local5 = actor[LBL_IF_PILZE]
-            with (_local5) {
-                text = Savegame[SG_MUSH]
-                x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10)
-            }
-            if (txt[TXT_MUSHROOMS_BOUGHT]){
-                EnablePopup(LBL_IF_PILZE, txt[TXT_MUSHROOMS_BOUGHT].split("%1").join(Savegame[SG_MUSHROOMS_MAY_DONATE]))
-            }
-        }
-    }
-    Add(IF_STATS)
-    if (Number(Savegame[SG_SERVER_TIME]) > 0){
-        ServerTime.setTime(((1000 * Number(Savegame[SG_SERVER_TIME])) - ((1000 * 60) * 60)))
-        LocalTime = new Date()
-        TimeCalc.start()
-    }
-    if (sessionId == ""){
-        trc("Fehler: Keine Session ID für PHP-Tunneling vergeben. PHP-Tunneling wird deaktiviert.")
-        ShowLoginScreen()
-    } else {
-        trc("Session ID für PHP Tunneling:", sessionId)
-    }
-    if (int(Savegame[SG_GUILD_INDEX]) != GildenID){
-        GildenID = int(Savegame[SG_GUILD_INDEX])
-        if (GildenID != 0){
-            SendAction(ACT_REQUEST_GUILD, Savegame[SG_GUILD_INDEX])
-        }
-    }
-    if ((((int(Savegame[SG_UNREAD_MESSAGES]) > 0)) and (!(OnStage(POST_LIST))))){
-        PulsePost = true
-    }
-    if (int(Savegame[SG_LOCKDURATION]) != 0){
-        RequestLogout()
-    }
-    if (nextPxl < 0){
-        nextPxl = Math.abs(nextPxl)
-    }
-}
-
-
-RequestPlayerGuildScreen:* = function (evt:MouseEvent){
-    var selIndex:int
-    var selRow:int
-    selIndex = actor[HALL_LIST].getChildIndex(evt.target)
-    if (selIndex < 5){
-        return
-    }
-    selRow = (int(((selIndex - 5) / 6)) + 1)
-    selName = HallListName[selRow]
-    selGilde = HallListGilde[selRow]
-    if (selGilde == txt[TXT_NOGUILD]){
-        return
-    }
-    if (selGilde == ""){
-        return
-    }
-    if (selGilde == Gilde){
-        SendAction(ACT_SCREEN_GILDEN)
-    } else {
-        SendAction(ACT_SCREEN_FREMDGILDE, selGilde)
-    }
-}
 
 HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat, maxWidth:int=0, isGuild:Boolean=false):void{
     var tmpObj:* = null
@@ -6203,7 +6267,7 @@ def ActionHandler(event):
     if dataStr.charAt(0) == "+":
         dataStr = dataStr.substr(1)
         if guildBlinkReady:
-            SendAction(ACT_GET_CHAT_HISTORY)
+            send_action(ACT_GET_CHAT_HISTORY)
             PulseGildeOnHistory = True
 
     if dataStr.charAt(0) == "E":
@@ -6227,7 +6291,7 @@ def ActionHandler(event):
         if case(ERR_TOWER_CLOSED):
             break
         if case(RESP_TOWER_SAVE):
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             ShowTowerScreen(par)
             break
         if case(RESP_TOILET_LOCKED):
@@ -6278,7 +6342,7 @@ def ActionHandler(event):
             if (act == RESP_TOILET_DROPPED):
                 Play(SND_TOILET_DROP)
 
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             if (par.length > 1):
                 if (act == RESP_TOILET_FLUSHED):
                     ShowToilet(par[1], par[2], par[3], par[4], par[5])
@@ -6297,7 +6361,7 @@ def ActionHandler(event):
                         ErrorMessage("")
             break
         case RESP_SCREEN_WITCH:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             # ShowWitch(
             #    par[1].split("/"),
             #    (par[2].split("/")[0] == "1"),
@@ -6360,9 +6424,9 @@ def ActionHandler(event):
                 intervalMultiplierReconnect = intervalMultiplierReconnect + 0.1
             break
         case ERR_JOINED_TOO_RECENTLY:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             #ErrorMessage(txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(
-            #      TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]
+            #      time_str((Number(Savegame[SG_GUILD_JOIN_DATE]
             #      ) + ((60 * 60) * 24)), true)))
             break
         case RESP_ATTACK_NOT_EXIST:
@@ -6388,7 +6452,7 @@ def ActionHandler(event):
                     if (txt[TXT_RAID_TEXT]):
                         #actor[LBL_GILDE_ATTACK].text = txt[
                         #    (TXT_RAID_TEXT
-                        #     + ((IsToday(lastGuildData[GUILD_ATTACK_TIME]))
+                        #     + ((is_today(lastGuildData[GUILD_ATTACK_TIME]))
                         #        ? 13
                         #        : 12))
                         #].split("%1").join(
@@ -6396,7 +6460,7 @@ def ActionHandler(event):
                         #        + int(lastGuildData[GUILD_RAID_LEVEL
                         #   ]))
                         #]).split("%2").join(
-                        #  TimeStr(lastGuildData[GUILD_ATTACK_TIME], true)
+                        #  time_str(lastGuildData[GUILD_ATTACK_TIME], true)
                         #)
                         pass
                     else:
@@ -6405,25 +6469,25 @@ def ActionHandler(event):
                     actor[LBL_GILDE_ATTACK].text = ""
             else:
                 #actor[LBL_GILDE_ATTACK].text = txt[
-                #    (TXT_GUILD_BATTLE_MSG + ((IsToday(
+                #    (TXT_GUILD_BATTLE_MSG + ((is_today(
                 #        lastGuildData[GUILD_ATTACK_TIME])
                 #        ) ? 2 : 0))].split("%1")
                 #        .join(par[0])
                 #        .split("%2")
-                #        .join(TimeStr(lastGuildData[GUILD_ATTACK_TIME], true))
+                #        .join(time_str(lastGuildData[GUILD_ATTACK_TIME], true))
                 pass
 
             #actor[LBL_GILDE_DEFENCE].text = ((par[1])=="")
             #    ? ""
             #    : txt[
             #    ((TXT_GUILD_BATTLE_MSG + 1)
-            #     + ((IsToday(lastGuildData[GUILD_DEFENCE_TIME]))
+            #     + ((is_today(lastGuildData[GUILD_DEFENCE_TIME]))
             #        ? 2
             #        : 0))]
             #        .split("%1")
             #        .join(par[1])
             #        .split("%2")
-            #        .join(TimeStr(lastGuildData[GUILD_DEFENCE_TIME], true))
+            #        .join(time_str(lastGuildData[GUILD_DEFENCE_TIME], true))
             if par[2]:
                 if lastGuildData[GUILD_IS_RAID] != 0:
                     if txt[TXT_RAID_TEXT]:
@@ -6452,10 +6516,10 @@ def ActionHandler(event):
             guildAttacking = par[1]
             break
         case ERR_SESSION_ID_EXPIRED:
-            #Log trc("Achtung, sessionId ist abgelaufen.")
+            #LOG trc("Achtung, sessionId ist abgelaufen.")
             sessionId = ""
             fightFlushMode = False
-            ShowLoginScreen()
+            ShowLOGinScreen()
             break
         case ERR_MSG_LEVEL_TOO_LOW:
             if (txt[TXT_ERROR_MSG_LEVEL_TOO_LOW]):
@@ -6489,11 +6553,11 @@ def ActionHandler(event):
         case ERR_PLACE_BET:
             break
         case RESP_BET_WON:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             ShowBetResult(true)
             break
         case RESP_BET_LOST:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             ShowBetResult(false)
             break
         case ERR_ACCOUNTS_PER_IP:
@@ -6522,12 +6586,12 @@ def ActionHandler(event):
         case RESP_REQUEST_GUILD_QUIET:
             DestroyGuildBtnTimer = True
             if (OnStage(LBL_GILDE_CHAT_CAPTION)):
-                SendAction(ACT_SCREEN_GILDEN)
+                send_action(ACT_SCREEN_GILDEN)
             break
         case RESP_REQUEST_GUILD:
             DestroyGuildBtnTimer = True
             if (OnStage(LBL_GILDE_CHAT_CAPTION)):
-                SendAction(ACT_SCREEN_GILDEN)
+                send_action(ACT_SCREEN_GILDEN)
             else:
                 PulseGilde = True
             break
@@ -6543,14 +6607,14 @@ def ActionHandler(event):
         case RESP_VALIDATE_OK:
             if (par[0]):
                 param_cid = par[0]
-                #Log trc("cid set by server:", param_cid)
+                #LOG trc("cid set by server:", param_cid)
             ShowEmailNagScreen(1)
             break
         case ERR_VALIDATE:
             ShowEmailNagScreen(2)
             break
         case RESP_PASSWORD_SENT:
-            ShowLoginScreen()
+            ShowLOGinScreen()
             break
         case ERR_REQUEST_PW:
             ErrorMessage(txt[TXT_ERROR_REQUEST_PW])
@@ -6625,7 +6689,7 @@ def ActionHandler(event):
                                      + ":§")) != -1
                                 ):
                                     if (OnStage(INP_GILDE_CHAT)):
-                                        SendAction(ACT_SCREEN_GILDEN)
+                                        send_action(ACT_SCREEN_GILDEN)
                                     break
                                 ii = (ii + 1)
                     else:
@@ -6659,7 +6723,7 @@ def ActionHandler(event):
                                      + ":§")) != -1
                                 ):
                                     if (OnStage(INP_GILDE_CHAT)):
-                                        SendAction(ACT_SCREEN_GILDEN)
+                                        send_action(ACT_SCREEN_GILDEN)
                                     break
                                 ii = (ii + 1)
                     i = (i - 1)
@@ -6692,7 +6756,7 @@ def ActionHandler(event):
                                  + ":§")) != -1
                             ):
                                 if (OnStage(INP_GILDE_CHAT)):
-                                    SendAction(ACT_SCREEN_GILDEN)
+                                    send_action(ACT_SCREEN_GILDEN)
                                 }
                                 break
                             }
@@ -6739,15 +6803,15 @@ def ActionHandler(event):
             }
             break
         case RESP_GUILD_DONATE_SUCCESS:
-            ParseSavegame(par[0])
-            SendAction(ACT_SCREEN_GILDEN)
+            parse_savgame(par[0])
+            send_action(ACT_SCREEN_GILDEN)
             break
         case RESP_NO_LOGIN:
-            RequestLogout(undefined, true)
-            ShowLoginScreen()
+            RequestLOGout(undefined, true)
+            ShowLOGinScreen()
             break
         case RESP_DELETE_ACCOUNT_OK:
-            RequestLogout()
+            RequestLOGout()
             break
         case RESP_CHANGE_PASS_OK:
             so.data.password = optionNewData
@@ -6760,7 +6824,7 @@ def ActionHandler(event):
             so.data.userName = optionNewData
             so.flush()
             actor[INP_NAME].getChildAt(1).text = optionNewData
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             ShowOptionScreen()
             ErrorMessage(txt[TXT_NAME_CHANGED])
             break
@@ -6769,7 +6833,7 @@ def ActionHandler(event):
             ErrorMessage(txt[TXT_EMAIL_CHANGED])
             break
         case RESP_CHANGE_FACE_OK:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
         case ACT_SCREEN_OPTIONEN:
             ShowOptionScreen()
             break
@@ -6779,7 +6843,7 @@ def ActionHandler(event):
         case RESP_PLAYER_SCREEN:
             ShowPlayerScreen(
                 ("0/" + par[0]).split("/"),
-                selName, par[2], resolveBreaks(par[1])
+                sel_name, par[2], resolveBreaks(par[1])
             )
             break
         case RESP_PLAYER_DESC_SUCCESS:
@@ -6792,12 +6856,12 @@ def ActionHandler(event):
                 Gilde = par[0]
             }
             lastChatIndex = 0
-            SendAction(ACT_GET_CHAT_HISTORY)
+            send_action(ACT_GET_CHAT_HISTORY)
             break
         case RESP_MAINQUEST:
             Hide(IF_STATS)
-            ParseSavegame(par[10])
-            PulseChar = false
+            parse_savgame(par[10])
+            pulse_char = false
         case RESP_QUEST_DONE:
         case RESP_QUEST_DONE_PIXEL:
         case RESP_QUEST_DONE_PIXEL_2:
@@ -6828,7 +6892,7 @@ def ActionHandler(event):
             winners = new Array()
             lastRoundFighterName = ""
             fights = parStr.split("§")
-            ParseSavegame(fights.pop(), true, true)
+            parse_savgame(fights.pop(), true, true)
             guildFightCount = int(((fights.length - 1) / 2))
             skipGuildFights = 0
             nextFightTimer.start()
@@ -6836,14 +6900,14 @@ def ActionHandler(event):
         case RESP_QUEST_SKIP_ALLOWED_START:
             skipAllowed = true
         case RESP_QUEST_START:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             ShowQuestScreen()
             break
         case RESP_QUEST_SKIP_ALLOWED:
             skipAllowed = true
         case ACT_SCREEN_TAVERNE:
         case RESP_QUEST_STOP:
-            ParseSavegame(par[0])
+            parse_savgame(par[0])
             if (par[1]){
                 specialAction = par[1]
             } else {
@@ -6875,7 +6939,7 @@ def ActionHandler(event):
         case RESP_GUILD_INVITE_SUCCESS:
         case RESP_GUILD_MASTER_SUCCESS:
         case RESP_GUILD_JOIN_SUCCESS:
-            SendAction(ACT_SCREEN_GILDEN)
+            send_action(ACT_SCREEN_GILDEN)
             break
         case RESP_GUILD_DELETE_SUCCESS:
             Gilde = ""
@@ -6887,8 +6951,8 @@ def ActionHandler(event):
         case RESP_GUILD_COMMENCE_ATTACK_OK:
         case RESP_GUILD_JOIN_ATTACK_OK:
         case RESP_GUILD_JOIN_DEFENSE_OK:
-            ParseSavegame(par[0])
-            SendAction(ACT_SCREEN_GILDEN)
+            parse_savgame(par[0])
+            send_action(ACT_SCREEN_GILDEN)
             break
         case ACT_SCREEN_GILDEN:
             Savegame[SG_GUILD_INDEX] = par[0].split("/")[0]
@@ -6955,10 +7019,10 @@ def ActionHandler(event):
         case RESP_READ_MESSAGE:
             RemoveAll()
             Add(SCREEN_POST)
-            if (Tageszeit() != 0){
+            if (tageszeit() != 0){
                 Remove(POST_NIGHT)
             }
-            if (Tageszeit() != 1){
+            if (tageszeit() != 1){
                 Remove(POST_DAWN)
             }
             Remove(POST_LIST)
@@ -6970,7 +7034,7 @@ def ActionHandler(event):
                 Remove(POST_READ_NEXT)
             }
             if (int(par[4]) > 0){
-                InviteGildenID = int(par[4])
+                Invitegilden_id = int(par[4])
                 Add(POST_ACCEPT)
             }
             _local3 = actor[INP_POST_ADDRESS].getChildAt(1)
@@ -6978,7 +7042,7 @@ def ActionHandler(event):
                 type = TextFieldType.DYNAMIC
                 text = (
                     (((((txt[TXT_POST_FROM] + " ") + par[0]) + " ")
-                     + txt[TXT_POST_TIME]) + " ") + TimeStr(par[2])
+                     + txt[TXT_POST_TIME]) + " ") + time_str(par[2])
                 )
             }
             _local3 = actor[INP_POST_SUBJECT].getChildAt(1)
@@ -7140,7 +7204,7 @@ def ActionHandler(event):
             ShowDealerScreen();
             break;
         case ACT_SCREEN_WELTKARTE:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             ShowMainQuestsScreen(par[1].split("/"));
             break;
         case ACT_SCREEN_EHRENHALLE:
@@ -7264,11 +7328,11 @@ def ActionHandler(event):
             break;
         case RESP_ARBEIT_START:
         case RESP_ARBEIT_STOP:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             ShowWorkScreen();
             break;
         case RESP_ARBEIT_ERLEDIGT:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             VerdientesGeld = par[1];
             ShowWorkSuccessScreen();
             break;
@@ -7282,7 +7346,7 @@ def ActionHandler(event):
         case RESP_SAVEGAME_SHARD:
         case RESP_SAVEGAME_MIRROR:
         case RESP_MOVE_TOWER_ITEM:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             if (OnStage(SCR_CHAR_BG)){
                 if (act == RESP_MOVE_TOWER_ITEM){
                     ShowTowerScreen(par);
@@ -7298,7 +7362,7 @@ def ActionHandler(event):
                     DisplayInventory(undefined, OnStage(SCR_CHAR_BG_RIGHT));
                     i = 0;
                     while (i < 13) {
-                        if (MirrorPieces[i]){
+                        if (mirror_pieces[i]){
                             Add((MIRROR_PIECE + i));
                         } else {
                             Remove((MIRROR_PIECE + i));
@@ -7309,7 +7373,7 @@ def ActionHandler(event):
             };
             break;
         case ACT_SCREEN_CHAR:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             PlayerDesc = resolveBreaks(par[1]);
             if (Savegame[SG_FACE_1] == 0){
                 ShowBuildCharacterScreen();
@@ -7318,7 +7382,7 @@ def ActionHandler(event):
             };
             break;
         case ACT_SCREEN_ZAUBERLADEN:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             if (par[1]){
                 specialAction = par[1];
             } else {
@@ -7330,11 +7394,11 @@ def ActionHandler(event):
             } else {
                 Load(SCR_FIDGET_BG);
                 ShowCharacterScreen();
-                WhenLoaded(DoActZauberladen);
+                when_loaded(DoActZauberladen);
             };
             break;
         case ACT_SCREEN_SCHMIEDE:
-            ParseSavegame(par[0]);
+            parse_savgame(par[0]);
             if (par[1]){
                 specialAction = par[1];
             } else {
@@ -7346,7 +7410,7 @@ def ActionHandler(event):
             } else {
                 Load(SCR_SHAKES_BG);
                 ShowCharacterScreen();
-                WhenLoaded(DoActSchmiede);
+                when_loaded(DoActSchmiede);
             };
             break;
         case RESP_UPDATE_CHECK:
@@ -7372,14 +7436,14 @@ def ActionHandler(event):
             if (par[2]){
                 sessionId = par[2];
             };
-            LevelUp = false;
-            LastLevel = 0;
-            oldAch = new Array();
-            oldAlbum = -1;
-            AlbumEffect = false;
-            PreviousLogin = true;
-            GildenID = 0;
-            ParseSavegame(par[0], false);
+            level_up = false;
+            last_level = 0;
+            old_ach = new Array();
+            old_album = -1;
+            album_effect = false;
+            PreviousLOGin = true;
+            gilden_id = 0;
+            parse_savgame(par[0], false);
             if (par[1]){
                 DealerAktion = int(par[1]);
             } else {
@@ -7390,7 +7454,7 @@ def ActionHandler(event):
             } else {
                 PulseDealer = false;
             };
-            so.data.skipAutoLogin = false;
+            so.data.skipAutoLOGin = false;
             if (!so.data.HasAccount){
                 so.data.PaymentMethod = 4;
             };
@@ -7401,20 +7465,20 @@ def ActionHandler(event):
             Add(IF_LOGOUT);
             if (Savegame[SG_FACE_1] == 0){
                 trc("Fehler: Charakter nicht initialisiert.");
-                RequestLogout();
+                RequestLOGout();
             } else {
-                ParseSavegame(par[0]);
+                parse_savgame(par[0]);
                 if (view_player != ""){
-                    selName = view_player;
-                    SendAction(ACT_REQUEST_CHAR, view_player);
+                    sel_name = view_player;
+                    send_action(ACT_REQUEST_CHAR, view_player);
                 } else {
                     if (param_hall != ""){
-                        SendAction(ACT_SCREEN_EHRENHALLE, param_hall, "-2");
+                        send_action(ACT_SCREEN_EHRENHALLE, param_hall, "-2");
                         param_valid = "";
                     } else {
                         if ((((int(Savegame[SG_EMAIL_VALID]) < 1)) and ((int(Savegame[SG_SERVER_TIME]) > (int(Savegame[SG_EMAIL_DATE]) + (((2 * 60) * 24) * 60)))))){
                             if (param_valid != ""){
-                                SendAction(ACT_VALIDATE, param_valid);
+                                send_action(ACT_VALIDATE, param_valid);
                                 param_valid = "";
                             } else {
                                 ShowEmailNagScreen();
@@ -7428,7 +7492,7 @@ def ActionHandler(event):
                                 };
                             } else {
                                 if (param_valid != ""){
-                                    SendAction(ACT_VALIDATE, param_valid);
+                                    send_action(ACT_VALIDATE, param_valid);
                                     param_valid = "";
                                 } else {
                                     ShowCityScreen();
@@ -7474,7 +7538,7 @@ def ActionHandler(event):
             break;
         case RESP_ACCOUNT_SUCCESS:
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = actor[INP_PASSWORD].getChildAt(1).text;
-            so.data.skipAutoLogin = false;
+            so.data.skipAutoLOGin = false;
             so.data.HasAccount = true;
             so.data.hadAccount = true;
             so.data.userName = actor[INP_NAME].getChildAt(1).text;
@@ -7499,29 +7563,29 @@ def ActionHandler(event):
             ErrorMessage(txt[TXT_ERROR_NAME_REJECTED]);
             break;
         case ERR_LOGIN_FAILED:
-            so.data.skipAutoLogin = true;
+            so.data.skipAutoLOGin = true;
             so.data.password = "";
             so.flush();
             actor[INP_EMAIL].getChildAt(1).text = "";
             actor[INP_PASSWORD].getChildAt(1).text = "";
-            CharVolk = 0;
-            ShowLoginScreen(undefined, true, true);
+            char_volk = 0;
+            ShowLOGinScreen(undefined, true, true);
             ErrorMessage(txt[TXT_ERROR_LOGIN_FAILED]);
             break;
         case ERR_TOO_EXPENSIVE:
             if (OnStage(MODIFY_CHARACTER)){
-                CharVolk = revertCharVolk;
-                CharMann = revertCharMann;
-                CharColor = revertCharColor;
-                CharMouth = revertCharMouth;
-                CharBeard = revertCharBeard;
-                CharNose = revertCharNose;
-                CharEyes = revertCharEyes;
-                CharBrows = revertCharBrows;
-                CharEars = revertCharEars;
-                CharHair = revertCharHair;
-                CharSpecial = revertCharSpecial;
-                CharSpecial2 = revertCharSpecial2;
+                char_volk = revertchar_volk;
+                char_male = revertchar_male;
+                char_color = revertchar_color;
+                char_mouth = revertchar_mouth;
+                char_beard = revertchar_beard;
+                char_nose = revertchar_nose;
+                char_eyes = revertchar_eyes;
+                char_brows = revertchar_brows;
+                char_ears = revertchar_ears;
+                char_hair = revertchar_hair;
+                char_special = revertchar_special;
+                char_special2 = revertchar_special2;
                 ShowOptionScreen();
             };
             ErrorMessage(txt[TXT_ERROR_TOO_EXPENSIVE]);
@@ -7551,7 +7615,7 @@ def ActionHandler(event):
     pxlStr = "";
     inVar = false;
     for each (pixel in trackPixels) {
-        if ((((int(pixel[0]) == act)) or ((((nextPxl > 0)) and ((nextPxl == int(pixel[0]))))))){
+        if ((((int(pixel[0]) == act)) or ((((next_pxl > 0)) and ((next_pxl == int(pixel[0]))))))){
             pas = new Array();
             for each (pa in pixel[1].split(",")) {
                 if (pa.indexOf("-") != -1){
@@ -7588,25 +7652,25 @@ def ActionHandler(event):
                     };
                 };
                 if (int(Savegame[SG_PLAYER_ID]) == 0){
-                    nextPxl = -(act);
+                    next_pxl = -(act);
                 } else {
                     LoadTrackingPixel(pxlStr);
                 };
             };
         };
     };
-    if (nextPxl > 0){
-        nextPxl = 0;
+    if (next_pxl > 0){
+        next_pxl = 0;
     };
     if (logInAfterPixel){
-        RequestLogin(event);
+        RequestLOGin(event);
     };
 }
 '''
 
 '''
 
-public function RequestLogin(evt:Event=undefined):void{
+public function RequestLOGin(evt:Event=undefined):void{
     var tmpPw:String;
     if ((evt is KeyboardEvent)){
         if (((((!((KeyboardEvent(evt).keyCode == 13))) and (!((KeyboardEvent(evt).keyCode == 10))))) and (!((KeyboardEvent(evt).keyCode == 16777230))))){
@@ -7619,13 +7683,13 @@ public function RequestLogin(evt:Event=undefined):void{
             tmpPw = MD5(tmpPw);
         };
     };
-    SendAction(ACT_LOGIN, actor[INP_NAME].getChildAt(1).text, tmpPw, "v1.70");
+    send_action(ACT_LOGIN, actor[INP_NAME].getChildAt(1).text, tmpPw, "v1.70");
 }
 
 
-public function RequestLogout(evt:Event=undefined, keepData:Boolean=false):void{
+public function RequestLOGout(evt:Event=undefined, keepData:Boolean=false):void{
     RemoveAll();
-    nextPxl = 0;
+    next_pxl = 0;
     actor[LBL_ERROR].text = "";
     if (!keepData){
         so.data.userName = "";
@@ -7636,9 +7700,9 @@ public function RequestLogout(evt:Event=undefined, keepData:Boolean=false):void{
         actor[INP_EMAIL].getChildAt(1).text = "";
         actor[INP_PASSWORD].getChildAt(1).text = "";
     };
-    SendAction(ACT_LOGOUT);
+    send_action(ACT_LOGOUT);
     Savegame = new Array();
-    CharVolk = 0;
+    char_volk = 0;
     Gilde = "";
     myOwnRank = -1;
     myOwnAttackTarget = -1;
@@ -7651,24 +7715,24 @@ public function RequestLogout(evt:Event=undefined, keepData:Boolean=false):void{
     PulseArbeiten = false;
     PulseGilde = false;
     PulseGildeOnHistory = false;
-    PulsePost = false;
+    pulse_post = false;
     PulseDealer = false;
     guildBlinkReady = false;
     sessionId = "";
     fightFlushMode = false;
     if (!keepData){
-        ShowLoginScreen();
+        ShowLOGinScreen();
     };
 }
 
 
 public function RequestCancelArbeiten(evt:Event=undefined):void{
-    SendAction(ACT_ARBEIT_CANCEL);
+    send_action(ACT_ARBEIT_CANCEL);
 }
 
 
 public function RequestArbeiten(evt:Event=undefined):void{
-    SendAction(ACT_ARBEIT, GetSliderValue(SLDR_ARBEITEN));
+    send_action(ACT_ARBEIT, GetSliderValue(SLDR_ARBEITEN));
 }
 
 
@@ -7677,17 +7741,17 @@ public function RequestCreateCharacter(evt:Event=undefined):void{
 
 
 public function RequestChangeFace(evt:Event=undefined):void{
-    if ((((((((((((((((((((((((CharVolk == revertCharVolk)) and ((CharMann == revertCharMann)))) and ((CharColor == revertCharColor)))) and ((CharMouth == revertCharMouth)))) and ((CharBeard == revertCharBeard)))) and ((CharNose == revertCharNose)))) and ((CharEyes == revertCharEyes)))) and ((CharBrows == revertCharBrows)))) and ((CharEars == revertCharEars)))) and ((CharHair == revertCharHair)))) and ((CharSpecial == revertCharSpecial)))) and ((CharSpecial2 == revertCharSpecial2)))){
-        SendAction(ACT_SCREEN_OPTIONEN);
+    if ((((((((((((((((((((((((char_volk == revertchar_volk)) and ((char_male == revertchar_male)))) and ((char_color == revertchar_color)))) and ((char_mouth == revertchar_mouth)))) and ((char_beard == revertchar_beard)))) and ((char_nose == revertchar_nose)))) and ((char_eyes == revertchar_eyes)))) and ((char_brows == revertchar_brows)))) and ((char_ears == revertchar_ears)))) and ((char_hair == revertchar_hair)))) and ((char_special == revertchar_special)))) and ((char_special2 == revertchar_special2)))){
+        send_action(ACT_SCREEN_OPTIONEN);
     } else {
-        SendAction(ACT_CHANGE_FACE, actor[INP_NAME].getChildAt(1).text, actor[INP_LOGIN_PASSWORD].getChildAt(1).text, CharVolk, ((CharMann) ? 1 : 2), (((((((((((((((((CharMouth + "/") + CharHair) + "/") + CharBrows) + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") + CharEars) + "/") + CharSpecial) + "/") + CharSpecial2) + "/"));
+        send_action(ACT_CHANGE_FACE, actor[INP_NAME].getChildAt(1).text, actor[INP_LOGIN_PASSWORD].getChildAt(1).text, char_volk, ((char_male) ? 1 : 2), (((((((((((((((((char_mouth + "/") + char_hair) + "/") + char_brows) + "/") + char_eyes) + "/") + char_beard) + "/") + char_nose) + "/") + char_ears) + "/") + char_special) + "/") + char_special2) + "/"));
     };
 }
 
 
 public function RequestCharScreen(evt:Event=undefined):void{
     arrowHallMode = false;
-    SendAction(ACT_SCREEN_CHAR);
+    send_action(ACT_SCREEN_CHAR);
 }
 
 
@@ -7867,7 +7931,7 @@ public function LoadOriginalLanguageFile():void{
     pendingLanguageFile = true;
 }
 
-public function LoadConfigurationFile():void{
+public function load_configuration_file():void{
     var loader:* = null;
     var loader2:* = null;
     var pendingConfigurationFiles:* = undefined;
@@ -8283,7 +8347,7 @@ public function LoadConfigurationFile():void{
     pendingConfigurationFile = true;
 }
 
-DoLoadLanguageFile = function (){
+do_load_language_file = function (){
     var i:* = 0;
     var StripSlashes:* = function (source:str):str{
         return (source.split("http://").join("").split("/").join(""));
@@ -8294,7 +8358,7 @@ DoLoadLanguageFile = function (){
     Security.loadPolicyFile((("http://" + server) + "/crossdomain.xml"));
     Security.allowDomain(StripSlashes(img_url[img_url_index]), StripSlashes(snd_url[snd_url_index]), StripSlashes(lang_url), server);
     LoadLanguageFile();
-    WhenLoaded(BuildInterface);
+    when_loaded(BuildInterface);
 
 
 public function Load(... _args):void{
@@ -8340,17 +8404,17 @@ public function Load(... _args):void{
     };
 }
 
-public function WhenLoaded(fn:Function=undefined):void{
+public function when_loaded(fn:Function=undefined):void{
     var i:int;
     var pending:Boolean;
     var tmpFn:Function;
-    var WhenLoadedFnTemp:Array;
+    var when_loadedFnTemp:Array;
     pending = false;
     if ((fn is Function)){
-        WhenLoadedFn[WhenLoadedFn.length] = fn;
-        WhenLoadedActive = true;
-        WhenLoadedTimeout.stop();
-        WhenLoadedTimeout.start();
+        when_loadedFn[when_loadedFn.length] = fn;
+        when_loadedActive = true;
+        when_loadedTimeout.stop();
+        when_loadedTimeout.start();
     };
     i = 0;
     while (i < actor.length) {
@@ -8370,15 +8434,15 @@ public function WhenLoaded(fn:Function=undefined):void{
         pending = true;
     };
     if (!pending){
-        if (WhenLoadedActive){
-            WhenLoadedTimeout.stop();
-            WhenLoadedActive = false;
-            WhenLoadedFnTemp = WhenLoadedFn;
-            WhenLoadedFn = new Array();
+        if (when_loadedActive){
+            when_loadedTimeout.stop();
+            when_loadedActive = false;
+            when_loadedFnTemp = when_loadedFn;
+            when_loadedFn = new Array();
             i = 0;
-            while (i < WhenLoadedFnTemp.length) {
-                tmpFn = WhenLoadedFnTemp[i];
-                WhenLoadedFnTemp[i] = new Function();
+            while (i < when_loadedFnTemp.length) {
+                tmpFn = when_loadedFnTemp[i];
+                when_loadedFnTemp[i] = new Function();
                 tmpFn();
                 i++;
             };
@@ -8386,11 +8450,11 @@ public function WhenLoaded(fn:Function=undefined):void{
     };
 }
 
-public function WhenLoadedTimeoutEvent(evt:TimerEvent){
+public function when_loadedTimeoutEvent(evt:TimerEvent){
     var i:int;
     var old_img_url_index:int;
     var old_snd_url_index:int;
-    WhenLoadedTimeout.stop();
+    when_loadedTimeout.stop();
     i = 0;
     while (i < actor.length) {
         if ((actor[i] is Loader)){
@@ -8401,7 +8465,7 @@ public function WhenLoadedTimeoutEvent(evt:TimerEvent){
         };
         i++;
     };
-    WhenLoaded();
+    when_loaded();
     toErrorCount++;
     if (toErrorCount == 10){
         old_img_url_index = img_url_index;
@@ -8437,7 +8501,7 @@ public function LoaderComplete(evt:Event=undefined):void{
             smoothing = true;
         };
     };
-    WhenLoaded();
+    when_loaded();
 }
 
 public function LoaderError(evt:ErrorEvent=undefined):void{
@@ -8456,7 +8520,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             i++;
         };
     };
-    WhenLoaded();
+    when_loaded();
     ioErrorCount++;
     if (ioErrorCount == 10){
         old_img_url_index = img_url_index;
@@ -8594,19 +8658,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var BoostBtnTimer:* = null;
         var BoostBtnTimerFunction:* = null;
         var itmTyp:* = 0;
-        var itmPic:* = 0;
-        var itmColor:* = 0;
-        var itmClass:* = 0;
+        var itm_pic:* = 0;
+        var itm_color:* = 0;
+        var itm_class:* = 0;
         var InventoryItemMouseDown:* = null;
         var BackpackItemMouseDown:* = null;
         var InventoryItemMouseUp:* = null;
         var DropHandler:* = null;
         var PotionSingleClick:* = null;
         var PotionDoubleClick:* = null;
-        var towerLevelLabelTimer:* = null;
+        var tower_levelLabelTimer:* = null;
         var towerBoostPriceFadeoutTimer:* = null;
         var towerBoostPriceFadeout:* = null;
-        var towerLevelLabelMoveFn:* = null;
+        var tower_levelLabelMoveFn:* = null;
         var ShowTowerBoostPrices:* = null;
         var HideTowerBoostPrices:* = null;
         var BoostCopycat:* = null;
@@ -8703,7 +8767,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             navigateToURLEx(new URLRequest(forum_url), "_blank");
         };
         var ShowShop:* = function (){
-            navigateToURLEx(new URLRequest(shop_url.split("<playerid>").join(Savegame[SG_PLAYER_ID]).split("<paymentid>").join(Savegame[SG_PAYMENT_ID]).split("<playername>").join(actor[INP_NAME].getChildAt(1).text).split("<face>").join((((((((((((((((((((((((CharVolk + "/") + str(((CharMann) ? 1 : 2))) + "/") + CharKaste) + "/") + CharMouth) + "/") + CharHair) + "/") + CharBrows) + "/") + CharEyes) + "/") + CharBeard) + "/") + CharNose) + "/") + CharEars) + "/") + CharSpecial) + "/") + CharSpecial2) + "/"))), "_blank");
+            navigateToURLEx(new URLRequest(shop_url.split("<playerid>").join(Savegame[SG_PLAYER_ID]).split("<paymentid>").join(Savegame[SG_PAYMENT_ID]).split("<playername>").join(actor[INP_NAME].getChildAt(1).text).split("<face>").join((((((((((((((((((((((((char_volk + "/") + str(((char_male) ? 1 : 2))) + "/") + char_class) + "/") + char_mouth) + "/") + char_hair) + "/") + char_brows) + "/") + char_eyes) + "/") + char_beard) + "/") + char_nose) + "/") + char_ears) + "/") + char_special) + "/") + char_special2) + "/"))), "_blank");
         };
         var navigateToURLEx:* = function (req:URLRequest, frameName:str){
             var req:* = req;
@@ -9129,7 +9193,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
             actor[INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, RequestPassword);
             actor[INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, RequestPassword);
-            LogonRTL();
+            LOGonRTL();
             Add(WINDOW_FORGOT_PASSWORD);
         };
         RequestPassword = function (evt:Event):void{
@@ -9138,7 +9202,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     return;
                 };
             };
-            SendAction(ACT_FORGOT_PASSWORD, actor[INP_NAME].getChildAt(1).text, actor[INP_EMAIL].getChildAt(1).text);
+            send_action(ACT_FORGOT_PASSWORD, actor[INP_NAME].getChildAt(1).text, actor[INP_EMAIL].getChildAt(1).text);
         };
         CheckAGB = function (evt:MouseEvent):void{
             Add(CB_AGB_CHECKED);
@@ -9203,12 +9267,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 PulseDealer = false;
             };
             if (OnStage(POST_LIST)){
-                PulsePost = false;
+                pulse_post = false;
             };
             if (((((OnStage(SCR_CHAR_BG_RIGHT)) or (OnStage(SCR_SHAKES_BG)))) or (OnStage(SCR_FIDGET_BG)))){
-                PulseChar = false;
+                pulse_char = false;
             };
-            if (((((((((((PulseTaverne) or (PulseArbeiten))) or (PulseGilde))) or (PulsePost))) or (PulseChar))) or (PulseDealer))){
+            if (((((((((((PulseTaverne) or (PulseArbeiten))) or (PulseGilde))) or (pulse_post))) or (pulse_char))) or (PulseDealer))){
                 PulseTimer.delay = 20;
             } else {
                 PulseTimer.delay = 500;
@@ -9216,8 +9280,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             ButtonPulse(PulseTaverne, IF_TAVERNE);
             ButtonPulse(PulseArbeiten, IF_ARBEITEN);
             ButtonPulse(PulseGilde, IF_GILDEN);
-            ButtonPulse(PulsePost, IF_POST);
-            ButtonPulse(PulseChar, IF_CHARAKTER);
+            ButtonPulse(pulse_post, IF_POST);
+            ButtonPulse(pulse_char, IF_CHARAKTER);
             ButtonPulse(PulseDealer, IF_PILZDEALER);
         };
         CloneMarker = function ():void{
@@ -9238,12 +9302,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var actorID:int;
             actorID = GetActorID(evt.target);
             if ((((actorID >= VOLK_1_M_IDLE)) and ((actorID <= VOLK_8_M_IDLE)))){
-                CharVolk = ((actorID - VOLK_1_M_IDLE) + 1);
-                CharMann = true;
+                char_volk = ((actorID - VOLK_1_M_IDLE) + 1);
+                char_male = true;
             };
             if ((((actorID >= VOLK_1_F_IDLE)) and ((actorID <= VOLK_8_F_IDLE)))){
-                CharVolk = ((actorID - VOLK_1_F_IDLE) + 1);
-                CharMann = false;
+                char_volk = ((actorID - VOLK_1_F_IDLE) + 1);
+                char_male = false;
             };
             RandomizeCharImage();
             if (OnStage(POPUP_INFO)){
@@ -9254,10 +9318,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var actorID:int;
             actorID = GetActorID(evt.target);
             if (actorID == M_IDLE){
-                CharMann = true;
+                char_male = true;
             };
             if (actorID == F_IDLE){
-                CharMann = false;
+                char_male = false;
             };
             RandomizeCharImage();
             if (OnStage(POPUP_INFO)){
@@ -9269,13 +9333,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             actorID = GetActorID(evt.target);
             KlasseGewählt = true;
             if (actorID == KASTE_1_IDLE){
-                CharKaste = 1;
+                char_class = 1;
             };
             if (actorID == KASTE_2_IDLE){
-                CharKaste = 2;
+                char_class = 2;
             };
             if (actorID == KASTE_3_IDLE){
-                CharKaste = 3;
+                char_class = 3;
             };
             LoadCharacterImage();
             if (OnStage(POPUP_INFO)){
@@ -9768,13 +9832,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         ExitScreen = function (evt:Event=undefined){
             if (OnStage(TOILET)){
-                SendAction(ACT_SCREEN_TAVERNE);
+                send_action(ACT_SCREEN_TAVERNE);
             } else {
                 if (OnStage(WITCH)){
-                    SendAction(ACT_SCREEN_ZAUBERLADEN);
+                    send_action(ACT_SCREEN_ZAUBERLADEN);
                 } else {
                     if (((OnStage(TOWER_SCROLLAREA)) or (OnStage(LBL_MAINQUEST_TITLE)))){
-                        SendAction(ACT_SCREEN_WELTKARTE);
+                        send_action(ACT_SCREEN_WELTKARTE);
                     } else {
                         ShowCityScreen();
                     };
@@ -9797,38 +9861,38 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 case HALL_GOTO_SPIELER:
                     ruhmesHalleSuchName = true;
                     ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
-                    SendAction(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
+                    send_action(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
                     break;
                 case HALL_GOTO_GILDEN:
                     if (Savegame[SG_GUILD_INDEX] > 0){
                         ruhmesHalleSuchName = true;
                         ruhmesHalleSuchString = Gilde;
-                        SendAction(ACT_SCREEN_GILDENHALLE, "", Savegame[SG_GUILD_INDEX], 0);
+                        send_action(ACT_SCREEN_GILDENHALLE, "", Savegame[SG_GUILD_INDEX], 0);
                     } else {
                         ruhmesHalleSuchName = false;
                         ruhmesHalleSuchString = "";
-                        SendAction(ACT_SCREEN_GILDENHALLE, "", 0, 1);
+                        send_action(ACT_SCREEN_GILDENHALLE, "", 0, 1);
                     };
                     break;
                 case HALLE_UP:
                     if (GuildHallMode){
-                        SendAction(ACT_SCREEN_GILDENHALLE, "", "0", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) - 15));
+                        send_action(ACT_SCREEN_GILDENHALLE, "", "0", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) - 15));
                     } else {
-                        SendAction(ACT_SCREEN_EHRENHALLE, "", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) - 15));
+                        send_action(ACT_SCREEN_EHRENHALLE, "", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) - 15));
                     };
                     break;
                 case HALLE_DOWN:
                     if (GuildHallMode){
-                        SendAction(ACT_SCREEN_GILDENHALLE, "", "0", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) + 15));
+                        send_action(ACT_SCREEN_GILDENHALLE, "", "0", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) + 15));
                     } else {
-                        SendAction(ACT_SCREEN_EHRENHALLE, "", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) + 15));
+                        send_action(ACT_SCREEN_EHRENHALLE, "", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) + 15));
                     };
                     break;
                 default:
                     ruhmesHalleSuchString = actor[INP_HALLE_GOTO].getChildAt(1).text;
                     if ((((((((ruhmesHalleSuchString.toLowerCase() == "/s [p: 332]")) or ((ruhmesHalleSuchString.toLowerCase() == "/s[p: 332]")))) or ((ruhmesHalleSuchString.toLowerCase() == "/s [p:332]")))) or ((ruhmesHalleSuchString.toLowerCase() == "/s[p:332]")))){
                         Play(SND_MOUNT_1);
-                        SendAction(ACT_SEND_CHAT, EncodeChat("Moo!"), lastChatIndex);
+                        send_action(ACT_SEND_CHAT, EncodeChat("Moo!"), lastChatIndex);
                         if (textDir == "right"){
                             var _local3 = actor[IF_GOLD];
                             with (_local3) {
@@ -9880,16 +9944,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     if (int(actor[INP_HALLE_GOTO].getChildAt(1).text) > 0){
                         ruhmesHalleSuchName = false;
                         if (GuildHallMode){
-                            SendAction(ACT_SCREEN_GILDENHALLE, "", "0", int(actor[INP_HALLE_GOTO].getChildAt(1).text));
+                            send_action(ACT_SCREEN_GILDENHALLE, "", "0", int(actor[INP_HALLE_GOTO].getChildAt(1).text));
                         } else {
-                            SendAction(ACT_SCREEN_EHRENHALLE, "", int(actor[INP_HALLE_GOTO].getChildAt(1).text));
+                            send_action(ACT_SCREEN_EHRENHALLE, "", int(actor[INP_HALLE_GOTO].getChildAt(1).text));
                         };
                     } else {
                         ruhmesHalleSuchName = true;
                         if (GuildHallMode){
-                            SendAction(ACT_SCREEN_GILDENHALLE, actor[INP_HALLE_GOTO].getChildAt(1).text, "0", "0");
+                            send_action(ACT_SCREEN_GILDENHALLE, actor[INP_HALLE_GOTO].getChildAt(1).text, "0", "0");
                         } else {
-                            SendAction(ACT_SCREEN_EHRENHALLE, actor[INP_HALLE_GOTO].getChildAt(1).text, -1);
+                            send_action(ACT_SCREEN_EHRENHALLE, actor[INP_HALLE_GOTO].getChildAt(1).text, -1);
                         };
                     };
             };
@@ -9905,7 +9969,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             if (((!((actor[INP_CHAR_INVITE].getChildAt(1).text == ""))) and (!((actor[INP_CHAR_INVITE2].getChildAt(1).text == ""))))){
-                SendAction(ACT_INVITE_PLAYER, actor[INP_CHAR_INVITE].getChildAt(1).text.split(";").join("AAASEMIAAA"), actor[INP_CHAR_INVITE2].getChildAt(1).text.split(";").join("AAASEMIAAA"));
+                send_action(ACT_INVITE_PLAYER, actor[INP_CHAR_INVITE].getChildAt(1).text.split(";").join("AAASEMIAAA"), actor[INP_CHAR_INVITE2].getChildAt(1).text.split(";").join("AAASEMIAAA"));
             } else {
                 ErrorMessage(txt[TXT_ERROR_INPUT_REQUIRED]);
             };
@@ -9916,34 +9980,34 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (SelectedGuild != ""){
                 if (SelectedGuild == Gilde){
-                    SendAction(ACT_SCREEN_GILDEN);
+                    send_action(ACT_SCREEN_GILDEN);
                 } else {
-                    SendAction(ACT_SCREEN_FREMDGILDE, SelectedGuild);
+                    send_action(ACT_SCREEN_FREMDGILDE, SelectedGuild);
                 };
             };
         };
         PrevPlayer = function (evt:MouseEvent=undefined){
             if (arrowHallMode){
-                selName = lastHallMembers[indexInHall];
-                SendAction(ACT_REQUEST_CHAR, lastHallMembers[indexInHall]);
+                sel_name = lastHallMembers[indexInHall];
+                send_action(ACT_REQUEST_CHAR, lastHallMembers[indexInHall]);
             } else {
-                selName = lastGuildMembers[indexInGuild];
-                SendAction(ACT_REQUEST_CHAR, lastGuildMembers[indexInGuild]);
+                sel_name = lastGuildMembers[indexInGuild];
+                send_action(ACT_REQUEST_CHAR, lastGuildMembers[indexInGuild]);
             };
         };
         NextPlayer = function (evt:MouseEvent=undefined){
             if (arrowHallMode){
-                selName = lastHallMembers[(indexInHall + 2)];
-                SendAction(ACT_REQUEST_CHAR, lastHallMembers[(indexInHall + 2)]);
+                sel_name = lastHallMembers[(indexInHall + 2)];
+                send_action(ACT_REQUEST_CHAR, lastHallMembers[(indexInHall + 2)]);
             } else {
-                selName = lastGuildMembers[(indexInGuild + 2)];
-                SendAction(ACT_REQUEST_CHAR, lastGuildMembers[(indexInGuild + 2)]);
+                sel_name = lastGuildMembers[(indexInGuild + 2)];
+                send_action(ACT_REQUEST_CHAR, lastGuildMembers[(indexInGuild + 2)]);
             };
         };
         var JumpToPlayerHall:* = function (evt:Event=undefined){
             ruhmesHalleSuchString = lastPlayer;
             ruhmesHalleSuchName = true;
-            SendAction(ACT_SCREEN_EHRENHALLE, ruhmesHalleSuchString, -1);
+            send_action(ACT_SCREEN_EHRENHALLE, ruhmesHalleSuchString, -1);
         };
         var EnterPlayerDesc:* = function (evt:FocusEvent){
             var evt:* = evt;
@@ -9962,7 +10026,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             with (_local3) {
                 if (type == TextFieldType.INPUT){
                     if (text != PlayerDesc){
-                        SendAction(ACT_SET_PLAYER_DESC, RemoveIllegalChars(SemiStrip(text)));
+                        send_action(ACT_SET_PLAYER_DESC, RemoveIllegalChars(SemiStrip(text)));
                     };
                     if (text == ""){
                         text = txt[TXT_ENTERDESC];
@@ -9971,7 +10035,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         RequestAlbum = function (evt:Event=undefined){
-            SendAction(ACT_ALBUM);
+            send_action(ACT_ALBUM);
             ShowScreenAlbum();
         };
         PlayerGuildInviteCancel = function (evt:Event=undefined){
@@ -9984,7 +10048,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (!OnStage(PLAYER_GUILD_INVITE)){
                 return;
             };
-            SendAction(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, Gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
+            send_action(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, Gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
         };
         PlayerGuildInvite = function (evt:Event=undefined){
             var evt:* = evt;
@@ -9997,10 +10061,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         var RequestStableScreen:* = function (evt:Event){
-            SendAction(ACT_SCREEN_STALL);
+            send_action(ACT_SCREEN_STALL);
         };
         ZurGilde = function (evt:Event=undefined){
-            SendAction(ACT_SCREEN_GILDEN);
+            send_action(ACT_SCREEN_GILDEN);
         };
         PlayerSendMessage = function (){
             ShowPostScreen();
@@ -10016,9 +10080,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
                 EnablePopup(LBL_IF_PILZE);
             };
-            SendAction(ACT_START_FIGHT, selName);
-            if (lastAttacked.indexOf(selName.toLowerCase()) == -1){
-                lastAttacked.push(selName.toLowerCase());
+            send_action(ACT_START_FIGHT, sel_name);
+            if (lastAttacked.indexOf(sel_name.toLowerCase()) == -1){
+                lastAttacked.push(sel_name.toLowerCase());
             };
         };
         PlayerInvite = function (){
@@ -10036,7 +10100,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 Add(SCREEN_INVITE);
             };
             Load(SCREEN_INVITE);
-            WhenLoaded(ShowInviteScreen);
+            when_loaded(ShowInviteScreen);
         };
         var BoostBtnDownHandler:* = function (evt:Event){
             var ClickCount:* = 0;
@@ -10085,7 +10149,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         BoostAttribute = function (evt:Event):Boolean{
             if (canBoost[(GetActorID(evt.target) - SCR_CHAR_STEIGERN1)]){
-                SendAction(ACT_BUY_ATTRIB, ((GetActorID(evt.target) - SCR_CHAR_STEIGERN1) + 1));
+                send_action(ACT_BUY_ATTRIB, ((GetActorID(evt.target) - SCR_CHAR_STEIGERN1) + 1));
             };
             return (canBoost[(GetActorID(evt.target) - SCR_CHAR_STEIGERN1)]);
         };
@@ -10166,7 +10230,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         trc("impossible here");
                         return (false);
                     };
-                    SendAction(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 0, 0);
+                    send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 0, 0);
                     return (true);
                 };
                 trc("wrong source");
@@ -10177,9 +10241,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         trc("using can be done");
                         sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
                         if (towerMode){
-                            SendAction(ACT_MOVE_COPYCAT_ITEM, 2, (sourceSlot - 10), (copyCatSel + 101), -1);
+                            send_action(ACT_MOVE_COPYCAT_ITEM, 2, (sourceSlot - 10), (copyCatSel + 101), -1);
                         } else {
-                            SendAction(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 1, -1);
+                            send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 1, -1);
                         };
                         return (true);
                     };
@@ -10193,7 +10257,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 trc("impossible here");
                                 return (false);
                             };
-                            SendAction(ACT_WITCH_DONATE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))));
+                            send_action(ACT_WITCH_DONATE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))));
                             return (true);
                         };
                         trc("wrong source");
@@ -10208,14 +10272,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 if (towerMode){
                                     if (towerSG[(((((sourceSlot <= 10)) ? ((TSG_COPYCATS + (copyCatSel * COPYCAT)) + CPC_ITEMS) : TSG_LOOT_SACK) + ((((sourceSlot <= 10)) ? (sourceSlot - 1) : (sourceSlot - 11)) * SG_ITM_SIZE)) + SG_ITM_TYP)] > 0){
                                         trc("do it");
-                                        SendAction(ACT_MOVE_COPYCAT_ITEM, (((sourceSlot <= 10)) ? (copyCatSel + 101) : 2), (((sourceSlot <= 10)) ? sourceSlot : (sourceSlot - 10)), (((targetSlot <= 10)) ? (copyCatSel + 101) : 2), (((targetSlot <= 10)) ? targetSlot : (targetSlot - 10)));
+                                        send_action(ACT_MOVE_COPYCAT_ITEM, (((sourceSlot <= 10)) ? (copyCatSel + 101) : 2), (((sourceSlot <= 10)) ? sourceSlot : (sourceSlot - 10)), (((targetSlot <= 10)) ? (copyCatSel + 101) : 2), (((targetSlot <= 10)) ? targetSlot : (targetSlot - 10)));
                                         return (true);
                                     };
                                     trc("source slot empty");
                                 } else {
                                     if (Savegame[(((((sourceSlot <= 15)) ? SG_INVENTORY_OFFS : (((sourceSlot <= 21)) ? SG_FIDGET_ITEM1 : SG_SHAKES_ITEM1)) + ((sourceSlot - (((sourceSlot <= 15)) ? 1 : (((sourceSlot <= 21)) ? 16 : 22))) * SG_ITM_SIZE)) + SG_ITM_TYP)] > 0){
                                         trc("do it");
-                                        SendAction(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), (((targetSlot <= 10)) ? 1 : (((targetSlot <= 15)) ? 2 : (((targetSlot <= 21)) ? 4 : 3))), (targetSlot - (((targetSlot <= 10)) ? 0 : (((targetSlot <= 15)) ? 10 : (((targetSlot <= 21)) ? 15 : 21)))));
+                                        send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), (((targetSlot <= 10)) ? 1 : (((targetSlot <= 15)) ? 2 : (((targetSlot <= 21)) ? 4 : 3))), (targetSlot - (((targetSlot <= 10)) ? 0 : (((targetSlot <= 15)) ? 10 : (((targetSlot <= 21)) ? 15 : 21)))));
                                         return (true);
                                     };
                                     trc("source slot empty");
@@ -10228,7 +10292,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 trc("drop in toilet");
                                 if ((((actorID >= CHAR_SLOT_10)) and ((actorID <= CHAR_SLOT_SHAKES_6)))){
                                     sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
-                                    SendAction(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 10, 0);
+                                    send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 10, 0);
                                     Show(TOILET_DROP);
                                     return (true);
                                 };
@@ -10245,40 +10309,40 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         PotionDoubleClick = function (evt:Event=undefined){
             if (!OnStage(CHAR_MESSAGE)){
-                SendAction(ACT_KILL_POTION, ((GetActorID(evt.target) - CHAR_POTION) + 1));
+                send_action(ACT_KILL_POTION, ((GetActorID(evt.target) - CHAR_POTION) + 1));
             };
         };
-        var OpenFriendLink:* = function (evt:Event){
-            navigateToURL(new URLRequest(((("mailto:?subject=" + txt[TXT_FRIEND_SUBJECT].split(" ").join("%20").split("&").join("%26")) + "&body=") + FriendLink)));
+        var Openfriend_link:* = function (evt:Event){
+            navigateToURL(new URLRequest(((("mailto:?subject=" + txt[TXT_FRIEND_SUBJECT].split(" ").join("%20").split("&").join("%26")) + "&body=") + friend_link)));
         };
         var TowerScrollSingle:* = function (evt:Event){
         };
         towerBoostPriceFadeout = function (evt:TimerEvent){
             FadeOut(TOWER_BOOSTPRICE);
         };
-        towerLevelLabelMoveFn = function (evt:TimerEvent){
-            if (Math.abs((actor[LBL_TOWER_EXPLABEL].x - towerLevelLabelPos)) >= 1){
-                actor[LBL_TOWER_EXPLABEL].x = ((actor[LBL_TOWER_EXPLABEL].x + towerLevelLabelPos) / 2);
+        tower_levelLabelMoveFn = function (evt:TimerEvent){
+            if (Math.abs((actor[LBL_TOWER_EXPLABEL].x - tower_levelLabelPos)) >= 1){
+                actor[LBL_TOWER_EXPLABEL].x = ((actor[LBL_TOWER_EXPLABEL].x + tower_levelLabelPos) / 2);
             } else {
-                actor[LBL_TOWER_EXPLABEL].x = towerLevelLabelPos;
-                towerLevelLabelTimer.stop();
+                actor[LBL_TOWER_EXPLABEL].x = tower_levelLabelPos;
+                tower_levelLabelTimer.stop();
             };
         };
         ShowTowerBoostPrices = function (evt:MouseEvent){
             var i:int;
             towerBoostPriceFadeoutTimer.stop();
             FadeIn(TOWER_BOOSTPRICE);
-            towerLevelLabelPos = (SCR_CHAR_CHARX + 3);
-            towerLevelLabelTimer.start();
+            tower_levelLabelPos = (SCR_CHAR_CHARX + 3);
+            tower_levelLabelTimer.start();
         };
         HideTowerBoostPrices = function (evt:MouseEvent){
             var i:int;
             towerBoostPriceFadeoutTimer.start();
-            towerLevelLabelPos = ((SCR_CHAR_CHARX + 127) - int((actor[LBL_TOWER_EXPLABEL].textWidth / 2)));
-            towerLevelLabelTimer.start();
+            tower_levelLabelPos = ((SCR_CHAR_CHARX + 127) - int((actor[LBL_TOWER_EXPLABEL].textWidth / 2)));
+            tower_levelLabelTimer.start();
         };
         BoostCopycat = function (){
-            SendAction(ACT_COPYCAT_BOOST, (copyCatSel + 1), ((towerSG[((TSG_COPYCATS + (COPYCAT * copyCatSel)) + CPC_LEVEL)] * 1) + 1));
+            send_action(ACT_COPYCAT_BOOST, (copyCatSel + 1), ((towerSG[((TSG_COPYCATS + (COPYCAT * copyCatSel)) + CPC_LEVEL)] * 1) + 1));
         };
         ShopAniFrame = function (evt:TimerEvent){
             var pv:Boolean;
@@ -10393,7 +10457,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         Add(SHAKES_EPCIOVL);
                         actor[SHAKES_EPCIOVL].mouseEnabled = false;
                     };
-                    if (!SleepTime()){
+                    if (!sleep_time()){
                         if (((PlayerIdle) and (!((ShakesIdlePhase == 0))))){
                             Remove(SHAKES_NIGHT);
                             Remove(SHAKES_DAY);
@@ -10477,7 +10541,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         if (AffeStep == 2){
                             Remove(FIDGET_AFFE3);
                         };
-                        if (!SleepTime()){
+                        if (!sleep_time()){
                             if (PlayerIdle){
                                 Remove(FIDGET_DAY);
                             };
@@ -10533,17 +10597,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 Remove(FIDGET_DAY);
                 Remove(FIDGET_IDLE);
                 SaleRecoverTime = 10;
-                SendAction(ACT_REQUEST_NEWWAREZ, ((OnStage(SCR_FIDGET_BG)) ? 1 : 2));
+                send_action(ACT_REQUEST_NEWWAREZ, ((OnStage(SCR_FIDGET_BG)) ? 1 : 2));
             };
         };
         RequestWitchScreen = function (evt:Event=undefined){
-            SendAction(ACT_SCREEN_WITCH);
+            send_action(ACT_SCREEN_WITCH);
         };
         CancelQuest = function (evt:Event=undefined){
-            SendAction(ACT_QUEST_CANCEL);
+            send_action(ACT_QUEST_CANCEL);
         };
         SkipQuest = function (evt:Event=undefined){
-            SendAction(ACT_QUEST_SKIP);
+            send_action(ACT_QUEST_SKIP);
         };
         var GuildMsgMode:* = function (evt:Event){
             if (OnStage(INP_POST_ADDRESS)){
@@ -10582,7 +10646,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             EnablePopup(LBL_IF_PILZE);
-            SendAction(ACT_START_FIGHT, actor[INP_ARENA_ENEMY].getChildAt(1).text);
+            send_action(ACT_START_FIGHT, actor[INP_ARENA_ENEMY].getChildAt(1).text);
             if (lastAttacked.indexOf(actor[INP_ARENA_ENEMY].getChildAt(1).text.toLowerCase()) == -1){
                 lastAttacked.push(actor[INP_ARENA_ENEMY].getChildAt(1).text.toLowerCase());
             };
@@ -10617,8 +10681,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             SetCnt(STALL_GOLD, IF_GOLD);
             SetCnt(STALL_SCHATZGOLD, IF_GOLD);
             SetCnt(STALL_SCHATZSILBER, IF_SILBER);
-            actor[LBL_STALL_TITEL].text = txt[((TXT_STALL_MOUNTTITEL + SelectedMount) + (((CharVolk >= 5)) ? 3 : -1))];
-            actor[LBL_STALL_TEXT].text = txt[((TXT_STALL_MOUNTTEXT + SelectedMount) + (((CharVolk >= 5)) ? 3 : -1))];
+            actor[LBL_STALL_TITEL].text = txt[((TXT_STALL_MOUNTTITEL + SelectedMount) + (((char_volk >= 5)) ? 3 : -1))];
+            actor[LBL_STALL_TEXT].text = txt[((TXT_STALL_MOUNTTEXT + SelectedMount) + (((char_volk >= 5)) ? 3 : -1))];
             actor[LBL_STALL_GAIN].text = txt[((TXT_MOUNT_GAIN1 + SelectedMount) - 1)].split("|").join("");
             if (textDir == "right"){
                 actor[LBL_STALL_TITEL].x = ((actor[LBL_STALL_TEXT].x + actor[LBL_STALL_TEXT].width) - actor[LBL_STALL_TITEL].textWidth);
@@ -10631,9 +10695,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     tmpX = ((actor[LBL_STALL_GAIN].x + actor[LBL_STALL_GAIN].width) + 10);
                 };
-                if (GoldAnteil(Stundenlohn) > 0){
+                if (gold_anteil(Stundenlohn) > 0){
                     AddSome(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD);
-                    actor[LBL_STALL_SCHATZGOLD].text = String(GoldAnteil(Stundenlohn));
+                    actor[LBL_STALL_SCHATZGOLD].text = String(gold_anteil(Stundenlohn));
                     if (textDir == "right"){
                         actor[STALL_SCHATZGOLD].x = (tmpX - actor[STALL_SCHATZGOLD].width);
                         tmpX = (tmpX - (actor[STALL_SCHATZGOLD].width + 10));
@@ -10646,9 +10710,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         tmpX = (tmpX + (actor[STALL_SCHATZGOLD].width + 10));
                     };
                 };
-                if (SilberAnteil(Stundenlohn) > 0){
+                if (silber_anteil(Stundenlohn) > 0){
                     AddSome(LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER);
-                    actor[LBL_STALL_SCHATZSILBER].text = String(SilberAnteil(Stundenlohn));
+                    actor[LBL_STALL_SCHATZSILBER].text = String(silber_anteil(Stundenlohn));
                     if (textDir == "right"){
                         actor[STALL_SCHATZSILBER].x = (tmpX - actor[STALL_SCHATZSILBER].width);
                         tmpX = (tmpX - (actor[STALL_SCHATZSILBER].width + 10));
@@ -10668,7 +10732,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[LBL_STALL_SCHATZ].x = tmpX;
                 };
             };
-            Switch ((SelectedMount + (((CharVolk >= 5)) ? 4 : 0))){
+            Switch ((SelectedMount + (((char_volk >= 5)) ? 4 : 0))){
                 case 1:
                     if ((((ststep == 0)) or ((ststep == 4)))){
                         ststep++;
@@ -10741,7 +10805,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
             };
             if (((!((SelectedMount == OldMount))) or ((OldMount == 0)))){
-                Play((((SND_MOUNT_1 + SelectedMount) + (((((CharVolk >= 5)) and (!(param_censored)))) ? 4 : 0)) - 1));
+                Play((((SND_MOUNT_1 + SelectedMount) + (((((char_volk >= 5)) and (!(param_censored)))) ? 4 : 0)) - 1));
             };
             OldMount = SelectedMount;
             if (Savegame[SG_MOUNT] > SelectedMount){
@@ -10777,28 +10841,28 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         BuyMount = function (evt:Event=undefined){
-            SendAction(ACT_BUY_MOUNT, SelectedMount);
+            send_action(ACT_BUY_MOUNT, SelectedMount);
         };
         var JumpToGuildHall:* = function (evt:Event=undefined){
             ruhmesHalleSuchString = lastGuildShown;
             ruhmesHalleSuchName = true;
-            SendAction(ACT_SCREEN_GILDENHALLE, ruhmesHalleSuchString, "0", "0");
+            send_action(ACT_SCREEN_GILDENHALLE, ruhmesHalleSuchString, "0", "0");
         };
         var AttackLinkClick:* = function (evt:Event){
             if (guildAttacked != ""){
                 if (guildAttacked == Gilde){
-                    SendAction(ACT_SCREEN_GILDEN);
+                    send_action(ACT_SCREEN_GILDEN);
                 } else {
-                    SendAction(ACT_SCREEN_FREMDGILDE, guildAttacked);
+                    send_action(ACT_SCREEN_FREMDGILDE, guildAttacked);
                 };
             };
         };
         var DefenceLinkClick:* = function (evt:Event){
             if (guildAttacking != ""){
                 if (guildAttacking == Gilde){
-                    SendAction(ACT_SCREEN_GILDEN);
+                    send_action(ACT_SCREEN_GILDEN);
                 } else {
-                    SendAction(ACT_SCREEN_FREMDGILDE, guildAttacking);
+                    send_action(ACT_SCREEN_FREMDGILDE, guildAttacking);
                 };
             };
         };
@@ -10914,7 +10978,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (textToSend.toLowerCase() == "/delfights"){
                 PostScroll = 1;
                 fightFlushMode = true;
-                SendAction(ACT_SCREEN_POST);
+                send_action(ACT_SCREEN_POST);
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
             };
@@ -11126,14 +11190,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (textToSend.substr(0, (txt[TXT_CMD_DONATE_GOLD].length + 1)).toLowerCase() == (txt[TXT_CMD_DONATE_GOLD].toLowerCase() + " ")){
                 if (textToSend.split(" ")[1] == "*"){
                     if ((int(actor[LBL_GILDE_GOLD].text) + int((actor[LBL_IF_GOLD].text + "00"))) <= 10000000){
-                        SendAction(ACT_GUILD_DONATE, 1, (actor[LBL_IF_GOLD].text + "00"));
+                        send_action(ACT_GUILD_DONATE, 1, (actor[LBL_IF_GOLD].text + "00"));
                     } else {
                         ErrorMessage(txt[TXT_ERROR_GUILD_CASH_FULL]);
                     };
                 } else {
                     if (int(textToSend.split(" ")[1]) != 0){
                         if ((int(actor[LBL_GILDE_GOLD].text) + int(textToSend.split(" ")[1])) <= 10000000){
-                            SendAction(ACT_GUILD_DONATE, 1, String((int(textToSend.split(" ")[1]) * 100)));
+                            send_action(ACT_GUILD_DONATE, 1, String((int(textToSend.split(" ")[1]) * 100)));
                         } else {
                             ErrorMessage(txt[TXT_ERROR_GUILD_CASH_FULL]);
                         };
@@ -11147,7 +11211,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     ChatLine(((txt[TXT_MUSH_DONATE_OBSOLETE]) ? txt[TXT_MUSH_DONATE_OBSOLETE] : "Command is obsolete."));
                     return;
                 };
-                SendAction(ACT_GUILD_DONATE, 2, textToSend.split(" ")[1]);
+                send_action(ACT_GUILD_DONATE, 2, textToSend.split(" ")[1]);
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
             };
@@ -11155,7 +11219,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 textToSend = textToSend.substr(3);
                 if (textToSend.indexOf(" ") != -1){
                     lastWhisperTarget = textToSend.substr(0, textToSend.indexOf(" ")).split("#").join(" ");
-                    SendAction(ACT_WHISPER, textToSend.substr(0, textToSend.indexOf(" ")).split("#").join(" "), EncodeChat(textToSend.substr((textToSend.indexOf(" ") + 1))));
+                    send_action(ACT_WHISPER, textToSend.substr(0, textToSend.indexOf(" ")).split("#").join(" "), EncodeChat(textToSend.substr((textToSend.indexOf(" ") + 1))));
                     actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 } else {
                     if (actor[INP_GILDE_CHAT].getChildAt(0).text.substr(-1) != " "){
@@ -11169,7 +11233,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 textToSend = textToSend.substr(whisperCmd.length);
                 if (textToSend.indexOf(" ") != -1){
                     lastWhisperTarget = textToSend.substr(0, textToSend.indexOf(" ")).split("#").join(" ");
-                    SendAction(ACT_WHISPER, textToSend.substr(0, textToSend.indexOf(" ")).split("#").join(" "), EncodeChat(textToSend.substr((textToSend.indexOf(" ") + 1))));
+                    send_action(ACT_WHISPER, textToSend.substr(0, textToSend.indexOf(" ")).split("#").join(" "), EncodeChat(textToSend.substr((textToSend.indexOf(" ") + 1))));
                     actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 } else {
                     if (actor[INP_GILDE_CHAT].getChildAt(0).text.substr(-1) != " "){
@@ -11185,7 +11249,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             textToSend = textToSend.split("/steal").join((txt[TXT_CMD_DONATE_MUSH] + " 1"));
-            SendAction(ACT_SEND_CHAT, EncodeChat(textToSend), lastChatIndex);
+            send_action(ACT_SEND_CHAT, EncodeChat(textToSend), lastChatIndex);
             actor[INP_GILDE_CHAT].getChildAt(0).text = "";
         };
         var EncodeChat:* = function (inStr:String):String{
@@ -11267,7 +11331,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
                 case GILDE_CREST_OK:
                     if ((((myOwnRank == 1)) and (crestSuggested))){
-                        SendAction(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((getCrestStr() + "§") + RemoveIllegalChars(SemiStrip(actor[INP_GILDE_TEXT].getChildAt(0).text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+                        send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((getCrestStr() + "§") + RemoveIllegalChars(SemiStrip(actor[INP_GILDE_TEXT].getChildAt(0).text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
                         oldCrestStr = getCrestStr();
                     } else {
                         if (suggestionAllowed){
@@ -11277,7 +11341,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 crestSuggested = true;
                                 SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_APPLY]);
                             };
-                            SendAction(ACT_SEND_CHAT, ("#?" + getCrestStr()), lastChatIndex);
+                            send_action(ACT_SEND_CHAT, ("#?" + getCrestStr()), lastChatIndex);
                         } else {
                             ErrorMessage(txt[TXT_ERROR_TOO_SOON_SUGGESTION]);
                         };
@@ -11354,25 +11418,25 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
                             };
                         } else {
-                            SendAction(ACT_GUILD_COMMENCE_ATTACK, -1);
+                            send_action(ACT_GUILD_COMMENCE_ATTACK, -1);
                         };
                     } else {
-                        SendAction(ACT_GUILD_JOIN_ATTACK, "", "");
+                        send_action(ACT_GUILD_JOIN_ATTACK, "", "");
                     };
                     break;
                 case GILDE_ATTACK:
                     if (myOwnAttackTarget == 0){
                         if (lastGuildShown == Gilde){
-                            SendAction(ACT_SCREEN_GILDENHALLE, "", Savegame[SG_GUILD_INDEX], 0);
+                            send_action(ACT_SCREEN_GILDENHALLE, "", Savegame[SG_GUILD_INDEX], 0);
                         } else {
-                            SendAction(ACT_GUILD_COMMENCE_ATTACK, lastGuildShown);
+                            send_action(ACT_GUILD_COMMENCE_ATTACK, lastGuildShown);
                         };
                     } else {
-                        SendAction(ACT_GUILD_JOIN_ATTACK, "", "");
+                        send_action(ACT_GUILD_JOIN_ATTACK, "", "");
                     };
                     break;
                 case GILDE_DEFEND:
-                    SendAction(ACT_GUILD_JOIN_DEFENSE, "", "");
+                    send_action(ACT_GUILD_JOIN_DEFENSE, "", "");
                     break;
                 case GILDE_CHAT_DOWN:
                     GildeChatScroll--;
@@ -11410,7 +11474,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (GildenName == ""){
                 ErrorMessage(txt[TXT_ERROR_EMPTY_GUILD_NAME]);
             } else {
-                SendAction(ACT_GUILD_FOUND, actor[INP_NAME].getChildAt(1).text, actor[INP_GILDE_GRUENDEN].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+                send_action(ACT_GUILD_FOUND, actor[INP_NAME].getChildAt(1).text, actor[INP_GILDE_GRUENDEN].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
             };
         };
         var HutBtnDownHandler:* = function (evt:Event){
@@ -11567,7 +11631,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             Remove(HUTMANN_BECHERCHOOSE);
             Add(HUTFACE_HOVER);
             CupChosen = (GetActorID(evt.target) - CA_HUTBECHER_1);
-            SendAction(ACT_PLACE_BET, String((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
+            send_action(ACT_PLACE_BET, String((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
         };
         var PlaceHutBet:* = function (LeftToCenter:Boolean=false){
             var LeftBoxWidth:* = 0;
@@ -11600,7 +11664,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         RequestToilet = function (evt:Event=undefined){
-            SendAction(ACT_SCREEN_TOILET);
+            send_action(ACT_SCREEN_TOILET);
         };
         ShowHutmann = function (evt:Event=undefined){
             var doShowHutmann:* = null;
@@ -11644,10 +11708,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             Load(SCREEN_HUTMANN);
             Load(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTBECHER_1_HOVER);
             actor[LBL_HUTMANN_GOLDBET2].text = GetSpendAmount();
-            WhenLoaded(doShowHutmann);
+            when_loaded(doShowHutmann);
         };
         BuyBeer = function (evt:Event=undefined){
-            SendAction(ACT_BUY_BEER);
+            send_action(ACT_BUY_BEER);
         };
         ShowBeerOffer = function (evt:Event=undefined){
             var i:* = 0;
@@ -11780,8 +11844,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         actor[(LBL_QO_CHOICE1_HL + i)].defaultTextFormat = FontFormat_GrayedHighLight;
                     };
                 };
-                actor[(LBL_QO_CHOICE1 + i)].text = GetQuestTitle(i);
-                actor[(LBL_QO_CHOICE1_HL + i)].text = GetQuestTitle(i);
+                actor[(LBL_QO_CHOICE1 + i)].text = get_quest_title(i);
+                actor[(LBL_QO_CHOICE1_HL + i)].text = get_quest_title(i);
                 Hide((LBL_QO_CHOICE1_HL + i));
                 if (textDir == "right"){
                     actor[LBL_QO_CHOOSE].x = (((QO_BLACK_SQUARE_X + QO_CHOOSE_X) + 140) - actor[LBL_QO_CHOOSE].textWidth);
@@ -11792,7 +11856,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             SelectQuestOffer(-1);
             Remove(TAVERNE_CAS);
             Add(QUESTOFFER);
-            Add((QO_PORTRAIT1 + GetQuestRandom(0, 5)));
+            Add((QO_PORTRAIT1 + get_quest_random(0, 5)));
         };
         ReturnQuest = function (evt:Event=undefined){
             actor[QUEST_SLOT].alpha = 1;
@@ -11804,41 +11868,41 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
 
         var ChooseQuest:* = function (evt:Event=undefined){
-            var questID:int;
-            questID = (GetActorID(evt.target) - QO_CHOICE1);
-            SelectQuestOffer(questID);
+            var quest_id:int;
+            quest_id = (GetActorID(evt.target) - QO_CHOICE1);
+            SelectQuestOffer(quest_id);
         };
-        var SelectQuestOffer:* = function (questID:int){
+        var SelectQuestOffer:* = function (quest_id:int){
             var i:* = 0;
             var rewardX:* = 0;
             var GoldBonusText:* = null;
-            var questID:* = questID;
-            SelectedQuest = questID;
+            var quest_id:* = quest_id;
+            SelectedQuest = quest_id;
             rewardX = ((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) + (((textDir == "right")) ? 130 : 0));
             GoldBonusText = "";
             if ((int(Savegame[SG_GOLD_BONUS]) > 0)){
                 GoldBonusText = (txt[TXT_GOLDBONUS_PREFIX] + " ");
                 if ((int(Savegame[SG_GOLD_BONUS]) > 0)){
                     GoldBonusText = (((GoldBonusText + Savegame[SG_GOLD_BONUS]) + "% ") + txt[TXT_GOLDBONUS_SUFFIX]);
-                    if (towerLevel > 0){
-                        GoldBonusText = ((((GoldBonusText + " + ") + String(towerLevel)) + "% ") + txt[TXT_TOWER_BONUS]);
+                    if (tower_level > 0){
+                        GoldBonusText = ((((GoldBonusText + " + ") + String(tower_level)) + "% ") + txt[TXT_TOWER_BONUS]);
                     };
                 };
             };
             i = 0;
             while (i < 3) {
-                actor[(LBL_QO_CHOICE1_HL + i)].visible = (i == questID);
-                actor[(LBL_QO_CHOICE1 + i)].visible = !((i == questID));
+                actor[(LBL_QO_CHOICE1_HL + i)].visible = (i == quest_id);
+                actor[(LBL_QO_CHOICE1 + i)].visible = !((i == quest_id));
                 i = (i + 1);
             };
             var _local3 = actor[LBL_QO_QUESTNAME];
             with (_local3) {
-                text = ((questID)==-1) ? txt[(TXT_QUEST_OFFER_TITLE + GetQuestRandom(0, 5))] : GetQuestTitle(questID);
+                text = ((quest_id)==-1) ? txt[(TXT_QUEST_OFFER_TITLE + get_quest_random(0, 5))] : get_quest_title(quest_id);
                 x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2)));
             };
-            actor[LBL_QO_QUESTTEXT].text = ((questID)==-1) ? txt[(TXT_QUEST_OFFER_TEXT + GetQuestRandom(0, 5))] : GetQuestText(questID);
+            actor[LBL_QO_QUESTTEXT].text = ((quest_id)==-1) ? txt[(TXT_QUEST_OFFER_TEXT + get_quest_random(0, 5))] : get_quest_text(quest_id);
             Arabize(LBL_QO_QUESTTEXT);
-            if (questID == -1){
+            if (quest_id == -1){
                 Hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
                 Hide(LBL_QO_REWARD);
                 Hide(QO_START);
@@ -11853,7 +11917,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if (textDir == "right"){
                     actor[LBL_QO_REWARD].x = (rewardX - actor[LBL_QO_REWARD].textWidth);
                 };
-                if (GoldAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]) > 0){
+                if (gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                     _local3 = actor[QO_REWARDGOLD];
                     with (_local3) {
                         visible = true;
@@ -11868,7 +11932,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     _local3 = actor[LBL_QO_REWARDGOLD];
                     with (_local3) {
                         visible = true;
-                        text = GoldAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]);
+                        text = gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                         if (textDir == "right"){
                             x = (rewardX - textWidth);
                             rewardX = (x - 8);
@@ -11878,7 +11942,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         };
                     };
                 };
-                if (SilberAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]) > 0){
+                if (silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                     _local3 = actor[QO_REWARDSILVER];
                     with (_local3) {
                         visible = true;
@@ -11893,7 +11957,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     _local3 = actor[LBL_QO_REWARDSILVER];
                     with (_local3) {
                         visible = true;
-                        text = SilberAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]);
+                        text = silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                         if (textDir == "right"){
                             x = (rewardX - textWidth);
                             rewardX = (x - 8);
@@ -11904,10 +11968,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
                 if (textDir == "right"){
-                    actor[LBL_QO_REWARDEXP].text = ((Savegame[(SG_QUEST_OFFER_EXP1 + questID)] + " :") + txt[TXT_EXP]);
+                    actor[LBL_QO_REWARDEXP].text = ((Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)] + " :") + txt[TXT_EXP]);
                     actor[LBL_QO_REWARDEXP].x = (((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) + 130) - actor[LBL_QO_REWARDEXP].textWidth);
                 } else {
-                    actor[LBL_QO_REWARDEXP].text = ((txt[TXT_EXP] + ": ") + Savegame[(SG_QUEST_OFFER_EXP1 + questID)]);
+                    actor[LBL_QO_REWARDEXP].text = ((txt[TXT_EXP] + ": ") + Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]);
                 };
                 if (int(Savegame[SG_EXP_BONUS]) > 0){
                     if (Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)) >= 1){
@@ -11933,25 +11997,25 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     EnablePopup(LBL_QO_REWARDGOLD);
                     EnablePopup(LBL_QO_REWARDSILVER);
                 };
-                if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (questID * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
-                    SetCnt(QUEST_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, questID));
-                    ItemPopup(QUEST_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (questID * SG_ITM_SIZE)), undefined, false, false, false);
+                if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
+                    SetCnt(QUEST_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, quest_id));
+                    ItemPopup(QUEST_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, false, false, false);
                 } else {
                     SetCnt(QUEST_SLOT, C_EMPTY);
                     EnablePopup(FIGHT_SLOT);
                 };
                 if (textDir == "right"){
-                    actor[LBL_QO_TIME].text = (((((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)]) / 60))) + ":") + (((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)]) % 60))).length == 1)) ? "0" : "")) + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)]) % 60)))) + " :") + txt[TXT_DURATION]);
+                    actor[LBL_QO_TIME].text = (((((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) / 60))) + ":") + (((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))).length == 1)) ? "0" : "")) + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60)))) + " :") + txt[TXT_DURATION]);
                     actor[LBL_QO_TIME].x = (((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) + 130) - actor[LBL_QO_TIME].textWidth);
                 } else {
-                    actor[LBL_QO_TIME].text = (((((txt[TXT_DURATION] + ": ") + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)]) / 60)))) + ":") + (((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)]) % 60))).length == 1)) ? "0" : "")) + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)]) % 60))));
+                    actor[LBL_QO_TIME].text = (((((txt[TXT_DURATION] + ": ") + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) / 60)))) + ":") + (((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))).length == 1)) ? "0" : "")) + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))));
                 };
-                RefreshTimeBar(-(int(Savegame[(SG_QUEST_OFFER_DURATION1 + questID)])));
+                RefreshTimeBar(-(int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)])));
             };
         };
         RequestQuest = function (evt:Event=undefined){
             if (SelectedQuest >= 0){
-                SendAction(ACT_QUEST_BEGIN, (SelectedQuest + 1), ((forceAdventure) ? 1 : 0));
+                send_action(ACT_QUEST_BEGIN, (SelectedQuest + 1), ((forceAdventure) ? 1 : 0));
             };
         };
         toiletChainAni = function (evt:TimerEvent){
@@ -11977,7 +12041,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 toiletChainFrame = 0;
                 toiletChainTimer.start();
                 Play(SND_TOILET_FLUSHTRY);
-                SendAction(ACT_TOILET_FLUSH);
+                send_action(ACT_TOILET_FLUSH);
             };
         };
         SkipFight = function (evt:Event=undefined){
@@ -12189,7 +12253,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     Switch (optionMenuSelect){
                         case 1:
                             if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
-                                SendAction(ACT_CHANGE_NAME, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
+                                send_action(ACT_CHANGE_NAME, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 optionNewData = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
                                 ErrorMessage(txt[TXT_ERROR_NAME_MISMATCH]);
@@ -12197,7 +12261,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             break;
                         case 2:
                             if ((((actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text)) or ((Savegame[SG_EMAIL_VALID] == 1)))){
-                                SendAction(ACT_CHANGE_MAIL, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
+                                send_action(ACT_CHANGE_MAIL, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 optionNewData = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
                                 ErrorMessage(txt[TXT_ERROR_EMAIL_MISMATCH]);
@@ -12205,7 +12269,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             break;
                         case 3:
                             if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
-                                SendAction(ACT_CHANGE_PASS, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
+                                send_action(ACT_CHANGE_PASS, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 optionNewData = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
                                 ErrorMessage(txt[TXT_ERROR_PASSWORD_MISMATCH]);
@@ -12213,7 +12277,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             break;
                         case 4:
                             if (actor[INP_OPTION_FIELD1].getChildAt(1).text == actor[INP_OPTION_FIELD2].getChildAt(1).text){
-                                SendAction(ACT_DELETE_ACCOUNT, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text.toLowerCase());
+                                send_action(ACT_DELETE_ACCOUNT, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text.toLowerCase());
                             } else {
                                 ErrorMessage(txt[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
@@ -12242,7 +12306,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             Arabize(LBL_OPTION_FIELD1);
                             break;
                         case 8:
-                            SendAction(ACT_BUY_LUXURY);
+                            send_action(ACT_BUY_LUXURY);
                             break;
                     };
                     break;
@@ -12272,13 +12336,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             EnablePopup(LBL_IF_PILZE);
             if (SelectedDungeon == 100){
-                SendAction(ACT_TOWER_TRY, String((towerLevel + 1)), ((WaitingFor(Savegame[SG_MQ_REROLL_TIME])) ? 1 : 0));
+                send_action(ACT_TOWER_TRY, String((tower_level + 1)), ((WaitingFor(Savegame[SG_MQ_REROLL_TIME])) ? 1 : 0));
             } else {
-                SendAction(ACT_MAINQUEST, String((SelectedDungeon + 1)));
+                send_action(ACT_MAINQUEST, String((SelectedDungeon + 1)));
             };
         };
         var ResendConfirmationEmail:* = function (evt:Event=undefined){
-            SendAction(ACT_RESEND_EMAIL);
+            send_action(ACT_RESEND_EMAIL);
         };
         attPriceLimitation = false;
         GoldKurve = new Array();
@@ -12399,7 +12463,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         DefineCnt(IF_LOGOUT, ((shop_url)!="") ? LOGOUT_X_WITH_SHOP : LOGOUT_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_LOGOUT, txt[TXT_LOGOUT], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_LOGOUT, txt[TXT_LOGOUT], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_LOGOUT, Filter_Shadow);
         MakePersistent(IF_LOGOUT, LBL_IF_LOGOUT);
         _local2 = actor[IF_LOGOUT];
@@ -12407,13 +12471,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             addChild(actor[LBL_IF_LOGOUT]);
             textLinkMakeClickable(getChildAt(0).parent);
             x = (((shop_url)!="") ? LOGOUT_X_WITH_SHOP : LOGOUT_X - int((width / 2)));
-            addEventListener(MouseEvent.CLICK, RequestLogout);
+            addEventListener(MouseEvent.CLICK, RequestLOGout);
             mouseChildren = false;
             useHandCursor = true;
             buttonMode = true;
         };
         DefineCnt(IF_IMPRESSUM, IMPRESSUM_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_IMPRESSUM, txt[TXT_IMPRESSUM_LINK], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_IMPRESSUM, txt[TXT_IMPRESSUM_LINK], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_IMPRESSUM, Filter_Shadow);
         MakePersistent(IF_IMPRESSUM, LBL_IF_IMPRESSUM);
         _local2 = actor[IF_IMPRESSUM];
@@ -12427,7 +12491,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             buttonMode = true;
         };
         DefineCnt(IF_FORUM, ((shop_url)!="") ? FORUM_X_WITH_SHOP : FORUM_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_FORUM, txt[TXT_FORUM_LINK], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_FORUM, txt[TXT_FORUM_LINK], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_FORUM, Filter_Shadow);
         MakePersistent(IF_FORUM, LBL_IF_FORUM);
         _local2 = actor[IF_FORUM];
@@ -12441,7 +12505,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             buttonMode = true;
         };
         DefineCnt(IF_AGB, AGB_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_AGB, txt[TXT_AGB_LINK], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_AGB, txt[TXT_AGB_LINK], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_AGB, Filter_Shadow);
         MakePersistent(IF_AGB, LBL_IF_AGB);
         _local2 = actor[IF_AGB];
@@ -12455,7 +12519,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             buttonMode = true;
         };
         DefineCnt(IF_DATENSCHUTZ, DATENSCHUTZ_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_DATENSCHUTZ, txt[TXT_DATENSCHUTZ_LINK], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_DATENSCHUTZ, txt[TXT_DATENSCHUTZ_LINK], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_DATENSCHUTZ, Filter_Shadow);
         MakePersistent(IF_DATENSCHUTZ, LBL_IF_DATENSCHUTZ);
         _local2 = actor[IF_DATENSCHUTZ];
@@ -12469,7 +12533,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             buttonMode = true;
         };
         DefineCnt(IF_ANLEITUNG, ((shop_url)!="") ? ANLEITUNG_X_WITH_SHOP : ANLEITUNG_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_ANLEITUNG, txt[TXT_ANLEITUNG_LINK], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_ANLEITUNG, txt[TXT_ANLEITUNG_LINK], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_ANLEITUNG, Filter_Shadow);
         MakePersistent(IF_ANLEITUNG, LBL_IF_ANLEITUNG);
         _local2 = actor[IF_ANLEITUNG];
@@ -12483,7 +12547,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             buttonMode = true;
         };
         DefineCnt(IF_SHOP, SHOP_X, LOGOUT_Y);
-        DefineLbl(LBL_IF_SHOP, txt[TXT_SHOP_LINK], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_IF_SHOP, txt[TXT_SHOP_LINK], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_IF_SHOP, Filter_Shadow);
         MakePersistent(IF_SHOP, LBL_IF_SHOP);
         _local2 = actor[IF_SHOP];
@@ -12729,8 +12793,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             wordWrap = true;
         };
         DefineBunch(FUCK, SHP_FUCK_BLACK_SQUARE, CB_FUCK_UNCHECKED, LBL_FUCK);
-        DefineBtn(IF_LOGIN, txt[TXT_LOGIN], RequestLogin, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveYButton2));
-        DefineBtn(IF_SIGNUP, txt[TXT_SIGNUP], RequestSignup, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_2_Y) + AIRRelMoveYButton));
+        DefineBtn(IF_LOGIN, txt[TXT_LOGIN], RequestLOGin, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveYButton2));
+        DefineBtn(IF_SIGNUP, txt[TXT_SIGNUP], request_signup, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_2_Y) + AIRRelMoveYButton));
         DefineBtn(IF_REQUEST_PASSWORD, txt[TXT_REQUEST_PASSWORD], RequestPassword, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveY));
         DefineLbl(LBL_ERROR, "", IF_ERROR_X, IF_ERROR_Y, FontFormat_Error);
         AddFilter(LBL_ERROR, Filter_Shadow);
@@ -12754,7 +12818,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_SCREEN_TITLE, txt[TXT_CREATE_CHARACTER], SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_SCREEN_TITLE, Filter_Shadow);
         actor[LBL_SCREEN_TITLE].x = (SCREEN_TITLE_X - int((actor[LBL_SCREEN_TITLE].textWidth / 2)));
-        DefineBtn(RANDOM, txt[TXT_RANDOM], RandomizeCharImage, btnClassLogin, SCREEN_RANDOM_BUTTON_X, SCREEN_RANDOM_BUTTON_Y);
+        DefineBtn(RANDOM, txt[TXT_RANDOM], RandomizeCharImage, btnClassLOGin, SCREEN_RANDOM_BUTTON_X, SCREEN_RANDOM_BUTTON_Y);
         DefineBtn(CREATE_CHARACTER, txt[TXT_CREATE_CHARACTER], ShowSignupScreen, btnClassBasic, SCR_BUILDCHAR_CREATE_X, SCR_BUILDCHAR_CREATE_Y);
         DefineBtn(MODIFY_CHARACTER, txt[TXT_MODIFY_CHARACTER], RequestChangeFace, btnClassBasic, SCR_BUILDCHAR_CREATE_X, SCR_BUILDCHAR_CREATE_Y);
         DefineLbl(LBL_CREATE_RACE, "", CREATE_RACE_X, CREATE_RACE_Y, FontFormat_Default);
@@ -12787,7 +12851,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             mouseEnabled = true;
             buttonMode = true;
             useHandCursor = true;
-            addEventListener(MouseEvent.CLICK, ShowLoginScreen);
+            addEventListener(MouseEvent.CLICK, ShowLOGinScreen);
             x = (SCR_BUILDCHAR_LOGIN_X - actor[LBL_CREATE_GOTO_LOGIN].textWidth);
         };
         DefineImg(M_IDLE, "res/gfx/scr/buildchar/button_male_idle.jpg", false, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
@@ -12821,7 +12885,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(VOLK_BTNS_F);
         DefineBunch(VOLK_BTNS_ALL);
         DefineImg(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", true);
-        WhenLoaded(CloneMarker);
+        when_loaded(CloneMarker);
         i = 0;
         while (i <= 7) {
             pos_x = (SCR_BUILDCHAR_VOLK_X + ((i)<4) ? 0 : SCR_BUILDCHAR_VOLK_X);
@@ -13074,19 +13138,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineImg(SCR_HALLE_BG, "res/gfx/scr/hall/heldenhalle.jpg", false, 280, 100);
         DefineBtn(HALLE_UP, "", RuhmesHalleScroll, btnClassArrowUp, HALLE_UPDOWN_X, HALLE_UP_Y);
         DefineBtn(HALLE_DOWN, "", RuhmesHalleScroll, btnClassArrowDown, HALLE_UPDOWN_X, HALLE_DOWN_Y);
-        DefineBtn(HALLE_GOTO, txt[TXT_HALLE_GOTO], RuhmesHalleScroll, btnClassLogin, HALLE_GOTO_X, HALLE_GOTO_Y);
+        DefineBtn(HALLE_GOTO, txt[TXT_HALLE_GOTO], RuhmesHalleScroll, btnClassLOGin, HALLE_GOTO_X, HALLE_GOTO_Y);
         DefineFromClass(INP_HALLE_GOTO, text_input1, HALLE_INP_GOTO_X, HALLE_INP_GOTO_Y, 2, "name");
         actor[INP_HALLE_GOTO].addEventListener(KeyboardEvent.KEY_DOWN, RuhmesHalleScroll);
         actor[INP_HALLE_GOTO].addEventListener(MouseEvent.CLICK, HalleSuchClick);
         DefineCnt(HALL_GOTO_SPIELER, 0, HALLE_GOTO_SPIELERGILDEN_Y);
         DefineCnt(HALL_GOTO_GILDEN, HALLE_GOTO_GILDEN_X, HALLE_GOTO_SPIELERGILDEN_Y);
-        DefineLbl(LBL_HALL_GOTO_SPIELER, txt[TXT_GOTO_SPIELER], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_HALL_GOTO_SPIELER, txt[TXT_GOTO_SPIELER], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_HALL_GOTO_SPIELER, Filter_Shadow);
-        DefineLbl(LBL_HALL_GOTO_GILDEN, txt[TXT_GOTO_GILDEN], 0, 0, FontFormat_LogoutLink);
+        DefineLbl(LBL_HALL_GOTO_GILDEN, txt[TXT_GOTO_GILDEN], 0, 0, FontFormat_LOGoutLink);
         AddFilter(LBL_HALL_GOTO_GILDEN, Filter_Shadow);
-        DefineLbl(LBL_HALL_GOTO_SPIELER_HL, txt[TXT_GOTO_SPIELER], 0, 0, FontFormat_LogoutLinkHighLight);
+        DefineLbl(LBL_HALL_GOTO_SPIELER_HL, txt[TXT_GOTO_SPIELER], 0, 0, FontFormat_LOGoutLinkHighLight);
         AddFilter(LBL_HALL_GOTO_SPIELER_HL, Filter_Shadow);
-        DefineLbl(LBL_HALL_GOTO_GILDEN_HL, txt[TXT_GOTO_GILDEN], 0, 0, FontFormat_LogoutLinkHighLight);
+        DefineLbl(LBL_HALL_GOTO_GILDEN_HL, txt[TXT_GOTO_GILDEN], 0, 0, FontFormat_LOGoutLinkHighLight);
         AddFilter(LBL_HALL_GOTO_GILDEN_HL, Filter_Shadow);
         MakePersistent(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN);
         MakePersistent(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN_HL);
@@ -13419,10 +13483,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineImg(NO_SHIELD, "res/gfx/itm/no_shield.png", false, 0, 0);
         itmTyp = 0;
         while (itmTyp <= 14) {
-            itmPic = 0;
-            while (itmPic < C_ITEMS_PER_TYPE) {
-                itmColor = 0;
-                while (itmColor < 5) {
+            itm_pic = 0;
+            while (itm_pic < C_ITEMS_PER_TYPE) {
+                itm_color = 0;
+                while (itm_color < 5) {
                     Switch (itmTyp){
                         case 1:
                         case 2:
@@ -13431,31 +13495,31 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         case 5:
                         case 6:
                         case 7:
-                            itmClass = 0;
-                            while (itmClass < 3) {
-                                DefineImg(GetItemID(itmTyp, itmPic, itmColor, itmClass), GetItemFile(itmTyp, itmPic, itmColor, itmClass), false, 0, 0);
-                                itmClass = (itmClass + 1);
+                            itm_class = 0;
+                            while (itm_class < 3) {
+                                DefineImg(GetItemID(itmTyp, itm_pic, itm_color, itm_class), GetItemFile(itmTyp, itm_pic, itm_color, itm_class), false, 0, 0);
+                                itm_class = (itm_class + 1);
                             };
                             break;
                         default:
-                            DefineImg(GetItemID(itmTyp, itmPic, itmColor, 0), GetItemFile(itmTyp, itmPic, itmColor, 0), false, 0, 0);
+                            DefineImg(GetItemID(itmTyp, itm_pic, itm_color, 0), GetItemFile(itmTyp, itm_pic, itm_color, 0), false, 0, 0);
                     };
-                    itmColor = (itmColor + 1);
+                    itm_color = (itm_color + 1);
                 };
-                itmPic = (itmPic + 1);
+                itm_pic = (itm_pic + 1);
             };
             itmTyp = (itmTyp + 1);
         };
         itmTyp = 0;
         while (itmTyp <= 1) {
-            itmPic = 0;
-            while (itmPic < C_ITEMS_PER_TYPE) {
-                itmColor = 0;
-                while (itmColor < 5) {
-                    DefineImg(GetArrowID(itmTyp, itmPic, itmColor), (((((((("res/gfx/itm/1-" + String((itmTyp + 2))) + "/shot") + (((itmTyp == 0)) ? 2 : 1)) + "-") + String(itmPic)) + "-") + String(((((itmPic >= 50)) ? (((itmTyp == 0)) ? (((itmColor == 3)) ? 3 : 0) : 0) : itmColor) + 1))) + ".png"), false, 0, 0);
-                    itmColor = (itmColor + 1);
+            itm_pic = 0;
+            while (itm_pic < C_ITEMS_PER_TYPE) {
+                itm_color = 0;
+                while (itm_color < 5) {
+                    DefineImg(get_arrow_id(itmTyp, itm_pic, itm_color), (((((((("res/gfx/itm/1-" + String((itmTyp + 2))) + "/shot") + (((itmTyp == 0)) ? 2 : 1)) + "-") + String(itm_pic)) + "-") + String(((((itm_pic >= 50)) ? (((itmTyp == 0)) ? (((itm_color == 3)) ? 3 : 0) : 0) : itm_color) + 1))) + ".png"), false, 0, 0);
+                    itm_color = (itm_color + 1);
                 };
-                itmPic = (itmPic + 1);
+                itm_pic = (itm_pic + 1);
             };
             itmTyp = (itmTyp + 1);
         };
@@ -13483,7 +13547,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if ((i % 8) == 7){
                     _local2 = actor[(CHAR_ACH + i)];
                     with (_local2) {
-                        addEventListener(MouseEvent.CLICK, OpenFriendLink);
+                        addEventListener(MouseEvent.CLICK, Openfriend_link);
                         buttonMode = true;
                         useHandCursor = true;
                         mouseChildren = false;
@@ -13522,8 +13586,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(TOWER_TRY, txt[TXT_TOWER_TRY], TowerBtnHandler, btnClassBasic, 940, 700);
         DefineImg(SCR_TOWER_BG, "res/gfx/scr/quest/locations/location_tower.jpg", false, 280, 100);
         DefineBunch(SCREEN_TOWER, SCR_CHAR_BG, TOWER_SCROLLAREA, TOWER_TRY, IF_OVL, IF_EXIT);
-        towerLevelLabelTimer = new Timer(25);
-        towerLevelLabelTimer.addEventListener(TimerEvent.TIMER, towerLevelLabelMoveFn);
+        tower_levelLabelTimer = new Timer(25);
+        tower_levelLabelTimer.addEventListener(TimerEvent.TIMER, tower_levelLabelMoveFn);
         towerBoostPriceFadeoutTimer = new Timer(250, 1);
         towerBoostPriceFadeoutTimer.addEventListener(TimerEvent.TIMER, towerBoostPriceFadeout);
         i = 0;
@@ -13715,7 +13779,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 var id:int;
                 id = ((GetActorID(evt.target) - WITCH_SCROLL) + 1);
                 if (spellClicking){
-                    SendAction(ACT_WITCH_ENCHANT, id);
+                    send_action(ACT_WITCH_ENCHANT, id);
                 };
                 spellClicking = false;
             });
@@ -14510,7 +14574,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_HUTMANN_INSTR, txt[TXT_HUTMANN_INSTR].split("#").join(((textDir)=="right") ? "" : String.fromCharCode(13)), HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
         AddFilter(LBL_HUTMANN_INSTR, Filter_Shadow);
         DefineBunch(SCREEN_HUTMANN, HUTMANN_BG, IF_OVL, IF_EXIT, HUTFACE_HOVER, HUTFACE_WIN, HUTFACE_LOSE1, HUTFACE_LOSE2, HUTFACE_LOSE3, HUTFACE_IDLE);
-        DefineBtn(HUTMANN_OK, txt[TXT_HUTMANN_START], HutBtnHandler, btnClassLogin, HUTMANN_OK_X, HUTMANN_OK_Y);
+        DefineBtn(HUTMANN_OK, txt[TXT_HUTMANN_START], HutBtnHandler, btnClassLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
         DefineBtn(HUTMANN_BACK, txt[TXT_HUTMANN_BACK], InterfaceBtnHandler, btnClassBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
         HutBtnRepeatTimer = new Timer(1000);
         DestroyHutBtnTimer = false;
@@ -14628,7 +14692,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         DefineBunch(QUESTOFFER);
         DefineLbl(LBL_QO_QUESTNAME, "QuestName", 0, (QO_BLACK_SQUARE_Y + QO_QUESTNAME_Y), FontFormat_Heading);
-        DefineLbl(LBL_QO_QUESTTEXT, "QuestText", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_QUESTTEXT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_QO_QUESTTEXT, "quest_text", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_QUESTTEXT_Y), FontFormat_DefaultLeft);
         actor[LBL_QO_QUESTTEXT].width = LBL_QO_TEXT_X;
         actor[LBL_QO_QUESTTEXT].wordWrap = true;
         actor[LBL_QO_QUESTTEXT].defaultTextFormat.align = "right";
@@ -14763,7 +14827,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             while (ii < 100) {
                 iii = 0;
                 while (iii < 4) {
-                    DefineSnd(GetWeaponSound((i + 1), (ii + 1), iii), GetWeaponSoundFile((i + 1), (ii + 1), iii));
+                    DefineSnd(get_weapon_sound((i + 1), (ii + 1), iii), get_weapon_sound_file((i + 1), (ii + 1), iii));
                     iii = (iii + 1);
                 };
                 ii = (ii + 1);
@@ -14889,7 +14953,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             i = (i + 1);
         };
         DefineImg(BG_DEMO, "res/gfx/scr/demo/demo.png", false, 0, DEMO_Y);
-        DefineBtn(DEMO_LOGOFF, txt[TXT_OK], RequestLogout, btnClassBasic, DEMO_X, DEMO_Y);
+        DefineBtn(DEMO_LOGOFF, txt[TXT_OK], RequestLOGout, btnClassBasic, DEMO_X, DEMO_Y);
         DefineBunch(SCREEN_DEMO, BG_DEMO, IF_OVL, DEMO_LOGOFF, BLACK_SQUARE);
         DefineFromClass(SHP_OPTION_BLACK, black_square_neutral, OPTION_X, OPTION_Y);
         _local2 = actor[SHP_OPTION_BLACK];
@@ -15112,7 +15176,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         Add(IF_MAIN);
         Add(IF_BUTTONS);
         if (paramObj["login"]){
-            ShowLoginScreen(undefined, true);
+            ShowLOGinScreen(undefined, true);
         } else {
             ShowBuildCharacterScreen();
         };
@@ -15122,9 +15186,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
 
 
 def main():
-    Log = setupLogging()
+    LOG = setup_logging()
 
-    initVars()
+    init_vars()
     configure()
 
     #s = Session()
@@ -15162,17 +15226,17 @@ public function GetFileVersion(){
 public function GetMyPath(mode:int=0):String{
     var fullPath:String;
     var sections:Array;
-    var fileName:String;
+    var file_name:String;
     var folderName:String;
     fullPath = loaderInfo.url;
     sections = fullPath.split("/");
-    fileName = sections[(sections.length - 1)];
-    folderName = fullPath.substr(0, (fullPath.length - fileName.length));
+    file_name = sections[(sections.length - 1)];
+    folderName = fullPath.substr(0, (fullPath.length - file_name.length));
     Switch (mode){
         case 0:
             return (folderName);
         case 1:
-            return (fileName);
+            return (file_name);
         case 2:
             return (fullPath);
     };
@@ -15398,7 +15462,7 @@ public function SetBtnText(actorID:int, caption:String){
             x = int(((((obj.getChildAt(0).width / 2) - (textWidth / 2)) + offs) + aoffsx));
             y = int(((((obj.getChildAt(0).height / 2) - (textHeight / 2)) + offsy) + aoffsy));
             if (imgIndex != -1){
-                WhenLoaded(DoAddBtnImage);
+                when_loaded(DoAddBtnImage);
             };
         };
     };
@@ -15418,10 +15482,10 @@ public function SetBtnText(actorID:int, caption:String){
     if ((actor[i] is btnClassInterface)){
         offsy = 0;
     };
-    if ((actor[i] is btnClassLogin)){
+    if ((actor[i] is btnClassLOGin)){
         offs = -2;
     };
-    if ((actor[i] is btnClassLogin)){
+    if ((actor[i] is btnClassLOGin)){
         offsy = 1;
     };
     if ((actor[i] is btnClassBack)){
@@ -16699,7 +16763,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = FontFormat_LogoutLink;
+    _local3 = FontFormat_LOGoutLink;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 22);
@@ -16708,7 +16772,7 @@ public function SetFont(fontName:String){
         leftMargin = 0;
         kerning = true;
     };
-    _local3 = FontFormat_LogoutLinkHighLight;
+    _local3 = FontFormat_LOGoutLinkHighLight;
     with (_local3) {
         font = fontName;
         size = (sizeMod + 22);
@@ -17015,7 +17079,7 @@ public function ShowEmailNagScreen(valMode:int=-1){
         };
     };
     Load(SCREEN_EMAIL_NAG);
-    WhenLoaded(doShowEmailNagScreen);
+    when_loaded(doShowEmailNagScreen);
 }
 
 
@@ -17025,7 +17089,7 @@ public function ShowDisconnectScreen(){
     TryReconnect = function (evt:TimerEvent){
         ReconnectTimer.delay = (param_reconnect * intervalMultiplierReconnect);
         if (OnStage(LBL_DISCONNECTED)){
-            RequestLogin();
+            RequestLOGin();
         } else {
             ReconnectTimer.removeEventListener(TimerEvent.TIMER, TryReconnect);
         };
@@ -17162,7 +17226,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                         while (thisRecipient.substr((thisRecipient.length - 1), 1) == " ") {
                             thisRecipient = thisRecipient.substr(0, (thisRecipient.length - 1));
                         };
-                        SendAction(((GuildMsg) ? ACT_POST_SEND_GUILD : ACT_POST_SEND), RemoveIllegalChars(SemiStrip(thisRecipient)), RemoveIllegalChars(SemiStrip(actor[INP_POST_SUBJECT].getChildAt(1).text.split("/").join(""))), RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT].getChildAt(1).text)));
+                        send_action(((GuildMsg) ? ACT_POST_SEND_GUILD : ACT_POST_SEND), RemoveIllegalChars(SemiStrip(thisRecipient)), RemoveIllegalChars(SemiStrip(actor[INP_POST_SUBJECT].getChildAt(1).text.split("/").join(""))), RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT].getChildAt(1).text)));
                     };
                 };
             };
@@ -17174,7 +17238,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 if (PostScroll < 1){
                     PostScroll = 1;
                 };
-                SendAction(ACT_SCREEN_POST, PostScroll);
+                send_action(ACT_SCREEN_POST, PostScroll);
             };
             break;
         case POST_DOWN:
@@ -17187,7 +17251,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 if (PostScroll < 1){
                     PostScroll = 1;
                 };
-                SendAction(ACT_SCREEN_POST, PostScroll);
+                send_action(ACT_SCREEN_POST, PostScroll);
             };
             break;
         case POST_READ:
@@ -17197,7 +17261,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 MakeRightTextArea(INP_POST_TEXT, 1);
             };
             if (PostSel > 0){
-                SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
+                send_action(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             };
             break;
         case POST_READ_NEXT:
@@ -17206,7 +17270,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 PostScroll = (PostScroll + 1);
                 PostSel = 15;
             };
-            SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
+            send_action(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             break;
         case POST_READ_PREV:
             PostSel--;
@@ -17214,12 +17278,12 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 PostScroll = (PostScroll - 1);
                 PostSel = 1;
             };
-            SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
+            send_action(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             break;
         case POST_DELETE:
         case POST_DELETEREAD:
             if (PostSel > 0){
-                SendAction(ACT_POST_DELETE, ((PostSel + PostScroll) - 1));
+                send_action(ACT_POST_DELETE, ((PostSel + PostScroll) - 1));
                 if (int(Savegame[SG_MSG_COUNT]) > 0){
                     Savegame[SG_MSG_COUNT] = String((int(Savegame[SG_MSG_COUNT]) - 1));
                 };
@@ -17239,12 +17303,12 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             break;
         case POST_FLUSH_OK:
             Remove(POST_FLUSHMSG);
-            SendAction(ACT_POST_DELETE, -1);
+            send_action(ACT_POST_DELETE, -1);
             break;
         case POST_PROFILE:
             if (ReplyAddress != ""){
-                selName = ReplyAddress;
-                SendAction(ACT_REQUEST_CHAR, ReplyAddress);
+                sel_name = ReplyAddress;
+                send_action(ACT_REQUEST_CHAR, ReplyAddress);
             };
             break;
         case POST_WRITE:
@@ -17275,7 +17339,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
         case POST_CANCEL:
         case POST_RETURN:
             if (PostReturnToPlayer != ""){
-                SendAction(ACT_REQUEST_CHAR, PostReturnToPlayer);
+                send_action(ACT_REQUEST_CHAR, PostReturnToPlayer);
             } else {
                 Remove(POST_WRITE);
                 Remove(POST_READ);
@@ -17285,8 +17349,8 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             };
             break;
         case POST_ACCEPT:
-            if (InviteGildenID > 0){
-                SendAction(ACT_GUILD_JOIN, actor[INP_NAME].getChildAt(1).text, InviteGildenID, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+            if (Invitegilden_id > 0){
+                send_action(ACT_GUILD_JOIN, actor[INP_NAME].getChildAt(1).text, Invitegilden_id, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
             };
             break;
         case POST_REPLY:
@@ -17369,7 +17433,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             break;
         default:
             if (PostSel > 0){
-                SendAction(ACT_POST_READ, ((PostSel + PostScroll) - 1));
+                send_action(ACT_POST_READ, ((PostSel + PostScroll) - 1));
             };
     };
 }
@@ -17384,7 +17448,7 @@ public function ShowAlbumContent(evt:Event=undefined){
     var catMax:* = null;
     var catCount:* = null;
     var evt:* = evt;
-    var SetAlbumItems:* = function (aOffs:int, itmTyp:int, itmPic:int, itmClass:int){
+    var SetAlbumItems:* = function (aOffs:int, itmTyp:int, itm_pic:int, itm_class:int){
         var itemSet:Array;
         var anyItem:Boolean;
         var j:int;
@@ -17399,15 +17463,15 @@ public function ShowAlbumContent(evt:Event=undefined){
             j++;
         };
         if (anyItem){
-            entryText = GetItemName(itmTyp, itmPic, itmClass);
-            if (itmClass > 0){
-                itmClass--;
+            entryText = GetItemName(itmTyp, itm_pic, itm_class);
+            if (itm_class > 0){
+                itm_class--;
             };
-            SetCnt((ALBUM_WEAPON_1 + i), GetItemID(itmTyp, itmPic, 0, itmClass));
-            SetCnt((ALBUM_WEAPON_2 + i), GetItemID(itmTyp, itmPic, 1, itmClass));
-            SetCnt((ALBUM_WEAPON_3 + i), GetItemID(itmTyp, itmPic, 2, itmClass));
-            SetCnt((ALBUM_WEAPON_4 + i), GetItemID(itmTyp, itmPic, 3, itmClass));
-            SetCnt((ALBUM_WEAPON_5 + i), GetItemID(itmTyp, itmPic, 4, itmClass));
+            SetCnt((ALBUM_WEAPON_1 + i), GetItemID(itmTyp, itm_pic, 0, itm_class));
+            SetCnt((ALBUM_WEAPON_2 + i), GetItemID(itmTyp, itm_pic, 1, itm_class));
+            SetCnt((ALBUM_WEAPON_3 + i), GetItemID(itmTyp, itm_pic, 2, itm_class));
+            SetCnt((ALBUM_WEAPON_4 + i), GetItemID(itmTyp, itm_pic, 3, itm_class));
+            SetCnt((ALBUM_WEAPON_5 + i), GetItemID(itmTyp, itm_pic, 4, itm_class));
             actor[(ALBUM_WEAPON_1 + i)].alpha = ((itemSet[0]) ? 1 : 0.3);
             actor[(ALBUM_WEAPON_2 + i)].alpha = ((itemSet[1]) ? 1 : 0.3);
             actor[(ALBUM_WEAPON_3 + i)].alpha = ((itemSet[2]) ? 1 : 0.3);
@@ -17425,7 +17489,7 @@ public function ShowAlbumContent(evt:Event=undefined){
                 EnablePopup((ALBUM_WEAPON_3 + i));
                 EnablePopup((ALBUM_WEAPON_4 + i));
                 EnablePopup((ALBUM_WEAPON_5 + i));
-                if ((((itmTyp == 1)) and ((itmClass > 1)))){
+                if ((((itmTyp == 1)) and ((itm_class > 1)))){
                 };
             };
         };
@@ -17433,17 +17497,17 @@ public function ShowAlbumContent(evt:Event=undefined){
             EnablePopup((LBL_ALBUM_HEADING + i), ((String(aOffs) + " - ") + String((aOffs + 4))));
         };
     };
-    var SetAlbumEpic:* = function (aOffs:int, itmTyp:int, itmPic:int, itmClass:int){
+    var SetAlbumEpic:* = function (aOffs:int, itmTyp:int, itm_pic:int, itm_class:int){
         if (AlbumContent[aOffs] == 1){
-            entryText = GetItemName(itmTyp, itmPic, itmClass);
+            entryText = GetItemName(itmTyp, itm_pic, itm_class);
             if (entryText.indexOf("|") != -1){
                 hintText = entryText.split("|")[1].split("#").join(String.fromCharCode(13));
                 entryText = entryText.split("|")[0];
             };
-            if (itmClass > 0){
-                itmClass--;
+            if (itm_class > 0){
+                itm_class--;
             };
-            SetCnt((ALBUM_WEAPON_EPIC + i), GetItemID(itmTyp, itmPic, 0, itmClass));
+            SetCnt((ALBUM_WEAPON_EPIC + i), GetItemID(itmTyp, itm_pic, 0, itm_class));
             if (showAlbumOffset){
                 EnablePopup((ALBUM_WEAPON_EPIC + i), String(aOffs));
             } else {
@@ -17845,7 +17909,7 @@ public function ShowScreenAlbum(){
         Load((ALBUM_CAT_OUT + i));
         i = (i + 1);
     };
-    WhenLoaded(DoShowScreenAlbum);
+    when_loaded(DoShowScreenAlbum);
 }
 
 public function TowerBtnHandler(evt:Event){
@@ -17866,7 +17930,7 @@ public function TowerBtnHandler(evt:Event){
             DisplayInventory(towerSG, true, true, copyCatSel);
             break;
         case TOWER_TRY:
-            ShowMainQuestScreen(100, (399 + towerLevel));
+            ShowMainQuestScreen(100, (399 + tower_level));
             break;
     };
 }
@@ -18046,7 +18110,7 @@ public function ShowTowerScreen(towerData:Array){
         };
         RemoveAll();
         Add(SCREEN_TOWER);
-        if (towerLevel >= 100){
+        if (tower_level >= 100){
             Remove(TOWER_TRY);
         };
         i = 0;
@@ -18061,7 +18125,7 @@ public function ShowTowerScreen(towerData:Array){
     while (thisCpc < 3) {
         thisSlot = 0;
         while (thisSlot < 10) {
-            ExpandItemStructure(towerSG, (((TSG_COPYCATS + (thisCpc * COPYCAT)) + CPC_ITEMS) + (thisSlot * SG_ITM_SIZE)));
+            expand_item_structure(towerSG, (((TSG_COPYCATS + (thisCpc * COPYCAT)) + CPC_ITEMS) + (thisSlot * SG_ITM_SIZE)));
             thisSlot = (thisSlot + 1);
         };
         thisCpc = (thisCpc + 1);
@@ -18071,7 +18135,7 @@ public function ShowTowerScreen(towerData:Array){
     if (towerSG[TSG_TOWER_LEVEL] < 100){
         Load(((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399));
     };
-    WhenLoaded(DoShowTowerScreen);
+    when_loaded(DoShowTowerScreen);
 }
 
 public function ShowDemoScreen(){
@@ -18087,7 +18151,7 @@ public function ShowDemoScreen(){
         Remove(IF_STATS, IF_LOGOUT);
     };
     Load(SCREEN_DEMO);
-    WhenLoaded(DoShowDemoScreen);
+    when_loaded(DoShowDemoScreen);
 }
 
 
@@ -18155,7 +18219,7 @@ public function ShowOptionScreen(evt:Event=undefined){
     Load(PASSWORD_SMILEY_SAD);
     Load(PASSWORD_SMILEY_NEUTRAL);
     Load(PASSWORD_SMILEY_HAPPY);
-    WhenLoaded(DoShowOptionScreen);
+    when_loaded(DoShowOptionScreen);
 }
 
 public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=false, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=false, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
@@ -18173,18 +18237,18 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     var oppVolk:* = 0;
     var oppMann:* = false;
     var oppKaste:* = 0;
-    var thisCharVolk:* = 0;
-    var thisCharMann:* = false;
-    var thisCharKaste:* = 0;
-    var thisCharMouth:* = undefined;
-    var thisCharBeard:* = undefined;
-    var thisCharNose:* = undefined;
-    var thisCharEyes:* = undefined;
-    var thisCharBrows:* = undefined;
-    var thisCharEars:* = undefined;
-    var thisCharHair:* = undefined;
-    var thisCharSpecial:* = undefined;
-    var thisCharSpecial2:* = undefined;
+    var thischar_volk:* = 0;
+    var thischar_male:* = false;
+    var thischar_class:* = 0;
+    var thischar_mouth:* = undefined;
+    var thischar_beard:* = undefined;
+    var thischar_nose:* = undefined;
+    var thischar_eyes:* = undefined;
+    var thischar_brows:* = undefined;
+    var thischar_ears:* = undefined;
+    var thischar_hair:* = undefined;
+    var thischar_special:* = undefined;
+    var thischar_special2:* = undefined;
     var thisCharMonster:* = 0;
     var oppMouth:* = 0;
     var oppBeard:* = 0;
@@ -18235,7 +18299,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         var DoStrikeEvent:* = null;
         var evt:* = evt;
         DoSkipFight = function (evt:MouseEvent=undefined, fightDone:Boolean=false){
-            var questID:* = 0;
+            var quest_id:* = 0;
             var PilzBekommen:* = false;
             var i:* = 0;
             var charWin:* = false;
@@ -18245,7 +18309,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             var thisWinner:* = undefined;
             var evt:* = evt;
             var fightDone:Boolean = fightDone;
-            questID = (Savegame[SG_ACTION_INDEX] - 1);
+            quest_id = (Savegame[SG_ACTION_INDEX] - 1);
             var rewardX:* = FIGHT_REWARDGOLD_X;
             PilzBekommen = getPilz;
             var pilzX:* = FIGHT_REWARDGOLD_X;
@@ -18410,7 +18474,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             };
                         };
                     };
-                    if (SilberAnteil(Math.abs(GoldGain)) > 0){
+                    if (silber_anteil(Math.abs(GoldGain)) > 0){
                         if (textDir != "right"){
                             _local4 = actor[FIGHT_REWARDSILVER];
                             with (_local4) {
@@ -18423,9 +18487,9 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         with (_local4) {
                             visible = true;
                             if (textDir == "right"){
-                                text = (SilberAnteil(Math.abs(GoldGain)) + rewardGoldText);
+                                text = (silber_anteil(Math.abs(GoldGain)) + rewardGoldText);
                             } else {
-                                text = ((((GoldAnteil(Math.abs(GoldGain)) > 0)) ? "" : rewardGoldText) + SilberAnteil(Math.abs(GoldGain)));
+                                text = ((((gold_anteil(Math.abs(GoldGain)) > 0)) ? "" : rewardGoldText) + silber_anteil(Math.abs(GoldGain)));
                             };
                             x = (rewardX - textWidth);
                             rewardX = (x - (((textDir == "right")) ? 8 : 14));
@@ -18439,7 +18503,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             };
                         };
                     };
-                    if (GoldAnteil(Math.abs(GoldGain)) > 0){
+                    if (gold_anteil(Math.abs(GoldGain)) > 0){
                         if (textDir != "right"){
                             _local4 = actor[FIGHT_REWARDGOLD];
                             with (_local4) {
@@ -18452,9 +18516,9 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         with (_local4) {
                             visible = true;
                             if (textDir == "right"){
-                                text = (GoldAnteil(Math.abs(GoldGain)) + (((SilberAnteil(Math.abs(GoldGain)) > 0)) ? "" : rewardGoldText));
+                                text = (gold_anteil(Math.abs(GoldGain)) + (((silber_anteil(Math.abs(GoldGain)) > 0)) ? "" : rewardGoldText));
                             } else {
-                                text = (rewardGoldText + GoldAnteil(Math.abs(GoldGain)));
+                                text = (rewardGoldText + gold_anteil(Math.abs(GoldGain)));
                             };
                             x = (rewardX - textWidth);
                             rewardX = (x - (((textDir == "right")) ? 8 : 14));
@@ -18501,7 +18565,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             };
                             AnimateAch(FIGHT_REWARDMUSH, actor[FIGHT_REWARDMUSH].y);
                         };
-                        if (SilberAnteil(GoldGain) > 0){
+                        if (silber_anteil(GoldGain) > 0){
                             _local4 = actor[FIGHT_REWARDSILVER];
                             with (_local4) {
                                 visible = true;
@@ -18511,12 +18575,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             _local4 = actor[LBL_FIGHT_REWARDSILVER];
                             with (_local4) {
                                 visible = true;
-                                text = SilberAnteil(GoldGain);
+                                text = silber_anteil(GoldGain);
                                 x = (rewardX - textWidth);
                                 rewardX = (x - 14);
                             };
                         };
-                        if (GoldAnteil(GoldGain) > 0){
+                        if (gold_anteil(GoldGain) > 0){
                             _local4 = actor[FIGHT_REWARDGOLD];
                             with (_local4) {
                                 visible = true;
@@ -18526,7 +18590,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             _local4 = actor[LBL_FIGHT_REWARDGOLD];
                             with (_local4) {
                                 visible = true;
-                                text = GoldAnteil(GoldGain);
+                                text = gold_anteil(GoldGain);
                                 x = (rewardX - textWidth);
                                 rewardX = (x - 14);
                             };
@@ -18545,14 +18609,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             if (((charWin) and ((Savegame[SG_ACTION_STATUS] == 2)))){
                                 Add(FIGHT_REWARDS);
                                 Hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
-                                if (int(Savegame[(SG_QUEST_OFFER_EXP1 + questID)]) > 0){
+                                if (int(Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]) > 0){
                                     _local4 = actor[LBL_FIGHT_REWARDEXP];
                                     with (_local4) {
                                         visible = true;
                                         if (textDir == "right"){
-                                            text = ((Savegame[(SG_QUEST_OFFER_EXP1 + questID)] + " :") + txt[TXT_EXP]);
+                                            text = ((Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)] + " :") + txt[TXT_EXP]);
                                         } else {
-                                            text = ((txt[TXT_EXP] + ": ") + Savegame[(SG_QUEST_OFFER_EXP1 + questID)]);
+                                            text = ((txt[TXT_EXP] + ": ") + Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]);
                                         };
                                     };
                                 };
@@ -18572,7 +18636,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     };
                                     AnimateAch(FIGHT_REWARDMUSH, actor[FIGHT_REWARDMUSH].y);
                                 };
-                                if (SilberAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]) > 0){
+                                if (silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                                     _local4 = actor[FIGHT_REWARDSILVER];
                                     with (_local4) {
                                         visible = true;
@@ -18582,12 +18646,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     _local4 = actor[LBL_FIGHT_REWARDSILVER];
                                     with (_local4) {
                                         visible = true;
-                                        text = SilberAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]);
+                                        text = silber_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                                         x = (rewardX - textWidth);
                                         rewardX = (x - 14);
                                     };
                                 };
-                                if (GoldAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]) > 0){
+                                if (gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
                                     _local4 = actor[FIGHT_REWARDGOLD];
                                     with (_local4) {
                                         visible = true;
@@ -18597,14 +18661,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     _local4 = actor[LBL_FIGHT_REWARDGOLD];
                                     with (_local4) {
                                         visible = true;
-                                        text = GoldAnteil(Savegame[(SG_QUEST_OFFER_GOLD1 + questID)]);
+                                        text = gold_anteil(Savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
                                         x = (rewardX - textWidth);
                                         rewardX = (x - 14);
                                     };
                                 };
-                                if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (questID * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
-                                    SetCnt(FIGHT_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, questID));
-                                    ItemPopup(FIGHT_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (questID * SG_ITM_SIZE)), undefined, false, true, false);
+                                if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
+                                    SetCnt(FIGHT_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, quest_id));
+                                    ItemPopup(FIGHT_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, false, true, false);
                                 } else {
                                     SetCnt(FIGHT_SLOT, C_EMPTY);
                                     EnablePopup(FIGHT_SLOT);
@@ -18801,7 +18865,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             Switch (strikePhase){
                                 case 0:
                                     if ((strikeVal == 0)){
-                                        Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                        Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                     };
                                     strikeVal = (strikeVal + 0.2);
                                     if ((((((opponent) ? oppFlag : charFlag) == 1)) and ((strikeVal >= 0.4)))){
@@ -18825,12 +18889,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                             if (text == "-0"){
                                                 if (((opponent) ? oppFlag : charFlag) == 1){
                                                     text = txt[TXT_GEBLOCKT];
-                                                    Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                                 } else {
                                                     text = txt[TXT_AUSGEWICHEN];
                                                 };
                                             } else {
-                                                Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                             };
                                             x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                             y = (FIGHT_WEAPONS_Y - 100);
@@ -18867,7 +18931,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             Switch (strikePhase){
                                 case 0:
                                     if ((strikeVal == 0)){
-                                        Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                        Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                     };
                                     strikeVal = (strikeVal + 0.1);
                                     if ((((((opponent) ? oppFlag : charFlag) == 1)) and ((strikeVal >= 0.5)))){
@@ -18893,12 +18957,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                             if (text == "-0"){
                                                 if (((opponent) ? oppFlag : charFlag) == 1){
                                                     text = txt[TXT_GEBLOCKT];
-                                                    Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                                 } else {
                                                     text = txt[TXT_AUSGEWICHEN];
                                                 };
                                             } else {
-                                                Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                             };
                                             x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                             y = (FIGHT_WEAPONS_Y - 100);
@@ -18944,7 +19008,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 if (strikeVal >= 0.4){
                                     strikePhase++;
                                     BulletAlpha = 1;
-                                    Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                 };
                                 break;
                             case 1:
@@ -18966,12 +19030,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         if (text == "-0"){
                                             if (((opponent) ? oppFlag : charFlag) == 1){
                                                 text = txt[TXT_GEBLOCKT];
-                                                Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                             } else {
                                                 text = txt[TXT_AUSGEWICHEN];
                                             };
                                         } else {
-                                            Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                            Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                         };
                                         x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                         y = (FIGHT_WEAPONS_Y - 100);
@@ -19017,7 +19081,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 BulletAlpha = 1;
                                 if (strikeVal >= 0.3){
                                     strikePhase++;
-                                    Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                 };
                                 break;
                             case 1:
@@ -19039,12 +19103,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         if (text == "-0"){
                                             if (((opponent) ? oppFlag : charFlag) == 1){
                                                 text = txt[TXT_GEBLOCKT];
-                                                Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                             } else {
                                                 text = txt[TXT_AUSGEWICHEN];
                                             };
                                         } else {
-                                            Play(GetWeaponSound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                            Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                         };
                                         x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                         y = (FIGHT_WEAPONS_Y - 100);
@@ -19203,7 +19267,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                     };
                     if (weaponType == 2){
-                        SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR), GetArrowID(0, ((opponent) ? 1 : 0), weaponData, true, int((Math.random() * 3))));
+                        SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR), get_arrow_id(0, ((opponent) ? 1 : 0), weaponData, true, int((Math.random() * 3))));
                     };
                     _local3 = actor[((opponent) ? BULLET_OPP : BULLET_CHAR)];
                     with (_local3) {
@@ -19326,7 +19390,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 catapultStrike = true;
             } else {
                 if (weaponType == 2){
-                    onoID = GetArrowID(0, ((opponent) ? 1 : 0), weaponData, true, 3);
+                    onoID = get_arrow_id(0, ((opponent) ? 1 : 0), weaponData, true, 3);
                 } else {
                     if (weaponType == 3){
                         onoID = FIGHT_ARROW_SMASH;
@@ -19356,7 +19420,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             };
             if (towerFightMode){
                 Add(LBL_HERO_OF_THE_DAY_TITLE);
-                actor[LBL_HERO_OF_THE_DAY_TITLE].text = txt[TXT_TOWER_LEVEL].split("%1").join(String((towerLevel + 1)));
+                actor[LBL_HERO_OF_THE_DAY_TITLE].text = txt[TXT_TOWER_LEVEL].split("%1").join(String((tower_level + 1)));
                 actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
             } else {
                 if (((isRaid) and (txt[TXT_DUNGEON_NAMES]))){
@@ -19398,7 +19462,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                     } else {
                         if (int(Savegame[SG_ACTION_STATUS]) == 2){
-                            Add(GetQuestBG());
+                            Add(get_quest_bg());
                         };
                     };
                 };
@@ -19458,7 +19522,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
             Add(((FIGHT_COPYCAT + thisCharMonster) - 391));
         } else {
-            LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), false, thisCharVolk, thisCharMann, thisCharKaste, thisCharMouth, thisCharBeard, thisCharNose, thisCharEyes, thisCharBrows, thisCharEars, thisCharHair, thisCharSpecial, thisCharSpecial2);
+            LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), false, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
         };
         if (isGuildBattle){
             alternateCharOppImg = !(alternateCharOppImg);
@@ -19491,7 +19555,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             _local3 = actor[LBL_FIGHT_OPPGUILD];
             with (_local3) {
                 if (towerFightMode){
-                    text = txt[TXT_TOWER_LEVEL].split("%1").join(String((towerLevel + 1)));
+                    text = txt[TXT_TOWER_LEVEL].split("%1").join(String((tower_level + 1)));
                 } else {
                     text = oppGuild;
                 };
@@ -19561,7 +19625,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     oppHasWeapon = (((int(weaponData[(SG_ITM_SIZE + SG_ITM_TYP)]) > 0)) and ((int(weaponData[(SG_ITM_SIZE + SG_ITM_PIC)]) > 0)));
     charWeaponType = 1;
     oppWeaponType = 1;
-    tz = Tageszeit();
+    tz = tageszeit();
     hasLostMQ = false;
     actor[LBL_ERROR].text = "";
     if (isGuildBattle){
@@ -19589,20 +19653,20 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     charShield = (int(weaponData[((SG_ITM_SIZE * 2) + SG_ITM_PIC)]) * (((int(weaponData[((SG_ITM_SIZE * 2) + SG_ITM_TYP)]) == 0)) ? 0 : 1));
     oppShield = (weaponData[((SG_ITM_SIZE * 3) + SG_ITM_PIC)] * (((int(weaponData[((SG_ITM_SIZE * 3) + SG_ITM_TYP)]) == 0)) ? 0 : 1));
     if (charHasWeapon){
-        Load(GetWeaponSound(charWeaponType, charWeapon, 0));
-        Load(GetWeaponSound(charWeaponType, charWeapon, 1));
+        Load(get_weapon_sound(charWeaponType, charWeapon, 0));
+        Load(get_weapon_sound(charWeaponType, charWeapon, 1));
         if (((!((charWeaponType == 2))) and (!((oppShield == 0))))){
-            Load(GetWeaponSound(charWeaponType, charWeapon, 2));
+            Load(get_weapon_sound(charWeaponType, charWeapon, 2));
         };
-        Load(GetWeaponSound(charWeaponType, charWeapon, 3));
+        Load(get_weapon_sound(charWeaponType, charWeapon, 3));
     };
     if (oppHasWeapon){
-        Load(GetWeaponSound(oppWeaponType, oppWeapon, 0));
-        Load(GetWeaponSound(oppWeaponType, oppWeapon, 1));
+        Load(get_weapon_sound(oppWeaponType, oppWeapon, 0));
+        Load(get_weapon_sound(oppWeaponType, oppWeapon, 1));
         if (((!((oppWeaponType == 2))) and (!((charShield == 0))))){
-            Load(GetWeaponSound(oppWeaponType, oppWeapon, 2));
+            Load(get_weapon_sound(oppWeaponType, oppWeapon, 2));
         };
-        Load(GetWeaponSound(oppWeaponType, oppWeapon, 3));
+        Load(get_weapon_sound(oppWeaponType, oppWeapon, 3));
     } else {
         if (oppWeapon == -1){
             Load(WEAPON_CLAW, WEAPON_CLAW2, WEAPON_CLAW3, WEAPON_CLAW4);
@@ -19642,16 +19706,16 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     };
     Load(SCREEN_FIGHT);
     if (int(Savegame[SG_ACTION_STATUS]) == 2){
-        Load(GetQuestBG());
+        Load(get_quest_bg());
     };
     if (!charHasWeapon){
         charWeapon = int(weaponData[SG_ITM_TYP]);
-        Load(GetWeaponSound(charWeaponType, charWeapon, 0));
-        Load(GetWeaponSound(charWeaponType, charWeapon, 1));
+        Load(get_weapon_sound(charWeaponType, charWeapon, 0));
+        Load(get_weapon_sound(charWeaponType, charWeapon, 1));
         if (((!((charWeaponType == 2))) and (!((oppShield == 0))))){
-            Load(GetWeaponSound(charWeaponType, charWeapon, 2));
+            Load(get_weapon_sound(charWeaponType, charWeapon, 2));
         };
-        Load(GetWeaponSound(charWeaponType, charWeapon, 3));
+        Load(get_weapon_sound(charWeaponType, charWeapon, 3));
         SetCnt(WEAPON_CHAR, (((charWeapon == 0)) ? WEAPON_FIST : (((charWeapon == -1)) ? WEAPON_CLAW : WEAPON_SWOOSH)), -30, -30, true);
         SetCnt(BULLET_CHAR, C_EMPTY);
         charWeaponType = 1;
@@ -19662,24 +19726,24 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         } else {
             if (charWeaponType == 2){
                 SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData), 30, -30, true);
-                SetCnt(BULLET_CHAR, GetArrowID(0, 0, weaponData, true, 0));
-                Load(GetArrowID(0, 0, weaponData, true, 1), GetArrowID(0, 0, weaponData, true, 2), GetArrowID(0, 0, weaponData, true, 3));
+                SetCnt(BULLET_CHAR, get_arrow_id(0, 0, weaponData, true, 0));
+                Load(get_arrow_id(0, 0, weaponData, true, 1), get_arrow_id(0, 0, weaponData, true, 2), get_arrow_id(0, 0, weaponData, true, 3));
             } else {
                 if (charWeaponType == 3){
                     SetCnt(WEAPON_CHAR, GetItemID(0, 0, weaponData));
-                    SetCnt(BULLET_CHAR, GetArrowID(0, 0, weaponData, true));
+                    SetCnt(BULLET_CHAR, get_arrow_id(0, 0, weaponData, true));
                 };
             };
         };
     };
     if (!oppHasWeapon){
         oppWeapon = int(weaponData[(SG_ITM_SIZE + SG_ITM_TYP)]);
-        Load(GetWeaponSound(oppWeaponType, oppWeapon, 0));
-        Load(GetWeaponSound(oppWeaponType, oppWeapon, 1));
+        Load(get_weapon_sound(oppWeaponType, oppWeapon, 0));
+        Load(get_weapon_sound(oppWeaponType, oppWeapon, 1));
         if (((!((oppWeaponType == 2))) and (!((charShield == 0))))){
-            Load(GetWeaponSound(oppWeaponType, oppWeapon, 2));
+            Load(get_weapon_sound(oppWeaponType, oppWeapon, 2));
         };
-        Load(GetWeaponSound(oppWeaponType, oppWeapon, 3));
+        Load(get_weapon_sound(oppWeaponType, oppWeapon, 3));
         if (oppWeapon == -4){
             SetCnt(WEAPON_OPP, WEAPON_STICK, -30, -30, true);
         } else {
@@ -19702,12 +19766,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         } else {
             if (oppWeaponType == 2){
                 SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), 30, -30, true);
-                SetCnt(BULLET_OPP, GetArrowID(0, 1, weaponData, true, 0));
-                Load(GetArrowID(0, 1, weaponData, true, 1), GetArrowID(0, 1, weaponData, true, 2), GetArrowID(0, 1, weaponData, true, 3));
+                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, true, 0));
+                Load(get_arrow_id(0, 1, weaponData, true, 1), get_arrow_id(0, 1, weaponData, true, 2), get_arrow_id(0, 1, weaponData, true, 3));
             } else {
                 if (oppWeaponType == 3){
                     SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData));
-                    SetCnt(BULLET_OPP, GetArrowID(0, 1, weaponData, true));
+                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, true));
                 };
             };
         };
@@ -19725,18 +19789,18 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     oppVolk = int(faceData[17]);
     oppMann = (int(faceData[18]) == 1);
     oppKaste = int(faceData[19]);
-    thisCharVolk = int(faceData[2]);
-    thisCharMann = (int(faceData[3]) == 1);
-    thisCharKaste = int(faceData[4]);
-    thisCharMouth = int(faceData[5]);
-    thisCharBeard = int(faceData[9]);
-    thisCharNose = int(faceData[10]);
-    thisCharEyes = int(faceData[8]);
-    thisCharBrows = int(faceData[7]);
-    thisCharEars = int(faceData[11]);
-    thisCharHair = int(faceData[6]);
-    thisCharSpecial = int(faceData[12]);
-    thisCharSpecial2 = int(faceData[13]);
+    thischar_volk = int(faceData[2]);
+    thischar_male = (int(faceData[3]) == 1);
+    thischar_class = int(faceData[4]);
+    thischar_mouth = int(faceData[5]);
+    thischar_beard = int(faceData[9]);
+    thischar_nose = int(faceData[10]);
+    thischar_eyes = int(faceData[8]);
+    thischar_brows = int(faceData[7]);
+    thischar_ears = int(faceData[11]);
+    thischar_hair = int(faceData[6]);
+    thischar_special = int(faceData[12]);
+    thischar_special2 = int(faceData[13]);
     thisCharMonster = ((int(faceData[5]))<0) ? -(int(faceData[5])) : 0;
     oppMouth = int(faceData[20]);
     oppBeard = int(faceData[24]);
@@ -19798,7 +19862,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
         Load(((FIGHT_COPYCAT + thisCharMonster) - 391));
     } else {
-        LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), true, thisCharVolk, thisCharMann, thisCharKaste, thisCharMouth, thisCharBeard, thisCharNose, thisCharEyes, thisCharBrows, thisCharEars, thisCharHair, thisCharSpecial, thisCharSpecial2);
+        LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), true, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
     };
     if (isGuildBattle){
         if (towerFightMode){
@@ -19811,7 +19875,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             };
         };
     };
-    WhenLoaded(DoShowFightScreen);
+    when_loaded(DoShowFightScreen);
 }
 
 public function GetAdvent():int{
@@ -19876,16 +19940,16 @@ public function ShowQuestScreen(evt:Event=undefined){
             } else {
                 questBarTimer.stop();
                 questBarTimer.removeEventListener(TimerEvent.TIMER, QuestBarUpdate);
-                SendAction(ACT_SCREEN_TAVERNE);
+                send_action(ACT_SCREEN_TAVERNE);
             };
         };
         questBarTimer = new Timer(200);
         RemoveAll();
-        Add(GetQuestBG());
+        Add(get_quest_bg());
         Add(SCREEN_QUEST);
         var _local3 = actor[LBL_SCREEN_TITLE];
         with (_local3) {
-            text = GetQuestTitle((int(Savegame[SG_ACTION_INDEX]) - 1));
+            text = get_quest_title((int(Savegame[SG_ACTION_INDEX]) - 1));
             x = (SCREEN_TITLE_X - int((textWidth / 2)));
             y = SCREEN_TITLE_Y_QUEST;
         };
@@ -19905,11 +19969,11 @@ public function ShowQuestScreen(evt:Event=undefined){
         TryShowTV();
     };
     Load(SCREEN_QUEST);
-    Load(GetQuestBG());
+    Load(get_quest_bg());
     if (textDir == "right"){
         SetBtnText(QUEST_SKIP, ("~P " + txt[TXT_SKIP_FIGHT]));
     };
-    WhenLoaded(DoShowQuestScreen);
+    when_loaded(DoShowQuestScreen);
 }
 
 public function RefreshTimeBar(OfferTime:Number=0){
@@ -20061,7 +20125,7 @@ public function ShowTaverneScreen(evt:Event=undefined){
     var evt:* = evt;
     DoShowTaverneScreen = function (evt:Event=undefined){
         var i:* = 0;
-        var questType:* = 0;
+        var quest_type:* = 0;
         var HutBlinzelTimer:* = null;
         var HutBlinzelStep:* = 0;
         var BarkeeperStep:* = 0;
@@ -20108,7 +20172,7 @@ public function ShowTaverneScreen(evt:Event=undefined){
                 HutBlinzelTimer.removeEventListener(TimerEvent.TIMER, HutBlinzelTimerEvent);
             };
         };
-        questType = GetQuestRandom(0, 5);
+        quest_type = get_quest_random(0, 5);
         HutBlinzelTimer = new Timer(50);
         HutBlinzelStep = 0;
         BarkeeperStep = 0;
@@ -20151,10 +20215,10 @@ public function ShowTaverneScreen(evt:Event=undefined){
         Hide(TAVERNE_BARKEEPER2);
         i = 0;
         while (i < 5) {
-            actor[(TAVERNE_QUEST1 + i)].visible = (questType == i);
+            actor[(TAVERNE_QUEST1 + i)].visible = (quest_type == i);
             i = (i + 1);
         };
-        DefineBunch(TAVERNE_QUESTOVL, (TAVERNE_QUESTOVL1 + questType));
+        DefineBunch(TAVERNE_QUESTOVL, (TAVERNE_QUESTOVL1 + quest_type));
         HutBlinzelTimer.addEventListener(TimerEvent.TIMER, HutBlinzelTimerEvent);
         TryShowTV();
         if (!lightMode){
@@ -20189,7 +20253,7 @@ public function ShowTaverneScreen(evt:Event=undefined){
     if (GetAdvent() != 0){
         Load(((TAVERN_ADVENT + GetAdvent()) - 1));
     };
-    WhenLoaded(DoShowTaverneScreen);
+    when_loaded(DoShowTaverneScreen);
 }
 
 public function ShowStallScreen(evt:Event=undefined){
@@ -20222,16 +20286,16 @@ public function ShowStallScreen(evt:Event=undefined){
         actor[LBL_STALL_TEXT].text = txt[TXT_STALL_TEXT];
         Arabize(LBL_STALL_TEXT);
         actor[LBL_STALL_GAIN].text = "";
-        if ((((CharVolk >= 5)) and (!(param_censored)))){
+        if ((((char_volk >= 5)) and (!(param_censored)))){
             Add(STALL_BOESE);
         } else {
             Add(STALL_GUT);
         };
         Add(SCREEN_STALL);
-        if (Tageszeit() == 1){
+        if (tageszeit() == 1){
             Remove(STALL_NIGHT);
         } else {
-            if (Tageszeit() == 2){
+            if (tageszeit() == 2){
                 Remove(STALL_NIGHT, STALL_DAWN);
             };
         };
@@ -20242,7 +20306,7 @@ public function ShowStallScreen(evt:Event=undefined){
         return;
     };
     Load(SCREEN_STALL);
-    if ((((CharVolk >= 5)) and (!(param_censored)))){
+    if ((((char_volk >= 5)) and (!(param_censored)))){
         Load(STALL_BOESE);
         Load(STALL_OVL_BOESE1, STALL_OVL_BOESE2, STALL_OVL_BOESE3, STALL_OVL_BOESE4);
         i = 0;
@@ -20259,7 +20323,7 @@ public function ShowStallScreen(evt:Event=undefined){
             i = (i + 1);
         };
     };
-    WhenLoaded(DoShowStall);
+    when_loaded(DoShowStall);
 }
 
 public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
@@ -20335,12 +20399,12 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
             PvPDelayTimer.stop();
         };
     };
-    tz = Tageszeit();
-    if ((((int(Savegame[SG_ACTION_STATUS]) == 1)) and (!(hasMirror)))){
+    tz = tageszeit();
+    if ((((int(Savegame[SG_ACTION_STATUS]) == 1)) and (!(has_mirror)))){
         ShowWorkScreen();
         return;
     };
-    if ((((int(Savegame[SG_ACTION_STATUS]) == 2)) and (!(hasMirror)))){
+    if ((((int(Savegame[SG_ACTION_STATUS]) == 2)) and (!(has_mirror)))){
         ShowQuestScreen();
         return;
     };
@@ -20356,7 +20420,7 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
             Load(SCREEN_ARENA_DAY);
             break;
     };
-    WhenLoaded(DoShowArenaScreen);
+    when_loaded(DoShowArenaScreen);
 }
 
 public function Arabize(actorID:int){
@@ -20430,7 +20494,7 @@ public function ShowDealerScreen(evt:Event=undefined, loadOnly:Boolean=false){
     actor[SCR_DEALER_BG].mouseEnabled = true;
     Load(SCREEN_DEALER);
     if (!loadOnly){
-        WhenLoaded(DoShowDealerScreen);
+        when_loaded(DoShowDealerScreen);
     };
 }
 
@@ -20452,7 +20516,7 @@ public function ShowScreenGildeGruenden(evt:Event=undefined){
         Add(SCREEN_GILDE_GRUENDEN);
     };
     Load(SCREEN_GILDE_GRUENDEN);
-    WhenLoaded(DoShowScreenGilden);
+    when_loaded(DoShowScreenGilden);
 }
 
 public function GetSpendAmount():String{
@@ -20946,7 +21010,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 if (type == TextFieldType.INPUT){
                     if (text != resolveBreaks(guildDescr)){
                         guildDescr = SemiStrip(text);
-                        SendAction(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((oldCrestStr + "§") + RemoveIllegalChars(SemiStrip(text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+                        send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((oldCrestStr + "§") + RemoveIllegalChars(SemiStrip(text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
                     };
                     if (text == ""){
                         text = txt[TXT_ENTERGUILDDESC];
@@ -21103,7 +21167,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     Revolt();
                     break;
                 case GILDE_DIALOG_OK_RAID:
-                    SendAction(ACT_GUILD_COMMENCE_ATTACK, -1);
+                    send_action(ACT_GUILD_COMMENCE_ATTACK, -1);
                     break;
                 case GILDE_DIALOG_CANCEL:
                     Remove(GILDE_DIALOG_INVITE);
@@ -21116,12 +21180,12 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 case GILDE_KATAPULT:
                 case (GILDE_KATAPULT + 1):
                 case (GILDE_KATAPULT + 2):
-                    SendAction(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
+                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
                     break;
                 case GILDE_GEBAEUDE_IMPROVE:
                 case (GILDE_GEBAEUDE_IMPROVE + 1):
                 case (GILDE_GEBAEUDE_IMPROVE + 2):
-                    SendAction(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actorID - GILDE_GEBAEUDE_IMPROVE) + 1));
+                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actorID - GILDE_GEBAEUDE_IMPROVE) + 1));
                     break;
                 case GILDE_GOLD:
                     if (int(Savegame[SG_EMAIL_VALID]) == 1){
@@ -21179,10 +21243,10 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         DoDonate = function (evt:Event=undefined){
             DonateTimeout.stop();
             if (GoldToDonate > 0){
-                SendAction(ACT_GUILD_DONATE, 1, String((GoldToDonate * 100)));
+                send_action(ACT_GUILD_DONATE, 1, String((GoldToDonate * 100)));
             } else {
                 if (MushToDonate > 0){
-                    SendAction(ACT_GUILD_DONATE, 2, String(MushToDonate));
+                    send_action(ACT_GUILD_DONATE, 2, String(MushToDonate));
                 };
             };
             GoldToDonate = 0;
@@ -21195,53 +21259,53 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             if (playerName == ""){
                 return;
             };
-            selName = playerName;
+            sel_name = playerName;
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
-            selGilde = (((selRank == 4)) ? "" : Gilde);
-            SendAction(ACT_REQUEST_CHAR, playerName);
+            sel_guild = (((selRank == 4)) ? "" : Gilde);
+            send_action(ACT_REQUEST_CHAR, playerName);
         };
         var InvitePlayer:* = function (){
-            var selName:String;
-            selName = guildMembers[((selectLevel + scrollLevel) + 1)];
-            if (selName == ""){
+            var sel_name:String;
+            sel_name = guildMembers[((selectLevel + scrollLevel) + 1)];
+            if (sel_name == ""){
                 return;
             };
-            SendAction(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, Gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
+            send_action(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, Gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
         };
         var MakeMaster:* = function (){
-            var selName:String;
-            selName = guildMembers[((selectLevel + scrollLevel) + 1)];
-            if (selName == ""){
+            var sel_name:String;
+            sel_name = guildMembers[((selectLevel + scrollLevel) + 1)];
+            if (sel_name == ""){
                 return;
             };
-            SendAction(ACT_GUILD_SET_MASTER, actor[INP_NAME].getChildAt(1).text, Gilde, selName, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+            send_action(ACT_GUILD_SET_MASTER, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
         };
         var KickMember:* = function (){
-            var selName:String;
-            selName = guildMembers[((selectLevel + scrollLevel) + 1)];
-            if (selName == ""){
+            var sel_name:String;
+            sel_name = guildMembers[((selectLevel + scrollLevel) + 1)];
+            if (sel_name == ""){
                 return;
             };
-            SendAction(ACT_GUILD_EXPEL, actor[INP_NAME].getChildAt(1).text, Gilde, selName, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+            send_action(ACT_GUILD_EXPEL, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
         };
         var ToggleOfficer:* = function (){
-            var selName:String;
+            var sel_name:String;
             var selRank:int;
-            selName = guildMembers[((selectLevel + scrollLevel) + 1)];
+            sel_name = guildMembers[((selectLevel + scrollLevel) + 1)];
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
-            if (selName == ""){
+            if (sel_name == ""){
                 return;
             };
             if (selRank == 2){
-                SendAction(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, Gilde, selName, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
+                send_action(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
             } else {
                 if (selRank == 3){
-                    SendAction(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, Gilde, selName, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 1);
+                    send_action(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 1);
                 };
             };
         };
         var Revolt:* = function (){
-            SendAction(ACT_REVOLT);
+            send_action(ACT_REVOLT);
         };
         BuildGuildList = function (evt:Event=undefined){
             var i:* = 0;
@@ -21309,7 +21373,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 };
                 if (((showActivityTime) and (isMine))){
                     if (Number(guildData[((GUILD_MEMBERONLINE + hoverLevel) + scrollLevel)]) > 0){
-                        EnablePopup(GILDE_LIST, TimeStr(guildData[((GUILD_MEMBERONLINE + hoverLevel) + scrollLevel)]));
+                        EnablePopup(GILDE_LIST, time_str(guildData[((GUILD_MEMBERONLINE + hoverLevel) + scrollLevel)]));
                     } else {
                         EnablePopup(GILDE_LIST, ":-(");
                     };
@@ -21930,7 +21994,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         actor[LBL_GILDE_DEFENCE].text = "";
         lastGuildData = guildData;
         isRaid = !((guildData[GUILD_IS_RAID] == 0));
-        SendAction(ACT_REQUEST_GUILD_NAMES, guildData[GUILD_ATTACK_TARGET], guildData[GUILD_DEFENCE_TARGET], ((isMine) ? 0 : 1));
+        send_action(ACT_REQUEST_GUILD_NAMES, guildData[GUILD_ATTACK_TARGET], guildData[GUILD_DEFENCE_TARGET], ((isMine) ? 0 : 1));
         if (guildData[0] == Savegame[SG_GUILD_INDEX]){
             myOwnRank = myRank;
             myOwnAttackTarget = int(guildData[GUILD_ATTACK_TARGET]);
@@ -21952,9 +22016,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                         };
                     } else {
                         if (int(guildData[GUILD_ATTACK_TARGET]) < 0){
-                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(TimeStr(lastGuildData[GUILD_ATTACK_TIME])));
+                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             if (txt[TXT_RAID_TEXT]){
-                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(TimeStr(lastGuildData[GUILD_ATTACK_TIME])));
+                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             };
                         } else {
                             if ((myAttackStatus & 1)){
@@ -21996,9 +22060,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     if (int(guildData[GUILD_ATTACK_TARGET]) == 0){
                     } else {
                         if (int(guildData[GUILD_ATTACK_TARGET]) < 0){
-                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(TimeStr(lastGuildData[GUILD_ATTACK_TIME])));
+                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             if (txt[TXT_RAID_TEXT]){
-                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(TimeStr(lastGuildData[GUILD_ATTACK_TIME])));
+                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             };
                         } else {
                             if (isRaid){
@@ -22049,9 +22113,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     };
                 };
             } else {
-                EnablePopup(GILDE_RAID_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
-                EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
-                EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                EnablePopup(GILDE_RAID_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
             };
         } else {
             Remove(GILDE_RAID);
@@ -22115,8 +22179,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     Remove(GILDE_ATTACK_GRAY);
                     Remove(GILDE_DEFEND_GRAY);
                 } else {
-                    EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
-                    EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(TimeStr((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                    EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
+                    EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), true)));
                 };
             };
         };
@@ -22136,9 +22200,9 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
     };
     arrowHallMode = false;
     if (isMine){
-        if (int(guildData[0]) != GildenID){
-            GildenID = int(guildData[0]);
-            SendAction(ACT_REQUEST_GUILD, guildData[0]);
+        if (int(guildData[0]) != gilden_id){
+            gilden_id = int(guildData[0]);
+            send_action(ACT_REQUEST_GUILD, guildData[0]);
         };
     };
     lastGuildShown = ThisGilde;
@@ -22149,7 +22213,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
     Load(GILDE_SET_MASTER);
     Load(GILDE_RANK, (GILDE_RANK + 1), (GILDE_RANK + 2));
     Load(GILDE_DIALOG_INVITE, GILDE_DIALOG_KICK, GILDE_DIALOG_MASTER);
-    WhenLoaded(DoShowScreenGilden);
+    when_loaded(DoShowScreenGilden);
 }
 
 public function ShowWorkSuccessScreen(evt:Event=undefined):void{
@@ -22158,7 +22222,7 @@ public function ShowWorkSuccessScreen(evt:Event=undefined):void{
     actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_WORK];
     actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
     actor[LBL_SCR_ARBEITEN_TEXT].text = txt[TXT_ARBEIT_TEXT5];
-    actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((txt[TXT_ARBEIT_TEXT6] + " ") + Geld(VerdientesGeld)) + " ") + txt[TXT_ARBEIT_TEXT7]);
+    actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((txt[TXT_ARBEIT_TEXT6] + " ") + geld(VerdientesGeld)) + " ") + txt[TXT_ARBEIT_TEXT7]);
     Play(SND_JINGLE);
     CheckWrongPage(ACT_SCREEN_ARBEITEN);
 }
@@ -22178,7 +22242,7 @@ public function ShowWorkScreen(evt:Event=undefined):void{
                 with (_local3) {
                     if (WaitingFor(Savegame[SG_ACTION_ENDTIME])){
                         if (txt[TXT_WORK_FINISH]){
-                            text = txt[TXT_WORK_FINISH].split("%1").join(WaitingTime(Savegame[SG_ACTION_ENDTIME])).split("%2").join(TimeStr(Savegame[SG_ACTION_ENDTIME], true));
+                            text = txt[TXT_WORK_FINISH].split("%1").join(WaitingTime(Savegame[SG_ACTION_ENDTIME])).split("%2").join(time_str(Savegame[SG_ACTION_ENDTIME], true));
                         } else {
                             text = WaitingTime(Savegame[SG_ACTION_ENDTIME]);
                         };
@@ -22190,7 +22254,7 @@ public function ShowWorkScreen(evt:Event=undefined):void{
                         ArbeitCountdown.stop();
                         ArbeitCountdown.removeEventListener(TimerEvent.TIMER, ArbeitCountdownEvent);
                         if (OnStage(LBL_SCR_ARBEITEN_TIME)){
-                            SendAction(ACT_SCREEN_ARBEITEN);
+                            send_action(ACT_SCREEN_ARBEITEN);
                         };
                     };
                     x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_SCR_ARBEITEN_TIME].textWidth / 2)));
@@ -22216,7 +22280,7 @@ public function ShowWorkScreen(evt:Event=undefined):void{
         Add(SCREEN_ARBEITEN_WAIT);
         SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
         SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
-        WhenLoaded(DoShowWorking);
+        when_loaded(DoShowWorking);
     } else {
         if (Savegame[SG_ACTION_STATUS] == 0){
             Add(SCREEN_ARBEITEN);
@@ -22234,7 +22298,7 @@ public function ArbeitenSliderChange(value:int):void{
     if (txt[TXT_ARBEIT_TEXT3] == ""){
         txtWorkDur = txt[TXT_ARBEIT_TEXT2].split("%hours").join(String(value)).split("%reward").join(Geld((value * Stundenlohn)));
         if (txt[TXT_WORK_FINISH]){
-            actor[LBL_SCR_ARBEITEN_TEXT2].text = txt[TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(TimeStr((int((GameTime.getTime() / 1000)) + (((value + 1) * 60) * 60)), true));
+            actor[LBL_SCR_ARBEITEN_TEXT2].text = txt[TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(time_str((int((GameTime.getTime() / 1000)) + (((value + 1) * 60) * 60)), true));
         } else {
             actor[LBL_SCR_ARBEITEN_TEXT2].text = txtWorkDur;
         };
@@ -22259,7 +22323,7 @@ public function ShowHallScreen(evt:Event=undefined):void{
         Add(SCREEN_HALLE);
     };
     Load(SCREEN_HALLE);
-    WhenLoaded(DoShowHallScreen);
+    when_loaded(DoShowHallScreen);
 }
 
 public function ShowCityScreen(evt:Event=undefined):void{
@@ -22272,7 +22336,7 @@ public function ShowCityScreen(evt:Event=undefined):void{
             StatistenBleiben = true;
         };
         RemoveAll();
-        Switch (Tageszeit()){
+        Switch (tageszeit()){
             case 0:
                 Add(SCREEN_CITY_NIGHT);
                 break;
@@ -22320,7 +22384,7 @@ public function ShowCityScreen(evt:Event=undefined):void{
     };
     StatistenBleiben = false;
     Load(BUBBLES);
-    Switch (Tageszeit()){
+    Switch (tageszeit()){
         case 0:
             Load(SCREEN_CITY_NIGHT);
             break;
@@ -22335,7 +22399,7 @@ public function ShowCityScreen(evt:Event=undefined):void{
     Load(CITY_ESEL2);
     Load(CITY_SANDWICH1);
     Load(CITY_SANDWICH2);
-    WhenLoaded(doShowCityScreen);
+    when_loaded(doShowCityScreen);
 }
 
 public function ShowPostScreen(par:Array=undefined){
@@ -22408,21 +22472,21 @@ public function ShowPostScreen(par:Array=undefined){
         };
         PostSetFocus();
         if (!(par is Array)){
-            PostReturnToPlayer = selName;
+            PostReturnToPlayer = sel_name;
             actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
             Remove(POST_LIST);
             Add(POST_WRITE);
             Hide(POST_GUILD);
-            actor[INP_POST_ADDRESS].getChildAt(1).text = selName;
+            actor[INP_POST_ADDRESS].getChildAt(1).text = sel_name;
             actor[INP_POST_SUBJECT].getChildAt(1).text = txt[TXT_BETREFF];
             actor[INP_POST_TEXT].getChildAt(1).text = txt[TXT_NACHRICHT];
         };
-        if (Tageszeit() != 0){
+        if (tageszeit() != 0){
             Remove(POST_NIGHT);
         };
-        if (Tageszeit() != 1){
+        if (tageszeit() != 1){
             Remove(POST_DAWN);
         };
         if (((((!(postSchonDa)) and ((par is Array)))) and (!(lightMode)))){
@@ -22434,7 +22498,7 @@ public function ShowPostScreen(par:Array=undefined){
     };
     BuildPostList = function (evt:Event=undefined){
         var tmpArray:* = undefined;
-        var selRow:* = 0;
+        var sel_row:* = 0;
         var tmpBalken:* = null;
         var line:* = undefined;
         var i:* = 0;
@@ -22444,7 +22508,7 @@ public function ShowPostScreen(par:Array=undefined){
         if (par[2]){
             Savegame[SG_MSG_COUNT] = par[2];
         };
-        selRow = (((tmpArray[0] == "")) ? 0 : 1);
+        sel_row = (((tmpArray[0] == "")) ? 0 : 1);
         var _local3 = actor[LBL_POST_LIMIT];
         with (_local3) {
             if (int(Savegame[SG_MSG_COUNT]) >= 100){
@@ -22456,29 +22520,29 @@ public function ShowPostScreen(par:Array=undefined){
             x = (((POST_SQUARE_X + POST_SQUARE_X) - width) + POST_LIMIT_X);
         };
         if ((evt is MouseEvent)){
-            selRow = (int(((actor[POST_LIST].getChildIndex(evt.target) - 3) / 4)) + 1);
+            sel_row = (int(((actor[POST_LIST].getChildIndex(evt.target) - 3) / 4)) + 1);
         };
         if ((evt is KeyboardEvent)){
-            selRow = (oldSel + ((KeyboardEvent(evt).keyCode)==Keyboard.UP) ? -1 : 1);
-            if (selRow < 1){
+            sel_row = (oldSel + ((KeyboardEvent(evt).keyCode)==Keyboard.UP) ? -1 : 1);
+            if (sel_row < 1){
                 PostBtnHandler(undefined, POST_UP);
                 return;
             };
-            if (selRow > 15){
+            if (sel_row > 15){
                 PostBtnHandler(undefined, POST_DOWN);
                 return;
             };
-            if (tmpArray[((selRow - 1) * 3)] == ""){
+            if (tmpArray[((sel_row - 1) * 3)] == ""){
                 return;
             };
         };
         if (oldSel == -1){
-            selRow = 15;
+            sel_row = 15;
         };
-        while (tmpArray[((selRow - 1) * 3)] == "") {
-            selRow = (selRow - 1);
+        while (tmpArray[((sel_row - 1) * 3)] == "") {
+            sel_row = (sel_row - 1);
         };
-        oldSel = selRow;
+        oldSel = sel_row;
         _local3 = actor[POST_LIST];
         with (_local3) {
             while (numChildren > 0) {
@@ -22497,12 +22561,12 @@ public function ShowPostScreen(par:Array=undefined){
             PostListAddField(POST_LIST_COLUMN_2_X, POST_LIST_LINES_Y, txt[TXT_POST_LIST_COLUMN_2], FontFormat_PostListHeading);
             PostListAddField(POST_LIST_COLUMN_3_X, POST_LIST_LINES_Y, txt[TXT_POST_LIST_COLUMN_3], FontFormat_PostListHeading);
         };
-        PostSel = selRow;
+        PostSel = sel_row;
         PostScrollDown = !((tmpArray[(tmpArray.length - 3)] == ""));
         line = 1;
         i = 0;
         while (i < ((tmpArray.length - 1) - 3)) {
-            if (selRow == line){
+            if (sel_row == line){
                 tmpFmt = FontFormat_PostListHighLightSys;
             } else {
                 tmpFmt = FontFormat_PostListTextSys;
@@ -22521,7 +22585,7 @@ public function ShowPostScreen(par:Array=undefined){
                 mouseEnabled = true;
                 doubleClickEnabled = true;
                 mouseChildren = false;
-                alpha = (((selRow == line)) ? 1 : 0);
+                alpha = (((sel_row == line)) ? 1 : 0);
             };
             DoubleClickHandler(tmpBalken, BuildPostList, PostBtnHandler);
             if (tmpArray[i] == ""){
@@ -22546,11 +22610,11 @@ public function ShowPostScreen(par:Array=undefined){
                     break;
                 case "6":
                     if (fightFlushMode){
-                        SendAction(ACT_POST_DELETE, ((line + PostScroll) - 1));
+                        send_action(ACT_POST_DELETE, ((line + PostScroll) - 1));
                         return;
                     };
                     tmpArray[(i + 1)] = txt[TXT_SUBJECT_PVP].replace("%1", tmpArray[i]);
-                    if (selRow == line){
+                    if (sel_row == line){
                         tmpFmt = FontFormat_PostListHighLightSysRed;
                     } else {
                         tmpFmt = FontFormat_PostListTextSysRed;
@@ -22558,11 +22622,11 @@ public function ShowPostScreen(par:Array=undefined){
                     break;
                 case "7":
                     if (fightFlushMode){
-                        SendAction(ACT_POST_DELETE, ((line + PostScroll) - 1));
+                        send_action(ACT_POST_DELETE, ((line + PostScroll) - 1));
                         return;
                     };
                     tmpArray[(i + 1)] = txt[TXT_SUBJECT_PVP].replace("%1", tmpArray[i]);
-                    if (selRow == line){
+                    if (sel_row == line){
                         tmpFmt = FontFormat_PostListHighLightSysGreen;
                     } else {
                         tmpFmt = FontFormat_PostListTextSysGreen;
@@ -22593,7 +22657,7 @@ public function ShowPostScreen(par:Array=undefined){
                 case "9  ":
                     tmpArray[(i + 1)] = "Moo!";
                 default:
-                    if (selRow == line){
+                    if (sel_row == line){
                         tmpFmt = FontFormat_PostListHighLight;
                     } else {
                         tmpFmt = FontFormat_PostListText;
@@ -22606,13 +22670,13 @@ public function ShowPostScreen(par:Array=undefined){
                 PostListAddField((POST_LIST_COLUMN_1_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
                 i = (i + 1);
                 PostListAddField((POST_LIST_COLUMN_2_X + 470), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
-                PostListAddField((POST_LIST_COLUMN_3_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmpArray[i]) == 0)) ? "" : TimeStr(tmpArray[i])), tmpFmt);
+                PostListAddField((POST_LIST_COLUMN_3_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmpArray[i]) == 0)) ? "" : time_str(tmpArray[i])), tmpFmt);
             } else {
                 i = (i + 1);
                 PostListAddField(POST_LIST_COLUMN_1_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
                 i = (i + 1);
                 PostListAddField(POST_LIST_COLUMN_2_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
-                PostListAddField(POST_LIST_COLUMN_3_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmpArray[i]) == 0)) ? "" : TimeStr(tmpArray[i])), tmpFmt);
+                PostListAddField(POST_LIST_COLUMN_3_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmpArray[i]) == 0)) ? "" : time_str(tmpArray[i])), tmpFmt);
             };
             line = (line + 1);
             i = (i + 1);
@@ -22650,7 +22714,7 @@ public function ShowPostScreen(par:Array=undefined){
         actor[POST_LIST].addChild(tmpLbl);
     };
     Load(SCREEN_POST);
-    WhenLoaded(DoShowPost);
+    when_loaded(DoShowPost);
 }
 
 public function DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function){
@@ -22698,9 +22762,9 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
         RebuildMode = true;
     };
     if ((((evt is MouseEvent)) and ((((GetActorID(evt.target) == GOTO_LOGIN)) or ((GetActorID(evt.target) == GOTO_SIGNUP)))))){
-        so.data.skipAutoLogin = true;
+        so.data.skipAutoLOGin = true;
     };
-    if (((((so.data.HasAccount) and (!(so.data.skipAutoLogin)))) and (!(RebuildMode)))){
+    if (((((so.data.HasAccount) and (!(so.data.skipAutoLOGin)))) and (!(RebuildMode)))){
         if (so.data.userName){
             actor[INP_NAME].getChildAt(1).text = String(so.data.userName);
         };
@@ -22708,11 +22772,11 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = String(so.data.password);
         };
         Add(BLACK_SQUARE);
-        RequestLogin();
+        RequestLOGin();
         return;
     };
     if (((((buffedMode) and (!(buffedReq)))) and (!(RebuildMode)))){
-        ShowLoginScreen();
+        ShowLOGinScreen();
         return;
     };
     RemoveAll();
@@ -22737,29 +22801,29 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
     if (DemoMode){
         Remove(CREATE_GOTO_LOGIN, IF_LOGOUT);
     };
-    if (CharVolk == 0){
+    if (char_volk == 0){
         RandomizeCharacter();
     };
     if (RebuildMode){
         Remove(CREATE_CHARACTER);
-        revertCharVolk = CharVolk;
-        revertCharMann = CharMann;
-        revertCharColor = CharColor;
-        revertCharMouth = CharMouth;
-        revertCharBeard = CharBeard;
-        revertCharNose = CharNose;
-        revertCharEyes = CharEyes;
-        revertCharBrows = CharBrows;
-        revertCharEars = CharEars;
-        revertCharHair = CharHair;
-        revertCharSpecial = CharSpecial;
-        revertCharSpecial2 = CharSpecial2;
+        revertchar_volk = char_volk;
+        revertchar_male = char_male;
+        revertchar_color = char_color;
+        revertchar_mouth = char_mouth;
+        revertchar_beard = char_beard;
+        revertchar_nose = char_nose;
+        revertchar_eyes = char_eyes;
+        revertchar_brows = char_brows;
+        revertchar_ears = char_ears;
+        revertchar_hair = char_hair;
+        revertchar_special = char_special;
+        revertchar_special2 = char_special2;
         KlasseGewählt = true;
     };
     LoadCharacterImage();
 }
 
-public function achLevel(SG:Array, achIndex:int, almode:int=0):int{
+public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
     var alresult:int;
     var alnext:int;
     alresult = 0;
@@ -23223,10 +23287,10 @@ public function DoAchievements(SG:Array):Boolean{
     OneUp = false;
     i = 0;
     while (i < ((buffedMode) ? 7 : 8)) {
-        achAusf = achLevel(SG, (i % 8), 1);
+        achAusf = ach_level(SG, (i % 8), 1);
         Add(((CHAR_ACH + i) + (achAusf * 8)));
-        if (oldAch[(i % 8)] < 0){
-            oldAch[(i % 8)] = -(oldAch[(i % 8)]);
+        if (old_ach[(i % 8)] < 0){
+            old_ach[(i % 8)] = -(old_ach[(i % 8)]);
             AnimateAch(((CHAR_ACH + i) + (achAusf * 8)));
             OneUp = true;
         };
@@ -23239,22 +23303,22 @@ public function DoAchievements(SG:Array):Boolean{
             default:
                 achAusfM = (txt[((TXT_ACH_5 + (achAusf * 2)) - 1)] + " ");
                 achAusfF = (txt[(TXT_ACH_5 + (achAusf * 2))] + " ");
-                achCurrentGrade = txt[(TXT_ACH_2 + (i % 8))].split("%1").join(String(achLevel(SG, (i % 8), 0))).split("%2").join(String(achLevel(SG, (i % 8), 4)));
+                achCurrentGrade = txt[(TXT_ACH_2 + (i % 8))].split("%1").join(String(ach_level(SG, (i % 8), 0))).split("%2").join(String(ach_level(SG, (i % 8), 4)));
                 if (i == 6){
-                    achCurrentGrade = txt[TXT_NEW_HONOR_ACH].split("%1").join(String(achLevel(SG, (i % 8), 0))).split("%2").join(String(achLevel(SG, (i % 8), 4)));
+                    achCurrentGrade = txt[TXT_NEW_HONOR_ACH].split("%1").join(String(ach_level(SG, (i % 8), 0))).split("%2").join(String(ach_level(SG, (i % 8), 4)));
                 };
         };
         achPop = new Array();
         if (txt[(TXT_ACH_4 + 4)]){
             achPop[achPop.length] = txt[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join("");
         } else {
-            achPop[achPop.length] = txt[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join(txt[(TXT_ACH_4 + 3)].split("%1").join(FriendLink));
+            achPop[achPop.length] = txt[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join(txt[(TXT_ACH_4 + 3)].split("%1").join(friend_link));
         };
-        achPop[achPop.length] = SingPlur(achCurrentGrade, achLevel(SG, (i % 8), 4));
+        achPop[achPop.length] = SingPlur(achCurrentGrade, ach_level(SG, (i % 8), 4));
         if (i == 1){
             if (SG[SG_PLAYER_ID] == Savegame[SG_PLAYER_ID]){
-                if (towerLevel > 0){
-                    achPop[achPop.length] = SingPlur(txt[(TXT_ACH_2 + 8)].split("%1").join(String(towerLevel)), towerLevel);
+                if (tower_level > 0){
+                    achPop[achPop.length] = SingPlur(txt[(TXT_ACH_2 + 8)].split("%1").join(String(tower_level)), tower_level);
                 };
             } else {
                 if (playerTowerLevel > 0){
@@ -23262,17 +23326,17 @@ public function DoAchievements(SG:Array):Boolean{
                 };
             };
         };
-        if (achLevel(SG, (i % 8), 2) > 0){
+        if (ach_level(SG, (i % 8), 2) > 0){
             if (i == 6){
-                achPop[achPop.length] = SingPlur(txt[TXT_NEW_HONOR_ACH2].split("%1").join(String(achLevel(SG, (i % 8), 2))).split("%2").join(txt[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), achLevel(SG, (i % 8), 2));
+                achPop[achPop.length] = SingPlur(txt[TXT_NEW_HONOR_ACH2].split("%1").join(String(ach_level(SG, (i % 8), 2))).split("%2").join(txt[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), ach_level(SG, (i % 8), 2));
             } else {
-                achPop[achPop.length] = SingPlur(txt[(TXT_ACH_3 + (i % 8))].split("%1").join(String(achLevel(SG, (i % 8), 2))).split("%2").join(txt[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), achLevel(SG, (i % 8), 2));
+                achPop[achPop.length] = SingPlur(txt[(TXT_ACH_3 + (i % 8))].split("%1").join(String(ach_level(SG, (i % 8), 2))).split("%2").join(txt[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), ach_level(SG, (i % 8), 2));
             };
         };
-        if (achLevel(SG, (i % 8), 3) > 0){
-            achPop[achPop.length] = txt[TXT_ACH_4].split("%1").join(String(achLevel(SG, (i % 8), 3)));
+        if (ach_level(SG, (i % 8), 3) > 0){
+            achPop[achPop.length] = txt[TXT_ACH_4].split("%1").join(String(ach_level(SG, (i % 8), 3)));
         };
-        EnablePopup(((CHAR_ACH + i) + (achLevel(SG, (i % 8), 1) * 8)), achPop);
+        EnablePopup(((CHAR_ACH + i) + (ach_level(SG, (i % 8), 1) * 8)), achPop);
         i++;
     };
     return (OneUp);
@@ -23300,14 +23364,14 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
     DoShowCharacterScreen = function (){
         var i:* = 0;
         var OneUp:* = false;
-        var LevelUpTimer:* = null;
+        var level_upTimer:* = null;
         var MountTimeTimer:* = null;
         var MountTimeEvent:* = null;
         var vanityRandom:* = NaN;
         var findIndex:* = 0;
-        var LevelUpAniStep:* = 0;
+        var level_upAniStep:* = 0;
         var kickIn:* = NaN;
-        var LevelUpAniEvent:* = null;
+        var level_upAniEvent:* = null;
         MountTimeEvent = function (evt:TimerEvent=undefined){
             if (((!(OnStage(LBL_CHAR_MOUNT_RUNTIME))) or ((Savegame[SG_MOUNT] == 0)))){
                 MountTimeTimer.stop();
@@ -23324,7 +23388,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
                 };
             };
         };
-        LevelUpTimer = new Timer(20);
+        level_upTimer = new Timer(20);
         ErrorMessage(" ");
         if (!OnStage(SCR_CHAR_BG)){
             SetAlpha(CHAR_SECONDPROP, 1);
@@ -23452,7 +23516,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
         mirrorAniTimer.stop();
         i = 0;
         while (i < 13) {
-            if (MirrorPieces[i]){
+            if (mirror_pieces[i]){
                 Add((MIRROR_PIECE + i));
                 mirrorAniTimer.start();
             };
@@ -23475,20 +23539,20 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
             if (Number(Savegame[SG_ALBUM]) >= 10000){
                 Add(CHAR_ALBUM);
                 EnablePopup(CHAR_ALBUM, POPUP_BEGIN_LINE, txt[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_COLLECTION].split("%1").join(String((Savegame[SG_ALBUM] - 10000))).split("%2").join(String(contentMax)).split("%3").join(String((Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_COLLECTION + 7)], POPUP_END_LINE);
-                if (AlbumEffect){
+                if (album_effect){
                     AnimateAch(CHAR_ALBUM, CHAR_PLAYERY);
-                    AlbumEffect = false;
+                    album_effect = false;
                 };
             };
         };
         OneUp = DoAchievements(Savegame);
-        if (LevelUp){
-            LevelUpAniEvent = function (evt:Event){
+        if (level_up){
+            level_upAniEvent = function (evt:Event){
                 var evt:* = evt;
-                LevelUpAniStep++;
-                if (LevelUpAniStep > 125){
-                    LevelUpTimer.stop();
-                    LevelUpTimer.removeEventListener(TimerEvent.TIMER, LevelUpAniEvent);
+                level_upAniStep++;
+                if (level_upAniStep > 125){
+                    level_upTimer.stop();
+                    level_upTimer.removeEventListener(TimerEvent.TIMER, level_upAniEvent);
                     var _local3 = actor[LBL_SCR_CHAR_EXPLABEL];
                     with (_local3) {
                         scaleX = 1;
@@ -23498,7 +23562,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
                     };
                     return;
                 };
-                if (LevelUpAniStep > 115){
+                if (level_upAniStep > 115){
                     if (kickIn > 0){
                         kickIn = (kickIn - 0.1);
                     };
@@ -23509,20 +23573,20 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
                 };
                 _local3 = actor[LBL_SCR_CHAR_EXPLABEL];
                 with (_local3) {
-                    scaleX = (((Math.cos((((LevelUpAniStep / 50) * 2) * Math.PI)) + 1) * kickIn) + 1);
-                    scaleY = (((Math.sin((((LevelUpAniStep / 50) * 2) * Math.PI)) + 1) * kickIn) + 1);
+                    scaleX = (((Math.cos((((level_upAniStep / 50) * 2) * Math.PI)) + 1) * kickIn) + 1);
+                    scaleY = (((Math.sin((((level_upAniStep / 50) * 2) * Math.PI)) + 1) * kickIn) + 1);
                     x = ((EXPERIENCE_BAR_X + 128) - int((width / 2)));
-                    y = (((EXPERIENCE_BAR_Y + 17) - int((height / 2))) - (((Math.sin((((LevelUpAniStep / 50) * 2) * Math.PI)) + 1) * kickIn) * 20));
+                    y = (((EXPERIENCE_BAR_Y + 17) - int((height / 2))) - (((Math.sin((((level_upAniStep / 50) * 2) * Math.PI)) + 1) * kickIn) * 20));
                 };
             };
-            LevelUpAniStep = 25;
+            level_upAniStep = 25;
             kickIn = 0;
             Add(LBL_SCR_CHAR_EXPLABEL);
             OneUp = true;
-            LevelUp = false;
-            _local2 = LevelUpTimer;
+            level_up = false;
+            _local2 = level_upTimer;
             with (_local2) {
-                addEventListener(TimerEvent.TIMER, LevelUpAniEvent);
+                addEventListener(TimerEvent.TIMER, level_upAniEvent);
                 start();
             };
         };
@@ -23581,13 +23645,13 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=false)
         Load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
     Load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
-    WhenLoaded(DoShowCharacterScreen);
+    when_loaded(DoShowCharacterScreen);
 }
 
 public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:String, PlayerComment:String):void{
     var i:* = 0;
-    var binStr:* = null;
-    var PlayerMirrorPieces:* = null;
+    var bin_str:* = null;
+    var Playermirror_pieces:* = null;
     var DoShowPlayerScreen:* = null;
     var PlayerSG:* = PlayerSG;
     var PlayerName:* = PlayerName;
@@ -23748,8 +23812,8 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             AddSome(CHAR_MESSAGE, CHAR_GILDE);
         } else {
             AddSome(CHAR_MESSAGE);
-            if ((((Savegame[SG_ACTION_STATUS] == 0)) or ((((Savegame[SG_ACTION_STATUS] >= 1)) and (hasMirror))))){
-                if (canRob){
+            if ((((Savegame[SG_ACTION_STATUS] == 0)) or ((((Savegame[SG_ACTION_STATUS] >= 1)) and (has_mirror))))){
+                if (can_rob){
                     AddSome(CHAR_ATTACK, LBL_CHAR_DELAY);
                 } else {
                     AddSome(CHAR_ATTACK, LBL_CHAR_DELAY);
@@ -23826,48 +23890,48 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
     };
     playerTowerLevel = int((PlayerSG[SG_MOUNT] / 65536));
     PlayerSG[SG_MOUNT] = (PlayerSG[SG_MOUNT] - (playerTowerLevel * 65536));
-    binStr = Number(PlayerSG[SG_GENDER]).toString(2);
-    while (binStr.length < 32) {
-        binStr = ("0" + binStr);
+    bin_str = Number(PlayerSG[SG_GENDER]).toString(2);
+    while (bin_str.length < 32) {
+        bin_str = ("0" + bin_str);
     };
-    PlayerMirrorPieces = new Array();
+    Playermirror_pieces = new Array();
     i = 0;
     while (i < 13) {
-        PlayerMirrorPieces[i] = (binStr.substr((i + 1), 1) == "1");
+        Playermirror_pieces[i] = (bin_str.substr((i + 1), 1) == "1");
         i = (i + 1);
     };
-    var playerHasMirror:* = (binStr.substr(23, 1) == "1");
-    if (binStr.substr(31) == "1"){
+    var playerHasMirror:* = (bin_str.substr(23, 1) == "1");
+    if (bin_str.substr(31) == "1"){
         PlayerSG[SG_GENDER] = 1;
     } else {
         PlayerSG[SG_GENDER] = 2;
     };
     i = 0;
     while (i < SG_BACKPACK_SIZE) {
-        ExpandItemStructure(PlayerSG, (SG_BACKPACK_OFFS + (i * SG_ITM_SIZE)));
+        expand_item_structure(PlayerSG, (SG_BACKPACK_OFFS + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     i = 0;
     while (i < SG_INVENTORY_SIZE) {
-        ExpandItemStructure(PlayerSG, (SG_INVENTORY_OFFS + (i * SG_ITM_SIZE)));
+        expand_item_structure(PlayerSG, (SG_INVENTORY_OFFS + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     i = 0;
     while (i < 6) {
-        ExpandItemStructure(PlayerSG, (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)));
-        ExpandItemStructure(PlayerSG, (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)));
+        expand_item_structure(PlayerSG, (SG_SHAKES_ITEM1 + (i * SG_ITM_SIZE)));
+        expand_item_structure(PlayerSG, (SG_FIDGET_ITEM1 + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     i = 0;
     while (i < 3) {
-        ExpandItemStructure(PlayerSG, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)));
+        expand_item_structure(PlayerSG, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE)));
         i = (i + 1);
     };
     if ((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) > 1)))){
         Load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
     Load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
-    WhenLoaded(DoShowPlayerScreen);
+    when_loaded(DoShowPlayerScreen);
 }
 
 public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
@@ -23914,7 +23978,7 @@ public function CheckWrongPage(correctAct:int){
         if (correctAct == ACT_SCREEN_TAVERNE){
             Switch (lastAct){
                 case ACT_SCREEN_ARENA:
-                    if (!hasMirror){
+                    if (!has_mirror){
                         ErrorMessage(txt[TXT_ERROR_TAVERNE_ARENA]);
                     };
                     break;
@@ -23922,7 +23986,7 @@ public function CheckWrongPage(correctAct:int){
                     ErrorMessage(txt[TXT_ERROR_TAVERNE_ARBEITEN]);
                     break;
                 case ACT_SCREEN_WELTKARTE:
-                    if (!hasMirror){
+                    if (!has_mirror){
                         ErrorMessage(txt[TXT_ERROR_TAVERNE_MAINQUEST]);
                     };
                     break;
@@ -23975,7 +24039,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                 return;
             };
             if (GetActorID(evt.target) == (HLMQS_BUTTON + 4)){
-                SendAction(ACT_SCREEN_TOWER);
+                send_action(ACT_SCREEN_TOWER);
             } else {
                 if (countDone == 9){
                     ShowMainQuestScreen(9, (int(NextEnemies[9]) - 1));
@@ -24192,16 +24256,16 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                     };
                 } else {
                     SetCnt((HLMQS_COMPLETED + i), HLMQS_TOWER_DISABLED);
-                    NextEnemy = txt[(TXT_TOWER_ENEMY_NAMES + towerLevel)].split("|")[0];
-                    DungeonLevel = String((towerLevel + 1));
-                    if (towerLevel >= 100){
+                    NextEnemy = txt[(TXT_TOWER_ENEMY_NAMES + tower_level)].split("|")[0];
+                    DungeonLevel = String((tower_level + 1));
+                    if (tower_level >= 100){
                         actor[(HLMQS_COMPLETED + i)].visible = true;
                     } else {
                         actor[(HLMQS_COMPLETED + i)].visible = false;
                     };
                 };
                 SetCnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
-                EnablePopup((HLMQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((i == 4)) ? TXT_TOWER_INFO : TXT_DUNGEON_INFO)].split("%1").join(DungeonLevel).split("%2").join(NextEnemy).split("%3").join(String(towerLevel)), POPUP_END_LINE);
+                EnablePopup((HLMQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((i == 4)) ? TXT_TOWER_INFO : TXT_DUNGEON_INFO)].split("%1").join(DungeonLevel).split("%2").join(NextEnemy).split("%3").join(String(tower_level)), POPUP_END_LINE);
                 _local2 = actor[(HLMQS_BUTTON + i)];
                 with (_local2) {
                     addEventListener(MouseEvent.CLICK, MainQuestsClick);
@@ -24248,7 +24312,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
         Load((MQS_BUTTON + i));
         i = (i + 1);
     };
-    WhenLoaded(DoShowMainQuestsScreen);
+    when_loaded(DoShowMainQuestsScreen);
 }
 
 public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
@@ -24261,7 +24325,7 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         var i:* = 0;
         DungeonLevel = "";
         if (DungeonNr == 100){
-            DungeonLevel = String((towerLevel + 1));
+            DungeonLevel = String((tower_level + 1));
         } else {
             if (DungeonNr == 12){
                 DungeonLevel = String((int(Savegame[SG_DUNGEON_13]) - 121));
@@ -24364,7 +24428,7 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         Savegame[SG_DUNGEON_13] = 122;
     };
     if (DungeonNr == 100){
-        questText = txt[(TXT_TOWER_ENEMY_NAMES + towerLevel)].split("|")[1];
+        questText = txt[(TXT_TOWER_ENEMY_NAMES + tower_level)].split("|")[1];
     } else {
         if (DungeonNr == 12){
             questText = txt[((TXT_QUEST_TEXT + (DungeonNr * 10)) + ((((int(Savegame[SG_DUNGEON_13]) - 2) < 120)) ? 0 : ((int(Savegame[SG_DUNGEON_13]) - 2) - 120)))];
@@ -24389,7 +24453,7 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     if (Enemy >= 0){
         Load((OPPMONSTER + Enemy));
     };
-    WhenLoaded(DoShowMainQuestScreen);
+    when_loaded(DoShowMainQuestScreen);
 }
 
 public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=true){
@@ -24522,7 +24586,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                 Show((TOWER_NO_PORTRAIT + copyCatIdRaw));
                 text = "";
             };
-            if (towerLevelLabelPos > (SCR_CHAR_CHARX + 3)){
+            if (tower_levelLabelPos > (SCR_CHAR_CHARX + 3)){
                 x = ((SCR_CHAR_CHARX + 127) - int((actor[LBL_TOWER_EXPLABEL].textWidth / 2)));
             } else {
                 x = (SCR_CHAR_CHARX + 3);
@@ -24613,7 +24677,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                     tmpHealth = int(SG[(SG_POTION_GAIN + ii)]);
                 } else {
                     if (((int(SG[(SG_POTION_TYPE + ii)]) - 1) % 5) == i){
-                        potionDuration = TimeStr(SG[(SG_POTION_DURATION + ii)], true);
+                        potionDuration = time_str(SG[(SG_POTION_DURATION + ii)], true);
                         if (int(SG[(SG_POTION_GAIN + ii)]) <= 25){
                             tempBonus = ((int(SG[(SG_ATTR_STAERKE + i)]) + int(SG[(SG_ATTR_STAERKE_BONUS + i)])) / ((100 + int(SG[(SG_POTION_GAIN + ii)])) / 100));
                             if (HideBackPack){
@@ -24824,7 +24888,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
                 if (HideBackPack){
                     EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE);
                 } else {
-                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, TimeStr(SG[(SG_POTION_DURATION + i)], true), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
+                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)], true), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
                 };
             };
             i = (i + 1);
@@ -24877,7 +24941,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
             EnablePopup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
-                SetCnt((CHAR_SLOT_1 + i), GetArrowID(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, true, ((tmpItmClass)==1) ? 1 : -1));
+                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, true, ((tmpItmClass)==1) ? 1 : -1));
                 actor[(CHAR_SLOT_1 + i)].mouseEnabled = false;
             } else {
                 SetCnt((CHAR_SLOT_1 + i), GetItemID(((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9)))) ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1 : (-(copyCatSel) - 3)) : -2)));
@@ -24962,7 +25026,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=false, tow
     };
 }
 
-public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean=false, NoPrices:Boolean=false, towerMode:Boolean=false, witchMode:Boolean=false){
+public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean=false, NoPrices:Boolean=false, towerMode:Boolean=false, witchMode:Boolean=false){
     var attribLines:Array;
     var shopLines:Array;
     var i:int;
@@ -24981,9 +25045,9 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
     var socketPower:int;
     var enchant:int;
     var enchantPower:int;
-    var itmColor:Number;
-    var itmClass:int;
-    var itmPic:int;
+    var itm_color:Number;
+    var itm_class:int;
+    var itm_pic:int;
     var attribSum:int;
     var itmName:String;
     var itmQuote:String;
@@ -25041,25 +25105,25 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
                 };
             };
         };
-        itmColor = 0;
-        itmClass = 0;
-        itmPic = int(SG[(sgIndex + SG_ITM_PIC)]);
+        itm_color = 0;
+        itm_class = 0;
+        itm_pic = int(SG[(sgIndex + SG_ITM_PIC)]);
         i = 0;
         while (i < 8) {
-            itmColor = (itmColor + Number(SG[((sgIndex + SG_ITM_SCHADEN_MIN) + i)]));
+            itm_color = (itm_color + Number(SG[((sgIndex + SG_ITM_SCHADEN_MIN) + i)]));
             i++;
         };
-        itmColor = (itmColor % 5);
-        while (itmPic >= 1000) {
-            itmPic = (itmPic - 1000);
-            itmClass++;
+        itm_color = (itm_color % 5);
+        while (itm_pic >= 1000) {
+            itm_pic = (itm_pic - 1000);
+            itm_class++;
         };
         if (C_DISPLAY_ITEM_INFO){
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE, actorURL[GetItemID(sgIndex, 0, SG)], POPUP_END_LINE];
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Typ: ", POPUP_TAB, String(SG[(sgIndex + SG_ITM_TYP)]), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Pic: ", POPUP_TAB, String(itmPic), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Color: ", POPUP_TAB, String((itmColor + 1)), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Class: ", POPUP_TAB, String((itmClass + 1)), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Pic: ", POPUP_TAB, String(itm_pic), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Color: ", POPUP_TAB, String((itm_color + 1)), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Class: ", POPUP_TAB, String((itm_class + 1)), POPUP_END_LINE];
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Sock: ", POPUP_TAB, String(socket), POPUP_END_LINE];
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "SockPwr: ", POPUP_TAB, String(socketPower), POPUP_END_LINE];
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Enchant: ", POPUP_TAB, String(enchant), POPUP_END_LINE];
@@ -25067,10 +25131,10 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
         };
         i = 0;
         while (i < 10) {
-            suggestionSlot[slotID] = 0;
+            suggestionSlot[slot_id] = 0;
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == CorrectItemType[i]){
-                if ((((slotID >= CHAR_SLOT_11)) and ((slotID <= CHAR_SLOT_SHAKES_6)))){
-                    suggestionSlot[slotID] = (i + CHAR_SLOT_1);
+                if ((((slot_id >= CHAR_SLOT_11)) and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
+                    suggestionSlot[slot_id] = (i + CHAR_SLOT_1);
                     if (SG[((SG_INVENTORY_OFFS + (SG_ITM_SIZE * i)) + SG_ITM_TYP)] > 0){
                         if (((compareItems) and (!(towerMode)))){
                             compareIndex = (SG_INVENTORY_OFFS + (SG_ITM_SIZE * i));
@@ -25282,10 +25346,10 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
             quoteArray[4] = POPUP_END_LINE;
         };
         if (SG[(sgIndex + SG_ITM_TYP)] < 8){
-            if ((itmClass + 1) != ((towerMode) ? (copyCatSel + 1) : Savegame[SG_CLASS])){
+            if ((itm_class + 1) != ((towerMode) ? (copyCatSel + 1) : Savegame[SG_CLASS])){
                 quoteArray.push(POPUP_BEGIN_LINE);
                 quoteArray.push(FontFormat_Error);
-                quoteArray.push(txt[TXT_NECESSARY_CLASS].split("%1").join(txt[((TXT_NECESSARY_CLASS + itmClass) + 1)]));
+                quoteArray.push(txt[TXT_NECESSARY_CLASS].split("%1").join(txt[((TXT_NECESSARY_CLASS + itm_class) + 1)]));
                 quoteArray.push(FontFormat_Popup);
                 quoteArray.push(POPUP_END_LINE);
             };
@@ -25313,33 +25377,33 @@ public function ItemPopup(slotID:int, sgIndex:int, SG:Array=undefined, HideBackP
         if (int(SG[(sgIndex + SG_ITM_TYP)]) == 1){
             if (compareIndex > 0){
                 compareVal = (Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)) - Math.round(((Number(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
-                EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
             } else {
-                EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), POPUP_END_LINE, attribLines, shopLines);
+                EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), POPUP_END_LINE, attribLines, shopLines);
             };
         } else {
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == 2){
                 if (compareIndex > 0){
                     compareVal = (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]));
-                    EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                    EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
                 } else {
-                    EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), POPUP_END_LINE, attribLines, shopLines);
+                    EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), POPUP_END_LINE, attribLines, shopLines);
                 };
             } else {
                 if (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) > 0){
                     if (compareIndex > 0){
                         compareVal = (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]));
-                        EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                        EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
                     } else {
-                        EnablePopup(slotID, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], POPUP_END_LINE, attribLines, shopLines);
+                        EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], POPUP_END_LINE, attribLines, shopLines);
                     };
                 } else {
-                    EnablePopup(slotID, itmName, quoteArray, attribLines, shopLines);
+                    EnablePopup(slot_id, itmName, quoteArray, attribLines, shopLines);
                 };
             };
         };
     } else {
-        EnablePopup(slotID);
+        EnablePopup(slot_id);
     };
 }
 
@@ -25391,9 +25455,9 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
                 } else {
                     if (inStr.substr(0, 4) == "#sr#"){
                         if (txt[TXT_SERVER_STARTED]){
-                            inStr = txt[TXT_SERVER_STARTED].split("%1").join(TimeStr(int(inStr.split("#")[2])));
+                            inStr = txt[TXT_SERVER_STARTED].split("%1").join(time_str(int(inStr.split("#")[2])));
                         } else {
-                            inStr = "Server restarted at %1".split("%1").join(TimeStr(int(inStr.split("#")[2])));
+                            inStr = "Server restarted at %1".split("%1").join(time_str(int(inStr.split("#")[2])));
                         };
                     } else {
                         if (inStr.substr(0, 4) == "#bd#"){
@@ -25485,9 +25549,9 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
                 } else {
                     if (inStr.substr(0, 4) == "#sr#"){
                         if (txt[TXT_SERVER_STARTED]){
-                            inStr = txt[TXT_SERVER_STARTED].split("%1").join(TimeStr(int(inStr.split("#")[2])));
+                            inStr = txt[TXT_SERVER_STARTED].split("%1").join(time_str(int(inStr.split("#")[2])));
                         } else {
-                            inStr = "Server restarted at %1".split("%1").join(TimeStr(int(inStr.split("#")[2])));
+                            inStr = "Server restarted at %1".split("%1").join(time_str(int(inStr.split("#")[2])));
                         };
                     } else {
                         if (inStr.substr(0, 4) == "#bd#"){
@@ -25572,7 +25636,7 @@ public function DecodeChat(inStr:String, getHLMode:Boolean=false, getGBMode:Bool
             };
         };
         if (OnStage(LBL_GILDE_TITEL)){
-            SendAction(ACT_SCREEN_GILDEN);
+            send_action(ACT_SCREEN_GILDEN);
         };
         if (getGBMode){
             return ("0");
@@ -25749,7 +25813,7 @@ public function ShowBetResult(won:Boolean){
     if (won){
         Load(HUTKUGEL);
     };
-    WhenLoaded(doShowBetResults);
+    when_loaded(doShowBetResults);
 }
 
 public function toiletTankAdjustEvent(evt:TimerEvent=undefined){
@@ -25870,7 +25934,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
     };
     Load(SCREEN_TOILET);
     ShowCharacterScreen();
-    WhenLoaded(doShowToilet);
+    when_loaded(doShowToilet);
 }
 
 public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchantCost:int=0){
@@ -25897,14 +25961,14 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchant
             trace(i, Savegame[((SG_INVENTORY_OFFS + (CorrectItemType.indexOf(Math.floor((int(witchData[(9 + (3 * i))]) / 10))) * SG_ITM_SIZE)) + SG_ITM_EXT_ENCHANT)]);
             if (Savegame[((SG_INVENTORY_OFFS + (CorrectItemType.indexOf(Math.floor((int(witchData[(9 + (3 * i))]) / 10))) * SG_ITM_SIZE)) + SG_ITM_EXT_ENCHANT)] != 0){
                 actor[(WITCH_SCROLL + i)].alpha = 0.5;
-                EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(TimeStr(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BOUGHT], POPUP_END_LINE);
+                EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BOUGHT], POPUP_END_LINE);
             } else {
                 if (enchantCost){
                     actor[(WITCH_SCROLL + i)].alpha = 1;
-                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(TimeStr(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYNOW], POPUP_END_LINE, POPUP_BEGIN_LINE, actor[IF_GOLD], String(Math.floor((enchantCost / 100))), POPUP_END_LINE);
+                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYNOW], POPUP_END_LINE, POPUP_BEGIN_LINE, actor[IF_GOLD], String(Math.floor((enchantCost / 100))), POPUP_END_LINE);
                 } else {
                     actor[(WITCH_SCROLL + i)].alpha = 1;
-                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(TimeStr(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYHINT], POPUP_END_LINE);
+                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), true)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYHINT], POPUP_END_LINE);
                 };
             };
             actor[(WITCH_SCROLL + i)].scaleX = 0.8;
@@ -25934,7 +25998,7 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=false, enchant
     };
     Load(SCREEN_WITCH);
     ShowCharacterScreen(undefined, true);
-    WhenLoaded(doShowWitch);
+    when_loaded(doShowWitch);
 }
 
 public function NextFight(evt:TimerEvent){
@@ -26012,7 +26076,7 @@ public function guildFightTimerFn(evt:TimerEvent){
     if (guildAttackTime != 0){
         if (!WaitingFor(guildAttackTime)){
             if (OnStage(LBL_GILDE_CHAT_CAPTION)){
-                SendAction(ACT_SCREEN_GILDEN);
+                send_action(ACT_SCREEN_GILDEN);
             } else {
                 PulseGilde = true;
             };
@@ -26022,7 +26086,7 @@ public function guildFightTimerFn(evt:TimerEvent){
     if (guildDefenceTime != 0){
         if (!WaitingFor(guildDefenceTime)){
             if (OnStage(LBL_GILDE_CHAT_CAPTION)){
-                SendAction(ACT_SCREEN_GILDEN);
+                send_action(ACT_SCREEN_GILDEN);
             } else {
                 PulseGilde = true;
             };
@@ -26032,7 +26096,7 @@ public function guildFightTimerFn(evt:TimerEvent){
 }
 
 
-public function ExpandItemStructure(arr:Array, offset:int){
+public function expand_item_structure(arr:Array, offset:int){
     var typeOriginal:Number;
     var picOriginal:Number;
     var mushOriginal:Number;
@@ -26094,7 +26158,7 @@ public function WaitingProgress(startTime:Number, targetTime:Number):Number{
 
 
 
-public function ShowLoginScreen(evt:Event=undefined, noBC:Boolean=false, noCookie:Boolean=false):void{
+public function ShowLOGinScreen(evt:Event=undefined, noBC:Boolean=false, noCookie:Boolean=false):void{
     var playername:String;
     if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffedMode)))) and (!(ssoMode)))){
         ShowBuildCharacterScreen();
@@ -26104,8 +26168,8 @@ public function ShowLoginScreen(evt:Event=undefined, noBC:Boolean=false, noCooki
     actor[INP_LOGIN_PASSWORD].getChildAt(1).visible = true;
     actor[LBL_WINDOW_TITLE].text = txt[TXT_WELCOME];
     actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-    actor[INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, RequestLogin);
-    actor[INP_LOGIN_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, RequestLogin);
+    actor[INP_NAME].addEventListener(KeyboardEvent.KEY_DOWN, RequestLOGin);
+    actor[INP_LOGIN_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, RequestLOGin);
     if (!noCookie){
         if (so.data.userName){
             actor[INP_NAME].getChildAt(1).text = String(so.data.userName);
@@ -26115,7 +26179,7 @@ public function ShowLoginScreen(evt:Event=undefined, noBC:Boolean=false, noCooki
         };
     };
     Add(WINDOW_LOGIN);
-    LogonRTL();
+    LOGonRTL();
     if (buffedMode){
         actor[LBL_GOTO_SIGNUP].htmlText = buffedLinkText;
         actor[GOTO_SIGNUP].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_GOTO_SIGNUP].textWidth / 2)));
@@ -26129,7 +26193,7 @@ public function ShowLoginScreen(evt:Event=undefined, noBC:Boolean=false, noCooki
     };
 }
 
-public function LogonRTL(){
+public function LOGonRTL(){
     if (textDir == "right"){
         actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_NAME].textWidth);
         actor[LBL_LOGIN_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_LOGIN_PASSWORD].textWidth);
@@ -26156,9 +26220,9 @@ public function ShowSignupScreen(evt:Event=undefined):void{
         actor[INP_PASSWORD].getChildAt(1).visible = true;
         actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_SIGNUP];
         actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-        actor[INP_NAME].addEventListener(KeyboardEvent.KEY_UP, RequestSignup);
-        actor[INP_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, RequestSignup);
-        actor[INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, RequestSignup);
+        actor[INP_NAME].addEventListener(KeyboardEvent.KEY_UP, request_signup);
+        actor[INP_PASSWORD].addEventListener(KeyboardEvent.KEY_DOWN, request_signup);
+        actor[INP_EMAIL].addEventListener(KeyboardEvent.KEY_DOWN, request_signup);
         if (buffedReq){
             actor[INP_NAME].getChildAt(1).text = buffed_name;
             actor[INP_EMAIL].getChildAt(1).text = buffed_email;
@@ -26172,7 +26236,7 @@ public function ShowSignupScreen(evt:Event=undefined):void{
             actor[INP_EMAIL].getChildAt(1).text = email;
             actor[INP_PASSWORD].getChildAt(1).text = mp_api_user_token;
         };
-        LogonRTL();
+        LOGonRTL();
         Hide(PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_HAPPY);
         Add(WINDOW_SIGNUP);
         if (param_bullshit_text != ""){
@@ -26208,7 +26272,7 @@ public function ModifyCharacter(evt:Event):void{
     var actorID:* = 0;
     var evt:* = evt;
     var RemoveColorOffset:* = function (val:int, type:int):int{
-        if ((getCharImageBound(CharVolk, CharMann, 11) & type)){
+        if ((getCharImageBound(char_volk, char_male, 11) & type)){
             while (val >= 100) {
                 val = (val - 100);
             };
@@ -26216,142 +26280,142 @@ public function ModifyCharacter(evt:Event):void{
         return (val);
     };
     var AddColorOffset:* = function (val:int, type:int):int{
-        if ((getCharImageBound(CharVolk, CharMann, 11) & type)){
-            val = (val + (100 * CharColor));
+        if ((getCharImageBound(char_volk, char_male, 11) & type)){
+            val = (val + (100 * char_color));
         };
         return (val);
     };
     actorID = GetActorID(evt.target);
-    CharHair = RemoveColorOffset(CharHair, C_HAIR);
-    CharBrows = RemoveColorOffset(CharBrows, C_BROWS);
-    CharBeard = RemoveColorOffset(CharBeard, C_BEARD);
-    CharSpecial2 = RemoveColorOffset(CharSpecial2, C_SPECIAL2);
+    char_hair = RemoveColorOffset(char_hair, C_HAIR);
+    char_brows = RemoveColorOffset(char_brows, C_BROWS);
+    char_beard = RemoveColorOffset(char_beard, C_BEARD);
+    char_special2 = RemoveColorOffset(char_special2, C_SPECIAL2);
     Switch (actorID){
         case MOUTH_MINUS:
-            CharMouth--;
-            if (CharMouth < 1){
-                CharMouth = getCharImageBound(CharVolk, CharMann, 1);
+            char_mouth--;
+            if (char_mouth < 1){
+                char_mouth = getCharImageBound(char_volk, char_male, 1);
             };
             break;
         case MOUTH_PLUS:
-            CharMouth++;
-            if (CharMouth > getCharImageBound(CharVolk, CharMann, 1)){
-                CharMouth = 1;
+            char_mouth++;
+            if (char_mouth > getCharImageBound(char_volk, char_male, 1)){
+                char_mouth = 1;
             };
             break;
         case HAIR_MINUS:
-            CharHair--;
-            if (CharHair < 1){
-                CharHair = getCharImageBound(CharVolk, CharMann, 7);
+            char_hair--;
+            if (char_hair < 1){
+                char_hair = getCharImageBound(char_volk, char_male, 7);
             };
             break;
         case HAIR_PLUS:
-            CharHair++;
-            if (CharHair > getCharImageBound(CharVolk, CharMann, 7)){
-                CharHair = 1;
+            char_hair++;
+            if (char_hair > getCharImageBound(char_volk, char_male, 7)){
+                char_hair = 1;
             };
             break;
         case BROWS_MINUS:
-            CharBrows--;
-            if (CharBrows < 1){
-                CharBrows = getCharImageBound(CharVolk, CharMann, 5);
+            char_brows--;
+            if (char_brows < 1){
+                char_brows = getCharImageBound(char_volk, char_male, 5);
             };
             break;
         case BROWS_PLUS:
-            CharBrows++;
-            if (CharBrows > getCharImageBound(CharVolk, CharMann, 5)){
-                CharBrows = 1;
+            char_brows++;
+            if (char_brows > getCharImageBound(char_volk, char_male, 5)){
+                char_brows = 1;
             };
             break;
         case EYES_MINUS:
-            CharEyes--;
-            if (CharEyes < 1){
-                CharEyes = getCharImageBound(CharVolk, CharMann, 4);
+            char_eyes--;
+            if (char_eyes < 1){
+                char_eyes = getCharImageBound(char_volk, char_male, 4);
             };
             break;
         case EYES_PLUS:
-            CharEyes++;
-            if (CharEyes > getCharImageBound(CharVolk, CharMann, 4)){
-                CharEyes = 1;
+            char_eyes++;
+            if (char_eyes > getCharImageBound(char_volk, char_male, 4)){
+                char_eyes = 1;
             };
             break;
         case BEARD_MINUS:
-            CharBeard--;
-            if (CharBeard < 1){
-                CharBeard = getCharImageBound(CharVolk, CharMann, 2);
+            char_beard--;
+            if (char_beard < 1){
+                char_beard = getCharImageBound(char_volk, char_male, 2);
             };
             break;
         case BEARD_PLUS:
-            CharBeard++;
-            if (CharBeard > getCharImageBound(CharVolk, CharMann, 2)){
-                CharBeard = 1;
+            char_beard++;
+            if (char_beard > getCharImageBound(char_volk, char_male, 2)){
+                char_beard = 1;
             };
             break;
         case NOSE_MINUS:
-            CharNose--;
-            if (CharNose < 1){
-                CharNose = getCharImageBound(CharVolk, CharMann, 3);
+            char_nose--;
+            if (char_nose < 1){
+                char_nose = getCharImageBound(char_volk, char_male, 3);
             };
             break;
         case NOSE_PLUS:
-            CharNose++;
-            if (CharNose > getCharImageBound(CharVolk, CharMann, 3)){
-                CharNose = 1;
+            char_nose++;
+            if (char_nose > getCharImageBound(char_volk, char_male, 3)){
+                char_nose = 1;
             };
             break;
         case EARS_MINUS:
-            CharEars--;
-            if (CharEars < 1){
-                CharEars = getCharImageBound(CharVolk, CharMann, 6);
+            char_ears--;
+            if (char_ears < 1){
+                char_ears = getCharImageBound(char_volk, char_male, 6);
             };
             break;
         case EARS_PLUS:
-            CharEars++;
-            if (CharEars > getCharImageBound(CharVolk, CharMann, 6)){
-                CharEars = 1;
+            char_ears++;
+            if (char_ears > getCharImageBound(char_volk, char_male, 6)){
+                char_ears = 1;
             };
             break;
         case SPECIAL_MINUS:
-            CharSpecial--;
-            if (CharSpecial < 1){
-                CharSpecial = getCharImageBound(CharVolk, CharMann, 8);
+            char_special--;
+            if (char_special < 1){
+                char_special = getCharImageBound(char_volk, char_male, 8);
             };
             break;
         case SPECIAL_PLUS:
-            CharSpecial++;
-            if (CharSpecial > getCharImageBound(CharVolk, CharMann, 8)){
-                CharSpecial = 1;
+            char_special++;
+            if (char_special > getCharImageBound(char_volk, char_male, 8)){
+                char_special = 1;
             };
             break;
         case SPECIAL2_MINUS:
-            CharSpecial2--;
-            if (CharSpecial2 < 1){
-                CharSpecial2 = getCharImageBound(CharVolk, CharMann, 9);
+            char_special2--;
+            if (char_special2 < 1){
+                char_special2 = getCharImageBound(char_volk, char_male, 9);
             };
             break;
         case SPECIAL2_PLUS:
-            CharSpecial2++;
-            if (CharSpecial2 > getCharImageBound(CharVolk, CharMann, 9)){
-                CharSpecial2 = 1;
+            char_special2++;
+            if (char_special2 > getCharImageBound(char_volk, char_male, 9)){
+                char_special2 = 1;
             };
             break;
         case COLOR_PLUS:
-            CharColor++;
-            if (CharColor > getCharImageBound(CharVolk, CharMann, 10)){
-                CharColor = 1;
+            char_color++;
+            if (char_color > getCharImageBound(char_volk, char_male, 10)){
+                char_color = 1;
             };
             break;
         case COLOR_MINUS:
-            CharColor--;
-            if (CharColor < 1){
-                CharColor = getCharImageBound(CharVolk, CharMann, 10);
+            char_color--;
+            if (char_color < 1){
+                char_color = getCharImageBound(char_volk, char_male, 10);
             };
             break;
     };
-    CharHair = AddColorOffset(CharHair, C_HAIR);
-    CharBrows = AddColorOffset(CharBrows, C_BROWS);
-    CharBeard = AddColorOffset(CharBeard, C_BEARD);
-    CharSpecial2 = AddColorOffset(CharSpecial2, C_SPECIAL2);
+    char_hair = AddColorOffset(char_hair, C_HAIR);
+    char_brows = AddColorOffset(char_brows, C_BROWS);
+    char_beard = AddColorOffset(char_beard, C_BEARD);
+    char_special2 = AddColorOffset(char_special2, C_SPECIAL2);
     LoadCharacterImage();
 }
 
@@ -26392,20 +26456,20 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk
         if (OnStage(SCR_BUILDCHAR_BACKGROUND)){
             var _local16 = actor[LBL_CREATE_RACE];
             with (_local16) {
-                text = txt[((TXT_RACENAME + CharVolk) - 1)];
+                text = txt[((TXT_RACENAME + char_volk) - 1)];
                 if (textDir == "right"){
                     x = ((actor[LBL_CREATE_RACE_DESC].x + actor[LBL_CREATE_RACE_DESC].width) - textWidth);
                 };
             };
             _local16 = actor[LBL_CREATE_RACE_DESC];
             with (_local16) {
-                text = txt[((TXT_RACEDESC + CharVolk) - 1)];
+                text = txt[((TXT_RACEDESC + char_volk) - 1)];
                 y = ((actor[LBL_CREATE_RACE].y + actor[LBL_CREATE_RACE].textHeight) + BUILDCHAR_LINES_Y);
             };
             Arabize(LBL_CREATE_RACE_DESC);
             _local16 = actor[LBL_CREATE_CLASS];
             with (_local16) {
-                text = txt[((KlasseGewählt) ? ((TXT_CLASSNAME + CharKaste) - 1) : TXT_NOCLASS)];
+                text = txt[((KlasseGewählt) ? ((TXT_CLASSNAME + char_class) - 1) : TXT_NOCLASS)];
                 y = ((actor[LBL_CREATE_RACE_DESC].y + actor[LBL_CREATE_RACE_DESC].textHeight) + BUILDCHAR_LINES_Y);
                 if (textDir == "right"){
                     x = ((actor[LBL_CREATE_RACE_DESC].x + actor[LBL_CREATE_RACE_DESC].width) - textWidth);
@@ -26413,34 +26477,34 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=false, isVolk
             };
             _local16 = actor[LBL_CREATE_CLASS_DESC];
             with (_local16) {
-                text = txt[((KlasseGewählt) ? ((TXT_CLASSDESC + CharKaste) - 1) : TXT_NOCLASS_DESC)];
+                text = txt[((KlasseGewählt) ? ((TXT_CLASSDESC + char_class) - 1) : TXT_NOCLASS_DESC)];
                 y = ((actor[LBL_CREATE_CLASS].y + actor[LBL_CREATE_CLASS].textHeight) + BUILDCHAR_LINES_Y);
             };
             Arabize(LBL_CREATE_CLASS_DESC);
         };
-        LoadCharacterImage(CHARBACKGROUND, loadOnly, CharVolk, CharMann, CharKaste, CharMouth, CharBeard, CharNose, CharEyes, CharBrows, CharEars, CharHair, CharSpecial, CharSpecial2);
+        LoadCharacterImage(CHARBACKGROUND, loadOnly, char_volk, char_male, char_class, char_mouth, char_beard, char_nose, char_eyes, char_brows, char_ears, char_hair, char_special, char_special2);
         if (OnStage(SCR_BUILDCHAR_BACKGROUND)){
             Remove(VOLK_BTNS_ALL);
             Add(F_IDLE);
             Add(M_IDLE);
-            if (CharMann){
+            if (char_male){
                 Add(VOLK_BTNS_M);
-                Add(((VOLK_1_M_ACT + CharVolk) - 1));
+                Add(((VOLK_1_M_ACT + char_volk) - 1));
                 Add(M_ACT);
             } else {
                 Add(VOLK_BTNS_F);
-                Add(((VOLK_1_F_ACT + CharVolk) - 1));
+                Add(((VOLK_1_F_ACT + char_volk) - 1));
                 Add(F_ACT);
             };
             Add(KASTE_1_IDLE);
             Add(KASTE_2_IDLE);
             Add(KASTE_3_IDLE);
             if (KlasseGewählt){
-                Add((KASTE_1_ACT + ((CharKaste - 1) * 2)));
+                Add((KASTE_1_ACT + ((char_class - 1) * 2)));
             };
             i = 1;
             while (i < 11) {
-                if (getCharImageBound(CharVolk, CharMann, i) == 0){
+                if (getCharImageBound(char_volk, char_male, i) == 0){
                     Remove((MOUTH_MINUS + ((i - 1) * 2)));
                     Remove((MOUTH_PLUS + ((i - 1) * 2)));
                     Remove((LBL_MOUTH + (i - 1)));
@@ -26610,19 +26674,19 @@ public function getCharSuffix(itemIndex:int, itemValue:int):String{
 }
 
 public function RandomizeCharacter(evt:Event=undefined):void{
-    CharVolk = (int((Math.random() * 8)) + 1);
-    CharMann = (Math.random() > 0.5);
+    char_volk = (int((Math.random() * 8)) + 1);
+    char_male = (Math.random() > 0.5);
     if (paramObj["playerclass"]){
-        CharKaste = int(paramObj["playerclass"]);
-        if (CharKaste < 1){
-            CharKaste = 1;
+        char_class = int(paramObj["playerclass"]);
+        if (char_class < 1){
+            char_class = 1;
         };
-        if (CharKaste > 3){
-            CharKaste = 3;
+        if (char_class > 3){
+            char_class = 3;
         };
         KlasseGewählt = true;
     } else {
-        CharKaste = (int((Math.random() * 3)) + 1);
+        char_class = (int((Math.random() * 3)) + 1);
         KlasseGewählt = false;
     };
     RandomizeCharImage();
@@ -26631,21 +26695,21 @@ public function RandomizeCharacter(evt:Event=undefined):void{
 public function RandomizeCharImage(evt:Event=undefined):void{
     var evt:* = evt;
     var ColorOffset:* = function (ItemID:int):int{
-        if ((getCharImageBound(CharVolk, CharMann, 11) & ItemID)){
-            return ((CharColor * 100));
+        if ((getCharImageBound(char_volk, char_male, 11) & ItemID)){
+            return ((char_color * 100));
         };
         return (0);
     };
-    CharColor = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 10)) + 1));
-    CharMouth = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 1)) + 1));
-    CharBeard = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 2)) + 1)) + ColorOffset(C_BEARD));
-    CharNose = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 3)) + 1));
-    CharEyes = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 4)) + 1));
-    CharBrows = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 5)) + 1)) + ColorOffset(C_BROWS));
-    CharEars = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 6)) + 1));
-    CharHair = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 7)) + 1)) + ColorOffset(C_HAIR));
-    CharSpecial = int(((Math.random() * getCharImageBound(CharVolk, CharMann, 8)) + 1));
-    CharSpecial2 = (int(((Math.random() * getCharImageBound(CharVolk, CharMann, 9)) + 1)) + ColorOffset(C_SPECIAL2));
+    char_color = int(((Math.random() * getCharImageBound(char_volk, char_male, 10)) + 1));
+    char_mouth = int(((Math.random() * getCharImageBound(char_volk, char_male, 1)) + 1));
+    char_beard = (int(((Math.random() * getCharImageBound(char_volk, char_male, 2)) + 1)) + ColorOffset(C_BEARD));
+    char_nose = int(((Math.random() * getCharImageBound(char_volk, char_male, 3)) + 1));
+    char_eyes = int(((Math.random() * getCharImageBound(char_volk, char_male, 4)) + 1));
+    char_brows = (int(((Math.random() * getCharImageBound(char_volk, char_male, 5)) + 1)) + ColorOffset(C_BROWS));
+    char_ears = int(((Math.random() * getCharImageBound(char_volk, char_male, 6)) + 1));
+    char_hair = (int(((Math.random() * getCharImageBound(char_volk, char_male, 7)) + 1)) + ColorOffset(C_HAIR));
+    char_special = int(((Math.random() * getCharImageBound(char_volk, char_male, 8)) + 1));
+    char_special2 = (int(((Math.random() * getCharImageBound(char_volk, char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
     LoadCharacterImage();
 }
 
@@ -27231,7 +27295,7 @@ public function InterfaceBtnHandler(evt:Event):void{
         case CA_CITY_RUHMESHALLE:
         case IF_EHRENHALLE:
             ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
-            SendAction(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
+            send_action(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
             break;
         case CA_CITY_ARENA:
         case IF_ARENA:
@@ -27244,7 +27308,7 @@ public function InterfaceBtnHandler(evt:Event):void{
         case CA_CITY_POST:
         case IF_POST:
             PostScroll = 1;
-            SendAction(ACT_SCREEN_POST, 1);
+            send_action(ACT_SCREEN_POST, 1);
             break;
         case CA_CITY_WACHE:
         case IF_ARBEITEN:
@@ -27298,7 +27362,7 @@ public function InterfaceBtnHandler(evt:Event):void{
             break;
     };
     if (tmpAction > 0){
-        SendAction(tmpAction);
+        send_action(tmpAction);
     };
 }
 
@@ -27564,7 +27628,7 @@ public function GuildChatPollFn(e:Event){
             return;
         };
     };
-    SendAction(ACT_GET_CHAT_HISTORY, lastChatIndex);
+    send_action(ACT_GET_CHAT_HISTORY, lastChatIndex);
 }
 
 public function ChatPollIntervalReset(){
@@ -27587,7 +27651,7 @@ public function trc(... _args){
     trace(outStr);
     if (paramObj["firebug"]){
         if (paramObj["firebug"] != ""){
-            ExternalInterface.call("console.Log", outStr);
+            ExternalInterface.call("console.LOG", outStr);
         };
     };
 }
