@@ -5782,7 +5782,7 @@ def request_signup(evt):
         ErrorMessage(texts[TXT_ERROR_AGB])
 
 
-def LoadTrackingPixel(url=''):
+def load_tracking_pixel(url=''):
     '''
         load tracking pixel
     '''
@@ -5855,7 +5855,7 @@ def LoadTrackingPixel(url=''):
             ExternalInterface.call("loadpixel", url)
 
 
-def DoActZauberladen():
+def do_act_zauberladen():
     '''
         setup magic shop actors
     '''
@@ -5880,7 +5880,7 @@ def DoActZauberladen():
     Remove(FIDGET_BLINZELN)
 
 
-def DoActSchmiede():
+def do_act_schmiede():
     '''
         setup weapon shop actors
     '''
@@ -5899,7 +5899,7 @@ def DoActSchmiede():
         Remove(SHAKES_DAY)
 
 
-def RequestPlayerScreen(evt):
+def request_player_screen(evt):
     '''
         request player screen
     '''
@@ -6125,29 +6125,25 @@ def request_player_guild_screen(evt):
         send_action(ACT['SCREEN']['FREMDGILDE'], sel_guild)
 
 
+def install_hall_popup(evt):
+    if this_field_popup != "":
+        EnablePopup(HALL_LIST, this_field_popup)
+    else:
+        EnablePopup(HALL_LIST)
+
+
+def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
+    tmp_obj = null
+    this_field_popup = null
+
 
 '''
 
-HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat, maxWidth:int=0, isGuild:Boolean=false):void{
-    var tmpObj:* = null
-    var thisFieldPopup:* = null
-    var pos_x:* = pos_x
-    var pos_y:* = pos_y
-    var txt:* = txt
-    var fmt:* = fmt
-    var maxWidth:int = maxWidth
-    var isGuild:Boolean = isGuild
-    var InstallHallPopup:* = function (evt:Event){
-        if (thisFieldPopup != ""){
-            EnablePopup(HALL_LIST, thisFieldPopup)
-        } else {
-            EnablePopup(HALL_LIST)
-        }
-    }
-    thisFieldPopup = ""
+
+    this_field_popup = ""
     if (txt == "[K]"){
-        tmpObj = new Bitmap(actor[IF_KRIEGER].content.bitmapData.clone())
-        var _local8 = tmpObj
+        tmp_obj = new Bitmap(actor[IF_KRIEGER].content.bitmapData.clone())
+        var _local8 = tmp_obj
         with (_local8) {
             allowSmoothing = true
             forceSmoothing = true
@@ -6156,8 +6152,8 @@ HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat,
         }
     } else {
         if (txt == "[M]"){
-            tmpObj = new Bitmap(actor[IF_MAGIER].content.bitmapData.clone())
-            _local8 = tmpObj
+            tmp_obj = new Bitmap(actor[IF_MAGIER].content.bitmapData.clone())
+            _local8 = tmp_obj
             with (_local8) {
                 allowSmoothing = true
                 forceSmoothing = true
@@ -6166,8 +6162,8 @@ HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat,
             }
         } else {
             if (txt == "[J]"){
-                tmpObj = new Bitmap(actor[IF_JAEGER].content.bitmapData.clone())
-                _local8 = tmpObj
+                tmp_obj = new Bitmap(actor[IF_JAEGER].content.bitmapData.clone())
+                _local8 = tmp_obj
                 with (_local8) {
                     allowSmoothing = true
                     forceSmoothing = true
@@ -6175,8 +6171,8 @@ HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat,
                     mouseEnabled = true
                 }
             } else {
-                tmpObj = new TextField()
-                _local8 = tmpObj
+                tmp_obj = new TextField()
+                _local8 = tmp_obj
                 with (_local8) {
                     defaultTextFormat = fmt
                     autoSize = TextFieldAutoSize.LEFT
@@ -6186,15 +6182,15 @@ HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat,
                     antiAliasType = AntiAliasType.ADVANCED
                     text = txt
                 }
-                if (maxWidth > 0){
-                    thisFieldPopup = TrimTooLong(tmpObj, maxWidth)
+                if (max_width > 0){
+                    this_field_popup = TrimTooLong(tmp_obj, max_width)
                 }
             }
         }
     }
-    _local8 = tmpObj
+    _local8 = tmp_obj
     with (_local8) {
-        if (isGuild){
+        if (is_guild){
             addEventListener(MouseEvent.CLICK, RequestPlayerGuildScreen)
         } else {
             addEventListener(MouseEvent.CLICK, RequestPlayerScreen)
@@ -6208,7 +6204,7 @@ HallListAddField:* = function (pos_x:int, pos_y:int, txt:String, fmt:TextFormat,
         y = pos_y
         visible = true
     }
-    actor[HALL_LIST].addChild(tmpObj)
+    actor[HALL_LIST].addChild(tmp_obj)
 }
 '''
 
@@ -7234,32 +7230,32 @@ def ActionHandler(event):
                 };
             };
             if (textDir == "right"){
-                HallListAddField(
+                hall_list_add_field(
                     (HALL_LIST_COLUMN_6_X + 40),
                     HALL_LIST_LINES_Y,
                     txt[TXT_HALL_LIST_COLUMN_1],
                     FontFormat_HallListHeading
                 );
-                HallListAddField(
+                hall_list_add_field(
                     (HALL_LIST_COLUMN_6_X - 10),
                     HALL_LIST_LINES_Y,
                     txt[((GuildHallMode)
                          ? TXT_HALL_LIST_COLUMN_3
                          : TXT_HALL_LIST_COLUMN_2)],
                     FontFormat_HallListHeading);
-                HallListAddField(
+                hall_list_add_field(
                     (HALL_LIST_COLUMN_2_X - 10),
                     HALL_LIST_LINES_Y,
                     txt[TXT_HALL_LIST_COLUMN_5],
                     FontFormat_HallListHeading);
-                HallListAddField(
+                hall_list_add_field(
                      (HALL_LIST_COLUMN_4_X + 20),
                      HALL_LIST_LINES_Y,
                      txt[((GuildHallMode)
                           ? TXT_GUILDHALL_LEADER
                           : TXT_HALL_LIST_COLUMN_3)],
                     FontFormat_HallListHeading);
-                HallListAddField(
+                hall_list_add_field(
                     (HALL_LIST_COLUMN_3_X + 25),
                     HALL_LIST_LINES_Y,
                     txt[((GuildHallMode)
@@ -7267,12 +7263,12 @@ def ActionHandler(event):
                          : TXT_HALL_LIST_COLUMN_4)],
                     FontFormat_HallListHeading);
             } else {
-                HallListAddField(
+                hall_list_add_field(
                     HALL_LIST_COLUMN_1_X, HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_1], FontFormat_HallListHeading);
-                HallListAddField(HALL_LIST_COLUMN_2_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_HALL_LIST_COLUMN_3 : TXT_HALL_LIST_COLUMN_2)], FontFormat_HallListHeading);
-                HallListAddField(HALL_LIST_COLUMN_6_X, HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_5], FontFormat_HallListHeading);
-                HallListAddField(HALL_LIST_COLUMN_4_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_LEADER : TXT_HALL_LIST_COLUMN_3)], FontFormat_HallListHeading);
-                HallListAddField(HALL_LIST_COLUMN_5_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_MEMBERS : TXT_HALL_LIST_COLUMN_4)], FontFormat_HallListHeading);
+                hall_list_add_field(HALL_LIST_COLUMN_2_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_HALL_LIST_COLUMN_3 : TXT_HALL_LIST_COLUMN_2)], FontFormat_HallListHeading);
+                hall_list_add_field(HALL_LIST_COLUMN_6_X, HALL_LIST_LINES_Y, txt[TXT_HALL_LIST_COLUMN_5], FontFormat_HallListHeading);
+                hall_list_add_field(HALL_LIST_COLUMN_4_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_LEADER : TXT_HALL_LIST_COLUMN_3)], FontFormat_HallListHeading);
+                hall_list_add_field(HALL_LIST_COLUMN_5_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_MEMBERS : TXT_HALL_LIST_COLUMN_4)], FontFormat_HallListHeading);
             };
             HallListName = new Array();
             HallListGilde = new Array();
@@ -7296,31 +7292,31 @@ def ActionHandler(event):
                 lastHallMembers.push(tmpArray[(i + 1)]);
                 arrowHallMode = true;
                 if (textDir == "right"){
-                    HallListAddField((HALL_LIST_COLUMN_6_X + 40), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    HallListAddField((HALL_LIST_COLUMN_6_X - 10), ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
+                    hall_list_add_field((HALL_LIST_COLUMN_6_X + 40), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field((HALL_LIST_COLUMN_6_X - 10), ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
                     i = (i + 1);
                     HallListName[line] = tmpArray[i];
                     i = (i + 1);
-                    HallListAddField(((GuildHallMode) ? (HALL_LIST_COLUMN_4_X + 20) : (HALL_LIST_COLUMN_6_X - 30)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
+                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_4_X + 20) : (HALL_LIST_COLUMN_6_X - 30)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
                     HallListGilde[line] = tmpArray[i];
                     i = (i + 1);
-                    HallListAddField(((GuildHallMode) ? (HALL_LIST_COLUMN_6_X - 10) : (HALL_LIST_COLUMN_4_X + 20)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), true);
+                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_6_X - 10) : (HALL_LIST_COLUMN_4_X + 20)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), true);
                     i = (i + 1);
-                    HallListAddField((HALL_LIST_COLUMN_3_X + 25), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    HallListAddField((HALL_LIST_COLUMN_2_X - 10), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field((HALL_LIST_COLUMN_3_X + 25), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field((HALL_LIST_COLUMN_2_X - 10), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
                 } else {
-                    HallListAddField(HALL_LIST_COLUMN_1_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    HallListAddField(HALL_LIST_COLUMN_2_X, ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
+                    hall_list_add_field(HALL_LIST_COLUMN_1_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field(HALL_LIST_COLUMN_2_X, ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
                     i = (i + 1);
                     HallListName[line] = tmpArray[i];
                     i = (i + 1);
-                    HallListAddField(((GuildHallMode) ? HALL_LIST_COLUMN_4_X : HALL_LIST_COLUMN_3_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
+                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_4_X : HALL_LIST_COLUMN_3_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
                     HallListGilde[line] = tmpArray[i];
                     i = (i + 1);
-                    HallListAddField(((GuildHallMode) ? HALL_LIST_COLUMN_2_X : HALL_LIST_COLUMN_4_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), true);
+                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_2_X : HALL_LIST_COLUMN_4_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), true);
                     i = (i + 1);
-                    HallListAddField(HALL_LIST_COLUMN_5_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    HallListAddField(HALL_LIST_COLUMN_6_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field(HALL_LIST_COLUMN_5_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field(HALL_LIST_COLUMN_6_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
                 };
                 line = (line + 1);
                 i = (i + 1);
@@ -7654,7 +7650,7 @@ def ActionHandler(event):
                 if (int(Savegame[SG_PLAYER_ID]) == 0){
                     next_pxl = -(act);
                 } else {
-                    LoadTrackingPixel(pxlStr);
+                    load_tracking_pixel(pxlStr);
                 };
             };
         };
@@ -18223,7 +18219,7 @@ public function ShowOptionScreen(evt:Event=undefined){
 }
 
 public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=false, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=false, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
-    var isGuildBattle:* = false;
+    var is_guildBattle:* = false;
     var charWeapon:* = 0;
     var oppWeapon:* = 0;
     var charHasWeapon:* = false;
@@ -18330,13 +18326,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             oppFlag = fightData[((fightRound * 6) + 5)];
             charWin = (charLife > 0);
             SetLifeBars();
-            if (((!(isGuildBattle)) or (lastFight))){
+            if (((!(is_guildBattle)) or (lastFight))){
                 Remove(FIGHT_SKIP);
                 Remove(BATTLE_SKIP);
                 Remove(BATTLE_SKIPONE);
                 Add(LBL_FIGHT_SUMMARY);
             };
-            if (isGuildBattle){
+            if (is_guildBattle){
                 if (((charWin) and (lastFight))){
                     Play(SND_JINGLE);
                 };
@@ -18347,7 +18343,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     Play(SND_JINGLE);
                 };
             };
-            if (isGuildBattle){
+            if (is_guildBattle){
                 lastRoundFighterName = thisCharName;
                 if (charWin){
                     if (winners[("name_" + thisCharName)]){
@@ -18711,7 +18707,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             with (_local4) {
                 width = FIGHT_RESULT_TEXT_X;
                 wordWrap = true;
-                if (isGuildBattle){
+                if (is_guildBattle){
                     if (lastFight){
                         if (towerFightMode){
                             if (charWin){
@@ -18803,7 +18799,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 DoStrikeTimer.removeEventListener(TimerEvent.TIMER, DoStrikeEvent);
                 return;
             };
-            if ((((skipGuildFights > 0)) and (isGuildBattle))){
+            if ((((skipGuildFights > 0)) and (is_guildBattle))){
                 DoSkipFight();
                 DoStrikeTimer.stop();
                 DoStrikeTimer.removeEventListener(TimerEvent.TIMER, DoStrikeEvent);
@@ -19402,12 +19398,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             inStrikeAni = true;
         };
         DoStrikeTimer = new Timer(200);
-        if (((((isPvP) and (!(isReplay)))) and (!(isGuildBattle)))){
+        if (((((isPvP) and (!(isReplay)))) and (!(is_guildBattle)))){
             if (!WaitingFor(Savegame[SG_PVP_REROLL_TIME])){
                 Savegame[SG_PVP_REROLL_TIME] = (int((GameTime.getTime() / 1000)) + (70 * 60));
             };
         };
-        if (isGuildBattle){
+        if (is_guildBattle){
             RemoveAll();
             if (towerFightMode){
                 Add(SCR_TOWER_BG);
@@ -19524,7 +19520,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         } else {
             LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), false, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
         };
-        if (isGuildBattle){
+        if (is_guildBattle){
             alternateCharOppImg = !(alternateCharOppImg);
         };
         AddSome(LBL_NAMERANK_CHAR, LBL_NAMERANK_OPP);
@@ -19535,7 +19531,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         actor[FIGHT_SKIP].addEventListener(MouseEvent.CLICK, DoSkipFight);
         actor[BATTLE_SKIP].addEventListener(MouseEvent.CLICK, DoSkipFight);
         actor[BATTLE_SKIPONE].addEventListener(MouseEvent.CLICK, DoSkipFight);
-        if (isGuildBattle){
+        if (is_guildBattle){
             Add(BATTLE_SKIP);
             Add(BATTLE_SKIPONE);
             Remove(FIGHT_SKIP);
@@ -19565,7 +19561,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         SetLifeBars();
         i = 0;
         while (i < 5) {
-            if (isGuildBattle){
+            if (is_guildBattle){
                 actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = "";
                 actor[(LBL_FIGHT_OPP_STAERKE + i)].text = "";
                 if (((towerFightMode) and (!((int(GuildBattleData[(i + 1)]) == 0))))){
@@ -19614,11 +19610,11 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         DoStrikeTimer.addEventListener(TimerEvent.TIMER, DoStrikeEvent);
         DoStrikeTimer.start();
     };
-    isGuildBattle = false;
+    is_guildBattle = false;
     if (GuildBattleData){
-        isGuildBattle = true;
+        is_guildBattle = true;
     };
-    hasFoughtGuildBattle = isGuildBattle;
+    hasFoughtGuildBattle = is_guildBattle;
     charWeapon = weaponData[SG_ITM_PIC];
     oppWeapon = weaponData[(SG_ITM_SIZE + SG_ITM_PIC)];
     charHasWeapon = (((int(weaponData[SG_ITM_TYP]) > 0)) and ((int(weaponData[SG_ITM_PIC]) > 0)));
@@ -19628,7 +19624,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     tz = tageszeit();
     hasLostMQ = false;
     actor[LBL_ERROR].text = "";
-    if (isGuildBattle){
+    if (is_guildBattle){
         Remove(GILDE_CHAT);
     };
     Switch (tz){
@@ -19826,21 +19822,21 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         };
     } else {
         oppName = faceData[15];
-        if (!isGuildBattle){
+        if (!is_guildBattle){
             addSuggestNames(oppName);
         };
     };
     thisCharName = (((faceData[0] == "")) ? actor[INP_NAME].getChildAt(1).text : faceData[0]);
-    if (((isGuildBattle) and (towerFightMode))){
+    if (((is_guildBattle) and (towerFightMode))){
         if (thisCharMonster >= 391){
             thisCharName = txt[((TXT_COPYCAT_NAME + thisCharMonster) - 391)];
         };
     };
     charFullLife = fighterData[0];
     oppFullLife = fighterData[6];
-    charLife = ((isGuildBattle) ? (((int(GuildBattleData[0]) < 0)) ? (charFullLife / -(int(GuildBattleData[0]))) : int(GuildBattleData[0])) : charFullLife);
+    charLife = ((is_guildBattle) ? (((int(GuildBattleData[0]) < 0)) ? (charFullLife / -(int(GuildBattleData[0]))) : int(GuildBattleData[0])) : charFullLife);
     charDamage = 0;
-    oppLife = ((isGuildBattle) ? (((int(GuildBattleData[6]) < 0)) ? (oppFullLife / -(int(GuildBattleData[6]))) : int(GuildBattleData[6])) : oppFullLife);
+    oppLife = ((is_guildBattle) ? (((int(GuildBattleData[6]) < 0)) ? (oppFullLife / -(int(GuildBattleData[6]))) : int(GuildBattleData[6])) : oppFullLife);
     var oppDamage:* = 0;
     charFlag = 0;
     oppFlag = 0;
@@ -19848,10 +19844,10 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     oppStrike = false;
     var charLevel:* = int(faceData[(16 - 15)]);
     isRaid = false;
-    if (!isGuildBattle){
+    if (!is_guildBattle){
         alternateCharOppImg = false;
     };
-    if (((isGuildBattle) and ((ownGuild == "")))){
+    if (((is_guildBattle) and ((ownGuild == "")))){
         isRaid = true;
     };
     if (oppMonster > 0){
@@ -19864,7 +19860,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     } else {
         LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), true, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
     };
-    if (isGuildBattle){
+    if (is_guildBattle){
         if (towerFightMode){
             Load(SCR_TOWER_BG);
         } else {
@@ -21110,7 +21106,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     };
                     break;
                 case GILDE_PROFILE:
-                    RequestPlayerScreen();
+                    request_player_screen();
                     break;
                 case GILDE_REVOLT:
                     Add(GILDE_DIALOG_REVOLT);
@@ -21318,14 +21314,14 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             var avgCount:* = undefined;
             var evt:* = evt;
             var AddGuildImage:* = function (rank:int, line:int){
-                var tmpObj:* = null;
+                var tmp_obj:* = null;
                 var rank:* = rank;
                 var line:* = line;
                 if (rank == 0){
                     rank = 4;
                 };
-                tmpObj = new Bitmap(actor[((GILDE_RANK + (((rank < 4)) ? rank : 3)) - 1)].content.bitmapData.clone());
-                var _local4 = tmpObj;
+                tmp_obj = new Bitmap(actor[((GILDE_RANK + (((rank < 4)) ? rank : 3)) - 1)].content.bitmapData.clone());
+                var _local4 = tmp_obj;
                 with (_local4) {
                     allowSmoothing = true;
                     forceSmoothing = true;
@@ -21339,7 +21335,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     y = ((line * GILDE_LIST_Y) + 4);
                     alpha = (((rank == 4)) ? 0.5 : 1);
                 };
-                actor[GILDE_LIST].addChild(tmpObj);
+                actor[GILDE_LIST].addChild(tmp_obj);
             };
             var BuildGuildPopup:* = function (evt:MouseEvent){
                 var hoverLevel:int;
@@ -21436,35 +21432,35 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 EnablePopup(GILDE_LIST);
             };
             var AddGuildPlayer:* = function (memberName:String, rank:int, line:int, onlineStatus:Boolean, thisAttackError:Boolean, thisAttackStatus:int){
-                var tmpObj:* = null;
+                var tmp_obj:* = null;
                 var memberName:* = memberName;
                 var rank:* = rank;
                 var line:* = line;
                 var onlineStatus:* = onlineStatus;
                 var thisAttackError:* = thisAttackError;
                 var thisAttackStatus:* = thisAttackStatus;
-                tmpObj = new TextField();
-                DoubleClickHandler(tmpObj, BuildGuildList, RequestPlayerScreen);
-                var _local8 = tmpObj;
+                tmp_obj = new TextField();
+                DoubleClickHandler(tmp_obj, BuildGuildList, RequestPlayerScreen);
+                var _local8 = tmp_obj;
                 with (_local8) {
                     addEventListener(MouseEvent.MOUSE_OVER, BuildGuildPopup);
                     addEventListener(MouseEvent.MOUSE_OUT, RemoveGuildPopup);
                     if (thisAttackError){
                         if (isMine){
                             if ((((thisAttackStatus & 1)) or ((thisAttackStatus & 2)))){
-                                tmpObj.defaultTextFormat = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnlineHalf : FontFormat_GuildListTextAttackErrorHalf);
+                                tmp_obj.defaultTextFormat = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnlineHalf : FontFormat_GuildListTextAttackErrorHalf);
                             } else {
-                                tmpObj.defaultTextFormat = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnline : FontFormat_GuildListTextAttackError);
+                                tmp_obj.defaultTextFormat = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnline : FontFormat_GuildListTextAttackError);
                             };
                         } else {
                             if (!(((thisAttackStatus & 1)) and ((thisAttackStatus & 2)))){
-                                tmpObj.defaultTextFormat = FontFormat_GuildListTextAttackErrorHalf;
+                                tmp_obj.defaultTextFormat = FontFormat_GuildListTextAttackErrorHalf;
                             } else {
-                                tmpObj.defaultTextFormat = FontFormat_GuildListTextAttackError;
+                                tmp_obj.defaultTextFormat = FontFormat_GuildListTextAttackError;
                             };
                         };
                     } else {
-                        tmpObj.defaultTextFormat = ((((onlineStatus) and (isMine))) ? FontFormat_GuildListTextOnline : FontFormat_GuildListText);
+                        tmp_obj.defaultTextFormat = ((((onlineStatus) and (isMine))) ? FontFormat_GuildListTextOnline : FontFormat_GuildListText);
                     };
                     autoSize = TextFieldAutoSize.LEFT;
                     background = false;
@@ -21482,7 +21478,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     y = ((line * GILDE_LIST_Y) + 0);
                     alpha = (((rank == 4)) ? 0.5 : 1);
                 };
-                actor[GILDE_LIST].addChild(tmpObj);
+                actor[GILDE_LIST].addChild(tmp_obj);
             };
             i = 0;
             j = 0;
@@ -23934,19 +23930,19 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
     when_loaded(DoShowPlayerScreen);
 }
 
-public function TrimTooLong(actorIDObj:Object, maxWidth:int):String{
+public function TrimTooLong(actorIDObj:Object, max_width:int):String{
     var tmpStr:* = null;
     var remainLength:* = 0;
     var actorID:* = 0;
     var Shortened:* = false;
     var actorIDObj:* = actorIDObj;
-    var maxWidth:* = maxWidth;
+    var max_width:* = max_width;
     Shortened = false;
     var _local4 = (((actorIDObj is int)) ? actor[actorIDObj] : actorIDObj);
     with (_local4) {
         tmpStr = text;
         remainLength = tmpStr.length;
-        while (textWidth > maxWidth) {
+        while (textWidth > max_width) {
             remainLength--;
             Shortened = true;
             if (textDir == "right"){
