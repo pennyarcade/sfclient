@@ -4439,7 +4439,7 @@ def init_vars():
         param_poll_tunnel_url = ""
         trackPixels = new Array()
         intervalMultiplierChat = 1
-        intervalMultiplierReconnect = 1
+        interval_multiplier_reconnect = 1
         param_support_email = "support@sfgame.de"
         param_gamestaff_email = param_support_email
         param_papaya_path = ""
@@ -4673,7 +4673,7 @@ def init_vars():
         PulseTaverne = False
         PulseArbeiten = False
         PulseGilde = False
-        PulseGildeOnHistory = False
+        pulse_gilde_on_history = False
         pulse_post = False
         pulse_char = False
         PulseDealer = False
@@ -4723,7 +4723,7 @@ def init_vars():
         )
         alternateCharOppImg = False
         hasFoughtGuildBattle = False
-        skipAllowed = False
+        skip_allowed = False
         specialActionHint = False
         suggestNames = new Array()
         crestElementPos = [
@@ -4822,7 +4822,7 @@ def init_vars():
         guildAttacking = ""
         lastChatHist = ""
         lastChatIndex = 0
-        guildBlinkReady = False
+        guild_blink_ready = False
         firstChatFill = False
         SignupJumpRunning = False
         suggestionSlot = new Array()
@@ -4901,10 +4901,10 @@ def init_vars():
                     tvAni = 0
                 }
                 if (tvStatus == 1){
-                    Show(CA_TV)
+                    show(CA_TV)
                 }
                 if (tvStatus == 0){
-                    Hide(CA_TV)
+                    hide(CA_TV)
                 }
                 i = 0
                 while (i < 4) {
@@ -4913,9 +4913,9 @@ def init_vars():
                     actor[(TV + i)].rotation = (Math.sin(tvWobble) * 5)
                     actor[(TV + i)].alpha = tvStatus
                     if ((((i == tvAni)) and ((tvStatus > 0)))){
-                        Show((TV + i))
+                        show((TV + i))
                     } else {
-                        Hide((TV + i))
+                        hide((TV + i))
                     }
                     i++
                 }
@@ -4923,7 +4923,7 @@ def init_vars():
                     tvTimer.stop()
                     i = 0
                     while (i < 4) {
-                        Hide((TV + i))
+                        hide((TV + i))
                         i++
                     }
                     tvStatus = 0
@@ -4951,9 +4951,9 @@ def init_vars():
             i = 0
             while (i < 15) {
                 if (i == witchAniStep){
-                    Show((WITCH_ANI + i))
+                    show((WITCH_ANI + i))
                 } else {
-                    Hide((WITCH_ANI + i))
+                    hide((WITCH_ANI + i))
                 }
                 i++
             }
@@ -5131,7 +5131,7 @@ def time_calc_event(evt):
     '''
     current_time = datetime.now()
     if (slmCount > 23) and (ststep == 8):
-        Add(FILLSPACE)
+        add(FILLSPACE)
         slmCount = 0
 
     GameTime.setTime(
@@ -5756,7 +5756,7 @@ def request_signup(evt):
                 #actor[INP_EMAIL].getChildAt(1).text =
                 #   (inpText + "@playagames.com")
                 #actor[INP_PASSWORD].getChildAt(1).text = "12345"
-                #Add(CB_AGB_CHECKED)
+                #add(CB_AGB_CHECKED)
                 pass
             return
 
@@ -5779,7 +5779,7 @@ def request_signup(evt):
         #   char_ears) + "/") + char_special) + "/") +
         #   char_special2) + "/"), param_cid)
     else:
-        ErrorMessage(texts[TXT_ERROR_AGB])
+        error_message(texts[TXT_ERROR_AGB])
 
 
 def load_tracking_pixel(url=''):
@@ -5815,7 +5815,7 @@ def load_tracking_pixel(url=''):
         #variables.pixel_player_id = Savegame[SG_PLAYER_ID]
         #variables.pixel_action = (((next_pxl == 0)) ? act : Math.abs(next_pxl))
         #req.data = variables
-        logInAfterPixel = False
+        log_in_after_pixel = False
         #navigateToURL(req, "_self")
     else:
         if param_internal_pixel:
@@ -5859,44 +5859,44 @@ def do_act_zauberladen():
     '''
         setup magic shop actors
     '''
-    ErrorMessage(" ")
-    Remove(CHAR_RIGHTPANE)
-    Remove(FIDGET_EPCIOVL)
-    Remove(SHAKES_EPCIOVL)
-    Add(SCREEN_FIDGET)
+    error_message(" ")
+    remove(CHAR_RIGHTPANE)
+    remove(FIDGET_EPCIOVL)
+    remove(SHAKES_EPCIOVL)
+    add(SCREEN_FIDGET)
     if Savegame[SG_LEVEL] >= 66:
-        Add(CA_GOTO_WITCH)
+        add(CA_GOTO_WITCH)
     if ((specialAction == 2) or (specialAction == 5)):
-        Add(FIDGET_EPCIOVL)
+        add(FIDGET_EPCIOVL)
         actor[FIDGET_EPCIOVL].mouse_enabled = False
     if (not sleep_time()):
-        Remove(FIDGET_NIGHT)
+        remove(FIDGET_NIGHT)
     else:
-        Remove(FIDGET_DAY)
+        remove(FIDGET_DAY)
     if Capabilities.version.substr(0, 3) != "IOS":
         if lightMode:
-            Remove(FIDGET_TAGKERZE)
-            Remove(FIDGET_NACHTKERZE)
-    Remove(FIDGET_BLINZELN)
+            remove(FIDGET_TAGKERZE)
+            remove(FIDGET_NACHTKERZE)
+    remove(FIDGET_BLINZELN)
 
 
 def do_act_schmiede():
     '''
         setup weapon shop actors
     '''
-    ErrorMessage(" ")
-    Remove(CHAR_RIGHTPANE)
-    Remove(FIDGET_EPCIOVL)
-    Remove(SHAKES_EPCIOVL)
-    Add(SCREEN_SHAKES)
+    error_message(" ")
+    remove(CHAR_RIGHTPANE)
+    remove(FIDGET_EPCIOVL)
+    remove(SHAKES_EPCIOVL)
+    add(SCREEN_SHAKES)
     if ((specialAction == 2) or (specialAction == 5)):
-        Add(SHAKES_EPCIOVL)
+        add(SHAKES_EPCIOVL)
         actor[SHAKES_EPCIOVL].mouse_enabled = False
-    Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
+    remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
     if not sleep_time():
-        Remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
+        remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
     else:
-        Remove(SHAKES_DAY)
+        remove(SHAKES_DAY)
 
 
 def request_player_screen(evt):
@@ -5908,8 +5908,8 @@ def request_player_screen(evt):
         return
 
     sel_row = int((sel_index - 5) / 6) + 1
-    sel_name = HallListName[sel_row]
-    sel_guild = HallListGilde[sel_row]
+    sel_name = hall_list_name[sel_row]
+    sel_guild = hall_list_guild[sel_row]
     if sel_name == "":
         return
     send_action(ACT_REQUEST_CHAR, sel_name)
@@ -6042,7 +6042,7 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
                 x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
 
             if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                EnablePopup(
+                enable_popup(
                     LBL['IF']['PILZE'],
                     texts[TXT['MUSHROOMS']['BOUGHT']].replace(
                         "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
@@ -6068,14 +6068,14 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
                 x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
 
             if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                EnablePopup(
+                enable_popup(
                     LBL['IF']['PILZE'],
                     texts[TXT['MUSHROOMS']['BOUGHT']].replace(
                         "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
                     )
                 )
 
-    Add(IF['STATS'])
+    add(IF['STATS'])
     if int(Savegame[SG['SERVER']['TIME']]) > 0:
         server_time.setTime(
             1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
@@ -6110,8 +6110,8 @@ def request_player_guild_screen(evt):
         return
 
     sel_row = int((sel_index - 5) / 6 + 1)
-    sel_name = HallListName[sel_row]
-    sel_guild = HallListGilde[sel_row]
+    sel_name = hall_list_name[sel_row]
+    sel_guild = hall_list_guild[sel_row]
 
     if sel_guild == texts[TXT['NOGUILD']]:
         return
@@ -6127,9 +6127,9 @@ def request_player_guild_screen(evt):
 
 def install_hall_popup(evt):
     if this_field_popup != "":
-        EnablePopup(HALL_LIST, this_field_popup)
+        enable_popup(HALL_LIST, this_field_popup)
     else:
-        EnablePopup(HALL_LIST)
+        enable_popup(HALL_LIST)
 
 
 def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
@@ -6189,239 +6189,245 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
     actor[HALL_LIST].addChild(tmp_obj)
 
 
-def ActionHandler(event):
+def action_handler(event):
     '''
         handle server reply
     '''
 
-    '''
-        dataStr:* = null
-        act:* = 0
-        parStr:* = null
-        i:* = 0
-        ii:* = 0
-        tmpArray:* = null
-        tmpFmt:* = null
-        line:* = 0
-        HallListName:* = null
-        HallListGilde:* = null
-        isMine:* = False
-        logInAfterPixel:* = False
-        par:* = null
-        pa:* = null
-        pas:* = null
-        pxlStr:* = null
-        pxlArr:* = null
-        inVar:* = False
-        pixel:* = undefined
-        DoActZauberladen:* = null
-        DoActSchmiede:* = null
-        tmpByteArray:* = null
-        bitArray:* = null
-        PaymentLink:* = null
-        externalWhisperer:* = null
-        postReadText:* = null
-        tmpFighterArray:* = undefined
-        ichAnfg:* = undefined
-        erAnfg:* = undefined
-        tmpFightArray:* = undefined
-        ichEnde:* = undefined
-        erEnde:* = undefined
-        rundenZahl:* = undefined
-        tmpHonor:* = undefined
-        tmpGold:* = undefined
-        tmpSilver:* = undefined
-        alertWords:* = null
-        event:* = event
-    '''
+    alert_words = null
+    do_act_schmiede = null
+    do_act_zauberladen = null
+    er_anfg = undefined
+    er_ende = undefined
+    external_whisperer = null
+    hall_list_guild = null
+    hall_list_name = null
+    i = 0
+    ich_anfg = undefined
+    ich_ende = undefined
+    ii = 0
+    in_var = False
+    line = 0
+    pa = null
+    pas = null
+    permanent_link = null
+    pixel = undefined
+    post_read_text = null
+    pxl_arr = null
+    pxl_str = null
+    runden_zahl = undefined
+    tmp_array = null
+    tmp_fight_array = undefined
+    tmp_fighter_array = undefined
+    tmp_fmt = null
+    tmp_gold = undefined
+    tmp_honor = undefined
+    tmp_silver = undefined
 
-    '''
-    dataStr = str(event.data)
-    isMine = False
-    logInAfterPixel = False
+    data_str = str(event.data)
+    is_mine = False
+    log_in_after_pixel = False
 
-    if dataStr.charAt(0) == "+":
-        dataStr = dataStr.substr(1)
-        if guildBlinkReady:
-            send_action(ACT_GET_CHAT_HISTORY)
-            PulseGildeOnHistory = True
+    if data_str.charAt(0) == "+":
+        data_str = data_str.substr(1)
+        if guild_blink_ready:
+            send_action(ACT['GET']['CHAT_HISTORY'])
+            pulse_gilde_on_history = True
 
-    if dataStr.charAt(0) == "E":
-        act = -1 * int(dataStr.slice(1, 4))
-        parStr = dataStr.slice(4)
+    if data_str.charAt(0) == "E":
+        act = -1 * int(data_str.slice(1, 4))
+        par_str = data_str.slice(4)
     else:
-        act = int(dataStr.slice(0, 3))
-        parStr = dataStr.slice(3)
+        act = int(data_str.slice(0, 3))
+        par_str = data_str.slice(3)
 
-    par = parStr.split("")
-    if (OnStage(FIGHT_SKIP)):
+    par = par_str.split("")
+    if OnStage(FIGHT_SKIP):
         return
 
-    SetTitleBar()
-    if (act != ERR_SERVER_DOWN):
-        intervalMultiplierReconnect = 1
+    set_title_bar()
+    if (act != ERR['SERVER']['DOWN']):
+        interval_multiplier_reconnect = 1
 
-    skipAllowed = False
+    skip_allowed = False
 
     for case in Switch(act):
-        if case(ERR_TOWER_CLOSED):
+        if case(ERR['TOWER']['CLOSED']):
             break
-        if case(RESP_TOWER_SAVE):
+
+        if case(RESP['TOWER']['SAVE']):
             parse_savgame(par[0])
-            ShowTowerScreen(par)
-            break
-        if case(RESP_TOILET_LOCKED):
-            Remove(TAVERNE_BARKEEPER_HINT)
-            Remove(TAVERNE_CAS)
-            Add(BEEROFFER)
-            EnablePopup(QO_REWARDGOLD)
-            EnablePopup(QO_REWARDSILVER)
-            EnablePopup(LBL_QO_REWARDGOLD)
-            EnablePopup(LBL_QO_REWARDSILVER)
-            EnablePopup(LBL_QO_REWARDEXP)
-
-            _local3 = actor[LBL_QO_QUESTNAME]
-
-            #with (_local3) do:
-            #    text = txt[(TXT_TOILET_HINT + 5)]
-            #    x = (
-            #        (QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2))
-            #    )
-
-            _local3 = actor[LBL_QO_QUESTTEXT]
-
-            #with (_local3) {
-            #    text = texts[(TXT_TOILET_HINT + 6)].split("#").join(
-            #        String.fromCharCode(13)
-            #    )
-
-            Arabize(LBL_QO_QUESTTEXT)
-            actor[LBL_QO_TIME].text = ""
-            actor[LBL_QO_REWARDEXP].text = ""
-            Remove(BO_BUY)
-            Add(BO_PORTRAIT_TH)
+            show_tower_screen(par)
             break
 
-        if case(RESP_TOILET_UNLOCKED):
-            Play(SND_MAINQUESTS_UNLOCK)
-        if case(RESP_TOILET_DROPPED):
+        if case(RESP['TOILET']['LOCKED']):
+            remove(TAVERNE['BARKEEPER']['HINT'])
+            remove(TAVERNE['CAS'])
+            add(BEEROFFER)
+            enable_popup(QO['REWARDGOLD'])
+            enable_popup(QO['REWARDSILVER'])
+            enable_popup(LBL['QO']['REWARDGOLD'])
+            enable_popup(LBL['QO']['REWARDSILVER'])
+            enable_popup(LBL['QO']['REWARDEXP'])
+
+            with actor[LBL['QO']['QUESTNAME']]:
+                text = texts[(TXT['TOILET']['HINT'] + 5)]
+                x = QO['BLACK']['SQUARE_X'] + QO['QUESTNAME_X'] - textWidth / 2
+
+
+            with actor[LBL['QO']['QUESTTEXT']]:
+                text = texts[TXT['TOILET']['HINT'] + 6].replace(
+                    "#", str.fromCharCode(13)
+                )
+
+            arabize(LBL['QO']['QUESTTEXT'])
+            actor[LBL['QO']['TIME']].text = ""
+            actor[LBL['QO']['REWARDEXP']].text = ""
+            remove(BO_BUY)
+            add(BO_PORTRAIT_TH)
+            break
+
+        if case(RESP[TOILET][UNLOCKED]):
+            play(SND['MAINQUESTS']['UNLOCK'])
+        if case(RESP['TOILET']['DROPPED']):
             pass
-        if case(RESP_TOILET_FULL):
+        if case(RESP['TOILET']['FULL']):
             pass
-        if case(RESP_TOILET_FLUSHED):
+        if case(RESP['TOILET']['FLUSHED']):
             pass
-        if case(ACT_SCREEN_TOILET):
+        if case(ACT['SCREEN']['TOILET']):
             pass
-        if case(RESP_TOILET_TANKFULL):
+        if case(RESP['TOILET']['TANKFULL']):
             pass
-        if case(REPS_TOILET_DROPTWICE):
-            if (act == RESP_TOILET_DROPPED):
-                Play(SND_TOILET_DROP)
+        if case(RESP['TOILET']['DROPTWICE']):
+            if (act == RESP['TOILET']['DROPPED']):
+                play(SND['TOILET']['DROP'])
 
             parse_savgame(par[0])
             if (par.length > 1):
-                if (act == RESP_TOILET_FLUSHED):
-                    ShowToilet(par[1], par[2], par[3], par[4], par[5])
+                if (act == RESP['TOILET']['FLUSHED']):
+                    show_toilet(par[1], par[2], par[3], par[4], par[5])
                 else:
-                    ShowToilet(par[1], par[2], par[3], par[4])
+                    show_toilet(par[1], par[2], par[3], par[4])
 
-            if (act == RESP_TOILET_FULL):
-                ErrorMessage(txt[TXT_TOILET_FULL])
+            if (act == RESP['TOILET']['FULL']):
+                error_message(texts[TXT['TOILET']['FULL']])
             else:
-                if (act == RESP_TOILET_TANKFULL):
-                    ErrorMessage(txt[TXT_TOILET_TANKFULL])
+                if (act == RESP['TOILET']['TANKFULL']):
+                    error_message(texts[TXT['TOILET']['TANKFULL']])
                 else:
-                    if (act == REPS_TOILET_DROPTWICE):
-                        ErrorMessage(txt[TXT_TOILET_DROPTWICE])
+                    if (act == REPS['TOILET']['DROPTWICE']):
+                        error_message(texts[TXT['TOILET']['DROPTWICE']])
                     else:
-                        ErrorMessage("")
+                        error_message("")
             break
-        case RESP_SCREEN_WITCH:
-            parse_savgame(par[0])
-            # ShowWitch(
-            #    par[1].split("/"),
-            #    (par[2].split("/")[0] == "1"),
-            #    par[2].split("/")[1])
-            break
-        case ERR_NO_SLOT_FOR_FLUSHING:
-            ErrorMessage(txt[TXT_ERR_NO_SLOT_FOR_FLUSHING])
-            break
-        case ERR_TOILET_EMPTY:
-            ErrorMessage(txt[TXT_ERR_TOILET_EMPTY])
-            break
-        case ERR_GUILD_DESCR_TOO_LONG:
-            ErrorMessage(txt[TXT_ERR_GUILD_DESCR_TOO_LONG])
-            break
-        case ERR_NO_CHAT_INFO:
-            break
-        case ERR_NO_CHAT_OVERFLOW:
-            break
-        case ERR_GUILD_RANK_WRONG:
-            ErrorMessage(txt[TXT_ERROR_GUILD_RANK_WRONG])
-            break
-        case RESP_ALBUM:
-            tmpByteArray = Base64.decodeToByteArray(par.join("/"))
-            bitArray = new Array()
-            i = 0
-            while (i < tmpByteArray.length):
-                bitArray.push(((tmpByteArray[i] & 128) / 128))
-                bitArray.push(((tmpByteArray[i] & 64) / 64))
-                bitArray.push(((tmpByteArray[i] & 32) / 32))
-                bitArray.push(((tmpByteArray[i] & 16) / 16))
-                bitArray.push(((tmpByteArray[i] & 8) / 8))
-                bitArray.push(((tmpByteArray[i] & 4) / 4))
-                bitArray.push(((tmpByteArray[i] & 2) / 2))
-                bitArray.push((tmpByteArray[i] & 1))
-                i = (i + 1)
 
-            AlbumContent = bitArray
-            ShowScreenAlbum()
-            break
-        case RESP_INVITE_SUCCESS:
-            Show(INVITE_SUCCESS)
-            Hide(INVITE_INPUTDIALOGUE)
-            break
-        case ERR_INVITE_NOT_VALIDATED:
-            pass
-        case ERR_INVITE_TOO_MANY:
-            pass
-        case ERR_INVITE_EMAIL_REJECTED:
-            ErrorMessage(txt[
-                TXT_ERROR_INVITE_NOT_VALIDATED - act + ERR_INVITE_NOT_VALIDATED
-            ])
-            break
-        case RESP_LOGOUT_SUCCESS:
-            break
-        case ERR_SERVER_DOWN:
-            ShowDisconnectScreen()
-            if (
-                (param_reconnect * intervalMultiplierReconnect) < (1000 * 120)
-            ):
-                intervalMultiplierReconnect = intervalMultiplierReconnect + 0.1
-            break
-        case ERR_JOINED_TOO_RECENTLY:
+        if case(RESP['SCREEN']['WITCH']):
             parse_savgame(par[0])
-            #ErrorMessage(txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(
-            #      time_str((Number(Savegame[SG_GUILD_JOIN_DATE]
-            #      ) + ((60 * 60) * 24)), True)))
+            show_witch(
+                par[1].split("/"),
+                (par[2].split("/")[0] == "1"),
+                par[2].split("/")[1])
             break
-        case RESP_ATTACK_NOT_EXIST:
-            ErrorMessage(txt[TXT_ERROR_PLAYER_NOT_FOUND])
+
+        if case(ERR['NO_SLOT_FOR_FLUSHING']):
+            error_message(txt[TXT['ERR']['NO_SLOT_FOR_FLUSHING']])
             break
-        case ERR_GUILD_FIGHT_TOO_EXPENSIVE:
+
+        if case(ERR['TOILET']['EMPTY']):
+            error_message(txt[TXT['ERR']['TOILET']['EMPTY']])
+            break
+
+        if case(ERR['GUILD']['DESCR_TOO_LONG']):
+            error_message(txt[TXT['ERR']['GUILD']['DESCR_TOO_LONG']])
+            break
+
+        if case(ERR['NO_CHAT_INFO']):
+            break
+
+        if case(ERR['NO_CHAT_OVERFLOW']):
+            break
+
+        if case(ERR['GUILD']['RANK_WRONG']):
+            error_message(texts[TXT['ERROR']['GUILD']['RANK_WRONG']])
+            break
+
+        if case(RESP['ALBUM']):
+            tmp_byte_array = Base64.decodeToByteArray(par.join("/"))
+            bit_array = list()
+
+            for i in range(len(tmp_byte_array)):
+                bit_array.push((tmp_byte_array[i] & 128) / 128)
+                bit_array.push((tmp_byte_array[i] & 64) / 64)
+                bit_array.push((tmp_byte_array[i] & 32) / 32)
+                bit_array.push((tmp_byte_array[i] & 16) / 16)
+                bit_array.push((tmp_byte_array[i] & 8) / 8)
+                bit_array.push((tmp_byte_array[i] & 4) / 4)
+                bit_array.push((tmp_byte_array[i] & 2) / 2)
+                bit_array.push(tmp_byte_array[i] & 1)
+
+            album_content = bit_array
+            show_screen_album()
+            break
+
+        if case(RESP['INVITE']['SUCCESS']):
+            show(INVITE_SUCCESS)
+            hide(INVITE_INPUTDIALOGUE)
+            break
+
+        if case(ERR['INVITE']['NOT_VALIDATED']):
             pass
-        case ERR_GUILD_ALREADY_UNDER_ATTACK:
+        if case(ERR['INVITE']['TOO_MANY']):
             pass
-        case ERR_GUILD_ATTACK_DELAY:
-            pass
-        case ERR_GUILD_ALREADY_ATTACKING:
-            pass
-        case ERR_GUILD_ATTACK_STATUS:
-            ErrorMessage(txt[
-                ((TXT_ERROR_GUILD_FIGHT_TOO_EXPENSIVE - act)
-                + ERR_GUILD_FIGHT_TOO_EXPENSIVE)
+        if case(ERR['INVITE']['EMAIL_REJECTED']):
+            txtid = TXT['ERROR']['INVITE']['NOT_VALIDATED']
+            error_message(txt[
+                txtid - act + ERR['INVITE']['NOT_VALIDATED']
             ])
             break
+
+        if case(RESP_LOGOUT_SUCCESS):
+            break
+
+        if case(ERR_SERVER_DOWN):
+            show_disconnect_screen()
+            if (
+                (param_reconnect * interval_multiplier_reconnect) < (1000 * 120)
+            ):
+                interval_multiplier_reconnect += 0.1
+            break
+
+        if case(ERR['JOINED_TOO_RECENTLY']):
+            parse_savgame(par[0])
+            error_message(texts[TXT['GUILD']['JOINED_TOO_RECENTLY']].replace(
+                "%1", time_str(
+                    int(Savegame[SG['GUILD']['JOIN_DATE']]) + 60 * 60 * 24, True
+                )
+            ))
+            break
+
+        if case(RESP['ATTACK']['NOT_EXIST']):
+            error_message(texts[TXT['ERROR']['PLAYER_NOT_FOUND']])
+            break
+
+        if case(ERR['GUILD']['FIGHT_TOO_EXPENSIVE']):
+            pass
+        if case(ERR['GUILD']['ALREADY_UNDER_ATTACK']):
+            pass
+        if case(ERR['GUILD']['ATTACK_DELAY']):
+            pass
+        if case(ERR['GUILD']['ALREADY_ATTACKING']):
+            pass
+        if case(ERR['GUILD']['ATTACK_STATUS']):
+            txtid = TXT['ERROR']['GUILD']['FIGHT_TOO_EXPENSIVE']
+            error_message(txt[
+                txtid - act + ERR['GUILD']['FIGHT_TOO_EXPENSIVE']
+            ])
+            break
+
+
+    '''
+
         case RESP_GUILD_NAMES:
             if par[0] == "":
                 if (lastGuildData[GUILD_IS_RAID] != 0):
@@ -6467,24 +6473,24 @@ def ActionHandler(event):
             if par[2]:
                 if lastGuildData[GUILD_IS_RAID] != 0:
                     if txt[TXT_RAID_TEXT]:
-                        #EnablePopup(GILDE_ATTACK, txt[(TXT_RAID_TEXT + 14)]
+                        #enable_popup(GILDE_ATTACK, txt[(TXT_RAID_TEXT + 14)]
                         #             .split("%1").join(par[2]))
                         pass
                 else:
                     if (par[0] == "") or (par[2] == ""):
-                        EnablePopup(GILDE_ATTACK)
+                        enable_popup(GILDE_ATTACK)
                     else:
                         if (txt[TXT_GUILD_ATTACK_PLAYER]):
-                            #EnablePopup(
+                            #enable_popup(
                             #    GILDE_ATTACK,
                             #    txt[TXT_GUILD_ATTACK_PLAYER]
                             #        .split("%1")
                             #        .join(par[2]))
                             pass
                         else:
-                            EnablePopup(GILDE_ATTACK, par[2])
+                            enable_popup(GILDE_ATTACK, par[2])
             else:
-                EnablePopup(GILDE_ATTACK)
+                enable_popup(GILDE_ATTACK)
 
             guildAttackTime = lastGuildData[GUILD_ATTACK_TIME]
             guildDefenceTime = lastGuildData[GUILD_DEFENCE_TIME]
@@ -6499,29 +6505,29 @@ def ActionHandler(event):
             break
         case ERR_MSG_LEVEL_TOO_LOW:
             if (txt[TXT_ERROR_MSG_LEVEL_TOO_LOW]):
-                ErrorMessage(txt[TXT_ERROR_MSG_LEVEL_TOO_LOW])
+                error_message(txt[TXT_ERROR_MSG_LEVEL_TOO_LOW])
             else:
-                ErrorMessage(
+                error_message(
                   "Error: You need to reach at least level 10 to send messages."
                 )
             break
         case ERR_MSG_NOT_VALIDATED:
             if (txt[TXT_ERROR_MSG_NOT_VALIDATED]):
-                ErrorMessage(txt[TXT_ERROR_MSG_NOT_VALIDATED])
+                error_message(txt[TXT_ERROR_MSG_NOT_VALIDATED])
             else:
-                ErrorMessage(
+                error_message(
                   "Error: Your email address has to be validated in order
                   to send messages."
                 )
             break
         case ERR_INVENTORY_FULL:
-            ErrorMessage(txt[TXT_ERROR_INVENTORY_FULL])
+            error_message(txt[TXT_ERROR_INVENTORY_FULL])
             break
         case ERR_INVENTORY_FULL_ADV:
             if (txt[TXT_ERROR_INVENTORY_FULL_ADV]):
-                ErrorMessage(txt[TXT_ERROR_INVENTORY_FULL_ADV])
+                error_message(txt[TXT_ERROR_INVENTORY_FULL_ADV])
             else:
-                ErrorMessage(txt[TXT_ERROR_INVENTORY_FULL])
+                error_message(txt[TXT_ERROR_INVENTORY_FULL])
 
             FadeOut(QUEST_SLOT, 20, 0.04, 0.3)
             forceAdventure = True
@@ -6537,12 +6543,12 @@ def ActionHandler(event):
             ShowBetResult(False)
             break
         case ERR_ACCOUNTS_PER_IP:
-            ErrorMessage(txt[TXT_ERRROR_ACCOUNTS_PER_IP])
+            error_message(txt[TXT_ERRROR_ACCOUNTS_PER_IP])
             break
         case ERR_TOO_SOON:
             break
         case ERR_LOCKED_PAYMENT:
-            #ErrorMessage(txt[TXT_ERRROR_LOCKED_PAYMENT]
+            #error_message(txt[TXT_ERRROR_LOCKED_PAYMENT]
             #   .split("%supportemail%")
             #   .join(param_support_email)
             #   .split("%gamestaffemail%")
@@ -6551,13 +6557,13 @@ def ActionHandler(event):
         case ERR_LOCKED_ADMIN:
             if (par[2]):
                 if (txt[((TXT_LOCK_REASON + int(par[1])) - 1)]):
-                    #ErrorMessage(txt[((TXT_LOCK_REASON + int(par[1])) - 1)]
+                    #error_message(txt[((TXT_LOCK_REASON + int(par[1])) - 1)]
                     #    .split("%1")
                     #    .join(String((1 + int((par[2] / ((60 * 60) * 24)))))))
                 else:
-                    ErrorMessage(txt[TXT_ERRROR_LOCKED_ADMIN])
+                    error_message(txt[TXT_ERRROR_LOCKED_ADMIN])
             else:
-                ErrorMessage(txt[TXT_ERRROR_LOCKED_ADMIN])
+                error_message(txt[TXT_ERRROR_LOCKED_ADMIN])
             break
         case RESP_REQUEST_GUILD_QUIET:
             DestroyGuildBtnTimer = True
@@ -6572,13 +6578,13 @@ def ActionHandler(event):
                 PulseGilde = True
             break
         case ERR_GUILD_DONATE_FRA:
-            ErrorMessage(txt[TXT_ERROR_GUILD_DONATE_FRA])
+            error_message(txt[TXT_ERROR_GUILD_DONATE_FRA])
             break
         case ERR_GUILD_DONATE_NEG:
-            ErrorMessage(txt[TXT_ERROR_GUILD_DONATE_NEG])
+            error_message(txt[TXT_ERROR_GUILD_DONATE_NEG])
             break
         case ERR_MAIL_EXISTS:
-            ErrorMessage(txt[TXT_ERROR_MAIL_EXISTS])
+            error_message(txt[TXT_ERROR_MAIL_EXISTS])
             break
         case RESP_VALIDATE_OK:
             if (par[0]):
@@ -6593,16 +6599,16 @@ def ActionHandler(event):
             ShowLOGinScreen()
             break
         case ERR_REQUEST_PW:
-            ErrorMessage(txt[TXT_ERROR_REQUEST_PW])
+            error_message(txt[TXT_ERROR_REQUEST_PW])
             break
         case RESP_TRANS_COUNT:
-            #PaymentLink = ((((((
+            #permanent_link = ((((((
             #   ("http://www.payment.playa-games.com/legal/wiretransfer_"
             #    + lang_code) + ".php?amount=")
             #    + String(int((tmpAmount / 100))))
             #    + (((lang_code == "de")) ? "," : "."))
             #    + String((tmpAmount % 100))) + "&use=") + par[0])
-            navigateToURL(new URLRequest(PaymentLink), "_blank")
+            navigateToURL(new URLRequest(permanent_link), "_blank")
             break
         case RESP_DEALER_AKTION:
             pass
@@ -6610,10 +6616,10 @@ def ActionHandler(event):
             pass
         case RESP_EMAIL_RESENT:
             actor[LBL_EMAIL_RESEND].htmlText = txt[TXT_EMAIL_RESENT]
-            Arabize(LBL_EMAIL_RESEND)
+            arabize(LBL_EMAIL_RESEND)
             actor[LBL_OPTION_FIELD1].htmlText = txt[TXT_EMAIL_RESENT]
-            Arabize(LBL_OPTION_FIELD1)
-            Remove(OPTION_DOCHANGE)
+            arabize(LBL_OPTION_FIELD1)
+            remove(OPTION_DOCHANGE)
             break
         case RESP_CHAT_HISTORY:
             if (par[0] != lastChatHist):
@@ -6626,9 +6632,9 @@ def ActionHandler(event):
                     if (intervalMultiplierChat < 30):
                         intervalMultiplierChat = (intervalMultiplierChat + 1)
             if (par[0] == ""):
-                tmpArray = []
+                tmp_array = []
             else:
-                tmpArray = par[0].split("/")
+                tmp_array = par[0].split("/")
             firstChatFill = False
             if (lastChatIndex == 0):
                 firstChatFill = True
@@ -6640,27 +6646,27 @@ def ActionHandler(event):
                         text = ""
 
                     i = (i + 1)
-            if (tmpArray.length > 0):
-                i = (tmpArray.length - 1)
+            if (tmp_array.length > 0):
+                i = (tmp_array.length - 1)
                 while (i >= 0):
                     if (!par[3]):
                         if (((lastChatIndex != 0)
-                            and (DecodeChat(tmpArray[i], False, True) == "1"))
+                            and (DecodeChat(tmp_array[i], False, True) == "1"))
                         ):
-                            Remove(GILDE_CHAT)
+                            remove(GILDE_CHAT)
                         ChatLine(
-                            DecodeChat(tmpArray[i]),
+                            DecodeChat(tmp_array[i]),
                             False,
-                            getHlIndex(tmpArray[i])
+                            getHlIndex(tmp_array[i])
                         )
-                        if (((((tmpArray[i].indexOf("§") != -1)
+                        if (((((tmp_array[i].indexOf("§") != -1)
                             or (!(so.data.noPulseOnSysMsg))))
-                            and (PulseGildeOnHistory))):
+                            and (pulse_gilde_on_history))):
                             PulseGilde = True
                         if (lastChatIndex != 0):
                             ii = 0
                             while (ii < offlineGuildMembers.length):
-                                if (tmpArray[i].toLowerCase().indexOf(
+                                if (tmp_array[i].toLowerCase().indexOf(
                                     (offlineGuildMembers[ii].toLowerCase()
                                      + ":§")) != -1
                                 ):
@@ -6671,30 +6677,30 @@ def ActionHandler(event):
                     else:
                         if (par[3].split("/")[i] > lastChatIndex):
                             if (((!(firstChatFill)) and (chatSound))):
-                                Play(SND_ERROR)
+                                play(SND_ERROR)
 
                             lastChatIndex = par[3].split("/")[i]
                             if (((!((lastChatIndex == 0)))
                                 and (DecodeChat(
-                                     tmpArray[i], False, True
+                                     tmp_array[i], False, True
                                      ) == "1"))
                             ):
-                                Remove(GILDE_CHAT)
+                                remove(GILDE_CHAT)
                             ChatLine(
                                 DecodeChat(
-                                    tmpArray[i]
+                                    tmp_array[i]
                                 ),
                                 False,
-                                getHlIndex(tmpArray[i])
+                                getHlIndex(tmp_array[i])
                             )
-                            if (((((tmpArray[i].indexOf("§") != -1)
+                            if (((((tmp_array[i].indexOf("§") != -1)
                                 or (!(so.data.noPulseOnSysMsg))))
-                                and (PulseGildeOnHistory))
+                                and (pulse_gilde_on_history))
                             ):
                                 PulseGilde = True
                             ii = 0
                             while (ii < offlineGuildMembers.length):
-                                if (tmpArray[i].toLowerCase().indexOf(
+                                if (tmp_array[i].toLowerCase().indexOf(
                                     (offlineGuildMembers[ii].toLowerCase()
                                      + ":§")) != -1
                                 ):
@@ -6703,31 +6709,31 @@ def ActionHandler(event):
                                     break
                                 ii = (ii + 1)
                     i = (i - 1)
-                PulseGildeOnHistory = False
+                pulse_gilde_on_history = False
             if (((par[1]) and (!(par[3])))):
                 lastChatIndex = Number(par[1])
             if (par[2]):
-                tmpArray = par[2].split("/")
+                tmp_array = par[2].split("/")
             else:
-                tmpArray = []
-            if (tmpArray.length > 0):
+                tmp_array = []
+            if (tmp_array.length > 0):
                 if (chatSound):
-                    Play(SND_ERROR)
-                i = (tmpArray.length - 1)
+                    play(SND_ERROR)
+                i = (tmp_array.length - 1)
                 while (i >= 0):
                     PulseGilde = True
-                    externalWhisperer = tmpArray[i].substr(6)
-                    externalWhisperer = externalWhisperer.substr(
-                            0, externalWhisperer.indexOf(":§")
+                    external_whisperer = tmp_array[i].substr(6)
+                    external_whisperer = external_whisperer.substr(
+                            0, external_whisperer.indexOf(":§")
                     )
                     ChatLine(DecodeChat(
-                        tmpArray[i]), False, getHlIndex(tmpArray[i]), True
+                        tmp_array[i]), False, getHlIndex(tmp_array[i]), True
                     )
-                    addSuggestNames(externalWhisperer)
+                    addSuggestNames(external_whisperer)
                     if (lastChatIndex != 0):
                         ii = 0
                         while (ii < offlineGuildMembers.length):
-                            if (tmpArray[i].toLowerCase().indexOf(
+                            if (tmp_array[i].toLowerCase().indexOf(
                                 (offlineGuildMembers[ii].toLowerCase()
                                  + ":§")) != -1
                             ):
@@ -6742,7 +6748,7 @@ def ActionHandler(event):
                     i = (i - 1)
                 }
             }
-            guildBlinkReady = True
+            guild_blink_ready = True
             if (((((!((newCrestSuggested == "")))
                 and (!(firstChatFill)))) and (OnStage(INP_GILDE_CHAT)))
             ){
@@ -6755,23 +6761,23 @@ def ActionHandler(event):
             ChatLine(DecodeChat(par[0]), False, getHlIndex(par[0]), True)
             break
         case ERR_GUILD_NAME_REJECTED:
-            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_REJECTED])
+            error_message(txt[TXT_ERROR_GUILD_NAME_REJECTED])
             break
         case ERR_GUILD_NAME_LENGTH:
-            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_LENGTH])
+            error_message(txt[TXT_ERROR_GUILD_NAME_LENGTH])
             break
         case ERR_GUILD_NAME_CHARACTERS:
-            ErrorMessage(txt[TXT_ERROR_GUILD_NAME_CHARACTERS])
+            error_message(txt[TXT_ERROR_GUILD_NAME_CHARACTERS])
             break
         case ERR_GUILD_EMAIL_VALIDATE:
-            ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE])
+            error_message(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE])
             break
         case ERR_GUILD_MUSH_FREE:
-            ErrorMessage(txt[TXT_ERROR_GUILD_MUSH_FREE])
+            error_message(txt[TXT_ERROR_GUILD_MUSH_FREE])
             break
         case RESP_CHAT_LINE:
             if (DecodeChat(par[0], False, True) == "1"){
-                Remove(GILDE_CHAT)
+                remove(GILDE_CHAT)
             }
             ChatLine(DecodeChat(par[0]), False, getHlIndex(par[0]))
             if (!OnStage(INP_GILDE_CHAT)){
@@ -6794,7 +6800,7 @@ def ActionHandler(event):
             so.flush()
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = optionNewData
             ShowOptionScreen()
-            ErrorMessage(txt[TXT_PASSWORD_CHANGED])
+            error_message(txt[TXT_PASSWORD_CHANGED])
             break
         case RESP_CHANGE_NAME_OK:
             so.data.userName = optionNewData
@@ -6802,11 +6808,11 @@ def ActionHandler(event):
             actor[INP_NAME].getChildAt(1).text = optionNewData
             parse_savgame(par[0])
             ShowOptionScreen()
-            ErrorMessage(txt[TXT_NAME_CHANGED])
+            error_message(txt[TXT_NAME_CHANGED])
             break
         case RESP_CHANGE_MAIL_OK:
             ShowOptionScreen()
-            ErrorMessage(txt[TXT_EMAIL_CHANGED])
+            error_message(txt[TXT_EMAIL_CHANGED])
             break
         case RESP_CHANGE_FACE_OK:
             parse_savgame(par[0])
@@ -6835,7 +6841,7 @@ def ActionHandler(event):
             send_action(ACT_GET_CHAT_HISTORY)
             break
         case RESP_MAINQUEST:
-            Hide(IF_STATS)
+            hide(IF_STATS)
             parse_savgame(par[10])
             pulse_char = False
         case RESP_QUEST_DONE:
@@ -6856,7 +6862,7 @@ def ActionHandler(event):
             fightLock = True
             winners = new Array()
             lastRoundFighterName = ""
-            fights = parStr.split("§")
+            fights = par_str.split("§")
             guildFightCount = int(((fights.length - 1) / 2))
             skipGuildFights = 0
             nextFightTimer.start()
@@ -6867,20 +6873,20 @@ def ActionHandler(event):
             fightLock = True
             winners = new Array()
             lastRoundFighterName = ""
-            fights = parStr.split("§")
+            fights = par_str.split("§")
             parse_savgame(fights.pop(), True, True)
             guildFightCount = int(((fights.length - 1) / 2))
             skipGuildFights = 0
             nextFightTimer.start()
             break
         case RESP_QUEST_SKIP_ALLOWED_START:
-            skipAllowed = True
+            skip_allowed = True
         case RESP_QUEST_START:
             parse_savgame(par[0])
             ShowQuestScreen()
             break
         case RESP_QUEST_SKIP_ALLOWED:
-            skipAllowed = True
+            skip_allowed = True
         case ACT_SCREEN_TAVERNE:
         case RESP_QUEST_STOP:
             parse_savgame(par[0])
@@ -6933,14 +6939,14 @@ def ActionHandler(event):
         case ACT_SCREEN_GILDEN:
             Savegame[SG_GUILD_INDEX] = par[0].split("/")[0]
             Gilde = par[3]
-            isMine = True
+            is_mine = True
             intervalMultiplierChat = 1
         case RESP_OTHER_GUILD:
             DestroyGuildBtnTimer = True
             if (((((((!(OnStage(GILDE_CREST)))
                 or ((act == RESP_OTHER_GUILD))))
                 or (!((lastGuildCrestId == par[0].split("/")[0])))))
-                or (((isMine) and ((oldCrestStr == getCrestStr())))))
+                or (((is_mine) and ((oldCrestStr == getCrestStr())))))
             ){
                 if (par[1].indexOf("§") != -1){
                     setCrestStr(par[1].split("§")[0])
@@ -6960,10 +6966,10 @@ def ActionHandler(event):
             }
             ShowScreenGilden(
                 par[0].split("/"),
-                ((isMine) ? par[1] :
+                ((is_mine) ? par[1] :
                 (((par[1].indexOf("///") > -1)) ? par[1].split("///")[1] :
                 par[1])), par[2].split("/"),
-                par[3], isMine, int(par[5]), int(par[4]),
+                par[3], is_mine, int(par[5]), int(par[4]),
                 ((par[6]) ? par[6] : 0)
             )
             break
@@ -6972,46 +6978,46 @@ def ActionHandler(event):
             ShowStallScreen()
             break
         case ERR_ATTACK_AGAIN:
-            ErrorMessage(txt[TXT_ERROR_ATTACK_AGAIN])
+            error_message(txt[TXT_ERROR_ATTACK_AGAIN])
             break
         case ACT_SCREEN_ARENA:
             ShowArenaScreen(par[0], par[2], par[1])
             break
         case ERR_INBOX_FULL:
-            ErrorMessage(txt[TXT_ERROR_INBOX_FULL])
+            error_message(txt[TXT_ERROR_INBOX_FULL])
             break
         case ERR_RECIPIENT_NOT_FOUND:
-            ErrorMessage(txt[TXT_ERROR_RECIPIENT_NOT_FOUND])
+            error_message(txt[TXT_ERROR_RECIPIENT_NOT_FOUND])
             break
         case ERR_RECIPIENT_SELF:
-            ErrorMessage(txt[TXT_ERROR_RECIPIENT_SELF])
+            error_message(txt[TXT_ERROR_RECIPIENT_SELF])
             break
         case RESP_MESSAGE_SENT:
             addSuggestNames(lastMessageTarget)
-            Remove(POST_WRITE)
-            Remove(POST_READ)
-            Add(POST_LIST)
+            remove(POST_WRITE)
+            remove(POST_READ)
+            add(POST_LIST)
             break
         case RESP_READ_MESSAGE:
             RemoveAll()
-            Add(SCREEN_POST)
+            add(SCREEN_POST)
             if (tageszeit() != 0){
-                Remove(POST_NIGHT)
+                remove(POST_NIGHT)
             }
             if (tageszeit() != 1){
-                Remove(POST_DAWN)
+                remove(POST_DAWN)
             }
-            Remove(POST_LIST)
-            Add(POST_READ)
+            remove(POST_LIST)
+            add(POST_READ)
             if (((PostSel + PostScroll) - 1) == 1){
-                Remove(POST_READ_PREV)
+                remove(POST_READ_PREV)
             }
             if (((PostSel + PostScroll) - 1) == Savegame[SG_MSG_COUNT]){
-                Remove(POST_READ_NEXT)
+                remove(POST_READ_NEXT)
             }
             if (int(par[4]) > 0){
                 Invitegilden_id = int(par[4])
-                Add(POST_ACCEPT)
+                add(POST_ACCEPT)
             }
             _local3 = actor[INP_POST_ADDRESS].getChildAt(1)
             with (_local3) {
@@ -7072,41 +7078,41 @@ def ActionHandler(event):
                     case "7":
                         par[1] = txt[TXT_SUBJECT_PVP].replace("%1", par[0]);
                         tmpBattleInfo = par[3];
-                        tmpFighterArray = tmpBattleInfo
+                        tmp_fighter_array = tmpBattleInfo
                             .split("#")[0]
                             .split("/");
-                        ichAnfg = tmpFighterArray[0];
-                        erAnfg = tmpFighterArray[6];
-                        tmpFightArray = tmpBattleInfo.split("#")[1].split("/");
-                        ichEnde = tmpFightArray[(tmpFightArray.length - 7)];
-                        erEnde = tmpFightArray[(tmpFightArray.length - 4)];
-                        rundenZahl = int((tmpFightArray.length / 6));
-                        tmpHonor = Math.abs(tmpBattleInfo.split("#")[7]);
-                        tmpGold = Math.abs(
+                        ich_anfg = tmp_fighter_array[0];
+                        er_anfg = tmp_fighter_array[6];
+                        tmp_fight_array = tmpBattleInfo.split("#")[1].split("/");
+                        ich_ende = tmp_fight_array[(tmp_fight_array.length - 7)];
+                        er_ende = tmp_fight_array[(tmp_fight_array.length - 4)];
+                        runden_zahl = int((tmp_fight_array.length / 6));
+                        tmp_honor = Math.abs(tmpBattleInfo.split("#")[7]);
+                        tmp_gold = Math.abs(
                             int((tmpBattleInfo.split("#")[8] / 100))
                         );
-                        tmpSilver = Math.abs(
+                        tmp_silver = Math.abs(
                             int((tmpBattleInfo.split("#")[8] % 100))
                         );
                         par[3] = txt[TXT_BODY_PVP]
                             .replace("%1", par[0])
                             .replace("%2", par[3])
-                            .replace("%3", String(ichAnfg))
-                            .replace("%4", String(erAnfg))
-                            .replace("%5", String(ichEnde))
-                            .replace("%6", String(erEnde))
-                            .replace("%7", String(rundenZahl))
-                            .replace("%8", txt[(((ichEnde > erEnde))
+                            .replace("%3", String(ich_anfg))
+                            .replace("%4", String(er_anfg))
+                            .replace("%5", String(ich_ende))
+                            .replace("%6", String(er_ende))
+                            .replace("%7", String(runden_zahl))
+                            .replace("%8", txt[(((ich_ende > er_ende))
                                      ? TXT_DU_GEWONNEN : TXT_DU_VERLOREN)])
-                            .replace("%9", (((rundenZahl == 1))
+                            .replace("%9", (((runden_zahl == 1))
                                      ? "" : txt[TXT_ROUNDS_PLURAL]))
-                            .split("%10").join(String(tmpHonor))
-                            .split("%11").join(String(tmpGold))
-                            .split("%12").join(String(tmpSilver))
-                            .split("%13").join(txt[(((ichEnde > erEnde))
+                            .split("%10").join(String(tmp_honor))
+                            .split("%11").join(String(tmp_gold))
+                            .split("%12").join(String(tmp_silver))
+                            .split("%13").join(txt[(((ich_ende > er_ende))
                                  ? TXT_DU_WAS_GEWONNEN : TXT_DU_WAS_VERLOREN)])
                                 .split("#").join(String.fromCharCode(13));
-                        Add(POST_VIEWFIGHT);
+                        add(POST_VIEWFIGHT);
                         break;
                     case "8":
                         if (txt[TXT_INV_ACC_TITLE] != ""){
@@ -7123,7 +7129,7 @@ def ActionHandler(event):
                                 Please wait for ") + par[0]) + " to verify
                                 email address in order to get your bonus.");
                         };
-                        Add(POST_REPLY);
+                        add(POST_REPLY);
                         break;
                     case "9":
                         if (txt[TXT_INV_VAL_TITLE] != ""){
@@ -7136,24 +7142,24 @@ def ActionHandler(event):
                             par[3] = (par[0] + " has verified
                                       his/her email address.");
                         };
-                        Add(POST_REPLY);
+                        add(POST_REPLY);
                         break;
                     default:
-                        Add(POST_REPLY);
+                        add(POST_REPLY);
                 };
                 ReplySubject = par[1];
                 text = par[1].split("%u20AC").join("€");
             };
-            postReadText = par[3];
+            post_read_text = par[3];
             if (txt[TXT_ALERT_WORDS]){
-                alertWords = txt[TXT_ALERT_WORDS].split(" ");
+                alert_words = txt[TXT_ALERT_WORDS].split(" ");
                 i = 0;
-                while (i < alertWords.length) {
-                    if (postReadText.toLowerCase()
-                        .indexOf(alertWords[i].toLowerCase()) != -1
+                while (i < alert_words.length) {
+                    if (post_read_text.toLowerCase()
+                        .indexOf(alert_words[i].toLowerCase()) != -1
                     ){
-                        postReadText = txt[TXT_ALERT_TEXT]
-                            .split("%1").join(postReadText);
+                        post_read_text = txt[TXT_ALERT_TEXT]
+                            .split("%1").join(post_read_text);
                         break;
                     };
                     i = (i + 1);
@@ -7162,10 +7168,10 @@ def ActionHandler(event):
             _local3 = actor[INP_POST_TEXT].getChildAt(1);
             with (_local3) {
                 type = TextFieldType.DYNAMIC;
-                text = SwapWords(postReadText).split("#")
+                text = SwapWords(post_read_text).split("#")
                     .join(String.fromCharCode(13)).split("%u20AC").join("€");
             };
-            forwardText = postReadText;
+            forwardText = post_read_text;
             break;
         case ACT_SCREEN_POST:
             ShowPostScreen(par);
@@ -7188,13 +7194,13 @@ def ActionHandler(event):
         case RESP_SCREEN_GILDENHALLE:
             GuildHallMode = (act == RESP_SCREEN_GILDENHALLE);
             if (GuildHallMode){
-                Hide(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN);
-                Show(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN_HL);
+                hide(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN);
+                show(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN_HL);
             } else {
                 lastHallMembers = new Array();
                 lastHallMembers.push("");
-                Show(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN);
-                Hide(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN_HL);
+                show(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN);
+                hide(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN_HL);
             };
             if (par[1]){
                 ruhmesHalleSuchString = par[1];
@@ -7250,53 +7256,53 @@ def ActionHandler(event):
                 hall_list_add_field(HALL_LIST_COLUMN_4_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_LEADER : TXT_HALL_LIST_COLUMN_3)], FontFormat_HallListHeading);
                 hall_list_add_field(HALL_LIST_COLUMN_5_X, HALL_LIST_LINES_Y, txt[((GuildHallMode) ? TXT_GUILDHALL_MEMBERS : TXT_HALL_LIST_COLUMN_4)], FontFormat_HallListHeading);
             };
-            HallListName = new Array();
-            HallListGilde = new Array();
-            tmpArray = par[0].split("/");
+            hall_list_name = new Array();
+            hall_list_guild = new Array();
+            tmp_array = par[0].split("/");
             line = 1;
             i = 0;
-            while (i < (tmpArray.length - 1)) {
-                if ((((((((!(GuildHallMode)) and (!(ruhmesHalleSuchName)))) and ((tmpArray[i] < 0)))) ? "-" : "") + ruhmesHalleSuchString.toLowerCase()) == tmpArray[(i + ((ruhmesHalleSuchName) ? ((GuildHallMode) ? 2 : 1) : 0))].toLowerCase()){
-                    tmpFmt = FontFormat_HallListHighLight;
+            while (i < (tmp_array.length - 1)) {
+                if ((((((((!(GuildHallMode)) and (!(ruhmesHalleSuchName)))) and ((tmp_array[i] < 0)))) ? "-" : "") + ruhmesHalleSuchString.toLowerCase()) == tmp_array[(i + ((ruhmesHalleSuchName) ? ((GuildHallMode) ? 2 : 1) : 0))].toLowerCase()){
+                    tmp_fmt = FontFormat_HallListHighLight;
                 } else {
-                    if (((GuildHallMode) and ((int(tmpArray[(i + 3)]) < 0)))){
-                        tmpFmt = FontFormat_GuildHallNoAttack;
+                    if (((GuildHallMode) and ((int(tmp_array[(i + 3)]) < 0)))){
+                        tmp_fmt = FontFormat_GuildHallNoAttack;
                     } else {
-                        if (((!(GuildHallMode)) and (!((lastAttacked.indexOf(tmpArray[(i + 1)].toLowerCase()) == -1))))){
-                            tmpFmt = FontFormat_GuildHallNoAttack;
+                        if (((!(GuildHallMode)) and (!((lastAttacked.indexOf(tmp_array[(i + 1)].toLowerCase()) == -1))))){
+                            tmp_fmt = FontFormat_GuildHallNoAttack;
                         } else {
-                            tmpFmt = FontFormat_HallListText;
+                            tmp_fmt = FontFormat_HallListText;
                         };
                     };
                 };
-                lastHallMembers.push(tmpArray[(i + 1)]);
+                lastHallMembers.push(tmp_array[(i + 1)]);
                 arrowHallMode = True;
                 if (textDir == "right"){
-                    hall_list_add_field((HALL_LIST_COLUMN_6_X + 40), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    hall_list_add_field((HALL_LIST_COLUMN_6_X - 10), ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
+                    hall_list_add_field((HALL_LIST_COLUMN_6_X + 40), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmp_array[i]), tmp_fmt, 0, GuildHallMode);
+                    hall_list_add_field((HALL_LIST_COLUMN_6_X - 10), ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmp_array[i] < 0)) ? "[J]" : (((tmp_array[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmp_fmt);
                     i = (i + 1);
-                    HallListName[line] = tmpArray[i];
+                    hall_list_name[line] = tmp_array[i];
                     i = (i + 1);
-                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_4_X + 20) : (HALL_LIST_COLUMN_6_X - 30)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
-                    HallListGilde[line] = tmpArray[i];
+                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_4_X + 20) : (HALL_LIST_COLUMN_6_X - 30)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmp_array[i], tmp_fmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
+                    hall_list_guild[line] = tmp_array[i];
                     i = (i + 1);
-                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_6_X - 10) : (HALL_LIST_COLUMN_4_X + 20)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), True);
+                    hall_list_add_field(((GuildHallMode) ? (HALL_LIST_COLUMN_6_X - 10) : (HALL_LIST_COLUMN_4_X + 20)), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmp_array[i] == "")) ? txt[TXT_NOGUILD] : tmp_array[(i - 1)]), tmp_fmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), True);
                     i = (i + 1);
-                    hall_list_add_field((HALL_LIST_COLUMN_3_X + 25), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    hall_list_add_field((HALL_LIST_COLUMN_2_X - 10), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field((HALL_LIST_COLUMN_3_X + 25), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmp_array[i]), tmp_fmt, 0, GuildHallMode);
+                    hall_list_add_field((HALL_LIST_COLUMN_2_X - 10), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmp_array[i] == 1)) ? 0 : tmp_array[i]), tmp_fmt, 0, GuildHallMode);
                 } else {
-                    hall_list_add_field(HALL_LIST_COLUMN_1_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    hall_list_add_field(HALL_LIST_COLUMN_2_X, ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmpArray[i] < 0)) ? "[J]" : (((tmpArray[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmpFmt);
+                    hall_list_add_field(HALL_LIST_COLUMN_1_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmp_array[i]), tmp_fmt, 0, GuildHallMode);
+                    hall_list_add_field(HALL_LIST_COLUMN_2_X, ((HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)) + 5), ((GuildHallMode) ? "" : (((tmp_array[i] < 0)) ? "[J]" : (((tmp_array[(i + 3)] < 0)) ? "[M]" : "[K]"))), tmp_fmt);
                     i = (i + 1);
-                    HallListName[line] = tmpArray[i];
+                    hall_list_name[line] = tmp_array[i];
                     i = (i + 1);
-                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_4_X : HALL_LIST_COLUMN_3_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmpArray[i], tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
-                    HallListGilde[line] = tmpArray[i];
+                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_4_X : HALL_LIST_COLUMN_3_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), tmp_array[i], tmp_fmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10) : ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X) - 10)));
+                    hall_list_guild[line] = tmp_array[i];
                     i = (i + 1);
-                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_2_X : HALL_LIST_COLUMN_4_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == "")) ? txt[TXT_NOGUILD] : tmpArray[(i - 1)]), tmpFmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), True);
+                    hall_list_add_field(((GuildHallMode) ? HALL_LIST_COLUMN_2_X : HALL_LIST_COLUMN_4_X), (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmp_array[i] == "")) ? txt[TXT_NOGUILD] : tmp_array[(i - 1)]), tmp_fmt, ((GuildHallMode) ? ((HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X) - 10) : ((HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X) - 10)), True);
                     i = (i + 1);
-                    hall_list_add_field(HALL_LIST_COLUMN_5_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmpArray[i]), tmpFmt, 0, GuildHallMode);
-                    hall_list_add_field(HALL_LIST_COLUMN_6_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmpArray[i] == 1)) ? 0 : tmpArray[i]), tmpFmt, 0, GuildHallMode);
+                    hall_list_add_field(HALL_LIST_COLUMN_5_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), Math.abs(tmp_array[i]), tmp_fmt, 0, GuildHallMode);
+                    hall_list_add_field(HALL_LIST_COLUMN_6_X, (HALL_LIST_LINES_Y + (line * HALL_LIST_LINE_Y)), (((tmp_array[i] == 1)) ? 0 : tmp_array[i]), tmp_fmt, 0, GuildHallMode);
                 };
                 line = (line + 1);
                 i = (i + 1);
@@ -7317,7 +7323,7 @@ def ActionHandler(event):
             ShowWorkScreen();
             break;
         case RESP_SAVEGAME_STAY_ERROR:
-            ErrorMessage(txt[TXT_ERROR_SELL_ITEM]);
+            error_message(txt[TXT_ERROR_SELL_ITEM]);
         case RESP_SAVEGAME_STAY:
         case RESP_SAVEGAME_SHARD:
         case RESP_SAVEGAME_MIRROR:
@@ -7325,23 +7331,23 @@ def ActionHandler(event):
             parse_savgame(par[0]);
             if (OnStage(SCR_CHAR_BG)){
                 if (act == RESP_MOVE_TOWER_ITEM){
-                    ShowTowerScreen(par);
+                    show_tower_screen(par);
                 } else {
                     if (act == RESP_SAVEGAME_SHARD){
-                        Play(SND_SHARD);
+                        play(SND_SHARD);
                         mirrorFadeAmount = 0.2;
                         mirrorAniTimer.start();
                     };
                     if (act == RESP_SAVEGAME_MIRROR){
-                        Play(SND_MIRROR);
+                        play(SND_MIRROR);
                     };
                     DisplayInventory(undefined, OnStage(SCR_CHAR_BG_RIGHT));
                     i = 0;
                     while (i < 13) {
                         if (mirror_pieces[i]){
-                            Add((MIRROR_PIECE + i));
+                            add((MIRROR_PIECE + i));
                         } else {
-                            Remove((MIRROR_PIECE + i));
+                            remove((MIRROR_PIECE + i));
                         };
                         i = (i + 1);
                     };
@@ -7370,7 +7376,7 @@ def ActionHandler(event):
             } else {
                 Load(SCR_FIDGET_BG);
                 ShowCharacterScreen();
-                when_loaded(DoActZauberladen);
+                when_loaded(do_act_zauberladen);
             };
             break;
         case ACT_SCREEN_SCHMIEDE:
@@ -7386,7 +7392,7 @@ def ActionHandler(event):
             } else {
                 Load(SCR_SHAKES_BG);
                 ShowCharacterScreen();
-                when_loaded(DoActSchmiede);
+                when_loaded(do_act_schmiede);
             };
             break;
         case RESP_UPDATE_CHECK:
@@ -7438,7 +7444,7 @@ def ActionHandler(event):
             so.data.userName = actor[INP_NAME].getChildAt(1).text;
             so.data.password = actor[INP_LOGIN_PASSWORD].getChildAt(1).text;
             so.flush();
-            Add(IF_LOGOUT);
+            add(IF_LOGOUT);
             if (Savegame[SG_FACE_1] == 0){
                 trc("Fehler: Charakter nicht initialisiert.");
                 RequestLOGout();
@@ -7508,7 +7514,7 @@ def ActionHandler(event):
         case ERR_NOT_INVITED:
         case ERR_NO_MUSH_PVP:
         case ERR_NO_MUSH_MQ:
-            ErrorMessage(txt[((TXT_ERROR_ALREADY_IN_GUILD - Math.abs(ERR_ALREADY_IN_GUILD)) + Math.abs(act))]);
+            error_message(txt[((TXT_ERROR_ALREADY_IN_GUILD - Math.abs(ERR_ALREADY_IN_GUILD)) + Math.abs(act))]);
             break;
         case ERR_BOOST:
             break;
@@ -7521,22 +7527,22 @@ def ActionHandler(event):
             so.data.password = actor[INP_LOGIN_PASSWORD].getChildAt(1).text;
             so.data.advpar = paramObj;
             so.flush();
-            logInAfterPixel = True;
+            log_in_after_pixel = True;
             break;
         case ERR_NAME_EXISTS:
-            ErrorMessage(txt[TXT_ERROR_NAME_EXISTS]);
+            error_message(txt[TXT_ERROR_NAME_EXISTS]);
             break;
         case ERR_NAME_TOO_SHORT:
-            ErrorMessage(txt[TXT_ERROR_NAME_TOO_SHORT]);
+            error_message(txt[TXT_ERROR_NAME_TOO_SHORT]);
             break;
         case ERR_PASSWORD_TOO_SHORT:
-            ErrorMessage(txt[TXT_ERROR_PASSWORD_TOO_SHORT]);
+            error_message(txt[TXT_ERROR_PASSWORD_TOO_SHORT]);
             break;
         case ERR_EMAIL_REJECTED:
-            ErrorMessage(txt[TXT_ERROR_EMAIL_REJECTED]);
+            error_message(txt[TXT_ERROR_EMAIL_REJECTED]);
             break;
         case ERR_NAME_REJECTED:
-            ErrorMessage(txt[TXT_ERROR_NAME_REJECTED]);
+            error_message(txt[TXT_ERROR_NAME_REJECTED]);
             break;
         case ERR_LOGIN_FAILED:
             so.data.skipAutoLOGin = True;
@@ -7546,7 +7552,7 @@ def ActionHandler(event):
             actor[INP_PASSWORD].getChildAt(1).text = "";
             char_volk = 0;
             ShowLOGinScreen(undefined, True, True);
-            ErrorMessage(txt[TXT_ERROR_LOGIN_FAILED]);
+            error_message(txt[TXT_ERROR_LOGIN_FAILED]);
             break;
         case ERR_TOO_EXPENSIVE:
             if (OnStage(MODIFY_CHARACTER)){
@@ -7564,22 +7570,22 @@ def ActionHandler(event):
                 char_special2 = revertchar_special2;
                 ShowOptionScreen();
             };
-            ErrorMessage(txt[TXT_ERROR_TOO_EXPENSIVE]);
+            error_message(txt[TXT_ERROR_TOO_EXPENSIVE]);
             break;
         case ERR_WRONG_PASSWORD:
-            ErrorMessage(txt[TXT_ERROR_WRONG_PASSWORD]);
+            error_message(txt[TXT_ERROR_WRONG_PASSWORD]);
             break;
         case ERR_FACE_DATA_INCORRECT:
-            ErrorMessage(txt[TXT_ERROR_FACE_DATA_INCORRECT]);
+            error_message(txt[TXT_ERROR_FACE_DATA_INCORRECT]);
             break;
         case ERR_EMAIL_WRONG:
-            ErrorMessage(txt[TXT_ERROR_EMAIL_WRONG]);
+            error_message(txt[TXT_ERROR_EMAIL_WRONG]);
             break;
         case RESP_PLAYER_NOT_FOUND:
-            ErrorMessage(txt[TXT_ERROR_PLAYER_NOT_FOUND]);
+            error_message(txt[TXT_ERROR_PLAYER_NOT_FOUND]);
             break;
             if (act < 0){
-                ErrorMessage((((txt[TXT_ERROR_UNKNOWN] + " (#") + String(act)) + ")"));
+                error_message((((txt[TXT_ERROR_UNKNOWN] + " (#") + String(act)) + ")"));
             } else {
                 trc((("Warning: Action unknown: " + act) + ". Ignored!"));
             };
@@ -7588,8 +7594,8 @@ def ActionHandler(event):
         ExternalInterface.call(defined_pixel_calls[act], String(act), param_cid, ((act)==RESP_ACCOUNT_SUCCESS) ? par[0] : Savegame[SG_PLAYER_ID], paramObj, so.data.advpar);
     };
     pas = new Array();
-    pxlStr = "";
-    inVar = False;
+    pxl_str = "";
+    in_var = False;
     for each (pixel in trackPixels) {
         if ((((int(pixel[0]) == act)) or ((((next_pxl > 0)) and ((next_pxl == int(pixel[0]))))))){
             pas = new Array();
@@ -7605,32 +7611,32 @@ def ActionHandler(event):
                 };
             };
             if ((((pixel[1] == "")) or (!((pas.indexOf(int(param_adv)) == -1))))){
-                pxlStr = pixel[2].split("%playerid%").join(Savegame[SG_PLAYER_ID]);
-                pxlStr = pxlStr.split("%cid%").join(param_cid);
-                pxlStr = pxlStr.split("%mushbought%").join(String((MushBought / 100)));
+                pxl_str = pixel[2].split("%playerid%").join(Savegame[SG_PLAYER_ID]);
+                pxl_str = pxl_str.split("%cid%").join(param_cid);
+                pxl_str = pxl_str.split("%mushbought%").join(String((MushBought / 100)));
                 if (so.data.advpar){
-                    pxlArr = pxlStr.split("<").join(">").split(">");
-                    pxlStr = "";
-                    inVar = False;
+                    pxl_arr = pxl_str.split("<").join(">").split(">");
+                    pxl_str = "";
+                    in_var = False;
                     i = 0;
-                    while (i < pxlArr.length) {
-                        if (inVar){
-                            if (so.data.advpar[pxlArr[i]]){
-                                pxlStr = (pxlStr + String(so.data.advpar[pxlArr[i]]));
+                    while (i < pxl_arr.length) {
+                        if (in_var){
+                            if (so.data.advpar[pxl_arr[i]]){
+                                pxl_str = (pxl_str + String(so.data.advpar[pxl_arr[i]]));
                             } else {
-                                trc("Warning: Constructing tracking pixel url: Variable", pxlArr[i], "was not within the stored parameters.");
+                                trc("Warning: Constructing tracking pixel url: Variable", pxl_arr[i], "was not within the stored parameters.");
                             };
                         } else {
-                            pxlStr = (pxlStr + pxlArr[i]);
+                            pxl_str = (pxl_str + pxl_arr[i]);
                         };
-                        inVar = !(inVar);
+                        in_var = !(in_var);
                         i = (i + 1);
                     };
                 };
                 if (int(Savegame[SG_PLAYER_ID]) == 0){
                     next_pxl = -(act);
                 } else {
-                    load_tracking_pixel(pxlStr);
+                    load_tracking_pixel(pxl_str);
                 };
             };
         };
@@ -7638,7 +7644,7 @@ def ActionHandler(event):
     if (next_pxl > 0){
         next_pxl = 0;
     };
-    if (logInAfterPixel){
+    if (log_in_after_pixel){
         RequestLOGin(event);
     };
 }
@@ -7690,10 +7696,10 @@ public function RequestLOGout(evt:Event=undefined, keepData:Boolean=False):void{
     PulseTaverne = False;
     PulseArbeiten = False;
     PulseGilde = False;
-    PulseGildeOnHistory = False;
+    pulse_gilde_on_history = False;
     pulse_post = False;
     PulseDealer = False;
-    guildBlinkReady = False;
+    guild_blink_ready = False;
     sessionId = "";
     fightFlushMode = False;
     if (!keepData){
@@ -8937,29 +8943,29 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[i].y = y;
                     addChild(actor[i]);
                 };
-                Remove(CITY_OVERLAYS);
+                remove(CITY_OVERLAYS);
                 HideArenaOno();
                 WacheOut();
                 if (((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))){
-                    Add(CITY_ESEL1);
-                    Add(CITY_CA_OVL);
+                    add(CITY_ESEL1);
+                    add(CITY_CA_OVL);
                 };
                 if (OnStage(CA_SCR_ARBEITEN_BLOCKCITY)){
                     if (OnStage(LBL_SCR_ARBEITEN_TIME)){
-                        Add(SCREEN_ARBEITEN_WAIT);
+                        add(SCREEN_ARBEITEN_WAIT);
                     } else {
                         if (OnStage(SCR_ARBEITEN_OK)){
-                            Add(SCREEN_ARBEITEN);
+                            add(SCREEN_ARBEITEN);
                         } else {
-                            Add(SCREEN_ARBEITEN_SUCCESS);
+                            add(SCREEN_ARBEITEN_SUCCESS);
                         };
                     };
                 };
                 if (OnStage(CA_SCR_INVITE_BLOCKCITY)){
-                    Add(SCREEN_INVITE);
+                    add(SCREEN_INVITE);
                 };
                 if (OnStage(BLACK_SQUARE)){
-                    Add(BLACK_SQUARE);
+                    add(BLACK_SQUARE);
                 };
             };
             DefineBtn(actorID, txt[txtID], InterfaceBtnHandler, btnClassInterface, IF_X, ((IF_Y + (IF_1 * iPosi++)) + yOffs));
@@ -8997,14 +9003,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (evt){
                 if (GetActorID(evt.target.parent) == INP_PASSWORD){
                     pwd = actor[INP_PASSWORD].getChildAt(1).text;
-                    Hide(PASSWORD_SMILEY_SAD);
-                    Hide(PASSWORD_SMILEY_NEUTRAL);
-                    Hide(PASSWORD_SMILEY_HAPPY);
+                    hide(PASSWORD_SMILEY_SAD);
+                    hide(PASSWORD_SMILEY_NEUTRAL);
+                    hide(PASSWORD_SMILEY_HAPPY);
                 } else {
                     if (optionMenuSelect == 3){
-                        Hide(CHANGE_PASSWORD_SMILEY_SAD);
-                        Hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
-                        Hide(CHANGE_PASSWORD_SMILEY_HAPPY);
+                        hide(CHANGE_PASSWORD_SMILEY_SAD);
+                        hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
+                        hide(CHANGE_PASSWORD_SMILEY_HAPPY);
                         if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
                             pwd = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                         } else {
@@ -9122,22 +9128,22 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (evt){
                 if (GetActorID(evt.target.parent) == INP_PASSWORD){
                     if (pwdScore >= 3){
-                        Show(PASSWORD_SMILEY_HAPPY);
+                        show(PASSWORD_SMILEY_HAPPY);
                     } else {
                         if (pwdScore >= 2){
-                            Show(PASSWORD_SMILEY_NEUTRAL);
+                            show(PASSWORD_SMILEY_NEUTRAL);
                         } else {
-                            Show(PASSWORD_SMILEY_SAD);
+                            show(PASSWORD_SMILEY_SAD);
                         };
                     };
                 } else {
                     if (pwdScore >= 3){
-                        Show(CHANGE_PASSWORD_SMILEY_HAPPY);
+                        show(CHANGE_PASSWORD_SMILEY_HAPPY);
                     } else {
                         if (pwdScore >= 2){
-                            Show(CHANGE_PASSWORD_SMILEY_NEUTRAL);
+                            show(CHANGE_PASSWORD_SMILEY_NEUTRAL);
                         } else {
-                            Show(CHANGE_PASSWORD_SMILEY_SAD);
+                            show(CHANGE_PASSWORD_SMILEY_SAD);
                         };
                     };
                 };
@@ -9170,7 +9176,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             actor[INP_NAME].add_event_listener(KeyboardEvent.KEY_DOWN, RequestPassword);
             actor[INP_EMAIL].add_event_listener(KeyboardEvent.KEY_DOWN, RequestPassword);
             LOGonRTL();
-            Add(WINDOW_FORGOT_PASSWORD);
+            add(WINDOW_FORGOT_PASSWORD);
         };
         RequestPassword = function (evt:Event):void{
             if ((evt is KeyboardEvent)){
@@ -9181,16 +9187,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             send_action(ACT_FORGOT_PASSWORD, actor[INP_NAME].getChildAt(1).text, actor[INP_EMAIL].getChildAt(1).text);
         };
         CheckAGB = function (evt:MouseEvent):void{
-            Add(CB_AGB_CHECKED);
+            add(CB_AGB_CHECKED);
         };
         UncheckAGB = function (evt:MouseEvent):void{
-            Remove(CB_AGB_CHECKED);
+            remove(CB_AGB_CHECKED);
         };
         CheckFuck = function (evt:MouseEvent):void{
-            Add(CB_FUCK_CHECKED);
+            add(CB_FUCK_CHECKED);
         };
         UncheckFuck = function (evt:MouseEvent):void{
-            Remove(CB_FUCK_CHECKED);
+            remove(CB_FUCK_CHECKED);
         };
         var PulseEvent:* = function (evt:Event){
             var evt:* = evt;
@@ -9237,7 +9243,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (OnStage(GILDEN_BG)){
                 PulseGilde = False;
-                PulseGildeOnHistory = False;
+                pulse_gilde_on_history = False;
             };
             if (OnStage(SCR_DEALER_BG)){
                 PulseDealer = False;
@@ -9287,7 +9293,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             RandomizeCharImage();
             if (OnStage(POPUP_INFO)){
-                Add(POPUP_INFO);
+                add(POPUP_INFO);
             };
         };
         SelectGender = function (evt:MouseEvent):void{
@@ -9301,7 +9307,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             RandomizeCharImage();
             if (OnStage(POPUP_INFO)){
-                Add(POPUP_INFO);
+                add(POPUP_INFO);
             };
         };
         SelectCaste = function (evt:MouseEvent):void{
@@ -9319,7 +9325,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             LoadCharacterImage();
             if (OnStage(POPUP_INFO)){
-                Add(POPUP_INFO);
+                add(POPUP_INFO);
             };
         };
         var AddMimickInterfaceButtonHoverHandler:* = function (actorID:int){
@@ -9383,22 +9389,22 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var BubbleFade:* = function (inOut:Boolean, bubbleID:int):void{
                 if (inOut){
                     if (((((!(OnStage(bubbleID))) and (!(OnStage(CA_SCR_ARBEITEN_BLOCKCITY))))) and (!(OnStage(CA_SCR_INVITE_BLOCKCITY))))){
-                        Add(bubbleID);
-                        Add(CITY_CA_OVL);
+                        add(bubbleID);
+                        add(CITY_CA_OVL);
                         actor[bubbleID].alpha = 0;
                         BubbleWait = 30;
                     } else {
                         if (actor[bubbleID].alpha < 1){
                             if (((OnStage(CA_SCR_ARBEITEN_BLOCKCITY)) or (OnStage(CA_SCR_INVITE_BLOCKCITY)))){
-                                Remove(bubbleID);
+                                remove(bubbleID);
                                 actor[bubbleID].alpha = 0;
                                 BubbleWait = 0;
                             } else {
                                 if (BubbleWait > 0){
                                     BubbleWait--;
                                 } else {
-                                    Add(bubbleID);
-                                    Add(CITY_CA_OVL);
+                                    add(bubbleID);
+                                    add(CITY_CA_OVL);
                                     if (lightMode){
                                         actor[bubbleID].alpha = 1;
                                     } else {
@@ -9408,14 +9414,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             };
                         } else {
                             if (((OnStage(CA_SCR_ARBEITEN_BLOCKCITY)) or (OnStage(CA_SCR_INVITE_BLOCKCITY)))){
-                                Remove(bubbleID);
+                                remove(bubbleID);
                             };
                         };
                     };
                 } else {
                     if (OnStage(bubbleID)){
                         if (((OnStage(CA_SCR_ARBEITEN_BLOCKCITY)) or (OnStage(CA_SCR_INVITE_BLOCKCITY)))){
-                            Remove(bubbleID);
+                            remove(bubbleID);
                             actor[bubbleID].alpha = 0;
                             BubbleWait = 0;
                         };
@@ -9425,12 +9431,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             } else {
                                 actor[bubbleID].alpha = (actor[bubbleID].alpha - 0.1);
                             };
-                            Add(bubbleID);
-                            Add(CITY_CA_OVL);
+                            add(bubbleID);
+                            add(CITY_CA_OVL);
                             BubbleWait = 30;
                         };
                         if (actor[bubbleID].alpha == 0){
-                            Remove(bubbleID);
+                            remove(bubbleID);
                         };
                     };
                 };
@@ -9455,71 +9461,71 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (!lightMode){
                 CityAniFrame++;
                 if ((((CityAniFrame == 5)) and (getChildByName(actor[CITY_ELF1].name)))){
-                    Remove(CITY_ELF1);
-                    Add(CITY_ELF2);
+                    remove(CITY_ELF1);
+                    add(CITY_ELF2);
                     if (OnStage(BUBBLE_POST)){
-                        Add(BUBBLE_POST);
+                        add(BUBBLE_POST);
                     };
-                    Add(CITY_CA_OVL);
+                    add(CITY_CA_OVL);
                 } else {
                     if (getChildByName(actor[CITY_ELF2].name)){
-                        Remove(CITY_ELF2);
-                        Add(CITY_ELF1);
+                        remove(CITY_ELF2);
+                        add(CITY_ELF1);
                         if (OnStage(BUBBLE_POST)){
-                            Add(BUBBLE_POST);
+                            add(BUBBLE_POST);
                         };
-                        Add(CITY_CA_OVL);
+                        add(CITY_CA_OVL);
                     };
                 };
                 if ((((CityAniFrame == 3)) and ((int((Math.random() * 2)) == 0)))){
                     if (getChildByName(actor[CITY_ORK1].name)){
-                        Remove(CITY_ORK1);
-                        Add(CITY_ORK2);
+                        remove(CITY_ORK1);
+                        add(CITY_ORK2);
                         DefineBunch(CITY_ORK, CITY_ORK2);
-                        Add(CITY_CA_OVL);
+                        add(CITY_CA_OVL);
                         if (OnStage(LBL_ERROR)){
-                            Add(LBL_ERROR);
+                            add(LBL_ERROR);
                         };
                     } else {
                         if (getChildByName(actor[CITY_ORK2].name)){
-                            Remove(CITY_ORK2);
-                            Add(CITY_ORK1);
+                            remove(CITY_ORK2);
+                            add(CITY_ORK1);
                             DefineBunch(CITY_ORK, CITY_ORK1);
-                            Add(CITY_CA_OVL);
+                            add(CITY_CA_OVL);
                             if (OnStage(LBL_ERROR)){
-                                Add(LBL_ERROR);
+                                add(LBL_ERROR);
                             };
                         };
                     };
                 };
                 if ((((((CityAniFrame == 2)) and ((int((Math.random() * 2)) == 0)))) and (getChildByName(actor[CITY_ZWERG1].name)))){
-                    Remove(CITY_ZWERG1);
-                    Add(CITY_ZWERG2);
+                    remove(CITY_ZWERG1);
+                    add(CITY_ZWERG2);
                     DefineBunch(CITY_ZWERG, CITY_ZWERG2);
-                    Add(CITY_CA_OVL);
+                    add(CITY_CA_OVL);
                 } else {
                     if ((((CityAniFrame == 3)) and (OnStage(CITY_ZWERG2)))){
-                        Remove(CITY_ZWERG2);
-                        Add(CITY_ZWERG1);
+                        remove(CITY_ZWERG2);
+                        add(CITY_ZWERG1);
                         DefineBunch(CITY_ZWERG, CITY_ZWERG1);
-                        Add(CITY_CA_OVL);
+                        add(CITY_CA_OVL);
                     };
                 };
                 if (SandwichPause > 0){
                     SandwichPause--;
                 } else {
                     if (((((CityAniFrame % 2) == 0)) and (getChildByName(actor[CITY_SANDWICH1].name)))){
-                        Remove(CITY_SANDWICH1);
-                        Add(CITY_SANDWICH2);
+                        remove(CITY_SANDWICH1);
+                        add(CITY_SANDWICH2);
                         if (OnStage(LBL_ERROR)){
-                            Add(LBL_ERROR);
+                            add(LBL_ERROR);
                         };
                     };
                     if (((!(((CityAniFrame % 2) == 0))) and (getChildByName(actor[CITY_SANDWICH2].name)))){
-                        Remove(CITY_SANDWICH2);
-                        Add(CITY_SANDWICH1);
+                        remove(CITY_SANDWICH2);
+                        add(CITY_SANDWICH1);
                         if (OnStage(LBL_ERROR)){
-                            Add(LBL_ERROR);
+                            add(LBL_ERROR);
                         };
                         if (int((Math.random() * 8)) == 0){
                             SandwichPause = 4;
@@ -9529,25 +9535,25 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if (ZwergFussTapp > 0){
                     if (((OnStage(CITY_MAGIER1)) or (OnStage(CITY_MAGIER2)))){
                         if ((ZwergFussTapp % 2) == 0){
-                            Remove(CITY_MAGIER1);
-                            Add(CITY_MAGIER2);
+                            remove(CITY_MAGIER1);
+                            add(CITY_MAGIER2);
                             if (OnStage(BUBBLE_WACHE)){
-                                Add(BUBBLE_WACHE);
+                                add(BUBBLE_WACHE);
                             };
                             if (OnStage(LBL_ERROR)){
-                                Add(LBL_ERROR);
+                                add(LBL_ERROR);
                             };
-                            Add(CITY_CA_OVL);
+                            add(CITY_CA_OVL);
                         } else {
-                            Remove(CITY_MAGIER2);
-                            Add(CITY_MAGIER1);
+                            remove(CITY_MAGIER2);
+                            add(CITY_MAGIER1);
                             if (OnStage(BUBBLE_WACHE)){
-                                Add(BUBBLE_WACHE);
+                                add(BUBBLE_WACHE);
                             };
                             if (OnStage(LBL_ERROR)){
-                                Add(LBL_ERROR);
+                                add(LBL_ERROR);
                             };
-                            Add(CITY_CA_OVL);
+                            add(CITY_CA_OVL);
                         };
                         ZwergFussTapp--;
                     };
@@ -9562,17 +9568,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (OnStage(CA_SCR_ARBEITEN_BLOCKCITY)){
                 if (OnStage(LBL_SCR_ARBEITEN_TIME)){
-                    Add(SCREEN_ARBEITEN_WAIT);
+                    add(SCREEN_ARBEITEN_WAIT);
                 } else {
                     if (OnStage(SCR_ARBEITEN_OK)){
-                        Add(SCREEN_ARBEITEN);
+                        add(SCREEN_ARBEITEN);
                     } else {
-                        Add(SCREEN_ARBEITEN_SUCCESS);
+                        add(SCREEN_ARBEITEN_SUCCESS);
                     };
                 };
             };
             if (OnStage(CA_SCR_INVITE_BLOCKCITY)){
-                Add(SCREEN_INVITE);
+                add(SCREEN_INVITE);
             };
         };
         WacheOver = function ():void{
@@ -9591,11 +9597,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 SchildTimer.removeEventListener(TimerEvent.TIMER, SchildFrame);
                 return;
             };
-            Remove(CITY_SCHILD1, CITY_SCHILD2, CITY_SCHILD3, CITY_SCHILD4);
+            remove(CITY_SCHILD1, CITY_SCHILD2, CITY_SCHILD3, CITY_SCHILD4);
             if (iFrame >= 0){
-                Add((CITY_SCHILD1 + iFrame));
+                add((CITY_SCHILD1 + iFrame));
             };
-            Add(CA_CITY_WACHE);
+            add(CA_CITY_WACHE);
             if ((((iFrame < 0)) and ((SchildDir < 0)))){
                 iFrame = -1;
                 SchildTimer.stop();
@@ -9611,32 +9617,32 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             iFrame = (iFrame + SchildDir);
         };
         EselOver = function ():void{
-            Remove(CITY_ESEL1);
+            remove(CITY_ESEL1);
         };
         EselOut = function ():void{
             if (((OnStage(STALL_BG_GUT)) or (OnStage(STALL_BG_BOESE)))){
                 return;
             };
-            Add(CITY_ESEL1);
-            Add(CITY_CA_OVL);
+            add(CITY_ESEL1);
+            add(CITY_CA_OVL);
         };
         ShowDealerEyes = function ():void{
             if (((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))){
-                Add(CITY_DEALER_ANI5);
-                Add(CA_CITY_DEALER);
+                add(CITY_DEALER_ANI5);
+                add(CA_CITY_DEALER);
                 if (OnStage(CA_SCR_ARBEITEN_BLOCKCITY)){
                     if (OnStage(LBL_SCR_ARBEITEN_TIME)){
-                        Add(SCREEN_ARBEITEN_WAIT);
+                        add(SCREEN_ARBEITEN_WAIT);
                     } else {
                         if (OnStage(SCR_ARBEITEN_OK)){
-                            Add(SCREEN_ARBEITEN);
+                            add(SCREEN_ARBEITEN);
                         } else {
-                            Add(SCREEN_ARBEITEN_SUCCESS);
+                            add(SCREEN_ARBEITEN_SUCCESS);
                         };
                     };
                 };
                 if (OnStage(CA_SCR_INVITE_BLOCKCITY)){
-                    Add(SCREEN_INVITE);
+                    add(SCREEN_INVITE);
                 };
             };
         };
@@ -9664,50 +9670,50 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))){
                 Switch (DealerAniStep){
                     case 1:
-                        Add(CITY_DEALER_ANI2);
+                        add(CITY_DEALER_ANI2);
                         break;
                     case 2:
-                        Add(CITY_DEALER_ANI1);
+                        add(CITY_DEALER_ANI1);
                         break;
                     case 3:
-                        Add(CITY_DEALER_ANI2);
+                        add(CITY_DEALER_ANI2);
                         break;
                     case 4:
-                        Add(CITY_DEALER_ANI5);
+                        add(CITY_DEALER_ANI5);
                         DealerAniStep = 0;
                         break;
                     case 5:
                     case 6:
                     case 7:
-                        Add(CITY_DEALER_ANI3);
+                        add(CITY_DEALER_ANI3);
                         break;
                     case 8:
-                        Add(CITY_DEALER_ANI5);
+                        add(CITY_DEALER_ANI5);
                         break;
                     case 9:
                     case 10:
                     case 11:
-                        Add(CITY_DEALER_ANI4);
+                        add(CITY_DEALER_ANI4);
                         break;
                     case 12:
-                        Add(CITY_DEALER_ANI5);
+                        add(CITY_DEALER_ANI5);
                         DealerAniStep = 0;
                         break;
                 };
-                Add(CA_CITY_DEALER);
+                add(CA_CITY_DEALER);
                 if (OnStage(CA_SCR_ARBEITEN_BLOCKCITY)){
                     if (OnStage(LBL_SCR_ARBEITEN_TIME)){
-                        Add(SCREEN_ARBEITEN_WAIT);
+                        add(SCREEN_ARBEITEN_WAIT);
                     } else {
                         if (OnStage(SCR_ARBEITEN_OK)){
-                            Add(SCREEN_ARBEITEN);
+                            add(SCREEN_ARBEITEN);
                         } else {
-                            Add(SCREEN_ARBEITEN_SUCCESS);
+                            add(SCREEN_ARBEITEN_SUCCESS);
                         };
                     };
                 };
                 if (OnStage(CA_SCR_INVITE_BLOCKCITY)){
-                    Add(SCREEN_INVITE);
+                    add(SCREEN_INVITE);
                 };
                 if (DealerAniStep == 0){
                     DealerStepTimer.stop();
@@ -9728,7 +9734,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 OnoTimer.removeEventListener(TimerEvent.TIMER, PopupArenaOno);
             };
             OnoPopupTimer.removeEventListener(TimerEvent.TIMER, StepArenaOno);
-            Remove(ThisOno);
+            remove(ThisOno);
         };
         PopupArenaOno = function (evt:Event=undefined):void{
             while (ThisOno == LastOno) {
@@ -9737,8 +9743,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             LastOno = ThisOno;
             OnoPopupTimer.add_event_listener(TimerEvent.TIMER, StepArenaOno);
             OnoPopupTimer.start();
-            Add(ThisOno);
-            Add(CA_CITY_ARENA);
+            add(ThisOno);
+            add(CA_CITY_ARENA);
             actor[ThisOno].alpha = 0;
         };
         StepArenaOno = function (evt:Event):void{
@@ -9746,7 +9752,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 actor[ThisOno].alpha = (actor[ThisOno].alpha - 0.1);
                 if (actor[ThisOno].alpha <= 0){
                     PopupDir = False;
-                    Remove(ThisOno);
+                    remove(ThisOno);
                     OnoPopupTimer.removeEventListener(TimerEvent.TIMER, StepArenaOno);
                 };
             } else {
@@ -9760,49 +9766,49 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (((((((((OnStage(SCR_CITY_BACKG_NIGHT)) or (OnStage(SCR_CITY_BACKG_DAWN)))) or (OnStage(SCR_CITY_BACKG_DAY)))) and (!(OnStage(CA_SCR_ARBEITEN_BLOCKCITY))))) and (!(OnStage(CA_SCR_INVITE_BLOCKCITY))))){
                 Switch (GetActorID(evt.target)){
                     case IF_SCHMIEDE:
-                        Add(CITY_SHAKES);
+                        add(CITY_SHAKES);
                         break;
                     case IF_ZAUBERLADEN:
-                        Add(CITY_ZAUBERLADEN);
+                        add(CITY_ZAUBERLADEN);
                         break;
                     case IF_EHRENHALLE:
-                        Add(CITY_RUHMESHALLE);
-                        Add(CITY_CA_OVL);
+                        add(CITY_RUHMESHALLE);
+                        add(CITY_CA_OVL);
                         break;
                     case IF_ARENA:
-                        Add(CITY_ARENA);
-                        Add(CITY_CA_OVL);
+                        add(CITY_ARENA);
+                        add(CITY_CA_OVL);
                         ShowArenaOno();
                         break;
                     case IF_PILZDEALER:
-                        Add(CITY_DEALER_ANI5);
-                        Add(CITY_DEALER);
+                        add(CITY_DEALER_ANI5);
+                        add(CITY_DEALER);
                         HideDealerEyes();
                         break;
                     case IF_STALL:
-                        Add(CITY_ESEL2);
-                        Remove(CITY_ESEL1);
-                        Add(CITY_CA_OVL);
+                        add(CITY_ESEL2);
+                        remove(CITY_ESEL1);
+                        add(CITY_CA_OVL);
                         break;
                     case IF_TAVERNE:
-                        Add(CITY_TAVERNE);
-                        Add(CITY_ZWERG);
-                        Add(CITY_CA_OVL);
+                        add(CITY_TAVERNE);
+                        add(CITY_ZWERG);
+                        add(CITY_CA_OVL);
                         break;
                     case IF_POST:
-                        Add(CITY_POST);
-                        Add(CITY_ORK);
-                        Add(CITY_CA_OVL);
+                        add(CITY_POST);
+                        add(CITY_ORK);
+                        add(CITY_CA_OVL);
                         break;
                     case IF_ARBEITEN:
                         WacheOver();
                         break;
                 };
                 if (OnStage(CA_SCR_ARBEITEN_BLOCKCITY)){
-                    Add(SCREEN_ARBEITEN);
+                    add(SCREEN_ARBEITEN);
                 };
                 if (OnStage(CA_SCR_INVITE_BLOCKCITY)){
-                    Add(SCREEN_INVITE);
+                    add(SCREEN_INVITE);
                 };
             };
         };
@@ -9867,7 +9873,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 default:
                     ruhmesHalleSuchString = actor[INP_HALLE_GOTO].getChildAt(1).text;
                     if ((((((((ruhmesHalleSuchString.toLowerCase() == "/s [p: 332]")) or ((ruhmesHalleSuchString.toLowerCase() == "/s[p: 332]")))) or ((ruhmesHalleSuchString.toLowerCase() == "/s [p:332]")))) or ((ruhmesHalleSuchString.toLowerCase() == "/s[p:332]")))){
-                        Play(SND_MOUNT_1);
+                        play(SND_MOUNT_1);
                         send_action(ACT_SEND_CHAT, EncodeChat("Moo!"), lastChatIndex);
                         if (textDir == "right"){
                             var _local3 = actor[IF_GOLD];
@@ -9893,7 +9899,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 text = "0";
                                 x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
                             };
-                            EnablePopup(LBL_IF_PILZE);
+                            enable_popup(LBL_IF_PILZE);
                         } else {
                             _local3 = actor[LBL_IF_SILBER];
                             with (_local3) {
@@ -9914,7 +9920,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 text = "0";
                                 x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
                             };
-                            EnablePopup(LBL_IF_PILZE);
+                            enable_popup(LBL_IF_PILZE);
                         };
                     };
                     if (int(actor[INP_HALLE_GOTO].getChildAt(1).text) > 0){
@@ -9947,7 +9953,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (((!((actor[INP_CHAR_INVITE].getChildAt(1).text == ""))) and (!((actor[INP_CHAR_INVITE2].getChildAt(1).text == ""))))){
                 send_action(ACT_INVITE_PLAYER, actor[INP_CHAR_INVITE].getChildAt(1).text.split(";").join("AAASEMIAAA"), actor[INP_CHAR_INVITE2].getChildAt(1).text.split(";").join("AAASEMIAAA"));
             } else {
-                ErrorMessage(txt[TXT_ERROR_INPUT_REQUIRED]);
+                error_message(txt[TXT_ERROR_INPUT_REQUIRED]);
             };
         };
         var GotoPlayerGilde:* = function (evt:MouseEvent){
@@ -10012,13 +10018,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         RequestAlbum = function (evt:Event=undefined){
             send_action(ACT_ALBUM);
-            ShowScreenAlbum();
+            show_screen_album();
         };
         PlayerGuildInviteCancel = function (evt:Event=undefined){
             if (!OnStage(PLAYER_GUILD_INVITE)){
                 return;
             };
-            Remove(GILDE_DIALOG_INVITE);
+            remove(GILDE_DIALOG_INVITE);
         };
         PlayerGuildInviteOK = function (evt:Event=undefined){
             if (!OnStage(PLAYER_GUILD_INVITE)){
@@ -10028,7 +10034,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         PlayerGuildInvite = function (evt:Event=undefined){
             var evt:* = evt;
-            Add(GILDE_DIALOG_INVITE);
+            add(GILDE_DIALOG_INVITE);
             actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text = lastPlayer;
             var _local3 = actor[LBL_WINDOW_TITLE];
             with (_local3) {
@@ -10054,7 +10060,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
                 };
-                EnablePopup(LBL_IF_PILZE);
+                enable_popup(LBL_IF_PILZE);
             };
             send_action(ACT_START_FIGHT, sel_name);
             if (lastAttacked.indexOf(sel_name.toLowerCase()) == -1){
@@ -10066,14 +10072,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             ShowInviteScreen = function (){
                 RemoveAll();
                 ShowCityScreen();
-                Hide(INVITE_SUCCESS);
-                Show(INVITE_INPUTDIALOGUE);
+                hide(INVITE_SUCCESS);
+                show(INVITE_INPUTDIALOGUE);
                 actor[INP_CHAR_INVITE].getChildAt(1).text = "";
                 stage.focus = actor[INP_CHAR_INVITE].getChildAt(1);
                 actor[INP_CHAR_INVITE2].getChildAt(1).text = "";
                 actor[LBL_WINDOW_TITLE].text = txt[TXT_INVITETITLE];
                 actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-                Add(SCREEN_INVITE);
+                add(SCREEN_INVITE);
             };
             Load(SCREEN_INVITE);
             when_loaded(ShowInviteScreen);
@@ -10102,7 +10108,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             break;
                     };
                     if (BoostAttribute(evt)){
-                        Play(SND_CLICK);
+                        play(SND_CLICK);
                     };
                 };
             };
@@ -10147,17 +10153,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     if (OnStage(LBL_SCR_CHAR_PREIS1)){
                         if (lightMode){
-                            Add(CHAR_SECONDPROP);
+                            add(CHAR_SECONDPROP);
                             if (OnStage(POPUP_INFO)){
-                                Add(POPUP_INFO);
+                                add(POPUP_INFO);
                             };
                             SetAlpha(CHAR_PREISE, 0);
                             SetAlpha(CHAR_SECONDPROP, 1);
                         } else {
                             FadeOut(CHAR_PREISE, 20, 0.2);
-                            Add(CHAR_SECONDPROP);
+                            add(CHAR_SECONDPROP);
                             if (OnStage(POPUP_INFO)){
-                                Add(POPUP_INFO);
+                                add(POPUP_INFO);
                             };
                             FadeIn(CHAR_SECONDPROP, 20, 0.2);
                         };
@@ -10179,15 +10185,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         InventoryItemMouseDown = function (evt:MouseEvent){
             if (((((OnStage(SCR_FIDGET_BG)) or (OnStage(SCR_SHAKES_BG)))) or (OnStage(TOWER_SCROLLAREA)))){
-                Add(CA_SELL_ITEM);
+                add(CA_SELL_ITEM);
             };
         };
         BackpackItemMouseDown = function (evt:MouseEvent){
-            Add(CA_USE_ITEM);
+            add(CA_USE_ITEM);
         };
         InventoryItemMouseUp = function (evt:MouseEvent){
-            Remove(CA_SELL_ITEM);
-            Remove(CA_USE_ITEM);
+            remove(CA_SELL_ITEM);
+            remove(CA_USE_ITEM);
         };
         DropHandler = function (actorID:int, targetID:int):Boolean{
             var towerMode:Boolean;
@@ -10269,7 +10275,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 if ((((actorID >= CHAR_SLOT_10)) and ((actorID <= CHAR_SLOT_SHAKES_6)))){
                                     sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
                                     send_action(ACT_INVENTORY_CHANGE, (((sourceSlot <= 10)) ? 1 : (((sourceSlot <= 15)) ? 2 : (((sourceSlot <= 21)) ? 4 : 3))), (sourceSlot - (((sourceSlot <= 10)) ? 0 : (((sourceSlot <= 15)) ? 10 : (((sourceSlot <= 21)) ? 15 : 21)))), 10, 0);
-                                    Show(TOILET_DROP);
+                                    show(TOILET_DROP);
                                     return (True);
                                 };
                             } else {
@@ -10332,8 +10338,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 PlayerIdle = False;
                 WasIdleCount = 0;
                 ShopIdle = 0;
-                Remove(FIDGET_DAY);
-                Remove(FIDGET_IDLE);
+                remove(FIDGET_DAY);
+                remove(FIDGET_IDLE);
                 SaleRecoverTime = 10;
                 return;
             };
@@ -10428,49 +10434,49 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
                 if (WasPassiert){
-                    Add(SCREEN_SHAKES);
+                    add(SCREEN_SHAKES);
                     if ((((specialAction == 2)) or ((specialAction == 5)))){
-                        Add(SHAKES_EPCIOVL);
+                        add(SHAKES_EPCIOVL);
                         actor[SHAKES_EPCIOVL].mouse_enabled = False;
                     };
                     if (!sleep_time()){
                         if (((PlayerIdle) and (!((ShakesIdlePhase == 0))))){
-                            Remove(SHAKES_NIGHT);
-                            Remove(SHAKES_DAY);
-                            Remove(SHAKES_BLINZELN1, SHAKES_BLINZELN2);
+                            remove(SHAKES_NIGHT);
+                            remove(SHAKES_DAY);
+                            remove(SHAKES_BLINZELN1, SHAKES_BLINZELN2);
                             Switch (ShakesIdlePhase){
                                 case 1:
-                                    Remove(SHAKES_IDLE, SHAKES_IDLE2, SHAKES_IDLE3);
+                                    remove(SHAKES_IDLE, SHAKES_IDLE2, SHAKES_IDLE3);
                                     break;
                                 case 2:
-                                    Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE3);
+                                    remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE3);
                                     break;
                                 case 3:
-                                    Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2);
+                                    remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2);
                                     break;
                                 case 4:
-                                    Remove(SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
+                                    remove(SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
                                     break;
                             };
                         } else {
-                            Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
-                            Remove(SHAKES_NIGHT);
+                            remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
+                            remove(SHAKES_NIGHT);
                             if (ShakesAugenZu != 2){
-                                Remove(SHAKES_BLINZELN2);
+                                remove(SHAKES_BLINZELN2);
                             };
                             if (ShakesAugenZu != 1){
-                                Remove(SHAKES_BLINZELN1);
+                                remove(SHAKES_BLINZELN1);
                             };
                         };
                     } else {
-                        Remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
-                        Remove(SHAKES_DAY);
+                        remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
+                        remove(SHAKES_DAY);
                     };
                     if (pv){
-                        Add(POPUP_INFO);
+                        add(POPUP_INFO);
                     };
                 };
-                Add(LBL_ERROR);
+                add(LBL_ERROR);
             } else {
                 if (OnStage(SCR_FIDGET_BG)){
                     AffeBlinzeln++;
@@ -10503,36 +10509,36 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         };
                     };
                     if (((WasPassiert) and (!(OnStage(GOTO_WITCH_OVL))))){
-                        Add(SCREEN_FIDGET);
+                        add(SCREEN_FIDGET);
                         if (Savegame[SG_LEVEL] >= 66){
-                            Add(CA_GOTO_WITCH);
+                            add(CA_GOTO_WITCH);
                         };
                         if ((((specialAction == 2)) or ((specialAction == 5)))){
-                            Add(FIDGET_EPCIOVL);
+                            add(FIDGET_EPCIOVL);
                             actor[FIDGET_EPCIOVL].mouse_enabled = False;
                         };
                         if (AffeStep >= 2){
-                            Remove(FIDGET_AFFE1);
+                            remove(FIDGET_AFFE1);
                         };
                         if (AffeStep == 2){
-                            Remove(FIDGET_AFFE3);
+                            remove(FIDGET_AFFE3);
                         };
                         if (!sleep_time()){
                             if (PlayerIdle){
-                                Remove(FIDGET_DAY);
+                                remove(FIDGET_DAY);
                             };
-                            Remove(FIDGET_NIGHT);
+                            remove(FIDGET_NIGHT);
                         } else {
-                            Remove(FIDGET_DAY);
+                            remove(FIDGET_DAY);
                         };
                         if (((!(FidgetAugenZu)) or (PlayerIdle))){
-                            Remove(FIDGET_BLINZELN);
+                            remove(FIDGET_BLINZELN);
                         };
                         if (pv){
-                            Add(POPUP_INFO);
+                            add(POPUP_INFO);
                         };
                     };
-                    Add(LBL_ERROR);
+                    add(LBL_ERROR);
                 } else {
                     PlayerIdle = False;
                     WasIdleCount = 0;
@@ -10541,10 +10547,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         ShopMouseDownEvent = function (evt:MouseEvent){
-            Add(CA_USE_ITEM);
+            add(CA_USE_ITEM);
         };
         ShopMouseUpEvent = function (evt:MouseEvent){
-            Remove(CA_USE_ITEM);
+            remove(CA_USE_ITEM);
         };
         RequestNewWarez = function (evt:Event=undefined){
             var RerollResetTimer:* = null;
@@ -10556,11 +10562,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if ((((evt is MouseEvent)) and (FrenzyMode))){
                 if (RollFrenzy.running){
-                    ErrorMessage("Frenzy stopped!");
+                    error_message("Frenzy stopped!");
                     RollFrenzy.stop();
                     return;
                 };
-                ErrorMessage("Frenzy started!");
+                error_message("Frenzy started!");
                 RollFrenzy.start();
             };
             if (!BlockReroll){
@@ -10570,8 +10576,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 RerollResetTimer.start();
                 PlayerIdle = False;
                 ShopIdle = 0;
-                Remove(FIDGET_DAY);
-                Remove(FIDGET_IDLE);
+                remove(FIDGET_DAY);
+                remove(FIDGET_IDLE);
                 SaleRecoverTime = 10;
                 send_action(ACT_REQUEST_NEWWAREZ, ((OnStage(SCR_FIDGET_BG)) ? 1 : 2));
             };
@@ -10592,7 +10598,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     actor[POST_GUILD].x = (POST_INP_X + 5);
                 };
-                Remove(INP_POST_ADDRESS);
+                remove(INP_POST_ADDRESS);
                 actor[INP_POST_ADDRESS].getChildAt(1).text = "";
             } else {
                 if (textDir == "right"){
@@ -10600,8 +10606,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                 };
-                Add(INP_POST_ADDRESS);
-                Add(POST_GUILD);
+                add(INP_POST_ADDRESS);
+                add(POST_GUILD);
                 actor[INP_POST_ADDRESS].getChildAt(1).text = txt[TXT_EMPFAENGER];
             };
         };
@@ -10621,7 +10627,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
                 };
             };
-            EnablePopup(LBL_IF_PILZE);
+            enable_popup(LBL_IF_PILZE);
             send_action(ACT_START_FIGHT, actor[INP_ARENA_ENEMY].getChildAt(1).text);
             if (lastAttacked.indexOf(actor[INP_ARENA_ENEMY].getChildAt(1).text.toLowerCase()) == -1){
                 lastAttacked.push(actor[INP_ARENA_ENEMY].getChildAt(1).text.toLowerCase());
@@ -10664,7 +10670,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 actor[LBL_STALL_TITEL].x = ((actor[LBL_STALL_TEXT].x + actor[LBL_STALL_TEXT].width) - actor[LBL_STALL_TITEL].textWidth);
                 actor[LBL_STALL_GAIN].x = ((actor[LBL_STALL_TEXT].x + actor[LBL_STALL_TEXT].width) - actor[LBL_STALL_GAIN].textWidth);
             };
-            Remove(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD, LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER, LBL_STALL_SCHATZ);
+            remove(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD, LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER, LBL_STALL_SCHATZ);
             if (txt[((TXT_MOUNT_GAIN1 + SelectedMount) - 1)].split("|").length > 1){
                 if (textDir == "right"){
                     tmpX = (actor[LBL_STALL_GAIN].x - 10);
@@ -10701,7 +10707,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         tmpX = (tmpX + (actor[STALL_SCHATZSILBER].width + 10));
                     };
                 };
-                Add(LBL_STALL_SCHATZ);
+                add(LBL_STALL_SCHATZ);
                 if (textDir == "right"){
                     actor[LBL_STALL_SCHATZ].x = (tmpX - actor[LBL_STALL_SCHATZ].textWidth);
                 } else {
@@ -10781,11 +10787,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
             };
             if (((!((SelectedMount == OldMount))) or ((OldMount == 0)))){
-                Play((((SND_MOUNT_1 + SelectedMount) + (((((char_volk >= 5)) and (!(param_censored)))) ? 4 : 0)) - 1));
+                play((((SND_MOUNT_1 + SelectedMount) + (((((char_volk >= 5)) and (!(param_censored)))) ? 4 : 0)) - 1));
             };
             OldMount = SelectedMount;
             if (Savegame[SG_MOUNT] > SelectedMount){
-                Remove(STALL_BUY);
+                remove(STALL_BUY);
             } else {
                 if (Savegame[SG_MOUNT] == 0){
                     SetBtnText(STALL_BUY, txt[TXT_STALL_BUY]);
@@ -10793,10 +10799,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     SetBtnText(STALL_BUY, txt[(((Savegame[SG_MOUNT] < SelectedMount)) ? TXT_STALL_UPGRADE : TXT_STALL_PROLONG)]);
                 };
             };
-            Remove(LBL_STALL_GOLD, STALL_GOLD, LBL_STALL_MUSH, STALL_MUSH);
+            remove(LBL_STALL_GOLD, STALL_GOLD, LBL_STALL_MUSH, STALL_MUSH);
             if (GoldKosten > 0){
                 if (GoldKosten > int((Savegame[SG_GOLD] / 100))){
-                    Remove(STALL_BUY);
+                    remove(STALL_BUY);
                 };
                 AddSome(LBL_STALL_GOLD, STALL_GOLD);
                 actor[LBL_STALL_GOLD].text = String(GoldKosten);
@@ -10804,7 +10810,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (PilzKosten > 0){
                 if (PilzKosten > int(Savegame[SG_MUSH])){
-                    Remove(STALL_BUY);
+                    remove(STALL_BUY);
                 };
                 AddSome(LBL_STALL_MUSH, STALL_MUSH);
                 actor[LBL_STALL_MUSH].text = String(PilzKosten);
@@ -10935,11 +10941,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (textToSend.toLowerCase().substr(0, 5) == "/coa "){
                 setCrestStr(textToSend.substr(5));
-                Remove(GILDE_GEBAEUDE);
-                Add(GILDE_CREST);
+                remove(GILDE_GEBAEUDE);
+                add(GILDE_CREST);
                 if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
                     SetAlpha(GILDE_CREST_CONTROLS, 1);
-                    Add(GILDE_CREST_CONTROLS);
+                    add(GILDE_CREST_CONTROLS);
                 };
                 loadCrest();
                 actor[INP_GILDE_CHAT].getChildAt(0).text = getCrestStr();
@@ -11008,10 +11014,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     destG = int(("0x" + textToSend.substr(6, 2)));
                     destB = int(("0x" + textToSend.substr(8, 2)));
                     actor[GILDEN_BG].filters = [new ColorMatrixFilter([0, 0, 0, 0, destR, 0, 0, 0, 0, destG, 0, 0, 0, 0, destB, 0, 0, 0, 0, 0xFF])];
-                    Hide(GILDE_RAHMEN);
+                    hide(GILDE_RAHMEN);
                 } else {
                     actor[GILDEN_BG].filters = new Array();
-                    Show(GILDE_RAHMEN);
+                    show(GILDE_RAHMEN);
                 };
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
@@ -11168,14 +11174,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     if ((int(actor[LBL_GILDE_GOLD].text) + int((actor[LBL_IF_GOLD].text + "00"))) <= 10000000){
                         send_action(ACT_GUILD_DONATE, 1, (actor[LBL_IF_GOLD].text + "00"));
                     } else {
-                        ErrorMessage(txt[TXT_ERROR_GUILD_CASH_FULL]);
+                        error_message(txt[TXT_ERROR_GUILD_CASH_FULL]);
                     };
                 } else {
                     if (int(textToSend.split(" ")[1]) != 0){
                         if ((int(actor[LBL_GILDE_GOLD].text) + int(textToSend.split(" ")[1])) <= 10000000){
                             send_action(ACT_GUILD_DONATE, 1, String((int(textToSend.split(" ")[1]) * 100)));
                         } else {
-                            ErrorMessage(txt[TXT_ERROR_GUILD_CASH_FULL]);
+                            error_message(txt[TXT_ERROR_GUILD_CASH_FULL]);
                         };
                     };
                 };
@@ -11249,9 +11255,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     i = 1;
                     while (i < crestColor.length) {
                         if (i == crestColorSelection){
-                            Show((GILDE_CREST_COLOR_SELECTED + i));
+                            show((GILDE_CREST_COLOR_SELECTED + i));
                         } else {
-                            Hide((GILDE_CREST_COLOR_SELECTED + i));
+                            hide((GILDE_CREST_COLOR_SELECTED + i));
                         };
                         i = (i + 1);
                     };
@@ -11319,7 +11325,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             };
                             send_action(ACT_SEND_CHAT, ("#?" + getCrestStr()), lastChatIndex);
                         } else {
-                            ErrorMessage(txt[TXT_ERROR_TOO_SOON_SUGGESTION]);
+                            error_message(txt[TXT_ERROR_TOO_SOON_SUGGESTION]);
                         };
                     };
                     break;
@@ -11337,7 +11343,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             crestMoveDest = GILDE_GEBAEUDE_Y;
                             crestMoveTimer.start();
                             SetAlpha(GILDE_CREST_CONTROLS, 0);
-                            Add(GILDE_CREST_CONTROLS);
+                            add(GILDE_CREST_CONTROLS);
                             FadeIn(GILDE_CREST_CONTROLS);
                         };
                     };
@@ -11345,9 +11351,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     i = 0;
                     while (i < crestColor.length) {
                         if (i == crestColorSelection){
-                            Show((GILDE_CREST_COLOR_SELECTED + i));
+                            show((GILDE_CREST_COLOR_SELECTED + i));
                         } else {
-                            Hide((GILDE_CREST_COLOR_SELECTED + i));
+                            hide((GILDE_CREST_COLOR_SELECTED + i));
                         };
                         Load((GILDE_CREST_COLOR_UNSELECTED + i));
                         Load((GILDE_CREST_COLOR_SELECTED + i));
@@ -11357,11 +11363,11 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     loadCrest();
                     break;
                 case GILDE_GEBAEUDE_GOTO_CREST:
-                    Remove(GILDE_GEBAEUDE);
-                    Add(GILDE_CREST);
+                    remove(GILDE_GEBAEUDE);
+                    add(GILDE_CREST);
                     if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
                         SetAlpha(GILDE_CREST_CONTROLS, 1);
-                        Add(GILDE_CREST_CONTROLS);
+                        add(GILDE_CREST_CONTROLS);
                     } else {
                         setCrestStr(oldCrestStr);
                         selecterCrestElement = -1;
@@ -11373,15 +11379,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 case GILDE_CREST_GOTO_GEBAEUDE:
                     setCrestStr(oldCrestStr);
                     selecterCrestElement = -1;
-                    Remove(GILDE_CREST);
-                    Remove(GILDE_CREST_CONTROLS);
+                    remove(GILDE_CREST);
+                    remove(GILDE_CREST_CONTROLS);
                     actor[GILDE_CREST].y = (GILDE_GEBAEUDE_Y + 60);
-                    Add(GILDE_GEBAEUDE);
+                    add(GILDE_GEBAEUDE);
                     break;
                 case GILDE_RAID:
                     if (myOwnAttackTarget == 0){
                         if (txt[TXT_GILDE_RAIDSTART]){
-                            Add(GILDE_DIALOG_RAID);
+                            add(GILDE_DIALOG_RAID);
                             _local3 = actor[LBL_GILDE_DIALOG_TEXT_RAID];
                             with (_local3) {
                                 wordWrap = True;
@@ -11448,7 +11454,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var GildenName:String;
             GildenName = actor[INP_GILDE_GRUENDEN].getChildAt(1).text;
             if (GildenName == ""){
-                ErrorMessage(txt[TXT_ERROR_EMPTY_GUILD_NAME]);
+                error_message(txt[TXT_ERROR_EMPTY_GUILD_NAME]);
             } else {
                 send_action(ACT_GUILD_FOUND, actor[INP_NAME].getChildAt(1).text, actor[INP_GILDE_GRUENDEN].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
             };
@@ -11483,7 +11489,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             break;
                     };
                     if (HutBtnHandler(evt)){
-                        Play(SND_CLICK);
+                        play(SND_CLICK);
                     };
                 };
             };
@@ -11506,7 +11512,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         HutFaceReset = function (evt:TimerEvent){
             if (OnStage(HUTMANN_BG)){
-                Add(HUTFACE_IDLE);
+                add(HUTFACE_IDLE);
             };
         };
         HutBtnHandler = function (evt:Event=undefined):Boolean{
@@ -11514,17 +11520,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var BetRisen:* = function (){
                 if ((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0){
                     SetBtnText(HUTMANN_OK, txt[TXT_HUTMANN_START]);
-                    Add(HUTMANN_OK);
+                    add(HUTMANN_OK);
                     if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (50 * int(GetSpendAmount())))) or ((int(actor[LBL_HUTMANN_MUSHBET].text) >= 20)))){
                         actor[LBL_HUTMANN_TEXT].text = txt[TXT_HUTMANN_BETCOMMENT3];
-                        Add(HUTFACE_LOSE3);
+                        add(HUTFACE_LOSE3);
                     } else {
                         if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (10 * int(GetSpendAmount())))) or ((int(actor[LBL_HUTMANN_MUSHBET].text) >= 10)))){
                             actor[LBL_HUTMANN_TEXT].text = txt[TXT_HUTMANN_BETCOMMENT2];
-                            Add(HUTFACE_WIN);
+                            add(HUTFACE_WIN);
                         } else {
                             actor[LBL_HUTMANN_TEXT].text = txt[TXT_HUTMANN_BETCOMMENT1];
-                            Add(HUTFACE_WIN);
+                            add(HUTFACE_WIN);
                         };
                     };
                     actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X - (actor[LBL_HUTMANN_TEXT].textWidth / 2));
@@ -11532,7 +11538,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     HutFaceResetTimer.start();
                 };
             };
-            Remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
+            remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
             AddSome(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
             Switch (GetActorID(evt.target)){
                 case HUTMANN_GOLDBET:
@@ -11545,7 +11551,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             text = txt[TXT_HUTMANN_CANTAFFORD];
                             x = (SCREEN_TITLE_X - (textWidth / 2));
                         };
-                        Add(HUTFACE_LOSE2);
+                        add(HUTFACE_LOSE2);
                         HutFaceResetTimer.stop();
                         HutFaceResetTimer.start();
                         if (HutBtnRepeatTimer.running){
@@ -11564,7 +11570,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             text = txt[TXT_HUTMANN_CANTAFFORD];
                             x = (SCREEN_TITLE_X - (textWidth / 2));
                         };
-                        Add(HUTFACE_LOSE2);
+                        add(HUTFACE_LOSE2);
                         HutFaceResetTimer.stop();
                         HutFaceResetTimer.start();
                         if (HutBtnRepeatTimer.running){
@@ -11575,8 +11581,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
                 case HUTMANN_OK:
                     if (((((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0)) and (OnStage(HUTMANN_GOLDBET)))){
-                        Remove(HUTMANN_OK, HUTMANN_PLACEBET);
-                        Add(HUTMANN_BECHERCHOOSE);
+                        remove(HUTMANN_OK, HUTMANN_PLACEBET);
+                        add(HUTMANN_BECHERCHOOSE);
                         PlaceHutBet(True);
                         HutFaceResetTimer.stop();
                         _local3 = actor[LBL_HUTMANN_TEXT];
@@ -11585,10 +11591,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             x = (SCREEN_TITLE_X - (textWidth / 2));
                         };
                     } else {
-                        Remove(HUTMANN_OK);
-                        Add(HUTMANN_PLACEBET);
+                        remove(HUTMANN_OK);
+                        add(HUTMANN_PLACEBET);
                         if (int(Savegame[SG_FIRST_PAYMENT]) == 0){
-                            Remove(HUTMANN_MUSHBET);
+                            remove(HUTMANN_MUSHBET);
                         };
                         actor[LBL_HUTMANN_GOLDBET].text = "0";
                         actor[LBL_HUTMANN_MUSHBET].text = "0";
@@ -11604,8 +11610,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             return (True);
         };
         ChooseCup = function (evt:Event=undefined){
-            Remove(HUTMANN_BECHERCHOOSE);
-            Add(HUTFACE_HOVER);
+            remove(HUTMANN_BECHERCHOOSE);
+            add(HUTFACE_HOVER);
             CupChosen = (GetActorID(evt.target) - CA_HUTBECHER_1);
             send_action(ACT_PLACE_BET, String((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
         };
@@ -11668,17 +11674,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 SetCnt(HUTMANN_MUSHBET, IF_PILZE);
                 SetCnt(HUTMANN_MUSHBET2, IF_PILZE);
                 PlaceHutBet();
-                Add(SCREEN_HUTMANN);
+                add(SCREEN_HUTMANN);
                 if ((((PresetGold > 0)) or ((PresetMush > 0)))){
-                    Add(HUTMANN_OK);
+                    add(HUTMANN_OK);
                 };
                 PresetGold = 0;
                 PresetMush = 0;
                 if (int(Savegame[SG_ACTION_STATUS]) != 0){
-                    Remove(HUTMANN_BACK);
+                    remove(HUTMANN_BACK);
                 };
                 if (int(Savegame[SG_FIRST_PAYMENT]) == 0){
-                    Remove(HUTMANN_MUSHBET);
+                    remove(HUTMANN_MUSHBET);
                 };
             };
             Load(SCREEN_HUTMANN);
@@ -11700,19 +11706,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             tooHealthy = False;
             specialActionHint = True;
-            Remove(TAVERNE_BARKEEPER_HINT);
+            remove(TAVERNE_BARKEEPER_HINT);
             if (((canBuy) and ((int(Savegame[SG_TIMEBAR]) > (80 * 60))))){
                 canBuy = False;
                 tooHealthy = True;
             };
             RefreshTimeBar(((canBuy) ? (20 * 60) : 0));
-            Remove(TAVERNE_CAS);
-            Add(BEEROFFER);
-            EnablePopup(QO_REWARDGOLD);
-            EnablePopup(QO_REWARDSILVER);
-            EnablePopup(LBL_QO_REWARDGOLD);
-            EnablePopup(LBL_QO_REWARDSILVER);
-            EnablePopup(LBL_QO_REWARDEXP);
+            remove(TAVERNE_CAS);
+            add(BEEROFFER);
+            enable_popup(QO_REWARDGOLD);
+            enable_popup(QO_REWARDSILVER);
+            enable_popup(LBL_QO_REWARDGOLD);
+            enable_popup(LBL_QO_REWARDSILVER);
+            enable_popup(LBL_QO_REWARDEXP);
             if (!txt[TXT_BEERFEST_TITLE_TOOHEALTHY]){
                 txt[TXT_BEERFEST_TITLE_TOOHEALTHY] = "Beerfest!";
                 txt[TXT_BEERFEST_TITLE_OK] = "Beerfest!";
@@ -11744,7 +11750,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
             };
-            Arabize(LBL_QO_QUESTTEXT);
+            arabize(LBL_QO_QUESTTEXT);
             actor[LBL_QO_REWARDEXP].text = ((canBuy) ? txt[TXT_BO_TIME] : "");
             if (Savegame[((SG_INVENTORY_OFFS + (SG_ITM_SIZE * 5)) + SG_ITM_EXT_ENCHANT)] == 71){
                 if (textDir == "right"){
@@ -11765,9 +11771,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 SetBtnText(BO_BUY, txt[TXT_BO_BUY]);
             };
             if (!canBuy){
-                Remove(BO_BUY);
+                remove(BO_BUY);
             };
-            Add(((canBuy) ? BO_PORTRAIT_OK : ((tooHealthy) ? BO_PORTRAIT_TH : BO_PORTRAIT_NO)));
+            add(((canBuy) ? BO_PORTRAIT_OK : ((tooHealthy) ? BO_PORTRAIT_TH : BO_PORTRAIT_NO)));
         };
         TimeBarAniEvent = function (evt:Event=undefined){
             var evt:* = evt;
@@ -11822,7 +11828,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
                 actor[(LBL_QO_CHOICE1 + i)].text = get_quest_title(i);
                 actor[(LBL_QO_CHOICE1_HL + i)].text = get_quest_title(i);
-                Hide((LBL_QO_CHOICE1_HL + i));
+                hide((LBL_QO_CHOICE1_HL + i));
                 if (textDir == "right"){
                     actor[LBL_QO_CHOOSE].x = (((QO_BLACK_SQUARE_X + QO_CHOOSE_X) + 140) - actor[LBL_QO_CHOOSE].textWidth);
                     actor[(QO_CHOICE1 + i)].x = (((QO_BLACK_SQUARE_X + QO_CHOOSE_X) + 140) - actor[(LBL_QO_CHOICE1 + i)].textWidth);
@@ -11830,16 +11836,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 i++;
             };
             SelectQuestOffer(-1);
-            Remove(TAVERNE_CAS);
-            Add(QUESTOFFER);
-            Add((QO_PORTRAIT1 + get_quest_random(0, 5)));
+            remove(TAVERNE_CAS);
+            add(QUESTOFFER);
+            add((QO_PORTRAIT1 + get_quest_random(0, 5)));
         };
         ReturnQuest = function (evt:Event=undefined){
             actor[QUEST_SLOT].alpha = 1;
             forceAdventure = False;
-            Add(TAVERNE_CAS);
-            Remove(QUESTOFFER);
-            Remove(BEEROFFER);
+            add(TAVERNE_CAS);
+            remove(QUESTOFFER);
+            remove(BEEROFFER);
             RefreshTimeBar();
         };
 
@@ -11877,19 +11883,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((textWidth / 2)));
             };
             actor[LBL_QO_QUESTTEXT].text = ((quest_id)==-1) ? txt[(TXT_QUEST_OFFER_TEXT + get_quest_random(0, 5))] : get_quest_text(quest_id);
-            Arabize(LBL_QO_QUESTTEXT);
+            arabize(LBL_QO_QUESTTEXT);
             if (quest_id == -1){
-                Hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
-                Hide(LBL_QO_REWARD);
-                Hide(QO_START);
+                hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
+                hide(LBL_QO_REWARD);
+                hide(QO_START);
                 actor[LBL_QO_REWARDEXP].text = "";
                 actor[LBL_QO_TIME].text = "";
                 SetCnt(QUEST_SLOT, C_EMPTY);
-                EnablePopup(FIGHT_SLOT);
+                enable_popup(FIGHT_SLOT);
             } else {
-                Show(LBL_QO_REWARD);
-                Show(QO_START);
-                Hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
+                show(LBL_QO_REWARD);
+                show(QO_START);
+                hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
                 if (textDir == "right"){
                     actor[LBL_QO_REWARD].x = (rewardX - actor[LBL_QO_REWARD].textWidth);
                 };
@@ -11951,34 +11957,34 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
                 if (int(Savegame[SG_EXP_BONUS]) > 0){
                     if (Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)) >= 1){
-                        EnablePopup(LBL_QO_REWARDEXP, ((((((((txt[TXT_EXPBONUS_PREFIX] + " ") + Savegame[SG_EXP_BONUS]) + "% ") + txt[TXT_EXPBONUS_SUFFIX]) + " + ") + String(Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)))) + "% ") + txt[(TXT_COLLECTION + 1)]));
+                        enable_popup(LBL_QO_REWARDEXP, ((((((((txt[TXT_EXPBONUS_PREFIX] + " ") + Savegame[SG_EXP_BONUS]) + "% ") + txt[TXT_EXPBONUS_SUFFIX]) + " + ") + String(Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)))) + "% ") + txt[(TXT_COLLECTION + 1)]));
                     } else {
-                        EnablePopup(LBL_QO_REWARDEXP, ((((txt[TXT_EXPBONUS_PREFIX] + " ") + Savegame[SG_EXP_BONUS]) + "% ") + txt[TXT_EXPBONUS_SUFFIX]));
+                        enable_popup(LBL_QO_REWARDEXP, ((((txt[TXT_EXPBONUS_PREFIX] + " ") + Savegame[SG_EXP_BONUS]) + "% ") + txt[TXT_EXPBONUS_SUFFIX]));
                     };
                 } else {
                     if (Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)) >= 1){
-                        EnablePopup(LBL_QO_REWARDEXP, ((((txt[TXT_EXPBONUS_PREFIX] + " ") + String(Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)))) + "% ") + txt[(TXT_COLLECTION + 1)]));
+                        enable_popup(LBL_QO_REWARDEXP, ((((txt[TXT_EXPBONUS_PREFIX] + " ") + String(Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 100)))) + "% ") + txt[(TXT_COLLECTION + 1)]));
                     } else {
-                        EnablePopup(LBL_QO_REWARDEXP);
+                        enable_popup(LBL_QO_REWARDEXP);
                     };
                 };
                 if (GoldBonusText != ""){
-                    EnablePopup(QO_REWARDGOLD, GoldBonusText);
-                    EnablePopup(QO_REWARDSILVER, GoldBonusText);
-                    EnablePopup(LBL_QO_REWARDGOLD, GoldBonusText);
-                    EnablePopup(LBL_QO_REWARDSILVER, GoldBonusText);
+                    enable_popup(QO_REWARDGOLD, GoldBonusText);
+                    enable_popup(QO_REWARDSILVER, GoldBonusText);
+                    enable_popup(LBL_QO_REWARDGOLD, GoldBonusText);
+                    enable_popup(LBL_QO_REWARDSILVER, GoldBonusText);
                 } else {
-                    EnablePopup(QO_REWARDGOLD);
-                    EnablePopup(QO_REWARDSILVER);
-                    EnablePopup(LBL_QO_REWARDGOLD);
-                    EnablePopup(LBL_QO_REWARDSILVER);
+                    enable_popup(QO_REWARDGOLD);
+                    enable_popup(QO_REWARDSILVER);
+                    enable_popup(LBL_QO_REWARDGOLD);
+                    enable_popup(LBL_QO_REWARDSILVER);
                 };
                 if (int(Savegame[((SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)) + SG_ITM_TYP)]) > 0){
                     SetCnt(QUEST_SLOT, GetItemID(SG_QUEST_OFFER_REWARD_ITM1, quest_id));
                     ItemPopup(QUEST_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, False, False, False);
                 } else {
                     SetCnt(QUEST_SLOT, C_EMPTY);
-                    EnablePopup(FIGHT_SLOT);
+                    enable_popup(FIGHT_SLOT);
                 };
                 if (textDir == "right"){
                     actor[LBL_QO_TIME].text = (((((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) / 60))) + ":") + (((String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))).length == 1)) ? "0" : "")) + String(int((int(Savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60)))) + " :") + txt[TXT_DURATION]);
@@ -12002,13 +12008,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             i = 0;
             while (i < 3) {
-                Hide((TOILET_CHAIN + i));
+                hide((TOILET_CHAIN + i));
                 i++;
             };
             if (toiletChainFrame <= 2){
-                Show((TOILET_CHAIN + toiletChainFrame));
+                show((TOILET_CHAIN + toiletChainFrame));
             } else {
-                Show(((TOILET_CHAIN + 5) - toiletChainFrame));
+                show(((TOILET_CHAIN + 5) - toiletChainFrame));
             };
             toiletChainFrame++;
         };
@@ -12016,7 +12022,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (GetActorID(evt.target) == CA_TOILET_CHAIN){
                 toiletChainFrame = 0;
                 toiletChainTimer.start();
-                Play(SND_TOILET_FLUSHTRY);
+                play(SND_TOILET_FLUSHTRY);
                 send_action(ACT_TOILET_FLUSH);
             };
         };
@@ -12024,7 +12030,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         CheckLM = function (evt:Event=undefined){
             var req:URLRequest;
-            Add(CB_LM_CHECKED);
+            add(CB_LM_CHECKED);
             lightMode = True;
             so.data.lightMode = lightMode;
             so.flush();
@@ -12035,7 +12041,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         UncheckLM = function (evt:Event=undefined){
             var req:URLRequest;
-            Remove(CB_LM_CHECKED);
+            remove(CB_LM_CHECKED);
             lightMode = False;
             so.data.lightMode = lightMode;
             so.flush();
@@ -12045,38 +12051,38 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         CheckCS = function (evt:Event=undefined){
-            Add(CB_CS_CHECKED);
+            add(CB_CS_CHECKED);
             chatSound = True;
             so.data.chatSound = chatSound;
             so.flush();
-            Play(SND_ERROR);
+            play(SND_ERROR);
         };
         UncheckCS = function (evt:Event=undefined){
-            Remove(CB_CS_CHECKED);
+            remove(CB_CS_CHECKED);
             chatSound = False;
             so.data.chatSound = chatSound;
             so.flush();
         };
         CheckCompare = function (evt:Event=undefined){
-            Add(CB_COMPARE_CHECKED);
+            add(CB_COMPARE_CHECKED);
             compareItems = True;
             so.data.compareItems = compareItems;
             so.flush();
         };
         UncheckCompare = function (evt:Event=undefined){
-            Remove(CB_COMPARE_CHECKED);
+            remove(CB_COMPARE_CHECKED);
             compareItems = False;
             so.data.compareItems = compareItems;
             so.flush();
         };
         CheckTV = function (evt:Event=undefined){
-            Add(CB_TV_CHECKED);
+            add(CB_TV_CHECKED);
             disableTV = True;
             so.data.disableTV = disableTV;
             so.flush();
         };
         UncheckTV = function (evt:Event=undefined){
-            Remove(CB_TV_CHECKED);
+            remove(CB_TV_CHECKED);
             disableTV = False;
             so.data.disableTV = disableTV;
             so.flush();
@@ -12098,7 +12104,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if (notSecondVolChange){
                     notSecondVolChange = False;
                 } else {
-                    Play(SND_TEST);
+                    play(SND_TEST);
                 };
             };
             var _local3 = actor[LBL_OPTION_VOLUME];
@@ -12120,29 +12126,29 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             navigateToURL(req, "_self");
         };
         OptionBtnHandler = function (evt:Event){
-            Hide(CHANGE_PASSWORD_SMILEY_SAD);
-            Hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
-            Hide(CHANGE_PASSWORD_SMILEY_HAPPY);
+            hide(CHANGE_PASSWORD_SMILEY_SAD);
+            hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
+            hide(CHANGE_PASSWORD_SMILEY_HAPPY);
             if ((evt is KeyboardEvent)){
                 if (((((!((KeyboardEvent(evt).keyCode == 13))) and (!((KeyboardEvent(evt).keyCode == 10))))) and (!((KeyboardEvent(evt).keyCode == 16777230))))){
                     return;
                 };
             };
-            Remove(LUXURY_SELLER);
+            remove(LUXURY_SELLER);
             Switch (GetActorID(evt.target)){
                 case OPTION_LUXURY:
-                    Remove(OPTION_DOCHANGE);
+                    remove(OPTION_DOCHANGE);
                     optionMenuSelect = 6;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_LUXURY_TITLE];
                     actor[LBL_OPTION_FIELD1].text = txt[TXT_LUXURY_TEXT];
                     SetBtnText(OPTION_DOCHANGE, txt[TXT_LUXURY_BTN]);
-                    Add(OPTION_DORESEND);
-                    Add(LUXURY_SELLER);
+                    add(OPTION_DORESEND);
+                    add(LUXURY_SELLER);
                     if ((uint(Savegame[SG_NEW_FLAGS]) & 32)){
                         actor[LBL_OPTION_FIELD1].text = txt[TXT_LUXURY_ALREADY];
-                        Remove(OPTION_DOCHANGE);
+                        remove(OPTION_DOCHANGE);
                     };
-                    Arabize(LBL_OPTION_FIELD1);
+                    arabize(LBL_OPTION_FIELD1);
                     break;
                 case OPTION_CHANGE_NAME:
                     optionMenuSelect = 1;
@@ -12157,7 +12163,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
                     actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = False;
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
-                    Add(OPTION_DOCHANGE);
+                    add(OPTION_DOCHANGE);
                     break;
                 case OPTION_CHANGE_EMAIL:
                     optionMenuSelect = 2;
@@ -12177,7 +12183,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
                     actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = False;
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
-                    Add(OPTION_DOCHANGE);
+                    add(OPTION_DOCHANGE);
                     break;
                 case OPTION_CHANGE_PASSWORD:
                     optionMenuSelect = 3;
@@ -12192,7 +12198,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
                     actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = True;
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = True;
-                    Add(OPTION_DOCHANGE);
+                    add(OPTION_DOCHANGE);
                     break;
                 case OPTION_DELETE:
                     optionMenuSelect = 4;
@@ -12207,20 +12213,20 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
                     actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = True;
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
-                    Add(OPTION_DOCHANGE);
+                    add(OPTION_DOCHANGE);
                     break;
                 case OPTION_RESEND:
-                    Remove(OPTION_DOCHANGE);
+                    remove(OPTION_DOCHANGE);
                     optionMenuSelect = 5;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_RESEND_TITLE];
                     actor[LBL_OPTION_FIELD1].text = txt[TXT_RESEND_TEXT];
                     SetBtnText(OPTION_DOCHANGE, txt[TXT_RESEND_BTN2]);
-                    Add(OPTION_DORESEND);
+                    add(OPTION_DORESEND);
                     if (int(Savegame[SG_EMAIL_VALID]) == 1){
                         actor[LBL_OPTION_FIELD1].text = txt[TXT_ALREADY_VALID];
-                        Remove(OPTION_DOCHANGE);
+                        remove(OPTION_DOCHANGE);
                     };
-                    Arabize(LBL_OPTION_FIELD1);
+                    arabize(LBL_OPTION_FIELD1);
                     break;
                 case OPTION_CHANGEIMG:
                     ShowBuildCharacterScreen(evt);
@@ -12232,7 +12238,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 send_action(ACT_CHANGE_NAME, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 optionNewData = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
-                                ErrorMessage(txt[TXT_ERROR_NAME_MISMATCH]);
+                                error_message(txt[TXT_ERROR_NAME_MISMATCH]);
                             };
                             break;
                         case 2:
@@ -12240,7 +12246,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 send_action(ACT_CHANGE_MAIL, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 optionNewData = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
-                                ErrorMessage(txt[TXT_ERROR_EMAIL_MISMATCH]);
+                                error_message(txt[TXT_ERROR_EMAIL_MISMATCH]);
                             };
                             break;
                         case 3:
@@ -12248,38 +12254,38 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 send_action(ACT_CHANGE_PASS, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 optionNewData = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
-                                ErrorMessage(txt[TXT_ERROR_PASSWORD_MISMATCH]);
+                                error_message(txt[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
                             break;
                         case 4:
                             if (actor[INP_OPTION_FIELD1].getChildAt(1).text == actor[INP_OPTION_FIELD2].getChildAt(1).text){
                                 send_action(ACT_DELETE_ACCOUNT, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text.toLowerCase());
                             } else {
-                                ErrorMessage(txt[TXT_ERROR_PASSWORD_MISMATCH]);
+                                error_message(txt[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
                             break;
                         case 5:
                             ResendConfirmationEmail();
                             break;
                         case 6:
-                            Remove(OPTION_DOCHANGE);
+                            remove(OPTION_DOCHANGE);
                             optionMenuSelect = 7;
                             actor[LBL_OPTION_DOCHANGE].text = txt[TXT_LUXURY_TITLE];
                             actor[LBL_OPTION_FIELD1].text = txt[TXT_LUXURY_CONFIRM];
                             SetBtnText(OPTION_DOCHANGE, txt[TXT_LUXURY_BTN2]);
-                            Add(OPTION_DORESEND);
-                            Add(LUXURY_SELLER);
-                            Arabize(LBL_OPTION_FIELD1);
+                            add(OPTION_DORESEND);
+                            add(LUXURY_SELLER);
+                            arabize(LBL_OPTION_FIELD1);
                             break;
                         case 7:
-                            Remove(OPTION_DOCHANGE);
+                            remove(OPTION_DOCHANGE);
                             optionMenuSelect = 8;
                             actor[LBL_OPTION_DOCHANGE].text = txt[TXT_LUXURY_TITLE];
                             actor[LBL_OPTION_FIELD1].text = txt[TXT_LUXURY_CONFIRM2];
                             SetBtnText(OPTION_DOCHANGE, txt[TXT_LUXURY_BTN3]);
-                            Add(OPTION_DORESEND);
-                            Add(LUXURY_SELLER);
-                            Arabize(LBL_OPTION_FIELD1);
+                            add(OPTION_DORESEND);
+                            add(LUXURY_SELLER);
+                            arabize(LBL_OPTION_FIELD1);
                             break;
                         case 8:
                             send_action(ACT_BUY_LUXURY);
@@ -12310,7 +12316,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     x = ((IF_LBL_GOLDPILZE_X - textWidth) - 10);
                 };
             };
-            EnablePopup(LBL_IF_PILZE);
+            enable_popup(LBL_IF_PILZE);
             if (SelectedDungeon == 100){
                 send_action(ACT_TOWER_TRY, String((tower_level + 1)), ((WaitingFor(Savegame[SG_MQ_REROLL_TIME])) ? 1 : 0));
             } else {
@@ -12404,7 +12410,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             if (param_social_buttons[i].split(":").length > 1){
                 if (txt[int(param_social_buttons[i].split(":")[1])]){
-                    EnablePopup((SOCIAL + i), txt[param_social_buttons[i].split(":")[1]]);
+                    enable_popup((SOCIAL + i), txt[param_social_buttons[i].split(":")[1]]);
                 };
             };
             AddBunch(IF_MAIN, (SOCIAL + i));
@@ -12543,8 +12549,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineLbl(LBL_IF_GOLD, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
         DefineImg(IF_SILBER, "res/gfx/if/icon_silber.png", True, IF_LBL_GOLDPILZE_X, IF_LBL_GOLD_Y);
         DefineLbl(LBL_IF_SILBER, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
-        EnablePopup(LBL_IF_SILBER, txt[TXT_SILVER_HINT]);
-        EnablePopup(IF_SILBER, txt[TXT_SILVER_HINT]);
+        enable_popup(LBL_IF_SILBER, txt[TXT_SILVER_HINT]);
+        enable_popup(IF_SILBER, txt[TXT_SILVER_HINT]);
         DefineImg(IF_PILZE, "res/gfx/if/icon_pilz.png", True, IF_LBL_GOLDPILZE_X, IF_LBL_PILZE_Y);
         DefineLbl(LBL_IF_PILZE, "", 0, IF_LBL_PILZE_Y, FontFormat_Default);
         MakePersistent(LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER, IF_GOLD, IF_SILBER, IF_PILZE);
@@ -12668,9 +12674,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineImg(PASSWORD_SMILEY_SAD, "res/gfx/if/smiley_sad.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
         DefineImg(PASSWORD_SMILEY_NEUTRAL, "res/gfx/if/smiley_neutral.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
         DefineImg(PASSWORD_SMILEY_HAPPY, "res/gfx/if/smiley_happy.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
-        EnablePopup(PASSWORD_SMILEY_SAD, txt[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
-        EnablePopup(PASSWORD_SMILEY_NEUTRAL, txt[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
-        EnablePopup(PASSWORD_SMILEY_HAPPY, txt[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
+        enable_popup(PASSWORD_SMILEY_SAD, txt[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
+        enable_popup(PASSWORD_SMILEY_NEUTRAL, txt[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
+        enable_popup(PASSWORD_SMILEY_HAPPY, txt[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
         actor[INP_PASSWORD].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
         DefineCnt(FORGOT_PASSWORD, 0, (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_1_Y) + AIRRelMoveY));
         DefineLbl(LBL_FORGOT_PASSWORD, txt[TXT_FORGOT_PASSWORD], 0, 0, FontFormat_Default);
@@ -12838,8 +12844,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         actor[F_IDLE].add_event_listener(MouseEvent.CLICK, SelectGender);
         i = 0;
         while (i < 2) {
-            EnablePopup((M_IDLE + (i * 2)), txt[(TXT_GENDER_M + i)]);
-            EnablePopup((M_ACT + (i * 2)), txt[(TXT_GENDER_M + i)]);
+            enable_popup((M_IDLE + (i * 2)), txt[(TXT_GENDER_M + i)]);
+            enable_popup((M_ACT + (i * 2)), txt[(TXT_GENDER_M + i)]);
             i = (i + 1);
         };
         DefineImg(KASTE_1_IDLE, "res/gfx/scr/buildchar/button_warrior_idle.jpg", False, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
@@ -12853,8 +12859,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         actor[KASTE_3_IDLE].add_event_listener(MouseEvent.CLICK, SelectCaste);
         i = 0;
         while (i < 3) {
-            EnablePopup((KASTE_1_IDLE + (i * 2)), txt[(TXT_CLASSNAME + i)]);
-            EnablePopup((KASTE_1_ACT + (i * 2)), txt[(TXT_CLASSNAME + i)]);
+            enable_popup((KASTE_1_IDLE + (i * 2)), txt[(TXT_CLASSNAME + i)]);
+            enable_popup((KASTE_1_ACT + (i * 2)), txt[(TXT_CLASSNAME + i)]);
             i = (i + 1);
         };
         DefineBunch(VOLK_BTNS_M);
@@ -12901,10 +12907,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             AddBunch(VOLK_BTNS_ALL, (VOLK_1_M_IDLE + i), (VOLK_1_M_ACT + i), (VOLK_1_F_IDLE + i), (VOLK_1_F_ACT + i));
             actor[(VOLK_1_M_IDLE + i)].add_event_listener(MouseEvent.CLICK, SelectRace);
             actor[(VOLK_1_F_IDLE + i)].add_event_listener(MouseEvent.CLICK, SelectRace);
-            EnablePopup((VOLK_1_M_IDLE + i), txt[(TXT_RACENAME + i)]);
-            EnablePopup((VOLK_1_M_ACT + i), txt[(TXT_RACENAME + i)]);
-            EnablePopup((VOLK_1_F_IDLE + i), txt[(TXT_RACENAME + i)]);
-            EnablePopup((VOLK_1_F_ACT + i), txt[(TXT_RACENAME + i)]);
+            enable_popup((VOLK_1_M_IDLE + i), txt[(TXT_RACENAME + i)]);
+            enable_popup((VOLK_1_M_ACT + i), txt[(TXT_RACENAME + i)]);
+            enable_popup((VOLK_1_F_IDLE + i), txt[(TXT_RACENAME + i)]);
+            enable_popup((VOLK_1_F_ACT + i), txt[(TXT_RACENAME + i)]);
             i = (i + 1);
         };
         i = 0;
@@ -13262,19 +13268,19 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             _local2 = actor[(ALBUM_CAT_OUT + i)];
             with (_local2) {
                 addChild(actor[(ALBUM_CAT_OUT + i)]);
-                add_event_listener(MouseEvent.CLICK, ShowAlbumContent);
+                add_event_listener(MouseEvent.CLICK, Showalbum_content);
                 mouseChildren = False;
                 buttonMode = True;
                 useHandCursor = True;
             };
-            EnablePopup((ALBUM_CAT_IN + i), txt[((TXT_COLLECTION + 2) + i)]);
-            EnablePopup((ALBUM_CAT_OUT + i), txt[((TXT_COLLECTION + 2) + i)]);
+            enable_popup((ALBUM_CAT_IN + i), txt[((TXT_COLLECTION + 2) + i)]);
+            enable_popup((ALBUM_CAT_OUT + i), txt[((TXT_COLLECTION + 2) + i)]);
             AddBunch(ALBUM_CAT_IN, (ALBUM_CAT_IN + i));
             AddBunch(SCREEN_ALBUM, (ALBUM_CAT_OUT + i), (ALBUM_CAT_IN + i));
             i = (i + 1);
         };
-        DefineBtn(ALBUM_PREV, "", ShowAlbumContent, btnClassArrowLeft, 340, 715);
-        DefineBtn(ALBUM_NEXT, "", ShowAlbumContent, btnClassArrowRight, 1180, 715);
+        DefineBtn(ALBUM_PREV, "", Showalbum_content, btnClassArrowLeft, 340, 715);
+        DefineBtn(ALBUM_NEXT, "", Showalbum_content, btnClassArrowRight, 1180, 715);
         AddBunch(SCREEN_ALBUM, ALBUM_PREV, ALBUM_NEXT);
         DefineImg(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg", False, 280, 100);
         DefineImg(SCR_CHAR_BG_GOLDEN, "res/gfx/scr/char/gold_bg.jpg", False, 280, 100);
@@ -13329,9 +13335,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineImg(SCR_CHAR_KLASSE_1, "res/gfx/scr/char/char_krieger.jpg", False, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
         DefineImg(SCR_CHAR_KLASSE_2, "res/gfx/scr/char/char_magier.jpg", False, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
         DefineImg(SCR_CHAR_KLASSE_3, "res/gfx/scr/char/char_dieb.jpg", False, ((GILDEEHRE_X + GILDEEHRE_X) - 10), ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
-        EnablePopup(SCR_CHAR_KLASSE_1, txt[TXT_CLASSNAME]);
-        EnablePopup(SCR_CHAR_KLASSE_2, txt[(TXT_CLASSNAME + 1)]);
-        EnablePopup(SCR_CHAR_KLASSE_3, txt[(TXT_CLASSNAME + 2)]);
+        enable_popup(SCR_CHAR_KLASSE_1, txt[TXT_CLASSNAME]);
+        enable_popup(SCR_CHAR_KLASSE_2, txt[(TXT_CLASSNAME + 1)]);
+        enable_popup(SCR_CHAR_KLASSE_3, txt[(TXT_CLASSNAME + 2)]);
         DefineFromClass(SHP_BLACK_CHARDESC, black_square_neutral, GILDEEHRE_X, ((GILDEEHRE_Y + GILDEEHRE_Y) + BLACK_CHARDESC_Y));
         _local2 = actor[SHP_BLACK_CHARDESC];
         with (_local2) {
@@ -13363,9 +13369,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(CHAR_GILDE, txt[TXT_ZURGILDE], ZurGilde, btnClassBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
         DefineBtn(CHAR_ALBUM, txt[TXT_ALBUM], RequestAlbum, btnClassBasic, CHAR_PLAYERX1, CHAR_PLAYERY);
         DefineBtn(PLAYER_GUILD_INVITE, "", PlayerGuildInvite, btnClassInvite, (((280 + 500) + CHAR_RUESTUNG_X) + 223), ((100 + CHAR_RUESTUNG_Y) - 7));
-        EnablePopup(PLAYER_GUILD_INVITE, txt[TXT_SUBJECT_GUILD_INVITE]);
+        enable_popup(PLAYER_GUILD_INVITE, txt[TXT_SUBJECT_GUILD_INVITE]);
         DefineBtn(CHAR_INVITE, txt[(TXT_ACH_4 + 4)], PlayerInvite, btnClassBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
-        EnablePopup(CHAR_INVITE, txt[(TXT_ACH_4 + 5)]);
+        enable_popup(CHAR_INVITE, txt[(TXT_ACH_4 + 5)]);
         i = 0;
         while (i < 8) {
             DefineImg((CHAR_MOUNT_1 + i), (("res/gfx/scr/char/mount_portrait_" + String((i + 1))) + ".jpg"), False, (CHAR_MOUNT_X + CHAR_MOUNT_X), CHAR_MOUNT_Y);
@@ -13575,7 +13581,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             actor[(TOWER_STEIGERN1 + i)].scaleY = 0.8;
             actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OVER, ShowTowerBoostPrices);
             actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OUT, HideTowerBoostPrices);
-            EnablePopup((TOWER_STEIGERN1 + i), txt[TXT_BOOST_COPYCAT]);
+            enable_popup((TOWER_STEIGERN1 + i), txt[TXT_BOOST_COPYCAT]);
             DefineLbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0, (EXPERIENCE_BAR_Y + 2), FontFormat_Default);
             AddFilter((LBL_TOWER_BOOSTPRICELABEL + i), Filter_Shadow);
             actor[(LBL_TOWER_BOOSTPRICELABEL + i)].alpha = 0;
@@ -13727,7 +13733,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineImg(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", False, ((280 + 500) + 360), (100 + 220));
         actor[GOTO_WITCH_OVL].mouse_enabled = False;
         DefineClickArea(CA_GOTO_WITCH, GOTO_WITCH_OVL, RequestWitchScreen, ((280 + 500) + 359), (100 + 215), 45, 65);
-        EnablePopup(CA_GOTO_WITCH, txt[TXT_WITCH_BOOK]);
+        enable_popup(CA_GOTO_WITCH, txt[TXT_WITCH_BOOK]);
         DefineBunch(SCREEN_WITCH);
         DefineSnd(SND_WITCH_DROP, "res/sfx/toilet/drop.mp3", False);
         AddBunch(SCREEN_WITCH, SND_WITCH_DROP);
@@ -13741,7 +13747,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 0;
         while (i < 15) {
             DefineImg((WITCH_ANI + i), (("res/gfx/scr/shops/witch_animation/witch" + String(((i * 2) + 1))) + ".jpg"), False, (280 + 500), (100 + 380));
-            Hide((WITCH_ANI + i));
+            hide((WITCH_ANI + i));
             AddBunch(SCREEN_WITCH, (WITCH_ANI + i));
             i = (i + 1);
         };
@@ -13789,8 +13795,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         DefineClickArea(CA_WITCH, C_EMPTY, undefined, (SCR_SHOP_BG_X + 180), 400, 135, 155);
         DefineClickArea(CA_CHALDRON, C_EMPTY, undefined, (SCR_SHOP_BG_X + 120), 585, 260, 160);
-        EnablePopup(CA_WITCH, txt[TXT_WITCH_HINT]);
-        EnablePopup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 1)]);
+        enable_popup(CA_WITCH, txt[TXT_WITCH_HINT]);
+        enable_popup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 1)]);
         actor[CA_WITCH].useHandCursor = False;
         actor[CA_CHALDRON].useHandCursor = False;
         AddBunch(SCREEN_WITCH, IF_OVL, CA_WITCH, CA_CHALDRON, IF_EXIT);
@@ -13853,7 +13859,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(POST_DOWN, "", PostBtnHandler, btnClassArrowDown, POST_SCROLLX, POST_SCROLLDOWN_Y);
         DefineBtn(POST_READ_NEXT, "", PostBtnHandler, btnClassArrowRight, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
         DefineBtn(POST_READ_PREV, "", PostBtnHandler, btnClassArrowLeft, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
-        EnablePopup(POST_PROFILE, txt[TXT_POPUP_PROFILE]);
+        enable_popup(POST_PROFILE, txt[TXT_POPUP_PROFILE]);
         DefineLbl(LBL_POST_FLUSH_TEXT, txt[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(String.fromCharCode(13)), ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
         AddFilter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
         DefineBtn(POST_FLUSH_CANCEL, txt[TXT_ABBRECHEN], PostBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
@@ -14093,7 +14099,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             width = GILDE_GRUENDEN_TEXT_X;
             text = txt[TXT_GILDE_GRUENDEN];
         };
-        Arabize(LBL_GILDE_GRUENDEN_TEXT);
+        arabize(LBL_GILDE_GRUENDEN_TEXT);
         DefineFromClass(INP_GILDE_GRUENDEN, text_input1, 0, ((IF_WIN_Y + GILDE_GRUENDEN_INP_Y) + AIRRelMoveY), 2, "name");
         _local2 = actor[INP_GILDE_GRUENDEN];
         with (_local2) {
@@ -14127,13 +14133,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             AddFilter((LBL_GILDE_GEBAEUDE_STUFE + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), Filter_Shadow);
-            EnablePopup((GILDE_GEBAEUDE + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            EnablePopup((LBL_GILDE_GEBAEUDE_NAME + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            EnablePopup((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            EnablePopup((LBL_GILDE_GEBAEUDE_WERT + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            EnablePopup((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            EnablePopup((LBL_GILDE_GEBAEUDE_STUFE + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            EnablePopup((GILDE_GEBAEUDE_IMPROVE + i), txt[TXT_GILDE_AUSBAUEN]);
+            enable_popup((GILDE_GEBAEUDE + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_NAME + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_WERT + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_STUFE + i), txt[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((GILDE_GEBAEUDE_IMPROVE + i), txt[TXT_GILDE_AUSBAUEN]);
             AddBunch(GILDE_GEBAEUDE, (GILDE_GEBAEUDE + i), (LBL_GILDE_GEBAEUDE_NAME + i), (LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), (LBL_GILDE_GEBAEUDE_WERT + i), (LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i));
             AddBunch(GILDE_GEBAEUDE, (LBL_GILDE_GEBAEUDE_STUFE + i), (LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_GOLD + i), (GILDE_GEBAEUDE_MUSH + i), (GILDE_GEBAEUDE_IMPROVE_GRAY + i), (GILDE_GEBAEUDE_IMPROVE + i));
             i = (i + 1);
@@ -14144,7 +14150,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             scaleX = 0.4;
             scaleY = 0.4;
         };
-        EnablePopup(GILDE_GEBAEUDE_GOTO_CREST, txt[TXT_BUILDINGS_GOTO_CREST]);
+        enable_popup(GILDE_GEBAEUDE_GOTO_CREST, txt[TXT_BUILDINGS_GOTO_CREST]);
         AddBunch(GILDE_GEBAEUDE, GILDE_GEBAEUDE_GOTO_CREST);
         DefineBunch(GILDE_CREST);
         DefineCnt(GILDE_CREST, (GILDE_GEBAEUDE_X - 2), (GILDE_GEBAEUDE_Y + 60));
@@ -14188,7 +14194,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             scaleX = 0.4;
             scaleY = 0.4;
         };
-        EnablePopup(GILDE_CREST_GOTO_GEBAEUDE, txt[TXT_CREST_GOTO_BUILDINGS]);
+        enable_popup(GILDE_CREST_GOTO_GEBAEUDE, txt[TXT_CREST_GOTO_BUILDINGS]);
         DefineBunch(GILDE_CREST_CONTROLS);
         DefineBtn(GILDE_CREST_CHANGE_PREV, "", GildeBtnHandler, btnClassArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 250));
         DefineBtn(GILDE_CREST_CHANGE_NEXT, "", GildeBtnHandler, btnClassArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 250));
@@ -14197,7 +14203,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler, btnClassArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 295));
         DefineBtn(GILDE_CREST_COLOR_NEXT, "", GildeBtnHandler, btnClassArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 295));
         DefineBtn(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST], GildeBtnHandler, btnClassBasic, (GILDE_GEBAEUDE_X + 30), (GILDE_GEBAEUDE_Y + 340));
-        EnablePopup(GILDE_CREST_OK, txt[TXT_CREST_INFO].split("#").join(String.fromCharCode(13)));
+        enable_popup(GILDE_CREST_OK, txt[TXT_CREST_INFO].split("#").join(String.fromCharCode(13)));
         i = 1;
         while (i < 4) {
             DefineCnt((GILDE_CREST_COLOR + i), ((GILDE_GEBAEUDE_X + 23) + (i * 40)), (GILDE_GEBAEUDE_Y + 296));
@@ -14234,20 +14240,20 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             scaleX = 0.8;
             scaleY = 0.8;
         };
-        EnablePopup(GILDE_GOLD, txt[TXT_GILDE_GOLD]);
+        enable_popup(GILDE_GOLD, txt[TXT_GILDE_GOLD]);
         DefineBtn(GILDE_MUSH, "", GildeBtnHandler, btnClassPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[GILDE_MUSH];
         with (_local2) {
             scaleX = 0.8;
             scaleY = 0.8;
         };
-        EnablePopup(GILDE_MUSH, txt[TXT_GILDE_MUSH]);
+        enable_popup(GILDE_MUSH, txt[TXT_GILDE_MUSH]);
         DefineLbl(LBL_GILDE_GOLD2, "1", (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C3), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)), FontFormat_GuildMoney);
         AddFilter(LBL_GILDE_GOLD2, Filter_Shadow);
-        EnablePopup(LBL_GILDE_GOLD2, txt[TXT_GILDE_GOLD]);
+        enable_popup(LBL_GILDE_GOLD2, txt[TXT_GILDE_GOLD]);
         DefineLbl(LBL_GILDE_MUSH2, "1", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
         AddFilter(LBL_GILDE_MUSH2, Filter_Shadow);
-        EnablePopup(LBL_GILDE_MUSH2, txt[TXT_GILDE_MUSH]);
+        enable_popup(LBL_GILDE_MUSH2, txt[TXT_GILDE_MUSH]);
         actor[LBL_GILDE_MUSH2].x = ((actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].textWidth) - actor[LBL_GILDE_MUSH2].textWidth);
         DefineCnt(GILDE_GOLD2, ((actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].textWidth) + 15), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
         DefineCnt(GILDE_MUSH2, ((actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].textWidth) + 15), (GILDE_GOLD_Y + GILDE_MUSH_Y));
@@ -14340,17 +14346,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             buttonMode = True;
             add_event_listener(MouseEvent.CLICK, DefenceLinkClick);
         };
-        EnablePopup(GILDE_INVITE, txt[TXT_POPUP_INVITE]);
-        EnablePopup(GILDE_INVITE_GRAY, txt[TXT_POPUP_INVITE]);
-        EnablePopup(GILDE_PROFILE, txt[TXT_POPUP_PROFILE]);
-        EnablePopup(GILDE_KICK, txt[TXT_POPUP_KICK]);
-        EnablePopup(GILDE_KICK_GRAY, txt[TXT_POPUP_KICK]);
-        EnablePopup(GILDE_PROMOTE, txt[TXT_POPUP_OFFIZIER]);
-        EnablePopup(GILDE_PROMOTE_GRAY, txt[TXT_POPUP_OFFIZIER]);
-        EnablePopup(GILDE_DEMOTE, txt[TXT_POPUP_OFFIZIER]);
-        EnablePopup(GILDE_MASTER, txt[TXT_POPUP_LEITER]);
-        EnablePopup(GILDE_MASTER_GRAY, txt[TXT_POPUP_LEITER]);
-        EnablePopup(GILDE_REVOLT, txt[TXT_POPUP_REVOLT]);
+        enable_popup(GILDE_INVITE, txt[TXT_POPUP_INVITE]);
+        enable_popup(GILDE_INVITE_GRAY, txt[TXT_POPUP_INVITE]);
+        enable_popup(GILDE_PROFILE, txt[TXT_POPUP_PROFILE]);
+        enable_popup(GILDE_KICK, txt[TXT_POPUP_KICK]);
+        enable_popup(GILDE_KICK_GRAY, txt[TXT_POPUP_KICK]);
+        enable_popup(GILDE_PROMOTE, txt[TXT_POPUP_OFFIZIER]);
+        enable_popup(GILDE_PROMOTE_GRAY, txt[TXT_POPUP_OFFIZIER]);
+        enable_popup(GILDE_DEMOTE, txt[TXT_POPUP_OFFIZIER]);
+        enable_popup(GILDE_MASTER, txt[TXT_POPUP_LEITER]);
+        enable_popup(GILDE_MASTER_GRAY, txt[TXT_POPUP_LEITER]);
+        enable_popup(GILDE_REVOLT, txt[TXT_POPUP_REVOLT]);
         DefineBunch(GILDE_SET_MEMBER, GILDE_INVITE_GRAY, GILDE_PROFILE, GILDE_KICK_GRAY, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
         DefineBunch(GILDE_SET_OFFICER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
         DefineBunch(GILDE_SET_MASTER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK, GILDE_PROMOTE, GILDE_MASTER);
@@ -14359,7 +14365,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         AddBunch(SCREEN_GILDEN, INP_GILDE_CHAT, GILDE_SCROLL_UP, GILDE_SCROLL_DOWN, GILDE_RANG, GILDE_ATTACK, GILDE_DEFENCE);
         DefineLbl(LBL_GILDE_CHAT_CAPTION, txt[TXT_CHAT_CAPTION], GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
         AddFilter(LBL_GILDE_CHAT_CAPTION, Filter_Shadow);
-        Hide(LBL_GILDE_CHAT_CAPTION);
+        hide(LBL_GILDE_CHAT_CAPTION);
         DefineCnt(GILDE_LINK, 0, GILDE_RANG_Y);
         DefineLbl(LBL_GILDE_LINK, txt[TXT_FORUM_LINK], 0, 0);
         AddFilter(LBL_GILDE_LINK, Filter_HeavyShadow);
@@ -14523,9 +14529,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             scaleX = 0.8;
             scaleY = 0.8;
         };
-        EnablePopup(HUTMANN_GOLDBET, txt[TXT_HUTMANN_GOLDBET]);
+        enable_popup(HUTMANN_GOLDBET, txt[TXT_HUTMANN_GOLDBET]);
         DefineImg(HUTMANN_MUSHBET_DISABLED, "res/gfx/scr/gilde/plus_disabled.png", False, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
-        EnablePopup(HUTMANN_MUSHBET_DISABLED, txt[TXT_MUSHBET_BOUGHT]);
+        enable_popup(HUTMANN_MUSHBET_DISABLED, txt[TXT_MUSHBET_BOUGHT]);
         DefineBtn(HUTMANN_MUSHBET, "", HutBtnHandler, btnClassPlus, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[HUTMANN_MUSHBET];
         with (_local2) {
@@ -14537,13 +14543,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             scaleX = 0.8;
             scaleY = 0.8;
         };
-        EnablePopup(HUTMANN_MUSHBET, txt[TXT_HUTMANN_MUSHBET]);
+        enable_popup(HUTMANN_MUSHBET, txt[TXT_HUTMANN_MUSHBET]);
         DefineLbl(LBL_HUTMANN_GOLDBET2, "1", 0, HUTMANN_GOLD_Y, FontFormat_GuildMoney);
         AddFilter(LBL_HUTMANN_GOLDBET2, Filter_Shadow);
-        EnablePopup(LBL_HUTMANN_GOLDBET2, txt[TXT_HUTMANN_GOLDBET]);
+        enable_popup(LBL_HUTMANN_GOLDBET2, txt[TXT_HUTMANN_GOLDBET]);
         DefineLbl(LBL_HUTMANN_MUSHBET2, "1", 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
         AddFilter(LBL_HUTMANN_MUSHBET2, Filter_Shadow);
-        EnablePopup(LBL_HUTMANN_MUSHBET2, txt[TXT_HUTMANN_MUSHBET]);
+        enable_popup(LBL_HUTMANN_MUSHBET2, txt[TXT_HUTMANN_MUSHBET]);
         DefineCnt(HUTMANN_GOLDBET2, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET2, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         DefineBunch(HUTMANN_PLACEBET, HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET, LBL_HUTMANN_MUSHBET2, HUTMANN_MUSHBET2, HUTMANN_GOLDBET, LBL_HUTMANN_GOLDBET2, HUTMANN_GOLDBET2, HUTFACE_IDLE);
@@ -14597,10 +14603,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
         DefineLbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar);
         AddFilter(LBL_TIMEBAR_TEXT, Filter_Shadow);
-        EnablePopup(TIMEBAR_BG, txt[TXT_TIMEBAR]);
-        EnablePopup(TIMEBAR_FILL, txt[TXT_TIMEBAR]);
-        EnablePopup(TIMEBAR_FILL, txt[TXT_TIMEBAR]);
-        EnablePopup(LBL_TIMEBAR_TEXT, txt[TXT_TIMEBAR]);
+        enable_popup(TIMEBAR_BG, txt[TXT_TIMEBAR]);
+        enable_popup(TIMEBAR_FILL, txt[TXT_TIMEBAR]);
+        enable_popup(TIMEBAR_FILL, txt[TXT_TIMEBAR]);
+        enable_popup(LBL_TIMEBAR_TEXT, txt[TXT_TIMEBAR]);
         DefineBunch(SCREEN_TAVERNE, TAVERNE_BG, IF_OVL, TAVERNE_BARKEEPER1, TAVERNE_BARKEEPER2, TAVERNE_HUTMANN_BLINZELN, CA_TAVERNE_BAR);
         DefineBunch(TAVERNE_CAS, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN, CA_TAVERNE_TOILETTE, CA_TAVERNE_BAR);
         DefineImg(BEERFEST, "res/gfx/scr/taverne/beerfest.png", False, 280, 100);
@@ -14609,18 +14615,18 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 0;
         while (i < 4) {
             DefineImg((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" + String((i + 1))) + ".png"), False, (280 + 20), (100 + 20));
-            Hide((TV + i));
+            hide((TV + i));
             AddBunch(SCREEN_TAVERNE, (TV + i));
             i = (i + 1);
         };
         DefineClickArea(CA_TV, C_EMPTY, RequestTV, (280 + 20), (100 + 20), 280, 160);
-        Hide(CA_TV);
+        hide(CA_TV);
         AddBunch(SCREEN_TAVERNE, CA_TV);
         cursedDescr = "Fliegende";
         if (int((Math.random() * 100)) == 0){
             cursedDescr = "Verfluchte";
         };
-        EnablePopup(CA_TV, POPUP_BEGIN_LINE, txt[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[TXT_TV_HINT].split("|")[1].split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
+        enable_popup(CA_TV, POPUP_BEGIN_LINE, txt[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[TXT_TV_HINT].split("|")[1].split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
         i = 0;
         while (i < 4) {
             DefineImg((TAVERN_ADVENT + i), (("res/gfx/scr/taverne/advent_wreath_" + String((i + 1))) + ".jpg"), False, (280 + 337), 100);
@@ -14722,7 +14728,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 0;
         while (i < 7) {
             DefineImg((TOILET_FLUSH + i), (("res/gfx/scr/taverne/toilet/bowl_flush_" + String((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
-            Hide((TOILET_FLUSH + i));
+            hide((TOILET_FLUSH + i));
             AddBunch(SCREEN_TOILET, (TOILET_FLUSH + i));
             AddBunch(TOILET_OVERLAYS, (TOILET_FLUSH + i));
             i = (i + 1);
@@ -14730,7 +14736,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         i = 0;
         while (i < 3) {
             DefineImg((TOILET_CHAIN + i), (("res/gfx/scr/taverne/toilet/chain_" + String((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
-            Hide((TOILET_CHAIN + i));
+            hide((TOILET_CHAIN + i));
             AddBunch(SCREEN_TOILET, (TOILET_CHAIN + i));
             AddBunch(TOILET_OVERLAYS, (TOILET_CHAIN + i));
             i = (i + 1);
@@ -14744,9 +14750,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineClickArea(CA_TOILET_CHAIN, C_EMPTY, ToiletHandler, (SCR_SHOP_BG_X + 320), 210, 36, 206);
         DefineClickArea(CA_TOILET_BOWL, C_EMPTY, undefined, (SCR_SHOP_BG_X + 120), 540, 260, 120);
         DefineClickArea(CA_TOILET_LID, C_EMPTY, undefined, (SCR_SHOP_BG_X + 180), 380, 135, 155);
-        EnablePopup(CA_TOILET_CHAIN, txt[(TXT_TOILET_HINT + 1)]);
-        EnablePopup(CA_TOILET_BOWL, txt[(TXT_TOILET_HINT + 2)]);
-        EnablePopup(CA_TOILET_LID, txt[(TXT_TOILET_HINT + 3)]);
+        enable_popup(CA_TOILET_CHAIN, txt[(TXT_TOILET_HINT + 1)]);
+        enable_popup(CA_TOILET_BOWL, txt[(TXT_TOILET_HINT + 2)]);
+        enable_popup(CA_TOILET_LID, txt[(TXT_TOILET_HINT + 3)]);
         actor[CA_TOILET_TANK].useHandCursor = False;
         actor[CA_TOILET_BOWL].useHandCursor = False;
         AddBunch(SCREEN_TOILET, IF_OVL, CA_TOILET_LID, CA_TOILET_TANK, CA_TOILET_CHAIN, CA_TOILET_BOWL, IF_EXIT);
@@ -15001,9 +15007,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(CHANGE_PASSWORD_SMILEY_SAD, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
         DefineCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
         DefineCnt(CHANGE_PASSWORD_SMILEY_HAPPY, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
-        EnablePopup(CHANGE_PASSWORD_SMILEY_SAD, txt[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
-        EnablePopup(CHANGE_PASSWORD_SMILEY_NEUTRAL, txt[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
-        EnablePopup(CHANGE_PASSWORD_SMILEY_HAPPY, txt[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_SAD, txt[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_NEUTRAL, txt[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_HAPPY, txt[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
         DefineBtn(OPTION_DOCHANGE, txt[TXT_DOCHANGE], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y5));
         DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6), FontFormat_Default);
         AddFilter(LBL_OPTION_VOLUME, Filter_Shadow);
@@ -15026,7 +15032,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             actor[(OPTION_FLAG + i)].add_event_listener(MouseEvent.CLICK, ChooseLanguageIcon);
             AddBunch(SCREEN_OPTION, (OPTION_FLAG + i));
-            EnablePopup((OPTION_FLAG + i), param_language_names[i]);
+            enable_popup((OPTION_FLAG + i), param_language_names[i]);
             i = (i + 1);
         };
         optionMenuSelect = 0;
@@ -15051,8 +15057,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 DefineCnt((HLMQS_COMPLETED + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
             };
             AddBunch(SCREEN_HLMAINQUESTS, (HLMQS_BUTTON + i), (HLMQS_DISABLED + i), (HLMQS_COMPLETED + i));
-            EnablePopup((HLMQS_DISABLED + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
-            EnablePopup((HLMQS_COMPLETED + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
+            enable_popup((HLMQS_DISABLED + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
+            enable_popup((HLMQS_COMPLETED + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
             i = (i + 1);
         };
         DefineLbl(LBL_MAINQUESTS_TITLE, txt[(TXT_DUNGEON_INFO + 4)], 0, MQS_TITLE_Y, FontFormat_ScreenTitle);
@@ -15068,8 +15074,8 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             DefineCnt((MQS_DISABLED + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
             DefineCnt((MQS_COMPLETED + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
             AddBunch(SCREEN_MAINQUESTS, (MQS_BUTTON + i), (MQS_DISABLED + i), (MQS_COMPLETED + i));
-            EnablePopup((MQS_DISABLED + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
-            EnablePopup((MQS_COMPLETED + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
+            enable_popup((MQS_DISABLED + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
+            enable_popup((MQS_COMPLETED + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
             i = (i + 1);
         };
         DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg", False, 280, 100);
@@ -15148,9 +15154,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = actor[POPUP_INFO];
         with (_local2) {
         };
-        Add(POPUP_INFO);
-        Add(IF_MAIN);
-        Add(IF_BUTTONS);
+        add(POPUP_INFO);
+        add(IF_MAIN);
+        add(IF_BUTTONS);
         if (paramObj["login"]){
             ShowLOGinScreen(undefined, True);
         } else {
@@ -15224,7 +15230,7 @@ public function GetIP():String{
 }
 
 
-public function SetTitleBar(msg:String=""){
+public function set_title_bar(msg:String=""){
     msg = (msg + (((((((msg == "")) ? "" : " - ") + txt[TXT_GAMETITLE]) + " (") + server.split(".")[0]) + ")"));
     ExternalInterface.call("set_title", msg);
 }
@@ -15346,7 +15352,7 @@ public function DefineBtn(actorID:int, caption:String, handler:Function, btnClas
     var scale_y:int = scale_y;
     var vis:Boolean = vis;
     var playClickSound:* = function (evt:Event){
-        Play(SND_CLICK);
+        play(SND_CLICK);
     };
     i = actorID;
     actor[i] = new (btnClass)();
@@ -15569,20 +15575,20 @@ public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:
     var stayPut:Boolean = stayPut;
     var ClickAreaHover:* = function (evt:MouseEvent):void{
         if (imgActorID != C_EMPTY){
-            Add(imgActorID);
+            add(imgActorID);
         };
         if (ovlActorID != C_EMPTY){
             VisibleToFront(ovlActorID);
         };
         if (!stayPut){
-            Add(actorID);
+            add(actorID);
         };
         if ((hoverFn is Function)){
             hoverFn();
         };
     };
     var ClickAreaOut:* = function (evt:MouseEvent):void{
-        Remove(imgActorID);
+        remove(imgActorID);
         if ((outFn is Function)){
             outFn();
         };
@@ -15971,7 +15977,7 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
     };
 }
 
-public function Play(actorID:int, endless:Boolean=False):void{
+public function play(actorID:int, endless:Boolean=False):void{
     var SoundLoaded:* = null;
     var actorID:* = actorID;
     var endless:Boolean = endless;
@@ -15988,7 +15994,7 @@ public function Play(actorID:int, endless:Boolean=False):void{
     };
 }
 
-public function Add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale_x:Number=undefined, scale_y:Number=undefined, vis=undefined, containerID:int=-1):void{
+public function add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale_x:Number=undefined, scale_y:Number=undefined, vis=undefined, containerID:int=-1):void{
     var i:* = 0;
     var req:* = null;
     var iBunch:* = 0;
@@ -16009,7 +16015,7 @@ public function Add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale
             if (actor[actorID][iBunch] == actorID){
                 return;
             };
-            Add(actor[actorID][iBunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
+            add(actor[actorID][iBunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
             iBunch = (iBunch + 1);
         };
         return;
@@ -16051,7 +16057,7 @@ public function AddBMO(bunchID:int, offset:int){
         if ((actor[actor[bunchID][i]] is Array)){
             AddBMO(actor[bunchID][i], offset);
         } else {
-            Add((actor[bunchID][i] + offset));
+            add((actor[bunchID][i] + offset));
         };
         i++;
     };
@@ -16075,7 +16081,7 @@ public function VisibleToFront(... _args):void{
             var _local3 = actor[actorIDs[i]];
             with (_local3) {
                 if (OnStage(actorIDs[i])){
-                    Add(actorIDs[i]);
+                    add(actorIDs[i]);
                 };
             };
         };
@@ -16112,18 +16118,18 @@ public function AddSome(... _args):void{
             if ((actor[_args[i]] is Array)){
                 iBunch = 0;
                 while (iBunch < actor[_args[i]].length) {
-                    Add(actor[_args[i]][iBunch]);
+                    add(actor[_args[i]][iBunch]);
                     iBunch++;
                 };
                 return;
             };
-            Add(_args[i]);
+            add(_args[i]);
         };
         i++;
     };
 }
 
-public function Remove(... _args):void{
+public function remove(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16133,7 +16139,7 @@ public function Remove(... _args):void{
             if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
                 while (iBunch < actor[actorIDs[i]].length) {
-                    Remove(actor[actorIDs[i]][iBunch]);
+                    remove(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
@@ -16159,7 +16165,7 @@ public function RemoveAll(alsoPersistent:Boolean=False):void{
         if (actor[i]){
             if (!(actor[i] is Array)){
                 if (((!(actorPersistent[i])) or (alsoPersistent))){
-                    Remove(i);
+                    remove(i);
                 };
             };
         };
@@ -16252,7 +16258,7 @@ public function Visible(actorID):Boolean{
     return (False);
 }
 
-public function Show(... _args):void{
+public function show(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16262,7 +16268,7 @@ public function Show(... _args):void{
             if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
                 while (iBunch < actor[actorIDs[i]].length) {
-                    Show(actor[actorIDs[i]][iBunch]);
+                    show(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
@@ -16276,7 +16282,7 @@ public function Show(... _args):void{
     };
 }
 
-public function Hide(... _args):void{
+public function hide(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16286,7 +16292,7 @@ public function Hide(... _args):void{
             if ((actor[actorIDs[i]] is Array)){
                 iBunch = 0;
                 while (iBunch < actor[actorIDs[i]].length) {
-                    Hide(actor[actorIDs[i]][iBunch]);
+                    hide(actor[actorIDs[i]][iBunch]);
                     iBunch = (iBunch + 1);
                 };
                 return;
@@ -16378,7 +16384,7 @@ public function FadeOut(actorID:int, timerInterval:int=20, alphaStep:Number=0.05
             fadeTimer.stop();
             fadeTimer.removeEventListener(TimerEvent.TIMER, FadeOutEvent);
             if (HideThen){
-                Hide(actorID);
+                hide(actorID);
             };
         };
         SetAlpha(actorID, currentAlpha);
@@ -17038,7 +17044,7 @@ public function ShowEmailNagScreen(valMode:int=-1){
     doShowEmailNagScreen = function (){
         RemoveAll();
         actor[LBL_EMAIL_RESEND].htmlText = txt[TXT_EMAIL_RESEND];
-        Arabize(LBL_EMAIL_RESEND);
+        arabize(LBL_EMAIL_RESEND);
         var _local2 = actor[LBL_WINDOW_TITLE];
         with (_local2) {
             text = txt[(((valMode == 1)) ? TXT_VALIDATE_OK_TITLE : (((valMode == 2)) ? TXT_VALIDATE_ERR_TITLE : (((valMode == 3)) ? TXT_VALIDATE_UNN_TITLE : TXT_EMAIL_NAG_TITLE)))];
@@ -17048,10 +17054,10 @@ public function ShowEmailNagScreen(valMode:int=-1){
         with (_local2) {
             htmlText = txt[(((valMode == 1)) ? TXT_VALIDATE_OK : (((valMode == 2)) ? TXT_VALIDATE_ERR : (((valMode == 3)) ? TXT_VALIDATE_UNN : TXT_EMAIL_NAG)))];
         };
-        Arabize(LBL_EMAIL_NAG);
-        Add(SCREEN_EMAIL_NAG);
+        arabize(LBL_EMAIL_NAG);
+        add(SCREEN_EMAIL_NAG);
         if (valMode == -1){
-            Add(EMAIL_RESEND);
+            add(EMAIL_RESEND);
         };
     };
     Load(SCREEN_EMAIL_NAG);
@@ -17059,11 +17065,11 @@ public function ShowEmailNagScreen(valMode:int=-1){
 }
 
 
-public function ShowDisconnectScreen(){
+public function show_disconnect_screen(){
     var ReconnectTimer:* = null;
     var TryReconnect:* = null;
     TryReconnect = function (evt:TimerEvent){
-        ReconnectTimer.delay = (param_reconnect * intervalMultiplierReconnect);
+        ReconnectTimer.delay = (param_reconnect * interval_multiplier_reconnect);
         if (OnStage(LBL_DISCONNECTED)){
             RequestLOGin();
         } else {
@@ -17074,8 +17080,8 @@ public function ShowDisconnectScreen(){
         return;
     };
     RemoveAll();
-    Remove(IF_LOGOUT);
-    Add(SCREEN_DISCONNECTED);
+    remove(IF_LOGOUT);
+    add(SCREEN_DISCONNECTED);
     sessionId = "";
     ReconnectTimer = new Timer(param_reconnect);
     ReconnectTimer.add_event_listener(TimerEvent.TIMER, TryReconnect);
@@ -17167,7 +17173,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     var recipients:* = null;
     var evt:* = evt;
     var actorID:int = actorID;
-    Remove(LBL_ERROR);
+    remove(LBL_ERROR);
     GuildMsg = False;
     if (evt){
         actorID = GetActorID(evt.target);
@@ -17183,10 +17189,10 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 lastMessageTarget = actor[INP_POST_ADDRESS].getChildAt(1).text;
             };
             if (actor[INP_POST_TEXT].getChildAt(1).text.indexOf(actor[INP_LOGIN_PASSWORD].getChildAt(1).text) != -1){
-                ErrorMessage(((txt[TXT_ERROR_COMPROMISED_ACCOUNT]) ? txt[TXT_ERROR_COMPROMISED_ACCOUNT] : "You should never give your password away."));
+                error_message(((txt[TXT_ERROR_COMPROMISED_ACCOUNT]) ? txt[TXT_ERROR_COMPROMISED_ACCOUNT] : "You should never give your password away."));
             } else {
                 if (actor[INP_POST_ADDRESS].getChildAt(1).text == txt[TXT_EMPFAENGER]){
-                    ErrorMessage(txt[TXT_ERROR_RECIPIENT_NOT_FOUND]);
+                    error_message(txt[TXT_ERROR_RECIPIENT_NOT_FOUND]);
                 } else {
                     thisRecipient = actor[INP_POST_ADDRESS].getChildAt(1).text;
                     if (thisRecipient.indexOf(",") != -1){
@@ -17271,14 +17277,14 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 text = txt[TXT_POST_FLUSH_TEXT];
                 x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
             };
-            Add(POST_FLUSHMSG);
+            add(POST_FLUSHMSG);
             break;
         case POST_FLUSH_CANCEL:
-            Remove(POST_FLUSHMSG);
-            Add(IF_EXIT);
+            remove(POST_FLUSHMSG);
+            add(IF_EXIT);
             break;
         case POST_FLUSH_OK:
-            Remove(POST_FLUSHMSG);
+            remove(POST_FLUSHMSG);
             send_action(ACT_POST_DELETE, -1);
             break;
         case POST_PROFILE:
@@ -17291,17 +17297,17 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-            Remove(POST_LIST);
-            Add(POST_WRITE);
+            remove(POST_LIST);
+            add(POST_WRITE);
             if (Gilde != ""){
                 if (textDir == "right"){
                     actor[POST_GUILD].x = (POST_INP_X + 5);
                 } else {
                     actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                 };
-                Show(POST_GUILD);
+                show(POST_GUILD);
             } else {
-                Hide(POST_GUILD);
+                hide(POST_GUILD);
             };
             actor[INP_POST_ADDRESS].getChildAt(1).text = txt[TXT_EMPFAENGER];
             actor[INP_POST_SUBJECT].getChildAt(1).text = txt[TXT_BETREFF];
@@ -17317,11 +17323,11 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             if (PostReturnToPlayer != ""){
                 send_action(ACT_REQUEST_CHAR, PostReturnToPlayer);
             } else {
-                Remove(POST_WRITE);
-                Remove(POST_READ);
-                Remove(POST_ACCEPT);
-                Remove(POST_REPLY);
-                Add(POST_LIST);
+                remove(POST_WRITE);
+                remove(POST_READ);
+                remove(POST_ACCEPT);
+                remove(POST_REPLY);
+                add(POST_LIST);
             };
             break;
         case POST_ACCEPT:
@@ -17334,21 +17340,21 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-                Remove(POST_READ);
-                Remove(POST_REPLY);
-                Remove(POST_FORWARD);
+                remove(POST_READ);
+                remove(POST_REPLY);
+                remove(POST_FORWARD);
                 if (Gilde != ""){
                     if (textDir == "right"){
                         actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
                         actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                     };
-                    Show(POST_GUILD);
+                    show(POST_GUILD);
                 } else {
-                    Hide(POST_GUILD);
+                    hide(POST_GUILD);
                 };
-                Add(POST_WRITE);
-                Show(POST_GUILD);
+                add(POST_WRITE);
+                show(POST_GUILD);
                 actor[INP_POST_ADDRESS].getChildAt(1).text = ReplyAddress;
                 actor[INP_POST_TEXT].getChildAt(1).text = txt[TXT_NACHRICHT];
                 if (textDir == "right"){
@@ -17370,21 +17376,21 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-                Remove(POST_READ);
-                Remove(POST_REPLY);
-                Remove(POST_FORWARD);
+                remove(POST_READ);
+                remove(POST_REPLY);
+                remove(POST_FORWARD);
                 if (Gilde != ""){
                     if (textDir == "right"){
                         actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
                         actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
                     };
-                    Show(POST_GUILD);
+                    show(POST_GUILD);
                 } else {
-                    Hide(POST_GUILD);
+                    hide(POST_GUILD);
                 };
-                Add(POST_WRITE);
-                Show(POST_GUILD);
+                add(POST_WRITE);
+                show(POST_GUILD);
                 stage.focus = actor[INP_POST_ADDRESS].getChildAt(1);
                 actor[INP_POST_ADDRESS].getChildAt(1).text = "";
                 actor[INP_POST_TEXT].getChildAt(1).text = txt[(TXT_POST_FORWARD + 2)].split("%1").join(ReplyAddress).split("%2").join(forwardText).split("#").join(String.fromCharCode(13));
@@ -17414,7 +17420,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     };
 }
 
-public function ShowAlbumContent(evt:Event=undefined){
+public function Showalbum_content(evt:Event=undefined){
     var i:* = 0;
     var entryText:* = null;
     var hintText:* = null;
@@ -17432,7 +17438,7 @@ public function ShowAlbumContent(evt:Event=undefined){
         anyItem = False;
         j = 0;
         while (j < 5) {
-            itemSet[j] = AlbumContent[(aOffs + j)];
+            itemSet[j] = album_content[(aOffs + j)];
             if (itemSet[j] == 1){
                 anyItem = True;
             };
@@ -17454,27 +17460,27 @@ public function ShowAlbumContent(evt:Event=undefined){
             actor[(ALBUM_WEAPON_4 + i)].alpha = ((itemSet[3]) ? 1 : 0.3);
             actor[(ALBUM_WEAPON_5 + i)].alpha = ((itemSet[4]) ? 1 : 0.3);
             if (showAlbumOffset){
-                EnablePopup((ALBUM_WEAPON_1 + i), String((aOffs + 0)));
-                EnablePopup((ALBUM_WEAPON_2 + i), String((aOffs + 1)));
-                EnablePopup((ALBUM_WEAPON_3 + i), String((aOffs + 2)));
-                EnablePopup((ALBUM_WEAPON_4 + i), String((aOffs + 3)));
-                EnablePopup((ALBUM_WEAPON_5 + i), String((aOffs + 4)));
+                enable_popup((ALBUM_WEAPON_1 + i), String((aOffs + 0)));
+                enable_popup((ALBUM_WEAPON_2 + i), String((aOffs + 1)));
+                enable_popup((ALBUM_WEAPON_3 + i), String((aOffs + 2)));
+                enable_popup((ALBUM_WEAPON_4 + i), String((aOffs + 3)));
+                enable_popup((ALBUM_WEAPON_5 + i), String((aOffs + 4)));
             } else {
-                EnablePopup((ALBUM_WEAPON_1 + i));
-                EnablePopup((ALBUM_WEAPON_2 + i));
-                EnablePopup((ALBUM_WEAPON_3 + i));
-                EnablePopup((ALBUM_WEAPON_4 + i));
-                EnablePopup((ALBUM_WEAPON_5 + i));
+                enable_popup((ALBUM_WEAPON_1 + i));
+                enable_popup((ALBUM_WEAPON_2 + i));
+                enable_popup((ALBUM_WEAPON_3 + i));
+                enable_popup((ALBUM_WEAPON_4 + i));
+                enable_popup((ALBUM_WEAPON_5 + i));
                 if ((((itmTyp == 1)) and ((itm_class > 1)))){
                 };
             };
         };
         if (showAlbumOffset){
-            EnablePopup((LBL_ALBUM_HEADING + i), ((String(aOffs) + " - ") + String((aOffs + 4))));
+            enable_popup((LBL_ALBUM_HEADING + i), ((String(aOffs) + " - ") + String((aOffs + 4))));
         };
     };
     var SetAlbumEpic:* = function (aOffs:int, itmTyp:int, itm_pic:int, itm_class:int){
-        if (AlbumContent[aOffs] == 1){
+        if (album_content[aOffs] == 1){
             entryText = GetItemName(itmTyp, itm_pic, itm_class);
             if (entryText.indexOf("|") != -1){
                 hintText = entryText.split("|")[1].split("#").join(String.fromCharCode(13));
@@ -17485,13 +17491,13 @@ public function ShowAlbumContent(evt:Event=undefined){
             };
             SetCnt((ALBUM_WEAPON_EPIC + i), GetItemID(itmTyp, itm_pic, 0, itm_class));
             if (showAlbumOffset){
-                EnablePopup((ALBUM_WEAPON_EPIC + i), String(aOffs));
+                enable_popup((ALBUM_WEAPON_EPIC + i), String(aOffs));
             } else {
-                EnablePopup((ALBUM_WEAPON_EPIC + i));
+                enable_popup((ALBUM_WEAPON_EPIC + i));
             };
         };
         if (showAlbumOffset){
-            EnablePopup((LBL_ALBUM_HEADING + i), String(aOffs));
+            enable_popup((LBL_ALBUM_HEADING + i), String(aOffs));
         };
     };
     entryText = "";
@@ -17512,14 +17518,14 @@ public function ShowAlbumContent(evt:Event=undefined){
         albumCat = (actorID - ALBUM_CAT_OUT);
         albumPage = 0;
     };
-    Hide(ALBUM_CAT_IN);
-    Show((ALBUM_CAT_IN + albumCat));
+    hide(ALBUM_CAT_IN);
+    show((ALBUM_CAT_IN + albumCat));
     contentCount = 0;
     catMax = [252, 246, 506, 348, 348];
     catCount = [0, 0, 0, 0, 0];
     i = 0;
-    while (i < AlbumContent.length) {
-        if (AlbumContent[i] == 1){
+    while (i < album_content.length) {
+        if (album_content[i] == 1){
             if (i < 300){
                 var _local3 = catCount;
                 var _local4:int;
@@ -17569,25 +17575,25 @@ public function ShowAlbumContent(evt:Event=undefined){
     actor[LBL_ALBUM_COLLECTION].text = txt[TXT_COLLECTION].split("%1").join(String(contentCount)).split("%2").join(String(contentMax)).split("%3").join(String((Math.round(((contentCount / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13));
     i = 0;
     while (i < 5) {
-        EnablePopup((ALBUM_CAT_IN + i), (((((((txt[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
-        EnablePopup((ALBUM_CAT_OUT + i), (((((((txt[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
+        enable_popup((ALBUM_CAT_IN + i), (((((((txt[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
+        enable_popup((ALBUM_CAT_OUT + i), (((((((txt[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + String((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
         i = (i + 1);
     };
-    EnablePopup(LBL_ALBUM_COLLECTION, txt[(TXT_COLLECTION + 7)]);
+    enable_popup(LBL_ALBUM_COLLECTION, txt[(TXT_COLLECTION + 7)]);
     i = 0;
     while (i < 4) {
         hintText = "";
-        EnablePopup((LBL_ALBUM_HEADING + i));
-        EnablePopup((ALBUM_MONSTER_FRAME + i));
+        enable_popup((LBL_ALBUM_HEADING + i));
+        enable_popup((ALBUM_MONSTER_FRAME + i));
         if (albumCat == 0){
-            Show((ALBUM_MONSTER_FRAME + i));
+            show((ALBUM_MONSTER_FRAME + i));
             if (albumPage > 62){
                 albumPage = 0;
             };
             if (albumPage < 0){
                 albumPage = 62;
             };
-            if (AlbumContent[((albumPage * 4) + i)] == 1){
+            if (album_content[((albumPage * 4) + i)] == 1){
                 SetCnt((ALBUM_MONSTER + i), ((OPPMONSTER + (albumPage * 4)) + i));
                 if (((albumPage * 4) + i) >= 220){
                     entryText = txt[(((TXT_NEW_MONSTER_NAMES + (albumPage * 4)) + i) - 220)];
@@ -17599,10 +17605,10 @@ public function ShowAlbumContent(evt:Event=undefined){
                 entryText = txt[TXT_UNKNOWN];
             };
             if (showAlbumOffset){
-                EnablePopup((ALBUM_MONSTER_FRAME + i), String(((albumPage * 4) + i)));
+                enable_popup((ALBUM_MONSTER_FRAME + i), String(((albumPage * 4) + i)));
             };
             if (showAlbumOffset){
-                EnablePopup((LBL_ALBUM_HEADING + i), String(((albumPage * 4) + i)));
+                enable_popup((LBL_ALBUM_HEADING + i), String(((albumPage * 4) + i)));
             };
         } else {
             if (albumCat == 1){
@@ -17845,7 +17851,7 @@ public function AlbumClear(){
     var i:int;
     i = 0;
     while (i < 4) {
-        Hide((ALBUM_MONSTER_FRAME + i));
+        hide((ALBUM_MONSTER_FRAME + i));
         SetCnt((ALBUM_MONSTER + i), C_EMPTY);
         SetCnt((ALBUM_WEAPON_1 + i), C_EMPTY);
         SetCnt((ALBUM_WEAPON_2 + i), C_EMPTY);
@@ -17864,7 +17870,7 @@ public function AlbumClear(){
     };
 }
 
-public function ShowScreenAlbum(){
+public function show_screen_album(){
     var i:* = 0;
     var DoShowScreenAlbum:* = null;
     DoShowScreenAlbum = function (){
@@ -17874,9 +17880,9 @@ public function ShowScreenAlbum(){
             SetCnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
             i++;
         };
-        ShowAlbumContent();
+        Showalbum_content();
         RemoveAll();
-        Add(SCREEN_ALBUM);
+        add(SCREEN_ALBUM);
     };
     Load(FIGHT_CHAR_BORDER);
     Load(UNKNOWN_ENEMY);
@@ -18050,7 +18056,7 @@ public function TowerTimerFn(evt:Event=undefined){
     };
 }
 
-public function ShowTowerScreen(towerData:Array){
+public function show_tower_screen(towerData:Array){
     var thisCpc:* = 0;
     var DoShowTowerScreen:* = null;
     var thisSlot:* = 0;
@@ -18085,9 +18091,9 @@ public function ShowTowerScreen(towerData:Array){
             SetAlpha(CHAR_PREISE, 0);
         };
         RemoveAll();
-        Add(SCREEN_TOWER);
+        add(SCREEN_TOWER);
         if (tower_level >= 100){
-            Remove(TOWER_TRY);
+            remove(TOWER_TRY);
         };
         i = 0;
         while (i < 3) {
@@ -18119,12 +18125,12 @@ public function ShowDemoScreen(){
     DoShowDemoScreen = function (){
         RemoveAll();
         DemoMode = True;
-        Add(SCREEN_DEMO);
+        add(SCREEN_DEMO);
         var _local2 = actor[BG_DEMO];
         with (_local2) {
             x = (SCREEN_TITLE_X - int((width / 2)));
         };
-        Remove(IF_STATS, IF_LOGOUT);
+        remove(IF_STATS, IF_LOGOUT);
     };
     Load(SCREEN_DEMO);
     when_loaded(DoShowDemoScreen);
@@ -18140,21 +18146,21 @@ public function ShowOptionScreen(evt:Event=undefined){
         SetCnt(CHANGE_PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_SAD);
         SetCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_NEUTRAL);
         SetCnt(CHANGE_PASSWORD_SMILEY_HAPPY, PASSWORD_SMILEY_HAPPY);
-        Hide(CHANGE_PASSWORD_SMILEY_SAD);
-        Hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
-        Hide(CHANGE_PASSWORD_SMILEY_HAPPY);
-        Add(SCREEN_OPTION);
+        hide(CHANGE_PASSWORD_SMILEY_SAD);
+        hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
+        hide(CHANGE_PASSWORD_SMILEY_HAPPY);
+        add(SCREEN_OPTION);
         if (((txt[TXT_LUXURY_BUTTON]) and ((Savegame[SG_MUSH] >= 1000)))){
             actor[OPTION_RESEND].y = ((OPTION_Y + OPTION_Y4) - 34);
             actor[OPTION_CHANGE_PASSWORD].y = ((OPTION_Y + OPTION_Y3) - 17);
             actor[OPTION_DELETE].y = ((OPTION_Y + OPTION_Y5) - 51);
-            Add(OPTION_LUXURY);
+            add(OPTION_LUXURY);
         };
         if (textDir == "right"){
             actor[LBL_OPTION_CHANGE].x = ((actor[OPTION_CHANGE_NAME].x + actor[OPTION_CHANGE_NAME].width) - actor[LBL_OPTION_CHANGE].textWidth);
             actor[LBL_OPTION_IMAGE].x = ((actor[OPTION_IMAGEBORDER].x + actor[OPTION_IMAGEBORDER].width) - actor[LBL_OPTION_IMAGE].textWidth);
         };
-        EnablePopup(LBL_OPTION_VER, POPUP_BEGIN_LINE, "Player ID", 140, Savegame[SG_PLAYER_ID], POPUP_END_LINE, POPUP_BEGIN_LINE, "Server Ver.Cfg.", 140, param_server_version_cfg, POPUP_END_LINE, POPUP_BEGIN_LINE, "Server Ver.Act.", 140, param_server_version_act, POPUP_END_LINE);
+        enable_popup(LBL_OPTION_VER, POPUP_BEGIN_LINE, "Player ID", 140, Savegame[SG_PLAYER_ID], POPUP_END_LINE, POPUP_BEGIN_LINE, "Server Ver.Cfg.", 140, param_server_version_cfg, POPUP_END_LINE, POPUP_BEGIN_LINE, "Server Ver.Act.", 140, param_server_version_act, POPUP_END_LINE);
         i = 0;
         while (i < 10) {
             var _local2 = actor[(CHARBACKGROUND + i)];
@@ -18173,22 +18179,22 @@ public function ShowOptionScreen(evt:Event=undefined){
         LoadCharacterImage();
         SetSliderValue(SLDR_OPTION_VOLUME, (so.data.volume + 1));
         if (lightMode){
-            Add(CB_LM_CHECKED);
+            add(CB_LM_CHECKED);
         };
         if (chatSound){
-            Add(CB_CS_CHECKED);
+            add(CB_CS_CHECKED);
         };
         if (compareItems){
-            Add(CB_COMPARE_CHECKED);
+            add(CB_COMPARE_CHECKED);
         };
         if (tvFunctionName != ""){
             if (disableTV){
-                Add(CB_TV_CHECKED);
+                add(CB_TV_CHECKED);
             };
         } else {
-            Remove(CB_TV_CHECKED);
-            Remove(CB_TV_UNCHECKED);
-            Remove(LBL_TV_CHECKBOX);
+            remove(CB_TV_CHECKED);
+            remove(CB_TV_UNCHECKED);
+            remove(LBL_TV_CHECKBOX);
         };
     };
     Load(SCREEN_OPTION);
@@ -18307,20 +18313,20 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             charWin = (charLife > 0);
             SetLifeBars();
             if (((!(is_guildBattle)) or (lastFight))){
-                Remove(FIGHT_SKIP);
-                Remove(BATTLE_SKIP);
-                Remove(BATTLE_SKIPONE);
-                Add(LBL_FIGHT_SUMMARY);
+                remove(FIGHT_SKIP);
+                remove(BATTLE_SKIP);
+                remove(BATTLE_SKIPONE);
+                add(LBL_FIGHT_SUMMARY);
             };
             if (is_guildBattle){
                 if (((charWin) and (lastFight))){
-                    Play(SND_JINGLE);
+                    play(SND_JINGLE);
                 };
             } else {
-                Show(IF_STATS);
-                Add(FIGHT_OK);
+                show(IF_STATS);
+                add(FIGHT_OK);
                 if (charWin){
-                    Play(SND_JINGLE);
+                    play(SND_JINGLE);
                 };
             };
             if (is_guildBattle){
@@ -18341,7 +18347,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                     guildFightHonor = 0;
                 } else {
                     SetCnt(FIGHT_SLOT, C_EMPTY);
-                    EnablePopup(FIGHT_SLOT);
+                    enable_popup(FIGHT_SLOT);
                 };
                 if (lastFight){
                     lastHero = "";
@@ -18362,7 +18368,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             };
                         };
                         if ((((((lastHeroWins >= 5)) and (charWin))) and (!(isRaid)))){
-                            Add(HERO_OF_THE_DAY);
+                            add(HERO_OF_THE_DAY);
                             if (heroCount == 1){
                                 actor[LBL_HERO_OF_THE_DAY_TITLE].text = ((txt[TXT_HERO_OF_THE_DAY_TITLE]) ? txt[TXT_HERO_OF_THE_DAY_TITLE] : "");
                             } else {
@@ -18373,9 +18379,9 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             actor[LBL_HERO_OF_THE_DAY].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY].width / 2));
                         };
                     };
-                    Add(FIGHT_OK);
-                    Add(FIGHT_REWARDS);
-                    Hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
+                    add(FIGHT_OK);
+                    add(FIGHT_REWARDS);
+                    hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
                     if ((((guildFightExp > 0)) and (charWin))){
                         if (towerFightMode){
                             _local4 = actor[LBL_FIGHT_REWARDGOLD];
@@ -18422,8 +18428,8 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 };
             } else {
                 if (isPvP){
-                    Add(FIGHT_REWARDS);
-                    Hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
+                    add(FIGHT_REWARDS);
+                    hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
                     if (HonorGain != 0){
                         _local4 = actor[LBL_FIGHT_REWARDEXP];
                         with (_local4) {
@@ -18509,11 +18515,11 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         };
                     };
                     SetCnt(FIGHT_SLOT, C_EMPTY);
-                    EnablePopup(FIGHT_SLOT);
+                    enable_popup(FIGHT_SLOT);
                 } else {
                     if (((isMQ) and (charWin))){
-                        Add(FIGHT_REWARDS);
-                        Hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
+                        add(FIGHT_REWARDS);
+                        hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
                         if (HonorGain > 0){
                             _local4 = actor[LBL_FIGHT_REWARDEXP];
                             with (_local4) {
@@ -18576,15 +18582,15 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((BackPackSlot + 10) * SG_ITM_SIZE)), undefined, False, True, False);
                         } else {
                             SetCnt(FIGHT_SLOT, C_EMPTY);
-                            EnablePopup(FIGHT_SLOT);
+                            enable_popup(FIGHT_SLOT);
                         };
                     } else {
                         if (isMQ){
                             hasLostMQ = True;
                         } else {
                             if (((charWin) and ((Savegame[SG_ACTION_STATUS] == 2)))){
-                                Add(FIGHT_REWARDS);
-                                Hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
+                                add(FIGHT_REWARDS);
+                                hide(FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
                                 if (int(Savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]) > 0){
                                     _local4 = actor[LBL_FIGHT_REWARDEXP];
                                     with (_local4) {
@@ -18647,7 +18653,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     ItemPopup(FIGHT_SLOT, (SG_QUEST_OFFER_REWARD_ITM1 + (quest_id * SG_ITM_SIZE)), undefined, False, True, False);
                                 } else {
                                     SetCnt(FIGHT_SLOT, C_EMPTY);
-                                    EnablePopup(FIGHT_SLOT);
+                                    enable_popup(FIGHT_SLOT);
                                 };
                             };
                         };
@@ -18727,7 +18733,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                 };
                 x = (SCREEN_TITLE_X - int((width / 2)));
             };
-            Arabize(LBL_FIGHT_SUMMARY);
+            arabize(LBL_FIGHT_SUMMARY);
         };
         var SetLifeBars:* = function (whichOne:int=0){
             var barWidth:* = 0;
@@ -18841,7 +18847,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             Switch (strikePhase){
                                 case 0:
                                     if ((strikeVal == 0)){
-                                        Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                        play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                     };
                                     strikeVal = (strikeVal + 0.2);
                                     if ((((((opponent) ? oppFlag : charFlag) == 1)) and ((strikeVal >= 0.4)))){
@@ -18865,12 +18871,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                             if (text == "-0"){
                                                 if (((opponent) ? oppFlag : charFlag) == 1){
                                                     text = txt[TXT_GEBLOCKT];
-                                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                    play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                                 } else {
                                                     text = txt[TXT_AUSGEWICHEN];
                                                 };
                                             } else {
-                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                                play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                             };
                                             x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                             y = (FIGHT_WEAPONS_Y - 100);
@@ -18907,7 +18913,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                             Switch (strikePhase){
                                 case 0:
                                     if ((strikeVal == 0)){
-                                        Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                        play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                     };
                                     strikeVal = (strikeVal + 0.1);
                                     if ((((((opponent) ? oppFlag : charFlag) == 1)) and ((strikeVal >= 0.5)))){
@@ -18933,12 +18939,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                             if (text == "-0"){
                                                 if (((opponent) ? oppFlag : charFlag) == 1){
                                                     text = txt[TXT_GEBLOCKT];
-                                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                    play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                                 } else {
                                                     text = txt[TXT_AUSGEWICHEN];
                                                 };
                                             } else {
-                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                                play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                             };
                                             x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                             y = (FIGHT_WEAPONS_Y - 100);
@@ -18984,7 +18990,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 if (strikeVal >= 0.4){
                                     strikePhase++;
                                     BulletAlpha = 1;
-                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                    play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                 };
                                 break;
                             case 1:
@@ -19006,12 +19012,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         if (text == "-0"){
                                             if (((opponent) ? oppFlag : charFlag) == 1){
                                                 text = txt[TXT_GEBLOCKT];
-                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                             } else {
                                                 text = txt[TXT_AUSGEWICHEN];
                                             };
                                         } else {
-                                            Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                            play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                         };
                                         x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                         y = (FIGHT_WEAPONS_Y - 100);
@@ -19057,7 +19063,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                 BulletAlpha = 1;
                                 if (strikeVal >= 0.3){
                                     strikePhase++;
-                                    Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
+                                    play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                 };
                                 break;
                             case 1:
@@ -19079,12 +19085,12 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                         if (text == "-0"){
                                             if (((opponent) ? oppFlag : charFlag) == 1){
                                                 text = txt[TXT_GEBLOCKT];
-                                                Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
+                                                play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 2));
                                             } else {
                                                 text = txt[TXT_AUSGEWICHEN];
                                             };
                                         } else {
-                                            Play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
+                                            play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), ((((opponent) ? oppFlag : charFlag))==3) ? 3 : 1));
                                         };
                                         x = ((SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200)) - int((textWidth / 2)));
                                         y = (FIGHT_WEAPONS_Y - 100);
@@ -19127,13 +19133,13 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                         Switch (strikePhase){
                             case 0:
                                 if (strikeVal == 0){
-                                    Play(SND_CATAPULT_LAUNCH);
+                                    play(SND_CATAPULT_LAUNCH);
                                     Load(FIGHT_MUSH);
                                 };
                                 strikeVal = (strikeVal + 0.01);
                                 if (strikeVal >= 0.3){
                                     strikePhase++;
-                                    Add(FIGHT_MUSH);
+                                    add(FIGHT_MUSH);
                                 };
                                 break;
                             case 1:
@@ -19144,7 +19150,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     DamageAlpha = 1;
                                     damageIndicatorActive = True;
                                     SetLifeBars(((opponent) ? 1 : 2));
-                                    Play(SND_CATAPULT_HIT);
+                                    play(SND_CATAPULT_HIT);
                                     _local3 = actor[LBL_DAMAGE_INDICATOR];
                                     with (_local3) {
                                         text = ("-" + String(((opponent) ? oppDamage : charDamage)));
@@ -19166,7 +19172,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
                                     if (strikeBreak){
                                         nextFightTimer.start();
                                     };
-                                    Remove(FIGHT_MUSH);
+                                    remove(FIGHT_MUSH);
                                     StrikeAniTimer.stop();
                                     StrikeAniTimer.removeEventListener(TimerEvent.TIMER, StrikeAniTimerEvent);
                                     DoStrikeTimer.start();
@@ -19386,26 +19392,26 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         if (is_guildBattle){
             RemoveAll();
             if (towerFightMode){
-                Add(SCR_TOWER_BG);
+                add(SCR_TOWER_BG);
             } else {
                 if (isRaid){
-                    Add(GUILD_RAID_BG);
+                    add(GUILD_RAID_BG);
                 } else {
-                    Add(GUILD_BATTLE_BG);
+                    add(GUILD_BATTLE_BG);
                 };
             };
             if (towerFightMode){
-                Add(LBL_HERO_OF_THE_DAY_TITLE);
+                add(LBL_HERO_OF_THE_DAY_TITLE);
                 actor[LBL_HERO_OF_THE_DAY_TITLE].text = txt[TXT_TOWER_LEVEL].split("%1").join(String((tower_level + 1)));
                 actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
             } else {
                 if (((isRaid) and (txt[TXT_DUNGEON_NAMES]))){
-                    Add(LBL_HERO_OF_THE_DAY_TITLE);
+                    add(LBL_HERO_OF_THE_DAY_TITLE);
                     actor[LBL_HERO_OF_THE_DAY_TITLE].text = txt[((TXT_DUNGEON_NAMES + raidLevel) - 1)];
                     actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
                 } else {
                     if (((!(isRaid)) and (txt[TXT_FIGHTS_COUNTER]))){
-                        Add(LBL_HERO_OF_THE_DAY_TITLE);
+                        add(LBL_HERO_OF_THE_DAY_TITLE);
                         actor[LBL_HERO_OF_THE_DAY_TITLE].text = txt[TXT_FIGHTS_COUNTER].split("%1").join(String(fightNumber)).split("%2").join(String(guildFightCount));
                         actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
                     };
@@ -19413,32 +19419,32 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             };
         } else {
             if (OnStage(QUESTBAR_BG)){
-                Remove(QUESTBAR_BG, QUESTBAR_FILL, QUESTBAR_LIGHT, LBL_QUESTBAR_TEXT, QUEST_CANCEL, QUEST_SKIP, LBL_SCREEN_TITLE);
+                remove(QUESTBAR_BG, QUESTBAR_FILL, QUESTBAR_LIGHT, LBL_QUESTBAR_TEXT, QUEST_CANCEL, QUEST_SKIP, LBL_SCREEN_TITLE);
             } else {
                 if (isPvP){
                     RemoveAll();
                     Switch (tz){
                         case 0:
-                            Add(SCREEN_ARENA_NIGHT);
+                            add(SCREEN_ARENA_NIGHT);
                             break;
                         case 1:
-                            Add(SCREEN_ARENA_DAWN);
+                            add(SCREEN_ARENA_DAWN);
                             break;
                         case 2:
-                            Add(SCREEN_ARENA_DAY);
+                            add(SCREEN_ARENA_DAY);
                             break;
                     };
                 } else {
                     RemoveAll();
                     if (isMQ){
                         if (SelectedDungeon == 100){
-                            Add(SCR_TOWER_BG);
+                            add(SCR_TOWER_BG);
                         } else {
-                            Add(((SCR_QUEST_BG_1 + 50) + SelectedDungeon));
+                            add(((SCR_QUEST_BG_1 + 50) + SelectedDungeon));
                         };
                     } else {
                         if (int(Savegame[SG_ACTION_STATUS]) == 2){
-                            Add(get_quest_bg());
+                            add(get_quest_bg());
                         };
                     };
                 };
@@ -19489,14 +19495,14 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
             };
             i = (i + 1);
         };
-        Add(SCREEN_FIGHT);
+        add(SCREEN_FIGHT);
         if (oppMonster > 0){
-            Add(((OPPMONSTER + oppMonster) - 1));
+            add(((OPPMONSTER + oppMonster) - 1));
         } else {
             LoadCharacterImage(((alternateCharOppImg) ? OPPBACKGROUND2 : OPPBACKGROUND), False, oppVolk, oppMann, oppKaste, oppMouth, oppBeard, oppNose, oppEyes, oppBrows, oppEars, oppHair, oppSpecial, oppSpecial2);
         };
         if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
-            Add(((FIGHT_COPYCAT + thisCharMonster) - 391));
+            add(((FIGHT_COPYCAT + thisCharMonster) - 391));
         } else {
             LoadCharacterImage(((alternateCharOppImg) ? CHARBACKGROUND2 : CHARBACKGROUND), False, thischar_volk, thischar_male, thischar_class, thischar_mouth, thischar_beard, thischar_nose, thischar_eyes, thischar_brows, thischar_ears, thischar_hair, thischar_special, thischar_special2);
         };
@@ -19505,19 +19511,19 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
         };
         AddSome(LBL_NAMERANK_CHAR, LBL_NAMERANK_OPP);
         AddSome(SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR, WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
-        Hide(SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR, WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
+        hide(SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR, WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
         AddSome(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
-        Hide(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
+        hide(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
         actor[FIGHT_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
         actor[BATTLE_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
         actor[BATTLE_SKIPONE].add_event_listener(MouseEvent.CLICK, DoSkipFight);
         if (is_guildBattle){
-            Add(BATTLE_SKIP);
-            Add(BATTLE_SKIPONE);
-            Remove(FIGHT_SKIP);
+            add(BATTLE_SKIP);
+            add(BATTLE_SKIPONE);
+            remove(FIGHT_SKIP);
             if (!towerFightMode){
-                Add(LBL_FIGHT_PLAYERGUILD);
-                Add(LBL_FIGHT_OPPGUILD);
+                add(LBL_FIGHT_PLAYERGUILD);
+                add(LBL_FIGHT_OPPGUILD);
             };
             _local3 = actor[LBL_FIGHT_PLAYERGUILD];
             with (_local3) {
@@ -19605,7 +19611,7 @@ public function ShowFightScreen(fighterData:Array, fightData:Array, getPilz:Bool
     hasLostMQ = False;
     actor[LBL_ERROR].text = "";
     if (is_guildBattle){
-        Remove(GILDE_CHAT);
+        remove(GILDE_CHAT);
     };
     Switch (tz){
         case 0:
@@ -19898,7 +19904,7 @@ public function ShowQuestScreen(evt:Event=undefined){
             if (!OnStage(QUESTBAR_BG)){
                 questBarTimer.stop();
                 questBarTimer.removeEventListener(TimerEvent.TIMER, QuestBarUpdate);
-                SetTitleBar(WaitingTime(Savegame[SG_ACTION_ENDTIME]));
+                set_title_bar(WaitingTime(Savegame[SG_ACTION_ENDTIME]));
                 return;
             };
             if (WaitingFor(Savegame[SG_ACTION_ENDTIME])){
@@ -19910,7 +19916,7 @@ public function ShowQuestScreen(evt:Event=undefined){
                 _local3 = actor[LBL_QUESTBAR_TEXT];
                 with (_local3) {
                     text = WaitingTime(Savegame[SG_ACTION_ENDTIME]);
-                    SetTitleBar(text);
+                    set_title_bar(text);
                     x = int((QUESTBAR_LABEL_X - (textWidth / 2)));
                 };
             } else {
@@ -19921,8 +19927,8 @@ public function ShowQuestScreen(evt:Event=undefined){
         };
         questBarTimer = new Timer(200);
         RemoveAll();
-        Add(get_quest_bg());
-        Add(SCREEN_QUEST);
+        add(get_quest_bg());
+        add(SCREEN_QUEST);
         var _local3 = actor[LBL_SCREEN_TITLE];
         with (_local3) {
             text = get_quest_title((int(Savegame[SG_ACTION_INDEX]) - 1));
@@ -19934,12 +19940,12 @@ public function ShowQuestScreen(evt:Event=undefined){
         questBarTimer.add_event_listener(TimerEvent.TIMER, QuestBarUpdate);
         questBarTimer.start();
         QuestBarUpdate();
-        if (skipAllowed){
+        if (skip_allowed){
             actor[QUEST_CANCEL].x = int((QUEST_CANCEL_X + 5));
-            Show(QUEST_SKIP);
+            show(QUEST_SKIP);
         } else {
             actor[QUEST_CANCEL].x = int((QUEST_CANCEL_X - (actor[QUEST_CANCEL].width / 2)));
-            Hide(QUEST_SKIP);
+            hide(QUEST_SKIP);
         };
         CheckWrongPage(ACT_SCREEN_TAVERNE);
         TryShowTV();
@@ -20111,33 +20117,33 @@ public function ShowTaverneScreen(evt:Event=undefined){
             if (OnStage(TAVERNE_BG)){
                 HutBlinzelStep++;
                 if (HutBlinzelStep > 70){
-                    Hide(TAVERNE_HUTMANN_BLINZELN);
+                    hide(TAVERNE_HUTMANN_BLINZELN);
                     HutBlinzelStep = int((Math.random() * 30));
                 } else {
                     if (HutBlinzelStep > 68){
-                        Show(TAVERNE_HUTMANN_BLINZELN);
+                        show(TAVERNE_HUTMANN_BLINZELN);
                     };
                 };
                 BarkeeperStep++;
                 if (BarkeeperStep >= 12){
-                    Hide(TAVERNE_BARKEEPER1);
-                    Hide(TAVERNE_BARKEEPER2);
+                    hide(TAVERNE_BARKEEPER1);
+                    hide(TAVERNE_BARKEEPER2);
                     BarkeeperStep = 0;
                 } else {
                     if (BarkeeperStep >= 9){
-                        Show(TAVERNE_BARKEEPER1);
-                        Hide(TAVERNE_BARKEEPER2);
+                        show(TAVERNE_BARKEEPER1);
+                        hide(TAVERNE_BARKEEPER2);
                     } else {
                         if (BarkeeperStep >= 6){
-                            Hide(TAVERNE_BARKEEPER1);
-                            Show(TAVERNE_BARKEEPER2);
+                            hide(TAVERNE_BARKEEPER1);
+                            show(TAVERNE_BARKEEPER2);
                         } else {
                             if (BarkeeperStep >= 3){
-                                Show(TAVERNE_BARKEEPER1);
-                                Hide(TAVERNE_BARKEEPER2);
+                                show(TAVERNE_BARKEEPER1);
+                                hide(TAVERNE_BARKEEPER2);
                             } else {
-                                Hide(TAVERNE_BARKEEPER1);
-                                Hide(TAVERNE_BARKEEPER2);
+                                hide(TAVERNE_BARKEEPER1);
+                                hide(TAVERNE_BARKEEPER2);
                             };
                         };
                     };
@@ -20156,39 +20162,39 @@ public function ShowTaverneScreen(evt:Event=undefined){
         SetCnt(QO_REWARDGOLD, IF_GOLD);
         SetCnt(QO_REWARDSILVER, IF_SILBER);
         RemoveAll();
-        Add(SCREEN_TAVERNE);
+        add(SCREEN_TAVERNE);
         if (GetAdvent() != 0){
-            Add(((TAVERN_ADVENT + GetAdvent()) - 1));
+            add(((TAVERN_ADVENT + GetAdvent()) - 1));
         };
         if (beerFest){
-            Add(BEERFEST);
+            add(BEERFEST);
             i = 0;
             while (i < 4) {
-                Add((TV + i));
+                add((TV + i));
                 i = (i + 1);
             };
-            Add(CA_TV);
+            add(CA_TV);
         };
         if (specialAction > 0){
-            Add(((SPECIAL_ACTION + specialAction) - 1));
+            add(((SPECIAL_ACTION + specialAction) - 1));
             actor[((SPECIAL_ACTION + specialAction) - 1)].mouse_enabled = False;
             if (!specialActionHint){
-                Add(TAVERNE_BARKEEPER_HINT);
+                add(TAVERNE_BARKEEPER_HINT);
                 actor[TAVERNE_BARKEEPER_HINT].mouse_enabled = False;
                 AnimateAch(TAVERNE_BARKEEPER_HINT, ((100 + TAVERNE_BARKEEPER_Y) - 215));
             };
             i = 0;
             while (i < 4) {
-                Add((TV + i));
+                add((TV + i));
                 i = (i + 1);
             };
-            Add(CA_TV);
+            add(CA_TV);
         };
         RefreshTimeBar();
         CheckWrongPage(ACT_SCREEN_TAVERNE);
-        Hide(TAVERNE_HUTMANN_BLINZELN);
-        Hide(TAVERNE_BARKEEPER1);
-        Hide(TAVERNE_BARKEEPER2);
+        hide(TAVERNE_HUTMANN_BLINZELN);
+        hide(TAVERNE_BARKEEPER1);
+        hide(TAVERNE_BARKEEPER2);
         i = 0;
         while (i < 5) {
             actor[(TAVERNE_QUEST1 + i)].visible = (quest_type == i);
@@ -20210,9 +20216,9 @@ public function ShowTaverneScreen(evt:Event=undefined){
     forceAdventure = False;
     actor[QUEST_SLOT].alpha = 1;
     if (OnStage(TAVERNE_BG)){
-        Remove(QUESTOFFER);
-        Remove(BEEROFFER);
-        Add(TAVERNE_CAS);
+        remove(QUESTOFFER);
+        remove(BEEROFFER);
+        add(TAVERNE_CAS);
         RefreshTimeBar();
         return;
     };
@@ -20260,19 +20266,19 @@ public function ShowStallScreen(evt:Event=undefined){
             actor[LBL_STALL_TITEL].x = ((actor[LBL_STALL_TEXT].x + actor[LBL_STALL_TEXT].width) - actor[LBL_STALL_TITEL].textWidth);
         };
         actor[LBL_STALL_TEXT].text = txt[TXT_STALL_TEXT];
-        Arabize(LBL_STALL_TEXT);
+        arabize(LBL_STALL_TEXT);
         actor[LBL_STALL_GAIN].text = "";
         if ((((char_volk >= 5)) and (!(param_censored)))){
-            Add(STALL_BOESE);
+            add(STALL_BOESE);
         } else {
-            Add(STALL_GUT);
+            add(STALL_GUT);
         };
-        Add(SCREEN_STALL);
+        add(SCREEN_STALL);
         if (tageszeit() == 1){
-            Remove(STALL_NIGHT);
+            remove(STALL_NIGHT);
         } else {
             if (tageszeit() == 2){
-                Remove(STALL_NIGHT, STALL_DAWN);
+                remove(STALL_NIGHT, STALL_DAWN);
             };
         };
         HandTimer.add_event_listener(TimerEvent.TIMER, BauerHandEvent);
@@ -20314,13 +20320,13 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
         RemoveAll();
         Switch (tz){
             case 0:
-                Add(SCREEN_ARENA_NIGHT);
+                add(SCREEN_ARENA_NIGHT);
                 break;
             case 1:
-                Add(SCREEN_ARENA_DAWN);
+                add(SCREEN_ARENA_DAWN);
                 break;
             case 2:
-                Add(SCREEN_ARENA_DAY);
+                add(SCREEN_ARENA_DAY);
                 break;
         };
         if (oppName != ""){
@@ -20329,10 +20335,10 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
                 text = txt[TXT_ARENA_TITLE];
                 x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
             };
-            Add(SCREEN_ARENA);
+            add(SCREEN_ARENA);
             if (Capabilities.version.substr(0, 3) != "IOS"){
                 if (lightMode){
-                    Remove(ARENA_FEUER);
+                    remove(ARENA_FEUER);
                 };
             };
             PvPDelayTimer.add_event_listener(TimerEvent.TIMER, PvPDelayCheck);
@@ -20354,23 +20360,23 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
                 actor[LBL_ARENA_TEXT].text = (((((((((txt[TXT_ARENA_3] + " ") + oppName) + (((oppGilde == "")) ? "" : ((" [" + oppGilde) + "]"))) + " (") + txt[TXT_HALL_LIST_COLUMN_4]) + " ") + String(oppStufe)) + ") ") + txt[TXT_ARENA_4]);
             };
             actor[LBL_ARENA_DELAY].text = WaitingTime(Savegame[SG_PVP_REROLL_TIME]);
-            SetTitleBar(WaitingTime(Savegame[SG_PVP_REROLL_TIME]));
+            set_title_bar(WaitingTime(Savegame[SG_PVP_REROLL_TIME]));
             if (textDir == "right"){
                 SetBtnText(ARENA_OK, ("(~P1) " + txt[TXT_OK]));
             } else {
                 SetBtnText(ARENA_OK, (txt[TXT_OK] + " (1~P)"));
             };
-            Show(LBL_ARENA_DELAY);
+            show(LBL_ARENA_DELAY);
         } else {
             if (textDir == "right"){
                 actor[LBL_ARENA_TEXT].text = (((((((((txt[TXT_ARENA_2] + " (") + String(oppStufe)) + " ") + txt[TXT_HALL_LIST_COLUMN_4]) + ") ") + (((oppGilde == "")) ? "" : (("[" + oppGilde) + "] "))) + oppName) + " ") + txt[TXT_ARENA_1]);
             } else {
                 actor[LBL_ARENA_TEXT].text = (((((((((txt[TXT_ARENA_1] + " ") + oppName) + (((oppGilde == "")) ? "" : ((" [" + oppGilde) + "]"))) + " (") + txt[TXT_HALL_LIST_COLUMN_4]) + " ") + String(oppStufe)) + ") ") + txt[TXT_ARENA_2]);
             };
-            Arabize(LBL_ARENA_TEXT);
+            arabize(LBL_ARENA_TEXT);
             SetBtnText(ARENA_OK, txt[TXT_OK]);
-            Hide(LBL_ARENA_DELAY);
-            SetTitleBar();
+            hide(LBL_ARENA_DELAY);
+            set_title_bar();
             PvPDelayTimer.removeEventListener(TimerEvent.TIMER, PvPDelayCheck);
             PvPDelayTimer.stop();
         };
@@ -20399,7 +20405,7 @@ public function ShowArenaScreen(oppName:String, oppGilde:String, oppStufe:int){
     when_loaded(DoShowArenaScreen);
 }
 
-public function Arabize(actorID:int){
+public function arabize(actorID:int){
     var i:int;
     var ii:int;
     var lines:Array;
@@ -20453,7 +20459,7 @@ public function ShowDealerScreen(evt:Event=undefined, loadOnly:Boolean=False){
     var loadOnly:Boolean = loadOnly;
     DoShowDealerScreen = function (par:Object=undefined){
         RemoveAll();
-        Add(SCREEN_DEALER);
+        add(SCREEN_DEALER);
     };
     papaya_firebug = "0";
     if (paramObj["firebug"]){
@@ -20489,7 +20495,7 @@ public function ShowScreenGildeGruenden(evt:Event=undefined){
             text = txt[TXT_GILDE_GRUENDEN_TITLE];
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
         };
-        Add(SCREEN_GILDE_GRUENDEN);
+        add(SCREEN_GILDE_GRUENDEN);
     };
     Load(SCREEN_GILDE_GRUENDEN);
     when_loaded(DoShowScreenGilden);
@@ -20665,7 +20671,7 @@ public function loadCrest(){
     while (i < 4) {
         tmpFlt = new ColorMatrixFilter([0, heraldicColors[crestColor[i]][0], 0, 0, 0, 0, heraldicColors[crestColor[i]][1], 0, 0, 0, 0, heraldicColors[crestColor[i]][2], 0, 0, 0, 0, 0, 0, 1, 0]);
         actor[(GILDE_CREST_COLOR_FILLIN + i)].filters = [tmpFlt];
-        EnablePopup((GILDE_CREST_COLOR + i), txt[(TXT_CREST_TINCTUREBOXES + i)].split("%1").join(txt[(TXT_CREST_TINCTURES + crestColor[i])]));
+        enable_popup((GILDE_CREST_COLOR + i), txt[(TXT_CREST_TINCTUREBOXES + i)].split("%1").join(txt[(TXT_CREST_TINCTURES + crestColor[i])]));
         i = (i + 1);
     };
     i = 0;
@@ -20743,11 +20749,11 @@ public function clickChatLine(evt){
         lineText = evt;
     };
     if (crestSuggestion[lineText]){
-        Remove(GILDE_GEBAEUDE);
-        Add(GILDE_CREST);
+        remove(GILDE_GEBAEUDE);
+        add(GILDE_CREST);
         if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
             SetAlpha(GILDE_CREST_CONTROLS, 1);
-            Add(GILDE_CREST_CONTROLS);
+            add(GILDE_CREST_CONTROLS);
         } else {
             selecterCrestElement = -1;
         };
@@ -20776,13 +20782,13 @@ public function clickChatLine(evt){
     stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
 }
 
-public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, isMine:Boolean=True, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
+public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, is_mine:Boolean=True, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
     var DoShowScreenGilden:* = null;
     var guildData:* = guildData;
     var guildDescr:* = guildDescr;
     var guildMembers:* = guildMembers;
     var ThisGilde:* = ThisGilde;
-    var isMine:Boolean = isMine;
+    var is_mine:Boolean = is_mine;
     var GildenRang:int = GildenRang;
     var GildenEhre:int = GildenEhre;
     var AttackCost:int = AttackCost;
@@ -20943,7 +20949,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                             break;
                     };
                     if (GuildBtnHandler(evt, True)){
-                        Play(SND_CLICK);
+                        play(SND_CLICK);
                     } else {
                         if (GuildBtnRepeatTimer.running){
                             DestroyGuildBtnTimer = True;
@@ -20998,57 +21004,57 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             var selRank:int;
             Switch (myRank){
                 case 1:
-                    Add(GILDE_SET_MASTER);
+                    add(GILDE_SET_MASTER);
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
-                        Show(PLAYER_GUILD_INVITE);
+                        show(PLAYER_GUILD_INVITE);
                     };
                     break;
                 case 2:
-                    Add(GILDE_SET_OFFICER);
+                    add(GILDE_SET_OFFICER);
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
-                        Show(PLAYER_GUILD_INVITE);
+                        show(PLAYER_GUILD_INVITE);
                     };
                     break;
                 case 3:
                 case 0:
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
-                        Hide(PLAYER_GUILD_INVITE);
+                        hide(PLAYER_GUILD_INVITE);
                     };
-                    Add(GILDE_SET_MEMBER);
+                    add(GILDE_SET_MEMBER);
                     break;
             };
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
-            if ((((int(guildData[((GUILD_MEMBERID + selectLevel) + scrollLevel)]) == int(Savegame[SG_PLAYER_ID]))) and (isMine))){
-                Add(GILDE_KICK);
-                Remove(GILDE_KICK_GRAY);
-                Remove(GILDE_PROMOTE);
-                Remove(GILDE_MASTER);
+            if ((((int(guildData[((GUILD_MEMBERID + selectLevel) + scrollLevel)]) == int(Savegame[SG_PLAYER_ID]))) and (is_mine))){
+                add(GILDE_KICK);
+                remove(GILDE_KICK_GRAY);
+                remove(GILDE_PROMOTE);
+                remove(GILDE_MASTER);
                 AddSome(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
             } else {
                 if ((((selRank <= 2)) and ((myRank == 2)))){
-                    Remove(GILDE_KICK);
-                    Add(GILDE_KICK_GRAY);
+                    remove(GILDE_KICK);
+                    add(GILDE_KICK_GRAY);
                 };
             };
             if (selRank == 4){
-                Remove(GILDE_PROMOTE);
-                Remove(GILDE_MASTER);
+                remove(GILDE_PROMOTE);
+                remove(GILDE_MASTER);
                 AddSome(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
             };
             if (int(guildData[3]) >= int(guildData[5])){
-                Remove(GILDE_INVITE);
+                remove(GILDE_INVITE);
                 if (guildData[0] == Savegame[SG_GUILD_INDEX]){
-                    Hide(PLAYER_GUILD_INVITE);
+                    hide(PLAYER_GUILD_INVITE);
                 };
                 AddSome(GILDE_INVITE_GRAY);
             };
             if ((((selRank == 2)) and ((myRank == 1)))){
-                Remove(GILDE_PROMOTE);
-                Add(GILDE_DEMOTE);
+                remove(GILDE_PROMOTE);
+                add(GILDE_DEMOTE);
             };
             if ((((((((selRank == 1)) and ((int(guildData[12]) < 0)))) and ((myRank <= 3)))) and ((myRank > 0)))){
-                Remove(GILDE_MASTER_GRAY);
-                Add(GILDE_REVOLT);
+                remove(GILDE_MASTER_GRAY);
+                add(GILDE_REVOLT);
             };
         };
         GuildBtnHandler = function (evt:Event, typematic:Boolean=False):Boolean{
@@ -21077,7 +21083,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     BuildGuildList();
                     break;
                 case GILDE_INVITE:
-                    Add(GILDE_DIALOG_INVITE);
+                    add(GILDE_DIALOG_INVITE);
                     actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text = "";
                     var _local4 = actor[LBL_WINDOW_TITLE];
                     with (_local4) {
@@ -21089,7 +21095,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     request_player_screen();
                     break;
                 case GILDE_REVOLT:
-                    Add(GILDE_DIALOG_REVOLT);
+                    add(GILDE_DIALOG_REVOLT);
                     _local4 = actor[LBL_WINDOW_TITLE];
                     with (_local4) {
                         text = txt[TXT_REVOLT_WARNING_TITLE];
@@ -21100,10 +21106,10 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     if (selRank == 4){
                         KickMember();
                     } else {
-                        Add(GILDE_DIALOG_KICK);
+                        add(GILDE_DIALOG_KICK);
                         if (int(guildData[((GUILD_MEMBERID + selectLevel) + scrollLevel)]) == int(Savegame[SG_PLAYER_ID])){
-                            Remove(LBL_GILDE_DIALOG_TEXT_KICK);
-                            Add(LBL_GILDE_DIALOG_TEXT_QUIT);
+                            remove(LBL_GILDE_DIALOG_TEXT_KICK);
+                            add(LBL_GILDE_DIALOG_TEXT_QUIT);
                             _local4 = actor[LBL_WINDOW_TITLE];
                             with (_local4) {
                                 text = txt[TXT_GILDE_QUIT_TITLE];
@@ -21123,7 +21129,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     ToggleOfficer();
                     break;
                 case GILDE_MASTER:
-                    Add(GILDE_DIALOG_MASTER);
+                    add(GILDE_DIALOG_MASTER);
                     _local4 = actor[LBL_WINDOW_TITLE];
                     with (_local4) {
                         text = txt[TXT_GILDE_MASTER_TITLE];
@@ -21146,12 +21152,12 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     send_action(ACT_GUILD_COMMENCE_ATTACK, -1);
                     break;
                 case GILDE_DIALOG_CANCEL:
-                    Remove(GILDE_DIALOG_INVITE);
-                    Remove(GILDE_DIALOG_KICK);
-                    Remove(GILDE_DIALOG_REVOLT);
-                    Remove(GILDE_DIALOG_MASTER);
-                    Remove(LBL_GILDE_DIALOG_TEXT_QUIT);
-                    Remove(GILDE_DIALOG_RAID);
+                    remove(GILDE_DIALOG_INVITE);
+                    remove(GILDE_DIALOG_KICK);
+                    remove(GILDE_DIALOG_REVOLT);
+                    remove(GILDE_DIALOG_MASTER);
+                    remove(LBL_GILDE_DIALOG_TEXT_QUIT);
+                    remove(GILDE_DIALOG_RAID);
                     break;
                 case GILDE_KATAPULT:
                 case (GILDE_KATAPULT + 1):
@@ -21174,16 +21180,16 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                         } else {
                             DoDonate();
                             if (int(actor[LBL_IF_GOLD].text) >= int(actor[LBL_GILDE_GOLD2].text)){
-                                ErrorMessage(txt[TXT_ERROR_GUILD_CASH_FULL]);
+                                error_message(txt[TXT_ERROR_GUILD_CASH_FULL]);
                             } else {
                                 if (!typematic){
-                                    ErrorMessage(txt[TXT_ERROR_GUILD_TOO_EXPENSIVE]);
+                                    error_message(txt[TXT_ERROR_GUILD_TOO_EXPENSIVE]);
                                 };
                             };
                             return (False);
                         };
                     } else {
-                        ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
+                        error_message(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
                         return (False);
                     };
                     break;
@@ -21194,22 +21200,22 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                                 MushToDonate = (MushToDonate + int(actor[LBL_GILDE_MUSH2].text));
                                 actor[LBL_IF_PILZE].text = String((int(actor[LBL_IF_PILZE].text) - int(actor[LBL_GILDE_MUSH2].text)));
                                 actor[LBL_GILDE_MUSH].text = String((int(actor[LBL_GILDE_MUSH].text) + int(actor[LBL_GILDE_MUSH2].text)));
-                                EnablePopup(LBL_IF_PILZE);
+                                enable_popup(LBL_IF_PILZE);
                                 DonateTimeout.stop();
                                 DonateTimeout.start();
                             } else {
                                 DoDonate();
                                 if (!typematic){
-                                    ErrorMessage(txt[TXT_ERROR_GUILD_TOO_EXPENSIVE]);
+                                    error_message(txt[TXT_ERROR_GUILD_TOO_EXPENSIVE]);
                                 };
                                 return (False);
                             };
                         } else {
-                            ErrorMessage(txt[TXT_ERROR_GUILD_MUSH_FREE]);
+                            error_message(txt[TXT_ERROR_GUILD_MUSH_FREE]);
                             return (False);
                         };
                     } else {
-                        ErrorMessage(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
+                        error_message(txt[TXT_ERROR_GUILD_EMAIL_VALIDATE]);
                         return (False);
                     };
                     break;
@@ -21347,11 +21353,11 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                         attackError = True;
                     };
                 };
-                if (((showActivityTime) and (isMine))){
+                if (((showActivityTime) and (is_mine))){
                     if (Number(guildData[((GUILD_MEMBERONLINE + hoverLevel) + scrollLevel)]) > 0){
-                        EnablePopup(GILDE_LIST, time_str(guildData[((GUILD_MEMBERONLINE + hoverLevel) + scrollLevel)]));
+                        enable_popup(GILDE_LIST, time_str(guildData[((GUILD_MEMBERONLINE + hoverLevel) + scrollLevel)]));
                     } else {
-                        EnablePopup(GILDE_LIST, ":-(");
+                        enable_popup(GILDE_LIST, ":-(");
                     };
                     return;
                 };
@@ -21366,50 +21372,50 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                         if (attackHint.length > 0){
                             attackHint = attackHint.substr(1);
                             if (textDir == "right"){
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, attackHint, POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, attackHint, POPUP_END_LINE);
                             } else {
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, attackHint, POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, attackHint, POPUP_END_LINE);
                             };
                         } else {
                             if (textDir == "right"){
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE);
                             } else {
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE);
                             };
                         };
                     } else {
                         if (textDir == "right"){
-                            EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, txt[(TXT_ATTACK_STATUS + attackStatus)], POPUP_END_LINE);
+                            enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, txt[(TXT_ATTACK_STATUS + attackStatus)], POPUP_END_LINE);
                         } else {
-                            EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, txt[(TXT_ATTACK_STATUS + attackStatus)], POPUP_END_LINE);
+                            enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackErrorOnlinePopup, txt[(TXT_ATTACK_STATUS + attackStatus)], POPUP_END_LINE);
                         };
                     };
                 } else {
                     if (guildData[0] != Savegame[SG_GUILD_INDEX]){
                         if (textDir == "right"){
-                            EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE);
+                            enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE);
                         } else {
-                            EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE);
+                            enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE);
                         };
                     } else {
                         if (textDir == "right"){
                             if (attackStatus == 0){
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE);
                             } else {
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackOkPopup, txt[(TXT_ATTACK_OK_STATUS + attackStatus)], POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, ((("(" + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ") ") + guildMembers[((hoverLevel + scrollLevel) + 1)]), POPUP_END_LINE, POPUP_BEGIN_LINE, ((String(lvl) + " ") + txt[TXT_HALL_LIST_COLUMN_4]), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackOkPopup, txt[(TXT_ATTACK_OK_STATUS + attackStatus)], POPUP_END_LINE);
                             };
                         } else {
                             if (attackStatus == 0){
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE);
                             } else {
-                                EnablePopup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackOkPopup, txt[(TXT_ATTACK_OK_STATUS + attackStatus)], POPUP_END_LINE);
+                                enable_popup(GILDE_LIST, POPUP_BEGIN_LINE, (((guildMembers[((hoverLevel + scrollLevel) + 1)] + " (") + txt[((TXT_RANKNAME + int(guildData[((GUILD_MEMBERRANK + hoverLevel) + scrollLevel)])) - 1)]) + ")"), POPUP_END_LINE, POPUP_BEGIN_LINE, ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + String(lvl)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_GOLD_SPENT], 170, String(int((guildData[((GUILD_MEMBERGOLDSPENT + hoverLevel) + scrollLevel)] / 100))), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_MUSH_SPENT], 170, String(guildData[((GUILD_MEMBERMUSHSPENT + hoverLevel) + scrollLevel)]), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_GuildListTextAttackOkPopup, txt[(TXT_ATTACK_OK_STATUS + attackStatus)], POPUP_END_LINE);
                             };
                         };
                     };
                 };
             };
             var RemoveGuildPopup:* = function (evt:MouseEvent){
-                EnablePopup(GILDE_LIST);
+                enable_popup(GILDE_LIST);
             };
             var AddGuildPlayer:* = function (memberName:String, rank:int, line:int, onlineStatus:Boolean, thisAttackError:Boolean, thisAttackStatus:int){
                 var tmp_obj:* = null;
@@ -21426,7 +21432,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     add_event_listener(MouseEvent.MOUSE_OVER, BuildGuildPopup);
                     add_event_listener(MouseEvent.MOUSE_OUT, RemoveGuildPopup);
                     if (thisAttackError){
-                        if (isMine){
+                        if (is_mine){
                             if ((((thisAttackStatus & 1)) or ((thisAttackStatus & 2)))){
                                 tmp_obj.default_text_format = ((onlineStatus) ? FontFormat_GuildListTextAttackErrorOnlineHalf : FontFormat_GuildListTextAttackErrorHalf);
                             } else {
@@ -21440,7 +21446,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                             };
                         };
                     } else {
-                        tmp_obj.default_text_format = ((((onlineStatus) and (isMine))) ? FontFormat_GuildListTextOnline : FontFormat_GuildListText);
+                        tmp_obj.default_text_format = ((((onlineStatus) and (is_mine))) ? FontFormat_GuildListTextOnline : FontFormat_GuildListText);
                     };
                     auto_size = TextFieldAutoSize.LEFT;
                     background = False;
@@ -21637,11 +21643,11 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             };
             SetCnt((GILDE_GEBAEUDE_GOLD + i), IF_GOLD);
             SetCnt((GILDE_GEBAEUDE_MUSH + i), IF_PILZE);
-            Hide((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (GILDE_GEBAEUDE_GOLD + i));
-            Hide((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_MUSH + i));
+            hide((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (GILDE_GEBAEUDE_GOLD + i));
+            hide((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_MUSH + i));
             if (Ausbaustufe >= 50){
                 countCompleted = (countCompleted + 1);
-                Show((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i));
+                show((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i));
                 actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].text = txt[TXT_BUILDING_COMPLETE];
                 if (textDir == "right"){
                     actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].x = (((GILDE_GEBAEUDE_X + GILDE_TEXT_X) + 130) - actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].textWidth);
@@ -21650,7 +21656,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 };
             } else {
                 if (GoldKosten > 0){
-                    Show((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (GILDE_GEBAEUDE_GOLD + i));
+                    show((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (GILDE_GEBAEUDE_GOLD + i));
                     actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].text = String(GoldKosten);
                     if (textDir == "right"){
                         actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].x = (((GILDE_GEBAEUDE_X + GILDE_TEXT_X) + 130) - actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].textWidth);
@@ -21664,7 +21670,7 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     };
                 };
                 if (PilzKosten > 0){
-                    Show((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_MUSH + i));
+                    show((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_MUSH + i));
                     actor[(LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i)].text = String(PilzKosten);
                     if (textDir == "right"){
                         if (GoldKosten > 0){
@@ -21740,37 +21746,37 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             };
         };
         crestView = OnStage(GILDE_CREST);
-        startWithCrest = ((((((((((isMine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))) and ((guildData[5] >= 50)))) and ((guildData[6] >= 50)))) and ((guildData[7] >= 50)))) and (!(OnStage(GILDE_SCROLL_UP))));
+        startWithCrest = ((((((((((is_mine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))) and ((guildData[5] >= 50)))) and ((guildData[6] >= 50)))) and ((guildData[7] >= 50)))) and (!(OnStage(GILDE_SCROLL_UP))));
         if (guildData[0] != lastGuildCrestId){
             crestView = False;
         };
         lastGuildCrestId = guildData[0];
         RemoveAll();
-        Add(SCREEN_GILDEN);
+        add(SCREEN_GILDEN);
         if (crestView){
             if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
                 SetAlpha(GILDE_CREST_CONTROLS, 1);
-                Add(GILDE_CREST_CONTROLS);
+                add(GILDE_CREST_CONTROLS);
             };
-            Remove(GILDE_GEBAEUDE);
+            remove(GILDE_GEBAEUDE);
         } else {
             actor[GILDE_CREST].y = (GILDE_GEBAEUDE_Y + 60);
             selecterCrestElement = -1;
-            if (((isMine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))){
+            if (((is_mine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))){
                 if (startWithCrest){
-                    Remove(GILDE_GEBAEUDE);
+                    remove(GILDE_GEBAEUDE);
                 } else {
-                    Remove(GILDE_CREST);
+                    remove(GILDE_CREST);
                 };
                 actor[GILDE_CREST].mouseChildren = True;
             } else {
-                Remove(GILDE_CREST_GOTO_GEBAEUDE);
+                remove(GILDE_CREST_GOTO_GEBAEUDE);
                 actor[GILDE_CREST].mouseChildren = False;
             };
             loadCrest();
         };
-        if (!((isMine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))){
-            Remove(GILDE_CREST_GOTO_GEBAEUDE);
+        if (!((is_mine) or ((guildData[0] == Savegame[SG_GUILD_INDEX])))){
+            remove(GILDE_CREST_GOTO_GEBAEUDE);
             actor[GILDE_CREST].mouseChildren = False;
         };
         if (textDir == "right"){
@@ -21784,8 +21790,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         while (i < 3) {
             Ausbaustufe = guildData[(i + 5)];
             if (Ausbaustufe >= 50){
-                Hide((GILDE_GEBAEUDE_IMPROVE + i));
-                Show((GILDE_GEBAEUDE_IMPROVE_GRAY + i));
+                hide((GILDE_GEBAEUDE_IMPROVE + i));
+                show((GILDE_GEBAEUDE_IMPROVE_GRAY + i));
             };
             i = (i + 1);
         };
@@ -21829,8 +21835,8 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         };
         BuildGuildList();
         if (myRank > 2){
-            Hide(GILDE_GEBAEUDE_IMPROVE, (GILDE_GEBAEUDE_IMPROVE + 1), (GILDE_GEBAEUDE_IMPROVE + 2));
-            Show(GILDE_GEBAEUDE_IMPROVE_GRAY, (GILDE_GEBAEUDE_IMPROVE_GRAY + 1), (GILDE_GEBAEUDE_IMPROVE_GRAY + 2));
+            hide(GILDE_GEBAEUDE_IMPROVE, (GILDE_GEBAEUDE_IMPROVE + 1), (GILDE_GEBAEUDE_IMPROVE + 2));
+            show(GILDE_GEBAEUDE_IMPROVE_GRAY, (GILDE_GEBAEUDE_IMPROVE_GRAY + 1), (GILDE_GEBAEUDE_IMPROVE_GRAY + 2));
         };
         _local3 = actor[LBL_SCREEN_TITLE];
         with (_local3) {
@@ -21865,26 +21871,26 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         if (guildDescr.indexOf("http://") != -1){
             guildForumLink = guildDescr.substr(guildDescr.indexOf("http://"));
             guildForumLink = guildForumLink.split(")").join(" ").split("#").join(" ").split(String.fromCharCode(13)).join(" ").split(String.fromCharCode(10)).join(" ").split(" ")[0];
-            Add(GILDE_LINK);
+            add(GILDE_LINK);
             if (guildForumLink.substr(guildForumLink.length, 1) == "."){
                 guildForumLink = guildForumLink.substr(0, (guildForumLink.length - 1));
             };
-            EnablePopup(GILDE_LINK, guildForumLink);
+            enable_popup(GILDE_LINK, guildForumLink);
         } else {
             if (guildDescr.indexOf("www.") != -1){
                 guildForumLink = ("http://" + guildDescr.substr(guildDescr.indexOf("www.")));
                 guildForumLink = guildForumLink.split(")").join(" ").split("#").join(" ").split(String.fromCharCode(13)).join(" ").split(String.fromCharCode(10)).join(" ").split(" ")[0];
-                Add(GILDE_LINK);
+                add(GILDE_LINK);
                 if (guildForumLink.substr(guildForumLink.length, 1) == "."){
                     guildForumLink = guildForumLink.substr(0, (guildForumLink.length - 1));
                 };
-                EnablePopup(GILDE_LINK, guildForumLink);
+                enable_popup(GILDE_LINK, guildForumLink);
             };
         };
         _local3 = actor[INP_GILDE_TEXT];
         with (_local3) {
             getChildAt(0).text = ((guildDescr)=="") ? (((myRank == 1)) ? txt[TXT_ENTERGUILDDESC] : txt[TXT_GUILDNOTEXT]) : resolveBreaks(guildDescr);
-            getChildAt(0).type = (((((myRank == 1)) and (isMine))) ? TextFieldType.INPUT : TextFieldType.DYNAMIC);
+            getChildAt(0).type = (((((myRank == 1)) and (is_mine))) ? TextFieldType.INPUT : TextFieldType.DYNAMIC);
             mouse_enabled = True;
             add_event_listener(FocusEvent.FOCUS_IN, EnterGuildDesc);
             add_event_listener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
@@ -21892,38 +21898,38 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                 getChildAt(0).wordWrap = False;
             };
         };
-        Add(GILDE_RAID_GRAY);
-        Add(GILDE_ATTACK_GRAY);
-        Add(GILDE_DEFEND_GRAY);
+        add(GILDE_RAID_GRAY);
+        add(GILDE_ATTACK_GRAY);
+        add(GILDE_DEFEND_GRAY);
         if ((((guildData[5] >= 20)) and ((guildData[0] == Savegame[SG_GUILD_INDEX])))){
             if (myRank <= 2){
                 if (guildData[4] == 0){
-                    Add(GILDE_KATAPULT);
+                    add(GILDE_KATAPULT);
                 } else {
                     if (guildData[4] == 1){
-                        Add((GILDE_KATAPULT + 1));
+                        add((GILDE_KATAPULT + 1));
                     } else {
                         if (guildData[4] == 2){
-                            Add((GILDE_KATAPULT + 2));
+                            add((GILDE_KATAPULT + 2));
                         } else {
                             if (guildData[4] == 3){
-                                Add((GILDE_KATAPULT_OK + 2));
+                                add((GILDE_KATAPULT_OK + 2));
                             };
                         };
                     };
                 };
             } else {
                 if (guildData[4] == 0){
-                    Add(GILDE_KATAPULT_GRAY);
+                    add(GILDE_KATAPULT_GRAY);
                 } else {
                     if (guildData[4] == 1){
-                        Add(GILDE_KATAPULT_OK);
+                        add(GILDE_KATAPULT_OK);
                     } else {
                         if (guildData[4] == 2){
-                            Add((GILDE_KATAPULT_OK + 1));
+                            add((GILDE_KATAPULT_OK + 1));
                         } else {
                             if (guildData[4] == 3){
-                                Add((GILDE_KATAPULT_OK + 2));
+                                add((GILDE_KATAPULT_OK + 2));
                             };
                         };
                     };
@@ -21931,16 +21937,16 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             };
             i = 0;
             while (i < 3) {
-                EnablePopup((GILDE_KATAPULT + i), POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 4)], 200, txt[(TXT_CATAPULT + 5)].split("%1").join("5"), actor[IF_PILZE], POPUP_END_LINE);
+                enable_popup((GILDE_KATAPULT + i), POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 4)], 200, txt[(TXT_CATAPULT + 5)].split("%1").join("5"), actor[IF_PILZE], POPUP_END_LINE);
                 i = (i + 1);
             };
-            EnablePopup(GILDE_KATAPULT_GRAY, POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 6)], POPUP_END_LINE);
+            enable_popup(GILDE_KATAPULT_GRAY, POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 6)], POPUP_END_LINE);
             i = 0;
             while (i < 2) {
-                EnablePopup((GILDE_KATAPULT_OK + i), POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 6)], POPUP_END_LINE);
+                enable_popup((GILDE_KATAPULT_OK + i), POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 6)], POPUP_END_LINE);
                 i = (i + 1);
             };
-            EnablePopup((GILDE_KATAPULT_OK + 2), POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE);
+            enable_popup((GILDE_KATAPULT_OK + 2), POPUP_BEGIN_LINE, txt[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_CATAPULT + 2)], 200, txt[(TXT_CATAPULT + 3)].split("%1").join(String(guildData[4])).split("%2").join("3"), POPUP_END_LINE);
         };
         raidCost = GildeBuildingGold[(int(guildData[GUILD_RAID_LEVEL]) + 51)];
         if (int(guildData[GUILD_RAID_LEVEL]) == 0){
@@ -21959,18 +21965,18 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
         lastRaidCost = raidCost;
         if (txt[TXT_RAID_TEXT]){
             if (guildData[GUILD_RAID_LEVEL] >= 50){
-                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 17)]);
+                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 17)]);
             } else {
-                EnablePopup(GILDE_RAID_GRAY, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 4)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 15)], (POPUP_TAB + POPUP_TAB_ADD), txt[(TXT_DUNGEON_NAMES + int(guildData[GUILD_RAID_LEVEL]))], (("(" + String((int(guildData[GUILD_RAID_LEVEL]) + 1))) + "/50)"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 16)], (POPUP_TAB + POPUP_TAB_ADD), String(raidCost), actor[IF_GOLD], POPUP_END_LINE);
+                enable_popup(GILDE_RAID_GRAY, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 4)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 15)], (POPUP_TAB + POPUP_TAB_ADD), txt[(TXT_DUNGEON_NAMES + int(guildData[GUILD_RAID_LEVEL]))], (("(" + String((int(guildData[GUILD_RAID_LEVEL]) + 1))) + "/50)"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 16)], (POPUP_TAB + POPUP_TAB_ADD), String(raidCost), actor[IF_GOLD], POPUP_END_LINE);
             };
         };
-        EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 7)]);
-        EnablePopup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 6)]);
+        enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 7)]);
+        enable_popup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 6)]);
         actor[LBL_GILDE_ATTACK].text = "";
         actor[LBL_GILDE_DEFENCE].text = "";
         lastGuildData = guildData;
         isRaid = !((guildData[GUILD_IS_RAID] == 0));
-        send_action(ACT_REQUEST_GUILD_NAMES, guildData[GUILD_ATTACK_TARGET], guildData[GUILD_DEFENCE_TARGET], ((isMine) ? 0 : 1));
+        send_action(ACT_REQUEST_GUILD_NAMES, guildData[GUILD_ATTACK_TARGET], guildData[GUILD_DEFENCE_TARGET], ((is_mine) ? 0 : 1));
         if (guildData[0] == Savegame[SG_GUILD_INDEX]){
             myOwnRank = myRank;
             myOwnAttackTarget = int(guildData[GUILD_ATTACK_TARGET]);
@@ -21978,55 +21984,55 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
             if ((int(Savegame[SG_SERVER_TIME]) - int(Savegame[SG_GUILD_JOIN_DATE])) > ((60 * 60) * 24)){
                 if ((((myRank == 1)) or ((myRank == 2)))){
                     if (int(guildData[GUILD_ATTACK_TARGET]) == 0){
-                        Add(GILDE_ATTACK);
-                        EnablePopup(GILDE_ATTACK, txt[(TXT_GUILD_BATTLE_POPUP + 0)]);
+                        add(GILDE_ATTACK);
+                        enable_popup(GILDE_ATTACK, txt[(TXT_GUILD_BATTLE_POPUP + 0)]);
                         if (guildData[GUILD_RAID_LEVEL] >= 50){
                             if (txt[TXT_RAID_TEXT]){
-                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 17)]);
+                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 17)]);
                             };
                         } else {
-                            Add(GILDE_RAID);
+                            add(GILDE_RAID);
                             if (txt[TXT_RAID_TEXT]){
-                                EnablePopup(GILDE_RAID, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 0)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 15)], (POPUP_TAB + POPUP_TAB_ADD), txt[(TXT_DUNGEON_NAMES + int(guildData[GUILD_RAID_LEVEL]))], (("(" + String((int(guildData[GUILD_RAID_LEVEL]) + 1))) + "/50)"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 16)], (POPUP_TAB + POPUP_TAB_ADD), String(raidCost), actor[IF_GOLD], POPUP_END_LINE);
+                                enable_popup(GILDE_RAID, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 0)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 15)], (POPUP_TAB + POPUP_TAB_ADD), txt[(TXT_DUNGEON_NAMES + int(guildData[GUILD_RAID_LEVEL]))], (("(" + String((int(guildData[GUILD_RAID_LEVEL]) + 1))) + "/50)"), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_RAID_TEXT + 16)], (POPUP_TAB + POPUP_TAB_ADD), String(raidCost), actor[IF_GOLD], POPUP_END_LINE);
                             };
                         };
                     } else {
                         if (int(guildData[GUILD_ATTACK_TARGET]) < 0){
-                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             if (txt[TXT_RAID_TEXT]){
-                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             };
                         } else {
                             if ((myAttackStatus & 1)){
                                 if (isRaid){
-                                    Add(GILDE_RAID_OK);
+                                    add(GILDE_RAID_OK);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID_OK, txt[(TXT_RAID_TEXT + 2)]);
+                                        enable_popup(GILDE_RAID_OK, txt[(TXT_RAID_TEXT + 2)]);
                                     };
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
+                                        enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
                                     };
                                 } else {
-                                    Add(GILDE_ATTACK_OK);
-                                    EnablePopup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 3)]);
+                                    add(GILDE_ATTACK_OK);
+                                    enable_popup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 3)]);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
+                                        enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
                                     };
                                 };
                             } else {
                                 if (isRaid){
-                                    Add(GILDE_RAID);
+                                    add(GILDE_RAID);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID, txt[(TXT_RAID_TEXT + 1)]);
+                                        enable_popup(GILDE_RAID, txt[(TXT_RAID_TEXT + 1)]);
                                     };
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
+                                        enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
                                     };
                                 } else {
-                                    Add(GILDE_ATTACK);
-                                    EnablePopup(GILDE_ATTACK, txt[(TXT_GUILD_BATTLE_POPUP + 1)]);
+                                    add(GILDE_ATTACK);
+                                    enable_popup(GILDE_ATTACK, txt[(TXT_GUILD_BATTLE_POPUP + 1)]);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
+                                        enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
                                     };
                                 };
                             };
@@ -22036,41 +22042,41 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     if (int(guildData[GUILD_ATTACK_TARGET]) == 0){
                     } else {
                         if (int(guildData[GUILD_ATTACK_TARGET]) < 0){
-                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 5)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             if (txt[TXT_RAID_TEXT]){
-                                EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
+                                enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 3)].split("%1").join(time_str(lastGuildData[GUILD_ATTACK_TIME])));
                             };
                         } else {
                             if (isRaid){
                                 if ((int(Savegame[SG_GUILD_FIGHT_STATUS]) & 1)){
-                                    Add(GILDE_RAID_OK);
+                                    add(GILDE_RAID_OK);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID_OK, txt[(TXT_RAID_TEXT + 2)]);
+                                        enable_popup(GILDE_RAID_OK, txt[(TXT_RAID_TEXT + 2)]);
                                     };
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
+                                        enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
                                     };
                                 } else {
-                                    Add(GILDE_RAID);
+                                    add(GILDE_RAID);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID, txt[(TXT_RAID_TEXT + 1)]);
+                                        enable_popup(GILDE_RAID, txt[(TXT_RAID_TEXT + 1)]);
                                     };
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
+                                        enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_RAID_TEXT + 10)]);
                                     };
                                 };
                             } else {
                                 if ((int(Savegame[SG_GUILD_FIGHT_STATUS]) & 1)){
-                                    Add(GILDE_ATTACK_OK);
-                                    EnablePopup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 3)]);
+                                    add(GILDE_ATTACK_OK);
+                                    enable_popup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 3)]);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
+                                        enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
                                     };
                                 } else {
-                                    Add(GILDE_ATTACK);
-                                    EnablePopup(GILDE_ATTACK, txt[(TXT_GUILD_BATTLE_POPUP + 1)]);
+                                    add(GILDE_ATTACK);
+                                    enable_popup(GILDE_ATTACK, txt[(TXT_GUILD_BATTLE_POPUP + 1)]);
                                     if (txt[TXT_RAID_TEXT]){
-                                        EnablePopup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
+                                        enable_popup(GILDE_RAID_GRAY, txt[(TXT_RAID_TEXT + 11)]);
                                     };
                                 };
                             };
@@ -22078,104 +22084,104 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
                     };
                 };
                 if (int(guildData[GUILD_DEFENCE_TARGET]) <= 0){
-                    EnablePopup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 6)]);
+                    enable_popup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 6)]);
                 } else {
                     if ((int(Savegame[SG_GUILD_FIGHT_STATUS]) & 2)){
-                        Add(GILDE_DEFEND_OK);
-                        EnablePopup(GILDE_DEFEND_OK, txt[(TXT_GUILD_BATTLE_POPUP + 4)]);
+                        add(GILDE_DEFEND_OK);
+                        enable_popup(GILDE_DEFEND_OK, txt[(TXT_GUILD_BATTLE_POPUP + 4)]);
                     } else {
-                        Add(GILDE_DEFEND);
-                        EnablePopup(GILDE_DEFEND, txt[(TXT_GUILD_BATTLE_POPUP + 2)]);
+                        add(GILDE_DEFEND);
+                        enable_popup(GILDE_DEFEND, txt[(TXT_GUILD_BATTLE_POPUP + 2)]);
                     };
                 };
             } else {
-                EnablePopup(GILDE_RAID_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
-                EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
-                EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                enable_popup(GILDE_RAID_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                enable_popup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                enable_popup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
             };
         } else {
-            Remove(GILDE_RAID);
-            Remove(GILDE_RAID_GRAY);
-            Remove(GILDE_RAID_OK);
+            remove(GILDE_RAID);
+            remove(GILDE_RAID_GRAY);
+            remove(GILDE_RAID_OK);
             if ((int(Savegame[SG_SERVER_TIME]) - int(Savegame[SG_GUILD_JOIN_DATE])) > ((60 * 60) * 24)){
                 if (myOwnRank == -1){
-                    Remove(GILDE_ATTACK_GRAY);
-                    Remove(GILDE_DEFEND_GRAY);
+                    remove(GILDE_ATTACK_GRAY);
+                    remove(GILDE_DEFEND_GRAY);
                 } else {
                     if ((((myOwnRank == 1)) or ((myOwnRank == 2)))){
                         if (int(guildData[GUILD_DEFENCE_TARGET]) == 0){
                             if (myOwnAttackTarget == 0){
                                 if (myOwnGuildMoney >= AttackCost){
-                                    Add(GILDE_ATTACK);
-                                    EnablePopup(GILDE_ATTACK, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 8)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 17)], String(int((AttackCost / 100))), actor[IF_GOLD], POPUP_END_LINE);
+                                    add(GILDE_ATTACK);
+                                    enable_popup(GILDE_ATTACK, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 8)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 17)], String(int((AttackCost / 100))), actor[IF_GOLD], POPUP_END_LINE);
                                 } else {
-                                    EnablePopup(GILDE_ATTACK_GRAY, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 18)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 17)], String(int((AttackCost / 100))), actor[IF_GOLD], POPUP_END_LINE);
+                                    enable_popup(GILDE_ATTACK_GRAY, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 18)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_GUILD_BATTLE_POPUP + 17)], String(int((AttackCost / 100))), actor[IF_GOLD], POPUP_END_LINE);
                                 };
                             } else {
                                 if (myOwnAttackTarget < 0){
-                                    EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 11)]);
+                                    enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 11)]);
                                 } else {
-                                    EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 16)]);
+                                    enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 16)]);
                                 };
                             };
                         } else {
                             if (int(guildData[GUILD_DEFENCE_TARGET]) == int(Savegame[SG_GUILD_INDEX])){
-                                Add(GILDE_ATTACK_OK);
-                                EnablePopup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 12)]);
+                                add(GILDE_ATTACK_OK);
+                                enable_popup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 12)]);
                             } else {
                                 if (int(guildData[GUILD_DEFENCE_TARGET]) < 0){
-                                    EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 11)]);
+                                    enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 11)]);
                                 } else {
-                                    EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 13)]);
+                                    enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 13)]);
                                 };
                             };
                         };
                     } else {
                         if (int(guildData[GUILD_DEFENCE_TARGET]) == int(Savegame[SG_GUILD_INDEX])){
-                            Add(GILDE_ATTACK_OK);
-                            EnablePopup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 12)]);
+                            add(GILDE_ATTACK_OK);
+                            enable_popup(GILDE_ATTACK_OK, txt[(TXT_GUILD_BATTLE_POPUP + 12)]);
                         } else {
-                            EnablePopup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 14)]);
+                            enable_popup(GILDE_ATTACK_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 14)]);
                         };
                         if (int(guildData[GUILD_ATTACK_TARGET]) == int(Savegame[SG_GUILD_INDEX])){
                             if ((int(Savegame[SG_GUILD_FIGHT_STATUS]) & 2)){
-                                Add(GILDE_DEFEND_OK);
-                                EnablePopup(GILDE_DEFEND_OK, txt[(TXT_GUILD_BATTLE_POPUP + 4)]);
+                                add(GILDE_DEFEND_OK);
+                                enable_popup(GILDE_DEFEND_OK, txt[(TXT_GUILD_BATTLE_POPUP + 4)]);
                             } else {
-                                Add(GILDE_DEFEND);
-                                EnablePopup(GILDE_DEFEND, txt[(TXT_GUILD_BATTLE_POPUP + 9)]);
+                                add(GILDE_DEFEND);
+                                enable_popup(GILDE_DEFEND, txt[(TXT_GUILD_BATTLE_POPUP + 9)]);
                             };
                         } else {
-                            EnablePopup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 15)]);
+                            enable_popup(GILDE_DEFEND_GRAY, txt[(TXT_GUILD_BATTLE_POPUP + 15)]);
                         };
                     };
                 };
             } else {
                 if (myOwnRank == -1){
-                    Remove(GILDE_ATTACK_GRAY);
-                    Remove(GILDE_DEFEND_GRAY);
+                    remove(GILDE_ATTACK_GRAY);
+                    remove(GILDE_DEFEND_GRAY);
                 } else {
-                    EnablePopup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
-                    EnablePopup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                    enable_popup(GILDE_ATTACK_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
+                    enable_popup(GILDE_DEFEND_GRAY, txt[TXT_GUILD_JOINED_TOO_RECENTLY].split("%1").join(time_str((Number(Savegame[SG_GUILD_JOIN_DATE]) + ((60 * 60) * 24)), True)));
                 };
             };
         };
         if (((((int(guildData[GUILD_MEMBERLEVEL]) % 1000) < 50)) or (!(txt[TXT_RAID_TEXT])))){
-            Remove(GILDE_RAID);
-            Remove(GILDE_RAID_GRAY);
-            Remove(GILDE_RAID_OK);
+            remove(GILDE_RAID);
+            remove(GILDE_RAID_GRAY);
+            remove(GILDE_RAID_OK);
         };
         if (countCompleted >= 3){
         };
         if (guildData[0] != Savegame[SG_GUILD_INDEX]){
-            Remove(GILDE_GEBAEUDE);
-            Remove(GILDE_CHAT);
-            Remove(GILDE_GEBAEUDE_IMPROVE_GRAY, (GILDE_GEBAEUDE_IMPROVE_GRAY + 1), (GILDE_GEBAEUDE_IMPROVE_GRAY + 2));
-            Remove(GILDE_SCHATZ);
+            remove(GILDE_GEBAEUDE);
+            remove(GILDE_CHAT);
+            remove(GILDE_GEBAEUDE_IMPROVE_GRAY, (GILDE_GEBAEUDE_IMPROVE_GRAY + 1), (GILDE_GEBAEUDE_IMPROVE_GRAY + 2));
+            remove(GILDE_SCHATZ);
         };
     };
     arrowHallMode = False;
-    if (isMine){
+    if (is_mine){
         if (int(guildData[0]) != gilden_id){
             gilden_id = int(guildData[0]);
             send_action(ACT_REQUEST_GUILD, guildData[0]);
@@ -22194,12 +22200,12 @@ public function ShowScreenGilden(guildData:Array, guildDescr:String, guildMember
 
 public function ShowWorkSuccessScreen(evt:Event=undefined):void{
     ShowCityScreen();
-    Add(SCREEN_ARBEITEN_SUCCESS);
+    add(SCREEN_ARBEITEN_SUCCESS);
     actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_WORK];
     actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
     actor[LBL_SCR_ARBEITEN_TEXT].text = txt[TXT_ARBEIT_TEXT5];
     actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((txt[TXT_ARBEIT_TEXT6] + " ") + geld(VerdientesGeld)) + " ") + txt[TXT_ARBEIT_TEXT7]);
-    Play(SND_JINGLE);
+    play(SND_JINGLE);
     CheckWrongPage(ACT_SCREEN_ARBEITEN);
 }
 
@@ -22223,7 +22229,7 @@ public function ShowWorkScreen(evt:Event=undefined):void{
                             text = WaitingTime(Savegame[SG_ACTION_ENDTIME]);
                         };
                         if (OnStage(LBL_SCR_ARBEITEN_TIME)){
-                            SetTitleBar(text);
+                            set_title_bar(text);
                         };
                         actor[SCR_ARBEITEN_FILL].width = (WaitingProgress((Savegame[SG_ACTION_ENDTIME] - ((Savegame[SG_ACTION_INDEX] * 60) * 60)), Savegame[SG_ACTION_ENDTIME]) * 278);
                     } else {
@@ -22253,13 +22259,13 @@ public function ShowWorkScreen(evt:Event=undefined):void{
             ArbeitCountdown.start();
             CheckWrongPage(ACT_SCREEN_ARBEITEN);
         };
-        Add(SCREEN_ARBEITEN_WAIT);
+        add(SCREEN_ARBEITEN_WAIT);
         SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
         SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
         when_loaded(DoShowWorking);
     } else {
         if (Savegame[SG_ACTION_STATUS] == 0){
-            Add(SCREEN_ARBEITEN);
+            add(SCREEN_ARBEITEN);
             actor[LBL_WINDOW_TITLE].text = txt[TXT_TITLE_WORK];
             actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
             actor[LBL_SCR_ARBEITEN_TEXT].text = txt[TXT_ARBEIT_TEXT];
@@ -22296,7 +22302,7 @@ public function ShowHallScreen(evt:Event=undefined):void{
             ruhmesHalleSuchName = True;
         };
         actor[INP_HALLE_GOTO].getChildAt(1).text = txt[TXT_HALLE_SUCHFELD_TEXT];
-        Add(SCREEN_HALLE);
+        add(SCREEN_HALLE);
     };
     Load(SCREEN_HALLE);
     when_loaded(DoShowHallScreen);
@@ -22314,36 +22320,36 @@ public function ShowCityScreen(evt:Event=undefined):void{
         RemoveAll();
         Switch (tageszeit()){
             case 0:
-                Add(SCREEN_CITY_NIGHT);
+                add(SCREEN_CITY_NIGHT);
                 break;
             case 1:
-                Add(SCREEN_CITY_DAWN);
+                add(SCREEN_CITY_DAWN);
                 break;
             case 2:
-                Add(SCREEN_CITY_DAY);
+                add(SCREEN_CITY_DAY);
                 break;
         };
-        Add(SCREEN_CITY);
+        add(SCREEN_CITY);
         if (StatistenBleiben){
             MakeTemporary(CITY_STATISTEN, BUBBLES);
             VisibleToFront(CITY_STATISTEN, BUBBLES);
         } else {
             if (int((Math.random() * 3)) == 0){
-                Add(CITY_MAGIER1);
+                add(CITY_MAGIER1);
             };
             if (int((Math.random() * 3)) == 0){
-                Add(CITY_ORK1);
+                add(CITY_ORK1);
                 DefineBunch(CITY_ORK, CITY_ORK1);
             };
             if (int((Math.random() * 3)) == 0){
-                Add(CITY_SANDWICH1);
+                add(CITY_SANDWICH1);
             };
             if (int((Math.random() * 3)) == 0){
-                Add(CITY_ZWERG1);
+                add(CITY_ZWERG1);
                 DefineBunch(CITY_ZWERG, CITY_ZWERG1);
             };
             if (int((Math.random() * 3)) == 0){
-                Add(CITY_ELF1);
+                add(CITY_ELF1);
             };
         };
         if (Capabilities.version.substr(0, 3) != "IOS"){
@@ -22351,9 +22357,9 @@ public function ShowCityScreen(evt:Event=undefined):void{
             actor[SCR_CITY_CLOUDS_DAWN].scrollRect = new Rectangle(0, 0, 1000, 265);
             actor[SCR_CITY_CLOUDS_DAY].scrollRect = new Rectangle(0, 0, 1000, 265);
             if (lightMode){
-                Remove(SCR_CITY_CLOUDS_NIGHT);
-                Remove(SCR_CITY_CLOUDS_DAWN);
-                Remove(SCR_CITY_CLOUDS_DAY);
+                remove(SCR_CITY_CLOUDS_NIGHT);
+                remove(SCR_CITY_CLOUDS_DAWN);
+                remove(SCR_CITY_CLOUDS_DAY);
             };
         };
         ShowDealerScreen(undefined, True);
@@ -22440,7 +22446,7 @@ public function ShowPostScreen(par:Array=undefined){
             PostReturnToPlayer = "";
             BuildPostList();
         };
-        Add(SCREEN_POST);
+        add(SCREEN_POST);
         var _local3 = actor[POST_LIST];
         with (_local3) {
             add_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
@@ -22452,18 +22458,18 @@ public function ShowPostScreen(par:Array=undefined){
             actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
-            Remove(POST_LIST);
-            Add(POST_WRITE);
-            Hide(POST_GUILD);
+            remove(POST_LIST);
+            add(POST_WRITE);
+            hide(POST_GUILD);
             actor[INP_POST_ADDRESS].getChildAt(1).text = sel_name;
             actor[INP_POST_SUBJECT].getChildAt(1).text = txt[TXT_BETREFF];
             actor[INP_POST_TEXT].getChildAt(1).text = txt[TXT_NACHRICHT];
         };
         if (tageszeit() != 0){
-            Remove(POST_NIGHT);
+            remove(POST_NIGHT);
         };
         if (tageszeit() != 1){
-            Remove(POST_DAWN);
+            remove(POST_DAWN);
         };
         if (((((!(postSchonDa)) and ((par is Array)))) and (!(lightMode)))){
             SetAlpha(POST_LIST, 0);
@@ -22473,18 +22479,18 @@ public function ShowPostScreen(par:Array=undefined){
         };
     };
     BuildPostList = function (evt:Event=undefined){
-        var tmpArray:* = undefined;
+        var tmp_array:* = undefined;
         var sel_row:* = 0;
         var tmpBalken:* = null;
         var line:* = undefined;
         var i:* = 0;
-        var tmpFmt:* = null;
+        var tmp_fmt:* = null;
         var evt:* = evt;
-        tmpArray = par[1].split("/");
+        tmp_array = par[1].split("/");
         if (par[2]){
             Savegame[SG_MSG_COUNT] = par[2];
         };
-        sel_row = (((tmpArray[0] == "")) ? 0 : 1);
+        sel_row = (((tmp_array[0] == "")) ? 0 : 1);
         var _local3 = actor[LBL_POST_LIMIT];
         with (_local3) {
             if (int(Savegame[SG_MSG_COUNT]) >= 100){
@@ -22508,14 +22514,14 @@ public function ShowPostScreen(par:Array=undefined){
                 PostBtnHandler(undefined, POST_DOWN);
                 return;
             };
-            if (tmpArray[((sel_row - 1) * 3)] == ""){
+            if (tmp_array[((sel_row - 1) * 3)] == ""){
                 return;
             };
         };
         if (oldSel == -1){
             sel_row = 15;
         };
-        while (tmpArray[((sel_row - 1) * 3)] == "") {
+        while (tmp_array[((sel_row - 1) * 3)] == "") {
             sel_row = (sel_row - 1);
         };
         oldSel = sel_row;
@@ -22538,14 +22544,14 @@ public function ShowPostScreen(par:Array=undefined){
             PostListAddField(POST_LIST_COLUMN_3_X, POST_LIST_LINES_Y, txt[TXT_POST_LIST_COLUMN_3], FontFormat_PostListHeading);
         };
         PostSel = sel_row;
-        PostScrollDown = !((tmpArray[(tmpArray.length - 3)] == ""));
+        PostScrollDown = !((tmp_array[(tmp_array.length - 3)] == ""));
         line = 1;
         i = 0;
-        while (i < ((tmpArray.length - 1) - 3)) {
+        while (i < ((tmp_array.length - 1) - 3)) {
             if (sel_row == line){
-                tmpFmt = FontFormat_PostListHighLightSys;
+                tmp_fmt = FontFormat_PostListHighLightSys;
             } else {
-                tmpFmt = FontFormat_PostListTextSys;
+                tmp_fmt = FontFormat_PostListTextSys;
             };
             tmpBalken = new MovieClip();
             _local3 = tmpBalken.graphics;
@@ -22564,36 +22570,36 @@ public function ShowPostScreen(par:Array=undefined){
                 alpha = (((sel_row == line)) ? 1 : 0);
             };
             DoubleClickHandler(tmpBalken, BuildPostList, PostBtnHandler);
-            if (tmpArray[i] == ""){
+            if (tmp_array[i] == ""){
                 fightFlushMode = False;
                 return;
             };
-            Switch (tmpArray[(i + 1)]){
+            Switch (tmp_array[(i + 1)]){
                 case "1":
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED];
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED];
                     break;
                 case "2":
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN];
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN];
                     break;
                 case "3":
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_GUILD_EXPELLED];
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_EXPELLED];
                     break;
                 case "4":
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN];
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN];
                     break;
                 case "5":
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_GUILD_INVITE];
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_INVITE];
                     break;
                 case "6":
                     if (fightFlushMode){
                         send_action(ACT_POST_DELETE, ((line + PostScroll) - 1));
                         return;
                     };
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_PVP].replace("%1", tmpArray[i]);
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_PVP].replace("%1", tmp_array[i]);
                     if (sel_row == line){
-                        tmpFmt = FontFormat_PostListHighLightSysRed;
+                        tmp_fmt = FontFormat_PostListHighLightSysRed;
                     } else {
-                        tmpFmt = FontFormat_PostListTextSysRed;
+                        tmp_fmt = FontFormat_PostListTextSysRed;
                     };
                     break;
                 case "7":
@@ -22601,25 +22607,25 @@ public function ShowPostScreen(par:Array=undefined){
                         send_action(ACT_POST_DELETE, ((line + PostScroll) - 1));
                         return;
                     };
-                    tmpArray[(i + 1)] = txt[TXT_SUBJECT_PVP].replace("%1", tmpArray[i]);
+                    tmp_array[(i + 1)] = txt[TXT_SUBJECT_PVP].replace("%1", tmp_array[i]);
                     if (sel_row == line){
-                        tmpFmt = FontFormat_PostListHighLightSysGreen;
+                        tmp_fmt = FontFormat_PostListHighLightSysGreen;
                     } else {
-                        tmpFmt = FontFormat_PostListTextSysGreen;
+                        tmp_fmt = FontFormat_PostListTextSysGreen;
                     };
                     break;
                 case "8":
                     if (txt[TXT_INV_ACC_TITLE] != ""){
-                        tmpArray[(i + 1)] = txt[TXT_INV_ACC_TITLE];
+                        tmp_array[(i + 1)] = txt[TXT_INV_ACC_TITLE];
                     } else {
-                        tmpArray[(i + 1)] = "FRIEND_INVITE_ACCEPTED";
+                        tmp_array[(i + 1)] = "FRIEND_INVITE_ACCEPTED";
                     };
                     break;
                 case "9":
                     if (txt[TXT_INV_VAL_TITLE] != ""){
-                        tmpArray[(i + 1)] = txt[TXT_INV_VAL_TITLE];
+                        tmp_array[(i + 1)] = txt[TXT_INV_VAL_TITLE];
                     } else {
-                        tmpArray[(i + 1)] = "FRIEND_EMAIL_VERIFIED";
+                        tmp_array[(i + 1)] = "FRIEND_EMAIL_VERIFIED";
                     };
                     break;
                 case "1  ":
@@ -22631,28 +22637,28 @@ public function ShowPostScreen(par:Array=undefined){
                 case "7  ":
                 case "8  ":
                 case "9  ":
-                    tmpArray[(i + 1)] = "Moo!";
+                    tmp_array[(i + 1)] = "Moo!";
                 default:
                     if (sel_row == line){
-                        tmpFmt = FontFormat_PostListHighLight;
+                        tmp_fmt = FontFormat_PostListHighLight;
                     } else {
-                        tmpFmt = FontFormat_PostListText;
+                        tmp_fmt = FontFormat_PostListText;
                     };
             };
             actor[POST_LIST].addChild(tmpBalken);
-            addSuggestNames(tmpArray[i]);
+            addSuggestNames(tmp_array[i]);
             if (textDir == "right"){
                 i = (i + 1);
-                PostListAddField((POST_LIST_COLUMN_1_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
+                PostListAddField((POST_LIST_COLUMN_1_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmp_array[i], tmp_fmt);
                 i = (i + 1);
-                PostListAddField((POST_LIST_COLUMN_2_X + 470), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
-                PostListAddField((POST_LIST_COLUMN_3_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmpArray[i]) == 0)) ? "" : time_str(tmpArray[i])), tmpFmt);
+                PostListAddField((POST_LIST_COLUMN_2_X + 470), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmp_array[i], tmp_fmt);
+                PostListAddField((POST_LIST_COLUMN_3_X + 180), (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmp_array[i]) == 0)) ? "" : time_str(tmp_array[i])), tmp_fmt);
             } else {
                 i = (i + 1);
-                PostListAddField(POST_LIST_COLUMN_1_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
+                PostListAddField(POST_LIST_COLUMN_1_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmp_array[i], tmp_fmt);
                 i = (i + 1);
-                PostListAddField(POST_LIST_COLUMN_2_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmpArray[i], tmpFmt);
-                PostListAddField(POST_LIST_COLUMN_3_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmpArray[i]) == 0)) ? "" : time_str(tmpArray[i])), tmpFmt);
+                PostListAddField(POST_LIST_COLUMN_2_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), tmp_array[i], tmp_fmt);
+                PostListAddField(POST_LIST_COLUMN_3_X, (POST_LIST_LINES_Y + (line * POST_LIST_LINE_Y)), (((int(tmp_array[i]) == 0)) ? "" : time_str(tmp_array[i])), tmp_fmt);
             };
             line = (line + 1);
             i = (i + 1);
@@ -22747,7 +22753,7 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
         if (so.data.password){
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = String(so.data.password);
         };
-        Add(BLACK_SQUARE);
+        add(BLACK_SQUARE);
         RequestLOGin();
         return;
     };
@@ -22773,15 +22779,15 @@ public function ShowBuildCharacterScreen(evt:Event=undefined):void{
         x = (SCREEN_TITLE_X - int((textWidth / 2)));
         y = SCREEN_TITLE_Y;
     };
-    Add(SCREEN_BUILDCHAR);
+    add(SCREEN_BUILDCHAR);
     if (DemoMode){
-        Remove(CREATE_GOTO_LOGIN, IF_LOGOUT);
+        remove(CREATE_GOTO_LOGIN, IF_LOGOUT);
     };
     if (char_volk == 0){
         RandomizeCharacter();
     };
     if (RebuildMode){
-        Remove(CREATE_CHARACTER);
+        remove(CREATE_CHARACTER);
         revertchar_volk = char_volk;
         revertchar_male = char_male;
         revertchar_color = char_color;
@@ -23201,18 +23207,18 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
 }
 
 public function SingPlur(inpText:String, amount:int, sep:String="*"):String{
-    var tmpArray:Array;
-    tmpArray = inpText.split(sep);
-    if (tmpArray.length == 4){
-        return (((tmpArray[0] + tmpArray[(((amount == 1)) ? 1 : 2)]) + tmpArray[3]));
+    var tmp_array:Array;
+    tmp_array = inpText.split(sep);
+    if (tmp_array.length == 4){
+        return (((tmp_array[0] + tmp_array[(((amount == 1)) ? 1 : 2)]) + tmp_array[3]));
     };
-    if (tmpArray.length == 5){
-        return (((tmpArray[0] + tmpArray[(((amount == 1)) ? 1 : (((amount == 2)) ? 2 : 3))]) + tmpArray[4]));
+    if (tmp_array.length == 5){
+        return (((tmp_array[0] + tmp_array[(((amount == 1)) ? 1 : (((amount == 2)) ? 2 : 3))]) + tmp_array[4]));
     };
-    if (tmpArray.length == 6){
-        return (((tmpArray[0] + tmpArray[(((amount == 1)) ? 1 : (((amount == 2)) ? 2 : (((amount <= 10)) ? 3 : 4)))]) + tmpArray[4]));
+    if (tmp_array.length == 6){
+        return (((tmp_array[0] + tmp_array[(((amount == 1)) ? 1 : (((amount == 2)) ? 2 : (((amount <= 10)) ? 3 : 4)))]) + tmp_array[4]));
     };
-    return (tmpArray.join(""));
+    return (tmp_array.join(""));
 }
 
 public function AnimateAch(actorID:int, y_level:int=635, AchAniPow:Number=-10){
@@ -23255,7 +23261,7 @@ public function DoAchievements(SG:Array):Boolean{
     var achAusf:int;
     var achCurrentGrade:String;
     var OneUp:Boolean;
-    Remove(CHAR_ACH);
+    remove(CHAR_ACH);
     achAusfM = "";
     achAusfF = "";
     achAusf = 0;
@@ -23264,7 +23270,7 @@ public function DoAchievements(SG:Array):Boolean{
     i = 0;
     while (i < ((buffedMode) ? 7 : 8)) {
         achAusf = ach_level(SG, (i % 8), 1);
-        Add(((CHAR_ACH + i) + (achAusf * 8)));
+        add(((CHAR_ACH + i) + (achAusf * 8)));
         if (old_ach[(i % 8)] < 0){
             old_ach[(i % 8)] = -(old_ach[(i % 8)]);
             AnimateAch(((CHAR_ACH + i) + (achAusf * 8)));
@@ -23312,7 +23318,7 @@ public function DoAchievements(SG:Array):Boolean{
         if (ach_level(SG, (i % 8), 3) > 0){
             achPop[achPop.length] = txt[TXT_ACH_4].split("%1").join(String(ach_level(SG, (i % 8), 3)));
         };
-        EnablePopup(((CHAR_ACH + i) + (ach_level(SG, (i % 8), 1) * 8)), achPop);
+        enable_popup(((CHAR_ACH + i) + (ach_level(SG, (i % 8), 1) * 8)), achPop);
         i++;
     };
     return (OneUp);
@@ -23365,7 +23371,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
             };
         };
         level_upTimer = new Timer(20);
-        ErrorMessage(" ");
+        error_message(" ");
         if (!OnStage(SCR_CHAR_BG)){
             SetAlpha(CHAR_SECONDPROP, 1);
             SetAlpha(CHAR_PREISE, 0);
@@ -23397,9 +23403,9 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
         actor[LBL_CHAR_MOUNT_DESCR].text = "";
         actor[LBL_CHAR_MOUNT_GAIN].text = "";
         if (Savegame[SG_MOUNT] > 0){
-            Add(LBL_CHAR_MOUNT_RUNTIME);
+            add(LBL_CHAR_MOUNT_RUNTIME);
         } else {
-            Remove(LBL_CHAR_MOUNT_RUNTIME);
+            remove(LBL_CHAR_MOUNT_RUNTIME);
         };
         MountTimeTimer = new Timer(500);
         MountTimeTimer.add_event_listener(TimerEvent.TIMER, MountTimeEvent);
@@ -23407,7 +23413,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
         i = 0;
         while (i < 8) {
             if ((((int(Savegame[SG_MOUNT]) > 0)) and (((i + 1) == (int(Savegame[SG_MOUNT]) + (((((Savegame[SG_RACE] >= 5)) and (!(param_censored)))) ? 4 : 0)))))){
-                Show((CHAR_MOUNT_1 + i));
+                show((CHAR_MOUNT_1 + i));
                 if (textDir == "right"){
                     actor[LBL_CHAR_MOUNT_NAME].text = ((txt[(TXT_STALL_MOUNTTITEL + i)] + " ") + txt[TXT_MOUNT]);
                     actor[LBL_CHAR_MOUNT_DESCR].text = txt[(TXT_STALL_MOUNTTEXT + i)];
@@ -23419,7 +23425,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
                 };
                 MountTimeEvent();
             } else {
-                Hide((CHAR_MOUNT_1 + i));
+                hide((CHAR_MOUNT_1 + i));
             };
             i = (i + 1);
         };
@@ -23440,9 +23446,9 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
         i = 0;
         while (i < 3) {
             if ((int(Savegame[SG_CLASS]) - 1) == i){
-                Show((SCR_CHAR_KLASSE_1 + i));
+                show((SCR_CHAR_KLASSE_1 + i));
             } else {
-                Hide((SCR_CHAR_KLASSE_1 + i));
+                hide((SCR_CHAR_KLASSE_1 + i));
             };
             i = (i + 1);
         };
@@ -23476,16 +23482,16 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
             x = ((EXPERIENCE_BAR_X + 127) - int((textWidth / 2)));
         };
         if (textDir == "right"){
-            EnablePopup(CA_SCR_CHAR_EXPBAR, POPUP_BEGIN_LINE, (":" + txt[TXT_EXP]), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP], POPUP_END_LINE, POPUP_BEGIN_LINE, (":" + txt[TXT_EXPNEXTLEVEL]), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP_FOR_NEXTLEVEL], POPUP_END_LINE);
+            enable_popup(CA_SCR_CHAR_EXPBAR, POPUP_BEGIN_LINE, (":" + txt[TXT_EXP]), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP], POPUP_END_LINE, POPUP_BEGIN_LINE, (":" + txt[TXT_EXPNEXTLEVEL]), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP_FOR_NEXTLEVEL], POPUP_END_LINE);
         } else {
-            EnablePopup(CA_SCR_CHAR_EXPBAR, POPUP_BEGIN_LINE, (txt[TXT_EXP] + ":"), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP], POPUP_END_LINE, POPUP_BEGIN_LINE, (txt[TXT_EXPNEXTLEVEL] + ":"), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP_FOR_NEXTLEVEL], POPUP_END_LINE);
+            enable_popup(CA_SCR_CHAR_EXPBAR, POPUP_BEGIN_LINE, (txt[TXT_EXP] + ":"), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP], POPUP_END_LINE, POPUP_BEGIN_LINE, (txt[TXT_EXPNEXTLEVEL] + ":"), (POPUP_TAB + POPUP_TAB_ADD), Savegame[SG_EXP_FOR_NEXTLEVEL], POPUP_END_LINE);
         };
         DisplayInventory(undefined, NoPrices);
         vanityRandom = Math.random();
         if ((((((((uint(Savegame[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) == 2)))) or ((((int(so.data.vanityMode) == 3)) and ((vanityRandom < 0.5)))))){
-            Add(SCREEN_CHAR_GOLDEN);
+            add(SCREEN_CHAR_GOLDEN);
         } else {
-            Add(SCREEN_CHAR);
+            add(SCREEN_CHAR);
         };
         LoadCharacterImage();
         AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
@@ -23493,7 +23499,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
         i = 0;
         while (i < 13) {
             if (mirror_pieces[i]){
-                Add((MIRROR_PIECE + i));
+                add((MIRROR_PIECE + i));
                 mirrorAniTimer.start();
             };
             i = (i + 1);
@@ -23513,8 +23519,8 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
         };
         if (txt[TXT_ALBUM]){
             if (Number(Savegame[SG_ALBUM]) >= 10000){
-                Add(CHAR_ALBUM);
-                EnablePopup(CHAR_ALBUM, POPUP_BEGIN_LINE, txt[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_COLLECTION].split("%1").join(String((Savegame[SG_ALBUM] - 10000))).split("%2").join(String(contentMax)).split("%3").join(String((Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_COLLECTION + 7)], POPUP_END_LINE);
+                add(CHAR_ALBUM);
+                enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, txt[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_COLLECTION].split("%1").join(String((Savegame[SG_ALBUM] - 10000))).split("%2").join(String(contentMax)).split("%3").join(String((Math.round((((Savegame[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_COLLECTION + 7)], POPUP_END_LINE);
                 if (album_effect){
                     AnimateAch(CHAR_ALBUM, CHAR_PLAYERY);
                     album_effect = False;
@@ -23557,7 +23563,7 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
             };
             level_upAniStep = 25;
             kickIn = 0;
-            Add(LBL_SCR_CHAR_EXPLABEL);
+            add(LBL_SCR_CHAR_EXPLABEL);
             OneUp = True;
             level_up = False;
             _local2 = level_upTimer;
@@ -23567,11 +23573,11 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
             };
         };
         if (OneUp){
-            Play(SND_JINGLE);
+            play(SND_JINGLE);
         };
         if (arrowHallMode){
-            EnablePopup(PREV_PLAYER, txt[TXT_EHRENHALLE]);
-            EnablePopup(NEXT_PLAYER, txt[TXT_EHRENHALLE]);
+            enable_popup(PREV_PLAYER, txt[TXT_EHRENHALLE]);
+            enable_popup(NEXT_PLAYER, txt[TXT_EHRENHALLE]);
             indexInHall = -1;
             findIndex = 0;
             while (findIndex < lastHallMembers.length) {
@@ -23586,15 +23592,15 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
             };
             if (indexInHall != -1){
                 if (indexInHall > 0){
-                    Add(PREV_PLAYER);
+                    add(PREV_PLAYER);
                 };
                 if (indexInHall < 14){
-                    Add(NEXT_PLAYER);
+                    add(NEXT_PLAYER);
                 };
             };
         } else {
-            EnablePopup(PREV_PLAYER, txt[TXT_GILDEN]);
-            EnablePopup(NEXT_PLAYER, txt[TXT_GILDEN]);
+            enable_popup(PREV_PLAYER, txt[TXT_GILDEN]);
+            enable_popup(NEXT_PLAYER, txt[TXT_GILDEN]);
             indexInGuild = -1;
             findIndex = 0;
             while (findIndex < lastGuildMembers.length) {
@@ -23609,10 +23615,10 @@ public function ShowCharacterScreen(evt:Event=undefined, NoPrices:Boolean=False)
             };
             if (indexInGuild != -1){
                 if (indexInGuild > 0){
-                    Add(PREV_PLAYER);
+                    add(PREV_PLAYER);
                 };
                 if (indexInGuild < (int(lastGuildData[3]) - 1)){
-                    Add(NEXT_PLAYER);
+                    add(NEXT_PLAYER);
                 };
             };
         };
@@ -23646,22 +23652,22 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
                 return;
             };
             if (WaitingFor(Savegame[SG_PVP_REROLL_TIME])){
-                SetTitleBar(WaitingTime(Savegame[SG_PVP_REROLL_TIME]));
+                set_title_bar(WaitingTime(Savegame[SG_PVP_REROLL_TIME]));
                 if (textDir == "right"){
                     SetBtnText(CHAR_ATTACK, ("(~P1) " + txt[TXT_ATTACK]));
                 } else {
                     SetBtnText(CHAR_ATTACK, (txt[TXT_ATTACK] + " (1~P)"));
                 };
-                Show(LBL_CHAR_DELAY);
+                show(LBL_CHAR_DELAY);
                 var _local3 = actor[LBL_CHAR_DELAY];
                 with (_local3) {
                     text = WaitingTime(Savegame[SG_PVP_REROLL_TIME]);
                     x = (((280 + 500) + CHAR_DELAY_X) - (textWidth / 2));
                 };
             } else {
-                SetTitleBar();
+                set_title_bar();
                 SetBtnText(CHAR_ATTACK, txt[TXT_ATTACK]);
-                Hide(LBL_CHAR_DELAY);
+                hide(LBL_CHAR_DELAY);
                 PvPDelayTimer.removeEventListener(TimerEvent.TIMER, PvPDelayCheck);
                 PvPDelayTimer.stop();
             };
@@ -23701,7 +23707,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
         i = 0;
         while (i < 8) {
             if ((((int(PlayerSG[SG_MOUNT]) > 0)) and (((i + 1) == (int(PlayerSG[SG_MOUNT]) + (((((PlayerSG[SG_RACE] >= 5)) and (!(param_censored)))) ? 4 : 0)))))){
-                Show((CHAR_MOUNT_1 + i));
+                show((CHAR_MOUNT_1 + i));
                 if (textDir == "right"){
                     actor[LBL_CHAR_MOUNT_NAME].text = ((txt[(TXT_STALL_MOUNTTITEL + i)] + " ") + txt[TXT_MOUNT]);
                     actor[LBL_CHAR_MOUNT_DESCR].text = txt[(TXT_STALL_MOUNTTEXT + i)];
@@ -23712,7 +23718,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
                     actor[LBL_CHAR_MOUNT_GAIN].text = txt[(TXT_MOUNT_GAIN1 + i)].split("|")[0];
                 };
             } else {
-                Hide((CHAR_MOUNT_1 + i));
+                hide((CHAR_MOUNT_1 + i));
             };
             i = (i + 1);
         };
@@ -23733,9 +23739,9 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
         i = 0;
         while (i < 3) {
             if ((int(PlayerSG[SG_CLASS]) - 1) == i){
-                Show((SCR_CHAR_KLASSE_1 + i));
+                show((SCR_CHAR_KLASSE_1 + i));
             } else {
-                Hide((SCR_CHAR_KLASSE_1 + i));
+                hide((SCR_CHAR_KLASSE_1 + i));
             };
             i = (i + 1);
         };
@@ -23765,23 +23771,23 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             };
             x = ((EXPERIENCE_BAR_X + 127) - int((textWidth / 2)));
         };
-        EnablePopup(CA_SCR_CHAR_EXPBAR);
+        enable_popup(CA_SCR_CHAR_EXPBAR);
         SetAlpha(CHAR_SECONDPROP, 1);
         SetAlpha(CHAR_PREISE, 0);
         DisplayInventory(PlayerSG);
         vanityRandom = Math.random();
         if ((((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) == 2)))) or ((((int(so.data.vanityMode) == 3)) and ((vanityRandom < 0.5)))))){
-            Add(SCREEN_CHAR_GOLDEN);
+            add(SCREEN_CHAR_GOLDEN);
         } else {
-            Add(SCREEN_CHAR);
+            add(SCREEN_CHAR);
         };
         if (((!((PlayerGilde == Gilde))) and (!((Gilde == ""))))){
-            Add(PLAYER_GUILD_INVITE);
+            add(PLAYER_GUILD_INVITE);
         };
         if (txt[TXT_ALBUM]){
             if (Number(PlayerSG[SG_ALBUM]) >= 10000){
-                Add(CHAR_ALBUM);
-                EnablePopup(CHAR_ALBUM, POPUP_BEGIN_LINE, txt[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_COLLECTION].split("%1").join(String((PlayerSG[SG_ALBUM] - 10000))).split("%2").join(String(contentMax)).split("%3").join(String((Math.round((((PlayerSG[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
+                add(CHAR_ALBUM);
+                enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, txt[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_COLLECTION].split("%1").join(String((PlayerSG[SG_ALBUM] - 10000))).split("%2").join(String(contentMax)).split("%3").join(String((Math.round((((PlayerSG[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
             };
         };
         if ((((PlayerGilde == Gilde)) and (!((Gilde == ""))))){
@@ -23802,10 +23808,10 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
         PvPDelayCheck();
         i = 0;
         while (i < 5) {
-            Remove((SCR_CHAR_STEIGERN1 + i));
+            remove((SCR_CHAR_STEIGERN1 + i));
             i = (i + 1);
         };
-        Remove(LBL_CHAR_MOUNT_RUNTIME);
+        remove(LBL_CHAR_MOUNT_RUNTIME);
         LoadCharacterImage(CHARBACKGROUND, False, PlayerSG[SG_RACE], (int(PlayerSG[SG_GENDER]) == 1), PlayerSG[SG_CLASS], PlayerSG[SG_FACE_1], PlayerSG[SG_FACE_5], PlayerSG[SG_FACE_6], PlayerSG[SG_FACE_4], PlayerSG[SG_FACE_3], PlayerSG[SG_FACE_7], PlayerSG[SG_FACE_2], PlayerSG[SG_FACE_8], PlayerSG[SG_FACE_9]);
         AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         if ((((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32)) and ((int(so.data.vanityMode) == 0)))) or ((int(so.data.vanityMode) == 2)))) or ((((int(so.data.vanityMode) == 3)) and ((vanityRandom < 0.5)))))){
@@ -23817,8 +23823,8 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             AddFilter(LBL_SCR_CHAR_NAME, Filter_Shadow);
         };
         if (arrowHallMode){
-            EnablePopup(PREV_PLAYER, txt[TXT_EHRENHALLE]);
-            EnablePopup(NEXT_PLAYER, txt[TXT_EHRENHALLE]);
+            enable_popup(PREV_PLAYER, txt[TXT_EHRENHALLE]);
+            enable_popup(NEXT_PLAYER, txt[TXT_EHRENHALLE]);
             indexInHall = -1;
             findIndex = 0;
             while (findIndex < lastHallMembers.length) {
@@ -23833,15 +23839,15 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             };
             if (indexInHall != -1){
                 if (indexInHall > 0){
-                    Add(PREV_PLAYER);
+                    add(PREV_PLAYER);
                 };
                 if (indexInHall < 14){
-                    Add(NEXT_PLAYER);
+                    add(NEXT_PLAYER);
                 };
             };
         } else {
-            EnablePopup(PREV_PLAYER, txt[TXT_GILDEN]);
-            EnablePopup(NEXT_PLAYER, txt[TXT_GILDEN]);
+            enable_popup(PREV_PLAYER, txt[TXT_GILDEN]);
+            enable_popup(NEXT_PLAYER, txt[TXT_GILDEN]);
             indexInGuild = -1;
             findIndex = 0;
             while (findIndex < lastGuildMembers.length) {
@@ -23856,10 +23862,10 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
             };
             if (indexInGuild != -1){
                 if (indexInGuild > 0){
-                    Add(PREV_PLAYER);
+                    add(PREV_PLAYER);
                 };
                 if (indexInGuild < (int(lastGuildData[3]) - 1)){
-                    Add(NEXT_PLAYER);
+                    add(NEXT_PLAYER);
                 };
             };
         };
@@ -23940,9 +23946,9 @@ public function trim_too_long(actorIDObj:Object, max_width:int):String{
     };
     if ((actorIDObj is int)){
         if (Shortened){
-            EnablePopup(int(actorIDObj), tmpStr);
+            enable_popup(int(actorIDObj), tmpStr);
         } else {
-            EnablePopup(int(actorIDObj));
+            enable_popup(int(actorIDObj));
         };
     };
     return (((Shortened) ? tmpStr : ""));
@@ -23955,15 +23961,15 @@ public function CheckWrongPage(correctAct:int){
             Switch (lastAct){
                 case ACT_SCREEN_ARENA:
                     if (!has_mirror){
-                        ErrorMessage(txt[TXT_ERROR_TAVERNE_ARENA]);
+                        error_message(txt[TXT_ERROR_TAVERNE_ARENA]);
                     };
                     break;
                 case ACT_SCREEN_ARBEITEN:
-                    ErrorMessage(txt[TXT_ERROR_TAVERNE_ARBEITEN]);
+                    error_message(txt[TXT_ERROR_TAVERNE_ARBEITEN]);
                     break;
                 case ACT_SCREEN_WELTKARTE:
                     if (!has_mirror){
-                        ErrorMessage(txt[TXT_ERROR_TAVERNE_MAINQUEST]);
+                        error_message(txt[TXT_ERROR_TAVERNE_MAINQUEST]);
                     };
                     break;
             };
@@ -23971,13 +23977,13 @@ public function CheckWrongPage(correctAct:int){
             if (correctAct == ACT_SCREEN_ARBEITEN){
                 Switch (lastAct){
                     case ACT_SCREEN_ARENA:
-                        ErrorMessage(txt[TXT_ERROR_ARBEITEN_ARENA]);
+                        error_message(txt[TXT_ERROR_ARBEITEN_ARENA]);
                         break;
                     case ACT_SCREEN_TAVERNE:
-                        ErrorMessage(txt[TXT_ERROR_ARBEITEN_TAVERNE]);
+                        error_message(txt[TXT_ERROR_ARBEITEN_TAVERNE]);
                         break;
                     case ACT_SCREEN_WELTKARTE:
-                        ErrorMessage(txt[TXT_ERROR_ARBEITEN_MAINQUEST]);
+                        error_message(txt[TXT_ERROR_ARBEITEN_MAINQUEST]);
                         break;
                 };
             };
@@ -23993,7 +23999,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
     var NextEnemies:* = NextEnemies;
     var doShowCongrats:* = function (){
         RemoveAll();
-        Add(DUNGEON_CONGRATS);
+        add(DUNGEON_CONGRATS);
     };
     DoShowMainQuestsScreen = function (){
         var thisMQSInstance:* = 0;
@@ -24045,8 +24051,8 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
         NextEnemy = "";
         PlayUnlockSound = False;
         RemoveAll();
-        Add(Background);
-        Add((((countDone >= 9)) ? SCREEN_HLMAINQUESTS : SCREEN_MAINQUESTS));
+        add(Background);
+        add((((countDone >= 9)) ? SCREEN_HLMAINQUESTS : SCREEN_MAINQUESTS));
         var _local2 = actor[LBL_MAINQUESTS_TITLE];
         with (_local2) {
             x = (SCREEN_TITLE_X - int((textWidth / 2)));
@@ -24082,7 +24088,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                     FadeOut((MQS_DISABLED + i), 20, 0.05, 0, True);
                     DungeonLevel = "1";
                 };
-                EnablePopup((MQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_DUNGEON_INFO].split("%1").join(DungeonLevel).split("%2").join(NextEnemy), POPUP_END_LINE);
+                enable_popup((MQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_DUNGEON_INFO].split("%1").join(DungeonLevel).split("%2").join(NextEnemy), POPUP_END_LINE);
                 _local2 = actor[(MQS_BUTTON + i)];
                 with (_local2) {
                     add_event_listener(MouseEvent.CLICK, MainQuestsClick);
@@ -24241,7 +24247,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                     };
                 };
                 SetCnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
-                EnablePopup((HLMQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((i == 4)) ? TXT_TOWER_INFO : TXT_DUNGEON_INFO)].split("%1").join(DungeonLevel).split("%2").join(NextEnemy).split("%3").join(String(tower_level)), POPUP_END_LINE);
+                enable_popup((HLMQS_BUTTON + i), POPUP_BEGIN_LINE, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, txt[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((i == 4)) ? TXT_TOWER_INFO : TXT_DUNGEON_INFO)].split("%1").join(DungeonLevel).split("%2").join(NextEnemy).split("%3").join(String(tower_level)), POPUP_END_LINE);
                 _local2 = actor[(HLMQS_BUTTON + i)];
                 with (_local2) {
                     add_event_listener(MouseEvent.CLICK, MainQuestsClick);
@@ -24253,7 +24259,7 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
             };
         };
         if (PlayUnlockSound){
-            Play(SND_MAINQUESTS_UNLOCK);
+            play(SND_MAINQUESTS_UNLOCK);
         };
     };
     countDone = 0;
@@ -24337,28 +24343,28 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         with (_local2) {
             text = questText.split("#").join(String.fromCharCode(13));
         };
-        Arabize(LBL_MAINQUEST_TEXT);
+        arabize(LBL_MAINQUEST_TEXT);
         if (textDir == "right"){
             SetBtnText(MAINQUEST_START, (((WaitingFor(Savegame[SG_MQ_REROLL_TIME])) ? "(~P1) " : "") + txt[TXT_OK]));
         } else {
             SetBtnText(MAINQUEST_START, (txt[TXT_OK] + ((WaitingFor(Savegame[SG_MQ_REROLL_TIME])) ? " (1~P)" : "")));
         };
         if (WaitingFor(Savegame[SG_MQ_REROLL_TIME])){
-            Show(LBL_MAINQUEST_MUSHHINT);
+            show(LBL_MAINQUEST_MUSHHINT);
             actor[LBL_MAINQUEST_MUSHHINT].text = txt[TXT_MQ_MUSHHINT].split("%1").join(WaitingTime(Savegame[SG_MQ_REROLL_TIME]));
-            Arabize(LBL_MAINQUEST_MUSHHINT);
+            arabize(LBL_MAINQUEST_MUSHHINT);
             MQDelayTimer.add_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.start();
         } else {
-            Hide(LBL_MAINQUEST_MUSHHINT);
+            hide(LBL_MAINQUEST_MUSHHINT);
         };
         if (DungeonNr == 100){
-            Add(SCR_TOWER_BG);
+            add(SCR_TOWER_BG);
         } else {
-            Add(((SCR_QUEST_BG_1 + 50) + DungeonNr));
+            add(((SCR_QUEST_BG_1 + 50) + DungeonNr));
         };
         SetCnt(MAINQUEST_ENEMY_BORDER, FIGHT_CHAR_BORDER);
-        Add(SCREEN_MAINQUEST);
+        add(SCREEN_MAINQUEST);
         if (Enemy < 0){
             i = 0;
             while (i < 10) {
@@ -24384,12 +24390,12 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
             return;
         };
         if (WaitingFor(Savegame[SG_MQ_REROLL_TIME])){
-            Show(LBL_MAINQUEST_MUSHHINT);
+            show(LBL_MAINQUEST_MUSHHINT);
             actor[LBL_MAINQUEST_MUSHHINT].text = txt[TXT_MQ_MUSHHINT].split("%1").join(WaitingTime(Savegame[SG_MQ_REROLL_TIME]));
-            SetTitleBar(WaitingTime(Savegame[SG_MQ_REROLL_TIME]));
+            set_title_bar(WaitingTime(Savegame[SG_MQ_REROLL_TIME]));
         } else {
-            Hide(LBL_MAINQUEST_MUSHHINT);
-            SetTitleBar();
+            hide(LBL_MAINQUEST_MUSHHINT);
+            set_title_bar();
             MQDelayTimer.removeEventListener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.stop();
         };
@@ -24502,15 +24508,15 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         while (i < 3) {
             if (i == copyCatIdRaw){
                 if (int(SG[(copyCatId + CPC_LEVEL)]) >= int(Savegame[SG_LEVEL])){
-                    Hide((TOWER_STEIGERN1 + i));
-                    Hide((LBL_TOWER_BOOSTPRICELABEL + i));
+                    hide((TOWER_STEIGERN1 + i));
+                    hide((LBL_TOWER_BOOSTPRICELABEL + i));
                 } else {
-                    Show((TOWER_STEIGERN1 + i));
-                    Show((LBL_TOWER_BOOSTPRICELABEL + i));
+                    show((TOWER_STEIGERN1 + i));
+                    show((LBL_TOWER_BOOSTPRICELABEL + i));
                 };
             } else {
-                Hide((TOWER_STEIGERN1 + i));
-                Hide((LBL_TOWER_BOOSTPRICELABEL + i));
+                hide((TOWER_STEIGERN1 + i));
+                hide((LBL_TOWER_BOOSTPRICELABEL + i));
             };
             i = (i + 1);
         };
@@ -24535,8 +24541,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         };
         i = 0;
         while (i < 3) {
-            Hide((TOWER_NO_PORTRAIT + i));
-            Hide((TOWER_PORTRAIT + i));
+            hide((TOWER_NO_PORTRAIT + i));
+            hide((TOWER_PORTRAIT + i));
             _local7 = actor[(TOWER_NO_PORTRAIT + i)];
             with (_local7) {
                 scaleX = 0.86;
@@ -24552,14 +24558,14 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         _local7 = actor[LBL_TOWER_EXPLABEL];
         with (_local7) {
             if (SG[(copyCatId + CPC_LEVEL)] != 0){
-                Show((TOWER_PORTRAIT + copyCatIdRaw));
+                show((TOWER_PORTRAIT + copyCatIdRaw));
                 if (textDir == "right"){
                     text = ((SG[(copyCatId + CPC_LEVEL)] + " ") + txt[TXT_HALL_LIST_COLUMN_4]);
                 } else {
                     text = ((txt[TXT_HALL_LIST_COLUMN_4] + " ") + SG[(copyCatId + CPC_LEVEL)]);
                 };
             } else {
-                Show((TOWER_NO_PORTRAIT + copyCatIdRaw));
+                show((TOWER_NO_PORTRAIT + copyCatIdRaw));
                 text = "";
             };
             if (tower_levelLabelPos > (SCR_CHAR_CHARX + 3)){
@@ -24591,7 +24597,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         if (txt[TXT_SHIELD_FORMULA]){
             popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
-        EnablePopup(LBL_TOWER_EXPLABEL, popupLinesCpc);
+        enable_popup(LBL_TOWER_EXPLABEL, popupLinesCpc);
         i = 0;
         while (i < 3) {
             _local7 = actor[(LBL_TOWER_BOOSTPRICELABEL + i)];
@@ -24623,8 +24629,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         } else {
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text) + " / 2"), POPUP_END_LINE];
         };
-        EnablePopup((LBL_SCR_CHAR_SCHADEN + i), popupLines);
-        EnablePopup((LBL_SCR_CHAR_SCHADEN_CAPTION + i), popupLines);
+        enable_popup((LBL_SCR_CHAR_SCHADEN + i), popupLines);
+        enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + i), popupLines);
         popupLines = new Array();
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, POPUP_END_LINE];
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
@@ -24687,8 +24693,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         if (tempBonus > 0){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribBonus, txt[TXT_BONUS], POPUP_TAB, String(tempBonus), POPUP_END_LINE];
         };
-        EnablePopup((LBL_SCR_CHAR_STAERKE + i), popupLines);
-        EnablePopup((LBL_SCR_CHAR_STAERKE_CAPTION + i), popupLines);
+        enable_popup((LBL_SCR_CHAR_STAERKE + i), popupLines);
+        enable_popup((LBL_SCR_CHAR_STAERKE_CAPTION + i), popupLines);
         if (!towerMode){
             boostPrice = GetBoostPrice(SG[(SG_ATTR_STAERKE_GEKAUFT + i)]);
             if (boostPrice > 9999){
@@ -24700,7 +24706,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
             canBoost[i] = Boolean((boostPrice <= Number(SG[SG_GOLD])));
             boostGold = int((boostPrice / 100));
             boostSilver = (boostPrice % 100);
-            Hide((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i), (LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
+            hide((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i), (LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
             preisX = (CHAR_PROP_COLUMN_4_X + (((textDir == "right")) ? 240 : 0));
             if (boostGold > 0){
                 _local7 = actor[(LBL_SCR_CHAR_PREIS1 + i)];
@@ -24724,7 +24730,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
                         preisX = ((x + width) + 10);
                     };
                 };
-                Show((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i));
+                show((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i));
             };
             if (boostSilver > 0){
                 _local7 = actor[(LBL_SCR_CHAR_SILBER1 + i)];
@@ -24748,7 +24754,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
                         preisX = ((x + width) + 10);
                     };
                 };
-                Show((LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
+                show((LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
             };
         };
         i = (i + 1);
@@ -24800,8 +24806,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
     } else {
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((("= " + txt[TXT_WAFFENSCHADEN]) + " * (1 + ") + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - LBL_SCR_CHAR_SCHADEN)].text) + " / 10)"), POPUP_END_LINE];
     };
-    EnablePopup(SchadenID, popupLines);
-    EnablePopup(SchadenLblID, popupLines);
+    enable_popup(SchadenID, popupLines);
+    enable_popup(SchadenLblID, popupLines);
     popupLines = new Array();
     popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text, POPUP_END_LINE];
     if (textDir == "right"){
@@ -24809,8 +24815,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
     } else {
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((("= " + (((tmpHealth > 0)) ? "(" : "")) + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " * ") + String(tmpLifeFactor)) + " * (") + txt[TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + String(tmpHealth)) + "%") : "")), POPUP_END_LINE];
     };
-    EnablePopup((LBL_SCR_CHAR_SCHADEN + 3), popupLines);
-    EnablePopup((LBL_SCR_CHAR_SCHADEN_CAPTION + 3), popupLines);
+    enable_popup((LBL_SCR_CHAR_SCHADEN + 3), popupLines);
+    enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + 3), popupLines);
     popupLines = new Array();
     popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text, POPUP_END_LINE];
     if (textDir == "right"){
@@ -24819,8 +24825,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text) + " * 5 / (") + txt[TXT_GEGNERSTUFE]) + " * 2)"), POPUP_END_LINE];
     };
     popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_KRITISCHMINMAX], POPUP_END_LINE];
-    EnablePopup((LBL_SCR_CHAR_SCHADEN + 4), popupLines);
-    EnablePopup((LBL_SCR_CHAR_SCHADEN_CAPTION + 4), popupLines);
+    enable_popup((LBL_SCR_CHAR_SCHADEN + 4), popupLines);
+    enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + 4), popupLines);
     actor[LBL_SCR_CHAR_SCHADEN_CAPTION].text = txt[TXT_CHAR_SCHADEN];
     actor[LBL_SCR_CHAR_LEBEN_CAPTION].text = txt[TXT_CHAR_LEBEN];
     actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].text = txt[TXT_CHAR_KAMPFWERT];
@@ -24859,12 +24865,12 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         while (i < 3) {
             SetCnt((CHAR_POTION + i), ((int(SG[(SG_POTION_TYPE + i)]))==0) ? C_EMPTY : GetItemID(12, int(SG[(SG_POTION_TYPE + i)]), 0, 0));
             if (int(SG[(SG_POTION_TYPE + i)]) == 0){
-                EnablePopup((CHAR_POTION + i));
+                enable_popup((CHAR_POTION + i));
             } else {
                 if (HideBackPack){
-                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE);
+                    enable_popup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE);
                 } else {
-                    EnablePopup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)], True), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
+                    enable_popup((CHAR_POTION + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_REMAINING], POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)], True), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
                 };
             };
             i = (i + 1);
@@ -24914,7 +24920,7 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         };
         if ((((i > 9)) and (HideBackPack))){
             SetCnt((CHAR_SLOT_1 + i), C_EMPTY);
-            EnablePopup((CHAR_SLOT_1 + i));
+            enable_popup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
                 SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, True, ((tmpItmClass)==1) ? 1 : -1));
@@ -24964,8 +24970,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
             BlockReroll = False;
         } else {
             if (RollFrenzy.running){
-                ErrorMessage("Yay!");
-                Play(SND_JINGLE);
+                error_message("Yay!");
+                play(SND_JINGLE);
                 RollFrenzy.stop();
             };
         };
@@ -24997,8 +25003,8 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         if (txt[TXT_SHIELD_FORMULA]){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, txt[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
-        EnablePopup(LBL_CHAR_RUESTUNG, popupLines);
-        EnablePopup(CHAR_RUESTUNG, popupLines);
+        enable_popup(LBL_CHAR_RUESTUNG, popupLines);
+        enable_popup(CHAR_RUESTUNG, popupLines);
     };
 }
 
@@ -25353,33 +25359,33 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
         if (int(SG[(sgIndex + SG_ITM_TYP)]) == 1){
             if (compareIndex > 0){
                 compareVal = (Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)) - Math.round(((Number(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
-                EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
             } else {
-                EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), POPUP_END_LINE, attribLines, shopLines);
+                enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + String(Math.round(((Number(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), POPUP_END_LINE, attribLines, shopLines);
             };
         } else {
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == 2){
                 if (compareIndex > 0){
                     compareVal = (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]));
-                    EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                    enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
                 } else {
-                    EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), POPUP_END_LINE, attribLines, shopLines);
+                    enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG_ITM_SCHADEN_MIN)] + " %"), POPUP_END_LINE, attribLines, shopLines);
                 };
             } else {
                 if (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) > 0){
                     if (compareIndex > 0){
                         compareVal = (int(SG[(sgIndex + SG_ITM_SCHADEN_MIN)]) - int(SG[(compareIndex + SG_ITM_SCHADEN_MIN)]));
-                        EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                        enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + String(Math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
                     } else {
-                        EnablePopup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], POPUP_END_LINE, attribLines, shopLines);
+                        enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, txt[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG_ITM_SCHADEN_MIN)], POPUP_END_LINE, attribLines, shopLines);
                     };
                 } else {
-                    EnablePopup(slot_id, itmName, quoteArray, attribLines, shopLines);
+                    enable_popup(slot_id, itmName, quoteArray, attribLines, shopLines);
                 };
             };
         };
     } else {
-        EnablePopup(slot_id);
+        enable_popup(slot_id);
     };
 }
 
@@ -25726,9 +25732,9 @@ public function ShowBetResult(won:Boolean){
     var won:* = won;
     doShowBetResults = function (){
         var BallX:* = 0;
-        Add(((won) ? HUTMANN_WON : HUTMANN_LOST));
+        add(((won) ? HUTMANN_WON : HUTMANN_LOST));
         SetBtnText(HUTMANN_OK, txt[((won) ? TXT_HUTMANN_YEAH : TXT_HUTMANN_DAMN)]);
-        Add(HUTMANN_OK);
+        add(HUTMANN_OK);
         var _local2 = actor[LBL_HUTMANN_TEXT];
         with (_local2) {
             text = txt[((won) ? TXT_HUTMANN_WIN : TXT_HUTMANN_LOSE)];
@@ -25736,8 +25742,8 @@ public function ShowBetResult(won:Boolean){
         };
         Switch (CupChosen){
             case 0:
-                Add(HUTBECHER_1_CLICK);
-                Remove(HUTBECHER_1_IDLE);
+                add(HUTBECHER_1_CLICK);
+                remove(HUTBECHER_1_IDLE);
                 if (won){
                     BallX = HUTMANN_KUGEL_X1;
                 } else {
@@ -25745,8 +25751,8 @@ public function ShowBetResult(won:Boolean){
                 };
                 break;
             case 1:
-                Add(HUTBECHER_2_CLICK);
-                Remove(HUTBECHER_2_IDLE);
+                add(HUTBECHER_2_CLICK);
+                remove(HUTBECHER_2_IDLE);
                 if (won){
                     BallX = HUTMANN_KUGEL_X2;
                 } else {
@@ -25754,8 +25760,8 @@ public function ShowBetResult(won:Boolean){
                 };
                 break;
             case 2:
-                Add(HUTBECHER_3_CLICK);
-                Remove(HUTBECHER_3_IDLE);
+                add(HUTBECHER_3_CLICK);
+                remove(HUTBECHER_3_IDLE);
                 if (won){
                     BallX = HUTMANN_KUGEL_X3;
                 } else {
@@ -25765,8 +25771,8 @@ public function ShowBetResult(won:Boolean){
         };
         actor[HUTKUGEL].x = BallX;
         if (won){
-            Play(SND_JINGLE);
-            Add(HUTKUGEL);
+            play(SND_JINGLE);
+            add(HUTKUGEL);
             actor[LBL_HUTMANN_GOLDBET].text = String((int(actor[LBL_HUTMANN_GOLDBET].text) * 2));
             actor[LBL_HUTMANN_MUSHBET].text = String((int(actor[LBL_HUTMANN_MUSHBET].text) * 2));
         } else {
@@ -25806,7 +25812,7 @@ public function toiletTankAdjustEvent(evt:TimerEvent=undefined){
     };
 }
 
-public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toiletMaxExp:Number, itemAdded:int=-1){
+public function show_toilet(isFull:int, toiletLevel:int, toiletExp:Number, toiletMaxExp:Number, itemAdded:int=-1){
     var doShowToilet:* = null;
     var isFull:* = isFull;
     var toiletLevel:* = toiletLevel;
@@ -25826,19 +25832,19 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
         toiletTankAdjustTimer.stop();
         if (buildScreen){
             toiletTankCurrent = toiletTankDest;
-            Remove(CHAR_RIGHTPANE);
-            Add(SCREEN_TOILET);
-            Hide(TOILET_OVERLAYS);
-            Show(TOILET_CHAIN);
+            remove(CHAR_RIGHTPANE);
+            add(SCREEN_TOILET);
+            hide(TOILET_OVERLAYS);
+            show(TOILET_CHAIN);
         };
         DisplayInventory(undefined, True);
-        EnablePopup(CA_TOILET_TANK, txt[TXT_TOILET_HINT].split("%1").join(String(int((toiletTankDest * 100)))).split("%2").join(String(toiletExp)).split("%3").join(String(toiletMaxExp)));
+        enable_popup(CA_TOILET_TANK, txt[TXT_TOILET_HINT].split("%1").join(String(int((toiletTankDest * 100)))).split("%2").join(String(toiletExp)).split("%3").join(String(toiletMaxExp)));
         if (isFull == 0){
-            Hide(TOILET_IDLE);
+            hide(TOILET_IDLE);
         } else {
-            Show(TOILET_IDLE);
+            show(TOILET_IDLE);
         };
-        Hide(TOILET_DROP);
+        hide(TOILET_DROP);
         actor[LBL_TOILET_AURA].text = txt[(TXT_TOILET_HINT + 4)].split("#").join(String.fromCharCode(13)).split("%1").join(String(toiletLevel));
         actor[LBL_TOILET_AURA].x = ((SCR_SHOP_BG_X + 248) - (actor[LBL_TOILET_AURA].textWidth / 2));
         toiletTankAdjustEvent();
@@ -25865,15 +25871,15 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
                 };
                 i = 0;
                 while (i < 7) {
-                    Hide((TOILET_FLUSH + i));
+                    hide((TOILET_FLUSH + i));
                     i++;
                 };
-                Show((TOILET_FLUSH + int(((toiletItemAddFrame / 50) * 7))));
+                show((TOILET_FLUSH + int(((toiletItemAddFrame / 50) * 7))));
                 toiletItemAddFrame++;
             };
             toiletItemAddFrame = 0;
             toiletItemAddTimer = new Timer(25);
-            Play(SND_TOILET_FLUSH);
+            play(SND_TOILET_FLUSH);
             toiletItemAddTimer.add_event_listener(TimerEvent.TIMER, toiletItemAddFrameEvent);
             toiletItemAddTimer.start();
             gatheredItemId = (CHAR_SLOT_11 + itemAdded);
@@ -25905,7 +25911,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
         };
     };
     if (OnStage(TOILET)){
-        doShowToilet(False);
+        doshow_toilet(False);
         return;
     };
     Load(SCREEN_TOILET);
@@ -25913,7 +25919,7 @@ public function ShowToilet(isFull:int, toiletLevel:int, toiletExp:Number, toilet
     when_loaded(doShowToilet);
 }
 
-public function ShowWitch(witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0){
+public function show_witch(witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0){
     var doShowWitch:* = null;
     var witchData:* = witchData;
     var chaldronBubble:Boolean = chaldronBubble;
@@ -25921,8 +25927,8 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=False, enchant
     doShowWitch = function (buildScreen:Boolean=True){
         var i:int;
         if (buildScreen){
-            Remove(CHAR_RIGHTPANE);
-            Add(SCREEN_WITCH);
+            remove(CHAR_RIGHTPANE);
+            add(SCREEN_WITCH);
         };
         if (!lightMode){
             witchAniTimer.start();
@@ -25937,39 +25943,39 @@ public function ShowWitch(witchData:Array, chaldronBubble:Boolean=False, enchant
             trace(i, Savegame[((SG_INVENTORY_OFFS + (CorrectItemType.indexOf(Math.floor((int(witchData[(9 + (3 * i))]) / 10))) * SG_ITM_SIZE)) + SG_ITM_EXT_ENCHANT)]);
             if (Savegame[((SG_INVENTORY_OFFS + (CorrectItemType.indexOf(Math.floor((int(witchData[(9 + (3 * i))]) / 10))) * SG_ITM_SIZE)) + SG_ITM_EXT_ENCHANT)] != 0){
                 actor[(WITCH_SCROLL + i)].alpha = 0.5;
-                EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BOUGHT], POPUP_END_LINE);
+                enable_popup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BOUGHT], POPUP_END_LINE);
             } else {
                 if (enchantCost){
                     actor[(WITCH_SCROLL + i)].alpha = 1;
-                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYNOW], POPUP_END_LINE, POPUP_BEGIN_LINE, actor[IF_GOLD], String(Math.floor((enchantCost / 100))), POPUP_END_LINE);
+                    enable_popup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYNOW], POPUP_END_LINE, POPUP_BEGIN_LINE, actor[IF_GOLD], String(Math.floor((enchantCost / 100))), POPUP_END_LINE);
                 } else {
                     actor[(WITCH_SCROLL + i)].alpha = 1;
-                    EnablePopup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYHINT], POPUP_END_LINE);
+                    enable_popup((WITCH_SCROLL + i), POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[((TXT_ITMNAME_14 + int(witchData[(9 + (3 * i))])) - 1)].split("|")[1], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_DATE].split("%1").join(time_str(Number(witchData[(10 + (3 * i))]), True)), POPUP_END_LINE, POPUP_BEGIN_LINE, txt[TXT_SCROLL_BUYHINT], POPUP_END_LINE);
                 };
             };
             actor[(WITCH_SCROLL + i)].scaleX = 0.8;
             actor[(WITCH_SCROLL + i)].scaleY = 0.8;
-            Add((WITCH_SCROLL + i));
+            add((WITCH_SCROLL + i));
             i++;
         };
         if (witchData[2] == -1){
-            EnablePopup(CA_WITCH, txt[(TXT_WITCH_HINT + 6)]);
-            EnablePopup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 7)]);
+            enable_popup(CA_WITCH, txt[(TXT_WITCH_HINT + 6)]);
+            enable_popup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 7)]);
         } else {
             if (witchData[5] == 0){
-                EnablePopup(CA_WITCH, txt[TXT_WITCH_HINT].split("%1").join(txt[((TXT_WITCH_HINT + 12) + int(witchData[3]))]));
-                EnablePopup(CA_CHALDRON, POPUP_BEGIN_LINE, txt[(TXT_WITCH_HINT + 2)], (POPUP_TAB + 100), txt[((TXT_WITCH_HINT + 12) + int(witchData[3]))], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_WITCH_HINT + 3)], (POPUP_TAB + 100), txt[(TXT_WITCH_HINT + 4)].split("%1").join(String((Math.round(((witchData[1] / witchData[2]) * 100000)) / 1000))).split("%2").join(String(witchData[2])), POPUP_END_LINE);
+                enable_popup(CA_WITCH, txt[TXT_WITCH_HINT].split("%1").join(txt[((TXT_WITCH_HINT + 12) + int(witchData[3]))]));
+                enable_popup(CA_CHALDRON, POPUP_BEGIN_LINE, txt[(TXT_WITCH_HINT + 2)], (POPUP_TAB + 100), txt[((TXT_WITCH_HINT + 12) + int(witchData[3]))], POPUP_END_LINE, POPUP_BEGIN_LINE, txt[(TXT_WITCH_HINT + 3)], (POPUP_TAB + 100), txt[(TXT_WITCH_HINT + 4)].split("%1").join(String((Math.round(((witchData[1] / witchData[2]) * 100000)) / 1000))).split("%2").join(String(witchData[2])), POPUP_END_LINE);
             } else {
-                EnablePopup(CA_WITCH, txt[(TXT_WITCH_HINT + 1)]);
-                EnablePopup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 5)]);
+                enable_popup(CA_WITCH, txt[(TXT_WITCH_HINT + 1)]);
+                enable_popup(CA_CHALDRON, txt[(TXT_WITCH_HINT + 5)]);
             };
         };
     };
     if (chaldronBubble){
-        Play(SND_TOILET_DROP);
+        play(SND_TOILET_DROP);
     };
     if (OnStage(WITCH)){
-        doShowWitch(False);
+        doshow_witch(False);
         return;
     };
     Load(SCREEN_WITCH);
@@ -26154,7 +26160,7 @@ public function ShowLOGinScreen(evt:Event=undefined, noBC:Boolean=False, noCooki
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = String(so.data.password);
         };
     };
-    Add(WINDOW_LOGIN);
+    add(WINDOW_LOGIN);
     LOGonRTL();
     if (buffedMode){
         actor[LBL_GOTO_SIGNUP].htmlText = buffedLinkText;
@@ -26213,13 +26219,13 @@ public function ShowSignupScreen(evt:Event=undefined):void{
             actor[INP_PASSWORD].getChildAt(1).text = mp_api_user_token;
         };
         LOGonRTL();
-        Hide(PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_HAPPY);
-        Add(WINDOW_SIGNUP);
+        hide(PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_HAPPY);
+        add(WINDOW_SIGNUP);
         if (param_bullshit_text != ""){
-            Add(FUCK);
+            add(FUCK);
         };
     } else {
-        ErrorMessage(txt[TXT_ERROR_SELECTCLASS]);
+        error_message(txt[TXT_ERROR_SELECTCLASS]);
         if (!SignupJumpRunning){
             DoJump = function (evt:TimerEvent){
                 if (j <= 2){
@@ -26442,7 +26448,7 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk
                 text = txt[((TXT_RACEDESC + char_volk) - 1)];
                 y = ((actor[LBL_CREATE_RACE].y + actor[LBL_CREATE_RACE].textHeight) + BUILDCHAR_LINES_Y);
             };
-            Arabize(LBL_CREATE_RACE_DESC);
+            arabize(LBL_CREATE_RACE_DESC);
             _local16 = actor[LBL_CREATE_CLASS];
             with (_local16) {
                 text = txt[((KlasseGewählt) ? ((TXT_CLASSNAME + char_class) - 1) : TXT_NOCLASS)];
@@ -26456,44 +26462,44 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk
                 text = txt[((KlasseGewählt) ? ((TXT_CLASSDESC + char_class) - 1) : TXT_NOCLASS_DESC)];
                 y = ((actor[LBL_CREATE_CLASS].y + actor[LBL_CREATE_CLASS].textHeight) + BUILDCHAR_LINES_Y);
             };
-            Arabize(LBL_CREATE_CLASS_DESC);
+            arabize(LBL_CREATE_CLASS_DESC);
         };
         LoadCharacterImage(CHARBACKGROUND, loadOnly, char_volk, char_male, char_class, char_mouth, char_beard, char_nose, char_eyes, char_brows, char_ears, char_hair, char_special, char_special2);
         if (OnStage(SCR_BUILDCHAR_BACKGROUND)){
-            Remove(VOLK_BTNS_ALL);
-            Add(F_IDLE);
-            Add(M_IDLE);
+            remove(VOLK_BTNS_ALL);
+            add(F_IDLE);
+            add(M_IDLE);
             if (char_male){
-                Add(VOLK_BTNS_M);
-                Add(((VOLK_1_M_ACT + char_volk) - 1));
-                Add(M_ACT);
+                add(VOLK_BTNS_M);
+                add(((VOLK_1_M_ACT + char_volk) - 1));
+                add(M_ACT);
             } else {
-                Add(VOLK_BTNS_F);
-                Add(((VOLK_1_F_ACT + char_volk) - 1));
-                Add(F_ACT);
+                add(VOLK_BTNS_F);
+                add(((VOLK_1_F_ACT + char_volk) - 1));
+                add(F_ACT);
             };
-            Add(KASTE_1_IDLE);
-            Add(KASTE_2_IDLE);
-            Add(KASTE_3_IDLE);
+            add(KASTE_1_IDLE);
+            add(KASTE_2_IDLE);
+            add(KASTE_3_IDLE);
             if (KlasseGewählt){
-                Add((KASTE_1_ACT + ((char_class - 1) * 2)));
+                add((KASTE_1_ACT + ((char_class - 1) * 2)));
             };
             i = 1;
             while (i < 11) {
                 if (getCharImageBound(char_volk, char_male, i) == 0){
-                    Remove((MOUTH_MINUS + ((i - 1) * 2)));
-                    Remove((MOUTH_PLUS + ((i - 1) * 2)));
-                    Remove((LBL_MOUTH + (i - 1)));
+                    remove((MOUTH_MINUS + ((i - 1) * 2)));
+                    remove((MOUTH_PLUS + ((i - 1) * 2)));
+                    remove((LBL_MOUTH + (i - 1)));
                 } else {
-                    Add((MOUTH_MINUS + ((i - 1) * 2)));
-                    Add((MOUTH_PLUS + ((i - 1) * 2)));
-                    Add((LBL_MOUTH + (i - 1)));
+                    add((MOUTH_MINUS + ((i - 1) * 2)));
+                    add((MOUTH_PLUS + ((i - 1) * 2)));
+                    add((LBL_MOUTH + (i - 1)));
                 };
                 i = (i + 1);
             };
             PositionModifyCharacterButtons();
             if (!OnStage(CREATE_CHARACTER)){
-                Remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE, KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT, CREATE_CHARACTER, BLACK_SQUARE);
+                remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE, KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT, CREATE_CHARACTER, BLACK_SQUARE);
                 AddSome(MODIFY_CHARACTER, IF_EXIT);
             };
         };
@@ -26511,7 +26517,7 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk
     LoadCharacterItemImage((actorID + 9), (charPrefix + getCharSuffix(9, isSpecial2)), 9);
     actorOffset = (actorID - CHARBACKGROUND);
     if (!loadOnly){
-        Add((CHARIMG + actorOffset));
+        add((CHARIMG + actorOffset));
         if ((((isVolk == 2)) and (isMann))){
             AddBMO(CHARSPECIALOVL_ELF_M, actorOffset);
         };
@@ -27177,7 +27183,7 @@ public function DrachenSetzen():void{
     };
 }
 
-public function ErrorMessage(msg:String=""):void{
+public function error_message(msg:String=""):void{
     var msg:String = msg;
     if (msg == ""){
     } else {
@@ -27191,7 +27197,7 @@ public function ErrorMessage(msg:String=""):void{
                 x = (IF_ERROR_X - int((textWidth / 2)));
                 y = (IF_ERROR_Y + 60);
             };
-            Add(LBL_ERROR);
+            add(LBL_ERROR);
         } else {
             if (OnStage(GILDE_LIST)){
                 if (msg.split(" ").join("") != ""){
@@ -27253,7 +27259,7 @@ public function ErrorMessage(msg:String=""):void{
                             };
                         };
                     };
-                    Add(LBL_ERROR);
+                    add(LBL_ERROR);
                 };
             };
         };
@@ -27324,7 +27330,7 @@ public function InterfaceBtnHandler(evt:Event):void{
             break;
         case IF_GILDEN:
             PulseGilde = False;
-            PulseGildeOnHistory = False;
+            pulse_gilde_on_history = False;
             tmpAction = ACT_SCREEN_GILDEN;
             break;
         case IF_WELTKARTE:
@@ -27342,7 +27348,7 @@ public function InterfaceBtnHandler(evt:Event):void{
     };
 }
 
-public function EnablePopup(actorID:int, ... _args){
+public function enable_popup(actorID:int, ... _args){
     var i:* = 0;
     var popupWidth:* = 0;
     var textY:* = 0;
@@ -27371,7 +27377,7 @@ public function EnablePopup(actorID:int, ... _args){
             return;
         };
         if (OnStage(POPUP_INFO)){
-            Remove(POPUP_INFO);
+            remove(POPUP_INFO);
         };
         actor[POPUP_INFO] = new MovieClip();
         if (suggestionSlot[actorID]){
@@ -27530,7 +27536,7 @@ public function EnablePopup(actorID:int, ... _args){
             drawRect(1, 1, (popupWidth - 1), (textY - 1));
         };
         PositionPopup(evt);
-        Add(POPUP_INFO);
+        add(POPUP_INFO);
     };
     PositionPopup = function (evt:MouseEvent):void{
         var evt:* = evt;
@@ -27563,8 +27569,8 @@ public function EnablePopup(actorID:int, ... _args){
         };
     };
     HidePopup = function (evt:MouseEvent):void{
-        Remove(SLOT_SUGGESTION);
-        Remove(POPUP_INFO);
+        remove(SLOT_SUGGESTION);
+        remove(POPUP_INFO);
     };
     myStamp = popupStamp++;
     if (popupStamp > 10000){
