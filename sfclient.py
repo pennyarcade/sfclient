@@ -7163,7 +7163,7 @@ def action_handler(event):
                     par[0],
                     texts[TXT['POST']['TIME']],
                     time_str(par[2])
-                )
+                ))
 
             with actor[INP['POST']['SUBJECT']].getChildAt(1):
                 type = TextFieldType.DYNAMIC
@@ -7177,7 +7177,7 @@ def action_handler(event):
                         par[3] = "Holy Cow!"
                         break
 
-                    if (case "1"):
+                    if case("1"):
                         par[1] = texts[TXT['SUBJECT']['GUILD_DELETED']]
                         par[3] = texts[TXT['BODY']['GUILD_DELETED']].replace(
                             "%1", par[0]
