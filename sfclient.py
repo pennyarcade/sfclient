@@ -6686,7 +6686,9 @@ def action_handler(event):
         if case(RESP['EMAIL_RESENT']):
             actor[LBL['EMAIL_RESEND']].htmlText = texts[TXT['EMAIL']['RESENT']]
             arabize(LBL['EMAIL_RESEND'])
-            actor[LBL['OPTION']['FIELD1']].htmlText = texts[TXT['EMAIL']['RESENT']]
+            actor[LBL['OPTION']['FIELD1']].htmlText = texts[
+                TXT['EMAIL']['RESENT']
+            ]
             arabize(LBL['OPTION']['FIELD1'])
             remove(OPTION['DOCHANGE'])
             break
