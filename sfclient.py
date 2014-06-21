@@ -4655,7 +4655,7 @@ def init_vars():
         GildeBuildingGold = list()
         GildeBuildingPilz = list()
         GildeChatScroll = 0
-        tmpBattleInfo = ""
+        tmp_battle_info = ""
         KlasseGewählt = False
         post_fight_mode = False
         tmpAmount = 0
@@ -6220,34 +6220,6 @@ def action_handler(event):
     '''
         handle server reply
     '''
-
-    alert_words = null
-    do_act_schmiede = null
-    do_act_zauberladen = null
-    er_anfg = undefined
-    er_ende = undefined
-    external_whisperer = null
-    hall_list_guild = null
-    hall_list_name = null
-    ich_anfg = undefined
-    ich_ende = undefined
-    in_var = False
-    line = 0
-    pa = null
-    pas = null
-    permanent_link = null
-    pixel = undefined
-    post_read_text = null
-    pxl_arr = null
-    pxl_str = null
-    runden_zahl = undefined
-    tmp_fight_array = undefined
-    tmp_fighter_array = undefined
-    tmp_fmt = null
-    tmp_gold = undefined
-    tmp_honor = undefined
-    tmp_silver = undefined
-
     data_str = str(event.data)
     is_mine = False
     log_in_after_pixel = False
@@ -7188,52 +7160,62 @@ def action_handler(event):
                         )
                         break
 
-    '''
-                    case "2":
-                        par[1] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN]
-                        par[3] = txt[TXT_BODY_GUILD_DELETED_BY_ADMIN]
+                    if case("2"):
+                        par[1] = texts[
+                            TXT['SUBJECT']['GUILD']['DELETED_BY_ADMIN']
+                        ]
+                        par[3] = texts[
+                            TXT['BODY']['GUILD']['DELETED_BY_ADMIN']
+                        ].replace("%1", par[0])
+                        .replace("%2", par[3])
+                        break
+
+                    if case("3"):
+                        par[1] = texts[TXT_SUBJECT_GUILD_EXPELLED]
+                        par[3] = texts[TXT_BODY_GUILD_EXPELLED]
                             .replace("%1", par[0])
                             .replace("%2", par[3])
                         break
-                    case "3":
-                        par[1] = txt[TXT_SUBJECT_GUILD_EXPELLED];
-                        par[3] = txt[TXT_BODY_GUILD_EXPELLED]
+
+                    if case("4"):
+                        par[1] = texts[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN]
+                        par[3] = texts[TXT_BODY_GUILD_EXPELLED_BY_ADMIN]
                             .replace("%1", par[0])
-                            .replace("%2", par[3]);
-                        break;
-                    case "4":
-                        par[1] = txt[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN];
-                        par[3] = txt[TXT_BODY_GUILD_EXPELLED_BY_ADMIN]
+                            .replace("%2", par[3])
+                        break
+
+                    if case("5"):
+                        par[1] = texts[TXT_SUBJECT_GUILD_INVITE]
+                        par[3] = texts[TXT_BODY_GUILD_INVITE]
                             .replace("%1", par[0])
-                            .replace("%2", par[3]);
-                        break;
-                    case "5":
-                        par[1] = txt[TXT_SUBJECT_GUILD_INVITE];
-                        par[3] = txt[TXT_BODY_GUILD_INVITE]
-                            .replace("%1", par[0])
-                            .replace("%2", par[3]);
-                        break;
-                    case "6":
-                    case "7":
-                        par[1] = txt[TXT_SUBJECT_PVP].replace("%1", par[0]);
-                        tmpBattleInfo = par[3];
-                        tmp_fighter_array = tmpBattleInfo
+                            .replace("%2", par[3])
+                        break
+
+                    if case("6", "7"):
+                        par[1] = texts[TXT_SUBJECT_PVP].replace("%1", par[0])
+                        tmp_battle_info = par[3]
+                        tmp_fighter_array = tmp_battle_info
                             .split("#")[0]
-                            .split("/");
-                        ich_anfg = tmp_fighter_array[0];
-                        er_anfg = tmp_fighter_array[6];
-                        tmp_fight_array = tmpBattleInfo.split("#")[1].split("/");
+                            .split("/")
+                        ich_anfg = tmp_fighter_array[0]
+                        er_anfg = tmp_fighter_array[6]
+
+
+
+
+    '''
+                        tmp_fight_array = tmp_battle_info.split("#")[1].split("/");
                         ich_ende = tmp_fight_array[(tmp_fight_array.length - 7)];
                         er_ende = tmp_fight_array[(tmp_fight_array.length - 4)];
                         runden_zahl = int((tmp_fight_array.length / 6));
-                        tmp_honor = Math.abs(tmpBattleInfo.split("#")[7]);
+                        tmp_honor = Math.abs(tmp_battle_info.split("#")[7]);
                         tmp_gold = Math.abs(
-                            int((tmpBattleInfo.split("#")[8] / 100))
+                            int((tmp_battle_info.split("#")[8] / 100))
                         );
                         tmp_silver = Math.abs(
-                            int((tmpBattleInfo.split("#")[8] % 100))
+                            int((tmp_battle_info.split("#")[8] % 100))
                         );
-                        par[3] = txt[TXT_BODY_PVP]
+                        par[3] = texts[TXT_BODY_PVP]
                             .replace("%1", par[0])
                             .replace("%2", par[3])
                             .replace("%3", String(ich_anfg))
@@ -7241,10 +7223,10 @@ def action_handler(event):
                             .replace("%5", String(ich_ende))
                             .replace("%6", String(er_ende))
                             .replace("%7", String(runden_zahl))
-                            .replace("%8", txt[(((ich_ende > er_ende))
+                            .replace("%8", texts[(((ich_ende > er_ende))
                                      ? TXT_DU_GEWONNEN : TXT_DU_VERLOREN)])
                             .replace("%9", (((runden_zahl == 1))
-                                     ? "" : txt[TXT_ROUNDS_PLURAL]))
+                                     ? "" : texts[TXT_ROUNDS_PLURAL]))
                             .split("%10").join(String(tmp_honor))
                             .split("%11").join(String(tmp_gold))
                             .split("%12").join(String(tmp_silver))
@@ -7253,7 +7235,7 @@ def action_handler(event):
                                 .split("#").join(String.fromCharCode(13));
                         add(POST_VIEWFIGHT);
                         break;
-                    case "8":
+                    if case("8"):
                         if (txt[TXT_INV_ACC_TITLE] != ""){
                             par[1] = txt[TXT_INV_ACC_TITLE];
                             par[3] = txt[TXT_INV_ACC_TEXT]
@@ -7270,7 +7252,7 @@ def action_handler(event):
                         };
                         add(POST_REPLY);
                         break;
-                    case "9":
+                    if case("9"):
                         if (txt[TXT_INV_VAL_TITLE] != ""){
                             par[1] = txt[TXT_INV_VAL_TITLE];
                             par[3] = txt[TXT_INV_VAL_TEXT]
@@ -7312,10 +7294,10 @@ def action_handler(event):
             };
             forwardText = post_read_text;
             break;
-        case ACT_SCREEN_POST:
+        if case(ACT_SCREEN_POST):
             ShowPostScreen(par);
             break;
-        case ACT_SCREEN_PILZDEALER:
+        if case(ACT_SCREEN_PILZDEALER):
             if (par[0]){
                 DealerAktion = int(par[0]);
             } else {
@@ -7324,13 +7306,13 @@ def action_handler(event):
             PulseDealer = False;
             ShowDealerScreen();
             break;
-        case ACT_SCREEN_WELTKARTE:
+        if case(ACT_SCREEN_WELTKARTE):
             parse_savgame(par[0]);
             ShowMainQuestsScreen(par[1].split("/"));
             break;
-        case ACT_SCREEN_EHRENHALLE:
+        if case(ACT_SCREEN_EHRENHALLE):
             lastGuildShown = "";
-        case RESP_SCREEN_GILDENHALLE:
+        if case(RESP_SCREEN_GILDENHALLE):
             GuildHallMode = (act == RESP_SCREEN_GILDENHALLE);
             if (GuildHallMode){
                 hide(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN);
@@ -7447,26 +7429,26 @@ def action_handler(event):
                 i = (i + 1);
             };
             break;
-        case RESP_ARBEIT_START:
-        case RESP_ARBEIT_STOP:
+        if case(RESP_ARBEIT_START):
+        if case(RESP_ARBEIT_STOP):
             parse_savgame(par[0]);
             ShowWorkScreen();
             break;
-        case RESP_ARBEIT_ERLEDIGT:
+        if case(RESP_ARBEIT_ERLEDIGT):
             parse_savgame(par[0]);
             VerdientesGeld = par[1];
             ShowWorkSuccessScreen();
             break;
-        case ACT_SCREEN_ARBEITEN:
+        if case(ACT_SCREEN_ARBEITEN):
             stundenlohn = Number(par[0]);
             ShowWorkScreen();
             break;
-        case RESP_SAVEGAME_STAY_ERROR:
+        if case(RESP_SAVEGAME_STAY_ERROR):
             error_message(txt[TXT_ERROR_SELL_ITEM]);
-        case RESP_SAVEGAME_STAY:
-        case RESP_SAVEGAME_SHARD:
-        case RESP_SAVEGAME_MIRROR:
-        case RESP_MOVE_TOWER_ITEM:
+        if case(RESP_SAVEGAME_STAY):
+        if case(RESP_SAVEGAME_SHARD):
+        if case(RESP_SAVEGAME_MIRROR):
+        if case(RESP_MOVE_TOWER_ITEM):
             parse_savgame(par[0]);
             if (on_stage(SCR_CHAR_BG)){
                 if (act == RESP_MOVE_TOWER_ITEM){
@@ -7493,7 +7475,7 @@ def action_handler(event):
                 };
             };
             break;
-        case ACT_SCREEN_CHAR:
+        if case(ACT_SCREEN_CHAR):
             parse_savgame(par[0]);
             player_desc = resolveBreaks(par[1]);
             if (Savegame[SG_FACE_1] == 0){
@@ -7502,7 +7484,7 @@ def action_handler(event):
                 ShowCharacterScreen(undefined, True);
             };
             break;
-        case ACT_SCREEN_ZAUBERLADEN:
+        if case(ACT_SCREEN_ZAUBERLADEN):
             parse_savgame(par[0]);
             if (par[1]){
                 special_action = par[1];
@@ -7518,7 +7500,7 @@ def action_handler(event):
                 when_loaded(do_act_zauberladen);
             };
             break;
-        case ACT_SCREEN_SCHMIEDE:
+        if case(ACT_SCREEN_SCHMIEDE):
             parse_savgame(par[0]);
             if (par[1]){
                 special_action = par[1];
@@ -7534,11 +7516,11 @@ def action_handler(event):
                 when_loaded(do_act_schmiede);
             };
             break;
-        case RESP_UPDATE_CHECK:
+        if case(RESP_UPDATE_CHECK):
             ExternalInterface.call("refresh");
             break;
-        case RESP_LOGIN_SUCCESS_BOUGHT:
-        case RESP_LOGIN_SUCCESS:
+        if case(RESP_LOGIN_SUCCESS_BOUGHT):
+        if case(RESP_LOGIN_SUCCESS):
             mirrorFadeAmount = 0.2;
             admin_login = "";
             if (act == RESP_LOGIN_SUCCESS_BOUGHT){
@@ -7585,7 +7567,7 @@ def action_handler(event):
             so.flush();
             add(IF_LOGOUT);
             if (Savegame[SG_FACE_1] == 0){
-                trc("Fehler: Charakter nicht initialisiert.");
+                trc("Fehler): Charakter nicht initialisiert.");
                 request_logout();
             } else {
                 parse_savgame(par[0]);
@@ -7624,40 +7606,40 @@ def action_handler(event):
                 };
             };
             break;
-        case ERR_ALREADY_IN_GUILD:
-        case ERR_NO_INDEX_FREE:
-        case ERR_FIGHT_SELF:
-        case ERR_GUILD_NOT_FOUND:
-        case ERR_GUILD_NOT_ALLOWED:
-        case ERR_GUILD_LACK_MUSH:
-        case ERR_GUILD_LACK_GOLD:
-        case ERR_GUILD_BUILDING_NOT_FOUND:
-        case ERR_GUILD_BUILDING_MAX:
-        case ERR_GUILD_NOT_MEMBER:
-        case ERR_GUILD_MASTER_CANT_BE_OFFICER:
-        case ERR_GUILD_IS_FULL:
-        case ERR_GUILD_ALREADY_YOU_OTHER:
-        case ERR_GUILD_NOT_REAL_MEMBER:
-        case ERR_GUILD_ALREADY_YOU_THIS:
-        case ERR_GUILD_PLAYER_NOT_FOUND:
-        case ERR_SUBJECT_TOO_SHORT:
-        case ERR_GUILD_TOO_EXPENSIVE:
-        case ERR_GUILD_CHAT_NOT_MEMBER:
-        case ERR_GUILD_CHAT_HISTORY:
-        case ERR_GUILD_CHAT_TEXT_ERROR:
-        case ERR_BEER:
-        case ERR_NO_MUSH_BAR:
-        case ERR_NO_ENDURANCE:
-        case ERR_WORSE_MOUNT:
-        case ERR_GUILD_ALREADY_MEMBER:
-        case ERR_NOT_INVITED:
-        case ERR_NO_MUSH_PVP:
-        case ERR_NO_MUSH_MQ:
+        if case(ERR_ALREADY_IN_GUILD):
+        if case(ERR_NO_INDEX_FREE):
+        if case(ERR_FIGHT_SELF):
+        if case(ERR_GUILD_NOT_FOUND):
+        if case(ERR_GUILD_NOT_ALLOWED):
+        if case(ERR_GUILD_LACK_MUSH):
+        if case(ERR_GUILD_LACK_GOLD):
+        if case(ERR_GUILD_BUILDING_NOT_FOUND):
+        if case(ERR_GUILD_BUILDING_MAX):
+        if case(ERR_GUILD_NOT_MEMBER):
+        if case(ERR_GUILD_MASTER_CANT_BE_OFFICER):
+        if case(ERR_GUILD_IS_FULL):
+        if case(ERR_GUILD_ALREADY_YOU_OTHER):
+        if case(ERR_GUILD_NOT_REAL_MEMBER):
+        if case(ERR_GUILD_ALREADY_YOU_THIS):
+        if case(ERR_GUILD_PLAYER_NOT_FOUND):
+        if case(ERR_SUBJECT_TOO_SHORT):
+        if case(ERR_GUILD_TOO_EXPENSIVE):
+        if case(ERR_GUILD_CHAT_NOT_MEMBER):
+        if case(ERR_GUILD_CHAT_HISTORY):
+        if case(ERR_GUILD_CHAT_TEXT_ERROR):
+        if case(ERR_BEER):
+        if case(ERR_NO_MUSH_BAR):
+        if case(ERR_NO_ENDURANCE):
+        if case(ERR_WORSE_MOUNT):
+        if case(ERR_GUILD_ALREADY_MEMBER):
+        if case(ERR_NOT_INVITED):
+        if case(ERR_NO_MUSH_PVP):
+        if case(ERR_NO_MUSH_MQ):
             error_message(txt[((TXT_ERROR_ALREADY_IN_GUILD - Math.abs(ERR_ALREADY_IN_GUILD)) + Math.abs(act))]);
             break;
-        case ERR_BOOST:
+        if case(ERR_BOOST):
             break;
-        case RESP_ACCOUNT_SUCCESS:
+        if case(RESP_ACCOUNT_SUCCESS):
             actor[INP_LOGIN_PASSWORD].getChildAt(1).text = actor[INP_PASSWORD].getChildAt(1).text;
             so.data.skipAutoLOGin = False;
             so.data.HasAccount = True;
@@ -7668,22 +7650,22 @@ def action_handler(event):
             so.flush();
             log_in_after_pixel = True;
             break;
-        case ERR_NAME_EXISTS:
+        if case(ERR_NAME_EXISTS):
             error_message(txt[TXT_ERROR_NAME_EXISTS]);
             break;
-        case ERR_NAME_TOO_SHORT:
+        if case(ERR_NAME_TOO_SHORT):
             error_message(txt[TXT_ERROR_NAME_TOO_SHORT]);
             break;
-        case ERR_PASSWORD_TOO_SHORT:
+        if case(ERR_PASSWORD_TOO_SHORT):
             error_message(txt[TXT_ERROR_PASSWORD_TOO_SHORT]);
             break;
-        case ERR_EMAIL_REJECTED:
+        if case(ERR_EMAIL_REJECTED):
             error_message(txt[TXT_ERROR_EMAIL_REJECTED]);
             break;
-        case ERR_NAME_REJECTED:
+        if case(ERR_NAME_REJECTED):
             error_message(txt[TXT_ERROR_NAME_REJECTED]);
             break;
-        case ERR_LOGIN_FAILED:
+        if case(ERR_LOGIN_FAILED):
             so.data.skipAutoLOGin = True;
             so.data.password = "";
             so.flush();
@@ -7693,7 +7675,7 @@ def action_handler(event):
             show_login_screen(undefined, True, True);
             error_message(txt[TXT_ERROR_LOGIN_FAILED]);
             break;
-        case ERR_TOO_EXPENSIVE:
+        if case(ERR_TOO_EXPENSIVE):
             if (on_stage(MODIFY_CHARACTER)){
                 char_volk = revertchar_volk;
                 char_male = revertchar_male;
@@ -7711,16 +7693,16 @@ def action_handler(event):
             };
             error_message(txt[TXT_ERROR_TOO_EXPENSIVE]);
             break;
-        case ERR_WRONG_PASSWORD:
+        if case(ERR_WRONG_PASSWORD):
             error_message(txt[TXT_ERROR_WRONG_PASSWORD]);
             break;
-        case ERR_FACE_DATA_INCORRECT:
+        if case(ERR_FACE_DATA_INCORRECT):
             error_message(txt[TXT_ERROR_FACE_DATA_INCORRECT]);
             break;
-        case ERR_EMAIL_WRONG:
+        if case(ERR_EMAIL_WRONG):
             error_message(txt[TXT_ERROR_EMAIL_WRONG]);
             break;
-        case RESP_PLAYER_NOT_FOUND:
+        if case(RESP_PLAYER_NOT_FOUND):
             error_message(txt[TXT_ERROR_PLAYER_NOT_FOUND]);
             break;
             if (act < 0){
@@ -7915,8 +7897,8 @@ var LanguageFileLoaded:* = function (evt:Event):void{
     while (i < (strData.length - 1)) {
         c = strData.charCodeAt(i);
         Switch (c){
-            case 10:
-            case 13:
+            if case(10):
+            if case(13):
                 inValue = False;
                 if (tmpStr.length > 0){
                     txt[lastIndex] = SwapWords(tmpStr);
@@ -7927,8 +7909,8 @@ var LanguageFileLoaded:* = function (evt:Event):void{
                     };
                 };
                 break;
-            case 20:
-            case 9:
+            if case(20):
+            if case(9):
                 if (!inValue){
                     lastIndex = int(tmpStr);
                     tmpStr = "";
@@ -7937,9 +7919,9 @@ var LanguageFileLoaded:* = function (evt:Event):void{
                     tmpStr = (tmpStr + strData.charAt(i));
                 };
                 break;
-            case 136:
+            if case(136):
                 tmpStr = (tmpStr + (String.fromCharCode(13) + String.fromCharCode(10)));
-            default:
+            default):
                 tmpStr = (tmpStr + strData.charAt(i));
         };
         i++;
@@ -7952,7 +7934,7 @@ var LanguageFileLoaded:* = function (evt:Event):void{
             SetFont("Komika Text");
         };
     } else {
-        chosenLangFont = ((txt[TXT_FONT_NAME]) ? txt[TXT_FONT_NAME] : "Komika Text");
+        chosenLangFont = ((txt[TXT_FONT_NAME]) ? txt[TXT_FONT_NAME] ): "Komika Text");
         LoadOriginalLanguageFile();
     };
     i = TXT_COUNTRY_NAMES;
@@ -7970,8 +7952,8 @@ var LanguageFileLoaded:* = function (evt:Event):void{
 
 
 '''
-public function LoadLanguageFile():void{
-    var loader:* = null;
+public function LoadLanguageFile()):void{
+    var loader):* = null;
     loader = new URLLoader();
     var _local2 = loader;
     with (_local2) {
@@ -8009,8 +7991,8 @@ public function LoadOriginalLanguageFile():void{
         while (i < (strData.length - 1)) {
             c = strData.charCodeAt(i);
             Switch (c){
-                case 10:
-                case 13:
+                if case(10:
+                if case(13:
                     inValue = False;
                     if (tmpStr.length > 0){
                         oldStr = tmpStr;
@@ -8020,8 +8002,8 @@ public function LoadOriginalLanguageFile():void{
                         tmpStr = "";
                     };
                     break;
-                case 20:
-                case 9:
+                if case(20:
+                if case(9:
                     if (!inValue){
                         lastIndex = int(tmpStr);
                         tmpStr = "";
@@ -8030,7 +8012,7 @@ public function LoadOriginalLanguageFile():void{
                         tmpStr = (tmpStr + strData.charAt(i));
                     };
                     break;
-                case 136:
+                if case(136:
                     tmpStr = (tmpStr + (String.fromCharCode(13) + String.fromCharCode(10)));
                 default:
                     tmpStr = (tmpStr + strData.charAt(i));
@@ -8075,56 +8057,56 @@ public function load_configuration_file():void{
         while (i < (strData.length - 1)) {
             c = strData.charCodeAt(i);
             Switch (c){
-                case 10:
-                case 13:
+                if case(10:
+                if case(13:
                     inValue = False;
                     if (tmpStr.length > 0){
                         Switch (lastIndex){
-                            case LANG_CODE:
+                            if case(LANG_CODE:
                                 lang_code = tmpStr;
                                 original_lang_code = lang_code;
                                 break;
-                            case URL:
+                            if case(URL:
                                 img_url[img_url.length] = tmpStr;
                                 break;
-                            case SND_URL:
+                            if case(SND_URL:
                                 snd_url[snd_url.length] = tmpStr;
                                 break;
-                            case LIGHT_MODE:
+                            if case(LIGHT_MODE:
                                 light_mode_default = !((int(tmpStr) == 0));
                                 break;
-                            case SERVER:
+                            if case(SERVER:
                                 server = tmpStr;
                                 break;
-                            case LANG_URL:
+                            if case(LANG_URL:
                                 lang_url = tmpStr;
                                 break;
-                            case NO_CROSSDOMAIN:
+                            if case(NO_CROSSDOMAIN:
                                 no_crossdomain = !((int(tmpStr) == 0));
                                 break;
-                            case FORUM_URL:
+                            if case(FORUM_URL:
                                 forum_url = tmpStr;
                                 break;
-                            case SHOP_URL:
+                            if case(SHOP_URL:
                                 shop_url = tmpStr;
                                 break;
-                            case IMPRINT_URL:
+                            if case(IMPRINT_URL:
                                 imprint_url = tmpStr;
                                 break;
-                            case LEGAL_URL:
+                            if case(LEGAL_URL:
                                 legal_url = tmpStr;
                                 break;
-                            case DATAPROT_URL:
+                            if case(DATAPROT_URL:
                                 dataprot_url = tmpStr;
                                 break;
-                            case INSTR_URL:
+                            if case(INSTR_URL:
                                 instr_url = tmpStr;
                                 break;
-                            case BUFFEDMODE:
+                            if case(BUFFEDMODE:
                                 buffedMode = !((tmpStr == ""));
                                 buffedLinkText = tmpStr;
                                 break;
-                            case PAYMETHODS:
+                            if case(PAYMETHODS:
                                 PayMethods = tmpStr.split("/");
                                 j = 0;
                                 while (j < PayMethods.length) {
@@ -8132,104 +8114,104 @@ public function load_configuration_file():void{
                                     j++;
                                 };
                                 break;
-                            case SERVER_ID:
+                            if case(SERVER_ID:
                                 ServerID = int(tmpStr);
                                 break;
-                            case MP_PROJECT:
+                            if case(MP_PROJECT:
                                 MPProject = tmpStr;
                                 break;
-                            case BUFFED_URL:
+                            if case(BUFFED_URL:
                                 buffedLinkURL = tmpStr;
                                 break;
-                            case RESPONSE_TIMEOUT:
+                            if case(RESPONSE_TIMEOUT:
                                 response_timeout = int(tmpStr);
                                 break;
-                            case IMAGE_TIMEOUT:
+                            if case(IMAGE_TIMEOUT:
                                 image_timeout = int(tmpStr);
                                 break;
-                            case SPONSOR_IMG:
+                            if case(SPONSOR_IMG:
                                 param_sponsor = tmpStr;
                                 break;
-                            case REROLL_IMG:
+                            if case(REROLL_IMG:
                                 param_reroll_img = int(tmpStr);
                                 break;
-                            case RECONNECT:
+                            if case(RECONNECT:
                                 param_reconnect = int(tmpStr);
                                 break;
-                            case PHP_TUNNEL_URL:
+                            if case(PHP_TUNNEL_URL:
                                 param_php_tunnel_url = tmpStr;
                                 break;
-                            case TRACKING_PIXEL:
+                            if case(TRACKING_PIXEL:
                                 trackPixels.push(tmpStr.split(";"));
                                 trc(("Tracking pixel definition old " + tmpStr));
                                 break;
-                            case POLL_TUNNEL_URL:
+                            if case(POLL_TUNNEL_URL:
                                 param_poll_tunnel_url = tmpStr;
                                 break;
-                            case SUPPORT_EMAIL:
+                            if case(SUPPORT_EMAIL:
                                 param_support_email = tmpStr;
                                 break;
-                            case GAMESTAFF_EMAIL:
+                            if case(GAMESTAFF_EMAIL:
                                 param_gamestaff_email = tmpStr;
                                 break;
-                            case PAPAYA_PATH:
+                            if case(PAPAYA_PATH:
                                 param_papaya_path = tmpStr;
                                 break;
-                            case PAPAYA_FILE:
+                            if case(PAPAYA_FILE:
                                 param_papaya_cfg_file = tmpStr;
                                 break;
-                            case RESEND_COUNT:
+                            if case(RESEND_COUNT:
                                 param_fail_tries = int(tmpStr);
                                 break;
-                            case IDLE_POLLING:
+                            if case(IDLE_POLLING:
                                 param_idle_polling = int(tmpStr);
                                 break;
-                            case ALLOW_SKIP_QUEST:
+                            if case(ALLOW_SKIP_QUEST:
                                 param_allow_skip_quest = (int(tmpStr) == 1);
                                 param_happy_hour = (int(tmpStr) == 2);
                                 break;
-                            case CENSORED:
+                            if case(CENSORED:
                                 param_censored = !((int(tmpStr) == 0));
                                 break;
-                            case INTERNAL_PIXEL:
+                            if case(INTERNAL_PIXEL:
                                 param_internal_pixel = !((int(tmpStr) == 0));
                                 break;
-                            case RELOAD_PIXEL:
+                            if case(RELOAD_PIXEL:
                                 param_reload_pixel = !((int(tmpStr) == 0));
                                 break;
-                            case SERVER_VERSION:
+                            if case(SERVER_VERSION:
                                 param_server_version_cfg = tmpStr;
                                 break;
-                            case DONT_SAVE_CID:
+                            if case(DONT_SAVE_CID:
                                 param_no_cid_save = !((int(tmpStr) == 0));
                                 break;
-                            case FLAGS:
+                            if case(FLAGS:
                                 param_languages = tmpStr.split("/");
                                 break;
-                            case FLAG_NAMES:
+                            if case(FLAG_NAMES:
                                 param_language_names = tmpStr.split("/");
                                 break;
-                            case LOWRES_URL:
+                            if case(LOWRES_URL:
                                 break;
-                            case SPONSOR_URL:
+                            if case(SPONSOR_URL:
                                 param_sponsor_url = tmpStr;
                                 break;
-                            case BULLSHIT_BOX:
+                            if case(BULLSHIT_BOX:
                                 param_bullshit_text = tmpStr;
                                 break;
-                            case BULLSHIT_CID:
+                            if case(BULLSHIT_CID:
                                 param_bullshit_cid = tmpStr;
                                 break;
-                            case SOCIAL_BUTTONS:
+                            if case(SOCIAL_BUTTONS:
                                 param_social_buttons = tmpStr.split("/");
                                 break;
-                            case PIXEL_CALL:
+                            if case(PIXEL_CALL:
                                 defined_pixel_calls[tmpStr.split(":")[0]] = tmpStr.split(":")[1];
                                 break;
-                            case BACKGROUND_ID:
+                            if case(BACKGROUND_ID:
                                 login_background_id = tmpStr;
                                 break;
-                            case WORLDS:
+                            if case(WORLDS:
                                 worlds = list();
                                 tmpWorlds = tmpStr.split(";");
                                 j = 0;
@@ -8241,21 +8223,21 @@ public function load_configuration_file():void{
                                     j++;
                                 };
                                 break;
-                            case TV_FUNCTION:
+                            if case(TV_FUNCTION:
                                 tvFunctionName = tmpStr;
                                 break;
-                            case TV_POLL_INTERVAL_NORMAL:
+                            if case(TV_POLL_INTERVAL_NORMAL:
                                 tvPollNormal = (int(tmpStr) * 1000);
                                 break;
-                            case TV_POLL_INTERVAL_LONG:
+                            if case(TV_POLL_INTERVAL_LONG:
                                 tvPollLong = (int(tmpStr) * 1000);
                                 break;
                         };
                     };
                     tmpStr = "";
                     break;
-                case 20:
-                case 9:
+                if case(20:
+                if case(9:
                     if (!inValue){
                         lastIndex = int(tmpStr);
                         tmpStr = "";
@@ -8264,7 +8246,7 @@ public function load_configuration_file():void{
                         tmpStr = (tmpStr + strData.charAt(i));
                     };
                     break;
-                case 136:
+                if case(136:
                     tmpStr = (tmpStr + (String.fromCharCode(13) + String.fromCharCode(10)));
                 default:
                     tmpStr = (tmpStr + strData.charAt(i));
@@ -8988,18 +8970,18 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         HutmannAniStep++;
                     };
                     Switch (HutmannAniStep){
-                        case 2:
-                        case 8:
-                        case 14:
-                        case 20:
-                        case 26:
+                        if case(2:
+                        if case(8:
+                        if case(14:
+                        if case(20:
+                        if case(26:
                             HutmannFrame = 1;
                             break;
-                        case 4:
-                        case 10:
-                        case 16:
-                        case 22:
-                        case 28:
+                        if case(4:
+                        if case(10:
+                        if case(16:
+                        if case(22:
+                        if case(28:
                             HutmannFrame = 0;
                             break;
                     };
@@ -9061,20 +9043,20 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     delete actor[i];
                     d = actorBitmap[i];
                     Switch (d){
-                        case 0:
+                        if case(0:
                             actor[i] = new interface_dragon1_png();
                             break;
-                        case 1:
+                        if case(1:
                             actor[i] = new interface_dragon2_png();
                             break;
-                        case 2:
+                        if case(2:
                             actor[i] = new interface_dragon3_png();
                             break;
-                        case 3:
+                        if case(3:
                             actor[i] = new interface_dragon4_png();
                             break;
-                        case 4:
-                        case 5:
+                        if case(4:
+                        if case(5:
                             actor[i] = new interface_dragon6_png();
                             break;
                     };
@@ -9488,31 +9470,31 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             evt.target.add_event_listener(MouseEvent.MOUSE_OUT, EndMimickInterfaceButtonHover);
             Switch (GetActorID(evt.target)){
-                case CA_CITY_SHAKES:
+                if case(CA_CITY_SHAKES:
                     MimickHover(IF_SCHMIEDE);
                     break;
-                case CA_CITY_ZAUBERLADEN:
+                if case(CA_CITY_ZAUBERLADEN:
                     MimickHover(IF_ZAUBERLADEN);
                     break;
-                case CA_CITY_RUHMESHALLE:
+                if case(CA_CITY_RUHMESHALLE:
                     MimickHover(IF_EHRENHALLE);
                     break;
-                case CA_CITY_ARENA:
+                if case(CA_CITY_ARENA:
                     MimickHover(IF_ARENA);
                     break;
-                case CA_CITY_DEALER:
+                if case(CA_CITY_DEALER:
                     MimickHover(IF_PILZDEALER);
                     break;
-                case CA_CITY_ESEL:
+                if case(CA_CITY_ESEL:
                     MimickHover(IF_STALL);
                     break;
-                case CA_CITY_TAVERNE:
+                if case(CA_CITY_TAVERNE:
                     MimickHover(IF_TAVERNE);
                     break;
-                case CA_CITY_POST:
+                if case(CA_CITY_POST:
                     MimickHover(IF_POST);
                     break;
-                case CA_CITY_WACHE:
+                if case(CA_CITY_WACHE:
                     MimickHover(IF_ARBEITEN);
                     break;
             };
@@ -9808,33 +9790,33 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DealerStep = function (evt:Event):void{
             if (((((on_stage(SCR_CITY_BACKG_NIGHT)) or (on_stage(SCR_CITY_BACKG_DAWN)))) or (on_stage(SCR_CITY_BACKG_DAY)))){
                 Switch (DealerAniStep){
-                    case 1:
+                    if case(1:
                         add(CITY_DEALER_ANI2);
                         break;
-                    case 2:
+                    if case(2:
                         add(CITY_DEALER_ANI1);
                         break;
-                    case 3:
+                    if case(3:
                         add(CITY_DEALER_ANI2);
                         break;
-                    case 4:
+                    if case(4:
                         add(CITY_DEALER_ANI5);
                         DealerAniStep = 0;
                         break;
-                    case 5:
-                    case 6:
-                    case 7:
+                    if case(5:
+                    if case(6:
+                    if case(7:
                         add(CITY_DEALER_ANI3);
                         break;
-                    case 8:
+                    if case(8:
                         add(CITY_DEALER_ANI5);
                         break;
-                    case 9:
-                    case 10:
-                    case 11:
+                    if case(9:
+                    if case(10:
+                    if case(11:
                         add(CITY_DEALER_ANI4);
                         break;
-                    case 12:
+                    if case(12:
                         add(CITY_DEALER_ANI5);
                         DealerAniStep = 0;
                         break;
@@ -9904,42 +9886,42 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         InterfaceButtonHover = function (evt:MouseEvent):void{
             if (((((((((on_stage(SCR_CITY_BACKG_NIGHT)) or (on_stage(SCR_CITY_BACKG_DAWN)))) or (on_stage(SCR_CITY_BACKG_DAY)))) and (!(on_stage(CA_SCR_ARBEITEN_BLOCKCITY))))) and (!(on_stage(CA_SCR_INVITE_BLOCKCITY))))){
                 Switch (GetActorID(evt.target)){
-                    case IF_SCHMIEDE:
+                    if case(IF_SCHMIEDE:
                         add(CITY_SHAKES);
                         break;
-                    case IF_ZAUBERLADEN:
+                    if case(IF_ZAUBERLADEN:
                         add(CITY_ZAUBERLADEN);
                         break;
-                    case IF_EHRENHALLE:
+                    if case(IF_EHRENHALLE:
                         add(CITY_RUHMESHALLE);
                         add(CITY_CA_OVL);
                         break;
-                    case IF_ARENA:
+                    if case(IF_ARENA:
                         add(CITY_ARENA);
                         add(CITY_CA_OVL);
                         ShowArenaOno();
                         break;
-                    case IF_PILZDEALER:
+                    if case(IF_PILZDEALER:
                         add(CITY_DEALER_ANI5);
                         add(CITY_DEALER);
                         HideDealerEyes();
                         break;
-                    case IF_STALL:
+                    if case(IF_STALL:
                         add(CITY_ESEL2);
                         remove(CITY_ESEL1);
                         add(CITY_CA_OVL);
                         break;
-                    case IF_TAVERNE:
+                    if case(IF_TAVERNE:
                         add(CITY_TAVERNE);
                         add(CITY_ZWERG);
                         add(CITY_CA_OVL);
                         break;
-                    case IF_POST:
+                    if case(IF_POST:
                         add(CITY_POST);
                         add(CITY_ORK);
                         add(CITY_CA_OVL);
                         break;
-                    case IF_ARBEITEN:
+                    if case(IF_ARBEITEN:
                         WacheOver();
                         break;
                 };
@@ -9979,12 +9961,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             Switch (GetActorID(evt.target)){
-                case HALL_GOTO_SPIELER:
+                if case(HALL_GOTO_SPIELER:
                     ruhmesHalleSuchName = True;
                     ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
                     send_action(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
                     break;
-                case HALL_GOTO_GILDEN:
+                if case(HALL_GOTO_GILDEN:
                     if (Savegame[SG_GUILD_INDEX] > 0){
                         ruhmesHalleSuchName = True;
                         ruhmesHalleSuchString = Gilde;
@@ -9995,14 +9977,14 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         send_action(ACT_SCREEN_GILDENHALLE, "", 0, 1);
                     };
                     break;
-                case HALLE_UP:
+                if case(HALLE_UP:
                     if (GuildHallMode){
                         send_action(ACT_SCREEN_GILDENHALLE, "", "0", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) - 15));
                     } else {
                         send_action(ACT_SCREEN_EHRENHALLE, "", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) - 15));
                     };
                     break;
-                case HALLE_DOWN:
+                if case(HALLE_DOWN:
                     if (GuildHallMode){
                         send_action(ACT_SCREEN_GILDENHALLE, "", "0", (Math.abs(int(actor[HALL_LIST].getChildAt(((6 * 7) + 5)).text)) + 15));
                     } else {
@@ -10239,10 +10221,10 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     ClickCount++;
                     Switch (ClickCount){
-                        case 1:
+                        if case(1:
                             BoostBtnRepeatTimer.delay = 500;
                             break;
-                        case 3:
+                        if case(3:
                             BoostBtnRepeatTimer.delay = 250;
                             break;
                     };
@@ -10492,44 +10474,44 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     } else {
                         ShakesIdleStep++;
                         Switch (int(ShakesIdleStep)){
-                            case 1:
-                            case 5:
-                            case 9:
-                            case 12:
-                            case 15:
-                            case 19:
-                            case 23:
-                            case 27:
-                            case 33:
+                            if case(1:
+                            if case(5:
+                            if case(9:
+                            if case(12:
+                            if case(15:
+                            if case(19:
+                            if case(23:
+                            if case(27:
+                            if case(33:
                                 ShakesIdlePhase = 1;
                                 break;
-                            case 2:
-                            case 4:
-                            case 6:
-                            case 8:
-                            case 10:
-                            case 13:
-                            case 16:
-                            case 18:
-                            case 20:
-                            case 22:
-                            case 24:
-                            case 26:
-                            case 28:
-                            case 31:
+                            if case(2:
+                            if case(4:
+                            if case(6:
+                            if case(8:
+                            if case(10:
+                            if case(13:
+                            if case(16:
+                            if case(18:
+                            if case(20:
+                            if case(22:
+                            if case(24:
+                            if case(26:
+                            if case(28:
+                            if case(31:
                                 ShakesIdlePhase = 2;
                                 break;
-                            case 3:
-                            case 7:
-                            case 11:
-                            case 14:
-                            case 17:
-                            case 21:
-                            case 25:
-                            case 29:
+                            if case(3:
+                            if case(7:
+                            if case(11:
+                            if case(14:
+                            if case(17:
+                            if case(21:
+                            if case(25:
+                            if case(29:
                                 ShakesIdlePhase = 3;
                                 break;
-                            case 35:
+                            if case(35:
                                 WasIdleCount++;
                                 PlayerIdle = False;
                                 ShakesIdlePhase = 0;
@@ -10584,16 +10566,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             remove(SHAKES_DAY);
                             remove(SHAKES_BLINZELN1, SHAKES_BLINZELN2);
                             Switch (ShakesIdlePhase){
-                                case 1:
+                                if case(1:
                                     remove(SHAKES_IDLE, SHAKES_IDLE2, SHAKES_IDLE3);
                                     break;
-                                case 2:
+                                if case(2:
                                     remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE3);
                                     break;
-                                case 3:
+                                if case(3:
                                     remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2);
                                     break;
-                                case 4:
+                                if case(4:
                                     remove(SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3);
                                     break;
                             };
@@ -10785,13 +10767,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 OldMount = 0;
             };
             Switch (actorID){
-                case CA_STALL_BOX_GUT1:
+                if case(CA_STALL_BOX_GUT1:
                     SelectedMount = 3;
                     break;
-                case CA_STALL_BOX_GUT2:
+                if case(CA_STALL_BOX_GUT2:
                     SelectedMount = 1;
                     break;
-                case CA_STALL_BOX_GUT3:
+                if case(CA_STALL_BOX_GUT3:
                     SelectedMount = 2;
                     break;
                 default:
@@ -10854,7 +10836,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             Switch ((SelectedMount + (((char_volk >= 5)) ? 4 : 0))){
-                case 1:
+                if case(1:
                     if ((((ststep == 0)) or ((ststep == 4)))){
                         ststep++;
                     } else {
@@ -10863,7 +10845,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 1;
                     PilzKosten = 0;
                     break;
-                case 2:
+                if case(2:
                     if ((((ststep == 1)) or ((ststep == 5)))){
                         ststep++;
                     } else {
@@ -10872,7 +10854,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 5;
                     PilzKosten = 0;
                     break;
-                case 3:
+                if case(3:
                     if ((((ststep == 2)) or ((ststep == 6)))){
                         ststep++;
                     } else {
@@ -10881,7 +10863,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 10;
                     PilzKosten = 1;
                     break;
-                case 4:
+                if case(4:
                     if ((((ststep == 3)) or ((ststep == 7)))){
                         ststep++;
                     } else {
@@ -10890,7 +10872,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 0;
                     PilzKosten = 25;
                     break;
-                case 5:
+                if case(5:
                     if ((((ststep == 0)) or ((ststep == 4)))){
                         ststep++;
                     } else {
@@ -10899,7 +10881,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 1;
                     PilzKosten = 0;
                     break;
-                case 6:
+                if case(6:
                     if ((((ststep == 1)) or ((ststep == 5)))){
                         ststep++;
                     } else {
@@ -10908,7 +10890,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 5;
                     PilzKosten = 0;
                     break;
-                case 7:
+                if case(7:
                     if ((((ststep == 2)) or ((ststep == 6)))){
                         ststep++;
                     } else {
@@ -10917,7 +10899,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     GoldKosten = 10;
                     PilzKosten = 1;
                     break;
-                case 8:
+                if case(8:
                     if ((((ststep == 3)) or ((ststep == 7)))){
                         ststep++;
                     };
@@ -11387,9 +11369,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var i:* = 0;
             var evt:* = evt;
             Switch (GetActorID(evt.target)){
-                case (GILDE_CREST_COLOR + 1):
-                case (GILDE_CREST_COLOR + 2):
-                case (GILDE_CREST_COLOR + 3):
+                if case((GILDE_CREST_COLOR + 1):
+                if case((GILDE_CREST_COLOR + 2):
+                if case((GILDE_CREST_COLOR + 3):
                     crestColorSelection = (GetActorID(evt.target) - GILDE_CREST_COLOR);
                     i = 1;
                     while (i < crestColor.length) {
@@ -11402,7 +11384,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     loadCrest();
                     break;
-                case GILDE_CREST_COLOR_PREV:
+                if case(GILDE_CREST_COLOR_PREV:
                     crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     var _local3 = crestColor;
@@ -11414,7 +11396,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     loadCrest();
                     break;
-                case GILDE_CREST_COLOR_NEXT:
+                if case(GILDE_CREST_COLOR_NEXT:
                     crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     _local3 = crestColor;
@@ -11426,7 +11408,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     loadCrest();
                     break;
-                case GILDE_CREST_CHANGE_PREV:
+                if case(GILDE_CREST_CHANGE_PREV:
                     crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     _local3 = crest;
@@ -11438,7 +11420,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     loadCrest();
                     break;
-                case GILDE_CREST_CHANGE_NEXT:
+                if case(GILDE_CREST_CHANGE_NEXT:
                     crestSuggested = False;
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     _local3 = crest;
@@ -11450,7 +11432,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     loadCrest();
                     break;
-                case GILDE_CREST_OK:
+                if case(GILDE_CREST_OK:
                     if ((((my_own_rank == 1)) and (crestSuggested))){
                         send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((old_crest_str() + "§") + RemoveIllegalChars(SemiStrip(actor[INP_GILDE_TEXT].getChildAt(0).text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
                         old_crest_str = old_crest_str();
@@ -11468,15 +11450,15 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         };
                     };
                     break;
-                case CLA_GILDE_CREST:
-                case (CLA_GILDE_CREST + 1):
-                case (CLA_GILDE_CREST + 2):
-                case (CLA_GILDE_CREST + 3):
-                case (CLA_GILDE_CREST + 4):
-                case (CLA_GILDE_CREST + 5):
-                case (CLA_GILDE_CREST + 6):
-                case (CLA_GILDE_CREST + 7):
-                case (CLA_GILDE_CREST + 8):
+                if case(CLA_GILDE_CREST:
+                if case((CLA_GILDE_CREST + 1):
+                if case((CLA_GILDE_CREST + 2):
+                if case((CLA_GILDE_CREST + 3):
+                if case((CLA_GILDE_CREST + 4):
+                if case((CLA_GILDE_CREST + 5):
+                if case((CLA_GILDE_CREST + 6):
+                if case((CLA_GILDE_CREST + 7):
+                if case((CLA_GILDE_CREST + 8):
                     if (lastGuildShown == Gilde){
                         if (!on_stage(LBL_GILDE_CREST_ELEMENT)){
                             crestMoveDest = GILDE_GEBAEUDE_Y;
@@ -11501,7 +11483,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     loadCrest();
                     break;
-                case GILDE_GEBAEUDE_GOTO_CREST:
+                if case(GILDE_GEBAEUDE_GOTO_CREST:
                     remove(GILDE_GEBAEUDE);
                     add(GILDE_CREST);
                     if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
@@ -11515,7 +11497,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     SetBtnText(GILDE_CREST_OK, txt[TXT_CREST_SUGGEST]);
                     loadCrest();
                     break;
-                case GILDE_CREST_GOTO_GEBAEUDE:
+                if case(GILDE_CREST_GOTO_GEBAEUDE:
                     set_crest_str(old_crest_str);
                     selecterCrestElement = -1;
                     remove(GILDE_CREST);
@@ -11523,7 +11505,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[GILDE_CREST].y = (GILDE_GEBAEUDE_Y + 60);
                     add(GILDE_GEBAEUDE);
                     break;
-                case GILDE_RAID:
+                if case(GILDE_RAID:
                     if (my_own_attack_target == 0){
                         if (txt[TXT_GILDE_RAIDSTART]){
                             add(GILDE_DIALOG_RAID);
@@ -11545,7 +11527,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         send_action(ACT_GUILD_JOIN_ATTACK, "", "");
                     };
                     break;
-                case GILDE_ATTACK:
+                if case(GILDE_ATTACK:
                     if (my_own_attack_target == 0){
                         if (lastGuildShown == Gilde){
                             send_action(ACT_SCREEN_GILDENHALLE, "", Savegame[SG_GUILD_INDEX], 0);
@@ -11556,16 +11538,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         send_action(ACT_GUILD_JOIN_ATTACK, "", "");
                     };
                     break;
-                case GILDE_DEFEND:
+                if case(GILDE_DEFEND:
                     send_action(ACT_GUILD_JOIN_DEFENSE, "", "");
                     break;
-                case GILDE_CHAT_DOWN:
+                if case(GILDE_CHAT_DOWN:
                     GildeChatScroll--;
                     if (GildeChatScroll < 0){
                         GildeChatScroll = 0;
                     };
                     break;
-                case GILDE_CHAT_UP:
+                if case(GILDE_CHAT_UP:
                     GildeChatScroll++;
                     if (GildeChatScroll > 35){
                         GildeChatScroll = 35;
@@ -11614,16 +11596,16 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     ClickCount++;
                     Switch (ClickCount){
-                        case 1:
+                        if case(1:
                             HutBtnRepeatTimer.delay = 500;
                             break;
-                        case 3:
+                        if case(3:
                             HutBtnRepeatTimer.delay = 250;
                             break;
-                        case 10:
+                        if case(10:
                             HutBtnRepeatTimer.delay = 125;
                             break;
-                        case 20:
+                        if case(20:
                             HutBtnRepeatTimer.delay = 62;
                             break;
                     };
@@ -11680,7 +11662,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
             AddSome(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
             Switch (GetActorID(evt.target)){
-                case HUTMANN_GOLDBET:
+                if case(HUTMANN_GOLDBET:
                     if (int((int(Savegame[SG_GOLD]) / 100)) > int(actor[LBL_HUTMANN_GOLDBET2].text)){
                         actor[LBL_HUTMANN_GOLDBET].text = String((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_GOLDBET2].text)));
                         BetRisen();
@@ -11699,7 +11681,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         return (False);
                     };
                     break;
-                case HUTMANN_MUSHBET:
+                if case(HUTMANN_MUSHBET:
                     if (int(Savegame[SG_MUSH]) > int(actor[LBL_HUTMANN_MUSHBET2].text)){
                         actor[LBL_HUTMANN_MUSHBET].text = String((int(actor[LBL_HUTMANN_MUSHBET].text) + int(actor[LBL_HUTMANN_MUSHBET2].text)));
                         BetRisen();
@@ -11718,7 +11700,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                         return (False);
                     };
                     break;
-                case HUTMANN_OK:
+                if case(HUTMANN_OK:
                     if (((((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0)) and (on_stage(HUTMANN_GOLDBET)))){
                         remove(HUTMANN_OK, HUTMANN_PLACEBET);
                         add(HUTMANN_BECHERCHOOSE);
@@ -11938,12 +11920,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             while (i < 3) {
                 highStakes = False;
                 Switch (Math.abs(int(Savegame[(SG_QUEST_OFFER_ENEMY1 + i)]))){
-                    case 139:
-                    case 145:
-                    case 148:
-                    case 152:
-                    case 155:
-                    case 157:
+                    if case(139:
+                    if case(145:
+                    if case(148:
+                    if case(152:
+                    if case(155:
+                    if case(157:
                         highStakes = True;
                         break;
                 };
@@ -12275,7 +12257,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             };
             remove(LUXURY_SELLER);
             Switch (GetActorID(evt.target)){
-                case OPTION_LUXURY:
+                if case(OPTION_LUXURY:
                     remove(OPTION_DOCHANGE);
                     optionMenuSelect = 6;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_LUXURY_TITLE];
@@ -12289,7 +12271,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     arabize(LBL_OPTION_FIELD1);
                     break;
-                case OPTION_CHANGE_NAME:
+                if case(OPTION_CHANGE_NAME:
                     optionMenuSelect = 1;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_DOCHANGE_NAME_TITLE];
                     actor[LBL_OPTION_FIELD1].text = txt[TXT_DOCHANGE_NAME_FIELD_1];
@@ -12304,7 +12286,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
                     add(OPTION_DOCHANGE);
                     break;
-                case OPTION_CHANGE_EMAIL:
+                if case(OPTION_CHANGE_EMAIL:
                     optionMenuSelect = 2;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_DOCHANGE_EMAIL_TITLE];
                     actor[LBL_OPTION_FIELD1].text = txt[TXT_DOCHANGE_EMAIL_FIELD_1];
@@ -12324,7 +12306,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
                     add(OPTION_DOCHANGE);
                     break;
-                case OPTION_CHANGE_PASSWORD:
+                if case(OPTION_CHANGE_PASSWORD:
                     optionMenuSelect = 3;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_DOCHANGE_PASSWORD_TITLE];
                     actor[LBL_OPTION_FIELD1].text = txt[TXT_DOCHANGE_PASSWORD_FIELD_1];
@@ -12339,7 +12321,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = True;
                     add(OPTION_DOCHANGE);
                     break;
-                case OPTION_DELETE:
+                if case(OPTION_DELETE:
                     optionMenuSelect = 4;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_DELETE_ACCOUNT_TITLE];
                     actor[LBL_OPTION_FIELD1].text = txt[TXT_DELETE_ACCOUNT_FIELD_1];
@@ -12354,7 +12336,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
                     add(OPTION_DOCHANGE);
                     break;
-                case OPTION_RESEND:
+                if case(OPTION_RESEND:
                     remove(OPTION_DOCHANGE);
                     optionMenuSelect = 5;
                     actor[LBL_OPTION_DOCHANGE].text = txt[TXT_RESEND_TITLE];
@@ -12367,12 +12349,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     };
                     arabize(LBL_OPTION_FIELD1);
                     break;
-                case OPTION_CHANGEIMG:
+                if case(OPTION_CHANGEIMG:
                     ShowBuildCharacterScreen(evt);
                     break;
                 default:
                     Switch (optionMenuSelect){
-                        case 1:
+                        if case(1:
                             if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
                                 send_action(ACT_CHANGE_NAME, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 option_new_data = actor[INP_OPTION_FIELD2].getChildAt(1).text;
@@ -12380,7 +12362,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 error_message(txt[TXT_ERROR_NAME_MISMATCH]);
                             };
                             break;
-                        case 2:
+                        if case(2:
                             if ((((actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text)) or ((Savegame[SG_EMAIL_VALID] == 1)))){
                                 send_action(ACT_CHANGE_MAIL, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 option_new_data = actor[INP_OPTION_FIELD2].getChildAt(1).text;
@@ -12388,7 +12370,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 error_message(txt[TXT_ERROR_EMAIL_MISMATCH]);
                             };
                             break;
-                        case 3:
+                        if case(3:
                             if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
                                 send_action(ACT_CHANGE_PASS, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
                                 option_new_data = actor[INP_OPTION_FIELD2].getChildAt(1).text;
@@ -12396,17 +12378,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                                 error_message(txt[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
                             break;
-                        case 4:
+                        if case(4:
                             if (actor[INP_OPTION_FIELD1].getChildAt(1).text == actor[INP_OPTION_FIELD2].getChildAt(1).text){
                                 send_action(ACT_DELETE_ACCOUNT, actor[INP_NAME].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text.lower());
                             } else {
                                 error_message(txt[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
                             break;
-                        case 5:
+                        if case(5:
                             ResendConfirmationEmail();
                             break;
-                        case 6:
+                        if case(6:
                             remove(OPTION_DOCHANGE);
                             optionMenuSelect = 7;
                             actor[LBL_OPTION_DOCHANGE].text = txt[TXT_LUXURY_TITLE];
@@ -12416,7 +12398,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             add(LUXURY_SELLER);
                             arabize(LBL_OPTION_FIELD1);
                             break;
-                        case 7:
+                        if case(7:
                             remove(OPTION_DOCHANGE);
                             optionMenuSelect = 8;
                             actor[LBL_OPTION_DOCHANGE].text = txt[TXT_LUXURY_TITLE];
@@ -12426,12 +12408,12 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                             add(LUXURY_SELLER);
                             arabize(LBL_OPTION_FIELD1);
                             break;
-                        case 8:
+                        if case(8:
                             send_action(ACT_BUY_LUXURY);
                             break;
                     };
                     break;
-                case OPTION_CHANGEIMG:
+                if case(OPTION_CHANGEIMG:
             };
             if (textDir == "right"){
                 actor[LBL_OPTION_DOCHANGE].x = ((OPTION_X + OPTION_VER_X) - actor[LBL_OPTION_DOCHANGE].textWidth);
@@ -13012,28 +12994,28 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             pos_x = (SCR_BUILDCHAR_VOLK_X + ((i)<4) ? 0 : SCR_BUILDCHAR_VOLK_X);
             pos_y = (SCR_BUILDCHAR_VOLK_Y + (((i)<4) ? i : (i - 4) * SCR_BUILDCHAR_VOLK_Y));
             Switch ((i + 1)){
-                case 1:
+                if case(1:
                     volk = "human";
                     break;
-                case 2:
+                if case(2:
                     volk = "elf";
                     break;
-                case 3:
+                if case(3:
                     volk = "dwarf";
                     break;
-                case 4:
+                if case(4:
                     volk = "gnome";
                     break;
-                case 5:
+                if case(5:
                     volk = "orc";
                     break;
-                case 6:
+                if case(6:
                     volk = "darkelf";
                     break;
-                case 7:
+                if case(7:
                     volk = "goblin";
                     break;
-                case 8:
+                if case(8:
                     volk = "demon";
                     break;
             };
@@ -13609,13 +13591,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 itm_color = 0;
                 while (itm_color < 5) {
                     Switch (itmTyp){
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
+                        if case(1:
+                        if case(2:
+                        if case(3:
+                        if case(4:
+                        if case(5:
+                        if case(6:
+                        if case(7:
                             itm_class = 0;
                             while (itm_class < 3) {
                                 DefineImg(GetItemID(itmTyp, itm_pic, itm_color, itm_class), GetItemFile(itmTyp, itm_pic, itm_color, itm_class), False, 0, 0);
@@ -14049,17 +14031,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             Switch (actorID){
-                case INP_POST_ADDRESS:
+                if case(INP_POST_ADDRESS:
                     if (actor[actorID].getChildAt(1).text == txt[TXT_EMPFAENGER]){
                         actor[actorID].getChildAt(1).text = "";
                     };
                     break;
-                case INP_POST_SUBJECT:
+                if case(INP_POST_SUBJECT:
                     if (actor[actorID].getChildAt(1).text == txt[TXT_BETREFF]){
                         actor[actorID].getChildAt(1).text = "";
                     };
                     break;
-                case INP_POST_TEXT:
+                if case(INP_POST_TEXT:
                     if (actor[actorID].getChildAt(1).text == txt[TXT_NACHRICHT]){
                         actor[actorID].getChildAt(1).text = "";
                     };
@@ -14070,17 +14052,17 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             var actorID:int;
             actorID = GetActorID(evt.target.parent);
             Switch (actorID){
-                case INP_POST_ADDRESS:
+                if case(INP_POST_ADDRESS:
                     if (actor[actorID].getChildAt(1).text == ""){
                         actor[actorID].getChildAt(1).text = txt[TXT_EMPFAENGER];
                     };
                     break;
-                case INP_POST_SUBJECT:
+                if case(INP_POST_SUBJECT:
                     if (actor[actorID].getChildAt(1).text == ""){
                         actor[actorID].getChildAt(1).text = txt[TXT_BETREFF];
                     };
                     break;
-                case INP_POST_TEXT:
+                if case(INP_POST_TEXT:
                     if (actor[actorID].getChildAt(1).text == ""){
                         actor[actorID].getChildAt(1).text = txt[TXT_NACHRICHT];
                     };
@@ -15354,11 +15336,11 @@ public function GetMyPath(mode:int=0):String{
     file_name = sections[(sections.length - 1)];
     folderName = fullPath.substr(0, (fullPath.length - file_name.length));
     Switch (mode){
-        case 0:
+        if case(0:
             return (folderName);
-        case 1:
+        if case(1:
             return (file_name);
-        case 2:
+        if case(2:
             return (fullPath);
     };
     return ("");
@@ -16348,15 +16330,15 @@ public function GetActorName(actorID:int=0):String{
             while (i < (strData.length - 1)) {
                 c = strData.charCodeAt(i);
                 Switch (c){
-                    case 10:
-                    case 13:
+                    if case(10:
+                    if case(13:
                         if (constName != ""){
                             actorName[int(tmpStr.substr(1))] = constName;
                         };
                         constName = "";
                         tmpStr = "";
                         break;
-                    case 61:
+                    if case(61:
                         if (tmpStr.substr(0, 14).lower() == "_global const "){
                             constName = tmpStr.substr(14, (tmpStr.length - 15));
                             tmpStr = "";
@@ -17320,7 +17302,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     thisRecipient = "";
     recipients = list();
     Switch (actorID){
-        case POST_SEND:
+        if case(POST_SEND:
             last_message_target = "";
             if (!on_stage(INP_POST_ADDRESS)){
                 GuildMsg = True;
@@ -17352,7 +17334,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 };
             };
             break;
-        case POST_UP:
+        if case(POST_UP:
             if (post_scroll > 1){
                 oldSel = -1;
                 post_scroll = (post_scroll - 15);
@@ -17362,7 +17344,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 send_action(ACT_SCREEN_POST, post_scroll);
             };
             break;
-        case POST_DOWN:
+        if case(POST_DOWN:
             if (post_scrollDown){
                 post_scroll = (post_scroll + 15);
                 post_scrollDown = False;
@@ -17375,7 +17357,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 send_action(ACT_SCREEN_POST, post_scroll);
             };
             break;
-        case POST_READ:
+        if case(POST_READ:
             if (textDir == "right"){
                 MakeRightTextArea(INP_POST_ADDRESS, 1);
                 MakeRightTextArea(INP_POST_SUBJECT, 1);
@@ -17385,7 +17367,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 send_action(ACT_POST_READ, ((post_sel + post_scroll) - 1));
             };
             break;
-        case POST_READ_NEXT:
+        if case(POST_READ_NEXT:
             post_sel++;
             if (post_sel > 15){
                 post_scroll = (post_scroll + 1);
@@ -17393,7 +17375,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             };
             send_action(ACT_POST_READ, ((post_sel + post_scroll) - 1));
             break;
-        case POST_READ_PREV:
+        if case(POST_READ_PREV:
             post_sel--;
             if (post_sel < 1){
                 post_scroll = (post_scroll - 1);
@@ -17401,8 +17383,8 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             };
             send_action(ACT_POST_READ, ((post_sel + post_scroll) - 1));
             break;
-        case POST_DELETE:
-        case POST_DELETEREAD:
+        if case(POST_DELETE:
+        if case(POST_DELETEREAD:
             if (post_sel > 0){
                 send_action(ACT_POST_DELETE, ((post_sel + post_scroll) - 1));
                 if (int(Savegame[SG_MSG_COUNT]) > 0){
@@ -17410,7 +17392,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 };
             };
             break;
-        case POST_FLUSH:
+        if case(POST_FLUSH:
             var _local4 = actor[LBL_WINDOW_TITLE];
             with (_local4) {
                 text = txt[TXT_POST_FLUSH_TEXT];
@@ -17418,21 +17400,21 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             };
             add(POST_FLUSHMSG);
             break;
-        case POST_FLUSH_CANCEL:
+        if case(POST_FLUSH_CANCEL:
             remove(POST_FLUSHMSG);
             add(IF_EXIT);
             break;
-        case POST_FLUSH_OK:
+        if case(POST_FLUSH_OK:
             remove(POST_FLUSHMSG);
             send_action(ACT_POST_DELETE, -1);
             break;
-        case POST_PROFILE:
+        if case(POST_PROFILE:
             if (ReplyAddress != ""){
                 sel_name = ReplyAddress;
                 send_action(ACT_REQUEST_CHAR, ReplyAddress);
             };
             break;
-        case POST_WRITE:
+        if case(POST_WRITE:
             actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
             actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
@@ -17457,8 +17439,8 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 MakeRightTextArea(INP_POST_TEXT, 1);
             };
             break;
-        case POST_CANCEL:
-        case POST_RETURN:
+        if case(POST_CANCEL:
+        if case(POST_RETURN:
             if (PostReturnToPlayer != ""){
                 send_action(ACT_REQUEST_CHAR, PostReturnToPlayer);
             } else {
@@ -17469,12 +17451,12 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 add(POST_LIST);
             };
             break;
-        case POST_ACCEPT:
+        if case(POST_ACCEPT:
             if (invitegilden_id > 0){
                 send_action(ACT_GUILD_JOIN, actor[INP_NAME].getChildAt(1).text, invitegilden_id, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
             };
             break;
-        case POST_REPLY:
+        if case(POST_REPLY:
             if (ReplyAddress != ""){
                 actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
@@ -17510,7 +17492,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 };
             };
             break;
-        case POST_FORWARD:
+        if case(POST_FORWARD:
             if (forwardText != ""){
                 actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
@@ -17547,8 +17529,8 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 };
             };
             break;
-        case POST_VIEWFIGHT:
-            par = tmpBattleInfo.split("#");
+        if case(POST_VIEWFIGHT:
+            par = tmp_battle_info.split("#");
             post_fight_mode = True;
             show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), True);
             break;
@@ -18036,21 +18018,21 @@ public function show_screen_album(){
 public function TowerBtnHandler(evt:Event){
     var i:int;
     Switch (GetActorID(evt.target)){
-        case PREV_COPYCAT:
+        if case(PREV_COPYCAT:
             copyCatSel--;
             if (copyCatSel < 0){
                 copyCatSel = 2;
             };
             DisplayInventory(towerSG, True, True, copyCatSel);
             break;
-        case NEXT_COPYCAT:
+        if case(NEXT_COPYCAT:
             copyCatSel++;
             if (copyCatSel > 2){
                 copyCatSel = 0;
             };
             DisplayInventory(towerSG, True, True, copyCatSel);
             break;
-        case TOWER_TRY:
+        if case(TOWER_TRY:
             ShowMainQuestScreen(100, (399 + tower_level));
             break;
     };
@@ -18981,10 +18963,10 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                     return;
                 };
                 Switch (((catapultStrike) ? 4 : weaponType)){
-                    case 1:
+                    if case(1:
                         if ((((((((opponent) ? oppWeapon : charWeapon) < 0)) and ((((opponent) ? oppWeapon : charWeapon) > -4)))) or ((((opponent) ? oppWeapon : charWeapon) < -6)))){
                             Switch (strikePhase){
-                                case 0:
+                                if case(0:
                                     if ((strikeVal == 0)){
                                         play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                     };
@@ -18996,7 +18978,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                         strikePhase++;
                                     };
                                     break;
-                                case 1:
+                                if case(1:
                                     strikeVal = (strikeVal + 0.2);
                                     if (strikeVal >= 1){
                                         strikeVal = 1;
@@ -19025,7 +19007,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                         };
                                     };
                                     break;
-                                case 2:
+                                if case(2:
                                     DamageAlpha = (DamageAlpha - 0.075);
                                     StrikeAlpha = (StrikeAlpha - 0.2);
                                     ShieldAlpha = (ShieldAlpha - 0.2);
@@ -19050,7 +19032,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                             };
                         } else {
                             Switch (strikePhase){
-                                case 0:
+                                if case(0:
                                     if ((strikeVal == 0)){
                                         play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                     };
@@ -19062,7 +19044,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                         strikePhase++;
                                     };
                                     break;
-                                case 1:
+                                if case(1:
                                     strikeVal = (strikeVal + 0.15);
                                     if (strikeVal >= 1){
                                         SetCnt(FIGHT_ONO, onoID, 0, 0, True);
@@ -19093,7 +19075,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                         };
                                     };
                                     break;
-                                case 2:
+                                if case(2:
                                     DamageAlpha = (DamageAlpha - 0.075);
                                     StrikeAlpha = (StrikeAlpha - 0.2);
                                     ShieldAlpha = (ShieldAlpha - 0.2);
@@ -19122,9 +19104,9 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                             };
                         };
                         break;
-                    case 2:
+                    if case(2:
                         Switch (strikePhase){
-                            case 0:
+                            if case(0:
                                 strikeVal = (strikeVal + 0.15);
                                 if (strikeVal >= 0.4){
                                     strikePhase++;
@@ -19132,7 +19114,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                 };
                                 break;
-                            case 1:
+                            if case(1:
                                 strikeVal = (strikeVal + 0.15);
                                 if ((((((opponent) ? oppFlag : charFlag) == 1)) and ((strikeVal >= 0.5)))){
                                     ShieldAlpha = 1;
@@ -19166,7 +19148,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     };
                                 };
                                 break;
-                            case 2:
+                            if case(2:
                                 DamageAlpha = (DamageAlpha - 0.075);
                                 StrikeAlpha = (StrikeAlpha - 0.2);
                                 ShieldAlpha = (ShieldAlpha - 0.2);
@@ -19195,9 +19177,9 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                 break;
                         };
                         break;
-                    case 3:
+                    if case(3:
                         Switch (strikePhase){
-                            case 0:
+                            if case(0:
                                 strikeVal = (strikeVal + 0.05);
                                 BulletAlpha = 1;
                                 if (strikeVal >= 0.3){
@@ -19205,7 +19187,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     play(get_weapon_sound(((opponent) ? oppWeaponType : charWeaponType), ((opponent) ? oppWeapon : charWeapon), 0));
                                 };
                                 break;
-                            case 1:
+                            if case(1:
                                 strikeVal = (strikeVal + 0.1);
                                 if ((((((opponent) ? oppFlag : charFlag) == 1)) and ((strikeVal >= 0.5)))){
                                     ShieldAlpha = 1;
@@ -19239,7 +19221,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     };
                                 };
                                 break;
-                            case 2:
+                            if case(2:
                                 DamageAlpha = (DamageAlpha - 0.075);
                                 StrikeAlpha = (StrikeAlpha - 0.2);
                                 ShieldAlpha = (ShieldAlpha - 0.2);
@@ -19268,9 +19250,9 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                 break;
                         };
                         break;
-                    case 4:
+                    if case(4:
                         Switch (strikePhase){
-                            case 0:
+                            if case(0:
                                 if (strikeVal == 0){
                                     play(SND_CATAPULT_LAUNCH);
                                     Load(FIGHT_MUSH);
@@ -19281,7 +19263,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     add(FIGHT_MUSH);
                                 };
                                 break;
-                            case 1:
+                            if case(1:
                                 strikeVal = (strikeVal + 0.1);
                                 if (strikeVal >= 1){
                                     strikeVal = 1;
@@ -19301,7 +19283,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     };
                                 };
                                 break;
-                            case 2:
+                            if case(2:
                                 strikeVal = (strikeVal - 0.1);
                                 DamageAlpha = (DamageAlpha - 0.05);
                                 actor[LBL_DAMAGE_INDICATOR].y = (actor[LBL_DAMAGE_INDICATOR].y - 2);
@@ -19444,7 +19426,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                     with (_local3) {
                         visible = (((((opponent) ? oppFlag : charFlag) == 0)) or ((((opponent) ? oppFlag : charFlag) == 3)));
                         Switch (weaponType){
-                            case 1:
+                            if case(1:
                                 x = (SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 200));
                                 y = (FIGHT_WEAPONS_Y - 20);
                                 if (OnoAlpha == 1){
@@ -19457,7 +19439,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     };
                                 };
                                 break;
-                            case 2:
+                            if case(2:
                                 x = (SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 230));
                                 y = (FIGHT_WEAPONS_Y - 40);
                                 if (OnoAlpha == 1){
@@ -19470,7 +19452,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                                     };
                                 };
                                 break;
-                            case 3:
+                            if case(3:
                                 x = (SCREEN_TITLE_X + (((opponent) ? -1 : 1) * 235));
                                 y = (FIGHT_WEAPONS_Y - 42);
                                 if (OnoAlpha == 1){
@@ -19563,13 +19545,13 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                 if (isPvP){
                     remove_all();
                     Switch (tz){
-                        case 0:
+                        if case(0:
                             add(SCREEN_ARENA_NIGHT);
                             break;
-                        case 1:
+                        if case(1:
                             add(SCREEN_ARENA_DAWN);
                             break;
-                        case 2:
+                        if case(2:
                             add(SCREEN_ARENA_DAY);
                             break;
                     };
@@ -19753,13 +19735,13 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
         remove(GILDE_CHAT);
     };
     Switch (tz){
-        case 0:
+        if case(0:
             Load(SCREEN_ARENA_NIGHT);
             break;
-        case 1:
+        if case(1:
             Load(SCREEN_ARENA_DAWN);
             break;
-        case 2:
+        if case(2:
             Load(SCREEN_ARENA_DAY);
             break;
     };
@@ -20005,7 +19987,7 @@ public function GetAdvent():int{
     var tmpDate:Date;
     var advent:int;
     Switch (lang_code){
-        case "de":
+        if case("de":
             break;
         default:
             return (0);
@@ -20458,13 +20440,13 @@ public function show_arena_screen(oppName:String, oppGilde:String, oppStufe:int)
         var evt:* = evt;
         remove_all();
         Switch (tz){
-            case 0:
+            if case(0:
                 add(SCREEN_ARENA_NIGHT);
                 break;
-            case 1:
+            if case(1:
                 add(SCREEN_ARENA_DAWN);
                 break;
-            case 2:
+            if case(2:
                 add(SCREEN_ARENA_DAY);
                 break;
         };
@@ -20531,13 +20513,13 @@ public function show_arena_screen(oppName:String, oppGilde:String, oppStufe:int)
     };
     Load(SCREEN_ARENA);
     Switch (tz){
-        case 0:
+        if case(0:
             Load(SCREEN_ARENA_NIGHT);
             break;
-        case 1:
+        if case(1:
             Load(SCREEN_ARENA_DAWN);
             break;
-        case 2:
+        if case(2:
             Load(SCREEN_ARENA_DAY);
             break;
     };
@@ -20838,22 +20820,22 @@ public function loadCrest(){
             with (_local2) {
                 y = 210;
                 Switch ((crest[i] + 1)){
-                    case 7:
-                    case 1:
-                    case 4:
-                    case 5:
-                    case 8:
-                    case 9:
+                    if case(7:
+                    if case(1:
+                    if case(4:
+                    if case(5:
+                    if case(8:
+                    if case(9:
                         y = (y - 2);
                         break;
-                    case 3:
-                    case 6:
+                    if case(3:
+                    if case(6:
                         y = (y - 1);
                         break;
-                    case 2:
-                    case 10:
-                    case 11:
-                    case 12:
+                    if case(2:
+                    if case(10:
+                    if case(11:
+                    if case(12:
                         break;
                 };
             };
@@ -21074,16 +21056,16 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                 } else {
                     ClickCount++;
                     Switch (ClickCount){
-                        case 1:
+                        if case(1:
                             GuildBtnRepeatTimer.delay = 500;
                             break;
-                        case 3:
+                        if case(3:
                             GuildBtnRepeatTimer.delay = 250;
                             break;
-                        case 10:
+                        if case(10:
                             GuildBtnRepeatTimer.delay = 125;
                             break;
-                        case 20:
+                        if case(20:
                             GuildBtnRepeatTimer.delay = 62;
                             break;
                     };
@@ -21142,20 +21124,20 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
         var PlaceButtonSet:* = function (){
             var selRank:int;
             Switch (myRank){
-                case 1:
+                if case(1:
                     add(GILDE_SET_MASTER);
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
                         show(PLAYER_GUILD_INVITE);
                     };
                     break;
-                case 2:
+                if case(2:
                     add(GILDE_SET_OFFICER);
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
                         show(PLAYER_GUILD_INVITE);
                     };
                     break;
-                case 3:
-                case 0:
+                if case(3:
+                if case(0:
                     if (guildData[0] == Savegame[SG_GUILD_INDEX]){
                         hide(PLAYER_GUILD_INVITE);
                     };
@@ -21204,14 +21186,14 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
             actorID = GetActorID(evt.target);
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
             Switch (actorID){
-                case GILDE_SCROLL_UP:
+                if case(GILDE_SCROLL_UP:
                     scrollLevel = (scrollLevel - 15);
                     if (scrollLevel < 0){
                         scrollLevel = 0;
                     };
                     BuildGuildList();
                     break;
-                case GILDE_SCROLL_DOWN:
+                if case(GILDE_SCROLL_DOWN:
                     scrollLevel = (scrollLevel + 15);
                     if (scrollLevel > (int(guildData[3]) - 15)){
                         scrollLevel = (int(guildData[3]) - 15);
@@ -21221,7 +21203,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                     };
                     BuildGuildList();
                     break;
-                case GILDE_INVITE:
+                if case(GILDE_INVITE:
                     add(GILDE_DIALOG_INVITE);
                     actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text = "";
                     var _local4 = actor[LBL_WINDOW_TITLE];
@@ -21230,10 +21212,10 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                         x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
                     };
                     break;
-                case GILDE_PROFILE:
+                if case(GILDE_PROFILE:
                     request_player_screen();
                     break;
-                case GILDE_REVOLT:
+                if case(GILDE_REVOLT:
                     add(GILDE_DIALOG_REVOLT);
                     _local4 = actor[LBL_WINDOW_TITLE];
                     with (_local4) {
@@ -21241,7 +21223,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                         x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
                     };
                     break;
-                case GILDE_KICK:
+                if case(GILDE_KICK:
                     if (selRank == 4){
                         KickMember();
                     } else {
@@ -21263,11 +21245,11 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                         };
                     };
                     break;
-                case GILDE_PROMOTE:
-                case GILDE_DEMOTE:
+                if case(GILDE_PROMOTE:
+                if case(GILDE_DEMOTE:
                     ToggleOfficer();
                     break;
-                case GILDE_MASTER:
+                if case(GILDE_MASTER:
                     add(GILDE_DIALOG_MASTER);
                     _local4 = actor[LBL_WINDOW_TITLE];
                     with (_local4) {
@@ -21275,22 +21257,22 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                         x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((textWidth / 2)));
                     };
                     break;
-                case GILDE_DIALOG_OK_KICK:
+                if case(GILDE_DIALOG_OK_KICK:
                     KickMember();
                     break;
-                case GILDE_DIALOG_OK_MASTER:
+                if case(GILDE_DIALOG_OK_MASTER:
                     MakeMaster();
                     break;
-                case GILDE_DIALOG_OK_INVITE:
+                if case(GILDE_DIALOG_OK_INVITE:
                     InvitePlayer();
                     break;
-                case GILDE_DIALOG_OK_REVOLT:
+                if case(GILDE_DIALOG_OK_REVOLT:
                     Revolt();
                     break;
-                case GILDE_DIALOG_OK_RAID:
+                if case(GILDE_DIALOG_OK_RAID:
                     send_action(ACT_GUILD_COMMENCE_ATTACK, -1);
                     break;
-                case GILDE_DIALOG_CANCEL:
+                if case(GILDE_DIALOG_CANCEL:
                     remove(GILDE_DIALOG_INVITE);
                     remove(GILDE_DIALOG_KICK);
                     remove(GILDE_DIALOG_REVOLT);
@@ -21298,17 +21280,17 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                     remove(LBL_GILDE_DIALOG_TEXT_QUIT);
                     remove(GILDE_DIALOG_RAID);
                     break;
-                case GILDE_KATAPULT:
-                case (GILDE_KATAPULT + 1):
-                case (GILDE_KATAPULT + 2):
+                if case(GILDE_KATAPULT:
+                if case((GILDE_KATAPULT + 1):
+                if case((GILDE_KATAPULT + 2):
                     send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
                     break;
-                case GILDE_GEBAEUDE_IMPROVE:
-                case (GILDE_GEBAEUDE_IMPROVE + 1):
-                case (GILDE_GEBAEUDE_IMPROVE + 2):
+                if case(GILDE_GEBAEUDE_IMPROVE:
+                if case((GILDE_GEBAEUDE_IMPROVE + 1):
+                if case((GILDE_GEBAEUDE_IMPROVE + 2):
                     send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actorID - GILDE_GEBAEUDE_IMPROVE) + 1));
                     break;
-                case GILDE_GOLD:
+                if case(GILDE_GOLD:
                     if (int(Savegame[SG_EMAIL_VALID]) == 1){
                         if ((((int(actor[LBL_IF_GOLD].text) >= int(actor[LBL_GILDE_GOLD2].text))) and (((int(actor[LBL_GILDE_GOLD].text) + int(actor[LBL_GILDE_GOLD2].text)) <= 10000000)))){
                             GoldToDonate = (GoldToDonate + int(actor[LBL_GILDE_GOLD2].text));
@@ -21332,7 +21314,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                         return (False);
                     };
                     break;
-                case GILDE_MUSH:
+                if case(GILDE_MUSH:
                     if (int(Savegame[SG_EMAIL_VALID]) == 1){
                         if (int(Savegame[SG_FIRST_PAYMENT]) != 0){
                             if (int(actor[LBL_IF_PILZE].text) >= int(actor[LBL_GILDE_MUSH2].text)){
@@ -21755,17 +21737,17 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
             GoldKosten = int((GildeBuildingGold[(Ausbaustufe + 1)] / 100));
             PilzKosten = GildeBuildingPilz[(Ausbaustufe + 1)];
             Switch (i){
-                case 0:
+                if case(0:
                     if (AusbaustufeEx > 50){
                         Nutzen = "50";
                     } else {
                         Nutzen = String(AusbaustufeEx);
                     };
                     break;
-                case 1:
+                if case(1:
                     Nutzen = (String((AusbaustufeEx * 2)) + "%");
                     break;
-                case 2:
+                if case(2:
                     Nutzen = (String((AusbaustufeEx * 2)) + "%");
                     break;
             };
@@ -22458,13 +22440,13 @@ public function show_city_screen(evt:Event=undefined):void{
         };
         remove_all();
         Switch (tageszeit()){
-            case 0:
+            if case(0:
                 add(SCREEN_CITY_NIGHT);
                 break;
-            case 1:
+            if case(1:
                 add(SCREEN_CITY_DAWN);
                 break;
-            case 2:
+            if case(2:
                 add(SCREEN_CITY_DAY);
                 break;
         };
@@ -22506,13 +22488,13 @@ public function show_city_screen(evt:Event=undefined):void{
     StatistenBleiben = False;
     Load(BUBBLES);
     Switch (tageszeit()){
-        case 0:
+        if case(0:
             Load(SCREEN_CITY_NIGHT);
             break;
-        case 1:
+        if case(1:
             Load(SCREEN_CITY_DAWN);
             break;
-        case 2:
+        if case(2:
             Load(SCREEN_CITY_DAY);
             break;
     };
@@ -22714,22 +22696,22 @@ public function ShowPostScreen(par:Array=undefined){
                 return;
             };
             Switch (tmp_array[(i + 1)]){
-                case "1":
+                if case("1":
                     tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED];
                     break;
-                case "2":
+                if case("2":
                     tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_DELETED_BY_ADMIN];
                     break;
-                case "3":
+                if case("3":
                     tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_EXPELLED];
                     break;
-                case "4":
+                if case("4":
                     tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN];
                     break;
-                case "5":
+                if case("5":
                     tmp_array[(i + 1)] = txt[TXT_SUBJECT_GUILD_INVITE];
                     break;
-                case "6":
+                if case("6":
                     if (fight_flush_mode){
                         send_action(ACT_POST_DELETE, ((line + post_scroll) - 1));
                         return;
@@ -22741,7 +22723,7 @@ public function ShowPostScreen(par:Array=undefined){
                         tmp_fmt = FontFormat_PostListTextSysRed;
                     };
                     break;
-                case "7":
+                if case("7":
                     if (fight_flush_mode){
                         send_action(ACT_POST_DELETE, ((line + post_scroll) - 1));
                         return;
@@ -22753,29 +22735,29 @@ public function ShowPostScreen(par:Array=undefined){
                         tmp_fmt = FontFormat_PostListTextSysGreen;
                     };
                     break;
-                case "8":
+                if case("8":
                     if (txt[TXT_INV_ACC_TITLE] != ""){
                         tmp_array[(i + 1)] = txt[TXT_INV_ACC_TITLE];
                     } else {
                         tmp_array[(i + 1)] = "FRIEND_INVITE_ACCEPTED";
                     };
                     break;
-                case "9":
+                if case("9":
                     if (txt[TXT_INV_VAL_TITLE] != ""){
                         tmp_array[(i + 1)] = txt[TXT_INV_VAL_TITLE];
                     } else {
                         tmp_array[(i + 1)] = "FRIEND_EMAIL_VERIFIED";
                     };
                     break;
-                case "1  ":
-                case "2  ":
-                case "3  ":
-                case "4  ":
-                case "5  ":
-                case "6  ":
-                case "7  ":
-                case "8  ":
-                case "9  ":
+                if case("1  ":
+                if case("2  ":
+                if case("3  ":
+                if case("4  ":
+                if case("5  ":
+                if case("6  ":
+                if case("7  ":
+                if case("8  ":
+                if case("9  ":
                     tmp_array[(i + 1)] = "Moo!";
                 default:
                     if (sel_row == line){
@@ -22950,7 +22932,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
     alresult = 0;
     alnext = 0;
     Switch (achIndex){
-        case 0:
+        if case(0:
             alnext = 2;
             if (int(SG[SG_ACHIEVEMENTS]) >= 2){
                 alresult = 1;
@@ -23001,7 +22983,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 1:
+        if case(1:
             alnext = 1;
             if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 1){
                 alresult = 1;
@@ -23052,7 +23034,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 2:
+        if case(2:
             alnext = 1;
             if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 1){
                 alresult = 1;
@@ -23103,7 +23085,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 3:
+        if case(3:
             alnext = 1;
             if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 1){
                 alresult = 1;
@@ -23154,7 +23136,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 4:
+        if case(4:
             alnext = 1;
             if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 1){
                 alresult = 1;
@@ -23205,7 +23187,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 5:
+        if case(5:
             alnext = 1;
             if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 100){
                 alresult = 1;
@@ -23256,7 +23238,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 6:
+        if case(6:
             alnext = 1000;
             if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 1000){
                 alresult = 1;
@@ -23307,7 +23289,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
                 alnext = 0;
             };
             break;
-        case 7:
+        if case(7:
             alresult = int(SG[(SG_ACHIEVEMENTS + 7)]);
             alnext = (alresult + 1);
             if (alresult >= 12){
@@ -23416,7 +23398,7 @@ public function DoAchievements(SG:Array):Boolean{
             OneUp = True;
         };
         Switch (achAusf){
-            case 0:
+            if case(0:
                 achAusfM = "";
                 achAusfF = "";
                 achCurrentGrade = txt[TXT_ACH_5];
@@ -24098,15 +24080,15 @@ public function CheckWrongPage(correctAct:int){
     if (correctAct != lastAct){
         if (correctAct == ACT_SCREEN_TAVERNE){
             Switch (lastAct){
-                case ACT_SCREEN_ARENA:
+                if case(ACT_SCREEN_ARENA:
                     if (!has_mirror){
                         error_message(txt[TXT_ERROR_TAVERNE_ARENA]);
                     };
                     break;
-                case ACT_SCREEN_ARBEITEN:
+                if case(ACT_SCREEN_ARBEITEN:
                     error_message(txt[TXT_ERROR_TAVERNE_ARBEITEN]);
                     break;
-                case ACT_SCREEN_WELTKARTE:
+                if case(ACT_SCREEN_WELTKARTE:
                     if (!has_mirror){
                         error_message(txt[TXT_ERROR_TAVERNE_MAINQUEST]);
                     };
@@ -24115,13 +24097,13 @@ public function CheckWrongPage(correctAct:int){
         } else {
             if (correctAct == ACT_SCREEN_ARBEITEN){
                 Switch (lastAct){
-                    case ACT_SCREEN_ARENA:
+                    if case(ACT_SCREEN_ARENA:
                         error_message(txt[TXT_ERROR_ARBEITEN_ARENA]);
                         break;
-                    case ACT_SCREEN_TAVERNE:
+                    if case(ACT_SCREEN_TAVERNE:
                         error_message(txt[TXT_ERROR_ARBEITEN_TAVERNE]);
                         break;
-                    case ACT_SCREEN_WELTKARTE:
+                    if case(ACT_SCREEN_WELTKARTE:
                         error_message(txt[TXT_ERROR_ARBEITEN_MAINQUEST]);
                         break;
                 };
@@ -24262,34 +24244,34 @@ public function ShowMainQuestsScreen(NextEnemies:Array){
                             };
                         };
                         Switch (DungeonLevel){
-                            case "1":
+                            if case("1":
                                 NextEnemy = txt[2300];
                                 break;
-                            case "2":
+                            if case("2":
                                 NextEnemy = txt[2314];
                                 break;
-                            case "3":
+                            if case("3":
                                 NextEnemy = txt[2358];
                                 break;
-                            case "4":
+                            if case("4":
                                 NextEnemy = txt[2220];
                                 break;
-                            case "5":
+                            if case("5":
                                 NextEnemy = txt[2260];
                                 break;
-                            case "6":
+                            if case("6":
                                 NextEnemy = txt[2362];
                                 break;
-                            case "7":
+                            if case("7":
                                 NextEnemy = txt[2360];
                                 break;
-                            case "8":
+                            if case("8":
                                 NextEnemy = txt[2358];
                                 break;
-                            case "9":
+                            if case("9":
                                 NextEnemy = txt[2357];
                                 break;
-                            case "10":
+                            if case("10":
                                 NextEnemy = txt[2364];
                                 break;
                         };
@@ -24718,10 +24700,10 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         DamageReductionCpc = int((Number(SG[(copyCatId + CPC_ARMOR)]) / Number(SG[(copyCatId + CPC_LEVEL)])));
         DamageReductionMaxCpc = 50;
         Switch (int(SG[(copyCatId + CPC_CLASS)])){
-            case 2:
+            if case(2:
                 DamageReductionMaxCpc = 10;
                 break;
-            case 3:
+            if case(3:
                 DamageReductionMaxCpc = 25;
                 break;
         };
@@ -24911,19 +24893,19 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
     tmpLifeFactor = 5;
     SchadenLblID = 0;
     Switch (int(((towerMode) ? (copyCatIdRaw + 1) : SG[SG_CLASS]))){
-        case 1:
+        if case(1:
             SchadenLblID = LBL_SCR_CHAR_SCHADEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_SCHADEN;
             tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS)])) / 10));
             tmpLifeFactor = 5;
             break;
-        case 2:
+        if case(2:
             SchadenLblID = LBL_SCR_CHAR_LEBEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_LEBEN;
             tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 2) : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2) : SG_ATTR_AUSDAUER_BONUS)])) / 10));
             tmpLifeFactor = 2;
             break;
-        case 3:
+        if case(3:
             SchadenLblID = LBL_SCR_CHAR_KAMPFWERT_CAPTION;
             SchadenID = LBL_SCR_CHAR_KAMPFWERT;
             tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 1) : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1) : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 10));
@@ -25122,10 +25104,10 @@ public function DisplayInventory(SG:Array=undefined, NoPrices:Boolean=False, tow
         DamageReduction = int((Number(SG[SG_ARMOR]) / Number(SG[SG_LEVEL])));
         DamageReductionMax = 50;
         Switch (int(SG[SG_CLASS])){
-            case 2:
+            if case(2:
                 DamageReductionMax = 10;
                 break;
-            case 3:
+            if case(3:
                 DamageReductionMax = 25;
                 break;
         };
@@ -25880,7 +25862,7 @@ public function show_bet_result(won:Boolean){
             x = (SCREEN_TITLE_X - (textWidth / 2));
         };
         Switch (CupChosen){
-            case 0:
+            if case(0:
                 add(HUTBECHER_1_CLICK);
                 remove(HUTBECHER_1_IDLE);
                 if (won){
@@ -25889,7 +25871,7 @@ public function show_bet_result(won:Boolean){
                     BallX = ((Math.random())<0.5) ? HUTMANN_KUGEL_X2 : HUTMANN_KUGEL_X3;
                 };
                 break;
-            case 1:
+            if case(1:
                 add(HUTBECHER_2_CLICK);
                 remove(HUTBECHER_2_IDLE);
                 if (won){
@@ -25898,7 +25880,7 @@ public function show_bet_result(won:Boolean){
                     BallX = ((Math.random())<0.5) ? HUTMANN_KUGEL_X1 : HUTMANN_KUGEL_X3;
                 };
                 break;
-            case 2:
+            if case(2:
                 add(HUTBECHER_3_CLICK);
                 remove(HUTBECHER_3_IDLE);
                 if (won){
@@ -25921,13 +25903,13 @@ public function show_bet_result(won:Boolean){
     };
     Load(((won) ? HUTMANN_WON : HUTMANN_LOST));
     Switch (CupChosen){
-        case 0:
+        if case(0:
             Load(HUTBECHER_1_CLICK);
             break;
-        case 1:
+        if case(1:
             Load(HUTBECHER_2_CLICK);
             break;
-        case 2:
+        if case(2:
             Load(HUTBECHER_3_CLICK);
             break;
     };
@@ -26023,23 +26005,23 @@ public function show_toilet(isFull:int, toiletLevel:int, toiletExp:Number, toile
             toiletItemAddTimer.start();
             gatheredItemId = (CHAR_SLOT_11 + itemAdded);
             Switch (itemAdded){
-                case 0:
+                if case(0:
                     itemDestX = CHAR_SLOTS_LEFT_X;
                     itemDestY = CHAR_SLOTS_ROW5_Y;
                     break;
-                case 1:
+                if case(1:
                     itemDestX = CHAR_SLOTS_R5C2_X;
                     itemDestY = CHAR_SLOTS_ROW5_Y;
                     break;
-                case 2:
+                if case(2:
                     itemDestX = CHAR_SLOTS_R5C3_X;
                     itemDestY = CHAR_SLOTS_ROW5_Y;
                     break;
-                case 3:
+                if case(3:
                     itemDestX = CHAR_SLOTS_R5C4_X;
                     itemDestY = CHAR_SLOTS_ROW5_Y;
                     break;
-                case 4:
+                if case(4:
                     itemDestX = CHAR_SLOTS_RIGHT_X;
                     itemDestY = CHAR_SLOTS_ROW5_Y;
                     break;
@@ -26412,121 +26394,121 @@ public function ModifyCharacter(evt:Event):void{
     char_beard = RemoveColorOffset(char_beard, C_BEARD);
     char_special2 = RemoveColorOffset(char_special2, C_SPECIAL2);
     Switch (actorID){
-        case MOUTH_MINUS:
+        if case(MOUTH_MINUS:
             char_mouth--;
             if (char_mouth < 1){
                 char_mouth = getCharImageBound(char_volk, char_male, 1);
             };
             break;
-        case MOUTH_PLUS:
+        if case(MOUTH_PLUS:
             char_mouth++;
             if (char_mouth > getCharImageBound(char_volk, char_male, 1)){
                 char_mouth = 1;
             };
             break;
-        case HAIR_MINUS:
+        if case(HAIR_MINUS:
             char_hair--;
             if (char_hair < 1){
                 char_hair = getCharImageBound(char_volk, char_male, 7);
             };
             break;
-        case HAIR_PLUS:
+        if case(HAIR_PLUS:
             char_hair++;
             if (char_hair > getCharImageBound(char_volk, char_male, 7)){
                 char_hair = 1;
             };
             break;
-        case BROWS_MINUS:
+        if case(BROWS_MINUS:
             char_brows--;
             if (char_brows < 1){
                 char_brows = getCharImageBound(char_volk, char_male, 5);
             };
             break;
-        case BROWS_PLUS:
+        if case(BROWS_PLUS:
             char_brows++;
             if (char_brows > getCharImageBound(char_volk, char_male, 5)){
                 char_brows = 1;
             };
             break;
-        case EYES_MINUS:
+        if case(EYES_MINUS:
             char_eyes--;
             if (char_eyes < 1){
                 char_eyes = getCharImageBound(char_volk, char_male, 4);
             };
             break;
-        case EYES_PLUS:
+        if case(EYES_PLUS:
             char_eyes++;
             if (char_eyes > getCharImageBound(char_volk, char_male, 4)){
                 char_eyes = 1;
             };
             break;
-        case BEARD_MINUS:
+        if case(BEARD_MINUS:
             char_beard--;
             if (char_beard < 1){
                 char_beard = getCharImageBound(char_volk, char_male, 2);
             };
             break;
-        case BEARD_PLUS:
+        if case(BEARD_PLUS:
             char_beard++;
             if (char_beard > getCharImageBound(char_volk, char_male, 2)){
                 char_beard = 1;
             };
             break;
-        case NOSE_MINUS:
+        if case(NOSE_MINUS:
             char_nose--;
             if (char_nose < 1){
                 char_nose = getCharImageBound(char_volk, char_male, 3);
             };
             break;
-        case NOSE_PLUS:
+        if case(NOSE_PLUS:
             char_nose++;
             if (char_nose > getCharImageBound(char_volk, char_male, 3)){
                 char_nose = 1;
             };
             break;
-        case EARS_MINUS:
+        if case(EARS_MINUS:
             char_ears--;
             if (char_ears < 1){
                 char_ears = getCharImageBound(char_volk, char_male, 6);
             };
             break;
-        case EARS_PLUS:
+        if case(EARS_PLUS:
             char_ears++;
             if (char_ears > getCharImageBound(char_volk, char_male, 6)){
                 char_ears = 1;
             };
             break;
-        case SPECIAL_MINUS:
+        if case(SPECIAL_MINUS:
             char_special--;
             if (char_special < 1){
                 char_special = getCharImageBound(char_volk, char_male, 8);
             };
             break;
-        case SPECIAL_PLUS:
+        if case(SPECIAL_PLUS:
             char_special++;
             if (char_special > getCharImageBound(char_volk, char_male, 8)){
                 char_special = 1;
             };
             break;
-        case SPECIAL2_MINUS:
+        if case(SPECIAL2_MINUS:
             char_special2--;
             if (char_special2 < 1){
                 char_special2 = getCharImageBound(char_volk, char_male, 9);
             };
             break;
-        case SPECIAL2_PLUS:
+        if case(SPECIAL2_PLUS:
             char_special2++;
             if (char_special2 > getCharImageBound(char_volk, char_male, 9)){
                 char_special2 = 1;
             };
             break;
-        case COLOR_PLUS:
+        if case(COLOR_PLUS:
             char_color++;
             if (char_color > getCharImageBound(char_volk, char_male, 10)){
                 char_color = 1;
             };
             break;
-        case COLOR_MINUS:
+        if case(COLOR_MINUS:
             char_color--;
             if (char_color < 1){
                 char_color = getCharImageBound(char_volk, char_male, 10);
@@ -26746,48 +26728,48 @@ public function getCharSuffix(itemIndex:int, itemValue:int):String{
         colorString = (("_" + String(colorIndex)) + "_");
     };
     Switch (itemIndex){
-        case 0:
+        if case(0:
             strExt = ".jpg";
             Switch (itemValue){
-                case 1:
+                if case(1:
                     strItem = "body_hunter";
                     break;
-                case 2:
+                if case(2:
                     strItem = "body_mage";
                     break;
-                case 3:
+                if case(3:
                     strItem = "body_warrior";
                     break;
             };
             break;
-        case 1:
+        if case(1:
             strItem = ("mund" + String(itemValue));
             break;
-        case 2:
+        if case(2:
             strItem = (("bart" + colorString) + String(itemValue));
             break;
-        case -2:
+        if case(-2:
             strItem = ("tattoo" + String(itemValue));
             break;
-        case 3:
+        if case(3:
             strItem = ("nase" + String(itemValue));
             break;
-        case 4:
+        if case(4:
             strItem = ("augen" + String(itemValue));
             break;
-        case 5:
+        if case(5:
             strItem = (("brauen" + colorString) + String(itemValue));
             break;
-        case 6:
+        if case(6:
             strItem = ("ohren" + String(itemValue));
             break;
-        case 7:
+        if case(7:
             strItem = (("haare" + colorString) + String(itemValue));
             break;
-        case 8:
+        if case(8:
             strItem = ("special" + String(itemValue));
             break;
-        case 9:
+        if case(9:
             strItem = (("special2" + colorString) + String(itemValue));
             break;
     };
@@ -26837,407 +26819,407 @@ public function RandomizeCharImage(evt:Event=undefined):void{
 public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
     if (isMann){
         Switch (isVolk){
-            case 1:
+            if case(1:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (9);
-                    case 2:
+                    if case(2:
                         return (13);
-                    case 3:
+                    if case(3:
                         return (6);
-                    case 4:
+                    if case(4:
                         return (7);
-                    case 5:
+                    if case(5:
                         return (7);
-                    case 6:
+                    if case(6:
                         return (5);
-                    case 7:
+                    if case(7:
                         return (11);
-                    case 8:
+                    if case(8:
                         return (17);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (5);
-                    case 11:
+                    if case(11:
                         return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
-            case 2:
+            if case(2:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (8);
-                    case 2:
+                    if case(2:
                         return (7);
-                    case 3:
+                    if case(3:
                         return (7);
-                    case 4:
+                    if case(4:
                         return (8);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (4);
-                    case 7:
+                    if case(7:
                         return (10);
-                    case 8:
+                    if case(8:
                         return (13);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (3);
-                    case 11:
+                    if case(11:
                         return (((C_HAIR + C_BROWS) + C_BEARD));
                 };
-            case 3:
+            if case(3:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (5);
-                    case 2:
+                    if case(2:
                         return (5);
-                    case 3:
+                    if case(3:
                         return (5);
-                    case 4:
+                    if case(4:
                         return (8);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (5);
-                    case 7:
+                    if case(7:
                         return (10);
-                    case 8:
+                    if case(8:
                         return (13);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (5);
-                    case 11:
+                    if case(11:
                         return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
-            case 4:
+            if case(4:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (10);
-                    case 2:
+                    if case(2:
                         return (12);
-                    case 3:
+                    if case(3:
                         return (6);
-                    case 4:
+                    if case(4:
                         return (9);
-                    case 5:
+                    if case(5:
                         return (9);
-                    case 6:
+                    if case(6:
                         return (6);
-                    case 7:
+                    if case(7:
                         return (12);
-                    case 8:
+                    if case(8:
                         return (17);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (5);
-                    case 11:
+                    if case(11:
                         return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
-            case 5:
+            if case(5:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (7);
-                    case 2:
+                    if case(2:
                         return (5);
-                    case 3:
+                    if case(3:
                         return (5);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (5);
-                    case 7:
+                    if case(7:
                         return (10);
-                    case 8:
+                    if case(8:
                         return (9);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (5);
-                    case 11:
+                    if case(11:
                         return ((C_HAIR + C_BEARD));
                 };
-            case 6:
+            if case(6:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (6);
-                    case 2:
+                    if case(2:
                         return (6);
-                    case 3:
+                    if case(3:
                         return (5);
-                    case 4:
+                    if case(4:
                         return (5);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (5);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (12);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (3);
-                    case 11:
+                    if case(11:
                         return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
-            case 7:
+            if case(7:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (6);
-                    case 2:
+                    if case(2:
                         return (8);
-                    case 3:
+                    if case(3:
                         return (5);
-                    case 4:
+                    if case(4:
                         return (9);
-                    case 5:
+                    if case(5:
                         return (6);
-                    case 6:
+                    if case(6:
                         return (5);
-                    case 7:
+                    if case(7:
                         return (12);
-                    case 8:
+                    if case(8:
                         return (12);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (0);
-                    case 11:
+                    if case(11:
                         return (0);
                 };
-            case 8:
+            if case(8:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (9);
-                    case 2:
+                    if case(2:
                         return (10);
-                    case 3:
+                    if case(3:
                         return (6);
-                    case 4:
+                    if case(4:
                         return (7);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (5);
-                    case 7:
+                    if case(7:
                         return (0);
-                    case 8:
+                    if case(8:
                         return (17);
-                    case 9:
+                    if case(9:
                         return (11);
-                    case 10:
+                    if case(10:
                         return (5);
-                    case 11:
+                    if case(11:
                         return ((C_BEARD + C_SPECIAL2));
                 };
         };
     } else {
         Switch (isVolk){
-            case 1:
+            if case(1:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (8);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (6);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (6);
-                    case 6:
+                    if case(6:
                         return (6);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (5);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (4);
-                    case 11:
+                    if case(11:
                         return ((C_BROWS + C_HAIR));
                 };
-            case 2:
+            if case(2:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (8);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (8);
-                    case 4:
+                    if case(4:
                         return (7);
-                    case 5:
+                    if case(5:
                         return (8);
-                    case 6:
+                    if case(6:
                         return (7);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (5);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (4);
-                    case 11:
+                    if case(11:
                         return ((C_HAIR + C_BROWS));
                 };
-            case 3:
+            if case(3:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (9);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (6);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (8);
-                    case 6:
+                    if case(6:
                         return (4);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (4);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (4);
-                    case 11:
+                    if case(11:
                         return ((C_HAIR + C_BROWS));
                 };
-            case 4:
+            if case(4:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (7);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (7);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (6);
-                    case 6:
+                    if case(6:
                         return (6);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (5);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (4);
-                    case 11:
+                    if case(11:
                         return ((C_HAIR + C_BROWS));
                 };
-            case 5:
+            if case(5:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (7);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (5);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (4);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (7);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (4);
-                    case 11:
+                    if case(11:
                         return (C_HAIR);
                 };
-            case 6:
+            if case(6:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (9);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (6);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (6);
-                    case 6:
+                    if case(6:
                         return (3);
-                    case 7:
+                    if case(7:
                         return (6);
-                    case 8:
+                    if case(8:
                         return (5);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (3);
-                    case 11:
+                    if case(11:
                         return (C_HAIR);
                 };
-            case 7:
+            if case(7:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (9);
-                    case 2:
+                    if case(2:
                         return (0);
-                    case 3:
+                    if case(3:
                         return (5);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (4);
-                    case 7:
+                    if case(7:
                         return (8);
-                    case 8:
+                    if case(8:
                         return (4);
-                    case 9:
+                    if case(9:
                         return (0);
-                    case 10:
+                    if case(10:
                         return (4);
-                    case 11:
+                    if case(11:
                         return (C_HAIR);
                 };
-            case 8:
+            if case(8:
                 Switch (itemIndex){
-                    case 1:
+                    if case(1:
                         return (8);
-                    case 2:
+                    if case(2:
                         return (5);
-                    case 3:
+                    if case(3:
                         return (7);
-                    case 4:
+                    if case(4:
                         return (6);
-                    case 5:
+                    if case(5:
                         return (5);
-                    case 6:
+                    if case(6:
                         return (4);
-                    case 7:
+                    if case(7:
                         return (7);
-                    case 8:
+                    if case(8:
                         return (6);
-                    case 9:
+                    if case(9:
                         return (4);
-                    case 10:
+                    if case(10:
                         return (3);
-                    case 11:
+                    if case(11:
                         return (C_HAIR);
                 };
         };
@@ -27251,28 +27233,28 @@ public function getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste
     strTemp = "res/gfx/char/";
     strRace = "";
     Switch (isVolk){
-        case 1:
+        if case(1:
             strRace = "human";
             break;
-        case 2:
+        if case(2:
             strRace = "elf";
             break;
-        case 3:
+        if case(3:
             strRace = "dwarf";
             break;
-        case 4:
+        if case(4:
             strRace = "gnome";
             break;
-        case 5:
+        if case(5:
             strRace = "orc";
             break;
-        case 6:
+        if case(6:
             strRace = "dunkelelf";
             break;
-        case 7:
+        if case(7:
             strRace = "goblin";
             break;
-        case 8:
+        if case(8:
             strRace = "demon";
             break;
     };
@@ -27298,20 +27280,20 @@ public function DrachenSetzen():void{
         d = (Math.random() * 5);
         actorBitmap[i] = d;
         Switch (d){
-            case 0:
+            if case(0:
                 actor[i] = new interface_dragon1_png();
                 break;
-            case 1:
+            if case(1:
                 actor[i] = new interface_dragon2_png();
                 break;
-            case 2:
+            if case(2:
                 actor[i] = new interface_dragon3_png();
                 break;
-            case 3:
+            if case(3:
                 actor[i] = new interface_dragon4_png();
                 break;
-            case 4:
-            case 5:
+            if case(4:
+            if case(5:
                 actor[i] = new interface_dragon6_png();
                 break;
         };
@@ -27409,46 +27391,46 @@ public function InterfaceBtnHandler(evt:Event):void{
     var tmpAction:int;
     tmpAction = 0;
     Switch (GetActorID(evt.target)){
-        case CA_CITY_SHAKES:
-        case IF_SCHMIEDE:
+        if case(CA_CITY_SHAKES:
+        if case(IF_SCHMIEDE:
             tmpAction = ACT_SCREEN_SCHMIEDE;
             break;
-        case CA_CITY_RUHMESHALLE:
-        case IF_EHRENHALLE:
+        if case(CA_CITY_RUHMESHALLE:
+        if case(IF_EHRENHALLE:
             ruhmesHalleSuchString = actor[INP_NAME].getChildAt(1).text;
             send_action(ACT_SCREEN_EHRENHALLE, actor[INP_NAME].getChildAt(1).text, -1);
             break;
-        case CA_CITY_ARENA:
-        case IF_ARENA:
+        if case(CA_CITY_ARENA:
+        if case(IF_ARENA:
             tmpAction = ACT_SCREEN_ARENA;
             break;
-        case CA_CITY_ESEL:
-        case IF_STALL:
+        if case(CA_CITY_ESEL:
+        if case(IF_STALL:
             tmpAction = ACT_SCREEN_STALL;
             break;
-        case CA_CITY_POST:
-        case IF_POST:
+        if case(CA_CITY_POST:
+        if case(IF_POST:
             post_scroll = 1;
             send_action(ACT_SCREEN_POST, 1);
             break;
-        case CA_CITY_WACHE:
-        case IF_ARBEITEN:
+        if case(CA_CITY_WACHE:
+        if case(IF_ARBEITEN:
             tmpAction = ACT_SCREEN_ARBEITEN;
             break;
-        case IF_TAVERNE:
-        case CA_CITY_TAVERNE:
-        case HUTMANN_BACK:
+        if case(IF_TAVERNE:
+        if case(CA_CITY_TAVERNE:
+        if case(HUTMANN_BACK:
             tmpAction = ACT_SCREEN_TAVERNE;
             break;
-        case CA_CITY_ZAUBERLADEN:
-        case IF_ZAUBERLADEN:
+        if case(CA_CITY_ZAUBERLADEN:
+        if case(IF_ZAUBERLADEN:
             tmpAction = ACT_SCREEN_ZAUBERLADEN;
             break;
-        case IF_PILZDEALER:
-        case CA_CITY_DEALER:
+        if case(IF_PILZDEALER:
+        if case(CA_CITY_DEALER:
             tmpAction = ACT_SCREEN_PILZDEALER;
             break;
-        case FIGHT_OK:
+        if case(FIGHT_OK:
             tmpAction = ((post_fight_mode) ? ACT_SCREEN_POST : ACT_SCREEN_CHAR);
             if (hasFoughtGuildBattle){
                 if (tower_fight_mode){
@@ -27463,22 +27445,22 @@ public function InterfaceBtnHandler(evt:Event):void{
                 ShowMainQuestScreen(LastDungeonNr, LastDungeonEnemy);
             };
             break;
-        case IF_CHARAKTER:
+        if case(IF_CHARAKTER:
             arrowHallMode = False;
             tmpAction = ACT_SCREEN_CHAR;
             break;
-        case IF_GILDEN:
+        if case(IF_GILDEN:
             pulse_gilde = False;
             pulse_gilde_on_history = False;
             tmpAction = ACT_SCREEN_GILDEN;
             break;
-        case IF_WELTKARTE:
+        if case(IF_WELTKARTE:
             tmpAction = ACT_SCREEN_WELTKARTE;
             break;
-        case IF_OPTIONEN:
+        if case(IF_OPTIONEN:
             tmpAction = ACT_SCREEN_OPTIONEN;
             break;
-        case CA_CITY_BUH:
+        if case(CA_CITY_BUH:
             slmCount++;
             break;
     };
