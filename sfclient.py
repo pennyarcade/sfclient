@@ -7166,29 +7166,38 @@ def action_handler(event):
                         ]
                         par[3] = texts[
                             TXT['BODY']['GUILD']['DELETED_BY_ADMIN']
-                        ].replace("%1", par[0])
-                        .replace("%2", par[3])
+                        ].replace("%1", par[0]).replace("%2", par[3])
                         break
 
                     if case("3"):
                         par[1] = texts[TXT_SUBJECT_GUILD_EXPELLED]
-                        par[3] = texts[TXT_BODY_GUILD_EXPELLED]
-                            .replace("%1", par[0])
-                            .replace("%2", par[3])
+                        par[3] = texts[
+                            TXT_BODY_GUILD_EXPELLED
+                        ].replace(
+                            "%1", par[0]
+                        ).replace(
+                            "%2", par[3]
+                        )
                         break
 
                     if case("4"):
                         par[1] = texts[TXT_SUBJECT_GUILD_EXPELLED_BY_ADMIN]
-                        par[3] = texts[TXT_BODY_GUILD_EXPELLED_BY_ADMIN]
-                            .replace("%1", par[0])
-                            .replace("%2", par[3])
+                        par[3] = texts[
+                            TXT_BODY_GUILD_EXPELLED_BY_ADMIN
+                        ].replace(
+                            "%1", par[0]
+                        ).replace(
+                            "%2", par[3]
+                        )
                         break
 
                     if case("5"):
                         par[1] = texts[TXT_SUBJECT_GUILD_INVITE]
-                        par[3] = texts[TXT_BODY_GUILD_INVITE]
-                            .replace("%1", par[0])
-                            .replace("%2", par[3])
+                        par[3] = texts[TXT_BODY_GUILD_INVITE].replace(
+                            "%1", par[0]
+                        ).replace(
+                            "%2", par[3]
+                        )
                         break
 
                     if case("6", "7"):
