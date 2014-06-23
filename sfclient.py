@@ -6716,7 +6716,9 @@ def action_handler(event):
                             for ii in range(len(offline_guild_members)):
                                 tmp_str = offline_guild_members[ii].lower()
                                 tmp_str += ":§"
-                                if (tmp_array[i].lower().indexOf(tmp_str) != -1):
+                                if (tmp_array[i].lower().indexOf(
+                                    tmp_str) != -1
+                                ):
                                     if (on_stage(INP['GILDE_CHAT'])):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -6750,7 +6752,9 @@ def action_handler(event):
                             for ii in range(len(offline_guild_members)):
                                 tmp_str = offline_guild_members[ii].lower()
                                 tmp_str += ":§"
-                                if (tmp_array[i].lower().indexOf(tmp_str) != -1):
+                                if (tmp_array[i].lower().indexOf(
+                                    tmp_str) != -1
+                                ):
                                     if (on_stage(INP['GILDE_CHAT'])):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -8259,9 +8263,13 @@ def load_language_file():
         if lang_code == "ar":
             textDir = "right"
 
-        load(URLRequest(
-            lang_url + "lang/sfgame_" + lang_code + ".txt?rnd=" + str(Math.random())
-        ))
+        load(URLRequest(''.join(
+            lang_url,
+            "lang/sfgame_",
+            lang_code,
+            ".txt?rnd=",
+            str(Math.random())
+        )))
 
     pending_loaders += 1
     pending_language_file = True
@@ -9152,7 +9160,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         var ShowSocial:* = function (evt:MouseEvent){
             var thisActor:int;
             thisActor = GetActorID(evt.target);
-            ExternalInterface.call("showSocial", param_social_buttons[(thisActor - SOCIAL)].split(":")[0]);
+            ExternalInterface.call(
+                "showSocial",
+                param_social_buttons[(thisActor - SOCIAL)].split(":")[0]
+            )
         };
         var ShowDatenschutz:* = function (){
             navigateToURLEx(new URLRequest(dataprot_url), "_blank");
@@ -9167,7 +9178,21 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             navigateToURLEx(new URLRequest(forum_url), "_blank");
         };
         var ShowShop:* = function (){
-            navigateToURLEx(new URLRequest(shop_url.split("<playerid>").join(savegame[SG_PLAYER_ID]).split("<paymentid>").join(savegame[SG_PAYMENT_ID]).split("<playername>").join(actor[INP_NAME].getChildAt(1).text).split("<face>").join((((((((((((((((((((((((char_volk + "/") + str(((char_male) ? 1 : 2))) + "/") + char_class) + "/") + char_mouth) + "/") + char_hair) + "/") + char_brows) + "/") + char_eyes) + "/") + char_beard) + "/") + char_nose) + "/") + char_ears) + "/") + char_special) + "/") + char_special2) + "/"))), "_blank");
+            navigateToURLEx(new URLRequest(
+                shop_url.split("<playerid>").join(
+                    savegame[SG_PLAYER_ID]
+                ).split("<paymentid>").join(
+                    savegame[SG_PAYMENT_ID]
+                ).split("<playername>").join(
+                    actor[INP_NAME].getChildAt(1).text
+                ).split("<face>").join(
+                    (char_volk + "/" + str(((char_male)
+                     ? 1 : 2))) + "/") + char_class) + "/") 
+                    + char_mouth) + "/") + char_hair) + "/") 
+                    + char_brows) + "/") + char_eyes) + "/") + 
+                    char_beard) + "/") + char_nose) + "/") + 
+                    char_ears) + "/") + char_special) + "/") + 
+                    char_special2) + "/"))), "_blank");
         };
         var navigateToURLEx:* = function (req:URLRequest, frameName:str){
             var req:* = req;
@@ -9188,7 +9213,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         };
         dungeonBtnUpdateDelay = function (evt:TimerEvent=undefined){
             if (WaitingFor(savegame[SG_MQ_REROLL_TIME])){
-                SetBtnText(IF_WELTKARTE, WaitingTime(savegame[SG_MQ_REROLL_TIME]));
+                SetBtnText(
+                    IF_WELTKARTE,
+                    WaitingTime(savegame[SG_MQ_REROLL_TIME])
+                )
             } else {
                 dungeonBtnLeave();
             };
@@ -9202,8 +9230,12 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             SetBtnText(IF_ARBEITEN, texts[TXT_ARBEITEN]);
         };
         workBtnUpdateDelay = function (evt:TimerEvent=undefined){
-            if (((WaitingFor(savegame[SG_ACTION_ENDTIME])) and ((savegame[SG_ACTION_STATUS] == 1)))){
-                SetBtnText(IF_ARBEITEN, WaitingTime(savegame[SG_ACTION_ENDTIME]));
+            if (((WaitingFor(savegame[SG_ACTION_ENDTIME])) 
+                and ((savegame[SG_ACTION_STATUS] == 1)))){
+                SetBtnText(
+                    IF_ARBEITEN, 
+                    WaitingTime(savegame[SG_ACTION_ENDTIME])
+                );
             } else {
                 workBtnLeave();
             };
@@ -9217,8 +9249,12 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             SetBtnText(IF_TAVERNE, texts[TXT_TAVERNE]);
         };
         tavBtnUpdateDelay = function (evt:TimerEvent=undefined){
-            if (((WaitingFor(savegame[SG_ACTION_ENDTIME])) and ((savegame[SG_ACTION_STATUS] == 2)))){
-                SetBtnText(IF_TAVERNE, WaitingTime(savegame[SG_ACTION_ENDTIME]));
+            if (((WaitingFor(savegame[SG_ACTION_ENDTIME])) 
+                and ((savegame[SG_ACTION_STATUS] == 2)))){
+                SetBtnText(
+                    IF_TAVERNE, 
+                    WaitingTime(savegame[SG_ACTION_ENDTIME])
+                );
             } else {
                 tavBtnLeave();
             };
@@ -9233,15 +9269,23 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         };
         arenaBtnUpdateDelay = function (evt:TimerEvent=undefined){
             if (WaitingFor(savegame[SG_PVP_REROLL_TIME])){
-                SetBtnText(IF_ARENA, WaitingTime(savegame[SG_PVP_REROLL_TIME]));
+                SetBtnText(
+                    IF_ARENA, 
+                    WaitingTime(savegame[SG_PVP_REROLL_TIME])
+                );
             } else {
                 arenaBtnLeave();
             };
         };
         var TaverneBtnIn:* = function (evt:Event){
-            actor[IF_TOILET].visible = ((!((savegame[SG_TOILET] == 0))) and (!(on_stage(CA_TOILET_BOWL))));
+            actor[IF_TOILET].visible = (
+                (!((savegame[SG_TOILET] == 0)))
+                and (!(on_stage(CA_TOILET_BOWL))));
             actor[IF_HUTMANN].visible = !(on_stage(HUTMANN_BG));
-            if (((!((int(savegame[SG_ACTION_STATUS]) == 0))) and (!(pulse_taverne)))){
+            if (
+                ((!((int(savegame[SG_ACTION_STATUS]) == 0))) 
+                and (!(pulse_taverne)))
+            ){
                 HutmannCountdown = 20;
                 HutmannLinkOver = True;
             };
@@ -9307,7 +9351,9 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 y = ((IF_HUTLINK_Y + HutmannRelY) + 40);
             };
         };
-        var DefiniereInterfaceButton:* = function (actorID:int, txtID:int){
+        var DefiniereInterfaceButton:* = function (
+            actorID:int, txtID:int
+            ){
             var dragonID:* = 0;
             var InterfaceButtonDown:* = null;
             var InterfaceButtonUp:* = null;
@@ -9364,7 +9410,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 remove(CITY_OVERLAYS);
                 HideArenaOno();
                 WacheOut();
-                if (((((on_stage(SCR_CITY_BACKG_NIGHT)) or (on_stage(SCR_CITY_BACKG_DAWN)))) or (on_stage(SCR_CITY_BACKG_DAY)))){
+                if ((((
+                    (on_stage(SCR_CITY_BACKG_NIGHT)) 
+                    or (on_stage(SCR_CITY_BACKG_DAWN)))) 
+                    or (on_stage(SCR_CITY_BACKG_DAY)))
+                ){
                     add(CITY_ESEL1);
                     add(CITY_CA_OVL);
                 };
@@ -9386,16 +9436,46 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     add(BLACK_SQUARE);
                 };
             };
-            DefineBtn(actorID, texts[txtID], InterfaceBtnHandler, btnClassInterface, IF_X, ((IF_Y + (IF_1 * iPosi++)) + yOffs));
-            DefineFromClass(((IF_DRAGON_1 + iPosi) - 1), interface_dragon1_png, (actor[actorID].x + DRAGON_X), (actor[actorID].y + DRAGON_Y));
+            DefineBtn(
+                actorID,
+                texts[txtID],
+                InterfaceBtnHandler,
+                btnClassInterface,
+                IF_X,
+                ((IF_Y + (IF_1 * iPosi++)) + yOffs)
+            );
+            DefineFromClass(
+                ((IF_DRAGON_1 + iPosi) - 1), 
+                interface_dragon1_png,
+                (actor[actorID].x + DRAGON_X),
+                (actor[actorID].y + DRAGON_Y)
+            );
             dragonID = ((IF_DRAGON_1 + iPosi) - 1);
-            actor[actorID].add_event_listener(MouseEvent.MOUSE_DOWN, InterfaceButtonDown);
-            actor[actorID].add_event_listener(MouseEvent.MOUSE_UP, InterfaceButtonUp);
-            actor[actorID].add_event_listener(MouseEvent.MOUSE_OUT, InterfaceButtonUp);
-            actor[actorID].add_event_listener(MouseEvent.MOUSE_OVER, InterfaceButtonHover);
-            MakePersistent(((IF_DRAGON_1 + iPosi) - 1), actorID);
+            actor[actorID].add_event_listener(
+                MouseEvent.MOUSE_DOWN, 
+                InterfaceButtonDown
+            );
+            actor[actorID].add_event_listener(
+                MouseEvent.MOUSE_UP,
+                InterfaceButtonUp
+            );
+            actor[actorID].add_event_listener(
+                MouseEvent.MOUSE_OUT,
+                InterfaceButtonUp
+            );
+            actor[actorID].add_event_listener(
+                MouseEvent.MOUSE_OVER,
+                InterfaceButtonHover
+            );
+            MakePersistent(
+                ((IF_DRAGON_1 + iPosi) - 1),
+                actorID
+            );
         };
-        gradePassword = function (evt:Event=undefined, pwd_str:String=""){
+        gradePassword = function (
+            evt:Event=undefined, 
+            pwd_str:String=""
+        ){
             var pwd:String;
             var badWords:Array;
             var newPwd:String;
@@ -9429,7 +9509,13 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                         hide(CHANGE_PASSWORD_SMILEY_SAD);
                         hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
                         hide(CHANGE_PASSWORD_SMILEY_HAPPY);
-                        if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
+                        if (
+                            actor[INP_OPTION_FIELD2].getChildAt(
+                                1
+                            ).text == actor[INP_OPTION_FIELD3].getChildAt(
+                                1
+                            ).text
+                        ){
                             pwd = actor[INP_OPTION_FIELD2].getChildAt(1).text;
                         } else {
                             return;
@@ -9443,7 +9529,16 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             lastChar = "";
             pwdScore = 0;
             cmp = "";
-            badSequences = ["01234567890", "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "qwertzuiopasdfghjklyxcvbnm", "qwertyuiopasdfghjklzxcvbnm", "09876543210", "mnbvcxylkjhgfdsapoiuztrewq", "mnbvcxzlkjhgfdsapoiuytrewq"];
+            badSequences = [
+                "01234567890",
+                "abcdefghijklmnopqrstuvwxyz",
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+                qwertzuiopasdfghjklyxcvbnm",
+                "qwertyuiopasdfghjklzxcvbnm",
+                "09876543210",
+                "mnbvcxylkjhgfdsapoiuztrewq",
+                "mnbvcxzlkjhgfdsapoiuytrewq"
+            ];
             i = 0;
             while (i < badWords.length) {
                 if (pwd.lower().indexOf(badWords[i].lower()) != -1){
@@ -9522,7 +9617,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     if (pwd.substr(i, 1) != pwd.substr(i, 1).lower()){
                         hasUpperCase = True;
                     } else {
-                        if (pwd.substr(i, 1) != pwd.substr(i, 1).toUpperCase()){
+                        if (pwd.substr(i, 1) != pwd.substr(i, 1).upper()){
                             hasLowerCase = True;
                         } else {
                             hasSpecial = True;
@@ -9590,19 +9685,37 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         var ShowForgotPasswordScreen:* = function (evt:Event=undefined):void{
             remove_all();
             actor[LBL_WINDOW_TITLE].text = texts[TXT_TITLE_FORGOT_PASSWORD];
-            actor[LBL_WINDOW_TITLE].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_WINDOW_TITLE].textWidth / 2)));
-            actor[INP_NAME].add_event_listener(KeyboardEvent.KEY_DOWN, RequestPassword);
-            actor[INP_EMAIL].add_event_listener(KeyboardEvent.KEY_DOWN, RequestPassword);
+            actor[LBL_WINDOW_TITLE].x = (
+                (IF_WIN_X + IF_WIN_WELCOME_X) - int(
+                    (actor[LBL_WINDOW_TITLE].textWidth / 2)
+                )
+            );
+            actor[INP_NAME].add_event_listener(
+                KeyboardEvent.KEY_DOWN,
+                RequestPassword
+            );
+            actor[INP_EMAIL].add_event_listener(
+                KeyboardEvent.KEY_DOWN,
+                RequestPassword
+            );
             LOGonRTL();
             add(WINDOW_FORGOT_PASSWORD);
         };
         RequestPassword = function (evt:Event):void{
             if ((evt is KeyboardEvent)){
-                if (((((!((KeyboardEvent(evt).keyCode == 13))) and (!((KeyboardEvent(evt).keyCode == 10))))) and (!((KeyboardEvent(evt).keyCode == 16777230))))){
+                if (
+                    ((((!((KeyboardEvent(evt).keyCode == 13))) 
+                    and (!((KeyboardEvent(evt).keyCode == 10)))))
+                    and (!((KeyboardEvent(evt).keyCode == 16777230))))
+                ){
                     return;
                 };
             };
-            send_action(ACT_FORGOT_PASSWORD, actor[INP_NAME].getChildAt(1).text, actor[INP_EMAIL].getChildAt(1).text);
+            send_action(
+                ACT_FORGOT_PASSWORD,
+                actor[INP_NAME].getChildAt(1).text,
+                actor[INP_EMAIL].getChildAt(1).text
+            );
         };
         CheckAGB = function (evt:MouseEvent):void{
             add(CB_AGB_CHECKED);
@@ -9625,7 +9738,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     var obj:* = obj;
                     var _local3 = obj.getChildAt(1);
                     with (_local3) {
-                        alpha = ((doPulse) ? ((Math.sin((((PulseLevel / 200) * 2) * Math.PI)) * 0.4) + 0.8) : 1);
+                        alpha = ((doPulse) 
+                            ? ((Math.sin((((PulseLevel / 200) * 2) 
+                                * Math.PI)) * 0.4) + 0.8) 
+                            : 1
+                        );
                     };
                 };
                 PulseLevel = (PulseLevel + 1);
@@ -9653,7 +9770,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     pulse_taverne = True;
                 };
             };
-            if (((((on_stage(TAVERNE_BG)) or (on_stage(FIGHT_BOX1)))) or (on_stage(QUESTBAR_BG)))){
+            if (
+                ((((on_stage(TAVERNE_BG)) 
+                or (on_stage(FIGHT_BOX1)))) 
+                or (on_stage(QUESTBAR_BG)))
+            ){
                 pulse_taverne = False;
             };
             if (on_stage(LBL_SCR_ARBEITEN_TEXT)){
@@ -9669,10 +9790,21 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             if (on_stage(POST_LIST)){
                 pulse_post = False;
             };
-            if (((((on_stage(SCR_CHAR_BG_RIGHT)) or (on_stage(SCR_SHAKES_BG)))) or (on_stage(SCR_FIDGET_BG)))){
+            if (
+                ((((on_stage(SCR_CHAR_BG_RIGHT)) 
+                or (on_stage(SCR_SHAKES_BG))))
+                or (on_stage(SCR_FIDGET_BG)))
+            ){
                 pulse_char = False;
             };
-            if (((((((((((pulse_taverne) or (pulse_arbeiten))) or (pulse_gilde))) or (pulse_post))) or (pulse_char))) or (pulse_dealer))){
+            if (
+                ((((((((((pulse_taverne) 
+                or (pulse_arbeiten))) 
+                or (pulse_gilde))) 
+                or (pulse_post))) 
+                or (pulse_char))) 
+                or (pulse_dealer))
+            ){
                 PulseTimer.delay = 20;
             } else {
                 PulseTimer.delay = 500;
@@ -9701,11 +9833,17 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         SelectRace = function (evt:MouseEvent):void{
             var actorID:int;
             actorID = GetActorID(evt.target);
-            if ((((actorID >= VOLK_1_M_IDLE)) and ((actorID <= VOLK_8_M_IDLE)))){
+            if (
+                (((actorID >= VOLK_1_M_IDLE)) 
+                and ((actorID <= VOLK_8_M_IDLE)))
+            ){
                 char_volk = ((actorID - VOLK_1_M_IDLE) + 1);
                 char_male = True;
             };
-            if ((((actorID >= VOLK_1_F_IDLE)) and ((actorID <= VOLK_8_F_IDLE)))){
+            if (
+                (((actorID >= VOLK_1_F_IDLE))
+                and ((actorID <= VOLK_8_F_IDLE)))
+            ){
                 char_volk = ((actorID - VOLK_1_F_IDLE) + 1);
                 char_male = False;
             };
@@ -9746,8 +9884,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 add(POPUP_INFO);
             };
         };
-        var AddMimickInterfaceButtonHoverHandler:* = function (actorID:int){
-            actor[actorID].add_event_listener(MouseEvent.MOUSE_OVER, MimickInterfaceButtonHover);
+        def AddMimickInterfaceButtonHoverHandler(actorID:int){
+            actor[actorID].add_event_listener(
+                MouseEvent.MOUSE_OVER,
+                MimickInterfaceButtonHover
+            );
         };
         MimickInterfaceButtonHover = function (evt:MouseEvent):void{
             var tmpContainer:* = null;
@@ -9765,7 +9906,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     removeChild(tmpContainer);
                 };
             };
-            evt.target.add_event_listener(MouseEvent.MOUSE_OUT, EndMimickInterfaceButtonHover);
+            evt.target.add_event_listener(
+                MouseEvent.MOUSE_OUT,
+                EndMimickInterfaceButtonHover
+            );
             Switch (GetActorID(evt.target)){
                 if case(CA_CITY_SHAKES:
                     MimickHover(IF_SCHMIEDE);
@@ -9806,14 +9950,21 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             var evt:* = evt;
             var BubbleFade:* = function (inOut:Boolean, bubbleID:int):void{
                 if (inOut){
-                    if (((((!(on_stage(bubbleID))) and (!(on_stage(CA_SCR_ARBEITEN_BLOCKCITY))))) and (!(on_stage(CA_SCR_INVITE_BLOCKCITY))))){
+                    if (
+                        ((((!(on_stage(bubbleID)))
+                        and (!(on_stage(CA_SCR_ARBEITEN_BLOCKCITY)))))
+                        and (!(on_stage(CA_SCR_INVITE_BLOCKCITY))))
+                    ){
                         add(bubbleID);
                         add(CITY_CA_OVL);
                         actor[bubbleID].alpha = 0;
                         BubbleWait = 30;
                     } else {
                         if (actor[bubbleID].alpha < 1){
-                            if (((on_stage(CA_SCR_ARBEITEN_BLOCKCITY)) or (on_stage(CA_SCR_INVITE_BLOCKCITY)))){
+                            if (
+                                ((on_stage(CA_SCR_ARBEITEN_BLOCKCITY))
+                                or (on_stage(CA_SCR_INVITE_BLOCKCITY)))
+                            ){
                                 remove(bubbleID);
                                 actor[bubbleID].alpha = 0;
                                 BubbleWait = 0;
@@ -9826,19 +9977,27 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                                     if (lightMode){
                                         actor[bubbleID].alpha = 1;
                                     } else {
-                                        actor[bubbleID].alpha = (actor[bubbleID].alpha + 0.1);
+                                        actor[bubbleID].alpha = (
+                                            actor[bubbleID].alpha + 0.1
+                                        );
                                     };
                                 };
                             };
                         } else {
-                            if (((on_stage(CA_SCR_ARBEITEN_BLOCKCITY)) or (on_stage(CA_SCR_INVITE_BLOCKCITY)))){
+                            if (
+                                ((on_stage(CA_SCR_ARBEITEN_BLOCKCITY)) 
+                                or (on_stage(CA_SCR_INVITE_BLOCKCITY)))
+                            ){
                                 remove(bubbleID);
                             };
                         };
                     };
                 } else {
                     if (on_stage(bubbleID)){
-                        if (((on_stage(CA_SCR_ARBEITEN_BLOCKCITY)) or (on_stage(CA_SCR_INVITE_BLOCKCITY)))){
+                        if (
+                            ((on_stage(CA_SCR_ARBEITEN_BLOCKCITY))
+                            or (on_stage(CA_SCR_INVITE_BLOCKCITY)))
+                        ){
                             remove(bubbleID);
                             actor[bubbleID].alpha = 0;
                             BubbleWait = 0;
@@ -9847,7 +10006,9 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                             if (lightMode){
                                 actor[bubbleID].alpha = 0;
                             } else {
-                                actor[bubbleID].alpha = (actor[bubbleID].alpha - 0.1);
+                                actor[bubbleID].alpha = (
+                                    actor[bubbleID].alpha - 0.1
+                                );
                             };
                             add(bubbleID);
                             add(CITY_CA_OVL);
@@ -9859,7 +10020,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
             };
-            if (((((on_stage(SCR_CITY_MAIN_DAWN)) or (on_stage(SCR_CITY_MAIN_DAY)))) or (on_stage(SCR_CITY_MAIN_NIGHT)))){
+            if (
+                ((((on_stage(SCR_CITY_MAIN_DAWN))
+                or (on_stage(SCR_CITY_MAIN_DAY))))
+                or (on_stage(SCR_CITY_MAIN_NIGHT)))
+            ){
                 BubbleTimer.delay = 20;
             } else {
                 BubbleTimer.delay = 500;
@@ -9871,14 +10036,23 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             BubbleFade(on_stage(CITY_RUHMESHALLE), BUBBLE_RUHMESHALLE);
             BubbleFade(on_stage(CITY_DEALER), BUBBLE_DEALER);
             BubbleFade(on_stage(CITY_POST), BUBBLE_POST);
-            BubbleFade(((((((on_stage(CITY_SCHILD1)) or (on_stage(CITY_SCHILD2)))) or (on_stage(CITY_SCHILD3)))) or (on_stage(CITY_SCHILD4))), BUBBLE_WACHE);
+            BubbleFade(
+                ((((((on_stage(CITY_SCHILD1))
+                or (on_stage(CITY_SCHILD2))))
+                or (on_stage(CITY_SCHILD3))))
+                or (on_stage(CITY_SCHILD4))),
+                BUBBLE_WACHE
+            );
             BubbleFade(on_stage(CITY_SHAKES), BUBBLE_SHAKES);
             BubbleFade(on_stage(CITY_ZAUBERLADEN), BUBBLE_ZAUBERLADEN);
         };
         CityAni = function (evt:Event):void{
             if (!lightMode){
                 CityAniFrame++;
-                if ((((CityAniFrame == 5)) and (getChildByName(actor[CITY_ELF1].name)))){
+                if (
+                    (((CityAniFrame == 5))
+                    and (getChildByName(actor[CITY_ELF1].name)))
+                ){
                     remove(CITY_ELF1);
                     add(CITY_ELF2);
                     if (on_stage(BUBBLE_POST)){
@@ -9895,7 +10069,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                         add(CITY_CA_OVL);
                     };
                 };
-                if ((((CityAniFrame == 3)) and ((int((Math.random() * 2)) == 0)))){
+                if (
+                    (((CityAniFrame == 3))
+                    and ((int((Math.random() * 2)) == 0)))
+                ){
                     if (getChildByName(actor[CITY_ORK1].name)){
                         remove(CITY_ORK1);
                         add(CITY_ORK2);
@@ -9916,13 +10093,20 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                         };
                     };
                 };
-                if ((((((CityAniFrame == 2)) and ((int((Math.random() * 2)) == 0)))) and (getChildByName(actor[CITY_ZWERG1].name)))){
+                if (
+                    (((((CityAniFrame == 2))
+                    and ((int((Math.random() * 2)) == 0))))
+                    and (getChildByName(actor[CITY_ZWERG1].name)))
+                ){
                     remove(CITY_ZWERG1);
                     add(CITY_ZWERG2);
                     DefineBunch(CITY_ZWERG, CITY_ZWERG2);
                     add(CITY_CA_OVL);
                 } else {
-                    if ((((CityAniFrame == 3)) and (on_stage(CITY_ZWERG2)))){
+                    if (
+                        (((CityAniFrame == 3)) 
+                        and (on_stage(CITY_ZWERG2)))
+                    ){
                         remove(CITY_ZWERG2);
                         add(CITY_ZWERG1);
                         DefineBunch(CITY_ZWERG, CITY_ZWERG1);
@@ -9932,14 +10116,20 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 if (SandwichPause > 0){
                     SandwichPause--;
                 } else {
-                    if (((((CityAniFrame % 2) == 0)) and (getChildByName(actor[CITY_SANDWICH1].name)))){
+                    if (
+                        ((((CityAniFrame % 2) == 0))
+                        and (getChildByName(actor[CITY_SANDWICH1].name)))
+                    ){
                         remove(CITY_SANDWICH1);
                         add(CITY_SANDWICH2);
                         if (on_stage(LBL_ERROR)){
                             add(LBL_ERROR);
                         };
                     };
-                    if (((!(((CityAniFrame % 2) == 0))) and (getChildByName(actor[CITY_SANDWICH2].name)))){
+                    if (
+                        ((!(((CityAniFrame % 2) == 0)))
+                        and (getChildByName(actor[CITY_SANDWICH2].name)))
+                    ){
                         remove(CITY_SANDWICH2);
                         add(CITY_SANDWICH1);
                         if (on_stage(LBL_ERROR)){
@@ -9951,7 +10141,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 };
                 if (ZwergFussTapp > 0){
-                    if (((on_stage(CITY_MAGIER1)) or (on_stage(CITY_MAGIER2)))){
+                    if (
+                        ((on_stage(CITY_MAGIER1))
+                        or (on_stage(CITY_MAGIER2)))
+                    ){
                         if ((ZwergFussTapp % 2) == 0){
                             remove(CITY_MAGIER1);
                             add(CITY_MAGIER2);
@@ -9976,7 +10169,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                         ZwergFussTapp--;
                     };
                 } else {
-                    if (((on_stage(CITY_MAGIER1)) and ((int((Math.random() * 15)) == 0)))){
+                    if (
+                        ((on_stage(CITY_MAGIER1)) 
+                        and ((int((Math.random() * 15)) == 0)))
+                    ){
                         ZwergFussTapp = 6;
                     };
                 };
@@ -10010,12 +10206,24 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             SchildDir = -1;
         };
         SchildFrame = function (evt:Event):void{
-            if (((((!(((on_stage(CITY_WACHE_DAY)) or (on_stage(CITY_WACHE_NIGHT))))) or (on_stage(CA_SCR_ARBEITEN_BLOCKCITY)))) or (on_stage(CA_SCR_INVITE_BLOCKCITY)))){
+            if (
+                ((((!(((on_stage(CITY_WACHE_DAY)) 
+                or (on_stage(CITY_WACHE_NIGHT))))) 
+                or (on_stage(CA_SCR_ARBEITEN_BLOCKCITY))))
+                or (on_stage(CA_SCR_INVITE_BLOCKCITY)))
+            ){
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(TimerEvent.TIMER, SchildFrame);
+                SchildTimer.removeEventListener(
+                    TimerEvent.TIMER, SchildFrame
+                );
                 return;
             };
-            remove(CITY_SCHILD1, CITY_SCHILD2, CITY_SCHILD3, CITY_SCHILD4);
+            remove(
+                CITY_SCHILD1,
+                CITY_SCHILD2,
+                CITY_SCHILD3,
+                CITY_SCHILD4
+            );
             if (iFrame >= 0){
                 add((CITY_SCHILD1 + iFrame));
             };
@@ -10029,7 +10237,9 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             if ((((iFrame >= 3)) and ((SchildDir > 0)))){
                 iFrame = 3;
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(TimerEvent.TIMER, SchildFrame);
+                SchildTimer.removeEventListener(
+                    TimerEvent.TIMER, SchildFrame
+                );
                 return;
             };
             iFrame = (iFrame + SchildDir);
@@ -10038,14 +10248,21 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             remove(CITY_ESEL1);
         };
         EselOut = function ():void{
-            if (((on_stage(STALL_BG_GUT)) or (on_stage(STALL_BG_BOESE)))){
+            if (
+                ((on_stage(STALL_BG_GUT)) 
+                or (on_stage(STALL_BG_BOESE)))
+            ){
                 return;
             };
             add(CITY_ESEL1);
             add(CITY_CA_OVL);
         };
         ShowDealerEyes = function ():void{
-            if (((((on_stage(SCR_CITY_BACKG_NIGHT)) or (on_stage(SCR_CITY_BACKG_DAWN)))) or (on_stage(SCR_CITY_BACKG_DAY)))){
+            if (
+                ((((on_stage(SCR_CITY_BACKG_NIGHT))
+                or (on_stage(SCR_CITY_BACKG_DAWN))))
+                or (on_stage(SCR_CITY_BACKG_DAY)))
+            ){
                 add(CITY_DEALER_ANI5);
                 add(CA_CITY_DEALER);
                 if (on_stage(CA_SCR_ARBEITEN_BLOCKCITY)){
