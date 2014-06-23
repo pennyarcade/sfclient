@@ -2127,7 +2127,7 @@ CFG = {
     "ALLOW_SKIP_QUEST": 34,
     "BACKGROUND_ID": 57,
     "BUFFED_URL": 19,
-    "BUFFEDMODE": 15,
+    "buffed_mode": 15,
     "BULLSHIT_BOX": 50,
     "BULLSHIT_CID": 51,
     "CENSORED": 40,
@@ -4464,8 +4464,8 @@ def init_vars():
         buffed_name = ""
         buffed_email = ""
         buffed_req = False
-        buffedMode = False
-        buffedLinkText = ""
+        buffed_mode = False
+        buffed_link_text = ""
         buffedLinkURL = ""
         lang_code = "de"
         original_lang_code = "de"
@@ -8267,41 +8267,265 @@ def load_language_file():
     pending_language_file = True
 
 
+def original_language_file_loaded(evt):
+    str_data = loader.data
+    in_value = False
+    tmp_str = ""
+    last_index = 0
+    original_font = "Komika Text"
+
+    for i in range(len(str_data) - 1):
+        c = str_data.charCodeAt(i)
+        for case in Switch(c):
+            if case(10, 13):
+                in_value = False
+                if len(tmp_str) > 0:
+                    old_str = tmp_str
+                    if last_index == TXT_FONT_NAME:
+                        original_font = tmp_str
+                    tmp_str = ""
+
+                break
+            if case(9, 20):
+                if not in_value:
+                    last_index = int(tmp_str)
+                    tmp_str = ""
+                    in_value = True
+                else:
+                    tmp_str += str_data.charAt(i)
+                break
+            if case(136):
+                tmp_str += str.fromCharCode(13) + str.fromCharCode(10)
+
+            if case():
+                tmp_str += str_data.charAt(i)
+
+    pending_language_file = False
+    set_font(superior_font(chosen_lang_font, original_font))
+    loader_complete(evt)
+
+
+def load_original_language_file():
+    with URLLoader():
+        data_format = URLLoaderdata_format.TEXT
+        add_event_listener(Event.COMPLETE, OriginalLanguageFileLoaded)
+        load(URLRequest(
+            lang_url + "lang/sfgame_" + original_lang_code + ".txt"
+        ))
+
+    pending_loaders += 1
+    pending_language_file = True
+
+
+def configuration_file_loaded(evt):
+    str_data = evt.target.data
+    in_value = False
+    tmp_str = ""
+    last_index = 0
+
+    for i in range(len(str_data) - 1):
+        c = str_data.charCodeAt(i)
+        for case in Switch(c):
+            if case(13, 10):
+                in_value = False
+                if len(tmp_str) > 0:
+                    for case in Switch(last_index):
+                        if case(LANG_CODE):
+                            lang_code = tmp_str
+                            original_lang_code = lang_code
+                            break
+
+                        if case(URL):
+                            img_url[len(img_url)] = tmp_str
+                            break
+
+                        if case(SND_URL):
+                            snd_url[len(snd_url)] = tmp_str
+                            break
+
+                        if case(LIGHT_MODE):
+                            light_mode_default = (int(tmp_str) != 0)
+                            break
+
+                        if case(SERVER):
+                            server = tmp_str
+                            break
+
+                        if case(LANG_URL):
+                            lang_url = tmp_str
+                            break
+
+                        if case(NO_CROSSDOMAIN):
+                            no_crossdomain = (int(tmp_str) != 0)
+                            break
+
+                        if case(FORUM_URL):
+                            forum_url = tmp_str
+                            break
+
+                        if case(SHOP_URL):
+                            shop_url = tmp_str
+                            break
+
+                        if case(IMPRINT_URL):
+                            imprint_url = tmp_str
+                            break
+
+                        if case(LEGAL_URL):
+                            legal_url = tmp_str
+                            break
+
+                        if case(DATAPROT_URL):
+                            dataprot_url = tmp_str
+                            break
+
+                        if case(INSTR_URL):
+                            instr_url = tmp_str
+                            break
+
+                        if case(buffed_mode):
+                            buffed_mode = (tmp_str != "")
+                            buffed_link_text = tmp_str
+                            break
+
+
+
+
 
 
 
 
 '''
 
-var OriginalLanguageFileLoaded:* = function (evt:Event):void{
-    var str_data:String;
-    var i:int;
-    var c:int;
-    var in_value:Boolean;
-    var tmp_str:String;
-    var last_index:int;
-    var oldStr:String;
-    var w:int;
-    var originalFont:String;
-    str_data = loader.data;
-    in_value = False;
-    tmp_str = "";
-    last_index = 0;
-    originalFont = "Komika Text";
-    i = 0;
-    while (i < (str_data.length - 1)) {
-        c = str_data.charCodeAt(i);
-        Switch (c){
-            if case(10:
-            if case(13:
-                in_value = False;
-                if (tmp_str.length > 0){
-                    oldStr = tmp_str;
-                    if (last_index == TXT_FONT_NAME){
-                        originalFont = tmp_str;
+                        if case(PAYMETHODS):
+                            PayMethods = tmp_str.split("/");
+                            j = 0;
+                            while (j < PayMethods.length) {
+                                PayMethods[j] = int(PayMethods[j]);
+                                j++;
+                            };
+                            break;
+                        if case(SERVER_ID:
+                            ServerID = int(tmp_str);
+                            break;
+                        if case(MP_PROJECT:
+                            MPProject = tmp_str;
+                            break;
+                        if case(BUFFED_URL:
+                            buffedLinkURL = tmp_str;
+                            break;
+                        if case(RESPONSE_TIMEOUT:
+                            response_timeout = int(tmp_str);
+                            break;
+                        if case(IMAGE_TIMEOUT:
+                            image_timeout = int(tmp_str);
+                            break;
+                        if case(SPONSOR_IMG:
+                            param_sponsor = tmp_str;
+                            break;
+                        if case(REROLL_IMG:
+                            param_reroll_img = int(tmp_str);
+                            break;
+                        if case(RECONNECT:
+                            param_reconnect = int(tmp_str);
+                            break;
+                        if case(PHP_TUNNEL_URL:
+                            param_php_tunnel_url = tmp_str;
+                            break;
+                        if case(TRACKING_PIXEL:
+                            trackPixels.push(tmp_str.split(";"));
+                            trc(("Tracking pixel definition old " + tmp_str));
+                            break;
+                        if case(POLL_TUNNEL_URL:
+                            param_poll_tunnel_url = tmp_str;
+                            break;
+                        if case(SUPPORT_EMAIL:
+                            param_support_email = tmp_str;
+                            break;
+                        if case(GAMESTAFF_EMAIL:
+                            param_gamestaff_email = tmp_str;
+                            break;
+                        if case(PAPAYA_PATH:
+                            param_papaya_path = tmp_str;
+                            break;
+                        if case(PAPAYA_FILE:
+                            param_papaya_cfg_file = tmp_str;
+                            break;
+                        if case(RESEND_COUNT:
+                            param_fail_tries = int(tmp_str);
+                            break;
+                        if case(IDLE_POLLING:
+                            param_idle_polling = int(tmp_str);
+                            break;
+                        if case(ALLOW_SKIP_QUEST:
+                            param_allow_skip_quest = (int(tmp_str) == 1);
+                            param_happy_hour = (int(tmp_str) == 2);
+                            break;
+                        if case(CENSORED:
+                            param_censored = !((int(tmp_str) == 0));
+                            break;
+                        if case(INTERNAL_PIXEL:
+                            param_internal_pixel = !((int(tmp_str) == 0));
+                            break;
+                        if case(RELOAD_PIXEL:
+                            param_reload_pixel = !((int(tmp_str) == 0));
+                            break;
+                        if case(SERVER_VERSION:
+                            param_server_version_cfg = tmp_str;
+                            break;
+                        if case(DONT_SAVE_CID:
+                            param_no_cid_save = !((int(tmp_str) == 0));
+                            break;
+                        if case(FLAGS:
+                            param_languages = tmp_str.split("/");
+                            break;
+                        if case(FLAG_NAMES:
+                            param_language_names = tmp_str.split("/");
+                            break;
+                        if case(LOWRES_URL:
+                            break;
+                        if case(SPONSOR_URL:
+                            param_sponsor_url = tmp_str;
+                            break;
+                        if case(BULLSHIT_BOX:
+                            param_bullshit_text = tmp_str;
+                            break;
+                        if case(BULLSHIT_CID:
+                            param_bullshit_cid = tmp_str;
+                            break;
+                        if case(SOCIAL_BUTTONS:
+                            param_social_buttons = tmp_str.split("/");
+                            break;
+                        if case(PIXEL_CALL:
+                            defined_pixel_calls[tmp_str.split(":")[0]] = tmp_str.split(":")[1];
+                            break;
+                        if case(BACKGROUND_ID:
+                            login_background_id = tmp_str;
+                            break;
+                        if case(WORLDS:
+                            worlds = list();
+                            tmpWorlds = tmp_str.split(";");
+                            j = 0;
+                            while (j < tmpWorlds.length) {
+                                tmpWorld = list();
+                                tmpWorld[0] = tmpWorlds[j].split(":")[0];
+                                tmpWorld[1] = tmpWorlds[j].split(":")[1].split("/");
+                                worlds.push(tmpWorld);
+                                j++;
+                            };
+                            break;
+                        if case(TV_FUNCTION:
+                            tvFunctionName = tmp_str;
+                            break;
+                        if case(TV_POLL_INTERVAL_NORMAL:
+                            tvPollNormal = (int(tmp_str) * 1000);
+                            break;
+                        if case(TV_POLL_INTERVAL_LONG:
+                            tvPollLong = (int(tmp_str) * 1000);
+                            break;
                     };
-                    tmp_str = "";
                 };
+                tmp_str = "";
                 break;
             if case(20:
             if case(9:
@@ -8320,423 +8544,191 @@ var OriginalLanguageFileLoaded:* = function (evt:Event):void{
         };
         i++;
     };
-    pending_language_file = False;
-    set_font(SuperiorFont(chosen_lang_font, originalFont));
+    pendingConfigurationFiles--;
+    if (pendingConfigurationFiles == 1){
+        loader2.load(new URLRequest("config_txt"));
+    } else {
+        pendingConfigurationFile = False;
+        so = SharedObject.getLocal(("SFGame/" + server.split(".").join("/")), "/");
+        if (so.data.lang_code){
+            lang_code = so.data.lang_code;
+        };
+        lightMode = light_mode_default;
+        chatSound = False;
+        compareItems = False;
+        disableTV = False;
+        if (so.data.lightMode === False){
+            lightMode = False;
+        };
+        if (so.data.lightMode === True){
+            lightMode = True;
+        };
+        if (so.data.chatSound === False){
+            chatSound = False;
+        };
+        if (so.data.chatSound === True){
+            chatSound = True;
+        };
+        if (so.data.compareItems === False){
+            compareItems = False;
+        };
+        if (so.data.compareItems === True){
+            compareItems = True;
+        };
+        if (so.data.disableTV === False){
+            disableTV = False;
+        };
+        if (so.data.disableTV === True){
+            disableTV = True;
+        };
+        if (param_obj["lang"] != undefined){
+            lang_code = param_obj["lang"];
+        };
+        if (param_obj["id"] != undefined){
+            param_id = str(param_obj["id"]);
+        };
+        if (param_obj["rec"] != undefined){
+            param_rec = str(param_obj["rec"]);
+            if (so.data.hadAccount){
+                param_rec = "";
+            };
+        };
+        if (param_obj["viewplayer"] != undefined){
+            view_player = str(param_obj["viewplayer"]);
+        };
+        if (param_obj["adminlogin"] != undefined){
+            admin_login = str(param_obj["adminlogin"]);
+        };
+        if (param_obj["mp_api_user_id"] != undefined){
+            mp_api_user_id = str(param_obj["mp_api_user_id"]);
+        };
+        if (param_obj["mp_api_user_token"] != undefined){
+            mp_api_user_token = str(param_obj["mp_api_user_token"]);
+        };
+        if (((!((param_obj["mp_api_user_id"] == undefined))) and (!((param_obj["mp_api_user_token"] == undefined))))){
+            ssoMode = True;
+        };
+        if (param_obj["cid"] != undefined){
+            param_cid = str(param_obj["cid"]);
+            param_cid_original = True;
+            so.data.cid = param_cid;
+            so.flush();
+        } else {
+            if (param_obj["CID"] != undefined){
+                param_cid = str(param_obj["CID"]);
+                param_cid_original = True;
+                so.data.cid = param_cid;
+                so.flush();
+            } else {
+                if (param_obj["Cid"] != undefined){
+                    param_cid = str(param_obj["Cid"]);
+                    param_cid_original = True;
+                    so.data.cid = param_cid;
+                    so.flush();
+                } else {
+                    if (so.data.cid){
+                        if ((((so.data.cid.indexOf("_") == -1)) and ((so.data.cid.length == 15)))){
+                            param_cid = (so.data.cid + "_r");
+                        } else {
+                            if (!param_no_cid_save){
+                                param_cid = so.data.cid;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        hadAccount = so.data.hadAccount;
+        if (param_obj["adv"] != undefined){
+            param_adv = str(param_obj["adv"]);
+            so.data.adv = param_adv;
+            so.data.advpar = param_obj;
+            so.flush();
+        } else {
+            if (param_obj["cid"] != undefined){
+                so.data.advpar = param_obj;
+                so.flush();
+            } else {
+                if (so.data.adv){
+                    param_adv = so.data.adv;
+                };
+            };
+        };
+        if (param_obj["valid"] != undefined){
+            param_valid = str(param_obj["valid"]);
+        };
+        if (param_obj["val"] != undefined){
+            param_valid = str(param_obj["val"]);
+        };
+        if (param_obj["hall"] != undefined){
+            param_hall = str(param_obj["hall"]);
+        };
+        if (param_obj["imgsvr"] != undefined){
+            param_imgsvr = int(param_obj["imgsvr"]);
+        };
+        if (param_obj["port"] != undefined){
+            param_forceport = int(param_obj["port"]);
+        };
+        forceReroll = (param_reroll_img > int(so.data.force_reroll));
+        if (forceReroll){
+            so.data.force_reroll = param_reroll_img;
+            so.flush();
+        };
+        if (img_url.length == 0){
+            img_url[0] = "";
+        };
+        if (snd_url.length == 0){
+            snd_url[0] = "";
+        };
+        if (so.data.img_url_index){
+            if (param_imgsvr > 0){
+                img_url_index = (param_imgsvr - 1);
+            } else {
+                if ((((so.data.img_url_index <= img_url.length)) and (!(forceReroll)))){
+                    img_url_index = (so.data.img_url_index - 1);
+                } else {
+                    img_url_index = int((Math.random() * img_url.length));
+                };
+            };
+        } else {
+            img_url_index = int((Math.random() * img_url.length));
+        };
+        if (so.data.snd_url_index){
+            if (param_imgsvr > 0){
+                snd_url_index = (param_imgsvr - 1);
+            } else {
+                if ((((so.data.snd_url_index <= snd_url.length)) and (!(forceReroll)))){
+                    snd_url_index = (so.data.snd_url_index - 1);
+                } else {
+                    snd_url_index = int((Math.random() * snd_url.length));
+                };
+            };
+        } else {
+            snd_url_index = int((Math.random() * snd_url.length));
+        };
+        if (img_url.length == snd_url.length){
+            snd_url_index = img_url_index;
+        };
+        so.data.img_url_index = (img_url_index + 1);
+        so.data.snd_url_index = (snd_url_index + 1);
+        so.flush();
+        if (lightMode){
+            if (param_lowres_url != ""){
+                img_url[img_url_index] = param_lowres_url;
+            };
+            if (param_lowres_url != ""){
+                snd_url[snd_url_index] = param_lowres_url;
+            };
+        };
+    };
     loader_complete(evt);
 };
-
-def load_original_language_file():void{
-    var loader:* = null;
-    loader = new URLLoader();
-    var _local2 = loader;
-    with (_local2) {
-        data_format = URLLoaderdata_format.TEXT;
-        add_event_listener(Event.COMPLETE, OriginalLanguageFileLoaded);
-        load(new URLRequest((((lang_url + "lang/sfgame_") + original_lang_code) + ".txt")));
-    };
-    pending_loaders = (pending_loaders + 1);
-    pending_language_file = True;
-}
 
 
 def load_configuration_file():void{
     var loader:* = null;
     var loader2:* = null;
     var pendingConfigurationFiles:* = undefined;
-    var ConfigurationFileLoaded:* = function (evt:Event):void{
-        var str_data:String;
-        var i:int;
-        var j:int;
-        var c:int;
-        var in_value:Boolean;
-        var tmp_str:String;
-        var last_index:int;
-        var tmpWorlds:Array;
-        var tmpWorld:Array;
-        var forceReroll:Boolean;
-        str_data = evt.target.data;
-        in_value = False;
-        tmp_str = "";
-        last_index = 0;
-        i = 0;
-        while (i < (str_data.length - 1)) {
-            c = str_data.charCodeAt(i);
-            Switch (c){
-                if case(10:
-                if case(13:
-                    in_value = False;
-                    if (tmp_str.length > 0){
-                        Switch (last_index){
-                            if case(LANG_CODE:
-                                lang_code = tmp_str;
-                                original_lang_code = lang_code;
-                                break;
-                            if case(URL:
-                                img_url[img_url.length] = tmp_str;
-                                break;
-                            if case(SND_URL:
-                                snd_url[snd_url.length] = tmp_str;
-                                break;
-                            if case(LIGHT_MODE:
-                                light_mode_default = !((int(tmp_str) == 0));
-                                break;
-                            if case(SERVER:
-                                server = tmp_str;
-                                break;
-                            if case(LANG_URL:
-                                lang_url = tmp_str;
-                                break;
-                            if case(NO_CROSSDOMAIN:
-                                no_crossdomain = !((int(tmp_str) == 0));
-                                break;
-                            if case(FORUM_URL:
-                                forum_url = tmp_str;
-                                break;
-                            if case(SHOP_URL:
-                                shop_url = tmp_str;
-                                break;
-                            if case(IMPRINT_URL:
-                                imprint_url = tmp_str;
-                                break;
-                            if case(LEGAL_URL:
-                                legal_url = tmp_str;
-                                break;
-                            if case(DATAPROT_URL:
-                                dataprot_url = tmp_str;
-                                break;
-                            if case(INSTR_URL:
-                                instr_url = tmp_str;
-                                break;
-                            if case(BUFFEDMODE:
-                                buffedMode = !((tmp_str == ""));
-                                buffedLinkText = tmp_str;
-                                break;
-                            if case(PAYMETHODS:
-                                PayMethods = tmp_str.split("/");
-                                j = 0;
-                                while (j < PayMethods.length) {
-                                    PayMethods[j] = int(PayMethods[j]);
-                                    j++;
-                                };
-                                break;
-                            if case(SERVER_ID:
-                                ServerID = int(tmp_str);
-                                break;
-                            if case(MP_PROJECT:
-                                MPProject = tmp_str;
-                                break;
-                            if case(BUFFED_URL:
-                                buffedLinkURL = tmp_str;
-                                break;
-                            if case(RESPONSE_TIMEOUT:
-                                response_timeout = int(tmp_str);
-                                break;
-                            if case(IMAGE_TIMEOUT:
-                                image_timeout = int(tmp_str);
-                                break;
-                            if case(SPONSOR_IMG:
-                                param_sponsor = tmp_str;
-                                break;
-                            if case(REROLL_IMG:
-                                param_reroll_img = int(tmp_str);
-                                break;
-                            if case(RECONNECT:
-                                param_reconnect = int(tmp_str);
-                                break;
-                            if case(PHP_TUNNEL_URL:
-                                param_php_tunnel_url = tmp_str;
-                                break;
-                            if case(TRACKING_PIXEL:
-                                trackPixels.push(tmp_str.split(";"));
-                                trc(("Tracking pixel definition old " + tmp_str));
-                                break;
-                            if case(POLL_TUNNEL_URL:
-                                param_poll_tunnel_url = tmp_str;
-                                break;
-                            if case(SUPPORT_EMAIL:
-                                param_support_email = tmp_str;
-                                break;
-                            if case(GAMESTAFF_EMAIL:
-                                param_gamestaff_email = tmp_str;
-                                break;
-                            if case(PAPAYA_PATH:
-                                param_papaya_path = tmp_str;
-                                break;
-                            if case(PAPAYA_FILE:
-                                param_papaya_cfg_file = tmp_str;
-                                break;
-                            if case(RESEND_COUNT:
-                                param_fail_tries = int(tmp_str);
-                                break;
-                            if case(IDLE_POLLING:
-                                param_idle_polling = int(tmp_str);
-                                break;
-                            if case(ALLOW_SKIP_QUEST:
-                                param_allow_skip_quest = (int(tmp_str) == 1);
-                                param_happy_hour = (int(tmp_str) == 2);
-                                break;
-                            if case(CENSORED:
-                                param_censored = !((int(tmp_str) == 0));
-                                break;
-                            if case(INTERNAL_PIXEL:
-                                param_internal_pixel = !((int(tmp_str) == 0));
-                                break;
-                            if case(RELOAD_PIXEL:
-                                param_reload_pixel = !((int(tmp_str) == 0));
-                                break;
-                            if case(SERVER_VERSION:
-                                param_server_version_cfg = tmp_str;
-                                break;
-                            if case(DONT_SAVE_CID:
-                                param_no_cid_save = !((int(tmp_str) == 0));
-                                break;
-                            if case(FLAGS:
-                                param_languages = tmp_str.split("/");
-                                break;
-                            if case(FLAG_NAMES:
-                                param_language_names = tmp_str.split("/");
-                                break;
-                            if case(LOWRES_URL:
-                                break;
-                            if case(SPONSOR_URL:
-                                param_sponsor_url = tmp_str;
-                                break;
-                            if case(BULLSHIT_BOX:
-                                param_bullshit_text = tmp_str;
-                                break;
-                            if case(BULLSHIT_CID:
-                                param_bullshit_cid = tmp_str;
-                                break;
-                            if case(SOCIAL_BUTTONS:
-                                param_social_buttons = tmp_str.split("/");
-                                break;
-                            if case(PIXEL_CALL:
-                                defined_pixel_calls[tmp_str.split(":")[0]] = tmp_str.split(":")[1];
-                                break;
-                            if case(BACKGROUND_ID:
-                                login_background_id = tmp_str;
-                                break;
-                            if case(WORLDS:
-                                worlds = list();
-                                tmpWorlds = tmp_str.split(";");
-                                j = 0;
-                                while (j < tmpWorlds.length) {
-                                    tmpWorld = list();
-                                    tmpWorld[0] = tmpWorlds[j].split(":")[0];
-                                    tmpWorld[1] = tmpWorlds[j].split(":")[1].split("/");
-                                    worlds.push(tmpWorld);
-                                    j++;
-                                };
-                                break;
-                            if case(TV_FUNCTION:
-                                tvFunctionName = tmp_str;
-                                break;
-                            if case(TV_POLL_INTERVAL_NORMAL:
-                                tvPollNormal = (int(tmp_str) * 1000);
-                                break;
-                            if case(TV_POLL_INTERVAL_LONG:
-                                tvPollLong = (int(tmp_str) * 1000);
-                                break;
-                        };
-                    };
-                    tmp_str = "";
-                    break;
-                if case(20:
-                if case(9:
-                    if (!in_value){
-                        last_index = int(tmp_str);
-                        tmp_str = "";
-                        in_value = True;
-                    } else {
-                        tmp_str = (tmp_str + str_data.charAt(i));
-                    };
-                    break;
-                if case(136:
-                    tmp_str = (tmp_str + (String.fromCharCode(13) + String.fromCharCode(10)));
-                default:
-                    tmp_str = (tmp_str + str_data.charAt(i));
-            };
-            i++;
-        };
-        pendingConfigurationFiles--;
-        if (pendingConfigurationFiles == 1){
-            loader2.load(new URLRequest("config_txt"));
-        } else {
-            pendingConfigurationFile = False;
-            so = SharedObject.getLocal(("SFGame/" + server.split(".").join("/")), "/");
-            if (so.data.lang_code){
-                lang_code = so.data.lang_code;
-            };
-            lightMode = light_mode_default;
-            chatSound = False;
-            compareItems = False;
-            disableTV = False;
-            if (so.data.lightMode === False){
-                lightMode = False;
-            };
-            if (so.data.lightMode === True){
-                lightMode = True;
-            };
-            if (so.data.chatSound === False){
-                chatSound = False;
-            };
-            if (so.data.chatSound === True){
-                chatSound = True;
-            };
-            if (so.data.compareItems === False){
-                compareItems = False;
-            };
-            if (so.data.compareItems === True){
-                compareItems = True;
-            };
-            if (so.data.disableTV === False){
-                disableTV = False;
-            };
-            if (so.data.disableTV === True){
-                disableTV = True;
-            };
-            if (param_obj["lang"] != undefined){
-                lang_code = param_obj["lang"];
-            };
-            if (param_obj["id"] != undefined){
-                param_id = str(param_obj["id"]);
-            };
-            if (param_obj["rec"] != undefined){
-                param_rec = str(param_obj["rec"]);
-                if (so.data.hadAccount){
-                    param_rec = "";
-                };
-            };
-            if (param_obj["viewplayer"] != undefined){
-                view_player = str(param_obj["viewplayer"]);
-            };
-            if (param_obj["adminlogin"] != undefined){
-                admin_login = str(param_obj["adminlogin"]);
-            };
-            if (param_obj["mp_api_user_id"] != undefined){
-                mp_api_user_id = str(param_obj["mp_api_user_id"]);
-            };
-            if (param_obj["mp_api_user_token"] != undefined){
-                mp_api_user_token = str(param_obj["mp_api_user_token"]);
-            };
-            if (((!((param_obj["mp_api_user_id"] == undefined))) and (!((param_obj["mp_api_user_token"] == undefined))))){
-                ssoMode = True;
-            };
-            if (param_obj["cid"] != undefined){
-                param_cid = str(param_obj["cid"]);
-                param_cid_original = True;
-                so.data.cid = param_cid;
-                so.flush();
-            } else {
-                if (param_obj["CID"] != undefined){
-                    param_cid = str(param_obj["CID"]);
-                    param_cid_original = True;
-                    so.data.cid = param_cid;
-                    so.flush();
-                } else {
-                    if (param_obj["Cid"] != undefined){
-                        param_cid = str(param_obj["Cid"]);
-                        param_cid_original = True;
-                        so.data.cid = param_cid;
-                        so.flush();
-                    } else {
-                        if (so.data.cid){
-                            if ((((so.data.cid.indexOf("_") == -1)) and ((so.data.cid.length == 15)))){
-                                param_cid = (so.data.cid + "_r");
-                            } else {
-                                if (!param_no_cid_save){
-                                    param_cid = so.data.cid;
-                                };
-                            };
-                        };
-                    };
-                };
-            };
-            hadAccount = so.data.hadAccount;
-            if (param_obj["adv"] != undefined){
-                param_adv = str(param_obj["adv"]);
-                so.data.adv = param_adv;
-                so.data.advpar = param_obj;
-                so.flush();
-            } else {
-                if (param_obj["cid"] != undefined){
-                    so.data.advpar = param_obj;
-                    so.flush();
-                } else {
-                    if (so.data.adv){
-                        param_adv = so.data.adv;
-                    };
-                };
-            };
-            if (param_obj["valid"] != undefined){
-                param_valid = str(param_obj["valid"]);
-            };
-            if (param_obj["val"] != undefined){
-                param_valid = str(param_obj["val"]);
-            };
-            if (param_obj["hall"] != undefined){
-                param_hall = str(param_obj["hall"]);
-            };
-            if (param_obj["imgsvr"] != undefined){
-                param_imgsvr = int(param_obj["imgsvr"]);
-            };
-            if (param_obj["port"] != undefined){
-                param_forceport = int(param_obj["port"]);
-            };
-            forceReroll = (param_reroll_img > int(so.data.force_reroll));
-            if (forceReroll){
-                so.data.force_reroll = param_reroll_img;
-                so.flush();
-            };
-            if (img_url.length == 0){
-                img_url[0] = "";
-            };
-            if (snd_url.length == 0){
-                snd_url[0] = "";
-            };
-            if (so.data.img_url_index){
-                if (param_imgsvr > 0){
-                    img_url_index = (param_imgsvr - 1);
-                } else {
-                    if ((((so.data.img_url_index <= img_url.length)) and (!(forceReroll)))){
-                        img_url_index = (so.data.img_url_index - 1);
-                    } else {
-                        img_url_index = int((Math.random() * img_url.length));
-                    };
-                };
-            } else {
-                img_url_index = int((Math.random() * img_url.length));
-            };
-            if (so.data.snd_url_index){
-                if (param_imgsvr > 0){
-                    snd_url_index = (param_imgsvr - 1);
-                } else {
-                    if ((((so.data.snd_url_index <= snd_url.length)) and (!(forceReroll)))){
-                        snd_url_index = (so.data.snd_url_index - 1);
-                    } else {
-                        snd_url_index = int((Math.random() * snd_url.length));
-                    };
-                };
-            } else {
-                snd_url_index = int((Math.random() * snd_url.length));
-            };
-            if (img_url.length == snd_url.length){
-                snd_url_index = img_url_index;
-            };
-            so.data.img_url_index = (img_url_index + 1);
-            so.data.snd_url_index = (snd_url_index + 1);
-            so.flush();
-            if (lightMode){
-                if (param_lowres_url != ""){
-                    img_url[img_url_index] = param_lowres_url;
-                };
-                if (param_lowres_url != ""){
-                    snd_url[snd_url_index] = param_lowres_url;
-                };
-            };
-        };
-        loader_complete(evt);
-    };
     loader = new URLLoader();
     loader2 = new URLLoader();
     var _local2 = loader;
@@ -9588,7 +9580,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         var DoGotoSignup:* = function (evt:Event){
-            if (buffedMode){
+            if (buffed_mode){
                 navigate_to_url(new URLRequest(buffedLinkURL));
             } else {
                 show_build_character_screen(evt);
@@ -13949,7 +13941,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         DefineBunch(CHAR_ACH);
         i = 0;
         while (i < 40) {
-            DefineCnt((CHAR_ACH + i), (SCR_CHAR_ACH_X + (((buffedMode) ? SCR_CHAR_ACH_X_BUFFED : SCR_CHAR_ACH_X) * (i % 8))), SCR_CHAR_ACH_Y);
+            DefineCnt((CHAR_ACH + i), (SCR_CHAR_ACH_X + (((buffed_mode) ? SCR_CHAR_ACH_X_BUFFED : SCR_CHAR_ACH_X) * (i % 8))), SCR_CHAR_ACH_Y);
             DefineImg((CHAR_ACH + i), (((("res/gfx/scr/char/ach/ach-" + str(((i % 8) + 1))) + "-") + str(int((i / 8)))) + ".png"), False, 0, 0);
             SetCnt((CHAR_ACH + i), (CHAR_ACH + i));
             MakePersistent((CHAR_ACH + i));
@@ -15671,7 +15663,7 @@ def swap_words(tmp_str:String):String{
     var ii:int;
     var punct1:String;
     var punct2:String;
-    var oldStr:String = tmp_str;
+    var old_str:String = tmp_str;
     if (textDir == "right"){
         tmpArr = list();
         tmp_str2 = "";
@@ -15707,7 +15699,7 @@ def swap_words(tmp_str:String):String{
 }
 
 
-def SuperiorFont(Font1:String, Font2:String):String{
+def superior_font(Font1:String, Font2:String):String{
     var FontRanking:Array;
     var rank1:int;
     var rank2:int;
@@ -23185,7 +23177,7 @@ def show_build_character_screen(evt:Event=undefined):void{
         request_login();
         return;
     };
-    if (((((buffedMode) and (!(buffed_req)))) and (!(RebuildMode)))){
+    if (((((buffed_mode) and (!(buffed_req)))) and (!(RebuildMode)))){
         show_login_screen();
         return;
     };
@@ -23696,7 +23688,7 @@ def DoAchievements(SG:Array):Boolean{
     achCurrentGrade = "";
     OneUp = False;
     i = 0;
-    while (i < ((buffedMode) ? 7 : 8)) {
+    while (i < ((buffed_mode) ? 7 : 8)) {
         achAusf = ach_level(SG, (i % 8), 1);
         add(((CHAR_ACH + i) + (achAusf * 8)));
         if (old_ach[(i % 8)] < 0){
@@ -26570,7 +26562,7 @@ def WaitingProgress(startTime:Number, targetTime:Number):Number{
 
 def show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=False):void{
     var playername:String;
-    if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffedMode)))) and (!(ssoMode)))){
+    if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffed_mode)))) and (!(ssoMode)))){
         show_build_character_screen();
         return;
     };
@@ -26590,8 +26582,8 @@ def show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=
     };
     add(WINDOW_LOGIN);
     LOGonRTL();
-    if (buffedMode){
-        actor[LBL_GOTO_SIGNUP].htmlText = buffedLinkText;
+    if (buffed_mode){
+        actor[LBL_GOTO_SIGNUP].htmlText = buffed_link_text;
         actor[GOTO_SIGNUP].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_GOTO_SIGNUP].textWidth / 2)));
     };
     if (ssoMode){
