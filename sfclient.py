@@ -322,7 +322,7 @@ ERR = {
 }
 
 
-# Savegame (request answer) Indices
+# savegame (request answer) Indices
 SG = {
     "ATTR": {
         "AUSDAUER": 33,
@@ -4491,8 +4491,8 @@ def init_vars():
         sendLock = False
         fight_lock = False
         pollLock = False
-        pendingLanguageFile = False
-        chosenLangFont = "Komika Text"
+        pending_language_file = False
+        chosen_lang_font = "Komika Text"
         countryName = list()
         pendingConfigurationFile = False
         actor = list()
@@ -4503,7 +4503,7 @@ def init_vars():
         actorSoundLoader = list()
         actorPopupStamp = list()
         stObject = new SoundTransform()
-        pendingLoaders = 0
+        pending_loaders = 0
         dragDropActive = False
         dragDropProhibit = False
         dragNotYet = False
@@ -4580,7 +4580,7 @@ def init_vars():
         FontFormat_HighStakesHighLightGrayed = new TextFormat()
         FontFormat_ToiletAura = new TextFormat()
         textDir = "left"
-        SetFont(new SFGameFont().fontName)
+        set_font(new SFGameFont().fontName)
         gameFont = ""
         font_embedded = True
         sizeMod = 0
@@ -4623,7 +4623,7 @@ def init_vars():
         revertchar_hair = 1
         revertchar_special = 1
         revertchar_special2 = 1
-        Savegame = list()
+        savegame = list()
         mirror_pieces = list()
         has_mirror = False
         can_rob = False
@@ -4633,7 +4633,7 @@ def init_vars():
         GameTime = new Date()
         stundenlohn = 10
         verdientes_geld = 0
-        Gilde = ""
+        gilde = ""
         gilden_id = 0
         post_scroll = 1
         PostMax = 1
@@ -4659,8 +4659,8 @@ def init_vars():
         KlasseGewählt = False
         post_fight_mode = False
         tmpAmount = 0
-        PulseTaverne = False
-        PulseArbeiten = False
+        pulse_taverne = False
+        pulse_arbeiten = False
         pulse_gilde = False
         pulse_gilde_on_history = False
         pulse_post = False
@@ -5562,7 +5562,7 @@ def get_arrow_id(
     arrow_id = ARROW_OFFS
     if slot_mode:
         if not (type(some_obj) is list):
-            some_obj = Savegame
+            some_obj = savegame
 
         slot_id = itm_class + itm_pic * SG_ITM_SIZE
         itm_pic = some_obj[slot_id + SG_ITM_PIC]
@@ -5989,7 +5989,7 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
 
     for i in range(3):
         expand_item_structure(
-            Savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE))
+            savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE))
         )
 
     debug_info = ""
@@ -6146,7 +6146,7 @@ def request_player_guild_screen(evt):
     if sel_guild == "":
         return
 
-    if sel_guild == Gilde:
+    if sel_guild == gilde:
         send_action(ACT['SCREEN']['GILDEN'])
     else:
         send_action(ACT['SCREEN']['FREMDGILDE'], sel_guild)
@@ -6714,9 +6714,9 @@ def action_handler(event):
 
                         if last_chat_index != 0:
                             for ii in range(len(offline_guild_members)):
-                                tmpstr = offline_guild_members[ii].lower()
-                                tmpstr += ":§"
-                                if (tmp_array[i].lower().indexOf(tmpstr) != -1):
+                                tmp_str = offline_guild_members[ii].lower()
+                                tmp_str += ":§"
+                                if (tmp_array[i].lower().indexOf(tmp_str) != -1):
                                     if (on_stage(INP['GILDE_CHAT'])):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -6748,9 +6748,9 @@ def action_handler(event):
                                 pulse_gilde = True
 
                             for ii in range(len(offline_guild_members)):
-                                tmpstr = offline_guild_members[ii].lower()
-                                tmpstr += ":§"
-                                if (tmp_array[i].lower().indexOf(tmpstr) != -1):
+                                tmp_str = offline_guild_members[ii].lower()
+                                tmp_str += ":§"
+                                if (tmp_array[i].lower().indexOf(tmp_str) != -1):
                                     if (on_stage(INP['GILDE_CHAT'])):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -6784,9 +6784,9 @@ def action_handler(event):
                     if (last_chat_index != 0):
 
                         for ii in range(len(offline_guild_members)):
-                            tmpstr = offline_guild_members[ii].lower()
-                            tmpstr += ":§"
-                            if (tmp_array[i].lower().indexOf(tmpstr) != -1):
+                            tmp_str = offline_guild_members[ii].lower()
+                            tmp_str += ":§"
+                            if (tmp_array[i].lower().indexOf(tmp_str) != -1):
                                 if (on_stage(INP['GILDE_CHAT'])):
                                     send_action(ACT['SCREEN']['GILDEN'])
                                 break
@@ -7066,7 +7066,7 @@ def action_handler(event):
 
             show_screen_gilden(
                 par[0].split("/"),
-                tmpstr,
+                tmp_str,
                 par[2].split("/"),
                 par[3],
                 is_mine,
@@ -7468,10 +7468,10 @@ def action_handler(event):
             line = 1
 
             for i in range(len(tmp_array) -1):
-                tmpstr = ''
+                tmp_str = ''
                 if tmp_array[i] < 0:
-                    tmpstr += '-'
-                tmpstr += ruhmes_halle_such_string.lower()
+                    tmp_str += '-'
+                tmp_str += ruhmes_halle_such_string.lower()
 
                 tmpidx = i
                 if ruhmes_halle_such_name:
@@ -7483,7 +7483,7 @@ def action_handler(event):
                 if (
                     (not guild_hall_mode)
                     and (not ruhmes_halle_such_name)
-                    and (tmpstr == tmp_array[tmpidx].lower())
+                    and (tmp_str == tmp_array[tmpidx].lower())
                 ):
                     tmp_fmt = FontFormat_HallListHighLight
                 else:
@@ -7557,13 +7557,13 @@ def action_handler(event):
                         tmpidx2 = (
                             HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X - 10
                         )
-                    tmpstr = tmp_array[i - 1]
+                    tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
-                        tmpstr = texts[TXT_NOGUILD]
+                        tmp_str = texts[TXT_NOGUILD]
                     hall_list_add_field(
                         tmpidx,
                         HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
-                        tmpstr,
+                        tmp_str,
                         tmp_fmt,
                         tmpidx2,
                         True
@@ -7645,13 +7645,13 @@ def action_handler(event):
                         tmpidx2 = (
                             HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X - 10
                         )
-                    tmpstr = tmp_array[i - 1]
+                    tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
-                        tmpstr = texts[TXT_NOGUILD]
+                        tmp_str = texts[TXT_NOGUILD]
                     hall_list_add_field(
                         tmpidx,
                         HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
-                        tmpstr,
+                        tmp_str,
                         tmp_fmt,
                         tmpidx2,
                         True
@@ -8056,349 +8056,363 @@ def action_handler(event):
         request_login(event)
 
 
+def request_login(evt=undefined):
+    if evt is KeyboardEvent:
+        if (
+            (KeyboardEvent(evt).keyCode != 13)
+            and (KeyboardEvent(evt).keyCode != 10)
+            and (KeyboardEvent(evt).keyCode != 16777230)
+        ):
+            return
+
+    tmpPw = actor[INP_LOGIN_PASSWORD].getChildAt(1).text
+    if C_MD5:
+        if len(tmp_pw) < 32:
+            tmp_pw = md5hash(tmp_pw)
+
+    send_action(
+        ACT_LOGIN,
+        actor[INP_NAME].getChildAt(1).text,
+        tmp_pw,
+        "v1.70"
+    )
 
 
+def request_logout(evt=undefined, keep_data=False):
+    remove_all()
+    next_pxl = 0
+    actor[LBL_ERROR].text = ""
+    if not keep_data:
+        so.data.userName = ""
+        so.data.password = ""
+        actor[INP_NAME].getChildAt(1).text = ""
+        actor[INP_LOGIN_PASSWORD].getChildAt(1).text = ""
+        so.flush()
+        actor[INP_EMAIL].getChildAt(1).text = ""
+        actor[INP_PASSWORD].getChildAt(1).text = ""
+
+    send_action(ACT_LOGOUT)
+    savegame = list()
+    char_volk = 0
+    gilde = ""
+    my_own_rank = -1
+    my_own_attack_target = -1
+    my_own_guild_money = -1
+    guild_attack_time = 0
+    guild_defense_time = 0
+    guild_attacked = ""
+    guild_attacking = ""
+    pulse_taverne = False
+    pulse_arbeiten = False
+    pulse_gilde = False
+    pulse_gilde_on_history = False
+    pulse_post = False
+    pulse_dealer = False
+    guild_blink_ready = False
+    session_id = ""
+    fight_flush_mode = False
+    if not keep_data:
+        show_login_screen()
 
 
+def request_cancel_arbeiten(evt=undefined):
+    send_action(ACT_ARBEIT_CANCEL)
 
 
-'''
-
-public function request_login(evt:Event=undefined):void{
-    var tmpPw:String;
-    if ((evt is KeyboardEvent)){
-        if (((((!((KeyboardEvent(evt).keyCode == 13))) and (!((KeyboardEvent(evt).keyCode == 10))))) and (!((KeyboardEvent(evt).keyCode == 16777230))))){
-            return;
-        };
-    };
-    tmpPw = actor[INP_LOGIN_PASSWORD].getChildAt(1).text;
-    if (C_MD5){
-        if (tmpPw.length < 32){
-            tmpPw = MD5(tmpPw);
-        };
-    };
-    send_action(ACT_LOGIN, actor[INP_NAME].getChildAt(1).text, tmpPw, "v1.70");
-}
+def request_arbeiten(evt=undefined):
+    send_action(ACT_ARBEIT, get_slider_value(SLDR_ARBEITEN))
 
 
-public function request_logout(evt:Event=undefined, keepData:Boolean=False):void{
-    remove_all();
-    next_pxl = 0;
-    actor[LBL_ERROR].text = "";
-    if (!keepData){
-        so.data.userName = "";
-        so.data.password = "";
-        actor[INP_NAME].getChildAt(1).text = "";
-        actor[INP_LOGIN_PASSWORD].getChildAt(1).text = "";
-        so.flush();
-        actor[INP_EMAIL].getChildAt(1).text = "";
-        actor[INP_PASSWORD].getChildAt(1).text = "";
-    };
-    send_action(ACT_LOGOUT);
-    Savegame = list();
-    char_volk = 0;
-    Gilde = "";
-    my_own_rank = -1;
-    my_own_attack_target = -1;
-    my_own_guild_money = -1;
-    guild_attack_time = 0;
-    guild_defense_time = 0;
-    guild_attacked = "";
-    guild_attacking = "";
-    PulseTaverne = False;
-    PulseArbeiten = False;
-    pulse_gilde = False;
-    pulse_gilde_on_history = False;
-    pulse_post = False;
-    pulse_dealer = False;
-    guild_blink_ready = False;
-    session_id = "";
-    fight_flush_mode = False;
-    if (!keepData){
-        show_login_screen();
-    };
-}
+def request_create_character(evt=undefined):
+    pass
 
 
-public function RequestCancelArbeiten(evt:Event=undefined):void{
-    send_action(ACT_ARBEIT_CANCEL);
-}
+def request_change_face(evt=undefined):
+    if (
+        (char_volk == revertchar_volk)
+        and (char_male == revertchar_male)
+        and (char_color == revertchar_color)
+        and (char_mouth == revertchar_mouth)
+        and (char_beard == revertchar_beard)
+        and (char_nose == revertchar_nose)
+        and (char_eyes == revertchar_eyes)
+        and (char_brows == revertchar_brows)
+        and (char_ears == revertchar_ears)
+        and (char_hair == revertchar_hair)
+        and (char_special == revertchar_special)
+        and (char_special2 == revertchar_special2)
+    ):
+        send_action(ACT_SCREEN_OPTIONEN)
+    else:
+        tmp_gender = 2
+        if char_male:
+            tmp_gender = 1
+
+        send_action(
+            ACT_CHANGE_FACE,
+            actor[INP_NAME].getChildAt(1).text,
+            actor[INP_LOGIN_PASSWORD].getChildAt(1).text,
+            char_volk,
+            tmp_gender,
+            '/'.join(
+                char_mouth,
+                char_hair,
+                char_brows,
+                char_eyes,
+                char_beard,
+                char_nose,
+                char_ears,
+                char_special,
+                char_special2
+            ) + "/"
+        )
 
 
-public function RequestArbeiten(evt:Event=undefined):void{
-    send_action(ACT_ARBEIT, GetSliderValue(SLDR_ARBEITEN));
-}
+def request_char_screen(evt=undefined):
+    arrow_hall_mode = False
+    send_action(ACT_SCREEN_CHAR)
 
 
-public function RequestCreateCharacter(evt:Event=undefined):void{
-}
+def request_city_screen(evt=undefined):
+    pass
 
-
-public function RequestChangeFace(evt:Event=undefined):void{
-    if ((((((((((((((((((((((((char_volk == revertchar_volk)) and ((char_male == revertchar_male)))) and ((char_color == revertchar_color)))) and ((char_mouth == revertchar_mouth)))) and ((char_beard == revertchar_beard)))) and ((char_nose == revertchar_nose)))) and ((char_eyes == revertchar_eyes)))) and ((char_brows == revertchar_brows)))) and ((char_ears == revertchar_ears)))) and ((char_hair == revertchar_hair)))) and ((char_special == revertchar_special)))) and ((char_special2 == revertchar_special2)))){
-        send_action(ACT_SCREEN_OPTIONEN);
-    } else {
-        send_action(ACT_CHANGE_FACE, actor[INP_NAME].getChildAt(1).text, actor[INP_LOGIN_PASSWORD].getChildAt(1).text, char_volk, ((char_male) ? 1 : 2), (((((((((((((((((char_mouth + "/") + char_hair) + "/") + char_brows) + "/") + char_eyes) + "/") + char_beard) + "/") + char_nose) + "/") + char_ears) + "/") + char_special) + "/") + char_special2) + "/"));
-    };
-}
-
-
-public function RequestCharScreen(evt:Event=undefined):void{
-    arrow_hall_mode = False;
-    send_action(ACT_SCREEN_CHAR);
-}
-
-
-public function RequestCityScreen(evt:Event=undefined):void{
-}
-
-
-'''
 
 
 #------------------------------------------------------------------------------
 # (File) Loaders
 
+def language_file_error(evt):
+    LOG.error("Chosen language " + lang_code + " not available!")
+    if lang_code == original_lang_code:
+        lang_code = original_lang_code
+
+    if lang_code == "ar":
+        textDir = "right"
+
+    loader.load(
+        URLRequest(lang_url + "lang/sfgame_" + lang_code + ".txt")
+    )
+
+
+def language_file_loaded(evt):
+    str_data = loader.data
+    in_value = False
+    tmp_str = ""
+    last_index = 0
+
+    for i in range(len(str_data) -1):
+        c = str_data.charCodeAt(i)
+        for case in Switch(c):
+            if case(10, 13):
+                in_value = False
+                if len(tmp_str) > 0:
+                    texts[last_index] = swap_words(tmp_str)
+                    tmp_str = ""
+                else:
+                    if not texts[last_index]:
+                        texts[last_index] = ""
+                break
+
+            if case(9, 20):
+                if not in_value:
+                    last_index = int(tmp_str)
+                    tmp_str = ""
+                    in_value = True
+                else:
+                    tmp_str += str_data.charAt(i)
+                break
+
+            if case(136):
+                tmp_str += str.fromCharCode(13) + str.fromCharCode(10)
+
+            if case():
+                tmp_str += str_data.charAt(i)
+
+    pending_language_file = False
+    if lang_code == original_lang_code:
+        if texts[TXT_FONT_NAME] != "":
+            set_font(texts[TXT_FONT_NAME])
+        else:
+            set_font("Komika Text")
+    else:
+        chosen_lang_font = "Komika Text"
+        if texts[TXT_FONT_NAME]:
+            chosen_lang_font = texts[TXT_FONT_NAME]
+        load_original_language_file()
+
+    for i in range(TXT_COUNTRY_NAMES, TXT_COUNTRY_NAMES + 100):
+        if (texts[i]):
+            countryName[texts[i].split("=")[0]] = texts[i].split("=")[1]
+        else:
+            break
+
+    loader_complete(evt)
+
+
+def load_language_file():
+    loader = URLLoader()
+    with (loader):
+        data_format = URLLoaderdata_format.TEXT
+        add_event_listener(Event.COMPLETE, LanguageFileLoaded)
+        add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
+        add_event_listener(SecurityErrorEvent.SECURITY_ERROR, LanguageFileError)
+        if lang_code == "ar":
+            textDir = "right"
+
+        load(URLRequest(
+            lang_url + "lang/sfgame_" + lang_code + ".txt?rnd=" + str(Math.random())
+        ))
+
+    pending_loaders += 1
+    pending_language_file = True
+
+
+
+
+
 
 '''
-var LanguageFileError:* = function (evt:Event){
-    trc((("Chosen language " + lang_code) + " not available!"));
-    if (lang_code == original_lang_code){
-        lang_code = original_lang_code;
-    };
-    if (lang_code == "ar"){
-        textDir = "right";
-    };
-    loader.load(new URLRequest((((lang_url + "lang/sfgame_") + lang_code) + ".txt")));
-};
 
-
-var LanguageFileLoaded:* = function (evt:Event):void{
-    var strData:String;
+var OriginalLanguageFileLoaded:* = function (evt:Event):void{
+    var str_data:String;
     var i:int;
     var c:int;
-    var inValue:Boolean;
-    var tmpStr:String;
-    var lastIndex:int;
-    strData = loader.data;
-    inValue = False;
-    tmpStr = "";
-    lastIndex = 0;
+    var in_value:Boolean;
+    var tmp_str:String;
+    var last_index:int;
+    var oldStr:String;
+    var w:int;
+    var originalFont:String;
+    str_data = loader.data;
+    in_value = False;
+    tmp_str = "";
+    last_index = 0;
+    originalFont = "Komika Text";
     i = 0;
-    while (i < (strData.length - 1)) {
-        c = strData.charCodeAt(i);
+    while (i < (str_data.length - 1)) {
+        c = str_data.charCodeAt(i);
         Switch (c){
-            if case(10):
-            if case(13):
-                inValue = False;
-                if (tmpStr.length > 0){
-                    texts[lastIndex] = swap_words(tmpStr);
-                    tmpStr = "";
-                } else {
-                    if (!texts[lastIndex]){
-                        texts[lastIndex] = "";
+            if case(10:
+            if case(13:
+                in_value = False;
+                if (tmp_str.length > 0){
+                    oldStr = tmp_str;
+                    if (last_index == TXT_FONT_NAME){
+                        originalFont = tmp_str;
                     };
+                    tmp_str = "";
                 };
                 break;
-            if case(20):
-            if case(9):
-                if (!inValue){
-                    lastIndex = int(tmpStr);
-                    tmpStr = "";
-                    inValue = True;
+            if case(20:
+            if case(9:
+                if (!in_value){
+                    last_index = int(tmp_str);
+                    tmp_str = "";
+                    in_value = True;
                 } else {
-                    tmpStr = (tmpStr + strData.charAt(i));
+                    tmp_str = (tmp_str + str_data.charAt(i));
                 };
                 break;
-            if case(136):
-                tmpStr = (tmpStr + (String.fromCharCode(13) + String.fromCharCode(10)));
-            default):
-                tmpStr = (tmpStr + strData.charAt(i));
+            if case(136:
+                tmp_str = (tmp_str + (String.fromCharCode(13) + String.fromCharCode(10)));
+            default:
+                tmp_str = (tmp_str + str_data.charAt(i));
         };
         i++;
     };
-    pendingLanguageFile = False;
-    if (lang_code == original_lang_code){
-        if (texts[TXT_FONT_NAME] != ""){
-            SetFont(texts[TXT_FONT_NAME]);
-        } else {
-            SetFont("Komika Text");
-        };
-    } else {
-        chosenLangFont = ((texts[TXT_FONT_NAME]) ? texts[TXT_FONT_NAME] ): "Komika Text");
-        LoadOriginalLanguageFile();
-    };
-    i = TXT_COUNTRY_NAMES;
-    while (i < (TXT_COUNTRY_NAMES + 100)) {
-        if (texts[i]){
-            countryName[texts[i].split("=")[0]] = texts[i].split("=")[1];
-        } else {
-            break;
-        };
-        i++;
-    };
-    LoaderComplete(evt);
+    pending_language_file = False;
+    set_font(SuperiorFont(chosen_lang_font, originalFont));
+    loader_complete(evt);
 };
-'''
 
-
-'''
-public function LoadLanguageFile()):void{
-    var loader):* = null;
-    loader = new URLLoader();
-    var _local2 = loader;
-    with (_local2) {
-        dataFormat = URLLoaderDataFormat.TEXT;
-        add_event_listener(Event.COMPLETE, LanguageFileLoaded);
-        add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError);
-        add_event_listener(SecurityErrorEvent.SECURITY_ERROR, LanguageFileError);
-        if (lang_code == "ar"){
-            textDir = "right";
-        };
-        load(new URLRequest(((((lang_url + "lang/sfgame_") + lang_code) + ".txt?rnd=") + str(Math.random()))));
-    };
-    pendingLoaders = (pendingLoaders + 1);
-    pendingLanguageFile = True;
-}
-
-public function LoadOriginalLanguageFile():void{
+def load_original_language_file():void{
     var loader:* = null;
-    var OriginalLanguageFileLoaded:* = function (evt:Event):void{
-        var strData:String;
-        var i:int;
-        var c:int;
-        var inValue:Boolean;
-        var tmpStr:String;
-        var lastIndex:int;
-        var oldStr:String;
-        var w:int;
-        var originalFont:String;
-        strData = loader.data;
-        inValue = False;
-        tmpStr = "";
-        lastIndex = 0;
-        originalFont = "Komika Text";
-        i = 0;
-        while (i < (strData.length - 1)) {
-            c = strData.charCodeAt(i);
-            Switch (c){
-                if case(10:
-                if case(13:
-                    inValue = False;
-                    if (tmpStr.length > 0){
-                        oldStr = tmpStr;
-                        if (lastIndex == TXT_FONT_NAME){
-                            originalFont = tmpStr;
-                        };
-                        tmpStr = "";
-                    };
-                    break;
-                if case(20:
-                if case(9:
-                    if (!inValue){
-                        lastIndex = int(tmpStr);
-                        tmpStr = "";
-                        inValue = True;
-                    } else {
-                        tmpStr = (tmpStr + strData.charAt(i));
-                    };
-                    break;
-                if case(136:
-                    tmpStr = (tmpStr + (String.fromCharCode(13) + String.fromCharCode(10)));
-                default:
-                    tmpStr = (tmpStr + strData.charAt(i));
-            };
-            i++;
-        };
-        pendingLanguageFile = False;
-        SetFont(SuperiorFont(chosenLangFont, originalFont));
-        LoaderComplete(evt);
-    };
     loader = new URLLoader();
     var _local2 = loader;
     with (_local2) {
-        dataFormat = URLLoaderDataFormat.TEXT;
+        data_format = URLLoaderdata_format.TEXT;
         add_event_listener(Event.COMPLETE, OriginalLanguageFileLoaded);
         load(new URLRequest((((lang_url + "lang/sfgame_") + original_lang_code) + ".txt")));
     };
-    pendingLoaders = (pendingLoaders + 1);
-    pendingLanguageFile = True;
+    pending_loaders = (pending_loaders + 1);
+    pending_language_file = True;
 }
 
-public function load_configuration_file():void{
+
+def load_configuration_file():void{
     var loader:* = null;
     var loader2:* = null;
     var pendingConfigurationFiles:* = undefined;
     var ConfigurationFileLoaded:* = function (evt:Event):void{
-        var strData:String;
+        var str_data:String;
         var i:int;
         var j:int;
         var c:int;
-        var inValue:Boolean;
-        var tmpStr:String;
-        var lastIndex:int;
+        var in_value:Boolean;
+        var tmp_str:String;
+        var last_index:int;
         var tmpWorlds:Array;
         var tmpWorld:Array;
         var forceReroll:Boolean;
-        strData = evt.target.data;
-        inValue = False;
-        tmpStr = "";
-        lastIndex = 0;
+        str_data = evt.target.data;
+        in_value = False;
+        tmp_str = "";
+        last_index = 0;
         i = 0;
-        while (i < (strData.length - 1)) {
-            c = strData.charCodeAt(i);
+        while (i < (str_data.length - 1)) {
+            c = str_data.charCodeAt(i);
             Switch (c){
                 if case(10:
                 if case(13:
-                    inValue = False;
-                    if (tmpStr.length > 0){
-                        Switch (lastIndex){
+                    in_value = False;
+                    if (tmp_str.length > 0){
+                        Switch (last_index){
                             if case(LANG_CODE:
-                                lang_code = tmpStr;
+                                lang_code = tmp_str;
                                 original_lang_code = lang_code;
                                 break;
                             if case(URL:
-                                img_url[img_url.length] = tmpStr;
+                                img_url[img_url.length] = tmp_str;
                                 break;
                             if case(SND_URL:
-                                snd_url[snd_url.length] = tmpStr;
+                                snd_url[snd_url.length] = tmp_str;
                                 break;
                             if case(LIGHT_MODE:
-                                light_mode_default = !((int(tmpStr) == 0));
+                                light_mode_default = !((int(tmp_str) == 0));
                                 break;
                             if case(SERVER:
-                                server = tmpStr;
+                                server = tmp_str;
                                 break;
                             if case(LANG_URL:
-                                lang_url = tmpStr;
+                                lang_url = tmp_str;
                                 break;
                             if case(NO_CROSSDOMAIN:
-                                no_crossdomain = !((int(tmpStr) == 0));
+                                no_crossdomain = !((int(tmp_str) == 0));
                                 break;
                             if case(FORUM_URL:
-                                forum_url = tmpStr;
+                                forum_url = tmp_str;
                                 break;
                             if case(SHOP_URL:
-                                shop_url = tmpStr;
+                                shop_url = tmp_str;
                                 break;
                             if case(IMPRINT_URL:
-                                imprint_url = tmpStr;
+                                imprint_url = tmp_str;
                                 break;
                             if case(LEGAL_URL:
-                                legal_url = tmpStr;
+                                legal_url = tmp_str;
                                 break;
                             if case(DATAPROT_URL:
-                                dataprot_url = tmpStr;
+                                dataprot_url = tmp_str;
                                 break;
                             if case(INSTR_URL:
-                                instr_url = tmpStr;
+                                instr_url = tmp_str;
                                 break;
                             if case(BUFFEDMODE:
-                                buffedMode = !((tmpStr == ""));
-                                buffedLinkText = tmpStr;
+                                buffedMode = !((tmp_str == ""));
+                                buffedLinkText = tmp_str;
                                 break;
                             if case(PAYMETHODS:
-                                PayMethods = tmpStr.split("/");
+                                PayMethods = tmp_str.split("/");
                                 j = 0;
                                 while (j < PayMethods.length) {
                                     PayMethods[j] = int(PayMethods[j]);
@@ -8406,105 +8420,105 @@ public function load_configuration_file():void{
                                 };
                                 break;
                             if case(SERVER_ID:
-                                ServerID = int(tmpStr);
+                                ServerID = int(tmp_str);
                                 break;
                             if case(MP_PROJECT:
-                                MPProject = tmpStr;
+                                MPProject = tmp_str;
                                 break;
                             if case(BUFFED_URL:
-                                buffedLinkURL = tmpStr;
+                                buffedLinkURL = tmp_str;
                                 break;
                             if case(RESPONSE_TIMEOUT:
-                                response_timeout = int(tmpStr);
+                                response_timeout = int(tmp_str);
                                 break;
                             if case(IMAGE_TIMEOUT:
-                                image_timeout = int(tmpStr);
+                                image_timeout = int(tmp_str);
                                 break;
                             if case(SPONSOR_IMG:
-                                param_sponsor = tmpStr;
+                                param_sponsor = tmp_str;
                                 break;
                             if case(REROLL_IMG:
-                                param_reroll_img = int(tmpStr);
+                                param_reroll_img = int(tmp_str);
                                 break;
                             if case(RECONNECT:
-                                param_reconnect = int(tmpStr);
+                                param_reconnect = int(tmp_str);
                                 break;
                             if case(PHP_TUNNEL_URL:
-                                param_php_tunnel_url = tmpStr;
+                                param_php_tunnel_url = tmp_str;
                                 break;
                             if case(TRACKING_PIXEL:
-                                trackPixels.push(tmpStr.split(";"));
-                                trc(("Tracking pixel definition old " + tmpStr));
+                                trackPixels.push(tmp_str.split(";"));
+                                trc(("Tracking pixel definition old " + tmp_str));
                                 break;
                             if case(POLL_TUNNEL_URL:
-                                param_poll_tunnel_url = tmpStr;
+                                param_poll_tunnel_url = tmp_str;
                                 break;
                             if case(SUPPORT_EMAIL:
-                                param_support_email = tmpStr;
+                                param_support_email = tmp_str;
                                 break;
                             if case(GAMESTAFF_EMAIL:
-                                param_gamestaff_email = tmpStr;
+                                param_gamestaff_email = tmp_str;
                                 break;
                             if case(PAPAYA_PATH:
-                                param_papaya_path = tmpStr;
+                                param_papaya_path = tmp_str;
                                 break;
                             if case(PAPAYA_FILE:
-                                param_papaya_cfg_file = tmpStr;
+                                param_papaya_cfg_file = tmp_str;
                                 break;
                             if case(RESEND_COUNT:
-                                param_fail_tries = int(tmpStr);
+                                param_fail_tries = int(tmp_str);
                                 break;
                             if case(IDLE_POLLING:
-                                param_idle_polling = int(tmpStr);
+                                param_idle_polling = int(tmp_str);
                                 break;
                             if case(ALLOW_SKIP_QUEST:
-                                param_allow_skip_quest = (int(tmpStr) == 1);
-                                param_happy_hour = (int(tmpStr) == 2);
+                                param_allow_skip_quest = (int(tmp_str) == 1);
+                                param_happy_hour = (int(tmp_str) == 2);
                                 break;
                             if case(CENSORED:
-                                param_censored = !((int(tmpStr) == 0));
+                                param_censored = !((int(tmp_str) == 0));
                                 break;
                             if case(INTERNAL_PIXEL:
-                                param_internal_pixel = !((int(tmpStr) == 0));
+                                param_internal_pixel = !((int(tmp_str) == 0));
                                 break;
                             if case(RELOAD_PIXEL:
-                                param_reload_pixel = !((int(tmpStr) == 0));
+                                param_reload_pixel = !((int(tmp_str) == 0));
                                 break;
                             if case(SERVER_VERSION:
-                                param_server_version_cfg = tmpStr;
+                                param_server_version_cfg = tmp_str;
                                 break;
                             if case(DONT_SAVE_CID:
-                                param_no_cid_save = !((int(tmpStr) == 0));
+                                param_no_cid_save = !((int(tmp_str) == 0));
                                 break;
                             if case(FLAGS:
-                                param_languages = tmpStr.split("/");
+                                param_languages = tmp_str.split("/");
                                 break;
                             if case(FLAG_NAMES:
-                                param_language_names = tmpStr.split("/");
+                                param_language_names = tmp_str.split("/");
                                 break;
                             if case(LOWRES_URL:
                                 break;
                             if case(SPONSOR_URL:
-                                param_sponsor_url = tmpStr;
+                                param_sponsor_url = tmp_str;
                                 break;
                             if case(BULLSHIT_BOX:
-                                param_bullshit_text = tmpStr;
+                                param_bullshit_text = tmp_str;
                                 break;
                             if case(BULLSHIT_CID:
-                                param_bullshit_cid = tmpStr;
+                                param_bullshit_cid = tmp_str;
                                 break;
                             if case(SOCIAL_BUTTONS:
-                                param_social_buttons = tmpStr.split("/");
+                                param_social_buttons = tmp_str.split("/");
                                 break;
                             if case(PIXEL_CALL:
-                                defined_pixel_calls[tmpStr.split(":")[0]] = tmpStr.split(":")[1];
+                                defined_pixel_calls[tmp_str.split(":")[0]] = tmp_str.split(":")[1];
                                 break;
                             if case(BACKGROUND_ID:
-                                login_background_id = tmpStr;
+                                login_background_id = tmp_str;
                                 break;
                             if case(WORLDS:
                                 worlds = list();
-                                tmpWorlds = tmpStr.split(";");
+                                tmpWorlds = tmp_str.split(";");
                                 j = 0;
                                 while (j < tmpWorlds.length) {
                                     tmpWorld = list();
@@ -8515,32 +8529,32 @@ public function load_configuration_file():void{
                                 };
                                 break;
                             if case(TV_FUNCTION:
-                                tvFunctionName = tmpStr;
+                                tvFunctionName = tmp_str;
                                 break;
                             if case(TV_POLL_INTERVAL_NORMAL:
-                                tvPollNormal = (int(tmpStr) * 1000);
+                                tvPollNormal = (int(tmp_str) * 1000);
                                 break;
                             if case(TV_POLL_INTERVAL_LONG:
-                                tvPollLong = (int(tmpStr) * 1000);
+                                tvPollLong = (int(tmp_str) * 1000);
                                 break;
                         };
                     };
-                    tmpStr = "";
+                    tmp_str = "";
                     break;
                 if case(20:
                 if case(9:
-                    if (!inValue){
-                        lastIndex = int(tmpStr);
-                        tmpStr = "";
-                        inValue = True;
+                    if (!in_value){
+                        last_index = int(tmp_str);
+                        tmp_str = "";
+                        in_value = True;
                     } else {
-                        tmpStr = (tmpStr + strData.charAt(i));
+                        tmp_str = (tmp_str + str_data.charAt(i));
                     };
                     break;
                 if case(136:
-                    tmpStr = (tmpStr + (String.fromCharCode(13) + String.fromCharCode(10)));
+                    tmp_str = (tmp_str + (String.fromCharCode(13) + String.fromCharCode(10)));
                 default:
-                    tmpStr = (tmpStr + strData.charAt(i));
+                    tmp_str = (tmp_str + str_data.charAt(i));
             };
             i++;
         };
@@ -8721,25 +8735,26 @@ public function load_configuration_file():void{
                 };
             };
         };
-        LoaderComplete(evt);
+        loader_complete(evt);
     };
     loader = new URLLoader();
     loader2 = new URLLoader();
     var _local2 = loader;
     with (_local2) {
-        dataFormat = URLLoaderDataFormat.TEXT;
+        data_format = URLLoaderdata_format.TEXT;
         add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
         load(new URLRequest("client_cfg.php"));
     };
     _local2 = loader2;
     with (_local2) {
-        dataFormat = URLLoaderDataFormat.TEXT;
+        data_format = URLLoaderdata_format.TEXT;
         add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
     };
-    pendingLoaders = (pendingLoaders + 2);
+    pending_loaders = (pending_loaders + 2);
     pendingConfigurationFiles = 1;
     pendingConfigurationFile = True;
 }
+
 
 do_load_language_file = function (){
     var i:* = 0;
@@ -8751,11 +8766,11 @@ do_load_language_file = function (){
     Security.loadPolicyFile((lang_url + "crossdomain.xml"));
     Security.loadPolicyFile((("http://" + server) + "/crossdomain.xml"));
     Security.allowDomain(StripSlashes(img_url[img_url_index]), StripSlashes(snd_url[snd_url_index]), StripSlashes(lang_url), server);
-    LoadLanguageFile();
+    load_language_file();
     when_loaded(BuildInterface);
 
 
-public function load(... _args):void{
+def load(... _args):void{
     var i:* = 0;
     var req:* = null;
     var iBunch:* = 0;
@@ -8798,7 +8813,8 @@ public function load(... _args):void{
     };
 }
 
-public function when_loaded(fn:Function=undefined):void{
+
+def when_loaded(fn:Function=undefined):void{
     var i:int;
     var pending:Boolean;
     var tmpFn:Function;
@@ -8818,7 +8834,7 @@ public function when_loaded(fn:Function=undefined):void{
         };
         i++;
     };
-    if (pendingLanguageFile){
+    if (pending_language_file){
         pending = True;
     };
     if (pendingDebugFile){
@@ -8844,7 +8860,7 @@ public function when_loaded(fn:Function=undefined):void{
     };
 }
 
-public function when_loaded_timeout_event(evt:TimerEvent){
+def when_loaded_timeout_event(evt:TimerEvent){
     var i:int;
     var old_img_url_index:int;
     var old_snd_url_index:int;
@@ -8883,7 +8899,7 @@ public function when_loaded_timeout_event(evt:TimerEvent){
     };
 }
 
-public function LoaderComplete(evt:Event=undefined):void{
+def loader_complete(evt:Event=undefined):void{
     var evt:* = evt;
     if ((evt.target is LoaderInfo)){
         actorLoaded[GetActorID(evt.target.loader)] = 2;
@@ -8898,7 +8914,7 @@ public function LoaderComplete(evt:Event=undefined):void{
     when_loaded();
 }
 
-public function LoaderError(evt:ErrorEvent=undefined):void{
+def LoaderError(evt:ErrorEvent=undefined):void{
     var i:int;
     var old_img_url_index:int;
     var old_snd_url_index:int;
@@ -9235,7 +9251,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         var TaverneBtnIn:* = function (evt:Event){
             actor[IF_TOILET].visible = ((!((savegame[SG_TOILET] == 0))) and (!(on_stage(CA_TOILET_BOWL))));
             actor[IF_HUTMANN].visible = !(on_stage(HUTMANN_BG));
-            if (((!((int(savegame[SG_ACTION_STATUS]) == 0))) and (!(PulseTaverne)))){
+            if (((!((int(savegame[SG_ACTION_STATUS]) == 0))) and (!(pulse_taverne)))){
                 HutmannCountdown = 20;
                 HutmannLinkOver = True;
             };
@@ -9484,7 +9500,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 ii = 0;
                 while (ii < (pwd.length - i)) {
                     cmp = pwd.substr(ii, i);
-                    if (pwd.lastIndexOf(cmp) != ii){
+                    if (pwd.last_indexOf(cmp) != ii){
                         pwdScore--;
                     };
                     ii++;
@@ -9634,24 +9650,24 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     LabelPulse(hitTestState);
                 };
             };
-            if (Savegame.length == 0){
+            if (savegame.length == 0){
                 return;
             };
             if (int(savegame[SG_ACTION_STATUS]) == 1){
                 if (!WaitingFor(savegame[SG_ACTION_ENDTIME])){
-                    PulseArbeiten = True;
+                    pulse_arbeiten = True;
                 };
             };
             if (int(savegame[SG_ACTION_STATUS]) == 2){
                 if (!WaitingFor(savegame[SG_ACTION_ENDTIME])){
-                    PulseTaverne = True;
+                    pulse_taverne = True;
                 };
             };
             if (((((on_stage(TAVERNE_BG)) or (on_stage(FIGHT_BOX1)))) or (on_stage(QUESTBAR_BG)))){
-                PulseTaverne = False;
+                pulse_taverne = False;
             };
             if (on_stage(LBL_SCR_ARBEITEN_TEXT)){
-                PulseArbeiten = False;
+                pulse_arbeiten = False;
             };
             if (on_stage(GILDEN_BG)){
                 pulse_gilde = False;
@@ -9666,13 +9682,13 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (((((on_stage(SCR_CHAR_BG_RIGHT)) or (on_stage(SCR_SHAKES_BG)))) or (on_stage(SCR_FIDGET_BG)))){
                 pulse_char = False;
             };
-            if (((((((((((PulseTaverne) or (PulseArbeiten))) or (pulse_gilde))) or (pulse_post))) or (pulse_char))) or (pulse_dealer))){
+            if (((((((((((pulse_taverne) or (pulse_arbeiten))) or (pulse_gilde))) or (pulse_post))) or (pulse_char))) or (pulse_dealer))){
                 PulseTimer.delay = 20;
             } else {
                 PulseTimer.delay = 500;
             };
-            ButtonPulse(PulseTaverne, IF_TAVERNE);
-            ButtonPulse(PulseArbeiten, IF_ARBEITEN);
+            ButtonPulse(pulse_taverne, IF_TAVERNE);
+            ButtonPulse(pulse_arbeiten, IF_ARBEITEN);
             ButtonPulse(pulse_gilde, IF_GILDEN);
             ButtonPulse(pulse_post, IF_POST);
             ButtonPulse(pulse_char, IF_CHARAKTER);
@@ -10260,7 +10276,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if case(HALL_GOTO_GILDEN:
                     if (savegame[SG_GUILD_INDEX] > 0){
                         ruhmes_halle_such_name = True;
-                        ruhmes_halle_such_string = Gilde;
+                        ruhmes_halle_such_string = gilde;
                         send_action(ACT_SCREEN_GILDENHALLE, "", savegame[SG_GUILD_INDEX], 0);
                     } else {
                         ruhmes_halle_such_name = False;
@@ -10373,7 +10389,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 return;
             };
             if (SelectedGuild != ""){
-                if (SelectedGuild == Gilde){
+                if (SelectedGuild == gilde){
                     send_action(ACT_SCREEN_GILDEN);
                 } else {
                     send_action(ACT_SCREEN_FREMDGILDE, SelectedGuild);
@@ -10442,7 +10458,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
             if (!on_stage(PLAYER_GUILD_INVITE)){
                 return;
             };
-            send_action(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, Gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
+            send_action(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
         };
         PlayerGuildInvite = function (evt:Event=undefined){
             var evt:* = evt;
@@ -11244,7 +11260,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         var AttackLinkClick:* = function (evt:Event){
             if (guild_attacked != ""){
-                if (guild_attacked == Gilde){
+                if (guild_attacked == gilde){
                     send_action(ACT_SCREEN_GILDEN);
                 } else {
                     send_action(ACT_SCREEN_FREMDGILDE, guild_attacked);
@@ -11253,7 +11269,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         };
         var DefenceLinkClick:* = function (evt:Event){
             if (guild_attacking != ""){
-                if (guild_attacking == Gilde){
+                if (guild_attacking == gilde){
                     send_action(ACT_SCREEN_GILDEN);
                 } else {
                     send_action(ACT_SCREEN_FREMDGILDE, guild_attacking);
@@ -11725,7 +11741,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
                 if case(GILDE_CREST_OK:
                     if ((((my_own_rank == 1)) and (crestSuggested))){
-                        send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((old_crest_str() + "§") + RemoveIllegalChars(SemiStrip(actor[INP_GILDE_TEXT].getChildAt(0).text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+                        send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, gilde, ((old_crest_str() + "§") + RemoveIllegalChars(SemiStrip(actor[INP_GILDE_TEXT].getChildAt(0).text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
                         old_crest_str = old_crest_str();
                     } else {
                         if (suggestionAllowed){
@@ -11750,7 +11766,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                 if case((CLA_GILDE_CREST + 6):
                 if case((CLA_GILDE_CREST + 7):
                 if case((CLA_GILDE_CREST + 8):
-                    if (last_guild_shown == Gilde){
+                    if (last_guild_shown == gilde){
                         if (!on_stage(LBL_GILDE_CREST_ELEMENT)){
                             crestMoveDest = GILDE_GEBAEUDE_Y;
                             crestMoveTimer.start();
@@ -11820,7 +11836,7 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
                     break;
                 if case(GILDE_ATTACK:
                     if (my_own_attack_target == 0){
-                        if (last_guild_shown == Gilde){
+                        if (last_guild_shown == gilde){
                             send_action(ACT_SCREEN_GILDENHALLE, "", savegame[SG_GUILD_INDEX], 0);
                         } else {
                             send_action(ACT_GUILD_COMMENCE_ATTACK, last_guild_shown);
@@ -13590,9 +13606,9 @@ public function LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X), (IF_WIN_Y + ARBEITEN_BAR_Y));
         DefineCnt(SCR_ARBEITEN_FILL, (IF_WIN_X + ARBEITEN_FILL_X), (IF_WIN_Y + ARBEITEN_FILL_Y));
         DefineSlider(SLDR_ARBEITEN, 10, ARBEITEN_SLIDER_X, ARBEITEN_SLIDER_Y, ArbeitenSliderChange);
-        DefineBtn(SCR_ARBEITEN_OK, texts[TXT_OK], RequestArbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
+        DefineBtn(SCR_ARBEITEN_OK, texts[TXT_OK], request_arbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
         DefineBtn(SCR_ARBEITEN_CLOSE, texts[TXT_OK], ShowCityScreen, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
-        DefineBtn(SCR_ARBEITEN_CANCEL, texts[TXT_ABBRECHEN], RequestCancelArbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
+        DefineBtn(SCR_ARBEITEN_CANCEL, texts[TXT_ABBRECHEN], request_cancel_arbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
         DefineBunch(SCREEN_ARBEITEN, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SLDR_ARBEITEN, LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_OK, IF_EXIT);
         DefineBunch(SCREEN_ARBEITEN_WAIT, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SCR_ARBEITEN_BAR, SCR_ARBEITEN_FILL, LBL_SCR_ARBEITEN_TIME, SCR_ARBEITEN_CANCEL, IF_EXIT);
         DefineBunch(SCREEN_ARBEITEN_SUCCESS, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_CLOSE, IF_EXIT);
@@ -15597,18 +15613,18 @@ if __name__ == "__main__":
 
 
 '''
-public function IO_ErrorHandler(event:IOErrorEvent){
+def IO_ErrorHandler(event:IOErrorEvent){
     trc(event);
 }
 
-public function GetFileVersion(){
-    tmpStr = GetMyPath(1);
+def GetFileVersion(){
+    tmp_str = GetMyPath(1);
     numStr = "";
     result = "";
-    tmpStr = tmpStr.split(".")[0];
-    i = tmpStr.length;
+    tmp_str = tmp_str.split(".")[0];
+    i = tmp_str.length;
     while (i >= 0) {
-        numStr = tmpStr.substr(i, 1);
+        numStr = tmp_str.substr(i, 1);
         if (numStr == str(int(numStr))){
             result = (numStr + result);
         };
@@ -15617,7 +15633,7 @@ public function GetFileVersion(){
     return (int(result));
 }
 
-public function GetMyPath(mode:int=0):String{
+def GetMyPath(mode:int=0):String{
     var fullPath:String;
     var sections:Array;
     var file_name:String;
@@ -15637,30 +15653,30 @@ public function GetMyPath(mode:int=0):String{
     return ("");
 }
 
-public function GetIP():String{
+def GetIP():String{
     return ("127.0.0.1");
 }
 
 
-public function set_title_bar(msg:String=""){
+def set_title_bar(msg:String=""){
     msg = (msg + (((((((msg == "")) ? "" : " - ") + texts[TXT_GAMETITLE]) + " (") + server.split(".")[0]) + ")"));
     ExternalInterface.call("set_title", msg);
 }
 
-public function swap_words(tmpStr:String):String{
+def swap_words(tmp_str:String):String{
     var w:int;
     var tmpArr:Array;
-    var tmpStr2:String;
+    var tmp_str2:String;
     var tmpChar:String;
     var ii:int;
     var punct1:String;
     var punct2:String;
-    var oldStr:String = tmpStr;
+    var oldStr:String = tmp_str;
     if (textDir == "right"){
         tmpArr = list();
-        tmpStr2 = "";
+        tmp_str2 = "";
         tmpChar = "";
-        tmpArr = tmpStr.split(" ").reverse();
+        tmpArr = tmp_str.split(" ").reverse();
         w = 0;
         while (w < tmpArr.length) {
             if (tmpArr[w].length >= 2){
@@ -15683,15 +15699,15 @@ public function swap_words(tmpStr:String):String{
             };
             w++;
         };
-        tmpStr = tmpArr.join(" ");
-        tmpStr = tmpStr.split("(").join("#PARENTHESIS#").split(")").join("(").split("#PARENTHESIS#").join(")");
-        tmpStr = tmpStr.split("[").join("#SBRACKET#").split("]").join("[").split("#SBRACKET#").join("]");
+        tmp_str = tmpArr.join(" ");
+        tmp_str = tmp_str.split("(").join("#PARENTHESIS#").split(")").join("(").split("#PARENTHESIS#").join(")");
+        tmp_str = tmp_str.split("[").join("#SBRACKET#").split("]").join("[").split("#SBRACKET#").join("]");
     };
-    return (tmpStr);
+    return (tmp_str);
 }
 
 
-public function SuperiorFont(Font1:String, Font2:String):String{
+def SuperiorFont(Font1:String, Font2:String):String{
     var FontRanking:Array;
     var rank1:int;
     var rank2:int;
@@ -15709,7 +15725,7 @@ public function SuperiorFont(Font1:String, Font2:String):String{
     return (((rank1)>rank2) ? Font1 : Font2);
 }
 
-public function DefineBunch(bunchID:int, ... _args):void{
+def DefineBunch(bunchID:int, ... _args):void{
     var i:int;
     actor[bunchID] = list();
     i = 0;
@@ -15719,7 +15735,7 @@ public function DefineBunch(bunchID:int, ... _args):void{
     };
 }
 
-public function AddBunch(bunchID:int, ... _args):void{
+def AddBunch(bunchID:int, ... _args):void{
     var i:int;
     i = 0;
     while (i < _args.length) {
@@ -15728,7 +15744,7 @@ public function AddBunch(bunchID:int, ... _args):void{
     };
 }
 
-public function SetVolume(vol:Number):void{
+def SetVolume(vol:Number):void{
     var vol:* = vol;
     var _local3 = stObject;
     with (_local3) {
@@ -15736,7 +15752,7 @@ public function SetVolume(vol:Number):void{
     };
 }
 
-public function DefineSnd(actorID:int, url:String, PreLoad:Boolean=False){
+def DefineSnd(actorID:int, url:String, PreLoad:Boolean=False){
     var full_url:String;
     if (url.lower().slice(0, 4) == "http:"){
         full_url = url;
@@ -15752,7 +15768,7 @@ public function DefineSnd(actorID:int, url:String, PreLoad:Boolean=False){
     };
 }
 
-public function DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
+def DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
     var actorID:* = actorID;
     var caption:* = caption;
@@ -15791,7 +15807,7 @@ public function DefineBtn(actorID:int, caption:String, handler:Function, btnClas
     };
 }
 
-public function SetBtnText(actorID:int, caption:String){
+def SetBtnText(actorID:int, caption:String){
     var i:* = 0;
     var offsy:* = 0;
     var actorID:* = actorID;
@@ -15898,7 +15914,7 @@ public function SetBtnText(actorID:int, caption:String){
     CenterTextField(actor[i].hitTestState);
 }
 
-public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=True):void{
+def DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=True):void{
     var i:* = 0;
     var fmtUL:* = null;
     var actorID:* = actorID;
@@ -15929,7 +15945,7 @@ public function DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0,
     };
 }
 
-public function DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
+def DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
     var full_url:* = null;
     var LoaderCompleteLocal:* = null;
@@ -15973,7 +15989,7 @@ public function DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:i
     };
 }
 
-public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=undefined, outFn:Function=undefined, stayPut:Boolean=False):void{
+def DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=undefined, outFn:Function=undefined, stayPut:Boolean=False):void{
     var actorID:* = actorID;
     var imgActorID:* = imgActorID;
     var fn:* = fn;
@@ -16026,7 +16042,7 @@ public function DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:
     };
 }
 
-public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtManip:int=0, txtType:String=""):void{
+def DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtManip:int=0, txtType:String=""):void{
     var i:* = 0;
     var actorID:* = actorID;
     var imgClass:* = imgClass;
@@ -16063,7 +16079,7 @@ public function DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:
     };
 }
 
-public function DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
+def DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
     var i:* = 0;
     var actorID:* = actorID;
     var pos_x:int = pos_x;
@@ -16083,10 +16099,10 @@ public function DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=Tru
     };
 }
 
-public function textLinkMakeClickable(obj:Sprite){
+def textLinkMakeClickable(obj:Sprite){
 }
 
-public function DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
+def DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
     var i:* = 0;
     var oldSliderVal:* = 0;
     var actorID:* = actorID;
@@ -16145,19 +16161,19 @@ public function DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Fu
         AddBunch(actorID, ((actorID + 1) + i));
         i = (i + 1);
     };
-    fn(GetSliderValue(actorID));
+    fn(get_slider_value(actorID));
 }
 
-public function GetSliderValue(actorID:int):int{
+def get_slider_value(actorID:int):int{
     var tmpX:int;
     tmpX = (actor[(actorID + 1)].getChildAt(1).x + 5);
     return ((int(((((tmpX - 40) / 198) * (actorBitmap[actorID] - 1)) + 0.5)) + 1));
 }
 
-public function SetSliderValue(actorID:int, value:int):void{
+def SetSliderValue(actorID:int, value:int):void{
     var tmpX:int;
     var oldVal:int;
-    oldVal = GetSliderValue(actorID);
+    oldVal = get_slider_value(actorID);
     tmpX = (int((((value - 1) / (actorBitmap[actorID] - 1)) * 198)) + 40);
     actor[(actorID + 1)].getChildAt(1).x = (tmpX - 7);
     if (oldVal != value){
@@ -16166,7 +16182,7 @@ public function SetSliderValue(actorID:int, value:int):void{
     };
 }
 
-public function MakePersistent(... _args):void{
+def MakePersistent(... _args):void{
     var i:int;
     var iBunch:int;
     i = 0;
@@ -16184,7 +16200,7 @@ public function MakePersistent(... _args):void{
     };
 }
 
-public function MakeTemporary(... _args):void{
+def MakeTemporary(... _args):void{
     var i:int;
     var iBunch:int;
     i = 0;
@@ -16202,7 +16218,7 @@ public function MakeTemporary(... _args):void{
     };
 }
 
-public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
+def EnableDragDrop(actorID:int, handler:Function, ... _args):void{
     var old_x:* = 0;
     var old_y:* = 0;
     var i:* = 0;
@@ -16314,7 +16330,7 @@ public function EnableDragDrop(actorID:int, handler:Function, ... _args):void{
     dragResetTimer.add_event_listener(TimerEvent.TIMER, dragReset);
 }
 
-public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=False):void{
+def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=False):void{
     var iBunch:* = 0;
     var CntImgLoaded:* = null;
     var cntID:* = cntID;
@@ -16389,7 +16405,7 @@ public function SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:
     };
 }
 
-public function play(actorID:int, endless:Boolean=False):void{
+def play(actorID:int, endless:Boolean=False):void{
     var SoundLoaded:* = null;
     var actorID:* = actorID;
     var endless:Boolean = endless;
@@ -16406,7 +16422,7 @@ public function play(actorID:int, endless:Boolean=False):void{
     };
 }
 
-public function add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale_x:Number=undefined, scale_y:Number=undefined, vis=undefined, containerID:int=-1):void{
+def add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale_x:Number=undefined, scale_y:Number=undefined, vis=undefined, containerID:int=-1):void{
     var i:* = 0;
     var req:* = null;
     var iBunch:* = 0;
@@ -16462,7 +16478,7 @@ public function add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale
     };
 }
 
-public function AddBMO(bunchID:int, offset:int){
+def AddBMO(bunchID:int, offset:int){
     var i:int;
     i = 0;
     while (i < actor[bunchID].length) {
@@ -16475,7 +16491,7 @@ public function AddBMO(bunchID:int, offset:int){
     };
 }
 
-public function VisibleToFront(... _args):void{
+def VisibleToFront(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16501,7 +16517,7 @@ public function VisibleToFront(... _args):void{
     };
 }
 
-public function Move(actorID:int, pos_x:int, pos_y:int):void{
+def Move(actorID:int, pos_x:int, pos_y:int):void{
     var i:* = 0;
     var actorID:* = actorID;
     var pos_x:* = pos_x;
@@ -16521,7 +16537,7 @@ public function Move(actorID:int, pos_x:int, pos_y:int):void{
     };
 }
 
-public function AddSome(... _args):void{
+def AddSome(... _args):void{
     var i:int;
     var iBunch:int;
     i = 0;
@@ -16541,7 +16557,7 @@ public function AddSome(... _args):void{
     };
 }
 
-public function remove(... _args):void{
+def remove(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16570,7 +16586,7 @@ public function remove(... _args):void{
     };
 }
 
-public function remove_all(alsoPersistent:Boolean=False):void{
+def remove_all(alsoPersistent:Boolean=False):void{
     var i:int;
     i = 0;
     while (i < actor.length) {
@@ -16586,7 +16602,7 @@ public function remove_all(alsoPersistent:Boolean=False):void{
     ExternalInterface.call("hideSocial");
 }
 
-public function GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
+def GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
     var i:int;
     var res:int;
     res = C_EMPTY;
@@ -16601,76 +16617,76 @@ public function GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
     return (res);
 }
 
-public function GetActorName(actorID:int=0):String{
+def GetActorName(actorID:int=0):String{
     var loader:* = null;
     var actorID:int = actorID;
     loader = new URLLoader();
     if (!(actorName is Array)){
         var ConstFileLoaded:* = function (evt:Event):void{
-            var strData:String;
+            var str_data:String;
             var constName:String;
             var i:int;
             var c:int;
-            var tmpStr:String;
-            strData = loader.data;
+            var tmp_str:String;
+            str_data = loader.data;
             constName = "";
             var equals:Boolean;
-            tmpStr = "";
-            var lastIndex:int;
+            tmp_str = "";
+            var last_index:int;
             i = 0;
-            while (i < (strData.length - 1)) {
-                c = strData.charCodeAt(i);
+            while (i < (str_data.length - 1)) {
+                c = str_data.charCodeAt(i);
                 Switch (c){
                     if case(10:
                     if case(13:
                         if (constName != ""){
-                            actorName[int(tmpStr.substr(1))] = constName;
+                            actorName[int(tmp_str.substr(1))] = constName;
                         };
                         constName = "";
-                        tmpStr = "";
+                        tmp_str = "";
                         break;
                     if case(61:
-                        if (tmpStr.substr(0, 14).lower() == "_global const "){
-                            constName = tmpStr.substr(14, (tmpStr.length - 15));
-                            tmpStr = "";
+                        if (tmp_str.substr(0, 14).lower() == "_global const "){
+                            constName = tmp_str.substr(14, (tmp_str.length - 15));
+                            tmp_str = "";
                         };
                         break;
                     default:
-                        tmpStr = (tmpStr + strData.charAt(i));
+                        tmp_str = (tmp_str + str_data.charAt(i));
                 };
                 i++;
             };
             pendingDebugFile = False;
-            LoaderComplete(evt);
+            loader_complete(evt);
         };
         actorName = list();
         var _local3 = loader;
         with (_local3) {
-            dataFormat = URLLoaderDataFormat.TEXT;
+            data_format = URLLoaderdata_format.TEXT;
             add_event_listener(Event.COMPLETE, ConstFileLoaded);
             load(new URLRequest("constants.as"));
         };
-        pendingLoaders = (pendingLoaders + 1);
+        pending_loaders = (pending_loaders + 1);
         pendingDebugFile = True;
     };
     return (actorName[actorID]);
 }
 
-public function on_stage(actorID):Boolean{
+def on_stage(actorID):Boolean{
     if ((actor[actorID] is DisplayObject)){
         return (Boolean(getChildByName(actor[actorID].name)));
     };
     return (False);
 }
 
-public function Visible(actorID):Boolean{
+def Visible(actorID):Boolean{
     if ((actor[actorID] is DisplayObject)){
         return (((Boolean(getChildByName(actor[actorID].name))) and (actor[actorID].visible)));
     };
     return (False);
 }
 
-public function show(... _args):void{
+def show(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16694,7 +16710,7 @@ public function show(... _args):void{
     };
 }
 
-public function hide(... _args):void{
+def hide(... _args):void{
     var i:* = 0;
     var iBunch:* = 0;
     var actorIDs:* = _args;
@@ -16718,7 +16734,7 @@ public function hide(... _args):void{
     };
 }
 
-public function SetAlpha(actorID:int, alphaValue:Number){
+def SetAlpha(actorID:int, alphaValue:Number){
     var i:int;
     if ((actor[actorID] is Array)){
         i = 0;
@@ -16733,7 +16749,7 @@ public function SetAlpha(actorID:int, alphaValue:Number){
     };
 }
 
-public function GetAlpha(actorID:int):Number{
+def GetAlpha(actorID:int):Number{
     var i:int;
     var tmpAlpha:Number;
     tmpAlpha = 0;
@@ -16753,7 +16769,7 @@ public function GetAlpha(actorID:int):Number{
     return (0);
 }
 
-public function FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1){
+def FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1){
     var fadeTimer:* = null;
     var currentAlpha:* = NaN;
     var FadeInEvent:* = null;
@@ -16780,7 +16796,7 @@ public function FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05,
     SetAlpha(actorID, currentAlpha);
 }
 
-public function fade_out(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
+def fade_out(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
     var fadeTimer:* = null;
     var currentAlpha:* = NaN;
     var FadeOutEvent:* = null;
@@ -16811,11 +16827,11 @@ public function fade_out(actorID:int, timerInterval:int=20, alphaStep:Number=0.0
     SetAlpha(actorID, currentAlpha);
 }
 
-public function AddFilter(actorID:int, filter:Array):void{
+def AddFilter(actorID:int, filter:Array):void{
     actor[actorID].filters = filter;
 }
 
-public function SetFont(fontName:String){
+def set_font(fontName:String){
     var fontName:* = fontName;
     gameFont = fontName;
     font_embedded = True;
@@ -17450,7 +17466,7 @@ public function SetFont(fontName:String){
 
 
 
-public function show_email_nag_screen(valMode:int=-1){
+def show_email_nag_screen(valMode:int=-1){
     var doShowEmailNagScreen:* = null;
     var valMode:int = valMode;
     doShowEmailNagScreen = function (){
@@ -17477,7 +17493,7 @@ public function show_email_nag_screen(valMode:int=-1){
 }
 
 
-public function show_disconnect_screen(){
+def show_disconnect_screen(){
     var ReconnectTimer:* = null;
     var TryReconnect:* = null;
     TryReconnect = function (evt:TimerEvent){
@@ -17500,7 +17516,7 @@ public function show_disconnect_screen(){
     ReconnectTimer.start();
 }
 
-public function RemoveIllegalChars(inpStr:String):String{
+def RemoveIllegalChars(inpStr:String):String{
     var LegalChars:String;
     var i:int;
     var j:int;
@@ -17538,7 +17554,7 @@ public function RemoveIllegalChars(inpStr:String):String{
     return (outStr);
 }
 
-public function SemiStrip(inpStr:String):String{
+def SemiStrip(inpStr:String):String{
     var i:int;
     var outStr:String;
     outStr = "";
@@ -17562,7 +17578,7 @@ public function SemiStrip(inpStr:String):String{
     return (outStr);
 }
 
-public function resolve_breaks(inpStr:String):String{
+def resolve_breaks(inpStr:String):String{
     var i:int;
     var outStr:String;
     outStr = "";
@@ -17578,7 +17594,7 @@ public function resolve_breaks(inpStr:String):String{
     return (outStr);
 }
 
-public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
+def PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     var par:* = null;
     var GuildMsg:* = False;
     var thisRecipient:* = null;
@@ -17711,7 +17727,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
             actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
             remove(POST_LIST);
             add(POST_WRITE);
-            if (Gilde != ""){
+            if (gilde != ""){
                 if (textDir == "right"){
                     actor[POST_GUILD].x = (POST_INP_X + 5);
                 } else {
@@ -17755,7 +17771,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 remove(POST_READ);
                 remove(POST_REPLY);
                 remove(POST_FORWARD);
-                if (Gilde != ""){
+                if (gilde != ""){
                     if (textDir == "right"){
                         actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
@@ -17791,7 +17807,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 remove(POST_READ);
                 remove(POST_REPLY);
                 remove(POST_FORWARD);
-                if (Gilde != ""){
+                if (gilde != ""){
                     if (textDir == "right"){
                         actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
@@ -17832,7 +17848,7 @@ public function PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
     };
 }
 
-public function Showalbum_content(evt:Event=undefined){
+def Showalbum_content(evt:Event=undefined){
     var i:* = 0;
     var entryText:* = null;
     var hintText:* = null;
@@ -18259,7 +18275,7 @@ public function Showalbum_content(evt:Event=undefined){
     };
 }
 
-public function AlbumClear(){
+def AlbumClear(){
     var i:int;
     i = 0;
     while (i < 4) {
@@ -18282,7 +18298,7 @@ public function AlbumClear(){
     };
 }
 
-public function show_screen_album(){
+def show_screen_album(){
     var i:* = 0;
     var DoShowScreenAlbum:* = null;
     DoShowScreenAlbum = function (){
@@ -18306,7 +18322,7 @@ public function show_screen_album(){
     when_loaded(DoShowScreenAlbum);
 }
 
-public function TowerBtnHandler(evt:Event){
+def TowerBtnHandler(evt:Event){
     var i:int;
     Switch (GetActorID(evt.target)){
         if case(PREV_COPYCAT:
@@ -18329,12 +18345,12 @@ public function TowerBtnHandler(evt:Event){
     };
 }
 
-public function TowerScrollGrab(evt:MouseEvent){
+def TowerScrollGrab(evt:MouseEvent){
     towerScrollGrabPos = evt.localY;
     towerScrollSpeed = 0;
 }
 
-public function TowerScrollMove(evt:MouseEvent){
+def TowerScrollMove(evt:MouseEvent){
     if (towerScrollGrabPos != -1){
         towerScrollSpeed = (evt.localY - towerScrollGrabPos);
         towerScroll = (towerScroll + (towerScrollSpeed / 375));
@@ -18344,7 +18360,7 @@ public function TowerScrollMove(evt:MouseEvent){
     };
 }
 
-public function TowerScrollRelease(evt:MouseEvent){
+def TowerScrollRelease(evt:MouseEvent){
     if (towerScrollGrabPos != -1){
         towerScrollDest = (towerScrollDest + (towerScrollSpeed / 40));
         towerScrollTimer.start();
@@ -18352,25 +18368,25 @@ public function TowerScrollRelease(evt:MouseEvent){
     };
 }
 
-public function TowerScrollOut(evt:MouseEvent){
+def TowerScrollOut(evt:MouseEvent){
     if (towerScrollGrabPos != -1){
     };
 }
 
-public function TowerScrollCurrent(evt:MouseEvent){
+def TowerScrollCurrent(evt:MouseEvent){
     towerScrollDest = (towerSG[TSG_TOWER_LEVEL] + 1);
     towerScrollTimer.start();
     towerScrollGrabPos = -1;
 }
 
-public function TowerScrollWheel(evt:MouseEvent){
+def TowerScrollWheel(evt:MouseEvent){
     towerScrollSpeed = (evt.delta * 10);
     towerScroll = (towerScroll + (towerScrollSpeed / 375));
     towerScrollDest = towerScroll;
     towerScrollTimer.start();
 }
 
-public function TowerKeyEvent(evt:KeyboardEvent){
+def TowerKeyEvent(evt:KeyboardEvent){
     var evt:* = evt;
     if (on_stage(TOWER_SCROLLAREA)){
         if (evt.keyCode == Keyboard.ENTER){
@@ -18396,7 +18412,7 @@ public function TowerKeyEvent(evt:KeyboardEvent){
     };
 }
 
-public function TowerScrollSetFocus(evt:Event){
+def TowerScrollSetFocus(evt:Event){
     var evt:* = evt;
     if (on_stage(TOWER_SCROLLAREA)){
         stage.focus = actor[TOWER_SCROLLAREA];
@@ -18409,7 +18425,7 @@ public function TowerScrollSetFocus(evt:Event){
     };
 }
 
-public function TowerTimerFn(evt:Event=undefined){
+def TowerTimerFn(evt:Event=undefined){
     var i:int;
     var towerScrollMax = "";
     var towerScrollLvl:Array;
@@ -18468,7 +18484,7 @@ public function TowerTimerFn(evt:Event=undefined){
     };
 }
 
-public function show_tower_screen(towerData:Array){
+def show_tower_screen(towerData:Array){
     var thisCpc:* = 0;
     var DoShowTowerScreen:* = null;
     var thisSlot:* = 0;
@@ -18532,7 +18548,7 @@ public function show_tower_screen(towerData:Array){
     when_loaded(DoShowTowerScreen);
 }
 
-public function show_demo_screen(){
+def show_demo_screen(){
     var DoShowDemoScreen:* = null;
     DoShowDemoScreen = function (){
         remove_all();
@@ -18549,7 +18565,7 @@ public function show_demo_screen(){
 }
 
 
-public function show_option_screen(evt:Event=undefined){
+def show_option_screen(evt:Event=undefined){
     var DoShowOptionScreen:* = null;
     var evt:* = evt;
     DoShowOptionScreen = function (){
@@ -18616,7 +18632,7 @@ public function show_option_screen(evt:Event=undefined){
     when_loaded(DoShowOptionScreen);
 }
 
-public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=False, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=False, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
+def show_fight_screen(fighterData:Array, fightData:Array, getPilz:Boolean, faceData:Array, isPvP:Boolean, weaponData:Array, HonorGain:int, GoldGain:int, isMQ:Boolean, isReplay:Boolean=False, BackPackSlot:int=-1, GuildBattleData:Array=undefined, lastFight:Boolean=False, guildFightExp:int=0, guildFightHonor:int=0, ownGuild:String="", oppGuild:String="", raidLevel:int=0){
     var is_guildBattle:* = False;
     var charWeapon:* = 0;
     var oppWeapon:* = 0;
@@ -18754,7 +18770,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                     };
                 };
                 if (((tower_fight_mode) and ((guildFightHonor >= 0)))){
-                    SetCnt(FIGHT_SLOT, GetItemID(SG_INVENTORY_OFFS, (guildFightHonor + 10), Savegame));
+                    SetCnt(FIGHT_SLOT, GetItemID(SG_INVENTORY_OFFS, (guildFightHonor + 10), savegame));
                     ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((guildFightHonor + 10) * SG_ITM_SIZE)), undefined, False, True, False);
                     guildFightHonor = 0;
                 } else {
@@ -18990,7 +19006,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
                             };
                         };
                         if (BackPackSlot >= 0){
-                            SetCnt(FIGHT_SLOT, GetItemID(SG_INVENTORY_OFFS, (BackPackSlot + 10), Savegame));
+                            SetCnt(FIGHT_SLOT, GetItemID(SG_INVENTORY_OFFS, (BackPackSlot + 10), savegame));
                             ItemPopup(FIGHT_SLOT, (SG_INVENTORY_OFFS + ((BackPackSlot + 10) * SG_ITM_SIZE)), undefined, False, True, False);
                         } else {
                             SetCnt(FIGHT_SLOT, C_EMPTY);
@@ -20272,7 +20288,7 @@ public function show_fight_screen(fighterData:Array, fightData:Array, getPilz:Bo
     when_loaded(DoShowFightScreen);
 }
 
-public function GetAdvent():int{
+def GetAdvent():int{
     var tmpNow:Date;
     var tmpAdventEnd:Date;
     var tmpDate:Date;
@@ -20304,7 +20320,7 @@ public function GetAdvent():int{
 }
 
 
-public function show_quest_screen(evt:Event=undefined){
+def show_quest_screen(evt:Event=undefined){
     var DoShowQuestScreen:* = null;
     var evt:* = evt;
     DoShowQuestScreen = function (evt:Event=undefined){
@@ -20370,7 +20386,7 @@ public function show_quest_screen(evt:Event=undefined){
     when_loaded(DoShowQuestScreen);
 }
 
-public function RefreshTimeBar(OfferTime:Number=0){
+def RefreshTimeBar(OfferTime:Number=0){
     var tmpTime:* = NaN;
     var tmpText:* = null;
     var OfferTime:int = OfferTime;
@@ -20452,7 +20468,7 @@ public function RefreshTimeBar(OfferTime:Number=0){
     };
 }
 
-public function RequestTV(evt:Event=undefined){
+def RequestTV(evt:Event=undefined){
     if (tvFunctionName != ""){
         trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"showtv\"!"));
         ExternalInterface.call(tvFunctionName, "showtv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + ServerID) + "_1"), savegame[SG_GENDER], tvReturnValue);
@@ -20463,7 +20479,7 @@ public function RequestTV(evt:Event=undefined){
     tvStatusDest = 0;
 }
 
-public function TryShowTV(evt:Event=undefined){
+def TryShowTV(evt:Event=undefined){
     var evt:* = evt;
     if (tvTest){
         tvStatusDest = 1;
@@ -20514,7 +20530,7 @@ public function TryShowTV(evt:Event=undefined){
     };
 }
 
-public function show_taverne_screen(evt:Event=undefined){
+def show_taverne_screen(evt:Event=undefined){
     var DoShowTaverneScreen:* = null;
     var evt:* = evt;
     DoShowTaverneScreen = function (evt:Event=undefined){
@@ -20650,7 +20666,7 @@ public function show_taverne_screen(evt:Event=undefined){
     when_loaded(DoShowTaverneScreen);
 }
 
-public function show_stall_screen(evt:Event=undefined){
+def show_stall_screen(evt:Event=undefined){
     var i:* = 0;
     var DoShowStall:* = null;
     var evt:* = evt;
@@ -20720,7 +20736,7 @@ public function show_stall_screen(evt:Event=undefined){
     when_loaded(DoShowStall);
 }
 
-public function show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
+def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
     var tz:* = 0;
     var DoShowArenaScreen:* = null;
     var PvPDelayCheck:* = null;
@@ -20817,7 +20833,7 @@ public function show_arena_screen(oppName:String, oppGilde:String, oppStufe:int)
     when_loaded(DoShowArenaScreen);
 }
 
-public function arabize(actorID:int){
+def arabize(actorID:int){
     var i:int;
     var ii:int;
     var lines:Array;
@@ -20863,7 +20879,7 @@ public function arabize(actorID:int){
     };
 }
 
-public function show_dealer_screen(evt:Event=undefined, loadOnly:Boolean=False){
+def show_dealer_screen(evt:Event=undefined, loadOnly:Boolean=False){
     var papaya_firebug:* = null;
     var url:* = null;
     var DoShowDealerScreen:* = null;
@@ -20892,13 +20908,13 @@ public function show_dealer_screen(evt:Event=undefined, loadOnly:Boolean=False){
     };
 }
 
-public function show_screen_gilde_gruenden(evt:Event=undefined){
+def show_screen_gilde_gruenden(evt:Event=undefined){
     var DoShowScreenGilden:* = null;
     var evt:* = evt;
     DoShowScreenGilden = function (evt:Event=undefined){
         var evt:* = evt;
         remove_all();
-        Gilde = "";
+        gilde = "";
         my_own_rank = -1;
         my_own_attack_target = -1;
         my_own_guild_money = -1;
@@ -20913,7 +20929,7 @@ public function show_screen_gilde_gruenden(evt:Event=undefined){
     when_loaded(DoShowScreenGilden);
 }
 
-public function GetSpendAmount():String{
+def GetSpendAmount():String{
     var amount:int;
     amount = 1;
     if (int(savegame[SG_LEVEL]) >= 120){
@@ -20934,7 +20950,7 @@ public function GetSpendAmount():String{
     return (str(amount));
 }
 
-public function add_suggest_names(addArray){
+def add_suggest_names(addArray){
     var i:int;
     if (!(addArray is Array)){
         addArray = [addArray];
@@ -20956,7 +20972,7 @@ public function add_suggest_names(addArray){
     };
 }
 
-public function crestMoveFn(evt:TimerEvent){
+def crestMoveFn(evt:TimerEvent){
     if (actor[GILDE_CREST].y > crestMoveDest){
         actor[GILDE_CREST].y = (actor[GILDE_CREST].y - 5);
     } else {
@@ -20968,7 +20984,7 @@ public function crestMoveFn(evt:TimerEvent){
     };
 }
 
-public function getRandomCrest(){
+def getRandomCrest(){
     var i:int;
     var result:Array;
     var guildChecksum:* = 0;
@@ -20981,7 +20997,7 @@ public function getRandomCrest(){
     return (result);
 }
 
-public function set_default_crest(){
+def set_default_crest(){
     var i:* = 0;
     var lastResult:* = 0;
     var GuildRandom:* = function (val:int):int{
@@ -21005,7 +21021,7 @@ public function set_default_crest(){
     loadCrest();
 }
 
-public function old_crest_str():String{
+def old_crest_str():String{
     var result:* = null;
     var i:* = 0;
     var dec2hex:* = function (d:int):String{
@@ -21034,7 +21050,7 @@ public function old_crest_str():String{
     return (result);
 }
 
-public function set_crest_str(str:String){
+def set_crest_str(str:String){
     var i:int;
     var hex:String;
     var val:int;
@@ -21069,7 +21085,7 @@ public function set_crest_str(str:String){
     loadCrest();
 }
 
-public function loadCrest(){
+def loadCrest(){
     var i:* = 0;
     var newLoad:* = False;
     var url:* = null;
@@ -21152,7 +21168,7 @@ public function loadCrest(){
     };
 }
 
-public function clickchat_line(evt){
+def clickchat_line(evt){
     var lineText:String;
     var chatAuthor:*;
     if ((evt is MouseEvent)){
@@ -21194,7 +21210,7 @@ public function clickchat_line(evt){
     stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
 }
 
-public function show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, is_mine:Boolean=True, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
+def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, ThisGilde:String, is_mine:Boolean=True, GildenRang:int=0, GildenEhre:int=0, AttackCost:int=0){
     var DoShowScreenGilden:* = null;
     var guildData:* = guildData;
     var guildDescr:* = guildDescr;
@@ -21404,7 +21420,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                 if (type == TextFieldType.INPUT){
                     if (text != resolve_breaks(guildDescr)){
                         guildDescr = SemiStrip(text);
-                        send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, Gilde, ((old_crest_str + "§") + RemoveIllegalChars(SemiStrip(text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+                        send_action(ACT_GUILD_SET_DESC, actor[INP_NAME].getChildAt(1).text, gilde, ((old_crest_str + "§") + RemoveIllegalChars(SemiStrip(text))), MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
                     };
                     if (text == ""){
                         text = texts[TXT_ENTERGUILDDESC];
@@ -21574,12 +21590,12 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                 if case(GILDE_KATAPULT:
                 if case((GILDE_KATAPULT + 1):
                 if case((GILDE_KATAPULT + 2):
-                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
+                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
                     break;
                 if case(GILDE_GEBAEUDE_IMPROVE:
                 if case((GILDE_GEBAEUDE_IMPROVE + 1):
                 if case((GILDE_GEBAEUDE_IMPROVE + 2):
-                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, Gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actorID - GILDE_GEBAEUDE_IMPROVE) + 1));
+                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actorID - GILDE_GEBAEUDE_IMPROVE) + 1));
                     break;
                 if case(GILDE_GOLD:
                     if (int(savegame[SG_EMAIL_VALID]) == 1){
@@ -21655,7 +21671,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
             };
             sel_name = playerName;
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
-            sel_guild = (((selRank == 4)) ? "" : Gilde);
+            sel_guild = (((selRank == 4)) ? "" : gilde);
             send_action(ACT_REQUEST_CHAR, playerName);
         };
         var InvitePlayer:* = function (){
@@ -21664,7 +21680,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
             if (sel_name == ""){
                 return;
             };
-            send_action(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, Gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
+            send_action(ACT_GUILD_INVITE, actor[INP_NAME].getChildAt(1).text, gilde, actor[INP_GILDE_DIALOG_INVITE].getChildAt(1).text, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), "");
         };
         var MakeMaster:* = function (){
             var sel_name:String;
@@ -21672,7 +21688,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
             if (sel_name == ""){
                 return;
             };
-            send_action(ACT_GUILD_SET_MASTER, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+            send_action(ACT_GUILD_SET_MASTER, actor[INP_NAME].getChildAt(1).text, gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
         };
         var KickMember:* = function (){
             var sel_name:String;
@@ -21680,7 +21696,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
             if (sel_name == ""){
                 return;
             };
-            send_action(ACT_GUILD_EXPEL, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
+            send_action(ACT_GUILD_EXPEL, actor[INP_NAME].getChildAt(1).text, gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text));
         };
         var ToggleOfficer:* = function (){
             var sel_name:String;
@@ -21691,10 +21707,10 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
                 return;
             };
             if (selRank == 2){
-                send_action(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
+                send_action(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 0);
             } else {
                 if (selRank == 3){
-                    send_action(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, Gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 1);
+                    send_action(ACT_GUILD_SET_OFFICER, actor[INP_NAME].getChildAt(1).text, gilde, sel_name, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), 1);
                 };
             };
         };
@@ -22610,7 +22626,7 @@ public function show_screen_gilden(guildData:Array, guildDescr:String, guildMemb
     when_loaded(DoShowScreenGilden);
 }
 
-public function show_work_success_screen(evt:Event=undefined):void{
+def show_work_success_screen(evt:Event=undefined):void{
     show_city_screen();
     add(SCREEN_ARBEITEN_SUCCESS);
     actor[LBL_WINDOW_TITLE].text = texts[TXT_TITLE_WORK];
@@ -22621,7 +22637,7 @@ public function show_work_success_screen(evt:Event=undefined):void{
     CheckWrongPage(ACT_SCREEN_ARBEITEN);
 }
 
-public function show_work_screen(evt:Event=undefined):void{
+def show_work_screen(evt:Event=undefined):void{
     var ArbeitCountdown:* = null;
     var DoShowWorking:* = null;
     var evt:* = evt;
@@ -22687,7 +22703,7 @@ public function show_work_screen(evt:Event=undefined):void{
     };
 }
 
-public function ArbeitenSliderChange(value:int):void{
+def ArbeitenSliderChange(value:int):void{
     var txtWorkDur:String;
     if (texts[TXT_ARBEIT_TEXT3] == ""){
         txtWorkDur = texts[TXT_ARBEIT_TEXT2].split("%hours").join(str(value)).split("%reward").join(Geld((value * stundenlohn)));
@@ -22701,13 +22717,13 @@ public function ArbeitenSliderChange(value:int):void{
     };
 }
 
-public function show_hall_screen(evt:Event=undefined):void{
+def show_hall_screen(evt:Event=undefined):void{
     var DoShowHallScreen:* = null;
     var evt:* = evt;
     DoShowHallScreen = function (){
         remove_all();
         if (guild_hall_mode){
-            ruhmes_halle_such_string = Gilde;
+            ruhmes_halle_such_string = gilde;
             ruhmes_halle_such_name = True;
         } else {
             ruhmes_halle_such_string = actor[INP_NAME].getChildAt(1).text;
@@ -22720,7 +22736,7 @@ public function show_hall_screen(evt:Event=undefined):void{
     when_loaded(DoShowHallScreen);
 }
 
-public function show_city_screen(evt:Event=undefined):void{
+def show_city_screen(evt:Event=undefined):void{
     var StatistenBleiben:* = False;
     var doShowCityScreen:* = null;
     var evt:* = evt;
@@ -22796,7 +22812,7 @@ public function show_city_screen(evt:Event=undefined):void{
     when_loaded(doShowCityScreen);
 }
 
-public function show_post_screen(par:Array=undefined){
+def show_post_screen(par:Array=undefined){
     var DoShowPost:* = null;
     var BuildPostList:* = null;
     var par:* = par;
@@ -23111,7 +23127,7 @@ public function show_post_screen(par:Array=undefined){
     when_loaded(DoShowPost);
 }
 
-public function DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function){
+def DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function){
     var dblClickTimer:* = null;
     var waiting:* = False;
     var tmpEvt:* = null;
@@ -23147,7 +23163,7 @@ public function DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleCli
     };
 }
 
-public function show_build_character_screen(evt:Event=undefined):void{
+def show_build_character_screen(evt:Event=undefined):void{
     var RebuildMode:* = False;
     var i:* = 0;
     var evt:* = evt;
@@ -23217,7 +23233,7 @@ public function show_build_character_screen(evt:Event=undefined):void{
     LoadCharacterImage();
 }
 
-public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
+def ach_level(SG:Array, achIndex:int, almode:int=0):int{
     var alresult:int;
     var alnext:int;
     alresult = 0;
@@ -23618,7 +23634,7 @@ public function ach_level(SG:Array, achIndex:int, almode:int=0):int{
     return (alresult);
 }
 
-public function SingPlur(inp_text:String, amount:int, sep:String="*"):String{
+def SingPlur(inp_text:String, amount:int, sep:String="*"):String{
     var tmp_array:Array;
     tmp_array = inp_text.split(sep);
     if (tmp_array.length == 4){
@@ -23633,7 +23649,7 @@ public function SingPlur(inp_text:String, amount:int, sep:String="*"):String{
     return (tmp_array.join(""));
 }
 
-public function AnimateAch(actorID:int, y_level:int=635, AchAniPow:Number=-10){
+def AnimateAch(actorID:int, y_level:int=635, AchAniPow:Number=-10){
     var AchAniTimer:* = null;
     var actorID:* = actorID;
     var y_level:Number = y_level;
@@ -23665,7 +23681,7 @@ public function AnimateAch(actorID:int, y_level:int=635, AchAniPow:Number=-10){
     };
 }
 
-public function DoAchievements(SG:Array):Boolean{
+def DoAchievements(SG:Array):Boolean{
     var i:int;
     var achPop:Array;
     var achAusfM:String;
@@ -23736,7 +23752,7 @@ public function DoAchievements(SG:Array):Boolean{
     return (OneUp);
 }
 
-public function MirrorAniFn(evt:Event){
+def MirrorAniFn(evt:Event){
     var i:int;
     mirror_fade_amount = (mirror_fade_amount - 0.002);
     if (mirror_fade_amount <= 0){
@@ -23751,7 +23767,7 @@ public function MirrorAniFn(evt:Event){
     };
 }
 
-public function show_character_screen(evt:Event=undefined, NoPrices:Boolean=False):void{
+def show_character_screen(evt:Event=undefined, NoPrices:Boolean=False):void{
     var DoShowCharacterScreen:* = null;
     var evt:* = evt;
     var NoPrices:Boolean = NoPrices;
@@ -23842,13 +23858,13 @@ public function show_character_screen(evt:Event=undefined, NoPrices:Boolean=Fals
             i = (i + 1);
         };
         if (textDir == "right"){
-            actor[LBL_SCR_CHAR_NAME].text = (((Gilde) ? (("[" + Gilde) + "] ") : "") + actor[INP_NAME].getChildAt(1).text);
+            actor[LBL_SCR_CHAR_NAME].text = (((gilde) ? (("[" + gilde) + "] ") : "") + actor[INP_NAME].getChildAt(1).text);
         } else {
-            actor[LBL_SCR_CHAR_NAME].text = (actor[INP_NAME].getChildAt(1).text + ((Gilde) ? ((" [" + Gilde) + "]") : ""));
+            actor[LBL_SCR_CHAR_NAME].text = (actor[INP_NAME].getChildAt(1).text + ((gilde) ? ((" [" + gilde) + "]") : ""));
         };
         lastPlayer = actor[INP_NAME].getChildAt(1).text;
-        if (Gilde){
-            SelectedGuild = Gilde;
+        if (gilde){
+            SelectedGuild = gilde;
             actor[SCR_CHAR_NAME].useHandCursor = True;
         } else {
             SelectedGuild = "";
@@ -23939,7 +23955,7 @@ public function show_character_screen(evt:Event=undefined, NoPrices:Boolean=Fals
                 };
             };
         };
-        OneUp = DoAchievements(Savegame);
+        OneUp = DoAchievements(savegame);
         if (level_up){
             level_upAniEvent = function (evt:Event){
                 var evt:* = evt;
@@ -24042,7 +24058,7 @@ public function show_character_screen(evt:Event=undefined, NoPrices:Boolean=Fals
     when_loaded(DoShowCharacterScreen);
 }
 
-public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:String, PlayerComment:String):void{
+def ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:String, PlayerComment:String):void{
     var i:* = 0;
     var bin_str:* = null;
     var Playermirror_pieces:* = null;
@@ -24193,7 +24209,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
         } else {
             add(SCREEN_CHAR);
         };
-        if (((!((PlayerGilde == Gilde))) and (!((Gilde == ""))))){
+        if (((!((PlayerGilde == gilde))) and (!((gilde == ""))))){
             add(PLAYER_GUILD_INVITE);
         };
         if (texts[TXT_ALBUM]){
@@ -24202,7 +24218,7 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
                 enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, texts[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_COLLECTION].split("%1").join(str((PlayerSG[SG_ALBUM] - 10000))).split("%2").join(str(contentMax)).split("%3").join(str((Math.round((((PlayerSG[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
             };
         };
-        if ((((PlayerGilde == Gilde)) and (!((Gilde == ""))))){
+        if ((((PlayerGilde == gilde)) and (!((gilde == ""))))){
             AddSome(CHAR_MESSAGE, CHAR_GILDE);
         } else {
             AddSome(CHAR_MESSAGE);
@@ -24328,8 +24344,8 @@ public function ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:
     when_loaded(DoShowPlayerScreen);
 }
 
-public function trim_too_long(actorIDObj:Object, max_width:int):String{
-    var tmpStr:* = null;
+def trim_too_long(actorIDObj:Object, max_width:int):String{
+    var tmp_str:* = null;
     var remainLength:* = 0;
     var actorID:* = 0;
     var Shortened:* = False;
@@ -24338,19 +24354,19 @@ public function trim_too_long(actorIDObj:Object, max_width:int):String{
     Shortened = False;
     var _local4 = (((actorIDObj is int)) ? actor[actorIDObj] : actorIDObj);
     with (_local4) {
-        tmpStr = text;
-        remainLength = tmpStr.length;
+        tmp_str = text;
+        remainLength = tmp_str.length;
         while (textWidth > max_width) {
             remainLength--;
             Shortened = True;
             if (textDir == "right"){
-                text = ("..." + tmpStr.substr(-(remainLength), remainLength));
-                if (tmpStr.indexOf("]") >= 0){
+                text = ("..." + tmp_str.substr(-(remainLength), remainLength));
+                if (tmp_str.indexOf("]") >= 0){
                     text = ("[" + text);
                 };
             } else {
-                text = (tmpStr.substr(0, remainLength) + "...");
-                if (tmpStr.indexOf("[") >= 0){
+                text = (tmp_str.substr(0, remainLength) + "...");
+                if (tmp_str.indexOf("[") >= 0){
                     text = (text + "]");
                 };
             };
@@ -24358,16 +24374,16 @@ public function trim_too_long(actorIDObj:Object, max_width:int):String{
     };
     if ((actorIDObj is int)){
         if (Shortened){
-            enable_popup(int(actorIDObj), tmpStr);
+            enable_popup(int(actorIDObj), tmp_str);
         } else {
             enable_popup(int(actorIDObj));
         };
     };
-    return (((Shortened) ? tmpStr : ""));
+    return (((Shortened) ? tmp_str : ""));
 }
 
 
-public function CheckWrongPage(correctAct:int){
+def CheckWrongPage(correctAct:int){
     if (correctAct != lastAct){
         if (correctAct == ACT_SCREEN_TAVERNE){
             Switch (lastAct){
@@ -24403,7 +24419,7 @@ public function CheckWrongPage(correctAct:int){
     };
 }
 
-public function show_main_quests_screen(NextEnemies:Array){
+def show_main_quests_screen(NextEnemies:Array){
     var i:* = 0;
     var countDone:* = 0;
     var Background:* = 0;
@@ -24709,7 +24725,7 @@ public function show_main_quests_screen(NextEnemies:Array){
     when_loaded(DoShowMainQuestsScreen);
 }
 
-public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
+def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     var DoShowMainQuestScreen:* = null;
     var MQDelayCheck:* = null;
     var DungeonNr:int = DungeonNr;
@@ -24850,7 +24866,7 @@ public function ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     when_loaded(DoShowMainQuestScreen);
 }
 
-public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=True){
+def MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=True){
     var tmpTextFormat:* = null;
     var actorID:* = actorID;
     var child:int = child;
@@ -24872,7 +24888,7 @@ public function MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolea
     actor[actorID].getChildAt(child).setTextFormat(tmpTextFormat);
 }
 
-public function display_inventory(SG:Array=undefined, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
+def display_inventory(SG:Array=undefined, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
     var i:* = 0;
     var ii:* = 0;
     var HideBackPack:* = False;
@@ -25021,7 +25037,7 @@ public function display_inventory(SG:Array=undefined, NoPrices:Boolean=False, to
         SetCnt(TOWER_BOOSTCOIN, IF_GOLD);
     } else {
         if (!(SG is Array)){
-            SG = Savegame;
+            SG = savegame;
         } else {
             HideBackPack = True;
         };
@@ -25420,7 +25436,7 @@ public function display_inventory(SG:Array=undefined, NoPrices:Boolean=False, to
     };
 }
 
-public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean=False, NoPrices:Boolean=False, towerMode:Boolean=False, witchMode:Boolean=False){
+def ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean=False, NoPrices:Boolean=False, towerMode:Boolean=False, witchMode:Boolean=False){
     var attribLines:Array;
     var shopLines:Array;
     var i:int;
@@ -25450,7 +25466,7 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
     attribLines = list();
     shopLines = list();
     if (!(SG is Array)){
-        SG = Savegame;
+        SG = savegame;
     };
     if (SG[(sgIndex + SG_ITM_TYP)] > 0){
         ii = 0;
@@ -25801,11 +25817,11 @@ public function ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBack
     };
 }
 
-public function get_hl_index(inStr:String):int{
+def get_hl_index(inStr:String):int{
     return (int(decode_chat(inStr, True)));
 }
 
-public function decode_chat(inStr:String, getHLMode:Boolean=False, getGBMode:Boolean=False):String{
+def decode_chat(inStr:String, getHLMode:Boolean=False, getGBMode:Boolean=False):String{
     var namePart:String;
     var timePart:String;
     var crestStr:String;
@@ -26045,7 +26061,7 @@ public function decode_chat(inStr:String, getHLMode:Boolean=False, getGBMode:Boo
     return (inStr);
 }
 
-public function chat_line(line:String, isError:Boolean=False, hlIndex:int=-1, isWhisper:Boolean=False){
+def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1, isWhisper:Boolean=False){
     var i:* = 0;
     var nextLine:* = null;
     var line:* = line;
@@ -26132,14 +26148,14 @@ public function chat_line(line:String, isError:Boolean=False, hlIndex:int=-1, is
     };
 }
 
-public function PayMethod(DealerMenu:int):int{
+def PayMethod(DealerMenu:int):int{
     if (DealerMenu > (PayMethods.length - 1)){
         return (0);
     };
     return (PayMethods[DealerMenu]);
 }
 
-public function show_bet_result(won:Boolean){
+def show_bet_result(won:Boolean){
     var doShowBetResults:* = null;
     var won:* = won;
     doShowBetResults = function (){
@@ -26210,7 +26226,7 @@ public function show_bet_result(won:Boolean){
     when_loaded(doShowBetResults);
 }
 
-public function toiletTankAdjustEvent(evt:TimerEvent=undefined){
+def toiletTankAdjustEvent(evt:TimerEvent=undefined){
     actor[(TOILET + 1)].y = ((190 + 122) - (toiletTankCurrent * 118));
     if (toiletTankCurrent > (toiletTankDest + 0.01)){
         toiletTankCurrent = (toiletTankCurrent - 0.01);
@@ -26224,7 +26240,7 @@ public function toiletTankAdjustEvent(evt:TimerEvent=undefined){
     };
 }
 
-public function show_toilet(isFull:int, toiletLevel:int, toiletExp:Number, toiletMaxExp:Number, itemAdded:int=-1){
+def show_toilet(isFull:int, toiletLevel:int, toiletExp:Number, toiletMaxExp:Number, itemAdded:int=-1){
     var doShowToilet:* = null;
     var isFull:* = isFull;
     var toiletLevel:* = toiletLevel;
@@ -26331,7 +26347,7 @@ public function show_toilet(isFull:int, toiletLevel:int, toiletExp:Number, toile
     when_loaded(doShowToilet);
 }
 
-public function show_witch(witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0){
+def show_witch(witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0){
     var doShowWitch:* = null;
     var witchData:* = witchData;
     var chaldronBubble:Boolean = chaldronBubble;
@@ -26395,13 +26411,13 @@ public function show_witch(witchData:Array, chaldronBubble:Boolean=False, enchan
     when_loaded(doShowWitch);
 }
 
-public function NextFight(evt:TimerEvent){
+def NextFight(evt:TimerEvent){
     var guildFightExp:int;
     var guildFightHonor:int;
     var par:Array;
     var thisRoundFighterName:String;
     var GuildBattleData:Array;
-    var tmpStr:*;
+    var tmp_str:*;
     guildFightExp = 0;
     guildFightHonor = 0;
     if (fights.length < 2){
@@ -26454,9 +26470,9 @@ public function NextFight(evt:TimerEvent){
     par = fights.shift().split(";");
     GuildBattleData = fights.shift().split("/");
     if (fights.length == 1){
-        tmpStr = fights.pop();
-        guildFightExp = tmpStr.split(";")[1];
-        guildFightHonor = tmpStr.split(";")[2];
+        tmp_str = fights.pop();
+        guildFightExp = tmp_str.split(";")[1];
+        guildFightHonor = tmp_str.split(";")[2];
     };
     post_fight_mode = False;
     fightNumber = ((guild_fight_count - int(((fights.length + 1) / 2))) + (((guild_fight_count % 2))==0) ? 1 : 0);
@@ -26466,7 +26482,7 @@ public function NextFight(evt:TimerEvent){
     show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), False, int(par[9]), GuildBattleData, (fights.length <= 1), guildFightExp, guildFightHonor, par[10], par[11], par[12]);
 }
 
-public function guildFightTimerFn(evt:TimerEvent){
+def guildFightTimerFn(evt:TimerEvent){
     if (guild_attack_time != 0){
         if (!WaitingFor(guild_attack_time)){
             if (on_stage(LBL_GILDE_CHAT_CAPTION)){
@@ -26490,7 +26506,7 @@ public function guildFightTimerFn(evt:TimerEvent){
 }
 
 
-public function expand_item_structure(arr:Array, offset:int){
+def expand_item_structure(arr:Array, offset:int){
     var typeOriginal:Number;
     var picOriginal:Number;
     var mushOriginal:Number;
@@ -26518,14 +26534,14 @@ public function expand_item_structure(arr:Array, offset:int){
     arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
 }
 
-public function WaitingFor(targetTime:Number):Boolean{
+def WaitingFor(targetTime:Number):Boolean{
     var tmpTime:Date;
     tmpTime = new Date();
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
     return ((GameTime.getTime() < tmpTime.getTime()));
 }
 
-public function WaitingTime(targetTime:Number):String{
+def WaitingTime(targetTime:Number):String{
     var tmpTime:* = null;
     var timeDiff:* = null;
     var targetTime:* = targetTime;
@@ -26539,7 +26555,7 @@ public function WaitingTime(targetTime:Number):String{
     return ((((diffDays > 0)) ? ((str((diffDays + 1)) + " ") + texts[(((diffDays == 0)) ? TXT_TAG : TXT_TAGE)]) : ((((((getUTCHours())>0) ? (str((getUTCHours() - 0)) + ":") : "" + ((getUTCMinutes())<10) ? "0" : "") + str(getUTCMinutes())) + ((getUTCSeconds())<10) ? ":0" : ":") + str(getUTCSeconds()))));
 }
 
-public function WaitingProgress(startTime:Number, targetTime:Number):Number{
+def WaitingProgress(startTime:Number, targetTime:Number):Number{
     var tmpTime:Date;
     var tmpTime2:Date;
     tmpTime = new Date();
@@ -26552,7 +26568,7 @@ public function WaitingProgress(startTime:Number, targetTime:Number):Number{
 
 
 
-public function show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=False):void{
+def show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=False):void{
     var playername:String;
     if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffedMode)))) and (!(ssoMode)))){
         show_build_character_screen();
@@ -26587,7 +26603,7 @@ public function show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCoo
     };
 }
 
-public function LOGonRTL(){
+def LOGonRTL(){
     if (textDir == "right"){
         actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_NAME].textWidth);
         actor[LBL_LOGIN_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_LOGIN_PASSWORD].textWidth);
@@ -26600,7 +26616,7 @@ public function LOGonRTL(){
     };
 }
 
-public function ShowSignupScreen(evt:Event=undefined):void{
+def ShowSignupScreen(evt:Event=undefined):void{
     var i:* = 0;
     var j:* = 0;
     var jumpTimer:* = null;
@@ -26662,7 +26678,7 @@ public function ShowSignupScreen(evt:Event=undefined):void{
     };
 }
 
-public function ModifyCharacter(evt:Event):void{
+def ModifyCharacter(evt:Event):void{
     var actorID:* = 0;
     var evt:* = evt;
     var RemoveColorOffset:* = function (val:int, type:int):int{
@@ -26813,7 +26829,7 @@ public function ModifyCharacter(evt:Event):void{
     LoadCharacterImage();
 }
 
-public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMann:Boolean=False, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
+def LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMann:Boolean=False, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
     var charPrefix:* = null;
     var i:* = 0;
     var actorOffset:* = 0;
@@ -26966,7 +26982,7 @@ public function LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk
     };
 }
 
-public function PositionModifyCharacterButtons():void{
+def PositionModifyCharacterButtons():void{
     var i:* = 0;
     var positionModifyCharacterBtn:* = function (actorID:int):void{
         if (on_stage(actorID)){
@@ -27003,7 +27019,7 @@ public function PositionModifyCharacterButtons():void{
     };
 }
 
-public function getCharSuffix(itemIndex:int, itemValue:int):String{
+def getCharSuffix(itemIndex:int, itemValue:int):String{
     var strItem:String;
     var strExt:String;
     var colorIndex:int;
@@ -27067,7 +27083,7 @@ public function getCharSuffix(itemIndex:int, itemValue:int):String{
     return ((strItem + strExt));
 }
 
-public function RandomizeCharacter(evt:Event=undefined):void{
+def RandomizeCharacter(evt:Event=undefined):void{
     char_volk = (int((Math.random() * 8)) + 1);
     char_male = (Math.random() > 0.5);
     if (param_obj["playerclass"]){
@@ -27086,7 +27102,7 @@ public function RandomizeCharacter(evt:Event=undefined):void{
     RandomizeCharImage();
 }
 
-public function RandomizeCharImage(evt:Event=undefined):void{
+def RandomizeCharImage(evt:Event=undefined):void{
     var evt:* = evt;
     var ColorOffset:* = function (ItemID:int):int{
         if ((getCharImageBound(char_volk, char_male, 11) & ItemID)){
@@ -27107,7 +27123,7 @@ public function RandomizeCharImage(evt:Event=undefined):void{
     LoadCharacterImage();
 }
 
-public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
+def getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
     if (isMann){
         Switch (isVolk){
             if case(1:
@@ -27518,7 +27534,7 @@ public function getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
     return (0);
 }
 
-public function getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste:int):String{
+def getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste:int):String{
     var strTemp:String;
     var strRace:String;
     strTemp = "res/gfx/char/";
@@ -27558,7 +27574,7 @@ public function getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste
     return (strTemp);
 }
 
-public function DrachenSetzen():void{
+def DrachenSetzen():void{
     var i:int;
     var d:int;
     var x:int;
@@ -27595,7 +27611,7 @@ public function DrachenSetzen():void{
     };
 }
 
-public function error_message(msg:String=""):void{
+def error_message(msg:String=""):void{
     var msg:String = msg;
     if (msg == ""){
     } else {
@@ -27678,7 +27694,7 @@ public function error_message(msg:String=""):void{
     };
 }
 
-public function InterfaceBtnHandler(evt:Event):void{
+def InterfaceBtnHandler(evt:Event):void{
     var tmpAction:int;
     tmpAction = 0;
     Switch (GetActorID(evt.target)){
@@ -27760,7 +27776,7 @@ public function InterfaceBtnHandler(evt:Event):void{
     };
 }
 
-public function enable_popup(actorID:int, ... _args){
+def enable_popup(actorID:int, ... _args){
     var i:* = 0;
     var popupWidth:* = 0;
     var textY:* = 0;
@@ -28001,9 +28017,9 @@ public function enable_popup(actorID:int, ... _args){
     actorPopupStamp[actorID] = myStamp;
 }
 
-public function GuildChatPollFn(e:Event){
+def GuildChatPollFn(e:Event){
     if (param_poll_tunnel_url == ""){
-        if (Gilde == ""){
+        if (gilde == ""){
             GuildChatPoll.delay = 1000;
             return;
         };
@@ -28018,14 +28034,14 @@ public function GuildChatPollFn(e:Event){
         };
     } else {
         GuildChatPoll.delay = 1000;
-        if (Gilde == ""){
+        if (gilde == ""){
             return;
         };
     };
     send_action(ACT_GET_CHAT_HISTORY, last_chat_index);
 }
 
-public function ChatPollIntervalReset(){
+def ChatPollIntervalReset(){
     if (param_poll_tunnel_url != ""){
         GuildChatPoll.stop();
         GuildChatPoll.start();
