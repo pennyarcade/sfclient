@@ -2156,7 +2156,7 @@ CFG = {
     "NO_TUNNELING_TIME": 27,
     "PAPAYA_FILE": 31,
     "PAPAYA_PATH": 30,
-    "PAYMETHODS": 16,
+    "pay_methods": 16,
     "PHP_TUNNEL_URL": 25,
     "PIXEL_CALL": 53,
     "POLL_TUNNEL_URL": 28,
@@ -4415,9 +4415,9 @@ def init_vars():
         param_forceport = 0
         view_player = ""
         admin_login = ""
-        PayMethods = list()
-        ServerID = 0
-        MPProject = "sfgame2"
+        pay_methods = list()
+        server_id = 0
+        mp_project = "sfgame2"
         image_timeout = 3
         response_timeout = 10
         param_sponsor = ""
@@ -4466,7 +4466,7 @@ def init_vars():
         buffed_req = False
         buffed_mode = False
         buffed_link_text = ""
-        buffedLinkURL = ""
+        buffed_link_url = ""
         lang_code = "de"
         original_lang_code = "de"
         smoothing = True
@@ -8388,32 +8388,30 @@ def configuration_file_loaded(evt):
                             buffed_link_text = tmp_str
                             break
 
+                        if case(pay_methods):
+                            pay_methods = tmp_str.split("/")
 
+                            for j in range(len(pay_methods)):
+                                pay_methods[j] = int(pay_methods[j])
+                            break
 
+                        if case(SERVER_ID):
+                            server_id = int(tmp_str)
+                            break
 
+                        if case(MP_PROJECT):
+                            mp_project = tmp_str
+                            break
+
+                        if case(BUFFED_URL):
+                            buffed_link_url = tmp_str
+                            break
 
 
 
 
 '''
 
-                        if case(PAYMETHODS):
-                            PayMethods = tmp_str.split("/");
-                            j = 0;
-                            while (j < PayMethods.length) {
-                                PayMethods[j] = int(PayMethods[j]);
-                                j++;
-                            };
-                            break;
-                        if case(SERVER_ID:
-                            ServerID = int(tmp_str);
-                            break;
-                        if case(MP_PROJECT:
-                            MPProject = tmp_str;
-                            break;
-                        if case(BUFFED_URL:
-                            buffedLinkURL = tmp_str;
-                            break;
                         if case(RESPONSE_TIMEOUT:
                             response_timeout = int(tmp_str);
                             break;
@@ -9581,7 +9579,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         };
         var DoGotoSignup:* = function (evt:Event){
             if (buffed_mode){
-                navigate_to_url(new URLRequest(buffedLinkURL));
+                navigate_to_url(new URLRequest(buffed_link_url));
             } else {
                 show_build_character_screen(evt);
             };
@@ -20463,7 +20461,7 @@ def RefreshTimeBar(OfferTime:Number=0){
 def RequestTV(evt:Event=undefined){
     if (tvFunctionName != ""){
         trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"showtv\"!"));
-        ExternalInterface.call(tvFunctionName, "showtv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + ServerID) + "_1"), savegame[SG_GENDER], tvReturnValue);
+        ExternalInterface.call(tvFunctionName, "showtv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tvReturnValue);
         tvPollTimer.delay = tvPollLong;
     } else {
         trc("Error: No TV function set!");
@@ -20490,7 +20488,7 @@ def TryShowTV(evt:Event=undefined){
             };
             trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"requesttv\"!"));
             try {
-                tvReturnValue = ExternalInterface.call(tvFunctionName, "requesttv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + ServerID) + "_1"), savegame[SG_GENDER], 0);
+                tvReturnValue = ExternalInterface.call(tvFunctionName, "requesttv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
             } catch(e:Error) {
                 trc(("There was an error: " + e.message));
                 tvPollTimer.delay = tvPollLong;
@@ -20887,7 +20885,7 @@ def show_dealer_screen(evt:Event=undefined, loadOnly:Boolean=False){
             papaya_firebug = "1";
         };
     };
-    url = ((((((((((((((((((((((param_papaya_path + "?playerid=") + savegame[SG_PLAYER_ID]) + "&paymentid=") + savegame[SG_PAYMENT_ID]) + "&serverid=") + ServerID) + "&serverdomain=") + server) + "&session_id=") + session_id) + "&special=") + dealer_aktion) + "&langcode=") + lang_code) + "&volume=") + str((so.data.volume / 10))) + "&mpproject=") + MPProject) + "&cfgfile=") + param_papaya_cfg_file) + "&firebug=") + papaya_firebug);
+    url = ((((((((((((((((((((((param_papaya_path + "?playerid=") + savegame[SG_PLAYER_ID]) + "&paymentid=") + savegame[SG_PAYMENT_ID]) + "&server_id=") + server_id) + "&serverdomain=") + server) + "&session_id=") + session_id) + "&special=") + dealer_aktion) + "&langcode=") + lang_code) + "&volume=") + str((so.data.volume / 10))) + "&mp_project=") + mp_project) + "&cfgfile=") + param_papaya_cfg_file) + "&firebug=") + papaya_firebug);
     if (actorURL[SCR_DEALER_BG] != url){
         actorURL[SCR_DEALER_BG] = url;
         actorLoaded[SCR_DEALER_BG] = 0;
@@ -26141,10 +26139,10 @@ def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1, isWhisper:Bool
 }
 
 def PayMethod(DealerMenu:int):int{
-    if (DealerMenu > (PayMethods.length - 1)){
+    if (DealerMenu > (pay_methods.length - 1)){
         return (0);
     };
-    return (PayMethods[DealerMenu]);
+    return (pay_methods[DealerMenu]);
 }
 
 def show_bet_result(won:Boolean){
