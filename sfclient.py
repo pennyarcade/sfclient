@@ -8199,6 +8199,134 @@ def request_city_screen(evt=undefined):
 
 
 
+
+'''
+def IO_ErrorHandler(event:IOErrorEvent){
+    trc(event);
+}
+
+
+def GetFileVersion(){
+    tmp_str = GetMyPath(1);
+    numStr = "";
+    result = "";
+    tmp_str = tmp_str.split(".")[0];
+    i = tmp_str.length;
+    while (i >= 0) {
+        numStr = tmp_str[i: 1]
+        if (numStr == str(int(numStr))){
+            result = (numStr + result);
+        };
+        i--;
+    };
+    return (int(result));
+}
+
+
+def GetMyPath(mode:int=0):
+    fullPath = loaderInfo.url;
+    sections = fullPath.split("/");
+    file_name = sections[(sections.length - 1)];
+    folderName = fullPath[0: (fullPath.length - file_name.length)]
+    Switch (mode){
+        if case(0:
+            return (folderName);
+        if case(1:
+            return (file_name);
+        if case(2:
+            return (fullPath);
+    };
+    return ("");
+}
+
+
+def GetIP():String{
+    return ("127.0.0.1");
+}
+
+
+def set_title_bar(msg:String=""){
+    msg = (msg + (((((((msg == "")) ? "" : " - ") + texts[TXT_GAMETITLE]) + " (") + server.split(".")[0]) + ")"));
+    ExternalInterface.call("set_title", msg);
+}
+
+
+def swap_words(tmp_str:String):String{
+    var w:int;
+    var tmpArr:Array;
+    var tmp_str2:String;
+    var tmpChar:String;
+    var ii:int;
+    var punct1:String;
+    var punct2:String;
+    var old_str:String = tmp_str;
+    if (textDir == "right"){
+        tmpArr = list();
+        tmp_str2 = "";
+        tmpChar = "";
+        tmpArr = tmp_str.split(" ").reverse();
+        w = 0;
+        while (w < tmpArr.length) {
+            if (tmpArr[w].length >= 2){
+                punct1 = tmpArr[w][-3: 3]
+                if (punct1 != "..."){
+                    punct1 = tmpArr[w][-1: 1]
+                };
+                punct2 = tmpArr[w][0: 1]
+                if (((((((((((!((punct1 == "!"))) and (!((punct1 == "."))))) and (!((punct1 == ":"))))) and (!((punct1 == "،"))))) and (!((punct1 == "x؟"))))) and (((!((punct1 == "\""))) or ((tmpArr[w].split("\"").length > 2)))))){
+                    punct1 = "";
+                };
+                if (((!((punct2 == "\""))) or ((tmpArr[w].split("\"").length > 2)))){
+                    punct2 = "";
+                };
+                if (punct1 == "..."){
+                    punct2 = (punct2 + "...");
+                    punct1 = "";
+                };
+                tmpArr[w] = ((punct1 + tmpArr[w][((punct2)!="") ? 1 : 0): (tmpArr[w].length - (punct1 + punct2).length))) + punct2]
+            };
+            w++;
+        };
+        tmp_str = tmpArr.join(" ");
+        tmp_str = tmp_str.split("(").join("#PARENTHESIS#").split(")").join("(").split("#PARENTHESIS#").join(")");
+        tmp_str = tmp_str.split("[").join("#SBRACKET#").split("]").join("[").split("#SBRACKET#").join("]");
+    };
+    return (tmp_str);
+}
+
+
+def superior_font(Font1:String, Font2:String):String{
+    var FontRanking:Array;
+    var rank1:int;
+    var rank2:int;
+    FontRanking = ["Gorilla Milkshake", "Komika Text", "Verdana", "Arial Narrow"];
+    rank1 = FontRanking.find(Font1);
+    rank2 = FontRanking.find(Font2);
+    if (rank1 < 0){
+        trc((("Warning: Font " + Font1) + " was unknown and could not be ranked."));
+        rank1 = FontRanking.length;
+    };
+    if (rank2 < 0){
+        trc((("Warning: Font " + Font2) + " was unknown and could not be ranked."));
+        rank2 = FontRanking.length;
+    };
+    return (((rank1)>rank2) ? Font1 : Font2);
+}
+
+
+def DefineBunch(bunchID:int, ... _args):void{
+    var i:int;
+    actor[bunchID] = list();
+    i = 0;
+    while (i < _args.length) {
+        actor[bunchID][i] = _args[i];
+        i++;
+    };
+}
+
+
+'''
+
 #------------------------------------------------------------------------------
 # (File) Loaders
 
@@ -8666,9 +8794,9 @@ def configuration_file_loaded(evt):
             so.data.cid = param_cid
             so.flush()
         elif param_obj["Cid"] != undefined:
-            param_cid = str(param_obj["Cid"]);
-            param_cid_original = True;
-            so.data.cid = param_cid;
+            param_cid = str(param_obj["Cid"])
+            param_cid_original = True
+            so.data.cid = param_cid
             so.flush()
         elif so.data.cid:
             if ((so.data.cid.find("_") == -1) and (len(so.data.cid) == 15)):
@@ -16463,127 +16591,6 @@ if __name__ == "__main__":
 
 
 '''
-def IO_ErrorHandler(event:IOErrorEvent){
-    trc(event);
-}
-
-def GetFileVersion(){
-    tmp_str = GetMyPath(1);
-    numStr = "";
-    result = "";
-    tmp_str = tmp_str.split(".")[0];
-    i = tmp_str.length;
-    while (i >= 0) {
-        numStr = tmp_str[i: 1]
-        if (numStr == str(int(numStr))){
-            result = (numStr + result);
-        };
-        i--;
-    };
-    return (int(result));
-}
-
-def GetMyPath(mode:int=0):String{
-    var fullPath:String;
-    var sections:Array;
-    var file_name:String;
-    var folderName:String;
-    fullPath = loaderInfo.url;
-    sections = fullPath.split("/");
-    file_name = sections[(sections.length - 1)];
-    folderName = fullPath[0: (fullPath.length - file_name.length)]
-    Switch (mode){
-        if case(0:
-            return (folderName);
-        if case(1:
-            return (file_name);
-        if case(2:
-            return (fullPath);
-    };
-    return ("");
-}
-
-def GetIP():String{
-    return ("127.0.0.1");
-}
-
-
-def set_title_bar(msg:String=""){
-    msg = (msg + (((((((msg == "")) ? "" : " - ") + texts[TXT_GAMETITLE]) + " (") + server.split(".")[0]) + ")"));
-    ExternalInterface.call("set_title", msg);
-}
-
-def swap_words(tmp_str:String):String{
-    var w:int;
-    var tmpArr:Array;
-    var tmp_str2:String;
-    var tmpChar:String;
-    var ii:int;
-    var punct1:String;
-    var punct2:String;
-    var old_str:String = tmp_str;
-    if (textDir == "right"){
-        tmpArr = list();
-        tmp_str2 = "";
-        tmpChar = "";
-        tmpArr = tmp_str.split(" ").reverse();
-        w = 0;
-        while (w < tmpArr.length) {
-            if (tmpArr[w].length >= 2){
-                punct1 = tmpArr[w][-3: 3]
-                if (punct1 != "..."){
-                    punct1 = tmpArr[w][-1: 1]
-                };
-                punct2 = tmpArr[w][0: 1]
-                if (((((((((((!((punct1 == "!"))) and (!((punct1 == "."))))) and (!((punct1 == ":"))))) and (!((punct1 == "،"))))) and (!((punct1 == "x؟"))))) and (((!((punct1 == "\""))) or ((tmpArr[w].split("\"").length > 2)))))){
-                    punct1 = "";
-                };
-                if (((!((punct2 == "\""))) or ((tmpArr[w].split("\"").length > 2)))){
-                    punct2 = "";
-                };
-                if (punct1 == "..."){
-                    punct2 = (punct2 + "...");
-                    punct1 = "";
-                };
-                tmpArr[w] = ((punct1 + tmpArr[w][((punct2)!="") ? 1 : 0): (tmpArr[w].length - (punct1 + punct2).length))) + punct2]
-            };
-            w++;
-        };
-        tmp_str = tmpArr.join(" ");
-        tmp_str = tmp_str.split("(").join("#PARENTHESIS#").split(")").join("(").split("#PARENTHESIS#").join(")");
-        tmp_str = tmp_str.split("[").join("#SBRACKET#").split("]").join("[").split("#SBRACKET#").join("]");
-    };
-    return (tmp_str);
-}
-
-
-def superior_font(Font1:String, Font2:String):String{
-    var FontRanking:Array;
-    var rank1:int;
-    var rank2:int;
-    FontRanking = ["Gorilla Milkshake", "Komika Text", "Verdana", "Arial Narrow"];
-    rank1 = FontRanking.find(Font1);
-    rank2 = FontRanking.find(Font2);
-    if (rank1 < 0){
-        trc((("Warning: Font " + Font1) + " was unknown and could not be ranked."));
-        rank1 = FontRanking.length;
-    };
-    if (rank2 < 0){
-        trc((("Warning: Font " + Font2) + " was unknown and could not be ranked."));
-        rank2 = FontRanking.length;
-    };
-    return (((rank1)>rank2) ? Font1 : Font2);
-}
-
-def DefineBunch(bunchID:int, ... _args):void{
-    var i:int;
-    actor[bunchID] = list();
-    i = 0;
-    while (i < _args.length) {
-        actor[bunchID][i] = _args[i];
-        i++;
-    };
-}
 
 def AddBunch(bunchID:int, ... _args):void{
     var i:int;
