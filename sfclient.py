@@ -4507,9 +4507,9 @@ def init_vars():
         dragDropActive = False
         dragDropProhibit = False
         dragNotYet = False
-        toErrorCount = 0
+        to_error_count = 0
         ioErrorCount = 0
-        pendingDebugFile = False
+        pending_debug_file = False
         FontFormat_Error = new TextFormat()
         FontFormat_Book = new TextFormat()
         FontFormat_BookHint = new TextFormat()
@@ -8772,222 +8772,197 @@ def load_configuration_file():
     pending_configuration_files = True
 
 
+def strip_slashes(source):
+    return source.replace("http://", "").replace("/", "")
 
 
+def do_load_language_file():
+    Security.loadPolicyFile(img_url[img_url_index] + "crossdomain.xml")
+    Security.loadPolicyFile(snd_url[snd_url_index] + "crossdomain.xml")
+    Security.loadPolicyFile(lang_url + "crossdomain.xml")
+    Security.loadPolicyFile("http://" + server + "/crossdomain.xml")
+    Security.allowDomain(
+        strip_slashes(img_url[img_url_index]),
+        strip_slashes(snd_url[snd_url_index]),
+        strip_slashes(lang_url),
+        server
+    )
+    load_language_file()
+    when_loaded(build_interface)
 
 
-'''
+def _Load(actor_id):
+    if actorLoaded[actor_id] == 0:
+        if actor[actor_id] is Sound:
+            Security.allowDomain(actorURL[actor_id])
+            req = URLRequest(actorURL[actor_id])
+            actor[actor_id].load(req, actorSoundLoader[actor_id])
+            actorLoaded[actor_id] = 2
+        else:
+            actor[actor_id].contentLoaderInfo.add_event_listener(
+                IOErrorEvent.IO_ERROR, LoaderError
+            )
+            actor[actor_id].contentLoaderInfo.add_event_listener(
+                Event.COMPLETE, LoaderComplete
+            )
+            Security.allowDomain(actorURL[actor_id])
+            req = URLRequest(actorURL[actor_id])
+            if (
+                (actorURL[actor_id][-4:] == ".png")
+                and (not no_crossdomain)
+            ):
+                actor[actor_id].load(
+                    req,
+                    LoaderContext(
+                        True,
+                        ApplicationDomain(null),
+                        SecurityDomain.currentDomain
+                    )
+                )
+            else:
+                actor[actor_id].load(req)
+
+            actorLoaded[actor_id] = 1
 
 
+def load(*actor_ids):
+    for actid in actor_ids:
+        if actor[actid] is list:
+            for i_bunch in actor[actid]:
+                load(i_bunch)
+            return
+        _load(actid)
 
 
+def when_loaded(fn=undefined):
+    pending = False
+    if fn is Function:
+        when_loaded_fn[len(when_loaded_fn)] = fn
+        when_loaded_active = True
+        when_loaded_timeout.stop()
+        when_loaded_timeout.start()
 
-do_load_language_file = function (){
-    var i:* = 0;
-    var StripSlashes:* = function (source:str):str{
-        return (source.split("http://").join("").split("/").join(""));
-    };
-    Security.loadPolicyFile((img_url[img_url_index] + "crossdomain.xml"));
-    Security.loadPolicyFile((snd_url[snd_url_index] + "crossdomain.xml"));
-    Security.loadPolicyFile((lang_url + "crossdomain.xml"));
-    Security.loadPolicyFile((("http://" + server) + "/crossdomain.xml"));
-    Security.allowDomain(StripSlashes(img_url[img_url_index]), StripSlashes(snd_url[snd_url_index]), StripSlashes(lang_url), server);
-    load_language_file();
-    when_loaded(BuildInterface);
+    for i in range(len(actor)):
+        if actorLoaded[i] == 1:
+            pending = True
+            break
 
+    if pending_language_file:
+        pending = True
 
-def load(... _args):void{
-    var i:* = 0;
-    var req:* = null;
-    var iBunch:* = 0;
-    var actorIDs:* = _args;
-    var _Load:* = function (actorID:int):void{
-        if (actorLoaded[actorID] == 0){
-            if ((actor[actorID] is Sound)){
-                Security.allowDomain(actorURL[actorID]);
-                req = new URLRequest(actorURL[actorID]);
-                actor[actorID].load(req, actorSoundLoader[actorID]);
-                actorLoaded[actorID] = 2;
-            } else {
-                if (actorLoaded[actorID] != 0){
-                };
-                actor[actorID].contentLoaderInfo.add_event_listener(IOErrorEvent.IO_ERROR, LoaderError);
-                actor[actorID].contentLoaderInfo.add_event_listener(Event.COMPLETE, LoaderComplete);
-                Security.allowDomain(actorURL[actorID]);
-                req = new URLRequest(actorURL[actorID]);
-                if ((((actorURL[actorID][-4:] == ".png")) and (!(no_crossdomain)))){
-                    actor[actorID].load(req, new LoaderContext(True, new ApplicationDomain(null), SecurityDomain.currentDomain));
-                } else {
-                    actor[actorID].load(req);
-                };
-                actorLoaded[actorID] = 1;
-            };
-        };
-    };
-    i = 0;
-    while (i < len(actorIDs) ) {
-        if ((actor[actorIDs[i]] is Array)){
-            iBunch = 0;
-            while (iBunch < len(actor[actorIDs[i]]) ) {
-                load(actor[actorIDs[i]][iBunch]);
-                iBunch = (iBunch + 1);
-            };
-            return;
-        };
-        _load(actorIDs[i]);
-        i = (i + 1);
-    };
-}
+    if pending_debug_file:
+        pending = True
+
+    if pending_configuration_files:
+        pending = True
+
+    if not pending:
+        if when_loaded_active:
+            when_loaded_timeout.stop()
+            when_loaded_active = False
+            when_loaded_fnTemp = when_loaded_fn
+            when_loaded_fn = list()
+
+            for i in range(len(when_loaded_fnTemp)):
+                tmpFn = when_loaded_fnTemp[i]
+                when_loaded_fnTemp[i] = Function()
+                tmpFn()
 
 
-def when_loaded(fn:Function=undefined):void{
-    var i:int;
-    var pending:Boolean;
-    var tmpFn:Function;
-    var when_loaded_fnTemp:Array;
-    pending = False;
-    if ((fn is Function)){
-        when_loaded_fn[len(when_loaded_fn)] = fn;
-        when_loaded_active = True;
-        when_loaded_timeout.stop();
-        when_loaded_timeout.start();
-    };
-    i = 0;
-    while (i < len(actor)) {
-        if (actorLoaded[i] == 1){
-            pending = True;
-            break;
-        };
-        i++;
-    };
-    if (pending_language_file){
-        pending = True;
-    };
-    if (pendingDebugFile){
-        pending = True;
-    };
-    if (pending_configuration_files){
-        pending = True;
-    };
-    if (!pending){
-        if (when_loaded_active){
-            when_loaded_timeout.stop();
-            when_loaded_active = False;
-            when_loaded_fnTemp = when_loaded_fn;
-            when_loaded_fn = list();
-            i = 0;
-            while (i < len(when_loaded_fnTemp)) {
-                tmpFn = when_loaded_fnTemp[i];
-                when_loaded_fnTemp[i] = new Function();
-                tmpFn();
-                i++;
-            };
-        };
-    };
-}
+def when_loaded_timeout_event(evt):
+    when_loaded_timeout.stop()
 
-def when_loaded_timeout_event(evt:TimerEvent){
-    var i:int;
-    var old_img_url_index:int;
-    var old_snd_url_index:int;
-    when_loaded_timeout.stop();
-    i = 0;
-    while (i < len(actor)) {
-        if ((actor[i] is Loader)){
-            if (actorLoaded[i] == 1){
-                trc("Fehler: Timeout beim Laden. Ladezustand wird zurückgesetzt für Aktor", i, actorURL[i]);
-                actorLoaded[i] = 0;
-            };
-        };
-        i++;
-    };
-    when_loaded();
-    toErrorCount++;
-    if (toErrorCount == 10){
-        old_img_url_index = img_url_index;
-        if (len(img_url) > 1){
-            do  {
-                img_url_index = int((Math.random() * len(img_url) ));
-            } while (img_url_index == old_img_url_index);
-        };
-        old_snd_url_index = snd_url_index;
-        if (len(snd_url) > 1){
-            do  {
-                snd_url_index = int((Math.random() * len(snd_url) ));
-            } while (snd_url_index == old_snd_url_index);
-        };
-        if (len(img_url) == len(snd_url)){
-            snd_url_index = img_url_index;
-        };
-        so.data.img_url_index = (img_url_index + 1);
-        so.data.snd_url_index = (snd_url_index + 1);
-        so.flush();
-    };
-}
+    for i in range(len(actor)):
+        if actor[i] is Loader:
+            if actorLoaded[i] == 1:
+                LOG.error(
+                    ''.join(
+                        "Fehler: Timeout beim Laden. Ladezustand wird",
+                        "zurückgesetzt für Aktor"
+                    ),
+                    i,
+                    actorURL[i]
+                )
+                actorLoaded[i] = 0
 
-def loader_complete(evt:Event=undefined):void{
-    var evt:* = evt;
-    if ((evt.target is LoaderInfo)){
-        actorLoaded[GetActorID(evt.target.loader)] = 2;
-        Security.allowDomain(evt.target.loaderURL);
-        var _local3 = actor[GetActorID(evt.target.loader)].content;
-        with (_local3) {
-            force_smoothing = True;
-            allow_smoothing = True;
-            smoothing = True;
-        };
-    };
-    when_loaded();
-}
+    when_loaded()
+    to_error_count += 1
 
-def LoaderError(evt:ErrorEvent=undefined):void{
-    var i:int;
-    var old_img_url_index:int;
-    var old_snd_url_index:int;
-    if ((evt.target is LoaderInfo)){
-        i = 0;
-        while (i < len(actor)) {
-            if ((actor[i] is Loader)){
-                if (actorLoaded[i] == 1){
-                    trc("Fehler: IO-Fehler beim Laden. Ladezustand wird zurückgesetzt für Aktor", i, actorURL[i]);
-                    actorLoaded[i] = 0;
-                };
-            };
-            i++;
-        };
-    };
-    when_loaded();
-    ioErrorCount++;
-    if (ioErrorCount == 10){
-        old_img_url_index = img_url_index;
-        if (len(img_url) > 1){
-            do  {
-                img_url_index = int((Math.random() * len(img_url)))
-            } while (img_url_index == old_img_url_index);
-        };
-        old_snd_url_index = snd_url_index;
-        if (len(snd_url) > 1){
-            do  {
-                snd_url_index = int((Math.random() * len(snd_url));
-            } while (snd_url_index == old_snd_url_index);
-        };
-        if (len(img_url) == len(snd_url)){
-            snd_url_index = img_url_index;
-        };
-        so.data.img_url_index = (img_url_index + 1);
-        so.data.snd_url_index = (snd_url_index + 1);
-        so.flush();
-    };
-}
+    if to_error_count == 10:
+        old_img_url_index = img_url_index
+        if len(img_url) > 1:
+            img_url_index = int(Math.random() * len(img_url))
+            while img_url_index == old_img_url_index:
+                img_url_index = int(Math.random() * len(img_url))
+
+        old_snd_url_index = snd_url_index
+        if len(snd_url) > 1:
+            snd_url_index = int(Math.random() * len(snd_url))
+            while snd_url_index == old_snd_url_index:
+                snd_url_index = int(Math.random() * len(snd_url))
+
+        if (len(img_url) == len(snd_url)):
+            snd_url_index = img_url_index
+
+        so.data.img_url_index = img_url_index + 1
+        so.data.snd_url_index = snd_url_index + 1
+        so.flush()
 
 
-'''
+def loader_complete(evt=undefined):
+    if evt.target is LoaderInfo:
+        actorLoaded[GetActorID(evt.target.loader)] = 2
+        Security.allowDomain(evt.target.loaderURL)
+        with actor[GetActorID(evt.target.loader)].content:
+            force_smoothing = True
+            allow_smoothing = True
+            smoothing = True
+    when_loaded()
+
+
+def loader_error(evt=undefined):
+    if evt.target is LoaderInfo:
+        for i in range(len(actor)):
+            if actor[i] is Loader:
+                if actorLoaded[i] == 1:
+                    LOG.error(
+                        ''.join(
+                            "Fehler: IO-Fehler beim Laden. Ladezustand wird",
+                            "zurückgesetzt für Aktor"
+                        ),
+                        i,
+                        actorURL[i]
+                    )
+                    actorLoaded[i] = 0
+
+    when_loaded()
+    ioErrorCount += 1
+
+    if ioErrorCount == 10:
+        old_img_url_index = img_url_index
+        if len(img_url) > 1:
+            img_url_index = int(Math.random() * len(img_url))
+            while img_url_index == old_img_url_index:
+                img_url_index = int(Math.random() * len(img_url))
+
+        old_snd_url_index = snd_url_index
+        if len(snd_url) > 1:
+            snd_url_index = int(Math.random() * len(snd_url))
+            while snd_url_index == old_snd_url_index:
+                snd_url_index = int(Math.random() * len(snd_url))
+
+        if (len(img_url) == len(snd_url)):
+            snd_url_index = img_url_index
+
+        so.data.img_url_index = img_url_index + 1
+        so.data.snd_url_index = snd_url_index + 1
+        so.flush()
 
 
 #------------------------------------------------------------------------------
 
 '''
-    BuildInterface = function (){
+    build_interface = function (){
         var i:* = 0;
         var ii:* = 0;
         var iii:* = 0;
@@ -9380,12 +9355,12 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         var DefiniereInterfaceButton:* = function (
-            actorID:int, txtID:int
+            actor_id:int, txtID:int
             ){
             var dragonID:* = 0;
             var InterfaceButtonDown:* = null;
             var InterfaceButtonUp:* = null;
-            var actorID:* = actorID;
+            var actor_id:* = actor_id;
             var txtID:* = txtID;
             InterfaceButtonDown = function (evt:MouseEvent):void{
                 var x:int;
@@ -9465,7 +9440,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 };
             };
             DefineBtn(
-                actorID,
+                actor_id,
                 texts[txtID],
                 InterfaceBtnHandler,
                 btnClassInterface,
@@ -9475,29 +9450,29 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             DefineFromClass(
                 ((IF_DRAGON_1 + iPosi) - 1),
                 interface_dragon1_png,
-                (actor[actorID].x + DRAGON_X),
-                (actor[actorID].y + DRAGON_Y)
+                (actor[actor_id].x + DRAGON_X),
+                (actor[actor_id].y + DRAGON_Y)
             );
             dragonID = ((IF_DRAGON_1 + iPosi) - 1);
-            actor[actorID].add_event_listener(
+            actor[actor_id].add_event_listener(
                 MouseEvent.MOUSE_DOWN,
                 InterfaceButtonDown
             );
-            actor[actorID].add_event_listener(
+            actor[actor_id].add_event_listener(
                 MouseEvent.MOUSE_UP,
                 InterfaceButtonUp
             );
-            actor[actorID].add_event_listener(
+            actor[actor_id].add_event_listener(
                 MouseEvent.MOUSE_OUT,
                 InterfaceButtonUp
             );
-            actor[actorID].add_event_listener(
+            actor[actor_id].add_event_listener(
                 MouseEvent.MOUSE_OVER,
                 InterfaceButtonHover
             );
             MakePersistent(
                 ((IF_DRAGON_1 + iPosi) - 1),
-                actorID
+                actor_id
             );
         };
         gradePassword = function (
@@ -9859,20 +9834,20 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         SelectRace = function (evt:MouseEvent):void{
-            var actorID:int;
-            actorID = GetActorID(evt.target);
+            var actor_id:int;
+            actor_id = GetActorID(evt.target);
             if (
-                (((actorID >= VOLK_1_M_IDLE))
-                and ((actorID <= VOLK_8_M_IDLE)))
+                (((actor_id >= VOLK_1_M_IDLE))
+                and ((actor_id <= VOLK_8_M_IDLE)))
             ){
-                char_volk = ((actorID - VOLK_1_M_IDLE) + 1);
+                char_volk = ((actor_id - VOLK_1_M_IDLE) + 1);
                 char_male = True;
             };
             if (
-                (((actorID >= VOLK_1_F_IDLE))
-                and ((actorID <= VOLK_8_F_IDLE)))
+                (((actor_id >= VOLK_1_F_IDLE))
+                and ((actor_id <= VOLK_8_F_IDLE)))
             ){
-                char_volk = ((actorID - VOLK_1_F_IDLE) + 1);
+                char_volk = ((actor_id - VOLK_1_F_IDLE) + 1);
                 char_male = False;
             };
             RandomizeCharImage();
@@ -9881,12 +9856,12 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         SelectGender = function (evt:MouseEvent):void{
-            var actorID:int;
-            actorID = GetActorID(evt.target);
-            if (actorID == M_IDLE){
+            var actor_id:int;
+            actor_id = GetActorID(evt.target);
+            if (actor_id == M_IDLE){
                 char_male = True;
             };
-            if (actorID == F_IDLE){
+            if (actor_id == F_IDLE){
                 char_male = False;
             };
             RandomizeCharImage();
@@ -9895,16 +9870,16 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         SelectCaste = function (evt:MouseEvent):void{
-            var actorID:int;
-            actorID = GetActorID(evt.target);
+            var actor_id:int;
+            actor_id = GetActorID(evt.target);
             KlasseGewählt = True;
-            if (actorID == KASTE_1_IDLE){
+            if (actor_id == KASTE_1_IDLE){
                 char_class = 1;
             };
-            if (actorID == KASTE_2_IDLE){
+            if (actor_id == KASTE_2_IDLE){
                 char_class = 2;
             };
-            if (actorID == KASTE_3_IDLE){
+            if (actor_id == KASTE_3_IDLE){
                 char_class = 3;
             };
             LoadCharacterImage();
@@ -9912,8 +9887,8 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 add(POPUP_INFO);
             };
         };
-        def AddMimickInterfaceButtonHoverHandler(actorID:int){
-            actor[actorID].add_event_listener(
+        def AddMimickInterfaceButtonHoverHandler(actor_id:int){
+            actor[actor_id].add_event_listener(
                 MouseEvent.MOUSE_OVER,
                 MimickInterfaceButtonHover
             );
@@ -9922,11 +9897,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             var tmpContainer:* = null;
             var EndMimickInterfaceButtonHover:* = null;
             var evt:* = evt;
-            var MimickHover:* = function (actorID:int){
+            var MimickHover:* = function (actor_id:int){
                 tmpContainer = new MovieClip();
-                tmpContainer.x = actor[actorID].x;
-                tmpContainer.y = actor[actorID].y;
-                tmpContainer.addChild(actor[actorID].overState);
+                tmpContainer.x = actor[actor_id].x;
+                tmpContainer.y = actor[actor_id].y;
+                tmpContainer.addChild(actor[actor_id].overState);
                 addChild(tmpContainer);
             };
             EndMimickInterfaceButtonHover = function (evt:MouseEvent):void{
@@ -10996,22 +10971,22 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             remove(CA_SELL_ITEM);
             remove(CA_USE_ITEM);
         };
-        DropHandler = function (actorID:int, targetID:int):Boolean{
+        DropHandler = function (actor_id:int, targetID:int):Boolean{
             var towerMode:Boolean;
             var sourceSlot:int;
             var targetSlot:int;
             towerMode = on_stage(PREV_COPYCAT);
-            trc("dragdrop", actorID, targetID, towerMode);
+            trc("dragdrop", actor_id, targetID, towerMode);
             sourceSlot = 0;
             targetSlot = 0;
             if (targetID == CA_SELL_ITEM){
                 trc("sell item");
                 if (
-                    (((actorID >= CHAR_SLOT_1))
-                    and ((actorID <= CHAR_SLOT_15)))
+                    (((actor_id >= CHAR_SLOT_1))
+                    and ((actor_id <= CHAR_SLOT_15)))
                 ){
                     trc("selling can be done");
-                    sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
+                    sourceSlot = ((actor_id - CHAR_SLOT_1) + 1);
                     if (towerMode){
                         trc("impossible here");
                         return (False);
@@ -11042,11 +11017,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 if (targetID == CA_USE_ITEM){
                     trc("use item");
                     if (
-                        (((actorID >= CHAR_SLOT_10))
-                        and ((actorID <= CHAR_SLOT_SHAKES_6)))
+                        (((actor_id >= CHAR_SLOT_10))
+                        and ((actor_id <= CHAR_SLOT_SHAKES_6)))
                     ){
                         trc("using can be done");
-                        sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
+                        sourceSlot = ((actor_id - CHAR_SLOT_1) + 1);
                         if (towerMode){
                             send_action(
                                 ACT_MOVE_COPYCAT_ITEM,
@@ -11082,11 +11057,11 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                 } else {
                     if (targetID == CA_CHALDRON){
                         if (
-                            (((actorID >= CHAR_SLOT_1))
-                            and ((actorID <= CHAR_SLOT_15)))
+                            (((actor_id >= CHAR_SLOT_1))
+                            and ((actor_id <= CHAR_SLOT_15)))
                         ){
                             trc("donating to witch can be done");
-                            sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
+                            sourceSlot = ((actor_id - CHAR_SLOT_1) + 1);
                             if (towerMode){
                                 trc("impossible here");
                                 return (False);
@@ -11114,12 +11089,12 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     } else {
                         trc("moving items around");
                         if (
-                            (((((actorID >= CHAR_SLOT_1))
-                            and ((actorID <= CHAR_SLOT_SHAKES_6))))
+                            (((((actor_id >= CHAR_SLOT_1))
+                            and ((actor_id <= CHAR_SLOT_SHAKES_6))))
                             and (!((targetID == CA_TOILET_BOWL))))
                         ){
                             trc("source is ok");
-                            sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
+                            sourceSlot = ((actor_id - CHAR_SLOT_1) + 1);
                             if (
                                 (((targetID >= CHAR_SLOT_1))
                                 and ((targetID <= CHAR_SLOT_SHAKES_6)))
@@ -11219,10 +11194,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                             if (targetID == CA_TOILET_BOWL){
                                 trc("drop in toilet");
                                 if (
-                                    (((actorID >= CHAR_SLOT_10))
-                                    and ((actorID <= CHAR_SLOT_SHAKES_6)))
+                                    (((actor_id >= CHAR_SLOT_10))
+                                    and ((actor_id <= CHAR_SLOT_SHAKES_6)))
                                 ){
-                                    sourceSlot = ((actorID - CHAR_SLOT_1) + 1);
+                                    sourceSlot = ((actor_id - CHAR_SLOT_1) + 1);
                                     send_action(
                                         ACT_INVENTORY_CHANGE,
                                         (((sourceSlot <= 10))
@@ -11676,18 +11651,18 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         ClickMount = function (evt:MouseEvent){
-            var actorID:int;
+            var actor_id:int;
             var GoldKosten:int;
             var PilzKosten:int;
             var tmpX:int;
-            actorID = GetActorID(evt.target);
+            actor_id = GetActorID(evt.target);
             GoldKosten = 0;
             PilzKosten = 0;
             tmpX = 0;
             if (!on_stage(LBL_STALL_LAUFZEIT)){
                 OldMount = 0;
             };
-            Switch (actorID){
+            Switch (actor_id){
                 if case(CA_STALL_BOX_GUT1:
                     SelectedMount = 3;
                     break;
@@ -11699,10 +11674,10 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     break;
                 default:
                     SelectedMount = (
-                        (((((actorID >= CA_STALL_BOX_GUT1))
-                        and ((actorID <= CA_STALL_BOX_GUT4))))
-                            ? (actorID - CA_STALL_BOX_GUT1)
-                            : (actorID - CA_STALL_BOX_BOESE1)) + 1
+                        (((((actor_id >= CA_STALL_BOX_GUT1))
+                        and ((actor_id <= CA_STALL_BOX_GUT4))))
+                            ? (actor_id - CA_STALL_BOX_GUT1)
+                            : (actor_id - CA_STALL_BOX_BOESE1)) + 1
                     );
             };
             AddSome(LBL_STALL_LAUFZEIT, STALL_BUY);
@@ -11964,18 +11939,18 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         var OpenGuildLink:* = function (evt:MouseEvent=undefined){
             navigate_to_url(new URLRequest(guildForumLink), "_blank");
         };
-        var CleanupField:* = function (actorID:int){
-            var actorID:* = actorID;
+        var CleanupField:* = function (actor_id:int){
+            var actor_id:* = actor_id;
             var FixContent:* = function (evt:KeyboardEvent){
-                if (actor[actorID].getChildAt(0).text != RemoveIllegalChars(
-                        actor[actorID].getChildAt(0).text)
+                if (actor[actor_id].getChildAt(0).text != RemoveIllegalChars(
+                        actor[actor_id].getChildAt(0).text)
                 ){
-                    actor[actorID].getChildAt(0).text = RemoveIllegalChars(
-                        actor[actorID].getChildAt(0).text
+                    actor[actor_id].getChildAt(0).text = RemoveIllegalChars(
+                        actor[actor_id].getChildAt(0).text
                     );
                 };
             };
-            var _local3 = actor[actorID];
+            var _local3 = actor[actor_id];
             with (_local3) {
                 add_event_listener(KeyboardEvent.KEY_UP, FixContent);
                 add_event_listener(KeyboardEvent.KEY_DOWN, FixContent);
@@ -15201,46 +15176,46 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             };
         };
         killFieldContent = function (evt:Event){
-            var actorID:int;
-            actorID = GetActorID(evt.target.parent);
-            if (actor[actorID].getChildAt(1).type == TextFieldType.DYNAMIC){
+            var actor_id:int;
+            actor_id = GetActorID(evt.target.parent);
+            if (actor[actor_id].getChildAt(1).type == TextFieldType.DYNAMIC){
                 return;
             };
-            Switch (actorID){
+            Switch (actor_id){
                 if case(INP_POST_ADDRESS:
-                    if (actor[actorID].getChildAt(1).text == texts[TXT_EMPFAENGER]){
-                        actor[actorID].getChildAt(1).text = "";
+                    if (actor[actor_id].getChildAt(1).text == texts[TXT_EMPFAENGER]){
+                        actor[actor_id].getChildAt(1).text = "";
                     };
                     break;
                 if case(INP_POST_SUBJECT:
-                    if (actor[actorID].getChildAt(1).text == texts[TXT_BETREFF]){
-                        actor[actorID].getChildAt(1).text = "";
+                    if (actor[actor_id].getChildAt(1).text == texts[TXT_BETREFF]){
+                        actor[actor_id].getChildAt(1).text = "";
                     };
                     break;
                 if case(INP_POST_TEXT:
-                    if (actor[actorID].getChildAt(1).text == texts[TXT_NACHRICHT]){
-                        actor[actorID].getChildAt(1).text = "";
+                    if (actor[actor_id].getChildAt(1).text == texts[TXT_NACHRICHT]){
+                        actor[actor_id].getChildAt(1).text = "";
                     };
                     break;
             };
         };
         fillFieldContent = function (evt:Event){
-            var actorID:int;
-            actorID = GetActorID(evt.target.parent);
-            Switch (actorID){
+            var actor_id:int;
+            actor_id = GetActorID(evt.target.parent);
+            Switch (actor_id){
                 if case(INP_POST_ADDRESS:
-                    if (actor[actorID].getChildAt(1).text == ""){
-                        actor[actorID].getChildAt(1).text = texts[TXT_EMPFAENGER];
+                    if (actor[actor_id].getChildAt(1).text == ""){
+                        actor[actor_id].getChildAt(1).text = texts[TXT_EMPFAENGER];
                     };
                     break;
                 if case(INP_POST_SUBJECT:
-                    if (actor[actorID].getChildAt(1).text == ""){
-                        actor[actorID].getChildAt(1).text = texts[TXT_BETREFF];
+                    if (actor[actor_id].getChildAt(1).text == ""){
+                        actor[actor_id].getChildAt(1).text = texts[TXT_BETREFF];
                     };
                     break;
                 if case(INP_POST_TEXT:
-                    if (actor[actorID].getChildAt(1).text == ""){
-                        actor[actorID].getChildAt(1).text = texts[TXT_NACHRICHT];
+                    if (actor[actor_id].getChildAt(1).text == ""){
+                        actor[actor_id].getChildAt(1).text = texts[TXT_NACHRICHT];
                     };
                     break;
             };
@@ -16627,25 +16602,25 @@ def SetVolume(vol:Number):void{
     };
 }
 
-def DefineSnd(actorID:int, url:String, PreLoad:Boolean=False){
+def DefineSnd(actor_id:int, url:String, PreLoad:Boolean=False){
     var full_url:String;
     if (url.lower()[0: 4] == "http:"){
         full_url = url;
     } else {
         full_url = (snd_url[snd_url_index] + url);
     };
-    actor[actorID] = new Sound();
-    actorSoundLoader[actorID] = new SoundLoaderContext();
-    actorURL[actorID] = full_url;
-    actorLoaded[actorID] = 0;
+    actor[actor_id] = new Sound();
+    actorSoundLoader[actor_id] = new SoundLoaderContext();
+    actorURL[actor_id] = full_url;
+    actorLoaded[actor_id] = 0;
     if (PreLoad){
-        load(actorID);
+        load(actor_id);
     };
 }
 
-def DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
+def DefineBtn(actor_id:int, caption:String, handler:Function, btnClass:Class, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var caption:* = caption;
     var handler:* = handler;
     var btnClass:* = btnClass;
@@ -16657,7 +16632,7 @@ def DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos
     var playClickSound:* = function (evt:Event){
         play(SND_CLICK);
     };
-    i = actorID;
+    i = actor_id;
     actor[i] = new (btnClass)();
     var _local11 = actor[i];
     with (_local11) {
@@ -16678,14 +16653,14 @@ def DefineBtn(actorID:int, caption:String, handler:Function, btnClass:Class, pos
         smoothing = True;
     };
     if (caption != ""){
-        SetBtnText(actorID, caption);
+        SetBtnText(actor_id, caption);
     };
 }
 
-def SetBtnText(actorID:int, caption:String){
+def SetBtnText(actor_id:int, caption:String){
     var i:* = 0;
     var offsy:* = 0;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var caption:* = caption;
     var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
         var btnText:* = null;
@@ -16751,7 +16726,7 @@ def SetBtnText(actorID:int, caption:String){
             };
         };
     };
-    i = actorID;
+    i = actor_id;
     var offs:* = 0;
     offsy = 0;
     var specialFontSize:* = 0;
@@ -16789,16 +16764,16 @@ def SetBtnText(actorID:int, caption:String){
     CenterTextField(actor[i].hitTestState);
 }
 
-def DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=True):void{
+def DefineLbl(actor_id:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=undefined, vis:Boolean=True):void{
     var i:* = 0;
     var fmtUL:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var caption:* = caption;
     var pos_x:int = pos_x;
     var pos_y:int = pos_y;
     var fmt:* = fmt;
     var vis:Boolean = vis;
-    i = actorID;
+    i = actor_id;
     actor[i] = new TextField();
     if (!fmt){
         fmt = FontFormat_Default;
@@ -16820,11 +16795,11 @@ def DefineLbl(actorID:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFor
     };
 }
 
-def DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
+def DefineImg(actor_id:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
     var full_url:* = null;
     var LoaderCompleteLocal:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var url:* = url;
     var PreLoad:Boolean = PreLoad;
     var pos_x:int = pos_x;
@@ -16835,7 +16810,7 @@ def DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:
     LoaderCompleteLocal = function (evt:Event){
         actor[i].cacheAsBitmap = True;
     };
-    i = actorID;
+    i = actor_id;
     if (url.lower()[0: 4] == "http:"){
         full_url = url;
     } else {
@@ -16864,8 +16839,8 @@ def DefineImg(actorID:int, url:String, PreLoad:Boolean=True, pos_x:int=0, pos_y:
     };
 }
 
-def DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=undefined, outFn:Function=undefined, stayPut:Boolean=False):void{
-    var actorID:* = actorID;
+def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=undefined, outFn:Function=undefined, stayPut:Boolean=False):void{
+    var actor_id:* = actor_id;
     var imgActorID:* = imgActorID;
     var fn:* = fn;
     var pos_x:* = pos_x;
@@ -16884,7 +16859,7 @@ def DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:i
             VisibleToFront(ovlActorID);
         };
         if (!stayPut){
-            add(actorID);
+            add(actor_id);
         };
         if ((hoverFn is Function)){
             hoverFn();
@@ -16896,8 +16871,8 @@ def DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:i
             outFn();
         };
     };
-    actor[actorID] = new MovieClip();
-    var _local13 = actor[actorID];
+    actor[actor_id] = new MovieClip();
+    var _local13 = actor[actor_id];
     with (_local13) {
         tabEnabled = False;
         x = pos_x;
@@ -16917,9 +16892,9 @@ def DefineClickArea(actorID:int, imgActorID:int, fn:Function, pos_x:int, pos_y:i
     };
 }
 
-def DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtManip:int=0, txtType:String=""):void{
+def DefineFromClass(actor_id:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtManip:int=0, txtType:String=""):void{
     var i:* = 0;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var imgClass:* = imgClass;
     var pos_x:int = pos_x;
     var pos_y:int = pos_y;
@@ -16933,7 +16908,7 @@ def DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtMa
             default_text_format = new TextFormat(gameFont, (default_text_format.size + sizeMod), default_text_format.color);
         };
     };
-    i = actorID;
+    i = actor_id;
     actor[i] = new (imgClass)();
     actorLoaded[i] = 2;
     var _local8 = actor[i];
@@ -16954,13 +16929,13 @@ def DefineFromClass(actorID:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtMa
     };
 }
 
-def DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
+def DefineCnt(actor_id:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
     var i:* = 0;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var pos_x:int = pos_x;
     var pos_y:int = pos_y;
     var vis:Boolean = vis;
-    i = actorID;
+    i = actor_id;
     actor[i] = new MovieClip();
     var _local6 = actor[i];
     with (_local6) {
@@ -16977,10 +16952,10 @@ def DefineCnt(actorID:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
 def textLinkMakeClickable(obj:Sprite){
 }
 
-def DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
+def DefineSlider(actor_id:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
     var i:* = 0;
     var oldSliderVal:* = 0;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var Ticks:* = Ticks;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
@@ -17004,20 +16979,20 @@ def DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
     var ClickTick:* = function (evt:MouseEvent):void{
         var tmpX:int;
         var sliderVal:int;
-        tmpX = (evt.stageX - actor[(actorID + 1)].x);
+        tmpX = (evt.stageX - actor[(actor_id + 1)].x);
         sliderVal = (int(((((tmpX - 40) / 198) * (Ticks - 1)) + 0.5)) + 1);
         tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
-        actor[(actorID + 1)].getChildAt(1).x = (tmpX - 7);
+        actor[(actor_id + 1)].getChildAt(1).x = (tmpX - 7);
         if (oldSliderVal != sliderVal){
             fn(sliderVal);
         };
         oldSliderVal = sliderVal;
     };
-    actorBitmap[actorID] = Ticks;
-    actorBitmap[(actorID + 1)] = [fn];
-    DefineFromClass((actorID + 1), DragonSlider, pos_x, pos_y);
-    DefineBunch(actorID, (actorID + 1));
-    var _local7 = actor[(actorID + 1)];
+    actorBitmap[actor_id] = Ticks;
+    actorBitmap[(actor_id + 1)] = [fn];
+    DefineFromClass((actor_id + 1), DragonSlider, pos_x, pos_y);
+    DefineBunch(actor_id, (actor_id + 1));
+    var _local7 = actor[(actor_id + 1)];
     with (_local7) {
         add_event_listener(MouseEvent.MOUSE_DOWN, SliderMove);
         add_event_listener(MouseEvent.MOUSE_MOVE, SliderMove);
@@ -17026,47 +17001,47 @@ def DefineSlider(actorID:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
     };
     i = 1;
     while (i <= Ticks) {
-        DefineFromClass(((actorID + 1) + i), SliderTick, (((pos_x + 40) + int((198 * ((i - 1) / (Ticks - 1))))) - 5), (pos_y - 10));
-        _local7 = actor[((actorID + 1) + i)];
+        DefineFromClass(((actor_id + 1) + i), SliderTick, (((pos_x + 40) + int((198 * ((i - 1) / (Ticks - 1))))) - 5), (pos_y - 10));
+        _local7 = actor[((actor_id + 1) + i)];
         with (_local7) {
             add_event_listener(MouseEvent.MOUSE_DOWN, ClickTick);
             buttonMode = True;
             useHandCursor = True;
         };
-        AddBunch(actorID, ((actorID + 1) + i));
+        AddBunch(actor_id, ((actor_id + 1) + i));
         i = (i + 1);
     };
-    fn(get_slider_value(actorID));
+    fn(get_slider_value(actor_id));
 }
 
-def get_slider_value(actorID:int):int{
+def get_slider_value(actor_id:int):int{
     var tmpX:int;
-    tmpX = (actor[(actorID + 1)].getChildAt(1).x + 5);
-    return ((int(((((tmpX - 40) / 198) * (actorBitmap[actorID] - 1)) + 0.5)) + 1));
+    tmpX = (actor[(actor_id + 1)].getChildAt(1).x + 5);
+    return ((int(((((tmpX - 40) / 198) * (actorBitmap[actor_id] - 1)) + 0.5)) + 1));
 }
 
-def SetSliderValue(actorID:int, value:int):void{
+def SetSliderValue(actor_id:int, value:int):void{
     var tmpX:int;
     var oldVal:int;
-    oldVal = get_slider_value(actorID);
-    tmpX = (int((((value - 1) / (actorBitmap[actorID] - 1)) * 198)) + 40);
-    actor[(actorID + 1)].getChildAt(1).x = (tmpX - 7);
+    oldVal = get_slider_value(actor_id);
+    tmpX = (int((((value - 1) / (actorBitmap[actor_id] - 1)) * 198)) + 40);
+    actor[(actor_id + 1)].getChildAt(1).x = (tmpX - 7);
     if (oldVal != value){
-        var _local5 = actorBitmap[(actorID + 1)];
+        var _local5 = actorBitmap[(actor_id + 1)];
         _local5[0](value);
     };
 }
 
 def MakePersistent(... _args):void{
     var i:int;
-    var iBunch:int;
+    var i_bunch:int;
     i = 0;
     while (i < _args.length) {
         if ((actor[_args[i]] is Array)){
-            iBunch = 0;
-            while (iBunch < actor[_args[i]].length) {
-                MakePersistent(actor[_args[i]][iBunch]);
-                iBunch++;
+            i_bunch = 0;
+            while (i_bunch < actor[_args[i]].length) {
+                MakePersistent(actor[_args[i]][i_bunch]);
+                i_bunch++;
             };
             return;
         };
@@ -17077,14 +17052,14 @@ def MakePersistent(... _args):void{
 
 def MakeTemporary(... _args):void{
     var i:int;
-    var iBunch:int;
+    var i_bunch:int;
     i = 0;
     while (i < _args.length) {
         if ((actor[_args[i]] is Array)){
-            iBunch = 0;
-            while (iBunch < actor[_args[i]].length) {
-                MakeTemporary(actor[_args[i]][iBunch]);
-                iBunch++;
+            i_bunch = 0;
+            while (i_bunch < actor[_args[i]].length) {
+                MakeTemporary(actor[_args[i]][i_bunch]);
+                i_bunch++;
             };
             return;
         };
@@ -17093,16 +17068,16 @@ def MakeTemporary(... _args):void{
     };
 }
 
-def EnableDragDrop(actorID:int, handler:Function, ... _args):void{
+def EnableDragDrop(actor_id:int, handler:Function, ... _args):void{
     var old_x:* = 0;
     var old_y:* = 0;
     var i:* = 0;
-    var iBunch:* = 0;
+    var i_bunch:* = 0;
     var MouseBtnDown:* = null;
     var dragResetTimer:* = null;
     var dragReset:* = null;
     var MouseBtnUp:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var handler:* = handler;
     var Targets:* = _args;
     MouseBtnDown = function (evt:MouseEvent):void{
@@ -17122,7 +17097,7 @@ def EnableDragDrop(actorID:int, handler:Function, ... _args):void{
     MouseBtnUp = function (evt:MouseEvent):void{
         var dropped:Boolean;
         var droppedOn:int;
-        var iBunch:int;
+        var i_bunch:int;
         if (!dragDropActive){
             return;
         };
@@ -17135,14 +17110,14 @@ def EnableDragDrop(actorID:int, handler:Function, ... _args):void{
             i = 0;
             while (i < Targets.length) {
                 if ((actor[Targets[i]] is Array)){
-                    iBunch = 0;
-                    while (iBunch < actor[Targets[i]].length) {
-                        if (actor[actor[Targets[i]][iBunch]] == evt.target.dropTarget.parent){
+                    i_bunch = 0;
+                    while (i_bunch < actor[Targets[i]].length) {
+                        if (actor[actor[Targets[i]][i_bunch]] == evt.target.dropTarget.parent){
                             dropped = True;
-                            droppedOn = actor[Targets[i]][iBunch];
+                            droppedOn = actor[Targets[i]][i_bunch];
                             break;
                         };
-                        iBunch++;
+                        i_bunch++;
                     };
                 } else {
                     if (actor[Targets[i]] == evt.target.dropTarget.parent){
@@ -17167,7 +17142,7 @@ def EnableDragDrop(actorID:int, handler:Function, ... _args):void{
                 };
             };
             if (dropped){
-                if (!handler(actorID, droppedOn)){
+                if (!handler(actor_id, droppedOn)){
                     evt.target.x = old_x;
                     evt.target.y = old_y;
                 };
@@ -17180,33 +17155,33 @@ def EnableDragDrop(actorID:int, handler:Function, ... _args):void{
             evt.target.y = old_y;
         };
     };
-    old_x = actor[actorID].x;
-    old_y = actor[actorID].y;
-    if ((actor[actorID] is Array)){
-        iBunch = 0;
-        while (iBunch < actor[actorID].length) {
-            if ((((actor[actor[actorID][iBunch]] is MovieClip)) or ((actor[actor[actorID][iBunch]] is Sprite)))){
-                actor[actor[actorID][iBunch]].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-                actor[actor[actorID][iBunch]].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
+    old_x = actor[actor_id].x;
+    old_y = actor[actor_id].y;
+    if ((actor[actor_id] is Array)){
+        i_bunch = 0;
+        while (i_bunch < actor[actor_id].length) {
+            if ((((actor[actor[actor_id][i_bunch]] is MovieClip)) or ((actor[actor[actor_id][i_bunch]] is Sprite)))){
+                actor[actor[actor_id][i_bunch]].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+                actor[actor[actor_id][i_bunch]].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
             } else {
-                trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor[actorID][iBunch]));
+                trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor[actor_id][i_bunch]));
             };
-            iBunch = (iBunch + 1);
+            i_bunch = (i_bunch + 1);
         };
         return;
     };
-    if ((((actor[actorID] is MovieClip)) or ((actor[actorID] is Sprite)))){
-        actor[actorID].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-        actor[actorID].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
+    if ((((actor[actor_id] is MovieClip)) or ((actor[actor_id] is Sprite)))){
+        actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+        actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
     } else {
-        trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actorID));
+        trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor_id));
     };
     dragResetTimer = new Timer(500);
     dragResetTimer.add_event_listener(TimerEvent.TIMER, dragReset);
 }
 
 def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=False):void{
-    var iBunch:* = 0;
+    var i_bunch:* = 0;
     var CntImgLoaded:* = null;
     var cntID:* = cntID;
     var ImgID:int = ImgID;
@@ -17221,10 +17196,10 @@ def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=Fals
         return;
     };
     if ((actor[cntID] is Array)){
-        iBunch = 0;
-        while (iBunch < actor[cntID].length) {
-            SetCnt(actor[cntID][iBunch], ImgID);
-            iBunch = (iBunch + 1);
+        i_bunch = 0;
+        while (i_bunch < actor[cntID].length) {
+            SetCnt(actor[cntID][i_bunch], ImgID);
+            i_bunch = (i_bunch + 1);
         };
         return;
     };
@@ -17280,46 +17255,46 @@ def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=Fals
     };
 }
 
-def play(actorID:int, endless:Boolean=False):void{
+def play(actor_id:int, endless:Boolean=False):void{
     var SoundLoaded:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var endless:Boolean = endless;
-    if (actorLoaded[actorID] == 2){
-        actor[actorID].play(0, ((endless) ? 30000 : 0), stObject);
+    if (actorLoaded[actor_id] == 2){
+        actor[actor_id].play(0, ((endless) ? 30000 : 0), stObject);
     } else {
         SoundLoaded = function (evt:Event){
-            trc((("Sound " + actorID) + " geladen."));
-            actor[actorID].play(0, ((endless) ? 30000 : 0), stObject);
+            trc((("Sound " + actor_id) + " geladen."));
+            actor[actor_id].play(0, ((endless) ? 30000 : 0), stObject);
         };
-        trc((("Warnung: Sound " + actorID) + " nicht geladen! Wird geladen..."));
-        actor[actorID].add_event_listener(Event.COMPLETE, SoundLoaded);
-        load(actorID);
+        trc((("Warnung: Sound " + actor_id) + " nicht geladen! Wird geladen..."));
+        actor[actor_id].add_event_listener(Event.COMPLETE, SoundLoaded);
+        load(actor_id);
     };
 }
 
-def add(actorID:int, pos_x:int=undefined, pos_y:int=undefined, scale_x:Number=undefined, scale_y:Number=undefined, vis=undefined, containerID:int=-1):void{
+def add(actor_id:int, pos_x:int=undefined, pos_y:int=undefined, scale_x:Number=undefined, scale_y:Number=undefined, vis=undefined, containerID:int=-1):void{
     var i:* = 0;
     var req:* = null;
-    var iBunch:* = 0;
-    var actorID:* = actorID;
+    var i_bunch:* = 0;
+    var actor_id:* = actor_id;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
     var scale_x:* = scale_x;
     var scale_y:* = scale_y;
     var vis:* = vis;
     var containerID:int = containerID;
-    i = actorID;
-    if ((actor[actorID] is Sound)){
+    i = actor_id;
+    if ((actor[actor_id] is Sound)){
         return;
     };
-    if ((actor[actorID] is Array)){
-        iBunch = 0;
-        while (iBunch < actor[actorID].length) {
-            if (actor[actorID][iBunch] == actorID){
+    if ((actor[actor_id] is Array)){
+        i_bunch = 0;
+        while (i_bunch < actor[actor_id].length) {
+            if (actor[actor_id][i_bunch] == actor_id){
                 return;
             };
-            add(actor[actorID][iBunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
-            iBunch = (iBunch + 1);
+            add(actor[actor_id][i_bunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
+            i_bunch = (i_bunch + 1);
         };
         return;
     };
@@ -17368,23 +17343,23 @@ def AddBMO(bunchID:int, offset:int){
 
 def VisibleToFront(... _args):void{
     var i:* = 0;
-    var iBunch:* = 0;
-    var actorIDs:* = _args;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
     i = 0;
-    while (i < actorIDs.length) {
-        if (actor[actorIDs[i]]){
-            if ((actor[actorIDs[i]] is Array)){
-                iBunch = 0;
-                while (iBunch < actor[actorIDs[i]].length) {
-                    VisibleToFront(actor[actorIDs[i]][iBunch]);
-                    iBunch = (iBunch + 1);
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    VisibleToFront(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
                 };
                 return;
             };
-            var _local3 = actor[actorIDs[i]];
+            var _local3 = actor[actor_ids[i]];
             with (_local3) {
-                if (on_stage(actorIDs[i])){
-                    add(actorIDs[i]);
+                if (on_stage(actor_ids[i])){
+                    add(actor_ids[i]);
                 };
             };
         };
@@ -17392,19 +17367,19 @@ def VisibleToFront(... _args):void{
     };
 }
 
-def Move(actorID:int, pos_x:int, pos_y:int):void{
+def Move(actor_id:int, pos_x:int, pos_y:int):void{
     var i:* = 0;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
-    if ((actor[actorID] is Array)){
+    if ((actor[actor_id] is Array)){
         i = 0;
-        while (i < actor[actorID].length) {
-            Move(actor[actorID][i], pos_x, pos_y);
+        while (i < actor[actor_id].length) {
+            Move(actor[actor_id][i], pos_x, pos_y);
             i = (i + 1);
         };
     } else {
-        var _local5 = actor[actorID];
+        var _local5 = actor[actor_id];
         with (_local5) {
             x = pos_x;
             y = pos_y;
@@ -17414,15 +17389,15 @@ def Move(actorID:int, pos_x:int, pos_y:int):void{
 
 def AddSome(... _args):void{
     var i:int;
-    var iBunch:int;
+    var i_bunch:int;
     i = 0;
     while (i < _args.length) {
         if (actor[_args[i]]){
             if ((actor[_args[i]] is Array)){
-                iBunch = 0;
-                while (iBunch < actor[_args[i]].length) {
-                    add(actor[_args[i]][iBunch]);
-                    iBunch++;
+                i_bunch = 0;
+                while (i_bunch < actor[_args[i]].length) {
+                    add(actor[_args[i]][i_bunch]);
+                    i_bunch++;
                 };
                 return;
             };
@@ -17434,26 +17409,26 @@ def AddSome(... _args):void{
 
 def remove(... _args):void{
     var i:* = 0;
-    var iBunch:* = 0;
-    var actorIDs:* = _args;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
     i = 0;
-    while (i < actorIDs.length) {
-        if (actor[actorIDs[i]]){
-            if ((actor[actorIDs[i]] is Array)){
-                iBunch = 0;
-                while (iBunch < actor[actorIDs[i]].length) {
-                    remove(actor[actorIDs[i]][iBunch]);
-                    iBunch = (iBunch + 1);
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    remove(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
                 };
                 return;
             };
-            if ((actor[actorIDs[i]] is Sound)){
+            if ((actor[actor_ids[i]] is Sound)){
                 return;
             };
-            var _local3 = actor[actorIDs[i]];
+            var _local3 = actor[actor_ids[i]];
             with (_local3) {
                 if (parent){
-                    parent.removeChild(actor[actorIDs[i]]);
+                    parent.removeChild(actor[actor_ids[i]]);
                 };
             };
         };
@@ -17492,9 +17467,9 @@ def GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
     return (res);
 }
 
-def GetActorName(actorID:int=0):String{
+def GetActorName(actor_id:int=0):String{
     var loader:* = null;
-    var actorID:int = actorID;
+    var actor_id:int = actor_id;
     loader = new URLLoader();
     if (!(actorName is Array)){
         var ConstFileLoaded:* = function (evt:Event):void{
@@ -17531,7 +17506,7 @@ def GetActorName(actorID:int=0):String{
                 };
                 i++;
             };
-            pendingDebugFile = False;
+            pending_debug_file = False;
             loader_complete(evt);
         };
         actorName = list();
@@ -17542,41 +17517,41 @@ def GetActorName(actorID:int=0):String{
             load(new URLRequest("constants.as"));
         };
         pending_loaders = (pending_loaders + 1);
-        pendingDebugFile = True;
+        pending_debug_file = True;
     };
-    return (actorName[actorID]);
+    return (actorName[actor_id]);
 }
 
-def on_stage(actorID):Boolean{
-    if ((actor[actorID] is DisplayObject)){
-        return (Boolean(getChildByName(actor[actorID].name)));
+def on_stage(actor_id):Boolean{
+    if ((actor[actor_id] is DisplayObject)){
+        return (Boolean(getChildByName(actor[actor_id].name)));
     };
     return (False);
 }
 
-def Visible(actorID):Boolean{
-    if ((actor[actorID] is DisplayObject)){
-        return (((Boolean(getChildByName(actor[actorID].name))) and (actor[actorID].visible)));
+def Visible(actor_id):Boolean{
+    if ((actor[actor_id] is DisplayObject)){
+        return (((Boolean(getChildByName(actor[actor_id].name))) and (actor[actor_id].visible)));
     };
     return (False);
 }
 
 def show(... _args):void{
     var i:* = 0;
-    var iBunch:* = 0;
-    var actorIDs:* = _args;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
     i = 0;
-    while (i < actorIDs.length) {
-        if (actor[actorIDs[i]]){
-            if ((actor[actorIDs[i]] is Array)){
-                iBunch = 0;
-                while (iBunch < actor[actorIDs[i]].length) {
-                    show(actor[actorIDs[i]][iBunch]);
-                    iBunch = (iBunch + 1);
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    show(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
                 };
                 return;
             };
-            var _local3 = actor[actorIDs[i]];
+            var _local3 = actor[actor_ids[i]];
             with (_local3) {
                 visible = True;
             };
@@ -17587,20 +17562,20 @@ def show(... _args):void{
 
 def hide(... _args):void{
     var i:* = 0;
-    var iBunch:* = 0;
-    var actorIDs:* = _args;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
     i = 0;
-    while (i < actorIDs.length) {
-        if (actor[actorIDs[i]]){
-            if ((actor[actorIDs[i]] is Array)){
-                iBunch = 0;
-                while (iBunch < actor[actorIDs[i]].length) {
-                    hide(actor[actorIDs[i]][iBunch]);
-                    iBunch = (iBunch + 1);
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    hide(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
                 };
                 return;
             };
-            var _local3 = actor[actorIDs[i]];
+            var _local3 = actor[actor_ids[i]];
             with (_local3) {
                 visible = False;
             };
@@ -17609,46 +17584,46 @@ def hide(... _args):void{
     };
 }
 
-def SetAlpha(actorID:int, alphaValue:Number){
+def SetAlpha(actor_id:int, alphaValue:Number){
     var i:int;
-    if ((actor[actorID] is Array)){
+    if ((actor[actor_id] is Array)){
         i = 0;
-        while (i < actor[actorID].length) {
-            SetAlpha(actor[actorID][i], alphaValue);
+        while (i < actor[actor_id].length) {
+            SetAlpha(actor[actor_id][i], alphaValue);
             i++;
         };
     } else {
-        if (actor[actorID].hasOwnProperty("alpha")){
-            actor[actorID].alpha = alphaValue;
+        if (actor[actor_id].hasOwnProperty("alpha")){
+            actor[actor_id].alpha = alphaValue;
         };
     };
 }
 
-def GetAlpha(actorID:int):Number{
+def GetAlpha(actor_id:int):Number{
     var i:int;
     var tmpAlpha:Number;
     tmpAlpha = 0;
-    if ((actor[actorID] is Array)){
+    if ((actor[actor_id] is Array)){
         i = 0;
-        while (i < actor[actorID].length) {
-            if (GetAlpha(actor[actorID][i]) > tmpAlpha){
-                tmpAlpha = GetAlpha(actor[actorID][i]);
+        while (i < actor[actor_id].length) {
+            if (GetAlpha(actor[actor_id][i]) > tmpAlpha){
+                tmpAlpha = GetAlpha(actor[actor_id][i]);
             };
             i++;
         };
         return (tmpAlpha);
     };
-    if (actor[actorID].hasOwnProperty("alpha")){
-        return (actor[actorID].alpha);
+    if (actor[actor_id].hasOwnProperty("alpha")){
+        return (actor[actor_id].alpha);
     };
     return (0);
 }
 
-def FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1){
+def FadeIn(actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1){
     var fadeTimer:* = null;
     var currentAlpha:* = NaN;
     var FadeInEvent:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var timerInterval:int = timerInterval;
     var alphaStep:Number = alphaStep;
     var alphaMax:int = alphaMax;
@@ -17659,23 +17634,23 @@ def FadeIn(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Nu
             fadeTimer.stop();
             fadeTimer.removeEventListener(TimerEvent.TIMER, FadeInEvent);
         };
-        SetAlpha(actorID, currentAlpha);
+        SetAlpha(actor_id, currentAlpha);
     };
     fadeTimer = new Timer(timerInterval);
-    currentAlpha = GetAlpha(actorID);
+    currentAlpha = GetAlpha(actor_id);
     if (alphaStep <= 0){
         return;
     };
     fadeTimer.add_event_listener(TimerEvent.TIMER, FadeInEvent);
     fadeTimer.start();
-    SetAlpha(actorID, currentAlpha);
+    SetAlpha(actor_id, currentAlpha);
 }
 
-def fade_out(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
+def fade_out(actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
     var fadeTimer:* = null;
     var currentAlpha:* = NaN;
     var FadeOutEvent:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var timerInterval:int = timerInterval;
     var alphaStep:Number = alphaStep;
     var alphaMin:int = alphaMin;
@@ -17687,23 +17662,23 @@ def fade_out(actorID:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:
             fadeTimer.stop();
             fadeTimer.removeEventListener(TimerEvent.TIMER, FadeOutEvent);
             if (HideThen){
-                hide(actorID);
+                hide(actor_id);
             };
         };
-        SetAlpha(actorID, currentAlpha);
+        SetAlpha(actor_id, currentAlpha);
     };
     fadeTimer = new Timer(timerInterval);
-    currentAlpha = GetAlpha(actorID);
+    currentAlpha = GetAlpha(actor_id);
     if (alphaStep <= 0){
         return;
     };
     fadeTimer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
     fadeTimer.start();
-    SetAlpha(actorID, currentAlpha);
+    SetAlpha(actor_id, currentAlpha);
 }
 
-def AddFilter(actorID:int, filter:Array):void{
-    actor[actorID].filters = filter;
+def AddFilter(actor_id:int, filter:Array):void{
+    actor[actor_id].filters = filter;
 }
 
 def set_font(fontName:String){
@@ -18469,21 +18444,21 @@ def resolve_breaks(inpStr:String):String{
     return (outStr);
 }
 
-def PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
+def PostBtnHandler(evt:MouseEvent=undefined, actor_id:int=0){
     var par:* = null;
     var GuildMsg:* = False;
     var thisRecipient:* = null;
     var recipients:* = null;
     var evt:* = evt;
-    var actorID:int = actorID;
+    var actor_id:int = actor_id;
     remove(LBL_ERROR);
     GuildMsg = False;
     if (evt){
-        actorID = GetActorID(evt.target);
+        actor_id = GetActorID(evt.target);
     };
     thisRecipient = "";
     recipients = list();
-    Switch (actorID){
+    Switch (actor_id){
         if case(POST_SEND:
             last_message_target = "";
             if (!on_stage(INP_POST_ADDRESS)){
@@ -18728,7 +18703,7 @@ def Showalbum_content(evt:Event=undefined){
     var entryText:* = null;
     var hintText:* = null;
     var hunterOffs:* = 0;
-    var actorID:* = 0;
+    var actor_id:* = 0;
     var contentCount:* = 0;
     var catMax:* = null;
     var catCount:* = null;
@@ -18807,18 +18782,18 @@ def Showalbum_content(evt:Event=undefined){
     hintText = "";
     hunterOffs = 0;
     AlbumClear();
-    actorID = 0;
+    actor_id = 0;
     if (evt){
-        actorID = GetActorID(evt.target);
+        actor_id = GetActorID(evt.target);
     };
-    if (actorID == ALBUM_PREV){
+    if (actor_id == ALBUM_PREV){
         albumPage--;
     };
-    if (actorID == ALBUM_NEXT){
+    if (actor_id == ALBUM_NEXT){
         albumPage++;
     };
-    if ((((actorID >= ALBUM_CAT_OUT)) and ((actorID <= (ALBUM_CAT_OUT + 4))))){
-        albumCat = (actorID - ALBUM_CAT_OUT);
+    if ((((actor_id >= ALBUM_CAT_OUT)) and ((actor_id <= (ALBUM_CAT_OUT + 4))))){
+        albumCat = (actor_id - ALBUM_CAT_OUT);
         albumPage = 0;
     };
     hide(ALBUM_CAT_IN);
@@ -21708,7 +21683,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
     when_loaded(DoShowArenaScreen);
 }
 
-def arabize(actorID:int){
+def arabize(actor_id:int){
     var i:int;
     var ii:int;
     var lines:Array;
@@ -21720,13 +21695,13 @@ def arabize(actorID:int){
     if (textDir != "right"){
         return;
     };
-    actor[actorID].width = (actor[actorID].width - 5);
+    actor[actor_id].width = (actor[actor_id].width - 5);
     i = 0;
-    while (i < actor[actorID].numLines) {
-        lines.append(actor[actorID].getLineText(i));
+    while (i < actor[actor_id].numLines) {
+        lines.append(actor[actor_id].getLineText(i));
         i++;
     };
-    actor[actorID].width = (actor[actorID].width + 5);
+    actor[actor_id].width = (actor[actor_id].width + 5);
     dontCrash = 0;
     i = 0;
     while (i < lines.length) {
@@ -21746,10 +21721,10 @@ def arabize(actorID:int){
         };
         i++;
     };
-    actor[actorID].text = "";
+    actor[actor_id].text = "";
     i = 0;
     while (i < lines.length) {
-        actor[actorID].text = ((lines[i] + chr(13)) + actor[actorID].text);
+        actor[actor_id].text = ((lines[i] + chr(13)) + actor[actor_id].text);
         i++;
     };
 }
@@ -22361,13 +22336,13 @@ def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, T
             };
         };
         GuildBtnHandler = function (evt:Event, typematic:Boolean=False):Boolean{
-            var actorID:* = 0;
+            var actor_id:* = 0;
             var selRank:* = 0;
             var evt:* = evt;
             var typematic:Boolean = typematic;
-            actorID = GetActorID(evt.target);
+            actor_id = GetActorID(evt.target);
             selRank = guildData[((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
-            Switch (actorID){
+            Switch (actor_id){
                 if case(GILDE_SCROLL_UP:
                     scrollLevel = (scrollLevel - 15);
                     if (scrollLevel < 0){
@@ -22470,7 +22445,7 @@ def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, T
                 if case(GILDE_GEBAEUDE_IMPROVE:
                 if case((GILDE_GEBAEUDE_IMPROVE + 1):
                 if case((GILDE_GEBAEUDE_IMPROVE + 2):
-                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actorID - GILDE_GEBAEUDE_IMPROVE) + 1));
+                    send_action(ACT_GUILD_IMPROVE, actor[INP_NAME].getChildAt(1).text, gilde, MD5(actor[INP_LOGIN_PASSWORD].getChildAt(1).text), ((actor_id - GILDE_GEBAEUDE_IMPROVE) + 1));
                     break;
                 if case(GILDE_GOLD:
                     if (int(savegame[SG_EMAIL_VALID]) == 1){
@@ -24524,14 +24499,14 @@ def SingPlur(inp_text:String, amount:int, sep:String="*"):String{
     return (tmp_array.join(""));
 }
 
-def AnimateAch(actorID:int, y_level:int=635, AchAniPow:Number=-10){
+def AnimateAch(actor_id:int, y_level:int=635, AchAniPow:Number=-10){
     var AchAniTimer:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var y_level:Number = y_level;
     var AchAniPow:int = AchAniPow;
     var AchAniEvent:* = function (evt:Event){
         var evt:* = evt;
-        var _local3 = actor[actorID];
+        var _local3 = actor[actor_id];
         with (_local3) {
             y = (y + AchAniPow);
             AchAniPow = (AchAniPow + 2);
@@ -25222,7 +25197,7 @@ def ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:String, Play
 def trim_too_long(actorIDObj:Object, max_width:int):String{
     var tmp_str:* = null;
     var remainLength:* = 0;
-    var actorID:* = 0;
+    var actor_id:* = 0;
     var Shortened:* = False;
     var actorIDObj:* = actorIDObj;
     var max_width:* = max_width;
@@ -25741,26 +25716,26 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     when_loaded(DoShowMainQuestScreen);
 }
 
-def MakeRightTextArea(actorID:int, child:int=0, createHandler:Boolean=True){
+def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
     var tmpTextFormat:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var child:int = child;
     var createHandler:Boolean = createHandler;
     var makeRightHandler:* = function (evt:Event){
-        MakeRightTextArea(actorID, child, False);
+        MakeRightTextArea(actor_id, child, False);
     };
     if (textDir != "right"){
         return;
     };
-    tmpTextFormat = actor[actorID].getChildAt(child).default_text_format;
+    tmpTextFormat = actor[actor_id].getChildAt(child).default_text_format;
     tmpTextFormat.align = "right";
-    if (!actor[actorID].hasHandler){
+    if (!actor[actor_id].hasHandler){
         if (createHandler){
-            actor[actorID].hasHandler = True;
+            actor[actor_id].hasHandler = True;
         };
     };
-    actor[actorID].getChildAt(child).default_text_format = tmpTextFormat;
-    actor[actorID].getChildAt(child).setTextFormat(tmpTextFormat);
+    actor[actor_id].getChildAt(child).default_text_format = tmpTextFormat;
+    actor[actor_id].getChildAt(child).setTextFormat(tmpTextFormat);
 }
 
 def display_inventory(SG:Array=undefined, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
@@ -27554,7 +27529,7 @@ def ShowSignupScreen(evt:Event=undefined):void{
 }
 
 def ModifyCharacter(evt:Event):void{
-    var actorID:* = 0;
+    var actor_id:* = 0;
     var evt:* = evt;
     var RemoveColorOffset:* = function (val:int, type:int):int{
         if ((getCharImageBound(char_volk, char_male, 11) & type)){
@@ -27570,12 +27545,12 @@ def ModifyCharacter(evt:Event):void{
         };
         return (val);
     };
-    actorID = GetActorID(evt.target);
+    actor_id = GetActorID(evt.target);
     char_hair = RemoveColorOffset(char_hair, C_HAIR);
     char_brows = RemoveColorOffset(char_brows, C_BROWS);
     char_beard = RemoveColorOffset(char_beard, C_BEARD);
     char_special2 = RemoveColorOffset(char_special2, C_SPECIAL2);
-    Switch (actorID){
+    Switch (actor_id){
         if case(MOUTH_MINUS:
             char_mouth--;
             if (char_mouth < 1){
@@ -27704,11 +27679,11 @@ def ModifyCharacter(evt:Event):void{
     LoadCharacterImage();
 }
 
-def LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMann:Boolean=False, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
+def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0, isMann:Boolean=False, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
     var charPrefix:* = null;
     var i:* = 0;
     var actorOffset:* = 0;
-    var actorID:int = actorID;
+    var actor_id:int = actor_id;
     var loadOnly:Boolean = loadOnly;
     var isVolk:int = isVolk;
     var isMann:Boolean = isMann;
@@ -27737,7 +27712,7 @@ def LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMa
         };
     };
     charPrefix = getCharPrefix(False, isVolk, isMann, isKaste);
-    if (actorID == C_EMPTY){
+    if (actor_id == C_EMPTY){
         if (on_stage(SCR_BUILDCHAR_BACKGROUND)){
             var _local16 = actor[LBL_CREATE_RACE];
             with (_local16) {
@@ -27808,17 +27783,17 @@ def LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMa
         };
         return;
     };
-    LoadCharacterItemImage(actorID, (charPrefix + getCharSuffix(0, isKaste)), 0);
-    LoadCharacterItemImage((actorID + 1), (charPrefix + getCharSuffix(1, isMouth)), 1);
-    LoadCharacterItemImage((actorID + 2), (charPrefix + getCharSuffix(2, isBeard)), 2);
-    LoadCharacterItemImage((actorID + 3), (charPrefix + getCharSuffix(3, isNose)), 3);
-    LoadCharacterItemImage((actorID + 4), (charPrefix + getCharSuffix(4, isEyes)), 4);
-    LoadCharacterItemImage((actorID + 5), (charPrefix + getCharSuffix(5, isBrows)), 5);
-    LoadCharacterItemImage((actorID + 6), (charPrefix + getCharSuffix(6, isEars)), 6);
-    LoadCharacterItemImage((actorID + 7), (charPrefix + getCharSuffix(7, isHair)), 7);
-    LoadCharacterItemImage((actorID + 8), (charPrefix + getCharSuffix(8, isSpecial)), 8);
-    LoadCharacterItemImage((actorID + 9), (charPrefix + getCharSuffix(9, isSpecial2)), 9);
-    actorOffset = (actorID - CHARBACKGROUND);
+    LoadCharacterItemImage(actor_id, (charPrefix + getCharSuffix(0, isKaste)), 0);
+    LoadCharacterItemImage((actor_id + 1), (charPrefix + getCharSuffix(1, isMouth)), 1);
+    LoadCharacterItemImage((actor_id + 2), (charPrefix + getCharSuffix(2, isBeard)), 2);
+    LoadCharacterItemImage((actor_id + 3), (charPrefix + getCharSuffix(3, isNose)), 3);
+    LoadCharacterItemImage((actor_id + 4), (charPrefix + getCharSuffix(4, isEyes)), 4);
+    LoadCharacterItemImage((actor_id + 5), (charPrefix + getCharSuffix(5, isBrows)), 5);
+    LoadCharacterItemImage((actor_id + 6), (charPrefix + getCharSuffix(6, isEars)), 6);
+    LoadCharacterItemImage((actor_id + 7), (charPrefix + getCharSuffix(7, isHair)), 7);
+    LoadCharacterItemImage((actor_id + 8), (charPrefix + getCharSuffix(8, isSpecial)), 8);
+    LoadCharacterItemImage((actor_id + 9), (charPrefix + getCharSuffix(9, isSpecial2)), 9);
+    actorOffset = (actor_id - CHARBACKGROUND);
     if (!loadOnly){
         add((CHARIMG + actorOffset));
         if ((((isVolk == 2)) and (isMann))){
@@ -27859,9 +27834,9 @@ def LoadCharacterImage(actorID:int=0, loadOnly:Boolean=False, isVolk:int=0, isMa
 
 def PositionModifyCharacterButtons():void{
     var i:* = 0;
-    var positionModifyCharacterBtn:* = function (actorID:int):void{
-        if (on_stage(actorID)){
-            actor[actorID].y = (MODIFY_CHARACTER_BUTTONS_Y + (iPosi++ * MODIFY_CHARACTER_BUTTONS_1));
+    var positionModifyCharacterBtn:* = function (actor_id:int):void{
+        if (on_stage(actor_id)){
+            actor[actor_id].y = (MODIFY_CHARACTER_BUTTONS_Y + (iPosi++ * MODIFY_CHARACTER_BUTTONS_1));
         };
     };
     var iPosi:* = 0;
@@ -28651,7 +28626,7 @@ def InterfaceBtnHandler(evt:Event):void{
     };
 }
 
-def enable_popup(actorID:int, ... _args){
+def enable_popup(actor_id:int, ... _args){
     var i:* = 0;
     var popupWidth:* = 0;
     var textY:* = 0;
@@ -28660,7 +28635,7 @@ def enable_popup(actorID:int, ... _args){
     var ShowPopup:* = null;
     var PositionPopup:* = null;
     var HidePopup:* = null;
-    var actorID:* = actorID;
+    var actor_id:* = actor_id;
     var args:* = _args;
     ShowPopup = function (evt:MouseEvent):void{
         var tmpTextField:* = null;
@@ -28671,7 +28646,7 @@ def enable_popup(actorID:int, ... _args){
         if (evt.buttonDown){
             return;
         };
-        if (actorPopupStamp[actorID] != myStamp){
+        if (actorPopupStamp[actor_id] != myStamp){
             removeEventListener(MouseEvent.MOUSE_OVER, ShowPopup);
             removeEventListener(MouseEvent.MOUSE_MOVE, PositionPopup);
             removeEventListener(MouseEvent.MOUSE_OUT, HidePopup);
@@ -28683,11 +28658,11 @@ def enable_popup(actorID:int, ... _args){
             remove(POPUP_INFO);
         };
         actor[POPUP_INFO] = new MovieClip();
-        if (suggestionSlot[actorID]){
-            actor[SLOT_SUGGESTION].x = actor[suggestionSlot[actorID]].x;
-            actor[SLOT_SUGGESTION].y = actor[suggestionSlot[actorID]].y;
+        if (suggestionSlot[actor_id]){
+            actor[SLOT_SUGGESTION].x = actor[suggestionSlot[actor_id]].x;
+            actor[SLOT_SUGGESTION].y = actor[suggestionSlot[actor_id]].y;
             if (!on_stage(SLOT_SUGGESTION)){
-                AddSome(SLOT_SUGGESTION, suggestionSlot[actorID]);
+                AddSome(SLOT_SUGGESTION, suggestionSlot[actor_id]);
                 actor[SLOT_SUGGESTION].alpha = 0;
                 FadeIn(SLOT_SUGGESTION);
             };
@@ -28880,7 +28855,7 @@ def enable_popup(actorID:int, ... _args){
         popupStamp = 0;
     };
     if (args.length > 0){
-        var _local4 = actor[actorID];
+        var _local4 = actor[actor_id];
         with (_local4) {
             add_event_listener(MouseEvent.MOUSE_OVER, ShowPopup);
             add_event_listener(MouseEvent.MOUSE_MOVE, PositionPopup);
@@ -28889,7 +28864,7 @@ def enable_popup(actorID:int, ... _args){
             add_event_listener(MouseEvent.MOUSE_UP, HidePopup);
         };
     };
-    actorPopupStamp[actorID] = myStamp;
+    actorPopupStamp[actor_id] = myStamp;
 }
 
 def GuildChatPollFn(e:Event){
