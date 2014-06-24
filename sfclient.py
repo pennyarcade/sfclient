@@ -4444,7 +4444,7 @@ def init_vars():
         param_server_version_cfg = "unknown"
         param_server_version_act = "unknown"
         param_no_cid_save = False
-        hadAccount = False
+        had_account = False
         param_languages = list()
         param_language_names = list()
         param_lowres_url = ""
@@ -5843,7 +5843,7 @@ def load_tracking_pixel(url=''):
         url = url + "&random="
 
     url += str(int((Math.random() * 100000)))
-    url += ("&had_account=") + int(hadAccount)
+    url += ("&had_account=") + int(had_account)
 
     if param_reload_pixel:
         log.debug("Tracking Pixel Reload Mode for:", url)
@@ -7919,7 +7919,7 @@ def action_handler(event):
             ].getChildAt(1).text = actor[INP_PASSWORD].getChildAt(1).text
             so.data.skipAutoLOGin = False
             so.data.HasAccount = True
-            so.data.hadAccount = True
+            so.data.had_account = True
             so.data.userName = actor[INP_NAME].getChildAt(1).text
             so.data.password = actor[INP_LOGIN_PASSWORD].getChildAt(1).text
             so.data.advpar = param_obj
@@ -8547,7 +8547,9 @@ def configuration_file_loaded(evt):
                             break
 
                         if case(PIXEL_CALL):
-                            defined_pixel_calls[tmp_str.split(":")[0]] = tmp_str.split(":")[1]
+                            defined_pixel_calls[
+                                tmp_str.split(":")[0]
+                            ] = tmp_str.split(":")[1]
                             break
 
                         if case(BACKGROUND_ID):
@@ -8632,7 +8634,7 @@ def configuration_file_loaded(evt):
 
         if param_obj["rec"] != undefined:
             param_rec = str(param_obj["rec"])
-            if so.data.hadAccount:
+            if so.data.had_account:
                 param_rec = ""
 
         if param_obj["viewplayer"] != undefined:
@@ -8653,144 +8655,131 @@ def configuration_file_loaded(evt):
         ):
             sso_mode = True
 
+        if param_obj["cid"] != undefined:
+            param_cid = str(param_obj["cid"])
+            param_cid_original = True
+            so.data.cid = param_cid
+            so.flush()
+        elif param_obj["CID"] != undefined:
+            param_cid = str(param_obj["CID"])
+            param_cid_original = True
+            so.data.cid = param_cid
+            so.flush()
+        elif param_obj["Cid"] != undefined:
+            param_cid = str(param_obj["Cid"]);
+            param_cid_original = True;
+            so.data.cid = param_cid;
+            so.flush()
+        elif so.data.cid:
+            if ((so.data.cid.find("_") == -1) and (len(so.data.cid) == 15)):
+                param_cid = so.data.cid + "_r"
+        elif (not param_no_cid_save):
+            param_cid = so.data.cid
+
+        had_account = so.data.had_account
+        if param_obj["adv"] != undefined:
+            param_adv = str(param_obj["adv"])
+            so.data.adv = param_adv
+            so.data.advpar = param_obj
+            so.flush()
+        elif param_obj["cid"] != undefined:
+            so.data.advpar = param_obj
+            so.flush()
+        elif so.data.adv:
+            param_adv = so.data.adv
+
+        if param_obj["valid"] != undefined:
+            param_valid = str(param_obj["valid"])
+
+        if param_obj["val"] != undefined:
+            param_valid = str(param_obj["val"])
+
+        if param_obj["hall"] != undefined:
+            param_hall = str(param_obj["hall"])
+
+        if param_obj["imgsvr"] != undefined:
+            param_imgsvr = int(param_obj["imgsvr"])
+
+        if param_obj["port"] != undefined:
+            param_forceport = int(param_obj["port"])
+
+        force_reroll = (param_reroll_img > int(so.data.force_reroll))
+
+        if force_reroll:
+            so.data.force_reroll = param_reroll_img
+            so.flush()
+
+        if len(img_url) == 0:
+            img_url[0] = ""
+
+        if len(snd_url) == 0:
+            snd_url[0] = ""
+
+        if so.data.img_url_index:
+            if param_imgsvr > 0:
+                img_url_index = param_imgsvr - 1
+            elif (so.data.img_url_index <= len(img_url)) and (not force_reroll):
+                img_url_index = so.data.img_url_index - 1
+            else:
+                img_url_index = int(Math.random() * len(img_url))
+        else:
+            img_url_index = int((Math.random() * len(img_url)))
+
+        if so.data.snd_url_index:
+            if param_imgsvr > 0:
+                snd_url_index = param_imgsvr - 1
+            elif (
+                  (so.data.snd_url_index <= len(snd_url))
+                  and (not force_reroll)
+            ):
+                snd_url_index = so.data.snd_url_index - 1
+            else:
+                snd_url_index = int(Math.random() * len(snd_url))
+        else:
+            snd_url_index = int(Math.random() * len(snd_url))
+
+        if (len(img_url) == len(snd_url)):
+            snd_url_index = img_url_index
+
+        so.data.img_url_index = img_url_index + 1
+        so.data.snd_url_index = snd_url_index + 1
+        so.flush()
+
+        if light_mode:
+            if param_lowres_url != "":
+                img_url[img_url_index] = param_lowres_url
+                snd_url[snd_url_index] = param_lowres_url
+
+    loader_complete(evt)
+
+
+def load_configuration_file():
+    loader = URLLoader()
+    loader2 = URLLoader()
+
+    with loader:
+        data_format = URLLoaderdata_format.TEXT
+        add_event_listener(Event.COMPLETE, configuration_file_loaded)
+        load(URLRequest("client_cfg.php"))
+
+    with loader2:
+        data_format = URLLoaderdata_format.TEXT
+        add_event_listener(Event.COMPLETE, configuration_file_loaded)
+
+    pending_loaders += 2
+    # TODO WTF?
+    pending_configuration_files = 1
+    pending_configuration_files = True
+
+
 
 
 
 
 '''
-        if (param_obj["cid"] != undefined){
-            param_cid = str(param_obj["cid"]);
-            param_cid_original = True;
-            so.data.cid = param_cid;
-            so.flush();
-        } else {
-            if (param_obj["CID"] != undefined){
-                param_cid = str(param_obj["CID"]);
-                param_cid_original = True;
-                so.data.cid = param_cid;
-                so.flush();
-        } else {
-            if (param_obj["Cid"] != undefined){
-                param_cid = str(param_obj["Cid"]);
-                param_cid_original = True;
-                so.data.cid = param_cid;
-                so.flush();
-        } else {
-            if (so.data.cid){
-                if ((((so.data.cid.find("_") == -1)) and ((len(so.data.cid) == 15)))){
-                    param_cid = (so.data.cid + "_r");
-        } else {
-            if (!param_no_cid_save){
-                param_cid = so.data.cid;
-
-        hadAccount = so.data.hadAccount;
-        if (param_obj["adv"] != undefined){
-            param_adv = str(param_obj["adv"]);
-            so.data.adv = param_adv;
-            so.data.advpar = param_obj;
-            so.flush();
-        } else {
-            if (param_obj["cid"] != undefined){
-                so.data.advpar = param_obj;
-                so.flush();
-            } else {
-                if (so.data.adv){
-                    param_adv = so.data.adv;
-                };
-            };
-        };
-        if (param_obj["valid"] != undefined){
-            param_valid = str(param_obj["valid"]);
-        };
-        if (param_obj["val"] != undefined){
-            param_valid = str(param_obj["val"]);
-        };
-        if (param_obj["hall"] != undefined){
-            param_hall = str(param_obj["hall"]);
-        };
-        if (param_obj["imgsvr"] != undefined){
-            param_imgsvr = int(param_obj["imgsvr"]);
-        };
-        if (param_obj["port"] != undefined){
-            param_forceport = int(param_obj["port"]);
-        };
-        forceReroll = (param_reroll_img > int(so.data.force_reroll));
-        if (forceReroll){
-            so.data.force_reroll = param_reroll_img;
-            so.flush();
-        };
-        if (len(img_url) == 0){
-            img_url[0] = "";
-        };
-        if (len(snd_url) == 0){
-            snd_url[0] = "";
-        };
-        if (so.data.img_url_index){
-            if (param_imgsvr > 0){
-                img_url_index = (param_imgsvr - 1);
-            } else {
-                if ((((so.data.img_url_index <= len(img_url)) and (!(forceReroll)))){
-                    img_url_index = (so.data.img_url_index - 1);
-                } else {
-                    img_url_index = int((Math.random() * len(img_url));
-                };
-            };
-        } else {
-            img_url_index = int((Math.random() * len(img_url)));
-        };
-        if (so.data.snd_url_index){
-            if (param_imgsvr > 0){
-                snd_url_index = (param_imgsvr - 1);
-            } else {
-                if ((((so.data.snd_url_index <= len(snd_url))) and (!(forceReroll)))){
-                    snd_url_index = (so.data.snd_url_index - 1);
-                } else {
-                    snd_url_index = int((Math.random() * len(snd_url) ));
-                };
-            };
-        } else {
-            snd_url_index = int((Math.random() * len(snd_url) ));
-        };
-        if (len(img_url) == len(snd_url)){
-            snd_url_index = img_url_index;
-        };
-        so.data.img_url_index = (img_url_index + 1);
-        so.data.snd_url_index = (snd_url_index + 1);
-        so.flush();
-        if (light_mode){
-            if (param_lowres_url != ""){
-                img_url[img_url_index] = param_lowres_url;
-            };
-            if (param_lowres_url != ""){
-                snd_url[snd_url_index] = param_lowres_url;
-            };
-        };
-    };
-    loader_complete(evt);
-};
 
 
-def load_configuration_file():void{
-    var loader:* = null;
-    var loader2:* = null;
-    var pending_configuration_files:* = undefined;
-    loader = new URLLoader();
-    loader2 = new URLLoader();
-    var _local2 = loader;
-    with (_local2) {
-        data_format = URLLoaderdata_format.TEXT;
-        add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
-        load(new URLRequest("client_cfg.php"));
-    };
-    _local2 = loader2;
-    with (_local2) {
-        data_format = URLLoaderdata_format.TEXT;
-        add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
-    };
-    pending_loaders = (pending_loaders + 2);
-    pending_configuration_files = 1;
-    pending_configuration_files = True;
-}
+
 
 
 do_load_language_file = function (){
