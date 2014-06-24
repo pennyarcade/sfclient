@@ -4403,7 +4403,7 @@ def init_vars():
 
     '''
         param_obj = LoaderInfo(root.loaderInfo).parameters
-        ssoMode = False
+        sso_mode = False
         param_id = ""
         param_rec = ""
         param_adv = ""
@@ -4494,7 +4494,7 @@ def init_vars():
         pending_language_file = False
         chosen_lang_font = "Komika Text"
         countryName = list()
-        pendingConfigurationFile = False
+        pending_configuration_files = False
         actor = list()
         actorURL = list()
         actorLoaded = list()
@@ -4675,14 +4675,14 @@ def init_vars():
         dealer_aktion = 0
         SelectedGuild = ""
         SelectedDungeon = 0
-        lightMode = False
-        chatSound = False
-        compareItems = False
+        light_mode = False
+        chat_sound = False
+        compare_items = False
         light_mode_default = False
-        disableTV = False
+        disable_tv = False
         tvTest = False
-        tvFunctionName = ""
-        tvPollNormal = 5000
+        tv_function_name = ""
+        tv_poll_normal = 5000
         tvPollLong = 300000
         CupChosen = 0
         old_album = -1
@@ -5897,7 +5897,7 @@ def do_act_zauberladen():
     else:
         remove(FIDGET['DAY'])
     if Capabilities.version.substr(0, 3) != "IOS":
-        if lightMode:
+        if light_mode:
             remove(FIDGET['TAGKERZE'])
             remove(FIDGET['NACHTKERZE'])
     remove(FIDGET['BLINZELN'])
@@ -6738,7 +6738,7 @@ def action_handler(event):
                                     break
                     else:
                         if par[3].split("/")[i] > last_chat_index:
-                            if not first_chat_fill and chatSound:
+                            if not first_chat_fill and chat_sound:
                                 play(SND['ERROR'])
 
                             last_chat_index = par[3].split("/")[i]
@@ -6784,7 +6784,7 @@ def action_handler(event):
                 tmp_array = []
 
             if len(tmp_array) > 0:
-                if chatSound:
+                if chat_sound:
                     play(SND['ERROR'])
 
                 for i in range(len(tmp_array)-1, 0, -1):
@@ -8343,6 +8343,9 @@ def load_original_language_file():
 
 
 def configuration_file_loaded(evt):
+    '''
+        parse configuration file
+    '''
     str_data = evt.target.data
     in_value = False
     tmp_str = ""
@@ -8432,205 +8435,229 @@ def configuration_file_loaded(evt):
                             buffed_link_url = tmp_str
                             break
 
+                        if case(RESPONSE_TIMEOUT):
+                            response_timeout = int(tmp_str)
+                            break
+
+                        if case(IMAGE_TIMEOUT):
+                            image_timeout = int(tmp_str)
+                            break
+
+                        if case(SPONSOR_IMG):
+                            param_sponsor = tmp_str
+                            break
+
+                        if case(REROLL_IMG):
+                            param_reroll_img = int(tmp_str)
+                            break
+
+                        if case(RECONNECT):
+                            param_reconnect = int(tmp_str)
+                            break
+
+                        if case(PHP_TUNNEL_URL):
+                            param_php_tunnel_url = tmp_str
+                            break
+
+                        if case(TRACKING_PIXEL):
+                            trackPixels.append(tmp_str.split(";"))
+                            LOG.debug(
+                                ("Tracking pixel definition old " + tmp_str)
+                            )
+                            break
+
+                        if case(POLL_TUNNEL_URL):
+                            param_poll_tunnel_url = tmp_str
+                            break
+
+                        if case(SUPPORT_EMAIL):
+                            param_support_email = tmp_str
+                            break
+
+                        if case(GAMESTAFF_EMAIL):
+                            param_gamestaff_email = tmp_str
+                            break
+
+                        if case(PAPAYA_PATH):
+                            param_papaya_path = tmp_str
+                            break
+
+                        if case(PAPAYA_FILE):
+                            param_papaya_cfg_file = tmp_str
+                            break
+
+                        if case(RESEND_COUNT):
+                            param_fail_tries = int(tmp_str)
+                            break
+
+                        if case(IDLE_POLLING):
+                            param_idle_polling = int(tmp_str)
+                            break
+
+                        if case(ALLOW_SKIP_QUEST):
+                            param_allow_skip_quest = (int(tmp_str) == 1)
+                            param_happy_hour = (int(tmp_str) == 2)
+                            break
+
+                        if case(CENSORED):
+                            param_censored = (int(tmp_str) != 0)
+                            break
+
+                        if case(INTERNAL_PIXEL):
+                            param_internal_pixel = (int(tmp_str) != 0)
+                            break
+
+                        if case(RELOAD_PIXEL):
+                            param_reload_pixel = (int(tmp_str) != 0)
+                            break
+
+                        if case(SERVER_VERSION):
+                            param_server_version_cfg = tmp_str
+                            break
+
+                        if case(DONT_SAVE_CID):
+                            param_no_cid_save = (int(tmp_str) != 0)
+                            break
+
+                        if case(FLAGS):
+                            param_languages = tmp_str.split("/")
+                            break
+
+                        if case(FLAG_NAMES):
+                            param_language_names = tmp_str.split("/")
+                            break
+
+                        if case(LOWRES_URL):
+                            break
+
+                        if case(SPONSOR_URL):
+                            param_sponsor_url = tmp_str
+                            break
+
+                        if case(BULLSHIT_BOX):
+                            param_bullshit_text = tmp_str
+                            break
+
+                        if case(BULLSHIT_CID):
+                            param_bullshit_cid = tmp_str
+                            break
+
+                        if case(SOCIAL_BUTTONS):
+                            param_social_buttons = tmp_str.split("/")
+                            break
+
+                        if case(PIXEL_CALL):
+                            defined_pixel_calls[tmp_str.split(":")[0]] = tmp_str.split(":")[1]
+                            break
+
+                        if case(BACKGROUND_ID):
+                            login_background_id = tmp_str
+                            break
+
+                        if case(WORLDS):
+                            worlds = list()
+                            tmp_worlds = tmp_str.split(";")
+
+                            for j in range(len(tmp_worlds)):
+                                tmp_world = list()
+                                tmp_world[0] = tmp_worlds[j].split(":")[0]
+                                tmp_world[1] = tmp_worlds[
+                                    j
+                                ].split(":")[1].split("/")
+                                worlds.append(tmp_world)
+                            break
+
+                        if case(TV_FUNCTION):
+                            tv_function_name = tmp_str
+                            break
+
+                        if case(TV_POLL_INTERVAL_NORMAL):
+                            tv_poll_normal = int(tmp_str) * 1000
+                            break
+
+                        if case(TV_POLL_INTERVAL_LONG):
+                            tvPollLong = int(tmp_str) * 1000
+                            break
+                tmp_str = ""
+                break
+
+            if case(20, 9):
+                if not in_value:
+                    last_index = int(tmp_str)
+                    tmp_str = ""
+                    in_value = True
+                else:
+                    tmp_str += str_data[i]
+                break
+
+            if case(136):
+                tmp_str += chr(13) + chr(10)
+            if case():
+                tmp_str += str_data[i]
+
+    pending_configuration_files -= 1
+    if pending_configuration_files == 1:
+        loader2.load(URLRequest("config_txt"))
+    else:
+        pending_configuration_files = False
+        so = SharedObject.getLocal("SFGame/" + server.replace(".", "/"), "/")
+        if so.data.lang_code:
+            lang_code = so.data.lang_code
+
+        light_mode = light_mode_default
+        chat_sound = False
+        compare_items = False
+        disable_tv = False
+
+        if so.data.light_mode == False:
+            light_mode = False
+        if so.data.light_mode == True:
+            light_mode = True
+        if so.data.chat_sound == False:
+            chat_sound = False
+        if so.data.chat_sound == True:
+            chat_sound = True
+        if so.data.compare_items == False:
+            compare_items = False
+        if so.data.compare_items == True:
+            compare_items = True
+        if so.data.disable_tv == False:
+            disable_tv = False
+        if so.data.disable_tv == True:
+            disable_tv = True
+        if param_obj["lang"] != undefined:
+            lang_code = param_obj["lang"]
+        if param_obj["id"] != undefined:
+            param_id = str(param_obj["id"])
+
+        if param_obj["rec"] != undefined:
+            param_rec = str(param_obj["rec"])
+            if so.data.hadAccount:
+                param_rec = ""
+
+        if param_obj["viewplayer"] != undefined:
+            view_player = str(param_obj["viewplayer"])
+
+        if param_obj["adminlogin"] != undefined:
+            admin_login = str(param_obj["adminlogin"])
+
+        if param_obj["mp_api_user_id"] != undefined:
+            mp_api_user_id = str(param_obj["mp_api_user_id"])
+
+        if param_obj["mp_api_user_token"] != undefined:
+            mp_api_user_token = str(param_obj["mp_api_user_token"])
+
+        if (
+            (param_obj["mp_api_user_id"] != undefined)
+            and (param_obj["mp_api_user_token"] != undefined)
+        ):
+            sso_mode = True
+
+
 
 
 
 '''
-
-                        if case(RESPONSE_TIMEOUT:
-                            response_timeout = int(tmp_str);
-                            break;
-                        if case(IMAGE_TIMEOUT:
-                            image_timeout = int(tmp_str);
-                            break;
-                        if case(SPONSOR_IMG:
-                            param_sponsor = tmp_str;
-                            break;
-                        if case(REROLL_IMG:
-                            param_reroll_img = int(tmp_str);
-                            break;
-                        if case(RECONNECT:
-                            param_reconnect = int(tmp_str);
-                            break;
-                        if case(PHP_TUNNEL_URL:
-                            param_php_tunnel_url = tmp_str;
-                            break;
-                        if case(TRACKING_PIXEL:
-                            trackPixels.append(tmp_str.split(";"));
-                            trc(("Tracking pixel definition old " + tmp_str));
-                            break;
-                        if case(POLL_TUNNEL_URL:
-                            param_poll_tunnel_url = tmp_str;
-                            break;
-                        if case(SUPPORT_EMAIL:
-                            param_support_email = tmp_str;
-                            break;
-                        if case(GAMESTAFF_EMAIL:
-                            param_gamestaff_email = tmp_str;
-                            break;
-                        if case(PAPAYA_PATH:
-                            param_papaya_path = tmp_str;
-                            break;
-                        if case(PAPAYA_FILE:
-                            param_papaya_cfg_file = tmp_str;
-                            break;
-                        if case(RESEND_COUNT:
-                            param_fail_tries = int(tmp_str);
-                            break;
-                        if case(IDLE_POLLING:
-                            param_idle_polling = int(tmp_str);
-                            break;
-                        if case(ALLOW_SKIP_QUEST:
-                            param_allow_skip_quest = (int(tmp_str) == 1);
-                            param_happy_hour = (int(tmp_str) == 2);
-                            break;
-                        if case(CENSORED:
-                            param_censored = !((int(tmp_str) == 0));
-                            break;
-                        if case(INTERNAL_PIXEL:
-                            param_internal_pixel = !((int(tmp_str) == 0));
-                            break;
-                        if case(RELOAD_PIXEL:
-                            param_reload_pixel = !((int(tmp_str) == 0));
-                            break;
-                        if case(SERVER_VERSION:
-                            param_server_version_cfg = tmp_str;
-                            break;
-                        if case(DONT_SAVE_CID:
-                            param_no_cid_save = !((int(tmp_str) == 0));
-                            break;
-                        if case(FLAGS:
-                            param_languages = tmp_str.split("/");
-                            break;
-                        if case(FLAG_NAMES:
-                            param_language_names = tmp_str.split("/");
-                            break;
-                        if case(LOWRES_URL:
-                            break;
-                        if case(SPONSOR_URL:
-                            param_sponsor_url = tmp_str;
-                            break;
-                        if case(BULLSHIT_BOX:
-                            param_bullshit_text = tmp_str;
-                            break;
-                        if case(BULLSHIT_CID:
-                            param_bullshit_cid = tmp_str;
-                            break;
-                        if case(SOCIAL_BUTTONS:
-                            param_social_buttons = tmp_str.split("/");
-                            break;
-                        if case(PIXEL_CALL:
-                            defined_pixel_calls[tmp_str.split(":")[0]] = tmp_str.split(":")[1];
-                            break;
-                        if case(BACKGROUND_ID:
-                            login_background_id = tmp_str;
-                            break;
-                        if case(WORLDS:
-                            worlds = list();
-                            tmpWorlds = tmp_str.split(";");
-                            j = 0;
-                            while (j < len(tmpWorlds)) {
-                                tmpWorld = list();
-                                tmpWorld[0] = tmpWorlds[j].split(":")[0];
-                                tmpWorld[1] = tmpWorlds[j].split(":")[1].split("/");
-                                worlds.append(tmpWorld);
-                                j++;
-                            };
-                            break;
-                        if case(TV_FUNCTION:
-                            tvFunctionName = tmp_str;
-                            break;
-                        if case(TV_POLL_INTERVAL_NORMAL:
-                            tvPollNormal = (int(tmp_str) * 1000);
-                            break;
-                        if case(TV_POLL_INTERVAL_LONG:
-                            tvPollLong = (int(tmp_str) * 1000);
-                            break;
-                    };
-                };
-                tmp_str = "";
-                break;
-            if case(20:
-            if case(9:
-                if (!in_value){
-                    last_index = int(tmp_str);
-                    tmp_str = "";
-                    in_value = True;
-                } else {
-                    tmp_str = (tmp_str + str_data[i]);
-                };
-                break;
-            if case(136:
-                tmp_str = (tmp_str + (String.fromCharCode(13) + String.fromCharCode(10)));
-            default:
-                tmp_str = (tmp_str + str_data[i]);
-        };
-        i++;
-    };
-    pendingConfigurationFiles--;
-    if (pendingConfigurationFiles == 1){
-        loader2.load(new URLRequest("config_txt"));
-    } else {
-        pendingConfigurationFile = False;
-        so = SharedObject.getLocal(("SFGame/" + server.split(".").join("/")), "/");
-        if (so.data.lang_code){
-            lang_code = so.data.lang_code;
-        };
-        lightMode = light_mode_default;
-        chatSound = False;
-        compareItems = False;
-        disableTV = False;
-        if (so.data.lightMode === False){
-            lightMode = False;
-        };
-        if (so.data.lightMode === True){
-            lightMode = True;
-        };
-        if (so.data.chatSound === False){
-            chatSound = False;
-        };
-        if (so.data.chatSound === True){
-            chatSound = True;
-        };
-        if (so.data.compareItems === False){
-            compareItems = False;
-        };
-        if (so.data.compareItems === True){
-            compareItems = True;
-        };
-        if (so.data.disableTV === False){
-            disableTV = False;
-        };
-        if (so.data.disableTV === True){
-            disableTV = True;
-        };
-        if (param_obj["lang"] != undefined){
-            lang_code = param_obj["lang"];
-        };
-        if (param_obj["id"] != undefined){
-            param_id = str(param_obj["id"]);
-        };
-        if (param_obj["rec"] != undefined){
-            param_rec = str(param_obj["rec"]);
-            if (so.data.hadAccount){
-                param_rec = "";
-            };
-        };
-        if (param_obj["viewplayer"] != undefined){
-            view_player = str(param_obj["viewplayer"]);
-        };
-        if (param_obj["adminlogin"] != undefined){
-            admin_login = str(param_obj["adminlogin"]);
-        };
-        if (param_obj["mp_api_user_id"] != undefined){
-            mp_api_user_id = str(param_obj["mp_api_user_id"]);
-        };
-        if (param_obj["mp_api_user_token"] != undefined){
-            mp_api_user_token = str(param_obj["mp_api_user_token"]);
-        };
-        if (((!((param_obj["mp_api_user_id"] == undefined))) and (!((param_obj["mp_api_user_token"] == undefined))))){
-            ssoMode = True;
-        };
         if (param_obj["cid"] != undefined){
             param_cid = str(param_obj["cid"]);
             param_cid_original = True;
@@ -8642,25 +8669,20 @@ def configuration_file_loaded(evt):
                 param_cid_original = True;
                 so.data.cid = param_cid;
                 so.flush();
-            } else {
-                if (param_obj["Cid"] != undefined){
-                    param_cid = str(param_obj["Cid"]);
-                    param_cid_original = True;
-                    so.data.cid = param_cid;
-                    so.flush();
-                } else {
-                    if (so.data.cid){
-                        if ((((so.data.cid.find("_") == -1)) and ((len(so.data.cid) == 15)))){
-                            param_cid = (so.data.cid + "_r");
-                        } else {
-                            if (!param_no_cid_save){
-                                param_cid = so.data.cid;
-                            };
-                        };
-                    };
-                };
-            };
-        };
+        } else {
+            if (param_obj["Cid"] != undefined){
+                param_cid = str(param_obj["Cid"]);
+                param_cid_original = True;
+                so.data.cid = param_cid;
+                so.flush();
+        } else {
+            if (so.data.cid){
+                if ((((so.data.cid.find("_") == -1)) and ((len(so.data.cid) == 15)))){
+                    param_cid = (so.data.cid + "_r");
+        } else {
+            if (!param_no_cid_save){
+                param_cid = so.data.cid;
+
         hadAccount = so.data.hadAccount;
         if (param_obj["adv"] != undefined){
             param_adv = str(param_obj["adv"]);
@@ -8735,7 +8757,7 @@ def configuration_file_loaded(evt):
         so.data.img_url_index = (img_url_index + 1);
         so.data.snd_url_index = (snd_url_index + 1);
         so.flush();
-        if (lightMode){
+        if (light_mode){
             if (param_lowres_url != ""){
                 img_url[img_url_index] = param_lowres_url;
             };
@@ -8751,7 +8773,7 @@ def configuration_file_loaded(evt):
 def load_configuration_file():void{
     var loader:* = null;
     var loader2:* = null;
-    var pendingConfigurationFiles:* = undefined;
+    var pending_configuration_files:* = undefined;
     loader = new URLLoader();
     loader2 = new URLLoader();
     var _local2 = loader;
@@ -8766,8 +8788,8 @@ def load_configuration_file():void{
         add_event_listener(Event.COMPLETE, ConfigurationFileLoaded);
     };
     pending_loaders = (pending_loaders + 2);
-    pendingConfigurationFiles = 1;
-    pendingConfigurationFile = True;
+    pending_configuration_files = 1;
+    pending_configuration_files = True;
 }
 
 
@@ -8855,7 +8877,7 @@ def when_loaded(fn:Function=undefined):void{
     if (pendingDebugFile){
         pending = True;
     };
-    if (pendingConfigurationFile){
+    if (pending_configuration_files){
         pending = True;
     };
     if (!pending){
@@ -9991,7 +10013,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                                 } else {
                                     add(bubbleID);
                                     add(CITY_CA_OVL);
-                                    if (lightMode){
+                                    if (light_mode){
                                         actor[bubbleID].alpha = 1;
                                     } else {
                                         actor[bubbleID].alpha = (
@@ -10020,7 +10042,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                             BubbleWait = 0;
                         };
                         if (actor[bubbleID].alpha > 0){
-                            if (lightMode){
+                            if (light_mode){
                                 actor[bubbleID].alpha = 0;
                             } else {
                                 actor[bubbleID].alpha = (
@@ -10064,7 +10086,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             BubbleFade(on_stage(CITY_ZAUBERLADEN), BUBBLE_ZAUBERLADEN);
         };
         CityAni = function (evt:Event):void{
-            if (!lightMode){
+            if (!light_mode){
                 CityAniFrame++;
                 if (
                     (((CityAniFrame == 5))
@@ -10929,7 +10951,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             if (BoostBtnChange == 1){
                 BoostBtnChange = 0;
                 if (inBoostBtn){
-                    if (lightMode){
+                    if (light_mode){
                         SetAlpha(CHAR_PREISE, 1);
                         SetAlpha(CHAR_SECONDPROP, 0);
                     } else {
@@ -10938,7 +10960,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
                     };
                 } else {
                     if (on_stage(LBL_SCR_CHAR_PREIS1)){
-                        if (lightMode){
+                        if (light_mode){
                             add(CHAR_SECONDPROP);
                             if (on_stage(POPUP_INFO)){
                                 add(POPUP_INFO);
@@ -13317,8 +13339,8 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         CheckLM = function (evt:Event=undefined){
             var req:URLRequest;
             add(CB_LM_CHECKED);
-            lightMode = True;
-            so.data.lightMode = lightMode;
+            light_mode = True;
+            so.data.light_mode = light_mode;
             so.flush();
             if (param_lowres_url != ""){
                 req = new URLRequest("index.php");
@@ -13328,8 +13350,8 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         UncheckLM = function (evt:Event=undefined){
             var req:URLRequest;
             remove(CB_LM_CHECKED);
-            lightMode = False;
-            so.data.lightMode = lightMode;
+            light_mode = False;
+            so.data.light_mode = light_mode;
             so.flush();
             if (param_lowres_url != ""){
                 req = new URLRequest("index.php");
@@ -13338,39 +13360,39 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         };
         CheckCS = function (evt:Event=undefined){
             add(CB_CS_CHECKED);
-            chatSound = True;
-            so.data.chatSound = chatSound;
+            chat_sound = True;
+            so.data.chat_sound = chat_sound;
             so.flush();
             play(SND_ERROR);
         };
         UncheckCS = function (evt:Event=undefined){
             remove(CB_CS_CHECKED);
-            chatSound = False;
-            so.data.chatSound = chatSound;
+            chat_sound = False;
+            so.data.chat_sound = chat_sound;
             so.flush();
         };
         CheckCompare = function (evt:Event=undefined){
             add(CB_COMPARE_CHECKED);
-            compareItems = True;
-            so.data.compareItems = compareItems;
+            compare_items = True;
+            so.data.compare_items = compare_items;
             so.flush();
         };
         UncheckCompare = function (evt:Event=undefined){
             remove(CB_COMPARE_CHECKED);
-            compareItems = False;
-            so.data.compareItems = compareItems;
+            compare_items = False;
+            so.data.compare_items = compare_items;
             so.flush();
         };
         CheckTV = function (evt:Event=undefined){
             add(CB_TV_CHECKED);
-            disableTV = True;
-            so.data.disableTV = disableTV;
+            disable_tv = True;
+            so.data.disable_tv = disable_tv;
             so.flush();
         };
         UncheckTV = function (evt:Event=undefined){
             remove(CB_TV_CHECKED);
-            disableTV = False;
-            so.data.disableTV = disableTV;
+            disable_tv = False;
+            so.data.disable_tv = disable_tv;
             so.flush();
         };
         VolumeChange = function (value:int):void{
@@ -13960,9 +13982,9 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         DefineImg(PASSWORD_SMILEY_SAD, "res/gfx/if/smiley_sad.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
         DefineImg(PASSWORD_SMILEY_NEUTRAL, "res/gfx/if/smiley_neutral.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
         DefineImg(PASSWORD_SMILEY_HAPPY, "res/gfx/if/smiley_happy.png", False, (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X) + actor[INP_PASSWORD].width) + 5), ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
-        enable_popup(PASSWORD_SMILEY_SAD, texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
-        enable_popup(PASSWORD_SMILEY_NEUTRAL, texts[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
-        enable_popup(PASSWORD_SMILEY_HAPPY, texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
+        enable_popup(PASSWORD_SMILEY_SAD, texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(chr(13)));
+        enable_popup(PASSWORD_SMILEY_NEUTRAL, texts[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(chr(13)));
+        enable_popup(PASSWORD_SMILEY_HAPPY, texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(chr(13)));
         actor[INP_PASSWORD].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
         DefineCnt(FORGOT_PASSWORD, 0, (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_1_Y) + AIRRelMoveY));
         DefineLbl(LBL_FORGOT_PASSWORD, texts[TXT_FORGOT_PASSWORD], 0, 0, FontFormat_Default);
@@ -14392,7 +14414,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         _local2 = DealerAniTimer;
         with (_local2) {
             add_event_listener(TimerEvent.TIMER, DealerAni);
-            if (!lightMode){
+            if (!light_mode){
                 start();
             } else {
                 stop();
@@ -14984,7 +15006,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         ShopAniTimer = new Timer(100);
         SaleRecoverTime = 0;
         ShopAniTimer.add_event_listener(TimerEvent.TIMER, ShopAniFrame);
-        if (!lightMode){
+        if (!light_mode){
             ShopAniTimer.start();
         } else {
             ShopAniTimer.stop();
@@ -15146,7 +15168,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(POST_READ_NEXT, "", PostBtnHandler, btnClassArrowRight, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
         DefineBtn(POST_READ_PREV, "", PostBtnHandler, btnClassArrowLeft, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
         enable_popup(POST_PROFILE, texts[TXT_POPUP_PROFILE]);
-        DefineLbl(LBL_POST_FLUSH_TEXT, texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(String.fromCharCode(13)), ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_POST_FLUSH_TEXT, texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(chr(13)), ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
         AddFilter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
         DefineBtn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
         DefineBtn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
@@ -15489,7 +15511,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         DefineBtn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler, btnClassArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 295));
         DefineBtn(GILDE_CREST_COLOR_NEXT, "", GildeBtnHandler, btnClassArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 295));
         DefineBtn(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST], GildeBtnHandler, btnClassBasic, (GILDE_GEBAEUDE_X + 30), (GILDE_GEBAEUDE_Y + 340));
-        enable_popup(GILDE_CREST_OK, texts[TXT_CREST_INFO].split("#").join(String.fromCharCode(13)));
+        enable_popup(GILDE_CREST_OK, texts[TXT_CREST_INFO].split("#").join(chr(13)));
         i = 1;
         while (i < 4) {
             DefineCnt((GILDE_CREST_COLOR + i), ((GILDE_GEBAEUDE_X + 23) + (i * 40)), (GILDE_GEBAEUDE_Y + 296));
@@ -15839,7 +15861,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(HUTMANN_GOLDBET2, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET2, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         DefineBunch(HUTMANN_PLACEBET, HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET, LBL_HUTMANN_MUSHBET2, HUTMANN_MUSHBET2, HUTMANN_GOLDBET, LBL_HUTMANN_GOLDBET2, HUTMANN_GOLDBET2, HUTFACE_IDLE);
-        DefineLbl(LBL_HUTMANN_INSTR, texts[TXT_HUTMANN_INSTR].split("#").join(((textDir)=="right") ? "" : String.fromCharCode(13)), HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
+        DefineLbl(LBL_HUTMANN_INSTR, texts[TXT_HUTMANN_INSTR].split("#").join(((textDir)=="right") ? "" : chr(13)), HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
         AddFilter(LBL_HUTMANN_INSTR, Filter_Shadow);
         DefineBunch(SCREEN_HUTMANN, HUTMANN_BG, IF_OVL, IF_EXIT, HUTFACE_HOVER, HUTFACE_WIN, HUTFACE_LOSE1, HUTFACE_LOSE2, HUTFACE_LOSE3, HUTFACE_IDLE);
         DefineBtn(HUTMANN_OK, texts[TXT_HUTMANN_START], HutBtnHandler, btnClassLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
@@ -15912,7 +15934,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         if (int((Math.random() * 100)) == 0){
             cursedDescr = "Verfluchte";
         };
-        enable_popup(CA_TV, POPUP_BEGIN_LINE, texts[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[TXT_TV_HINT].split("|")[1].split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
+        enable_popup(CA_TV, POPUP_BEGIN_LINE, texts[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[TXT_TV_HINT].split("|")[1].split("#").join(chr(13)), POPUP_END_LINE);
         i = 0;
         while (i < 4) {
             DefineImg((TAVERN_ADVENT + i), (("res/gfx/scr/taverne/advent_wreath_" + str((i + 1))) + ".jpg"), False, (280 + 337), 100);
@@ -16293,9 +16315,9 @@ def LoaderError(evt:ErrorEvent=undefined):void{
         DefineCnt(CHANGE_PASSWORD_SMILEY_SAD, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
         DefineCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
         DefineCnt(CHANGE_PASSWORD_SMILEY_HAPPY, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
-        enable_popup(CHANGE_PASSWORD_SMILEY_SAD, texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(String.fromCharCode(13)));
-        enable_popup(CHANGE_PASSWORD_SMILEY_NEUTRAL, texts[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(String.fromCharCode(13)));
-        enable_popup(CHANGE_PASSWORD_SMILEY_HAPPY, texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(String.fromCharCode(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_SAD, texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(chr(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_NEUTRAL, texts[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(chr(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_HAPPY, texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(chr(13)));
         DefineBtn(OPTION_DOCHANGE, texts[TXT_DOCHANGE], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y5));
         DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6), FontFormat_Default);
         AddFilter(LBL_OPTION_VOLUME, Filter_Shadow);
@@ -16365,7 +16387,7 @@ def LoaderError(evt:ErrorEvent=undefined):void{
             i = (i + 1);
         };
         DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg", False, 280, 100);
-        DefineLbl(LBL_DUNGEON_CONGRATS, ((texts[TXT_CONGRATS]) ? texts[TXT_CONGRATS].split("#").join(String.fromCharCode(13)) : ""), 1000, 600, FontFormat_Default);
+        DefineLbl(LBL_DUNGEON_CONGRATS, ((texts[TXT_CONGRATS]) ? texts[TXT_CONGRATS].split("#").join(chr(13)) : ""), 1000, 600, FontFormat_Default);
         actor[LBL_DUNGEON_CONGRATS].wordWrap = True;
         actor[LBL_DUNGEON_CONGRATS].default_text_format.align = "right";
         AddFilter(LBL_DUNGEON_CONGRATS, Filter_Shadow);
@@ -18424,7 +18446,7 @@ def SemiStrip(inpStr:String):String{
     outStr = "";
     i = 0;
     while (i < inpStr.length) {
-        if (inpStr[i] == String.fromCharCode(13)){
+        if (inpStr[i] == chr(13)){
             outStr = (outStr + "#");
         } else {
             if (inpStr[i] == ";"){
@@ -18449,7 +18471,7 @@ def resolve_breaks(inpStr:String):String{
     i = 0;
     while (i < inpStr.length) {
         if (inpStr[i] == "#"){
-            outStr = (outStr + String.fromCharCode(13));
+            outStr = (outStr + chr(13));
         } else {
             outStr = (outStr + inpStr[i]);
         };
@@ -18685,7 +18707,7 @@ def PostBtnHandler(evt:MouseEvent=undefined, actorID:int=0){
                 show(POST_GUILD);
                 stage.focus = actor[INP_POST_ADDRESS].getChildAt(1);
                 actor[INP_POST_ADDRESS].getChildAt(1).text = "";
-                actor[INP_POST_TEXT].getChildAt(1).text = texts[(TXT_POST_FORWARD + 2)].split("%1").join(reply_address).split("%2").join(forward_text).split("#").join(String.fromCharCode(13));
+                actor[INP_POST_TEXT].getChildAt(1).text = texts[(TXT_POST_FORWARD + 2)].split("%1").join(reply_address).split("%2").join(forward_text).split("#").join(chr(13));
                 if (textDir == "right"){
                     if (actor[INP_POST_SUBJECT].getChildAt(1).text.find(texts[(TXT_POST_FORWARD + 1)]) == -1){
                         actor[INP_POST_SUBJECT].getChildAt(1).text = ((reply_subject + " ") + texts[(TXT_POST_FORWARD + 1)]);
@@ -18775,7 +18797,7 @@ def Showalbum_content(evt:Event=undefined){
         if (album_content[aOffs] == 1){
             entryText = GetItemName(itmTyp, itm_pic, itm_class);
             if (entryText.find("|") != -1){
-                hintText = entryText.split("|")[1].split("#").join(String.fromCharCode(13));
+                hintText = entryText.split("|")[1].split("#").join(chr(13));
                 entryText = entryText.split("|")[0];
             };
             if (itm_class > 0){
@@ -18864,11 +18886,11 @@ def Showalbum_content(evt:Event=undefined){
         };
         i = (i + 1);
     };
-    actor[LBL_ALBUM_COLLECTION].text = texts[TXT_COLLECTION].split("%1").join(str(contentCount)).split("%2").join(str(contentMax)).split("%3").join(str((Math.round(((contentCount / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13));
+    actor[LBL_ALBUM_COLLECTION].text = texts[TXT_COLLECTION].split("%1").join(str(contentCount)).split("%2").join(str(contentMax)).split("%3").join(str((Math.round(((contentCount / contentMax) * 10000)) / 100))).split("#").join(chr(13));
     i = 0;
     while (i < 5) {
-        enable_popup((ALBUM_CAT_IN + i), (((((((texts[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + str((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
-        enable_popup((ALBUM_CAT_OUT + i), (((((((texts[((TXT_COLLECTION + 2) + i)] + String.fromCharCode(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + str((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
+        enable_popup((ALBUM_CAT_IN + i), (((((((texts[((TXT_COLLECTION + 2) + i)] + chr(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + str((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
+        enable_popup((ALBUM_CAT_OUT + i), (((((((texts[((TXT_COLLECTION + 2) + i)] + chr(13)) + catCount[i]) + " / ") + catMax[i]) + " = ") + str((Math.round(((catCount[i] / catMax[i]) * 10000)) / 100))) + "%"));
         i = (i + 1);
     };
     enable_popup(LBL_ALBUM_COLLECTION, texts[(TXT_COLLECTION + 7)]);
@@ -19373,7 +19395,7 @@ def show_tower_screen(towerData:Array){
         stage.focus = actor[TOWER_SCROLLAREA];
         if (!on_stage(TOWER_SCROLLAREA)){
             towerScrollDest = (int(towerSG[TSG_TOWER_LEVEL]) + 1);
-            if (lightMode){
+            if (light_mode){
                 towerScroll = towerScrollDest;
             } else {
                 towerScroll = 0;
@@ -19470,17 +19492,17 @@ def show_option_screen(evt:Event=undefined){
         };
         LoadCharacterImage();
         SetSliderValue(SLDR_OPTION_VOLUME, (so.data.volume + 1));
-        if (lightMode){
+        if (light_mode){
             add(CB_LM_CHECKED);
         };
-        if (chatSound){
+        if (chat_sound){
             add(CB_CS_CHECKED);
         };
-        if (compareItems){
+        if (compare_items){
             add(CB_COMPARE_CHECKED);
         };
-        if (tvFunctionName != ""){
-            if (disableTV){
+        if (tv_function_name != ""){
+            if (disable_tv){
                 add(CB_TV_CHECKED);
             };
         } else {
@@ -19654,7 +19676,7 @@ def show_fight_screen(fighterData:Array, fightData:Array, getPilz:Boolean, faceD
                             } else {
                                 if (winners[thisWinner] == lastHeroWins){
                                     lastHeroWins = winners[thisWinner];
-                                    lastHero = (lastHero + (String.fromCharCode(13) + texts[TXT_HERO_OF_THE_DAY].split("%1").join(thisWinner[5:]).split("%2").join(str(lastHeroWins))));
+                                    lastHero = (lastHero + (chr(13) + texts[TXT_HERO_OF_THE_DAY].split("%1").join(thisWinner[5:]).split("%2").join(str(lastHeroWins))));
                                     heroCount = (heroCount + 1);
                                 };
                             };
@@ -21333,9 +21355,9 @@ def RefreshTimeBar(OfferTime:Number=0){
 }
 
 def RequestTV(evt:Event=undefined){
-    if (tvFunctionName != ""){
-        trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"showtv\"!"));
-        ExternalInterface.call(tvFunctionName, "showtv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tvReturnValue);
+    if (tv_function_name != ""){
+        trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"showtv\"!"));
+        ExternalInterface.call(tv_function_name, "showtv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tvReturnValue);
         tvPollTimer.delay = tvPollLong;
     } else {
         trc("Error: No TV function set!");
@@ -21350,19 +21372,19 @@ def TryShowTV(evt:Event=undefined){
         tvTimer.start();
         tvTest = False;
     } else {
-        if (((((!((tvFunctionName == ""))) and (!(disableTV)))) and (!(prevent_tv)))){
+        if (((((!((tv_function_name == ""))) and (!(disable_tv)))) and (!(prevent_tv)))){
             if (!evt){
                 tvPollTimer.start();
-                tvPollTimer.delay = tvPollNormal;
+                tvPollTimer.delay = tv_poll_normal;
             } else {
                 if (((!(on_stage(TAVERNE_BG))) and (!(on_stage(QUESTBAR_BG))))){
                     tvPollTimer.stop();
                     return;
                 };
             };
-            trc((("Calling TV function \"" + tvFunctionName) + "\" with parameter \"requesttv\"!"));
+            trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"requesttv\"!"));
             try {
-                tvReturnValue = ExternalInterface.call(tvFunctionName, "requesttv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
+                tvReturnValue = ExternalInterface.call(tv_function_name, "requesttv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
             } catch(e:Error) {
                 trc(("There was an error: " + e.message));
                 tvPollTimer.delay = tvPollLong;
@@ -21379,7 +21401,7 @@ def TryShowTV(evt:Event=undefined){
                     if (tvReturnValue == -1){
                         tvPollTimer.delay = tvPollLong;
                     } else {
-                        tvPollTimer.delay = tvPollNormal;
+                        tvPollTimer.delay = tv_poll_normal;
                     };
                 };
             };
@@ -21387,7 +21409,7 @@ def TryShowTV(evt:Event=undefined){
                 tvTimer.start();
             };
         } else {
-            if (((!(disableTV)) and (!(prevent_tv)))){
+            if (((!(disable_tv)) and (!(prevent_tv)))){
                 trc("Notice: No TV function set!");
             };
         };
@@ -21495,7 +21517,7 @@ def show_taverne_screen(evt:Event=undefined){
         DefineBunch(TAVERNE_QUESTOVL, (TAVERNE_QUESTOVL1 + quest_type));
         HutBlinzelTimer.add_event_listener(TimerEvent.TIMER, HutBlinzelTimerEvent);
         TryShowTV();
-        if (!lightMode){
+        if (!light_mode){
             HutBlinzelTimer.start();
         } else {
             HutBlinzelTimer.stop();
@@ -21629,7 +21651,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
             };
             add(SCREEN_ARENA);
             if (Capabilities.version[0: 3] != "IOS"){
-                if (lightMode){
+                if (light_mode){
                     remove(ARENA_FEUER);
                 };
             };
@@ -21738,7 +21760,7 @@ def arabize(actorID:int){
     actor[actorID].text = "";
     i = 0;
     while (i < lines.length) {
-        actor[actorID].text = ((lines[i] + String.fromCharCode(13)) + actor[actorID].text);
+        actor[actorID].text = ((lines[i] + chr(13)) + actor[actorID].text);
         i++;
     };
 }
@@ -22656,10 +22678,10 @@ def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, T
                 if (attackError){
                     if (guildData[0] != savegame[SG_GUILD_INDEX]){
                         if ((((int(guildData[GUILD_ATTACK_TARGET]) == int(savegame[SG_GUILD_INDEX]))) and ((attackStatus & 1)))){
-                            attackHint = (attackHint + (String.fromCharCode(13) + texts[(TXT_ATTACK_STATUS + 3)]));
+                            attackHint = (attackHint + (chr(13) + texts[(TXT_ATTACK_STATUS + 3)]));
                         };
                         if ((((int(guildData[GUILD_DEFENCE_TARGET]) == int(savegame[SG_GUILD_INDEX]))) and ((attackStatus & 2)))){
-                            attackHint = (attackHint + (String.fromCharCode(13) + texts[(TXT_ATTACK_STATUS + 4)]));
+                            attackHint = (attackHint + (chr(13) + texts[(TXT_ATTACK_STATUS + 4)]));
                         };
                         if (attackHint.length > 0){
                             attackHint = attackHint[1:]
@@ -23162,7 +23184,7 @@ def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, T
         };
         if (guildDescr.find("http://") != -1){
             guildForumLink = guildDescr[guildDescr.find("http://"):]
-            guildForumLink = guildForumLink.split(")").join(" ").split("#").join(" ").split(String.fromCharCode(13)).join(" ").split(String.fromCharCode(10)).join(" ").split(" ")[0];
+            guildForumLink = guildForumLink.split(")").join(" ").split("#").join(" ").split(chr(13)).join(" ").split(chr(10)).join(" ").split(" ")[0];
             add(GILDE_LINK);
             if (guildForumLink[guildForumLink.length: 1] == "."){
                 guildForumLink = guildForumLink[0: (guildForumLink.length - 1)]
@@ -23171,7 +23193,7 @@ def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, T
         } else {
             if (guildDescr.find("www.") != -1){
                 guildForumLink = ("http://" + guildDescr[guildDescr.find("www."):])
-                guildForumLink = guildForumLink.split(")").join(" ").split("#").join(" ").split(String.fromCharCode(13)).join(" ").split(String.fromCharCode(10)).join(" ").split(" ")[0];
+                guildForumLink = guildForumLink.split(")").join(" ").split("#").join(" ").split(chr(13)).join(" ").split(chr(10)).join(" ").split(" ")[0];
                 add(GILDE_LINK);
                 if (guildForumLink[guildForumLink.length: 1] == "."){
                     guildForumLink = guildForumLink[0: (guildForumLink.length - 1)]
@@ -23229,16 +23251,16 @@ def show_screen_gilden(guildData:Array, guildDescr:String, guildMembers:Array, T
             };
             i = 0;
             while (i < 3) {
-                enable_popup((GILDE_KATAPULT + i), POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 4)], 200, texts[(TXT_CATAPULT + 5)].split("%1").join("5"), actor[IF_PILZE], POPUP_END_LINE);
+                enable_popup((GILDE_KATAPULT + i), POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(chr(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 4)], 200, texts[(TXT_CATAPULT + 5)].split("%1").join("5"), actor[IF_PILZE], POPUP_END_LINE);
                 i = (i + 1);
             };
-            enable_popup(GILDE_KATAPULT_GRAY, POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 6)], POPUP_END_LINE);
+            enable_popup(GILDE_KATAPULT_GRAY, POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(chr(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 6)], POPUP_END_LINE);
             i = 0;
             while (i < 2) {
-                enable_popup((GILDE_KATAPULT_OK + i), POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 6)], POPUP_END_LINE);
+                enable_popup((GILDE_KATAPULT_OK + i), POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(chr(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 6)], POPUP_END_LINE);
                 i = (i + 1);
             };
-            enable_popup((GILDE_KATAPULT_OK + 2), POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE);
+            enable_popup((GILDE_KATAPULT_OK + 2), POPUP_BEGIN_LINE, texts[TXT_CATAPULT], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 1)].split("%1").join("3").split("#").join(chr(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_CATAPULT + 2)], 200, texts[(TXT_CATAPULT + 3)].split("%1").join(str(guildData[4])).split("%2").join("3"), POPUP_END_LINE);
         };
         raidCost = GildeBuildingGold[(int(guildData[GUILD_RAID_LEVEL]) + 51)];
         if (int(guildData[GUILD_RAID_LEVEL]) == 0){
@@ -23648,7 +23670,7 @@ def show_city_screen(evt:Event=undefined):void{
             actor[SCR_CITY_CLOUDS_NIGHT].scrollRect = new Rectangle(0, 0, 1000, 265);
             actor[SCR_CITY_CLOUDS_DAWN].scrollRect = new Rectangle(0, 0, 1000, 265);
             actor[SCR_CITY_CLOUDS_DAY].scrollRect = new Rectangle(0, 0, 1000, 265);
-            if (lightMode){
+            if (light_mode){
                 remove(SCR_CITY_CLOUDS_NIGHT);
                 remove(SCR_CITY_CLOUDS_DAWN);
                 remove(SCR_CITY_CLOUDS_DAY);
@@ -23763,7 +23785,7 @@ def show_post_screen(par:Array=undefined){
         if (tageszeit() != 1){
             remove(POST_DAWN);
         };
-        if (((((!(postSchonDa)) and ((par is Array)))) and (!(lightMode)))){
+        if (((((!(postSchonDa)) and ((par is Array)))) and (!(light_mode)))){
             SetAlpha(POST_LIST, 0);
             SetAlpha(SHP_POST_BLACK_SQUARE, 0);
             FadeIn(POST_LIST);
@@ -24812,7 +24834,7 @@ def show_character_screen(evt:Event=undefined, NoPrices:Boolean=False):void{
         if (texts[TXT_ALBUM]){
             if (Number(savegame[SG_ALBUM]) >= 10000){
                 add(CHAR_ALBUM);
-                enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, texts[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_COLLECTION].split("%1").join(str((savegame[SG_ALBUM] - 10000))).split("%2").join(str(contentMax)).split("%3").join(str((Math.round((((savegame[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_COLLECTION + 7)], POPUP_END_LINE);
+                enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, texts[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_COLLECTION].split("%1").join(str((savegame[SG_ALBUM] - 10000))).split("%2").join(str(contentMax)).split("%3").join(str((Math.round((((savegame[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(chr(13)), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_COLLECTION + 7)], POPUP_END_LINE);
                 if (album_effect){
                     AnimateAch(CHAR_ALBUM, CHAR_PLAYERY);
                     album_effect = False;
@@ -25079,7 +25101,7 @@ def ShowPlayerScreen(PlayerSG:Array, PlayerName:String, PlayerGilde:String, Play
         if (texts[TXT_ALBUM]){
             if (Number(PlayerSG[SG_ALBUM]) >= 10000){
                 add(CHAR_ALBUM);
-                enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, texts[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_COLLECTION].split("%1").join(str((PlayerSG[SG_ALBUM] - 10000))).split("%2").join(str(contentMax)).split("%3").join(str((Math.round((((PlayerSG[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(String.fromCharCode(13)), POPUP_END_LINE);
+                enable_popup(CHAR_ALBUM, POPUP_BEGIN_LINE, texts[TXT_ITMNAME_13], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_COLLECTION].split("%1").join(str((PlayerSG[SG_ALBUM] - 10000))).split("%2").join(str(contentMax)).split("%3").join(str((Math.round((((PlayerSG[SG_ALBUM] - 10000) / contentMax) * 10000)) / 100))).split("#").join(chr(13)), POPUP_END_LINE);
             };
         };
         if ((((PlayerGilde == gilde)) and (!((gilde == ""))))){
@@ -25633,7 +25655,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         };
         _local2 = actor[LBL_MAINQUEST_TEXT];
         with (_local2) {
-            text = questText.split("#").join(String.fromCharCode(13));
+            text = questText.split("#").join(chr(13));
         };
         arabize(LBL_MAINQUEST_TEXT);
         if (textDir == "right"){
@@ -26410,7 +26432,7 @@ def ItemPopup(slot_id:int, sgIndex:int, SG:Array=undefined, HideBackPack:Boolean
                 if ((((slot_id >= CHAR_SLOT_11)) and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
                     suggestionSlot[slot_id] = (i + CHAR_SLOT_1);
                     if (SG[((SG_INVENTORY_OFFS + (SG_ITM_SIZE * i)) + SG_ITM_TYP)] > 0){
-                        if (((compareItems) and (!(towerMode)))){
+                        if (((compare_items) and (!(towerMode)))){
                             compareIndex = (SG_INVENTORY_OFFS + (SG_ITM_SIZE * i));
                         };
                     };
@@ -27137,7 +27159,7 @@ def show_toilet(isFull:int, toiletLevel:int, toiletExp:Number, toiletMaxExp:Numb
             show(TOILET_IDLE);
         };
         hide(TOILET_DROP);
-        actor[LBL_TOILET_AURA].text = texts[(TXT_TOILET_HINT + 4)].split("#").join(String.fromCharCode(13)).split("%1").join(str(toiletLevel));
+        actor[LBL_TOILET_AURA].text = texts[(TXT_TOILET_HINT + 4)].split("#").join(chr(13)).split("%1").join(str(toiletLevel));
         actor[LBL_TOILET_AURA].x = ((SCR_SHOP_BG_X + 248) - (actor[LBL_TOILET_AURA].textWidth / 2));
         toiletTankAdjustEvent();
         if (toiletTankDest != toiletTankCurrent){
@@ -27222,7 +27244,7 @@ def show_witch(witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0)
             remove(CHAR_RIGHTPANE);
             add(SCREEN_WITCH);
         };
-        if (!lightMode){
+        if (!light_mode){
             witchAniTimer.start();
         };
         witchDesiredType = witchData[3];
@@ -27434,7 +27456,7 @@ def WaitingProgress(startTime:Number, targetTime:Number):Number{
 
 def show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=False):void{
     var playername:String;
-    if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffed_mode)))) and (!(ssoMode)))){
+    if (((((((((!(so.data.HasAccount)) and (!((evt is MouseEvent))))) and (!(noBC)))) and (!(buffed_mode)))) and (!(sso_mode)))){
         show_build_character_screen();
         return;
     };
@@ -27458,7 +27480,7 @@ def show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=
         actor[LBL_GOTO_SIGNUP].htmlText = buffed_link_text;
         actor[GOTO_SIGNUP].x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((actor[LBL_GOTO_SIGNUP].textWidth / 2)));
     };
-    if (ssoMode){
+    if (sso_mode){
         actor[INP_NAME].getChildAt(1).type = TextFieldType.DYNAMIC;
         actor[INP_LOGIN_PASSWORD].getChildAt(1).type = TextFieldType.DYNAMIC;
         playername = ExternalInterface.call("sso_get_uid");
@@ -27501,7 +27523,7 @@ def ShowSignupScreen(evt:Event=undefined):void{
             actor[INP_NAME].getChildAt(1).text = buffed_name;
             actor[INP_EMAIL].getChildAt(1).text = buffed_email;
         };
-        if (ssoMode){
+        if (sso_mode){
             actor[INP_EMAIL].getChildAt(1).type = TextFieldType.DYNAMIC;
             actor[INP_PASSWORD].getChildAt(1).type = TextFieldType.DYNAMIC;
             playername = ExternalInterface.call("sso_get_uid");
@@ -28749,7 +28771,7 @@ def enable_popup(actorID:int, ... _args){
                                 actor[POPUP_INFO].addChild(tmpDO);
                             } else {
                                 if ((arg is String)){
-                                    arg = arg.split("#").join(String.fromCharCode(13));
+                                    arg = arg.split("#").join(chr(13));
                                     tmpTextField = new TextField();
                                     _local3 = tmpTextField;
                                     with (_local3) {
