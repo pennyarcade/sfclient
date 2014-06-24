@@ -5751,7 +5751,6 @@ def request_signup(evt):
                 )
                 actor[INP['PASSWORD']].getChildAt(1).text = "12345"
                 add(CB['AGB']['CHECKED'])
-                pass
             return
 
     if getChildByName(actor[CB_AGB_CHECKED].name):
@@ -6250,7 +6249,7 @@ def action_handler(event):
         par_str = data_str[4:]
     else:
         act = int(data_str[0: 3])
-        par_str = data_str.slice[3:]
+        par_str = data_str[3:]
 
     par = par_str.split("")
     if on_stage(FIGHT_SKIP):
@@ -6473,7 +6472,7 @@ def action_handler(event):
                     "%2", time_str(last_attack, True)
                 )
 
-            if par[1]=="":
+            if par[1] == "":
                 snippet = ''
             else:
                 last_defense = last_guild_data[GUILD['DEFENCE']['TIME']]
@@ -6728,8 +6727,8 @@ def action_handler(event):
                             pulse_gilde = True
 
                         if last_chat_index != 0:
-                            for ii in range(len(offline_guild_members)):
-                                tmp_str = offline_guild_members[ii].lower()
+                            for j in range(len(offline_guild_members)):
+                                tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
                                 if (tmp_array[i].lower().find(
                                     tmp_str) != -1
@@ -6764,8 +6763,8 @@ def action_handler(event):
                             ):
                                 pulse_gilde = True
 
-                            for ii in range(len(offline_guild_members)):
-                                tmp_str = offline_guild_members[ii].lower()
+                            for j in range(len(offline_guild_members)):
+                                tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
                                 if (tmp_array[i].lower().find(
                                     tmp_str) != -1
@@ -6802,8 +6801,8 @@ def action_handler(event):
 
                     if (last_chat_index != 0):
 
-                        for ii in range(len(offline_guild_members)):
-                            tmp_str = offline_guild_members[ii].lower()
+                        for j in range(len(offline_guild_members)):
+                            tmp_str = offline_guild_members[j].lower()
                             tmp_str += ":§"
                             if (tmp_array[i].lower().find(tmp_str) != -1):
                                 if (on_stage(INP['GILDE_CHAT'])):
@@ -8199,12 +8198,12 @@ def request_city_screen(evt=undefined):
     pass
 
 
-def IO_ErrorHandler(event):
+def io_error_handler(event):
     LOG.error(event)
 
 
-def GetFileVersion():
-    tmp_str = GetMyPath(1)
+def get_file_version():
+    tmp_str = get_my_path(1)
     numStr = ""
     result = ""
     tmp_str = tmp_str.split(".")[0]
@@ -8226,7 +8225,7 @@ def GetFileVersion():
 
 
 
-def GetMyPath(mode:int=0):
+def get_my_path(mode:int=0):
     fullPath = loaderInfo.url;
     sections = fullPath.split("/");
     file_name = sections[(sections.length - 1)];
@@ -16420,7 +16419,7 @@ def loader_error(evt=undefined):
         DefineSnd(SND_TEST, "res/sfx/click.mp3");
         DefineBunch(OPTION_DOCHANGE, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1, LBL_OPTION_FIELD2, LBL_OPTION_FIELD3, INP_OPTION_FIELD1, INP_OPTION_FIELD2, INP_OPTION_FIELD3, OPTION_DOCHANGE);
         DefineBunch(OPTION_DORESEND, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1, OPTION_DOCHANGE);
-        DefineLbl(LBL_OPTION_VER, ("v1.70" + (((GetFileVersion() == 0)) ? "" : ("." + str(GetFileVersion())))), 0, ((OPTION_Y + OPTION_VER_Y) + 110), FontFormat_Default);
+        DefineLbl(LBL_OPTION_VER, ("v1.70" + (((get_file_version() == 0)) ? "" : ("." + str(get_file_version())))), 0, ((OPTION_Y + OPTION_VER_Y) + 110), FontFormat_Default);
         actor[LBL_OPTION_VER].x = (((OPTION_X + OPTION_VER_X) + 60) - actor[LBL_OPTION_VER].textWidth);
         AddFilter(LBL_OPTION_VER, Filter_Shadow);
         DefineBunch(SCREEN_OPTION, SHP_OPTION_BLACK, OPTION_IMAGEBORDER, LBL_OPTION_TITLE, LBL_OPTION_IMAGE, OPTION_CHANGEIMG, LBL_OPTION_CHANGE, OPTION_RESEND);
