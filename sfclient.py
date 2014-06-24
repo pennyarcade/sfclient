@@ -4346,6 +4346,7 @@ def md5hash(instr):
     '''
     return md5.new(instr).hexdigest().lower()
 
+
 #------------------------------------------------------------------------------
 
 
@@ -8198,29 +8199,31 @@ def request_city_screen(evt=undefined):
     pass
 
 
+def IO_ErrorHandler(event):
+    LOG.error(event)
+
+
+def GetFileVersion():
+    tmp_str = GetMyPath(1)
+    numStr = ""
+    result = ""
+    tmp_str = tmp_str.split(".")[0]
+
+    for i in range(len(tmp_str), 0, -1):
+        numStr = tmp_str[i: 1]
+        if numStr == str(int(numStr)):
+            result += numStr
+
+    return int(result)
+
+
+
+
 
 
 '''
-def IO_ErrorHandler(event:IOErrorEvent){
-    trc(event);
-}
 
 
-def GetFileVersion(){
-    tmp_str = GetMyPath(1);
-    numStr = "";
-    result = "";
-    tmp_str = tmp_str.split(".")[0];
-    i = tmp_str.length;
-    while (i >= 0) {
-        numStr = tmp_str[i: 1]
-        if (numStr == str(int(numStr))){
-            result = (numStr + result);
-        };
-        i--;
-    };
-    return (int(result));
-}
 
 
 def GetMyPath(mode:int=0):
