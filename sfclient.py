@@ -5126,11 +5126,16 @@ class Quest():
     '''
         handle quest data
     '''
-    def __init__(self, q_type, q_id):
+    def __init__(self, qtype, qid, qlevel, qmonster, qtime, qitem):
         '''
             Setup Quest object
         '''
         pass
+
+    def from_sg(self, qid, save):
+        '''
+            setup Quest object from savegame
+        '''
 
 
 def get_quest_title(quest_id):
