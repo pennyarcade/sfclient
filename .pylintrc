@@ -43,7 +43,7 @@ load-plugins=
 output-format=text
 
 # Include message's id in output
-include-ids=no
+include-ids=yes
 
 # Put messages in a separate file for each module / package specified on the
 # command line instead of printing them on stdout. Reports (if any) will be
@@ -68,7 +68,7 @@ comment=no
 [SIMILARITIES]
 
 # Minimum lines number of a similarity.
-min-similarity-lines=4
+min-similarity-lines=2
 
 # Ignore comments when computing similarities.
 ignore-comments=yes
@@ -231,7 +231,7 @@ deprecated-modules=regsub,string,TERMIOS,Bastion,rexec
 
 # Create a graph of every (i.e. internal and external) dependencies in the
 # given file (report RP0402 must not be disabled)
-import-graph=
+import-graph=graph.png
 
 # Create a graph of external dependencies in the given file (report RP0402 must
 # not be disabled)
@@ -239,7 +239,7 @@ ext-import-graph=
 
 # Create a graph of internal dependencies in the given file (report RP0402 must
 # not be disabled)
-int-import-graph=
+int-import-graph=internal.png
 
 
 [EXCEPTIONS]
