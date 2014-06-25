@@ -8,12 +8,13 @@
             http://gnosis.cx/publish/programming/charming_python_6.html
 '''
 
-import requests
 import time
 from datetime import datetime
 import random
 import md5
 import logging
+
+import requests
 import curses
 
 
@@ -27627,9 +27628,6 @@ def WaitingProgress(startTime:Number, targetTime:Number):Number{
     tmpTime2.setTime(((startTime * 1000) - ((1000 * 60) * 60)));
     return (((GameTime.getTime() - tmpTime2.getTime()) / (tmpTime.getTime() - tmpTime2.getTime())));
 }
-
-
-
 
 def show_login_screen(evt:Event=undefined, noBC:Boolean=False, noCookie:Boolean=False):void{
     var playername:String;
