@@ -5136,47 +5136,47 @@ class Quest():
         '''
             setup Quest object from savegame
         '''
+        sg_idx = SG['QUEST']['OFFER']
+        qst = TXT['QUEST']
+        offs = qst['SCOUT']['TITLE']
 
+        self.qtype = int(save[sg_idx['TYPE1'] + qid])
 
-def get_quest_title(quest_id):
-    '''
-        gets quest title snippet
+        for case in Switch(self.qtype):
+            if case(1):
+                offs = qst['SCOUT']['TITLE'] + get_quest_random(qid, 20, 0)
+                break
+            if case(2):
+                offs = qst['COLLECT']['TITLE'] + get_quest_random(qid, 20, 0)
+                break
+            if case(3):
+                offs = qst['FETCH']['TITLE'] + get_quest_random(qid, 20, 0)
+            if case(4):
+                offs = qst['KILL']['TITLE']
+                offs -= int(savegame[sg_idx['ENEMY1'] + qid]) - 1
+                break
+            if case(5):
+                offs = qst['TRANSPORT']['TITLE'] + get_quest_random(qid, 21, 0)
+                break
+            if case(6):
+                offs = qst['ESCORT']['TITLE'] + get_quest_random(qid, 23, 0)
+                break
 
-        @param int quest_id
-        @return string
-    '''
-    sg_idx = SG['QUEST']['OFFER']
-    qst = TXT['QUEST']
-    offs = qst['SCOUT']['TITLE']
-    quest_type = int(savegame[sg_idx['TYPE1'] + quest_id])
+        if texts[offs]:
+            self.title = texts[offs]
 
-    for case in Switch(quest_type):
-        if case(1):
-            offs = qst['SCOUT']['TITLE'] + get_quest_random(quest_id, 20, 0)
-            break
-        if case(2):
-            offs = qst['COLLECT']['TITLE'] + get_quest_random(quest_id, 20, 0)
-            break
-        if case(3):
-            offs = qst['FETCH']['TITLE'] + get_quest_random(quest_id, 20, 0)
-        if case(4):
-            offs = qst['KILL']['TITLE']
-            offs -= int(savegame[sg_idx['ENEMY1'] + quest_id]) - 1
-            break
-        if case(5):
-            offs = qst['TRANSPORT']['TITLE'] + get_quest_random(quest_id, 21, 0)
-            break
-        if case(6):
-            offs = qst['ESCORT']['TITLE'] + get_quest_random(quest_id, 23, 0)
-            break
+        # Error msg if no quest title found
+        # return 'ERR QID=%d QT=%d OFS=%d' % (
+        #     quest_id, quest_type, offs
+        # )
 
-    if texts[offs]:
-        return texts[offs]
+    def get_title(self):
+        '''
+            gets quest title snippet
 
-    # Error msg if no quest title found
-    return 'ERR QID=%d QT=%d OFS=%d' % (
-        quest_id, quest_type, offs
-    )
+            @return string
+        '''
+        return self.title
 
 
 def get_quest_random(quest_id, random_range, random_mod):
@@ -5305,6 +5305,19 @@ def get_quest_bg():
     action = savegame[SG['ACTION']['INDEX']]
     location = savegame[SG['QUEST']['OFFER']['LOCATION1'] + action - 1]
     return LBL['SCR']['QUEST']['BG'][str(location)]
+
+
+def get_quest_title(quest_id):
+    '''
+        gets quest title snippet
+
+        @param int quest_id
+        @return string
+
+        TODO: obsolete
+    '''
+    quest = Quest.from_sg(quest_id, savegame)
+    return quest.get_title()
 
 
 #------------------------------------------------------------------------------
