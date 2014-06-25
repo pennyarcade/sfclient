@@ -5124,51 +5124,55 @@ def time_calc_event(evt):
 
 class Quest():
     '''
-        handle quest data
+        harndle qurest data
     '''
-    def __init__(self, qtype, qid, qlevel, qmonster, qtime, qitem):
+    def __init__(
+        self, qtype, qid, qlevel, qmonster,
+        qexp, qgold, qtime, qlocation, qitem
+    ):
         '''
             Setup Quest object
         '''
-        pass
+
+        #set members directly
+        self.qtype = qtype
+        self.qid = qid
+        self.qlevel = qlevel
+        self.qmonster = qmonster
+        self.qtime = qtime
+        self.qitem = qitem
+        self.qexp = qexp
+        self.qgold = qgold
+        self.qlocation = qlocation
+
+        self.qtitle = ''
+        self.qtext = ''
+
+        # set derived members
+        self.get_title()
+        self.get_text()
 
     def from_sg(self, qid, save):
         '''
             setup Quest object from savegame
         '''
+        # Constants
         sg_idx = SG['QUEST']['OFFER']
-        qst = TXT['QUEST']
-        offs = qst['SCOUT']['TITLE']
 
-        self.qtype = int(save[sg_idx['TYPE1'] + qid])
+        # set members directly from savegame
+        qtype = int(save[sg_idx['TYPE1'] + qid])
+        qlevel = int(save[sg_idx['LEVEL1'] + qid])
+        qmonster = int(save[sg_idx['ENEMY1'] + qid])
+        qexp = int(save[sg_idx['EXP1'] + qid])
+        qgold = int(save[sg_idx['GOLD1'] + qid])
+        qtime = int(save[sg_idx['DURATION1'] + qid])
+        qlocation = int(save[sg_idx['LOCATION1'] + qid])
+        qitem = int(save[sg_idx['REWARD_ITM1'] + qid])
 
-        for case in Switch(self.qtype):
-            if case(1):
-                offs = qst['SCOUT']['TITLE'] + get_quest_random(qid, 20, 0)
-                break
-            if case(2):
-                offs = qst['COLLECT']['TITLE'] + get_quest_random(qid, 20, 0)
-                break
-            if case(3):
-                offs = qst['FETCH']['TITLE'] + get_quest_random(qid, 20, 0)
-            if case(4):
-                offs = qst['KILL']['TITLE']
-                offs -= int(savegame[sg_idx['ENEMY1'] + qid]) - 1
-                break
-            if case(5):
-                offs = qst['TRANSPORT']['TITLE'] + get_quest_random(qid, 21, 0)
-                break
-            if case(6):
-                offs = qst['ESCORT']['TITLE'] + get_quest_random(qid, 23, 0)
-                break
-
-        if texts[offs]:
-            self.title = texts[offs]
-
-        # Error msg if no quest title found
-        # return 'ERR QID=%d QT=%d OFS=%d' % (
-        #     quest_id, quest_type, offs
-        # )
+        return self.__init__(
+            qtype, qid, qlevel, qmonster, qexp,
+            qgold, qtime, qlocation, qitem
+        )
 
     def get_title(self):
         '''
@@ -5176,124 +5180,184 @@ class Quest():
 
             @return string
         '''
-        return self.title
+        # check for cached value
+        if not self.qtitle:
+            qst = TXT['QUEST']
+            offs = qst['SCOUT']['TITLE']
 
+            for case in Switch(self.qtype):
+                if case(1):
+                    offs = qst['SCOUT']['TITLE'] + self.get_random(20, 0)
+                    break
+                if case(2):
+                    offs = qst['COLLECT']['TITLE'] + self.get_random(20, 0)
+                    break
+                if case(3):
+                    offs = qst['FETCH']['TITLE'] + self.get_random(20, 0)
+                if case(4):
+                    offs = qst['KILL']['TITLE']
+                    offs -= self.qmonster - 1
+                    break
+                if case(5):
+                    offs = qst['TRANSPORT']['TITLE'] + self.get_random(21, 0)
+                    break
+                if case(6):
+                    offs = qst['ESCORT']['TITLE'] + self.get_random(23, 0)
+                    break
 
-def get_quest_random(quest_id, random_range, random_mod):
-    '''
-        Get quest random number
+            if texts[offs]:
+                self.qtitle = texts[offs]
 
-        @param int quest_id
-        @param int random_range
-        @param int random_mod
-        @return int
-    '''
-    q_index = SG['QUEST']['OFFER']
-    checksum = 0
+            # Error msg if no quest title found
+            # return 'ERR QID=%d QT=%d OFS=%d' % (
+            #     quest_id, quest_type, offs
+            # )
 
-    if random_mod != 1:
-        mod_idx += q_index['LEVEL1']
-    if random_mod != 2:
-        mod_idx += q_index['TYPE1']
-    if random_mod != 3:
-        mod_idx += q_index['ENEMY1']
+        return self.qtitle
 
-    checksum += savegame[mod_idx + quest_id]
-    checksum += savegame[q_index['LOCATION1'] + quest_id]
-    checksum += savegame[q_index['DURATION1'] + quest_id]
-    checksum += savegame[q_index['EXP1'] + quest_id]
-    checksum += savegame[q_index['GOLD1'] + quest_id]
-    checksum += savegame[
-        q_index['REWARD_ITM1'] + SG['ITM']['TYP'] + quest_id * SG['ITM']['SIZE']
-    ]
-    checksum += savegame[
-        q_index['REWARD_ITM1'] + SG['ITM']['PIC'] + quest_id * SG['ITM']['SIZE']
-    ]
+    def get_text(self):
+        '''
+            get quest description
 
-    return checksum % random_range
+            @return str
+        '''
+        if not self.qtext:
+            # Constants
+            idx = TXT['QUEST']
+        
+            self.qtext = ''.join(
+                '\"',
+                texts[idx['OPENER'] + self.get_random(10, 3)],
+                ' '
+            )
 
+            for case in Switch(self.qid):
+                if case(1):
+                    self.qtext += ' '.join(
+                        texts[idx['LOCATION'] + self.qlocation - 1],
+                        texts[
+                            idx['SCOUT']['TASK1'] + self.get_random(20, 0)
+                        ],
+                        texts[
+                            idx['SCOUT']['TASK2'] + self.get_random(10, 1)
+                        ],
+                        ' '
+                    )
+                    break
 
-def get_quest_text(quest_id):
-    '''
-        get quest description
+                if case(2):
+                    self.qtext += ' '.join(
+                        texts[
+                            idx['COLLECT']['WHAT'] + self.get_random(20, 0)
+                        ],
+                        texts[idx['LOCATION'] + self.qlocation - 1],
+                        texts[
+                            idx['COLLECT']['AMOUNT'] + self.get_random(11, 1)
+                        ].replace(
+                            "%", 
+                            str(self.get_random(10, 2) + 2)
+                        ),
+                        ' '
+                    )
+                    break
 
-        @param int quest_id
-        @return str
-    '''
-    sg_idx = SG['QUEST']['OFFER']
-    idx = TXT['QUEST']
-    location = int(savegame[sg_idx['LOCATION1'] + quest_id])
+                if case(3):
+                    self.qtext += ' '.join(
+                        texts[
+                            idx['FETCH']['WHAT'] + self.get_random(20, 0)
+                        ],
+                        texts[idx['LOCATION'] + self.qlocation - 1],
+                        texts[
+                            idx['FETCH']['FROM'] + self.get_random(15, 1)
+                        ],
+                        texts[
+                            idx['FETCH']['PRECLOSER'] + self.get_random(20, 0)
+                        ],
+                        ' '
+                    )
+                    break
 
-    quest_text = ''
-    quest_text += '\"%s ' % (
-        texts[idx['OPENER'] + get_quest_random(quest_id, 10, 3)]
-    )
+                if case(4):
+                    self.qtext += ' '.join(
+                        texts[idx['KILL']['LOCATION'] + self.qlocation - 1],
+                        texts[
+                            idx['KILL']['WHOM'] - self.qmonster - 1
+                        ],
+                        texts[
+                            idx['KILL']['PRECLOSER'] + self.get_random(10, 1)
+                        ],
+                        " "
+                    )
+                    break
 
-    for case in Switch(int(savegame[SG['QUEST_OFFER_TYPE1'] + quest_id])):
-        if case(1):
-            quest_text += texts[idx['LOCATION'] + location - 1] + " "
-            quest_text += texts[
-                idx['SCOUT']['TASK1'] + get_quest_random(quest_id, 20, 0)
-            ] + " "
-            quest_text += texts[
-                idx['SCOUT']['TASK2'] + get_quest_random(quest_id, 10, 1)
-            ] + " "
-            break
-        if case(2):
-            quest_text += texts[
-                idx['COLLECT']['WHAT'] + get_quest_random(quest_id, 20, 0)
-            ] + " "
-            quest_text += texts[idx['LOCATION'] + location - 1] + " "
-            quest_text += texts[
-                idx['COLLECT']['AMOUNT'] + get_quest_random(quest_id, 11, 1)
-            ].replace("%", str(get_quest_random(quest_id, 10, 2) + 2)) + " "
-            break
-        if case(3):
-            quest_text += texts[
-                idx['FETCH']['WHAT'] + get_quest_random(quest_id, 20, 0)
-            ] + " "
-            quest_text += texts[idx['LOCATION'] + location - 1] + " "
-            quest_text += texts[
-                idx['FETCH']['FROM'] + get_quest_random(quest_id, 15, 1)
-            ] + " "
-            quest_text += texts[
-                idx['FETCH']['PRECLOSER'] + get_quest_random(quest_id, 20, 0)
-            ] + " "
-            break
-        if case(4):
-            quest_text += texts[idx['KILL']['LOCATION'] + location - 1] + " "
-            quest_text += texts[
-                idx['KILL']['WHOM'] - savegame[sg_idx['ENEMY1'] + quest_id] - 1
-            ] + " "
-            quest_text += texts[
-                idx['KILL']['PRECLOSER'] + get_quest_random(quest_id, 10, 1)
-            ] + " "
-            break
-        if case(5):
-            quest_text += texts[
-                idx['TRANSPORT']['WHAT'] + get_quest_random(quest_id, 21, 0)
-            ] + " "
-            quest_text += texts[
-                idx['TRANSPORT']['LOCATION'] + location - 1
-            ] + " "
-            quest_text += texts[
-                idx['TRANSPORT']['PRECLOSER'] + get_quest_random(
-                    quest_id, 10, 1
-                )
-            ] + " "
-            break
-        if case():
-            quest_text += texts[
-                idx['ESCORT']['WHOM'] + get_quest_random(quest_id, 23, 0)
-            ] + " "
-            quest_text += texts[
-                idx['ESCORT']['LOCATION'] + location - 1
-            ] + " "
-            quest_text += texts[
-                idx['ESCORT']['PRECLOSER'] + get_quest_random(quest_id, 23, 0)
-            ] + " "
+                if case(5):
+                    self.qtext += ' '.join(
+                        texts[
+                            idx['TRANSPORT']['WHAT'] + self.get_random(21, 0)
+                        ],
+                        texts[
+                            idx['TRANSPORT']['LOCATION'] + self.qlocation - 1
+                        ],
+                        texts[
+                            idx['TRANSPORT']['PRECLOSER'] 
+                            + self.get_random(10, 1)
+                        ],
+                        " "
+                    )
+                    break
 
-    return quest_text
+                if case():
+                    self.qtext += ' '.join(
+                        texts[
+                            idx['ESCORT']['WHOM'] + self.get_random(23, 0)
+                        ],
+                        texts[
+                            idx['ESCORT']['LOCATION'] + self.qlocation - 1
+                        ],
+                        texts[
+                            idx['ESCORT']['PRECLOSER'] + self.get_random(23, 0)
+                        ],
+                        " "
+                    )
+
+        return self.qtext
+
+    def get_random(self, rrange, rmod):
+        '''
+            Get quest random number
+
+            @param int rrange
+            @param int rmod
+
+            @return int
+        '''
+        checksum = 0
+
+        if rmod != 1:
+            modifier = self.qlevel
+        if rmod != 2:
+            modifier = self.qtype
+        if rmod != 3:
+            modifier = self.qmonster
+
+        checksum += modifier
+        checksum += self.qlocation
+        checksum += self.qtime
+        checksum += self.qexp
+        checksum += self.qgold
+        checksum += self.qitem.typ
+        checksum += self.qitem.pic
+
+        return checksum % rrange
+
+    def get_bg(self):
+        '''
+            Get quest background index
+
+            @return int
+        '''
+        return LBL['SCR']['QUEST']['BG'][str(self.qlocation)]
+
 
 
 def get_quest_bg():
@@ -5301,6 +5365,8 @@ def get_quest_bg():
         Get quest background index
 
         @return int
+
+        TODO: obsolete
     '''
     action = savegame[SG['ACTION']['INDEX']]
     location = savegame[SG['QUEST']['OFFER']['LOCATION1'] + action - 1]
@@ -5318,6 +5384,34 @@ def get_quest_title(quest_id):
     '''
     quest = Quest.from_sg(quest_id, savegame)
     return quest.get_title()
+
+
+def get_quest_text(quest_id):
+    '''
+        get quest description
+
+        @param int quest_id
+        @return str
+
+        TODO: obsolete
+    '''
+    quest = Quest.from_sg(quest_id, savegame)
+    quest.get_text()
+
+
+def get_quest_random(quest_id, random_range, random_mod):
+    '''
+        Get quest random number
+
+        @param int quest_id
+        @param int random_range
+        @param int random_mod
+        @return int
+
+        TODO: obsolete
+    '''
+    quest = Quest.from_sg(quest_id, savegame)
+    return quest.get_random(random_range, random_mod)
 
 
 #------------------------------------------------------------------------------
