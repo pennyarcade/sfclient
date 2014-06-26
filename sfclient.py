@@ -5811,6 +5811,216 @@ def get_weapon_level(wpn_class, wpn_pic):
 
 
 #------------------------------------------------------------------------------
+# Savegame handling
+
+class Savegame:
+    '''
+        handle savegame data
+    '''
+    def __init__():
+        pass
+
+
+def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
+    '''
+        parse savegame string
+    '''
+
+    # parse into array of (mostly) numbers
+    savegame = ("0/" + str_save_game).split("/")
+
+    # Extract tower level from mount id
+    if not no_spoil:
+        tower_level = int((savegame[SG['MOUNT']] / 65536))
+
+    savegame[SG['MOUNT']] -= tower_level * 65536
+
+    # Extract mirror pieces from gender entry
+    bin_str = int(savegame[SG['GENDER']]).tostr(2)
+
+    # TODO: better way to zero fill?
+    while (len(bin_str) < 32):
+        bin_str = "0" + bin_str
+
+    mirror_pieces = list()
+    for i in range(13):
+        mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
+
+    has_mirror = bin_str.substr(23, 1) == "1"
+    can_rob = bin_str.substr(22, 1) == "1"
+
+    if bin_str.substr(31) == "1":
+        savegame[SG['GENDER']] = 1
+    else:
+        savegame[SG['GENDER']] = 2
+
+    if (savegame[SG['ALBUM']] - 10000) > content_max:
+        savegame[SG['ALBUM']] = content_max + 10000
+
+    for i in range(SG['BACKPACK']['SIZE']):
+        expand_item_structure(
+            savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(SG['INVENTORY']['SIZE']):
+        expand_item_structure(
+            savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
+        )
+
+    for i in range(6):
+        expand_item_structure(
+            savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+        expand_item_structure(
+            savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(3):
+        expand_item_structure(
+            savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE))
+        )
+
+    debug_info = ""
+    for i in range(len(savegame)):
+        debug_info += str(i) + "=" + savegame[i] + ", "
+
+    if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
+        level_up = True
+        pulse_char = True
+
+    last_level = int(savegame[SG['LEVEL']])
+
+    friend_link = "http://" + server + "/index.php?rec="
+    friend_link += savegame[SG['PLAYER']['ID']]
+
+    if len(old_ach) != 0:
+        for i in range(8):
+            if ach_level(savegame, i) > old_ach[i]:
+                old_ach[i] = -1 * ach_level(savegame, i)
+            else:
+                old_ach[i] = ach_level(savegame, i)
+    else:
+        for i in range(8):
+            old_ach[i] = ach_level(savegame, i)
+
+    if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
+        album_effect = True
+    old_album = savegame[SG['ALBUM']]
+
+    if fill_face_variables:
+        char_volk = savegame[SG['RACE']]
+        char_male = (savegame[SG['GENDER']] == 1)
+        char_class = savegame[SG['CLASS']]
+        char_mouth = savegame[SG['FACE']['1']]
+        char_beard = savegame[SG['FACE']['5']]
+        char_nose = savegame[SG['FACE']['6']]
+        char_eyes = savegame[SG['FACE']['4']]
+        char_brows = savegame[SG['FACE']['3']]
+        char_ears = savegame[SG['FACE']['7']]
+        char_hair = savegame[SG['FACE']['2']]
+        char_special = savegame[SG['FACE']['8']]
+        char_special2 = savegame[SG['FACE']['9']]
+
+        i = char_hair
+
+        char_color = 0
+        while i > 100:
+            i -= 100
+            char_color += 1
+
+    if not no_spoil:
+        if text_dir == "right":
+            actor[IF['GOLD']].x = IF['LBL']['GOLDPILZE_X']
+
+            with actor[LBL['IF']['GOLD']]:
+                text = str(int(savegame[SG['GOLD']] / 100))
+                x = IF['LBL']['GOLDPILZE_X'] - textWidth - 10
+            actor[IF['SILBER']].x = actor[LBL['IF']['GOLD']].x - width - 10
+
+            with (actor[LBL['IF']['SILBER']]):
+                if int(savegame[SG_GOLD] % 100) < 10:
+                    text = "0"
+                else:
+                    text = ""
+                text += str(int(savegame[SG['GOLD']] % 100))
+                x = actor[IF['SILBER']].x - textWidth - 10
+
+            with actor[LBL['IF']['PILZE']]:
+                text = savegame[SG['MUSH']]
+                x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
+
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+        else:
+            with (actor[LBL['IF']['SILBER']]):
+                if int(savegame[SG_GOLD] % 100) < 10:
+                    text = "0"
+                else:
+                    text = ""
+                text += str(int(savegame[SG['GOLD']] % 100))
+                x = actor[IF['SILBER']].x - textWidth - 10
+
+            actor[IF['GOLD']].x = actor[LBL['IF']['SILBER']].x - 24 - 10
+
+            with actor[LBL['IF']['GOLD']]:
+                text = str(int(savegame[SG['GOLD']] / 100))
+                x = actor[IF['GOLD']].x - textWidth - 10
+
+            with actor[LBL['IF']['PILZE']]:
+                text = savegame[SG['MUSH']]
+                x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
+
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+
+    add(IF['STATS'])
+    if int(savegame[SG['SERVER']['TIME']]) > 0:
+        server_time.setTime(
+            1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
+        )
+        local_time = datetime.now()
+        time_calc.start()
+
+    if session_id == "":
+        log.error(''.join(
+            "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
+            "PHP-Tunneling wird deaktiviert."
+        ))
+        show_login_screen()
+    else:
+        log.debug("Session ID für PHP Tunneling:", session_id)
+
+    if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
+        gilden_id = int(savegame[SG['GUILD']['INDEX']])
+        if gilden_id != 0:
+            send_action(
+                ACT['REQUEST']['GUILD'],
+                savegame[SG['GUILD']['INDEX']]
+            )
+
+    sg_idx = SG['UNREAD']['MESSAGES']
+    if (int(savegame[sg_idx]) > 0) and (not on_stage(POST['LIST'])):
+        pulse_post = True
+
+    if int(savegame[SG['LOCKDURATION']]) != 0:
+        request_logout()
+
+    if next_pxl < 0:
+        next_pxl = abs(next_pxl)
+
+
+
+#------------------------------------------------------------------------------
 # request functions
 
 # TODO: How to do Event stuff?
@@ -12306,95 +12516,978 @@ def ShowSignupScreen(evt:Event=None):void{
 }
 
 
+'''
+
+#------------------------------------------------------------------------------
+# low level graphic stuff
+
+'''
+
+def VisibleToFront(... _args):void{
+    var i:* = 0;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
+    i = 0;
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    VisibleToFront(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
+                };
+                return;
+            };
+            var _local3 = actor[actor_ids[i]];
+            with (_local3) {
+                if (on_stage(actor_ids[i])){
+                    add(actor_ids[i]);
+                };
+            };
+        };
+        i = (i + 1);
+    };
+}
+
+def add(actor_id:int, pos_x:int=None, pos_y:int=None, scale_x:Number=None, scale_y:Number=None, vis=None, containerID:int=-1):void{
+    var i:* = 0;
+    var req:* = null;
+    var i_bunch:* = 0;
+    var actor_id:* = actor_id;
+    var pos_x:* = pos_x;
+    var pos_y:* = pos_y;
+    var scale_x:* = scale_x;
+    var scale_y:* = scale_y;
+    var vis:* = vis;
+    var containerID:int = containerID;
+    i = actor_id;
+    if ((actor[actor_id] is Sound)){
+        return;
+    };
+    if ((actor[actor_id] is Array)){
+        i_bunch = 0;
+        while (i_bunch < actor[actor_id].length) {
+            if (actor[actor_id][i_bunch] == actor_id){
+                return;
+            };
+            add(actor[actor_id][i_bunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
+            i_bunch = (i_bunch + 1);
+        };
+        return;
+    };
+    if ((actor[i] is Loader)){
+        if (actorLoaded[i] == 0){
+            load(i);
+        };
+    };
+    var _local9 = actor[i];
+    with (_local9) {
+        if (pos_x){
+            x = pos_x;
+        };
+        if (pos_y){
+            y = pos_y;
+        };
+        if (scale_x){
+            scaleX = size_x;
+        };
+        if (scale_y){
+            scaleY = size_y;
+        };
+        if (vis !== None){
+            visible = Boolean(vis);
+        };
+    };
+    if (containerID == -1){
+        addChild(actor[i]);
+    } else {
+        actor[containerID].addChild(actor[i]);
+    };
+}
+
+def Move(actor_id:int, pos_x:int, pos_y:int):void{
+    var i:* = 0;
+    var actor_id:* = actor_id;
+    var pos_x:* = pos_x;
+    var pos_y:* = pos_y;
+    if ((actor[actor_id] is Array)){
+        i = 0;
+        while (i < actor[actor_id].length) {
+            Move(actor[actor_id][i], pos_x, pos_y);
+            i = (i + 1);
+        };
+    } else {
+        var _local5 = actor[actor_id];
+        with (_local5) {
+            x = pos_x;
+            y = pos_y;
+        };
+    };
+}
+
+def AddSome(... _args):void{
+    var i:int;
+    var i_bunch:int;
+    i = 0;
+    while (i < _args.length) {
+        if (actor[_args[i]]){
+            if ((actor[_args[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[_args[i]].length) {
+                    add(actor[_args[i]][i_bunch]);
+                    i_bunch++;
+                };
+                return;
+            };
+            add(_args[i]);
+        };
+        i++;
+    };
+}
+
+def remove(... _args):void{
+    var i:* = 0;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
+    i = 0;
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    remove(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
+                };
+                return;
+            };
+            if ((actor[actor_ids[i]] is Sound)){
+                return;
+            };
+            var _local3 = actor[actor_ids[i]];
+            with (_local3) {
+                if (parent){
+                    parent.removeChild(actor[actor_ids[i]]);
+                };
+            };
+        };
+        i = (i + 1);
+    };
+}
+
+def remove_all(alsoPersistent:Boolean=False):void{
+    var i:int;
+    i = 0;
+    while (i < actor.length) {
+        if (actor[i]){
+            if (!(actor[i] is Array)){
+                if (((!(actorPersistent[i])) or (alsoPersistent))){
+                    remove(i);
+                };
+            };
+        };
+        i++;
+    };
+    ExternalInterface.call("hideSocial");
+}
+
+def on_stage(actor_id):Boolean{
+    if ((actor[actor_id] is DisplayObject)){
+        return (Boolean(getChildByName(actor[actor_id].name)));
+    };
+    return (False);
+}
+
+def show(... _args):void{
+    var i:* = 0;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
+    i = 0;
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    show(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
+                };
+                return;
+            };
+            var _local3 = actor[actor_ids[i]];
+            with (_local3) {
+                visible = True;
+            };
+        };
+        i = (i + 1);
+    };
+}
+
+def hide(... _args):void{
+    var i:* = 0;
+    var i_bunch:* = 0;
+    var actor_ids:* = _args;
+    i = 0;
+    while (i < actor_ids.length) {
+        if (actor[actor_ids[i]]){
+            if ((actor[actor_ids[i]] is Array)){
+                i_bunch = 0;
+                while (i_bunch < actor[actor_ids[i]].length) {
+                    hide(actor[actor_ids[i]][i_bunch]);
+                    i_bunch = (i_bunch + 1);
+                };
+                return;
+            };
+            var _local3 = actor[actor_ids[i]];
+            with (_local3) {
+                visible = False;
+            };
+        };
+        i = (i + 1);
+    };
+}
+
+def Visible(actor_id):Boolean{
+    if ((actor[actor_id] is DisplayObject)){
+        return (((Boolean(getChildByName(actor[actor_id].name))) and (actor[actor_id].visible)));
+    };
+    return (False);
+}
+
+def SetAlpha(actor_id:int, alphaValue:Number){
+    var i:int;
+    if ((actor[actor_id] is Array)){
+        i = 0;
+        while (i < actor[actor_id].length) {
+            SetAlpha(actor[actor_id][i], alphaValue);
+            i++;
+        };
+    } else {
+        if (actor[actor_id].hasOwnProperty("alpha")){
+            actor[actor_id].alpha = alphaValue;
+        };
+    };
+}
+
+def GetAlpha(actor_id:int):Number{
+    var i:int;
+    var tmpAlpha:Number;
+    tmpAlpha = 0;
+    if ((actor[actor_id] is Array)){
+        i = 0;
+        while (i < actor[actor_id].length) {
+            if (GetAlpha(actor[actor_id][i]) > tmpAlpha){
+                tmpAlpha = GetAlpha(actor[actor_id][i]);
+            };
+            i++;
+        };
+        return (tmpAlpha);
+    };
+    if (actor[actor_id].hasOwnProperty("alpha")){
+        return (actor[actor_id].alpha);
+    };
+    return (0);
+}
+
+def FadeIn(actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1){
+    var fadeTimer:* = null;
+    var currentAlpha:* = NaN;
+    var FadeInEvent:* = null;
+    var actor_id:* = actor_id;
+    var timerInterval:int = timerInterval;
+    var alphaStep:Number = alphaStep;
+    var alphaMax:int = alphaMax;
+    FadeInEvent = function (evt:TimerEvent){
+        currentAlpha = (currentAlpha + alphaStep);
+        if (currentAlpha >= alphaMax){
+            currentAlpha = alphaMax;
+            fadeTimer.stop();
+            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeInEvent);
+        };
+        SetAlpha(actor_id, currentAlpha);
+    };
+    fadeTimer = new Timer(timerInterval);
+    currentAlpha = GetAlpha(actor_id);
+    if (alphaStep <= 0){
+        return;
+    };
+    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeInEvent);
+    fadeTimer.start();
+    SetAlpha(actor_id, currentAlpha);
+}
+
+def fade_out(actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
+    var fadeTimer:* = null;
+    var currentAlpha:* = NaN;
+    var FadeOutEvent:* = null;
+    var actor_id:* = actor_id;
+    var timerInterval:int = timerInterval;
+    var alphaStep:Number = alphaStep;
+    var alphaMin:int = alphaMin;
+    var HideThen:Boolean = HideThen;
+    FadeOutEvent = function (evt:TimerEvent){
+        currentAlpha = (currentAlpha - alphaStep);
+        if (currentAlpha <= alphaMin){
+            currentAlpha = alphaMin;
+            fadeTimer.stop();
+            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeOutEvent);
+            if (HideThen){
+                hide(actor_id);
+            };
+        };
+        SetAlpha(actor_id, currentAlpha);
+    };
+    fadeTimer = new Timer(timerInterval);
+    currentAlpha = GetAlpha(actor_id);
+    if (alphaStep <= 0){
+        return;
+    };
+    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
+    fadeTimer.start();
+    SetAlpha(actor_id, currentAlpha);
+}
+
+def AddFilter(actor_id:int, filter:Array):void{
+    actor[actor_id].filters = filter;
+}
+
+def set_font(fontName:String){
+    var fontName:* = fontName;
+    gameFont = fontName;
+    font_embedded = True;
+    if ((((((fontName == "Verdana")) or ((fontName == "Arial Narrow")))) or ((fontName == "Geeza Pro")))){
+        font_embedded = False;
+        sizeMod = -6;
+    };
+    trc(("Font chosen: " + fontName));
+    var _local3 = FontFormat_ToiletAura;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 35);
+        color = CLR_BLACK;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackErrorHalf;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ATTACK_ERROR_OFFLINE_HALF;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackErrorOnlineHalf;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ATTACK_ERROR_ONLINE_HALF;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Error;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ERROR;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Default;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFORANGE;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HighStakes;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_RED;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HighStakesHighLight;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_RED_HIGHLIGHT;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HighStakesGrayed;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_RED_GRAYED;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HighStakesHighLightGrayed;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_RED_HIGHLIGHT_GRAYED;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Book;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = 0;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_BookHint;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 18);
+        color = 136;
+        align = "center";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_BookLeft;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 16);
+        color = 0;
+        align = "left";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Bullshit;
+    with (_local3) {
+        font = fontName;
+        size = 14;
+        color = CLR_SFORANGE;
+        align = "left";
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_AttackLabel;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Speech;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_WHITE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Grayed;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_GRAYED;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GrayedHighLight;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_GRAYED_HL;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_ClassError;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_ERROR;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = font_format_chat;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = font_format_chatWhisper;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_CHAT_WHISPER;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = font_format_chatError;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_ERROR;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildBuilding;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildMoney;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_DefaultLeft;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Highlight;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFHIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HighlightWhisper;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFHIGHLIGHT_WHISPER;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Heading;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 30);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_ScreenTitle;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 34);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Popup;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PopupCompare;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_OFFLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PopupCompareSum;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_ONLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PopupCompareBetter;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_GREEN;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PopupCompareWorse;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_RED;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PopupCompareBetterHL;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_GREEN_HIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PopupCompareWorseHL;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_SYSMSG_RED_HIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_EpicItemQuote;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_EPICITEMQUOTE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_ItemEnchantment;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_ITEMENCHANTMENT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_LOGoutLink;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 22);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_LOGoutLinkHighLight;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 22);
+        color = CLR_SFHIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HallListHeading;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HallListText;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildHallNoAttack;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_NOATTACK;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_HallListHighLight;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_SFHIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_AttribBonus;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_ATTRIBBONUS;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_AttribTemp;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_SYSMSG_GREEN;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Attrib;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PayIcon;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 19);
+        color = CLR_WHITE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListHeading;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 26);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        bold = True;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListText;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SFORANGE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListTextSys;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SYSMSG;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListText;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_OFFLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextOnline;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ONLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackError;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ATTACK_ERROR_OFFLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackErrorOnline;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ATTACK_ERROR_ONLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackErrorOnlinePopup;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_ATTACK_ERROR_ONLINE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackOk;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_ATTACK_OK;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_GuildListTextAttackOkPopup;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_ATTACK_OK;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListHighLight;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SFHIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListHighLightSys;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SYSMSGHIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListTextSysRed;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SYSMSG_RED;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListHighLightSysRed;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SYSMSG_RED_HIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListTextSysGreen;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SYSMSG_GREEN;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_PostListHighLightSysGreen;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_SYSMSG_GREEN_HIGHLIGHT;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_QuestBar;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_WHITE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_TimeBar;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 24);
+        color = CLR_WHITE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_LifeBar;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 20);
+        color = CLR_WHITE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_Damage;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 30);
+        color = CLR_WHITE;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_CriticalDamage;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 34);
+        color = CLR_RED;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+    _local3 = FontFormat_CatapultDamage;
+    with (_local3) {
+        font = fontName;
+        size = (sizeMod + 38);
+        color = CLR_ATTACK_ERROR_ONLINE_HALF;
+        align = text_dir;
+        leftMargin = 0;
+        kerning = True;
+    };
+}
+
+
 
 '''
 
 #------------------------------------------------------------------------------
-
-def pixel_success(evt):
-    '''
-        TODO: What does this do?
-    '''
-    pixel_data = pixel_loader.data
-    if (
-        (pixel_data.lower().substr(0, 7) == "http://")
-        or (pixel_data.lower().substr(0, 8) == "https://")
-    ):
-        ExternalInterface.call("loadpixel", pixel_data)
-
-    # pixel_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    # pixel_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    # pixel_loader.removeEventListener(
-    #     SecurityErrorEvent.SECURITY_ERROR, pixel_failed
-    # )
-
-
-def pixel_failed(evt):
-    '''
-        TODO: Obsolete?
-    '''
-    #pixel_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    #pixel_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    #pixel_loader.removeEventListener(
-    #    SecurityErrorEvent.SECURITY_ERROR, pixel_failed
-    #)
-    pass
-
-
-def load_tracking_pixel(url=''):
-    '''
-        load tracking pixel
-    '''
-    req = null
-    variables = null
-    pixel_loader = null
-    pixel_success = null
-    pixel_failed = null
-    url = url
-
-    LOG.debug("Tracking Pixel Load:" + url)
-
-    # TODO: set via requests params
-    if (url.find("?") == -1):
-        url = url + "?random="
-    else:
-        url = url + "&random="
-
-    url += str(int((Math.random() * 100000)))
-    url += ("&had_account=") + int(had_account)
-
-    if param_reload_pixel:
-        log.debug("Tracking Pixel Reload Mode for:", url)
-        log.debug("CID userd", param_cid)
-        log.debug("Action", act)
-
-        #req = new URLRequest("index.php")
-        #req.method = URLRequestMethod.POST
-
-        #variables = new URLVariables()
-        #variables.pixel_url = url
-        #variables.pixel_cid = param_cid
-        #variables.pixel_player_id = savegame[SG_PLAYER_ID]
-        #variables.pixel_action = (((next_pxl == 0)) ? act : abs(next_pxl)
-
-        #req.data = variables
-
-        log_in_after_pixel = False
-        navigate_to_url(req, "_self")
-    else:
-        if param_internal_pixel:
-            # pixel_loader = new URLLoader()
-            # pixel_loader.add_event_listener(Event.COMPLETE, pixel_success)
-            # pixel_loader.add_event_listener(
-            #    IOErrorEvent.IO_ERROR, pixel_failed)
-            # pixel_loader.add_event_listener(
-            #   SecurityErrorEvent.SECURITY_ERROR, pixel_failed
-            # )
-            # pixel_loader.load(new URLRequest(url))
-            pass
-        else:
-            ExternalInterface.call("loadpixel", url)
-
+# unsorted stuff
 
 def do_act_zauberladen():
     '''
@@ -12438,204 +13531,6 @@ def do_act_schmiede():
         remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
     else:
         remove(SHAKES_DAY)
-
-
-def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
-    '''
-        parse savegame string
-    '''
-
-    # parse into array of (mostly) numbers
-    savegame = ("0/" + str_save_game).split("/")
-
-    # Extract tower level from mount id
-    if not no_spoil:
-        tower_level = int((savegame[SG['MOUNT']] / 65536))
-
-    savegame[SG['MOUNT']] -= tower_level * 65536
-
-    # Extract mirror pieces from gender entry
-    bin_str = int(savegame[SG['GENDER']]).tostr(2)
-
-    # TODO: better way to zero fill?
-    while (len(bin_str) < 32):
-        bin_str = "0" + bin_str
-
-    mirror_pieces = list()
-    for i in range(13):
-        mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
-
-    has_mirror = bin_str.substr(23, 1) == "1"
-    can_rob = bin_str.substr(22, 1) == "1"
-
-    if bin_str.substr(31) == "1":
-        savegame[SG['GENDER']] = 1
-    else:
-        savegame[SG['GENDER']] = 2
-
-    if (savegame[SG['ALBUM']] - 10000) > content_max:
-        savegame[SG['ALBUM']] = content_max + 10000
-
-    for i in range(SG['BACKPACK']['SIZE']):
-        expand_item_structure(
-            savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
-        )
-
-    for i in range(SG['INVENTORY']['SIZE']):
-        expand_item_structure(
-            savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
-        )
-
-    for i in range(6):
-        expand_item_structure(
-            savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
-        )
-        expand_item_structure(
-            savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
-        )
-
-    for i in range(3):
-        expand_item_structure(
-            savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE))
-        )
-
-    debug_info = ""
-    for i in range(len(savegame)):
-        debug_info += str(i) + "=" + savegame[i] + ", "
-
-    if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
-        level_up = True
-        pulse_char = True
-
-    last_level = int(savegame[SG['LEVEL']])
-
-    friend_link = "http://" + server + "/index.php?rec="
-    friend_link += savegame[SG['PLAYER']['ID']]
-
-    if len(old_ach) != 0:
-        for i in range(8):
-            if ach_level(savegame, i) > old_ach[i]:
-                old_ach[i] = -1 * ach_level(savegame, i)
-            else:
-                old_ach[i] = ach_level(savegame, i)
-    else:
-        for i in range(8):
-            old_ach[i] = ach_level(savegame, i)
-
-    if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
-        album_effect = True
-    old_album = savegame[SG['ALBUM']]
-
-    if fill_face_variables:
-        char_volk = savegame[SG['RACE']]
-        char_male = (savegame[SG['GENDER']] == 1)
-        char_class = savegame[SG['CLASS']]
-        char_mouth = savegame[SG['FACE']['1']]
-        char_beard = savegame[SG['FACE']['5']]
-        char_nose = savegame[SG['FACE']['6']]
-        char_eyes = savegame[SG['FACE']['4']]
-        char_brows = savegame[SG['FACE']['3']]
-        char_ears = savegame[SG['FACE']['7']]
-        char_hair = savegame[SG['FACE']['2']]
-        char_special = savegame[SG['FACE']['8']]
-        char_special2 = savegame[SG['FACE']['9']]
-
-        i = char_hair
-
-        char_color = 0
-        while i > 100:
-            i -= 100
-            char_color += 1
-
-    if not no_spoil:
-        if text_dir == "right":
-            actor[IF['GOLD']].x = IF['LBL']['GOLDPILZE_X']
-
-            with actor[LBL['IF']['GOLD']]:
-                text = str(int(savegame[SG['GOLD']] / 100))
-                x = IF['LBL']['GOLDPILZE_X'] - textWidth - 10
-            actor[IF['SILBER']].x = actor[LBL['IF']['GOLD']].x - width - 10
-
-            with (actor[LBL['IF']['SILBER']]):
-                if int(savegame[SG_GOLD] % 100) < 10:
-                    text = "0"
-                else:
-                    text = ""
-                text += str(int(savegame[SG['GOLD']] % 100))
-                x = actor[IF['SILBER']].x - textWidth - 10
-
-            with actor[LBL['IF']['PILZE']]:
-                text = savegame[SG['MUSH']]
-                x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
-
-            if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                enable_popup(
-                    LBL['IF']['PILZE'],
-                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                    )
-                )
-        else:
-            with (actor[LBL['IF']['SILBER']]):
-                if int(savegame[SG_GOLD] % 100) < 10:
-                    text = "0"
-                else:
-                    text = ""
-                text += str(int(savegame[SG['GOLD']] % 100))
-                x = actor[IF['SILBER']].x - textWidth - 10
-
-            actor[IF['GOLD']].x = actor[LBL['IF']['SILBER']].x - 24 - 10
-
-            with actor[LBL['IF']['GOLD']]:
-                text = str(int(savegame[SG['GOLD']] / 100))
-                x = actor[IF['GOLD']].x - textWidth - 10
-
-            with actor[LBL['IF']['PILZE']]:
-                text = savegame[SG['MUSH']]
-                x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
-
-            if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                enable_popup(
-                    LBL['IF']['PILZE'],
-                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                    )
-                )
-
-    add(IF['STATS'])
-    if int(savegame[SG['SERVER']['TIME']]) > 0:
-        server_time.setTime(
-            1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
-        )
-        local_time = datetime.now()
-        time_calc.start()
-
-    if session_id == "":
-        log.error(''.join(
-            "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
-            "PHP-Tunneling wird deaktiviert."
-        ))
-        show_login_screen()
-    else:
-        log.debug("Session ID für PHP Tunneling:", session_id)
-
-    if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
-        gilden_id = int(savegame[SG['GUILD']['INDEX']])
-        if gilden_id != 0:
-            send_action(
-                ACT['REQUEST']['GUILD'],
-                savegame[SG['GUILD']['INDEX']]
-            )
-
-    sg_idx = SG['UNREAD']['MESSAGES']
-    if (int(savegame[sg_idx]) > 0) and (not on_stage(POST['LIST'])):
-        pulse_post = True
-
-    if int(savegame[SG['LOCKDURATION']]) != 0:
-        request_logout()
-
-    if next_pxl < 0:
-        next_pxl = abs(next_pxl)
 
 
 def install_hall_popup(evt):
@@ -15702,6 +16597,93 @@ def loader_error(evt=None):
         so.data.img_url_index = img_url_index + 1
         so.data.snd_url_index = snd_url_index + 1
         so.flush()
+
+
+def pixel_success(evt):
+    '''
+        TODO: What does this do?
+    '''
+    pixel_data = pixel_loader.data
+    if (
+        (pixel_data.lower().substr(0, 7) == "http://")
+        or (pixel_data.lower().substr(0, 8) == "https://")
+    ):
+        ExternalInterface.call("loadpixel", pixel_data)
+
+    # pixel_loader.removeEventListener(Event.COMPLETE, pixel_success)
+    # pixel_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+    # pixel_loader.removeEventListener(
+    #     SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+    # )
+
+
+def pixel_failed(evt):
+    '''
+        TODO: Obsolete?
+    '''
+    #pixel_loader.removeEventListener(Event.COMPLETE, pixel_success)
+    #pixel_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+    #pixel_loader.removeEventListener(
+    #    SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+    #)
+    pass
+
+
+def load_tracking_pixel(url=''):
+    '''
+        load tracking pixel
+    '''
+    req = null
+    variables = null
+    pixel_loader = null
+    pixel_success = null
+    pixel_failed = null
+    url = url
+
+    LOG.debug("Tracking Pixel Load:" + url)
+
+    # TODO: set via requests params
+    if (url.find("?") == -1):
+        url = url + "?random="
+    else:
+        url = url + "&random="
+
+    url += str(int((Math.random() * 100000)))
+    url += ("&had_account=") + int(had_account)
+
+    if param_reload_pixel:
+        log.debug("Tracking Pixel Reload Mode for:", url)
+        log.debug("CID userd", param_cid)
+        log.debug("Action", act)
+
+        #req = new URLRequest("index.php")
+        #req.method = URLRequestMethod.POST
+
+        #variables = new URLVariables()
+        #variables.pixel_url = url
+        #variables.pixel_cid = param_cid
+        #variables.pixel_player_id = savegame[SG_PLAYER_ID]
+        #variables.pixel_action = (((next_pxl == 0)) ? act : abs(next_pxl)
+
+        #req.data = variables
+
+        log_in_after_pixel = False
+        navigate_to_url(req, "_self")
+    else:
+        if param_internal_pixel:
+            # pixel_loader = new URLLoader()
+            # pixel_loader.add_event_listener(Event.COMPLETE, pixel_success)
+            # pixel_loader.add_event_listener(
+            #    IOErrorEvent.IO_ERROR, pixel_failed)
+            # pixel_loader.add_event_listener(
+            #   SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+            # )
+            # pixel_loader.load(new URLRequest(url))
+            pass
+        else:
+            ExternalInterface.call("loadpixel", url)
+
+
 
 
 #------------------------------------------------------------------------------
@@ -23686,62 +24668,6 @@ def play(actor_id:int, endless:Boolean=False):void{
     };
 }
 
-def add(actor_id:int, pos_x:int=None, pos_y:int=None, scale_x:Number=None, scale_y:Number=None, vis=None, containerID:int=-1):void{
-    var i:* = 0;
-    var req:* = null;
-    var i_bunch:* = 0;
-    var actor_id:* = actor_id;
-    var pos_x:* = pos_x;
-    var pos_y:* = pos_y;
-    var scale_x:* = scale_x;
-    var scale_y:* = scale_y;
-    var vis:* = vis;
-    var containerID:int = containerID;
-    i = actor_id;
-    if ((actor[actor_id] is Sound)){
-        return;
-    };
-    if ((actor[actor_id] is Array)){
-        i_bunch = 0;
-        while (i_bunch < actor[actor_id].length) {
-            if (actor[actor_id][i_bunch] == actor_id){
-                return;
-            };
-            add(actor[actor_id][i_bunch], pos_x, pos_y, scale_x, scale_y, vis, containerID);
-            i_bunch = (i_bunch + 1);
-        };
-        return;
-    };
-    if ((actor[i] is Loader)){
-        if (actorLoaded[i] == 0){
-            load(i);
-        };
-    };
-    var _local9 = actor[i];
-    with (_local9) {
-        if (pos_x){
-            x = pos_x;
-        };
-        if (pos_y){
-            y = pos_y;
-        };
-        if (scale_x){
-            scaleX = size_x;
-        };
-        if (scale_y){
-            scaleY = size_y;
-        };
-        if (vis !== None){
-            visible = Boolean(vis);
-        };
-    };
-    if (containerID == -1){
-        addChild(actor[i]);
-    } else {
-        actor[containerID].addChild(actor[i]);
-    };
-}
-
 def AddBMO(bunch_id:int, offset:int){
     var i:int;
     i = 0;
@@ -23752,979 +24678,6 @@ def AddBMO(bunch_id:int, offset:int){
             add((actor[bunch_id][i] + offset));
         };
         i++;
-    };
-}
-
-def VisibleToFront(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    VisibleToFront(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                if (on_stage(actor_ids[i])){
-                    add(actor_ids[i]);
-                };
-            };
-        };
-        i = (i + 1);
-    };
-}
-
-def Move(actor_id:int, pos_x:int, pos_y:int):void{
-    var i:* = 0;
-    var actor_id:* = actor_id;
-    var pos_x:* = pos_x;
-    var pos_y:* = pos_y;
-    if ((actor[actor_id] is Array)){
-        i = 0;
-        while (i < actor[actor_id].length) {
-            Move(actor[actor_id][i], pos_x, pos_y);
-            i = (i + 1);
-        };
-    } else {
-        var _local5 = actor[actor_id];
-        with (_local5) {
-            x = pos_x;
-            y = pos_y;
-        };
-    };
-}
-
-def AddSome(... _args):void{
-    var i:int;
-    var i_bunch:int;
-    i = 0;
-    while (i < _args.length) {
-        if (actor[_args[i]]){
-            if ((actor[_args[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[_args[i]].length) {
-                    add(actor[_args[i]][i_bunch]);
-                    i_bunch++;
-                };
-                return;
-            };
-            add(_args[i]);
-        };
-        i++;
-    };
-}
-
-def remove(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    remove(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            if ((actor[actor_ids[i]] is Sound)){
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                if (parent){
-                    parent.removeChild(actor[actor_ids[i]]);
-                };
-            };
-        };
-        i = (i + 1);
-    };
-}
-
-def remove_all(alsoPersistent:Boolean=False):void{
-    var i:int;
-    i = 0;
-    while (i < actor.length) {
-        if (actor[i]){
-            if (!(actor[i] is Array)){
-                if (((!(actorPersistent[i])) or (alsoPersistent))){
-                    remove(i);
-                };
-            };
-        };
-        i++;
-    };
-    ExternalInterface.call("hideSocial");
-}
-
-def GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
-    var i:int;
-    var res:int;
-    res = C_EMPTY;
-    i = iStart;
-    while (i <= ((iEnde)==-1) ? (actor.length - 1) : iEnde) {
-        if (actorObj == actor[i]){
-            res = i;
-            break;
-        };
-        i++;
-    };
-    return (res);
-}
-
-def GetActorName(actor_id:int=0):String{
-    var loader:* = null;
-    var actor_id:int = actor_id;
-    loader = new URLLoader();
-    if (!(actorName is Array)){
-        var ConstFileLoaded:* = function (evt:Event):void{
-            var str_data:String;
-            var constName:String;
-            var i:int;
-            var c:int;
-            var tmp_str:String;
-            str_data = loader.data;
-            constName = "";
-            var equals:Boolean;
-            tmp_str = "";
-            var last_index:int;
-            i = 0;
-            while (i < (str_data.length - 1)) {
-                c = str_data.charCodeAt(i);
-                Switch (c){
-                    if case(10:
-                    if case(13:
-                        if (constName != ""){
-                            actorName[int(tmp_str[1:])] = constName;
-                        };
-                        constName = "";
-                        tmp_str = "";
-                        break;
-                    if case(61:
-                        if (tmp_str[0: 14].lower() == "_global const "){
-                            constName = tmp_str[14] (tmp_str.length - 15)]
-                            tmp_str = "";
-                        };
-                        break;
-                    default:
-                        tmp_str = (tmp_str + str_data[i]);
-                };
-                i++;
-            };
-            pending_debug_file = False;
-            loader_complete(evt);
-        };
-        actorName = list();
-        var _local3 = loader;
-        with (_local3) {
-            data_format = URLLoaderdata_format.TEXT;
-            add_event_listener(Event.COMPLETE, ConstFileLoaded);
-            load(new URLRequest("constants.as"));
-        };
-        pending_loaders = (pending_loaders + 1);
-        pending_debug_file = True;
-    };
-    return (actorName[actor_id]);
-}
-
-def on_stage(actor_id):Boolean{
-    if ((actor[actor_id] is DisplayObject)){
-        return (Boolean(getChildByName(actor[actor_id].name)));
-    };
-    return (False);
-}
-
-def Visible(actor_id):Boolean{
-    if ((actor[actor_id] is DisplayObject)){
-        return (((Boolean(getChildByName(actor[actor_id].name))) and (actor[actor_id].visible)));
-    };
-    return (False);
-}
-
-def show(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    show(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                visible = True;
-            };
-        };
-        i = (i + 1);
-    };
-}
-
-def hide(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    hide(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                visible = False;
-            };
-        };
-        i = (i + 1);
-    };
-}
-
-def SetAlpha(actor_id:int, alphaValue:Number){
-    var i:int;
-    if ((actor[actor_id] is Array)){
-        i = 0;
-        while (i < actor[actor_id].length) {
-            SetAlpha(actor[actor_id][i], alphaValue);
-            i++;
-        };
-    } else {
-        if (actor[actor_id].hasOwnProperty("alpha")){
-            actor[actor_id].alpha = alphaValue;
-        };
-    };
-}
-
-def GetAlpha(actor_id:int):Number{
-    var i:int;
-    var tmpAlpha:Number;
-    tmpAlpha = 0;
-    if ((actor[actor_id] is Array)){
-        i = 0;
-        while (i < actor[actor_id].length) {
-            if (GetAlpha(actor[actor_id][i]) > tmpAlpha){
-                tmpAlpha = GetAlpha(actor[actor_id][i]);
-            };
-            i++;
-        };
-        return (tmpAlpha);
-    };
-    if (actor[actor_id].hasOwnProperty("alpha")){
-        return (actor[actor_id].alpha);
-    };
-    return (0);
-}
-
-def FadeIn(actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1){
-    var fadeTimer:* = null;
-    var currentAlpha:* = NaN;
-    var FadeInEvent:* = null;
-    var actor_id:* = actor_id;
-    var timerInterval:int = timerInterval;
-    var alphaStep:Number = alphaStep;
-    var alphaMax:int = alphaMax;
-    FadeInEvent = function (evt:TimerEvent){
-        currentAlpha = (currentAlpha + alphaStep);
-        if (currentAlpha >= alphaMax){
-            currentAlpha = alphaMax;
-            fadeTimer.stop();
-            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeInEvent);
-        };
-        SetAlpha(actor_id, currentAlpha);
-    };
-    fadeTimer = new Timer(timerInterval);
-    currentAlpha = GetAlpha(actor_id);
-    if (alphaStep <= 0){
-        return;
-    };
-    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeInEvent);
-    fadeTimer.start();
-    SetAlpha(actor_id, currentAlpha);
-}
-
-def fade_out(actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMin:Number=0, HideThen:Boolean=False){
-    var fadeTimer:* = null;
-    var currentAlpha:* = NaN;
-    var FadeOutEvent:* = null;
-    var actor_id:* = actor_id;
-    var timerInterval:int = timerInterval;
-    var alphaStep:Number = alphaStep;
-    var alphaMin:int = alphaMin;
-    var HideThen:Boolean = HideThen;
-    FadeOutEvent = function (evt:TimerEvent){
-        currentAlpha = (currentAlpha - alphaStep);
-        if (currentAlpha <= alphaMin){
-            currentAlpha = alphaMin;
-            fadeTimer.stop();
-            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeOutEvent);
-            if (HideThen){
-                hide(actor_id);
-            };
-        };
-        SetAlpha(actor_id, currentAlpha);
-    };
-    fadeTimer = new Timer(timerInterval);
-    currentAlpha = GetAlpha(actor_id);
-    if (alphaStep <= 0){
-        return;
-    };
-    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
-    fadeTimer.start();
-    SetAlpha(actor_id, currentAlpha);
-}
-
-def AddFilter(actor_id:int, filter:Array):void{
-    actor[actor_id].filters = filter;
-}
-
-def set_font(fontName:String){
-    var fontName:* = fontName;
-    gameFont = fontName;
-    font_embedded = True;
-    if ((((((fontName == "Verdana")) or ((fontName == "Arial Narrow")))) or ((fontName == "Geeza Pro")))){
-        font_embedded = False;
-        sizeMod = -6;
-    };
-    trc(("Font chosen: " + fontName));
-    var _local3 = FontFormat_ToiletAura;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 35);
-        color = CLR_BLACK;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorHalf;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_OFFLINE_HALF;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorOnlineHalf;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_ONLINE_HALF;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Error;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ERROR;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Default;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakes;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakesHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_HIGHLIGHT;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakesGrayed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_GRAYED;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakesHighLightGrayed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_HIGHLIGHT_GRAYED;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Book;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = 0;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_BookHint;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 18);
-        color = 136;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_BookLeft;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 16);
-        color = 0;
-        align = "left";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Bullshit;
-    with (_local3) {
-        font = fontName;
-        size = 14;
-        color = CLR_SFORANGE;
-        align = "left";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_AttackLabel;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Speech;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Grayed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_GRAYED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GrayedHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_GRAYED_HL;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_ClassError;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ERROR;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = font_format_chat;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = font_format_chatWhisper;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_CHAT_WHISPER;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = font_format_chatError;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ERROR;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildBuilding;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildMoney;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_DefaultLeft;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Highlight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighlightWhisper;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFHIGHLIGHT_WHISPER;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Heading;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 30);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_ScreenTitle;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 34);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Popup;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompare;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_OFFLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareSum;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareBetter;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_GREEN;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareWorse;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareBetterHL;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_GREEN_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareWorseHL;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_EpicItemQuote;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_EPICITEMQUOTE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_ItemEnchantment;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ITEMENCHANTMENT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_LOGoutLink;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 22);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_LOGoutLinkHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 22);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HallListHeading;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HallListText;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildHallNoAttack;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_NOATTACK;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HallListHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_AttribBonus;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_ATTRIBBONUS;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_AttribTemp;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SYSMSG_GREEN;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Attrib;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PayIcon;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHeading;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 26);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        bold = True;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListText;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListTextSys;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListText;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_OFFLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextOnline;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackError;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_OFFLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorOnline;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorOnlinePopup;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ATTACK_ERROR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackOk;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_OK;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackOkPopup;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ATTACK_OK;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLightSys;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSGHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListTextSysRed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_RED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLightSysRed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_RED_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListTextSysGreen;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_GREEN;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLightSysGreen;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_GREEN_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_QuestBar;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_TimeBar;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_LifeBar;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Damage;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 30);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_CriticalDamage;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 34);
-        color = CLR_RED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_CatapultDamage;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 38);
-        color = CLR_ATTACK_ERROR_ONLINE_HALF;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
     };
 }
 
@@ -25334,6 +25287,76 @@ def add_suggest_names(addArray){
         };
         i++;
     };
+}
+
+def GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
+    var i:int;
+    var res:int;
+    res = C_EMPTY;
+    i = iStart;
+    while (i <= ((iEnde)==-1) ? (actor.length - 1) : iEnde) {
+        if (actorObj == actor[i]){
+            res = i;
+            break;
+        };
+        i++;
+    };
+    return (res);
+}
+
+def GetActorName(actor_id:int=0):String{
+    var loader:* = null;
+    var actor_id:int = actor_id;
+    loader = new URLLoader();
+    if (!(actorName is Array)){
+        var ConstFileLoaded:* = function (evt:Event):void{
+            var str_data:String;
+            var constName:String;
+            var i:int;
+            var c:int;
+            var tmp_str:String;
+            str_data = loader.data;
+            constName = "";
+            var equals:Boolean;
+            tmp_str = "";
+            var last_index:int;
+            i = 0;
+            while (i < (str_data.length - 1)) {
+                c = str_data.charCodeAt(i);
+                Switch (c){
+                    if case(10:
+                    if case(13:
+                        if (constName != ""){
+                            actorName[int(tmp_str[1:])] = constName;
+                        };
+                        constName = "";
+                        tmp_str = "";
+                        break;
+                    if case(61:
+                        if (tmp_str[0: 14].lower() == "_global const "){
+                            constName = tmp_str[14] (tmp_str.length - 15)]
+                            tmp_str = "";
+                        };
+                        break;
+                    default:
+                        tmp_str = (tmp_str + str_data[i]);
+                };
+                i++;
+            };
+            pending_debug_file = False;
+            loader_complete(evt);
+        };
+        actorName = list();
+        var _local3 = loader;
+        with (_local3) {
+            data_format = URLLoaderdata_format.TEXT;
+            add_event_listener(Event.COMPLETE, ConstFileLoaded);
+            load(new URLRequest("constants.as"));
+        };
+        pending_loaders = (pending_loaders + 1);
+        pending_debug_file = True;
+    };
+    return (actorName[actor_id]);
 }
 
 def crestMoveFn(evt:TimerEvent){
