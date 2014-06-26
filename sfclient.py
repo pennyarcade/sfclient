@@ -4956,9 +4956,9 @@ def init_vars():
 
     # Guild chat poll
     '''
-            GuildChatPoll = new Timer(1000)
-            GuildChatPoll.add_event_listener(TimerEvent.TIMER, GuildChatPollFn)
-            GuildChatPoll.start()
+        GuildChatPoll = new Timer(1000)
+        GuildChatPoll.add_event_listener(TimerEvent.TIMER, GuildChatPollFn)
+        GuildChatPoll.start()
     '''
 
 
@@ -5080,31 +5080,30 @@ def time_str(req_time, short=False):
 
     req_date = datetime.fromtimestamp(req_time/1000)
 
-    if lang_code == "de":
-        if short:
-            if is_today(req_time):
-                return ''
-            else:
-                return req_date.strftime('%d.%m. %H:%M')
-        else:
-            return req_date.strftime('%d.%m.%Y %H:%M:%S')
+    formats = {
+        "de": {
+            'short': '%d.%m. %H:%M',
+            'long': '%d.%m.%Y %H:%M:%S'
+        },
+        "pl": {
+            'short': '%d/%m/ %H:%M',
+            'long': '%d/%m/%Y %H:%M:%S'
+        },
+        "default": {
+            'short': '%d/%m/ %H:%M',
+            'long': '%d/%m/%Y %H:%M:%S'
+        }
+    }
 
-    if lang_code == "pl":
-        if short:
-            if is_today(req_time):
-                return ''
-            else:
-                return req_date.strftime('%d/%m/ %H:%M')
-        else:
-            return req_date.strftime('%d/%m/%Y %H:%M:%S')
+    code = lang_code
+    if not code in format.keys():
+        code = "default"
 
+    length = 'long'
     if short:
-        if is_today(req_time):
-            return ''
-        else:
-            return req_date.strftime('%m/%d/ %H:%M')
-    else:
-        return req_date.strftime('%m/%d/%Y %H:%M:%S')
+        length = 'short'
+
+    return req_date.strftime(formats[code][length])
 
 
 def time_calc_event(evt):
@@ -5225,7 +5224,7 @@ class Quest():
         if not self.qtext:
             # Constants
             idx = TXT['QUEST']
-        
+
             self.qtext = ''.join(
                 '\"',
                 texts[idx['OPENER'] + self.get_random(10, 3)],
@@ -5255,7 +5254,7 @@ class Quest():
                         texts[
                             idx['COLLECT']['AMOUNT'] + self.get_random(11, 1)
                         ].replace(
-                            "%", 
+                            "%",
                             str(self.get_random(10, 2) + 2)
                         ),
                         ' '
@@ -5300,7 +5299,7 @@ class Quest():
                             idx['TRANSPORT']['LOCATION'] + self.qlocation - 1
                         ],
                         texts[
-                            idx['TRANSPORT']['PRECLOSER'] 
+                            idx['TRANSPORT']['PRECLOSER']
                             + self.get_random(10, 1)
                         ],
                         " "
