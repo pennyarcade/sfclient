@@ -4334,7 +4334,31 @@ class Character():
         '''
             Setup Character object
         '''
-        pass
+
+
+class Face():
+    '''
+        character face
+    '''
+    def __init__(
+        beard=1, brows=1, cclass=1, color=1, eyes=1, hair=1, male=True,
+        mouth=1, nose=1, special=1, special2=1, volk=0
+    ):
+        '''
+            setup face object
+        '''
+        self.beard = beard
+        self.brows = brows
+        self.cclass = cclass
+        self.color = color
+        self.eyes = eyes
+        self.hair = hair
+        self.male = male
+        self.mouth = mouth
+        self.nose = nose
+        self.special = special
+        self.special2 = special2
+        self.volk = volk
 
 
 class Account():
@@ -4346,6 +4370,20 @@ class Account():
             Setup account object
         '''
         pass
+
+
+class Album():
+    '''
+        handle collectors album data
+    '''
+    def __init__(effect=False, category=0, page=0):
+        '''
+            setup collectors album
+        '''
+        self.effect = effect
+        self.category = category
+        self.page = page
+
 
 
 def md5hash(instr):
@@ -4412,6 +4450,14 @@ def init_vars():
 
         TODO: check vars if needed
     '''
+    #values char_*
+    defaultface = Face()
+
+    #values revertchar_*
+    revertface = Face()
+
+    #values album_*
+    col_album= Album()
 
     '''
         actor = list()
@@ -4421,16 +4467,18 @@ def init_vars():
         actorPopupStamp = list()
         actorSoundLoader = list()
         actorURL = list()
+
         admin_login = ""
-        album_effect = False
-        albumCat = 0
-        albumPage = 0
+
         allow_smoothing = True
         alternate_char_opp_img = False
         arrow_hall_mode = False
         avgLevel = 0
+
         beer_fest = False
+
         BlockReroll = False
+
         buffed_email = ""
         buffed_id = ""
         buffed_link_text = ""
@@ -4440,29 +4488,23 @@ def init_vars():
         buffed_reg = ""
         buffed_req = False
         buffed_stuff = list()
+
         can_rob = False
+
         canBoost = list()
-        char_beard = 1
-        char_brows = 1
-        char_class = 1
-        char_color = 1
-        char_ears = 1
-        char_eyes = 1
-        char_hair = 1
-        char_male = True
-        char_mouth = 1
-        char_nose = 1
-        char_special = 1
-        char_special2 = 1
-        char_volk = 0
+
         chat_sound = False
         ChatHist = list()
+
         chosen_lang_font = "Komika Text"
         compare_items = False
         contentMax = 1700
         copyCatSel = 0
+
         CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
+
         countryName = list()
+
         crest = getRandomCrest()
         crestColor = [0, 0, 0, 0]
         crestColorSelection = 0
@@ -4470,6 +4512,7 @@ def init_vars():
         crestMoveTimer.add_event_listener(TimerEvent.TIMER, crestMoveFn)
         crestSuggested = False
         crestSuggestion = list()
+
         CupChosen = 0
         dataprot_url = ""
         dealer_aktion = 0
@@ -4488,6 +4531,7 @@ def init_vars():
         Filter_Shadow = [
         first_chat_fill = False
         font_embedded = True
+
         font_format_chat = new TextFormat()
         font_format_chatError = new TextFormat()
         font_format_chatWhisper = new TextFormat()
@@ -4557,6 +4601,7 @@ def init_vars():
         FontFormat_Speech = new TextFormat()
         FontFormat_TimeBar = new TextFormat()
         FontFormat_ToiletAura = new TextFormat()
+
         force_adventure = False
         force_smoothing = True
         forum_url = ""
@@ -4579,10 +4624,13 @@ def init_vars():
         guild_hall_mode = False
         guildForumLink = ""
         guildInstanceID = 0
+
         had_account = False
         has_mirror = False
+
         hasFoughtGuildBattle = False
         hasLostMQ = False
+
         image_timeout = 3
         img_url = list()
         img_url_index = 0
@@ -4595,8 +4643,10 @@ def init_vars():
         invitegilden_id = 0
         ioErrorCount = 0
         KlasseGewählt = False
+
         lang_code = "de"
         lang_url = ""
+
         last_chat_hist = ""
         last_chat_index = 0
         last_guild_data = list()
@@ -4710,18 +4760,7 @@ def init_vars():
         reply_address = ""
         reply_subject = ""
         response_timeout = 10
-        revertchar_beard = 1
-        revertchar_brows = 1
-        revertchar_color = 1
-        revertchar_ears = 1
-        revertchar_eyes = 1
-        revertchar_hair = 1
-        revertchar_male = True
-        revertchar_mouth = 1
-        revertchar_nose = 1
-        revertchar_special = 1
-        revertchar_special2 = 1
-        revertchar_volk = 0
+
         RollFrenzy = new Timer(1000)
         ruhmes_halle_such_name = True
         ruhmes_halle_such_string = ""
@@ -4739,9 +4778,11 @@ def init_vars():
         session_id = ""
         set_font(new SFGameFont().fontName)
         shop_url = ""
+
         showActivityTime = False
         showAlbumOffset = False
         SignupJumpRunning = False
+
         sizeMod = 0
         skip_allowed = False
         skip_guild_fights = 0
@@ -4761,9 +4802,11 @@ def init_vars():
         tmp_battle_info = ""
         tmpAmount = 0
         to_error_count = 0
+
         toiletTankAdjustTimer = new Timer(25)
         toiletTankCurrent = 0
         toiletTankDest = 0
+
         tower_fight_mode = False
         tower_level = 0
         tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
@@ -4773,6 +4816,7 @@ def init_vars():
         towerScrollSpeed = 0
         towerScrollTimer = new Timer(25)
         towerScrollTimer.add_event_listener(TimerEvent.TIMER, TowerTimerFn)
+
         trackPixels = list()
         tv_function_name = ""
         tv_poll_normal = 5000
@@ -4780,6 +4824,7 @@ def init_vars():
         tvTest = False
         verdientes_geld = 0
         view_player = ""
+
         witchDesiredType = -1
 
 
