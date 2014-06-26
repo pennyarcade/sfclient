@@ -2228,11 +2228,54 @@ W0614: 24,0: Unused import get_quest_random from wildcard import
 W0614: 24,0: Unused import get_quest_title from wildcard import
 W0614: 24,0: Unused import get_quest_text from wildcard import
 W0611: 21,0: Unused import curses
+************* Module sflegacy
+W0511: 17,0: TODO: obsolete
+W0511: 31,0: TODO: obsolete
+W0511: 44,0: TODO: obsolete
+W0511: 59,0: TODO: obsolete
+E0602: 19,13:get_quest_bg: Undefined variable 'savegame'
+E0602: 19,22:get_quest_bg: Undefined variable 'SG'
+E0602: 20,15:get_quest_bg: Undefined variable 'savegame'
+E0602: 20,24:get_quest_bg: Undefined variable 'SG'
+E0602: 21,11:get_quest_bg: Undefined variable 'LBL'
+E0602: 33,12:get_quest_title: Undefined variable 'Quest'
+E0602: 33,36:get_quest_title: Undefined variable 'savegame'
+E0602: 46,12:get_quest_text: Undefined variable 'Quest'
+E0602: 46,36:get_quest_text: Undefined variable 'savegame'
+E0602: 61,12:get_quest_random: Undefined variable 'Quest'
+E0602: 61,36:get_quest_random: Undefined variable 'savegame'
 
 
 Report
 ======
-2721 statements analysed.
+2734 statements analysed.
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |NC       |NC         |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |NC       |NC         |
++-------------------------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    requests (sfclient)
+
+
+
+Modules dependencies graph
+--------------------------
+imports graph has been written to graph.png
+internal imports graph has been written to internal.png
+
 
 Raw metrics
 -----------
@@ -2240,31 +2283,14 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |16316  |54.13 |16316    |=          |
+|code      |16330  |54.05 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13127  |43.55 |12945    |+182.00    |
+|docstring |13167  |43.58 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |131    |0.43  |131      |=          |
+|comment   |132    |0.44  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |566    |1.88  |566      |=          |
+|empty     |581    |1.92  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-
-
-
-Statistics by type
-------------------
-
-+---------+-------+-----------+-----------+------------+---------+
-|type     |number |old number |difference |%documented |%badname |
-+=========+=======+===========+===========+============+=========+
-|module   |1      |1          |=          |100.00      |0.00     |
-+---------+-------+-----------+-----------+------------+---------+
-|class    |8      |8          |=          |100.00      |0.00     |
-+---------+-------+-----------+-----------+------------+---------+
-|method   |20     |20         |=          |100.00      |0.00     |
-+---------+-------+-----------+-----------+------------+---------+
-|function |65     |65         |=          |76.92       |3.08     |
-+---------+-------+-----------+-----------+------------+---------+
 
 
 
@@ -2274,14 +2300,27 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |396    |407      |-11.00     |
+|convention |396    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |30     |30       |=          |
+|refactor   |30     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |283    |283      |=          |
+|warning    |287    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |1520   |1520     |=          |
+|error      |1531   |NC       |NC         |
 +-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++---------+------+--------+---------+-----------+
+|module   |error |warning |refactor |convention |
++=========+======+========+=========+===========+
+|sfclient |99.28 |98.61   |100.00   |100.00     |
++---------+------+--------+---------+-----------+
+|sflegacy |0.72  |1.39    |0.00     |0.00       |
++---------+------+--------+---------+-----------+
 
 
 
@@ -2291,7 +2330,7 @@ Messages
 +-----------+------------+
 |message id |occurrences |
 +===========+============+
-|E0602      |1490        |
+|E0602      |1501        |
 +-----------+------------+
 |C0301      |349         |
 +-----------+------------+
@@ -2299,7 +2338,7 @@ Messages
 +-----------+------------+
 |C0103      |31          |
 +-----------+------------+
-|W0511      |25          |
+|W0511      |29          |
 +-----------+------------+
 |E0601      |23          |
 +-----------+------------+
@@ -2348,32 +2387,22 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -20.54/10 (previous run: -20.58/10)
+Your code has been rated at -20.61/10
 
-External dependencies
----------------------
-::
+Statistics by type
+------------------
 
-    requests (sfclient)
-
-
-
-Modules dependencies graph
---------------------------
-imports graph has been written to graph.png
-internal imports graph has been written to internal.png
-
-
-Duplication
------------
-
-+-------------------------+------+---------+-----------+
-|                         |now   |previous |difference |
-+=========================+======+=========+===========+
-|nb duplicated lines      |0     |0        |=          |
-+-------------------------+------+---------+-----------+
-|percent duplicated lines |0.000 |0.000    |=          |
-+-------------------------+------+---------+-----------+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |2      |NC         |NC         |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |8      |NC         |NC         |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |20     |NC         |NC         |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |69     |NC         |NC         |78.26       |2.90     |
++---------+-------+-----------+-----------+------------+---------+
 
 
 
