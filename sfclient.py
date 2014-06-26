@@ -4140,6 +4140,7 @@ class Session():
         self.mp_api_user_id = 'notset'
         self.mp_api_user_token = 'notset'
 
+        self.server = 's31.sfgame.de'
 
         self.baseuri = 'http://s31.sfgame.de/request.php'
         self.loginparams = '?req=&random=%%2&rnd=%s%s'
@@ -4325,6 +4326,17 @@ class Session():
                     raise RequestFailedException()
                 fail_try += 1
 
+    def load_configuration_file(self):
+        '''
+            configuration loader
+        '''
+
+        response = requests.get('http://' + server + '/' + client_cfg.php)
+
+        # error handling
+
+        return response.text
+
 
 class Character():
     '''
@@ -4384,6 +4396,29 @@ class Album():
         self.category = category
         self.page = page
 
+
+class Guild():
+    '''
+        handle guild data
+    '''
+
+
+class Toilet():
+    '''
+        handle toilet data
+    '''
+
+
+class Witch():
+    '''
+        handle witch laboratory data
+    '''
+
+
+class Mirror():
+    '''
+        handle magic mirror
+    '''
 
 
 def md5hash(instr):
@@ -5027,7 +5062,9 @@ def configure():
 
         @oldname Start
     '''
-    load_configuration_file()
+    serverconfig = session.load_configuration_file()
+
+
     when_loaded(do_load_language_file)
 
 
@@ -16639,26 +16676,7 @@ def configuration_file_loaded(evt):
     loader_complete(evt)
 
 
-def load_configuration_file():
-    '''
-        configuration loader
-    '''
-    loader = URLLoader()
-    loader2 = URLLoader()
 
-    with loader:
-        data_format = URLLoaderdata_format.TEXT
-        add_event_listener(Event.COMPLETE, configuration_file_loaded)
-        load(URLRequest("client_cfg.php"))
-
-    with loader2:
-        data_format = URLLoaderdata_format.TEXT
-        add_event_listener(Event.COMPLETE, configuration_file_loaded)
-
-    pending_loaders += 2
-    # TODO WTF?
-    pending_configuration_files = 1
-    pending_configuration_files = True
 
 
 def strip_slashes(source):
@@ -24427,7 +24445,7 @@ def main():
 
     LOG = setup_logging()
 
-    init_vars()
+    #init_vars()
     configure()
 
     #s = Session()

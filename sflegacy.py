@@ -62,7 +62,24 @@ def get_quest_random(quest_id, random_range, random_mod):
     return quest.get_random(random_range, random_mod)
 
 
+def load_configuration_file():
+    '''
+        configuration loader
+    '''
+    loader = URLLoader()
+    loader2 = URLLoader()
 
+    with loader:
+        data_format = URLLoaderdata_format.TEXT
+        add_event_listener(Event.COMPLETE, configuration_file_loaded)
+        load(URLRequest("client_cfg.php"))
 
+    with loader2:
+        data_format = URLLoaderdata_format.TEXT
+        add_event_listener(Event.COMPLETE, configuration_file_loaded)
 
+    pending_loaders += 2
+    # TODO WTF?
+    pending_configuration_files = 1
+    pending_configuration_files = True
 
