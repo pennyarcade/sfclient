@@ -4414,200 +4414,188 @@ def init_vars():
     '''
 
     '''
-        param_obj = LoaderInfo(root.loader_info).parameters
-        sso_mode = False
-        param_id = ""
-        param_rec = ""
-        param_adv = ""
-        param_valid = ""
-        param_hall = ""
-        param_cid = ""
-        param_cid_original = False
-        param_imgsvr = 0
-        param_forceport = 0
-        view_player = ""
-        admin_login = ""
-        pay_methods = list()
-        server_id = 0
-        mp_project = "sfgame2"
-        image_timeout = 3
-        response_timeout = 10
-        param_sponsor = ""
-        param_sponsor_url = ""
-        param_reroll_img = 0
-        param_reconnect = 5000
-        param_php_tunnel_url = ""
-        param_poll_tunnel_url = ""
-        trackPixels = list()
-        interval_multiplier_chat = 1
-        interval_multiplier_reconnect = 1
-        param_support_email = "support@sfgame.de"
-        param_gamestaff_email = param_support_email
-        param_papaya_path = ""
-        param_papaya_cfg_file = ""
-        param_fail_tries = 1
-        param_idle_polling = 0
-        param_allow_skip_quest = False
-        param_happy_hour = False
-        param_censored = False
-        param_internal_pixel = False
-        param_reload_pixel = False
-        noMush = False
-        param_server_version_cfg = "unknown"
-        param_server_version_act = "unknown"
-        param_no_cid_save = False
-        had_account = False
-        param_languages = list()
-        param_language_names = list()
-        param_lowres_url = ""
-        param_bullshit_text = ""
-        param_bullshit_cid = ""
-        param_social_buttons = list()
-        defined_pixel_calls = list()
-        beer_fest = False
-        tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
-        login_background_id = "3"
-        worlds = list()
-        prevent_tv = False
 
-        buffed_reg = ""
-        buffed_stuff = list()
-        buffed_id = ""
-        buffed_name = ""
-        buffed_email = ""
-        buffed_req = False
-        buffed_mode = False
-        buffed_link_text = ""
-        buffed_link_url = ""
-        lang_code = "de"
-        original_lang_code = "de"
-        smoothing = True
-        force_smoothing = True
-        allow_smoothing = True
-        img_url = list()
-        snd_url = list()
-        img_url_index = 0
-        snd_url_index = 0
-        lang_url = ""
-        forum_url = ""
-        shop_url = ""
-        imprint_url = ""
-        legal_url = ""
-        dataprot_url = ""
-        instr_url = ""
-        no_crossdomain = False
-        friend_link = ""
-        session_id = ""
-        server = "localhost"
-        lastAct = 0
-        sendLock = False
-        fight_lock = False
-        pollLock = False
-        pending_language_file = False
-        chosen_lang_font = "Komika Text"
-        countryName = list()
-        pending_configuration_files = False
         actor = list()
-        actorURL = list()
+        actorBitmap = list()
         actorLoaded = list()
         actorPersistent = list()
-        actorBitmap = list()
-        actorSoundLoader = list()
         actorPopupStamp = list()
-        stObject = new SoundTransform()
-        pending_loaders = 0
+        actorSoundLoader = list()
+        actorURL = list()
+        admin_login = ""
+        allow_smoothing = True
+        beer_fest = False
+        buffed_email = ""
+        buffed_id = ""
+        buffed_link_text = ""
+        buffed_link_url = ""
+        buffed_mode = False
+        buffed_name = ""
+        buffed_reg = ""
+        buffed_req = False
+        buffed_stuff = list()
+        chosen_lang_font = "Komika Text"
+        countryName = list()
+        dataprot_url = ""
+        defined_pixel_calls = list()
         dragDropActive = False
         dragDropProhibit = False
         dragNotYet = False
-        to_error_count = 0
-        ioErrorCount = 0
-        pending_debug_file = False
-        FontFormat_Error = new TextFormat()
+        fight_lock = False
+        Filter_Shadow = [
+        font_embedded = True
+        font_format_chat = new TextFormat()
+        font_format_chatError = new TextFormat()
+        font_format_chatWhisper = new TextFormat()
+        FontFormat_AttackLabel = new TextFormat()
+        FontFormat_Attrib = new TextFormat()
+        FontFormat_AttribBonus = new TextFormat()
+        FontFormat_AttribTemp = new TextFormat()
         FontFormat_Book = new TextFormat()
         FontFormat_BookHint = new TextFormat()
         FontFormat_BookLeft = new TextFormat()
+        FontFormat_Bullshit = new TextFormat()
+        FontFormat_CatapultDamage = new TextFormat()
+        FontFormat_ClassError = new TextFormat()
+        FontFormat_CriticalDamage = new TextFormat()
+        FontFormat_Damage = new TextFormat()
         FontFormat_Default = new TextFormat()
-        FontFormat_AttackLabel = new TextFormat()
-        FontFormat_Speech = new TextFormat()
+        FontFormat_DefaultLeft = new TextFormat()
+        FontFormat_EpicItemQuote = new TextFormat()
+        FontFormat_Error = new TextFormat()
         FontFormat_Grayed = new TextFormat()
         FontFormat_GrayedHighLight = new TextFormat()
-        FontFormat_ClassError = new TextFormat()
-        font_format_chat = new TextFormat()
-        font_format_chatWhisper = new TextFormat()
-        font_format_chatError = new TextFormat()
         FontFormat_GuildBuilding = new TextFormat()
-        FontFormat_GuildMoney = new TextFormat()
-        FontFormat_DefaultLeft = new TextFormat()
-        FontFormat_Highlight = new TextFormat()
-        FontFormat_HighlightWhisper = new TextFormat()
-        FontFormat_Heading = new TextFormat()
-        FontFormat_ScreenTitle = new TextFormat()
-        FontFormat_Popup = new TextFormat()
-        FontFormat_PopupCompare = new TextFormat()
-        FontFormat_PopupCompareSum = new TextFormat()
-        FontFormat_PopupCompareBetter = new TextFormat()
-        FontFormat_PopupCompareWorse = new TextFormat()
-        FontFormat_PopupCompareBetterHL = new TextFormat()
-        FontFormat_PopupCompareWorseHL = new TextFormat()
-        FontFormat_EpicItemQuote = new TextFormat()
-        FontFormat_ItemEnchantment = new TextFormat()
-        FontFormat_LOGoutLink = new TextFormat()
-        FontFormat_LOGoutLinkHighLight = new TextFormat()
-        FontFormat_HallListHeading = new TextFormat()
-        FontFormat_HallListText = new TextFormat()
         FontFormat_GuildHallNoAttack = new TextFormat()
-        FontFormat_HallListHighLight = new TextFormat()
-        FontFormat_AttribBonus = new TextFormat()
-        FontFormat_AttribTemp = new TextFormat()
-        FontFormat_Attrib = new TextFormat()
-        FontFormat_PayIcon = new TextFormat()
-        FontFormat_PostListHeading = new TextFormat()
-        FontFormat_PostListText = new TextFormat()
-        FontFormat_PostListTextSys = new TextFormat()
         FontFormat_GuildListText = new TextFormat()
-        FontFormat_GuildListTextOnline = new TextFormat()
         FontFormat_GuildListTextAttackError = new TextFormat()
-        FontFormat_GuildListTextAttackErrorOnline = new TextFormat()
         FontFormat_GuildListTextAttackErrorHalf = new TextFormat()
+        FontFormat_GuildListTextAttackErrorOnline = new TextFormat()
         FontFormat_GuildListTextAttackErrorOnlineHalf = new TextFormat()
         FontFormat_GuildListTextAttackErrorOnlinePopup = new TextFormat()
         FontFormat_GuildListTextAttackOk = new TextFormat()
         FontFormat_GuildListTextAttackOkPopup = new TextFormat()
+        FontFormat_GuildListTextOnline = new TextFormat()
+        FontFormat_GuildMoney = new TextFormat()
+        FontFormat_HallListHeading = new TextFormat()
+        FontFormat_HallListHighLight = new TextFormat()
+        FontFormat_HallListText = new TextFormat()
+        FontFormat_Heading = new TextFormat()
+        FontFormat_Highlight = new TextFormat()
+        FontFormat_HighlightWhisper = new TextFormat()
+        FontFormat_HighStakes = new TextFormat()
+        FontFormat_HighStakesGrayed = new TextFormat()
+        FontFormat_HighStakesHighLight = new TextFormat()
+        FontFormat_HighStakesHighLightGrayed = new TextFormat()
+        FontFormat_ItemEnchantment = new TextFormat()
+        FontFormat_LifeBar = new TextFormat()
+        FontFormat_LOGoutLink = new TextFormat()
+        FontFormat_LOGoutLinkHighLight = new TextFormat()
+        FontFormat_PayIcon = new TextFormat()
+        FontFormat_Popup = new TextFormat()
+        FontFormat_PopupCompare = new TextFormat()
+        FontFormat_PopupCompareBetter = new TextFormat()
+        FontFormat_PopupCompareBetterHL = new TextFormat()
+        FontFormat_PopupCompareSum = new TextFormat()
+        FontFormat_PopupCompareWorse = new TextFormat()
+        FontFormat_PopupCompareWorseHL = new TextFormat()
+        FontFormat_PostListHeading = new TextFormat()
         FontFormat_PostListHighLight = new TextFormat()
         FontFormat_PostListHighLightSys = new TextFormat()
-        FontFormat_PostListTextSysRed = new TextFormat()
-        FontFormat_PostListHighLightSysRed = new TextFormat()
-        FontFormat_PostListTextSysGreen = new TextFormat()
         FontFormat_PostListHighLightSysGreen = new TextFormat()
+        FontFormat_PostListHighLightSysRed = new TextFormat()
+        FontFormat_PostListText = new TextFormat()
+        FontFormat_PostListTextSys = new TextFormat()
+        FontFormat_PostListTextSysGreen = new TextFormat()
+        FontFormat_PostListTextSysRed = new TextFormat()
         FontFormat_QuestBar = new TextFormat()
+        FontFormat_ScreenTitle = new TextFormat()
+        FontFormat_Speech = new TextFormat()
         FontFormat_TimeBar = new TextFormat()
-        FontFormat_LifeBar = new TextFormat()
-        FontFormat_Damage = new TextFormat()
-        FontFormat_CriticalDamage = new TextFormat()
-        FontFormat_Bullshit = new TextFormat()
-        FontFormat_CatapultDamage = new TextFormat()
-        FontFormat_HighStakes = new TextFormat()
-        FontFormat_HighStakesHighLight = new TextFormat()
-        FontFormat_HighStakesGrayed = new TextFormat()
-        FontFormat_HighStakesHighLightGrayed = new TextFormat()
         FontFormat_ToiletAura = new TextFormat()
-        text_dir = "left"
-        set_font(new SFGameFont().fontName)
+        force_smoothing = True
+        forum_url = ""
+        friend_link = ""
         gameFont = ""
-        font_embedded = True
+        had_account = False
+        image_timeout = 3
+        img_url = list()
+        img_url_index = 0
+        imprint_url = ""
+        instr_url = ""
+        interval_multiplier_chat = 1
+        interval_multiplier_reconnect = 1
+        ioErrorCount = 0
+        lang_code = "de"
+        lang_url = ""
+        lastAct = 0
+        legal_url = ""
+        login_background_id = "3"
+        mp_project = "sfgame2"
+        no_crossdomain = False
+        noMush = False
+        original_lang_code = "de"
+        param_adv = ""
+        param_allow_skip_quest = False
+        param_bullshit_cid = ""
+        param_bullshit_text = ""
+        param_censored = False
+        param_cid = ""
+        param_cid_original = False
+        param_fail_tries = 1
+        param_forceport = 0
+        param_gamestaff_email = param_support_email
+        param_hall = ""
+        param_happy_hour = False
+        param_id = ""
+        param_idle_polling = 0
+        param_imgsvr = 0
+        param_internal_pixel = False
+        param_language_names = list()
+        param_languages = list()
+        param_lowres_url = ""
+        param_no_cid_save = False
+        param_obj = LoaderInfo(root.loader_info).parameters
+        param_papaya_cfg_file = ""
+        param_papaya_path = ""
+        param_php_tunnel_url = ""
+        param_poll_tunnel_url = ""
+        param_rec = ""
+        param_reconnect = 5000
+        param_reload_pixel = False
+        param_reroll_img = 0
+        param_server_version_act = "unknown"
+        param_server_version_cfg = "unknown"
+        param_social_buttons = list()
+        param_sponsor = ""
+        param_sponsor_url = ""
+        param_support_email = "support@sfgame.de"
+        param_valid = ""
+        pay_methods = list()
+        pending_configuration_files = False
+        pending_debug_file = False
+        pending_language_file = False
+        pending_loaders = 0
+        pollLock = False
+        prevent_tv = False
+        response_timeout = 10
+        sendLock = False
+        server = "localhost"
+        server_id = 0
+        session_id = ""
+        set_font(new SFGameFont().fontName)
+        shop_url = ""
         sizeMod = 0
-        Filter_Shadow = [
-            new DropShadowFilter(3, 45, 0, 0.8),
-            new GradientGlowFilter(
-                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
-                [0, 32], 1, 1, 5, 15, "outer")
-        ]
-        Filter_HeavyShadow = [
-            new DropShadowFilter(2, 45, 0, 1, 5, 5, 3, 3),
-            new GradientGlowFilter(
-                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
-                [0, 32], 1, 1, 5, 15, "outer")
-        ]
+        smoothing = True
+        snd_url = list()
+        snd_url_index = 0
+        sso_mode = False
+        stObject = new SoundTransform()
+        text_dir = "left"
+        to_error_count = 0
+        tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
+        trackPixels = list()
+        view_player = ""
         char_volk = 0
         char_male = True
         char_class = 1
@@ -4719,14 +4707,32 @@ def init_vars():
         towerScrollSpeed = 0
         towerScrollTimer = new Timer(25)
         towerScrollGrabPos = -1
-        towerScrollTimer.add_event_listener(
-            TimerEvent.TIMER, TowerTimerFn
-        )
+        towerScrollTimer.add_event_listener(TimerEvent.TIMER, TowerTimerFn)
         alternate_char_opp_img = False
         hasFoughtGuildBattle = False
         skip_allowed = False
         special_actionHint = False
         suggestNames = list()
+        selecterCrestElement = -1
+        crestSuggested = False
+        crestColorSelection = 0
+        crest = getRandomCrest()
+
+
+        worlds = list()
+            new DropShadowFilter(3, 45, 0, 0.8),
+            new GradientGlowFilter(
+                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
+                [0, 32], 1, 1, 5, 15, "outer")
+        ]
+
+        Filter_HeavyShadow = [
+            new DropShadowFilter(2, 45, 0, 1, 5, 5, 3, 3),
+            new GradientGlowFilter(
+                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
+                [0, 32], 1, 1, 5, 15, "outer")
+        ]
+
         crestElementPos = [
             [55, 8, 130, 90, 21],
             [0, 50, 240, 150, 34],
@@ -4736,10 +4742,7 @@ def init_vars():
             [98, 176, 43, 40, 16],
             [85, 100, 70, 70, 68]
         ]
-        selecterCrestElement = -1
-        crestSuggested = False
-        crestColorSelection = 0
-        crest = getRandomCrest()
+
         heraldicColors = [
             [0, 0, 1],
             [1, 0, 0],
@@ -5818,14 +5821,216 @@ class Savegame:
         handle savegame data
     '''
     def __init__():
+        '''
+            setup savegame
+        '''
         pass
+
+    def parse(str_save_game, fill_face_variables=True, no_spoil=False):
+        '''
+            parse raw response into Savegame object
+        '''
+        # parse into array of (mostly) numbers
+        savegame = ("0/" + str_save_game).split("/")
+
+        # TODO: Tower object
+        # Extract tower level from mount id
+        if not no_spoil:
+            tower_level = int((savegame[SG['MOUNT']] / 65536))
+
+        savegame[SG['MOUNT']] -= tower_level * 65536
+
+        # TODO: Mirror object
+        # Extract mirror pieces from gender entry
+        bin_str = int(savegame[SG['GENDER']]).tostr(2)
+
+        bin_str.zfill(32)
+
+        mirror_pieces = list()
+        for i in range(13):
+            mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
+
+        has_mirror = bin_str.substr(23, 1) == "1"
+        can_rob = bin_str.substr(22, 1) == "1"
+
+        #TODO: save in character object
+        if bin_str.substr(31) == "1":
+            savegame[SG['GENDER']] = 1
+        else:
+            savegame[SG['GENDER']] = 2
+
+
+        if (savegame[SG['ALBUM']] - 10000) > content_max:
+            savegame[SG['ALBUM']] = content_max + 10000
+
+        for i in range(SG['BACKPACK']['SIZE']):
+            expand_item_structure(
+                savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
+            )
+
+        for i in range(SG['INVENTORY']['SIZE']):
+            expand_item_structure(
+                savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
+            )
+
+        for i in range(6):
+            expand_item_structure(
+                savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
+            )
+            expand_item_structure(
+                savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
+            )
+
+        for i in range(3):
+            expand_item_structure(
+                savegame, (SG_QUEST_OFFER_REWARD_ITM1 + (i * SG_ITM_SIZE))
+            )
+
+        debug_info = ""
+        for i in range(len(savegame)):
+            debug_info += str(i) + "=" + savegame[i] + ", "
+
+        if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
+            level_up = True
+            pulse_char = True
+
+        last_level = int(savegame[SG['LEVEL']])
+
+        friend_link = "http://" + server + "/index.php?rec="
+        friend_link += savegame[SG['PLAYER']['ID']]
+
+        if len(old_ach) != 0:
+            for i in range(8):
+                if ach_level(savegame, i) > old_ach[i]:
+                    old_ach[i] = -1 * ach_level(savegame, i)
+                else:
+                    old_ach[i] = ach_level(savegame, i)
+        else:
+            for i in range(8):
+                old_ach[i] = ach_level(savegame, i)
+
+        if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
+            album_effect = True
+        old_album = savegame[SG['ALBUM']]
+
+        if fill_face_variables:
+            char_volk = savegame[SG['RACE']]
+            char_male = (savegame[SG['GENDER']] == 1)
+            char_class = savegame[SG['CLASS']]
+            char_mouth = savegame[SG['FACE']['1']]
+            char_beard = savegame[SG['FACE']['5']]
+            char_nose = savegame[SG['FACE']['6']]
+            char_eyes = savegame[SG['FACE']['4']]
+            char_brows = savegame[SG['FACE']['3']]
+            char_ears = savegame[SG['FACE']['7']]
+            char_hair = savegame[SG['FACE']['2']]
+            char_special = savegame[SG['FACE']['8']]
+            char_special2 = savegame[SG['FACE']['9']]
+
+            i = char_hair
+
+            char_color = 0
+            while i > 100:
+                i -= 100
+                char_color += 1
+
+        if not no_spoil:
+            if text_dir == "right":
+                actor[IF['GOLD']].x = IF['LBL']['GOLDPILZE_X']
+
+                with actor[LBL['IF']['GOLD']]:
+                    text = str(int(savegame[SG['GOLD']] / 100))
+                    x = IF['LBL']['GOLDPILZE_X'] - textWidth - 10
+                actor[IF['SILBER']].x = actor[LBL['IF']['GOLD']].x - width - 10
+
+                with (actor[LBL['IF']['SILBER']]):
+                    if int(savegame[SG_GOLD] % 100) < 10:
+                        text = "0"
+                    else:
+                        text = ""
+                    text += str(int(savegame[SG['GOLD']] % 100))
+                    x = actor[IF['SILBER']].x - textWidth - 10
+
+                with actor[LBL['IF']['PILZE']]:
+                    text = savegame[SG['MUSH']]
+                    x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
+
+                if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                    enable_popup(
+                        LBL['IF']['PILZE'],
+                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                        )
+                    )
+            else:
+                with (actor[LBL['IF']['SILBER']]):
+                    if int(savegame[SG_GOLD] % 100) < 10:
+                        text = "0"
+                    else:
+                        text = ""
+                    text += str(int(savegame[SG['GOLD']] % 100))
+                    x = actor[IF['SILBER']].x - textWidth - 10
+
+                actor[IF['GOLD']].x = actor[LBL['IF']['SILBER']].x - 24 - 10
+
+                with actor[LBL['IF']['GOLD']]:
+                    text = str(int(savegame[SG['GOLD']] / 100))
+                    x = actor[IF['GOLD']].x - textWidth - 10
+
+                with actor[LBL['IF']['PILZE']]:
+                    text = savegame[SG['MUSH']]
+                    x = IF['LBL']['GOLDPILZE']['X'] - textWidth - 10
+
+                if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                    enable_popup(
+                        LBL['IF']['PILZE'],
+                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                        )
+                    )
+
+        add(IF['STATS'])
+        if int(savegame[SG['SERVER']['TIME']]) > 0:
+            server_time.setTime(
+                1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
+            )
+            local_time = datetime.now()
+            time_calc.start()
+
+        if session_id == "":
+            log.error(''.join(
+                "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
+                "PHP-Tunneling wird deaktiviert."
+            ))
+            show_login_screen()
+        else:
+            log.debug("Session ID für PHP Tunneling:", session_id)
+
+        if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
+            gilden_id = int(savegame[SG['GUILD']['INDEX']])
+            if gilden_id != 0:
+                send_action(
+                    ACT['REQUEST']['GUILD'],
+                    savegame[SG['GUILD']['INDEX']]
+                )
+
+        sg_idx = SG['UNREAD']['MESSAGES']
+        if (int(savegame[sg_idx]) > 0) and (not on_stage(POST['LIST'])):
+            pulse_post = True
+
+        if int(savegame[SG['LOCKDURATION']]) != 0:
+            request_logout()
+
+        if next_pxl < 0:
+            next_pxl = abs(next_pxl)
+
+
 
 
 def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
     '''
         parse savegame string
     '''
-
     # parse into array of (mostly) numbers
     savegame = ("0/" + str_save_game).split("/")
 
