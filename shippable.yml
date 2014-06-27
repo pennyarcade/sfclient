@@ -12,8 +12,8 @@ before_script:
   - mkdir -p shippable/codecoverage shippable/testresults
 
 # command to run tests
+#  - pep8 --verbose --show-pep8 sf*.py
 script:
-  - pep8 --verbose --show-pep8 sf*.py
   - pylint --rcfile=.pylintrc sf*.py
   - nosetests -v tests.py
       --with-xunit
