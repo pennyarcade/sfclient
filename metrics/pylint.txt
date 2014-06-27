@@ -26,75 +26,15 @@ W:18294, 0: TODO: hor does this work anyways? (fixme)
 W:19416, 0: TODO: What does this do? (fixme)
 W:19434, 0: TODO: Obsolete? (fixme)
 W:19457, 0: TODO: set via requests params (fixme)
-C:4201, 0: Wrong hanging indentation before block.
-                    (action != ACT['VALIDATE'])
-                    ^   | (bad-continuation)
-C:4202, 0: Wrong hanging indentation before block.
-                    and (action != ACT['SEND_CHAT'])
-                    ^   | (bad-continuation)
-C:4203, 0: Wrong hanging indentation before block.
-                    and (action != ACT['GUILD']['DONATE'])
-                    ^   | (bad-continuation)
-C:4204, 0: Wrong hanging indentation before block.
-                    and (action != ACT['REQUEST']['GUILD_NAMES'])
-                    ^   | (bad-continuation)
-C:4205, 0: Wrong hanging indentation before block.
-                    and (action != ACT['REQUEST']['CHAR'])
-                    ^   | (bad-continuation)
-C:4206, 0: Wrong hanging indentation before block.
-                    and (action != ACT['POST']['SEND'])
-                    ^   | (bad-continuation)
-C:4238, 0: Wrong hanging indentation before block.
-            (action == ACT['GET_CHAT_HISTORY'])
-            ^   | (bad-continuation)
-C:4239, 0: Wrong hanging indentation before block.
-            and (self.param_poll_tunnel_url != "")
-            ^   | (bad-continuation)
-C:4286, 0: Wrong hanging indentation before block.
-                    (action == ACT['GET_CHAT_HISTORY'])
-                    ^   | (bad-continuation)
-C:4287, 0: Wrong hanging indentation before block.
-                    and (self.param_poll_tunnel_url != "")
-                    ^   | (bad-continuation)
-C:4319, 0: Wrong hanging indentation before block.
-                        (action == ACT['GET_CHAT_HISTORY'])
-                        ^   | (bad-continuation)
-C:4320, 0: Wrong hanging indentation before block.
-                        and (self.param_poll_tunnel_url != "")
-                        ^   | (bad-continuation)
-C:4356, 0: Wrong hanging indentation before block.
-        self, beard=1, brows=1, cclass=1, color=1, eyes=1, hair=1, male=True,
-        ^   | (bad-continuation)
-C:4357, 0: Wrong hanging indentation before block.
-        mouth=1, nose=1, special=1, special2=1, volk=0
-        ^   | (bad-continuation)
-C:5246, 0: Wrong hanging indentation before block.
-        self, qtype, qid, qlevel, qmonster,
-        ^   | (bad-continuation)
-C:5247, 0: Wrong hanging indentation before block.
-        qexp, qgold, qtime, qlocation, qitem
-        ^   | (bad-continuation)
-C:5486, 0: Wrong hanging indentation before block.
-        self, pic=0, typ=0, cclass=1, gold=0,
-        ^   | (bad-continuation)
-C:5487, 0: Wrong hanging indentation before block.
-        maxd=0, mind=0, color=0, attr=False
-        ^   | (bad-continuation)
 C:5623, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:5713, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:5732, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
-C:5736, 0: Wrong hanging indentation before block.
-    itm_class, itm_pic, some_obj=False, slot_mode=False, color_override=-1
-    ^   | (bad-continuation)
 C:5743, 0: Unnecessary parens after u'not' keyword (superfluous-parens)
 C:5839, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5841, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5843, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5845, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5847, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
-C:5849, 0: Wrong hanging indentation before block.
-                5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60
-                ^   | (bad-continuation)
 C:5851, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5853, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5855, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
@@ -128,405 +68,51 @@ C:5913, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5915, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5917, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5920, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
-C:6145, 0: Wrong hanging indentation before block.
-            (KeyboardEvent(evt).keyCode != 13)
-            ^   | (bad-continuation)
-C:6146, 0: Wrong hanging indentation before block.
-            and (KeyboardEvent(evt).keyCode != 10)
-            ^   | (bad-continuation)
-C:6147, 0: Wrong hanging indentation before block.
-            and (KeyboardEvent(evt).keyCode != 16777230)
-            ^   | (bad-continuation)
 C:6150, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:6243, 0: Wrong hanging indentation before block.
-            (KeyboardEvent(evt).keyCode != 13)
-            ^   | (bad-continuation)
-C:6244, 0: Wrong hanging indentation before block.
-            and (KeyboardEvent(evt).keyCode != 10)
-            ^   | (bad-continuation)
-C:6245, 0: Wrong hanging indentation before block.
-            and (KeyboardEvent(evt).keyCode != 16777230)
-            ^   | (bad-continuation)
-C:6328, 0: Wrong hanging indentation before block.
-        (char_volk == revertchar_volk)
-        ^   | (bad-continuation)
-C:6329, 0: Wrong hanging indentation before block.
-        and (char_male == revertchar_male)
-        ^   | (bad-continuation)
-C:6330, 0: Wrong hanging indentation before block.
-        and (char_color == revertchar_color)
-        ^   | (bad-continuation)
-C:6331, 0: Wrong hanging indentation before block.
-        and (char_mouth == revertchar_mouth)
-        ^   | (bad-continuation)
-C:6332, 0: Wrong hanging indentation before block.
-        and (char_beard == revertchar_beard)
-        ^   | (bad-continuation)
-C:6333, 0: Wrong hanging indentation before block.
-        and (char_nose == revertchar_nose)
-        ^   | (bad-continuation)
-C:6334, 0: Wrong hanging indentation before block.
-        and (char_eyes == revertchar_eyes)
-        ^   | (bad-continuation)
-C:6335, 0: Wrong hanging indentation before block.
-        and (char_brows == revertchar_brows)
-        ^   | (bad-continuation)
-C:6336, 0: Wrong hanging indentation before block.
-        and (char_ears == revertchar_ears)
-        ^   | (bad-continuation)
-C:6337, 0: Wrong hanging indentation before block.
-        and (char_hair == revertchar_hair)
-        ^   | (bad-continuation)
-C:6338, 0: Wrong hanging indentation before block.
-        and (char_special == revertchar_special)
-        ^   | (bad-continuation)
-C:6339, 0: Wrong hanging indentation before block.
-        and (char_special2 == revertchar_special2)
-        ^   | (bad-continuation)
 C:12671, 0: Line too long (85/80) (line-too-long)
 C:16319, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16342, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16346, 0: Wrong hanging indentation.
-       IMG['SHAKES']['IDLE'],
-       ^| (bad-continuation)
-C:16347, 0: Wrong hanging indentation.
-       IMG['SHAKES']['IDLE1'],
-       ^| (bad-continuation)
-C:16348, 0: Wrong hanging indentation.
-       IMG['SHAKES']['IDLE2'],
-       ^| (bad-continuation)
-C:16349, 0: Wrong hanging indentation.
-       IMG['SHAKES']['IDLE3']
-       ^| (bad-continuation)
 C:16457, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16484, 0: Wrong hanging indentation.
-                        POS['QO']['BLACK']['SQUARE_X']
-                    |   ^ (bad-continuation)
-C:16485, 0: Wrong hanging indentation.
-                        + REL['QO']['QUESTNAME_X']
-                    |   ^ (bad-continuation)
-C:16486, 0: Wrong hanging indentation.
-                        - textWidth / 2
-                    |   ^ (bad-continuation)
 C:16515, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16519, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16520, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16525, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16528, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16531, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16607, 0: Wrong hanging indentation before block.
-                (param_reconnect * interval_multiplier_reconnect) < (1000 * 120)
-                ^   | (bad-continuation)
 C:16742, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16746, 0: Wrong hanging indentation.
-                  "Error: Your email address has to be validated in order ",
-                  ^ | (bad-continuation)
-C:16747, 0: Wrong hanging indentation.
-                  "to send messages."
-                  ^ | (bad-continuation)
 C:16796, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16811, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16913, 0: Wrong hanging indentation before block.
-                            (last_chat_index != 0)
-                            ^   | (bad-continuation)
-C:16914, 0: Wrong hanging indentation before block.
-                            and (decode_chat(tmp_array[i], False, True) == "1")
-                            ^   | (bad-continuation)
-C:16925, 0: Wrong hanging indentation before block.
-                            (
-                            ^   | (bad-continuation)
-C:16929, 0: Wrong hanging indentation before block.
-                            and pulse_gilde_on_history
-                            ^   | (bad-continuation)
-C:16939, 0: Wrong continued indentation before block.
-                                ):
-                                ^  | (bad-continuation)
-C:16938, 0: Wrong hanging indentation before block.
-                                    tmp_str) != -1
-                                    ^   | (bad-continuation)
 C:16940, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16950, 0: Wrong hanging indentation before block.
-                                (not last_chat_index == 0)
-                                ^   | (bad-continuation)
-C:16951, 0: Wrong hanging indentation before block.
-                                and (decode_chat(
-                                ^   | (bad-continuation)
-C:16965, 0: Wrong continued indentation.
-                                or (not so.data.noPulseOnSysMsg))
-                                ^| (bad-continuation)
-C:16964, 0: Wrong hanging indentation before block.
-                                ((tmp_array[i].find("§") != -1)
-                                ^   | (bad-continuation)
-C:16966, 0: Wrong hanging indentation before block.
-                                and (pulse_gilde_on_history)
-                                ^   | (bad-continuation)
-C:16975, 0: Wrong continued indentation before block.
-                                ):
-                                ^  | (bad-continuation)
-C:16974, 0: Wrong hanging indentation before block.
-                                    tmp_str) != -1
-                                    ^   | (bad-continuation)
 C:16976, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:16985, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:16998, 0: Wrong hanging indentation.
-                            0: external_whisperer.find(":§")
-                        |   ^ (bad-continuation)
-C:17002, 0: Wrong continued indentation.
-                    )
-                    ^        | (bad-continuation)
 C:17006, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:17011, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:17012, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17019, 0: Wrong hanging indentation before block.
-                (new_crest_suggested != "")
-                ^   | (bad-continuation)
-C:17020, 0: Wrong hanging indentation before block.
-                and (not first_chat_fill)
-                ^   | (bad-continuation)
-C:17021, 0: Wrong hanging indentation before block.
-                and (on_stage(INP['GILDE_CHAT']))
-                ^   | (bad-continuation)
 C:17054, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17261, 0: Wrong hanging indentation before block.
-                not on_stage(BNC['GILDE']['CREST'])
-                ^   | (bad-continuation)
-C:17262, 0: Wrong hanging indentation before block.
-                or (act == RESP['OTHER_GUILD'])
-                ^   | (bad-continuation)
-C:17263, 0: Wrong hanging indentation before block.
-                or (last_guild_crest_id != par[0].split("/")[0])
-                ^   | (bad-continuation)
-C:17264, 0: Wrong hanging indentation before block.
-                or (
-                ^   | (bad-continuation)
 C:17277, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:17280, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17369, 0: Wrong hanging indentation before block.
-                        "1  ", "2  ", "3  ", "4  ", "5  ",
-                        ^   | (bad-continuation)
-C:17370, 0: Wrong hanging indentation before block.
-                        "6  ", "7  ", "8  ", "9  "
-                        ^   | (bad-continuation)
 C:17489, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17506, 0: Wrong hanging indentation.
-                        ))
-                        ^   |   | (bad-continuation)
 C:17511, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:17532, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17539, 0: Wrong continued indentation before block.
-                    ):
-                    ^  | (bad-continuation)
 C:17561, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17706, 0: Wrong hanging indentation before block.
-                    (not guild_hall_mode)
-                    ^   | (bad-continuation)
-C:17707, 0: Wrong hanging indentation before block.
-                    and (not ruhmes_halle_such_name)
-                    ^   | (bad-continuation)
-C:17708, 0: Wrong hanging indentation before block.
-                    and (tmp_str == tmp_array[tmpidx].lower())
-                    ^   | (bad-continuation)
 C:17712, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:17718, 0: Wrong hanging indentation.
-                                 tmp_array[i + 1].lower()
-                                |^ (bad-continuation)
-C:17716, 0: Wrong hanging indentation before block.
-                            (not guild_hall_mode)
-                            ^   | (bad-continuation)
-C:17717, 0: Wrong hanging indentation before block.
-                            and (not lastAttacked.find(
-                            ^   | (bad-continuation)
-C:17927, 0: Wrong hanging indentation before block.
-            RESP_SAVEGAME_STAY,
-            ^   | (bad-continuation)
-C:17928, 0: Wrong hanging indentation before block.
-            RESP_SAVEGAME_SHARD,
-            ^   | (bad-continuation)
-C:17929, 0: Wrong hanging indentation before block.
-            RESP_SAVEGAME_MIRROR,
-            ^   | (bad-continuation)
-C:17930, 0: Wrong hanging indentation before block.
-            RESP_MOVE_TOWER_ITEM
-            ^   | (bad-continuation)
-C:17999, 0: Wrong hanging indentation before block.
-            RESP_LOGIN_SUCCESS_BOUGHT,
-            ^   | (bad-continuation)
-C:18000, 0: Wrong hanging indentation before block.
-            RESP_LOGIN_SUCCESS
-            ^   | (bad-continuation)
 C:18047, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:18062, 0: Wrong hanging indentation before block.
-                      (int(savegame[SG_EMAIL_VALID]) < 1)
-                    | ^ | (bad-continuation)
-C:18063, 0: Wrong hanging indentation before block.
-                      and (server_time > (email_date + 2 * 60 * 24 * 60))
-                    | ^ | (bad-continuation)
-C:18083, 0: Wrong continued indentation.
-            ERR_NO_INDEX_FREE,
-            ^   | (bad-continuation)
-C:18084, 0: Wrong continued indentation.
-            ERR_FIGHT_SELF,
-            ^   | (bad-continuation)
-C:18085, 0: Wrong continued indentation.
-            ERR_GUILD_NOT_FOUND,
-            ^   | (bad-continuation)
-C:18086, 0: Wrong continued indentation.
-            ERR_GUILD_NOT_ALLOWED,
-            ^   | (bad-continuation)
-C:18087, 0: Wrong continued indentation.
-            ERR_GUILD_LACK_MUSH,
-            ^   | (bad-continuation)
-C:18088, 0: Wrong continued indentation.
-            ERR_GUILD_LACK_GOLD,
-            ^   | (bad-continuation)
-C:18089, 0: Wrong continued indentation.
-            ERR_GUILD_BUILDING_NOT_FOUND,
-            ^   | (bad-continuation)
-C:18090, 0: Wrong continued indentation.
-            ERR_GUILD_BUILDING_MAX,
-            ^   | (bad-continuation)
-C:18091, 0: Wrong continued indentation.
-            ERR_GUILD_NOT_MEMBER,
-            ^   | (bad-continuation)
-C:18092, 0: Wrong continued indentation.
-            ERR_GUILD_MASTER_CANT_BE_OFFICER,
-            ^   | (bad-continuation)
-C:18093, 0: Wrong continued indentation.
-            ERR_GUILD_IS_FULL,
-            ^   | (bad-continuation)
-C:18094, 0: Wrong continued indentation.
-            ERR_GUILD_ALREADY_YOU_OTHER,
-            ^   | (bad-continuation)
-C:18095, 0: Wrong continued indentation.
-            ERR_GUILD_NOT_REAL_MEMBER,
-            ^   | (bad-continuation)
-C:18096, 0: Wrong continued indentation.
-            ERR_GUILD_ALREADY_YOU_THIS,
-            ^   | (bad-continuation)
-C:18097, 0: Wrong continued indentation.
-            ERR_GUILD_PLAYER_NOT_FOUND,
-            ^   | (bad-continuation)
-C:18098, 0: Wrong continued indentation.
-            ERR_SUBJECT_TOO_SHORT,
-            ^   | (bad-continuation)
-C:18099, 0: Wrong continued indentation.
-            ERR_GUILD_TOO_EXPENSIVE,
-            ^   | (bad-continuation)
-C:18100, 0: Wrong continued indentation.
-            ERR_GUILD_CHAT_NOT_MEMBER,
-            ^   | (bad-continuation)
-C:18101, 0: Wrong continued indentation.
-            ERR_GUILD_CHAT_HISTORY,
-            ^   | (bad-continuation)
-C:18102, 0: Wrong continued indentation.
-            ERR_GUILD_CHAT_TEXT_ERROR,
-            ^   | (bad-continuation)
-C:18103, 0: Wrong continued indentation.
-            ERR_BEER,
-            ^   | (bad-continuation)
-C:18104, 0: Wrong continued indentation.
-            ERR_NO_MUSH_BAR,
-            ^   | (bad-continuation)
-C:18105, 0: Wrong continued indentation.
-            ERR_NO_ENDURANCE,
-            ^   | (bad-continuation)
-C:18106, 0: Wrong continued indentation.
-            ERR_WORSE_MOUNT,
-            ^   | (bad-continuation)
-C:18107, 0: Wrong continued indentation.
-            ERR_GUILD_ALREADY_MEMBER,
-            ^   | (bad-continuation)
-C:18108, 0: Wrong continued indentation.
-            ERR_NOT_INVITED,
-            ^   | (bad-continuation)
-C:18109, 0: Wrong continued indentation.
-            ERR_NO_MUSH_PVP,
-            ^   | (bad-continuation)
-C:18110, 0: Wrong continued indentation.
-            ERR_NO_MUSH_MQ
-            ^   | (bad-continuation)
-C:18111, 0: Wrong continued indentation.
-        ):
-        ^      | (bad-continuation)
-C:18226, 0: Wrong hanging indentation before block.
-            ((int(pixel[0]) == act) or (next_pxl > 0))
-            ^   | (bad-continuation)
-C:18227, 0: Wrong hanging indentation before block.
-            and (next_pxl == int(pixel[0]))
-            ^   | (bad-continuation)
 C:18239, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:18319, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:18321, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:18323, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
-C:18376, 0: Wrong continued indentation.
-                    or (len(tmp_arr[k].split("\"")) > 2))
-                    ^    | (bad-continuation)
-C:18370, 0: Wrong hanging indentation before block.
-                    (punct1 != "!")
-                    ^   | (bad-continuation)
-C:18371, 0: Wrong hanging indentation before block.
-                    and (punct1 != ".")
-                    ^   | (bad-continuation)
-C:18372, 0: Wrong hanging indentation before block.
-                    and (punct1 != ":")
-                    ^   | (bad-continuation)
-C:18373, 0: Wrong hanging indentation before block.
-                    and (punct1 != "،")
-                    ^   | (bad-continuation)
-C:18374, 0: Wrong hanging indentation before block.
-                    and (punct1 != "x؟")
-                    ^   | (bad-continuation)
-C:18375, 0: Wrong hanging indentation before block.
-                    and ((punct1 != "\"")
-                    ^   | (bad-continuation)
-C:18381, 0: Wrong hanging indentation before block.
-                    (punct2 != "\"")
-                    ^   | (bad-continuation)
-C:18382, 0: Wrong hanging indentation before block.
-                    or (len(tmp_arr[k].split("\"")) > 2)
-                    ^   | (bad-continuation)
-C:18479, 0: Wrong hanging indentation before block.
-    actor_id, caption, handler, btnClass,
-    ^   | (bad-continuation)
-C:18480, 0: Wrong hanging indentation before block.
-    pos_x=0, pos_y=0, scale_x=1, scale_y=1, vis=True
-    ^   | (bad-continuation)
 C:18724, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:19121, 0: Wrong hanging indentation before block.
-            (param_obj["mp_api_user_id"] != None)
-            ^   | (bad-continuation)
-C:19122, 0: Wrong hanging indentation before block.
-            and (param_obj["mp_api_user_token"] != None)
-            ^   | (bad-continuation)
 C:19142, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:19144, 0: Unnecessary parens after u'elif' keyword (superfluous-parens)
-C:19200, 0: Wrong hanging indentation before block.
-                  (so.data.snd_url_index <= len(snd_url))
-                | ^ | (bad-continuation)
-C:19201, 0: Wrong hanging indentation before block.
-                  and (not force_reroll)
-                | ^ | (bad-continuation)
 C:19209, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:19263, 0: Wrong hanging indentation before block.
-                (actorURL[actor_id][-4:] == ".png")
-                ^   | (bad-continuation)
-C:19264, 0: Wrong hanging indentation before block.
-                and (not no_crossdomain)
-                ^   | (bad-continuation)
 C:19356, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:19406, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:19420, 0: Wrong hanging indentation before block.
-        (pixel_data.lower().substr(0, 7) == "http://")
-        ^   | (bad-continuation)
-C:19421, 0: Wrong hanging indentation before block.
-        or (pixel_data.lower().substr(0, 8) == "https://")
-        ^   | (bad-continuation)
 C:19458, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:  1, 0: Too many lines in module (31910) (too-many-lines)
 W: 24, 0: Wildcard import sflegacy (wildcard-import)
 R:4094, 0: Too few public methods (1/2) (too-few-public-methods)
-C:4127, 0: Old-style class defined. (old-style-class)
 R:4127, 0: Too many instance attributes (14/7) (too-many-instance-attributes)
+C:4127, 0: Old-style class defined. (old-style-class)
 E:4190,19: Undefined variable 'on_stage' (undefined-variable)
 E:4215,19: Undefined variable 'fight_lock' (undefined-variable)
 W:4231,12: Specify string format arguments as logging function parameters (logging-not-lazy)
@@ -537,13 +123,13 @@ W:4295,16: Specify string format arguments as logging function parameters (loggi
 E:4304,30: Undefined variable 'param_fail_tries' (undefined-variable)
 E:4308,28: Undefined variable 'param_fail_tries' (undefined-variable)
 E:4309,24: Undefined variable 'evt' (undefined-variable)
+W:4224, 8: Unused variable 'last_act' (unused-variable)
 R:4185, 4: Too many branches (25/12) (too-many-branches)
 R:4185, 4: Too many statements (65/50) (too-many-statements)
-W:4224, 8: Unused variable 'last_act' (unused-variable)
 C:4341, 0: Old-style class defined. (old-style-class)
 R:4341, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4351, 0: Old-style class defined. (old-style-class)
 R:4351, 0: Too many instance attributes (12/7) (too-many-instance-attributes)
+C:4351, 0: Old-style class defined. (old-style-class)
 R:4355, 4: Too many arguments (13/5) (too-many-arguments)
 R:4351, 0: Too few public methods (0/2) (too-few-public-methods)
 C:4376, 0: Old-style class defined. (old-style-class)
@@ -593,8 +179,8 @@ E:5233, 4: Undefined variable 'GameTime' (undefined-variable)
 E:5234,33: Undefined variable 'server_time' (undefined-variable)
 E:5234,57: Undefined variable 'local_time' (undefined-variable)
 W:5224,20: Unused argument 'evt' (unused-argument)
-C:5241, 0: Old-style class defined. (old-style-class)
 R:5241, 0: Too many instance attributes (11/7) (too-many-instance-attributes)
+C:5241, 0: Old-style class defined. (old-style-class)
 R:5245, 4: Too many arguments (10/5) (too-many-arguments)
 E:5324,15: Undefined variable 'texts' (undefined-variable)
 E:5325,30: Undefined variable 'texts' (undefined-variable)
@@ -620,7 +206,7 @@ E:5430,24: Undefined variable 'texts' (undefined-variable)
 E:5433,24: Undefined variable 'texts' (undefined-variable)
 C:5481, 0: Old-style class defined. (old-style-class)
 R:5485, 4: Too many arguments (9/5) (too-many-arguments)
-E:5556,15: Too many positional arguments for method call (too-many-function-args)
+E:5556,15: Too many positional arguments for function call (too-many-function-args)
 E:5609,29: Undefined variable 'texts' (undefined-variable)
 E:5623,12: Undefined variable 'texts' (undefined-variable)
 E:5628,11: Undefined variable 'texts' (undefined-variable)
@@ -632,8 +218,8 @@ E:5641,19: Undefined variable 'texts' (undefined-variable)
 E:5643,19: Undefined variable 'texts' (undefined-variable)
 R:5561, 4: Too many return statements (7/6) (too-many-return-statements)
 R:5561, 4: Too many branches (23/12) (too-many-branches)
-R:5676, 4: Too many branches (14/12) (too-many-branches)
 W:5691,12: Unused variable 'slot_id' (unused-variable)
+R:5676, 4: Too many branches (14/12) (too-many-branches)
 E:5744,23: Undefined variable 'savegame' (undefined-variable)
 E:5771, 8: Too many arguments for logging format string (logging-too-many-args)
 R:5832, 0: Too many return statements (38/6) (too-many-return-statements)
@@ -703,9 +289,6 @@ E:6116,50: Using variable 'gilden_id' before assignment (used-before-assignment)
 E:6119,16: Undefined variable 'send_action' (undefined-variable)
 E:6125,48: Undefined variable 'on_stage' (undefined-variable)
 E:6131,11: Using variable 'next_pxl' before assignment (used-before-assignment)
-R:5936, 4: Method could be a function (no-self-use)
-R:5936, 4: Too many branches (37/12) (too-many-branches)
-R:5936, 4: Too many statements (114/50) (too-many-statements)
 W:6028,12: Unused variable 'char_mouth' (unused-variable)
 W:5961, 8: Unused variable 'can_rob' (unused-variable)
 W:6050,20: Unused variable 'text' (unused-variable)
@@ -728,6 +311,9 @@ W:6029,12: Unused variable 'char_beard' (unused-variable)
 W:6104,12: Unused variable 'local_time' (unused-variable)
 W:5960, 8: Unused variable 'has_mirror' (unused-variable)
 W:6035,12: Unused variable 'char_special' (unused-variable)
+R:5936, 4: Method could be a function (no-self-use)
+R:5936, 4: Too many branches (37/12) (too-many-branches)
+R:5936, 4: Too many statements (114/50) (too-many-statements)
 R:5926, 0: Too few public methods (1/2) (too-few-public-methods)
 E:6143,14: Undefined variable 'KeyboardEvent' (undefined-variable)
 E:6145,13: Undefined variable 'KeyboardEvent' (undefined-variable)
@@ -950,8 +536,8 @@ W:16406,12: Unused variable 'embed_fonts' (unused-variable)
 W:16382,12: Unused variable 'force_smoothing' (unused-variable)
 W:16425, 8: Unused variable 'y' (unused-variable)
 W:16421,12: Unused variable 'x' (unused-variable)
-R:16431, 0: Too many local variables (141/15) (too-many-locals)
 W:17356,16: Redefining built-in 'type' (redefined-builtin)
+R:16431, 0: Too many local variables (141/15) (too-many-locals)
 E:16441,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
 E:16442,12: Undefined variable 'send_action' (undefined-variable)
 E:16453, 7: Undefined variable 'on_stage' (undefined-variable)
@@ -1713,8 +1299,6 @@ E:18255,31: Undefined variable 'so' (undefined-variable)
 E:18256,47: Undefined variable 'so' (undefined-variable)
 E:18269,23: Undefined variable 'savegame' (undefined-variable)
 E:18269,32: Undefined variable 'SG_PLAYER_ID' (undefined-variable)
-R:16431, 0: Too many branches (369/12) (too-many-branches)
-R:16431, 0: Too many statements (1123/50) (too-many-statements)
 W:17126,16: Unused variable 'gilde' (unused-variable)
 W:17237,12: Unused variable 'my_own_attack_target' (unused-variable)
 W:18174,16: Unused variable 'char_brows' (unused-variable)
@@ -1776,6 +1360,8 @@ W:16718,12: Unused variable 'guild_attack_time' (unused-variable)
 W:17914,12: Unused variable 'verdientes_geld' (unused-variable)
 W:16727,12: Unused variable 'fight_flush_mode' (unused-variable)
 W:16726,12: Unused variable 'session_id' (unused-variable)
+R:16431, 0: Too many branches (369/12) (too-many-branches)
+R:16431, 0: Too many statements (1123/50) (too-many-statements)
 E:18313,16: Undefined variable 'loader_info' (undefined-variable)
 E:18345, 8: Undefined variable 'texts' (undefined-variable)
 E:18347, 8: Undefined variable 'server' (undefined-variable)
@@ -1875,9 +1461,9 @@ E:18724,12: Undefined variable 'texts' (undefined-variable)
 E:18725,12: Undefined variable 'countryName' (undefined-variable)
 E:18725,24: Undefined variable 'texts' (undefined-variable)
 E:18725,50: Undefined variable 'texts' (undefined-variable)
-R:18674, 0: Too many branches (18/12) (too-many-branches)
 W:18711, 4: Unused variable 'pending_language_file' (unused-variable)
 W:18718, 8: Unused variable 'chosen_lang_font' (unused-variable)
+R:18674, 0: Too many branches (18/12) (too-many-branches)
 E:18736,13: Undefined variable 'URLLoader' (undefined-variable)
 E:18738,22: Undefined variable 'URLLoaderdata_format' (undefined-variable)
 E:18739, 8: Undefined variable 'add_event_listener' (undefined-variable)
@@ -2041,8 +1627,6 @@ E:19218,16: Undefined variable 'img_url' (undefined-variable)
 E:19218,41: Undefined variable 'param_lowres_url' (undefined-variable)
 E:19219,16: Undefined variable 'snd_url' (undefined-variable)
 E:19219,41: Undefined variable 'param_lowres_url' (undefined-variable)
-R:18813, 0: Too many branches (113/12) (too-many-branches)
-R:18813, 0: Too many statements (308/50) (too-many-statements)
 W:19080, 8: Unused variable 'disable_tv' (unused-variable)
 W:18871,28: Unused variable 'legal_url' (unused-variable)
 W:19010,28: Unused variable 'param_bullshit_cid' (unused-variable)
@@ -2099,6 +1683,8 @@ W:18923,28: Unused variable 'param_reconnect' (unused-variable)
 W:18954,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
 W:18983,28: Unused variable 'param_server_version_cfg' (unused-variable)
 W:19166,12: Unused variable 'param_hall' (unused-variable)
+R:18813, 0: Too many branches (113/12) (too-many-branches)
+R:18813, 0: Too many statements (308/50) (too-many-statements)
 C:19231, 0: Missing function docstring (missing-docstring)
 E:19232, 4: Undefined variable 'Security' (undefined-variable)
 E:19232,28: Undefined variable 'img_url' (undefined-variable)
@@ -2213,8 +1799,8 @@ E:19378,27: Undefined variable 'Loader' (undefined-variable)
 E:19379,19: Undefined variable 'actorLoaded' (undefined-variable)
 E:19386,24: Undefined variable 'actorURL' (undefined-variable)
 E:19388,20: Undefined variable 'actorLoaded' (undefined-variable)
-C:19391, 4: Invalid variable name "ioErrorCount" (invalid-name)
 E:19391, 4: Undefined variable 'ioErrorCount' (undefined-variable)
+C:19391, 4: Invalid variable name "ioErrorCount" (invalid-name)
 E:19394,28: Using variable 'img_url_index' before assignment (used-before-assignment)
 E:19395,15: Undefined variable 'img_url' (undefined-variable)
 E:19396,32: Undefined variable 'Math' (undefined-variable)
@@ -2269,20 +1855,433 @@ W: 24, 0: Unused import get_quest_text from wildcard import (unused-wildcard-imp
 W: 24, 0: Unused import load_configuration_file from wildcard import (unused-wildcard-import)
 W: 24, 0: Unused import parse_savegame from wildcard import (unused-wildcard-import)
 W: 24, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
+************* Module sflegacy
+W: 17, 0: TODO: obsolete (fixme)
+W: 31, 0: TODO: obsolete (fixme)
+W: 44, 0: TODO: obsolete (fixme)
+W: 59, 0: TODO: obsolete (fixme)
+W: 82, 0: TODO WTF? (fixme)
+W:103, 0: TODO: better way to zero fill? (fixme)
+W:258, 0: Cannot decode using encoding "ascii", unexpected byte at position 39 (invalid-encoded-data)
+W:263, 0: Cannot decode using encoding "ascii", unexpected byte at position 31 (invalid-encoded-data)
+C:104, 0: Unnecessary parens after 'while' keyword (superfluous-parens)
+C:142, 0: Line too long (85/80) (line-too-long)
+E: 19,13: Undefined variable 'savegame' (undefined-variable)
+E: 19,22: Undefined variable 'SG' (undefined-variable)
+E: 20,15: Undefined variable 'savegame' (undefined-variable)
+E: 20,24: Undefined variable 'SG' (undefined-variable)
+E: 21,11: Undefined variable 'LBL' (undefined-variable)
+E: 33,12: Undefined variable 'Quest' (undefined-variable)
+E: 33,36: Undefined variable 'savegame' (undefined-variable)
+E: 46,12: Undefined variable 'Quest' (undefined-variable)
+E: 46,36: Undefined variable 'savegame' (undefined-variable)
+E: 61,12: Undefined variable 'Quest' (undefined-variable)
+E: 61,36: Undefined variable 'savegame' (undefined-variable)
+E: 69,13: Undefined variable 'URLLoader' (undefined-variable)
+E: 70,14: Undefined variable 'URLLoader' (undefined-variable)
+E: 73,22: Undefined variable 'URLLoaderdata_format' (undefined-variable)
+E: 74, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E: 74,27: Undefined variable 'Event' (undefined-variable)
+E: 74,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
+E: 75, 8: Undefined variable 'load' (undefined-variable)
+E: 75,13: Undefined variable 'URLRequest' (undefined-variable)
+E: 78,22: Undefined variable 'URLLoaderdata_format' (undefined-variable)
+E: 79, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E: 79,27: Undefined variable 'Event' (undefined-variable)
+E: 79,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
+E: 81, 4: Undefined variable 'pending_loaders' (undefined-variable)
+W: 81, 4: Unused variable 'pending_loaders' (unused-variable)
+W: 83, 4: Unused variable 'pending_configuration_files' (unused-variable)
+W: 73, 8: Unused variable 'data_format' (unused-variable)
+R: 87, 0: Too many local variables (37/15) (too-many-locals)
+E: 96,36: Undefined variable 'SG' (undefined-variable)
+E: 98,13: Undefined variable 'SG' (undefined-variable)
+E:101,14: Instance of 'int' has no 'tostr' member (no-member)
+E:101,27: Undefined variable 'SG' (undefined-variable)
+E:115,17: Undefined variable 'SG' (undefined-variable)
+E:117,17: Undefined variable 'SG' (undefined-variable)
+E:119,17: Undefined variable 'SG' (undefined-variable)
+E:119,41: Undefined variable 'content_max' (undefined-variable)
+E:120,17: Undefined variable 'SG' (undefined-variable)
+E:120,32: Undefined variable 'content_max' (undefined-variable)
+E:122,19: Undefined variable 'SG' (undefined-variable)
+E:123, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:124,22: Undefined variable 'SG' (undefined-variable)
+E:124,51: Undefined variable 'SG' (undefined-variable)
+E:127,19: Undefined variable 'SG' (undefined-variable)
+E:128, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:129,23: Undefined variable 'SG' (undefined-variable)
+E:129,53: Undefined variable 'SG' (undefined-variable)
+E:133, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:134,22: Undefined variable 'SG' (undefined-variable)
+E:134,50: Undefined variable 'SG' (undefined-variable)
+E:136, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:137,22: Undefined variable 'SG' (undefined-variable)
+E:137,50: Undefined variable 'SG' (undefined-variable)
+E:141, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:142,23: Undefined variable 'SG' (undefined-variable)
+E:142,66: Undefined variable 'SG' (undefined-variable)
+E:149, 8: Using variable 'last_level' before assignment (used-before-assignment)
+E:149,43: Undefined variable 'SG' (undefined-variable)
+E:153,30: Undefined variable 'SG' (undefined-variable)
+E:155,30: Undefined variable 'server' (undefined-variable)
+E:156,28: Undefined variable 'SG' (undefined-variable)
+E:158,11: Undefined variable 'old_ach' (undefined-variable)
+E:160,15: Undefined variable 'ach_level' (undefined-variable)
+E:160,40: Undefined variable 'old_ach' (undefined-variable)
+E:161,16: Undefined variable 'old_ach' (undefined-variable)
+E:161,34: Undefined variable 'ach_level' (undefined-variable)
+E:163,16: Undefined variable 'old_ach' (undefined-variable)
+E:163,29: Undefined variable 'ach_level' (undefined-variable)
+E:166,12: Undefined variable 'old_ach' (undefined-variable)
+E:166,25: Undefined variable 'ach_level' (undefined-variable)
+E:168, 8: Using variable 'old_album' before assignment (used-before-assignment)
+E:168,38: Undefined variable 'SG' (undefined-variable)
+E:170,25: Undefined variable 'SG' (undefined-variable)
+E:173,29: Undefined variable 'SG' (undefined-variable)
+E:174,30: Undefined variable 'SG' (undefined-variable)
+E:175,30: Undefined variable 'SG' (undefined-variable)
+E:176,30: Undefined variable 'SG' (undefined-variable)
+E:177,30: Undefined variable 'SG' (undefined-variable)
+E:178,29: Undefined variable 'SG' (undefined-variable)
+E:179,29: Undefined variable 'SG' (undefined-variable)
+E:180,30: Undefined variable 'SG' (undefined-variable)
+E:181,29: Undefined variable 'SG' (undefined-variable)
+E:182,29: Undefined variable 'SG' (undefined-variable)
+E:183,32: Undefined variable 'SG' (undefined-variable)
+E:184,33: Undefined variable 'SG' (undefined-variable)
+E:194,11: Undefined variable 'text_dir' (undefined-variable)
+E:195,12: Undefined variable 'actor' (undefined-variable)
+E:195,18: Undefined variable 'IF' (undefined-variable)
+E:195,34: Undefined variable 'IF' (undefined-variable)
+E:197,17: Undefined variable 'actor' (undefined-variable)
+E:197,23: Undefined variable 'LBL' (undefined-variable)
+E:198,40: Undefined variable 'SG' (undefined-variable)
+C:199,16: Invalid variable name "x" (invalid-name)
+E:199,20: Undefined variable 'IF' (undefined-variable)
+E:199,47: Undefined variable 'textWidth' (undefined-variable)
+E:200,12: Undefined variable 'actor' (undefined-variable)
+E:200,18: Undefined variable 'IF' (undefined-variable)
+E:200,36: Undefined variable 'actor' (undefined-variable)
+E:200,42: Undefined variable 'LBL' (undefined-variable)
+E:200,65: Undefined variable 'width' (undefined-variable)
+E:202,18: Undefined variable 'actor' (undefined-variable)
+E:202,24: Undefined variable 'LBL' (undefined-variable)
+E:203,32: Undefined variable 'SG_GOLD' (undefined-variable)
+E:207,41: Undefined variable 'SG' (undefined-variable)
+C:208,16: Invalid variable name "x" (invalid-name)
+E:208,20: Undefined variable 'actor' (undefined-variable)
+E:208,26: Undefined variable 'IF' (undefined-variable)
+E:208,44: Undefined variable 'textWidth' (undefined-variable)
+E:210,17: Undefined variable 'actor' (undefined-variable)
+E:210,23: Undefined variable 'LBL' (undefined-variable)
+E:211,32: Undefined variable 'SG' (undefined-variable)
+C:212,16: Invalid variable name "x" (invalid-name)
+E:212,20: Undefined variable 'IF' (undefined-variable)
+E:212,50: Undefined variable 'textWidth' (undefined-variable)
+E:214,15: Undefined variable 'texts' (undefined-variable)
+E:214,21: Undefined variable 'TXT' (undefined-variable)
+E:215,16: Undefined variable 'enable_popup' (undefined-variable)
+E:216,20: Undefined variable 'LBL' (undefined-variable)
+E:217,20: Undefined variable 'texts' (undefined-variable)
+E:217,26: Undefined variable 'TXT' (undefined-variable)
+E:218,39: Undefined variable 'SG' (undefined-variable)
+E:222,18: Undefined variable 'actor' (undefined-variable)
+E:222,24: Undefined variable 'LBL' (undefined-variable)
+E:223,32: Undefined variable 'SG_GOLD' (undefined-variable)
+E:227,41: Undefined variable 'SG' (undefined-variable)
+C:228,16: Invalid variable name "x" (invalid-name)
+E:228,20: Undefined variable 'actor' (undefined-variable)
+E:228,26: Undefined variable 'IF' (undefined-variable)
+E:228,44: Undefined variable 'textWidth' (undefined-variable)
+E:230,12: Undefined variable 'actor' (undefined-variable)
+E:230,18: Undefined variable 'IF' (undefined-variable)
+E:230,34: Undefined variable 'actor' (undefined-variable)
+E:230,40: Undefined variable 'LBL' (undefined-variable)
+E:232,17: Undefined variable 'actor' (undefined-variable)
+E:232,23: Undefined variable 'LBL' (undefined-variable)
+E:233,40: Undefined variable 'SG' (undefined-variable)
+C:234,16: Invalid variable name "x" (invalid-name)
+E:234,20: Undefined variable 'actor' (undefined-variable)
+E:234,26: Undefined variable 'IF' (undefined-variable)
+E:234,42: Undefined variable 'textWidth' (undefined-variable)
+E:236,17: Undefined variable 'actor' (undefined-variable)
+E:236,23: Undefined variable 'LBL' (undefined-variable)
+E:237,32: Undefined variable 'SG' (undefined-variable)
+C:238,16: Invalid variable name "x" (invalid-name)
+E:238,20: Undefined variable 'IF' (undefined-variable)
+E:238,50: Undefined variable 'textWidth' (undefined-variable)
+E:240,15: Undefined variable 'texts' (undefined-variable)
+E:240,21: Undefined variable 'TXT' (undefined-variable)
+E:241,16: Undefined variable 'enable_popup' (undefined-variable)
+E:242,20: Undefined variable 'LBL' (undefined-variable)
+E:243,20: Undefined variable 'texts' (undefined-variable)
+E:243,26: Undefined variable 'TXT' (undefined-variable)
+E:244,39: Undefined variable 'SG' (undefined-variable)
+E:248, 4: Undefined variable 'add' (undefined-variable)
+E:248, 8: Undefined variable 'IF' (undefined-variable)
+E:249,20: Undefined variable 'SG' (undefined-variable)
+E:250, 8: Undefined variable 'server_time' (undefined-variable)
+E:251,32: Undefined variable 'SG' (undefined-variable)
+E:253,21: Undefined variable 'datetime' (undefined-variable)
+E:254, 8: Undefined variable 'time_calc' (undefined-variable)
+E:256, 7: Undefined variable 'session_id' (undefined-variable)
+E:257, 8: Undefined variable 'log' (undefined-variable)
+E:261, 8: Undefined variable 'show_login_screen' (undefined-variable)
+E:263, 8: Undefined variable 'log' (undefined-variable)
+E:263,52: Undefined variable 'session_id' (undefined-variable)
+E:265,20: Undefined variable 'SG' (undefined-variable)
+E:265,46: Using variable 'gilden_id' before assignment (used-before-assignment)
+E:266,33: Undefined variable 'SG' (undefined-variable)
+E:268,12: Undefined variable 'send_action' (undefined-variable)
+E:269,16: Undefined variable 'ACT' (undefined-variable)
+E:270,25: Undefined variable 'SG' (undefined-variable)
+E:273,13: Undefined variable 'SG' (undefined-variable)
+E:274,44: Undefined variable 'on_stage' (undefined-variable)
+E:274,53: Undefined variable 'POST' (undefined-variable)
+E:277,20: Undefined variable 'SG' (undefined-variable)
+E:278, 8: Undefined variable 'request_logout' (undefined-variable)
+E:280, 7: Using variable 'next_pxl' before assignment (used-before-assignment)
+W:176, 8: Unused variable 'char_mouth' (unused-variable)
+W:112, 4: Unused variable 'can_rob' (unused-variable)
+W:198,16: Unused variable 'text' (unused-variable)
+W:188, 8: Unused variable 'char_color' (unused-variable)
+W:184, 8: Unused variable 'char_special2' (unused-variable)
+W:169, 8: Unused variable 'album_effect' (unused-variable)
+W:275, 8: Unused variable 'pulse_post' (unused-variable)
+W:151, 8: Unused variable 'pulse_char' (unused-variable)
+W:180, 8: Unused variable 'char_brows' (unused-variable)
+W:177, 8: Unused variable 'char_beard' (unused-variable)
+W:175, 8: Unused variable 'char_class' (unused-variable)
+W:145, 4: Unused variable 'debug_info' (unused-variable)
+W:155, 4: Unused variable 'friend_link' (unused-variable)
+W:173, 8: Unused variable 'char_volk' (unused-variable)
+W:181, 8: Unused variable 'char_ears' (unused-variable)
+W:199,16: Unused variable 'x' (unused-variable)
+W:150, 8: Unused variable 'level_up' (unused-variable)
+W:178, 8: Unused variable 'char_nose' (unused-variable)
+W:183, 8: Unused variable 'char_special' (unused-variable)
+W:179, 8: Unused variable 'char_eyes' (unused-variable)
+W:174, 8: Unused variable 'char_male' (unused-variable)
+W:253, 8: Unused variable 'local_time' (unused-variable)
+W:111, 4: Unused variable 'has_mirror' (unused-variable)
+R: 87, 0: Too many branches (38/12) (too-many-branches)
+R: 87, 0: Too many statements (114/50) (too-many-statements)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5994
+==sflegacy:142
+            )
+
+        debug_info = ""
+        for i in range(len(savegame)):
+            debug_info += str(i) + "=" + savegame[i] + ", "
+
+        if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
+            level_up = True
+            pulse_char = True
+
+        last_level = int(savegame[SG['LEVEL']])
+
+        friend_link = "http://" + server + "/index.php?rec="
+        friend_link += savegame[SG['PLAYER']['ID']]
+
+        if len(old_ach) != 0:
+            for i in range(8):
+                if ach_level(savegame, i) > old_ach[i]:
+                    old_ach[i] = -1 * ach_level(savegame, i)
+                else:
+                    old_ach[i] = ach_level(savegame, i)
+        else:
+            for i in range(8):
+                old_ach[i] = ach_level(savegame, i)
+
+        if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
+            album_effect = True
+        old_album = savegame[SG['ALBUM']]
+
+        if fill_face_variables:
+            char_volk = savegame[SG['RACE']]
+            char_male = (savegame[SG['GENDER']] == 1)
+            char_class = savegame[SG['CLASS']]
+            char_mouth = savegame[SG['FACE']['1']]
+            char_beard = savegame[SG['FACE']['5']]
+            char_nose = savegame[SG['FACE']['6']]
+            char_eyes = savegame[SG['FACE']['4']]
+            char_brows = savegame[SG['FACE']['3']]
+            char_ears = savegame[SG['FACE']['7']]
+            char_hair = savegame[SG['FACE']['2']]
+            char_special = savegame[SG['FACE']['8']]
+            char_special2 = savegame[SG['FACE']['9']]
+
+            i = char_hair
+
+            char_color = 0
+            while i > 100:
+                i -= 100
+                char_color += 1
+
+        if not no_spoil:
+            if text_dir == "right": (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5969
+==sflegacy:118
+    if (savegame[SG['ALBUM']] - 10000) > content_max:
+        savegame[SG['ALBUM']] = content_max + 10000
+
+    for i in range(SG['BACKPACK']['SIZE']):
+        expand_item_structure(
+            savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(SG['INVENTORY']['SIZE']):
+        expand_item_structure(
+            savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
+        )
+
+    for i in range(6):
+        expand_item_structure(
+            savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+        expand_item_structure(
+            savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(3):
+        expand_item_structure( (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6115
+==sflegacy:264
+    if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
+        gilden_id = int(savegame[SG['GUILD']['INDEX']])
+        if gilden_id != 0:
+            send_action(
+                ACT['REQUEST']['GUILD'],
+                savegame[SG['GUILD']['INDEX']]
+            )
+
+    sg_idx = SG['UNREAD']['MESSAGES'] (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6099
+==sflegacy:248
+    if int(savegame[SG['SERVER']['TIME']]) > 0:
+        server_time.setTime(
+            1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
+        )
+        local_time = datetime.now()
+        time_calc.start()
+
+    if session_id == "":
+        log.error(''.join( (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6065
+==sflegacy:213
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+        else:
+            with (actor[LBL['IF']['SILBER']]): (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6125
+==sflegacy:274
+        pulse_post = True
+
+    if int(savegame[SG['LOCKDURATION']]) != 0:
+        request_logout()
+
+    if next_pxl < 0:
+        next_pxl = abs(next_pxl)
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6090
+==sflegacy:239
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6090
+==sflegacy:213
+                if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                    enable_popup(
+                        LBL['IF']['PILZE'],
+                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                        )
+                    ) (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6065
+==sflegacy:239
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                ) (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5955
+==sflegacy:106
+    mirror_pieces = list()
+    for i in range(13):
+        mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
+
+    has_mirror = bin_str.substr(23, 1) == "1"
+    can_rob = bin_str.substr(22, 1) == "1"
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5944
+==sflegacy:94
+        if not no_spoil:
+            tower_level = int((savegame[SG['MOUNT']] / 65536))
+
+        savegame[SG['MOUNT']] -= tower_level * 65536
+
+        # TODO: Mirror object (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5963
+==sflegacy:113
+        if bin_str.substr(31) == "1":
+            savegame[SG['GENDER']] = 1
+        else:
+            savegame[SG['GENDER']] = 2
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6109
+==sflegacy:258
+            "PHP-Tunneling wird deaktiviert."
+        ))
+        show_login_screen()
+    else: (duplicate-code)
+R:  1, 0: Similar lines in 4 files
+==sfclient:6055
+==sfclient:6075
+==sflegacy:203
+==sflegacy:223
+                        text = "0"
+                    else:
+                        text = ""
+                    text += str(int(savegame[SG['GOLD']] % 100)) (duplicate-code)
+R:  1, 0: Similar lines in 4 files
+==sfclient:16710
+==sfclient:16800
+==sfclient:19271
+==sflegacy:218
+                    )
+                )
+            else: (duplicate-code)
 
 
 Report
 ======
-2743 statements analysed.
-
-External dependencies
----------------------
-::
-
-    datetime (sfclient)
-    requests (sfclient)
-
-
+2886 statements analysed.
 
 Raw metrics
 -----------
@@ -2290,27 +2289,31 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |16359  |51.97 |NC       |NC         |
+|code      |16534  |52.12 |16534    |=          |
 +----------+-------+------+---------+-----------+
-|docstring |14394  |45.73 |NC       |NC         |
+|docstring |14444  |45.53 |14444    |=          |
 +----------+-------+------+---------+-----------+
-|comment   |139    |0.44  |NC       |NC         |
+|comment   |144    |0.45  |144      |=          |
 +----------+-------+------+---------+-----------+
-|empty     |584    |1.86  |NC       |NC         |
+|empty     |599    |1.89  |599      |=          |
 +----------+-------+------+---------+-----------+
 
 
 
-Duplication
------------
+Statistics by type
+------------------
 
-+-------------------------+------+---------+-----------+
-|                         |now   |previous |difference |
-+=========================+======+=========+===========+
-|nb duplicated lines      |0     |NC       |NC         |
-+-------------------------+------+---------+-----------+
-|percent duplicated lines |0.000 |NC       |NC         |
-+-------------------------+------+---------+-----------+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |2      |2          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |14     |14         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |28     |28         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |69     |69         |=          |78.26       |2.90     |
++---------+-------+-----------+-----------+------------+---------+
 
 
 
@@ -2320,14 +2323,27 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |277    |NC       |NC         |
+|convention |147    |147      |=          |
 +-----------+-------+---------+-----------+
-|refactor   |39     |NC       |NC         |
+|refactor   |57     |52       |+5.00      |
 +-----------+-------+---------+-----------+
-|warning    |290    |NC       |NC         |
+|warning    |324    |324      |=          |
 +-----------+-------+---------+-----------+
-|error      |1388   |NC       |NC         |
+|error      |1554   |1554     |=          |
 +-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++---------+------+--------+---------+-----------+
+|module   |error |warning |refactor |convention |
++=========+======+========+=========+===========+
+|sfclient |89.32 |89.51   |68.42    |94.56      |
++---------+------+--------+---------+-----------+
+|sflegacy |10.68 |10.49   |31.58    |5.44       |
++---------+------+--------+---------+-----------+
 
 
 
@@ -2337,23 +2353,23 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |1358        |
+|undefined-variable           |1519        |
 +-----------------------------+------------+
-|unused-variable              |220         |
+|unused-variable              |246         |
 +-----------------------------+------------+
-|bad-continuation             |138         |
+|superfluous-parens           |82          |
 +-----------------------------+------------+
-|superfluous-parens           |81          |
+|invalid-name                 |35          |
 +-----------------------------+------------+
-|invalid-name                 |29          |
+|fixme                        |33          |
 +-----------------------------+------------+
-|fixme                        |27          |
-+-----------------------------+------------+
-|used-before-assignment       |22          |
+|used-before-assignment       |26          |
 +-----------------------------+------------+
 |unused-argument              |15          |
 +-----------------------------+------------+
 |missing-docstring            |15          |
++-----------------------------+------------+
+|duplicate-code               |15          |
 +-----------------------------+------------+
 |pointless-string-statement   |12          |
 +-----------------------------+------------+
@@ -2361,17 +2377,17 @@ Messages
 +-----------------------------+------------+
 |too-few-public-methods       |10          |
 +-----------------------------+------------+
-|too-many-branches            |8           |
+|too-many-branches            |9           |
++-----------------------------+------------+
+|too-many-locals              |7           |
 +-----------------------------+------------+
 |unused-wildcard-import       |6           |
 +-----------------------------+------------+
-|too-many-locals              |6           |
+|too-many-statements          |5           |
 +-----------------------------+------------+
 |too-many-arguments           |5           |
 +-----------------------------+------------+
-|too-many-statements          |4           |
-+-----------------------------+------------+
-|no-member                    |4           |
+|no-member                    |5           |
 +-----------------------------+------------+
 |logging-not-lazy             |4           |
 +-----------------------------+------------+
@@ -2382,6 +2398,10 @@ Messages
 |too-many-return-statements   |2           |
 +-----------------------------+------------+
 |redefined-outer-name         |2           |
++-----------------------------+------------+
+|line-too-long                |2           |
++-----------------------------+------------+
+|invalid-encoded-data         |2           |
 +-----------------------------+------------+
 |wildcard-import              |1           |
 +-----------------------------+------------+
@@ -2395,8 +2415,6 @@ Messages
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
-|line-too-long                |1           |
-+-----------------------------+------------+
 |global-statement             |1           |
 +-----------------------------+------------+
 
@@ -2404,22 +2422,26 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -17.51/10
+Your code has been rated at -18.75/10 (previous run: -18.74/10, -0.02)
 
-Statistics by type
-------------------
+External dependencies
+---------------------
+::
 
-+---------+-------+-----------+-----------+------------+---------+
-|type     |number |old number |difference |%documented |%badname |
-+=========+=======+===========+===========+============+=========+
-|module   |1      |NC         |NC         |100.00      |0.00     |
-+---------+-------+-----------+-----------+------------+---------+
-|class    |14     |NC         |NC         |100.00      |0.00     |
-+---------+-------+-----------+-----------+------------+---------+
-|method   |28     |NC         |NC         |100.00      |0.00     |
-+---------+-------+-----------+-----------+------------+---------+
-|function |63     |NC         |NC         |76.19       |3.17     |
-+---------+-------+-----------+-----------+------------+---------+
+    requests (sfclient)
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |175   |139      |+36.00     |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.544 |0.432    |+0.11      |
++-------------------------+------+---------+-----------+
 
 
 

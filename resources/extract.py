@@ -28,31 +28,31 @@ for line in sys.stdin:
         if line.find('|empty') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('nb duplicated lines') > -1:
+        if line.find('|nb duplicated lines') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('convention') > -1:
+        if line.find('|convention') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('refactor') > -1:
+        if line.find('|refactor') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('warning') > -1:
+        if line.find('|warning') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('error') > -1:
+        if line.find('|error') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('module') > -1:
+        if line.find('|module') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('method') > -1:
+        if line.find('|method') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('class') > -1:
+        if line.find('|class') > -1:
             result.append(line.split('|')[2].strip())
 
-        if line.find('function') > -1:
+        if line.find('|function') > -1:
             result.append(line.split('|')[2].strip())
 
         if line.find('Your code has been rated at') > -1:
