@@ -16,43 +16,43 @@ for line in sys.stdin:
         if line.find('statements analysed.') > -1:
             result.append(line.split(' ')[0].strip())
 
-        if line.find('|code') > -1:
+        if line.find('|code') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|docstring') > -1:
+        if line.find('|docstring') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|comment') > -1:
+        if line.find('|comment') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|empty') > -1:
+        if line.find('|empty') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|nb duplicated lines') > -1:
+        if line.find('|nb duplicated lines') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|convention') > -1:
+        if line.find('|convention') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|refactor') > -1:
+        if line.find('|refactor') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|warning') > -1:
+        if line.find('|warning') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|error') > -1:
+        if line.find('|error') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|module') > -1:
+        if (line.find('|module') == 0) and (line.find('|error') == -1):
             result.append(line.split('|')[2].strip())
 
-        if line.find('|method') > -1:
+        if line.find('|method') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|class') > -1:
+        if line.find('|class') == 0:
             result.append(line.split('|')[2].strip())
 
-        if line.find('|function') > -1:
+        if line.find('|function') == 0:
             result.append(line.split('|')[2].strip())
 
         if line.find('Your code has been rated at') > -1:
