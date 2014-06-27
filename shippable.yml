@@ -1,18 +1,24 @@
 language: python
-
 python:
-  - 2.7
-
+  - "2.7"
+  - "3.2"
+  - "3.3"
+# command to install dependencies
 install:
-  - pip install -r requirements.txt
+  - "pip install -r requirements.txt"
+  - "pip install -r requirements_dev.txt"
 
-# Make folders for the reports
 before_script:
-  - mkdir -p shippable/testresults
-  - mkdir -p shippable/codecoverage
-
+  - mkdir -p shippable/codecoverage shippable/testresults
+# command to run tests
 script:
-  - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
-  - which python && coverage run --branch test.py
-  - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
-
+  - pep8 --verbose --show-pep8 ccuapi
+  - pylint ccuapi
+  - nosetests -v ccuapi
+      --with-xunit
+      --xunit-file=shippable/testresults/nosetests.xml
+      --with-coverage
+      --cover-package ccuapi
+      --cover-branches
+      --cover-xml
+      --cover-xml-file=shippable/codecoverage/coverage.xml

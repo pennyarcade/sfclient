@@ -1,3 +1,9 @@
+# Requirements needed for development and testing
 nose
-coverage
 pylint
+httmock
+pep8
+coverage
+
+# Program requirements
+requests
