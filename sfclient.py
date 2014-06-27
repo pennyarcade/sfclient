@@ -4124,7 +4124,7 @@ class Switch(object):
             return False
 
 
-class Session():
+class Session(object):
     '''
         Session object to handle request stuff
     '''
@@ -4197,13 +4197,13 @@ class Session():
                     return action
         else:
             if self.send_lock:
-                if (
-                    (action != ACT['VALIDATE'])
-                    and (action != ACT['SEND_CHAT'])
-                    and (action != ACT['GUILD']['DONATE'])
-                    and (action != ACT['REQUEST']['GUILD_NAMES'])
-                    and (action != ACT['REQUEST']['CHAR'])
-                    and (action != ACT['POST']['SEND'])
+                if (action not in (
+                    ACT['VALIDATE'],
+                    ACT['SEND_CHAT'],
+                    ACT['GUILD']['DONATE'],
+                    ACT['REQUEST']['GUILD_NAMES'],
+                    ACT['REQUEST']['CHAR'],
+                    ACT['POST']['SEND'])
                 ):
                     LOG.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil noch auf eine ",
@@ -4338,7 +4338,7 @@ class Session():
         return response.text
 
 
-class Character():
+class Character(object):
     '''
         Character information
     '''
@@ -4348,7 +4348,7 @@ class Character():
         '''
 
 
-class Face():
+class Face(object):
     '''
         character face
     '''
@@ -4373,7 +4373,7 @@ class Face():
         self.volk = volk
 
 
-class Account():
+class Account(object):
     '''
         Account information
     '''
@@ -4384,7 +4384,7 @@ class Account():
         pass
 
 
-class Album():
+class Album(object):
     '''
         handle collectors album data
     '''
@@ -4397,7 +4397,7 @@ class Album():
         self.page = page
 
 
-class Guild():
+class Guild(object):
     '''
         handle guild data
     '''
@@ -4408,7 +4408,7 @@ class Guild():
         pass
 
 
-class Toilet():
+class Toilet(object):
     '''
         handle toilet data
     '''
@@ -4419,7 +4419,7 @@ class Toilet():
         pass
 
 
-class Witch():
+class Witch(object):
     '''
         handle witch laboratory data
     '''
@@ -4430,7 +4430,7 @@ class Witch():
         pass
 
 
-class Mirror():
+class Mirror(object):
     '''
         handle magic mirror
     '''
@@ -5238,7 +5238,7 @@ def time_calc_event(evt):
 # Quest stuff
 
 
-class Quest():
+class Quest(object):
     '''
         harndle qurest data
     '''
@@ -5478,7 +5478,7 @@ class Quest():
 #------------------------------------------------------------------------------
 # Item stuff
 
-class Item:
+class Item(object):
     '''
         handle Item data
     '''
@@ -5620,7 +5620,7 @@ class Item:
             self.pic -= 49
             txt_suffix = ""
 
-        if (texts[txt_base + self.pic - 1] == None):
+        if texts[txt_base + self.pic - 1] == None:
             return "Unknown Item (base=%d, entry=%d)" % (
                 txt_base, (txt_base + self.pic - 1)
             )
@@ -5710,7 +5710,7 @@ class Item:
             #itm_color, "Class:", itm_class)
             return 0
 
-        if (is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10)):
+        if is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10):
             if slot_num <= 8:
                 item_id = IMG['EMPTY']['SLOT']['1'] + slot_num - 1
             else:
@@ -5729,7 +5729,7 @@ class Item:
                     if slot_num == 9:
                         item_id = IMG['EMPTY']['SLOT']['9_3']
 
-        return (item_id)
+        return item_id
 
 
 def get_arrow_id(
@@ -5768,7 +5768,7 @@ def get_arrow_id(
     arrow_id += arrow_id + itm_color
 
     if arrow_id >= ARROW_MAX:
-        LOG.error(
+        LOG.error(' '.join(
             "Fehler: Zu wenige Indizes für Pfeile:",
             arrow_id,
             ">=",
@@ -5779,7 +5779,7 @@ def get_arrow_id(
             itm_color,
             "Class:",
             itm_class
-        )
+        ))
         return 0
 
     return arrow_id
@@ -5923,7 +5923,7 @@ def get_weapon_level(wpn_class, wpn_pic):
 #------------------------------------------------------------------------------
 # Savegame handling
 
-class Savegame:
+class Savegame(object):
     '''
         handle savegame data
     '''
@@ -16425,7 +16425,7 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
         y = pos_y
         visible = True
 
-    actor[HALL_LIST].addChild(tmp_obj)
+    actor[CNT['HALL']['LIST']].addChild(tmp_obj)
 
 
 def action_handler(event):
@@ -17325,21 +17325,21 @@ def action_handler(event):
 
         if case(RESP['MESSAGE_SENT']):
             add_suggest_names(last_message_target)
-            remove(POST_WRITE)
-            remove(POST_READ)
-            add(POST_LIST)
+            remove(BNC['POST']['WRITE'])
+            remove(BNC['POST']['READ'])
+            add(BNC['POST']['LIST'])
             break
 
         if case(RESP['READ_MESSAGE']):
             remove_all()
-            add(SCREEN['POST'])
+            add(BNC['SCREEN']['POST'])
             if tageszeit() != 0:
-                remove(POST_NIGHT)
+                remove(BNC['POST']['NIGHT'])
 
             if tageszeit() != 1:
-                remove(POST_DAWN)
+                remove(BNC['POST']['DAWN'])
 
-            remove(POST_LIST)
+            remove(BNC['POST']['LIST'])
             add(POST_READ)
 
             if (post_sel + post_scroll - 1) == 1:
