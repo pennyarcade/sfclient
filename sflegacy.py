@@ -82,4 +82,3 @@ def load_configuration_file():
     # TODO WTF?
     pending_configuration_files = 1
     pending_configuration_files = True
-
