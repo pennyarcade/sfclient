@@ -12305,11 +12305,11 @@ def show_screen_gilden(
                 );
                 i = 0;
                 while (i < 40) {
-                    actor[(LBL_GILDE_CHAT + i)].x = (
+                    actor[(LBL['GILDE']['CHAT'] + i)].x = (
                         (actor[INP_GILDE_CHAT].x + actor[INP_GILDE_CHAT].width)
-                        - actor[(LBL_GILDE_CHAT + i)].textWidth
+                        - actor[(LBL['GILDE']['CHAT'] + i)].textWidth
                     );
-                    actor[(LBL_GILDE_CHAT + i)].auto_size = "right";
+                    actor[(LBL['GILDE']['CHAT'] + i)].auto_size = "right";
                     i = (i + 1);
 
         i = 0;
@@ -12667,8 +12667,8 @@ def show_screen_gilden(
             actor[GILDE_CREST].mouseChildren = False;
         };
         if (text_dir == "right"){
-            actor[LBL_GILDE_CHAT_CAPTION].x = (
-                (actor[GILDE_RAID].x - actor[LBL_GILDE_CHAT_CAPTION].textWidth)
+            actor[LBL['GILDE']['CHAT']_CAPTION].x = (
+                (actor[GILDE_RAID].x - actor[LBL['GILDE']['CHAT']_CAPTION].textWidth)
                 - 5);
             actor[GILDE_LINK].x = (
                 (actor[GILDE_RAID].x - actor[LBL_GILDE_LINK].textWidth) - 5
@@ -16471,7 +16471,7 @@ def action_handler(event):
         if case(RESP['TOILET']['LOCKED']):
             remove(IMG['TAVERNE']['BARKEEPER']['HINT'])
             remove(BNC['TAVERNE']['CAS'])
-            add(BEEROFFER)
+            add(BNC['BEEROFFER'])
             enable_popup(CNT['QO']['REWARDGOLD'])
             enable_popup(CNT['QO']['REWARDSILVER'])
             enable_popup(LBL['QO']['REWARDGOLD'])
@@ -16499,7 +16499,7 @@ def action_handler(event):
             add(IMG['BO']['PORTRAIT']['TH'])
             break
 
-        if case(RESP[TOILET][UNLOCKED]):
+        if case(RESP['TOILET']['UNLOCKED']):
             play(SND['MAINQUESTS']['UNLOCK'])
         if case(RESP['TOILET']['DROPPED']):
             pass
@@ -16528,7 +16528,7 @@ def action_handler(event):
                 if (act == RESP['TOILET']['TANKFULL']):
                     error_message(texts[TXT['TOILET']['TANKFULL']])
                 else:
-                    if (act == REPS['TOILET']['DROPTWICE']):
+                    if (act == RESP['TOILET']['DROPTWICE']):
                         error_message(texts[TXT['TOILET']['DROPTWICE']])
                     else:
                         error_message("")
@@ -16583,8 +16583,8 @@ def action_handler(event):
             break
 
         if case(RESP['INVITE']['SUCCESS']):
-            show(INVITE_SUCCESS)
-            hide(INVITE_INPUTDIALOGUE)
+            show(BNC['INVITE_SUCCESS'])
+            hide(BNC['INVITE_INPUTDIALOGUE'])
             break
 
         if case(ERR['INVITE']['NOT_VALIDATED']):
@@ -16598,10 +16598,10 @@ def action_handler(event):
             ])
             break
 
-        if case(RESP_LOGOUT_SUCCESS):
+        if case(RESP['LOGOUT_SUCCESS']):
             break
 
-        if case(ERR_SERVER_DOWN):
+        if case(ERR['SERVER_DOWN']):
             show_disconnect_screen()
             if (
                 (param_reconnect * interval_multiplier_reconnect) < (1000 * 120)
@@ -16698,20 +16698,22 @@ def action_handler(event):
                 if last_guild_data[GUILD['IS_RAID']] != 0:
                     if texts[TXT['RAID']['TEXT']]:
                         enable_popup(
-                            GILDE['ATTACK'],
+                            CNT['GILDE']['ATTACK'],
                             texts[TXT['RAID']['TEXT'] + 14]
                         ).replace("%1", par[2])
                 elif (par[0] == "") or (par[2] == ""):
-                    enable_popup(GILDE['ATTACK'])
+                    enable_popup(CNT['GILDE']['ATTACK'])
                 elif texts[TXT['GUILD']['ATTACK']['PLAYER']]:
                     enable_popup(
-                        GILDE['ATTACK'],
-                        texts[TXT_GUILD_ATTACK_PLAYER].replace("%1", par[2])
+                        CNT['GILDE']['ATTACK'],
+                        texts[TXT['GUILD']['ATTACK']['PLAYER']].replace(
+                            "%1", par[2]
+                        )
                     )
                 else:
-                    enable_popup(GILDE['ATTACK'], par[2])
+                    enable_popup(CNT['GILDE']['ATTACK'], par[2])
             else:
-                enable_popup(GILDE['ATTACK'])
+                enable_popup(CNT['GILDE']['ATTACK'])
 
             guild_attack_time = last_guild_data[GUILD['ATTACK_TIME']]
             guild_defense_time = last_guild_data[GUILD['DEFENCE_TIME']]
@@ -16756,7 +16758,7 @@ def action_handler(event):
             else:
                 error_message(texts[TXT['ERROR']['INVENTORY_FULL']])
 
-            fade_out(QUEST_SLOT, 20, 0.04, 0.3)
+            fade_out(CNT['QUEST_SLOT'], 20, 0.04, 0.3)
             force_adventure = True
             break
 
@@ -16878,7 +16880,7 @@ def action_handler(event):
                 TXT['EMAIL']['RESENT']
             ]
             arabize(LBL['OPTION']['FIELD1'])
-            remove(OPTION['DOCHANGE'])
+            remove(BTN['OPTION']['DOCHANGE'])
             break
 
         if case(RESP['CHAT_HISTORY']):
@@ -16900,7 +16902,7 @@ def action_handler(event):
                 first_chat_fill = True
 
                 for i in range(40):
-                    with actor[(LBL_GILDE_CHAT + i)]:
+                    with actor[(LBL['GILDE']['CHAT'] + i)]:
                         default_text_format = font_format_chat
                         text = ""
 
@@ -16911,7 +16913,7 @@ def action_handler(event):
                             (last_chat_index != 0)
                             and (decode_chat(tmp_array[i], False, True) == "1")
                         ):
-                            remove(GILDE['CHAT'])
+                            remove(BNC['GILDE']['CHAT'])
 
                         chat_line(
                             decode_chat(tmp_array[i]),
@@ -16950,7 +16952,7 @@ def action_handler(event):
                                     tmp_array[i], False, True
                                 ) == "1")
                             ):
-                                remove(GILDE_CHAT)
+                                remove(BNC['GILDE']['CHAT'])
 
                             chat_line(
                                 decode_chat(tmp_array[i]),
@@ -17050,7 +17052,7 @@ def action_handler(event):
 
         if case(RESP['CHAT_LINE']):
             if (decode_chat(par[0], False, True) == "1"):
-                remove(GILDE_CHAT)
+                remove(BNC['GILDE']['CHAT'])
 
             chat_line(decode_chat(par[0]), False, get_hl_index(par[0]))
 
@@ -17091,7 +17093,7 @@ def action_handler(event):
 
         if case(RESP['CHANGE']['MAIL_OK']):
             show_option_screen()
-            error_message(texts[TXT_EMAIL_CHANGED])
+            error_message(texts[TXT['EMAIL']['CHANGED']])
             break
 
         if case(RESP['CHANGE']['FACE_OK']):
@@ -17128,7 +17130,7 @@ def action_handler(event):
             break
 
         if case(RESP['MAINQUEST']):
-            hide(IF['STATS'])
+            hide(BNC['IF']['STATS'])
             parse_savgame(par[10])
             pulse_char = False
         if case(RESP['QUEST']['DONE']):
@@ -17194,7 +17196,7 @@ def action_handler(event):
             if par[1]:
                 special_action = par[1]
             else:
-                if act != RESP_QUEST_STOP:
+                if act != RESP['QUEST']['STOP']:
                     special_action = 0
                 else:
                     log.info("Quest cancelled, preserving special action flag!")
@@ -17205,14 +17207,14 @@ def action_handler(event):
             show_taverne_screen()
             break
 
-        if case(ACT[SCREEN]['GILDE_GRUENDEN']):
+        if case(ACT['SCREEN']['GILDE_GRUENDEN']):
             show_screen_gilde_gruenden()
             break
 
         if case(RESP['GUILD']['FOUND_SUCCESS']):
             with (actor[LBL['IF']['GOLD']]):
                 text = str((int(text) - 10))
-                x = actor[IF['GOLD']].x - textWidth - 10
+                x = actor[IMG['IF']['GOLD']].x - textWidth - 10
         if case(RESP['GUILD']['RENAME_SUCCESS']):
             pass
         if case(RESP['GUILD']['IMPROVE_SUCCESS']):
@@ -17256,7 +17258,7 @@ def action_handler(event):
             destroy_guild_btn_timer = True
 
             if (
-                not on_stage(GILDE_CREST)
+                not on_stage(BNC['GILDE']['CREST'])
                 or (act == RESP['OTHER_GUILD'])
                 or (last_guild_crest_id != par[0].split("/")[0])
                 or (
@@ -22605,7 +22607,7 @@ def load_tracking_pixel(url=''):
             GildeChatScroll = 0;
             i = 0;
             while (i < 40) {
-                var _local3 = actor[(LBL_GILDE_CHAT + i)];
+                var _local3 = actor[(LBL['GILDE']['CHAT'] + i)];
                 with (_local3) {
                     y = (GILDE_CHAT_Y + ((
                          (i - 35) + GildeChatScroll
@@ -23240,7 +23242,7 @@ def load_tracking_pixel(url=''):
                     if (GildeChatScroll > 35){
                         GildeChatScroll = 35;
                     };
-                    while (actor[((LBL_GILDE_CHAT + 35) - GildeChatScroll)].text == "") {
+                    while (actor[((LBL['GILDE']['CHAT'] + 35) - GildeChatScroll)].text == "") {
                         GildeChatScroll--;
                         if (GildeChatScroll < 0){
                             GildeChatScroll = 0;
@@ -23251,7 +23253,7 @@ def load_tracking_pixel(url=''):
             };
             i = 0;
             while (i < 40) {
-                _local3 = actor[(LBL_GILDE_CHAT + i)];
+                _local3 = actor[(LBL['GILDE']['CHAT'] + i)];
                 with (_local3) {
                     y = (GILDE_CHAT_Y + (((i - 35) + GildeChatScroll) * GILDE_CHAT_Y));
                     visible = (((i >= (35 - GildeChatScroll))) and ((i < (40 - GildeChatScroll))));
@@ -26170,11 +26172,11 @@ def load_tracking_pixel(url=''):
         define_bunch(GILDE_SET_OFFICER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
         define_bunch(GILDE_SET_MASTER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK, GILDE_PROMOTE, GILDE_MASTER);
         define_bunch(GILDE_LISTBUTTONS, GILDE_SET_MEMBER, GILDE_SET_OFFICER, GILDE_SET_MASTER);
-        add_bunch(SCREEN_GILDEN, INP_GILDE_TEXT, GILDE_LIST, LBL_GILDE_CHAT_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN);
+        add_bunch(SCREEN_GILDEN, INP_GILDE_TEXT, GILDE_LIST, LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN);
         add_bunch(SCREEN_GILDEN, INP_GILDE_CHAT, GILDE_SCROLL_UP, GILDE_SCROLL_DOWN, GILDE_RANG, GILDE_ATTACK, GILDE_DEFENCE);
-        DefineLbl(LBL_GILDE_CHAT_CAPTION, texts[TXT_CHAT_CAPTION], GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
-        AddFilter(LBL_GILDE_CHAT_CAPTION, Filter_Shadow);
-        hide(LBL_GILDE_CHAT_CAPTION);
+        DefineLbl(LBL['GILDE']['CHAT']_CAPTION, texts[TXT_CHAT_CAPTION], GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
+        AddFilter(LBL['GILDE']['CHAT']_CAPTION, Filter_Shadow);
+        hide(LBL['GILDE']['CHAT']_CAPTION);
         DefineCnt(GILDE_LINK, 0, GILDE_RANG_Y);
         DefineLbl(LBL_GILDE_LINK, texts[TXT_FORUM_LINK], 0, 0);
         AddFilter(LBL_GILDE_LINK, Filter_HeavyShadow);
@@ -26191,15 +26193,15 @@ def load_tracking_pixel(url=''):
         };
         define_btn(GILDE_CHAT_UP, "", GildeBtnHandler, btnClassArrowUp, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_UP_Y));
         define_btn(GILDE_CHAT_DOWN, "", GildeBtnHandler, btnClassArrowDown, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_DOWN_Y));
-        define_bunch(GILDE_CHAT, LBL_GILDE_CHAT_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN, INP_GILDE_CHAT);
+        define_bunch(GILDE_CHAT, LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN, INP_GILDE_CHAT);
         i = 0;
         while (i < 40) {
-            DefineLbl((LBL_GILDE_CHAT + i), "", GILDE_CHAT_X, (GILDE_CHAT_Y + ((i - 35) * GILDE_CHAT_Y)));
-            actor[(LBL_GILDE_CHAT + i)].visible = (i >= 35);
-            actor[(LBL_GILDE_CHAT + i)].add_event_listener(MouseEvent.CLICK, clickChatLine);
-            AddFilter((LBL_GILDE_CHAT + i), Filter_Shadow);
-            add_bunch(SCREEN_GILDEN, (LBL_GILDE_CHAT + i));
-            add_bunch(GILDE_CHAT, (LBL_GILDE_CHAT + i));
+            DefineLbl((LBL['GILDE']['CHAT'] + i), "", GILDE_CHAT_X, (GILDE_CHAT_Y + ((i - 35) * GILDE_CHAT_Y)));
+            actor[(LBL['GILDE']['CHAT'] + i)].visible = (i >= 35);
+            actor[(LBL['GILDE']['CHAT'] + i)].add_event_listener(MouseEvent.CLICK, clickChatLine);
+            AddFilter((LBL['GILDE']['CHAT'] + i), Filter_Shadow);
+            add_bunch(SCREEN_GILDEN, (LBL['GILDE']['CHAT'] + i));
+            add_bunch(GILDE_CHAT, (LBL['GILDE']['CHAT'] + i));
             i = (i + 1);
         };
         DefineFromClass(INP_GILDE_CHAT, ChatInputField, GILDE_CHAT_X, GILDE_CHAT_FIELD_Y, 1, "chat");
@@ -30283,16 +30285,16 @@ def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1, isWhisper:Bool
     };
     i = 0;
     while (i < 39) {
-        var _local6 = actor[(LBL_GILDE_CHAT + i)];
+        var _local6 = actor[(LBL['GILDE']['CHAT'] + i)];
         with (_local6) {
-            default_text_format = actor[((LBL_GILDE_CHAT + i) + 1)].default_text_format;
-            htmlText = actor[((LBL_GILDE_CHAT + i) + 1)].htmlText;
+            default_text_format = actor[((LBL['GILDE']['CHAT'] + i) + 1)].default_text_format;
+            htmlText = actor[((LBL['GILDE']['CHAT'] + i) + 1)].htmlText;
             y = (GILDE_CHAT_Y + (((i + GildeChatScroll) - 35) * GILDE_CHAT_Y));
             visible = ((((i + GildeChatScroll) >= 35)) and (((i + GildeChatScroll) < 40)));
         };
         i = (i + 1);
     };
-    _local6 = actor[(LBL_GILDE_CHAT + 39)];
+    _local6 = actor[(LBL['GILDE']['CHAT'] + 39)];
     with (_local6) {
         default_text_format = ((isError) ? font_format_chatError : font_format_chat);
         if (isWhisper){
@@ -30442,7 +30444,7 @@ def NextFight(evt:TimerEvent){
 def guildFightTimerFn(evt:TimerEvent){
     if (guild_attack_time != 0){
         if (!WaitingFor(guild_attack_time)){
-            if (on_stage(LBL_GILDE_CHAT_CAPTION)){
+            if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
             } else {
                 pulse_gilde = True;
@@ -30452,7 +30454,7 @@ def guildFightTimerFn(evt:TimerEvent){
     };
     if (guild_defense_time != 0){
         if (!WaitingFor(guild_defense_time)){
-            if (on_stage(LBL_GILDE_CHAT_CAPTION)){
+            if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
             } else {
                 pulse_gilde = True;
