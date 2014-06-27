@@ -13,13 +13,13 @@ before_script:
 
 # command to run tests
 script:
-  - pep8 --verbose --show-pep8 ccuapi
-  - pylint ccuapi
-  - nosetests -v ccuapi
+  - pep8 --verbose --show-pep8 sf*.py
+  - pylint --rcfile=.pylintrc sf*.py
+  - nosetests -v tests.py
       --with-xunit
       --xunit-file=shippable/testresults/nosetests.xml
       --with-coverage
-      --cover-package ccuapi
+#      --cover-package ccuapi
       --cover-branches
       --cover-xml
       --cover-xml-file=shippable/codecoverage/coverage.xml
