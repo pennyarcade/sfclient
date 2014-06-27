@@ -18,8 +18,4 @@ script:
   - pylint --rcfile=.pylintrc sfclient.py > metrics/pylint.txt || true
   - pep8 --verbose --show-pep8 sfclient.py > metrics/pep8.txt || true
 
-after_script:
-  - git add metrics
-  - git commit -m 'shippable build results'
-  - git push git@bitbucket.org:chocokiko/sfclient.git
 
