@@ -15,5 +15,5 @@ script:
   - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - which python && coverage run --branch test.py
   - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
-  - pep8 --verbose --show-pep8 sf*.py > shippable/testresults/pep8.txt
-  - pylint --rcfile=.pylintrc sf*.py > shippable/testresults/pylint.txt
+  - pylint --rcfile=.pylintrc sfsfclient.py
+  - pep8 --verbose --show-pep8 sfclient.py
