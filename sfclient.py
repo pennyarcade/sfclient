@@ -6155,7 +6155,7 @@ def request_signup(evt):
                 add(CB['AGB']['CHECKED'])
             return
 
-    if getChildByName(actor[CB['AGB_CHECKED']].name):
+    if get_child_by_name(actor[CB['AGB_CHECKED']].name):
         if (param_bullshit_text != "") and (on_stage(CB['FUCK']['CHECKED'])):
             param_cid = param_bullshit_cid
             so.data.cid = param_cid
@@ -6369,7 +6369,7 @@ def request_char_screen(evt=None):
         setup and request character screen
     '''
     arrow_hall_mode = False
-    send_action(ACT_SCREEN_CHAR)
+    send_action(ACT['SCREEN']['CHAR'])
 
 
 def request_city_screen(evt=None):
@@ -15496,7 +15496,7 @@ def remove_all(alsoPersistent:Boolean=False):void{
 
 def on_stage(actor_id):Boolean{
     if ((actor[actor_id] is DisplayObject)){
-        return (Boolean(getChildByName(actor[actor_id].name)));
+        return (Boolean(get_child_by_name(actor[actor_id].name)));
     };
     return (False);
 }
@@ -15552,7 +15552,7 @@ def hide(... _args):void{
 def Visible(actor_id):Boolean{
     if ((actor[actor_id] is DisplayObject)){
         return (
-            ((Boolean(getChildByName(actor[actor_id].name)))
+            ((Boolean(get_child_by_name(actor[actor_id].name)))
             and (actor[actor_id].visible))
         );
     };
@@ -16310,24 +16310,24 @@ def do_act_zauberladen():
         setup magic shop actors
     '''
     error_message(" ")
-    remove(CHAR['RIGHTPANE'])
-    remove(FIDGET['EPCIOVL'])
-    remove(SHAKES['EPCIOVL'])
-    add(SCREEN['FIDGET'])
+    remove(BNC['CHAR']['RIGHTPANE'])
+    remove(IMG['FIDGET']['EPCIOVL'])
+    remove(IMG['SHAKES']['EPCIOVL'])
+    add(BNC['SCREEN']['FIDGET'])
     if savegame[SG['LEVEL']] >= 66:
         add(CA['GOTO']['WITCH'])
     if ((special_action == 2) or (special_action == 5)):
-        add(FIDGET['EPCIOVL'])
-        actor[FIDGET['EPCIOVL']].mouse_enabled = False
+        add(IMG['FIDGET']['EPCIOVL'])
+        actor[IMG['FIDGET']['EPCIOVL']].mouse_enabled = False
     if not sleep_time():
-        remove(FIDGET['NIGHT'])
+        remove(BNC['FIDGET']['NIGHT'])
     else:
-        remove(FIDGET['DAY'])
+        remove(BNC['FIDGET']['DAY'])
     if Capabilities.version.substr(0, 3) != "IOS":
         if light_mode:
-            remove(FIDGET['TAGKERZE'])
-            remove(FIDGET['NACHTKERZE'])
-    remove(FIDGET['BLINZELN'])
+            remove(IMG['FIDGET']['TAGKERZE'])
+            remove(IMG['FIDGET']['NACHTKERZE'])
+    remove(IMG['FIDGET']['BLINZELN'])
 
 
 def do_act_schmiede():
@@ -16335,18 +16335,27 @@ def do_act_schmiede():
         setup weapon shop actors
     '''
     error_message(" ")
-    remove(CHAR_RIGHTPANE)
-    remove(FIDGET_EPCIOVL)
-    remove(SHAKES_EPCIOVL)
-    add(SCREEN_SHAKES)
+    remove(BNC['CHAR']['RIGHTPANE'])
+    remove(IMG['FIDGET']['EPCIOVL'])
+    remove(IMG['SHAKES']['EPCIOVL'])
+    add(BNC['SCREEN']['SHAKES'])
     if ((special_action == 2) or (special_action == 5)):
-        add(SHAKES_EPCIOVL)
-        actor[SHAKES_EPCIOVL].mouse_enabled = False
-    remove(SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3)
+        add(IMG['SHAKES']['EPCIOVL'])
+        actor[IMG['SHAKES']['EPCIOVL']].mouse_enabled = False
+    remove(
+       IMG['SHAKES']['IDLE'],
+       IMG['SHAKES']['IDLE1'],
+       IMG['SHAKES']['IDLE2'],
+       IMG['SHAKES']['IDLE3']
+    )
     if not sleep_time():
-        remove(SHAKES_NIGHT, SHAKES_BLINZELN1, SHAKES_BLINZELN2)
+        remove(
+            IMG['SHAKES']['NIGHT'],
+            IMG['SHAKES']['BLINZELN1'],
+            IMG['SHAKES']['BLINZELN2']
+        )
     else:
-        remove(SHAKES_DAY)
+        remove(IMG['SHAKES']['DAY'])
 
 
 def install_hall_popup(evt):
@@ -16354,9 +16363,9 @@ def install_hall_popup(evt):
         setup popup object for hall
     '''
     if this_field_popup != "":
-        enable_popup(HALL_LIST, this_field_popup)
+        enable_popup(CNT['HALL']['LIST'], this_field_popup)
     else:
-        enable_popup(HALL_LIST)
+        enable_popup(CNT['HALL']['LIST'])
 
 
 def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
@@ -16367,21 +16376,21 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
     this_field_popup = ""
 
     if txt == "[K]":
-        tmp_obj = Bitmap(actor[IF['KRIEGER']].content.bitmapData.clone())
+        tmp_obj = Bitmap(actor[IMG['IF']['KRIEGER']].content.bitmapData.clone())
         with (tmp_obj):
             allow_smoothing = True
             force_smoothing = True
             smoothing = True
             mouse_enabled = True
     elif txt == "[M]":
-        tmp_obj = Bitmap(actor[IF['MAGIER']].content.bitmapData.clone())
+        tmp_obj = Bitmap(actor[IMG['IF']['MAGIER']].content.bitmapData.clone())
         with (tmp_obj):
             allow_smoothing = True
             force_smoothing = True
             smoothing = True
             mouse_enabled = True
     elif txt == "[J]":
-        tmp_obj = Bitmap(actor[IF['JAEGER']].content.bitmapData.clone())
+        tmp_obj = Bitmap(actor[IMG['IF']['JAEGER']].content.bitmapData.clone())
         with tmp_obj:
             allow_smoothing = True
             force_smoothing = True
@@ -16441,7 +16450,7 @@ def action_handler(event):
         par_str = data_str[3:]
 
     par = par_str.split("")
-    if on_stage(FIGHT_SKIP):
+    if on_stage(BTN['FIGHT_SKIP']):
         return
 
     set_title_bar()
@@ -16460,18 +16469,22 @@ def action_handler(event):
             break
 
         if case(RESP['TOILET']['LOCKED']):
-            remove(TAVERNE['BARKEEPER']['HINT'])
-            remove(TAVERNE['CAS'])
+            remove(IMG['TAVERNE']['BARKEEPER']['HINT'])
+            remove(BNC['TAVERNE']['CAS'])
             add(BEEROFFER)
-            enable_popup(QO['REWARDGOLD'])
-            enable_popup(QO['REWARDSILVER'])
+            enable_popup(CNT['QO']['REWARDGOLD'])
+            enable_popup(CNT['QO']['REWARDSILVER'])
             enable_popup(LBL['QO']['REWARDGOLD'])
             enable_popup(LBL['QO']['REWARDSILVER'])
             enable_popup(LBL['QO']['REWARDEXP'])
 
             with actor[LBL['QO']['QUESTNAME']]:
                 text = texts[(TXT['TOILET']['HINT'] + 5)]
-                x = QO['BLACK']['SQUARE_X'] + QO['QUESTNAME_X'] - textWidth / 2
+                x = (
+                        POS['QO']['BLACK']['SQUARE_X']
+                        + REL['QO']['QUESTNAME_X']
+                        - textWidth / 2
+                    )
 
 
             with actor[LBL['QO']['QUESTTEXT']]:
@@ -16482,8 +16495,8 @@ def action_handler(event):
             arabize(LBL['QO']['QUESTTEXT'])
             actor[LBL['QO']['TIME']].text = ""
             actor[LBL['QO']['REWARDEXP']].text = ""
-            remove(BO_BUY)
-            add(BO_PORTRAIT_TH)
+            remove(BTN['BO']['BUY'])
+            add(IMG['BO']['PORTRAIT']['TH'])
             break
 
         if case(RESP[TOILET][UNLOCKED]):
@@ -17936,7 +17949,7 @@ def action_handler(event):
                             remove(MIRROR_PIECE + i)
             break
 
-        if case(ACT_SCREEN_CHAR):
+        if case(ACT['SCREEN']['CHAR']):
             parse_savgame(par[0])
             player_desc = resolve_breaks(par[1])
             if savegame[SG_FACE_1] == 0:
@@ -20429,7 +20442,7 @@ def load_tracking_pixel(url=''):
                 addChild(tmpContainer);
             };
             EndMimickInterfaceButtonHover = function (evt:MouseEvent):void{
-                if (getChildByName(tmpContainer.name)){
+                if (get_child_by_name(tmpContainer.name)){
                     removeChild(tmpContainer);
                 };
             };
@@ -20578,7 +20591,7 @@ def load_tracking_pixel(url=''):
                 CityAniFrame++;
                 if (
                     (((CityAniFrame == 5))
-                    and (getChildByName(actor[CITY_ELF1].name)))
+                    and (get_child_by_name(actor[CITY_ELF1].name)))
                 ){
                     remove(CITY_ELF1);
                     add(CITY_ELF2);
@@ -20587,7 +20600,7 @@ def load_tracking_pixel(url=''):
                     };
                     add(CITY_CA_OVL);
                 } else {
-                    if (getChildByName(actor[CITY_ELF2].name)){
+                    if (get_child_by_name(actor[CITY_ELF2].name)){
                         remove(CITY_ELF2);
                         add(CITY_ELF1);
                         if (on_stage(BUBBLE_POST)){
@@ -20600,7 +20613,7 @@ def load_tracking_pixel(url=''):
                     (((CityAniFrame == 3))
                     and ((int((Math.random() * 2)) == 0)))
                 ){
-                    if (getChildByName(actor[CITY_ORK1].name)){
+                    if (get_child_by_name(actor[CITY_ORK1].name)){
                         remove(CITY_ORK1);
                         add(CITY_ORK2);
                         define_bunch(CITY_ORK, CITY_ORK2);
@@ -20609,7 +20622,7 @@ def load_tracking_pixel(url=''):
                             add(LBL['ERROR']);
                         };
                     } else {
-                        if (getChildByName(actor[CITY_ORK2].name)){
+                        if (get_child_by_name(actor[CITY_ORK2].name)){
                             remove(CITY_ORK2);
                             add(CITY_ORK1);
                             define_bunch(CITY_ORK, CITY_ORK1);
@@ -20623,7 +20636,7 @@ def load_tracking_pixel(url=''):
                 if (
                     (((((CityAniFrame == 2))
                     and ((int((Math.random() * 2)) == 0))))
-                    and (getChildByName(actor[CITY_ZWERG1].name)))
+                    and (get_child_by_name(actor[CITY_ZWERG1].name)))
                 ){
                     remove(CITY_ZWERG1);
                     add(CITY_ZWERG2);
@@ -20645,7 +20658,7 @@ def load_tracking_pixel(url=''):
                 } else {
                     if (
                         ((((CityAniFrame % 2) == 0))
-                        and (getChildByName(actor[CITY_SANDWICH1].name)))
+                        and (get_child_by_name(actor[CITY_SANDWICH1].name)))
                     ){
                         remove(CITY_SANDWICH1);
                         add(CITY_SANDWICH2);
@@ -20655,7 +20668,7 @@ def load_tracking_pixel(url=''):
                     };
                     if (
                         ((!(((CityAniFrame % 2) == 0)))
-                        and (getChildByName(actor[CITY_SANDWICH2].name)))
+                        and (get_child_by_name(actor[CITY_SANDWICH2].name)))
                     ){
                         remove(CITY_SANDWICH2);
                         add(CITY_SANDWICH1);
@@ -20818,7 +20831,7 @@ def load_tracking_pixel(url=''):
                 or (on_stage(SCR_CITY_BACKG_DAWN))))
                 or (on_stage(SCR_CITY_BACKG_DAY)))
             ){
-                if (!getChildByName(actor[CITY_DEALER].name)){
+                if (!get_child_by_name(actor[CITY_DEALER].name)){
                     DealerStepTimer.add_event_listener(
                         TimerEvent.TIMER, DealerStep
                     );
@@ -31581,7 +31594,7 @@ def InterfaceBtnHandler(evt:Event):void{
             tmpAction = ACT_SCREEN_PILZDEALER;
             break;
         if case(FIGHT_OK:
-            tmpAction = ((post_fight_mode) ? ACT_SCREEN_POST : ACT_SCREEN_CHAR);
+            tmpAction = ((post_fight_mode) ? ACT_SCREEN_POST : ACT['SCREEN']['CHAR']);
             if (hasFoughtGuildBattle){
                 if (tower_fight_mode){
                     tmpAction = ACT_SCREEN_TOWER;
@@ -31597,7 +31610,7 @@ def InterfaceBtnHandler(evt:Event):void{
             break;
         if case(IF_CHARAKTER:
             arrow_hall_mode = False;
-            tmpAction = ACT_SCREEN_CHAR;
+            tmpAction = ACT['SCREEN']['CHAR'];
             break;
         if case(IF_GILDEN:
             pulse_gilde = False;
