@@ -26,23 +26,26 @@ W:18294, 0: TODO: hor does this work anyways? (fixme)
 W:19416, 0: TODO: What does this do? (fixme)
 W:19434, 0: TODO: Obsolete? (fixme)
 W:19457, 0: TODO: set via requests params (fixme)
+C:4207, 0: Wrong continued indentation before block.
+                ):
+                ^  | (bad-continuation)
 C:4201, 0: Wrong hanging indentation before block.
-                    (action != ACT['VALIDATE'])
+                    ACT['VALIDATE'],
                     ^   | (bad-continuation)
 C:4202, 0: Wrong hanging indentation before block.
-                    and (action != ACT['SEND_CHAT'])
+                    ACT['SEND_CHAT'],
                     ^   | (bad-continuation)
 C:4203, 0: Wrong hanging indentation before block.
-                    and (action != ACT['GUILD']['DONATE'])
+                    ACT['GUILD']['DONATE'],
                     ^   | (bad-continuation)
 C:4204, 0: Wrong hanging indentation before block.
-                    and (action != ACT['REQUEST']['GUILD_NAMES'])
+                    ACT['REQUEST']['GUILD_NAMES'],
                     ^   | (bad-continuation)
 C:4205, 0: Wrong hanging indentation before block.
-                    and (action != ACT['REQUEST']['CHAR'])
+                    ACT['REQUEST']['CHAR'],
                     ^   | (bad-continuation)
 C:4206, 0: Wrong hanging indentation before block.
-                    and (action != ACT['POST']['SEND'])
+                    ACT['POST']['SEND'])
                     ^   | (bad-continuation)
 C:4238, 0: Wrong hanging indentation before block.
             (action == ACT['GET_CHAT_HISTORY'])
@@ -80,9 +83,6 @@ C:5486, 0: Wrong hanging indentation before block.
 C:5487, 0: Wrong hanging indentation before block.
         maxd=0, mind=0, color=0, attr=False
         ^   | (bad-continuation)
-C:5623, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:5713, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:5732, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
 C:5736, 0: Wrong hanging indentation before block.
     itm_class, itm_pic, some_obj=False, slot_mode=False, color_override=-1
     ^   | (bad-continuation)
@@ -525,7 +525,6 @@ C:19458, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
 C:  1, 0: Too many lines in module (31910) (too-many-lines)
 W: 24, 0: Wildcard import sflegacy (wildcard-import)
 R:4094, 0: Too few public methods (1/2) (too-few-public-methods)
-C:4127, 0: Old-style class defined. (old-style-class)
 R:4127, 0: Too many instance attributes (14/7) (too-many-instance-attributes)
 E:4190,19: Undefined variable 'on_stage' (undefined-variable)
 E:4215,19: Undefined variable 'fight_lock' (undefined-variable)
@@ -540,23 +539,15 @@ E:4309,24: Undefined variable 'evt' (undefined-variable)
 R:4185, 4: Too many branches (25/12) (too-many-branches)
 R:4185, 4: Too many statements (65/50) (too-many-statements)
 W:4224, 8: Unused variable 'last_act' (unused-variable)
-C:4341, 0: Old-style class defined. (old-style-class)
 R:4341, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4351, 0: Old-style class defined. (old-style-class)
 R:4351, 0: Too many instance attributes (12/7) (too-many-instance-attributes)
 R:4355, 4: Too many arguments (13/5) (too-many-arguments)
 R:4351, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4376, 0: Old-style class defined. (old-style-class)
 R:4376, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4387, 0: Old-style class defined. (old-style-class)
 R:4387, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4400, 0: Old-style class defined. (old-style-class)
 R:4400, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4411, 0: Old-style class defined. (old-style-class)
 R:4411, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4422, 0: Old-style class defined. (old-style-class)
 R:4422, 0: Too few public methods (0/2) (too-few-public-methods)
-C:4433, 0: Old-style class defined. (old-style-class)
 R:4433, 0: Too few public methods (0/2) (too-few-public-methods)
 W:4937,-1: String statement has no effect (pointless-string-statement)
 E:4940, 7: Undefined variable 'param_obj' (undefined-variable)
@@ -593,7 +584,6 @@ E:5233, 4: Undefined variable 'GameTime' (undefined-variable)
 E:5234,33: Undefined variable 'server_time' (undefined-variable)
 E:5234,57: Undefined variable 'local_time' (undefined-variable)
 W:5224,20: Unused argument 'evt' (unused-argument)
-C:5241, 0: Old-style class defined. (old-style-class)
 R:5241, 0: Too many instance attributes (11/7) (too-many-instance-attributes)
 R:5245, 4: Too many arguments (10/5) (too-many-arguments)
 E:5324,15: Undefined variable 'texts' (undefined-variable)
@@ -618,11 +608,9 @@ E:5417,24: Undefined variable 'texts' (undefined-variable)
 E:5427,24: Undefined variable 'texts' (undefined-variable)
 E:5430,24: Undefined variable 'texts' (undefined-variable)
 E:5433,24: Undefined variable 'texts' (undefined-variable)
-C:5481, 0: Old-style class defined. (old-style-class)
 R:5485, 4: Too many arguments (9/5) (too-many-arguments)
-E:5556,15: Too many positional arguments for method call (too-many-function-args)
 E:5609,29: Undefined variable 'texts' (undefined-variable)
-E:5623,12: Undefined variable 'texts' (undefined-variable)
+E:5623,11: Undefined variable 'texts' (undefined-variable)
 E:5628,11: Undefined variable 'texts' (undefined-variable)
 E:5632,23: Undefined variable 'texts' (undefined-variable)
 E:5634,11: Undefined variable 'texts' (undefined-variable)
@@ -635,10 +623,8 @@ R:5561, 4: Too many branches (23/12) (too-many-branches)
 R:5676, 4: Too many branches (14/12) (too-many-branches)
 W:5691,12: Unused variable 'slot_id' (unused-variable)
 E:5744,23: Undefined variable 'savegame' (undefined-variable)
-E:5771, 8: Too many arguments for logging format string (logging-too-many-args)
 R:5832, 0: Too many return statements (38/6) (too-many-return-statements)
 R:5832, 0: Too many branches (41/12) (too-many-branches)
-C:5926, 0: Old-style class defined. (old-style-class)
 R:5936, 4: Too many local variables (38/15) (too-many-locals)
 E:5952,18: Instance of 'int' has no 'tostr' member (no-member)
 E:5970,45: Undefined variable 'content_max' (undefined-variable)
@@ -934,7 +920,6 @@ E:16421,24: Undefined variable 'width' (undefined-variable)
 C:16423,12: Invalid variable name "x" (invalid-name)
 C:16425, 8: Invalid variable name "y" (invalid-name)
 E:16428, 4: Undefined variable 'actor' (undefined-variable)
-E:16428,10: Undefined variable 'HALL_LIST' (undefined-variable)
 W:16376, 4: Unused variable 'this_field_popup' (unused-variable)
 W:16408,12: Unused variable 'text' (unused-variable)
 W:16384,12: Unused variable 'mouse_enabled' (unused-variable)
@@ -1232,20 +1217,13 @@ E:17323,26: Undefined variable 'texts' (undefined-variable)
 E:17327,12: Undefined variable 'add_suggest_names' (undefined-variable)
 E:17327,30: Undefined variable 'last_message_target' (undefined-variable)
 E:17328,12: Undefined variable 'remove' (undefined-variable)
-E:17328,19: Undefined variable 'POST_WRITE' (undefined-variable)
 E:17329,12: Undefined variable 'remove' (undefined-variable)
-E:17329,19: Undefined variable 'POST_READ' (undefined-variable)
 E:17330,12: Undefined variable 'add' (undefined-variable)
-E:17330,16: Undefined variable 'POST_LIST' (undefined-variable)
 E:17334,12: Undefined variable 'remove_all' (undefined-variable)
 E:17335,12: Undefined variable 'add' (undefined-variable)
-E:17335,16: Undefined variable 'SCREEN' (undefined-variable)
 E:17337,16: Undefined variable 'remove' (undefined-variable)
-E:17337,23: Undefined variable 'POST_NIGHT' (undefined-variable)
 E:17340,16: Undefined variable 'remove' (undefined-variable)
-E:17340,23: Undefined variable 'POST_DAWN' (undefined-variable)
 E:17342,12: Undefined variable 'remove' (undefined-variable)
-E:17342,19: Undefined variable 'POST_LIST' (undefined-variable)
 E:17343,12: Undefined variable 'add' (undefined-variable)
 E:17343,16: Undefined variable 'POST_READ' (undefined-variable)
 E:17345,16: Undefined variable 'post_sel' (undefined-variable)
@@ -2742,13 +2720,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |285    |NC       |NC         |
+|convention |271    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |57     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |324    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |1554   |NC       |NC         |
+|error      |1544   |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -2759,9 +2737,9 @@ Messages by category
 +---------+------+--------+---------+-----------+
 |module   |error |warning |refactor |convention |
 +=========+======+========+=========+===========+
-|sfclient |89.32 |89.51   |68.42    |97.19      |
+|sfclient |89.25 |89.51   |68.42    |97.05      |
 +---------+------+--------+---------+-----------+
-|sflegacy |10.68 |10.49   |31.58    |2.81       |
+|sflegacy |10.75 |10.49   |31.58    |2.95       |
 +---------+------+--------+---------+-----------+
 
 
@@ -2772,13 +2750,13 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |1519        |
+|undefined-variable           |1511        |
 +-----------------------------+------------+
 |unused-variable              |246         |
 +-----------------------------+------------+
-|bad-continuation             |138         |
+|bad-continuation             |139         |
 +-----------------------------+------------+
-|superfluous-parens           |82          |
+|superfluous-parens           |79          |
 +-----------------------------+------------+
 |invalid-name                 |35          |
 +-----------------------------+------------+
@@ -2793,8 +2771,6 @@ Messages
 |duplicate-code               |15          |
 +-----------------------------+------------+
 |pointless-string-statement   |12          |
-+-----------------------------+------------+
-|old-style-class              |12          |
 +-----------------------------+------------+
 |too-few-public-methods       |10          |
 +-----------------------------+------------+
@@ -2814,11 +2790,11 @@ Messages
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
 +-----------------------------+------------+
-|logging-too-many-args        |3           |
-+-----------------------------+------------+
 |too-many-return-statements   |2           |
 +-----------------------------+------------+
 |redefined-outer-name         |2           |
++-----------------------------+------------+
+|logging-too-many-args        |2           |
 +-----------------------------+------------+
 |line-too-long                |2           |
 +-----------------------------+------------+
@@ -2829,8 +2805,6 @@ Messages
 |unused-import                |1           |
 +-----------------------------+------------+
 |too-many-lines               |1           |
-+-----------------------------+------------+
-|too-many-function-args       |1           |
 +-----------------------------+------------+
 |redefined-builtin            |1           |
 +-----------------------------+------------+
@@ -2843,7 +2817,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -19.23/10
+Your code has been rated at -19.01/10
 
 Statistics by type
 ------------------
