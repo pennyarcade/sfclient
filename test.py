@@ -4,7 +4,7 @@ import unittest
 class TestSuite(unittest.TestCase):
 
     def test(self):
-        self.assert(True)
+        self.assertTrue(True)
 
 
 def main():
