@@ -80,7 +80,6 @@ E0602:5213,11:time_str: Undefined variable 'lang_code'
 E0601:5229,8:time_calc_event: Using variable 'slm_count' before assignment
 E0602:5229,29:time_calc_event: Undefined variable 'ststep'
 E0602:5230,8:time_calc_event: Undefined variable 'add'
-E0602:5230,12:time_calc_event: Undefined variable 'FILLSPACE'
 E0602:5233,4:time_calc_event: Undefined variable 'GameTime'
 E0602:5234,33:time_calc_event: Undefined variable 'server_time'
 E0602:5234,57:time_calc_event: Undefined variable 'local_time'
@@ -308,12 +307,9 @@ W0612:6283,4:request_logout: Unused variable 'my_own_attack_target'
 W0612:6292,4:request_logout: Unused variable 'pulse_gilde_on_history'
 W0613:6262,19:request_logout: Unused argument 'evt'
 E0602:6306,4:request_cancel_arbeiten: Undefined variable 'send_action'
-E0602:6306,16:request_cancel_arbeiten: Undefined variable 'ACT_ARBEIT_CANCEL'
 W0613:6302,28:request_cancel_arbeiten: Unused argument 'evt'
 E0602:6313,4:request_arbeiten: Undefined variable 'send_action'
-E0602:6313,16:request_arbeiten: Undefined variable 'ACT_ARBEIT'
-E0602:6313,28:request_arbeiten: Undefined variable 'get_slider_value'
-E0602:6313,45:request_arbeiten: Undefined variable 'SLDR_ARBEITEN'
+E0602:6313,31:request_arbeiten: Undefined variable 'get_slider_value'
 W0613:6309,21:request_arbeiten: Unused argument 'evt'
 W0613:6316,29:request_create_character: Unused argument 'evt'
 E0602:6328,9:request_change_face: Undefined variable 'char_volk'
@@ -341,10 +337,8 @@ E0602:6338,29:request_change_face: Undefined variable 'revertchar_special'
 E0602:6339,13:request_change_face: Undefined variable 'char_special2'
 E0602:6339,30:request_change_face: Undefined variable 'revertchar_special2'
 E0602:6341,8:request_change_face: Undefined variable 'send_action'
-E0602:6341,20:request_change_face: Undefined variable 'ACT_SCREEN_OPTIONEN'
 E0602:6344,11:request_change_face: Undefined variable 'char_male'
 E0602:6347,8:request_change_face: Undefined variable 'send_action'
-E0602:6348,12:request_change_face: Undefined variable 'ACT_CHANGE_FACE'
 E0602:6349,12:request_change_face: Undefined variable 'actor'
 E0602:6350,12:request_change_face: Undefined variable 'actor'
 E0602:6351,12:request_change_face: Undefined variable 'char_volk'
@@ -2233,10 +2227,10 @@ R0801:  1,0: Similar lines in 4 files
 ==sfclient:6075
 ==sflegacy:203
 ==sflegacy:223
-                    text = "0"
-                else:
-                    text = ""
-                text += str(int(savegame[SG['GOLD']] % 100))
+                        text = "0"
+                    else:
+                        text = ""
+                    text += str(int(savegame[SG['GOLD']] % 100))
 R0801:  1,0: Similar lines in 3 files
 ==sfclient:16785
 ==sfclient:19256
@@ -2287,13 +2281,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |54     |57       |-3.00      |
+|convention |54     |54       |=          |
 +-----------+-------+---------+-----------+
-|refactor   |55     |53       |+2.00      |
+|refactor   |55     |55       |=          |
 +-----------+-------+---------+-----------+
-|warning    |318    |319      |-1.00      |
+|warning    |318    |318      |=          |
 +-----------+-------+---------+-----------+
-|error      |1624   |1655     |-31.00     |
+|error      |1618   |1618     |=          |
 +-----------+-------+---------+-----------+
 
 
@@ -2304,9 +2298,9 @@ Messages by category
 +---------+------+--------+---------+-----------+
 |module   |error |warning |refactor |convention |
 +=========+======+========+=========+===========+
-|sfclient |89.78 |89.94   |70.91    |87.04      |
+|sfclient |89.74 |89.94   |70.91    |87.04      |
 +---------+------+--------+---------+-----------+
-|sflegacy |10.22 |10.06   |29.09    |12.96      |
+|sflegacy |10.26 |10.06   |29.09    |12.96      |
 +---------+------+--------+---------+-----------+
 
 
@@ -2317,7 +2311,7 @@ Messages
 +-----------+------------+
 |message id |occurrences |
 +===========+============+
-|E0602      |1592        |
+|E0602      |1586        |
 +-----------+------------+
 |W0612      |246         |
 +-----------+------------+
@@ -2376,7 +2370,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -19.62/10 (previous run: -20.16/10)
+Your code has been rated at -19.51/10 (previous run: -19.51/10)
 
 Raw metrics
 -----------
@@ -2384,13 +2378,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |16520  |52.10 |16519    |+1.00      |
+|code      |16520  |52.10 |16520    |=          |
 +----------+-------+------+---------+-----------+
 |docstring |14443  |45.55 |14443    |=          |
 +----------+-------+------+---------+-----------+
 |comment   |144    |0.45  |144      |=          |
 +----------+-------+------+---------+-----------+
-|empty     |599    |1.89  |600      |-1.00      |
+|empty     |599    |1.89  |599      |=          |
 +----------+-------+------+---------+-----------+
 
 
@@ -2401,9 +2395,9 @@ Duplication
 +-------------------------+------+---------+-----------+
 |                         |now   |previous |difference |
 +=========================+======+=========+===========+
-|nb duplicated lines      |175   |185      |-10.00     |
+|nb duplicated lines      |175   |175      |=          |
 +-------------------------+------+---------+-----------+
-|percent duplicated lines |0.544 |0.575    |-0.03      |
+|percent duplicated lines |0.544 |0.544    |=          |
 +-------------------------+------+---------+-----------+
 
 

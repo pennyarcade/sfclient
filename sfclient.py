@@ -5227,7 +5227,7 @@ def time_calc_event(evt):
     '''
     current_time = datetime.now()
     if (slm_count > 23) and (ststep == 8):
-        add(FILLSPACE)
+        add(IMG['FILLSPACE'])
         slm_count = 0
 
     GameTime.setTime(
@@ -6303,14 +6303,14 @@ def request_cancel_arbeiten(evt=None):
     '''
         cancel work
     '''
-    send_action(ACT_ARBEIT_CANCEL)
+    send_action(ACT['ARBEIT']['CANCEL'])
 
 
 def request_arbeiten(evt=None):
     '''
         start working
     '''
-    send_action(ACT_ARBEIT, get_slider_value(SLDR_ARBEITEN))
+    send_action(ACT['ARBEIT'], get_slider_value(SLDR['ARBEITEN']))
 
 
 def request_create_character(evt=None):
@@ -6338,14 +6338,14 @@ def request_change_face(evt=None):
         and (char_special == revertchar_special)
         and (char_special2 == revertchar_special2)
     ):
-        send_action(ACT_SCREEN_OPTIONEN)
+        send_action(ACT['SCREEN']['OPTIONEN'])
     else:
         tmp_gender = 2
         if char_male:
             tmp_gender = 1
 
         send_action(
-            ACT_CHANGE_FACE,
+            ACT['CHANGE']['FACE'],
             actor[INP['NAME']].getChildAt(1).text,
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text,
             char_volk,
@@ -13585,7 +13585,7 @@ def show_work_screen(evt:Event=None):void{
                 - int((actor[LBL_WINDOW_TITLE].textWidth / 2))
             );
             actor[LBL_SCR_ARBEITEN_TEXT].text = texts[TXT_ARBEIT_TEXT];
-            SetSliderValue(SLDR_ARBEITEN, 1);
+            SetSliderValue(SLDR['ARBEITEN'], 1);
             ArbeitenSliderChange(1);
         };
     };
@@ -24973,11 +24973,11 @@ def load_tracking_pixel(url=''):
         AddFilter(LBL_SCR_ARBEITEN_TIME, Filter_Shadow);
         DefineCnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X), (IF_WIN_Y + ARBEITEN_BAR_Y));
         DefineCnt(SCR_ARBEITEN_FILL, (IF_WIN_X + ARBEITEN_FILL_X), (IF_WIN_Y + ARBEITEN_FILL_Y));
-        DefineSlider(SLDR_ARBEITEN, 10, ARBEITEN_SLIDER_X, ARBEITEN_SLIDER_Y, ArbeitenSliderChange);
+        DefineSlider(SLDR['ARBEITEN'], 10, ARBEITEN_SLIDER_X, ARBEITEN_SLIDER_Y, ArbeitenSliderChange);
         define_btn(SCR_ARBEITEN_OK, texts[TXT_OK], request_arbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
         define_btn(SCR_ARBEITEN_CLOSE, texts[TXT_OK], ShowCityScreen, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
         define_btn(SCR_ARBEITEN_CANCEL, texts[TXT_ABBRECHEN], request_cancel_arbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
-        define_bunch(SCREEN_ARBEITEN, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SLDR_ARBEITEN, LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_OK, IF_EXIT);
+        define_bunch(SCREEN_ARBEITEN, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SLDR['ARBEITEN'], LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_OK, IF_EXIT);
         define_bunch(SCREEN_ARBEITEN_WAIT, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SCR_ARBEITEN_BAR, SCR_ARBEITEN_FILL, LBL_SCR_ARBEITEN_TIME, SCR_ARBEITEN_CANCEL, IF_EXIT);
         define_bunch(SCREEN_ARBEITEN_SUCCESS, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_CLOSE, IF_EXIT);
         DefineClickArea(CA_SCR_INVITE_BLOCKCITY, C_EMPTY, InterfaceBtnHandler, 280, 100, (RES_X - 280), (RES_Y - 100));
@@ -31608,7 +31608,7 @@ def InterfaceBtnHandler(evt:Event):void{
             tmpAction = ACT_SCREEN_WELTKARTE;
             break;
         if case(IF_OPTIONEN:
-            tmpAction = ACT_SCREEN_OPTIONEN;
+            tmpAction = ACT['SCREEN']['OPTIONEN'];
             break;
         if case(CA_CITY_BUH:
             slm_count++;
