@@ -5740,7 +5740,7 @@ def get_arrow_id(
     '''
     arrow_id = ARROW_OFFS
     if slot_mode:
-        if not (type(some_obj) is list):
+        if not type(some_obj) is list:
             some_obj = savegame
 
         slot_id = itm_class + itm_pic * SG['ITM']['SIZE']
@@ -5836,88 +5836,88 @@ def get_weapon_level(wpn_class, wpn_pic):
     for case in Switch(wpn_class):
         if case(1):
             if wpn_pic == -7:
-                return (7)
+                return 7
             elif wpn_pic == -3:
-                return (6)
+                return 6
             elif wpn_pic in (-2, -1, 54):
-                return (4)
+                return 4
             elif wpn_pic == 0:
-                return (5)
+                return 5
             elif wpn_pic in (-5, -4, 1, 2, 3, 4):
-                return (0)
+                return 0
             elif wpn_pic in (
                 5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60
             ):
-                return (1)
+                return 1
             elif wpn_pic in (-6, 7, 10, 13, 16, 20, 23, 25, 28, 52):
-                return (2)
+                return 2
             elif wpn_pic in (9, 12, 14, 18):
-                return (3)
+                return 3
             elif wpn_pic == 53:
-                return (8)
+                return 8
             elif wpn_pic == 55:
-                return (9)
+                return 9
             elif wpn_pic == 56:
-                return (10)
+                return 10
             elif wpn_pic == 57:
-                return (11)
+                return 11
             elif wpn_pic == 58:
-                return (12)
+                return 12
             elif wpn_pic == 59:
-                return (13)
+                return 13
             break
         if case(2):
             if wpn_pic in range(-5, 0):
-                return (4)
+                return 4
             elif wpn_pic == 0:
-                return (5)
+                return 5
             elif wpn_pic in (1, 60):
-                return (0)
+                return 0
             elif wpn_pic in (2, 9):
-                return (1)
+                return 1
             elif wpn_pic in (6, 7, 10, 52, 54):
-                return (2)
+                return 2
             elif wpn_pic in (3, 4, 5, 8, 50, 51):
-                return (3)
+                return 3
             elif wpn_pic == 53:
-                return (4)
+                return 4
             elif wpn_pic == 55:
-                return (9)
+                return 9
             elif wpn_pic == 56:
-                return (10)
+                return 10
             elif wpn_pic == 57:
-                return (11)
+                return 11
             elif wpn_pic == 58:
-                return (12)
+                return 12
             elif wpn_pic == 59:
-                return (13)
+                return 13
             break
         if case(3):
             if wpn_pic in range(-5, 0):
-                return (4)
+                return 4
             elif wpn_pic == 0:
-                return (5)
+                return 5
             elif wpn_pic in (1, 2):
-                return (0)
+                return 0
             elif wpn_pic == (3, 5, 6, 7, 50, 52, 53, 54):
-                return (1)
+                return 1
             elif wpn_pic in (4, 8, 9, 10, 59):
-                return (2)
+                return 2
             elif wpn_pic == 51:
-                return (3)
+                return 3
             elif wpn_pic == 55:
-                return (9)
+                return 9
             elif wpn_pic == 56:
-                return (10)
+                return 10
             elif wpn_pic == 57:
-                return (11)
+                return 11
             elif wpn_pic == 58:
-                return (12)
+                return 12
             elif wpn_pic == 60:
-                return (13)
+                return 13
             break
 
-    return (0)
+    return 0
 
 
 #------------------------------------------------------------------------------
@@ -12668,7 +12668,8 @@ def show_screen_gilden(
         };
         if (text_dir == "right"){
             actor[LBL['GILDE']['CHAT']_CAPTION].x = (
-                (actor[GILDE_RAID].x - actor[LBL['GILDE']['CHAT']_CAPTION].textWidth)
+                (actor[GILDE_RAID].x -
+                 actor[LBL['GILDE']['CHAT']_CAPTION].textWidth)
                 - 5);
             actor[GILDE_LINK].x = (
                 (actor[GILDE_RAID].x - actor[LBL_GILDE_LINK].textWidth) - 5
@@ -16316,7 +16317,7 @@ def do_act_zauberladen():
     add(BNC['SCREEN']['FIDGET'])
     if savegame[SG['LEVEL']] >= 66:
         add(CA['GOTO']['WITCH'])
-    if ((special_action == 2) or (special_action == 5)):
+    if (special_action == 2) or (special_action == 5):
         add(IMG['FIDGET']['EPCIOVL'])
         actor[IMG['FIDGET']['EPCIOVL']].mouse_enabled = False
     if not sleep_time():
@@ -16339,7 +16340,7 @@ def do_act_schmiede():
     remove(IMG['FIDGET']['EPCIOVL'])
     remove(IMG['SHAKES']['EPCIOVL'])
     add(BNC['SCREEN']['SHAKES'])
-    if ((special_action == 2) or (special_action == 5)):
+    if (special_action == 2) or (special_action == 5):
         add(IMG['SHAKES']['EPCIOVL'])
         actor[IMG['SHAKES']['EPCIOVL']].mouse_enabled = False
     remove(
@@ -16454,7 +16455,7 @@ def action_handler(event):
         return
 
     set_title_bar()
-    if (act != ERR['SERVER']['DOWN']):
+    if act != ERR['SERVER']['DOWN']:
         interval_multiplier_reconnect = 1
 
     skip_allowed = False
@@ -16512,26 +16513,24 @@ def action_handler(event):
         if case(RESP['TOILET']['TANKFULL']):
             pass
         if case(RESP['TOILET']['DROPTWICE']):
-            if (act == RESP['TOILET']['DROPPED']):
+            if act == RESP['TOILET']['DROPPED']:
                 play(SND['TOILET']['DROP'])
 
             parse_savgame(par[0])
             if (len(par) > 1):
-                if (act == RESP['TOILET']['FLUSHED']):
+                if act == RESP['TOILET']['FLUSHED']:
                     show_toilet(par[1], par[2], par[3], par[4], par[5])
                 else:
                     show_toilet(par[1], par[2], par[3], par[4])
 
-            if (act == RESP['TOILET']['FULL']):
+            if act == RESP['TOILET']['FULL']:
                 error_message(texts[TXT['TOILET']['FULL']])
+            elif act == RESP['TOILET']['TANKFULL']:
+                error_message(texts[TXT['TOILET']['TANKFULL']])
+            elif act == RESP['TOILET']['DROPTWICE']:
+                error_message(texts[TXT['TOILET']['DROPTWICE']])
             else:
-                if (act == RESP['TOILET']['TANKFULL']):
-                    error_message(texts[TXT['TOILET']['TANKFULL']])
-                else:
-                    if (act == RESP['TOILET']['DROPTWICE']):
-                        error_message(texts[TXT['TOILET']['DROPTWICE']])
-                    else:
-                        error_message("")
+                error_message("")
             break
 
         if case(RESP['SCREEN']['WITCH']):
@@ -16603,9 +16602,7 @@ def action_handler(event):
 
         if case(ERR['SERVER_DOWN']):
             show_disconnect_screen()
-            if (
-                (param_reconnect * interval_multiplier_reconnect) < (1000 * 120)
-            ):
+            if (param_reconnect * interval_multiplier_reconnect) < (1000 * 120):
                 interval_multiplier_reconnect += 0.1
             break
 
@@ -16739,7 +16736,7 @@ def action_handler(event):
             break
 
         if case(ERR['MSG']['NOT_VALIDATED']):
-            if (texts[TXT['ERROR']['MSG']['NOT_VALIDATED']]):
+            if texts[TXT['ERROR']['MSG']['NOT_VALIDATED']]:
                 error_message(texts[TXT['ERROR']['MSG']['NOT_VALIDATED']])
             else:
                 error_message(
@@ -16793,7 +16790,7 @@ def action_handler(event):
             break
 
         if case(ERR['LOCKED_ADMIN']):
-            if (par[2]):
+            if par[2]:
                 if texts[TXT['LOCK_REASON'] + int(par[1]) - 1]:
                     error_message(
                         texts[TXT['LOCK_REASON'] + int(par[1]) - 1].replace(
@@ -16808,7 +16805,7 @@ def action_handler(event):
 
         if case(RESP['REQUEST']['GUILD_QUIET']):
             destroy_guild_btn_timer = True
-            if (on_stage(LBL['GILDE']['CHAT_CAPTION'])):
+            if on_stage(LBL['GILDE']['CHAT_CAPTION']):
                 send_action(ACT['SCREEN']['GILDEN'])
             break
 
@@ -16934,10 +16931,8 @@ def action_handler(event):
                             for j in range(len(offline_guild_members)):
                                 tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
-                                if (tmp_array[i].lower().find(
-                                    tmp_str) != -1
-                                ):
-                                    if (on_stage(INP['GILDE_CHAT'])):
+                                if (tmp_array[i].lower().find(tmp_str) != -1):
+                                    if on_stage(INP['GILDE_CHAT']):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
                     else:
@@ -18526,79 +18521,68 @@ def error_message(msg=""):
     if msg != "":
         log.error("Error message: " + msg)
 
+        if on_stage(SHP['FUCK']['BLACK_SQUARE']):
+            with actor[LBL['ERROR']]:
+                text = msg
+                scaleX = 1
+                scaleY = 1
+                x = POS['IF']['ERROR_X'] - int(textWidth / 2)
+                y = POS['IF']['ERROR_Y'] + 60
+
+            add(LBL['ERROR'])
+        else:
+            if on_stage(CNT['GILDE']['LIST']):
+                if msg.replace(" ", "") != "":
+                    chat_line(msg, True)
+            else:
+                if (on_stage(BTN['CREATE_CHARACTER']) and (not on_stage(IMG['IF']['WINDOW']))):
+                    with actor[LBL['CREATE']['RACE_DESC']]:
+                        default_text_format = FontFormat_ClassError
+                        text = msg
+                        default_text_format = FontFormat_DefaultLeft
+
+                    actor[LBL['CREATE']['CLASS']].text = ""
+                    actor[LBL['CREATE']['CLASS_DESC']].text = ""
+
+                else:
+                    with actor[LBL['ERROR']]:
+                        text = msg
+                        scaleX = 1
+                        scaleY = 1
+                        if on_stage(BTN['SHOPS_NEWWAREZ']):
+                            x = POS['SHOP']['ERROR_X'] - int(textWidth / 2)
+                            y = POS['SHOP']['ERROR_Y']
+                        elif on_stage(IMG['TOILET']):
+                            x = POS['SHOP']['ERROR_X'] - 15 - int(textWidth / 2)
+                            y = 720
+                        elif on_stage(BTN['QUEST']['CANCEL']):
+                                x = (POS['IF']['ERROR_X'] - int((textWidth / 2)));
+                                y = POS['QUEST']['ERROR_Y']
+
 
 '''
-        if (on_stage(SHP_FUCK_BLACK_SQUARE)){
-            var _local3 = actor[LBL['ERROR']];
-            with (_local3) {
-                text = msg;
-                scaleX = 1;
-                scaleY = 1;
-                x = (IF_ERROR_X - int((textWidth / 2)));
-                y = (IF_ERROR_Y + 60);
-            };
-            add(LBL['ERROR']);
-        } else {
-            if (on_stage(GILDE_LIST)){
-                if (msg.split(" ").join("") != ""){
-                    chat_line(msg, True);
-                };
-            } else {
-                if (((on_stage(CREATE_CHARACTER)) and (!(on_stage(IF_WINDOW))))){
-                    _local3 = actor[LBL_CREATE_RACE_DESC];
-                    with (_local3) {
-                        default_text_format = FontFormat_ClassError;
-                        text = msg;
-                        default_text_format = FontFormat_DefaultLeft;
-                    };
-                    actor[LBL_CREATE_CLASS].text = "";
-                    actor[LBL_CREATE_CLASS_DESC].text = "";
-                } else {
-                    _local3 = actor[LBL['ERROR']];
-                    with (_local3) {
-                        text = msg;
-                        scaleX = 1;
-                        scaleY = 1;
-                        if (on_stage(SHOPS_NEWWAREZ)){
-                            x = (SHOP_ERROR_X - int((textWidth / 2)));
-                            y = SHOP_ERROR_Y;
                         } else {
-                            if (on_stage(TOILET)){
-                                x = ((SHOP_ERROR_X - 15) - int((textWidth / 2)));
-                                y = 720;
-                            } else {
-                                if (on_stage(QUEST_CANCEL)){
-                                    x = (IF_ERROR_X - int((textWidth / 2)));
-                                    y = QUEST_ERROR_Y;
-                                } else {
-                                    if (on_stage(POST_BG)){
-                                        x = (IF_ERROR_X - int((textWidth / 2)));
-                                        y = POST_ERROR_Y;
-                                    } else {
-                                        if (on_stage(LBL_STALL_TITEL)){
-                                            x = (IF_ERROR_X - int((textWidth / 2)));
-                                            y = STALL_ERROR_Y;
-                                        } else {
-                                            if (on_stage(CHAR_ATTACK)){
-                                                scaleX = 0.7;
-                                                scaleY = 0.7;
-                                                x = (((280 + 500) + 235) - (width / 2));
-                                                y = (100 + 657);
-                                            } else {
-                                                if (on_stage(SHP_MAINQUEST)){
-                                                    x = (IF_ERROR_X - int((textWidth / 2)));
-                                                    y = MQ_ERROR_Y;
-                                                } else {
-                                                    x = (IF_ERROR_X - int((textWidth / 2)));
-                                                    y = IF_ERROR_Y;
-                                                };
-                                            };
-                                        };
-                                    };
-                                };
-                            };
-                        };
-                    };
+                            if (on_stage(POST_BG)){
+                                x = (IF_ERROR_X - int((textWidth / 2)));
+                                y = POST_ERROR_Y;
+                        } else {
+                            if (on_stage(LBL_STALL_TITEL)){
+                                x = (IF_ERROR_X - int((textWidth / 2)));
+                                y = STALL_ERROR_Y;
+                        } else {
+                            if (on_stage(CHAR_ATTACK)){
+                                scaleX = 0.7;
+                                scaleY = 0.7;
+                                x = (((280 + 500) + 235) - (width / 2));
+                                y = (100 + 657);
+                        } else {
+                            if (on_stage(SHP_MAINQUEST)){
+                                x = (IF_ERROR_X - int((textWidth / 2)));
+                                y = MQ_ERROR_Y;
+                        } else {
+                            x = (IF_ERROR_X - int((textWidth / 2)));
+                            y = IF_ERROR_Y;
+
                     add(LBL['ERROR']);
                 };
             };
