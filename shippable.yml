@@ -10,16 +10,24 @@ install:
 before_script:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
+  - git clone git@bitbucket.org:chocokiko/chocokiko.bitbucket.org.git
+  - cd chocokiko.bitbucket.org/
+  - git pull
+  - cd ..
 
 script:
   - pylint --rcfile=.pylintrc sf*.py > metrics/pylint.txt || true
   - pep8 --verbose --show-pep8 sf*.py > metrics/pep8.txt || true
   - cat metrics/pylint.txt | python resources/extract.py >> metrics/stats.csv
-  - git clone git@bitbucket.org:chocokiko/chocokiko.bitbucket.org.git
-  - ls
   - git add metrics
   - git commit -m '[skip ci] shippable build results [ci skip]'
   - git push git@bitbucket.org:chocokiko/sfclient.git
+  - cp metrics/stats.csv chocokiko.bitbucket.org/
+  - cd chocokiko.bitbucket.org/
+  - git add *
+  - gi commit -m 'stats to web'
+  - git push git@bitbucket.org:chocokiko/chocokiko.bitbucket.org.git
+  - cd ..
   - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - which python && coverage run --branch *.py
   - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
