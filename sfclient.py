@@ -6147,7 +6147,7 @@ def request_signup(evt):
             and (KeyboardEvent(evt).keyCode != 16777230)
         ):
             inp_text = actor[INP['NAME']].getChildAt(1).text
-            if (inp_text.substr(0, 7) == "xxxtest"):
+            if inp_text.substr(0, 7) == "xxxtest":
                 actor[INP['EMAIL']].getChildAt(1).text = (
                     inp_text + "@playagames.com"
                 )
@@ -18326,11 +18326,11 @@ def get_my_path(mode=0):
     folder_name = full_path[0: len(full_path) - len(file_name)]
     for case in Switch(mode):
         if case(0):
-            return (folder_name)
+            return folder_name
         if case(1):
-            return (file_name)
+            return file_name
         if case(2):
-            return (full_path)
+            return full_path
 
     return ""
 
@@ -18536,7 +18536,10 @@ def error_message(msg=""):
                 if msg.replace(" ", "") != "":
                     chat_line(msg, True)
             else:
-                if (on_stage(BTN['CREATE_CHARACTER']) and (not on_stage(IMG['IF']['WINDOW']))):
+                if (
+                    (on_stage(BTN['CREATE_CHARACTER'])
+                    and (not on_stage(IMG['IF']['WINDOW'])))
+                ):
                     with actor[LBL['CREATE']['RACE_DESC']]:
                         default_text_format = FontFormat_ClassError
                         text = msg
@@ -18557,107 +18560,99 @@ def error_message(msg=""):
                             x = POS['SHOP']['ERROR_X'] - 15 - int(textWidth / 2)
                             y = 720
                         elif on_stage(BTN['QUEST']['CANCEL']):
-                                x = (POS['IF']['ERROR_X'] - int((textWidth / 2)));
-                                y = POS['QUEST']['ERROR_Y']
+                            x = POS['IF']['ERROR_X'] - int(textWidth / 2)
+                            y = POS['QUEST']['ERROR_Y']
+                        elif on_stage(IMG['POST_BG']):
+                            x = POS['IF']['ERROR_X'] - int(textWidth / 2)
+                            y = POS['QUEST']['ERROR_Y']
+                        elif on_stage(LBL['STALL_TITEL']):
+                            x = POS['IF']['ERROR_X'] - int(textWidth / 2)
+                            y = POS['QUEST']['ERROR_Y']
+                        elif on_stage(BTN['CHAR_ATTACK']):
+                            scaleX = 0.7
+                            scaleY = 0.7
+                            x = 280 + 500 + 235 - width / 2
+                            y = 100 + 657
+                        elif on_stage(SHP['MAINQUEST']):
+                            x = POS['IF']['ERROR_X'] - int(textWidth / 2)
+                            y = POS['MQ']['ERROR_Y']
+                        else:
+                            x = POS['IF']['ERROR_X'] - int(textWidth / 2)
+                            y = POS['IF']['ERROR_Y']
+
+                    add(LBL['ERROR'])
+
 
 
 '''
-                        } else {
-                            if (on_stage(POST_BG)){
-                                x = (IF_ERROR_X - int((textWidth / 2)));
-                                y = POST_ERROR_Y;
-                        } else {
-                            if (on_stage(LBL_STALL_TITEL)){
-                                x = (IF_ERROR_X - int((textWidth / 2)));
-                                y = STALL_ERROR_Y;
-                        } else {
-                            if (on_stage(CHAR_ATTACK)){
-                                scaleX = 0.7;
-                                scaleY = 0.7;
-                                x = (((280 + 500) + 235) - (width / 2));
-                                y = (100 + 657);
-                        } else {
-                            if (on_stage(SHP_MAINQUEST)){
-                                x = (IF_ERROR_X - int((textWidth / 2)));
-                                y = MQ_ERROR_Y;
-                        } else {
-                            x = (IF_ERROR_X - int((textWidth / 2)));
-                            y = IF_ERROR_Y;
+var DoAddBtnImage:* = function (){
+    var _local2 = obj.getChildAt(1);
+    with (_local2) {
+        tmpImage = new Bitmap(actor[imgActor].content.bitmapData.clone());
+        tmpImage.x = ((getCharBoundaries(imgIndex).x + x) + 4);
+        tmpImage.y = (((getCharBoundaries(imgIndex).y + y) - 3) + (((text_dir == "right")) ? 7 : 0));
+        obj.addChild(tmpImage);
+    };
+};
 
-                    add(LBL['ERROR']);
+var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
+    var btnText:* = null;
+    var char:* = null;
+    var i:* = 0;
+    var imgActor:* = 0;
+    var tmpImage:* = null;
+    var obj:* = obj;
+    var aoffsx:int = aoffsx;
+    var aoffsy:int = aoffsy;
+    btnText = "";
+    var imgIndex:* = -1;
+    while (obj.numChildren > 2) {
+        Sprite(obj).removeChildAt(2);
+    };
+    i = 0;
+    while (i < caption.length) {
+        char = caption[i];
+        if (char == "~"){
+            imgIndex = i;
+            i = (i + 1);
+            if (caption[i] == "P"){
+                btnText = (btnText + "     ");
+                load(IF_PILZE);
+                imgActor = IF_PILZE;
+            } else {
+                if (caption[i] == "G"){
+                    btnText = (btnText + "     ");
+                    load(IF_GOLD);
+                    imgActor = IF_GOLD;
+                } else {
+                    if (caption[i] == "S"){
+                        btnText = (btnText + "     ");
+                        load(IF_SILBER);
+                        imgActor = IF_SILBER;
+                    };
                 };
             };
+        } else {
+            btnText = (btnText + char);
+        };
+        i = (i + 1);
+    };
+    var _local5 = obj.getChildAt(1);
+    with (_local5) {
+        auto_size = TextFieldAutoSize.LEFT;
+        embed_fonts = font_embedded;
+        default_text_format = new TextFormat(gameFont, (((specialFontSize == 0)) ? default_text_format.size : specialFontSize), default_text_format.color);
+        text = btnText;
+        x = int(((((obj.getChildAt(0).width / 2) - (textWidth / 2)) + offs) + aoffsx));
+        y = int(((((obj.getChildAt(0).height / 2) - (textHeight / 2)) + offsy) + aoffsy));
+        if (imgIndex != -1){
+            when_loaded(DoAddBtnImage);
         };
     };
-}
-
+};
 
 
 def set_btn_text(actor_id:int, caption:String){
-    var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
-        var DoAddBtnImage:* = function (){
-            var _local2 = obj.getChildAt(1);
-            with (_local2) {
-                tmpImage = new Bitmap(actor[imgActor].content.bitmapData.clone());
-                tmpImage.x = ((getCharBoundaries(imgIndex).x + x) + 4);
-                tmpImage.y = (((getCharBoundaries(imgIndex).y + y) - 3) + (((text_dir == "right")) ? 7 : 0));
-                obj.addChild(tmpImage);
-            };
-        };
-        var btnText:* = null;
-        var char:* = null;
-        var i:* = 0;
-        var imgActor:* = 0;
-        var tmpImage:* = null;
-        var obj:* = obj;
-        var aoffsx:int = aoffsx;
-        var aoffsy:int = aoffsy;
-        btnText = "";
-        var imgIndex:* = -1;
-        while (obj.numChildren > 2) {
-            Sprite(obj).removeChildAt(2);
-        };
-        i = 0;
-        while (i < caption.length) {
-            char = caption[i];
-            if (char == "~"){
-                imgIndex = i;
-                i = (i + 1);
-                if (caption[i] == "P"){
-                    btnText = (btnText + "     ");
-                    load(IF_PILZE);
-                    imgActor = IF_PILZE;
-                } else {
-                    if (caption[i] == "G"){
-                        btnText = (btnText + "     ");
-                        load(IF_GOLD);
-                        imgActor = IF_GOLD;
-                    } else {
-                        if (caption[i] == "S"){
-                            btnText = (btnText + "     ");
-                            load(IF_SILBER);
-                            imgActor = IF_SILBER;
-                        };
-                    };
-                };
-            } else {
-                btnText = (btnText + char);
-            };
-            i = (i + 1);
-        };
-        var _local5 = obj.getChildAt(1);
-        with (_local5) {
-            auto_size = TextFieldAutoSize.LEFT;
-            embed_fonts = font_embedded;
-            default_text_format = new TextFormat(gameFont, (((specialFontSize == 0)) ? default_text_format.size : specialFontSize), default_text_format.color);
-            text = btnText;
-            x = int(((((obj.getChildAt(0).width / 2) - (textWidth / 2)) + offs) + aoffsx));
-            y = int(((((obj.getChildAt(0).height / 2) - (textHeight / 2)) + offsy) + aoffsy));
-            if (imgIndex != -1){
-                when_loaded(DoAddBtnImage);
-            };
-        };
-    };
     var i:* = 0;
     var offsy:* = 0;
     var actor_id:* = actor_id;
