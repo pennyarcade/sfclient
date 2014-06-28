@@ -17766,14 +17766,10 @@ def action_handler(event):
                     i += 1
 
                     tmpidx = col_idx['6_X'] - 30
-                    tmpidx2 = col_idx['5_X']
-                        - col_idx['4_X'] - 10
+                    tmpidx2 = col_idx['5_X'] - col_idx['4_X'] - 10
                     if guild_hall_mode:
                         tmpidx = col_idx['4_X'] + 20
-                        tmpidx2 = (
-                            col_idx['4_X']
-                            - col_idx['3_X'] - 10
-                        )
+                        tmpidx2 = (col_idx['4_X'] - col_idx['3_X'] - 10)
                     hall_list_add_field(
                         tmpidx,
                         lines_idx,
@@ -17789,9 +17785,7 @@ def action_handler(event):
                     tmpidx2 = col_idx['5_X'] - col_idx['4_X'] - 10
                     if guild_hall_mode:
                         tmpidx = col_idx['6_X'] + 10
-                        tmpidx2 = (
-                            col_idx['4_X'] - col_idx['2_X'] - 10
-                        )
+                        tmpidx2 = (col_idx['4_X'] - col_idx['2_X'] - 10)
                     tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
                         tmp_str = texts[TXT['NOGUILD']]
@@ -17859,9 +17853,7 @@ def action_handler(event):
                     tmpidx2 = col_idx['4_X'] - col_idx['3_X'] - 10
                     if guild_hall_mode:
                         tmpidx = col_idx['4_X']
-                        tmpidx2 = (
-                            col_idx['5_X'] - col_idx['4_X'] - 10
-                        )
+                        tmpidx2 = (col_idx['5_X'] - col_idx['4_X'] - 10)
                     hall_list_add_field(
                         tmpidx,
                         lines_idx,
@@ -17877,9 +17869,7 @@ def action_handler(event):
                     tmpidx2 = col_idx['5_X'] - col_idx['4_X'] - 10
                     if guild_hall_mode:
                         tmpidx = col_idx['2_X']
-                        tmpidx2 = (
-                            col_idx['4_X'] - col_idx['2_X'] - 10
-                        )
+                        tmpidx2 = (col_idx['4_X'] - col_idx['2_X'] - 10)
                     tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
                         tmp_str = texts[TXT['NOGUILD']]
