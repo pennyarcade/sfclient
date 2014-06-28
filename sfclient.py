@@ -17777,7 +17777,7 @@ def action_handler(event):
                         )
                     hall_list_add_field(
                         tmpidx,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         tmp_array[i],
                         tmp_fmt,
                         tmpidx2
@@ -17786,19 +17786,19 @@ def action_handler(event):
                     hall_list_guild[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = HALL_LIST_COLUMN_4_X - 20
-                    tmpidx2 = HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X - 10
+                    tmpidx = REL['HALL']['LIST']['COLUMN']['4_X'] - 20
+                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = HALL_LIST_COLUMN_6_X + 10
+                        tmpidx = REL['HALL']['LIST']['COLUMN']['6_X'] + 10
                         tmpidx2 = (
-                            HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X - 10
+                            REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['2_X'] - 10
                         )
                     tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
-                        tmp_str = texts[TXT_NOGUILD]
+                        tmp_str = texts[TXT['NOGUILD']]
                     hall_list_add_field(
                         tmpidx,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         tmp_str,
                         tmp_fmt,
                         tmpidx2,
@@ -17807,8 +17807,8 @@ def action_handler(event):
                     i += 1
 
                     hall_list_add_field(
-                        HALL_LIST_COLUMN_3_X + 25,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['COLUMN']['3_X'] + 25,
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17819,8 +17819,8 @@ def action_handler(event):
                     if tmp_array[i] == 1:
                         tmpidx = 0
                     hall_list_add_field(
-                        HALL_LIST_COLUMN_2_X - 10,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['COLUMN']['2_X'] - 10,
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         tmpidx,
                         tmp_fmt,
                         0,
@@ -17828,8 +17828,8 @@ def action_handler(event):
                     )
                 else:
                     hall_list_add_field(
-                        HALL_LIST_COLUMN_1_X,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['COLUMN']['1_X'],
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17846,8 +17846,8 @@ def action_handler(event):
                         modetxt = "[K]"
 
                     hall_list_add_field(
-                        HALL_LIST_COLUMN_2_X,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y + 5,
+                        REL['HALL']['LIST']['COLUMN']['2_X'],
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'] + 5,
                         modetxt,
                         tmp_fmt
                     )
@@ -17856,16 +17856,16 @@ def action_handler(event):
                     hall_list_name[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = HALL_LIST_COLUMN_3_X
-                    tmpidx2 = HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_3_X - 10
+                    tmpidx = REL['HALL']['LIST']['COLUMN']['3_X']
+                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['3_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = HALL_LIST_COLUMN_4_X
+                        tmpidx = REL['HALL']['LIST']['COLUMN']['4_X']
                         tmpidx2 = (
-                            HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X - 10
+                            REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
                         )
                     hall_list_add_field(
                         tmpidx,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         tmp_array[i],
                         tmp_fmt,
                         tmpidx2
@@ -17874,19 +17874,19 @@ def action_handler(event):
                     hall_list_guild[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = HALL_LIST_COLUMN_4_X
-                    tmpidx2 = HALL_LIST_COLUMN_5_X - HALL_LIST_COLUMN_4_X - 10
+                    tmpidx = REL['HALL']['LIST']['COLUMN']['4_X']
+                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = HALL_LIST_COLUMN_2_X
+                        tmpidx = REL['HALL']['LIST']['COLUMN']['2_X']
                         tmpidx2 = (
-                            HALL_LIST_COLUMN_4_X - HALL_LIST_COLUMN_2_X - 10
+                            REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['2_X'] - 10
                         )
                     tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
-                        tmp_str = texts[TXT_NOGUILD]
+                        tmp_str = texts[TXT['NOGUILD']]
                     hall_list_add_field(
                         tmpidx,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         tmp_str,
                         tmp_fmt,
                         tmpidx2,
@@ -17895,8 +17895,8 @@ def action_handler(event):
                     i += 1
 
                     hall_list_add_field(
-                        HALL_LIST_COLUMN_5_X,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['COLUMN']['5_X'],
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17907,8 +17907,8 @@ def action_handler(event):
                     if tmp_array[i] == 1:
                         tmpidx = 0
                     hall_list_add_field(
-                        HALL_LIST_COLUMN_6_X,
-                        HALL_LIST_LINES_Y + line * HALL_LIST_LINE_Y,
+                        REL['HALL']['LIST']['COLUMN']['6_X'],
+                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
                         tmpidx,
                         tmp_fmt,
                         0,
