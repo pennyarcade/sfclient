@@ -1,5 +1,1884 @@
 ************* Module sfclient
-E:17770, 0: unexpected indent (syntax-error)
+W:4097, 0: TODO: Credits for this classs? (fixme)
+W:4135, 0: TODO: Check if needed? (fixme)
+W:4160, 0: TODO: refactor to use sendAction() (fixme)
+W:4169, 0: TODO: rework random number generation (fixme)
+W:4235, 0: TODO: This "if" switches base URL (fixme)
+W:4241, 0: TODO: move payload creation to method (fixme)
+W:4281, 0: TODO : test success of request here !! (fixme)
+W:4462, 0: TODO: make configurable (fixme)
+W:4506, 0: TODO: check vars if needed (fixme)
+W:5081, 0: TODO: check event stuff?? (fixme)
+W:5148, 0: TODO: make this a parameter? (fixme)
+W:5169, 0: TODO: make this a parameter? (fixme)
+W:5492, 0: TODO: documentation (fixme)
+W:5653, 0: TODO: itm_color ??? (fixme)
+W:5707, 0: FIXME (fixme)
+W:5943, 0: TODO: Tower object (fixme)
+W:5950, 0: TODO: Mirror object (fixme)
+W:5963, 0: TODO: save in character object (fixme)
+W:6138, 0: TODO: How to do Event stuff? (fixme)
+W:6141, 0: TODO: Documentation (fixme)
+W:6318, 0: TODO: obsolete? (fixme)
+W:6377, 0: TODO: obsolete? (fixme)
+W:18295, 0: TODO: better use exceptions?? (fixme)
+W:18304, 0: TODO: hor does this work anyways? (fixme)
+W:19501, 0: TODO: What does this do? (fixme)
+W:19519, 0: TODO: Obsolete? (fixme)
+W:19542, 0: TODO: set via requests params (fixme)
+C:4207, 0: Wrong continued indentation before block.
+                ):
+                ^  | (bad-continuation)
+C:4201, 0: Wrong hanging indentation before block.
+                    ACT['VALIDATE'],
+                    ^   | (bad-continuation)
+C:4202, 0: Wrong hanging indentation before block.
+                    ACT['SEND_CHAT'],
+                    ^   | (bad-continuation)
+C:4203, 0: Wrong hanging indentation before block.
+                    ACT['GUILD']['DONATE'],
+                    ^   | (bad-continuation)
+C:4204, 0: Wrong hanging indentation before block.
+                    ACT['REQUEST']['GUILD_NAMES'],
+                    ^   | (bad-continuation)
+C:4205, 0: Wrong hanging indentation before block.
+                    ACT['REQUEST']['CHAR'],
+                    ^   | (bad-continuation)
+C:4206, 0: Wrong hanging indentation before block.
+                    ACT['POST']['SEND'])
+                    ^   | (bad-continuation)
+C:4238, 0: Wrong hanging indentation before block.
+            (action == ACT['GET_CHAT_HISTORY'])
+            ^   | (bad-continuation)
+C:4239, 0: Wrong hanging indentation before block.
+            and (self.param_poll_tunnel_url != "")
+            ^   | (bad-continuation)
+C:4286, 0: Wrong hanging indentation before block.
+                    (action == ACT['GET_CHAT_HISTORY'])
+                    ^   | (bad-continuation)
+C:4287, 0: Wrong hanging indentation before block.
+                    and (self.param_poll_tunnel_url != "")
+                    ^   | (bad-continuation)
+C:4319, 0: Wrong hanging indentation before block.
+                        (action == ACT['GET_CHAT_HISTORY'])
+                        ^   | (bad-continuation)
+C:4320, 0: Wrong hanging indentation before block.
+                        and (self.param_poll_tunnel_url != "")
+                        ^   | (bad-continuation)
+C:4356, 0: Wrong hanging indentation before block.
+        self, beard=1, brows=1, cclass=1, color=1, eyes=1, hair=1, male=True,
+        ^   | (bad-continuation)
+C:4357, 0: Wrong hanging indentation before block.
+        mouth=1, nose=1, special=1, special2=1, volk=0
+        ^   | (bad-continuation)
+C:5246, 0: Wrong hanging indentation before block.
+        self, qtype, qid, qlevel, qmonster,
+        ^   | (bad-continuation)
+C:5247, 0: Wrong hanging indentation before block.
+        qexp, qgold, qtime, qlocation, qitem
+        ^   | (bad-continuation)
+C:5486, 0: Wrong hanging indentation before block.
+        self, pic=0, typ=0, cclass=1, gold=0,
+        ^   | (bad-continuation)
+C:5487, 0: Wrong hanging indentation before block.
+        maxd=0, mind=0, color=0, attr=False
+        ^   | (bad-continuation)
+C:5736, 0: Wrong hanging indentation before block.
+    itm_class, itm_pic, some_obj=False, slot_mode=False, color_override=-1
+    ^   | (bad-continuation)
+C:5849, 0: Wrong hanging indentation before block.
+                5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60
+                ^   | (bad-continuation)
+C:6145, 0: Wrong hanging indentation before block.
+            (KeyboardEvent(evt).keyCode != 13)
+            ^   | (bad-continuation)
+C:6146, 0: Wrong hanging indentation before block.
+            and (KeyboardEvent(evt).keyCode != 10)
+            ^   | (bad-continuation)
+C:6147, 0: Wrong hanging indentation before block.
+            and (KeyboardEvent(evt).keyCode != 16777230)
+            ^   | (bad-continuation)
+C:6150, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:6243, 0: Wrong hanging indentation before block.
+            (KeyboardEvent(evt).keyCode != 13)
+            ^   | (bad-continuation)
+C:6244, 0: Wrong hanging indentation before block.
+            and (KeyboardEvent(evt).keyCode != 10)
+            ^   | (bad-continuation)
+C:6245, 0: Wrong hanging indentation before block.
+            and (KeyboardEvent(evt).keyCode != 16777230)
+            ^   | (bad-continuation)
+C:6328, 0: Wrong hanging indentation before block.
+        (char_volk == revertchar_volk)
+        ^   | (bad-continuation)
+C:6329, 0: Wrong hanging indentation before block.
+        and (char_male == revertchar_male)
+        ^   | (bad-continuation)
+C:6330, 0: Wrong hanging indentation before block.
+        and (char_color == revertchar_color)
+        ^   | (bad-continuation)
+C:6331, 0: Wrong hanging indentation before block.
+        and (char_mouth == revertchar_mouth)
+        ^   | (bad-continuation)
+C:6332, 0: Wrong hanging indentation before block.
+        and (char_beard == revertchar_beard)
+        ^   | (bad-continuation)
+C:6333, 0: Wrong hanging indentation before block.
+        and (char_nose == revertchar_nose)
+        ^   | (bad-continuation)
+C:6334, 0: Wrong hanging indentation before block.
+        and (char_eyes == revertchar_eyes)
+        ^   | (bad-continuation)
+C:6335, 0: Wrong hanging indentation before block.
+        and (char_brows == revertchar_brows)
+        ^   | (bad-continuation)
+C:6336, 0: Wrong hanging indentation before block.
+        and (char_ears == revertchar_ears)
+        ^   | (bad-continuation)
+C:6337, 0: Wrong hanging indentation before block.
+        and (char_hair == revertchar_hair)
+        ^   | (bad-continuation)
+C:6338, 0: Wrong hanging indentation before block.
+        and (char_special == revertchar_special)
+        ^   | (bad-continuation)
+C:6339, 0: Wrong hanging indentation before block.
+        and (char_special2 == revertchar_special2)
+        ^   | (bad-continuation)
+C:16347, 0: Wrong hanging indentation.
+       IMG['SHAKES']['IDLE'],
+       ^| (bad-continuation)
+C:16348, 0: Wrong hanging indentation.
+       IMG['SHAKES']['IDLE1'],
+       ^| (bad-continuation)
+C:16349, 0: Wrong hanging indentation.
+       IMG['SHAKES']['IDLE2'],
+       ^| (bad-continuation)
+C:16350, 0: Wrong hanging indentation.
+       IMG['SHAKES']['IDLE3']
+       ^| (bad-continuation)
+C:16485, 0: Wrong hanging indentation.
+                        POS['QO']['BLACK']['SQUARE_X']
+                    |   ^ (bad-continuation)
+C:16486, 0: Wrong hanging indentation.
+                        + REL['QO']['QUESTNAME_X']
+                    |   ^ (bad-continuation)
+C:16487, 0: Wrong hanging indentation.
+                        - textWidth / 2
+                    |   ^ (bad-continuation)
+C:16743, 0: Wrong hanging indentation.
+                  "Error: Your email address has to be validated in order ",
+                  ^ | (bad-continuation)
+C:16744, 0: Wrong hanging indentation.
+                  "to send messages."
+                  ^ | (bad-continuation)
+C:16910, 0: Wrong hanging indentation before block.
+                            (last_chat_index != 0)
+                            ^   | (bad-continuation)
+C:16911, 0: Wrong hanging indentation before block.
+                            and (decode_chat(tmp_array[i], False, True) == "1")
+                            ^   | (bad-continuation)
+C:16922, 0: Wrong hanging indentation before block.
+                            (
+                            ^   | (bad-continuation)
+C:16926, 0: Wrong hanging indentation before block.
+                            and pulse_gilde_on_history
+                            ^   | (bad-continuation)
+C:16945, 0: Wrong hanging indentation before block.
+                                (not last_chat_index == 0)
+                                ^   | (bad-continuation)
+C:16946, 0: Wrong hanging indentation before block.
+                                and (decode_chat(
+                                ^   | (bad-continuation)
+C:16960, 0: Wrong continued indentation.
+                                or (not so.data.noPulseOnSysMsg))
+                                ^| (bad-continuation)
+C:16959, 0: Wrong hanging indentation before block.
+                                ((tmp_array[i].find("§") != -1)
+                                ^   | (bad-continuation)
+C:16961, 0: Wrong hanging indentation before block.
+                                and (pulse_gilde_on_history)
+                                ^   | (bad-continuation)
+C:16970, 0: Wrong continued indentation before block.
+                                ):
+                                ^  | (bad-continuation)
+C:16969, 0: Wrong hanging indentation before block.
+                                    tmp_str) != -1
+                                    ^   | (bad-continuation)
+C:16993, 0: Wrong hanging indentation.
+                            0: external_whisperer.find(":§")
+                        |   ^ (bad-continuation)
+C:16997, 0: Wrong continued indentation.
+                    )
+                    ^        | (bad-continuation)
+C:17013, 0: Wrong hanging indentation before block.
+                (new_crest_suggested != "")
+                ^   | (bad-continuation)
+C:17014, 0: Wrong hanging indentation before block.
+                and (not first_chat_fill)
+                ^   | (bad-continuation)
+C:17015, 0: Wrong hanging indentation before block.
+                and (on_stage(INP['GILDE_CHAT']))
+                ^   | (bad-continuation)
+C:17255, 0: Wrong hanging indentation before block.
+                not on_stage(BNC['GILDE']['CREST'])
+                ^   | (bad-continuation)
+C:17256, 0: Wrong hanging indentation before block.
+                or (act == RESP['OTHER_GUILD'])
+                ^   | (bad-continuation)
+C:17257, 0: Wrong hanging indentation before block.
+                or (last_guild_crest_id != par[0].split("/")[0])
+                ^   | (bad-continuation)
+C:17258, 0: Wrong hanging indentation before block.
+                or (
+                ^   | (bad-continuation)
+C:17363, 0: Wrong hanging indentation before block.
+                        "1  ", "2  ", "3  ", "4  ", "5  ",
+                        ^   | (bad-continuation)
+C:17364, 0: Wrong hanging indentation before block.
+                        "6  ", "7  ", "8  ", "9  "
+                        ^   | (bad-continuation)
+C:17504, 0: Wrong hanging indentation.
+                        ))
+                        ^   |   | (bad-continuation)
+C:17537, 0: Wrong continued indentation before block.
+                    ):
+                    ^  | (bad-continuation)
+C:17583, 0: Wrong hanging indentation.
+                     LBL['HALL']['GOTO_SPIELER'],
+                    |^ (bad-continuation)
+C:17584, 0: Wrong hanging indentation.
+                     LBL['HALL']['GOTO_GILDEN_HL']
+                    |^ (bad-continuation)
+C:17585, 0: Wrong hanging indentation.
+                 )
+                |^  | (bad-continuation)
+C:17594, 0: Wrong hanging indentation.
+                     LBL['HALL']['GOTO_SPIELER'],
+                    |^ (bad-continuation)
+C:17595, 0: Wrong hanging indentation.
+                     LBL['HALL']['GOTO_GILDEN_HL']
+                    |^ (bad-continuation)
+C:17596, 0: Wrong hanging indentation.
+                 )
+                |^  | (bad-continuation)
+C:17716, 0: Wrong hanging indentation before block.
+                    (not guild_hall_mode)
+                    ^   | (bad-continuation)
+C:17717, 0: Wrong hanging indentation before block.
+                    and (not ruhmes_halle_such_name)
+                    ^   | (bad-continuation)
+C:17718, 0: Wrong hanging indentation before block.
+                    and (tmp_str == tmp_array[tmpidx].lower())
+                    ^   | (bad-continuation)
+C:17724, 0: Wrong hanging indentation before block.
+                    (not guild_hall_mode)
+                    ^   | (bad-continuation)
+C:17725, 0: Wrong hanging indentation before block.
+                    and (not lastAttacked.find(tmp_array[i + 1].lower()) == -1)
+                    ^   | (bad-continuation)
+C:17930, 0: Wrong hanging indentation before block.
+            RESP['SAVEGAME']['STAY'],
+            ^   | (bad-continuation)
+C:17931, 0: Wrong hanging indentation before block.
+            RESP['SAVEGAME']['SHARD'],
+            ^   | (bad-continuation)
+C:17932, 0: Wrong hanging indentation before block.
+            RESP['SAVEGAME']['MIRROR'],
+            ^   | (bad-continuation)
+C:17933, 0: Wrong hanging indentation before block.
+            RESP['MOVE']['TOWER_ITEM']
+            ^   | (bad-continuation)
+C:18004, 0: Wrong hanging indentation before block.
+            RESP['LOGIN']['SUCCESS']['BOUGHT'],
+            ^   | (bad-continuation)
+C:18005, 0: Wrong hanging indentation before block.
+            RESP['LOGIN']['SUCCESS']
+            ^   | (bad-continuation)
+C:18067, 0: Wrong hanging indentation before block.
+                      (int(savegame[SG['EMAIL']['VALID']]) < 1)
+                    | ^ | (bad-continuation)
+C:18068, 0: Wrong hanging indentation before block.
+                      and (server_time > (email_date + 2 * 60 * 24 * 60))
+                    | ^ | (bad-continuation)
+C:18088, 0: Wrong continued indentation.
+            ERR['NO_INDEX_FREE'],
+            ^   | (bad-continuation)
+C:18089, 0: Wrong continued indentation.
+            ERR['FIGHT_SELF'],
+            ^   | (bad-continuation)
+C:18090, 0: Wrong continued indentation.
+            ERR['GUILD']['NOT_FOUND'],
+            ^   | (bad-continuation)
+C:18091, 0: Wrong continued indentation.
+            ERR['GUILD']['NOT_ALLOWED'],
+            ^   | (bad-continuation)
+C:18092, 0: Wrong continued indentation.
+            ERR['GUILD']['LACK_MUSH'],
+            ^   | (bad-continuation)
+C:18093, 0: Wrong continued indentation.
+            ERR['GUILD']['LACK_GOLD'],
+            ^   | (bad-continuation)
+C:18094, 0: Wrong continued indentation.
+            ERR['GUILD']['BUILDING_NOT_FOUND'],
+            ^   | (bad-continuation)
+C:18095, 0: Wrong continued indentation.
+            ERR['GUILD']['BUILDING_MAX'],
+            ^   | (bad-continuation)
+C:18096, 0: Wrong continued indentation.
+            ERR['GUILD']['NOT_MEMBER'],
+            ^   | (bad-continuation)
+C:18097, 0: Wrong continued indentation.
+            ERR['GUILD']['MASTER_CANT_BE_OFFICER'],
+            ^   | (bad-continuation)
+C:18098, 0: Wrong continued indentation.
+            ERR['GUILD']['IS_FULL'],
+            ^   | (bad-continuation)
+C:18099, 0: Wrong continued indentation.
+            ERR['GUILD']['ALREADY_YOU_OTHER'],
+            ^   | (bad-continuation)
+C:18100, 0: Wrong continued indentation.
+            ERR['GUILD']['NOT_REAL_MEMBER'],
+            ^   | (bad-continuation)
+C:18101, 0: Wrong continued indentation.
+            ERR['GUILD']['ALREADY_YOU_THIS'],
+            ^   | (bad-continuation)
+C:18102, 0: Wrong continued indentation.
+            ERR['GUILD']['PLAYER_NOT_FOUND'],
+            ^   | (bad-continuation)
+C:18103, 0: Wrong continued indentation.
+            ERR['SUBJECT']['TOO_SHORT'],
+            ^   | (bad-continuation)
+C:18104, 0: Wrong continued indentation.
+            ERR['GUILD']['TOO_EXPENSIVE'],
+            ^   | (bad-continuation)
+C:18105, 0: Wrong continued indentation.
+            ERR['GUILD']['CHAT']['NOT_MEMBER'],
+            ^   | (bad-continuation)
+C:18106, 0: Wrong continued indentation.
+            ERR['GUILD']['CHAT']['HISTORY'],
+            ^   | (bad-continuation)
+C:18107, 0: Wrong continued indentation.
+            ERR['GUILD']['CHAT']['TEXT_ERROR'],
+            ^   | (bad-continuation)
+C:18108, 0: Wrong continued indentation.
+            ERR['BEER'],
+            ^   | (bad-continuation)
+C:18109, 0: Wrong continued indentation.
+            ERR['NO_MUSH_BAR'],
+            ^   | (bad-continuation)
+C:18110, 0: Wrong continued indentation.
+            ERR['NO_ENDURANCE'],
+            ^   | (bad-continuation)
+C:18111, 0: Wrong continued indentation.
+            ERR['WORSE_MOUNT'],
+            ^   | (bad-continuation)
+C:18112, 0: Wrong continued indentation.
+            ERR['GUILD']['ALREADY_MEMBER'],
+            ^   | (bad-continuation)
+C:18113, 0: Wrong continued indentation.
+            ERR['NOT_INVITED'],
+            ^   | (bad-continuation)
+C:18114, 0: Wrong continued indentation.
+            ERR['NO_MUSH_PVP'],
+            ^   | (bad-continuation)
+C:18115, 0: Wrong continued indentation.
+            ERR['NO_MUSH_MQ']
+            ^   | (bad-continuation)
+C:18116, 0: Wrong continued indentation.
+        ):
+        ^      | (bad-continuation)
+C:18236, 0: Wrong hanging indentation before block.
+            ((int(pixel[0]) == act) or (next_pxl > 0))
+            ^   | (bad-continuation)
+C:18237, 0: Wrong hanging indentation before block.
+            and (next_pxl == int(pixel[0]))
+            ^   | (bad-continuation)
+C:18329, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
+C:18331, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
+C:18333, 0: Unnecessary parens after u'return' keyword (superfluous-parens)
+C:18386, 0: Wrong continued indentation.
+                    or (len(tmp_arr[k].split("\"")) > 2))
+                    ^    | (bad-continuation)
+C:18380, 0: Wrong hanging indentation before block.
+                    (punct1 != "!")
+                    ^   | (bad-continuation)
+C:18381, 0: Wrong hanging indentation before block.
+                    and (punct1 != ".")
+                    ^   | (bad-continuation)
+C:18382, 0: Wrong hanging indentation before block.
+                    and (punct1 != ":")
+                    ^   | (bad-continuation)
+C:18383, 0: Wrong hanging indentation before block.
+                    and (punct1 != "،")
+                    ^   | (bad-continuation)
+C:18384, 0: Wrong hanging indentation before block.
+                    and (punct1 != "x؟")
+                    ^   | (bad-continuation)
+C:18385, 0: Wrong hanging indentation before block.
+                    and ((punct1 != "\"")
+                    ^   | (bad-continuation)
+C:18391, 0: Wrong hanging indentation before block.
+                    (punct2 != "\"")
+                    ^   | (bad-continuation)
+C:18392, 0: Wrong hanging indentation before block.
+                    or (len(tmp_arr[k].split("\"")) > 2)
+                    ^   | (bad-continuation)
+C:18489, 0: Wrong hanging indentation before block.
+    actor_id, caption, handler, btnClass,
+    ^   | (bad-continuation)
+C:18490, 0: Wrong hanging indentation before block.
+    pos_x=0, pos_y=0, scale_x=1, scale_y=1, vis=True
+    ^   | (bad-continuation)
+C:18539, 0: Line too long (95/80) (line-too-long)
+C:18539, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:18560, 0: Line too long (82/80) (line-too-long)
+W:18560, 0: Bad indentation. Found 32 spaces, expected 28 (bad-indentation)
+W:18560, 0: Unnecessary semicolon (unnecessary-semicolon)
+W:18561, 0: Bad indentation. Found 32 spaces, expected 28 (bad-indentation)
+C:18809, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:19206, 0: Wrong hanging indentation before block.
+            (param_obj["mp_api_user_id"] != None)
+            ^   | (bad-continuation)
+C:19207, 0: Wrong hanging indentation before block.
+            and (param_obj["mp_api_user_token"] != None)
+            ^   | (bad-continuation)
+C:19227, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:19229, 0: Unnecessary parens after u'elif' keyword (superfluous-parens)
+C:19285, 0: Wrong hanging indentation before block.
+                  (so.data.snd_url_index <= len(snd_url))
+                | ^ | (bad-continuation)
+C:19286, 0: Wrong hanging indentation before block.
+                  and (not force_reroll)
+                | ^ | (bad-continuation)
+C:19294, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:19348, 0: Wrong hanging indentation before block.
+                (actorURL[actor_id][-4:] == ".png")
+                ^   | (bad-continuation)
+C:19349, 0: Wrong hanging indentation before block.
+                and (not no_crossdomain)
+                ^   | (bad-continuation)
+C:19441, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:19491, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:19505, 0: Wrong hanging indentation before block.
+        (pixel_data.lower().substr(0, 7) == "http://")
+        ^   | (bad-continuation)
+C:19506, 0: Wrong hanging indentation before block.
+        or (pixel_data.lower().substr(0, 8) == "https://")
+        ^   | (bad-continuation)
+C:19543, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
+C:  1, 0: Too many lines in module (31913) (too-many-lines)
+W: 24, 0: Wildcard import sflegacy (wildcard-import)
+R:4094, 0: Too few public methods (1/2) (too-few-public-methods)
+R:4127, 0: Too many instance attributes (14/7) (too-many-instance-attributes)
+E:4190,19: Undefined variable 'on_stage' (undefined-variable)
+E:4215,19: Undefined variable 'fight_lock' (undefined-variable)
+W:4231,12: Specify string format arguments as logging function parameters (logging-not-lazy)
+W:4232,12: Specify string format arguments as logging function parameters (logging-not-lazy)
+W:4233,12: Specify string format arguments as logging function parameters (logging-not-lazy)
+E:4277,25: Undefined variable 'param_fail_tries' (undefined-variable)
+W:4295,16: Specify string format arguments as logging function parameters (logging-not-lazy)
+E:4304,30: Undefined variable 'param_fail_tries' (undefined-variable)
+E:4308,28: Undefined variable 'param_fail_tries' (undefined-variable)
+E:4309,24: Undefined variable 'evt' (undefined-variable)
+R:4185, 4: Too many branches (25/12) (too-many-branches)
+R:4185, 4: Too many statements (65/50) (too-many-statements)
+W:4224, 8: Unused variable 'last_act' (unused-variable)
+R:4341, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4351, 0: Too many instance attributes (12/7) (too-many-instance-attributes)
+R:4355, 4: Too many arguments (13/5) (too-many-arguments)
+R:4351, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4376, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4387, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4400, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4411, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4422, 0: Too few public methods (0/2) (too-few-public-methods)
+R:4433, 0: Too few public methods (0/2) (too-few-public-methods)
+W:4937,-1: String statement has no effect (pointless-string-statement)
+E:4940, 7: Undefined variable 'param_obj' (undefined-variable)
+E:4942,21: Undefined variable 'ExternalInterface' (undefined-variable)
+E:4958,26: Undefined variable 'Timer' (undefined-variable)
+E:4958,39: Undefined variable 'image_timeout' (undefined-variable)
+E:4960, 8: Undefined variable 'TimerEvent' (undefined-variable)
+E:4965,16: Undefined variable 'Timer' (undefined-variable)
+E:4966,33: Undefined variable 'TimerEvent' (undefined-variable)
+E:4966,51: Undefined variable 'time_calcEvent' (undefined-variable)
+W:5029,-1: String statement has no effect (pointless-string-statement)
+W:5058,-1: String statement has no effect (pointless-string-statement)
+W:5066,-1: String statement has no effect (pointless-string-statement)
+W:5073,-1: String statement has no effect (pointless-string-statement)
+W:4512, 4: Unused variable 'revertface' (unused-variable)
+W:4946,16: Unused variable 'buffed_id' (unused-variable)
+W:4948,16: Unused variable 'buffed_email' (unused-variable)
+W:4515, 4: Unused variable 'col_album' (unused-variable)
+W:4509, 4: Unused variable 'defaultface' (unused-variable)
+W:4947,16: Unused variable 'buffed_name' (unused-variable)
+W:4956, 4: Unused variable 'when_loaded_fn' (unused-variable)
+W:4941, 8: Unused variable 'buffed_req' (unused-variable)
+W:4957, 4: Unused variable 'when_loaded_active' (unused-variable)
+W:5085, 4: Unused variable 'serverconfig' (unused-variable)
+E:5107,37: Undefined variable 'texts' (undefined-variable)
+E:5109,34: Undefined variable 'texts' (undefined-variable)
+E:5111,31: Undefined variable 'texts' (undefined-variable)
+E:5213,11: Undefined variable 'lang_code' (undefined-variable)
+E:5229, 8: Using variable 'slm_count' before assignment (used-before-assignment)
+E:5229,29: Undefined variable 'ststep' (undefined-variable)
+E:5230, 8: Undefined variable 'add' (undefined-variable)
+E:5233, 4: Undefined variable 'GameTime' (undefined-variable)
+E:5234,33: Undefined variable 'server_time' (undefined-variable)
+E:5234,57: Undefined variable 'local_time' (undefined-variable)
+W:5224,20: Unused argument 'evt' (unused-argument)
+R:5241, 0: Too many instance attributes (11/7) (too-many-instance-attributes)
+R:5245, 4: Too many arguments (10/5) (too-many-arguments)
+E:5324,15: Undefined variable 'texts' (undefined-variable)
+E:5325,30: Undefined variable 'texts' (undefined-variable)
+E:5346,16: Undefined variable 'texts' (undefined-variable)
+E:5353,24: Undefined variable 'texts' (undefined-variable)
+E:5354,24: Undefined variable 'texts' (undefined-variable)
+E:5357,24: Undefined variable 'texts' (undefined-variable)
+E:5366,24: Undefined variable 'texts' (undefined-variable)
+E:5369,24: Undefined variable 'texts' (undefined-variable)
+E:5370,24: Undefined variable 'texts' (undefined-variable)
+E:5382,24: Undefined variable 'texts' (undefined-variable)
+E:5385,24: Undefined variable 'texts' (undefined-variable)
+E:5386,24: Undefined variable 'texts' (undefined-variable)
+E:5389,24: Undefined variable 'texts' (undefined-variable)
+E:5398,24: Undefined variable 'texts' (undefined-variable)
+E:5399,24: Undefined variable 'texts' (undefined-variable)
+E:5402,24: Undefined variable 'texts' (undefined-variable)
+E:5411,24: Undefined variable 'texts' (undefined-variable)
+E:5414,24: Undefined variable 'texts' (undefined-variable)
+E:5417,24: Undefined variable 'texts' (undefined-variable)
+E:5427,24: Undefined variable 'texts' (undefined-variable)
+E:5430,24: Undefined variable 'texts' (undefined-variable)
+E:5433,24: Undefined variable 'texts' (undefined-variable)
+R:5485, 4: Too many arguments (9/5) (too-many-arguments)
+E:5609,29: Undefined variable 'texts' (undefined-variable)
+E:5623,11: Undefined variable 'texts' (undefined-variable)
+E:5628,11: Undefined variable 'texts' (undefined-variable)
+E:5632,23: Undefined variable 'texts' (undefined-variable)
+E:5634,11: Undefined variable 'texts' (undefined-variable)
+E:5636,23: Undefined variable 'texts' (undefined-variable)
+E:5638,48: Undefined variable 'texts' (undefined-variable)
+E:5641,19: Undefined variable 'texts' (undefined-variable)
+E:5643,19: Undefined variable 'texts' (undefined-variable)
+R:5561, 4: Too many return statements (7/6) (too-many-return-statements)
+R:5561, 4: Too many branches (23/12) (too-many-branches)
+R:5676, 4: Too many branches (14/12) (too-many-branches)
+W:5691,12: Unused variable 'slot_id' (unused-variable)
+E:5744,23: Undefined variable 'savegame' (undefined-variable)
+R:5832, 0: Too many return statements (38/6) (too-many-return-statements)
+R:5832, 0: Too many branches (41/12) (too-many-branches)
+R:5936, 4: Too many local variables (38/15) (too-many-locals)
+E:5952,18: Instance of 'int' has no 'tostr' member (no-member)
+E:5970,45: Undefined variable 'content_max' (undefined-variable)
+E:5971,36: Undefined variable 'content_max' (undefined-variable)
+E:5974,12: Undefined variable 'expand_item_structure' (undefined-variable)
+E:5979,12: Undefined variable 'expand_item_structure' (undefined-variable)
+E:5984,12: Undefined variable 'expand_item_structure' (undefined-variable)
+E:5987,12: Undefined variable 'expand_item_structure' (undefined-variable)
+E:5992,12: Undefined variable 'expand_item_structure' (undefined-variable)
+E:6001,12: Using variable 'last_level' before assignment (used-before-assignment)
+E:6007,34: Undefined variable 'server' (undefined-variable)
+E:6010,15: Undefined variable 'old_ach' (undefined-variable)
+E:6012,19: Undefined variable 'ach_level' (undefined-variable)
+E:6012,44: Undefined variable 'old_ach' (undefined-variable)
+E:6013,20: Undefined variable 'old_ach' (undefined-variable)
+E:6013,38: Undefined variable 'ach_level' (undefined-variable)
+E:6015,20: Undefined variable 'old_ach' (undefined-variable)
+E:6015,33: Undefined variable 'ach_level' (undefined-variable)
+E:6018,16: Undefined variable 'old_ach' (undefined-variable)
+E:6018,29: Undefined variable 'ach_level' (undefined-variable)
+E:6020,12: Using variable 'old_album' before assignment (used-before-assignment)
+E:6046,15: Undefined variable 'text_dir' (undefined-variable)
+E:6047,16: Undefined variable 'actor' (undefined-variable)
+E:6049,21: Undefined variable 'actor' (undefined-variable)
+C:6051,20: Invalid variable name "x" (invalid-name)
+E:6051,58: Undefined variable 'textWidth' (undefined-variable)
+E:6052,20: Undefined variable 'actor' (undefined-variable)
+E:6052,55: Undefined variable 'width' (undefined-variable)
+E:6054,22: Undefined variable 'actor' (undefined-variable)
+C:6060,20: Invalid variable name "x" (invalid-name)
+E:6060,24: Undefined variable 'actor' (undefined-variable)
+E:6060,55: Undefined variable 'textWidth' (undefined-variable)
+E:6062,21: Undefined variable 'actor' (undefined-variable)
+C:6064,20: Invalid variable name "x" (invalid-name)
+E:6064,61: Undefined variable 'textWidth' (undefined-variable)
+E:6066,19: Undefined variable 'texts' (undefined-variable)
+E:6067,20: Undefined variable 'enable_popup' (undefined-variable)
+E:6069,24: Undefined variable 'texts' (undefined-variable)
+E:6074,22: Undefined variable 'actor' (undefined-variable)
+C:6080,20: Invalid variable name "x" (invalid-name)
+E:6080,61: Undefined variable 'textWidth' (undefined-variable)
+E:6081,20: Undefined variable 'actor' (undefined-variable)
+E:6083,21: Undefined variable 'actor' (undefined-variable)
+C:6085,20: Invalid variable name "x" (invalid-name)
+E:6085,24: Undefined variable 'actor' (undefined-variable)
+E:6085,53: Undefined variable 'textWidth' (undefined-variable)
+E:6087,21: Undefined variable 'actor' (undefined-variable)
+C:6089,20: Invalid variable name "x" (invalid-name)
+E:6089,61: Undefined variable 'textWidth' (undefined-variable)
+E:6091,19: Undefined variable 'texts' (undefined-variable)
+E:6092,20: Undefined variable 'enable_popup' (undefined-variable)
+E:6094,24: Undefined variable 'texts' (undefined-variable)
+E:6099, 8: Undefined variable 'add' (undefined-variable)
+E:6101,12: Undefined variable 'server_time' (undefined-variable)
+E:6105,12: Undefined variable 'time_calc' (undefined-variable)
+E:6107,11: Undefined variable 'session_id' (undefined-variable)
+E:6108,12: Undefined variable 'log' (undefined-variable)
+E:6112,12: Undefined variable 'show_login_screen' (undefined-variable)
+E:6114,12: Undefined variable 'log' (undefined-variable)
+E:6114,56: Undefined variable 'session_id' (undefined-variable)
+E:6116,50: Using variable 'gilden_id' before assignment (used-before-assignment)
+E:6119,16: Undefined variable 'send_action' (undefined-variable)
+E:6125,48: Undefined variable 'on_stage' (undefined-variable)
+E:6131,11: Using variable 'next_pxl' before assignment (used-before-assignment)
+R:5936, 4: Method could be a function (no-self-use)
+R:5936, 4: Too many branches (37/12) (too-many-branches)
+R:5936, 4: Too many statements (114/50) (too-many-statements)
+W:6028,12: Unused variable 'char_mouth' (unused-variable)
+W:5961, 8: Unused variable 'can_rob' (unused-variable)
+W:6050,20: Unused variable 'text' (unused-variable)
+W:6040,12: Unused variable 'char_color' (unused-variable)
+W:6036,12: Unused variable 'char_special2' (unused-variable)
+W:6021,12: Unused variable 'album_effect' (unused-variable)
+W:6126,12: Unused variable 'pulse_post' (unused-variable)
+W:6003,12: Unused variable 'pulse_char' (unused-variable)
+W:6032,12: Unused variable 'char_brows' (unused-variable)
+W:6027,12: Unused variable 'char_class' (unused-variable)
+W:5997, 8: Unused variable 'debug_info' (unused-variable)
+W:6007, 8: Unused variable 'friend_link' (unused-variable)
+W:6025,12: Unused variable 'char_volk' (unused-variable)
+W:6033,12: Unused variable 'char_ears' (unused-variable)
+W:6002,12: Unused variable 'level_up' (unused-variable)
+W:6030,12: Unused variable 'char_nose' (unused-variable)
+W:6031,12: Unused variable 'char_eyes' (unused-variable)
+W:6026,12: Unused variable 'char_male' (unused-variable)
+W:6029,12: Unused variable 'char_beard' (unused-variable)
+W:6104,12: Unused variable 'local_time' (unused-variable)
+W:5960, 8: Unused variable 'has_mirror' (unused-variable)
+W:6035,12: Unused variable 'char_special' (unused-variable)
+R:5926, 0: Too few public methods (1/2) (too-few-public-methods)
+E:6143,14: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6145,13: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6146,17: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6147,17: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6149,23: Undefined variable 'actor' (undefined-variable)
+E:6151,16: Undefined variable 'actor' (undefined-variable)
+E:6154,16: Undefined variable 'actor' (undefined-variable)
+E:6155,16: Undefined variable 'add' (undefined-variable)
+E:6158, 7: Undefined variable 'get_child_by_name' (undefined-variable)
+E:6158,25: Undefined variable 'actor' (undefined-variable)
+E:6159,12: Undefined variable 'param_bullshit_text' (undefined-variable)
+E:6159,44: Undefined variable 'on_stage' (undefined-variable)
+E:6160,24: Undefined variable 'param_bullshit_cid' (undefined-variable)
+E:6161,12: Undefined variable 'so' (undefined-variable)
+E:6162,12: Undefined variable 'so' (undefined-variable)
+E:6164,11: Undefined variable 'buffed_req' (undefined-variable)
+E:6165,30: Undefined variable 'buffed_id' (undefined-variable)
+E:6167,22: Undefined variable 'param_adv' (undefined-variable)
+E:6169,11: Undefined variable 'char_male' (undefined-variable)
+E:6175,12: Undefined variable 'char_mouth' (undefined-variable)
+E:6175,24: Undefined variable 'char_hair' (undefined-variable)
+E:6175,35: Undefined variable 'char_brows' (undefined-variable)
+E:6175,47: Undefined variable 'char_eyes' (undefined-variable)
+E:6175,58: Undefined variable 'char_beard' (undefined-variable)
+E:6176,12: Undefined variable 'char_nose' (undefined-variable)
+E:6176,23: Undefined variable 'char_ears' (undefined-variable)
+E:6176,34: Undefined variable 'char_special' (undefined-variable)
+E:6176,48: Undefined variable 'char_special2' (undefined-variable)
+E:6180, 8: Undefined variable 'send_action' (undefined-variable)
+E:6182,12: Undefined variable 'actor' (undefined-variable)
+E:6183,12: Undefined variable 'actor' (undefined-variable)
+E:6184,12: Undefined variable 'actor' (undefined-variable)
+E:6185,12: Undefined variable 'param_rec' (undefined-variable)
+E:6187,12: Undefined variable 'char_volk' (undefined-variable)
+E:6189,12: Undefined variable 'char_class' (undefined-variable)
+E:6194,22: Undefined variable 'texts' (undefined-variable)
+E:6201,16: Undefined variable 'actor' (undefined-variable)
+E:6206,15: Undefined variable 'hall_list_name' (undefined-variable)
+E:6207,16: Undefined variable 'hall_list_guild' (undefined-variable)
+E:6210, 4: Undefined variable 'send_action' (undefined-variable)
+W:6207, 4: Unused variable 'sel_guild' (unused-variable)
+E:6217,16: Undefined variable 'actor' (undefined-variable)
+E:6222,15: Undefined variable 'hall_list_name' (undefined-variable)
+E:6223,16: Undefined variable 'hall_list_guild' (undefined-variable)
+E:6225,20: Undefined variable 'texts' (undefined-variable)
+E:6231,20: Undefined variable 'gilde' (undefined-variable)
+E:6232, 8: Undefined variable 'send_action' (undefined-variable)
+E:6234, 8: Undefined variable 'send_action' (undefined-variable)
+W:6222, 4: Unused variable 'sel_name' (unused-variable)
+E:6241,14: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6243,13: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6244,17: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6245,17: Undefined variable 'KeyboardEvent' (undefined-variable)
+E:6249,13: Undefined variable 'actor' (undefined-variable)
+E:6254, 4: Undefined variable 'send_action' (undefined-variable)
+E:6256, 8: Undefined variable 'actor' (undefined-variable)
+R:6262, 0: Too many local variables (22/15) (too-many-locals)
+E:6266, 4: Undefined variable 'remove_all' (undefined-variable)
+E:6268, 4: Undefined variable 'actor' (undefined-variable)
+E:6270, 8: Undefined variable 'so' (undefined-variable)
+E:6271, 8: Undefined variable 'so' (undefined-variable)
+E:6272, 8: Undefined variable 'actor' (undefined-variable)
+E:6273, 8: Undefined variable 'actor' (undefined-variable)
+E:6274, 8: Undefined variable 'so' (undefined-variable)
+E:6275, 8: Undefined variable 'actor' (undefined-variable)
+E:6276, 8: Undefined variable 'actor' (undefined-variable)
+E:6278, 4: Undefined variable 'send_action' (undefined-variable)
+E:6299, 8: Undefined variable 'show_login_screen' (undefined-variable)
+W:6267, 4: Unused variable 'next_pxl' (unused-variable)
+W:6281, 4: Unused variable 'gilde' (unused-variable)
+W:6287, 4: Unused variable 'guild_attacked' (unused-variable)
+W:6284, 4: Unused variable 'my_own_guild_money' (unused-variable)
+W:6280, 4: Unused variable 'char_volk' (unused-variable)
+W:6279, 4: Unused variable 'savegame' (unused-variable)
+W:6288, 4: Unused variable 'guild_attacking' (unused-variable)
+W:6294, 4: Unused variable 'pulse_dealer' (unused-variable)
+W:6291, 4: Unused variable 'pulse_gilde' (unused-variable)
+W:6293, 4: Unused variable 'pulse_post' (unused-variable)
+W:6289, 4: Unused variable 'pulse_taverne' (unused-variable)
+W:6285, 4: Unused variable 'guild_attack_time' (unused-variable)
+W:6297, 4: Unused variable 'fight_flush_mode' (unused-variable)
+W:6295, 4: Unused variable 'guild_blink_ready' (unused-variable)
+W:6296, 4: Unused variable 'session_id' (unused-variable)
+W:6282, 4: Unused variable 'my_own_rank' (unused-variable)
+W:6286, 4: Unused variable 'guild_defense_time' (unused-variable)
+W:6290, 4: Unused variable 'pulse_arbeiten' (unused-variable)
+W:6283, 4: Unused variable 'my_own_attack_target' (unused-variable)
+W:6292, 4: Unused variable 'pulse_gilde_on_history' (unused-variable)
+W:6262,19: Unused argument 'evt' (unused-argument)
+E:6306, 4: Undefined variable 'send_action' (undefined-variable)
+W:6302,28: Unused argument 'evt' (unused-argument)
+E:6313, 4: Undefined variable 'send_action' (undefined-variable)
+E:6313,31: Undefined variable 'get_slider_value' (undefined-variable)
+W:6309,21: Unused argument 'evt' (unused-argument)
+W:6316,29: Unused argument 'evt' (unused-argument)
+E:6328, 9: Undefined variable 'char_volk' (undefined-variable)
+E:6328,22: Undefined variable 'revertchar_volk' (undefined-variable)
+E:6329,13: Undefined variable 'char_male' (undefined-variable)
+E:6329,26: Undefined variable 'revertchar_male' (undefined-variable)
+E:6330,13: Undefined variable 'char_color' (undefined-variable)
+E:6330,27: Undefined variable 'revertchar_color' (undefined-variable)
+E:6331,13: Undefined variable 'char_mouth' (undefined-variable)
+E:6331,27: Undefined variable 'revertchar_mouth' (undefined-variable)
+E:6332,13: Undefined variable 'char_beard' (undefined-variable)
+E:6332,27: Undefined variable 'revertchar_beard' (undefined-variable)
+E:6333,13: Undefined variable 'char_nose' (undefined-variable)
+E:6333,26: Undefined variable 'revertchar_nose' (undefined-variable)
+E:6334,13: Undefined variable 'char_eyes' (undefined-variable)
+E:6334,26: Undefined variable 'revertchar_eyes' (undefined-variable)
+E:6335,13: Undefined variable 'char_brows' (undefined-variable)
+E:6335,27: Undefined variable 'revertchar_brows' (undefined-variable)
+E:6336,13: Undefined variable 'char_ears' (undefined-variable)
+E:6336,26: Undefined variable 'revertchar_ears' (undefined-variable)
+E:6337,13: Undefined variable 'char_hair' (undefined-variable)
+E:6337,26: Undefined variable 'revertchar_hair' (undefined-variable)
+E:6338,13: Undefined variable 'char_special' (undefined-variable)
+E:6338,29: Undefined variable 'revertchar_special' (undefined-variable)
+E:6339,13: Undefined variable 'char_special2' (undefined-variable)
+E:6339,30: Undefined variable 'revertchar_special2' (undefined-variable)
+E:6341, 8: Undefined variable 'send_action' (undefined-variable)
+E:6344,11: Undefined variable 'char_male' (undefined-variable)
+E:6347, 8: Undefined variable 'send_action' (undefined-variable)
+E:6349,12: Undefined variable 'actor' (undefined-variable)
+E:6350,12: Undefined variable 'actor' (undefined-variable)
+E:6351,12: Undefined variable 'char_volk' (undefined-variable)
+E:6354,16: Undefined variable 'char_mouth' (undefined-variable)
+E:6355,16: Undefined variable 'char_hair' (undefined-variable)
+E:6356,16: Undefined variable 'char_brows' (undefined-variable)
+E:6357,16: Undefined variable 'char_eyes' (undefined-variable)
+E:6358,16: Undefined variable 'char_beard' (undefined-variable)
+E:6359,16: Undefined variable 'char_nose' (undefined-variable)
+E:6360,16: Undefined variable 'char_ears' (undefined-variable)
+E:6361,16: Undefined variable 'char_special' (undefined-variable)
+E:6362,16: Undefined variable 'char_special2' (undefined-variable)
+W:6323,24: Unused argument 'evt' (unused-argument)
+E:6372, 4: Undefined variable 'send_action' (undefined-variable)
+W:6371, 4: Unused variable 'arrow_hall_mode' (unused-variable)
+W:6367,24: Unused argument 'evt' (unused-argument)
+W:6375,24: Unused argument 'evt' (unused-argument)
+W:6395,-1: String statement has no effect (pointless-string-statement)
+W:6575,-1: String statement has no effect (pointless-string-statement)
+W:15318,-1: String statement has no effect (pointless-string-statement)
+W:16304,-1: String statement has no effect (pointless-string-statement)
+E:16314, 4: Undefined variable 'remove' (undefined-variable)
+E:16315, 4: Undefined variable 'remove' (undefined-variable)
+E:16316, 4: Undefined variable 'remove' (undefined-variable)
+E:16317, 4: Undefined variable 'add' (undefined-variable)
+E:16318, 7: Undefined variable 'savegame' (undefined-variable)
+E:16319, 8: Undefined variable 'add' (undefined-variable)
+E:16320, 8: Undefined variable 'special_action' (undefined-variable)
+E:16320,33: Undefined variable 'special_action' (undefined-variable)
+E:16321, 8: Undefined variable 'add' (undefined-variable)
+E:16322, 8: Undefined variable 'actor' (undefined-variable)
+E:16324, 8: Undefined variable 'remove' (undefined-variable)
+E:16326, 8: Undefined variable 'remove' (undefined-variable)
+E:16327, 7: Undefined variable 'Capabilities' (undefined-variable)
+E:16328,11: Undefined variable 'light_mode' (undefined-variable)
+E:16329,12: Undefined variable 'remove' (undefined-variable)
+E:16330,12: Undefined variable 'remove' (undefined-variable)
+E:16331, 4: Undefined variable 'remove' (undefined-variable)
+E:16339, 4: Undefined variable 'remove' (undefined-variable)
+E:16340, 4: Undefined variable 'remove' (undefined-variable)
+E:16341, 4: Undefined variable 'remove' (undefined-variable)
+E:16342, 4: Undefined variable 'add' (undefined-variable)
+E:16343, 8: Undefined variable 'special_action' (undefined-variable)
+E:16343,33: Undefined variable 'special_action' (undefined-variable)
+E:16344, 8: Undefined variable 'add' (undefined-variable)
+E:16345, 8: Undefined variable 'actor' (undefined-variable)
+E:16346, 4: Undefined variable 'remove' (undefined-variable)
+E:16353, 8: Undefined variable 'remove' (undefined-variable)
+E:16359, 8: Undefined variable 'remove' (undefined-variable)
+E:16366, 7: Undefined variable 'this_field_popup' (undefined-variable)
+E:16367, 8: Undefined variable 'enable_popup' (undefined-variable)
+E:16367,42: Undefined variable 'this_field_popup' (undefined-variable)
+E:16369, 8: Undefined variable 'enable_popup' (undefined-variable)
+W:16362,23: Unused argument 'evt' (unused-argument)
+R:16372, 0: Too many arguments (6/5) (too-many-arguments)
+R:16372, 0: Too many local variables (22/15) (too-many-locals)
+E:16376,14: Undefined variable 'null' (undefined-variable)
+E:16380,18: Undefined variable 'Bitmap' (undefined-variable)
+E:16380,25: Undefined variable 'actor' (undefined-variable)
+E:16387,18: Undefined variable 'Bitmap' (undefined-variable)
+E:16387,25: Undefined variable 'actor' (undefined-variable)
+E:16394,18: Undefined variable 'Bitmap' (undefined-variable)
+E:16394,25: Undefined variable 'actor' (undefined-variable)
+E:16401,18: Undefined variable 'TextField' (undefined-variable)
+E:16404,24: Undefined variable 'TextFieldAutoSize' (undefined-variable)
+E:16407,26: Undefined variable 'font_embedded' (undefined-variable)
+E:16408,30: Undefined variable 'AntiAliasType' (undefined-variable)
+E:16412,31: Undefined variable 'trim_too_long' (undefined-variable)
+E:16416,12: Undefined variable 'add_event_listener' (undefined-variable)
+E:16416,31: Undefined variable 'MouseEvent' (undefined-variable)
+E:16418,12: Undefined variable 'add_event_listener' (undefined-variable)
+E:16418,31: Undefined variable 'MouseEvent' (undefined-variable)
+E:16420, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:16420,27: Undefined variable 'MouseEvent' (undefined-variable)
+E:16421,11: Undefined variable 'text_dir' (undefined-variable)
+C:16422,12: Invalid variable name "x" (invalid-name)
+E:16422,24: Undefined variable 'width' (undefined-variable)
+C:16424,12: Invalid variable name "x" (invalid-name)
+C:16426, 8: Invalid variable name "y" (invalid-name)
+E:16429, 4: Undefined variable 'actor' (undefined-variable)
+W:16377, 4: Unused variable 'this_field_popup' (unused-variable)
+W:16409,12: Unused variable 'text' (unused-variable)
+W:16385,12: Unused variable 'mouse_enabled' (unused-variable)
+W:16427, 8: Unused variable 'visible' (unused-variable)
+W:16405,12: Unused variable 'background' (unused-variable)
+W:16406,12: Unused variable 'selectable' (unused-variable)
+W:16382,12: Unused variable 'allow_smoothing' (unused-variable)
+W:16403,12: Unused variable 'default_text_format' (unused-variable)
+W:16404,12: Unused variable 'auto_size' (unused-variable)
+W:16408,12: Unused variable 'anti_alias_type' (unused-variable)
+W:16384,12: Unused variable 'smoothing' (unused-variable)
+W:16407,12: Unused variable 'embed_fonts' (unused-variable)
+W:16383,12: Unused variable 'force_smoothing' (unused-variable)
+W:16426, 8: Unused variable 'y' (unused-variable)
+W:16422,12: Unused variable 'x' (unused-variable)
+R:16432, 0: Too many local variables (143/15) (too-many-locals)
+W:17350,16: Redefining built-in 'type' (redefined-builtin)
+E:16442,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
+E:16443,12: Undefined variable 'send_action' (undefined-variable)
+E:16454, 7: Undefined variable 'on_stage' (undefined-variable)
+E:16468,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:16469,12: Undefined variable 'show_tower_screen' (undefined-variable)
+E:16473,12: Undefined variable 'remove' (undefined-variable)
+E:16474,12: Undefined variable 'remove' (undefined-variable)
+E:16475,12: Undefined variable 'add' (undefined-variable)
+E:16476,12: Undefined variable 'enable_popup' (undefined-variable)
+E:16477,12: Undefined variable 'enable_popup' (undefined-variable)
+E:16478,12: Undefined variable 'enable_popup' (undefined-variable)
+E:16479,12: Undefined variable 'enable_popup' (undefined-variable)
+E:16480,12: Undefined variable 'enable_popup' (undefined-variable)
+E:16482,17: Undefined variable 'actor' (undefined-variable)
+E:16483,23: Undefined variable 'texts' (undefined-variable)
+C:16484,16: Invalid variable name "x" (invalid-name)
+E:16487,26: Undefined variable 'textWidth' (undefined-variable)
+E:16491,17: Undefined variable 'actor' (undefined-variable)
+E:16492,23: Undefined variable 'texts' (undefined-variable)
+E:16496,12: Undefined variable 'arabize' (undefined-variable)
+E:16497,12: Undefined variable 'actor' (undefined-variable)
+E:16498,12: Undefined variable 'actor' (undefined-variable)
+E:16499,12: Undefined variable 'remove' (undefined-variable)
+E:16500,12: Undefined variable 'add' (undefined-variable)
+E:16504,12: Undefined variable 'play' (undefined-variable)
+E:16517,16: Undefined variable 'play' (undefined-variable)
+E:16519,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:16522,20: Undefined variable 'show_toilet' (undefined-variable)
+E:16524,20: Undefined variable 'show_toilet' (undefined-variable)
+E:16527,30: Undefined variable 'texts' (undefined-variable)
+E:16529,30: Undefined variable 'texts' (undefined-variable)
+E:16531,30: Undefined variable 'texts' (undefined-variable)
+E:16537,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:16538,12: Undefined variable 'show_witch' (undefined-variable)
+E:16545,26: Undefined variable 'texts' (undefined-variable)
+E:16549,26: Undefined variable 'texts' (undefined-variable)
+E:16553,26: Undefined variable 'texts' (undefined-variable)
+E:16563,26: Undefined variable 'texts' (undefined-variable)
+E:16567,29: Undefined variable 'Base64' (undefined-variable)
+E:16581,12: Undefined variable 'show_screen_album' (undefined-variable)
+E:16585,12: Undefined variable 'show' (undefined-variable)
+E:16586,12: Undefined variable 'hide' (undefined-variable)
+E:16595,26: Undefined variable 'texts' (undefined-variable)
+E:16604,12: Undefined variable 'show_disconnect_screen' (undefined-variable)
+E:16605,16: Undefined variable 'param_reconnect' (undefined-variable)
+E:16610,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:16611,26: Undefined variable 'texts' (undefined-variable)
+E:16613,24: Undefined variable 'savegame' (undefined-variable)
+E:16619,26: Undefined variable 'texts' (undefined-variable)
+E:16632,26: Undefined variable 'texts' (undefined-variable)
+E:16638,26: Using variable 'last_guild_data' before assignment (used-before-assignment)
+E:16641,23: Undefined variable 'texts' (undefined-variable)
+E:16649,24: Undefined variable 'actor' (undefined-variable)
+E:16649,61: Undefined variable 'texts' (undefined-variable)
+E:16652,34: Undefined variable 'texts' (undefined-variable)
+E:16657,24: Undefined variable 'actor' (undefined-variable)
+E:16659,20: Undefined variable 'actor' (undefined-variable)
+E:16666,16: Undefined variable 'actor' (undefined-variable)
+E:16666,53: Undefined variable 'texts' (undefined-variable)
+E:16684,26: Undefined variable 'texts' (undefined-variable)
+E:16685,56: Undefined variable 'offense' (undefined-variable)
+E:16692,12: Undefined variable 'actor' (undefined-variable)
+E:16696,23: Undefined variable 'texts' (undefined-variable)
+E:16697,24: Undefined variable 'enable_popup' (undefined-variable)
+E:16699,28: Undefined variable 'texts' (undefined-variable)
+E:16702,20: Undefined variable 'enable_popup' (undefined-variable)
+E:16703,21: Undefined variable 'texts' (undefined-variable)
+E:16704,20: Undefined variable 'enable_popup' (undefined-variable)
+E:16706,24: Undefined variable 'texts' (undefined-variable)
+E:16711,20: Undefined variable 'enable_popup' (undefined-variable)
+E:16713,16: Undefined variable 'enable_popup' (undefined-variable)
+E:16725,12: Undefined variable 'show_login_screen' (undefined-variable)
+E:16729,15: Undefined variable 'texts' (undefined-variable)
+E:16730,30: Undefined variable 'texts' (undefined-variable)
+E:16739,15: Undefined variable 'texts' (undefined-variable)
+E:16740,30: Undefined variable 'texts' (undefined-variable)
+E:16742,16: Too many positional arguments for function call (too-many-function-args)
+E:16749,26: Undefined variable 'texts' (undefined-variable)
+E:16753,15: Undefined variable 'texts' (undefined-variable)
+E:16754,30: Undefined variable 'texts' (undefined-variable)
+E:16756,30: Undefined variable 'texts' (undefined-variable)
+E:16758,12: Undefined variable 'fade_out' (undefined-variable)
+E:16766,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:16767,12: Undefined variable 'show_bet_result' (undefined-variable)
+E:16771,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:16772,12: Undefined variable 'show_bet_result' (undefined-variable)
+E:16776,26: Undefined variable 'texts' (undefined-variable)
+E:16784,16: Undefined variable 'texts' (undefined-variable)
+E:16785,38: Undefined variable 'param_support_email' (undefined-variable)
+E:16787,40: Undefined variable 'param_gamestaff_email' (undefined-variable)
+E:16794,19: Undefined variable 'texts' (undefined-variable)
+E:16796,24: Undefined variable 'texts' (undefined-variable)
+E:16801,34: Undefined variable 'texts' (undefined-variable)
+E:16803,30: Undefined variable 'texts' (undefined-variable)
+E:16808,15: Undefined variable 'on_stage' (undefined-variable)
+E:16809,16: Undefined variable 'send_action' (undefined-variable)
+E:16814,15: Undefined variable 'on_stage' (undefined-variable)
+E:16815,16: Undefined variable 'send_action' (undefined-variable)
+E:16821,26: Undefined variable 'texts' (undefined-variable)
+E:16825,26: Undefined variable 'texts' (undefined-variable)
+E:16829,26: Undefined variable 'texts' (undefined-variable)
+E:16835,16: Undefined variable 'log' (undefined-variable)
+E:16836,12: Undefined variable 'show_email_nag_screen' (undefined-variable)
+E:16840,12: Undefined variable 'show_email_nag_screen' (undefined-variable)
+E:16844,12: Undefined variable 'show_login_screen' (undefined-variable)
+E:16848,26: Undefined variable 'texts' (undefined-variable)
+E:16853,15: Undefined variable 'lang_code' (undefined-variable)
+E:16858,16: Undefined variable 'lang_code' (undefined-variable)
+E:16860,25: Undefined variable 'tmpAmount' (undefined-variable)
+E:16862,20: Undefined variable 'tmpAmount' (undefined-variable)
+E:16866,12: Undefined variable 'navigate_to_url' (undefined-variable)
+E:16866,28: Undefined variable 'URLRequest' (undefined-variable)
+E:16874,12: Undefined variable 'actor' (undefined-variable)
+E:16874,50: Undefined variable 'texts' (undefined-variable)
+E:16875,12: Undefined variable 'arabize' (undefined-variable)
+E:16876,12: Undefined variable 'actor' (undefined-variable)
+E:16876,54: Undefined variable 'texts' (undefined-variable)
+E:16879,12: Undefined variable 'arabize' (undefined-variable)
+E:16880,12: Undefined variable 'remove' (undefined-variable)
+E:16884,25: Using variable 'last_chat_hist' before assignment (used-before-assignment)
+E:16898,15: Using variable 'last_chat_index' before assignment (used-before-assignment)
+E:16902,25: Undefined variable 'actor' (undefined-variable)
+E:16903,46: Undefined variable 'font_format_chat' (undefined-variable)
+E:16911,33: Undefined variable 'decode_chat' (undefined-variable)
+E:16913,28: Undefined variable 'remove' (undefined-variable)
+E:16915,24: Undefined variable 'chat_line' (undefined-variable)
+E:16916,28: Undefined variable 'decode_chat' (undefined-variable)
+E:16918,28: Undefined variable 'get_hl_index' (undefined-variable)
+E:16924,40: Undefined variable 'so' (undefined-variable)
+E:16931,47: Undefined variable 'offline_guild_members' (undefined-variable)
+E:16932,42: Undefined variable 'offline_guild_members' (undefined-variable)
+E:16935,39: Undefined variable 'on_stage' (undefined-variable)
+E:16936,40: Undefined variable 'send_action' (undefined-variable)
+E:16940,55: Undefined variable 'chat_sound' (undefined-variable)
+E:16941,32: Undefined variable 'play' (undefined-variable)
+E:16946,37: Undefined variable 'decode_chat' (undefined-variable)
+E:16950,32: Undefined variable 'remove' (undefined-variable)
+E:16952,28: Undefined variable 'chat_line' (undefined-variable)
+E:16953,32: Undefined variable 'decode_chat' (undefined-variable)
+E:16955,32: Undefined variable 'get_hl_index' (undefined-variable)
+E:16960,40: Undefined variable 'so' (undefined-variable)
+E:16965,47: Undefined variable 'offline_guild_members' (undefined-variable)
+E:16966,42: Undefined variable 'offline_guild_members' (undefined-variable)
+E:16971,39: Undefined variable 'on_stage' (undefined-variable)
+E:16972,40: Undefined variable 'send_action' (undefined-variable)
+E:16986,19: Undefined variable 'chat_sound' (undefined-variable)
+E:16987,20: Undefined variable 'play' (undefined-variable)
+E:16995,20: Undefined variable 'chat_line' (undefined-variable)
+E:16995,30: Undefined variable 'decode_chat' (undefined-variable)
+E:16996,46: Undefined variable 'get_hl_index' (undefined-variable)
+E:16999,20: Undefined variable 'add_suggest_names' (undefined-variable)
+E:17002,43: Undefined variable 'offline_guild_members' (undefined-variable)
+E:17003,38: Undefined variable 'offline_guild_members' (undefined-variable)
+E:17006,35: Undefined variable 'on_stage' (undefined-variable)
+E:17007,36: Undefined variable 'send_action' (undefined-variable)
+E:17013,17: Using variable 'new_crest_suggested' before assignment (used-before-assignment)
+E:17015,21: Undefined variable 'on_stage' (undefined-variable)
+E:17017,16: Undefined variable 'clickchat_line' (undefined-variable)
+E:17023,12: Undefined variable 'add_suggest_names' (undefined-variable)
+E:17023,30: Undefined variable 'last_whisper_target' (undefined-variable)
+E:17024,12: Undefined variable 'chat_line' (undefined-variable)
+E:17024,22: Undefined variable 'decode_chat' (undefined-variable)
+E:17024,50: Undefined variable 'get_hl_index' (undefined-variable)
+E:17028,26: Undefined variable 'texts' (undefined-variable)
+E:17032,26: Undefined variable 'texts' (undefined-variable)
+E:17036,26: Undefined variable 'texts' (undefined-variable)
+E:17040,26: Undefined variable 'texts' (undefined-variable)
+E:17044,26: Undefined variable 'texts' (undefined-variable)
+E:17048,15: Undefined variable 'decode_chat' (undefined-variable)
+E:17049,16: Undefined variable 'remove' (undefined-variable)
+E:17051,12: Undefined variable 'chat_line' (undefined-variable)
+E:17051,22: Undefined variable 'decode_chat' (undefined-variable)
+E:17051,50: Undefined variable 'get_hl_index' (undefined-variable)
+E:17053,19: Undefined variable 'on_stage' (undefined-variable)
+E:17058,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17059,12: Undefined variable 'send_action' (undefined-variable)
+E:17064,12: Undefined variable 'show_login_screen' (undefined-variable)
+E:17072,12: Undefined variable 'so' (undefined-variable)
+E:17072,31: Undefined variable 'option_new_data' (undefined-variable)
+E:17073,12: Undefined variable 'so' (undefined-variable)
+E:17074,12: Undefined variable 'actor' (undefined-variable)
+E:17074,62: Undefined variable 'option_new_data' (undefined-variable)
+E:17075,12: Undefined variable 'show_option_screen' (undefined-variable)
+E:17076,26: Undefined variable 'texts' (undefined-variable)
+E:17080,12: Undefined variable 'so' (undefined-variable)
+E:17080,31: Undefined variable 'option_new_data' (undefined-variable)
+E:17081,12: Undefined variable 'so' (undefined-variable)
+E:17082,12: Undefined variable 'actor' (undefined-variable)
+E:17082,52: Undefined variable 'option_new_data' (undefined-variable)
+E:17083,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17084,12: Undefined variable 'show_option_screen' (undefined-variable)
+E:17085,26: Undefined variable 'texts' (undefined-variable)
+E:17089,12: Undefined variable 'show_option_screen' (undefined-variable)
+E:17090,26: Undefined variable 'texts' (undefined-variable)
+E:17094,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17097,12: Undefined variable 'show_option_screen' (undefined-variable)
+E:17101,12: Undefined variable 'show_demo_screen' (undefined-variable)
+E:17105,12: Undefined variable 'show_demo_screen' (undefined-variable)
+E:17107,16: Using variable 'sel_name' before assignment (used-before-assignment)
+E:17107,34: Undefined variable 'resolve_breaks' (undefined-variable)
+E:17112,26: Undefined variable 'actor' (undefined-variable)
+E:17119,25: Undefined variable 'savegame' (undefined-variable)
+E:17123,12: Undefined variable 'send_action' (undefined-variable)
+E:17127,12: Undefined variable 'hide' (undefined-variable)
+E:17128,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17137,12: Undefined variable 'show_fight_screen' (undefined-variable)
+E:17161,12: Undefined variable 'next_fight_timer' (undefined-variable)
+E:17171,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17174,12: Undefined variable 'next_fight_timer' (undefined-variable)
+E:17180,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17181,12: Undefined variable 'show_quest_screen' (undefined-variable)
+E:17189,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17196,20: Undefined variable 'log' (undefined-variable)
+E:17197,12: Undefined variable 'log' (undefined-variable)
+E:17201,12: Undefined variable 'show_taverne_screen' (undefined-variable)
+E:17205,12: Undefined variable 'show_screen_gilde_gruenden' (undefined-variable)
+E:17209,18: Undefined variable 'actor' (undefined-variable)
+C:17211,16: Invalid variable name "x" (invalid-name)
+E:17211,20: Undefined variable 'actor' (undefined-variable)
+E:17211,49: Undefined variable 'textWidth' (undefined-variable)
+E:17225,12: Undefined variable 'send_action' (undefined-variable)
+E:17233,12: Undefined variable 'show_city_screen' (undefined-variable)
+E:17241,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17242,12: Undefined variable 'send_action' (undefined-variable)
+E:17246,12: Undefined variable 'savegame' (undefined-variable)
+E:17255,20: Undefined variable 'on_stage' (undefined-variable)
+E:17257,20: Undefined variable 'last_guild_crest_id' (undefined-variable)
+E:17260,25: Using variable 'old_crest_str' before assignment (used-before-assignment)
+E:17264,20: Undefined variable 'set_crest_str' (undefined-variable)
+E:17268,20: Undefined variable 'set_default_crest' (undefined-variable)
+E:17274,15: Undefined variable 'last_guild_crest_id' (undefined-variable)
+E:17283,12: Undefined variable 'show_screen_gilden' (undefined-variable)
+E:17297,12: Undefined variable 'show_stall_screen' (undefined-variable)
+E:17301,26: Undefined variable 'texts' (undefined-variable)
+E:17305,12: Undefined variable 'show_arena_screen' (undefined-variable)
+E:17309,26: Undefined variable 'texts' (undefined-variable)
+E:17313,26: Undefined variable 'texts' (undefined-variable)
+E:17317,26: Undefined variable 'texts' (undefined-variable)
+E:17321,12: Undefined variable 'add_suggest_names' (undefined-variable)
+E:17321,30: Undefined variable 'last_message_target' (undefined-variable)
+E:17322,12: Undefined variable 'remove' (undefined-variable)
+E:17323,12: Undefined variable 'remove' (undefined-variable)
+E:17324,12: Undefined variable 'add' (undefined-variable)
+E:17328,12: Undefined variable 'remove_all' (undefined-variable)
+E:17329,12: Undefined variable 'add' (undefined-variable)
+E:17331,16: Undefined variable 'remove' (undefined-variable)
+E:17334,16: Undefined variable 'remove' (undefined-variable)
+E:17336,12: Undefined variable 'remove' (undefined-variable)
+E:17337,12: Undefined variable 'add' (undefined-variable)
+E:17339,16: Undefined variable 'post_sel' (undefined-variable)
+E:17339,27: Undefined variable 'post_scroll' (undefined-variable)
+E:17340,16: Undefined variable 'remove' (undefined-variable)
+E:17342,16: Undefined variable 'post_sel' (undefined-variable)
+E:17342,27: Undefined variable 'post_scroll' (undefined-variable)
+E:17342,47: Undefined variable 'savegame' (undefined-variable)
+E:17343,16: Undefined variable 'remove' (undefined-variable)
+E:17347,16: Undefined variable 'add' (undefined-variable)
+E:17349,17: Undefined variable 'actor' (undefined-variable)
+E:17350,23: Undefined variable 'TextFieldType' (undefined-variable)
+E:17352,20: Undefined variable 'texts' (undefined-variable)
+E:17354,20: Undefined variable 'texts' (undefined-variable)
+E:17358,17: Undefined variable 'actor' (undefined-variable)
+E:17359,23: Undefined variable 'TextFieldType' (undefined-variable)
+E:17361,28: Undefined variable 'switch' (undefined-variable)
+E:17371,33: Undefined variable 'texts' (undefined-variable)
+E:17372,33: Undefined variable 'texts' (undefined-variable)
+E:17380,33: Undefined variable 'texts' (undefined-variable)
+E:17383,33: Undefined variable 'texts' (undefined-variable)
+E:17389,33: Undefined variable 'texts' (undefined-variable)
+E:17390,33: Undefined variable 'texts' (undefined-variable)
+E:17400,33: Undefined variable 'texts' (undefined-variable)
+E:17403,33: Undefined variable 'texts' (undefined-variable)
+E:17413,33: Undefined variable 'texts' (undefined-variable)
+E:17414,33: Undefined variable 'texts' (undefined-variable)
+E:17422,33: Undefined variable 'texts' (undefined-variable)
+E:17447,33: Undefined variable 'texts' (undefined-variable)
+E:17454,33: Undefined variable 'texts' (undefined-variable)
+E:17469,34: Undefined variable 'texts' (undefined-variable)
+E:17479,35: Undefined variable 'texts' (undefined-variable)
+E:17483,24: Undefined variable 'add' (undefined-variable)
+E:17487,27: Undefined variable 'texts' (undefined-variable)
+E:17488,37: Undefined variable 'texts' (undefined-variable)
+E:17489,37: Undefined variable 'texts' (undefined-variable)
+E:17505,24: Undefined variable 'add' (undefined-variable)
+E:17509,27: Undefined variable 'texts' (undefined-variable)
+E:17510,37: Undefined variable 'texts' (undefined-variable)
+E:17511,37: Undefined variable 'texts' (undefined-variable)
+E:17520,24: Undefined variable 'add' (undefined-variable)
+E:17524,24: Undefined variable 'add' (undefined-variable)
+E:17530,15: Undefined variable 'texts' (undefined-variable)
+E:17531,30: Undefined variable 'texts' (undefined-variable)
+E:17538,41: Undefined variable 'texts' (undefined-variable)
+E:17543,18: Undefined variable 'actor' (undefined-variable)
+E:17544,23: Undefined variable 'TextFieldType' (undefined-variable)
+E:17555,12: Undefined variable 'show_post_screen' (undefined-variable)
+E:17564,12: Undefined variable 'show_dealer_screen' (undefined-variable)
+E:17568,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17569,12: Undefined variable 'show_main_quests_screen' (undefined-variable)
+E:17578,16: Undefined variable 'hide' (undefined-variable)
+E:17582,16: Undefined variable 'show' (undefined-variable)
+E:17589,16: Undefined variable 'show' (undefined-variable)
+E:17593,16: Undefined variable 'hide' (undefined-variable)
+E:17602,19: Undefined variable 'on_stage' (undefined-variable)
+E:17603,16: Undefined variable 'show_hall_screen' (undefined-variable)
+E:17605,17: Undefined variable 'actor' (undefined-variable)
+E:17606,22: Undefined variable 'numChildren' (undefined-variable)
+E:17607,20: Undefined variable 'removeChildAt' (undefined-variable)
+E:17609,15: Undefined variable 'text_dir' (undefined-variable)
+E:17611,20: Using variable 'col_idx' before assignment (used-before-assignment)
+E:17613,20: Undefined variable 'texts' (undefined-variable)
+E:17614,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17623,20: Undefined variable 'texts' (undefined-variable)
+E:17624,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17629,20: Undefined variable 'texts' (undefined-variable)
+E:17630,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17639,20: Undefined variable 'texts' (undefined-variable)
+E:17640,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17649,20: Undefined variable 'texts' (undefined-variable)
+E:17650,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17656,20: Undefined variable 'texts' (undefined-variable)
+E:17657,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17666,20: Undefined variable 'texts' (undefined-variable)
+E:17667,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17673,20: Undefined variable 'texts' (undefined-variable)
+E:17674,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17683,20: Undefined variable 'texts' (undefined-variable)
+E:17684,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17693,20: Undefined variable 'texts' (undefined-variable)
+E:17694,20: Undefined variable 'FontFormat_HallListHeading' (undefined-variable)
+E:17720,30: Undefined variable 'FontFormat_HallListHighLight' (undefined-variable)
+E:17722,30: Undefined variable 'FontFormat_GuildHallNoAttack' (undefined-variable)
+E:17725,29: Undefined variable 'lastAttacked' (undefined-variable)
+E:17727,30: Undefined variable 'FontFormat_GuildHallNoAttack' (undefined-variable)
+E:17729,30: Undefined variable 'FontFormat_HallListText' (undefined-variable)
+E:17738,19: Undefined variable 'text_dir' (undefined-variable)
+E:17791,34: Undefined variable 'texts' (undefined-variable)
+E:17875,34: Undefined variable 'texts' (undefined-variable)
+E:17911,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17912,12: Undefined variable 'show_work_screen' (undefined-variable)
+E:17916,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17918,12: Undefined variable 'show_work_success_screen' (undefined-variable)
+E:17923,12: Undefined variable 'show_work_screen' (undefined-variable)
+E:17927,26: Undefined variable 'texts' (undefined-variable)
+E:17935,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17936,15: Undefined variable 'on_stage' (undefined-variable)
+E:17938,20: Undefined variable 'show_tower_screen' (undefined-variable)
+E:17941,24: Undefined variable 'play' (undefined-variable)
+E:17943,24: Undefined variable 'mirror_ani_timer' (undefined-variable)
+E:17946,24: Undefined variable 'play' (undefined-variable)
+E:17948,20: Undefined variable 'display_inventory' (undefined-variable)
+E:17949,30: Undefined variable 'on_stage' (undefined-variable)
+E:17953,27: Undefined variable 'mirror_pieces' (undefined-variable)
+E:17954,28: Undefined variable 'add' (undefined-variable)
+E:17956,28: Undefined variable 'remove' (undefined-variable)
+E:17960,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17961,26: Undefined variable 'resolve_breaks' (undefined-variable)
+E:17962,15: Undefined variable 'savegame' (undefined-variable)
+E:17963,16: Undefined variable 'show_build_character_screen' (undefined-variable)
+E:17965,16: Undefined variable 'show_character_screen' (undefined-variable)
+E:17969,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17975,12: Too many arguments for logging format string (logging-too-many-args)
+E:17976,15: Undefined variable 'on_stage' (undefined-variable)
+E:17977,16: Undefined variable 'display_inventory' (undefined-variable)
+E:17980,16: Undefined variable 'show_character_screen' (undefined-variable)
+E:17985,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:17990,12: Too many arguments for logging format string (logging-too-many-args)
+E:17991,15: Undefined variable 'on_stage' (undefined-variable)
+E:17992,16: Undefined variable 'display_inventory' (undefined-variable)
+E:17995,16: Undefined variable 'show_character_screen' (undefined-variable)
+E:18000,12: Undefined variable 'ExternalInterface' (undefined-variable)
+E:18032,12: Undefined variable 'parse_savgame' (undefined-variable)
+E:18042,12: Undefined variable 'so' (undefined-variable)
+E:18043,19: Undefined variable 'so' (undefined-variable)
+E:18044,16: Undefined variable 'so' (undefined-variable)
+E:18046,12: Undefined variable 'so' (undefined-variable)
+E:18047,12: Undefined variable 'so' (undefined-variable)
+E:18047,31: Undefined variable 'actor' (undefined-variable)
+E:18048,12: Undefined variable 'so' (undefined-variable)
+E:18048,31: Undefined variable 'actor' (undefined-variable)
+E:18049,12: Undefined variable 'so' (undefined-variable)
+E:18050,12: Undefined variable 'add' (undefined-variable)
+E:18052,15: Undefined variable 'savegame' (undefined-variable)
+E:18056,16: Undefined variable 'parse_savgame' (undefined-variable)
+E:18057,34: Undefined variable 'savegame' (undefined-variable)
+E:18058,33: Undefined variable 'savegame' (undefined-variable)
+E:18060,19: Undefined variable 'view_player' (undefined-variable)
+E:18061,31: Undefined variable 'view_player' (undefined-variable)
+E:18062,20: Undefined variable 'send_action' (undefined-variable)
+E:18062,56: Undefined variable 'view_player' (undefined-variable)
+E:18063,21: Undefined variable 'param_hall' (undefined-variable)
+E:18064,20: Undefined variable 'send_action' (undefined-variable)
+E:18064,61: Undefined variable 'param_hall' (undefined-variable)
+E:18067,27: Undefined variable 'savegame' (undefined-variable)
+E:18071,24: Undefined variable 'send_action' (undefined-variable)
+E:18074,24: Undefined variable 'show_email_nag_screen' (undefined-variable)
+E:18075,25: Undefined variable 'savegame' (undefined-variable)
+E:18077,24: Undefined variable 'show_email_nag_screen' (undefined-variable)
+E:18079,24: Undefined variable 'show_city_screen' (undefined-variable)
+E:18081,20: Undefined variable 'send_action' (undefined-variable)
+E:18084,20: Undefined variable 'show_city_screen' (undefined-variable)
+E:18118,16: Undefined variable 'texts' (undefined-variable)
+E:18129,12: Undefined variable 'actor' (undefined-variable)
+E:18131,35: Undefined variable 'actor' (undefined-variable)
+E:18132,12: Undefined variable 'so' (undefined-variable)
+E:18133,12: Undefined variable 'so' (undefined-variable)
+E:18134,12: Undefined variable 'so' (undefined-variable)
+E:18135,12: Undefined variable 'so' (undefined-variable)
+E:18135,31: Undefined variable 'actor' (undefined-variable)
+E:18136,12: Undefined variable 'so' (undefined-variable)
+E:18136,31: Undefined variable 'actor' (undefined-variable)
+E:18137,12: Undefined variable 'so' (undefined-variable)
+E:18137,29: Undefined variable 'param_obj' (undefined-variable)
+E:18138,12: Undefined variable 'so' (undefined-variable)
+E:18143,26: Undefined variable 'texts' (undefined-variable)
+E:18147,26: Undefined variable 'texts' (undefined-variable)
+E:18151,26: Undefined variable 'texts' (undefined-variable)
+E:18155,26: Undefined variable 'texts' (undefined-variable)
+E:18159,26: Undefined variable 'texts' (undefined-variable)
+E:18163,12: Undefined variable 'so' (undefined-variable)
+E:18164,12: Undefined variable 'so' (undefined-variable)
+E:18165,12: Undefined variable 'so' (undefined-variable)
+E:18166,12: Undefined variable 'actor' (undefined-variable)
+E:18167,12: Undefined variable 'actor' (undefined-variable)
+E:18169,12: Undefined variable 'show_login_screen' (undefined-variable)
+E:18170,26: Undefined variable 'texts' (undefined-variable)
+E:18174,15: Undefined variable 'on_stage' (undefined-variable)
+E:18175,28: Undefined variable 'revertchar_volk' (undefined-variable)
+E:18176,28: Undefined variable 'revertchar_male' (undefined-variable)
+E:18177,29: Undefined variable 'revertchar_color' (undefined-variable)
+E:18178,29: Undefined variable 'revertchar_mouth' (undefined-variable)
+E:18179,29: Undefined variable 'revertchar_beard' (undefined-variable)
+E:18180,28: Undefined variable 'revertchar_nose' (undefined-variable)
+E:18181,28: Undefined variable 'revertchar_eyes' (undefined-variable)
+E:18182,29: Undefined variable 'revertchar_brows' (undefined-variable)
+E:18183,28: Undefined variable 'revertchar_ears' (undefined-variable)
+E:18184,28: Undefined variable 'revertchar_hair' (undefined-variable)
+E:18185,31: Undefined variable 'revertchar_special' (undefined-variable)
+E:18186,32: Undefined variable 'revertchar_special2' (undefined-variable)
+E:18187,16: Undefined variable 'show_option_screen' (undefined-variable)
+E:18189,26: Undefined variable 'texts' (undefined-variable)
+E:18192,16: Undefined variable 'ERR_WRONG_PASSWORD' (undefined-variable)
+E:18193,26: Undefined variable 'texts' (undefined-variable)
+E:18197,26: Undefined variable 'texts' (undefined-variable)
+E:18197,32: Undefined variable 'TXT_ERROR_FACE_DATA_INCORRECT' (undefined-variable)
+E:18201,26: Undefined variable 'texts' (undefined-variable)
+E:18205,26: Undefined variable 'texts' (undefined-variable)
+E:18210,16: Undefined variable 'texts' (undefined-variable)
+E:18216,15: Undefined variable 'savegame' (undefined-variable)
+E:18220, 7: Undefined variable 'defined_pixel_calls' (undefined-variable)
+E:18221, 8: Undefined variable 'ExternalInterface' (undefined-variable)
+E:18222,12: Undefined variable 'defined_pixel_calls' (undefined-variable)
+E:18226,12: Undefined variable 'param_obj' (undefined-variable)
+E:18227,12: Undefined variable 'so' (undefined-variable)
+E:18234,17: Undefined variable 'trackPixels' (undefined-variable)
+E:18236,40: Using variable 'next_pxl' before assignment (used-before-assignment)
+C:18241,16: Invalid variable name "pa" (invalid-name)
+E:18249,40: Instance of 'list' has no 'find' member (no-member)
+E:18249,53: Undefined variable 'param_adv' (undefined-variable)
+E:18251,34: Undefined variable 'savegame' (undefined-variable)
+E:18258,19: Undefined variable 'so' (undefined-variable)
+E:18265,31: Undefined variable 'so' (undefined-variable)
+E:18266,47: Undefined variable 'so' (undefined-variable)
+E:18279,23: Undefined variable 'savegame' (undefined-variable)
+R:16432, 0: Too many branches (369/12) (too-many-branches)
+R:16432, 0: Too many statements (1126/50) (too-many-statements)
+W:17120,16: Unused variable 'gilde' (unused-variable)
+W:17231,12: Unused variable 'my_own_attack_target' (unused-variable)
+W:18182,16: Unused variable 'char_brows' (unused-variable)
+W:17230,12: Unused variable 'my_own_rank' (unused-variable)
+W:17135,12: Unused variable 'fight_lock' (unused-variable)
+W:16718,12: Unused variable 'guild_attacking' (unused-variable)
+W:16817,16: Unused variable 'pulse_gilde' (unused-variable)
+W:17942,24: Unused variable 'mirror_fade_amount' (unused-variable)
+W:16807,12: Unused variable 'destroy_guild_btn_timer' (unused-variable)
+W:18181,16: Unused variable 'char_eyes' (unused-variable)
+W:16484,16: Unused variable 'x' (unused-variable)
+W:16461, 4: Unused variable 'skip_allowed' (unused-variable)
+W:18026,12: Unused variable 'last_level' (unused-variable)
+W:16903,24: Unused variable 'default_text_format' (unused-variable)
+W:17129,12: Unused variable 'pulse_char' (unused-variable)
+W:16759,12: Unused variable 'force_adventure' (unused-variable)
+W:17159,12: Unused variable 'guild_fight_count' (unused-variable)
+W:17732,16: Unused variable 'arrow_hall_mode' (unused-variable)
+W:18028,12: Unused variable 'old_album' (unused-variable)
+W:18019,16: Unused variable 'param_server_version_act' (unused-variable)
+W:18180,16: Unused variable 'char_nose' (unused-variable)
+W:16580,12: Unused variable 'album_content' (unused-variable)
+W:17199,16: Unused variable 'prevent_tv' (unused-variable)
+W:16716,12: Unused variable 'guild_defense_time' (unused-variable)
+W:18025,12: Unused variable 'level_up' (unused-variable)
+W:18185,16: Unused variable 'char_special' (unused-variable)
+W:18176,16: Unused variable 'char_male' (unused-variable)
+W:18014,12: Unused variable 'beer_fest' (unused-variable)
+W:18179,16: Unused variable 'char_beard' (unused-variable)
+W:17551,12: Unused variable 'forward_text' (unused-variable)
+W:17573,12: Unused variable 'last_guild_shown' (unused-variable)
+W:17154,12: Unused variable 'alternate_char_opp_img' (unused-variable)
+W:18177,16: Unused variable 'char_color' (unused-variable)
+W:18184,16: Unused variable 'char_hair' (unused-variable)
+W:17360,16: Unused variable 'reply_address' (unused-variable)
+W:17526,16: Unused variable 'reply_subject' (unused-variable)
+W:17350,16: Unused variable 'type' (unused-variable)
+W:17563,12: Unused variable 'pulse_dealer' (unused-variable)
+W:16717,12: Unused variable 'guild_attacked' (unused-variable)
+W:17232,12: Unused variable 'my_own_guild_money' (unused-variable)
+W:17136,12: Unused variable 'post_fight_mode' (unused-variable)
+W:18008,12: Unused variable 'admin_login' (unused-variable)
+W:17346,16: Unused variable 'invitegilden_id' (unused-variable)
+W:17157,12: Unused variable 'last_round_fighter_name' (unused-variable)
+W:18027,12: Unused variable 'old_ach' (unused-variable)
+W:17160,12: Unused variable 'skip_guild_fights' (unused-variable)
+W:18178,16: Unused variable 'char_mouth' (unused-variable)
+W:17112,12: Unused variable 'player_desc' (unused-variable)
+W:18186,16: Unused variable 'char_special2' (unused-variable)
+W:18029,12: Unused variable 'album_effect' (unused-variable)
+W:17156,12: Unused variable 'winners' (unused-variable)
+W:17153,12: Unused variable 'tower_fight_mode' (unused-variable)
+W:17296,12: Unused variable 'stundenlohn' (unused-variable)
+W:18030,12: Unused variable 'previous_login' (unused-variable)
+W:18168,12: Unused variable 'char_volk' (unused-variable)
+W:18183,16: Unused variable 'char_ears' (unused-variable)
+W:18031,12: Unused variable 'gilden_id' (unused-variable)
+W:16715,12: Unused variable 'guild_attack_time' (unused-variable)
+W:17917,12: Unused variable 'verdientes_geld' (unused-variable)
+W:16724,12: Unused variable 'fight_flush_mode' (unused-variable)
+W:16723,12: Unused variable 'session_id' (unused-variable)
+E:18323,16: Undefined variable 'loader_info' (undefined-variable)
+E:18355, 8: Undefined variable 'texts' (undefined-variable)
+E:18357, 8: Undefined variable 'server' (undefined-variable)
+E:18361, 4: Undefined variable 'ExternalInterface' (undefined-variable)
+C:18364, 0: Missing function docstring (missing-docstring)
+E:18365, 7: Undefined variable 'text_dir' (undefined-variable)
+E:18369,18: Using variable 'tmp_str' before assignment (used-before-assignment)
+E:18404,38: Undefined variable 'w' (undefined-variable)
+E:18406,24: Undefined variable 'w' (undefined-variable)
+E:18406,46: Undefined variable 'w' (undefined-variable)
+W:18364,15: Unused argument 'old_str' (unused-argument)
+W:18367, 8: Unused variable 'tmp_str2' (unused-variable)
+W:18368, 8: Unused variable 'tmp_char' (unused-variable)
+C:18428, 0: Missing function docstring (missing-docstring)
+E:18432,12: Instance of 'list' has no 'find' member (no-member)
+E:18433,12: Instance of 'list' has no 'find' member (no-member)
+C:18457, 0: Missing function docstring (missing-docstring)
+E:18458, 4: Undefined variable 'actor' (undefined-variable)
+E:18461, 8: Undefined variable 'actor' (undefined-variable)
+C:18464, 0: Missing function docstring (missing-docstring)
+E:18466, 8: Undefined variable 'actor' (undefined-variable)
+C:18469, 0: Missing function docstring (missing-docstring)
+E:18470,10: Undefined variable 'stObject' (undefined-variable)
+E:18471, 8: Undefined variable 'stObject' (undefined-variable)
+C:18474, 0: Missing function docstring (missing-docstring)
+E:18478,19: Undefined variable 'snd_url' (undefined-variable)
+E:18478,27: Undefined variable 'snd_url_index' (undefined-variable)
+E:18480, 4: Undefined variable 'actor' (undefined-variable)
+E:18480,22: Undefined variable 'Sound' (undefined-variable)
+E:18481, 4: Undefined variable 'actorSoundLoader' (undefined-variable)
+E:18481,33: Undefined variable 'SoundLoaderContext' (undefined-variable)
+E:18482, 4: Undefined variable 'actorURL' (undefined-variable)
+E:18483, 4: Undefined variable 'actorLoaded' (undefined-variable)
+C:18488, 0: Invalid argument name "btnClass" (invalid-name)
+C:18488, 0: Missing function docstring (missing-docstring)
+R:18488, 0: Too many arguments (9/5) (too-many-arguments)
+R:18488, 0: Too many local variables (19/15) (too-many-locals)
+C:18492, 4: Invalid function name "playClickSound" (invalid-name)
+C:18492, 4: Missing function docstring (missing-docstring)
+E:18493, 8: Undefined variable 'play' (undefined-variable)
+W:18492,23: Unused argument 'evt' (unused-argument)
+E:18495, 4: Undefined variable 'actor' (undefined-variable)
+E:18495,10: Undefined variable 'i' (undefined-variable)
+E:18497, 9: Undefined variable 'actor' (undefined-variable)
+E:18498, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:18498,27: Undefined variable 'MouseEvent' (undefined-variable)
+E:18499,23: Undefined variable 'btnClassPlus' (undefined-variable)
+E:18500,12: Undefined variable 'add_event_listener' (undefined-variable)
+E:18500,31: Undefined variable 'MouseEvent' (undefined-variable)
+E:18502,12: Undefined variable 'add_event_listener' (undefined-variable)
+E:18502,31: Undefined variable 'MouseEvent' (undefined-variable)
+C:18504, 8: Invalid variable name "x" (invalid-name)
+C:18505, 8: Invalid variable name "y" (invalid-name)
+C:18506, 8: Invalid variable name "scaleX" (invalid-name)
+C:18507, 8: Invalid variable name "scaleY" (invalid-name)
+C:18509, 8: Invalid variable name "tabEnabled" (invalid-name)
+E:18515, 8: Undefined variable 'set_btn_text' (undefined-variable)
+W:18509, 8: Unused variable 'tabEnabled' (unused-variable)
+W:18510, 8: Unused variable 'allow_smoothing' (unused-variable)
+W:18508, 8: Unused variable 'visible' (unused-variable)
+W:18506, 8: Unused variable 'scaleX' (unused-variable)
+W:18507, 8: Unused variable 'scaleY' (unused-variable)
+W:18512, 8: Unused variable 'smoothing' (unused-variable)
+W:18505, 8: Unused variable 'y' (unused-variable)
+W:18504, 8: Unused variable 'x' (unused-variable)
+W:18511, 8: Unused variable 'force_smoothing' (unused-variable)
+E:18523, 8: Undefined variable 'log' (undefined-variable)
+E:18525,11: Undefined variable 'on_stage' (undefined-variable)
+E:18526,17: Undefined variable 'actor' (undefined-variable)
+C:18528,16: Invalid variable name "scaleX" (invalid-name)
+C:18529,16: Invalid variable name "scaleY" (invalid-name)
+C:18530,16: Invalid variable name "x" (invalid-name)
+E:18530,47: Undefined variable 'textWidth' (undefined-variable)
+C:18531,16: Invalid variable name "y" (invalid-name)
+E:18533,12: Undefined variable 'add' (undefined-variable)
+E:18535,15: Undefined variable 'on_stage' (undefined-variable)
+E:18537,20: Undefined variable 'chat_line' (undefined-variable)
+E:18539,20: Undefined variable 'on_stage' (undefined-variable)
+E:18539,63: Undefined variable 'on_stage' (undefined-variable)
+E:18540,25: Undefined variable 'actor' (undefined-variable)
+E:18541,46: Undefined variable 'FontFormat_ClassError' (undefined-variable)
+E:18543,46: Undefined variable 'FontFormat_DefaultLeft' (undefined-variable)
+E:18545,20: Undefined variable 'actor' (undefined-variable)
+E:18546,20: Undefined variable 'actor' (undefined-variable)
+E:18549,25: Undefined variable 'actor' (undefined-variable)
+C:18551,24: Invalid variable name "scaleX" (invalid-name)
+C:18552,24: Invalid variable name "scaleY" (invalid-name)
+E:18553,27: Undefined variable 'on_stage' (undefined-variable)
+C:18554,28: Invalid variable name "x" (invalid-name)
+E:18554,61: Undefined variable 'textWidth' (undefined-variable)
+C:18555,28: Invalid variable name "y" (invalid-name)
+E:18556,29: Undefined variable 'on_stage' (undefined-variable)
+C:18557,28: Invalid variable name "x" (invalid-name)
+E:18557,66: Undefined variable 'textWidth' (undefined-variable)
+C:18558,28: Invalid variable name "y" (invalid-name)
+E:18559,29: Undefined variable 'on_stage' (undefined-variable)
+C:18560,32: Invalid variable name "x" (invalid-name)
+E:18560,65: Undefined variable 'textWidth' (undefined-variable)
+C:18561,32: Invalid variable name "y" (invalid-name)
+W:18541,24: Unused variable 'default_text_format' (unused-variable)
+W:18530,16: Unused variable 'x' (unused-variable)
+W:18531,16: Unused variable 'y' (unused-variable)
+W:18527,16: Unused variable 'text' (unused-variable)
+W:18528,16: Unused variable 'scaleX' (unused-variable)
+W:18529,16: Unused variable 'scaleY' (unused-variable)
+W:18738,-1: String statement has no effect (pointless-string-statement)
+E:18747,35: Using variable 'lang_code' before assignment (used-before-assignment)
+E:18748,20: Undefined variable 'original_lang_code' (undefined-variable)
+E:18749,20: Undefined variable 'original_lang_code' (undefined-variable)
+E:18754, 4: Undefined variable 'loader' (undefined-variable)
+E:18755, 8: Undefined variable 'URLRequest' (undefined-variable)
+E:18755,19: Undefined variable 'lang_url' (undefined-variable)
+W:18743,24: Unused argument 'evt' (unused-argument)
+W:18752, 8: Unused variable 'text_dir' (unused-variable)
+E:18763,15: Undefined variable 'loader' (undefined-variable)
+C:18769, 8: Invalid variable name "c" (invalid-name)
+E:18774,20: Undefined variable 'texts' (undefined-variable)
+E:18777,27: Undefined variable 'texts' (undefined-variable)
+E:18778,24: Undefined variable 'texts' (undefined-variable)
+E:18797, 7: Undefined variable 'lang_code' (undefined-variable)
+E:18797,20: Undefined variable 'original_lang_code' (undefined-variable)
+E:18798,11: Undefined variable 'texts' (undefined-variable)
+E:18799,12: Undefined variable 'set_font' (undefined-variable)
+E:18799,21: Undefined variable 'texts' (undefined-variable)
+E:18801,12: Undefined variable 'set_font' (undefined-variable)
+E:18804,11: Undefined variable 'texts' (undefined-variable)
+E:18805,31: Undefined variable 'texts' (undefined-variable)
+E:18809,12: Undefined variable 'texts' (undefined-variable)
+E:18810,12: Undefined variable 'countryName' (undefined-variable)
+E:18810,24: Undefined variable 'texts' (undefined-variable)
+E:18810,50: Undefined variable 'texts' (undefined-variable)
+R:18759, 0: Too many branches (18/12) (too-many-branches)
+W:18796, 4: Unused variable 'pending_language_file' (unused-variable)
+W:18803, 8: Unused variable 'chosen_lang_font' (unused-variable)
+E:18821,13: Undefined variable 'URLLoader' (undefined-variable)
+E:18823,22: Undefined variable 'URLLoaderdata_format' (undefined-variable)
+E:18824, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:18824,27: Undefined variable 'Event' (undefined-variable)
+E:18824,43: Undefined variable 'LanguageFileLoaded' (undefined-variable)
+E:18825, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:18825,27: Undefined variable 'IOErrorEvent' (undefined-variable)
+E:18825,50: Undefined variable 'LanguageFileError' (undefined-variable)
+E:18826, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:18826,27: Undefined variable 'SecurityErrorEvent' (undefined-variable)
+E:18826,62: Undefined variable 'LanguageFileError' (undefined-variable)
+E:18827,11: Undefined variable 'lang_code' (undefined-variable)
+E:18830,13: Undefined variable 'URLRequest' (undefined-variable)
+E:18831,12: Undefined variable 'lang_url' (undefined-variable)
+E:18833,12: Undefined variable 'lang_code' (undefined-variable)
+E:18835,16: Undefined variable 'Math' (undefined-variable)
+E:18838, 4: Undefined variable 'pending_loaders' (undefined-variable)
+W:18839, 4: Unused variable 'pending_language_file' (unused-variable)
+W:18838, 4: Unused variable 'pending_loaders' (unused-variable)
+W:18828,12: Unused variable 'text_dir' (unused-variable)
+W:18823, 8: Unused variable 'data_format' (unused-variable)
+E:18846,15: Undefined variable 'loader' (undefined-variable)
+C:18853, 8: Invalid variable name "c" (invalid-name)
+E:18879, 4: Undefined variable 'set_font' (undefined-variable)
+E:18879,27: Undefined variable 'chosen_lang_font' (undefined-variable)
+W:18858,20: Unused variable 'old_str' (unused-variable)
+W:18878, 4: Unused variable 'pending_language_file' (unused-variable)
+E:18887, 9: Undefined variable 'URLLoader' (undefined-variable)
+E:18888,22: Undefined variable 'URLLoaderdata_format' (undefined-variable)
+E:18889, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:18889,27: Undefined variable 'Event' (undefined-variable)
+E:18889,43: Undefined variable 'OriginalLanguageFileLoaded' (undefined-variable)
+E:18890,13: Undefined variable 'URLRequest' (undefined-variable)
+E:18891,12: Undefined variable 'lang_url' (undefined-variable)
+E:18891,40: Undefined variable 'original_lang_code' (undefined-variable)
+E:18894, 4: Undefined variable 'pending_loaders' (undefined-variable)
+W:18895, 4: Unused variable 'pending_language_file' (unused-variable)
+W:18894, 4: Unused variable 'pending_loaders' (unused-variable)
+W:18888, 8: Unused variable 'data_format' (unused-variable)
+R:18898, 0: Too many local variables (84/15) (too-many-locals)
+C:18908, 8: Invalid variable name "c" (invalid-name)
+E:18920,28: Undefined variable 'img_url' (undefined-variable)
+E:18920,40: Undefined variable 'img_url' (undefined-variable)
+E:18924,28: Undefined variable 'snd_url' (undefined-variable)
+E:18924,40: Undefined variable 'snd_url' (undefined-variable)
+E:19016,28: Undefined variable 'trackPixels' (undefined-variable)
+E:19046,36: Undefined variable 'IDLE_POLLING' (undefined-variable)
+E:19103,28: Undefined variable 'defined_pixel_calls' (undefined-variable)
+C:19134,28: Invalid variable name "tvPollLong" (invalid-name)
+E:19153, 4: Undefined variable 'pending_configuration_files' (undefined-variable)
+E:19155, 8: Undefined variable 'loader2' (undefined-variable)
+E:19155,21: Undefined variable 'URLRequest' (undefined-variable)
+C:19158, 8: Invalid variable name "so" (invalid-name)
+E:19158,13: Undefined variable 'SharedObject' (undefined-variable)
+E:19183,11: Undefined variable 'param_obj' (undefined-variable)
+E:19184,24: Undefined variable 'param_obj' (undefined-variable)
+E:19185,11: Undefined variable 'param_obj' (undefined-variable)
+E:19186,27: Undefined variable 'param_obj' (undefined-variable)
+E:19188,11: Undefined variable 'param_obj' (undefined-variable)
+E:19189,28: Undefined variable 'param_obj' (undefined-variable)
+E:19193,11: Undefined variable 'param_obj' (undefined-variable)
+E:19194,30: Undefined variable 'param_obj' (undefined-variable)
+E:19196,11: Undefined variable 'param_obj' (undefined-variable)
+E:19197,30: Undefined variable 'param_obj' (undefined-variable)
+E:19199,11: Undefined variable 'param_obj' (undefined-variable)
+E:19200,33: Undefined variable 'param_obj' (undefined-variable)
+E:19202,11: Undefined variable 'param_obj' (undefined-variable)
+E:19203,36: Undefined variable 'param_obj' (undefined-variable)
+E:19206,13: Undefined variable 'param_obj' (undefined-variable)
+E:19207,17: Undefined variable 'param_obj' (undefined-variable)
+E:19211,11: Undefined variable 'param_obj' (undefined-variable)
+E:19212,28: Undefined variable 'param_obj' (undefined-variable)
+E:19216,13: Undefined variable 'param_obj' (undefined-variable)
+E:19217,28: Undefined variable 'param_obj' (undefined-variable)
+E:19221,13: Undefined variable 'param_obj' (undefined-variable)
+E:19222,28: Undefined variable 'param_obj' (undefined-variable)
+E:19233,11: Undefined variable 'param_obj' (undefined-variable)
+E:19234,28: Undefined variable 'param_obj' (undefined-variable)
+E:19236,29: Undefined variable 'param_obj' (undefined-variable)
+E:19238,13: Undefined variable 'param_obj' (undefined-variable)
+E:19239,29: Undefined variable 'param_obj' (undefined-variable)
+E:19244,11: Undefined variable 'param_obj' (undefined-variable)
+E:19245,30: Undefined variable 'param_obj' (undefined-variable)
+E:19247,11: Undefined variable 'param_obj' (undefined-variable)
+E:19248,30: Undefined variable 'param_obj' (undefined-variable)
+E:19250,11: Undefined variable 'param_obj' (undefined-variable)
+E:19251,29: Undefined variable 'param_obj' (undefined-variable)
+E:19253,11: Undefined variable 'param_obj' (undefined-variable)
+E:19254,31: Undefined variable 'param_obj' (undefined-variable)
+E:19256,11: Undefined variable 'param_obj' (undefined-variable)
+E:19257,34: Undefined variable 'param_obj' (undefined-variable)
+E:19265,15: Undefined variable 'img_url' (undefined-variable)
+E:19266,12: Undefined variable 'img_url' (undefined-variable)
+E:19268,15: Undefined variable 'snd_url' (undefined-variable)
+E:19269,12: Undefined variable 'snd_url' (undefined-variable)
+E:19274,47: Undefined variable 'img_url' (undefined-variable)
+E:19277,36: Undefined variable 'Math' (undefined-variable)
+E:19277,56: Undefined variable 'img_url' (undefined-variable)
+E:19279,33: Undefined variable 'Math' (undefined-variable)
+E:19279,53: Undefined variable 'img_url' (undefined-variable)
+E:19285,48: Undefined variable 'snd_url' (undefined-variable)
+E:19290,36: Undefined variable 'Math' (undefined-variable)
+E:19290,56: Undefined variable 'snd_url' (undefined-variable)
+E:19292,32: Undefined variable 'Math' (undefined-variable)
+E:19292,52: Undefined variable 'snd_url' (undefined-variable)
+E:19294,16: Undefined variable 'img_url' (undefined-variable)
+E:19294,32: Undefined variable 'snd_url' (undefined-variable)
+E:19302,15: Undefined variable 'param_lowres_url' (undefined-variable)
+E:19303,16: Undefined variable 'img_url' (undefined-variable)
+E:19303,41: Undefined variable 'param_lowres_url' (undefined-variable)
+E:19304,16: Undefined variable 'snd_url' (undefined-variable)
+E:19304,41: Undefined variable 'param_lowres_url' (undefined-variable)
+R:18898, 0: Too many branches (113/12) (too-many-branches)
+R:18898, 0: Too many statements (308/50) (too-many-statements)
+W:19165, 8: Unused variable 'disable_tv' (unused-variable)
+W:18968,28: Unused variable 'buffed_mode' (unused-variable)
+W:18956,28: Unused variable 'legal_url' (unused-variable)
+W:19095,28: Unused variable 'param_bullshit_cid' (unused-variable)
+W:18980,28: Unused variable 'server_id' (unused-variable)
+W:19209,12: Unused variable 'sso_mode' (unused-variable)
+W:18960,28: Unused variable 'dataprot_url' (unused-variable)
+W:19035,28: Unused variable 'param_papaya_path' (unused-variable)
+W:19052,28: Unused variable 'param_happy_hour' (unused-variable)
+W:19163, 8: Unused variable 'chat_sound' (unused-variable)
+W:19012,28: Unused variable 'param_php_tunnel_url' (unused-variable)
+W:19194,12: Unused variable 'view_player' (unused-variable)
+W:18964,28: Unused variable 'instr_url' (unused-variable)
+W:19087,28: Unused variable 'param_sponsor_url' (unused-variable)
+W:18988,28: Unused variable 'buffed_link_url' (unused-variable)
+W:18996,28: Unused variable 'image_timeout' (unused-variable)
+W:19203,12: Unused variable 'mp_api_user_token' (unused-variable)
+W:19197,12: Unused variable 'admin_login' (unused-variable)
+W:19164, 8: Unused variable 'compare_items' (unused-variable)
+W:19031,28: Unused variable 'param_gamestaff_email' (unused-variable)
+W:19232, 8: Unused variable 'had_account' (unused-variable)
+W:19027,28: Unused variable 'param_support_email' (unused-variable)
+W:19043,28: Unused variable 'param_fail_tries' (unused-variable)
+W:19126,28: Unused variable 'tv_function_name' (unused-variable)
+W:19091,28: Unused variable 'param_bullshit_text' (unused-variable)
+W:19023,28: Unused variable 'param_poll_tunnel_url' (unused-variable)
+W:18952,28: Unused variable 'imprint_url' (unused-variable)
+W:19189,12: Unused variable 'param_rec' (unused-variable)
+W:18944,28: Unused variable 'forum_url' (unused-variable)
+W:19080,28: Unused variable 'param_language_names' (unused-variable)
+W:18916,28: Unused variable 'original_lang_code' (unused-variable)
+W:19000,28: Unused variable 'param_sponsor' (unused-variable)
+W:19064,28: Unused variable 'param_reload_pixel' (unused-variable)
+W:19245,12: Unused variable 'param_valid' (unused-variable)
+W:19060,28: Unused variable 'param_internal_pixel' (unused-variable)
+W:19257,12: Unused variable 'param_forceport' (unused-variable)
+W:19134,28: Unused variable 'tvPollLong' (unused-variable)
+W:19200,12: Unused variable 'mp_api_user_id' (unused-variable)
+W:18948,28: Unused variable 'shop_url' (unused-variable)
+W:19109,28: Unused variable 'login_background_id' (unused-variable)
+W:19047,28: Unused variable 'param_idle_polling' (unused-variable)
+W:18984,28: Unused variable 'mp_project' (unused-variable)
+W:19213,12: Unused variable 'param_cid_original' (unused-variable)
+W:19186,12: Unused variable 'param_id' (unused-variable)
+W:19130,28: Unused variable 'tv_poll_normal' (unused-variable)
+W:18992,28: Unused variable 'response_timeout' (unused-variable)
+W:19051,28: Unused variable 'param_allow_skip_quest' (unused-variable)
+W:18969,28: Unused variable 'buffed_link_text' (unused-variable)
+W:18936,28: Unused variable 'lang_url' (unused-variable)
+W:19056,28: Unused variable 'param_censored' (unused-variable)
+W:19076,28: Unused variable 'param_languages' (unused-variable)
+W:19099,28: Unused variable 'param_social_buttons' (unused-variable)
+W:18940,28: Unused variable 'no_crossdomain' (unused-variable)
+W:19008,28: Unused variable 'param_reconnect' (unused-variable)
+W:19039,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
+W:19068,28: Unused variable 'param_server_version_cfg' (unused-variable)
+W:19251,12: Unused variable 'param_hall' (unused-variable)
+C:19316, 0: Missing function docstring (missing-docstring)
+E:19317, 4: Undefined variable 'Security' (undefined-variable)
+E:19317,28: Undefined variable 'img_url' (undefined-variable)
+E:19317,36: Undefined variable 'img_url_index' (undefined-variable)
+E:19318, 4: Undefined variable 'Security' (undefined-variable)
+E:19318,28: Undefined variable 'snd_url' (undefined-variable)
+E:19318,36: Undefined variable 'snd_url_index' (undefined-variable)
+E:19319, 4: Undefined variable 'Security' (undefined-variable)
+E:19319,28: Undefined variable 'lang_url' (undefined-variable)
+E:19320, 4: Undefined variable 'Security' (undefined-variable)
+E:19320,40: Undefined variable 'server' (undefined-variable)
+E:19321, 4: Undefined variable 'Security' (undefined-variable)
+E:19322,22: Undefined variable 'img_url' (undefined-variable)
+E:19322,30: Undefined variable 'img_url_index' (undefined-variable)
+E:19323,22: Undefined variable 'snd_url' (undefined-variable)
+E:19323,30: Undefined variable 'snd_url_index' (undefined-variable)
+E:19324,22: Undefined variable 'lang_url' (undefined-variable)
+E:19325, 8: Undefined variable 'server' (undefined-variable)
+E:19328,16: Undefined variable 'build_interface' (undefined-variable)
+C:19331, 0: Invalid function name "_Load" (invalid-name)
+C:19331, 0: Missing function docstring (missing-docstring)
+E:19332, 7: Undefined variable 'actorLoaded' (undefined-variable)
+E:19333,11: Undefined variable 'actor' (undefined-variable)
+E:19333,30: Undefined variable 'Sound' (undefined-variable)
+E:19334,12: Undefined variable 'Security' (undefined-variable)
+E:19334,33: Undefined variable 'actorURL' (undefined-variable)
+E:19335,18: Undefined variable 'URLRequest' (undefined-variable)
+E:19335,29: Undefined variable 'actorURL' (undefined-variable)
+E:19336,12: Undefined variable 'actor' (undefined-variable)
+E:19336,38: Undefined variable 'actorSoundLoader' (undefined-variable)
+E:19337,12: Undefined variable 'actorLoaded' (undefined-variable)
+E:19339,12: Undefined variable 'actor' (undefined-variable)
+E:19340,16: Undefined variable 'IOErrorEvent' (undefined-variable)
+E:19340,39: Undefined variable 'LoaderError' (undefined-variable)
+E:19342,12: Undefined variable 'actor' (undefined-variable)
+E:19343,16: Undefined variable 'Event' (undefined-variable)
+E:19343,32: Undefined variable 'LoaderComplete' (undefined-variable)
+E:19345,12: Undefined variable 'Security' (undefined-variable)
+E:19345,33: Undefined variable 'actorURL' (undefined-variable)
+E:19346,18: Undefined variable 'URLRequest' (undefined-variable)
+E:19346,29: Undefined variable 'actorURL' (undefined-variable)
+E:19348,17: Undefined variable 'actorURL' (undefined-variable)
+E:19349,25: Undefined variable 'no_crossdomain' (undefined-variable)
+E:19351,16: Undefined variable 'actor' (undefined-variable)
+E:19353,20: Undefined variable 'LoaderContext' (undefined-variable)
+E:19355,24: Undefined variable 'ApplicationDomain' (undefined-variable)
+E:19355,42: Undefined variable 'null' (undefined-variable)
+E:19356,24: Undefined variable 'SecurityDomain' (undefined-variable)
+E:19360,16: Undefined variable 'actor' (undefined-variable)
+E:19362,12: Undefined variable 'actorLoaded' (undefined-variable)
+C:19365, 0: Missing function docstring (missing-docstring)
+E:19367,11: Undefined variable 'actor' (undefined-variable)
+E:19368,27: Undefined variable 'actor' (undefined-variable)
+E:19371, 8: Undefined variable '_load' (undefined-variable)
+C:19374, 0: Invalid argument name "fn" (invalid-name)
+C:19374, 0: Missing function docstring (missing-docstring)
+E:19376,13: Undefined variable 'Function' (undefined-variable)
+E:19377, 8: Using variable 'when_loaded_fn' before assignment (used-before-assignment)
+E:19379, 8: Undefined variable 'when_loaded_timeout' (undefined-variable)
+E:19380, 8: Undefined variable 'when_loaded_timeout' (undefined-variable)
+E:19382,23: Undefined variable 'actor' (undefined-variable)
+E:19383,11: Undefined variable 'actorLoaded' (undefined-variable)
+E:19387, 7: Undefined variable 'pending_language_file' (undefined-variable)
+E:19390, 7: Undefined variable 'pending_debug_file' (undefined-variable)
+E:19393, 7: Undefined variable 'pending_configuration_files' (undefined-variable)
+E:19398,12: Undefined variable 'when_loaded_timeout' (undefined-variable)
+C:19400,12: Invalid variable name "when_loaded_fnTemp" (invalid-name)
+C:19404,16: Invalid variable name "tmpFn" (invalid-name)
+E:19405,40: Undefined variable 'Function' (undefined-variable)
+C:19409, 0: Missing function docstring (missing-docstring)
+E:19410, 4: Undefined variable 'when_loaded_timeout' (undefined-variable)
+E:19412,23: Undefined variable 'actor' (undefined-variable)
+E:19413,11: Undefined variable 'actor' (undefined-variable)
+E:19413,23: Undefined variable 'Loader' (undefined-variable)
+E:19414,15: Undefined variable 'actorLoaded' (undefined-variable)
+E:19421,20: Undefined variable 'actorURL' (undefined-variable)
+E:19423,16: Undefined variable 'actorLoaded' (undefined-variable)
+E:19426, 4: Undefined variable 'to_error_count' (undefined-variable)
+E:19429,28: Using variable 'img_url_index' before assignment (used-before-assignment)
+E:19430,15: Undefined variable 'img_url' (undefined-variable)
+E:19431,32: Undefined variable 'Math' (undefined-variable)
+E:19431,52: Undefined variable 'img_url' (undefined-variable)
+E:19433,36: Undefined variable 'Math' (undefined-variable)
+E:19433,56: Undefined variable 'img_url' (undefined-variable)
+E:19435,28: Using variable 'snd_url_index' before assignment (used-before-assignment)
+E:19436,15: Undefined variable 'snd_url' (undefined-variable)
+E:19437,32: Undefined variable 'Math' (undefined-variable)
+E:19437,52: Undefined variable 'snd_url' (undefined-variable)
+E:19439,36: Undefined variable 'Math' (undefined-variable)
+E:19439,56: Undefined variable 'snd_url' (undefined-variable)
+E:19441,16: Undefined variable 'img_url' (undefined-variable)
+E:19441,32: Undefined variable 'snd_url' (undefined-variable)
+E:19444, 8: Undefined variable 'so' (undefined-variable)
+E:19445, 8: Undefined variable 'so' (undefined-variable)
+E:19446, 8: Undefined variable 'so' (undefined-variable)
+W:19409,30: Unused argument 'evt' (unused-argument)
+C:19449, 0: Missing function docstring (missing-docstring)
+E:19450,21: Undefined variable 'LoaderInfo' (undefined-variable)
+E:19451, 8: Undefined variable 'actorLoaded' (undefined-variable)
+E:19451,20: Undefined variable 'GetActorID' (undefined-variable)
+E:19452, 8: Undefined variable 'Security' (undefined-variable)
+E:19453,13: Undefined variable 'actor' (undefined-variable)
+E:19453,19: Undefined variable 'GetActorID' (undefined-variable)
+W:19455,12: Unused variable 'allow_smoothing' (unused-variable)
+W:19454,12: Unused variable 'force_smoothing' (unused-variable)
+W:19456,12: Unused variable 'smoothing' (unused-variable)
+C:19460, 0: Missing function docstring (missing-docstring)
+E:19461,21: Undefined variable 'LoaderInfo' (undefined-variable)
+E:19462,27: Undefined variable 'actor' (undefined-variable)
+E:19463,15: Undefined variable 'actor' (undefined-variable)
+E:19463,27: Undefined variable 'Loader' (undefined-variable)
+E:19464,19: Undefined variable 'actorLoaded' (undefined-variable)
+E:19471,24: Undefined variable 'actorURL' (undefined-variable)
+E:19473,20: Undefined variable 'actorLoaded' (undefined-variable)
+C:19476, 4: Invalid variable name "ioErrorCount" (invalid-name)
+E:19476, 4: Undefined variable 'ioErrorCount' (undefined-variable)
+E:19479,28: Using variable 'img_url_index' before assignment (used-before-assignment)
+E:19480,15: Undefined variable 'img_url' (undefined-variable)
+E:19481,32: Undefined variable 'Math' (undefined-variable)
+E:19481,52: Undefined variable 'img_url' (undefined-variable)
+E:19483,36: Undefined variable 'Math' (undefined-variable)
+E:19483,56: Undefined variable 'img_url' (undefined-variable)
+E:19485,28: Using variable 'snd_url_index' before assignment (used-before-assignment)
+E:19486,15: Undefined variable 'snd_url' (undefined-variable)
+E:19487,32: Undefined variable 'Math' (undefined-variable)
+E:19487,52: Undefined variable 'snd_url' (undefined-variable)
+E:19489,36: Undefined variable 'Math' (undefined-variable)
+E:19489,56: Undefined variable 'snd_url' (undefined-variable)
+E:19491,16: Undefined variable 'img_url' (undefined-variable)
+E:19491,32: Undefined variable 'snd_url' (undefined-variable)
+E:19494, 8: Undefined variable 'so' (undefined-variable)
+E:19495, 8: Undefined variable 'so' (undefined-variable)
+E:19496, 8: Undefined variable 'so' (undefined-variable)
+E:19503,17: Undefined variable 'pixel_loader' (undefined-variable)
+E:19508, 8: Undefined variable 'ExternalInterface' (undefined-variable)
+W:19499,18: Unused argument 'evt' (unused-argument)
+W:19517,17: Unused argument 'evt' (unused-argument)
+W:19537, 4: Redefining name 'pixel_failed' from outer scope (line 19517) (redefined-outer-name)
+W:19536, 4: Redefining name 'pixel_success' from outer scope (line 19499) (redefined-outer-name)
+E:19533,10: Undefined variable 'null' (undefined-variable)
+E:19534,16: Undefined variable 'null' (undefined-variable)
+E:19535,19: Undefined variable 'null' (undefined-variable)
+E:19536,20: Undefined variable 'null' (undefined-variable)
+E:19537,19: Undefined variable 'null' (undefined-variable)
+E:19548,20: Undefined variable 'Math' (undefined-variable)
+E:19549,35: Undefined variable 'had_account' (undefined-variable)
+E:19551, 7: Undefined variable 'param_reload_pixel' (undefined-variable)
+E:19552, 8: Undefined variable 'log' (undefined-variable)
+E:19553, 8: Undefined variable 'log' (undefined-variable)
+E:19553,31: Undefined variable 'param_cid' (undefined-variable)
+E:19554, 8: Undefined variable 'log' (undefined-variable)
+E:19554,28: Undefined variable 'act' (undefined-variable)
+E:19568, 8: Undefined variable 'navigate_to_url' (undefined-variable)
+E:19570,11: Undefined variable 'param_internal_pixel' (undefined-variable)
+E:19581,12: Undefined variable 'ExternalInterface' (undefined-variable)
+W:19537, 4: Unused variable 'pixel_failed' (unused-variable)
+W:19567, 8: Unused variable 'log_in_after_pixel' (unused-variable)
+W:19535, 4: Unused variable 'pixel_loader' (unused-variable)
+W:19534, 4: Unused variable 'variables' (unused-variable)
+W:19536, 4: Unused variable 'pixel_success' (unused-variable)
+W:27063,-1: String statement has no effect (pointless-string-statement)
+W:27071, 4: Using the global statement (global-statement)
+C:27077, 4: Invalid variable name "s" (invalid-name)
+W:31913,-1: String statement has no effect (pointless-string-statement)
+W: 21, 0: Unused import curses (unused-import)
+W: 24, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
+W: 24, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
+W: 24, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
+W: 24, 0: Unused import load_configuration_file from wildcard import (unused-wildcard-import)
+W: 24, 0: Unused import parse_savegame from wildcard import (unused-wildcard-import)
+W: 24, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
 ************* Module sflegacy
 W: 19, 0: TODO: obsolete (fixme)
 W: 33, 0: TODO: obsolete (fixme)
@@ -210,11 +2089,227 @@ W:181, 8: Unused variable 'char_eyes' (unused-variable)
 W:176, 8: Unused variable 'char_male' (unused-variable)
 W:255, 8: Unused variable 'local_time' (unused-variable)
 W:113, 4: Unused variable 'has_mirror' (unused-variable)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5994
+==sflegacy:144
+            )
+
+        debug_info = ""
+        for i in range(len(savegame)):
+            debug_info += str(i) + "=" + savegame[i] + ", "
+
+        if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
+            level_up = True
+            pulse_char = True
+
+        last_level = int(savegame[SG['LEVEL']])
+
+        friend_link = "http://" + server + "/index.php?rec="
+        friend_link += savegame[SG['PLAYER']['ID']]
+
+        if len(old_ach) != 0:
+            for i in range(8):
+                if ach_level(savegame, i) > old_ach[i]:
+                    old_ach[i] = -1 * ach_level(savegame, i)
+                else:
+                    old_ach[i] = ach_level(savegame, i)
+        else:
+            for i in range(8):
+                old_ach[i] = ach_level(savegame, i)
+
+        if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
+            album_effect = True
+        old_album = savegame[SG['ALBUM']]
+
+        if fill_face_variables:
+            char_volk = savegame[SG['RACE']]
+            char_male = (savegame[SG['GENDER']] == 1)
+            char_class = savegame[SG['CLASS']]
+            char_mouth = savegame[SG['FACE']['1']]
+            char_beard = savegame[SG['FACE']['5']]
+            char_nose = savegame[SG['FACE']['6']]
+            char_eyes = savegame[SG['FACE']['4']]
+            char_brows = savegame[SG['FACE']['3']]
+            char_ears = savegame[SG['FACE']['7']]
+            char_hair = savegame[SG['FACE']['2']]
+            char_special = savegame[SG['FACE']['8']]
+            char_special2 = savegame[SG['FACE']['9']]
+
+            i = char_hair
+
+            char_color = 0
+            while i > 100:
+                i -= 100
+                char_color += 1
+
+        if not no_spoil:
+            if text_dir == "right": (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6099
+==sflegacy:250
+    if int(savegame[SG['SERVER']['TIME']]) > 0:
+        server_time.setTime(
+            1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
+        )
+        local_time = datetime.now()
+        time_calc.start()
+
+    if session_id == "":
+        log.error(''.join(
+            "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
+            "PHP-Tunneling wird deaktiviert."
+        ))
+        show_login_screen()
+    else:
+        log.debug("Session ID für PHP Tunneling:", session_id)
+
+    if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
+        gilden_id = int(savegame[SG['GUILD']['INDEX']])
+        if gilden_id != 0:
+            send_action(
+                ACT['REQUEST']['GUILD'],
+                savegame[SG['GUILD']['INDEX']]
+            )
+
+    sg_idx = SG['UNREAD']['MESSAGES'] (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5969
+==sflegacy:120
+    if (savegame[SG['ALBUM']] - 10000) > content_max:
+        savegame[SG['ALBUM']] = content_max + 10000
+
+    for i in range(SG['BACKPACK']['SIZE']):
+        expand_item_structure(
+            savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(SG['INVENTORY']['SIZE']):
+        expand_item_structure(
+            savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
+        )
+
+    for i in range(6):
+        expand_item_structure(
+            savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+        expand_item_structure(
+            savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
+        )
+
+    for i in range(3):
+        expand_item_structure( (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6065
+==sflegacy:215
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                )
+        else:
+            with (actor[LBL['IF']['SILBER']]): (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6125
+==sflegacy:276
+        pulse_post = True
+
+    if int(savegame[SG['LOCKDURATION']]) != 0:
+        request_logout()
+
+    if next_pxl < 0:
+        next_pxl = abs(next_pxl)
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6090
+==sflegacy:241
+                if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                    enable_popup(
+                        LBL['IF']['PILZE'],
+                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                        )
+                    )
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6090
+==sflegacy:215
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                ) (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:6065
+==sflegacy:241
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                ) (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5955
+==sflegacy:108
+    mirror_pieces = list()
+    for i in range(13):
+        mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
+
+    has_mirror = bin_str.substr(23, 1) == "1"
+    can_rob = bin_str.substr(22, 1) == "1"
+ (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5944
+==sflegacy:96
+        if not no_spoil:
+            tower_level = int((savegame[SG['MOUNT']] / 65536))
+
+        savegame[SG['MOUNT']] -= tower_level * 65536
+
+        # TODO: Mirror object (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==sfclient:5963
+==sflegacy:115
+    if bin_str.substr(31) == "1":
+        savegame[SG['GENDER']] = 1
+    else:
+        savegame[SG['GENDER']] = 2
+ (duplicate-code)
+R:  1, 0: Similar lines in 4 files
+==sfclient:6055
+==sfclient:6075
+==sflegacy:205
+==sflegacy:225
+                        text = "0"
+                    else:
+                        text = ""
+                    text += str(int(savegame[SG['GOLD']] % 100)) (duplicate-code)
+R:  1, 0: Similar lines in 4 files
+==sfclient:16707
+==sfclient:16797
+==sfclient:19356
+==sflegacy:220
+                    )
+                )
+        else: (duplicate-code)
 
 
 Report
 ======
-144 statements analysed.
+2924 statements analysed.
+
+External dependencies
+---------------------
+::
+
+    datetime (sfclient)
+    requests (sfclient)
+
+
 
 Raw metrics
 -----------
@@ -222,13 +2317,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |175    |70.85 |NC       |NC         |
+|code      |16526  |52.10 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |50     |20.24 |NC       |NC         |
+|docstring |14449  |45.55 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |6      |2.43  |NC       |NC         |
+|comment   |144    |0.45  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |16     |6.48  |NC       |NC         |
+|empty     |602    |1.90  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -239,9 +2334,9 @@ Duplication
 +-------------------------+------+---------+-----------+
 |                         |now   |previous |difference |
 +=========================+======+=========+===========+
-|nb duplicated lines      |0     |NC       |NC         |
+|nb duplicated lines      |178   |NC       |NC         |
 +-------------------------+------+---------+-----------+
-|percent duplicated lines |0.000 |NC       |NC         |
+|percent duplicated lines |0.553 |NC       |NC         |
 +-------------------------+------+---------+-----------+
 
 
@@ -252,13 +2347,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |8      |NC       |NC         |
+|convention |221    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |3      |NC       |NC         |
+|refactor   |55     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |32     |NC       |NC         |
+|warning    |332    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |167    |NC       |NC         |
+|error      |1212   |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -269,9 +2364,9 @@ Messages by category
 +---------+------+--------+---------+-----------+
 |module   |error |warning |refactor |convention |
 +=========+======+========+=========+===========+
-|sflegacy |99.40 |100.00  |100.00   |100.00     |
+|sfclient |86.30 |90.36   |70.91    |96.38      |
 +---------+------+--------+---------+-----------+
-|sfclient |0.60  |0.00    |0.00     |0.00       |
+|sflegacy |13.70 |9.64    |29.09    |3.62       |
 +---------+------+--------+---------+-----------+
 
 
@@ -279,39 +2374,81 @@ Messages by category
 Messages
 --------
 
-+-----------------------+------------+
-|message id             |occurrences |
-+=======================+============+
-|undefined-variable     |161         |
-+-----------------------+------------+
-|unused-variable        |26          |
-+-----------------------+------------+
-|invalid-name           |6           |
-+-----------------------+------------+
-|fixme                  |6           |
-+-----------------------+------------+
-|used-before-assignment |4           |
-+-----------------------+------------+
-|too-many-statements    |1           |
-+-----------------------+------------+
-|too-many-locals        |1           |
-+-----------------------+------------+
-|too-many-branches      |1           |
-+-----------------------+------------+
-|syntax-error           |1           |
-+-----------------------+------------+
-|superfluous-parens     |1           |
-+-----------------------+------------+
-|no-member              |1           |
-+-----------------------+------------+
-|line-too-long          |1           |
-+-----------------------+------------+
++-----------------------------+------------+
+|message id                   |occurrences |
++=============================+============+
+|undefined-variable           |1179        |
++-----------------------------+------------+
+|unused-variable              |253         |
++-----------------------------+------------+
+|bad-continuation             |141         |
++-----------------------------+------------+
+|invalid-name                 |48          |
++-----------------------------+------------+
+|fixme                        |33          |
++-----------------------------+------------+
+|used-before-assignment       |25          |
++-----------------------------+------------+
+|unused-argument              |15          |
++-----------------------------+------------+
+|missing-docstring            |15          |
++-----------------------------+------------+
+|superfluous-parens           |13          |
++-----------------------------+------------+
+|duplicate-code               |13          |
++-----------------------------+------------+
+|pointless-string-statement   |12          |
++-----------------------------+------------+
+|too-few-public-methods       |10          |
++-----------------------------+------------+
+|too-many-branches            |9           |
++-----------------------------+------------+
+|too-many-locals              |7           |
++-----------------------------+------------+
+|unused-wildcard-import       |6           |
++-----------------------------+------------+
+|too-many-statements          |5           |
++-----------------------------+------------+
+|too-many-arguments           |5           |
++-----------------------------+------------+
+|no-member                    |5           |
++-----------------------------+------------+
+|logging-not-lazy             |4           |
++-----------------------------+------------+
+|too-many-instance-attributes |3           |
++-----------------------------+------------+
+|line-too-long                |3           |
++-----------------------------+------------+
+|too-many-return-statements   |2           |
++-----------------------------+------------+
+|redefined-outer-name         |2           |
++-----------------------------+------------+
+|logging-too-many-args        |2           |
++-----------------------------+------------+
+|bad-indentation              |2           |
++-----------------------------+------------+
+|wildcard-import              |1           |
++-----------------------------+------------+
+|unused-import                |1           |
++-----------------------------+------------+
+|unnecessary-semicolon        |1           |
++-----------------------------+------------+
+|too-many-lines               |1           |
++-----------------------------+------------+
+|too-many-function-args       |1           |
++-----------------------------+------------+
+|redefined-builtin            |1           |
++-----------------------------+------------+
+|no-self-use                  |1           |
++-----------------------------+------------+
+|global-statement             |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -50.97/10
+Your code has been rated at -12.80/10
 
 Statistics by type
 ------------------
@@ -319,13 +2456,13 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |type     |number |old number |difference |%documented |%badname |
 +=========+=======+===========+===========+============+=========+
-|module   |1      |NC         |NC         |100.00      |0.00     |
+|module   |2      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |0      |NC         |NC         |0           |0        |
+|class    |14     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |0      |NC         |NC         |0           |0        |
+|method   |28     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |6      |NC         |NC         |100.00      |0.00     |
+|function |70     |NC         |NC         |78.57       |2.86     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
