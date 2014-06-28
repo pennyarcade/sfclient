@@ -364,6 +364,22 @@ C:17762, 0: Wrong hanging indentation.
                         |   ^ (bad-continuation)
 C:17772, 0: Line too long (110/80) (line-too-long)
 C:17776, 0: Line too long (108/80) (line-too-long)
+C:17780, 0: Line too long (100/80) (line-too-long)
+C:17790, 0: Line too long (110/80) (line-too-long)
+C:17794, 0: Line too long (108/80) (line-too-long)
+C:17801, 0: Line too long (100/80) (line-too-long)
+C:17811, 0: Line too long (100/80) (line-too-long)
+C:17823, 0: Line too long (100/80) (line-too-long)
+C:17832, 0: Line too long (100/80) (line-too-long)
+C:17850, 0: Line too long (104/80) (line-too-long)
+C:17860, 0: Line too long (110/80) (line-too-long)
+C:17864, 0: Line too long (108/80) (line-too-long)
+C:17868, 0: Line too long (100/80) (line-too-long)
+C:17878, 0: Line too long (110/80) (line-too-long)
+C:17882, 0: Line too long (108/80) (line-too-long)
+C:17889, 0: Line too long (100/80) (line-too-long)
+C:17899, 0: Line too long (100/80) (line-too-long)
+C:17911, 0: Line too long (100/80) (line-too-long)
 C:17941, 0: Wrong hanging indentation before block.
             RESP_SAVEGAME_STAY,
             ^   | (bad-continuation)
@@ -550,7 +566,7 @@ C:19435, 0: Wrong hanging indentation before block.
         or (pixel_data.lower().substr(0, 8) == "https://")
         ^   | (bad-continuation)
 C:19472, 0: Unnecessary parens after u'if' keyword (superfluous-parens)
-C:  1, 0: Too many lines in module (31924) (too-many-lines)
+C:  1, 0: Too many lines in module (31925) (too-many-lines)
 W: 24, 0: Wildcard import sflegacy (wildcard-import)
 R:4094, 0: Too few public methods (1/2) (too-few-public-methods)
 R:4127, 0: Too many instance attributes (14/7) (too-many-instance-attributes)
@@ -599,7 +615,6 @@ W:4947,16: Unused variable 'buffed_name' (unused-variable)
 W:4956, 4: Unused variable 'when_loaded_fn' (unused-variable)
 W:4941, 8: Unused variable 'buffed_req' (unused-variable)
 W:4957, 4: Unused variable 'when_loaded_active' (unused-variable)
-E:5085,19: Undefined variable 'session' (undefined-variable)
 W:5085, 4: Unused variable 'serverconfig' (unused-variable)
 E:5107,37: Undefined variable 'texts' (undefined-variable)
 E:5109,34: Undefined variable 'texts' (undefined-variable)
@@ -1338,54 +1353,8 @@ E:17729,37: Undefined variable 'lastAttacked' (undefined-variable)
 E:17733,38: Undefined variable 'FontFormat_GuildHallNoAttack' (undefined-variable)
 E:17735,38: Undefined variable 'FontFormat_HallListText' (undefined-variable)
 E:17739,19: Undefined variable 'text_dir' (undefined-variable)
-E:17780,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17780,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17789,29: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17790,30: Undefined variable 'HALL_LIST_COLUMN_5_X' (undefined-variable)
-E:17790,53: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17792,33: Undefined variable 'HALL_LIST_COLUMN_6_X' (undefined-variable)
-E:17794,28: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17794,51: Undefined variable 'HALL_LIST_COLUMN_2_X' (undefined-variable)
 E:17798,34: Undefined variable 'texts' (undefined-variable)
-E:17798,40: Undefined variable 'TXT_NOGUILD' (undefined-variable)
-E:17801,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17801,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17810,24: Undefined variable 'HALL_LIST_COLUMN_3_X' (undefined-variable)
-E:17811,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17811,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17822,24: Undefined variable 'HALL_LIST_COLUMN_2_X' (undefined-variable)
-E:17823,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17823,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17831,24: Undefined variable 'HALL_LIST_COLUMN_1_X' (undefined-variable)
-E:17832,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17832,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17849,24: Undefined variable 'HALL_LIST_COLUMN_2_X' (undefined-variable)
-E:17850,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17850,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17859,29: Undefined variable 'HALL_LIST_COLUMN_3_X' (undefined-variable)
-E:17860,30: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17860,53: Undefined variable 'HALL_LIST_COLUMN_3_X' (undefined-variable)
-E:17862,33: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17864,28: Undefined variable 'HALL_LIST_COLUMN_5_X' (undefined-variable)
-E:17864,51: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17868,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17868,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17877,29: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17878,30: Undefined variable 'HALL_LIST_COLUMN_5_X' (undefined-variable)
-E:17878,53: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17880,33: Undefined variable 'HALL_LIST_COLUMN_2_X' (undefined-variable)
-E:17882,28: Undefined variable 'HALL_LIST_COLUMN_4_X' (undefined-variable)
-E:17882,51: Undefined variable 'HALL_LIST_COLUMN_2_X' (undefined-variable)
 E:17886,34: Undefined variable 'texts' (undefined-variable)
-E:17886,40: Undefined variable 'TXT_NOGUILD' (undefined-variable)
-E:17889,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17889,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17898,24: Undefined variable 'HALL_LIST_COLUMN_5_X' (undefined-variable)
-E:17899,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17899,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
-E:17910,24: Undefined variable 'HALL_LIST_COLUMN_6_X' (undefined-variable)
-E:17911,24: Undefined variable 'HALL_LIST_LINES_Y' (undefined-variable)
-E:17911,51: Undefined variable 'HALL_LIST_LINE_Y' (undefined-variable)
 E:17921,16: Undefined variable 'RESP_ARBEIT_START' (undefined-variable)
 E:17921,35: Undefined variable 'RESP_ARBEIT_STOP' (undefined-variable)
 E:17922,12: Undefined variable 'parse_savgame' (undefined-variable)
@@ -2172,7 +2141,8 @@ W:19463, 4: Unused variable 'variables' (unused-variable)
 W:19465, 4: Unused variable 'pixel_success' (unused-variable)
 W:26992,-1: String statement has no effect (pointless-string-statement)
 W:27000, 4: Using the global statement (global-statement)
-W:31924,-1: String statement has no effect (pointless-string-statement)
+C:27006, 4: Invalid variable name "s" (invalid-name)
+W:31925,-1: String statement has no effect (pointless-string-statement)
 W: 21, 0: Unused import curses (unused-import)
 W: 24, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 24, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
@@ -2566,12 +2536,12 @@ R:  1, 0: Similar lines in 2 files
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5944
 ==sflegacy:96
-    if not no_spoil:
-        tower_level = int((savegame[SG['MOUNT']] / 65536))
+        if not no_spoil:
+            tower_level = int((savegame[SG['MOUNT']] / 65536))
 
-    savegame[SG['MOUNT']] -= tower_level * 65536
+        savegame[SG['MOUNT']] -= tower_level * 65536
 
-    # Extract mirror pieces from gender entry (duplicate-code)
+        # TODO: Mirror object (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5963
 ==sflegacy:115
@@ -2601,7 +2571,7 @@ R:  1, 0: Similar lines in 4 files
 
 Report
 ======
-2886 statements analysed.
+2887 statements analysed.
 
 External dependencies
 ---------------------
@@ -2618,13 +2588,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |16548  |52.14 |NC       |NC         |
+|code      |16549  |52.14 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |14444  |45.51 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |145    |0.46  |NC       |NC         |
+|comment   |144    |0.45  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |600    |1.89  |NC       |NC         |
+|empty     |601    |1.89  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -2648,13 +2618,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |283    |NC       |NC         |
+|convention |300    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |55     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |322    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |1449   |NC       |NC         |
+|error      |1402   |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -2665,9 +2635,9 @@ Messages by category
 +---------+------+--------+---------+-----------+
 |module   |error |warning |refactor |convention |
 +=========+======+========+=========+===========+
-|sfclient |88.54 |90.06   |70.91    |97.17      |
+|sfclient |88.16 |90.06   |70.91    |97.33      |
 +---------+------+--------+---------+-----------+
-|sflegacy |11.46 |9.94    |29.09    |2.83       |
+|sflegacy |11.84 |9.94    |29.09    |2.67       |
 +---------+------+--------+---------+-----------+
 
 
@@ -2678,7 +2648,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |1416        |
+|undefined-variable           |1369        |
 +-----------------------------+------------+
 |unused-variable              |246         |
 +-----------------------------+------------+
@@ -2686,11 +2656,13 @@ Messages
 +-----------------------------+------------+
 |superfluous-parens           |79          |
 +-----------------------------+------------+
-|invalid-name                 |35          |
+|invalid-name                 |36          |
 +-----------------------------+------------+
 |fixme                        |33          |
 +-----------------------------+------------+
 |used-before-assignment       |26          |
++-----------------------------+------------+
+|line-too-long                |22          |
 +-----------------------------+------------+
 |unused-argument              |15          |
 +-----------------------------+------------+
@@ -2707,8 +2679,6 @@ Messages
 |too-many-locals              |7           |
 +-----------------------------+------------+
 |unused-wildcard-import       |6           |
-+-----------------------------+------------+
-|line-too-long                |6           |
 +-----------------------------+------------+
 |too-many-statements          |5           |
 +-----------------------------+------------+
@@ -2743,7 +2713,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -17.39/10
+Your code has been rated at -16.63/10
 
 Statistics by type
 ------------------
