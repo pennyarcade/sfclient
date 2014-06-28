@@ -17,7 +17,7 @@ script:
   - cat metrics/pylint.txt | python resources/extract.py >> metrics/stats.csv
   - git add metrics
   - git commit -m '[skip ci] shippable build results [ci skip]'
-  - git push git@bitbucket.org:chocokiko/sfclient.git
+  - git push git@bitbucket.org:chocokiko/chocokiko.bitbucket.org.git
   - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - which python && coverage run --branch *.py
   - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
