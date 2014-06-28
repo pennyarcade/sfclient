@@ -17510,7 +17510,7 @@ def action_handler(event):
                     if case("9"):
                         if (texts[TXT['INV']['VAL_TITLE']] != ""):
                             par[1] = texts[TXT['INV']['VAL_TITLE']]
-                            par[3] = texts[TXT['INV']['VAL_TEXT'].replace(
+                            par[3] = texts[TXT['INV']['VAL_TEXT']].replace(
                                 "%1", par[0]
                             )
                         else:
