@@ -12,15 +12,14 @@ before_script:
   - mkdir -p shippable/codecoverage
 
 script:
-  - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
-  - which python && coverage run --branch *.py
-  - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
   - pylint --rcfile=.pylintrc sf*.py > metrics/pylint.txt || true
   - pep8 --verbose --show-pep8 sf*.py > metrics/pep8.txt || true
-
-after_script:
   - cat metrics/pylint.txt | python resources/extract.py >> metrics/stats.csv
   - git add metrics
   - git commit -m '[skip ci] shippable build results [ci skip]'
   - git push git@bitbucket.org:chocokiko/sfclient.git
+  - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
+  - which python && coverage run --branch *.py
+  - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
+
 
