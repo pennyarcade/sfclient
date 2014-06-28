@@ -4228,9 +4228,9 @@ class Session(object):
         if self.session_id == "":
             self.session_id = "00000000000000000000000000000000"
 
-            LOG.debug("SID: %s" % self.session_id)
-            LOG.debug("Action: %s" % action)
-            LOG.debug("Action+Daten: %s" % data_str)
+            LOG.debug("SID: " + str(self.session_id))
+            LOG.debug("Action: " + str(action))
+            LOG.debug("Action+Daten: " + str(data_str))
 
         # TODO: This "if" switches base URL
         # self.param_poll_tunnel_url / param_php_tunnel_url
@@ -4292,7 +4292,7 @@ class Session(object):
 
                 data = resp.text()
 
-                LOG.debug("Antwort auf %s: %s" % (action, data))
+                LOG.debug("Antwort auf %s: %s" % (str(action), str(data)))
 
                 if data == "":
                     LOG.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
@@ -4789,7 +4789,7 @@ def init_vars():
         pending_configuration_files = False
         pending_debug_file = False
         pending_language_file = False
-        pending_loaders = 0
+        pendingdo_loaders = 0
         player_desc = ""
         playerTowerLevel = 0
         pollLock = False
@@ -4953,12 +4953,12 @@ def init_vars():
         texts.append("")
 
     # setup image loading timeout event
-    when_loaded_fn = list()
-    when_loaded_active = False
-    when_loaded_timeout = Timer(1000 * image_timeout, 1)
-    when_loaded_timeout.add_event_listener(
+    whendo_loaded_fn = list()
+    whendo_loaded_active = False
+    whendo_loaded_timeout = Timer(1000 * image_timeout, 1)
+    whendo_loaded_timeout.add_event_listener(
         TimerEvent.TIMER,
-        when_loaded_timeout_event
+        whendo_loaded_timeout_event
     )
 
     # timer event to generate Ticks
@@ -5085,7 +5085,7 @@ def configure(session):
     serverconfig = session.load_configuration_file()
 
 
-    when_loaded(do_load_language_file)
+    whendo_loaded(dodo_load_language_file)
 
 
 #------------------------------------------------------------------------------
@@ -6259,7 +6259,7 @@ def request_login(evt=None):
     )
 
 
-def request_logout(evt=None, keep_data=False):
+def request_logout(keep_data=False):
     '''
         prepare logout action
     '''
@@ -6299,28 +6299,28 @@ def request_logout(evt=None, keep_data=False):
         show_login_screen()
 
 
-def request_cancel_arbeiten(evt=None):
+def request_cancel_arbeiten():
     '''
         cancel work
     '''
     send_action(ACT['ARBEIT']['CANCEL'])
 
 
-def request_arbeiten(evt=None):
+def request_arbeiten():
     '''
         start working
     '''
     send_action(ACT['ARBEIT'], get_slider_value(SLDR['ARBEITEN']))
 
 
-def request_create_character(evt=None):
+def request_create_character():
     '''
         TODO: obsolete?
     '''
     pass
 
 
-def request_change_face(evt=None):
+def request_change_face():
     '''
         prepare to change profile picture
     '''
@@ -6364,7 +6364,7 @@ def request_change_face(evt=None):
         )
 
 
-def request_char_screen(evt=None):
+def request_char_screen():
     '''
         setup and request character screen
     '''
@@ -6372,7 +6372,7 @@ def request_char_screen(evt=None):
     send_action(ACT['SCREEN']['CHAR'])
 
 
-def request_city_screen(evt=None):
+def request_city_screen():
     '''
         TODO: obsolete?
     '''
@@ -6599,7 +6599,7 @@ def show_screen_album(){
         load((ALBUM_CAT_OUT + i));
         i = (i + 1);
     };
-    when_loaded(DoShowScreenAlbum);
+    whendo_loaded(DoShowScreenAlbum);
 }
 
 def show_tower_screen(towerData:Array){
@@ -6670,7 +6670,7 @@ def show_tower_screen(towerData:Array){
     if (towerSG[TSG_TOWER_LEVEL] < 100){
         load(((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399));
     };
-    when_loaded(DoShowTowerScreen);
+    whendo_loaded(DoShowTowerScreen);
 }
 
 def show_demo_screen(){
@@ -6686,7 +6686,7 @@ def show_demo_screen(){
         remove(IF_STATS, IF_LOGOUT);
     };
     load(SCREEN_DEMO);
-    when_loaded(DoShowDemoScreen);
+    whendo_loaded(DoShowDemoScreen);
 }
 
 def show_option_screen(evt:Event=None){
@@ -6776,7 +6776,7 @@ def show_option_screen(evt:Event=None){
     load(PASSWORD_SMILEY_SAD);
     load(PASSWORD_SMILEY_NEUTRAL);
     load(PASSWORD_SMILEY_HAPPY);
-    when_loaded(DoShowOptionScreen);
+    whendo_loaded(DoShowOptionScreen);
 }
 
 def show_fight_screen(
@@ -9059,7 +9059,7 @@ def show_fight_screen(
             };
         };
     };
-    when_loaded(DoShowFightScreen);
+    whendo_loaded(DoShowFightScreen);
 }
 
 def show_email_nag_screen(valMode:int=-1){
@@ -9099,7 +9099,7 @@ def show_email_nag_screen(valMode:int=-1){
         };
     };
     load(SCREEN_EMAIL_NAG);
-    when_loaded(doShowEmailNagScreen);
+    whendo_loaded(doShowEmailNagScreen);
 }
 
 def show_disconnect_screen(){
@@ -9197,7 +9197,7 @@ def show_quest_screen(evt:Event=None){
     if (text_dir == "right"){
         set_btn_text(QUEST_SKIP, ("~P " + texts[TXT_SKIP_FIGHT]));
     };
-    when_loaded(DoShowQuestScreen);
+    whendo_loaded(DoShowQuestScreen);
 }
 
 def show_taverne_screen(evt:Event=None){
@@ -9339,7 +9339,7 @@ def show_taverne_screen(evt:Event=None){
     if (GetAdvent() != 0){
         load(((TAVERN_ADVENT + GetAdvent()) - 1));
     };
-    when_loaded(DoShowTaverneScreen);
+    whendo_loaded(DoShowTaverneScreen);
 }
 
 def show_stall_screen(evt:Event=None){
@@ -9424,7 +9424,7 @@ def show_stall_screen(evt:Event=None){
             i = (i + 1);
         };
     };
-    when_loaded(DoShowStall);
+    whendo_loaded(DoShowStall);
 }
 
 def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
@@ -9543,7 +9543,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
             load(SCREEN_ARENA_DAY);
             break;
     };
-    when_loaded(DoShowArenaScreen);
+    whendo_loaded(DoShowArenaScreen);
 }
 
 def show_hall_screen(evt:Event=None):void{
@@ -9563,7 +9563,7 @@ def show_hall_screen(evt:Event=None):void{
         add(SCREEN_HALLE);
     };
     load(SCREEN_HALLE);
-    when_loaded(DoShowHallScreen);
+    whendo_loaded(DoShowHallScreen);
 }
 
 def show_dealer_screen(evt:Event=None, loadOnly:Boolean=False){
@@ -9599,7 +9599,7 @@ def show_dealer_screen(evt:Event=None, loadOnly:Boolean=False){
     actor[SCR_DEALER_BG].mouse_enabled = True;
     load(SCREEN_DEALER);
     if (!loadOnly){
-        when_loaded(DoShowDealerScreen);
+        whendo_loaded(DoShowDealerScreen);
     };
 }
 
@@ -9621,7 +9621,7 @@ def show_screen_gilde_gruenden(evt:Event=None){
         add(SCREEN_GILDE_GRUENDEN);
     };
     load(SCREEN_GILDE_GRUENDEN);
-    when_loaded(DoShowScreenGilden);
+    whendo_loaded(DoShowScreenGilden);
 }
 
 def show_city_screen(evt:Event=None):void{
@@ -9704,7 +9704,7 @@ def show_city_screen(evt:Event=None):void{
     load(CITY_ESEL2);
     load(CITY_SANDWICH1);
     load(CITY_SANDWICH2);
-    when_loaded(doShowCityScreen);
+    whendo_loaded(doShowCityScreen);
 }
 
 def show_post_screen(par:Array=None){
@@ -10103,7 +10103,7 @@ def show_post_screen(par:Array=None){
         actor[POST_LIST].addChild(tmpLbl);
     };
     load(SCREEN_POST);
-    when_loaded(DoShowPost);
+    whendo_loaded(DoShowPost);
 }
 
 def show_build_character_screen(evt:Event=None):void{
@@ -10604,7 +10604,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
         load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
-    when_loaded(DoShowCharacterScreen);
+    whendo_loaded(DoShowCharacterScreen);
 }
 
 def ShowPlayerScreen(
@@ -11014,7 +11014,7 @@ def ShowPlayerScreen(
         load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
-    when_loaded(DoShowPlayerScreen);
+    whendo_loaded(DoShowPlayerScreen);
 }
 
 def show_screen_gilden(
@@ -13484,7 +13484,7 @@ def show_screen_gilden(
     load(GILDE_SET_MASTER);
     load(GILDE_RANK, (GILDE_RANK + 1), (GILDE_RANK + 2));
     load(GILDE_DIALOG_INVITE, GILDE_DIALOG_KICK, GILDE_DIALOG_MASTER);
-    when_loaded(DoShowScreenGilden);
+    whendo_loaded(DoShowScreenGilden);
 }
 
 def show_work_success_screen(evt:Event=None):void{
@@ -13576,7 +13576,7 @@ def show_work_screen(evt:Event=None):void{
         add(SCREEN_ARBEITEN_WAIT);
         SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
         SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
-        when_loaded(DoShowWorking);
+        whendo_loaded(DoShowWorking);
     } else {
         if (savegame[SG_ACTION_STATUS] == 0){
             add(SCREEN_ARBEITEN);
@@ -13989,7 +13989,7 @@ def show_main_quests_screen(NextEnemies:Array){
         load((MQS_BUTTON + i));
         i = (i + 1);
     };
-    when_loaded(DoShowMainQuestsScreen);
+    whendo_loaded(DoShowMainQuestsScreen);
 }
 
 def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
@@ -14170,7 +14170,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     if (Enemy >= 0){
         load((OPPMONSTER + Enemy));
     };
-    when_loaded(DoShowMainQuestScreen);
+    whendo_loaded(DoShowMainQuestScreen);
 }
 
 def show_toilet(
@@ -14293,7 +14293,7 @@ def show_toilet(
     };
     load(SCREEN_TOILET);
     show_character_screen();
-    when_loaded(doShowToilet);
+    whendo_loaded(doShowToilet);
 }
 
 def show_witch(
@@ -14455,7 +14455,7 @@ def show_witch(
     };
     load(SCREEN_WITCH);
     show_character_screen(None, True);
-    when_loaded(doShowWitch);
+    whendo_loaded(doShowWitch);
 }
 
 def Showalbum_content(evt:Event=None){
@@ -15237,7 +15237,7 @@ def show_bet_result(won:Boolean){
     if (won){
         load(HUTKUGEL);
     };
-    when_loaded(doShowBetResults);
+    whendo_loaded(doShowBetResults);
 }
 
 def ShowSignupScreen(evt:Event=None):void{
@@ -16359,7 +16359,7 @@ def do_act_schmiede():
         remove(IMG['SHAKES']['DAY'])
 
 
-def install_hall_popup(evt):
+def install_hall_popup():
     '''
         setup popup object for hall
     '''
@@ -17972,13 +17972,13 @@ def action_handler(event):
             else:
                 special_action = 0
 
-            LOG.info("Magic shop says special action is", special_action)
+            LOG.info("Magic shop says special action is" + special_action)
             if on_stage(IMG['SCR']['FIDGET_BG']):
                 display_inventory()
             else:
                 load(IMG['SCR']['FIDGET_BG'])
                 show_character_screen()
-                when_loaded(do_act_zauberladen)
+                whendo_loaded(do_act_zauberladen)
             break
 
         if case(ACT['SCREEN']['SCHMIEDE']):
@@ -17987,13 +17987,13 @@ def action_handler(event):
                 special_action = par[1]
             else:
                 special_action = 0
-            LOG.info("Weapon shop says special action is", special_action)
+            LOG.info("Weapon shop says special action is" + special_action)
             if on_stage(IMG['SCR']['SHAKES_BG']):
                 display_inventory()
             else:
                 load(IMG['SCR']['SHAKES_BG'])
                 show_character_screen()
-                when_loaded(do_act_schmiede)
+                whendo_loaded(do_act_schmiede)
             break
 
         if case(RESP['UPDATE']['CHECK']):
@@ -18361,7 +18361,12 @@ def set_title_bar(msg=""):
     ExternalInterface.call("set_title", msg)
 
 
-def swap_words(old_str):
+def swap_words(tmp_str):
+    '''
+        some oscure string manipulation
+
+        TODO: hat does this do?
+    '''
     if text_dir == "right":
         tmp_arr = list()
         tmp_str2 = ""
@@ -18426,6 +18431,9 @@ def swap_words(old_str):
 
 
 def superior_font(font1, font2):
+    '''
+        get higher rated font from hardcoded ranking
+    '''
     font_ranking = [
         "Gorilla Milkshake", "Komika Text", "Verdana", "Arial Narrow"
     ]
@@ -18455,6 +18463,9 @@ def superior_font(font1, font2):
 
 
 def define_bunch(bunch_id, *args):
+    '''
+        define group of actors
+    '''
     actor[bunch_id] = list()
 
     for arg in args:
@@ -18462,16 +18473,14 @@ def define_bunch(bunch_id, *args):
 
 
 def add_bunch(bunch_id, *args):
+    '''
+        add actors to goup
+    '''
     for arg in args:
         actor[bunch_id].append(arg)
 
 
-def set_volume(vol):
-    with (stObject):
-        stObject.volume = vol
-
-
-def define_snd(actor_id, url, pre_load=False):
+def define_snd(actor_id, url, predo_load=False):
     if url.lower()[0: 4] == "http:":
         full_url = url
     else:
@@ -18481,22 +18490,28 @@ def define_snd(actor_id, url, pre_load=False):
     actorSoundLoader[actor_id] = SoundLoaderContext()
     actorURL[actor_id] = full_url
     actorLoaded[actor_id] = 0
-    if pre_load:
+    if predo_load:
         load(actor_id)
 
 
 def define_btn(
-    actor_id, caption, handler, btnClass,
+    actor_id, caption, handler, btn_class,
     pos_x=0, pos_y=0, scale_x=1, scale_y=1, vis=True
 ):
-    def playClickSound(evt):
+    '''
+        define button actor
+    '''
+    def play_click_sound(evt):
+        '''
+            button click sound
+        '''
         play(SND['CLICK'])
 
-    actor[i] = btnClass()
+    actor[i] = btn_class()
 
     with actor[actor_id]:
-        add_event_listener(MouseEvent.MOUSE_DOWN, playClickSound)
-        if btnClass == btnClassPlus:
+        add_event_listener(MouseEvent.MOUSE_DOWN, play_click_sound)
+        if btn_class == btn_classPlus:
             add_event_listener(MouseEvent.MOUSE_DOWN, handler)
         else:
             add_event_listener(MouseEvent.CLICK, handler)
@@ -18646,7 +18661,7 @@ var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
         x = int(((((obj.getChildAt(0).width / 2) - (textWidth / 2)) + offs) + aoffsx));
         y = int(((((obj.getChildAt(0).height / 2) - (textHeight / 2)) + offsy) + aoffsy));
         if (imgIndex != -1){
-            when_loaded(DoAddBtnImage);
+            whendo_loaded(DoAddBtnImage);
         };
     };
 };
@@ -18661,25 +18676,25 @@ def set_btn_text(actor_id:int, caption:String){
     var offs:* = 0;
     offsy = 0;
     var specialFontSize:* = 0;
-    if ((actor[i] is btnClassBasic)){
+    if ((actor[i] is btn_classBasic)){
         offs = -2;
     };
-    if ((actor[i] is btnClassBasic)){
+    if ((actor[i] is btn_classBasic)){
         offsy = 1;
     };
-    if ((actor[i] is btnClassInterface)){
+    if ((actor[i] is btn_classInterface)){
         offs = 5;
     };
-    if ((actor[i] is btnClassInterface)){
+    if ((actor[i] is btn_classInterface)){
         offsy = 0;
     };
-    if ((actor[i] is btnClassLOGin)){
+    if ((actor[i] is btn_classLOGin)){
         offs = -2;
     };
-    if ((actor[i] is btnClassLOGin)){
+    if ((actor[i] is btn_classLOGin)){
         offsy = 1;
     };
-    if ((actor[i] is btnClassBack)){
+    if ((actor[i] is btn_classBack)){
         offsy = 50;
     };
     if (gameFont == "Verdana"){
@@ -18751,7 +18766,7 @@ def language_file_error(evt):
     )
 
 
-def language_file_loaded(evt):
+def language_filedo_loaded(evt):
     '''
         success handler for I18N file loader
     '''
@@ -18801,7 +18816,7 @@ def language_file_loaded(evt):
         load_original_language_file()
 
     for i in range(TXT['COUNTRY_NAMES'], TXT['COUNTRY_NAMES'] + 100):
-        if (texts[i]):
+        if texts[i]:
             countryName[texts[i].split("=")[0]] = texts[i].split("=")[1]
         else:
             break
@@ -18830,11 +18845,11 @@ def load_language_file():
             str(Math.random())
         )))
 
-    pending_loaders += 1
+    pendingdo_loaders += 1
     pending_language_file = True
 
 
-def original_language_file_loaded(evt):
+def original_language_filedo_loaded(evt):
     '''
         success on loading original I18N file
     '''
@@ -18886,11 +18901,11 @@ def load_original_language_file():
             lang_url + "lang/sfgame_" + original_lang_code + ".txt"
         ))
 
-    pending_loaders += 1
+    pendingdo_loaders += 1
     pending_language_file = True
 
 
-def configuration_file_loaded(evt):
+def configuration_filedo_loaded(evt):
     '''
         parse configuration file
     '''
@@ -19219,9 +19234,9 @@ def configuration_file_loaded(evt):
             so.data.cid = param_cid
             so.flush()
         elif so.data.cid:
-            if ((so.data.cid.find("_") == -1) and (len(so.data.cid) == 15)):
+            if (so.data.cid.find("_") == -1) and (len(so.data.cid) == 15):
                 param_cid = so.data.cid + "_r"
-        elif (not param_no_cid_save):
+        elif not param_no_cid_save:
             param_cid = so.data.cid
 
         had_account = so.data.had_account
@@ -19286,7 +19301,7 @@ def configuration_file_loaded(evt):
         else:
             snd_url_index = int(Math.random() * len(snd_url))
 
-        if (len(img_url) == len(snd_url)):
+        if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
 
         so.data.img_url_index = img_url_index + 1
@@ -19308,7 +19323,10 @@ def strip_slashes(source):
     return source.replace("http://", "").replace("/", "")
 
 
-def do_load_language_file():
+def dodo_load_language_file():
+    '''
+        load language file
+    '''
     Security.loadPolicyFile(img_url[img_url_index] + "crossdomain.xml")
     Security.loadPolicyFile(snd_url[snd_url_index] + "crossdomain.xml")
     Security.loadPolicyFile(lang_url + "crossdomain.xml")
@@ -19320,10 +19338,13 @@ def do_load_language_file():
         server
     )
     load_language_file()
-    when_loaded(build_interface)
+    whendo_loaded(build_interface)
 
 
-def _Load(actor_id):
+def do_load(actor_id):
+    '''
+        load stuff for actor
+    '''
     if actorLoaded[actor_id] == 0:
         if actor[actor_id] is Sound:
             Security.allowDomain(actorURL[actor_id])
@@ -19358,21 +19379,28 @@ def _Load(actor_id):
 
 
 def load(*actor_ids):
+    '''
+        load stuff for actor
+        (wrapper for do_load)
+    '''
     for actid in actor_ids:
         if actor[actid] is list:
             for i_bunch in actor[actid]:
                 load(i_bunch)
             return
-        _load(actid)
+        do_load(actid)
 
 
-def when_loaded(fn=None):
+def whendo_loaded(fn=None):
+    '''
+        async loading finished
+    '''
     pending = False
     if fn is Function:
-        when_loaded_fn[len(when_loaded_fn)] = fn
-        when_loaded_active = True
-        when_loaded_timeout.stop()
-        when_loaded_timeout.start()
+        whendo_loaded_fn[len(whendo_loaded_fn)] = fn
+        whendo_loaded_active = True
+        whendo_loaded_timeout.stop()
+        whendo_loaded_timeout.start()
 
     for i in range(len(actor)):
         if actorLoaded[i] == 1:
@@ -19389,20 +19417,23 @@ def when_loaded(fn=None):
         pending = True
 
     if not pending:
-        if when_loaded_active:
-            when_loaded_timeout.stop()
-            when_loaded_active = False
-            when_loaded_fnTemp = when_loaded_fn
-            when_loaded_fn = list()
+        if whendo_loaded_active:
+            whendo_loaded_timeout.stop()
+            whendo_loaded_active = False
+            whendo_loaded_fnTemp = whendo_loaded_fn
+            whendo_loaded_fn = list()
 
-            for i in range(len(when_loaded_fnTemp)):
-                tmpFn = when_loaded_fnTemp[i]
-                when_loaded_fnTemp[i] = Function()
+            for i in range(len(whendo_loaded_fnTemp)):
+                tmpFn = whendo_loaded_fnTemp[i]
+                whendo_loaded_fnTemp[i] = Function()
                 tmpFn()
 
 
-def when_loaded_timeout_event(evt):
-    when_loaded_timeout.stop()
+def whendo_loaded_timeout_event():
+    '''
+        loading stuff timeout
+    '''
+    whendo_loaded_timeout.stop()
 
     for i in range(len(actor)):
         if actor[i] is Loader:
@@ -19417,7 +19448,7 @@ def when_loaded_timeout_event(evt):
                 )
                 actorLoaded[i] = 0
 
-    when_loaded()
+    whendo_loaded()
     to_error_count += 1
 
     if to_error_count == 10:
@@ -19433,7 +19464,7 @@ def when_loaded_timeout_event(evt):
             while snd_url_index == old_snd_url_index:
                 snd_url_index = int(Math.random() * len(snd_url))
 
-        if (len(img_url) == len(snd_url)):
+        if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
 
         so.data.img_url_index = img_url_index + 1
@@ -19441,7 +19472,10 @@ def when_loaded_timeout_event(evt):
         so.flush()
 
 
-def loader_complete(evt=None):
+def loader_complete():
+    '''
+        loading success
+    '''
     if evt.target is LoaderInfo:
         actorLoaded[GetActorID(evt.target.loader)] = 2
         Security.allowDomain(evt.target.loaderURL)
@@ -19449,10 +19483,13 @@ def loader_complete(evt=None):
             force_smoothing = True
             allow_smoothing = True
             smoothing = True
-    when_loaded()
+    whendo_loaded()
 
 
-def loader_error(evt=None):
+def loader_error():
+    '''
+        loading failed
+    '''
     if evt.target is LoaderInfo:
         for i in range(len(actor)):
             if actor[i] is Loader:
@@ -19467,7 +19504,7 @@ def loader_error(evt=None):
                     )
                     actorLoaded[i] = 0
 
-    when_loaded()
+    whendo_loaded()
     ioErrorCount += 1
 
     if ioErrorCount == 10:
@@ -19483,7 +19520,7 @@ def loader_error(evt=None):
             while snd_url_index == old_snd_url_index:
                 snd_url_index = int(Math.random() * len(snd_url))
 
-        if (len(img_url) == len(snd_url)):
+        if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
 
         so.data.img_url_index = img_url_index + 1
@@ -19491,31 +19528,31 @@ def loader_error(evt=None):
         so.flush()
 
 
-def pixel_success(evt):
+def pixel_success():
     '''
         TODO: What does this do?
     '''
-    pixel_data = pixel_loader.data
+    pixel_data = pixeldo_loader.data
     if (
         (pixel_data.lower().substr(0, 7) == "http://")
         or (pixel_data.lower().substr(0, 8) == "https://")
     ):
         ExternalInterface.call("loadpixel", pixel_data)
 
-    # pixel_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    # pixel_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    # pixel_loader.removeEventListener(
+    # pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
+    # pixeldo_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+    # pixeldo_loader.removeEventListener(
     #     SecurityErrorEvent.SECURITY_ERROR, pixel_failed
     # )
 
 
-def pixel_failed(evt):
+def pixel_failed():
     '''
         TODO: Obsolete?
     '''
-    #pixel_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    #pixel_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    #pixel_loader.removeEventListener(
+    #pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
+    #pixeldo_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
+    #pixeldo_loader.removeEventListener(
     #    SecurityErrorEvent.SECURITY_ERROR, pixel_failed
     #)
     pass
@@ -19527,7 +19564,7 @@ def load_tracking_pixel(url=''):
     '''
     req = null
     variables = null
-    pixel_loader = null
+    pixeldo_loader = null
     pixel_success = null
     pixel_failed = null
     url = url
@@ -19535,7 +19572,7 @@ def load_tracking_pixel(url=''):
     LOG.debug("Tracking Pixel Load:" + url)
 
     # TODO: set via requests params
-    if (url.find("?") == -1):
+    if url.find("?") == -1:
         url = url + "?random="
     else:
         url = url + "&random="
@@ -19563,14 +19600,14 @@ def load_tracking_pixel(url=''):
         navigate_to_url(req, "_self")
     else:
         if param_internal_pixel:
-            # pixel_loader = new URLLoader()
-            # pixel_loader.add_event_listener(Event.COMPLETE, pixel_success)
-            # pixel_loader.add_event_listener(
+            # pixeldo_loader = new URLLoader()
+            # pixeldo_loader.add_event_listener(Event.COMPLETE, pixel_success)
+            # pixeldo_loader.add_event_listener(
             #    IOErrorEvent.IO_ERROR, pixel_failed)
-            # pixel_loader.add_event_listener(
+            # pixeldo_loader.add_event_listener(
             #   SecurityErrorEvent.SECURITY_ERROR, pixel_failed
             # )
-            # pixel_loader.load(new URLRequest(url))
+            # pixeldo_loader.load(new URLRequest(url))
             pass
         else:
             ExternalInterface.call("loadpixel", url)
@@ -20062,7 +20099,7 @@ def load_tracking_pixel(url=''):
                 actor_id,
                 texts[txtID],
                 InterfaceBtnHandler,
-                btnClassInterface,
+                btn_classInterface,
                 IF_X,
                 ((IF_Y + (IF_1 * iPosi++)) + yOffs)
             );
@@ -21470,7 +21507,7 @@ def load_tracking_pixel(url=''):
                 add(SCREEN_INVITE);
             };
             load(SCREEN_INVITE);
-            when_loaded(ShowInviteScreen);
+            whendo_loaded(ShowInviteScreen);
         };
         var BoostBtnDownHandler:* = function (evt:Event){
             var ClickCount:* = 0;
@@ -23581,7 +23618,7 @@ def load_tracking_pixel(url=''):
             load(SCREEN_HUTMANN);
             load(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTBECHER_1_HOVER);
             actor[LBL_HUTMANN_GOLDBET2].text = GetSpendAmount();
-            when_loaded(doShowHutmann);
+            whendo_loaded(doShowHutmann);
         };
         BuyBeer = function (evt:Event=None){
             send_action(ACT_BUY_BEER);
@@ -24666,9 +24703,9 @@ def load_tracking_pixel(url=''):
             wordWrap = True;
         };
         define_bunch(FUCK, SHP_FUCK_BLACK_SQUARE, CB_FUCK_UNCHECKED, LBL_FUCK);
-        define_btn(IF_LOGIN, texts[TXT_LOGIN], RequestLOGin, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveYButton2));
-        define_btn(IF_SIGNUP, texts[TXT_SIGNUP], request_signup, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_2_Y) + AIRRelMoveYButton));
-        define_btn(IF_REQUEST_PASSWORD, texts[TXT_REQUEST_PASSWORD], RequestPassword, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveY));
+        define_btn(IF_LOGIN, texts[TXT_LOGIN], RequestLOGin, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveYButton2));
+        define_btn(IF_SIGNUP, texts[TXT_SIGNUP], request_signup, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_2_Y) + AIRRelMoveYButton));
+        define_btn(IF_REQUEST_PASSWORD, texts[TXT_REQUEST_PASSWORD], RequestPassword, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveY));
         DefineLbl(LBL['ERROR'], "", IF_ERROR_X, IF_ERROR_Y, FontFormat_Error);
         AddFilter(LBL['ERROR'], Filter_Shadow);
         define_bunch(WINDOW_LOGIN, BLACK_SQUARE, IF_WINDOW, LBL_WINDOW_TITLE, IF_LOGIN, LBL_NAME, INP['NAME']);
@@ -24691,9 +24728,9 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_SCREEN_TITLE, texts[TXT_CREATE_CHARACTER], SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_SCREEN_TITLE, Filter_Shadow);
         actor[LBL_SCREEN_TITLE].x = (SCREEN_TITLE_X - int((actor[LBL_SCREEN_TITLE].textWidth / 2)));
-        define_btn(RANDOM, texts[TXT_RANDOM], RandomizeCharImage, btnClassLOGin, SCREEN_RANDOM_BUTTON_X, SCREEN_RANDOM_BUTTON_Y);
-        define_btn(CREATE_CHARACTER, texts[TXT_CREATE_CHARACTER], ShowSignupScreen, btnClassBasic, SCR_BUILDCHAR_CREATE_X, SCR_BUILDCHAR_CREATE_Y);
-        define_btn(MODIFY_CHARACTER, texts[TXT_MODIFY_CHARACTER], RequestChangeFace, btnClassBasic, SCR_BUILDCHAR_CREATE_X, SCR_BUILDCHAR_CREATE_Y);
+        define_btn(RANDOM, texts[TXT_RANDOM], RandomizeCharImage, btn_classLOGin, SCREEN_RANDOM_BUTTON_X, SCREEN_RANDOM_BUTTON_Y);
+        define_btn(CREATE_CHARACTER, texts[TXT_CREATE_CHARACTER], ShowSignupScreen, btn_classBasic, SCR_BUILDCHAR_CREATE_X, SCR_BUILDCHAR_CREATE_Y);
+        define_btn(MODIFY_CHARACTER, texts[TXT_MODIFY_CHARACTER], RequestChangeFace, btn_classBasic, SCR_BUILDCHAR_CREATE_X, SCR_BUILDCHAR_CREATE_Y);
         DefineLbl(LBL_CREATE_RACE, "", CREATE_RACE_X, CREATE_RACE_Y, FontFormat_Default);
         DefineLbl(LBL_CREATE_RACE_DESC, "", CREATE_RACE_X, 0, FontFormat_DefaultLeft);
         _local2 = actor[LBL_CREATE_RACE_DESC];
@@ -24758,7 +24795,7 @@ def load_tracking_pixel(url=''):
         define_bunch(VOLK_BTNS_F);
         define_bunch(VOLK_BTNS_ALL);
         DefineImg(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", True);
-        when_loaded(CloneMarker);
+        whendo_loaded(CloneMarker);
         i = 0;
         while (i <= 7) {
             pos_x = (SCR_BUILDCHAR_VOLK_X + ((i)<4) ? 0 : SCR_BUILDCHAR_VOLK_X);
@@ -24810,26 +24847,26 @@ def load_tracking_pixel(url=''):
             DefineImg((CHARBACKGROUND2 + i), "", False, ((SCREEN_TITLE_X - 150) + CHARX), (SCREEN_TITLE_Y + CHARY));
             i = (i + 1);
         };
-        define_btn(MOUTH_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(MOUTH_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(HAIR_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(HAIR_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(BROWS_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(BROWS_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(EYES_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(EYES_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(NOSE_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(NOSE_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(EARS_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(EARS_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(BEARD_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(BEARD_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(SPECIAL_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(SPECIAL_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(SPECIAL2_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(SPECIAL2_PLUS, "", ModifyCharacter, btnClassArrowRight);
-        define_btn(COLOR_MINUS, "", ModifyCharacter, btnClassArrowLeft);
-        define_btn(COLOR_PLUS, "", ModifyCharacter, btnClassArrowRight);
+        define_btn(MOUTH_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(MOUTH_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(HAIR_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(HAIR_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(BROWS_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(BROWS_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(EYES_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(EYES_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(NOSE_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(NOSE_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(EARS_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(EARS_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(BEARD_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(BEARD_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(SPECIAL_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(SPECIAL_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(SPECIAL2_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(SPECIAL2_PLUS, "", ModifyCharacter, btn_classArrowRight);
+        define_btn(COLOR_MINUS, "", ModifyCharacter, btn_classArrowLeft);
+        define_btn(COLOR_PLUS, "", ModifyCharacter, btn_classArrowRight);
         i = 0;
         while (i < 10) {
             DefineLbl((LBL_MOUTH + i), (((i == 9)) ? texts[TXT_COLOR] : ((i)<7) ? texts[(TXT_MOUTH + i)] : texts[((TXT_SPECIAL + i) - 7)]), 0, 0, FontFormat_Default);
@@ -25007,11 +25044,11 @@ def load_tracking_pixel(url=''):
         ThisOno = LastOno;
         OnoPopupTimer = new Timer(50);
         PopupDir = False;
-        define_btn(IF_EXIT, "", ExitScreen, btnClassExitScreen, IF_EXIT_X, IF_EXIT_Y);
+        define_btn(IF_EXIT, "", ExitScreen, btn_classExitScreen, IF_EXIT_X, IF_EXIT_Y);
         DefineImg(SCR_HALLE_BG, "res/gfx/scr/hall/heldenhalle.jpg", False, 280, 100);
-        define_btn(HALLE_UP, "", RuhmesHalleScroll, btnClassArrowUp, HALLE_UPDOWN_X, HALLE_UP_Y);
-        define_btn(HALLE_DOWN, "", RuhmesHalleScroll, btnClassArrowDown, HALLE_UPDOWN_X, HALLE_DOWN_Y);
-        define_btn(HALLE_GOTO, texts[TXT_HALLE_GOTO], RuhmesHalleScroll, btnClassLOGin, HALLE_GOTO_X, HALLE_GOTO_Y);
+        define_btn(HALLE_UP, "", RuhmesHalleScroll, btn_classArrowUp, HALLE_UPDOWN_X, HALLE_UP_Y);
+        define_btn(HALLE_DOWN, "", RuhmesHalleScroll, btn_classArrowDown, HALLE_UPDOWN_X, HALLE_DOWN_Y);
+        define_btn(HALLE_GOTO, texts[TXT_HALLE_GOTO], RuhmesHalleScroll, btn_classLOGin, HALLE_GOTO_X, HALLE_GOTO_Y);
         DefineFromClass(INP_HALLE_GOTO, text_input1, HALLE_INP_GOTO_X, HALLE_INP_GOTO_Y, 2, "name");
         actor[INP_HALLE_GOTO].add_event_listener(KeyboardEvent.KEY_DOWN, RuhmesHalleScroll);
         actor[INP_HALLE_GOTO].add_event_listener(MouseEvent.CLICK, HalleSuchClick);
@@ -25069,9 +25106,9 @@ def load_tracking_pixel(url=''):
         DefineCnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X), (IF_WIN_Y + ARBEITEN_BAR_Y));
         DefineCnt(SCR_ARBEITEN_FILL, (IF_WIN_X + ARBEITEN_FILL_X), (IF_WIN_Y + ARBEITEN_FILL_Y));
         DefineSlider(SLDR['ARBEITEN'], 10, ARBEITEN_SLIDER_X, ARBEITEN_SLIDER_Y, ArbeitenSliderChange);
-        define_btn(SCR_ARBEITEN_OK, texts[TXT_OK], request_arbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
-        define_btn(SCR_ARBEITEN_CLOSE, texts[TXT_OK], ShowCityScreen, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
-        define_btn(SCR_ARBEITEN_CANCEL, texts[TXT_ABBRECHEN], request_cancel_arbeiten, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
+        define_btn(SCR_ARBEITEN_OK, texts[TXT_OK], request_arbeiten, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
+        define_btn(SCR_ARBEITEN_CLOSE, texts[TXT_OK], ShowCityScreen, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
+        define_btn(SCR_ARBEITEN_CANCEL, texts[TXT_ABBRECHEN], request_cancel_arbeiten, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + ARBEITEN_Y));
         define_bunch(SCREEN_ARBEITEN, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SLDR['ARBEITEN'], LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_OK, IF_EXIT);
         define_bunch(SCREEN_ARBEITEN_WAIT, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, SCR_ARBEITEN_BAR, SCR_ARBEITEN_FILL, LBL_SCR_ARBEITEN_TIME, SCR_ARBEITEN_CANCEL, IF_EXIT);
         define_bunch(SCREEN_ARBEITEN_SUCCESS, CA_SCR_ARBEITEN_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT, LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_CLOSE, IF_EXIT);
@@ -25117,8 +25154,8 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_INVITE_TEXT3, texts[TXT_INVITESUBJECT], 0, ((actor[INP_CHAR_INVITE2].y + 10) + AIRRelMoveY), FontFormat_Default);
         AddFilter(LBL_INVITE_TEXT3, Filter_Shadow);
         actor[LBL_INVITE_TEXT3].x = ((actor[INP_CHAR_INVITE2].x - actor[LBL_INVITE_TEXT3].width) - 5);
-        define_btn(SCR_INVITE_OK, texts[TXT_OK], SendPlayerInvite, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + ARBEITEN_Y) + 15) + AIRRelMoveY));
-        define_btn(INVITE_SUCCESS_OK, texts[TXT_OK], RemoveInviteWindow, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + ARBEITEN_Y) + 15) + AIRRelMoveY));
+        define_btn(SCR_INVITE_OK, texts[TXT_OK], SendPlayerInvite, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + ARBEITEN_Y) + 15) + AIRRelMoveY));
+        define_btn(INVITE_SUCCESS_OK, texts[TXT_OK], RemoveInviteWindow, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (((IF_WIN_Y + ARBEITEN_Y) + 15) + AIRRelMoveY));
         define_bunch(SCREEN_INVITE, CA_SCR_INVITE_BLOCKCITY, IF_WINDOW, LBL_WINDOW_TITLE, LBL_INVITE_TEXT, INP_CHAR_INVITE, LBL_INVITE_TEXT2, INP_CHAR_INVITE2, LBL_INVITE_TEXT3, SCR_INVITE_OK, IF_EXIT, LBL_INVITE_SUCCESS, INVITE_SUCCESS_OK);
         define_bunch(INVITE_INPUTDIALOGUE, LBL_INVITE_TEXT, INP_CHAR_INVITE, LBL_INVITE_TEXT2, INP_CHAR_INVITE2, LBL_INVITE_TEXT3, SCR_INVITE_OK);
         define_bunch(INVITE_SUCCESS, LBL_INVITE_SUCCESS, INVITE_SUCCESS_OK);
@@ -25170,8 +25207,8 @@ def load_tracking_pixel(url=''):
             add_bunch(SCREEN_ALBUM, (ALBUM_CAT_OUT + i), (ALBUM_CAT_IN + i));
             i = (i + 1);
         };
-        define_btn(ALBUM_PREV, "", Showalbum_content, btnClassArrowLeft, 340, 715);
-        define_btn(ALBUM_NEXT, "", Showalbum_content, btnClassArrowRight, 1180, 715);
+        define_btn(ALBUM_PREV, "", Showalbum_content, btn_classArrowLeft, 340, 715);
+        define_btn(ALBUM_NEXT, "", Showalbum_content, btn_classArrowRight, 1180, 715);
         add_bunch(SCREEN_ALBUM, ALBUM_PREV, ALBUM_NEXT);
         DefineImg(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg", False, 280, 100);
         DefineImg(SCR_CHAR_BG_GOLDEN, "res/gfx/scr/char/gold_bg.jpg", False, 280, 100);
@@ -25198,8 +25235,8 @@ def load_tracking_pixel(url=''):
             useHandCursor = True;
             buttonMode = True;
         };
-        define_btn(PREV_PLAYER, "", PrevPlayer, btnClassArrowLeft, (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
-        define_btn(NEXT_PLAYER, "", NextPlayer, btnClassArrowRight, (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
+        define_btn(PREV_PLAYER, "", PrevPlayer, btn_classArrowLeft, (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
+        define_btn(NEXT_PLAYER, "", NextPlayer, btn_classArrowRight, (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
         DefineFromClass(SHP_BLACK_GILDEEHRE, black_square_neutral, GILDEEHRE_X, GILDEEHRE_Y);
         _local2 = actor[SHP_BLACK_GILDEEHRE];
         with (_local2) {
@@ -25255,13 +25292,13 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_SCR_CHAR_EXPLABEL, "", 0, (EXPERIENCE_BAR_Y + 2), FontFormat_LifeBar);
         AddFilter(LBL_SCR_CHAR_EXPLABEL, Filter_Shadow);
         DefineClickArea(CA_SCR_CHAR_EXPBAR, C_EMPTY, None, EXPERIENCE_BAR_X, EXPERIENCE_BAR_Y, 254, 24);
-        define_btn(CHAR_MESSAGE, texts[TXT_MESSAGE], PlayerSendMessage, btnClassBasic, CHAR_PLAYERX1, CHAR_PLAYERY);
-        define_btn(CHAR_ATTACK, texts[TXT_ATTACK], PlayerAttack, btnClassBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
-        define_btn(CHAR_GILDE, texts[TXT_ZURGILDE], ZurGilde, btnClassBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
-        define_btn(CHAR_ALBUM, texts[TXT_ALBUM], RequestAlbum, btnClassBasic, CHAR_PLAYERX1, CHAR_PLAYERY);
-        define_btn(PLAYER_GUILD_INVITE, "", PlayerGuildInvite, btnClassInvite, (((280 + 500) + CHAR_RUESTUNG_X) + 223), ((100 + CHAR_RUESTUNG_Y) - 7));
+        define_btn(CHAR_MESSAGE, texts[TXT_MESSAGE], PlayerSendMessage, btn_classBasic, CHAR_PLAYERX1, CHAR_PLAYERY);
+        define_btn(CHAR_ATTACK, texts[TXT_ATTACK], PlayerAttack, btn_classBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
+        define_btn(CHAR_GILDE, texts[TXT_ZURGILDE], ZurGilde, btn_classBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
+        define_btn(CHAR_ALBUM, texts[TXT_ALBUM], RequestAlbum, btn_classBasic, CHAR_PLAYERX1, CHAR_PLAYERY);
+        define_btn(PLAYER_GUILD_INVITE, "", PlayerGuildInvite, btn_classInvite, (((280 + 500) + CHAR_RUESTUNG_X) + 223), ((100 + CHAR_RUESTUNG_Y) - 7));
         enable_popup(PLAYER_GUILD_INVITE, texts[TXT_SUBJECT_GUILD_INVITE]);
-        define_btn(CHAR_INVITE, texts[(TXT_ACH_4 + 4)], PlayerInvite, btnClassBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
+        define_btn(CHAR_INVITE, texts[(TXT_ACH_4 + 4)], PlayerInvite, btn_classBasic, CHAR_PLAYERX2, CHAR_PLAYERY);
         enable_popup(CHAR_INVITE, texts[(TXT_ACH_4 + 5)]);
         i = 0;
         while (i < 8) {
@@ -25301,7 +25338,7 @@ def load_tracking_pixel(url=''):
         while (i < 5) {
             DefineLbl((LBL_SCR_CHAR_STAERKE_CAPTION + i), texts[(TXT_CHAR_STAERKE + i)], CHAR_PROP_COLUMN_1_X, (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
             DefineLbl((LBL_SCR_CHAR_STAERKE + i), "", CHAR_PROP_COLUMN_2_X, (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Attrib);
-            define_btn((SCR_CHAR_STEIGERN1 + i), "", BoostAttribute, btnClassPlus, CHAR_PROP_COLUMN_3_X, ((CHAR_PROP_Y + (i * CHAR_PROP_Y)) - 3));
+            define_btn((SCR_CHAR_STEIGERN1 + i), "", BoostAttribute, btn_classPlus, CHAR_PROP_COLUMN_3_X, ((CHAR_PROP_Y + (i * CHAR_PROP_Y)) - 3));
             _local2 = actor[(SCR_CHAR_STEIGERN1 + i)];
             with (_local2) {
                 add_event_listener(MouseEvent.MOUSE_DOWN, BoostBtnDownHandler);
@@ -25456,7 +25493,7 @@ def load_tracking_pixel(url=''):
             tabChildren = False;
             focuseRect = False;
         };
-        define_btn(TOWER_TRY, texts[TXT_TOWER_TRY], TowerBtnHandler, btnClassBasic, 940, 700);
+        define_btn(TOWER_TRY, texts[TXT_TOWER_TRY], TowerBtnHandler, btn_classBasic, 940, 700);
         DefineImg(SCR_TOWER_BG, "res/gfx/scr/quest/locations/location_tower.jpg", False, 280, 100);
         define_bunch(SCREEN_TOWER, SCR_CHAR_BG, TOWER_SCROLLAREA, TOWER_TRY, IF_OVL, IF_EXIT);
         tower_levelLabelTimer = new Timer(25);
@@ -25467,7 +25504,7 @@ def load_tracking_pixel(url=''):
         while (i < 3) {
             DefineImg((TOWER_PORTRAIT + i), (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"), False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
             DefineImg((TOWER_NO_PORTRAIT + i), (("res/gfx/npc/copycat_" + str((i + 1))) + "_empty.jpg"), False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
-            define_btn((TOWER_STEIGERN1 + i), "", BoostCopycat, btnClassPlus, (SCR_CHAR_CHARX + 232), (SCR_CHAR_CHARY + 260));
+            define_btn((TOWER_STEIGERN1 + i), "", BoostCopycat, btn_classPlus, (SCR_CHAR_CHARX + 232), (SCR_CHAR_CHARY + 260));
             actor[(TOWER_STEIGERN1 + i)].scaleX = 0.8;
             actor[(TOWER_STEIGERN1 + i)].scaleY = 0.8;
             actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OVER, ShowTowerBoostPrices);
@@ -25484,8 +25521,8 @@ def load_tracking_pixel(url=''):
             add_bunch(SCREEN_TOWER, (CHAR_SLOT_1 + i));
             i = (i + 1);
         };
-        define_btn(PREV_COPYCAT, "", TowerBtnHandler, btnClassArrowLeft, (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
-        define_btn(NEXT_COPYCAT, "", TowerBtnHandler, btnClassArrowRight, (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
+        define_btn(PREV_COPYCAT, "", TowerBtnHandler, btn_classArrowLeft, (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
+        define_btn(NEXT_COPYCAT, "", TowerBtnHandler, btn_classArrowRight, (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
         DefineCnt(TOWER_BOOSTCOIN, (SCR_CHAR_CHARX + 205), EXPERIENCE_BAR_Y);
         actor[TOWER_BOOSTCOIN].alpha = 0;
         define_bunch(TOWER_BOOSTPRICE, LBL_TOWER_BOOSTPRICELABEL, (LBL_TOWER_BOOSTPRICELABEL + 1), (LBL_TOWER_BOOSTPRICELABEL + 2), TOWER_BOOSTCOIN);
@@ -25560,7 +25597,7 @@ def load_tracking_pixel(url=''):
             define_bunch(FIDGET_NIGHT, FIDGET_NIGHT, FIDGET_NACHTKERZE);
         };
         DefineImg(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", False, SCR_SHOP_BG_X, 100);
-        define_btn(SHOPS_NEWWAREZ, texts[TXT_SHOPS_NEWWAREZ], RequestNewWarez, btnClassBasic, 0, NEW_WAREZ_Y);
+        define_btn(SHOPS_NEWWAREZ, texts[TXT_SHOPS_NEWWAREZ], RequestNewWarez, btn_classBasic, 0, NEW_WAREZ_Y);
         actor[SHOPS_NEWWAREZ].x = (NEW_WAREZ_X - int((actor[SHOPS_NEWWAREZ].width / 2)));
         DefineCnt(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
         DefineCnt(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
@@ -25704,8 +25741,8 @@ def load_tracking_pixel(url=''):
         DefineImg(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", False, (QUESTBAR_X + 110), (QUESTBAR_Y + 44));
         DefineImg(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", False, ((QUESTBAR_X + 110) - 5), (QUESTBAR_Y + 44));
         DefineLbl(LBL_QUESTBAR_TEXT, "", 0, QUESTBAR_LABEL_Y, FontFormat_QuestBar);
-        define_btn(QUEST_CANCEL, texts[TXT_QUEST_CANCEL], CancelQuest, btnClassBasic, 0, QUEST_CANCEL_Y);
-        define_btn(QUEST_SKIP, (texts[TXT_SKIP_FIGHT] + " ~P"), SkipQuest, btnClassBasic, 0, QUEST_CANCEL_Y);
+        define_btn(QUEST_CANCEL, texts[TXT_QUEST_CANCEL], CancelQuest, btn_classBasic, 0, QUEST_CANCEL_Y);
+        define_btn(QUEST_SKIP, (texts[TXT_SKIP_FIGHT] + " ~P"), SkipQuest, btn_classBasic, 0, QUEST_CANCEL_Y);
         define_bunch(SCREEN_QUEST, QUESTBAR_BG, QUESTBAR_FILL, QUESTBAR_LIGHT, LBL_QUESTBAR_TEXT, IF_OVL, LBL_SCREEN_TITLE, QUEST_CANCEL, QUEST_SKIP, IF_EXIT);
         i = 0;
         while (i < 4) {
@@ -25739,22 +25776,22 @@ def load_tracking_pixel(url=''):
         AddFilter(LBL_POST_TITLE_READ, Filter_Shadow);
         AddFilter(LBL_POST_TITLE_WRITE, Filter_Shadow);
         DefineCnt(POST_LIST, POST_LIST_X, POST_LIST_Y);
-        define_btn(POST_READ, texts[TXT_POST_READ], PostBtnHandler, btnClassBasic, POST_BUTTONS_X, POST_BUTTONS_Y);
-        define_btn(POST_DELETE, texts[TXT_POST_DELETE], PostBtnHandler, btnClassBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
-        define_btn(POST_WRITE, texts[TXT_POST_WRITE], PostBtnHandler, btnClassBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 1)), POST_BUTTONS_Y);
-        define_btn(POST_FLUSH, texts[(TXT_POST_FLUSH_TEXT + 2)], PostBtnHandler, btnClassBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
-        define_btn(POST_DELETEREAD, texts[TXT_POST_DELETE], PostBtnHandler, btnClassBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
-        define_btn(POST_FORWARD, texts[TXT_POST_FORWARD], PostBtnHandler, btnClassBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
-        define_btn(POST_PROFILE, "", PostBtnHandler, btnClassView, POST_PROFILE_X, POST_BUTTONS_Y);
-        define_btn(POST_UP, "", PostBtnHandler, btnClassArrowUp, POST_SCROLLX, POST_SCROLLUP_Y);
-        define_btn(POST_DOWN, "", PostBtnHandler, btnClassArrowDown, POST_SCROLLX, POST_SCROLLDOWN_Y);
-        define_btn(POST_READ_NEXT, "", PostBtnHandler, btnClassArrowRight, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
-        define_btn(POST_READ_PREV, "", PostBtnHandler, btnClassArrowLeft, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
+        define_btn(POST_READ, texts[TXT_POST_READ], PostBtnHandler, btn_classBasic, POST_BUTTONS_X, POST_BUTTONS_Y);
+        define_btn(POST_DELETE, texts[TXT_POST_DELETE], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
+        define_btn(POST_WRITE, texts[TXT_POST_WRITE], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 1)), POST_BUTTONS_Y);
+        define_btn(POST_FLUSH, texts[(TXT_POST_FLUSH_TEXT + 2)], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
+        define_btn(POST_DELETEREAD, texts[TXT_POST_DELETE], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
+        define_btn(POST_FORWARD, texts[TXT_POST_FORWARD], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
+        define_btn(POST_PROFILE, "", PostBtnHandler, btn_classView, POST_PROFILE_X, POST_BUTTONS_Y);
+        define_btn(POST_UP, "", PostBtnHandler, btn_classArrowUp, POST_SCROLLX, POST_SCROLLUP_Y);
+        define_btn(POST_DOWN, "", PostBtnHandler, btn_classArrowDown, POST_SCROLLX, POST_SCROLLDOWN_Y);
+        define_btn(POST_READ_NEXT, "", PostBtnHandler, btn_classArrowRight, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
+        define_btn(POST_READ_PREV, "", PostBtnHandler, btn_classArrowLeft, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
         enable_popup(POST_PROFILE, texts[TXT_POPUP_PROFILE]);
         DefineLbl(LBL_POST_FLUSH_TEXT, texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(chr(13)), ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
         AddFilter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
-        define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
         _local2 = actor[POST_FLUSH_CANCEL];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) + 10);
@@ -25846,12 +25883,12 @@ def load_tracking_pixel(url=''):
         actor[INP_POST_SUBJECT].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
         actor[INP_POST_ADDRESS].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
         actor[INP_POST_TEXT].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
-        define_btn(POST_SEND, texts[TXT_POST_SEND], PostBtnHandler, btnClassBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
-        define_btn(POST_CANCEL, texts[TXT_POST_CANCEL], PostBtnHandler, btnClassBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        define_btn(POST_RETURN, texts[TXT_POST_RETURN], PostBtnHandler, btnClassBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
-        define_btn(POST_ACCEPT, texts[TXT_POST_ACCEPT], PostBtnHandler, btnClassBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        define_btn(POST_REPLY, texts[TXT_POST_REPLY], PostBtnHandler, btnClassBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        define_btn(POST_VIEWFIGHT, texts[TXT_POST_VIEWFIGHT], PostBtnHandler, btnClassBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
+        define_btn(POST_SEND, texts[TXT_POST_SEND], PostBtnHandler, btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
+        define_btn(POST_CANCEL, texts[TXT_POST_CANCEL], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
+        define_btn(POST_RETURN, texts[TXT_POST_RETURN], PostBtnHandler, btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
+        define_btn(POST_ACCEPT, texts[TXT_POST_ACCEPT], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
+        define_btn(POST_REPLY, texts[TXT_POST_REPLY], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
+        define_btn(POST_VIEWFIGHT, texts[TXT_POST_VIEWFIGHT], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
         DefineLbl(LBL_POST_LIMIT, "", POST_SQUARE_X, (POST_SQUARE_Y - POST_LIMIT_Y), FontFormat_Default);
         AddFilter(LBL_POST_LIMIT, Filter_Shadow);
         DefineCnt(POST_GUILD, 0, (POST_ADDRESS_Y + 2));
@@ -25895,7 +25932,7 @@ def load_tracking_pixel(url=''):
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
             add_event_listener(KeyboardEvent.KEY_DOWN, AttackEnemy);
         };
-        define_btn(ARENA_OK, texts[TXT_OK], AttackEnemy, btnClassBasic, 0, ((IF_WIN_Y + ARENA_OK_Y) + AIRRelMoveY));
+        define_btn(ARENA_OK, texts[TXT_OK], AttackEnemy, btn_classBasic, 0, ((IF_WIN_Y + ARENA_OK_Y) + AIRRelMoveY));
         _local2 = actor[ARENA_OK];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
@@ -25971,7 +26008,7 @@ def load_tracking_pixel(url=''):
             DefineCnt(STALL_MUSH, 0, y);
             DefineLbl(LBL_STALL_LAUFZEIT, texts[TXT_STALL_LAUFZEIT], (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), ((y - textHeight) - STALL_ZEILEN_Y), FontFormat_Default);
         };
-        define_btn(STALL_BUY, texts[TXT_STALL_BUY], BuyMount, btnClassBasic, 0, 0);
+        define_btn(STALL_BUY, texts[TXT_STALL_BUY], BuyMount, btn_classBasic, 0, 0);
         _local2 = actor[STALL_BUY];
         with (_local2) {
             x = (((SCREEN_TITLE_X + int((STALL_SQUARE_X / 2))) - width) - STALL_TITEL_X);
@@ -25997,7 +26034,7 @@ def load_tracking_pixel(url=''):
             getChildAt(1).text = "";
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
         };
-        define_btn(GILDE_GRUENDEN, texts[TXT_GILDE_GRUENDEN_OK], GildeGruenden, btnClassBasic, 0, ((IF_WIN_Y + GILDE_GRUENDEN_OK_Y) + AIRRelMoveY));
+        define_btn(GILDE_GRUENDEN, texts[TXT_GILDE_GRUENDEN_OK], GildeGruenden, btn_classBasic, 0, ((IF_WIN_Y + GILDE_GRUENDEN_OK_Y) + AIRRelMoveY));
         _local2 = actor[GILDE_GRUENDEN];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
@@ -26015,7 +26052,7 @@ def load_tracking_pixel(url=''):
             DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), "", 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
             DefineCnt((GILDE_GEBAEUDE_GOLD + i), 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)));
             DefineCnt((GILDE_GEBAEUDE_MUSH + i), 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)));
-            define_btn((GILDE_GEBAEUDE_IMPROVE + i), "", GildeBtnHandler, btnClassPlus, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
+            define_btn((GILDE_GEBAEUDE_IMPROVE + i), "", GildeBtnHandler, btn_classPlus, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
             DefineImg((GILDE_GEBAEUDE_IMPROVE_GRAY + i), "res/gfx/scr/gilde/plus_disabled.png", False, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
             AddFilter((LBL_GILDE_GEBAEUDE_NAME + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), Filter_Shadow);
@@ -26035,7 +26072,7 @@ def load_tracking_pixel(url=''):
             add_bunch(GILDE_GEBAEUDE, (LBL_GILDE_GEBAEUDE_STUFE + i), (LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_GOLD + i), (GILDE_GEBAEUDE_MUSH + i), (GILDE_GEBAEUDE_IMPROVE_GRAY + i), (GILDE_GEBAEUDE_IMPROVE + i));
             i = (i + 1);
         };
-        define_btn(GILDE_GEBAEUDE_GOTO_CREST, " ", GildeBtnHandler, btnClassBack, (GILDE_GEBAEUDE_X + 211), (GILDE_GEBAEUDE_Y - 5));
+        define_btn(GILDE_GEBAEUDE_GOTO_CREST, " ", GildeBtnHandler, btn_classBack, (GILDE_GEBAEUDE_X + 211), (GILDE_GEBAEUDE_Y - 5));
         _local2 = actor[GILDE_GEBAEUDE_GOTO_CREST];
         with (_local2) {
             scaleX = 0.4;
@@ -26079,7 +26116,7 @@ def load_tracking_pixel(url=''):
             };
             i = (i + 1);
         };
-        define_btn(GILDE_CREST_GOTO_GEBAEUDE, " ", GildeBtnHandler, btnClassBack, (GILDE_GEBAEUDE_X + 211), (GILDE_GEBAEUDE_Y - 5));
+        define_btn(GILDE_CREST_GOTO_GEBAEUDE, " ", GildeBtnHandler, btn_classBack, (GILDE_GEBAEUDE_X + 211), (GILDE_GEBAEUDE_Y - 5));
         _local2 = actor[GILDE_CREST_GOTO_GEBAEUDE];
         with (_local2) {
             scaleX = 0.4;
@@ -26087,13 +26124,13 @@ def load_tracking_pixel(url=''):
         };
         enable_popup(GILDE_CREST_GOTO_GEBAEUDE, texts[TXT_CREST_GOTO_BUILDINGS]);
         define_bunch(GILDE_CREST_CONTROLS);
-        define_btn(GILDE_CREST_CHANGE_PREV, "", GildeBtnHandler, btnClassArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 250));
-        define_btn(GILDE_CREST_CHANGE_NEXT, "", GildeBtnHandler, btnClassArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 250));
+        define_btn(GILDE_CREST_CHANGE_PREV, "", GildeBtnHandler, btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 250));
+        define_btn(GILDE_CREST_CHANGE_NEXT, "", GildeBtnHandler, btn_classArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 250));
         DefineLbl(LBL_GILDE_CREST_ELEMENT, "Element", (GILDE_GEBAEUDE_X + 120), (GILDE_GEBAEUDE_Y + 0xFF), FontFormat_Default);
         AddFilter(LBL_GILDE_CREST_ELEMENT, Filter_Shadow);
-        define_btn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler, btnClassArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 295));
-        define_btn(GILDE_CREST_COLOR_NEXT, "", GildeBtnHandler, btnClassArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 295));
-        define_btn(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST], GildeBtnHandler, btnClassBasic, (GILDE_GEBAEUDE_X + 30), (GILDE_GEBAEUDE_Y + 340));
+        define_btn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler, btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 295));
+        define_btn(GILDE_CREST_COLOR_NEXT, "", GildeBtnHandler, btn_classArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 295));
+        define_btn(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST], GildeBtnHandler, btn_classBasic, (GILDE_GEBAEUDE_X + 30), (GILDE_GEBAEUDE_Y + 340));
         enable_popup(GILDE_CREST_OK, texts[TXT_CREST_INFO].split("#").join(chr(13)));
         i = 1;
         while (i < 4) {
@@ -26125,14 +26162,14 @@ def load_tracking_pixel(url=''):
         AddFilter(LBL_GILDE_MUSH, Filter_Shadow);
         DefineCnt(GILDE_GOLD, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
         DefineCnt(GILDE_MUSH, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + GILDE_MUSH_Y));
-        define_btn(GILDE_GOLD, "", GildeBtnHandler, btnClassPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
+        define_btn(GILDE_GOLD, "", GildeBtnHandler, btn_classPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
         _local2 = actor[GILDE_GOLD];
         with (_local2) {
             scaleX = 0.8;
             scaleY = 0.8;
         };
         enable_popup(GILDE_GOLD, texts[TXT_GILDE_GOLD]);
-        define_btn(GILDE_MUSH, "", GildeBtnHandler, btnClassPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + GILDE_MUSH_Y));
+        define_btn(GILDE_MUSH, "", GildeBtnHandler, btn_classPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[GILDE_MUSH];
         with (_local2) {
             scaleX = 0.8;
@@ -26176,37 +26213,37 @@ def load_tracking_pixel(url=''):
         DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png", False, 0, 0);
         DefineImg((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png", False, 0, 0);
         DefineImg((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png", False, 0, 0);
-        define_btn(GILDE_SCROLL_UP, "", GildeBtnHandler, btnClassArrowUp, GILDE_LIST_SCROLLX, GILDE_LIST_Y);
-        define_btn(GILDE_SCROLL_DOWN, "", GildeBtnHandler, btnClassArrowDown, GILDE_LIST_SCROLLX, GILDE_LIST_SCROLLY);
+        define_btn(GILDE_SCROLL_UP, "", GildeBtnHandler, btn_classArrowUp, GILDE_LIST_SCROLLX, GILDE_LIST_Y);
+        define_btn(GILDE_SCROLL_DOWN, "", GildeBtnHandler, btn_classArrowDown, GILDE_LIST_SCROLLX, GILDE_LIST_SCROLLY);
         i = 0;
         DefineImg(GILDE_INVITE_GRAY, "res/gfx/scr/gilde/button_gilde_einladen_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_INVITE, "", GildeBtnHandler, btnClassInvite, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_INVITE, "", GildeBtnHandler, btn_classInvite, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_PROFILE, "", GildeBtnHandler, btnClassView, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_PROFILE, "", GildeBtnHandler, btn_classView, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         DefineImg(GILDE_KICK_GRAY, "res/gfx/scr/gilde/button_gilde_rauswerfen_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_KICK, "", GildeBtnHandler, btnClassKick, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_KICK, "", GildeBtnHandler, btn_classKick, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         DefineImg(GILDE_PROMOTE_GRAY, "res/gfx/scr/gilde/button_gilde_orden_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        define_btn(GILDE_PROMOTE, "", GildeBtnHandler, btnClassPromote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_PROMOTE, "", GildeBtnHandler, btn_classPromote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_DEMOTE, "", GildeBtnHandler, btnClassDemote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_DEMOTE, "", GildeBtnHandler, btn_classDemote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         DefineImg(GILDE_MASTER_GRAY, "res/gfx/scr/gilde/button_gilde_gildenleiter_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        define_btn(GILDE_MASTER, "", GildeBtnHandler, btnClassMaster, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_MASTER, "", GildeBtnHandler, btn_classMaster, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_REVOLT, "", GildeBtnHandler, btnClassRevolt, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        define_btn(GILDE_RAID, "", GildeBtnHandler, btnClassRaid, (GILDE_ATTACKX - 50), GILDE_TOOLY);
+        define_btn(GILDE_REVOLT, "", GildeBtnHandler, btn_classRevolt, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_RAID, "", GildeBtnHandler, btn_classRaid, (GILDE_ATTACKX - 50), GILDE_TOOLY);
         DefineImg(GILDE_RAID_GRAY, "res/gfx/scr/gilde/button_gilde_raid_grey.jpg", False, (GILDE_ATTACKX - 50), GILDE_TOOLY);
         DefineImg(GILDE_RAID_OK, "res/gfx/scr/gilde/button_gilde_raid_check.jpg", False, (GILDE_ATTACKX - 50), GILDE_TOOLY);
-        define_btn(GILDE_ATTACK, "", GildeBtnHandler, btnClassAttack, (GILDE_ATTACKX + 5), GILDE_TOOLY);
-        define_btn(GILDE_DEFEND, "", GildeBtnHandler, btnClassDefend, (GILDE_DEFENDX + 5), GILDE_TOOLY);
+        define_btn(GILDE_ATTACK, "", GildeBtnHandler, btn_classAttack, (GILDE_ATTACKX + 5), GILDE_TOOLY);
+        define_btn(GILDE_DEFEND, "", GildeBtnHandler, btn_classDefend, (GILDE_DEFENDX + 5), GILDE_TOOLY);
         DefineImg(GILDE_ATTACK_GRAY, "res/gfx/scr/gilde/button_gilde_attack_grau.jpg", False, (GILDE_ATTACKX + 5), GILDE_TOOLY);
         DefineImg(GILDE_ATTACK_OK, "res/gfx/scr/gilde/button_gilde_attack_check.jpg", False, (GILDE_ATTACKX + 5), GILDE_TOOLY);
         DefineImg(GILDE_DEFEND_GRAY, "res/gfx/scr/gilde/button_gilde_defend_grau.jpg", False, (GILDE_DEFENDX + 5), GILDE_TOOLY);
         DefineImg(GILDE_DEFEND_OK, "res/gfx/scr/gilde/button_gilde_defend_check.jpg", False, (GILDE_DEFENDX + 5), GILDE_TOOLY);
-        define_btn(GILDE_KATAPULT, "", GildeBtnHandler, btnClassCatapult0, (GILDE_ATTACKX - 105), GILDE_TOOLY);
-        define_btn((GILDE_KATAPULT + 1), "", GildeBtnHandler, btnClassCatapult1, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        define_btn((GILDE_KATAPULT + 2), "", GildeBtnHandler, btnClassCatapult2, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        define_btn(GILDE_KATAPULT, "", GildeBtnHandler, btn_classCatapult0, (GILDE_ATTACKX - 105), GILDE_TOOLY);
+        define_btn((GILDE_KATAPULT + 1), "", GildeBtnHandler, btn_classCatapult1, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        define_btn((GILDE_KATAPULT + 2), "", GildeBtnHandler, btn_classCatapult2, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
         DefineImg(GILDE_KATAPULT_GRAY, "res/gfx/scr/gilde/button_gilde_catapult0_grau.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
         DefineImg(GILDE_KATAPULT_OK, "res/gfx/scr/gilde/button_gilde_catapult1_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
         DefineImg((GILDE_KATAPULT_OK + 1), "res/gfx/scr/gilde/button_gilde_catapult2_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
@@ -26271,8 +26308,8 @@ def load_tracking_pixel(url=''):
             useHandCursor = True;
             buttonMode = True;
         };
-        define_btn(GILDE_CHAT_UP, "", GildeBtnHandler, btnClassArrowUp, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_UP_Y));
-        define_btn(GILDE_CHAT_DOWN, "", GildeBtnHandler, btnClassArrowDown, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_DOWN_Y));
+        define_btn(GILDE_CHAT_UP, "", GildeBtnHandler, btn_classArrowUp, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_UP_Y));
+        define_btn(GILDE_CHAT_DOWN, "", GildeBtnHandler, btn_classArrowDown, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_DOWN_Y));
         define_bunch(GILDE_CHAT, LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN, INP_GILDE_CHAT);
         i = 0;
         while (i < 40) {
@@ -26344,12 +26381,12 @@ def load_tracking_pixel(url=''):
             getChildAt(1).text = "";
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
         };
-        define_btn(GILDE_DIALOG_CANCEL, texts[TXT_ABBRECHEN], GildeBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_KICK, texts[TXT_OK], GildeBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_MASTER, texts[TXT_OK], GildeBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_INVITE, texts[TXT_OK], GildeBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_REVOLT, texts[TXT_OK], GildeBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_RAID, texts[TXT_OK], GildeBtnHandler, btnClassBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_CANCEL, texts[TXT_ABBRECHEN], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_KICK, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_MASTER, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_INVITE, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_REVOLT, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_RAID, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
         _local2 = actor[GILDE_DIALOG_CANCEL];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) + 10);
@@ -26414,7 +26451,7 @@ def load_tracking_pixel(url=''):
         AddFilter(LBL_HUTMANN_MUSHBET, Filter_Shadow);
         DefineCnt(HUTMANN_GOLDBET, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
-        define_btn(HUTMANN_GOLDBET, "", HutBtnHandler, btnClassPlus, 0, HUTMANN_GOLD_Y);
+        define_btn(HUTMANN_GOLDBET, "", HutBtnHandler, btn_classPlus, 0, HUTMANN_GOLD_Y);
         _local2 = actor[HUTMANN_GOLDBET];
         with (_local2) {
             scaleX = 0.8;
@@ -26423,7 +26460,7 @@ def load_tracking_pixel(url=''):
         enable_popup(HUTMANN_GOLDBET, texts[TXT_HUTMANN_GOLDBET]);
         DefineImg(HUTMANN_MUSHBET_DISABLED, "res/gfx/scr/gilde/plus_disabled.png", False, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         enable_popup(HUTMANN_MUSHBET_DISABLED, texts[TXT_MUSHBET_BOUGHT]);
-        define_btn(HUTMANN_MUSHBET, "", HutBtnHandler, btnClassPlus, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
+        define_btn(HUTMANN_MUSHBET, "", HutBtnHandler, btn_classPlus, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[HUTMANN_MUSHBET];
         with (_local2) {
             scaleX = 0.8;
@@ -26447,8 +26484,8 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_HUTMANN_INSTR, texts[TXT_HUTMANN_INSTR].split("#").join(((text_dir)=="right") ? "" : chr(13)), HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
         AddFilter(LBL_HUTMANN_INSTR, Filter_Shadow);
         define_bunch(SCREEN_HUTMANN, HUTMANN_BG, IF_OVL, IF_EXIT, HUTFACE_HOVER, HUTFACE_WIN, HUTFACE_LOSE1, HUTFACE_LOSE2, HUTFACE_LOSE3, HUTFACE_IDLE);
-        define_btn(HUTMANN_OK, texts[TXT_HUTMANN_START], HutBtnHandler, btnClassLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
-        define_btn(HUTMANN_BACK, texts[TXT_HUTMANN_BACK], InterfaceBtnHandler, btnClassBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
+        define_btn(HUTMANN_OK, texts[TXT_HUTMANN_START], HutBtnHandler, btn_classLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
+        define_btn(HUTMANN_BACK, texts[TXT_HUTMANN_BACK], InterfaceBtnHandler, btn_classBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
         HutBtnRepeatTimer = new Timer(1000);
         DestroyHutBtnTimer = False;
         _local2 = actor[HUTMANN_GOLDBET];
@@ -26576,9 +26613,9 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_QO_REWARDSILVER, "", 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y), FontFormat_Default);
         DefineLbl(LBL_QO_REWARDEXP, "", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 2)), FontFormat_Default);
         DefineLbl(LBL_QO_TIME, "", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 3)), FontFormat_Default);
-        define_btn(QO_START, texts[TXT_QO_START], RequestQuest, btnClassBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
-        define_btn(BO_BUY, texts[TXT_BO_BUY], BuyBeer, btnClassBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
-        define_btn(QO_RETURN, texts[TXT_QO_RETURN], ReturnQuest, btnClassBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_START_Y));
+        define_btn(QO_START, texts[TXT_QO_START], RequestQuest, btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
+        define_btn(BO_BUY, texts[TXT_BO_BUY], BuyBeer, btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
+        define_btn(QO_RETURN, texts[TXT_QO_RETURN], ReturnQuest, btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_START_Y));
         DefineLbl(LBL_QO_QUESTSTODAY, "", 0, (QO_BLACK_SQUARE_Y + QO_QUESTSTODAY_Y), FontFormat_Default);
         DefineCnt(QUEST_SLOT, ((QO_BLACK_SQUARE_X + QO_SLOT_X) + 20), (QO_BLACK_SQUARE_Y + QO_SLOT_Y));
         add_bunch(QUESTOFFER, SHP_QO_BLACK_SQUARE, LBL_QO_CHOOSE, QO_CHOICE1, QO_CHOICE2, QO_CHOICE3, LBL_QO_QUESTNAME, LBL_QO_QUESTTEXT);
@@ -26750,8 +26787,8 @@ def load_tracking_pixel(url=''):
         DefineImg(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", False, 0, 0);
         DefineLbl(LBL_DAMAGE_INDICATOR, "", 0, 0, FontFormat_Damage);
         AddFilter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
-        define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight, btnClassBasic, 0, 0);
-        define_btn(FIGHT_OK, texts[TXT_OK], InterfaceBtnHandler, btnClassBasic, 0, 0);
+        define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight, btn_classBasic, 0, 0);
+        define_btn(FIGHT_OK, texts[TXT_OK], InterfaceBtnHandler, btn_classBasic, 0, 0);
         _local2 = actor[FIGHT_OK];
         with (_local2) {
             y = FIGHT_Y;
@@ -26762,8 +26799,8 @@ def load_tracking_pixel(url=''):
             y = FIGHT_Y;
             x = (SCREEN_TITLE_X - int((width / 2)));
         };
-        define_btn(BATTLE_SKIP, texts[TXT_SKIP_FIGHT], SkipFight, btnClassBasic, 0, 0);
-        define_btn(BATTLE_SKIPONE, texts[TXT_GUILD_BATTLE_SKIP], SkipFight, btnClassBasic, 0, 0);
+        define_btn(BATTLE_SKIP, texts[TXT_SKIP_FIGHT], SkipFight, btn_classBasic, 0, 0);
+        define_btn(BATTLE_SKIPONE, texts[TXT_GUILD_BATTLE_SKIP], SkipFight, btn_classBasic, 0, 0);
         _local2 = actor[BATTLE_SKIPONE];
         with (_local2) {
             y = FIGHT_Y;
@@ -26826,7 +26863,7 @@ def load_tracking_pixel(url=''):
             i = (i + 1);
         };
         DefineImg(BG_DEMO, "res/gfx/scr/demo/demo.png", False, 0, DEMO_Y);
-        define_btn(DEMO_LOGOFF, texts[TXT_OK], RequestLOGout, btnClassBasic, DEMO_X, DEMO_Y);
+        define_btn(DEMO_LOGOFF, texts[TXT_OK], RequestLOGout, btn_classBasic, DEMO_X, DEMO_Y);
         define_bunch(SCREEN_DEMO, BG_DEMO, IF_OVL, DEMO_LOGOFF, BLACK_SQUARE);
         DefineFromClass(SHP_OPTION_BLACK, black_square_neutral, OPTION_X, OPTION_Y);
         _local2 = actor[SHP_OPTION_BLACK];
@@ -26840,15 +26877,15 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_OPTION_IMAGE, texts[TXT_CHARIMG], (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
         AddFilter(LBL_OPTION_IMAGE, Filter_Shadow);
         DefineImg(OPTION_IMAGEBORDER, "res/gfx/scr/option/character_border_small.png", False, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
-        define_btn(OPTION_CHANGEIMG, texts[TXT_CHANGEIMG], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_IMAGE_X), ((OPTION_Y + OPTION_Y5) - 2));
+        define_btn(OPTION_CHANGEIMG, texts[TXT_CHANGEIMG], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_IMAGE_X), ((OPTION_Y + OPTION_Y5) - 2));
         DefineLbl(LBL_OPTION_CHANGE, texts[TXT_CHANGE], (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
         AddFilter(LBL_OPTION_CHANGE, Filter_Shadow);
-        define_btn(OPTION_CHANGE_NAME, texts[TXT_CHANGE_NAME], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
-        define_btn(OPTION_RESEND, texts[TXT_RESEND_BTN1], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y4));
-        define_btn(OPTION_CHANGE_EMAIL, texts[TXT_CHANGE_EMAIL], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
-        define_btn(OPTION_CHANGE_PASSWORD, texts[TXT_CHANGE_PASSWORD], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y3));
-        define_btn(OPTION_DELETE, texts[TXT_DELETE_ACCOUNT], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y5));
-        define_btn(OPTION_LUXURY, texts[TXT_LUXURY_BUTTON], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_CHANGE_X), ((OPTION_Y + OPTION_Y5) - 2));
+        define_btn(OPTION_CHANGE_NAME, texts[TXT_CHANGE_NAME], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
+        define_btn(OPTION_RESEND, texts[TXT_RESEND_BTN1], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y4));
+        define_btn(OPTION_CHANGE_EMAIL, texts[TXT_CHANGE_EMAIL], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
+        define_btn(OPTION_CHANGE_PASSWORD, texts[TXT_CHANGE_PASSWORD], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y3));
+        define_btn(OPTION_DELETE, texts[TXT_DELETE_ACCOUNT], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y5));
+        define_btn(OPTION_LUXURY, texts[TXT_LUXURY_BUTTON], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), ((OPTION_Y + OPTION_Y5) - 2));
         DefineImg(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg", False, 1100, 190);
         DefineFromClass(CB_LM_UNCHECKED, cb_unchecked, LM_X, LM_Y);
         actor[CB_LM_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckLM);
@@ -26901,7 +26938,7 @@ def load_tracking_pixel(url=''):
         enable_popup(CHANGE_PASSWORD_SMILEY_SAD, texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(chr(13)));
         enable_popup(CHANGE_PASSWORD_SMILEY_NEUTRAL, texts[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(chr(13)));
         enable_popup(CHANGE_PASSWORD_SMILEY_HAPPY, texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(chr(13)));
-        define_btn(OPTION_DOCHANGE, texts[TXT_DOCHANGE], OptionBtnHandler, btnClassBasic, (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y5));
+        define_btn(OPTION_DOCHANGE, texts[TXT_DOCHANGE], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y5));
         DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6), FontFormat_Default);
         AddFilter(LBL_OPTION_VOLUME, Filter_Shadow);
         DefineSlider(SLDR_OPTION_VOLUME, 11, ((OPTION_X + OPTION_VOLUME_X) + 250), (OPTION_Y + OPTION_Y7), VolumeChange);
@@ -26991,7 +27028,7 @@ def load_tracking_pixel(url=''):
             wordWrap = True;
         };
         AddFilter(LBL_MAINQUEST_TEXT, Filter_Shadow);
-        define_btn(MAINQUEST_START, "", RequestMainQuest, btnClassBasic, 0, ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_BUTTON_Y));
+        define_btn(MAINQUEST_START, "", RequestMainQuest, btn_classBasic, 0, ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_BUTTON_Y));
         _local2 = actor[MAINQUEST_START];
         with (_local2) {
             x = (((MQ_SQUARE_X + MQ_SQUARE_X) - MQ_TEXT_X) - width);
@@ -27039,7 +27076,7 @@ def load_tracking_pixel(url=''):
             useHandCursor = True;
             add_event_listener(MouseEvent.CLICK, ResendConfirmationEmail);
         };
-        define_btn(EMAIL_NAG, texts[TXT_OK], ShowCityScreen, btnClassBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + EMAIL_NAG_Y));
+        define_btn(EMAIL_NAG, texts[TXT_OK], ShowCityScreen, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + EMAIL_NAG_Y));
         define_bunch(SCREEN_EMAIL_NAG, IF_WINDOW, LBL_WINDOW_TITLE, LBL_EMAIL_NAG, EMAIL_NAG, IF_EXIT);
         DefineCnt(POPUP_INFO);
         _local2 = actor[POPUP_INFO];
@@ -27084,13 +27121,13 @@ if __name__ == "__main__":
 
 '''
 
-def DefineImg(actor_id:int, url:String, pre_load:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
+def DefineImg(actor_id:int, url:String, predo_load:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
     var i:* = 0;
     var full_url:* = null;
     var LoaderCompleteLocal:* = null;
     var actor_id:* = actor_id;
     var url:* = url;
-    var pre_load:Boolean = pre_load;
+    var predo_load:Boolean = predo_load;
     var pos_x:int = pos_x;
     var pos_y:int = pos_y;
     var scale_x:int = scale_x;
@@ -27123,7 +27160,7 @@ def DefineImg(actor_id:int, url:String, pre_load:Boolean=True, pos_x:int=0, pos_
         scaleY = scale_y;
         visible = Boolean(vis);
     };
-    if (pre_load){
+    if (predo_load){
         load(i);
     };
 }
@@ -28246,7 +28283,7 @@ def GetActorName(actor_id:int=0):String{
             add_event_listener(Event.COMPLETE, ConstFileLoaded);
             load(new URLRequest("constants.as"));
         };
-        pending_loaders = (pending_loaders + 1);
+        pendingdo_loaders = (pendingdo_loaders + 1);
         pending_debug_file = True;
     };
     return (actorName[actor_id]);

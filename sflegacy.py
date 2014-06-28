@@ -282,3 +282,16 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
     if next_pxl < 0:
         next_pxl = abs(next_pxl)
 
+
+def set_volume(vol):
+    '''
+        set volume
+
+        TODO: Obsolete
+    '''
+    with (stObject):
+        stObject.volume = vol
+
+
+
+
