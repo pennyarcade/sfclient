@@ -10,7 +10,6 @@ install:
 before_script:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
-  - git clone git@bitbucket.org:chocokiko/chocokiko.bitbucket.org.git
   - cd chocokiko.bitbucket.org/
   - git pull
   - cd ..
