@@ -27002,9 +27002,10 @@ def main():
     LOG = setup_logging()
 
     #init_vars()
-    configure()
 
-    #s = Session()
+    s = Session()
+    configure(s)
+
     #response = s.login()
 
 
