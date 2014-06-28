@@ -1,4 +1,5 @@
 import unittest
+import sfclient
 
 
 class TestSuite(unittest.TestCase):
