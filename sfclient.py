@@ -5073,7 +5073,7 @@ def init_vars():
     '''
 
 
-def configure():
+def configure(session):
     '''
         Load configuration from server
         Load language file from server
