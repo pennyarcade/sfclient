@@ -6384,7 +6384,7 @@ def request_city_screen(evt=None):
 def RequestTV(evt:Event=None){
     if (tv_function_name != ""){
         trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"showtv\"!"));
-        ExternalInterface.call(tv_function_name, "showtv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tvReturnValue);
+        ExternalInterface.call(tv_function_name, "showtv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tvReturnValue);
         tvPollTimer.delay = tvPollLong;
     } else {
         trc("Error: No TV function set!");
@@ -6723,7 +6723,7 @@ def show_option_screen(evt:Event=None){
             POPUP_BEGIN_LINE,
             "Player ID",
             140,
-            savegame[SG_PLAYER_ID],
+            savegame[SG['PLAYER_ID']],
             POPUP_END_LINE,
             POPUP_BEGIN_LINE,
             "Server Ver.Cfg.",
@@ -9584,7 +9584,7 @@ def show_dealer_screen(evt:Event=None, loadOnly:Boolean=False){
     };
     url = (
         (((((((((((((((((((((param_papaya_path + "?playerid=")
-            + savegame[SG_PLAYER_ID]) + "&paymentid=")
+            + savegame[SG['PLAYER_ID']]) + "&paymentid=")
             + savegame[SG_PAYMENT_ID]) + "&server_id=") + server_id)
             + "&serverdomain=") + server) + "&session_id=") + session_id)
             + "&special=") + dealer_aktion) + "&langcode=") + lang_code)
@@ -11217,7 +11217,7 @@ def show_screen_gilden(
                             break;
                     };
                     if (GuildBtnHandler(evt, True)){
-                        play(SND_CLICK);
+                        play(SND['CLICK']);
                     } else {
                         if (GuildBtnRepeatTimer.running){
                             destroy_guild_btn_timer = True;
@@ -11293,7 +11293,7 @@ def show_screen_gilden(
                 ((GUILD_MEMBERRANK + selectLevel) + scrollLevel)];
             if (
                 (((int(guildData[((GUILD_MEMBERID + selectLevel)
-                    + scrollLevel)]) == int(savegame[SG_PLAYER_ID])))
+                    + scrollLevel)]) == int(savegame[SG['PLAYER_ID']])))
                 and (is_mine))
             ){
                 add(GILDE_KICK);
@@ -11393,7 +11393,7 @@ def show_screen_gilden(
                         add(GILDE_DIALOG_KICK);
                         if (int(guildData[
                             ((GUILD_MEMBERID + selectLevel) + scrollLevel)
-                            ]) == int(savegame[SG_PLAYER_ID])
+                            ]) == int(savegame[SG['PLAYER_ID']])
                         ){
                             remove(LBL_GILDE_DIALOG_TEXT_KICK);
                             add(LBL_GILDE_DIALOG_TEXT_QUIT);
@@ -12207,7 +12207,7 @@ def show_screen_gilden(
                 i = 0;
                 while (i < int(guildData[3])) {
                     if (int(guildData[(GUILD_MEMBERID + i)]) == int(
-                        savegame[SG_PLAYER_ID])
+                        savegame[SG['PLAYER_ID']])
                     ){
                         scrollLevel = (i - 7);
                     };
@@ -12232,7 +12232,7 @@ def show_screen_gilden(
                     attackStatus = (attackStatus + 1);
                 };
                 if (int(guildData[(GUILD_MEMBERID + i)]) == int(
-                    savegame[SG_PLAYER_ID])
+                    savegame[SG['PLAYER_ID']])
                 ){
                     myRank = int(guildData[(GUILD_MEMBERRANK + i)]);
                     myAttackStatus = int(
@@ -17918,63 +17918,63 @@ def action_handler(event):
                 line += 1
             break
 
-        if case(RESP_ARBEIT_START, RESP_ARBEIT_STOP):
+        if case(RESP['ARBEIT']['START'], RESP['ARBEIT']['STOP']):
             parse_savgame(par[0])
             show_work_screen()
             break
 
-        if case(RESP_ARBEIT_ERLEDIGT):
+        if case(RESP['ARBEIT']['ERLEDIGT']):
             parse_savgame(par[0])
             verdientes_geld = par[1]
             show_work_success_screen()
             break
 
-        if case(ACT_SCREEN_ARBEITEN):
+        if case(ACT['SCREEN']['ARBEITEN']):
             stundenlohn = int(par[0])
             show_work_screen()
             break
 
-        if case(RESP_SAVEGAME_STAY_ERROR):
-            error_message(texts[TXT_ERROR_SELL_ITEM])
+        if case(RESP['SAVEGAME']['STAY_ERROR']):
+            error_message(texts[TXT['ERROR']['SELL_ITEM']])
 
         if case(
-            RESP_SAVEGAME_STAY,
-            RESP_SAVEGAME_SHARD,
-            RESP_SAVEGAME_MIRROR,
-            RESP_MOVE_TOWER_ITEM
+            RESP['SAVEGAME']['STAY'],
+            RESP['SAVEGAME']['SHARD'],
+            RESP['SAVEGAME']['MIRROR'],
+            RESP['MOVE']['TOWER_ITEM']
         ):
             parse_savgame(par[0])
-            if on_stage(SCR_CHAR_BG):
-                if act == RESP_MOVE_TOWER_ITEM:
+            if on_stage(IMG['SCR']['CHAR_BG']):
+                if act == RESP['MOVE']['TOWER_ITEM']:
                     show_tower_screen(par)
                 else:
-                    if act == RESP_SAVEGAME_SHARD:
-                        play(SND_SHARD)
+                    if act == RESP['SAVEGAME']['SHARD']:
+                        play(SND['SHARD'])
                         mirror_fade_amount = 0.2
                         mirror_ani_timer.start()
 
-                    if act == RESP_SAVEGAME_MIRROR:
-                        play(SND_MIRROR)
+                    if act == RESP['SAVEGAME']['MIRROR']:
+                        play(SND['MIRROR'])
 
-                    display_inventory(None, on_stage(SCR_CHAR_BG_RIGHT))
+                    display_inventory(None, on_stage(IMG['SCR']['CHAR_BG_RIGHT']))
 
                     for i in range(13):
                         if mirror_pieces[i]:
-                            add(MIRROR_PIECE + i)
+                            add(IMG['MIRROR']['PIECE'] + i)
                         else:
-                            remove(MIRROR_PIECE + i)
+                            remove(IMG['MIRROR']['PIECE'] + i)
             break
 
         if case(ACT['SCREEN']['CHAR']):
             parse_savgame(par[0])
             player_desc = resolve_breaks(par[1])
-            if savegame[SG_FACE_1] == 0:
+            if savegame[SG['FACE']['1']] == 0:
                 show_build_character_screen()
             else:
                 show_character_screen(None, True)
             break
 
-        if case(ACT_SCREEN_ZAUBERLADEN):
+        if case(ACT['SCREEN']['ZAUBERLADEN']):
             parse_savgame(par[0])
             if par[1]:
                 special_action = par[1]
@@ -17982,42 +17982,42 @@ def action_handler(event):
                 special_action = 0
 
             LOG.info("Magic shop says special action is", special_action)
-            if on_stage(SCR_FIDGET_BG):
+            if on_stage(IMG['SCR']['FIDGET_BG']):
                 display_inventory()
             else:
-                load(SCR_FIDGET_BG)
+                load(IMG['SCR']['FIDGET_BG'])
                 show_character_screen()
                 when_loaded(do_act_zauberladen)
             break
 
-        if case(ACT_SCREEN_SCHMIEDE):
+        if case(ACT['SCREEN']['SCHMIEDE']):
             parse_savgame(par[0])
             if par[1]:
                 special_action = par[1]
             else:
                 special_action = 0
             LOG.info("Weapon shop says special action is", special_action)
-            if on_stage(SCR_SHAKES_BG):
+            if on_stage(IMG['SCR']['SHAKES_BG']):
                 display_inventory()
             else:
-                load(SCR_SHAKES_BG)
+                load(IMG['SCR']['SHAKES_BG'])
                 show_character_screen()
                 when_loaded(do_act_schmiede)
             break
 
-        if case(RESP_UPDATE_CHECK):
+        if case(RESP['UPDATE']['CHECK']):
             ExternalInterface.call("refresh")
             break
 
         if case(
-            RESP_LOGIN_SUCCESS_BOUGHT,
-            RESP_LOGIN_SUCCESS
+            RESP['LOGIN']['SUCCESS']['BOUGHT'],
+            RESP['LOGIN']['SUCCESS']
         ):
             mirror_fade_amount = 0.2
             admin_login = ""
 
             mush_bought = 0
-            if act == RESP_LOGIN_SUCCESS_BOUGHT:
+            if act == RESP['LOGIN']['SUCCESS_BOUGHT']:
                 mush_bought = int(par[3])
 
             beer_fest = False
@@ -18056,82 +18056,82 @@ def action_handler(event):
             so.data.userName = actor[INP['NAME']].getChildAt(1).text
             so.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
             so.flush()
-            add(IF_LOGOUT)
+            add(CNT['IF']['LOGOUT'])
 
-            if (savegame[SG_FACE_1] == 0):
+            if (savegame[SG['FACE']['1']] == 0):
                 LOG.error("Fehler): Charakter nicht initialisiert.")
                 request_logout()
             else:
                 parse_savgame(par[0])
-                server_time = int(savegame[SG_SERVER_TIME])
-                email_date = int(savegame[SG_EMAIL_DATE])
+                server_time = int(savegame[SG['SERVER']['TIME']])
+                email_date = int(savegame[SG['EMAIL']['DATE']])
 
                 if view_player != "":
                     sel_name = view_player
                     send_action(ACT['REQUEST']['CHAR'], view_player)
                 elif param_hall != "":
-                    send_action(ACT_SCREEN_EHRENHALLE, param_hall, "-2")
+                    send_action(ACT['SCREEN']['EHRENHALLE'], param_hall, "-2")
                     param_valid = ""
                 elif (
-                      (int(savegame[SG_EMAIL_VALID]) < 1)
+                      (int(savegame[SG['EMAIL']['VALID']]) < 1)
                       and (server_time > (email_date + 2 * 60 * 24 * 60))
                 ):
                     if param_valid != "":
-                        send_action(ACT_VALIDATE, param_valid)
+                        send_action(ACT['VALIDATE'], param_valid)
                         param_valid = ""
                     else:
                         show_email_nag_screen()
-                elif int(savegame[SG_EMAIL_VALID]) == 1:
+                elif int(savegame[SG['EMAIL']['VALID']]) == 1:
                     if param_valid != "":
                         show_email_nag_screen(3)
                     else:
                         show_city_screen()
                 elif param_valid != "":
-                    send_action(ACT_VALIDATE, param_valid)
+                    send_action(ACT['VALIDATE'], param_valid)
                     param_valid = ""
                 else:
                     show_city_screen()
             break
 
-        if case(ERR_ALREADY_IN_GUILD,
-            ERR_NO_INDEX_FREE,
-            ERR_FIGHT_SELF,
-            ERR_GUILD_NOT_FOUND,
-            ERR_GUILD_NOT_ALLOWED,
-            ERR_GUILD_LACK_MUSH,
-            ERR_GUILD_LACK_GOLD,
-            ERR_GUILD_BUILDING_NOT_FOUND,
-            ERR_GUILD_BUILDING_MAX,
-            ERR_GUILD_NOT_MEMBER,
-            ERR_GUILD_MASTER_CANT_BE_OFFICER,
-            ERR_GUILD_IS_FULL,
-            ERR_GUILD_ALREADY_YOU_OTHER,
-            ERR_GUILD_NOT_REAL_MEMBER,
-            ERR_GUILD_ALREADY_YOU_THIS,
-            ERR_GUILD_PLAYER_NOT_FOUND,
-            ERR_SUBJECT_TOO_SHORT,
-            ERR_GUILD_TOO_EXPENSIVE,
-            ERR_GUILD_CHAT_NOT_MEMBER,
-            ERR_GUILD_CHAT_HISTORY,
-            ERR_GUILD_CHAT_TEXT_ERROR,
-            ERR_BEER,
-            ERR_NO_MUSH_BAR,
-            ERR_NO_ENDURANCE,
-            ERR_WORSE_MOUNT,
-            ERR_GUILD_ALREADY_MEMBER,
-            ERR_NOT_INVITED,
-            ERR_NO_MUSH_PVP,
-            ERR_NO_MUSH_MQ
+        if case(ERR['ALREADY_IN_GUILD'],
+            ERR['NO_INDEX_FREE'],
+            ERR['FIGHT_SELF'],
+            ERR['GUILD']['NOT_FOUND'],
+            ERR['GUILD']['NOT_ALLOWED'],
+            ERR['GUILD']['LACK_MUSH'],
+            ERR['GUILD']['LACK_GOLD'],
+            ERR['GUILD']['BUILDING_NOT_FOUND'],
+            ERR['GUILD']['BUILDING_MAX'],
+            ERR['GUILD']['NOT_MEMBER'],
+            ERR['GUILD']['MASTER_CANT_BE_OFFICER'],
+            ERR['GUILD']['IS_FULL'],
+            ERR['GUILD']['ALREADY_YOU_OTHER'],
+            ERR['GUILD']['NOT_REAL_MEMBER'],
+            ERR['GUILD']['ALREADY_YOU_THIS'],
+            ERR['GUILD']['PLAYER_NOT_FOUND'],
+            ERR['SUBJECT']['TOO_SHORT'],
+            ERR['GUILD']['TOO_EXPENSIVE'],
+            ERR['GUILD']['CHAT']['NOT_MEMBER'],
+            ERR['GUILD']['CHAT']['HISTORY'],
+            ERR['GUILD']['CHAT']['TEXT_ERROR'],
+            ERR['BEER'],
+            ERR['NO_MUSH_BAR'],
+            ERR['NO_ENDURANCE'],
+            ERR['WORSE_MOUNT'],
+            ERR['GUILD']['ALREADY_MEMBER'],
+            ERR['NOT_INVITED'],
+            ERR['NO_MUSH_PVP'],
+            ERR['NO_MUSH_MQ']
         ):
             error_message(
-                texts[TXT_ERROR_ALREADY_IN_GUILD - ERR_ALREADY_IN_GUILD + act]
+                texts[TXT['ERROR']['ALREADY_IN_GUILD'] - ERR['ALREADY_IN_GUILD'] + act]
             )
             break
 
-        if case(ERR_BOOST):
+        if case(ERR['BOOST']):
             break
 
-        if case(RESP_ACCOUNT_SUCCESS):
+        if case(RESP['ACCOUNT']['SUCCESS']):
             actor[
                 INP['LOGIN_PASSWORD']
             ].getChildAt(1).text = actor[INP['PASSWORD']].getChildAt(1).text
@@ -18145,27 +18145,27 @@ def action_handler(event):
             log_in_after_pixel = True
             break
 
-        if case(ERR_NAME_EXISTS):
-            error_message(texts[TXT_ERROR_NAME_EXISTS])
+        if case(ERR['NAME_EXISTS']):
+            error_message(texts[TXT['ERROR']['NAME_EXISTS']])
             break
 
-        if case(ERR_NAME_TOO_SHORT):
-            error_message(texts[TXT_ERROR_NAME_TOO_SHORT])
+        if case(ERR['NAME_TOO_SHORT']):
+            error_message(texts[TXT['ERROR']['NAME_TOO_SHORT']])
             break
 
-        if case(ERR_PASSWORD_TOO_SHORT):
-            error_message(texts[TXT_ERROR_PASSWORD_TOO_SHORT])
+        if case(ERR['PASSWORD_TOO_SHORT']):
+            error_message(texts[TXT['ERROR']['PASSWORD_TOO_SHORT']])
             break
 
-        if case(ERR_EMAIL_REJECTED):
-            error_message(texts[TXT_ERROR_EMAIL_REJECTED])
+        if case(ERR['EMAIL_REJECTED']):
+            error_message(texts[TXT['ERROR']['EMAIL_REJECTED']])
             break
 
-        if case(ERR_NAME_REJECTED):
-            error_message(texts[TXT_ERROR_NAME_REJECTED])
+        if case(ERR['NAME_REJECTED']):
+            error_message(texts[TXT['ERROR']['NAME_REJECTED']])
             break
 
-        if case(ERR_LOGIN_FAILED):
+        if case(ERR['LOGIN_FAILED']):
             so.data.skipAutoLlogin = True
             so.data.password = ""
             so.flush()
@@ -18173,11 +18173,11 @@ def action_handler(event):
             actor[INP['PASSWORD']].getChildAt(1).text = ""
             char_volk = 0
             show_login_screen(None, True, True)
-            error_message(texts[TXT_ERROR_LOGIN_FAILED])
+            error_message(texts[TXT['ERROR']['LOGIN_FAILED']])
             break
 
-        if case(ERR_TOO_EXPENSIVE):
-            if on_stage(MODIFY_CHARACTER):
+        if case(ERR['TOO_EXPENSIVE']):
+            if on_stage(BTN['MODIFY_CHARACTER']):
                 char_volk = revertchar_volk
                 char_male = revertchar_male
                 char_color = revertchar_color
@@ -18192,33 +18192,33 @@ def action_handler(event):
                 char_special2 = revertchar_special2
                 show_option_screen()
 
-            error_message(texts[TXT_ERROR_TOO_EXPENSIVE])
+            error_message(texts[TXT['ERROR']['TOO_EXPENSIVE']])
             break
 
         if case(ERR_WRONG_PASSWORD):
-            error_message(texts[TXT_ERROR_WRONG_PASSWORD])
+            error_message(texts[TXT['ERROR']['WRONG_PASSWORD']])
             break
 
-        if case(ERR_FACE_DATA_INCORRECT):
+        if case(ERR['FACE']['DATA_INCORRECT']):
             error_message(texts[TXT_ERROR_FACE_DATA_INCORRECT])
             break
 
-        if case(ERR_EMAIL_WRONG):
-            error_message(texts[TXT_ERROR_EMAIL_WRONG])
+        if case(ERR['EMAIL_WRONG']):
+            error_message(texts[TXT['ERROR']['EMAIL']['WRONG']])
             break
 
-        if case(RESP_PLAYER_NOT_FOUND):
-            error_message(texts[TXT_ERROR_PLAYER_NOT_FOUND])
+        if case(RESP['PLAYER_NOT_FOUND']):
+            error_message(texts[TXT['ERROR']['PLAYER_NOT_FOUND']])
             break
 
         if case(act < 0):
-            error_message(texts[TXT_ERROR_UNKNOWN] + " (#" + str(act) + ")")
+            error_message(texts[TXT['ERROR']['UNKNOWN']] + " (#" + str(act) + ")")
             break
         if case():
             LOG.warning("Warning: Action unknown: " + act + ". Ignored!")
 
-    playerid = savegame[SG_PLAYER_ID]
-    if act == RESP_ACCOUNT_SUCCESS:
+    playerid = savegame[SG['PLAYER_ID']]
+    if act == RESP['ACCOUNT']['SUCCESS']:
         playerid = par[0]
 
     if defined_pixel_calls[act]:
@@ -18252,7 +18252,7 @@ def action_handler(event):
 
             if ((pixel[1] == "") or (not pas.find(int(param_adv)) != -1)):
                 pxl_str = pixel[2].replace(
-                    "%playerid%", savegame[SG_PLAYER_ID]
+                    "%playerid%", savegame[SG['PLAYER_ID']]
                 ).replace(
                     "%cid%", param_cid
                 ).replace(
@@ -18280,7 +18280,7 @@ def action_handler(event):
 
                         in_var = not in_var
 
-                if int(savegame[SG_PLAYER_ID]) == 0:
+                if int(savegame[SG['PLAYER_ID']]) == 0:
                     next_pxl = -(act)
                 else:
                     load_tracking_pixel(pxl_str)
@@ -18494,7 +18494,7 @@ def define_btn(
     pos_x=0, pos_y=0, scale_x=1, scale_y=1, vis=True
 ):
     def playClickSound(evt):
-        play(SND_CLICK)
+        play(SND['CLICK'])
 
     actor[i] = btnClass()
 
@@ -18519,8 +18519,94 @@ def define_btn(
         set_btn_text(actor_id, caption)
 
 
+def error_message(msg=""):
+    '''
+        Display error message
+    '''
+    if msg != "":
+        log.error("Error message: " + msg)
+
 
 '''
+        if (on_stage(SHP_FUCK_BLACK_SQUARE)){
+            var _local3 = actor[LBL['ERROR']];
+            with (_local3) {
+                text = msg;
+                scaleX = 1;
+                scaleY = 1;
+                x = (IF_ERROR_X - int((textWidth / 2)));
+                y = (IF_ERROR_Y + 60);
+            };
+            add(LBL['ERROR']);
+        } else {
+            if (on_stage(GILDE_LIST)){
+                if (msg.split(" ").join("") != ""){
+                    chat_line(msg, True);
+                };
+            } else {
+                if (((on_stage(CREATE_CHARACTER)) and (!(on_stage(IF_WINDOW))))){
+                    _local3 = actor[LBL_CREATE_RACE_DESC];
+                    with (_local3) {
+                        default_text_format = FontFormat_ClassError;
+                        text = msg;
+                        default_text_format = FontFormat_DefaultLeft;
+                    };
+                    actor[LBL_CREATE_CLASS].text = "";
+                    actor[LBL_CREATE_CLASS_DESC].text = "";
+                } else {
+                    _local3 = actor[LBL['ERROR']];
+                    with (_local3) {
+                        text = msg;
+                        scaleX = 1;
+                        scaleY = 1;
+                        if (on_stage(SHOPS_NEWWAREZ)){
+                            x = (SHOP_ERROR_X - int((textWidth / 2)));
+                            y = SHOP_ERROR_Y;
+                        } else {
+                            if (on_stage(TOILET)){
+                                x = ((SHOP_ERROR_X - 15) - int((textWidth / 2)));
+                                y = 720;
+                            } else {
+                                if (on_stage(QUEST_CANCEL)){
+                                    x = (IF_ERROR_X - int((textWidth / 2)));
+                                    y = QUEST_ERROR_Y;
+                                } else {
+                                    if (on_stage(POST_BG)){
+                                        x = (IF_ERROR_X - int((textWidth / 2)));
+                                        y = POST_ERROR_Y;
+                                    } else {
+                                        if (on_stage(LBL_STALL_TITEL)){
+                                            x = (IF_ERROR_X - int((textWidth / 2)));
+                                            y = STALL_ERROR_Y;
+                                        } else {
+                                            if (on_stage(CHAR_ATTACK)){
+                                                scaleX = 0.7;
+                                                scaleY = 0.7;
+                                                x = (((280 + 500) + 235) - (width / 2));
+                                                y = (100 + 657);
+                                            } else {
+                                                if (on_stage(SHP_MAINQUEST)){
+                                                    x = (IF_ERROR_X - int((textWidth / 2)));
+                                                    y = MQ_ERROR_Y;
+                                                } else {
+                                                    x = (IF_ERROR_X - int((textWidth / 2)));
+                                                    y = IF_ERROR_Y;
+                                                };
+                                            };
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                    add(LBL['ERROR']);
+                };
+            };
+        };
+    };
+}
+
+
 
 def set_btn_text(actor_id:int, caption:String){
     var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
@@ -18724,17 +18810,17 @@ def language_file_loaded(evt):
 
     pending_language_file = False
     if lang_code == original_lang_code:
-        if texts[TXT_FONT_NAME] != "":
-            set_font(texts[TXT_FONT_NAME])
+        if texts[TXT['FONT_NAME']] != "":
+            set_font(texts[TXT['FONT_NAME']])
         else:
             set_font("Komika Text")
     else:
         chosen_lang_font = "Komika Text"
-        if texts[TXT_FONT_NAME]:
-            chosen_lang_font = texts[TXT_FONT_NAME]
+        if texts[TXT['FONT_NAME']]:
+            chosen_lang_font = texts[TXT['FONT_NAME']]
         load_original_language_file()
 
-    for i in range(TXT_COUNTRY_NAMES, TXT_COUNTRY_NAMES + 100):
+    for i in range(TXT['COUNTRY_NAMES'], TXT['COUNTRY_NAMES'] + 100):
         if (texts[i]):
             countryName[texts[i].split("=")[0]] = texts[i].split("=")[1]
         else:
@@ -18785,7 +18871,7 @@ def original_language_file_loaded(evt):
                 in_value = False
                 if len(tmp_str) > 0:
                     old_str = tmp_str
-                    if last_index == TXT_FONT_NAME:
+                    if last_index == TXT['FONT_NAME']:
                         original_font = tmp_str
                     tmp_str = ""
 
@@ -18840,205 +18926,205 @@ def configuration_file_loaded(evt):
                 in_value = False
                 if len(tmp_str) > 0:
                     for case in Switch(last_index):
-                        if case(LANG_CODE):
+                        if case(CFG['LANG_CODE']):
                             lang_code = tmp_str
                             original_lang_code = lang_code
                             break
 
-                        if case(URL):
+                        if case(CFG['URL']):
                             img_url[len(img_url)] = tmp_str
                             break
 
-                        if case(SND_URL):
+                        if case(CFG['SND_URL']):
                             snd_url[len(snd_url)] = tmp_str
                             break
 
-                        if case(LIGHT_MODE):
+                        if case(CFG['LIGHT_MODE']):
                             light_mode_default = (int(tmp_str) != 0)
                             break
 
-                        if case(SERVER):
+                        if case(CFG['SERVER']):
                             server = tmp_str
                             break
 
-                        if case(LANG_URL):
+                        if case(CFG['LANG_URL']):
                             lang_url = tmp_str
                             break
 
-                        if case(NO_CROSSDOMAIN):
+                        if case(CFG['NO_CROSSDOMAIN']):
                             no_crossdomain = (int(tmp_str) != 0)
                             break
 
-                        if case(FORUM_URL):
+                        if case(CFG['FORUM_URL']):
                             forum_url = tmp_str
                             break
 
-                        if case(SHOP_URL):
+                        if case(CFG['SHOP_URL']):
                             shop_url = tmp_str
                             break
 
-                        if case(IMPRINT_URL):
+                        if case(CFG['IMPRINT_URL']):
                             imprint_url = tmp_str
                             break
 
-                        if case(LEGAL_URL):
+                        if case(CFG['LEGAL_URL']):
                             legal_url = tmp_str
                             break
 
-                        if case(DATAPROT_URL):
+                        if case(CFG['DATAPROT_URL']):
                             dataprot_url = tmp_str
                             break
 
-                        if case(INSTR_URL):
+                        if case(CFG['INSTR_URL']):
                             instr_url = tmp_str
                             break
 
-                        if case(buffed_mode):
+                        if case(CFG['BUFFEDMODE']):
                             buffed_mode = (tmp_str != "")
                             buffed_link_text = tmp_str
                             break
 
-                        if case(pay_methods):
+                        if case(CFG['PAYMETHODS']):
                             pay_methods = tmp_str.split("/")
 
                             for j in range(len(pay_methods)):
                                 pay_methods[j] = int(pay_methods[j])
                             break
 
-                        if case(SERVER_ID):
+                        if case(CFG['SERVER_ID']):
                             server_id = int(tmp_str)
                             break
 
-                        if case(MP_PROJECT):
+                        if case(CFG['MP_PROJECT']):
                             mp_project = tmp_str
                             break
 
-                        if case(BUFFED_URL):
+                        if case(CFG['BUFFED_URL']):
                             buffed_link_url = tmp_str
                             break
 
-                        if case(RESPONSE_TIMEOUT):
+                        if case(CFG['RESPONSE_TIMEOUT']):
                             response_timeout = int(tmp_str)
                             break
 
-                        if case(IMAGE_TIMEOUT):
+                        if case(CFG['IMAGE_TIMEOUT']):
                             image_timeout = int(tmp_str)
                             break
 
-                        if case(SPONSOR_IMG):
+                        if case(CFG['SPONSOR_IMG']):
                             param_sponsor = tmp_str
                             break
 
-                        if case(REROLL_IMG):
+                        if case(CFG['REROLL_IMG']):
                             param_reroll_img = int(tmp_str)
                             break
 
-                        if case(RECONNECT):
+                        if case(CFG['RECONNECT']):
                             param_reconnect = int(tmp_str)
                             break
 
-                        if case(PHP_TUNNEL_URL):
+                        if case(CFG['PHP_TUNNEL_URL']):
                             param_php_tunnel_url = tmp_str
                             break
 
-                        if case(TRACKING_PIXEL):
+                        if case(CFG['TRACKING_PIXEL']):
                             trackPixels.append(tmp_str.split(";"))
                             LOG.debug(
                                 ("Tracking pixel definition old " + tmp_str)
                             )
                             break
 
-                        if case(POLL_TUNNEL_URL):
+                        if case(CFG['POLL_TUNNEL_URL']):
                             param_poll_tunnel_url = tmp_str
                             break
 
-                        if case(SUPPORT_EMAIL):
+                        if case(CFG['SUPPORT_EMAIL']):
                             param_support_email = tmp_str
                             break
 
-                        if case(GAMESTAFF_EMAIL):
+                        if case(CFG['GAMESTAFF_EMAIL']):
                             param_gamestaff_email = tmp_str
                             break
 
-                        if case(PAPAYA_PATH):
+                        if case(CFG['PAPAYA_PATH']):
                             param_papaya_path = tmp_str
                             break
 
-                        if case(PAPAYA_FILE):
+                        if case(CFG['PAPAYA_FILE']):
                             param_papaya_cfg_file = tmp_str
                             break
 
-                        if case(RESEND_COUNT):
+                        if case(CFG['RESEND_COUNT']):
                             param_fail_tries = int(tmp_str)
                             break
 
-                        if case(IDLE_POLLING):
+                        if case(CFG[IDLE_POLLING]):
                             param_idle_polling = int(tmp_str)
                             break
 
-                        if case(ALLOW_SKIP_QUEST):
+                        if case(CFG['ALLOW_SKIP_QUEST']):
                             param_allow_skip_quest = (int(tmp_str) == 1)
                             param_happy_hour = (int(tmp_str) == 2)
                             break
 
-                        if case(CENSORED):
+                        if case(CFG['CENSORED']):
                             param_censored = (int(tmp_str) != 0)
                             break
 
-                        if case(INTERNAL_PIXEL):
+                        if case(CFG['INTERNAL_PIXEL']):
                             param_internal_pixel = (int(tmp_str) != 0)
                             break
 
-                        if case(RELOAD_PIXEL):
+                        if case(CFG['RELOAD_PIXEL']):
                             param_reload_pixel = (int(tmp_str) != 0)
                             break
 
-                        if case(SERVER_VERSION):
+                        if case(CFG['SERVER_VERSION']):
                             param_server_version_cfg = tmp_str
                             break
 
-                        if case(DONT_SAVE_CID):
+                        if case(CFG['DONT_SAVE_CID']):
                             param_no_cid_save = (int(tmp_str) != 0)
                             break
 
-                        if case(FLAGS):
+                        if case(CFG['FLAGS']):
                             param_languages = tmp_str.split("/")
                             break
 
-                        if case(FLAG_NAMES):
+                        if case(CFG['FLAG_NAMES']):
                             param_language_names = tmp_str.split("/")
                             break
 
-                        if case(LOWRES_URL):
+                        if case(CFG['LOWRES_URL']):
                             break
 
-                        if case(SPONSOR_URL):
+                        if case(CFG['SPONSOR_URL']):
                             param_sponsor_url = tmp_str
                             break
 
-                        if case(BULLSHIT_BOX):
+                        if case(CFG['BULLSHIT_BOX']):
                             param_bullshit_text = tmp_str
                             break
 
-                        if case(BULLSHIT_CID):
+                        if case(CFG['BULLSHIT_CID']):
                             param_bullshit_cid = tmp_str
                             break
 
-                        if case(SOCIAL_BUTTONS):
+                        if case(CFG['SOCIAL_BUTTONS']):
                             param_social_buttons = tmp_str.split("/")
                             break
 
-                        if case(PIXEL_CALL):
+                        if case(CFG['PIXEL_CALL']):
                             defined_pixel_calls[
                                 tmp_str.split(":")[0]
                             ] = tmp_str.split(":")[1]
                             break
 
-                        if case(BACKGROUND_ID):
+                        if case(CFG['BACKGROUND_ID']):
                             login_background_id = tmp_str
                             break
 
-                        if case(WORLDS):
+                        if case(CFG['WORLDS']):
                             worlds = list()
                             tmp_worlds = tmp_str.split(";")
 
@@ -19051,15 +19137,15 @@ def configuration_file_loaded(evt):
                                 worlds.append(tmp_world)
                             break
 
-                        if case(TV_FUNCTION):
+                        if case(CFG['TV_FUNCTION']):
                             tv_function_name = tmp_str
                             break
 
-                        if case(TV_POLL_INTERVAL_NORMAL):
+                        if case(CFG['TV_POLL_INTERVAL_NORMAL']):
                             tv_poll_normal = int(tmp_str) * 1000
                             break
 
-                        if case(TV_POLL_INTERVAL_LONG):
+                        if case(CFG['TV_POLL_INTERVAL_LONG']):
                             tvPollLong = int(tmp_str) * 1000
                             break
                 tmp_str = ""
@@ -19488,7 +19574,7 @@ def load_tracking_pixel(url=''):
         #variables = new URLVariables()
         #variables.pixel_url = url
         #variables.pixel_cid = param_cid
-        #variables.pixel_player_id = savegame[SG_PLAYER_ID]
+        #variables.pixel_player_id = savegame[SG['PLAYER_ID']]
         #variables.pixel_action = (((next_pxl == 0)) ? act : abs(next_pxl)
 
         #req.data = variables
@@ -19736,7 +19822,7 @@ def load_tracking_pixel(url=''):
         var ShowShop:* = function (){
             navigateToURLEx(new URLRequest(
                 shop_url.split("<playerid>").join(
-                    savegame[SG_PLAYER_ID]
+                    savegame[SG['PLAYER_ID']]
                 ).split("<paymentid>").join(
                     savegame[SG_PAYMENT_ID]
                 ).split("<playername>").join(
@@ -21430,7 +21516,7 @@ def load_tracking_pixel(url=''):
                             break;
                     };
                     if (BoostAttribute(evt)){
-                        play(SND_CLICK);
+                        play(SND['CLICK']);
                     };
                 };
             };
@@ -22926,7 +23012,7 @@ def load_tracking_pixel(url=''):
             };
             if (textToSend.lower() == "/pid"){
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
-                chat_line(("Player id: " + savegame[SG_PLAYER_ID]));
+                chat_line(("Player id: " + savegame[SG['PLAYER_ID']]));
                 return;
             };
             if (textToSend.lower() == "/pwdscore"){
@@ -23314,7 +23400,7 @@ def load_tracking_pixel(url=''):
                             break;
                     };
                     if (HutBtnHandler(evt)){
-                        play(SND_CLICK);
+                        play(SND['CLICK']);
                     };
                 };
             };
@@ -24207,7 +24293,7 @@ def load_tracking_pixel(url=''):
             };
             i = (i + 1);
         };
-        define_snd(SND_CLICK, "res/sfx/click.mp3", True);
+        define_snd(SND['CLICK'], "res/sfx/click.mp3", True);
         define_snd(SND_ERROR, "res/sfx/error.mp3", False);
         define_snd(SND_JINGLE, "res/sfx/jingle.mp3", True);
         DefineImg(IF_BACKGROUND, (("res/gfx/if/login" + login_background_id) + ".jpg"), True, 280, 100);
@@ -27995,7 +28081,7 @@ def TryShowTV(evt:Event=None){
             };
             trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"requesttv\"!"));
             try {
-                tvReturnValue = ExternalInterface.call(tv_function_name, "requesttv", (((((savegame[SG_PLAYER_ID] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
+                tvReturnValue = ExternalInterface.call(tv_function_name, "requesttv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
             } catch(e:Error) {
                 trc(("There was an error: " + e.message));
                 tvPollTimer.delay = tvPollLong;
@@ -28967,7 +29053,7 @@ def DoAchievements(SG:Array):Boolean{
         };
         achPop[achPop.length] = SingPlur(achCurrentGrade, ach_level(SG, (i % 8), 4));
         if (i == 1){
-            if (SG[SG_PLAYER_ID] == savegame[SG_PLAYER_ID]){
+            if (SG[SG['PLAYER_ID']] == savegame[SG['PLAYER_ID']]){
                 if (tower_level > 0){
                     achPop[achPop.length] = SingPlur(texts[(TXT_ACH_2 + 8)].split("%1").join(str(tower_level)), tower_level);
                 };
@@ -31481,89 +31567,6 @@ def DrachenSetzen():void{
         actor[i].y = y;
         addChild(actor[i]);
         i++;
-    };
-}
-
-def error_message(msg:String=""):void{
-    var msg:String = msg;
-    if (msg == ""){
-    } else {
-        trc(("Error message: " + msg));
-        if (on_stage(SHP_FUCK_BLACK_SQUARE)){
-            var _local3 = actor[LBL['ERROR']];
-            with (_local3) {
-                text = msg;
-                scaleX = 1;
-                scaleY = 1;
-                x = (IF_ERROR_X - int((textWidth / 2)));
-                y = (IF_ERROR_Y + 60);
-            };
-            add(LBL['ERROR']);
-        } else {
-            if (on_stage(GILDE_LIST)){
-                if (msg.split(" ").join("") != ""){
-                    chat_line(msg, True);
-                };
-            } else {
-                if (((on_stage(CREATE_CHARACTER)) and (!(on_stage(IF_WINDOW))))){
-                    _local3 = actor[LBL_CREATE_RACE_DESC];
-                    with (_local3) {
-                        default_text_format = FontFormat_ClassError;
-                        text = msg;
-                        default_text_format = FontFormat_DefaultLeft;
-                    };
-                    actor[LBL_CREATE_CLASS].text = "";
-                    actor[LBL_CREATE_CLASS_DESC].text = "";
-                } else {
-                    _local3 = actor[LBL['ERROR']];
-                    with (_local3) {
-                        text = msg;
-                        scaleX = 1;
-                        scaleY = 1;
-                        if (on_stage(SHOPS_NEWWAREZ)){
-                            x = (SHOP_ERROR_X - int((textWidth / 2)));
-                            y = SHOP_ERROR_Y;
-                        } else {
-                            if (on_stage(TOILET)){
-                                x = ((SHOP_ERROR_X - 15) - int((textWidth / 2)));
-                                y = 720;
-                            } else {
-                                if (on_stage(QUEST_CANCEL)){
-                                    x = (IF_ERROR_X - int((textWidth / 2)));
-                                    y = QUEST_ERROR_Y;
-                                } else {
-                                    if (on_stage(POST_BG)){
-                                        x = (IF_ERROR_X - int((textWidth / 2)));
-                                        y = POST_ERROR_Y;
-                                    } else {
-                                        if (on_stage(LBL_STALL_TITEL)){
-                                            x = (IF_ERROR_X - int((textWidth / 2)));
-                                            y = STALL_ERROR_Y;
-                                        } else {
-                                            if (on_stage(CHAR_ATTACK)){
-                                                scaleX = 0.7;
-                                                scaleY = 0.7;
-                                                x = (((280 + 500) + 235) - (width / 2));
-                                                y = (100 + 657);
-                                            } else {
-                                                if (on_stage(SHP_MAINQUEST)){
-                                                    x = (IF_ERROR_X - int((textWidth / 2)));
-                                                    y = MQ_ERROR_Y;
-                                                } else {
-                                                    x = (IF_ERROR_X - int((textWidth / 2)));
-                                                    y = IF_ERROR_Y;
-                                                };
-                                            };
-                                        };
-                                    };
-                                };
-                            };
-                        };
-                    };
-                    add(LBL['ERROR']);
-                };
-            };
-        };
     };
 }
 
