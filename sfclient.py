@@ -16517,7 +16517,7 @@ def action_handler(event):
                 play(SND['TOILET']['DROP'])
 
             parse_savgame(par[0])
-            if (len(par) > 1):
+            if len(par) > 1:
                 if act == RESP['TOILET']['FLUSHED']:
                     show_toilet(par[1], par[2], par[3], par[4], par[5])
                 else:
@@ -16931,7 +16931,7 @@ def action_handler(event):
                             for j in range(len(offline_guild_members)):
                                 tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
-                                if (tmp_array[i].lower().find(tmp_str) != -1):
+                                if tmp_array[i].lower().find(tmp_str) != -1:
                                     if on_stage(INP['GILDE_CHAT']):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -16968,7 +16968,7 @@ def action_handler(event):
                                 if (tmp_array[i].lower().find(
                                     tmp_str) != -1
                                 ):
-                                    if (on_stage(INP['GILDE_CHAT'])):
+                                    if on_stage(INP['GILDE_CHAT']):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
 
@@ -16977,7 +16977,7 @@ def action_handler(event):
             if (par[1]) and (not par[3]):
                 last_chat_index = int(par[1])
 
-            if (par[2]):
+            if par[2]:
                 tmp_array = par[2].split("/")
             else:
                 tmp_array = []
@@ -16998,13 +16998,12 @@ def action_handler(event):
 
                     add_suggest_names(external_whisperer)
 
-                    if (last_chat_index != 0):
-
+                    if last_chat_index != 0:
                         for j in range(len(offline_guild_members)):
                             tmp_str = offline_guild_members[j].lower()
                             tmp_str += ":§"
-                            if (tmp_array[i].lower().find(tmp_str) != -1):
-                                if (on_stage(INP['GILDE_CHAT'])):
+                            if tmp_array[i].lower().find(tmp_str) != -1:
+                                if on_stage(INP['GILDE_CHAT']):
                                     send_action(ACT['SCREEN']['GILDEN'])
                                 break
 
@@ -17046,7 +17045,7 @@ def action_handler(event):
             break
 
         if case(RESP['CHAT_LINE']):
-            if (decode_chat(par[0], False, True) == "1"):
+            if decode_chat(par[0], False, True) == "1":
                 remove(BNC['GILDE']['CHAT'])
 
             chat_line(decode_chat(par[0]), False, get_hl_index(par[0]))
@@ -17269,10 +17268,10 @@ def action_handler(event):
                     set_default_crest()
                 old_crest_str = old_crest_str()
             else:
-                if (par[1].find("§") != -1):
+                if par[1].find("§") != -1:
                     par[1] = par[1][(par[1].find("§") + 1):]
 
-            if (last_guild_crest_id != par[0].split("/")[0]):
+            if last_guild_crest_id != par[0].split("/")[0]:
                 old_crest_str = old_crest_str()
 
             if (not is_mine) and par[1].find("///") > -1:
@@ -17398,7 +17397,9 @@ def action_handler(event):
                         break
 
                     if case("4"):
-                        par[1] = texts[TXT['SUBJECT']['GUILD_EXPELLED_BY_ADMIN']]
+                        par[1] = texts[
+                            TXT['SUBJECT']['GUILD_EXPELLED_BY_ADMIN']
+                        ]
                         par[3] = texts[
                             TXT['BODY']['GUILD_EXPELLED_BY_ADMIN']
                         ].replace(
@@ -17418,7 +17419,9 @@ def action_handler(event):
                         break
 
                     if case("6", "7"):
-                        par[1] = texts[TXT['SUBJECT']['PVP']].replace("%1", par[0])
+                        par[1] = texts[TXT['SUBJECT']['PVP']].replace(
+                            "%1", par[0]
+                        )
                         tmp_battle_info = par[3]
                         tmp_fighter_array = tmp_battle_info.split(
                             "#"
@@ -17481,7 +17484,7 @@ def action_handler(event):
                         break
 
                     if case("8"):
-                        if (texts[TXT['INV']['ACC_TITLE']] != ""):
+                        if texts[TXT['INV']['ACC_TITLE']] != "":
                             par[1] = texts[TXT['INV']['ACC_TITLE']]
                             par[3] = texts[TXT['INV']['ACC_TEXT']].replace(
                                 "%1", par[0]
@@ -17503,7 +17506,7 @@ def action_handler(event):
                         break
 
                     if case("9"):
-                        if (texts[TXT['INV']['VAL_TITLE']] != ""):
+                        if texts[TXT['INV']['VAL_TITLE']] != "":
                             par[1] = texts[TXT['INV']['VAL_TITLE']]
                             par[3] = texts[TXT['INV']['VAL_TEXT']].replace(
                                 "%1", par[0]
@@ -17524,7 +17527,7 @@ def action_handler(event):
                 text = par[1].replace("%u20AC", "€")
 
             post_read_text = par[3]
-            if (texts[TXT['ALERT_WORDS']]):
+            if texts[TXT['ALERT_WORDS']]:
                 alert_words = texts[TXT['ALERT_WORDS']].split(" ")
 
                 for i in range(len(alert_words)):
@@ -17553,7 +17556,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['PILZDEALER']):
-            if (par[0]):
+            if par[0]:
                 dealer_aktion = int(par[0])
             else:
                 dealer_aktion = 0
@@ -17605,7 +17608,7 @@ def action_handler(event):
 
             if text_dir == "right":
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['6_X'] + 40,
+                    col_idx['6_X'] + 40,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['1']],
                     FontFormat_HallListHeading
@@ -17615,13 +17618,13 @@ def action_handler(event):
                 if guild_hall_mode:
                     modetxt = TXT['HALL']['LIST']['COLUMN']['3']
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['6_X'] - 10,
+                    col_idx['6_X'] - 10,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
                     FontFormat_HallListHeading
                 )
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['2_X'] - 10,
+                    col_idx['2_X'] - 10,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['5']],
                     FontFormat_HallListHeading
@@ -17631,7 +17634,7 @@ def action_handler(event):
                 if guild_hall_mode:
                     modetxt = TXT['HALL']['LIST']['COLUMN']['3']
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['4_X'] + 20,
+                    col_idx['4_X'] + 20,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
                     FontFormat_HallListHeading
@@ -17641,14 +17644,14 @@ def action_handler(event):
                 if guild_hall_mode:
                     modetxt = TXT['HALL']['LIST']['COLUMN']['4']
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['3_X'] + 25,
+                    col_idx['3_X'] + 25,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
                     FontFormat_HallListHeading
                 )
             else:
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['1_X'],
+                    col_idx['1_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['1']],
                     FontFormat_HallListHeading
@@ -17658,14 +17661,14 @@ def action_handler(event):
                 if guild_hall_mode:
                     modetxt = TXT['HALL']['LIST']['COLUMN']['3']
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['2_X'],
+                    col_idx['2_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
                     FontFormat_HallListHeading
                 )
 
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['6_X'],
+                    col_idx['6_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['5']],
                     FontFormat_HallListHeading
@@ -17675,7 +17678,7 @@ def action_handler(event):
                 if guild_hall_mode:
                     modetxt = TXT['HALL']['LIST']['COLUMN']['3']
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['4_X'],
+                    col_idx['4_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
                     FontFormat_HallListHeading
@@ -17685,7 +17688,7 @@ def action_handler(event):
                 if guild_hall_mode:
                     modetxt = TXT['HALL']['LIST']['COLUMN']['4']
                 hall_list_add_field(
-                    REL['HALL']['LIST']['COLUMN']['5_X'],
+                    col_idx['5_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
                     FontFormat_HallListHeading
@@ -17715,27 +17718,27 @@ def action_handler(event):
                     and (tmp_str == tmp_array[tmpidx].lower())
                 ):
                     tmp_fmt = FontFormat_HallListHighLight
+                elif guild_hall_mode and (int(tmp_array[i + 3]) < 0):
+                    tmp_fmt = FontFormat_GuildHallNoAttack
+                elif (
+                    (not guild_hall_mode)
+                    and (not lastAttacked.find(tmp_array[i + 1].lower()) == -1)
+                ):
+                    tmp_fmt = FontFormat_GuildHallNoAttack
                 else:
-                    if (guild_hall_mode and (int(tmp_array[i + 3]) < 0)):
-                        tmp_fmt = FontFormat_GuildHallNoAttack
-                    else:
-                        if (
-                            (not guild_hall_mode)
-                            and (not lastAttacked.find(
-                                 tmp_array[i + 1].lower()
-                            ) == -1)
-                        ):
-                            tmp_fmt = FontFormat_GuildHallNoAttack
-                        else:
-                            tmp_fmt = FontFormat_HallListText
+                    tmp_fmt = FontFormat_HallListText
 
                 last_hall_members.append(tmp_array[i + 1])
                 arrow_hall_mode = True
+
+                col_idx = col_idx
+                lines_idx = REL['HALL']['LIST']['LINES']['Y']
+                lines_idx += line * REL['HALL']['LIST']['LINE']['Y']
+
                 if text_dir == "right":
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['6_X'] + 40,
-                        REL['HALL']['LIST']['LINES']['Y'] + line
-                            * REL['HALL']['LIST']['LINE']['Y'],
+                        col_idx['6_X'] + 40,
+                        lines_idx,
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17752,9 +17755,8 @@ def action_handler(event):
                         modetxt = "[K]"
 
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['6_X'] - 10,
-                        REL['HALL']['LIST']['LINES']['Y'] + line
-                            * REL['HALL']['LIST']['LINE']['Y'] + 5,
+                        col_idx['6_X'] - 10,
+                        lines_idx + 5,
                         modetxt,
                         tmp_fmt
                     )
@@ -17763,16 +17765,18 @@ def action_handler(event):
                     hall_list_name[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = REL['HALL']['LIST']['COLUMN']['6_X'] - 30
-                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
+                    tmpidx = col_idx['6_X'] - 30
+                    tmpidx2 = col_idx['5_X']
+                        - col_idx['4_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = REL['HALL']['LIST']['COLUMN']['4_X'] + 20
+                        tmpidx = col_idx['4_X'] + 20
                         tmpidx2 = (
-                            REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['3_X'] - 10
+                            col_idx['4_X']
+                            - col_idx['3_X'] - 10
                         )
                     hall_list_add_field(
                         tmpidx,
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        lines_idx,
                         tmp_array[i],
                         tmp_fmt,
                         tmpidx2
@@ -17781,19 +17785,19 @@ def action_handler(event):
                     hall_list_guild[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = REL['HALL']['LIST']['COLUMN']['4_X'] - 20
-                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
+                    tmpidx = col_idx['4_X'] - 20
+                    tmpidx2 = col_idx['5_X'] - col_idx['4_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = REL['HALL']['LIST']['COLUMN']['6_X'] + 10
+                        tmpidx = col_idx['6_X'] + 10
                         tmpidx2 = (
-                            REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['2_X'] - 10
+                            col_idx['4_X'] - col_idx['2_X'] - 10
                         )
                     tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
                         tmp_str = texts[TXT['NOGUILD']]
                     hall_list_add_field(
                         tmpidx,
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        lines_idx,
                         tmp_str,
                         tmp_fmt,
                         tmpidx2,
@@ -17802,8 +17806,8 @@ def action_handler(event):
                     i += 1
 
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['3_X'] + 25,
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        col_idx['3_X'] + 25,
+                        lines_idx,
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17814,8 +17818,8 @@ def action_handler(event):
                     if tmp_array[i] == 1:
                         tmpidx = 0
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['2_X'] - 10,
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        col_idx['2_X'] - 10,
+                        lines_idx,
                         tmpidx,
                         tmp_fmt,
                         0,
@@ -17823,8 +17827,8 @@ def action_handler(event):
                     )
                 else:
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['1_X'],
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        col_idx['1_X'],
+                        lines_idx,
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17841,8 +17845,8 @@ def action_handler(event):
                         modetxt = "[K]"
 
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['2_X'],
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'] + 5,
+                        col_idx['2_X'],
+                        lines_idx + 5,
                         modetxt,
                         tmp_fmt
                     )
@@ -17851,16 +17855,16 @@ def action_handler(event):
                     hall_list_name[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = REL['HALL']['LIST']['COLUMN']['3_X']
-                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['3_X'] - 10
+                    tmpidx = col_idx['3_X']
+                    tmpidx2 = col_idx['4_X'] - col_idx['3_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = REL['HALL']['LIST']['COLUMN']['4_X']
+                        tmpidx = col_idx['4_X']
                         tmpidx2 = (
-                            REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
+                            col_idx['5_X'] - col_idx['4_X'] - 10
                         )
                     hall_list_add_field(
                         tmpidx,
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        lines_idx,
                         tmp_array[i],
                         tmp_fmt,
                         tmpidx2
@@ -17869,19 +17873,19 @@ def action_handler(event):
                     hall_list_guild[line] = tmp_array[i]
                     i += 1
 
-                    tmpidx = REL['HALL']['LIST']['COLUMN']['4_X']
-                    tmpidx2 = REL['HALL']['LIST']['COLUMN']['5_X'] - REL['HALL']['LIST']['COLUMN']['4_X'] - 10
+                    tmpidx = col_idx['4_X']
+                    tmpidx2 = col_idx['5_X'] - col_idx['4_X'] - 10
                     if guild_hall_mode:
-                        tmpidx = REL['HALL']['LIST']['COLUMN']['2_X']
+                        tmpidx = col_idx['2_X']
                         tmpidx2 = (
-                            REL['HALL']['LIST']['COLUMN']['4_X'] - REL['HALL']['LIST']['COLUMN']['2_X'] - 10
+                            col_idx['4_X'] - col_idx['2_X'] - 10
                         )
                     tmp_str = tmp_array[i - 1]
                     if tmp_array[i] == "":
                         tmp_str = texts[TXT['NOGUILD']]
                     hall_list_add_field(
                         tmpidx,
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        lines_idx,
                         tmp_str,
                         tmp_fmt,
                         tmpidx2,
@@ -17890,8 +17894,8 @@ def action_handler(event):
                     i += 1
 
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['5_X'],
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        col_idx['5_X'],
+                        lines_idx,
                         abs(tmp_array[i]),
                         tmp_fmt,
                         0,
@@ -17902,8 +17906,8 @@ def action_handler(event):
                     if tmp_array[i] == 1:
                         tmpidx = 0
                     hall_list_add_field(
-                        REL['HALL']['LIST']['COLUMN']['6_X'],
-                        REL['HALL']['LIST']['LINES']['Y'] + line * REL['HALL']['LIST']['LINE']['Y'],
+                        col_idx['6_X'],
+                        lines_idx,
                         tmpidx,
                         tmp_fmt,
                         0,
@@ -17951,7 +17955,9 @@ def action_handler(event):
                     if act == RESP['SAVEGAME']['MIRROR']:
                         play(SND['MIRROR'])
 
-                    display_inventory(None, on_stage(IMG['SCR']['CHAR_BG_RIGHT']))
+                    display_inventory(
+                        None, on_stage(IMG['SCR']['CHAR_BG_RIGHT'])
+                    )
 
                     for i in range(13):
                         if mirror_pieces[i]:
@@ -18053,7 +18059,7 @@ def action_handler(event):
             so.flush()
             add(CNT['IF']['LOGOUT'])
 
-            if (savegame[SG['FACE']['1']] == 0):
+            if savegame[SG['FACE']['1']] == 0:
                 LOG.error("Fehler): Charakter nicht initialisiert.")
                 request_logout()
             else:
@@ -18119,7 +18125,10 @@ def action_handler(event):
             ERR['NO_MUSH_MQ']
         ):
             error_message(
-                texts[TXT['ERROR']['ALREADY_IN_GUILD'] - ERR['ALREADY_IN_GUILD'] + act]
+                texts[
+                    TXT['ERROR']['ALREADY_IN_GUILD']
+                    - ERR['ALREADY_IN_GUILD'] + act
+                ]
             )
             break
 
@@ -18207,7 +18216,9 @@ def action_handler(event):
             break
 
         if case(act < 0):
-            error_message(texts[TXT['ERROR']['UNKNOWN']] + " (#" + str(act) + ")")
+            error_message(
+                texts[TXT['ERROR']['UNKNOWN']] + " (#" + str(act) + ")"
+            )
             break
         if case():
             LOG.warning("Warning: Action unknown: " + act + ". Ignored!")
@@ -18245,7 +18256,7 @@ def action_handler(event):
                 else:
                     pas.append(int(pa))
 
-            if ((pixel[1] == "") or (not pas.find(int(param_adv)) != -1)):
+            if (pixel[1] == "") or (not pas.find(int(param_adv)) != -1):
                 pxl_str = pixel[2].replace(
                     "%playerid%", savegame[SG['PLAYER_ID']]
                 ).replace(
