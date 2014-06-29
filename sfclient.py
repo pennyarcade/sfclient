@@ -4198,13 +4198,12 @@ class Session(object):
         else:
             if self.send_lock:
                 if (action not in (
-                    ACT['VALIDATE'],
-                    ACT['SEND_CHAT'],
-                    ACT['GUILD']['DONATE'],
-                    ACT['REQUEST']['GUILD_NAMES'],
-                    ACT['REQUEST']['CHAR'],
-                    ACT['POST']['SEND'])
-                ):
+                        ACT['VALIDATE'],
+                        ACT['SEND_CHAT'],
+                        ACT['GUILD']['DONATE'],
+                        ACT['REQUEST']['GUILD_NAMES'],
+                        ACT['REQUEST']['CHAR'],
+                        ACT['POST']['SEND'])):
                     LOG.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil noch auf eine ",
                         "Serverantwort gewartet wird: ",
@@ -4234,10 +4233,8 @@ class Session(object):
 
         # TODO: This "if" switches base URL
         # self.param_poll_tunnel_url / param_php_tunnel_url
-        if (
-            (action == ACT['GET_CHAT_HISTORY'])
-            and (self.param_poll_tunnel_url != "")
-        ):
+        if ((action == ACT['GET_CHAT_HISTORY'])
+                and (self.param_poll_tunnel_url != "")):
             # TODO: move payload creation to method
             # self.param_poll_tunnel_url
             req_string = self.session_id + data_str

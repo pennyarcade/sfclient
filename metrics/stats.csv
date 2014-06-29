@@ -1,3 +1,5 @@
+Timestamp;Statements;code;docstring;comment;empty;duplicated;convention;refactor;warning;error;rating;module;class;method;function
+
 8828b5b;621;0;0;0;0;0;0;0;0;0;-37,05;0;0;0;0
 70583e3;624;0;0;0;0;0;0;0;0;0;-28,62;0;0;0;0
 77de2ed;642;0;0;0;0;0;0;0;0;0;-27,79;0;0;0;0
