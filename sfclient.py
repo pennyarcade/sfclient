@@ -5831,9 +5831,8 @@ def get_weapon_level(wpn_class, wpn_pic):
                 return 5
             elif wpn_pic in (-5, -4, 1, 2, 3, 4):
                 return 0
-            elif wpn_pic in (
-                5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27, 29, 30, 50, 51, 60
-            ):
+            elif wpn_pic in (5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27,
+                             29, 30, 50, 51, 60):
                 return 1
             elif wpn_pic in (-6, 7, 10, 13, 16, 20, 23, 25, 28, 52):
                 return 2
@@ -6127,11 +6126,9 @@ def request_signup(evt):
         TODO: Documentation
     '''
     if evt is KeyboardEvent:
-        if (
-            (KeyboardEvent(evt).keyCode != 13)
-            and (KeyboardEvent(evt).keyCode != 10)
-            and (KeyboardEvent(evt).keyCode != 16777230)
-        ):
+        if ((KeyboardEvent(evt).keyCode != 13)
+                and (KeyboardEvent(evt).keyCode != 10)
+                and (KeyboardEvent(evt).keyCode != 16777230)):
             inp_text = actor[INP['NAME']].getChildAt(1).text
             if inp_text.substr(0, 7) == "xxxtest":
                 actor[INP['EMAIL']].getChildAt(1).text = (
@@ -6225,11 +6222,9 @@ def request_login(evt=None):
         setup login request
     '''
     if evt is KeyboardEvent:
-        if (
-            (KeyboardEvent(evt).keyCode != 13)
-            and (KeyboardEvent(evt).keyCode != 10)
-            and (KeyboardEvent(evt).keyCode != 16777230)
-        ):
+        if ((KeyboardEvent(evt).keyCode != 13)
+                and (KeyboardEvent(evt).keyCode != 10)
+                and (KeyboardEvent(evt).keyCode != 16777230)):
             return
 
     tmp_pw = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
@@ -6310,20 +6305,18 @@ def request_change_face():
     '''
         prepare to change profile picture
     '''
-    if (
-        (char_volk == revertchar_volk)
-        and (char_male == revertchar_male)
-        and (char_color == revertchar_color)
-        and (char_mouth == revertchar_mouth)
-        and (char_beard == revertchar_beard)
-        and (char_nose == revertchar_nose)
-        and (char_eyes == revertchar_eyes)
-        and (char_brows == revertchar_brows)
-        and (char_ears == revertchar_ears)
-        and (char_hair == revertchar_hair)
-        and (char_special == revertchar_special)
-        and (char_special2 == revertchar_special2)
-    ):
+    if ((char_volk == revertchar_volk)
+            and (char_male == revertchar_male)
+            and (char_color == revertchar_color)
+            and (char_mouth == revertchar_mouth)
+            and (char_beard == revertchar_beard)
+            and (char_nose == revertchar_nose)
+            and (char_eyes == revertchar_eyes)
+            and (char_brows == revertchar_brows)
+            and (char_ears == revertchar_ears)
+            and (char_hair == revertchar_hair)
+            and (char_special == revertchar_special)
+            and (char_special2 == revertchar_special2)):
         send_action(ACT['SCREEN']['OPTIONEN'])
     else:
         tmp_gender = 2
@@ -16329,18 +16322,14 @@ def do_act_schmiede():
     if (special_action == 2) or (special_action == 5):
         add(IMG['SHAKES']['EPCIOVL'])
         actor[IMG['SHAKES']['EPCIOVL']].mouse_enabled = False
-    remove(
-       IMG['SHAKES']['IDLE'],
-       IMG['SHAKES']['IDLE1'],
-       IMG['SHAKES']['IDLE2'],
-       IMG['SHAKES']['IDLE3']
-    )
+    remove(IMG['SHAKES']['IDLE'],
+           IMG['SHAKES']['IDLE1'],
+           IMG['SHAKES']['IDLE2'],
+           IMG['SHAKES']['IDLE3'])
     if not sleep_time():
-        remove(
-            IMG['SHAKES']['NIGHT'],
-            IMG['SHAKES']['BLINZELN1'],
-            IMG['SHAKES']['BLINZELN2']
-        )
+        remove(IMG['SHAKES']['NIGHT'],
+               IMG['SHAKES']['BLINZELN1'],
+               IMG['SHAKES']['BLINZELN2'])
     else:
         remove(IMG['SHAKES']['DAY'])
 
@@ -16467,11 +16456,9 @@ def action_handler(event):
 
             with actor[LBL['QO']['QUESTNAME']]:
                 text = texts[(TXT['TOILET']['HINT'] + 5)]
-                x = (
-                        POS['QO']['BLACK']['SQUARE_X']
-                        + REL['QO']['QUESTNAME_X']
-                        - textWidth / 2
-                    )
+                x = (POS['QO']['BLACK']['SQUARE_X']
+                     + REL['QO']['QUESTNAME_X']
+                     - textWidth / 2)
 
 
             with actor[LBL['QO']['QUESTTEXT']]:
@@ -16725,10 +16712,8 @@ def action_handler(event):
             if texts[TXT['ERROR']['MSG']['NOT_VALIDATED']]:
                 error_message(texts[TXT['ERROR']['MSG']['NOT_VALIDATED']])
             else:
-                error_message(
-                  "Error: Your email address has to be validated in order ",
-                  "to send messages."
-                )
+                error_message(' '.join("Error: Your email address has to be",
+                                       "validated in order to send messages."))
             break
 
         if case(ERR['INVENTORY_FULL']):
