@@ -16877,10 +16877,8 @@ def action_handler(event):
             if len(tmp_array) > 0:
                 for i in range(len(tmp_array)-1, 0, -1):
                     if not par[3]:
-                        if (
-                            (last_chat_index != 0)
-                            and (decode_chat(tmp_array[i], False, True) == "1")
-                        ):
+                        if ((last_chat_index != 0)
+                            and (decode_chat(tmp_array[i], False, True) == "1")):
                             remove(BNC['GILDE']['CHAT'])
 
                         chat_line(decode_chat(tmp_array[i]),
@@ -16908,7 +16906,7 @@ def action_handler(event):
                             last_chat_index = par[3].split("/")[i]
                             if ((not last_chat_index == 0)
                                 and (decode_chat(
-                                        tmp_array[i], False, True) == "1")):
+                                    tmp_array[i], False, True) == "1")):
                                 remove(BNC['GILDE']['CHAT'])
 
                             chat_line(
@@ -16925,7 +16923,7 @@ def action_handler(event):
                             for j in range(len(offline_guild_members)):
                                 tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
-                                if (tmp_array[i].lower().find(tmp_str) != -1):
+                                if tmp_array[i].lower().find(tmp_str) != -1:
                                     if on_stage(INP['GILDE_CHAT']):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -16951,8 +16949,10 @@ def action_handler(event):
                             0: external_whisperer.find(":§")
                     ]
                     chat_line(decode_chat(
-                        tmp_array[i]), False, get_hl_index(tmp_array[i]), True
-                    )
+                                          tmp_array[i]),
+                                          False,
+                                          get_hl_index(tmp_array[i]),
+                                          True)
 
                     add_suggest_names(external_whisperer)
 
@@ -17207,15 +17207,10 @@ def action_handler(event):
         if case(RESP['OTHER_GUILD']):
             destroy_guild_btn_timer = True
 
-            if (
-                not on_stage(BNC['GILDE']['CREST'])
-                or (act == RESP['OTHER_GUILD'])
-                or (last_guild_crest_id != par[0].split("/")[0])
-                or (
-                    is_mine
-                    and (old_crest_str == old_crest_str())
-                )
-            ):
+            if (not on_stage(BNC['GILDE']['CREST'])
+                    or (act == RESP['OTHER_GUILD'])
+                    or (last_guild_crest_id != par[0].split("/")[0])
+                    or (is_mine and (old_crest_str == old_crest_str()))):
                 if par[1].find("§") != -1:
                     set_crest_str(par[1].split("§")[0])
                     par[1] = par[1][(par[1].find("§") + 1):]
@@ -17315,10 +17310,8 @@ def action_handler(event):
                 type = TextFieldType.DYNAMIC
                 reply_address = par[0]
                 for case in switch(par[1]):
-                    if case(
-                        "1  ", "2  ", "3  ", "4  ", "5  ",
-                        "6  ", "7  ", "8  ", "9  "
-                    ):
+                    if case("1  ", "2  ", "3  ", "4  ", "5  ",
+                            "6  ", "7  ", "8  ", "9  "):
                         par[1] = "Moo!"
                         par[3] = "Holy Cow!"
                         break
@@ -17457,7 +17450,7 @@ def action_handler(event):
                                 par[0],
                                 " to verify"
                                 "email address in order to get your bonus."
-                        ))
+                            ))
                         add(BTN['POST']['REPLY'])
                         break
 
@@ -17542,14 +17535,10 @@ def action_handler(event):
             else:
                 last_hall_members = list()
                 last_hall_members.append("")
-                show(
-                    LBL['HALL'][['GOTO_SPIELER_HL']],
-                    LBL['HALL']['GOTO_GILDEN']
-                )
-                hide(
-                     LBL['HALL']['GOTO_SPIELER'],
-                     LBL['HALL']['GOTO_GILDEN_HL']
-                 )
+                show(LBL['HALL'][['GOTO_SPIELER_HL']],
+                     LBL['HALL']['GOTO_GILDEN'])
+                hide(LBL['HALL']['GOTO_SPIELER'],
+                     LBL['HALL']['GOTO_GILDEN_HL'])
 
             if par[1]:
                 ruhmes_halle_such_string = par[1]
@@ -17676,10 +17665,9 @@ def action_handler(event):
                     tmp_fmt = FontFormat_HallListHighLight
                 elif guild_hall_mode and (int(tmp_array[i + 3]) < 0):
                     tmp_fmt = FontFormat_GuildHallNoAttack
-                elif (
-                    (not guild_hall_mode)
-                    and (not lastAttacked.find(tmp_array[i + 1].lower()) == -1)
-                ):
+                elif ((not guild_hall_mode)
+                      and (not lastAttacked.find(
+                           tmp_array[i + 1].lower()) == -1)):
                     tmp_fmt = FontFormat_GuildHallNoAttack
                 else:
                     tmp_fmt = FontFormat_HallListText
@@ -17882,12 +17870,10 @@ def action_handler(event):
         if case(RESP['SAVEGAME']['STAY_ERROR']):
             error_message(texts[TXT['ERROR']['SELL_ITEM']])
 
-        if case(
-            RESP['SAVEGAME']['STAY'],
-            RESP['SAVEGAME']['SHARD'],
-            RESP['SAVEGAME']['MIRROR'],
-            RESP['MOVE']['TOWER_ITEM']
-        ):
+        if case(RESP['SAVEGAME']['STAY'],
+                RESP['SAVEGAME']['SHARD'],
+                RESP['SAVEGAME']['MIRROR'],
+                RESP['MOVE']['TOWER_ITEM']):
             parse_savgame(par[0])
             if on_stage(IMG['SCR']['CHAR_BG']):
                 if act == RESP['MOVE']['TOWER_ITEM']:
@@ -18019,10 +18005,8 @@ def action_handler(event):
                 elif param_hall != "":
                     send_action(ACT['SCREEN']['EHRENHALLE'], param_hall, "-2")
                     param_valid = ""
-                elif (
-                      (int(savegame[SG['EMAIL']['VALID']]) < 1)
-                      and (server_time > (email_date + 2 * 60 * 24 * 60))
-                ):
+                elif ((int(savegame[SG['EMAIL']['VALID']]) < 1)
+                        and (server_time > (email_date + 2 * 60 * 24 * 60))):
                     if param_valid != "":
                         send_action(ACT['VALIDATE'], param_valid)
                         param_valid = ""
@@ -18041,35 +18025,34 @@ def action_handler(event):
             break
 
         if case(ERR['ALREADY_IN_GUILD'],
-            ERR['NO_INDEX_FREE'],
-            ERR['FIGHT_SELF'],
-            ERR['GUILD']['NOT_FOUND'],
-            ERR['GUILD']['NOT_ALLOWED'],
-            ERR['GUILD']['LACK_MUSH'],
-            ERR['GUILD']['LACK_GOLD'],
-            ERR['GUILD']['BUILDING_NOT_FOUND'],
-            ERR['GUILD']['BUILDING_MAX'],
-            ERR['GUILD']['NOT_MEMBER'],
-            ERR['GUILD']['MASTER_CANT_BE_OFFICER'],
-            ERR['GUILD']['IS_FULL'],
-            ERR['GUILD']['ALREADY_YOU_OTHER'],
-            ERR['GUILD']['NOT_REAL_MEMBER'],
-            ERR['GUILD']['ALREADY_YOU_THIS'],
-            ERR['GUILD']['PLAYER_NOT_FOUND'],
-            ERR['SUBJECT']['TOO_SHORT'],
-            ERR['GUILD']['TOO_EXPENSIVE'],
-            ERR['GUILD']['CHAT']['NOT_MEMBER'],
-            ERR['GUILD']['CHAT']['HISTORY'],
-            ERR['GUILD']['CHAT']['TEXT_ERROR'],
-            ERR['BEER'],
-            ERR['NO_MUSH_BAR'],
-            ERR['NO_ENDURANCE'],
-            ERR['WORSE_MOUNT'],
-            ERR['GUILD']['ALREADY_MEMBER'],
-            ERR['NOT_INVITED'],
-            ERR['NO_MUSH_PVP'],
-            ERR['NO_MUSH_MQ']
-        ):
+                ERR['NO_INDEX_FREE'],
+                ERR['FIGHT_SELF'],
+                ERR['GUILD']['NOT_FOUND'],
+                ERR['GUILD']['NOT_ALLOWED'],
+                ERR['GUILD']['LACK_MUSH'],
+                ERR['GUILD']['LACK_GOLD'],
+                ERR['GUILD']['BUILDING_NOT_FOUND'],
+                ERR['GUILD']['BUILDING_MAX'],
+                ERR['GUILD']['NOT_MEMBER'],
+                ERR['GUILD']['MASTER_CANT_BE_OFFICER'],
+                ERR['GUILD']['IS_FULL'],
+                ERR['GUILD']['ALREADY_YOU_OTHER'],
+                ERR['GUILD']['NOT_REAL_MEMBER'],
+                ERR['GUILD']['ALREADY_YOU_THIS'],
+                ERR['GUILD']['PLAYER_NOT_FOUND'],
+                ERR['SUBJECT']['TOO_SHORT'],
+                ERR['GUILD']['TOO_EXPENSIVE'],
+                ERR['GUILD']['CHAT']['NOT_MEMBER'],
+                ERR['GUILD']['CHAT']['HISTORY'],
+                ERR['GUILD']['CHAT']['TEXT_ERROR'],
+                ERR['BEER'],
+                ERR['NO_MUSH_BAR'],
+                ERR['NO_ENDURANCE'],
+                ERR['WORSE_MOUNT'],
+                ERR['GUILD']['ALREADY_MEMBER'],
+                ERR['NOT_INVITED'],
+                ERR['NO_MUSH_PVP'],
+                ERR['NO_MUSH_MQ']):
             error_message(
                 texts[
                     TXT['ERROR']['ALREADY_IN_GUILD']
@@ -18188,10 +18171,8 @@ def action_handler(event):
     in_var = False
 
     for pixel in trackPixels:
-        if (
-            ((int(pixel[0]) == act) or (next_pxl > 0))
-            and (next_pxl == int(pixel[0]))
-        ):
+        if (((int(pixel[0]) == act) or (next_pxl > 0))
+                and (next_pxl == int(pixel[0]))):
             pas = list()
 
             for pa in pixel[1].split(","):
@@ -18337,21 +18318,17 @@ def swap_words(tmp_str):
                     punct1 = tmp_arr[k][-1: 1]
 
                 punct2 = tmp_arr[k][0: 1]
-                if (
-                    (punct1 != "!")
-                    and (punct1 != ".")
-                    and (punct1 != ":")
-                    and (punct1 != "،")
-                    and (punct1 != "x؟")
-                    and ((punct1 != "\"")
-                    or (len(tmp_arr[k].split("\"")) > 2))
-                ):
+                if ((punct1 != "!")
+                        and (punct1 != ".")
+                        and (punct1 != ":")
+                        and (punct1 != "،")
+                        and (punct1 != "x؟")
+                        and ((punct1 != "\"")
+                        or (len(tmp_arr[k].split("\"")) > 2))):
                     punct1 = ""
 
-                if (
-                    (punct2 != "\"")
-                    or (len(tmp_arr[k].split("\"")) > 2)
-                ):
+                if ((punct2 != "\"")
+                    or (len(tmp_arr[k].split("\"")) > 2)):
                     punct2 = ""
 
                 if punct1 == "...":
@@ -18450,10 +18427,8 @@ def define_snd(actor_id, url, predo_load=False):
         load(actor_id)
 
 
-def define_btn(
-    actor_id, caption, handler, btn_class,
-    pos_x=0, pos_y=0, scale_x=1, scale_y=1, vis=True
-):
+def define_btn(actor_id, caption, handler, btn_class,
+               pos_x=0, pos_y=0, scale_x=1, scale_y=1, vis=True):
     '''
         define button actor
     '''
@@ -19168,10 +19143,8 @@ def configuration_filedo_loaded(evt):
         if param_obj["mp_api_user_token"] != None:
             mp_api_user_token = str(param_obj["mp_api_user_token"])
 
-        if (
-            (param_obj["mp_api_user_id"] != None)
-            and (param_obj["mp_api_user_token"] != None)
-        ):
+        if ((param_obj["mp_api_user_id"] != None)
+                and (param_obj["mp_api_user_token"] != None)):
             sso_mode = True
 
         if param_obj["cid"] != None:
