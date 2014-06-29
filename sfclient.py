@@ -4279,10 +4279,8 @@ class Session(object):
             success = True
 
             if success:
-                if (
-                    (action == ACT['GET_CHAT_HISTORY'])
-                    and (self.param_poll_tunnel_url != "")
-                ):
+                if ((action == ACT['GET_CHAT_HISTORY'])
+                        and (self.param_poll_tunnel_url != "")):
                     self.poll_lock = False
                 else:
                     self.send_lock = False
@@ -4312,10 +4310,8 @@ class Session(object):
                         "Versuche, neu zu verbinden."
                     ]))
                     self.session_id = ""
-                    if (
-                        (action == ACT['GET_CHAT_HISTORY'])
-                        and (self.param_poll_tunnel_url != "")
-                    ):
+                    if ((action == ACT['GET_CHAT_HISTORY'])
+                            and (self.param_poll_tunnel_url != "")):
                         self.poll_lock = False
                     else:
                         self.send_lock = False
@@ -4349,10 +4345,8 @@ class Face(object):
     '''
         character face
     '''
-    def __init__(
-        self, beard=1, brows=1, cclass=1, color=1, eyes=1, hair=1, male=True,
-        mouth=1, nose=1, special=1, special2=1, volk=0
-    ):
+    def __init__(self, beard=1, brows=1, cclass=1, color=1, eyes=1, hair=1,
+                 male=True, mouth=1, nose=1, special=1, special2=1, volk=0):
         '''
             setup face object
         '''
@@ -5239,10 +5233,8 @@ class Quest(object):
     '''
         harndle qurest data
     '''
-    def __init__(
-        self, qtype, qid, qlevel, qmonster,
-        qexp, qgold, qtime, qlocation, qitem
-    ):
+    def __init__(self, qtype, qid, qlevel, qmonster,
+                 qexp, qgold, qtime, qlocation, qitems):
         '''
             Setup Quest object
         '''
@@ -5479,10 +5471,8 @@ class Item(object):
     '''
         handle Item data
     '''
-    def __init__(
-        self, pic=0, typ=0, cclass=1, gold=0,
-        maxd=0, mind=0, color=0, attr=False
-    ):
+    def __init__(self, pic=0, typ=0, cclass=1, gold=0,
+                 maxd=0, mind=0, color=0, attr=False):
         '''
             setup Item object
 
@@ -5729,9 +5719,8 @@ class Item(object):
         return item_id
 
 
-def get_arrow_id(
-    itm_class, itm_pic, some_obj=False, slot_mode=False, color_override=-1
-):
+def get_arrow_id(itm_class, itm_pic, some_obj=False, slot_mode=False,
+                 color_override=-1):
     '''
         calculate id for arrow/bolt shots
     '''
