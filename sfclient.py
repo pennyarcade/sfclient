@@ -6334,23 +6334,26 @@ def request_city_screen():
     pass
 
 
+def RequestTV(evt):
+    if tv_function_name != "":
+        LOG.debug(''.join('Calling TV function "',
+                          tv_function_name,
+                          '" with parameter "showtv"!'))
 
-
-
-'''
-def RequestTV(evt:Event=None){
-    if (tv_function_name != ""){
-        trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"showtv\"!"));
-
-        ExternalInterface.call(tv_function_name, "showtv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tv_return_value);
+        ExternalInterface.call(tv_function_name,
+                               "showtv",
+                               '_'.join(
+                                        savegame[SG['PLAYER_ID']],
+                                        savegame[SG['PAYMENT_ID']],
+                                        server_id,
+                                        "1"),
+                               savegame[SG['GENDER']],
+                               tv_return_value)
         tv_poll_timer.delay = tvPollLong;
-    } else {
-        trc("Error: No TV function set!");
-    };
-    tv_status_dest = 0;
-}
+    else:
+        LOG.error("Error: No TV function set!")
 
-'''
+    tv_status_dest = 0
 
 
 #------------------------------------------------------------------------------
@@ -15454,13 +15457,6 @@ def remove_all(alsoPersistent:Boolean=False):void{
     ExternalInterface.call("hideSocial");
 }
 
-def on_stage(actor_id):Boolean{
-    if ((actor[actor_id] is DisplayObject)){
-        return (Boolean(get_child_by_name(actor[actor_id].name)));
-    };
-    return (False);
-}
-
 def show(... _args):void{
     var i:* = 0;
     var i_bunch:* = 0;
@@ -18528,6 +18524,11 @@ def enable_popup(actor_id, *args):
 
     actorpopup_stamp[actor_id] = my_stamp
 
+
+def on_stage(actor_id):
+    if (actor[actor_id] is DisplayObject):
+        return bool(get_child_by_name(actor[actor_id].name))
+    return False
 
 
 
