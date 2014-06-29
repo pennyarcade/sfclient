@@ -4287,7 +4287,7 @@ class Session(object):
 
                 data = resp.text()
 
-                LOG.debug("Antwort auf %s: %s" % (str(action), str(data)))
+                LOG.debug(str("Antwort auf %s: %s" % (action, data)))
 
                 if data == "":
                     LOG.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
@@ -4505,427 +4505,424 @@ def init_vars():
     #values album_*
     col_album = Album()
 
-    '''
-        actor = list()
-        actorBitmap = list()
-        actorLoaded = list()
-        actorPersistent = list()
-        actorPopupStamp = list()
-        actorSoundLoader = list()
-        actorURL = list()
+    # actor = list()
+    # actorBitmap = list()
+    # actorLoaded = list()
+    # actorPersistent = list()
+    # actorPopupStamp = list()
+    # actorSoundLoader = list()
+    # actorURL = list()
 
-        admin_login = ""
+    # admin_login = ""
 
-        allow_smoothing = True
-        alternate_char_opp_img = False
-        arrow_hall_mode = False
-        avgLevel = 0
+    # allow_smoothing = True
+    # alternate_char_opp_img = False
+    # arrow_hall_mode = False
+    # avgLevel = 0
 
-        beer_fest = False
+    # beer_fest = False
 
-        BlockReroll = False
+    # BlockReroll = False
 
-        buffed_email = ""
-        buffed_id = ""
-        buffed_link_text = ""
-        buffed_link_url = ""
-        buffed_mode = False
-        buffed_name = ""
-        buffed_reg = ""
-        buffed_req = False
-        buffed_stuff = list()
+    # buffed_email = ""
+    # buffed_id = ""
+    # buffed_link_text = ""
+    # buffed_link_url = ""
+    # buffed_mode = False
+    # buffed_name = ""
+    # buffed_reg = ""
+    # buffed_req = False
+    # buffed_stuff = list()
 
-        can_rob = False
+    # can_rob = False
 
-        canBoost = list()
+    # canBoost = list()
 
-        chat_sound = False
-        ChatHist = list()
+    # chat_sound = False
+    # ChatHist = list()
 
-        chosen_lang_font = "Komika Text"
-        compare_items = False
-        contentMax = 1700
-        copyCatSel = 0
+    # chosen_lang_font = "Komika Text"
+    # compare_items = False
+    # contentMax = 1700
+    # copyCatSel = 0
 
-        CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
+    # CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
 
-        countryName = list()
+    # countryName = list()
 
-        crest = getRandomCrest()
-        crestColor = [0, 0, 0, 0]
-        crestColorSelection = 0
-        crestMoveTimer = new Timer(25)
-        crestMoveTimer.add_event_listener(TimerEvent.TIMER, crestMoveFn)
-        crestSuggested = False
-        crestSuggestion = list()
+    # crest = getRandomCrest()
+    # crestColor = [0, 0, 0, 0]
+    # crestColorSelection = 0
+    # crestMoveTimer = new Timer(25)
+    # crestMoveTimer.add_event_listener(TimerEvent.TIMER, crestMoveFn)
+    # crestSuggested = False
+    # crestSuggestion = list()
 
-        CupChosen = 0
-        dataprot_url = ""
-        dealer_aktion = 0
-        DealerMenuSelect = 0
-        defined_pixel_calls = list()
-        DemoMode = False
-        destroy_guild_btn_timer = False
-        disable_tv = False
-        dragDropActive = False
-        dragDropProhibit = False
-        dragNotYet = False
-        fight_flush_mode = False
-        fight_lock = False
-        fightNumber = 0
-        fights = list()
-        Filter_Shadow = [
-        first_chat_fill = False
-        font_embedded = True
+    # CupChosen = 0
+    # dataprot_url = ""
+    # dealer_aktion = 0
+    # DealerMenuSelect = 0
+    # defined_pixel_calls = list()
+    # DemoMode = False
+    # destroy_guild_btn_timer = False
+    # disable_tv = False
+    # dragDropActive = False
+    # dragDropProhibit = False
+    # dragNotYet = False
+    # fight_flush_mode = False
+    # fight_lock = False
+    # fightNumber = 0
+    # fights = list()
+    # Filter_Shadow = [
+    # first_chat_fill = False
+    # font_embedded = True
 
-        font_format_chat = new TextFormat()
-        font_format_chatError = new TextFormat()
-        font_format_chatWhisper = new TextFormat()
-        FontFormat_AttackLabel = new TextFormat()
-        FontFormat_Attrib = new TextFormat()
-        FontFormat_AttribBonus = new TextFormat()
-        FontFormat_AttribTemp = new TextFormat()
-        FontFormat_Book = new TextFormat()
-        FontFormat_BookHint = new TextFormat()
-        FontFormat_BookLeft = new TextFormat()
-        FontFormat_Bullshit = new TextFormat()
-        FontFormat_CatapultDamage = new TextFormat()
-        FontFormat_ClassError = new TextFormat()
-        FontFormat_CriticalDamage = new TextFormat()
-        FontFormat_Damage = new TextFormat()
-        FontFormat_Default = new TextFormat()
-        FontFormat_DefaultLeft = new TextFormat()
-        FontFormat_EpicItemQuote = new TextFormat()
-        FontFormat_Error = new TextFormat()
-        FontFormat_Grayed = new TextFormat()
-        FontFormat_GrayedHighLight = new TextFormat()
-        FontFormat_GuildBuilding = new TextFormat()
-        FontFormat_GuildHallNoAttack = new TextFormat()
-        FontFormat_GuildListText = new TextFormat()
-        FontFormat_GuildListTextAttackError = new TextFormat()
-        FontFormat_GuildListTextAttackErrorHalf = new TextFormat()
-        FontFormat_GuildListTextAttackErrorOnline = new TextFormat()
-        FontFormat_GuildListTextAttackErrorOnlineHalf = new TextFormat()
-        FontFormat_GuildListTextAttackErrorOnlinePopup = new TextFormat()
-        FontFormat_GuildListTextAttackOk = new TextFormat()
-        FontFormat_GuildListTextAttackOkPopup = new TextFormat()
-        FontFormat_GuildListTextOnline = new TextFormat()
-        FontFormat_GuildMoney = new TextFormat()
-        FontFormat_HallListHeading = new TextFormat()
-        FontFormat_HallListHighLight = new TextFormat()
-        FontFormat_HallListText = new TextFormat()
-        FontFormat_Heading = new TextFormat()
-        FontFormat_Highlight = new TextFormat()
-        FontFormat_HighlightWhisper = new TextFormat()
-        FontFormat_HighStakes = new TextFormat()
-        FontFormat_HighStakesGrayed = new TextFormat()
-        FontFormat_HighStakesHighLight = new TextFormat()
-        FontFormat_HighStakesHighLightGrayed = new TextFormat()
-        FontFormat_ItemEnchantment = new TextFormat()
-        FontFormat_LifeBar = new TextFormat()
-        FontFormat_LOGoutLink = new TextFormat()
-        FontFormat_LOGoutLinkHighLight = new TextFormat()
-        FontFormat_PayIcon = new TextFormat()
-        FontFormat_Popup = new TextFormat()
-        FontFormat_PopupCompare = new TextFormat()
-        FontFormat_PopupCompareBetter = new TextFormat()
-        FontFormat_PopupCompareBetterHL = new TextFormat()
-        FontFormat_PopupCompareSum = new TextFormat()
-        FontFormat_PopupCompareWorse = new TextFormat()
-        FontFormat_PopupCompareWorseHL = new TextFormat()
-        FontFormat_PostListHeading = new TextFormat()
-        FontFormat_PostListHighLight = new TextFormat()
-        FontFormat_PostListHighLightSys = new TextFormat()
-        FontFormat_PostListHighLightSysGreen = new TextFormat()
-        FontFormat_PostListHighLightSysRed = new TextFormat()
-        FontFormat_PostListText = new TextFormat()
-        FontFormat_PostListTextSys = new TextFormat()
-        FontFormat_PostListTextSysGreen = new TextFormat()
-        FontFormat_PostListTextSysRed = new TextFormat()
-        FontFormat_QuestBar = new TextFormat()
-        FontFormat_ScreenTitle = new TextFormat()
-        FontFormat_Speech = new TextFormat()
-        FontFormat_TimeBar = new TextFormat()
-        FontFormat_ToiletAura = new TextFormat()
+    # font_format_chat = new TextFormat()
+    # font_format_chatError = new TextFormat()
+    # font_format_chatWhisper = new TextFormat()
+    # FontFormat_AttackLabel = new TextFormat()
+    # FontFormat_Attrib = new TextFormat()
+    # FontFormat_AttribBonus = new TextFormat()
+    # FontFormat_AttribTemp = new TextFormat()
+    # FontFormat_Book = new TextFormat()
+    # FontFormat_BookHint = new TextFormat()
+    # FontFormat_BookLeft = new TextFormat()
+    # FontFormat_Bullshit = new TextFormat()
+    # FontFormat_CatapultDamage = new TextFormat()
+    # FontFormat_ClassError = new TextFormat()
+    # FontFormat_CriticalDamage = new TextFormat()
+    # FontFormat_Damage = new TextFormat()
+    # FontFormat_Default = new TextFormat()
+    # FontFormat_DefaultLeft = new TextFormat()
+    # FontFormat_EpicItemQuote = new TextFormat()
+    # FontFormat_Error = new TextFormat()
+    # FontFormat_Grayed = new TextFormat()
+    # FontFormat_GrayedHighLight = new TextFormat()
+    # FontFormat_GuildBuilding = new TextFormat()
+    # FontFormat_GuildHallNoAttack = new TextFormat()
+    # FontFormat_GuildListText = new TextFormat()
+    # FontFormat_GuildListTextAttackError = new TextFormat()
+    # FontFormat_GuildListTextAttackErrorHalf = new TextFormat()
+    # FontFormat_GuildListTextAttackErrorOnline = new TextFormat()
+    # FontFormat_GuildListTextAttackErrorOnlineHalf = new TextFormat()
+    # FontFormat_GuildListTextAttackErrorOnlinePopup = new TextFormat()
+    # FontFormat_GuildListTextAttackOk = new TextFormat()
+    # FontFormat_GuildListTextAttackOkPopup = new TextFormat()
+    # FontFormat_GuildListTextOnline = new TextFormat()
+    # FontFormat_GuildMoney = new TextFormat()
+    # FontFormat_HallListHeading = new TextFormat()
+    # FontFormat_HallListHighLight = new TextFormat()
+    # FontFormat_HallListText = new TextFormat()
+    # FontFormat_Heading = new TextFormat()
+    # FontFormat_Highlight = new TextFormat()
+    # FontFormat_HighlightWhisper = new TextFormat()
+    # FontFormat_HighStakes = new TextFormat()
+    # FontFormat_HighStakesGrayed = new TextFormat()
+    # FontFormat_HighStakesHighLight = new TextFormat()
+    # FontFormat_HighStakesHighLightGrayed = new TextFormat()
+    # FontFormat_ItemEnchantment = new TextFormat()
+    # FontFormat_LifeBar = new TextFormat()
+    # FontFormat_LOGoutLink = new TextFormat()
+    # FontFormat_LOGoutLinkHighLight = new TextFormat()
+    # FontFormat_PayIcon = new TextFormat()
+    # FontFormat_Popup = new TextFormat()
+    # FontFormat_PopupCompare = new TextFormat()
+    # FontFormat_PopupCompareBetter = new TextFormat()
+    # FontFormat_PopupCompareBetterHL = new TextFormat()
+    # FontFormat_PopupCompareSum = new TextFormat()
+    # FontFormat_PopupCompareWorse = new TextFormat()
+    # FontFormat_PopupCompareWorseHL = new TextFormat()
+    # FontFormat_PostListHeading = new TextFormat()
+    # FontFormat_PostListHighLight = new TextFormat()
+    # FontFormat_PostListHighLightSys = new TextFormat()
+    # FontFormat_PostListHighLightSysGreen = new TextFormat()
+    # FontFormat_PostListHighLightSysRed = new TextFormat()
+    # FontFormat_PostListText = new TextFormat()
+    # FontFormat_PostListTextSys = new TextFormat()
+    # FontFormat_PostListTextSysGreen = new TextFormat()
+    # FontFormat_PostListTextSysRed = new TextFormat()
+    # FontFormat_QuestBar = new TextFormat()
+    # FontFormat_ScreenTitle = new TextFormat()
+    # FontFormat_Speech = new TextFormat()
+    # FontFormat_TimeBar = new TextFormat()
+    # FontFormat_ToiletAura = new TextFormat()
 
-        force_adventure = False
-        force_smoothing = True
-        forum_url = ""
-        forward_text = ""
-        FrenzyMode = False
-        friend_link = ""
-        gameFont = ""
-        GameTime = new Date()
-        gilde = ""
-        GildeBuildingGold = list()
-        GildeBuildingPilz = list()
-        GildeChatScroll = 0
-        gilden_id = 0
-        guild_attack_time = 0
-        guild_attacked = ""
-        guild_attacking = ""
-        guild_blink_ready = False
-        guild_defense_time = 0
-        guild_fight_count = 0
-        guild_hall_mode = False
-        guildForumLink = ""
-        guildInstanceID = 0
+    # force_adventure = False
+    # force_smoothing = True
+    # forum_url = ""
+    # forward_text = ""
+    # FrenzyMode = False
+    # friend_link = ""
+    # gameFont = ""
+    # GameTime = new Date()
+    # gilde = ""
+    # GildeBuildingGold = list()
+    # GildeBuildingPilz = list()
+    # GildeChatScroll = 0
+    # gilden_id = 0
+    # guild_attack_time = 0
+    # guild_attacked = ""
+    # guild_attacking = ""
+    # guild_blink_ready = False
+    # guild_defense_time = 0
+    # guild_fight_count = 0
+    # guild_hall_mode = False
+    # guildForumLink = ""
+    # guildInstanceID = 0
 
-        had_account = False
-        has_mirror = False
+    # had_account = False
+    # has_mirror = False
 
-        hasFoughtGuildBattle = False
-        hasLostMQ = False
+    # hasFoughtGuildBattle = False
+    # hasLostMQ = False
 
-        image_timeout = 3
-        img_url = list()
-        img_url_index = 0
-        imprint_url = ""
-        indexInGuild = 0
-        indexInHall = 0
-        instr_url = ""
-        interval_multiplier_chat = 1
-        interval_multiplier_reconnect = 1
-        invitegilden_id = 0
-        ioErrorCount = 0
-        KlasseGewählt = False
+    # image_timeout = 3
+    # img_url = list()
+    # img_url_index = 0
+    # imprint_url = ""
+    # indexInGuild = 0
+    # indexInHall = 0
+    # instr_url = ""
+    # interval_multiplier_chat = 1
+    # interval_multiplier_reconnect = 1
+    # invitegilden_id = 0
+    # ioErrorCount = 0
+    # KlasseGewählt = False
 
-        lang_code = "de"
-        lang_url = ""
+    # lang_code = "de"
+    # lang_url = ""
 
-        last_chat_hist = ""
-        last_chat_index = 0
-        last_guild_data = list()
-        last_guild_shown = ""
-        last_hall_members = list()
-        last_level = 0
-        last_message_target = ""
-        last_round_fighter_name = ""
-        last_whisper_target = ""
-        lastAct = 0
-        lastAttacked = list()
-        LastDungeonEnemy = 0
-        LastDungeonNr = 0
-        lastGuildMembers = list()
-        lastPlayer = ""
-        lastRaidCost = 0
-        legal_url = ""
-        level_up = False
-        light_mode = False
-        light_mode_default = False
-        local_time = new Date()
-        login_background_id = "3"
-        mirror_ani_timer = new Timer(25)
-        mirror_ani_timer.add_event_listener(TimerEvent.TIMER, MirrorAniFn)
-        mirror_fade_amount = 0.2
-        mirror_pieces = list()
-        mirrorAniStep = 0
-        mp_project = "sfgame2"
-        MQDelayTimer = new Timer(500)
-        MQSInstance = 0
-        mush_bought = 0
-        my_own_attack_target = -1
-        my_own_guild_money = -1
-        my_own_rank = -1
-        new_crest_suggested = ""
-        next_fight_timer = new Timer(10, 1)
-        next_pxl = 0
-        no_crossdomain = False
-        noMush = False
-        notFirstVolChange = True
-        notSecondVolChange = True
-        offline_guild_members = list()
-        old_album = -1
-        old_crest_str = ""
-        oldSel = 0
-        option_new_data = ""
-        original_lang_code = "de"
-        param_adv = ""
-        param_allow_skip_quest = False
-        param_bullshit_cid = ""
-        param_bullshit_text = ""
-        param_censored = False
-        param_cid = ""
-        param_cid_original = False
-        param_fail_tries = 1
-        param_forceport = 0
-        param_gamestaff_email = param_support_email
-        param_hall = ""
-        param_happy_hour = False
-        param_id = ""
-        param_idle_polling = 0
-        param_imgsvr = 0
-        param_internal_pixel = False
-        param_language_names = list()
-        param_languages = list()
-        param_lowres_url = ""
-        param_no_cid_save = False
-        param_obj = LoaderInfo(root.loader_info).parameters
-        param_papaya_cfg_file = ""
-        param_papaya_path = ""
-        param_php_tunnel_url = ""
-        param_poll_tunnel_url = ""
-        param_rec = ""
-        param_reconnect = 5000
-        param_reload_pixel = False
-        param_reroll_img = 0
-        param_server_version_act = "unknown"
-        param_server_version_cfg = "unknown"
-        param_social_buttons = list()
-        param_sponsor = ""
-        param_sponsor_url = ""
-        param_support_email = "support@sfgame.de"
-        param_valid = ""
-        pay_methods = list()
-        pending_configuration_files = False
-        pending_debug_file = False
-        pending_language_file = False
-        pendingdo_loaders = 0
-        player_desc = ""
-        playerTowerLevel = 0
-        pollLock = False
-        popupStamp = 0
-        post_fight_mode = False
-        post_scroll = 1
-        post_scrollDown = False
-        post_sel = 0
-        postInstance = 0
-        PostMax = 1
-        PostReturnToPlayer = ""
-        PresetGold = 0
-        PresetMush = 0
-        prevent_tv = False
-        previous_login = False
-        pulse_arbeiten = False
-        pulse_char = False
-        pulse_dealer = False
-        pulse_gilde = False
-        pulse_gilde_on_history = False
-        pulse_post = False
-        pulse_taverne = False
-        reply_address = ""
-        reply_subject = ""
-        response_timeout = 10
+    # last_chat_hist = ""
+    # last_chat_index = 0
+    # last_guild_data = list()
+    # last_guild_shown = ""
+    # last_hall_members = list()
+    # last_level = 0
+    # last_message_target = ""
+    # last_round_fighter_name = ""
+    # last_whisper_target = ""
+    # lastAct = 0
+    # lastAttacked = list()
+    # LastDungeonEnemy = 0
+    # LastDungeonNr = 0
+    # lastGuildMembers = list()
+    # lastPlayer = ""
+    # lastRaidCost = 0
+    # legal_url = ""
+    # level_up = False
+    # light_mode = False
+    # light_mode_default = False
+    # local_time = new Date()
+    # login_background_id = "3"
+    # mirror_ani_timer = new Timer(25)
+    # mirror_ani_timer.add_event_listener(TimerEvent.TIMER, MirrorAniFn)
+    # mirror_fade_amount = 0.2
+    # mirror_pieces = list()
+    # mirrorAniStep = 0
+    # mp_project = "sfgame2"
+    # MQDelayTimer = new Timer(500)
+    # MQSInstance = 0
+    # mush_bought = 0
+    # my_own_attack_target = -1
+    # my_own_guild_money = -1
+    # my_own_rank = -1
+    # new_crest_suggested = ""
+    # next_fight_timer = new Timer(10, 1)
+    # next_pxl = 0
+    # no_crossdomain = False
+    # noMush = False
+    # notFirstVolChange = True
+    # notSecondVolChange = True
+    # offline_guild_members = list()
+    # old_album = -1
+    # old_crest_str = ""
+    # oldSel = 0
+    # option_new_data = ""
+    # original_lang_code = "de"
+    # param_adv = ""
+    # param_allow_skip_quest = False
+    # param_bullshit_cid = ""
+    # param_bullshit_text = ""
+    # param_censored = False
+    # param_cid = ""
+    # param_cid_original = False
+    # param_fail_tries = 1
+    # param_forceport = 0
+    # param_gamestaff_email = param_support_email
+    # param_hall = ""
+    # param_happy_hour = False
+    # param_id = ""
+    # param_idle_polling = 0
+    # param_imgsvr = 0
+    # param_internal_pixel = False
+    # param_language_names = list()
+    # param_languages = list()
+    # param_lowres_url = ""
+    # param_no_cid_save = False
+    # param_obj = LoaderInfo(root.loader_info).parameters
+    # param_papaya_cfg_file = ""
+    # param_papaya_path = ""
+    # param_php_tunnel_url = ""
+    # param_poll_tunnel_url = ""
+    # param_rec = ""
+    # param_reconnect = 5000
+    # param_reload_pixel = False
+    # param_reroll_img = 0
+    # param_server_version_act = "unknown"
+    # param_server_version_cfg = "unknown"
+    # param_social_buttons = list()
+    # param_sponsor = ""
+    # param_sponsor_url = ""
+    # param_support_email = "support@sfgame.de"
+    # param_valid = ""
+    # pay_methods = list()
+    # pending_configuration_files = False
+    # pending_debug_file = False
+    # pending_language_file = False
+    # pendingdo_loaders = 0
+    # player_desc = ""
+    # playerTowerLevel = 0
+    # pollLock = False
+    # popupStamp = 0
+    # post_fight_mode = False
+    # post_scroll = 1
+    # post_scrollDown = False
+    # post_sel = 0
+    # postInstance = 0
+    # PostMax = 1
+    # PostReturnToPlayer = ""
+    # PresetGold = 0
+    # PresetMush = 0
+    # prevent_tv = False
+    # previous_login = False
+    # pulse_arbeiten = False
+    # pulse_char = False
+    # pulse_dealer = False
+    # pulse_gilde = False
+    # pulse_gilde_on_history = False
+    # pulse_post = False
+    # pulse_taverne = False
+    # reply_address = ""
+    # reply_subject = ""
+    # response_timeout = 10
 
-        RollFrenzy = new Timer(1000)
-        ruhmes_halle_such_name = True
-        ruhmes_halle_such_string = ""
-        savegame = list()
-        sel_guild = ""
-        sel_name = ""
-        SelectedDungeon = 0
-        SelectedGuild = ""
-        SelectedQuest = 1
-        selecterCrestElement = -1
-        sendLock = False
-        server = "localhost"
-        server_id = 0
-        server_time = new Date()
-        session_id = ""
-        set_font(new SFGameFont().fontName)
-        shop_url = ""
+    # RollFrenzy = new Timer(1000)
+    # ruhmes_halle_such_name = True
+    # ruhmes_halle_such_string = ""
+    # savegame = list()
+    # sel_guild = ""
+    # sel_name = ""
+    # SelectedDungeon = 0
+    # SelectedGuild = ""
+    # SelectedQuest = 1
+    # selecterCrestElement = -1
+    # sendLock = False
+    # server = "localhost"
+    # server_id = 0
+    # server_time = new Date()
+    # session_id = ""
+    # set_font(new SFGameFont().fontName)
+    # shop_url = ""
 
-        showActivityTime = False
-        showAlbumOffset = False
-        SignupJumpRunning = False
+    # showActivityTime = False
+    # showAlbumOffset = False
+    # SignupJumpRunning = False
 
-        sizeMod = 0
-        skip_allowed = False
-        skip_guild_fights = 0
-        slm_count = 0
-        smoothing = True
-        snd_url = list()
-        snd_url_index = 0
-        special_action = 0
-        special_actionHint = False
-        sso_mode = False
-        stObject = new SoundTransform()
-        ststep = 0
-        stundenlohn = 10
-        suggestionSlot = list()
-        suggestNames = list()
-        text_dir = "left"
-        tmp_battle_info = ""
-        tmpAmount = 0
-        to_error_count = 0
+    # sizeMod = 0
+    # skip_allowed = False
+    # skip_guild_fights = 0
+    # slm_count = 0
+    # smoothing = True
+    # snd_url = list()
+    # snd_url_index = 0
+    # special_action = 0
+    # special_actionHint = False
+    # sso_mode = False
+    # stObject = new SoundTransform()
+    # ststep = 0
+    # stundenlohn = 10
+    # suggestionSlot = list()
+    # suggestNames = list()
+    # text_dir = "left"
+    # tmp_battle_info = ""
+    # tmpAmount = 0
+    # to_error_count = 0
 
-        toiletTankAdjustTimer = new Timer(25)
-        toiletTankCurrent = 0
-        toiletTankDest = 0
+    # toiletTankAdjustTimer = new Timer(25)
+    # toiletTankCurrent = 0
+    # toiletTankDest = 0
 
-        tower_fight_mode = False
-        tower_level = 0
-        tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
-        towerScroll = 0
-        towerScrollDest = 0
-        towerScrollGrabPos = -1
-        towerScrollSpeed = 0
-        towerScrollTimer = new Timer(25)
-        towerScrollTimer.add_event_listener(TimerEvent.TIMER, TowerTimerFn)
+    # tower_fight_mode = False
+    # tower_level = 0
+    # tower_levelLabelPos = (SCR_CHAR_CHARX + 127)
+    # towerScroll = 0
+    # towerScrollDest = 0
+    # towerScrollGrabPos = -1
+    # towerScrollSpeed = 0
+    # towerScrollTimer = new Timer(25)
+    # towerScrollTimer.add_event_listener(TimerEvent.TIMER, TowerTimerFn)
 
-        trackPixels = list()
-        tv_function_name = ""
-        tv_poll_normal = 5000
-        tvPollLong = 300000
-        tvTest = False
-        verdientes_geld = 0
-        view_player = ""
+    # trackPixels = list()
+    # tv_function_name = ""
+    # tv_poll_normal = 5000
+    # tvPollLong = 300000
+    # tvTest = False
+    # verdientes_geld = 0
+    # view_player = ""
 
-        witchDesiredType = -1
-
-
-        worlds = list()
-            new DropShadowFilter(3, 45, 0, 0.8),
-            new GradientGlowFilter(
-                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
-                [0, 32], 1, 1, 5, 15, "outer")
-        ]
-
-        Filter_HeavyShadow = [
-            new DropShadowFilter(2, 45, 0, 1, 5, 5, 3, 3),
-            new GradientGlowFilter(
-                0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
-                [0, 32], 1, 1, 5, 15, "outer")
-        ]
-
-        crestElementPos = [
-            [55, 8, 130, 90, 21],
-            [0, 50, 240, 150, 34],
-            [65, 75, 108, 114, 23],
-            [15, 194, 210, 45, 12],
-            [85, 17, 73, 70, 24],
-            [98, 176, 43, 40, 16],
-            [85, 100, 70, 70, 68]
-        ]
-
-        heraldicColors = [
-            [0, 0, 1],
-            [1, 0, 0],
-            [0.7, 0, 0.8],
-            [0.1, 0.1, 0.1],
-            [0, 0.6, 0],
-            [1, 0.8, 0],
-            [0.9, 0.9, 0.9],
-            [0.7, 0.4, 0.2],
-            [0.5, 0.5, 0.5],
-            [0.7, 0, 0],
-            [0.5, 0, 0.3],
-            [1, 0.6, 0],
-            [1, 0.8, 0.8]
-        ]
-
-        Filter_CrestSelected = new GradientGlowFilter(
-            0, 0, [16777026, 16777026], [0, 0.6], [0, 127],
-            26, 26, 1, 1, "outer"
-        )
-
-        toiletTankAdjustTimer.add_event_listener(
-            TimerEvent.TIMER,
-            toiletTankAdjustEvent
-        )
+    # witchDesiredType = -1
 
 
-    '''
+    # worlds = list()
+    #     new DropShadowFilter(3, 45, 0, 0.8),
+    #     new GradientGlowFilter(
+    #         0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
+    #         [0, 32], 1, 1, 5, 15, "outer")
+    # ]
+
+    # Filter_HeavyShadow = [
+    #     new DropShadowFilter(2, 45, 0, 1, 5, 5, 3, 3),
+    #     new GradientGlowFilter(
+    #         0, 45, [CLR_BLACK, CLR_BLACK], [0, 0.3],
+    #         [0, 32], 1, 1, 5, 15, "outer")
+    # ]
+
+    # crestElementPos = [
+    #     [55, 8, 130, 90, 21],
+    #     [0, 50, 240, 150, 34],
+    #     [65, 75, 108, 114, 23],
+    #     [15, 194, 210, 45, 12],
+    #     [85, 17, 73, 70, 24],
+    #     [98, 176, 43, 40, 16],
+    #     [85, 100, 70, 70, 68]
+    # ]
+
+    # heraldicColors = [
+    #     [0, 0, 1],
+    #     [1, 0, 0],
+    #     [0.7, 0, 0.8],
+    #     [0.1, 0.1, 0.1],
+    #     [0, 0.6, 0],
+    #     [1, 0.8, 0],
+    #     [0.9, 0.9, 0.9],
+    #     [0.7, 0.4, 0.2],
+    #     [0.5, 0.5, 0.5],
+    #     [0.7, 0, 0],
+    #     [0.5, 0, 0.3],
+    #     [1, 0.6, 0],
+    #     [1, 0.8, 0.8]
+    # ]
+
+    # Filter_CrestSelected = new GradientGlowFilter(
+    #     0, 0, [16777026, 16777026], [0, 0.6], [0, 127],
+    #     26, 26, 1, 1, "outer"
+    # )
+
+    # toiletTankAdjustTimer.add_event_listener(
+    #     TimerEvent.TIMER,
+    #     toiletTankAdjustEvent
+    # )
+
 
     # get buffered registration?
     if param_obj["reg"] != None:
@@ -16878,8 +16875,8 @@ def action_handler(event):
                 for i in range(len(tmp_array)-1, 0, -1):
                     if not par[3]:
                         if ((last_chat_index != 0)
-                            and (decode_chat(tmp_array[i],
-                                 False, True) == "1")):
+                                and (decode_chat(tmp_array[i],
+                                             False, True) == "1")):
                             remove(BNC['GILDE']['CHAT'])
 
                         chat_line(decode_chat(tmp_array[i]),
@@ -16907,7 +16904,7 @@ def action_handler(event):
                             last_chat_index = par[3].split("/")[i]
                             if ((not last_chat_index == 0)
                                     and (decode_chat(
-                                    tmp_array[i], False, True) == "1")):
+                                        tmp_array[i], False, True) == "1")):
                                 remove(BNC['GILDE']['CHAT'])
 
                             chat_line(
@@ -18002,7 +17999,7 @@ def action_handler(event):
                     send_action(ACT['SCREEN']['EHRENHALLE'], param_hall, "-2")
                     param_valid = ""
                 elif ((int(savegame[SG['EMAIL']['VALID']]) < 1)
-                        and (server_time > (email_date + 2 * 60 * 24 * 60))):
+                      and (server_time > (email_date + 2 * 60 * 24 * 60))):
                     if param_valid != "":
                         send_action(ACT['VALIDATE'], param_valid)
                         param_valid = ""
@@ -18320,7 +18317,7 @@ def swap_words(tmp_str):
                         and (punct1 != "،")
                         and (punct1 != "x؟")
                         and ((punct1 != "\"")
-                        or (len(tmp_arr[k].split("\"")) > 2))):
+                             or (len(tmp_arr[k].split("\"")) > 2))):
                     punct1 = ""
 
                 if ((punct2 != "\"")
@@ -19215,7 +19212,7 @@ def configuration_filedo_loaded(evt):
             if param_imgsvr > 0:
                 snd_url_index = param_imgsvr - 1
             elif ((so.data.snd_url_index <= len(snd_url))
-                    and (not force_reroll)):
+                  and (not force_reroll)):
                 snd_url_index = so.data.snd_url_index - 1
             else:
                 snd_url_index = int(Math.random() * len(snd_url))
