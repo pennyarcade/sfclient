@@ -5805,86 +5805,97 @@ def get_weapon_level(wpn_class, wpn_pic):
         calculate weapon level
     '''
     for case in Switch(wpn_class):
+        result = None
+
         if case(1):
             if wpn_pic == -7:
-                return 7
+                result = 7
             elif wpn_pic == -3:
-                return 6
+                result = 6
             elif wpn_pic in (-2, -1, 54):
-                return 4
+                result = 4
             elif wpn_pic == 0:
-                return 5
+                result = 5
             elif wpn_pic in (-5, -4, 1, 2, 3, 4):
-                return 0
+                result = 0
             elif wpn_pic in (5, 6, 8, 11, 15, 17, 19, 21, 22, 24, 26, 27,
                              29, 30, 50, 51, 60):
-                return 1
+                result = 1
             elif wpn_pic in (-6, 7, 10, 13, 16, 20, 23, 25, 28, 52):
-                return 2
+                result = 2
             elif wpn_pic in (9, 12, 14, 18):
-                return 3
+                result = 3
             elif wpn_pic == 53:
-                return 8
+                result = 8
             elif wpn_pic == 55:
-                return 9
+                result = 9
             elif wpn_pic == 56:
-                return 10
+                result = 10
             elif wpn_pic == 57:
-                return 11
+                result = 11
             elif wpn_pic == 58:
-                return 12
+                result = 12
             elif wpn_pic == 59:
-                return 13
+                result = 13
+
+            if result != None:
+                return result
             break
         if case(2):
             if wpn_pic in range(-5, 0):
-                return 4
+                result = 4
             elif wpn_pic == 0:
-                return 5
+                result = 5
             elif wpn_pic in (1, 60):
-                return 0
+                result = 0
             elif wpn_pic in (2, 9):
-                return 1
+                result = 1
             elif wpn_pic in (6, 7, 10, 52, 54):
-                return 2
+                result = 2
             elif wpn_pic in (3, 4, 5, 8, 50, 51):
-                return 3
+                result = 3
             elif wpn_pic == 53:
-                return 4
+                result = 4
             elif wpn_pic == 55:
-                return 9
+                result = 9
             elif wpn_pic == 56:
-                return 10
+                result = 10
             elif wpn_pic == 57:
-                return 11
+                result = 11
             elif wpn_pic == 58:
-                return 12
+                result = 12
             elif wpn_pic == 59:
-                return 13
+                result = 13
+
+            if result != None:
+                return result
             break
         if case(3):
             if wpn_pic in range(-5, 0):
-                return 4
+                result = 4
             elif wpn_pic == 0:
-                return 5
+                result = 5
             elif wpn_pic in (1, 2):
-                return 0
+                result = 0
             elif wpn_pic == (3, 5, 6, 7, 50, 52, 53, 54):
-                return 1
+                result = 1
             elif wpn_pic in (4, 8, 9, 10, 59):
-                return 2
+                result = 2
             elif wpn_pic == 51:
-                return 3
+                result = 3
             elif wpn_pic == 55:
-                return 9
+                result = 9
             elif wpn_pic == 56:
-                return 10
+                result = 10
             elif wpn_pic == 57:
-                return 11
+                result = 11
             elif wpn_pic == 58:
-                return 12
+                result = 12
             elif wpn_pic == 60:
-                return 13
+                result = 13
+
+            if result != None:
+                return result
             break
 
     return 0
@@ -6081,7 +6092,7 @@ class Savegame(object):
             ))
             show_login_screen()
         else:
-            LOG.debug("Session ID für PHP Tunneling:", session_id)
+            LOG.debug("Session ID für PHP Tunneling:" + session_id)
 
         if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
             gilden_id = int(savegame[SG['GUILD']['INDEX']])
@@ -6375,7 +6386,7 @@ def request_tv():
 
 def TowerBtnHandler(evt:Event){
     var i:int;
-    Switch (GetActorID(evt.target)){
+    Switch (get_actor_id(evt.target)){
         if case(PREV_COPYCAT:
             copyCatSel--;
             if (copyCatSel < 0){
@@ -7051,7 +7062,7 @@ def show_fight_screen(
                     };
                 } else {
                     if ((evt is MouseEvent)){
-                        if (GetActorID(evt.target) == BATTLE_SKIP){
+                        if (get_actor_id(evt.target) == BATTLE_SKIP){
                             skip_guild_fights = (
                                 math.abs(skip_guild_fights) + 1);
                         };
@@ -10087,14 +10098,14 @@ def show_build_character_screen(evt:Event=None):void{
     RebuildMode = False;
     if (
         (((evt is MouseEvent))
-        and ((GetActorID(evt.target) == OPTION_CHANGEIMG)))
+        and ((get_actor_id(evt.target) == OPTION_CHANGEIMG)))
     ){
         RebuildMode = True;
     };
     if (
         (((evt is MouseEvent))
-        and ((((GetActorID(evt.target) == GOTO_LOGIN))
-        or ((GetActorID(evt.target) == GOTO_SIGNUP)))))
+        and ((((get_actor_id(evt.target) == GOTO_LOGIN))
+        or ((get_actor_id(evt.target) == GOTO_SIGNUP)))))
     ){
         so.data.skipAutoLOGin = True;
     };
@@ -11314,7 +11325,7 @@ def show_screen_gilden(
             var selRank:* = 0;
             var evt:* = evt;
             var typematic:Boolean = typematic;
-            actor_id = GetActorID(evt.target);
+            actor_id = get_actor_id(evt.target);
             selRank = guildData[
                 ((GUILD_MEMBERRANK + selectLevel) + scrollLevel)
             ];
@@ -13595,7 +13606,7 @@ def show_main_quests_screen(NextEnemies:Array){
                 };
                 return;
             };
-            if (GetActorID(evt.target) == (HLMQS_BUTTON + 4)){
+            if (get_actor_id(evt.target) == (HLMQS_BUTTON + 4)){
                 send_action(ACT_SCREEN_TOWER);
             } else {
                 if (countDone == 9){
@@ -13613,8 +13624,8 @@ def show_main_quests_screen(NextEnemies:Array){
                                 );
                             } else {
                                 ShowMainQuestScreen(
-                                    (GetActorID(evt.target) - MQS_BUTTON),
-                                    (int(NextEnemies[(GetActorID(evt.target)
+                                    (get_actor_id(evt.target) - MQS_BUTTON),
+                                    (int(NextEnemies[(get_actor_id(evt.target)
                                         - MQS_BUTTON)]) - 1)
                                 );
 
@@ -14542,7 +14553,7 @@ def Showalbum_content(evt:Event=None){
     AlbumClear();
     actor_id = 0;
     if (evt){
-        actor_id = GetActorID(evt.target);
+        actor_id = get_actor_id(evt.target);
     };
     if (actor_id == ALBUM_PREV){
         albumPage--;
@@ -18354,8 +18365,8 @@ def superior_font(font1, font2):
     font_ranking = [
         "Gorilla Milkshake", "Komika Text", "Verdana", "Arial Narrow"
     ]
-    rank1 = font_ranking.find(font1)
-    rank2 = font_ranking.find(font2)
+    rank1 = font_ranking.index(font1)
+    rank2 = font_ranking.index(font2)
 
     if rank1 < 0:
         LOG.warning(' '.join(
@@ -18398,6 +18409,9 @@ def add_bunch(bunch_id, *args):
 
 
 def define_snd(actor_id, url, predo_load=False):
+    '''
+        define sound actor
+    '''
     if url.lower()[0: 4] == "http:":
         full_url = url
     else:
@@ -18513,6 +18527,9 @@ def error_message(msg=""):
 
 
 def enable_popup(actor_id, *args):
+    '''
+        enable popup actor
+    '''
     i = 0
     popupWidth = 0
     textY = 0
@@ -18526,7 +18543,7 @@ def enable_popup(actor_id, *args):
     if popup_stamp > 10000:
         popup_stamp = 0
 
-    if args.length > 0:
+    if len(args) > 0:
         with actor[actor_id]:
             add_event_listener(MouseEvent.MOUSE_OVER, show_popup)
             add_event_listener(MouseEvent.MOUSE_MOVE, position_popup)
@@ -19549,13 +19566,13 @@ def load(*actor_ids):
         do_load(actid)
 
 
-def whendo_loaded(fn=None):
+def whendo_loaded(function=None):
     '''
         async loading finished
     '''
     pending = False
-    if isinstance(f, types.FunctionType):
-        whendo_loaded_fn[len(whendo_loaded_fn)] = fn
+    if isinstance(function, types.FunctionType):
+        whendo_loaded_fn[len(whendo_loaded_fn)] = function
         whendo_loaded_active = True
         whendo_loaded_timeout.stop()
         whendo_loaded_timeout.start()
@@ -19635,9 +19652,9 @@ def loader_complete():
         loading success
     '''
     if evt.target is LoaderInfo:
-        actorLoaded[GetActorID(evt.target.loader)] = 2
+        actorLoaded[get_actor_id(evt.target.loader)] = 2
         Security.allowDomain(evt.target.loaderURL)
-        with actor[GetActorID(evt.target.loader)].content:
+        with actor[get_actor_id(evt.target.loader)].content:
             force_smoothing = True
             allow_smoothing = True
             smoothing = True
@@ -19974,7 +19991,7 @@ def load_tracking_pixel(url=''):
         var fillFieldContent:* = None;
         var ShowSocial:* = function (evt:MouseEvent){
             var thisActor:int;
-            thisActor = GetActorID(evt.target);
+            thisActor = get_actor_id(evt.target);
             ExternalInterface.call(
                 "showSocial",
                 param_social_buttons[(thisActor - SOCIAL)].split(":")[0]
@@ -20314,7 +20331,7 @@ def load_tracking_pixel(url=''):
                 badWords.append(actor[INP['NAME']].getChildAt(1).text);
             };
             if (evt){
-                if (GetActorID(evt.target.parent) == INP['PASSWORD']){
+                if (get_actor_id(evt.target.parent) == INP['PASSWORD']){
                     pwd = actor[INP['PASSWORD']].getChildAt(1).text;
                     hide(PASSWORD_SMILEY_SAD);
                     hide(PASSWORD_SMILEY_NEUTRAL);
@@ -20454,7 +20471,7 @@ def load_tracking_pixel(url=''):
                 pwdScore = (pwdScore + 1);
             };
             if (evt){
-                if (GetActorID(evt.target.parent) == INP['PASSWORD']){
+                if (get_actor_id(evt.target.parent) == INP['PASSWORD']){
                     if (pwdScore >= 3){
                         show(PASSWORD_SMILEY_HAPPY);
                     } else {
@@ -20647,7 +20664,7 @@ def load_tracking_pixel(url=''):
         };
         SelectRace = function (evt:MouseEvent):void{
             var actor_id:int;
-            actor_id = GetActorID(evt.target);
+            actor_id = get_actor_id(evt.target);
             if (
                 (((actor_id >= VOLK_1_M_IDLE))
                 and ((actor_id <= VOLK_8_M_IDLE)))
@@ -20669,7 +20686,7 @@ def load_tracking_pixel(url=''):
         };
         SelectGender = function (evt:MouseEvent):void{
             var actor_id:int;
-            actor_id = GetActorID(evt.target);
+            actor_id = get_actor_id(evt.target);
             if (actor_id == M_IDLE){
                 char_male = True;
             };
@@ -20683,7 +20700,7 @@ def load_tracking_pixel(url=''):
         };
         SelectCaste = function (evt:MouseEvent):void{
             var actor_id:int;
-            actor_id = GetActorID(evt.target);
+            actor_id = get_actor_id(evt.target);
             KlasseGewählt = True;
             if (actor_id == KASTE_1_IDLE){
                 char_class = 1;
@@ -20725,7 +20742,7 @@ def load_tracking_pixel(url=''):
                 MouseEvent.MOUSE_OUT,
                 EndMimickInterfaceButtonHover
             );
-            Switch (GetActorID(evt.target)){
+            Switch (get_actor_id(evt.target)){
                 if case(CA_CITY_SHAKES:
                     MimickHover(IF_SCHMIEDE);
                     break;
@@ -21236,7 +21253,7 @@ def load_tracking_pixel(url=''):
                 and (!(on_stage(CA_SCR_ARBEITEN_BLOCKCITY)))))
                 and (!(on_stage(CA_SCR_INVITE_BLOCKCITY))))
             ){
-                Switch (GetActorID(evt.target)){
+                Switch (get_actor_id(evt.target)){
                     if case(IF_SCHMIEDE:
                         add(CITY_SHAKES);
                         break;
@@ -21320,7 +21337,7 @@ def load_tracking_pixel(url=''):
                     return;
                 };
             };
-            Switch (GetActorID(evt.target)){
+            Switch (get_actor_id(evt.target)){
                 if case(HALL_GOTO_SPIELER:
                     ruhmes_halle_such_name = True;
                     ruhmes_halle_such_string = actor[
@@ -21711,13 +21728,13 @@ def load_tracking_pixel(url=''):
             };
         };
         BoostAttribute = function (evt:Event):Boolean{
-            if (canBoost[(GetActorID(evt.target) - SCR_CHAR_STEIGERN1)]){
+            if (canBoost[(get_actor_id(evt.target) - SCR_CHAR_STEIGERN1)]){
                 send_action(
                     ACT_BUY_ATTRIB,
-                    ((GetActorID(evt.target) - SCR_CHAR_STEIGERN1) + 1)
+                    ((get_actor_id(evt.target) - SCR_CHAR_STEIGERN1) + 1)
                 );
             };
-            return (canBoost[(GetActorID(evt.target) - SCR_CHAR_STEIGERN1)]);
+            return (canBoost[(get_actor_id(evt.target) - SCR_CHAR_STEIGERN1)]);
         };
         BoostBtnTimerFunction = function (evt:TimerEvent){
             if (BoostBtnChange > 1){
@@ -22047,7 +22064,7 @@ def load_tracking_pixel(url=''):
             if (!on_stage(CHAR_MESSAGE)){
                 send_action(
                     ACT_KILL_POTION,
-                    ((GetActorID(evt.target) - CHAR_POTION)
+                    ((get_actor_id(evt.target) - CHAR_POTION)
                     + 1)
                 );
             };
@@ -22467,7 +22484,7 @@ def load_tracking_pixel(url=''):
             var GoldKosten:int;
             var PilzKosten:int;
             var tmpX:int;
-            actor_id = GetActorID(evt.target);
+            actor_id = get_actor_id(evt.target);
             GoldKosten = 0;
             PilzKosten = 0;
             tmpX = 0;
@@ -23331,11 +23348,11 @@ def load_tracking_pixel(url=''):
         GildeBtnHandler = function (evt:Event=None){
             var i:* = 0;
             var evt:* = evt;
-            Switch (GetActorID(evt.target)){
+            Switch (get_actor_id(evt.target)){
                 if case((GILDE_CREST_COLOR + 1):
                 if case((GILDE_CREST_COLOR + 2):
                 if case((GILDE_CREST_COLOR + 3):
-                    crestColorSelection = (GetActorID(evt.target) - GILDE_CREST_COLOR);
+                    crestColorSelection = (get_actor_id(evt.target) - GILDE_CREST_COLOR);
                     i = 1;
                     while (i < crestColor.length) {
                         if (i == crestColorSelection){
@@ -23431,7 +23448,7 @@ def load_tracking_pixel(url=''):
                             FadeIn(GILDE_CREST_CONTROLS);
                         };
                     };
-                    selecterCrestElement = (GetActorID(evt.target) - CLA_GILDE_CREST);
+                    selecterCrestElement = (get_actor_id(evt.target) - CLA_GILDE_CREST);
                     i = 0;
                     while (i < crestColor.length) {
                         if (i == crestColorSelection){
@@ -23624,7 +23641,7 @@ def load_tracking_pixel(url=''):
             };
             remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
             AddSome(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
-            Switch (GetActorID(evt.target)){
+            Switch (get_actor_id(evt.target)){
                 if case(HUTMANN_GOLDBET:
                     if (int((int(savegame[SG_GOLD]) / 100)) > int(actor[LBL_HUTMANN_GOLDBET2].text)){
                         actor[LBL_HUTMANN_GOLDBET].text = str((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_GOLDBET2].text)));
@@ -23696,7 +23713,7 @@ def load_tracking_pixel(url=''):
         ChooseCup = function (evt:Event=None){
             remove(HUTMANN_BECHERCHOOSE);
             add(HUTFACE_HOVER);
-            CupChosen = (GetActorID(evt.target) - CA_HUTBECHER_1);
+            CupChosen = (get_actor_id(evt.target) - CA_HUTBECHER_1);
             send_action(ACT_PLACE_BET, str((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
         };
         var PlaceHutBet:* = function (LeftToCenter:Boolean=False){
@@ -23935,7 +23952,7 @@ def load_tracking_pixel(url=''):
 
         var ChooseQuest:* = function (evt:Event=None){
             var quest_id:int;
-            quest_id = (GetActorID(evt.target) - QO_CHOICE1);
+            quest_id = (get_actor_id(evt.target) - QO_CHOICE1);
             SelectQuestOffer(quest_id);
         };
         var SelectQuestOffer:* = function (quest_id:int){
@@ -24103,7 +24120,7 @@ def load_tracking_pixel(url=''):
             toiletChainFrame++;
         };
         ToiletHandler = function (evt:Event=None){
-            if (GetActorID(evt.target) == CA_TOILET_CHAIN){
+            if (get_actor_id(evt.target) == CA_TOILET_CHAIN){
                 toiletChainFrame = 0;
                 toiletChainTimer.start();
                 play(SND_TOILET_FLUSHTRY);
@@ -24203,7 +24220,7 @@ def load_tracking_pixel(url=''):
         };
         ChooseLanguageIcon = function (evt:MouseEvent){
             var req:URLRequest;
-            so.data.lang_code = param_languages[(GetActorID(evt.target) - OPTION_FLAG)];
+            so.data.lang_code = param_languages[(get_actor_id(evt.target) - OPTION_FLAG)];
             so.flush();
             trc("Language set:", so.data.lang_code);
             req = new URLRequest("index.php");
@@ -24219,7 +24236,7 @@ def load_tracking_pixel(url=''):
                 };
             };
             remove(LUXURY_SELLER);
-            Switch (GetActorID(evt.target)){
+            Switch (get_actor_id(evt.target)){
                 if case(OPTION_LUXURY:
                     remove(OPTION_DOCHANGE);
                     optionMenuSelect = 6;
@@ -25843,7 +25860,7 @@ def load_tracking_pixel(url=''):
             actor[(WITCH_SCROLL + i)].buttonMode = True;
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.CLICK, function (evt:MouseEvent){
                 var id:int;
-                id = ((GetActorID(evt.target) - WITCH_SCROLL) + 1);
+                id = ((get_actor_id(evt.target) - WITCH_SCROLL) + 1);
                 if (spellClicking){
                     send_action(ACT_WITCH_ENCHANT, id);
                 };
@@ -25852,7 +25869,7 @@ def load_tracking_pixel(url=''):
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_DOWN, function (evt:MouseEvent){
                 var actorId:int;
                 var i:int;
-                actorId = GetActorID(evt.target);
+                actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = ((((280 + 500) + 37) + ((i % 5) * 83)) + 1);
                 actor[actorId].y = (((100 + 11) + (math.floor((i / 5)) * 95)) + 2);
@@ -25861,7 +25878,7 @@ def load_tracking_pixel(url=''):
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_UP, function (evt:MouseEvent){
                 var actorId:int;
                 var i:int;
-                actorId = GetActorID(evt.target);
+                actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
                 actor[actorId].y = ((100 + 11) + (math.floor((i / 5)) * 95));
@@ -25869,7 +25886,7 @@ def load_tracking_pixel(url=''):
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_OUT, function (evt:MouseEvent){
                 var actorId:int;
                 var i:int;
-                actorId = GetActorID(evt.target);
+                actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
                 actor[actorId].y = ((100 + 11) + (math.floor((i / 5)) * 95));
@@ -25989,7 +26006,7 @@ def load_tracking_pixel(url=''):
         };
         killFieldContent = function (evt:Event){
             var actor_id:int;
-            actor_id = GetActorID(evt.target.parent);
+            actor_id = get_actor_id(evt.target.parent);
             if (actor[actor_id].getChildAt(1).type == TextFieldType.DYNAMIC){
                 return;
             };
@@ -26013,7 +26030,7 @@ def load_tracking_pixel(url=''):
         };
         fillFieldContent = function (evt:Event){
             var actor_id:int;
-            actor_id = GetActorID(evt.target.parent);
+            actor_id = get_actor_id(evt.target.parent);
             Switch (actor_id){
                 if case(INP_POST_ADDRESS:
                     if (actor[actor_id].getChildAt(1).text == ""){
@@ -27855,7 +27872,7 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id:int=0){
     remove(LBL['ERROR']);
     GuildMsg = False;
     if (evt){
-        actor_id = GetActorID(evt.target);
+        actor_id = get_actor_id(evt.target);
     };
     thisRecipient = "";
     recipients = list();
@@ -28375,7 +28392,7 @@ def add_suggest_names(addArray){
     };
 }
 
-def GetActorID(actorObj:Object, iStart=0, iEnde=-1):int{
+def get_actor_id(actorObj:Object, iStart=0, iEnde=-1):int{
     var i:int;
     var res:int;
     res = C_EMPTY;
@@ -30827,7 +30844,7 @@ def ModifyCharacter(evt:Event):void{
         };
         return (val);
     };
-    actor_id = GetActorID(evt.target);
+    actor_id = get_actor_id(evt.target);
     char_hair = RemoveColorOffset(char_hair, C_HAIR);
     char_brows = RemoveColorOffset(char_brows, C_BROWS);
     char_beard = RemoveColorOffset(char_beard, C_BEARD);
@@ -31746,7 +31763,7 @@ def DrachenSetzen():void{
 def InterfaceBtnHandler(evt:Event):void{
     var tmpAction:int;
     tmpAction = 0;
-    Switch (GetActorID(evt.target)){
+    Switch (get_actor_id(evt.target)){
         if case(CA_CITY_SHAKES:
         if case(IF_SCHMIEDE:
             tmpAction = ACT_SCREEN_SCHMIEDE;
