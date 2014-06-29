@@ -6334,11 +6334,11 @@ def request_city_screen():
     pass
 
 
+
+
+
 '''
 
-def RequestTV(evt:Event=None){
-    if (tv_function_name != ""){
-        trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"showtv\"!"));
         ExternalInterface.call(tv_function_name, "showtv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tv_return_value);
         tv_poll_timer.delay = tvPollLong;
     } else {
