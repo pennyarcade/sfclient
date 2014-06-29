@@ -16878,7 +16878,8 @@ def action_handler(event):
                 for i in range(len(tmp_array)-1, 0, -1):
                     if not par[3]:
                         if ((last_chat_index != 0)
-                            and (decode_chat(tmp_array[i], False, True) == "1")):
+                            and (decode_chat(tmp_array[i],
+                                 False, True) == "1")):
                             remove(BNC['GILDE']['CHAT'])
 
                         chat_line(decode_chat(tmp_array[i]),
@@ -16886,7 +16887,7 @@ def action_handler(event):
                                   get_hl_index(tmp_array[i]))
 
                         if (((tmp_array[i].find("§") != -1)
-                                or (not so.data.noPulseOnSysMsg))
+                             or (not so.data.noPulseOnSysMsg))
                                 and pulse_gilde_on_history):
                             pulse_gilde = True
 
@@ -16905,7 +16906,7 @@ def action_handler(event):
 
                             last_chat_index = par[3].split("/")[i]
                             if ((not last_chat_index == 0)
-                                and (decode_chat(
+                                    and (decode_chat(
                                     tmp_array[i], False, True) == "1")):
                                 remove(BNC['GILDE']['CHAT'])
 
@@ -16916,7 +16917,7 @@ def action_handler(event):
                             )
 
                             if (((tmp_array[i].find("§") != -1)
-                                    or (not so.data.noPulseOnSysMsg))
+                                 or (not so.data.noPulseOnSysMsg))
                                     and (pulse_gilde_on_history)):
                                 pulse_gilde = True
 
@@ -16946,13 +16947,13 @@ def action_handler(event):
                     pulse_gilde = True
                     external_whisperer = tmp_array[i][6:]
                     external_whisperer = external_whisperer[
-                            0: external_whisperer.find(":§")
+                        0: external_whisperer.find(":§")
                     ]
                     chat_line(decode_chat(
-                                          tmp_array[i]),
-                                          False,
-                                          get_hl_index(tmp_array[i]),
-                                          True)
+                        tmp_array[i]),
+                              False,
+                              get_hl_index(tmp_array[i]),
+                              True)
 
                     add_suggest_names(external_whisperer)
 
@@ -17482,8 +17483,7 @@ def action_handler(event):
                 for i in range(len(alert_words)):
                     if (post_read_text.lower().find(
                             alert_words[i].lower()
-                        ) != -1
-                    ):
+                        ) != -1):
                         post_read_text = texts[TXT['ALERT_TEXT']].replace(
                             "%1", post_read_text
                         )
@@ -17529,9 +17529,9 @@ def action_handler(event):
                     LBL['HALL']['GOTO_GILDEN']
                 )
                 show(
-                     LBL['HALL']['GOTO_SPIELER'],
-                     LBL['HALL']['GOTO_GILDEN_HL']
-                 )
+                    LBL['HALL']['GOTO_SPIELER'],
+                    LBL['HALL']['GOTO_GILDEN_HL']
+                )
             else:
                 last_hall_members = list()
                 last_hall_members.append("")
@@ -17657,17 +17657,15 @@ def action_handler(event):
                     else:
                         tmpidx += 1
 
-                if (
-                    (not guild_hall_mode)
-                    and (not ruhmes_halle_such_name)
-                    and (tmp_str == tmp_array[tmpidx].lower())
-                ):
+                if ((not guild_hall_mode)
+                        and (not ruhmes_halle_such_name)
+                        and (tmp_str == tmp_array[tmpidx].lower())):
                     tmp_fmt = FontFormat_HallListHighLight
                 elif guild_hall_mode and (int(tmp_array[i + 3]) < 0):
                     tmp_fmt = FontFormat_GuildHallNoAttack
                 elif ((not guild_hall_mode)
                       and (not lastAttacked.find(
-                           tmp_array[i + 1].lower()) == -1)):
+                          tmp_array[i + 1].lower()) == -1)):
                     tmp_fmt = FontFormat_GuildHallNoAttack
                 else:
                     tmp_fmt = FontFormat_HallListText
@@ -17942,10 +17940,8 @@ def action_handler(event):
             ExternalInterface.call("refresh")
             break
 
-        if case(
-            RESP['LOGIN']['SUCCESS']['BOUGHT'],
-            RESP['LOGIN']['SUCCESS']
-        ):
+        if case(RESP['LOGIN']['SUCCESS']['BOUGHT'],
+                RESP['LOGIN']['SUCCESS']):
             mirror_fade_amount = 0.2
             admin_login = ""
 
@@ -18328,7 +18324,7 @@ def swap_words(tmp_str):
                     punct1 = ""
 
                 if ((punct2 != "\"")
-                    or (len(tmp_arr[k].split("\"")) > 2)):
+                        or (len(tmp_arr[k].split("\"")) > 2)):
                     punct2 = ""
 
                 if punct1 == "...":
@@ -18482,10 +18478,8 @@ def error_message(msg=""):
                 if msg.replace(" ", "") != "":
                     chat_line(msg, True)
             else:
-                if (
-                    (on_stage(BTN['CREATE_CHARACTER'])
-                    and (not on_stage(IMG['IF']['WINDOW'])))
-                ):
+                if ((on_stage(BTN['CREATE_CHARACTER'])
+                     and (not on_stage(IMG['IF']['WINDOW'])))):
                     with actor[LBL['CREATE']['RACE_DESC']]:
                         default_text_format = FontFormat_ClassError
                         text = msg
@@ -19220,10 +19214,8 @@ def configuration_filedo_loaded(evt):
         if so.data.snd_url_index:
             if param_imgsvr > 0:
                 snd_url_index = param_imgsvr - 1
-            elif (
-                  (so.data.snd_url_index <= len(snd_url))
-                  and (not force_reroll)
-            ):
+            elif ((so.data.snd_url_index <= len(snd_url))
+                    and (not force_reroll)):
                 snd_url_index = so.data.snd_url_index - 1
             else:
                 snd_url_index = int(Math.random() * len(snd_url))
@@ -19289,10 +19281,8 @@ def do_load(actor_id):
             )
             Security.allowDomain(actorURL[actor_id])
             req = URLRequest(actorURL[actor_id])
-            if (
-                (actorURL[actor_id][-4:] == ".png")
-                and (not no_crossdomain)
-            ):
+            if ((actorURL[actor_id][-4:] == ".png")
+                    and (not no_crossdomain)):
                 actor[actor_id].load(
                     req,
                     LoaderContext(
@@ -19462,10 +19452,8 @@ def pixel_success():
         TODO: What does this do?
     '''
     pixel_data = pixeldo_loader.data
-    if (
-        (pixel_data.lower().substr(0, 7) == "http://")
-        or (pixel_data.lower().substr(0, 8) == "https://")
-    ):
+    if ((pixel_data.lower().substr(0, 7) == "http://")
+            or (pixel_data.lower().substr(0, 8) == "https://")):
         ExternalInterface.call("loadpixel", pixel_data)
 
     # pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
