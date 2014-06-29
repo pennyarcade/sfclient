@@ -16,6 +16,7 @@ import random
 import md5
 import logging
 import math
+import types
 
 # external dependencies
 import requests
@@ -4495,8 +4496,8 @@ def tv_timer_event_handler():
         handle tev timer event
     '''
     tv_wobble += 0.1
-    while tv_wobble > (2 * math.PI):
-        tv_wobble -= 2 * math.PI
+    while tv_wobble > (2 * math.pi):
+        tv_wobble -= 2 * math.pi
     if (tv_status_dest - tv_status) >= 0.1:
         tv_status += 0.1
     elif (tv_status - tv_status_dest) >= 0.1:
@@ -4999,6 +5000,7 @@ def init_vars():
                 buffed_email = buffed_stuff[2]
 
     # pre populate text snippet list
+    global texts
     texts = list()
     while len(texts) < 20000:
         texts.append("")
@@ -8386,7 +8388,7 @@ def show_fight_screen(
             DamageAlpha = 0;
             OnoAlpha = 0;
             const SPRITE_SCALE:Number = 1.5;
-            const TWOPI:Number = (math.PI * 2);
+            const TWOPI:Number = (math.pi * 2);
             strikeVal = 0;
             strikePhase = 0;
             damageIndicatorActive = False;
@@ -10489,15 +10491,15 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                 with (_local3) {
                     scaleX = (
                         ((math.cos((((level_upAniStep / 50) * 2)
-                            * math.PI)) + 1) * kickIn) + 1);
+                            * math.pi)) + 1) * kickIn) + 1);
                     scaleY = (
                         ((math.sin((((level_upAniStep / 50) * 2)
-                            * math.PI)) + 1) * kickIn) + 1);
+                            * math.pi)) + 1) * kickIn) + 1);
                     x = ((EXPERIENCE_BAR_X + 128) - int((width / 2)));
                     y = (((EXPERIENCE_BAR_Y + 17)
                         - int((height / 2)))
                         - (((math.sin((((level_upAniStep / 50) * 2)
-                            * math.PI)) + 1) * kickIn) * 20));
+                            * math.pi)) + 1) * kickIn) * 20));
                 };
             };
             level_upAniStep = 25;
@@ -19552,7 +19554,7 @@ def whendo_loaded(fn=None):
         async loading finished
     '''
     pending = False
-    if fn is Function:
+    if isinstance(f, types.FunctionType):
         whendo_loaded_fn[len(whendo_loaded_fn)] = fn
         whendo_loaded_active = True
         whendo_loaded_timeout.stop()
@@ -20553,7 +20555,7 @@ def load_tracking_pixel(url=''):
                     with (_local3) {
                         alpha = ((doPulse)
                             ? ((math.sin((((PulseLevel / 200) * 2)
-                                * math.PI)) * 0.4) + 0.8)
+                                * math.pi)) * 0.4) + 0.8)
                             : 1
                         );
                     };
@@ -23862,7 +23864,7 @@ def load_tracking_pixel(url=''):
             if (on_stage(TIMEBAR_FILL)){
                 TimeBarAniTimer.delay = 20;
                 timeBarAni = (timeBarAni + 0.2);
-                if (timeBarAni > (2 * math.PI)){
+                if (timeBarAni > (2 * math.pi)){
                     timeBarAni = 0;
                 };
                 var _local3 = actor[TIMEBAR_FILL];
@@ -29260,7 +29262,7 @@ def MirrorAniFn(evt:Event){
     mirrorAniStep = (mirrorAniStep + 0.1);
     i = 0;
     while (i < 13) {
-        actor[(MIRROR_PIECE + i)].alpha = (0.3 + (math.sin((mirrorAniStep + (((i / 13) * 2) * math.PI))) * mirror_fade_amount));
+        actor[(MIRROR_PIECE + i)].alpha = (0.3 + (math.sin((mirrorAniStep + (((i / 13) * 2) * math.pi))) * mirror_fade_amount));
         i++;
     };
 }
