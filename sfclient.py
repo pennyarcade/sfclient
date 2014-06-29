@@ -16883,19 +16883,13 @@ def action_handler(event):
                         ):
                             remove(BNC['GILDE']['CHAT'])
 
-                        chat_line(
-                            decode_chat(tmp_array[i]),
-                            False,
-                            get_hl_index(tmp_array[i])
-                        )
+                        chat_line(decode_chat(tmp_array[i]),
+                                  False,
+                                  get_hl_index(tmp_array[i]))
 
-                        if (
-                            (
-                                (tmp_array[i].find("§") != -1)
-                                or (not so.data.noPulseOnSysMsg)
-                            )
-                            and pulse_gilde_on_history
-                        ):
+                        if (((tmp_array[i].find("§") != -1)
+                                or (not so.data.noPulseOnSysMsg))
+                                and pulse_gilde_on_history):
                             pulse_gilde = True
 
                         if last_chat_index != 0:
@@ -16912,12 +16906,9 @@ def action_handler(event):
                                 play(SND['ERROR'])
 
                             last_chat_index = par[3].split("/")[i]
-                            if (
-                                (not last_chat_index == 0)
+                            if ((not last_chat_index == 0)
                                 and (decode_chat(
-                                    tmp_array[i], False, True
-                                ) == "1")
-                            ):
+                                        tmp_array[i], False, True) == "1")):
                                 remove(BNC['GILDE']['CHAT'])
 
                             chat_line(
@@ -16926,19 +16917,15 @@ def action_handler(event):
                                 get_hl_index(tmp_array[i])
                             )
 
-                            if (
-                                ((tmp_array[i].find("§") != -1)
-                                or (not so.data.noPulseOnSysMsg))
-                                and (pulse_gilde_on_history)
-                            ):
+                            if (((tmp_array[i].find("§") != -1)
+                                    or (not so.data.noPulseOnSysMsg))
+                                    and (pulse_gilde_on_history)):
                                 pulse_gilde = True
 
                             for j in range(len(offline_guild_members)):
                                 tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
-                                if (tmp_array[i].lower().find(
-                                    tmp_str) != -1
-                                ):
+                                if (tmp_array[i].lower().find(tmp_str) != -1):
                                     if on_stage(INP['GILDE_CHAT']):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
@@ -16980,11 +16967,9 @@ def action_handler(event):
 
             guild_blink_ready = True
 
-            if (
-                (new_crest_suggested != "")
-                and (not first_chat_fill)
-                and (on_stage(INP['GILDE_CHAT']))
-            ):
+            if ((new_crest_suggested != "")
+                    and (not first_chat_fill)
+                    and (on_stage(INP['GILDE_CHAT']))):
                 clickchat_line(new_crest_suggested)
 
             new_crest_suggested = ""
