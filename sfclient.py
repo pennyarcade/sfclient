@@ -4500,7 +4500,7 @@ def tv_timer_event_handler(evt):
     else:
         tv_status = tv_status_dest
 
-    tv_ani++
+    tv_ani += 1
     if tv_ani >= 4:
         tv_ani = 0
 
@@ -5021,11 +5021,11 @@ def init_vars():
     tvPollTimer = Timer(5000)
     tvPollTimer.add_event_listener(TimerEvent.TIMER, TryShowTV)
 
-    pvp_delay_timer = new Timer(500)
+    pvp_delay_timer = Timer(500)
 
     # Witch Animation Timer
     witch_ani_step = 0
-    witch_ani_timer = new Timer(50)
+    witch_ani_timer = Timer(50)
     witch_ani_timer.add_event_listener(TimerEvent.TIMER,
                                        witch_timer_event_handler)
 
