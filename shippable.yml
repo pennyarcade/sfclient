@@ -21,6 +21,7 @@ script:
   - git add metrics
   - git commit -m '[skip ci] shippable build results [ci skip]'
   - git push git@bitbucket.org:chocokiko/sfclient.git
+  - git@github.com:pennyarcade/sfclient.git
   - cp metrics/stats.csv chocokiko.bitbucket.org/
   - cd chocokiko.bitbucket.org/
   - git add *
