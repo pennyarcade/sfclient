@@ -4494,7 +4494,7 @@ def tv_timer_event_handler(evt):
     while tv_wobble > (2 * Math.PI):
         tv_wobble -= 2 * Math.PI
     if (tv_status_dest - tv_status) >= 0.1:
-        tv_status +=  0.1
+        tv_status += 0.1
     elif (tv_status - tv_status_dest) >= 0.1:
         tv_status -= 0.1
     else:
@@ -4505,31 +4505,31 @@ def tv_timer_event_handler(evt):
         tv_ani = 0
 
     if tv_status == 1:
-        show(CA_TV)
+        show(CA['TV'])
     if tv_status == 0:
-        hide(CA_TV)
+        hide(CA['TV'])
 
     for i in range(4):
-        actor[(TV + i)].scaleX = tv_status
-        actor[(TV + i)].scaleY = tv_status
-        actor[(TV + i)].rotation = Math.sin(tv_wobble) * 5
-        actor[(TV + i)].alpha = tv_status
+        actor[IMG['TV'] + i].scaleX = tv_status
+        actor[IMG['TV'] + i].scaleY = tv_status
+        actor[IMG['TV'] + i].rotation = Math.sin(tv_wobble) * 5
+        actor[IMG['TV'] + i].alpha = tv_status
         if (i == tv_ani) and (tv_status > 0):
-            show(TV + i)
+            show(IMG['TV'] + i)
         else:
-            hide(TV + i)
+            hide(IMG['TV'] + i)
 
-    if not on_stage(TV):
+    if not on_stage(IMG['TV']):
         tv_timer.stop()
 
         for i in range(4):
-            hide(TV + i)
+            hide(IMG['TV'] + i)
 
         tv_status = 0
         tv_status_dest = 0
 
 
-def witch_timer_event_handler(evt):
+def witch_timer_event_handler():
     witch_ani_step += 1
 
     if witch_ani_step >= 15:
@@ -4541,7 +4541,7 @@ def witch_timer_event_handler(evt):
         else:
             hide(IMG['WITCH_ANI'] + i)
 
-    if not on_stage(WITCH):
+    if not on_stage(IMG['WITCH']):
         witch_ani_timer.stop()
 
 
@@ -5018,8 +5018,8 @@ def init_vars():
     tv_timer = Timer(100)
 
     tv_timer.add_event_listener(TimerEvent.TIMER, tv_timer_event_handler)
-    tvPollTimer = Timer(5000)
-    tvPollTimer.add_event_listener(TimerEvent.TIMER, TryShowTV)
+    tv_poll_timer = Timer(5000)
+    tv_poll_timer.add_event_listener(TimerEvent.TIMER, try_show_tv)
 
     pvp_delay_timer = Timer(500)
 
@@ -5051,7 +5051,6 @@ def configure(session):
         @oldname Start
     '''
     serverconfig = session.load_configuration_file()
-
 
     whendo_loaded(dodo_load_language_file)
 
@@ -5189,7 +5188,7 @@ def time_str(req_time, short=False):
     return req_date.strftime(formats[code][length])
 
 
-def time_calc_event(evt):
+def time_calc_event():
     '''
         Time Event Callback
     '''
@@ -6341,7 +6340,7 @@ def RequestTV(evt:Event=None){
     if (tv_function_name != ""){
         trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"showtv\"!"));
         ExternalInterface.call(tv_function_name, "showtv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], tv_return_value);
-        tvPollTimer.delay = tvPollLong;
+        tv_poll_timer.delay = tvPollLong;
     } else {
         trc("Error: No TV function set!");
     };
@@ -9146,7 +9145,7 @@ def show_quest_screen(evt:Event=None){
             hide(QUEST_SKIP);
         };
         CheckWrongPage(ACT_SCREEN_TAVERNE);
-        TryShowTV();
+        try_show_tv();
     };
     load(SCREEN_QUEST);
     load(get_quest_bg());
@@ -9262,7 +9261,7 @@ def show_taverne_screen(evt:Event=None){
         define_bunch(TAVERNE_QUESTOVL, (TAVERNE_QUESTOVL1 + quest_type));
         HutBlinzelTimer.add_event_listener(
             TimerEvent.TIMER, HutBlinzelTimerEvent);
-        TryShowTV();
+        try_show_tv();
         if (!light_mode){
             HutBlinzelTimer.start();
         } else {
@@ -9424,7 +9423,8 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
     };
     PvPDelayCheck = function (evt:TimerEvent=None){
         if (!on_stage(INP_ARENA_ENEMY)){
-            pvp_delay_timer.removeEventListener(TimerEvent.TIMER, PvPDelayCheck);
+            pvp_delay_timer.removeEventListener(TimerEvent.TIMER,
+                                                PvPDelayCheck);
             pvp_delay_timer.stop();
             return;
         };
@@ -18474,7 +18474,8 @@ def error_message(msg=""):
                             x = POS['SHOP']['ERROR_X'] - int(text_width / 2)
                             y = POS['SHOP']['ERROR_Y']
                         elif on_stage(IMG['TOILET']):
-                            x = POS['SHOP']['ERROR_X'] - 15 - int(text_width / 2)
+                            x = (POS['SHOP']['ERROR_X'] - 15
+                                 - int(text_width / 2))
                             y = 720
                         elif on_stage(BTN['QUEST']['CANCEL']):
                             x = POS['IF']['ERROR_X'] - int(text_width / 2)
@@ -28215,7 +28216,7 @@ def RefreshTimeBar(OfferTime:Number=0){
     };
 }
 
-def TryShowTV(evt:Event=None){
+def try_show_tv(evt:Event=None){
     var evt:* = evt;
     if (tvTest){
         tv_status_dest = 1;
@@ -28224,11 +28225,11 @@ def TryShowTV(evt:Event=None){
     } else {
         if (((((!((tv_function_name == ""))) and (!(disable_tv)))) and (!(prevent_tv)))){
             if (!evt){
-                tvPollTimer.start();
-                tvPollTimer.delay = tv_poll_normal;
+                tv_poll_timer.start();
+                tv_poll_timer.delay = tv_poll_normal;
             } else {
                 if (((!(on_stage(TAVERNE_BG))) and (!(on_stage(QUESTBAR_BG))))){
-                    tvPollTimer.stop();
+                    tv_poll_timer.stop();
                     return;
                 };
             };
@@ -28237,21 +28238,21 @@ def TryShowTV(evt:Event=None){
                 tv_return_value = ExternalInterface.call(tv_function_name, "requesttv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
             } catch(e:Error) {
                 trc(("There was an error: " + e.message));
-                tvPollTimer.delay = tvPollLong;
+                tv_poll_timer.delay = tvPollLong;
             };
             trc(("Return value is " + str(tv_return_value)));
             if (tv_return_value > 0){
                 tv_status_dest = 1;
-                tvPollTimer.delay = tvPollLong;
+                tv_poll_timer.delay = tvPollLong;
             } else {
                 tv_status_dest = 0;
                 if (tv_return_value == -2){
-                    tvPollTimer.stop();
+                    tv_poll_timer.stop();
                 } else {
                     if (tv_return_value == -1){
-                        tvPollTimer.delay = tvPollLong;
+                        tv_poll_timer.delay = tvPollLong;
                     } else {
-                        tvPollTimer.delay = tv_poll_normal;
+                        tv_poll_timer.delay = tv_poll_normal;
                     };
                 };
             };
