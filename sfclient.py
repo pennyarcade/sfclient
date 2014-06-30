@@ -4491,68 +4491,6 @@ def setup_logging():
     return LOG
 
 
-def tv_timer_event_handler():
-    '''
-        handle tev timer event
-    '''
-    tv_wobble += 0.1
-    while tv_wobble > (2 * math.pi):
-        tv_wobble -= 2 * math.pi
-    if (tv_status_dest - tv_status) >= 0.1:
-        tv_status += 0.1
-    elif (tv_status - tv_status_dest) >= 0.1:
-        tv_status -= 0.1
-    else:
-        tv_status = tv_status_dest
-
-    tv_ani += 1
-    if tv_ani >= 4:
-        tv_ani = 0
-
-    if tv_status == 1:
-        show(CA['TV'])
-    if tv_status == 0:
-        hide(CA['TV'])
-
-    for i in range(4):
-        actor[IMG['TV'] + i].scaleX = tv_status
-        actor[IMG['TV'] + i].scaleY = tv_status
-        actor[IMG['TV'] + i].rotation = math.sin(tv_wobble) * 5
-        actor[IMG['TV'] + i].alpha = tv_status
-        if (i == tv_ani) and (tv_status > 0):
-            show(IMG['TV'] + i)
-        else:
-            hide(IMG['TV'] + i)
-
-    if not on_stage(IMG['TV']):
-        tv_timer.stop()
-
-        for i in range(4):
-            hide(IMG['TV'] + i)
-
-        tv_status = 0
-        tv_status_dest = 0
-
-
-def witch_timer_event_handler():
-    '''
-        handle itch time event
-    '''
-    witch_ani_step += 1
-
-    if witch_ani_step >= 15:
-        witch_ani_step = 0
-
-    for i in range(15):
-        if i == witch_ani_step:
-            show(IMG['WITCH_ANI'] + i)
-        else:
-            hide(IMG['WITCH_ANI'] + i)
-
-    if not on_stage(IMG['WITCH']):
-        witch_ani_timer.stop()
-
-
 def init_vars():
     '''
         Initialize tons of Variables
@@ -4569,7 +4507,9 @@ def init_vars():
     #values album_*
     col_album = Album()
 
-    # actor = list()
+    global actor
+    actor = list()
+
     # actorBitmap = list()
     # actorLoaded = list()
     # actorPersistent = list()
@@ -15305,6 +15245,48 @@ def ShowSignupScreen(evt:Event=None):void{
 #------------------------------------------------------------------------------
 # low level graphic stuff
 
+
+def remove(*args):
+    for actor_id in args:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    remove(i_bunch)
+                return
+
+            if actor[actor_id] is Sound:
+                return
+
+            with actor[actor_id]:
+                if parent:
+                    parent.removeChild(actor[actor_id])
+
+
+def show(*actor_ids):
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    show(i_bunch)
+                return
+
+            with actor[actor_id]:
+                visible = True
+
+
+def hide(*actor_ids):
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    hide(i_bunch)
+                return
+
+            with actor[actor_id]:
+                visible = False
+
+
+
 '''
 
 def VisibleToFront(... _args):void{
@@ -15435,35 +15417,6 @@ def AddSome(... _args):void{
     };
 }
 
-def remove(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    remove(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            if ((actor[actor_ids[i]] is Sound)){
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                if (parent){
-                    parent.removeChild(actor[actor_ids[i]]);
-                };
-            };
-        };
-        i = (i + 1);
-    };
-}
-
 def remove_all(alsoPersistent:Boolean=False):void{
     var i:int;
     i = 0;
@@ -15478,54 +15431,6 @@ def remove_all(alsoPersistent:Boolean=False):void{
         i++;
     };
     ExternalInterface.call("hideSocial");
-}
-
-def show(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    show(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                visible = True;
-            };
-        };
-        i = (i + 1);
-    };
-}
-
-def hide(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    hide(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                visible = False;
-            };
-        };
-        i = (i + 1);
-    };
 }
 
 def Visible(actor_id):Boolean{
@@ -18563,6 +18468,88 @@ def on_stage(actor_id):
     return False
 
 
+def tv_timer_event_handler():
+    '''
+        handle tev timer event
+    '''
+    tv_wobble += 0.1
+    while tv_wobble > (2 * math.pi):
+        tv_wobble -= 2 * math.pi
+    if (tv_status_dest - tv_status) >= 0.1:
+        tv_status += 0.1
+    elif (tv_status - tv_status_dest) >= 0.1:
+        tv_status -= 0.1
+    else:
+        tv_status = tv_status_dest
+
+    tv_ani += 1
+    if tv_ani >= 4:
+        tv_ani = 0
+
+    if tv_status == 1:
+        show(CA['TV'])
+    if tv_status == 0:
+        hide(CA['TV'])
+
+    for i in range(4):
+        actor[IMG['TV'] + i].scaleX = tv_status
+        actor[IMG['TV'] + i].scaleY = tv_status
+        actor[IMG['TV'] + i].rotation = math.sin(tv_wobble) * 5
+        actor[IMG['TV'] + i].alpha = tv_status
+        if (i == tv_ani) and (tv_status > 0):
+            show(IMG['TV'] + i)
+        else:
+            hide(IMG['TV'] + i)
+
+    if not on_stage(IMG['TV']):
+        tv_timer.stop()
+
+        for i in range(4):
+            hide(IMG['TV'] + i)
+
+        tv_status = 0
+        tv_status_dest = 0
+
+
+def witch_timer_event_handler():
+    '''
+        handle itch time event
+    '''
+    witch_ani_step += 1
+
+    if witch_ani_step >= 15:
+        witch_ani_step = 0
+
+    for i in range(15):
+        if i == witch_ani_step:
+            show(IMG['WITCH_ANI'] + i)
+        else:
+            hide(IMG['WITCH_ANI'] + i)
+
+    if not on_stage(IMG['WITCH']):
+        witch_ani_timer.stop()
+
+
+def sound_loaded(duration):
+    LOG.debug("Sound " + actor_id + " geladen.")
+    actor[actor_id].play(0, duration, stObject)
+
+
+def play(actor_id, endless=False):
+    sound_loaded = None
+
+    if actorLoaded[actor_id] == 2:
+        duration = 0
+        if endless:
+            duration = 30000
+        actor[actor_id].play(0, duration, stObject)
+    else:
+        LOG.warning(' '.join("Warnung: Sound",
+                             actor_id,
+                             "nicht geladen! Wird geladen..."))
+        actor[actor_id].add_event_listener(Event.COMPLETE, sound_loaded)
+        load(actor_id)
+
 
 '''
 show_popup = function (evt:MouseEvent):void{
@@ -18744,6 +18731,7 @@ show_popup = function (evt:MouseEvent):void{
     position_popup(evt);
     add(POPUP_INFO);
 };
+
 position_popup = function (evt:MouseEvent):void{
     var evt:* = evt;
     var _local3 = actor[POPUP_INFO];
@@ -27754,22 +27742,6 @@ def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=Fals
     };
 }
 
-def play(actor_id:int, endless:Boolean=False):void{
-    var SoundLoaded:* = None;
-    var actor_id:* = actor_id;
-    var endless:Boolean = endless;
-    if (actorLoaded[actor_id] == 2){
-        actor[actor_id].play(0, ((endless) ? 30000 : 0), stObject);
-    } else {
-        SoundLoaded = function (evt:Event){
-            trc((("Sound " + actor_id) + " geladen."));
-            actor[actor_id].play(0, ((endless) ? 30000 : 0), stObject);
-        };
-        trc((("Warnung: Sound " + actor_id) + " nicht geladen! Wird geladen..."));
-        actor[actor_id].add_event_listener(Event.COMPLETE, SoundLoaded);
-        load(actor_id);
-    };
-}
 
 def AddBMO(bunch_id:int, offset:int){
     var i:int;
