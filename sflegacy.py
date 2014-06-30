@@ -201,7 +201,7 @@ def get_quest_title(quest_id):
     '''
     # quest = Quest.from_sg(quest_id, savegame)
     # return quest.get_title()
-    pass
+    print quest_id
 
 
 def get_quest_text(quest_id):
@@ -215,7 +215,7 @@ def get_quest_text(quest_id):
     '''
     # quest = Quest.from_sg(quest_id, savegame)
     # quest.get_text()
-    pass
+    print quest_id
 
 
 def get_quest_random(quest_id, random_range, random_mod):
@@ -231,7 +231,7 @@ def get_quest_random(quest_id, random_range, random_mod):
     '''
     # quest = Quest.from_sg(quest_id, savegame)
     # return quest.get_random(random_range, random_mod)
-    pass
+    print quest_id, random_range, random_mod
 
 
 def load_configuration_file():
@@ -453,7 +453,7 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
 
     # if next_pxl < 0:
     #     next_pxl = abs(next_pxl)
-    pass
+    print str_save_game, fill_face_variables, no_spoil
 
 
 def set_volume(vol):
@@ -464,4 +464,4 @@ def set_volume(vol):
     '''
     # with (stObject):
     #     stObject.volume = vol
-    pass
+    print vol
