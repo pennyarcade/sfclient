@@ -4085,6 +4085,11 @@ RES_Y = 800
 # global for logger
 LOG = logging.getLogger()
 
+# TODO: refactor into config object
+param_obj = dict()
+actor = dict()
+texts = dict()
+
 
 class RequestFailedException(Exception):
     '''
@@ -4491,68 +4496,6 @@ def setup_logging():
     return LOG
 
 
-def tv_timer_event_handler():
-    '''
-        handle tev timer event
-    '''
-    tv_wobble += 0.1
-    while tv_wobble > (2 * math.pi):
-        tv_wobble -= 2 * math.pi
-    if (tv_status_dest - tv_status) >= 0.1:
-        tv_status += 0.1
-    elif (tv_status - tv_status_dest) >= 0.1:
-        tv_status -= 0.1
-    else:
-        tv_status = tv_status_dest
-
-    tv_ani += 1
-    if tv_ani >= 4:
-        tv_ani = 0
-
-    if tv_status == 1:
-        show(CA['TV'])
-    if tv_status == 0:
-        hide(CA['TV'])
-
-    for i in range(4):
-        actor[IMG['TV'] + i].scaleX = tv_status
-        actor[IMG['TV'] + i].scaleY = tv_status
-        actor[IMG['TV'] + i].rotation = math.sin(tv_wobble) * 5
-        actor[IMG['TV'] + i].alpha = tv_status
-        if (i == tv_ani) and (tv_status > 0):
-            show(IMG['TV'] + i)
-        else:
-            hide(IMG['TV'] + i)
-
-    if not on_stage(IMG['TV']):
-        tv_timer.stop()
-
-        for i in range(4):
-            hide(IMG['TV'] + i)
-
-        tv_status = 0
-        tv_status_dest = 0
-
-
-def witch_timer_event_handler():
-    '''
-        handle itch time event
-    '''
-    witch_ani_step += 1
-
-    if witch_ani_step >= 15:
-        witch_ani_step = 0
-
-    for i in range(15):
-        if i == witch_ani_step:
-            show(IMG['WITCH_ANI'] + i)
-        else:
-            hide(IMG['WITCH_ANI'] + i)
-
-    if not on_stage(IMG['WITCH']):
-        witch_ani_timer.stop()
-
-
 def init_vars():
     '''
         Initialize tons of Variables
@@ -4569,7 +4512,9 @@ def init_vars():
     #values album_*
     col_album = Album()
 
-    # actor = list()
+    global actor
+    actor = list()
+
     # actorBitmap = list()
     # actorLoaded = list()
     # actorPersistent = list()
@@ -4905,7 +4850,7 @@ def init_vars():
     # stObject = new SoundTransform()
     # ststep = 0
     # stundenlohn = 10
-    # suggestionSlot = list()
+    # suggestion_slot = list()
     # suggestNames = list()
     # text_dir = "left"
     # tmp_battle_info = ""
@@ -6468,8 +6413,8 @@ def TowerKeyEvent(evt:KeyboardEvent){
     } else {
         var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
-            removeEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
-            removeEventListener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
+            remove_event_listener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
+            remove_event_listener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
         };
     };
 }
@@ -6481,8 +6426,8 @@ def TowerScrollSetFocus(evt:Event){
     } else {
         var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
-            removeEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
-            removeEventListener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
+            remove_event_listener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
+            remove_event_listener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
         };
     };
 }
@@ -6562,20 +6507,21 @@ def TowerTimerFn(evt:Event=None){
 # show functions
 
 '''
+DoShowScreenAlbum = function (){
+    var i:int;
+    i = 0;
+    while (i < 4) {
+        SetCnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
+        i++;
+    };
+    Showalbum_content();
+    remove_all();
+    add(SCREEN_ALBUM);
+};
+
 def show_screen_album(){
     var i:* = 0;
     var DoShowScreenAlbum:* = None;
-    DoShowScreenAlbum = function (){
-        var i:int;
-        i = 0;
-        while (i < 4) {
-            SetCnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
-            i++;
-        };
-        Showalbum_content();
-        remove_all();
-        add(SCREEN_ALBUM);
-    };
     load(FIGHT_CHAR_BORDER);
     load(UNKNOWN_ENEMY);
     i = 0;
@@ -6763,6 +6709,1877 @@ def show_option_screen(evt:Event=None){
     whendo_loaded(DoShowOptionScreen);
 }
 
+DoSkipFight = function (evt:MouseEvent=None, fightDone:Boolean=False){
+    var quest_id:* = 0;
+    var PilzBekommen:* = False;
+    var i:* = 0;
+    var charWin:* = False;
+    var lastHero:* = None;
+    var lastHeroWins:* = 0;
+    var heroCount:* = 0;
+    var thisWinner:* = None;
+    var evt:* = evt;
+    var fightDone:Boolean = fightDone;
+    quest_id = (savegame[SG_ACTION_INDEX] - 1);
+    var rewardX:* = FIGHT_REWARDGOLD_X;
+    PilzBekommen = getPilz;
+    var pilzX:* = FIGHT_REWARDGOLD_X;
+    var rewardGoldText:* = "";
+    var fightStyle:* = 5;
+    fight_lock = False;
+    DoStrikeTimer.stop();
+    DoStrikeTimer.remove_event_listener(TimerEvent.TIMER, DoStrikeEvent);
+    actor[FIGHT_SKIP].remove_event_listener(
+        MouseEvent.CLICK, DoSkipFight);
+    actor[BATTLE_SKIP].remove_event_listener(
+        MouseEvent.CLICK, DoSkipFight);
+    actor[BATTLE_SKIPONE].remove_event_listener(
+        MouseEvent.CLICK, DoSkipFight);
+    fightRound = (int((fightData.length / 6)) - 1);
+    charLife = fightData[(fightRound * 6)];
+    charDamage = fightData[((fightRound * 6) + 1)];
+    charFlag = fightData[((fightRound * 6) + 2)];
+    oppLife = fightData[((fightRound * 6) + 3)];
+    oppDamage = fightData[((fightRound * 6) + 4)];
+    oppFlag = fightData[((fightRound * 6) + 5)];
+    charWin = (charLife > 0);
+    SetLifeBars();
+    if (((!(is_guildBattle)) or (lastFight))){
+        remove(FIGHT_SKIP);
+        remove(BATTLE_SKIP);
+        remove(BATTLE_SKIPONE);
+        add(LBL_FIGHT_SUMMARY);
+    };
+    if (is_guildBattle){
+        if (((charWin) and (lastFight))){
+            play(SND_JINGLE);
+        };
+    } else {
+        show(IF_STATS);
+        add(FIGHT_OK);
+        if (charWin){
+            play(SND_JINGLE);
+        };
+    };
+    if (is_guildBattle){
+        last_round_fighter_name = thisCharName;
+        if (charWin){
+            if (winners[("name_" + thisCharName)]){
+                var _local4 = winners;
+                var _local5 = ("name_" + thisCharName);
+                var _local6 = (_local4[_local5] + 1);
+                _local4[_local5] = _local6;
+            } else {
+                winners[("name_" + thisCharName)] = 1;
+            };
+        };
+        if (((tower_fight_mode) and ((guildFightHonor >= 0)))){
+            SetCnt(
+                FIGHT_SLOT,
+                GetItemID(
+                    SG_INVENTORY_OFFS,
+                    (guildFightHonor + 10),
+                     savegame
+                 )
+            );
+            ItemPopup(
+                FIGHT_SLOT,
+                (SG_INVENTORY_OFFS
+                    + ((guildFightHonor + 10)
+                        * SG['ITM']['SIZE'])
+                ),
+                None,
+                False,
+                True,
+                False
+            );
+            guildFightHonor = 0;
+        } else {
+            SetCnt(FIGHT_SLOT, C_EMPTY);
+            enable_popup(FIGHT_SLOT);
+        };
+        if (lastFight){
+            lastHero = "";
+            lastHeroWins = 0;
+            heroCount = 0;
+            if (texts[TXT_HERO_OF_THE_DAY]){
+                for (thisWinner in winners) {
+                    if (winners[thisWinner] > lastHeroWins){
+                        lastHeroWins = winners[thisWinner];
+                        lastHero = texts[TXT_HERO_OF_THE_DAY].split(
+                            "%1").join(thisWinner[5:]).split(
+                            "%2").join(str(lastHeroWins));
+                        heroCount = 1;
+                    } else {
+                        if (winners[thisWinner] == lastHeroWins){
+                            lastHeroWins = winners[thisWinner];
+                            lastHero = (
+                                lastHero + (chr(13)
+                                + texts[TXT_HERO_OF_THE_DAY].split(
+                                    "%1").join(thisWinner[5:]).split(
+                                    "%2").join(str(lastHeroWins))));
+                            heroCount = (heroCount + 1);
+                        };
+                    };
+                };
+                if (
+                    (((((lastHeroWins >= 5))
+                        and (charWin)))
+                        and (!(isRaid)))){
+                    add(HERO_OF_THE_DAY);
+                    if (heroCount == 1){
+                        actor[LBL_HERO_OF_THE_DAY_TITLE].text = (
+                            (texts[TXT_HERO_OF_THE_DAY_TITLE])
+                            ? texts[TXT_HERO_OF_THE_DAY_TITLE]
+                            : "");
+                    } else {
+                        actor[LBL_HERO_OF_THE_DAY_TITLE].text = (
+                            (texts[TXT_HEROES_OF_THE_DAY_TITLE])
+                                ? texts[TXT_HEROES_OF_THE_DAY_TITLE]
+                                : "");
+                    };
+                    actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
+                        SCREEN_TITLE_X - (
+                            actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2
+                            ));
+                    actor[LBL_HERO_OF_THE_DAY].text = lastHero;
+                    actor[LBL_HERO_OF_THE_DAY].x = (S
+                        CREEN_TITLE_X -
+                        (actor[LBL_HERO_OF_THE_DAY].width / 2)
+                        );
+                };
+            };
+            add(FIGHT_OK);
+            add(FIGHT_REWARDS);
+            hide(
+                FIGHT_REWARDGOLD,
+                LBL_FIGHT_REWARDGOLD,
+                FIGHT_REWARDSILVER,
+                LBL_FIGHT_REWARDSILVER,
+                FIGHT_REWARDMUSH,
+                LBL_FIGHT_REWARDMUSH,
+                LBL_FIGHT_REWARDEXP
+            );
+            if ((((guildFightExp > 0)) and (charWin))){
+                if (tower_fight_mode){
+                    _local4 = actor[LBL_FIGHT_REWARDGOLD];
+                    with (_local4) {
+                        visible = True;
+                        text = str(guildFightExp);
+                        x = (rewardX - text_width);
+                    };
+                    _local4 = actor[FIGHT_REWARDGOLD];
+                    with (_local4) {
+                        visible = True;
+                        x = (
+                            (actor[LBL_FIGHT_REWARDGOLD].x - width)
+                            - 8);
+                    };
+                } else {
+                    _local4 = actor[LBL_FIGHT_REWARDEXP];
+                    with (_local4) {
+                        visible = True;
+                        if (text_dir == "right"){
+                            text = (
+                                (str(math.abs(guildFightExp)) + " :")
+                                + texts[TXT_EXP]);
+                        } else {
+                            text = (
+                                (texts[TXT_EXP] + ": ")
+                                + str(math.abs(guildFightExp)));
+                        };
+                    };
+                };
+            };
+            if (!isRaid){
+                _local4 = actor[LBL_FIGHT_REWARDGOLD];
+                with (_local4) {
+                    visible = True;
+                    if (text_dir == "right"){
+                        text = (
+                            (str(math.abs(guildFightHonor)) + " ")
+                            + texts[(((guildFightHonor > 0))
+                                ? TXT_GUILD_HONOR_GAINED
+                                : TXT_GUILD_HONOR_LOST)]);
+                    } else {
+                        text = (
+                            (texts[(((guildFightHonor > 0))
+                                ? TXT_GUILD_HONOR_GAINED
+                                : TXT_GUILD_HONOR_LOST)] + " ")
+                            + str(math.abs(guildFightHonor)));
+                    };
+                    x = (rewardX - text_width);
+                };
+            };
+        } else {
+            if ((evt is MouseEvent)){
+                if (get_actor_id(evt.target) == BATTLE_SKIP){
+                    skip_guild_fights = (
+                        math.abs(skip_guild_fights) + 1);
+                };
+            };
+        };
+    } else {
+        if (isPvP){
+            add(FIGHT_REWARDS);
+            hide(
+                FIGHT_REWARDGOLD,
+                LBL_FIGHT_REWARDGOLD,
+                FIGHT_REWARDSILVER,
+                LBL_FIGHT_REWARDSILVER,
+                FIGHT_REWARDMUSH,
+                LBL_FIGHT_REWARDMUSH,
+                LBL_FIGHT_REWARDEXP
+            );
+            if (HonorGain != 0){
+                _local4 = actor[LBL_FIGHT_REWARDEXP];
+                with (_local4) {
+                    visible = True;
+                    if (text_dir == "right"){
+                        text = (
+                            (str(math.abs(HonorGain)) + " ")
+                            + texts[(((HonorGain > 0))
+                                ? TXT_HONOR_GAINED
+                                : TXT_HONOR_LOST)]);
+                    } else {
+                        text = (
+                            (texts[(((HonorGain > 0))
+                                ? TXT_HONOR_GAINED
+                                : TXT_HONOR_LOST)] + " ")
+                                + str(math.abs(HonorGain)));
+                    };
+                };
+            };
+            if (GoldGain > 0){
+                if (text_dir == "right"){
+                    rewardGoldText = (
+                        " " + texts[TXT_GOLD_GAINED]);
+                } else {
+                    rewardGoldText = (texts[TXT_GOLD_GAINED] + " ");
+                };
+            } else {
+                if (GoldGain < 0){
+                    if (text_dir == "right"){
+                        rewardGoldText = (" " + texts[TXT_GOLD_LOST]);
+                    } else {
+                        rewardGoldText = (texts[TXT_GOLD_LOST] + " ");
+                    };
+                };
+            };
+            if (silber_anteil(math.abs(GoldGain)) > 0){
+                if (text_dir != "right"){
+                    _local4 = actor[FIGHT_REWARDSILVER];
+                    with (_local4) {
+                        visible = True;
+                        x = (rewardX - width);
+                        rewardX = (x - 8);
+                    };
+                };
+                _local4 = actor[LBL_FIGHT_REWARDSILVER];
+                with (_local4) {
+                    visible = True;
+                    if (text_dir == "right"){
+                        text = (
+                            silber_anteil(math.abs(GoldGain))
+                            + rewardGoldText);
+                    } else {
+                        text = (
+                            (((gold_anteil(math.abs(GoldGain)) > 0))
+                                ? ""
+                                : rewardGoldText)
+                            + silber_anteil(math.abs(GoldGain)));
+                    };
+                    x = (rewardX - text_width);
+                    rewardX = (x - (((text_dir == "right")) ? 8 : 14));
+                };
+                if (text_dir == "right"){
+                    _local4 = actor[FIGHT_REWARDSILVER];
+                    with (_local4) {
+                        visible = True;
+                        x = (rewardX - width);
+                        rewardX = (x - 14);
+                    };
+                };
+            };
+            if (gold_anteil(math.abs(GoldGain)) > 0){
+                if (text_dir != "right"){
+                    _local4 = actor[FIGHT_REWARDGOLD];
+                    with (_local4) {
+                        visible = True;
+                        x = (rewardX - width);
+                        rewardX = (x - 8);
+                    };
+                };
+                _local4 = actor[LBL_FIGHT_REWARDGOLD];
+                with (_local4) {
+                    visible = True;
+                    if (text_dir == "right"){
+                        text = (
+                            gold_anteil(math.abs(GoldGain))
+                            + (((silber_anteil(math.abs(GoldGain))
+                                > 0)) ? "" : rewardGoldText));
+                    } else {
+                        text = (
+                            rewardGoldText
+                            + gold_anteil(math.abs(GoldGain)));
+                    };
+                    x = (rewardX - text_width);
+                    rewardX = (x - (((text_dir == "right")) ? 8 : 14));
+                };
+                if (text_dir == "right"){
+                    _local4 = actor[FIGHT_REWARDGOLD];
+                    with (_local4) {
+                        visible = True;
+                        x = (rewardX - width);
+                        rewardX = (x - 14);
+                    };
+                };
+            };
+            SetCnt(FIGHT_SLOT, C_EMPTY);
+            enable_popup(FIGHT_SLOT);
+        } else {
+            if (((isMQ) and (charWin))){
+                add(FIGHT_REWARDS);
+                hide(
+                    FIGHT_REWARDGOLD,
+                    LBL_FIGHT_REWARDGOLD,
+                    FIGHT_REWARDSILVER,
+                    LBL_FIGHT_REWARDSILVER,
+                    FIGHT_REWARDMUSH,
+                    LBL_FIGHT_REWARDMUSH,
+                    LBL_FIGHT_REWARDEXP
+                );
+                if (HonorGain > 0){
+                    _local4 = actor[LBL_FIGHT_REWARDEXP];
+                    with (_local4) {
+                        visible = True;
+                        if (text_dir == "right"){
+                            text = (
+                                (str(HonorGain) + " :")
+                                + texts[TXT_EXP]);
+                        } else {
+                            text = (
+                                (texts[TXT_EXP] + ": ")
+                                + str(HonorGain));
+                        };
+                    };
+                };
+                if (PilzBekommen){
+                    _local4 = actor[FIGHT_REWARDMUSH];
+                    with (_local4) {
+                        visible = True;
+                        x = (pilzX - width);
+                        pilzX = (x - 8);
+                    };
+                    _local4 = actor[LBL_FIGHT_REWARDMUSH];
+                    with (_local4) {
+                        visible = True;
+                        text = "1";
+                        x = (pilzX - text_width);
+                        pilzX = (x - 14);
+                    };
+                    AnimateAch(
+                        FIGHT_REWARDMUSH,
+                        actor[FIGHT_REWARDMUSH].y);
+                };
+                if (silber_anteil(GoldGain) > 0){
+                    _local4 = actor[FIGHT_REWARDSILVER];
+                    with (_local4) {
+                        visible = True;
+                        x = (rewardX - width);
+                        rewardX = (x - 8);
+                    };
+                    _local4 = actor[LBL_FIGHT_REWARDSILVER];
+                    with (_local4) {
+                        visible = True;
+                        text = silber_anteil(GoldGain);
+                        x = (rewardX - text_width);
+                        rewardX = (x - 14);
+                    };
+                };
+                if (gold_anteil(GoldGain) > 0){
+                    _local4 = actor[FIGHT_REWARDGOLD];
+                    with (_local4) {
+                        visible = True;
+                        x = (rewardX - width);
+                        rewardX = (x - 8);
+                    };
+                    _local4 = actor[LBL_FIGHT_REWARDGOLD];
+                    with (_local4) {
+                        visible = True;
+                        text = gold_anteil(GoldGain);
+                        x = (rewardX - text_width);
+                        rewardX = (x - 14);
+                    };
+                };
+                if (BackPackSlot >= 0){
+                    SetCnt(
+                        FIGHT_SLOT,
+                        GetItemID(SG_INVENTORY_OFFS,
+                            (BackPackSlot + 10),
+                            savegame));
+                    ItemPopup(
+                        FIGHT_SLOT,
+                        (SG_INVENTORY_OFFS
+                            + ((BackPackSlot + 10)
+                                * SG['ITM']['SIZE'])),
+                        None,
+                        False,
+                        True,
+                        False
+                    );
+                } else {
+                    SetCnt(FIGHT_SLOT, C_EMPTY);
+                    enable_popup(FIGHT_SLOT);
+                };
+            } else {
+                if (isMQ){
+                    hasLostMQ = True;
+                } else {
+                    if (
+                        ((charWin)
+                        and ((savegame[SG_ACTION_STATUS] == 2)))
+                    ){
+                        add(FIGHT_REWARDS);
+                        hide(
+                            FIGHT_REWARDGOLD,
+                            LBL_FIGHT_REWARDGOLD,
+                            FIGHT_REWARDSILVER,
+                            LBL_FIGHT_REWARDSILVER,
+                            FIGHT_REWARDMUSH,
+                            LBL_FIGHT_REWARDMUSH,
+                            LBL_FIGHT_REWARDEXP
+                        );
+                        if (
+                            int(savegame[
+                                (SG_QUEST_OFFER_EXP1 + quest_id)
+                                ]) > 0){
+                            _local4 = actor[LBL_FIGHT_REWARDEXP];
+                            with (_local4) {
+                                visible = True;
+                                if (text_dir == "right"){
+                                    text = (
+                                        (savegame[
+                                            (SG_QUEST_OFFER_EXP1
+                                                + quest_id)
+                                        ] + " :")
+                                        + texts[TXT_EXP]);
+                                } else {
+                                    text = (
+                                        (texts[TXT_EXP] + ": ")
+                                        + savegame[
+                                        (SG_QUEST_OFFER_EXP1
+                                            + quest_id)]);
+                                };
+                            };
+                        };
+                        if (PilzBekommen){
+                            _local4 = actor[FIGHT_REWARDMUSH];
+                            with (_local4) {
+                                visible = True;
+                                x = (pilzX - width);
+                                pilzX = (x - 8);
+                            };
+                            _local4 = actor[LBL_FIGHT_REWARDMUSH];
+                            with (_local4) {
+                                visible = True;
+                                text = "1";
+                                x = (pilzX - text_width);
+                                pilzX = (x - 14);
+                            };
+                            AnimateAch(
+                                FIGHT_REWARDMUSH,
+                                actor[FIGHT_REWARDMUSH].y);
+                        };
+                        if (silber_anteil(
+                            savegame[(SG_QUEST_OFFER_GOLD1
+                                + quest_id)]) > 0){
+                            _local4 = actor[FIGHT_REWARDSILVER];
+                            with (_local4) {
+                                visible = True;
+                                x = (rewardX - width);
+                                rewardX = (x - 8);
+                            };
+                            _local4 = actor[LBL_FIGHT_REWARDSILVER];
+                            with (_local4) {
+                                visible = True;
+                                text = silber_anteil(
+                                    savegame[(SG_QUEST_OFFER_GOLD1
+                                        + quest_id)]);
+                                x = (rewardX - text_width);
+                                rewardX = (x - 14);
+                            };
+                        };
+                        if (gold_anteil(
+                            savegame[(SG_QUEST_OFFER_GOLD1
+                                + quest_id)]) > 0){
+                            _local4 = actor[FIGHT_REWARDGOLD];
+                            with (_local4) {
+                                visible = True;
+                                x = (rewardX - width);
+                                rewardX = (x - 8);
+                            };
+                            _local4 = actor[LBL_FIGHT_REWARDGOLD];
+                            with (_local4) {
+                                visible = True;
+                                text = gold_anteil(savegame[
+                                    (SG_QUEST_OFFER_GOLD1 + quest_id)]);
+                                x = (rewardX - text_width);
+                                rewardX = (x - 14);
+                            };
+                        };
+                        if (int(savegame[
+                            ((SG['QUEST']['OFFER']['REWARD_ITM1']
+                                + (quest_id * SG['ITM']['SIZE']))
+                                + SG_ITM_TYP)]) > 0){
+                            SetCnt(
+                                FIGHT_SLOT,
+                                GetItemID(
+                                    SG['QUEST']['OFFER']['REWARD_ITM1'],
+                                    quest_id));
+                            ItemPopup(
+                                FIGHT_SLOT,
+                                (SG['QUEST']['OFFER']['REWARD_ITM1']
+                                    + (quest_id * SG['ITM']['SIZE'])),
+                                None, False, True, False);
+                        } else {
+                            SetCnt(FIGHT_SLOT, C_EMPTY);
+                            enable_popup(FIGHT_SLOT);
+    if (charWin){
+        if ((charLife / charFullLife) > 0.8){
+            fightStyle = 0;
+        } else {
+            if ((charLife / charFullLife) > 0.4){
+                fightStyle = 5;
+            } else {
+                if ((charLife / charFullLife) > 0.2){
+                    fightStyle = 10;
+                } else {
+                    fightStyle = 15;
+    } else {
+        if ((oppLife / oppFullLife) > 0.8){
+            fightStyle = 0;
+        } else {
+            if ((oppLife / oppFullLife) > 0.4){
+                fightStyle = 5;
+            } else {
+                if ((oppLife / oppFullLife) > 0.2){
+                    fightStyle = 10;
+                } else {
+                    fightStyle = 15;
+    _local4 = actor[LBL_FIGHT_SUMMARY];
+    with (_local4) {
+        width = FIGHT_RESULT_TEXT_X;
+        wordWrap = True;
+        if (is_guildBattle){
+            if (lastFight){
+                if (tower_fight_mode){
+                    if (charWin){
+                        text = texts[
+                            (TXT_TOWER_WON + int((random.random() * 5)))
+                        ];
+                    } else {
+                        text = texts[
+                            (TXT_TOWER_LOST + int((random.random() * 5)))
+                        ];
+                    };
+                } else {
+                    if (isRaid){
+                        if (charWin){
+                            text = texts[
+                                TXT_RAID_WON + int(random.random() * 5)
+                            ];
+                        } else {
+                            text = texts[
+                                (TXT_RAID_LOST +
+                                    int((random.random() * 5)))];
+                        };
+                    } else {
+                        if (charWin){
+                            text = texts[(TXT_GUILD_BATTLE_WON
+                                + int((random.random() * 5)))];
+                        } else {
+                            text = texts[(TXT_GUILD_BATTLE_LOST
+                                + int((random.random() * 5)))];
+            } else {
+                if (!inStrikeAni){
+                    next_fight_timer.start();
+                } else {
+                    strikeBreak = True;
+                };
+                return;
+            };
+        } else {
+            if (isPvP){
+                text = texts[
+                    ((int((random.random() * 5)) + fightStyle)
+                        + ((charWin)
+                            ? TXT_PVP_WIN
+                            : TXT_PVP_LOSE))];
+            } else {
+                text = texts[
+                    ((int((random.random() * 5)) + fightStyle)
+                        + ((charWin)
+                            ? TXT_FIGHT_WIN
+                            : TXT_FIGHT_LOSE))];
+        x = (SCREEN_TITLE_X - int((width / 2)));
+    };
+    arabize(LBL_FIGHT_SUMMARY);
+};
+
+var SetLifeBars:* = function (whichOne:int=0){
+    var barWidth:* = 0;
+    var whichOne:int = whichOne;
+    if ((((whichOne == 0)) or ((whichOne == 1)))){
+        var _local3 = actor[LBL_LIFEBAR_CHAR];
+        with (_local3) {
+            if (text_dir == "right"){
+                text = ((str(charFullLife) + " / ") + str(charLife));
+            } else {
+                text = ((str(charLife) + " / ") + str(charFullLife));
+            };
+            x = ((FIGHT_CHARX + 150) - int((text_width / 2)));
+        };
+        _local3 = actor[LIFEBAR_FILL_CHAR];
+        with (_local3) {
+            barWidth = (
+                (Number(charLife) / Number(charFullLife)) * 279);
+            if (barWidth < 0){
+                barWidth = 0;
+            };
+            width = barWidth;
+            scaleY = 1;
+        };
+    };
+    if ((((whichOne == 0)) or ((whichOne == 2)))){
+        _local3 = actor[LBL_LIFEBAR_OPP];
+        with (_local3) {
+            if (text_dir == "right"){
+                text = ((str(oppFullLife) + " / ") + str(oppLife));
+            } else {
+                text = ((str(oppLife) + " / ") + str(oppFullLife));
+            };
+            x = ((OPPX + 150) - int((text_width / 2)));
+        };
+        _local3 = actor[LIFEBAR_FILL_OPP];
+        with (_local3) {
+            barWidth = (
+                (Number(oppLife) / Number(oppFullLife)) * 279);
+            if (barWidth < 0){
+                barWidth = 0;
+            };
+            width = barWidth;
+            scaleY = 1;
+        };
+    };
+};
+
+DoStrikeEvent = function (evt:TimerEvent){
+    if (((!(on_stage(FIGHT_BOX1))) or (strikeBreak))){
+        DoStrikeTimer.stop();
+        DoStrikeTimer.remove_event_listener(
+            TimerEvent.TIMER, DoStrikeEvent);
+        return;
+    };
+    if ((((skip_guild_fights > 0)) and (is_guildBattle))){
+        DoSkipFight();
+        DoStrikeTimer.stop();
+        DoStrikeTimer.remove_event_listener(
+            TimerEvent.TIMER, DoStrikeEvent);
+        return;
+    };
+    if (fightRound > (int((fightData.length / 6)) - 1)){
+        DoSkipFight(None, True);
+        return;
+    };
+    charLife = fightData[(fightRound * 6)];
+    charDamage = fightData[((fightRound * 6) + 1)];
+    charFlag = fightData[((fightRound * 6) + 2)];
+    oppLife = fightData[((fightRound * 6) + 3)];
+    oppDamage = fightData[((fightRound * 6) + 4)];
+    oppFlag = fightData[((fightRound * 6) + 5)];
+    if (
+        (((((((fightRound == 0))
+            and (!(oppStrike))))
+            and ((charDamage == 0))))
+            and ((charFlag == 0)))){
+        oppStrike = True;
+    };
+    DoStrikeTimer.stop();
+    WeaponStrike(oppStrike);
+    if (
+        ((((oppStrike)
+            and ((charLife <= 0))))
+            or (((!(oppStrike))
+            and ((oppLife <= 0)))))){
+        return;
+    };
+    oppStrike = !(oppStrike);
+    if (!oppStrike){
+        fightRound++;
+    };
+};
+
+var WeaponStrike:* = function (opponent:Boolean=False){
+    var StrikeAniTimer:* = None;
+    var StrikeAlpha:* = NaN;
+    var BulletAlpha:* = NaN;
+    var ShieldAlpha:* = NaN;
+    var DamageAlpha:* = NaN;
+    var OnoAlpha:* = NaN;
+    var strikeVal:* = NaN;
+    var strikePhase:* = 0;
+    var damageIndicatorActive:* = False;
+    var weaponType:* = 0;
+    var onoID:* = 0;
+    var DoSkip:* = False;
+    var catapultStrike:* = False;
+    var StrikeAniTimerEvent:* = None;
+    var opponent:Boolean = opponent;
+    StrikeAniTimerEvent = function (evt:TimerEvent){
+        var evt:* = evt;
+        if (!on_stage(FIGHT_BOX1)){
+            inStrikeAni = False;
+            if (strikeBreak){
+                next_fight_timer.start();
+            };
+            StrikeAniTimer.stop();
+            StrikeAniTimer.remove_event_listener(
+                TimerEvent.TIMER,
+                StrikeAniTimerEvent);
+            return;
+        };
+        Switch (((catapultStrike) ? 4 : weaponType)){
+            if case(1:
+                if (
+                    (((((((opponent) ? oppWeapon : charWeapon) < 0))
+                    and ((opponent) ? oppWeapon : charWeapon) > -4))
+                    or ((opponent) ? oppWeapon : charWeapon) < -6)
+                ){
+                    Switch (strikePhase){
+                        if case(0:
+                            if ((strikeVal == 0)){
+                                play(
+                                    get_weapon_sound(((opponent)
+                                        ? oppWeaponType
+                                        : charWeaponType),
+                                        ((opponent)
+                                            ? oppWeapon
+                                            : charWeapon), 0));
+                            };
+                            strikeVal = (strikeVal + 0.2);
+                            if (
+                                (((((opponent)
+                                    ? oppFlag
+                                    : charFlag) == 1))
+                                and ((strikeVal >= 0.4)))){
+                                ShieldAlpha = 1;
+                            };
+                            if (strikeVal >= 0.4){
+                                strikePhase++;
+                            };
+                            break;
+                        if case(1:
+                            strikeVal = (strikeVal + 0.2);
+                            if (strikeVal >= 1){
+                                strikeVal = 1;
+                                strikePhase++;
+                                damageIndicatorActive = True;
+                                DamageAlpha = 1;
+                                SetLifeBars(((opponent) ? 1 : 2));
+                                var _local3 = actor[
+                                    LBL_DAMAGE_INDICATOR];
+                                with (_local3) {
+                                    text = ("-" + str(((opponent)
+                                        ? oppDamage : charDamage)));
+                                    if (text == "-0"){
+                                        if (((opponent)
+                                            ? oppFlag
+                                            : charFlag) == 1){
+                                            text = texts[TXT_GEBLOCKT];
+                                            play(get_weapon_sound(
+                                                ((opponent)
+                                                    ? oppWeaponType
+                                                    : charWeaponType),
+                                                ((opponent)
+                                                    ? oppWeapon
+                                                    : charWeapon), 2));
+                                        } else {
+                                            text = texts[
+                                                TXT_AUSGEWICHEN];
+                                        };
+                                    } else {
+                                        play(
+                                            get_weapon_sound(
+                                                ((opponent)
+                                                    ? oppWeaponType
+                                                    : charWeaponType),
+                                                ((opponent)
+                                                    ? oppWeapon
+                                                    : charWeapon),
+                                                ((((opponent)
+                                                    ? oppFlag
+                                                    : charFlag))==3)
+                                                        ? 3 : 1));
+                                    };
+                                    x = ((SCREEN_TITLE_X
+                                        + (((opponent) ? -1 : 1)
+                                            * 200)) -
+                                            int((text_width / 2)));
+                                    y = (FIGHT_WEAPONS_Y - 100);
+                                };
+                                if (
+                                    ((((opponent)
+                                    and ((charLife <= 0))))
+                                    or (((!(opponent))
+                                    and ((oppLife <= 0)))))){
+                                    DoSkip = True;
+                                };
+                            };
+                            break;
+                        if case(2:
+                            DamageAlpha = (DamageAlpha - 0.075);
+                            StrikeAlpha = (StrikeAlpha - 0.2);
+                            ShieldAlpha = (ShieldAlpha - 0.2);
+                            actor[LBL_DAMAGE_INDICATOR].y = (
+                                actor[LBL_DAMAGE_INDICATOR].y - 2);
+                            if (ShieldAlpha <= 0){
+                                ShieldAlpha = 0;
+                            };
+                            if (StrikeAlpha <= 0){
+                                StrikeAlpha = 0;
+                            };
+                            if (DamageAlpha <= 0){
+                                DamageAlpha = 0;
+                                inStrikeAni = False;
+                                if (strikeBreak){
+                                    next_fight_timer.start();
+                                };
+                                StrikeAniTimer.stop();
+                                StrikeAniTimer.remove_event_listener(
+                                    TimerEvent.TIMER,
+                                    StrikeAniTimerEvent);
+                                DoStrikeTimer.start();
+                            };
+                            break;
+                    };
+                } else {
+                    Switch (strikePhase){
+                        if case(0:
+                            if ((strikeVal == 0)){
+                                play(get_weapon_sound(
+                                    ((opponent)
+                                        ? oppWeaponType
+                                        : charWeaponType),
+                                    ((opponent)
+                                        ? oppWeapon
+                                        : charWeapon), 0));
+                            };
+                            strikeVal = (strikeVal + 0.1);
+                            if (
+                                (((((opponent)
+                                    ? oppFlag
+                                    : charFlag) == 1))
+                                and ((strikeVal >= 0.5)))){
+                                ShieldAlpha = 1;
+                            };
+                            if (strikeVal >= 0.8){
+                                strikePhase++;
+                            };
+                            break;
+                        if case(1:
+                            strikeVal = (strikeVal + 0.15);
+                            if (strikeVal >= 1){
+                                SetCnt(
+                                    FIGHT_ONO, onoID, 0, 0, True);
+                                OnoAlpha = 1;
+                                strikeVal = 1;
+                                strikePhase++;
+                                damageIndicatorActive = True;
+                                DamageAlpha = 1;
+                                SetLifeBars(((opponent) ? 1 : 2));
+                                _local3 = actor[LBL_DAMAGE_INDICATOR];
+                                with (_local3) {
+                                    text = (
+                                        "-" + str((
+                                            (opponent)
+                                                ? oppDamage
+                                                : charDamage)));
+                                    if (text == "-0"){
+                                        if (
+                                            ((opponent)
+                                                ? oppFlag
+                                                : charFlag) == 1){
+                                            text = texts[
+                                            TXT_GEBLOCKT];
+                                            play(get_weapon_sound(
+                                                ((opponent)
+                                                    ? oppWeaponType
+                                                    : charWeaponType),
+                                                ((opponent)
+                                                    ? oppWeapon
+                                                    : charWeapon),
+                                                2));
+                                        } else {
+                                            text = texts[
+                                                TXT_AUSGEWICHEN];
+                                        };
+                                    } else {
+                                        play(get_weapon_sound(
+                                            ((opponent)
+                                                ? oppWeaponType
+                                                : charWeaponType),
+                                            ((opponent)
+                                                ? oppWeapon
+                                                : charWeapon),
+                                            ((((opponent)
+                                                ? oppFlag
+                                                : charFlag))==3)
+                                                    ? 3 : 1));
+                                    };
+                                    x = ((SCREEN_TITLE_X
+                                        + (((opponent) ? -1 : 1)
+                                            * 200))
+                                            - int((text_width / 2)));
+                                    y = (FIGHT_WEAPONS_Y - 100);
+                                };
+                                if (
+                                    ((((opponent)
+                                    and ((charLife <= 0))))
+                                    or (((!(opponent))
+                                    and ((oppLife <= 0)))))){
+                                    DoSkip = True;
+                                };
+                            };
+                            break;
+                        if case(2:
+                            DamageAlpha = (DamageAlpha - 0.075);
+                            StrikeAlpha = (StrikeAlpha - 0.2);
+                            ShieldAlpha = (ShieldAlpha - 0.2);
+                            OnoAlpha = (OnoAlpha - 0.2);
+                            actor[LBL_DAMAGE_INDICATOR].y = (
+                                actor[LBL_DAMAGE_INDICATOR].y - 2);
+                            if (OnoAlpha <= 0){
+                                OnoAlpha = 0;
+                            };
+                            if (ShieldAlpha <= 0){
+                                ShieldAlpha = 0;
+                            };
+                            if (StrikeAlpha <= 0){
+                                StrikeAlpha = 0;
+                            };
+                            if (DamageAlpha <= 0){
+                                DamageAlpha = 0;
+                                inStrikeAni = False;
+                                if (strikeBreak){
+                                    next_fight_timer.start();
+                                };
+                                StrikeAniTimer.stop();
+                                StrikeAniTimer.remove_event_listener(
+                                    TimerEvent.TIMER,
+                                    StrikeAniTimerEvent);
+                                DoStrikeTimer.start();
+                            };
+                            break;
+                    };
+                };
+                break;
+            if case(2:
+                Switch (strikePhase){
+                    if case(0:
+                        strikeVal = (strikeVal + 0.15);
+                        if (strikeVal >= 0.4){
+                            strikePhase++;
+                            BulletAlpha = 1;
+                            play(get_weapon_sound(
+                                ((opponent)
+                                    ? oppWeaponType
+                                    : charWeaponType),
+                                ((opponent)
+                                    ? oppWeapon
+                                    : charWeapon), 0));
+                        };
+                        break;
+                    if case(1:
+                        strikeVal = (strikeVal + 0.15);
+                        if (
+                            (((((opponent)
+                                ? oppFlag
+                                : charFlag) == 1))
+                            and ((strikeVal >= 0.5)))){
+                            ShieldAlpha = 1;
+                        };
+                        if (strikeVal >= 1){
+                            SetCnt(FIGHT_ONO, onoID, 0, 0, True);
+                            OnoAlpha = 1;
+                            strikeVal = 1;
+                            strikePhase++;
+                            DamageAlpha = 1;
+                            damageIndicatorActive = True;
+                            SetLifeBars(((opponent) ? 1 : 2));
+                            _local3 = actor[LBL_DAMAGE_INDICATOR];
+                            with (_local3) {
+                                text = ("-" + str((
+                                    (opponent)
+                                    ? oppDamage
+                                    : charDamage)));
+                                if (text == "-0"){
+                                    if (
+                                        ((opponent)
+                                            ? oppFlag
+                                            : charFlag) == 1){
+                                        text = texts[TXT_GEBLOCKT];
+                                        play(get_weapon_sound(
+                                            ((opponent)
+                                                ? oppWeaponType
+                                                : charWeaponType),
+                                            ((opponent)
+                                                ? oppWeapon
+                                                : charWeapon), 2));
+                                    } else {
+                                        text = texts[TXT_AUSGEWICHEN];
+                                    };
+                                } else {
+                                    play(get_weapon_sound(
+                                        ((opponent)
+                                            ? oppWeaponType
+                                            : charWeaponType),
+                                        ((opponent)
+                                            ? oppWeapon
+                                            : charWeapon),
+                                        ((((opponent)
+                                            ? oppFlag
+                                            : charFlag))==3)
+                                                ? 3 : 1));
+                                };
+                                x = ((SCREEN_TITLE_X + (
+                                    ((opponent) ? -1 : 1) * 200))
+                                    - int((text_width / 2)));
+                                y = (FIGHT_WEAPONS_Y - 100);
+                            };
+                            if (
+                                ((((opponent)
+                                and ((charLife <= 0))))
+                                or (((!(opponent))
+                                and ((oppLife <= 0)))))){
+                                DoSkip = True;
+                            };
+                        };
+                        break;
+                    if case(2:
+                        DamageAlpha = (DamageAlpha - 0.075);
+                        StrikeAlpha = (StrikeAlpha - 0.2);
+                        ShieldAlpha = (ShieldAlpha - 0.2);
+                        BulletAlpha = (BulletAlpha - 0.2);
+                        OnoAlpha = (OnoAlpha - 0.2);
+                        actor[LBL_DAMAGE_INDICATOR].y = (
+                            actor[LBL_DAMAGE_INDICATOR].y - 2);
+                        if (OnoAlpha <= 0){
+                            OnoAlpha = 0;
+                        };
+                        if (ShieldAlpha <= 0){
+                            ShieldAlpha = 0;
+                        };
+                        if (StrikeAlpha <= 0){
+                            StrikeAlpha = 0;
+                        };
+                        if (DamageAlpha <= 0){
+                            DamageAlpha = 0;
+                            inStrikeAni = False;
+                            if (strikeBreak){
+                                next_fight_timer.start();
+                            };
+                            StrikeAniTimer.stop();
+                            StrikeAniTimer.remove_event_listener(
+                                TimerEvent.TIMER,
+                                StrikeAniTimerEvent);
+                            DoStrikeTimer.start();
+                        };
+                        break;
+                };
+                break;
+            if case(3:
+                Switch (strikePhase){
+                    if case(0:
+                        strikeVal = (strikeVal + 0.05);
+                        BulletAlpha = 1;
+                        if (strikeVal >= 0.3){
+                            strikePhase++;
+                            play(get_weapon_sound(
+                                ((opponent)
+                                    ? oppWeaponType
+                                    : charWeaponType),
+                                ((opponent)
+                                    ? oppWeapon
+                                    : charWeapon), 0));
+                        };
+                        break;
+                    if case(1:
+                        strikeVal = (strikeVal + 0.1);
+                        if (
+                            (((((opponent)
+                                ? oppFlag
+                                : charFlag) == 1))
+                            and ((strikeVal >= 0.5)))){
+                            ShieldAlpha = 1;
+                        };
+                        if (strikeVal >= 1){
+                            SetCnt(FIGHT_ONO, onoID, 0, 0, True);
+                            OnoAlpha = 1;
+                            strikeVal = 1;
+                            strikePhase++;
+                            DamageAlpha = 1;
+                            damageIndicatorActive = True;
+                            SetLifeBars(((opponent) ? 1 : 2));
+                            _local3 = actor[LBL_DAMAGE_INDICATOR];
+                            with (_local3) {
+                                text = ("-" + str((
+                                    (opponent)
+                                        ? oppDamage
+                                        : charDamage)));
+                                if (text == "-0"){
+                                    if (
+                                        ((opponent)
+                                            ? oppFlag
+                                            : charFlag) == 1){
+                                        text = texts[TXT_GEBLOCKT];
+                                        play(get_weapon_sound(
+                                            ((opponent)
+                                                ? oppWeaponType
+                                                : charWeaponType),
+                                            ((opponent)
+                                                ? oppWeapon
+                                                : charWeapon), 2));
+                                    } else {
+                                        text = texts[TXT_AUSGEWICHEN];
+                                    };
+                                } else {
+                                    play(get_weapon_sound(
+                                        ((opponent)
+                                            ? oppWeaponType
+                                            : charWeaponType),
+                                        ((opponent)
+                                            ? oppWeapon
+                                            : charWeapon),
+                                        ((((opponent)
+                                            ? oppFlag
+                                            : charFlag))==3)
+                                                ? 3 : 1));
+                                };
+                                x = ((SCREEN_TITLE_X +
+                                    (((opponent) ? -1 : 1) * 200))
+                                    - int((text_width / 2)));
+                                y = (FIGHT_WEAPONS_Y - 100);
+                            };
+                            if (
+                                ((((opponent)
+                                and ((charLife <= 0))))
+                                or (((!(opponent))
+                                    and ((oppLife <= 0)))))){
+                                DoSkip = True;
+                            };
+                        };
+                        break;
+                    if case(2:
+                        DamageAlpha = (DamageAlpha - 0.075);
+                        StrikeAlpha = (StrikeAlpha - 0.2);
+                        ShieldAlpha = (ShieldAlpha - 0.2);
+                        BulletAlpha = (BulletAlpha - 0.2);
+                        OnoAlpha = (OnoAlpha - 0.2);
+                        actor[LBL_DAMAGE_INDICATOR].y = (
+                            actor[LBL_DAMAGE_INDICATOR].y - 2);
+                        if (OnoAlpha <= 0){
+                            OnoAlpha = 0;
+                        };
+                        if (ShieldAlpha <= 0){
+                            ShieldAlpha = 0;
+                        };
+                        if (StrikeAlpha <= 0){
+                            StrikeAlpha = 0;
+                        };
+                        if (DamageAlpha <= 0){
+                            DamageAlpha = 0;
+                            inStrikeAni = False;
+                            if (strikeBreak){
+                                next_fight_timer.start();
+                            };
+                            StrikeAniTimer.stop();
+                            StrikeAniTimer.remove_event_listener(
+                                TimerEvent.TIMER,
+                                StrikeAniTimerEvent);
+                            DoStrikeTimer.start();
+                        };
+                        break;
+                };
+                break;
+            if case(4:
+                Switch (strikePhase){
+                    if case(0:
+                        if (strikeVal == 0){
+                            play(SND_CATAPULT_LAUNCH);
+                            load(FIGHT_MUSH);
+                        };
+                        strikeVal = (strikeVal + 0.01);
+                        if (strikeVal >= 0.3){
+                            strikePhase++;
+                            add(FIGHT_MUSH);
+                        };
+                        break;
+                    if case(1:
+                        strikeVal = (strikeVal + 0.1);
+                        if (strikeVal >= 1){
+                            strikeVal = 1;
+                            strikePhase++;
+                            DamageAlpha = 1;
+                            damageIndicatorActive = True;
+                            SetLifeBars(((opponent) ? 1 : 2));
+                            play(SND_CATAPULT_HIT);
+                            _local3 = actor[LBL_DAMAGE_INDICATOR];
+                            with (_local3) {
+                                text = ("-" + str((
+                                    (opponent)
+                                        ? oppDamage
+                                        : charDamage)));
+                                x = ((SCREEN_TITLE_X + (
+                                    ((opponent) ? -1 : 1) * 200))
+                                    - int((text_width / 2)));
+                                y = (FIGHT_WEAPONS_Y - 100);
+                            };
+                            if (
+                                ((((opponent)
+                                    and ((charLife <= 0))))
+                                or (((!(opponent))
+                                    and ((oppLife <= 0)))))){
+                                DoSkip = True;
+                            };
+                        };
+                        break;
+                    if case(2:
+                        strikeVal = (strikeVal - 0.1);
+                        DamageAlpha = (DamageAlpha - 0.05);
+                        actor[LBL_DAMAGE_INDICATOR].y = (
+                            actor[LBL_DAMAGE_INDICATOR].y - 2);
+                        if (DamageAlpha <= 0){
+                            DamageAlpha = 0;
+                            inStrikeAni = False;
+                            if (strikeBreak){
+                                next_fight_timer.start();
+                            };
+                            remove(FIGHT_MUSH);
+                            StrikeAniTimer.stop();
+                            StrikeAniTimer.remove_event_listener(
+                                TimerEvent.TIMER,
+                                StrikeAniTimerEvent);
+                            DoStrikeTimer.start();
+                        };
+                        break;
+                };
+                break;
+        };
+        if (catapultStrike){
+            _local3 = actor[FIGHT_MUSH];
+            with (_local3) {
+                x = ((SCREEN_TITLE_X - 128)
+                    + ((230 + (100 * ((
+                        (strikePhase > 1))
+                            ? (2 - strikeVal)
+                            : strikeVal)))
+                    * ((opponent) ? -1 : 1)));
+                y = ((0 - 265) + (strikeVal * 500));
+                scaleY = (((strikeVal >= 0.7))
+                    ? (1.7 - strikeVal) : 1);
+            };
+        } else {
+            _local3 = actor[
+                ((opponent) ? WEAPON_OPP : WEAPON_CHAR)];
+            with (_local3) {
+                if (weaponType == 1){
+                    if (
+                        (((((((opponent)
+                            ? oppWeapon
+                            : charWeapon) < 0))
+                        and ((((opponent)
+                            ? oppWeapon
+                            : charWeapon) > -4))))
+                        or ((((opponent)
+                            ? oppWeapon
+                            : charWeapon) < -6)))){
+                        if (
+                            ((opponent)
+                                ? oppWeapon
+                                : charWeapon) == -1){
+                            SetCnt(
+                                ((opponent)
+                                    ? WEAPON_OPP
+                                    : WEAPON_CHAR),
+                                (WEAPON_CLAW + int((strikeVal * 3.9);
+                        } else {
+                            if (
+                                ((opponent)
+                                    ? oppWeapon
+                                    : charWeapon) == -3){
+                                SetCnt(
+                                    ((opponent)
+                                        ? WEAPON_OPP
+                                        : WEAPON_CHAR),
+                                    (WEAPON_SPLAT
+                                        + int((strikeVal * 2.9))));
+                            } else {
+                                if (
+                                    ((opponent)
+                                        ? oppWeapon
+                                        : charWeapon) == -7){
+                                    SetCnt(
+                                        ((opponent)
+                                            ? WEAPON_OPP
+                                            : WEAPON_CHAR),
+                                        (WEAPON_FIRE
+                                            + int((strikeVal * 2.9))));
+                                } else {
+                                    SetCnt(
+                                        ((opponent)
+                                            ? WEAPON_OPP
+                                            : WEAPON_CHAR),
+                                        (WEAPON_SWOOSH
+                                            + int((strikeVal * 2.9))));
+                        scaleX = (((opponent) ? 1 : -1) * 1);
+                        scaleY = 1;
+                        y = (FIGHT_WEAPONS_Y - 240);
+                        x = (((SCREEN_TITLE_X
+                            + ((opponent) ? 231 : 0)) - 115)
+                            + ((((opponent) ? -1 : 1) * 560)
+                            * ((((opponent)
+                                ? oppFlag
+                                : charFlag))==1) ? 0.7 : 1));
+                        rotation = (0 * ((opponent) ? -1 : 1));
+                        alpha = StrikeAlpha;
+                        visible = True;
+                    } else {
+                        scaleX = (((opponent) ? 1 : -1)
+                            * SPRITE_SCALE);
+                        scaleY = SPRITE_SCALE;
+                        y = (FIGHT_WEAPONS_Y
+                            - (math.cos((strikeVal * (TWOPI / 4)))
+                                * (75 + ((((opponent) ? oppFlag
+                                    : charFlag))==3) ? 75 : 0)));
+                        x = (((SCREEN_TITLE_X
+                            + ((opponent) ? 231 : 0)) - 115)
+                            + (((((opponent) ? -1 : 1) * 230)
+                            * strikeVal) * ((((opponent)
+                                ? oppFlag : charFlag))==1)
+                                    ? 0.7 : 1));
+                        rotation = ((280 + (100 * strikeVal))
+                            * ((opponent) ? -1 : 1));
+                        alpha = StrikeAlpha;
+                        visible = True;
+                    };
+                } else {
+                    if (weaponType == 2){
+                        scaleX = (((opponent) ? -1 : 1)
+                            * SPRITE_SCALE);
+                        scaleY = SPRITE_SCALE;
+                        y = FIGHT_WEAPONS_Y;
+                        x = (SCREEN_TITLE_X
+                            + (((opponent) ? 1 : -1) * 170));
+                        rotation = (((opponent) ? -1 : 1)
+                            * (-30 + (70 * strikeVal)));
+                        alpha = StrikeAlpha;
+                        visible = True;
+                    } else {
+                        if (weaponType == 3){
+                            scaleX = (((opponent) ? -1 : 1)
+                                * SPRITE_SCALE);
+                            scaleY = SPRITE_SCALE;
+                            y = (FIGHT_WEAPONS_Y - 140);
+                            if (strikeVal <= 0.3){
+                                x = ((SCREEN_TITLE_X
+                                    + (((opponent) ? 1 : -1) * 200))
+                                    + (((opponent) ? -1 : 1)
+                                        * ((0.3 / strikeVal) * 10)));
+                            } else {
+                                x = ((SCREEN_TITLE_X
+                                    + (((opponent) ? 1 : -1) * 200))
+                                    + (((1 - strikeVal)
+                                        * math.sin(((strikeVal * 4)
+                                            * TWOPI))) * -10));
+                            };
+                            rotation = ((opponent) ? -42 : 42);
+                            alpha = StrikeAlpha;
+                            visible = True;
+
+            if (weaponType == 2){
+                SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
+                    get_arrow_id(0, ((opponent) ? 1 : 0),
+                    weaponData, True, int((random.random() * 3))));
+            };
+            _local3 = actor[
+                ((opponent) ? BULLET_OPP : BULLET_CHAR)];
+            with (_local3) {
+                if (weaponType == 2){
+                    scaleX = ((((opponent) ? -1 : 1)
+                        * strikeVal) * 2);
+                    scaleY = (strikeVal * 2);
+                    y = ((FIGHT_WEAPONS_Y - 70) - (height / 2));
+                    x = ((SCREEN_TITLE_X
+                        + (((opponent) ? 1 : -1) * 200))
+                        + ((((opponent) ? -1 : 1) * 300)
+                            * strikeVal));
+                    rotation = 0;
+                } else {
+                    if (weaponType == 3){
+                        scaleX = ((opponent) ? -1 : 1);
+                        scaleY = 1;
+                        y = (FIGHT_WEAPONS_Y - 110);
+                        if (strikeVal <= 0.3){
+                            x = ((SCREEN_TITLE_X
+                                + (((opponent) ? 1 : -1) * 200))
+                                + (((opponent) ? -1 : 1)
+                                    * ((0.3 / strikeVal) * 10)));
+                        } else {
+                            x = ((SCREEN_TITLE_X
+                                + (((opponent) ? 1 : -1) * 200))
+                                + (((((opponent) ? -1 : 1) * 400)
+                                    * strikeVal)
+                                * ((((opponent)
+                                    ? oppFlag : charFlag))==1)
+                                        ? 0.7 : 1));
+                        };
+                        rotation = (
+                            ((opponent) ? -1 : 1)
+                            * (42 + ((strikeVal - 0.3) * 6)));
+                    };
+                };
+                alpha = BulletAlpha;
+                visible = (weaponType >= 2);
+            };
+            _local3 = actor[
+                ((opponent) ? SHIELD_CHAR : SHIELD_OPP)];
+            with (_local3) {
+                scaleX = (((opponent) ? 1 : -1) * SPRITE_SCALE);
+                scaleY = SPRITE_SCALE;
+                y = ((FIGHT_WEAPONS_Y
+                    - (math.cos((strikeVal * TWOPI)) * 20)) - 20);
+                x = (((SCREEN_TITLE_X
+                    + ((opponent) ? 0 : 231)) - 115)
+                    + ((((opponent) ? -1 : 1) * 50)
+                        * (((((strikeVal > 0.9))
+                            and ((weaponType == 1))))
+                                ? (strikeVal + 0.2) : 1)));
+                alpha = ShieldAlpha;
+                visible = (
+                    ((opponent) ? oppFlag : charFlag) == 1);
+            };
+        };
+        if (damageIndicatorActive){
+            _local3 = actor[LBL_DAMAGE_INDICATOR];
+            with (_local3) {
+                visible = True;
+                alpha = DamageAlpha;
+                if (((opponent) ? oppFlag : charFlag) == 4){
+                    default_text_format = FontFormat_CatapultDamage;
+                } else {
+                    if (((opponent) ? oppFlag : charFlag) == 3){
+                        default_text_format =
+                             FontFormat_CriticalDamage;
+                    } else {
+                        default_text_format = FontFormat_Damage;
+                    };
+                };
+                text = text;
+            };
+            _local3 = actor[FIGHT_ONO];
+            with (_local3) {
+                visible = (
+                    ((((opponent) ? oppFlag : charFlag) == 0))
+                    or ((((opponent) ? oppFlag : charFlag) == 3)));
+                Switch (weaponType){
+                    if case(1:
+                        x = (SCREEN_TITLE_X
+                            + (((opponent) ? -1 : 1) * 200));
+                        y = (FIGHT_WEAPONS_Y - 20);
+                        if (OnoAlpha == 1){
+                            scaleX = 0.6;
+                            scaleY = 0.6;
+                        } else {
+                            if (OnoAlpha > 0){
+                                scaleX = (scaleX + 0.2);
+                                scaleY = (scaleY + 0.2);
+                            };
+                        };
+                        break;
+                    if case(2:
+                        x = (SCREEN_TITLE_X
+                            + (((opponent) ? -1 : 1) * 230));
+                        y = (FIGHT_WEAPONS_Y - 40);
+                        if (OnoAlpha == 1){
+                            scaleX = 0.3;
+                            scaleY = 0.3;
+                        } else {
+                            if (OnoAlpha > 0){
+                                scaleX = (scaleX + 0.1);
+                                scaleY = (scaleY + 0.1);
+                            };
+                        };
+                        break;
+                    if case(3:
+                        x = (SCREEN_TITLE_X
+                            + (((opponent) ? -1 : 1) * 235));
+                        y = (FIGHT_WEAPONS_Y - 42);
+                        if (OnoAlpha == 1){
+                            scaleX = (0.4 * ((opponent) ? -1 : 1));
+                            scaleY = 0.4;
+                        } else {
+                            if (OnoAlpha > 0){
+                                scaleX = (scaleX
+                                    + (0.05 * (
+                                        (opponent) ? -1 : 1)));
+                                scaleY = (scaleY + 0.05);
+                            };
+                        };
+                        break;
+                };
+                alpha = OnoAlpha;
+            };
+            if (DoSkip){
+                DoSkipFight();
+                DoSkip = False;
+            };
+        };
+    };
+    StrikeAniTimer = new Timer(40);
+    StrikeAlpha = 1;
+    BulletAlpha = 0;
+    ShieldAlpha = 0;
+    DamageAlpha = 0;
+    OnoAlpha = 0;
+    const SPRITE_SCALE:Number = 1.5;
+    const TWOPI:Number = (math.pi * 2);
+    strikeVal = 0;
+    strikePhase = 0;
+    damageIndicatorActive = False;
+    weaponType = ((opponent) ? oppWeaponType : charWeaponType);
+    onoID = (int((random.random() * 6)) + FIGHT_ONO);
+    DoSkip = False;
+    catapultStrike = False;
+    if (((opponent) ? oppFlag : charFlag) == 4){
+        catapultStrike = True;
+    } else {
+        if (weaponType == 2){
+            onoID = get_arrow_id(
+                0, ((opponent) ? 1 : 0),
+                weaponData, True, 3);
+        } else {
+            if (weaponType == 3){
+                onoID = FIGHT_ARROW_SMASH;
+            };
+        };
+    };
+    StrikeAniTimer.add_event_listener(
+        TimerEvent.TIMER, StrikeAniTimerEvent);
+    StrikeAniTimer.start();
+    inStrikeAni = True;
+};
+
+DoShowFightScreen = function (evt:Event=None){
+    var i:* = 0;
+    var DoStrikeTimer:* = None;
+    var DoSkipFight:* = None;
+    var strikeBreak:* = False;
+    var DoStrikeEvent:* = None;
+    var evt:* = evt;
+    DoStrikeTimer = new Timer(200);
+    if (((((isPvP) and (!(isReplay)))) and (!(is_guildBattle)))){
+        if (!WaitingFor(savegame[SG_PVP_REROLL_TIME])){
+            savegame[SG_PVP_REROLL_TIME] = (
+                int((game_time.getTime() / 1000)) + (70 * 60));
+        };
+    };
+    if (is_guildBattle){
+        remove_all();
+        if (tower_fight_mode){
+            add(SCR_TOWER_BG);
+        } else {
+            if (isRaid){
+                add(GUILD_RAID_BG);
+            } else {
+                add(GUILD_BATTLE_BG);
+            };
+        };
+        if (tower_fight_mode){
+            add(LBL_HERO_OF_THE_DAY_TITLE);
+            actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
+                TXT_TOWER_LEVEL].split(
+                    "%1").join(str((tower_level + 1)));
+            actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
+                SCREEN_TITLE_X -
+                (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
+        } else {
+            if (((isRaid) and (texts[TXT_DUNGEON_NAMES]))){
+                add(LBL_HERO_OF_THE_DAY_TITLE);
+                actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
+                    ((TXT_DUNGEON_NAMES + raidLevel) - 1)];
+                actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
+                    SCREEN_TITLE_X
+                    - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
+            } else {
+                if (((!(isRaid)) and (texts[TXT_FIGHTS_COUNTER]))){
+                    add(LBL_HERO_OF_THE_DAY_TITLE);
+                    actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
+                        TXT_FIGHTS_COUNTER].split(
+                            "%1").join(str(fightNumber)).split(
+                            "%2").join(str(guild_fight_count));
+                    actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
+                        SCREEN_TITLE_X - (
+                            actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
+                };
+            };
+        };
+    } else {
+        if (on_stage(QUESTBAR_BG)){
+            remove(
+                QUESTBAR_BG,
+                QUESTBAR_FILL,
+                QUESTBAR_LIGHT,
+                LBL_QUESTBAR_TEXT,
+                QUEST_CANCEL,
+                QUEST_SKIP,
+                LBL_SCREEN_TITLE
+            );
+        } else {
+            if (isPvP){
+                remove_all();
+                Switch (tz){
+                    if case(0:
+                        add(SCREEN_ARENA_NIGHT);
+                        break;
+                    if case(1:
+                        add(SCREEN_ARENA_DAWN);
+                        break;
+                    if case(2:
+                        add(SCREEN_ARENA_DAY);
+                        break;
+                };
+            } else {
+                remove_all();
+                if (isMQ){
+                    if (SelectedDungeon == 100){
+                        add(SCR_TOWER_BG);
+                    } else {
+                        add(((SCR_QUEST_BG_1 + 50) + SelectedDungeon));
+                    };
+                } else {
+                    if (int(savegame[SG_ACTION_STATUS]) == 2){
+                        add(get_quest_bg());
+
+    SetCnt(LIFEBAR_OPP, LIFEBAR_CHAR);
+    SetCnt(LIFEBAR_FILL_OPP, LIFEBAR_FILL_CHAR);
+    SetCnt(FIGHT_OPP_BORDER, FIGHT_CHAR_BORDER);
+    SetCnt(FIGHT_BOX3, FIGHT_BOX1);
+    SetCnt(FIGHT_REWARDGOLD, IF_GOLD);
+    SetCnt(FIGHT_REWARDSILVER, IF_SILBER);
+    SetCnt(FIGHT_REWARDMUSH, IF_PILZE);
+    var _local3 = actor[LBL_NAMERANK_CHAR];
+    with (_local3) {
+        if (text_dir == "right"){
+            text = ((((("(" + str(charLevel)) + " ")
+                + texts[TXT_HALL_LIST_COLUMN_4]) + ") ")
+                + thisCharName);
+        } else {
+            text = (((((thisCharName + " (")
+                + texts[TXT_HALL_LIST_COLUMN_4]) + " ")
+                + str(charLevel)) + ")");
+        };
+        x = ((FIGHT_CHARX + 150) - int((text_width / 2)));
+        y = ((OPPY + 290) - textHeight);
+    };
+    _local3 = actor[LBL_NAMERANK_OPP];
+    with (_local3) {
+        if (text_dir == "right"){
+            text = ((((("(" + str(oppLevel)) + " ")
+                + texts[TXT_HALL_LIST_COLUMN_4]) + ") ") + oppName);
+        } else {
+            text = (((((oppName + " (")
+                + texts[TXT_HALL_LIST_COLUMN_4]) + " ")
+                + str(oppLevel)) + ")");
+        };
+        x = ((OPPX + 150) - int((text_width / 2)));
+        y = ((OPPY + 290) - textHeight);
+    };
+    i = 0;
+    while (i < 10) {
+        _local3 = actor[(CHARBACKGROUND + i)];
+        with (_local3) {
+            x = (FIGHT_CHARX + 300);
+            y = OPPY;
+            scaleX = -1;
+            scaleY = 1;
+        };
+        _local3 = actor[(CHARBACKGROUND2 + i)];
+        with (_local3) {
+            x = (FIGHT_CHARX + 300);
+            y = OPPY;
+            scaleX = -1;
+            scaleY = 1;
+        };
+        i = (i + 1);
+    };
+    add(SCREEN_FIGHT);
+    if (oppMonster > 0){
+        add(((OPPMONSTER + oppMonster) - 1));
+    } else {
+        LoadCharacterImage(
+            ((alternate_char_opp_img)
+                ? OPPBACKGROUND2
+                : OPPBACKGROUND),
+                 False, oppVolk, oppMann,
+                 oppKaste, oppMouth, oppBeard,
+                 oppNose, oppEyes, oppBrows,
+                 oppEars, oppHair, oppSpecial,
+                 oppSpecial2);
+    };
+    if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
+        add(((FIGHT_COPYCAT + thisCharMonster) - 391));
+    } else {
+        LoadCharacterImage(
+            ((alternate_char_opp_img)
+                ? CHARBACKGROUND2
+                : CHARBACKGROUND),
+                False, thischar_volk, thischar_male, thischar_class,
+                thischar_mouth, thischar_beard, thischar_nose,
+                thischar_eyes, thischar_brows, thischar_ears,
+                thischar_hair, thischar_special, thischar_special2);
+    };
+    if (is_guildBattle){
+        alternate_char_opp_img = !(alternate_char_opp_img);
+    };
+    add_some(LBL_NAMERANK_CHAR, LBL_NAMERANK_OPP);
+    add_some(
+        SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR,
+        WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
+    hide(
+        SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR,
+        WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
+    add_some(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
+    hide(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
+    actor[FIGHT_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
+    actor[BATTLE_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
+    actor[BATTLE_SKIPONE].add_event_listener(MouseEvent.CLICK, DoSkipFight);
+    if (is_guildBattle){
+        add(BATTLE_SKIP);
+        add(BATTLE_SKIPONE);
+        remove(FIGHT_SKIP);
+        if (!tower_fight_mode){
+            add(LBL_FIGHT_PLAYERGUILD);
+            add(LBL_FIGHT_OPPGUILD);
+        };
+        _local3 = actor[LBL_FIGHT_PLAYERGUILD];
+        with (_local3) {
+            if (tower_fight_mode){
+                text = texts[TXT_TOWER_GUYS];
+            } else {
+                text = ownGuild;
+            };
+            x = ((FIGHT_CHARX + 150) - (text_width / 2));
+        };
+        _local3 = actor[LBL_FIGHT_OPPGUILD];
+        with (_local3) {
+            if (tower_fight_mode){
+                text = texts[TXT_TOWER_LEVEL].split(
+                    "%1").join(str((tower_level + 1)));
+            } else {
+                text = oppGuild;
+            };
+            x = ((OPPX + 150) - (text_width / 2));
+        };
+    };
+    SetLifeBars();
+    i = 0;
+    while (i < 5) {
+        if (is_guildBattle){
+            actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = "";
+            actor[(LBL_FIGHT_OPP_STAERKE + i)].text = "";
+            if (((tower_fight_mode)
+                and (!((int(GuildBattleData[(i + 1)]) == 0))))){
+                actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = texts[
+                    ((TXT_COPYCAT_NAME
+                        + int(GuildBattleData[(i + 1)])) - 1)];
+            } else {
+                actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = str(
+                    GuildBattleData[(i + 1)]);
+            };
+            if (tower_fight_mode){
+                actor[(LBL_FIGHT_OPP_STAERKE + i)].text = str(
+                    fighterData[(i + 7)]);
+                actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = texts[
+                    (TXT_CHAR_STAERKE + i)];
+            } else {
+                if (int(GuildBattleData[(i + 7)]) != 0){
+                    if (-(int(GuildBattleData[(i + 7)])) >= 400){
+                        actor[
+                            (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
+                        ].text = texts[
+                            ((TXT_TOWER_ENEMY_NAMES +
+                            -(int(GuildBattleData[(i + 7)]))) - 400)
+                        ].split("|")[0];
+                    } else {
+                        if (-(int(GuildBattleData[(i + 7)])) > 220){
+                            actor[
+                                (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
+                            ].text = texts[
+                                ((TXT_NEW_MONSTER_NAMES
+                                    + -(int(GuildBattleData[(
+                                        i + 7)]))) - 221)];
+                        } else {
+                            actor[
+                                (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
+                            ].text = texts[
+                                ((TXT_MONSTER_NAME
+                                    + -(int(GuildBattleData[(i + 7)])))
+                                    - 1)];
+                        };
+                    };
+                } else {
+                    actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = str(
+                        GuildBattleData[(i + 7)]);
+                };
+            };
+        } else {
+            actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = str(
+                fighterData[(i + 1)]);
+            actor[(LBL_FIGHT_OPP_STAERKE + i)].text = str(
+                fighterData[(i + 7)]);
+            actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = texts[
+                (TXT_CHAR_STAERKE + i)];
+            actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = texts[
+                (TXT_CHAR_STAERKE + i)];
+        };
+        i = (i + 1);
+    };
+    if (text_dir == "right"){
+        i = 0;
+        while (i < 5) {
+            actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].x = (
+                (FIGHT_CHAR_PROP_COLUMN_2_X + 30)
+                - actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text_width);
+            actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].x = (
+                (FIGHT_CHAR_PROP_COLUMN_4_X + 30)
+                - actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text_width);
+            actor[(LBL_FIGHT_CHAR_STAERKE + i)].x = (
+                (FIGHT_CHAR_PROP_COLUMN_1_X + 40)
+                - actor[(LBL_FIGHT_CHAR_STAERKE + i)].text_width);
+            actor[(LBL_FIGHT_OPP_STAERKE + i)].x = (
+                (FIGHT_CHAR_PROP_COLUMN_3_X + 40)
+                - actor[(LBL_FIGHT_OPP_STAERKE + i)].text_width);
+            i = (i + 1);
+        };
+    };
+    strikeBreak = False;
+    var inStrikeAni:* = False;
+    DoStrikeTimer.add_event_listener(TimerEvent.TIMER, DoStrikeEvent);
+    DoStrikeTimer.start();
+};
+
+
 def show_fight_screen(
     fighterData:Array,
     fightData:Array,
@@ -6851,1871 +8668,7 @@ def show_fight_screen(
     var ownGuild:String = ownGuild;
     var oppGuild:String = oppGuild;
     var raidLevel:int = raidLevel;
-    DoShowFightScreen = function (evt:Event=None){
-        var i:* = 0;
-        var DoStrikeTimer:* = None;
-        var DoSkipFight:* = None;
-        var strikeBreak:* = False;
-        var DoStrikeEvent:* = None;
-        var evt:* = evt;
-        DoSkipFight = function (evt:MouseEvent=None, fightDone:Boolean=False){
-            var quest_id:* = 0;
-            var PilzBekommen:* = False;
-            var i:* = 0;
-            var charWin:* = False;
-            var lastHero:* = None;
-            var lastHeroWins:* = 0;
-            var heroCount:* = 0;
-            var thisWinner:* = None;
-            var evt:* = evt;
-            var fightDone:Boolean = fightDone;
-            quest_id = (savegame[SG_ACTION_INDEX] - 1);
-            var rewardX:* = FIGHT_REWARDGOLD_X;
-            PilzBekommen = getPilz;
-            var pilzX:* = FIGHT_REWARDGOLD_X;
-            var rewardGoldText:* = "";
-            var fightStyle:* = 5;
-            fight_lock = False;
-            DoStrikeTimer.stop();
-            DoStrikeTimer.removeEventListener(TimerEvent.TIMER, DoStrikeEvent);
-            actor[FIGHT_SKIP].removeEventListener(
-                MouseEvent.CLICK, DoSkipFight);
-            actor[BATTLE_SKIP].removeEventListener(
-                MouseEvent.CLICK, DoSkipFight);
-            actor[BATTLE_SKIPONE].removeEventListener(
-                MouseEvent.CLICK, DoSkipFight);
-            fightRound = (int((fightData.length / 6)) - 1);
-            charLife = fightData[(fightRound * 6)];
-            charDamage = fightData[((fightRound * 6) + 1)];
-            charFlag = fightData[((fightRound * 6) + 2)];
-            oppLife = fightData[((fightRound * 6) + 3)];
-            oppDamage = fightData[((fightRound * 6) + 4)];
-            oppFlag = fightData[((fightRound * 6) + 5)];
-            charWin = (charLife > 0);
-            SetLifeBars();
-            if (((!(is_guildBattle)) or (lastFight))){
-                remove(FIGHT_SKIP);
-                remove(BATTLE_SKIP);
-                remove(BATTLE_SKIPONE);
-                add(LBL_FIGHT_SUMMARY);
-            };
-            if (is_guildBattle){
-                if (((charWin) and (lastFight))){
-                    play(SND_JINGLE);
-                };
-            } else {
-                show(IF_STATS);
-                add(FIGHT_OK);
-                if (charWin){
-                    play(SND_JINGLE);
-                };
-            };
-            if (is_guildBattle){
-                last_round_fighter_name = thisCharName;
-                if (charWin){
-                    if (winners[("name_" + thisCharName)]){
-                        var _local4 = winners;
-                        var _local5 = ("name_" + thisCharName);
-                        var _local6 = (_local4[_local5] + 1);
-                        _local4[_local5] = _local6;
-                    } else {
-                        winners[("name_" + thisCharName)] = 1;
-                    };
-                };
-                if (((tower_fight_mode) and ((guildFightHonor >= 0)))){
-                    SetCnt(
-                        FIGHT_SLOT,
-                        GetItemID(
-                            SG_INVENTORY_OFFS,
-                            (guildFightHonor + 10),
-                             savegame
-                         )
-                    );
-                    ItemPopup(
-                        FIGHT_SLOT,
-                        (SG_INVENTORY_OFFS
-                            + ((guildFightHonor + 10)
-                                * SG['ITM']['SIZE'])
-                        ),
-                        None,
-                        False,
-                        True,
-                        False
-                    );
-                    guildFightHonor = 0;
-                } else {
-                    SetCnt(FIGHT_SLOT, C_EMPTY);
-                    enable_popup(FIGHT_SLOT);
-                };
-                if (lastFight){
-                    lastHero = "";
-                    lastHeroWins = 0;
-                    heroCount = 0;
-                    if (texts[TXT_HERO_OF_THE_DAY]){
-                        for (thisWinner in winners) {
-                            if (winners[thisWinner] > lastHeroWins){
-                                lastHeroWins = winners[thisWinner];
-                                lastHero = texts[TXT_HERO_OF_THE_DAY].split(
-                                    "%1").join(thisWinner[5:]).split(
-                                    "%2").join(str(lastHeroWins));
-                                heroCount = 1;
-                            } else {
-                                if (winners[thisWinner] == lastHeroWins){
-                                    lastHeroWins = winners[thisWinner];
-                                    lastHero = (
-                                        lastHero + (chr(13)
-                                        + texts[TXT_HERO_OF_THE_DAY].split(
-                                            "%1").join(thisWinner[5:]).split(
-                                            "%2").join(str(lastHeroWins))));
-                                    heroCount = (heroCount + 1);
-                                };
-                            };
-                        };
-                        if (
-                            (((((lastHeroWins >= 5))
-                                and (charWin)))
-                                and (!(isRaid)))){
-                            add(HERO_OF_THE_DAY);
-                            if (heroCount == 1){
-                                actor[LBL_HERO_OF_THE_DAY_TITLE].text = (
-                                    (texts[TXT_HERO_OF_THE_DAY_TITLE])
-                                    ? texts[TXT_HERO_OF_THE_DAY_TITLE]
-                                    : "");
-                            } else {
-                                actor[LBL_HERO_OF_THE_DAY_TITLE].text = (
-                                    (texts[TXT_HEROES_OF_THE_DAY_TITLE])
-                                        ? texts[TXT_HEROES_OF_THE_DAY_TITLE]
-                                        : "");
-                            };
-                            actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
-                                SCREEN_TITLE_X - (
-                                    actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2
-                                    ));
-                            actor[LBL_HERO_OF_THE_DAY].text = lastHero;
-                            actor[LBL_HERO_OF_THE_DAY].x = (S
-                                CREEN_TITLE_X -
-                                (actor[LBL_HERO_OF_THE_DAY].width / 2)
-                                );
-                        };
-                    };
-                    add(FIGHT_OK);
-                    add(FIGHT_REWARDS);
-                    hide(
-                        FIGHT_REWARDGOLD,
-                        LBL_FIGHT_REWARDGOLD,
-                        FIGHT_REWARDSILVER,
-                        LBL_FIGHT_REWARDSILVER,
-                        FIGHT_REWARDMUSH,
-                        LBL_FIGHT_REWARDMUSH,
-                        LBL_FIGHT_REWARDEXP
-                    );
-                    if ((((guildFightExp > 0)) and (charWin))){
-                        if (tower_fight_mode){
-                            _local4 = actor[LBL_FIGHT_REWARDGOLD];
-                            with (_local4) {
-                                visible = True;
-                                text = str(guildFightExp);
-                                x = (rewardX - text_width);
-                            };
-                            _local4 = actor[FIGHT_REWARDGOLD];
-                            with (_local4) {
-                                visible = True;
-                                x = (
-                                    (actor[LBL_FIGHT_REWARDGOLD].x - width)
-                                    - 8);
-                            };
-                        } else {
-                            _local4 = actor[LBL_FIGHT_REWARDEXP];
-                            with (_local4) {
-                                visible = True;
-                                if (text_dir == "right"){
-                                    text = (
-                                        (str(math.abs(guildFightExp)) + " :")
-                                        + texts[TXT_EXP]);
-                                } else {
-                                    text = (
-                                        (texts[TXT_EXP] + ": ")
-                                        + str(math.abs(guildFightExp)));
-                                };
-                            };
-                        };
-                    };
-                    if (!isRaid){
-                        _local4 = actor[LBL_FIGHT_REWARDGOLD];
-                        with (_local4) {
-                            visible = True;
-                            if (text_dir == "right"){
-                                text = (
-                                    (str(math.abs(guildFightHonor)) + " ")
-                                    + texts[(((guildFightHonor > 0))
-                                        ? TXT_GUILD_HONOR_GAINED
-                                        : TXT_GUILD_HONOR_LOST)]);
-                            } else {
-                                text = (
-                                    (texts[(((guildFightHonor > 0))
-                                        ? TXT_GUILD_HONOR_GAINED
-                                        : TXT_GUILD_HONOR_LOST)] + " ")
-                                    + str(math.abs(guildFightHonor)));
-                            };
-                            x = (rewardX - text_width);
-                        };
-                    };
-                } else {
-                    if ((evt is MouseEvent)){
-                        if (get_actor_id(evt.target) == BATTLE_SKIP){
-                            skip_guild_fights = (
-                                math.abs(skip_guild_fights) + 1);
-                        };
-                    };
-                };
-            } else {
-                if (isPvP){
-                    add(FIGHT_REWARDS);
-                    hide(
-                        FIGHT_REWARDGOLD,
-                        LBL_FIGHT_REWARDGOLD,
-                        FIGHT_REWARDSILVER,
-                        LBL_FIGHT_REWARDSILVER,
-                        FIGHT_REWARDMUSH,
-                        LBL_FIGHT_REWARDMUSH,
-                        LBL_FIGHT_REWARDEXP
-                    );
-                    if (HonorGain != 0){
-                        _local4 = actor[LBL_FIGHT_REWARDEXP];
-                        with (_local4) {
-                            visible = True;
-                            if (text_dir == "right"){
-                                text = (
-                                    (str(math.abs(HonorGain)) + " ")
-                                    + texts[(((HonorGain > 0))
-                                        ? TXT_HONOR_GAINED
-                                        : TXT_HONOR_LOST)]);
-                            } else {
-                                text = (
-                                    (texts[(((HonorGain > 0))
-                                        ? TXT_HONOR_GAINED
-                                        : TXT_HONOR_LOST)] + " ")
-                                        + str(math.abs(HonorGain)));
-                            };
-                        };
-                    };
-                    if (GoldGain > 0){
-                        if (text_dir == "right"){
-                            rewardGoldText = (
-                                " " + texts[TXT_GOLD_GAINED]);
-                        } else {
-                            rewardGoldText = (texts[TXT_GOLD_GAINED] + " ");
-                        };
-                    } else {
-                        if (GoldGain < 0){
-                            if (text_dir == "right"){
-                                rewardGoldText = (" " + texts[TXT_GOLD_LOST]);
-                            } else {
-                                rewardGoldText = (texts[TXT_GOLD_LOST] + " ");
-                            };
-                        };
-                    };
-                    if (silber_anteil(math.abs(GoldGain)) > 0){
-                        if (text_dir != "right"){
-                            _local4 = actor[FIGHT_REWARDSILVER];
-                            with (_local4) {
-                                visible = True;
-                                x = (rewardX - width);
-                                rewardX = (x - 8);
-                            };
-                        };
-                        _local4 = actor[LBL_FIGHT_REWARDSILVER];
-                        with (_local4) {
-                            visible = True;
-                            if (text_dir == "right"){
-                                text = (
-                                    silber_anteil(math.abs(GoldGain))
-                                    + rewardGoldText);
-                            } else {
-                                text = (
-                                    (((gold_anteil(math.abs(GoldGain)) > 0))
-                                        ? ""
-                                        : rewardGoldText)
-                                    + silber_anteil(math.abs(GoldGain)));
-                            };
-                            x = (rewardX - text_width);
-                            rewardX = (x - (((text_dir == "right")) ? 8 : 14));
-                        };
-                        if (text_dir == "right"){
-                            _local4 = actor[FIGHT_REWARDSILVER];
-                            with (_local4) {
-                                visible = True;
-                                x = (rewardX - width);
-                                rewardX = (x - 14);
-                            };
-                        };
-                    };
-                    if (gold_anteil(math.abs(GoldGain)) > 0){
-                        if (text_dir != "right"){
-                            _local4 = actor[FIGHT_REWARDGOLD];
-                            with (_local4) {
-                                visible = True;
-                                x = (rewardX - width);
-                                rewardX = (x - 8);
-                            };
-                        };
-                        _local4 = actor[LBL_FIGHT_REWARDGOLD];
-                        with (_local4) {
-                            visible = True;
-                            if (text_dir == "right"){
-                                text = (
-                                    gold_anteil(math.abs(GoldGain))
-                                    + (((silber_anteil(math.abs(GoldGain))
-                                        > 0)) ? "" : rewardGoldText));
-                            } else {
-                                text = (
-                                    rewardGoldText
-                                    + gold_anteil(math.abs(GoldGain)));
-                            };
-                            x = (rewardX - text_width);
-                            rewardX = (x - (((text_dir == "right")) ? 8 : 14));
-                        };
-                        if (text_dir == "right"){
-                            _local4 = actor[FIGHT_REWARDGOLD];
-                            with (_local4) {
-                                visible = True;
-                                x = (rewardX - width);
-                                rewardX = (x - 14);
-                            };
-                        };
-                    };
-                    SetCnt(FIGHT_SLOT, C_EMPTY);
-                    enable_popup(FIGHT_SLOT);
-                } else {
-                    if (((isMQ) and (charWin))){
-                        add(FIGHT_REWARDS);
-                        hide(
-                            FIGHT_REWARDGOLD,
-                            LBL_FIGHT_REWARDGOLD,
-                            FIGHT_REWARDSILVER,
-                            LBL_FIGHT_REWARDSILVER,
-                            FIGHT_REWARDMUSH,
-                            LBL_FIGHT_REWARDMUSH,
-                            LBL_FIGHT_REWARDEXP
-                        );
-                        if (HonorGain > 0){
-                            _local4 = actor[LBL_FIGHT_REWARDEXP];
-                            with (_local4) {
-                                visible = True;
-                                if (text_dir == "right"){
-                                    text = (
-                                        (str(HonorGain) + " :")
-                                        + texts[TXT_EXP]);
-                                } else {
-                                    text = (
-                                        (texts[TXT_EXP] + ": ")
-                                        + str(HonorGain));
-                                };
-                            };
-                        };
-                        if (PilzBekommen){
-                            _local4 = actor[FIGHT_REWARDMUSH];
-                            with (_local4) {
-                                visible = True;
-                                x = (pilzX - width);
-                                pilzX = (x - 8);
-                            };
-                            _local4 = actor[LBL_FIGHT_REWARDMUSH];
-                            with (_local4) {
-                                visible = True;
-                                text = "1";
-                                x = (pilzX - text_width);
-                                pilzX = (x - 14);
-                            };
-                            AnimateAch(
-                                FIGHT_REWARDMUSH,
-                                actor[FIGHT_REWARDMUSH].y);
-                        };
-                        if (silber_anteil(GoldGain) > 0){
-                            _local4 = actor[FIGHT_REWARDSILVER];
-                            with (_local4) {
-                                visible = True;
-                                x = (rewardX - width);
-                                rewardX = (x - 8);
-                            };
-                            _local4 = actor[LBL_FIGHT_REWARDSILVER];
-                            with (_local4) {
-                                visible = True;
-                                text = silber_anteil(GoldGain);
-                                x = (rewardX - text_width);
-                                rewardX = (x - 14);
-                            };
-                        };
-                        if (gold_anteil(GoldGain) > 0){
-                            _local4 = actor[FIGHT_REWARDGOLD];
-                            with (_local4) {
-                                visible = True;
-                                x = (rewardX - width);
-                                rewardX = (x - 8);
-                            };
-                            _local4 = actor[LBL_FIGHT_REWARDGOLD];
-                            with (_local4) {
-                                visible = True;
-                                text = gold_anteil(GoldGain);
-                                x = (rewardX - text_width);
-                                rewardX = (x - 14);
-                            };
-                        };
-                        if (BackPackSlot >= 0){
-                            SetCnt(
-                                FIGHT_SLOT,
-                                GetItemID(SG_INVENTORY_OFFS,
-                                    (BackPackSlot + 10),
-                                    savegame));
-                            ItemPopup(
-                                FIGHT_SLOT,
-                                (SG_INVENTORY_OFFS
-                                    + ((BackPackSlot + 10)
-                                        * SG['ITM']['SIZE'])),
-                                None,
-                                False,
-                                True,
-                                False
-                            );
-                        } else {
-                            SetCnt(FIGHT_SLOT, C_EMPTY);
-                            enable_popup(FIGHT_SLOT);
-                        };
-                    } else {
-                        if (isMQ){
-                            hasLostMQ = True;
-                        } else {
-                            if (
-                                ((charWin)
-                                and ((savegame[SG_ACTION_STATUS] == 2)))
-                            ){
-                                add(FIGHT_REWARDS);
-                                hide(
-                                    FIGHT_REWARDGOLD,
-                                    LBL_FIGHT_REWARDGOLD,
-                                    FIGHT_REWARDSILVER,
-                                    LBL_FIGHT_REWARDSILVER,
-                                    FIGHT_REWARDMUSH,
-                                    LBL_FIGHT_REWARDMUSH,
-                                    LBL_FIGHT_REWARDEXP
-                                );
-                                if (
-                                    int(savegame[
-                                        (SG_QUEST_OFFER_EXP1 + quest_id)
-                                        ]) > 0){
-                                    _local4 = actor[LBL_FIGHT_REWARDEXP];
-                                    with (_local4) {
-                                        visible = True;
-                                        if (text_dir == "right"){
-                                            text = (
-                                                (savegame[
-                                                    (SG_QUEST_OFFER_EXP1
-                                                        + quest_id)
-                                                ] + " :")
-                                                + texts[TXT_EXP]);
-                                        } else {
-                                            text = (
-                                                (texts[TXT_EXP] + ": ")
-                                                + savegame[
-                                                (SG_QUEST_OFFER_EXP1
-                                                    + quest_id)]);
-                                        };
-                                    };
-                                };
-                                if (PilzBekommen){
-                                    _local4 = actor[FIGHT_REWARDMUSH];
-                                    with (_local4) {
-                                        visible = True;
-                                        x = (pilzX - width);
-                                        pilzX = (x - 8);
-                                    };
-                                    _local4 = actor[LBL_FIGHT_REWARDMUSH];
-                                    with (_local4) {
-                                        visible = True;
-                                        text = "1";
-                                        x = (pilzX - text_width);
-                                        pilzX = (x - 14);
-                                    };
-                                    AnimateAch(
-                                        FIGHT_REWARDMUSH,
-                                        actor[FIGHT_REWARDMUSH].y);
-                                };
-                                if (silber_anteil(
-                                    savegame[(SG_QUEST_OFFER_GOLD1
-                                        + quest_id)]) > 0){
-                                    _local4 = actor[FIGHT_REWARDSILVER];
-                                    with (_local4) {
-                                        visible = True;
-                                        x = (rewardX - width);
-                                        rewardX = (x - 8);
-                                    };
-                                    _local4 = actor[LBL_FIGHT_REWARDSILVER];
-                                    with (_local4) {
-                                        visible = True;
-                                        text = silber_anteil(
-                                            savegame[(SG_QUEST_OFFER_GOLD1
-                                                + quest_id)]);
-                                        x = (rewardX - text_width);
-                                        rewardX = (x - 14);
-                                    };
-                                };
-                                if (gold_anteil(
-                                    savegame[(SG_QUEST_OFFER_GOLD1
-                                        + quest_id)]) > 0){
-                                    _local4 = actor[FIGHT_REWARDGOLD];
-                                    with (_local4) {
-                                        visible = True;
-                                        x = (rewardX - width);
-                                        rewardX = (x - 8);
-                                    };
-                                    _local4 = actor[LBL_FIGHT_REWARDGOLD];
-                                    with (_local4) {
-                                        visible = True;
-                                        text = gold_anteil(savegame[
-                                            (SG_QUEST_OFFER_GOLD1 + quest_id)]);
-                                        x = (rewardX - text_width);
-                                        rewardX = (x - 14);
-                                    };
-                                };
-                                if (int(savegame[
-                                    ((SG['QUEST']['OFFER']['REWARD_ITM1']
-                                        + (quest_id * SG['ITM']['SIZE']))
-                                        + SG_ITM_TYP)]) > 0){
-                                    SetCnt(
-                                        FIGHT_SLOT,
-                                        GetItemID(
-                                            SG['QUEST']['OFFER']['REWARD_ITM1'],
-                                            quest_id));
-                                    ItemPopup(
-                                        FIGHT_SLOT,
-                                        (SG['QUEST']['OFFER']['REWARD_ITM1']
-                                            + (quest_id * SG['ITM']['SIZE'])),
-                                        None, False, True, False);
-                                } else {
-                                    SetCnt(FIGHT_SLOT, C_EMPTY);
-                                    enable_popup(FIGHT_SLOT);
-            if (charWin){
-                if ((charLife / charFullLife) > 0.8){
-                    fightStyle = 0;
-                } else {
-                    if ((charLife / charFullLife) > 0.4){
-                        fightStyle = 5;
-                    } else {
-                        if ((charLife / charFullLife) > 0.2){
-                            fightStyle = 10;
-                        } else {
-                            fightStyle = 15;
-            } else {
-                if ((oppLife / oppFullLife) > 0.8){
-                    fightStyle = 0;
-                } else {
-                    if ((oppLife / oppFullLife) > 0.4){
-                        fightStyle = 5;
-                    } else {
-                        if ((oppLife / oppFullLife) > 0.2){
-                            fightStyle = 10;
-                        } else {
-                            fightStyle = 15;
-            _local4 = actor[LBL_FIGHT_SUMMARY];
-            with (_local4) {
-                width = FIGHT_RESULT_TEXT_X;
-                wordWrap = True;
-                if (is_guildBattle){
-                    if (lastFight){
-                        if (tower_fight_mode){
-                            if (charWin){
-                                text = texts[
-                                    (TXT_TOWER_WON + int((math.random() * 5)))
-                                ];
-                            } else {
-                                text = texts[
-                                    (TXT_TOWER_LOST + int((math.random() * 5)))
-                                ];
-                            };
-                        } else {
-                            if (isRaid){
-                                if (charWin){
-                                    text = texts[
-                                        TXT_RAID_WON + int(math.random() * 5)
-                                    ];
-                                } else {
-                                    text = texts[
-                                        (TXT_RAID_LOST +
-                                            int((math.random() * 5)))];
-                                };
-                            } else {
-                                if (charWin){
-                                    text = texts[(TXT_GUILD_BATTLE_WON
-                                        + int((math.random() * 5)))];
-                                } else {
-                                    text = texts[(TXT_GUILD_BATTLE_LOST
-                                        + int((math.random() * 5)))];
-                    } else {
-                        if (!inStrikeAni){
-                            next_fight_timer.start();
-                        } else {
-                            strikeBreak = True;
-                        };
-                        return;
-                    };
-                } else {
-                    if (isPvP){
-                        text = texts[
-                            ((int((math.random() * 5)) + fightStyle)
-                                + ((charWin)
-                                    ? TXT_PVP_WIN
-                                    : TXT_PVP_LOSE))];
-                    } else {
-                        text = texts[
-                            ((int((math.random() * 5)) + fightStyle)
-                                + ((charWin)
-                                    ? TXT_FIGHT_WIN
-                                    : TXT_FIGHT_LOSE))];
-                x = (SCREEN_TITLE_X - int((width / 2)));
-            };
-            arabize(LBL_FIGHT_SUMMARY);
-        };
-        var SetLifeBars:* = function (whichOne:int=0){
-            var barWidth:* = 0;
-            var whichOne:int = whichOne;
-            if ((((whichOne == 0)) or ((whichOne == 1)))){
-                var _local3 = actor[LBL_LIFEBAR_CHAR];
-                with (_local3) {
-                    if (text_dir == "right"){
-                        text = ((str(charFullLife) + " / ") + str(charLife));
-                    } else {
-                        text = ((str(charLife) + " / ") + str(charFullLife));
-                    };
-                    x = ((FIGHT_CHARX + 150) - int((text_width / 2)));
-                };
-                _local3 = actor[LIFEBAR_FILL_CHAR];
-                with (_local3) {
-                    barWidth = (
-                        (Number(charLife) / Number(charFullLife)) * 279);
-                    if (barWidth < 0){
-                        barWidth = 0;
-                    };
-                    width = barWidth;
-                    scaleY = 1;
-                };
-            };
-            if ((((whichOne == 0)) or ((whichOne == 2)))){
-                _local3 = actor[LBL_LIFEBAR_OPP];
-                with (_local3) {
-                    if (text_dir == "right"){
-                        text = ((str(oppFullLife) + " / ") + str(oppLife));
-                    } else {
-                        text = ((str(oppLife) + " / ") + str(oppFullLife));
-                    };
-                    x = ((OPPX + 150) - int((text_width / 2)));
-                };
-                _local3 = actor[LIFEBAR_FILL_OPP];
-                with (_local3) {
-                    barWidth = (
-                        (Number(oppLife) / Number(oppFullLife)) * 279);
-                    if (barWidth < 0){
-                        barWidth = 0;
-                    };
-                    width = barWidth;
-                    scaleY = 1;
-                };
-            };
-        };
-        DoStrikeEvent = function (evt:TimerEvent){
-            if (((!(on_stage(FIGHT_BOX1))) or (strikeBreak))){
-                DoStrikeTimer.stop();
-                DoStrikeTimer.removeEventListener(
-                    TimerEvent.TIMER, DoStrikeEvent);
-                return;
-            };
-            if ((((skip_guild_fights > 0)) and (is_guildBattle))){
-                DoSkipFight();
-                DoStrikeTimer.stop();
-                DoStrikeTimer.removeEventListener(
-                    TimerEvent.TIMER, DoStrikeEvent);
-                return;
-            };
-            if (fightRound > (int((fightData.length / 6)) - 1)){
-                DoSkipFight(None, True);
-                return;
-            };
-            charLife = fightData[(fightRound * 6)];
-            charDamage = fightData[((fightRound * 6) + 1)];
-            charFlag = fightData[((fightRound * 6) + 2)];
-            oppLife = fightData[((fightRound * 6) + 3)];
-            oppDamage = fightData[((fightRound * 6) + 4)];
-            oppFlag = fightData[((fightRound * 6) + 5)];
-            if (
-                (((((((fightRound == 0))
-                    and (!(oppStrike))))
-                    and ((charDamage == 0))))
-                    and ((charFlag == 0)))){
-                oppStrike = True;
-            };
-            DoStrikeTimer.stop();
-            WeaponStrike(oppStrike);
-            if (
-                ((((oppStrike)
-                    and ((charLife <= 0))))
-                    or (((!(oppStrike))
-                    and ((oppLife <= 0)))))){
-                return;
-            };
-            oppStrike = !(oppStrike);
-            if (!oppStrike){
-                fightRound++;
-            };
-        };
-        var WeaponStrike:* = function (opponent:Boolean=False){
-            var StrikeAniTimer:* = None;
-            var StrikeAlpha:* = NaN;
-            var BulletAlpha:* = NaN;
-            var ShieldAlpha:* = NaN;
-            var DamageAlpha:* = NaN;
-            var OnoAlpha:* = NaN;
-            var strikeVal:* = NaN;
-            var strikePhase:* = 0;
-            var damageIndicatorActive:* = False;
-            var weaponType:* = 0;
-            var onoID:* = 0;
-            var DoSkip:* = False;
-            var catapultStrike:* = False;
-            var StrikeAniTimerEvent:* = None;
-            var opponent:Boolean = opponent;
-            StrikeAniTimerEvent = function (evt:TimerEvent){
-                var evt:* = evt;
-                if (!on_stage(FIGHT_BOX1)){
-                    inStrikeAni = False;
-                    if (strikeBreak){
-                        next_fight_timer.start();
-                    };
-                    StrikeAniTimer.stop();
-                    StrikeAniTimer.removeEventListener(
-                        TimerEvent.TIMER,
-                        StrikeAniTimerEvent);
-                    return;
-                };
-                Switch (((catapultStrike) ? 4 : weaponType)){
-                    if case(1:
-                        if (
-                            (((((((opponent) ? oppWeapon : charWeapon) < 0))
-                            and ((opponent) ? oppWeapon : charWeapon) > -4))
-                            or ((opponent) ? oppWeapon : charWeapon) < -6)
-                        ){
-                            Switch (strikePhase){
-                                if case(0:
-                                    if ((strikeVal == 0)){
-                                        play(
-                                            get_weapon_sound(((opponent)
-                                                ? oppWeaponType
-                                                : charWeaponType),
-                                                ((opponent)
-                                                    ? oppWeapon
-                                                    : charWeapon), 0));
-                                    };
-                                    strikeVal = (strikeVal + 0.2);
-                                    if (
-                                        (((((opponent)
-                                            ? oppFlag
-                                            : charFlag) == 1))
-                                        and ((strikeVal >= 0.4)))){
-                                        ShieldAlpha = 1;
-                                    };
-                                    if (strikeVal >= 0.4){
-                                        strikePhase++;
-                                    };
-                                    break;
-                                if case(1:
-                                    strikeVal = (strikeVal + 0.2);
-                                    if (strikeVal >= 1){
-                                        strikeVal = 1;
-                                        strikePhase++;
-                                        damageIndicatorActive = True;
-                                        DamageAlpha = 1;
-                                        SetLifeBars(((opponent) ? 1 : 2));
-                                        var _local3 = actor[
-                                            LBL_DAMAGE_INDICATOR];
-                                        with (_local3) {
-                                            text = ("-" + str(((opponent)
-                                                ? oppDamage : charDamage)));
-                                            if (text == "-0"){
-                                                if (((opponent)
-                                                    ? oppFlag
-                                                    : charFlag) == 1){
-                                                    text = texts[TXT_GEBLOCKT];
-                                                    play(get_weapon_sound(
-                                                        ((opponent)
-                                                            ? oppWeaponType
-                                                            : charWeaponType),
-                                                        ((opponent)
-                                                            ? oppWeapon
-                                                            : charWeapon), 2));
-                                                } else {
-                                                    text = texts[
-                                                        TXT_AUSGEWICHEN];
-                                                };
-                                            } else {
-                                                play(
-                                                    get_weapon_sound(
-                                                        ((opponent)
-                                                            ? oppWeaponType
-                                                            : charWeaponType),
-                                                        ((opponent)
-                                                            ? oppWeapon
-                                                            : charWeapon),
-                                                        ((((opponent)
-                                                            ? oppFlag
-                                                            : charFlag))==3)
-                                                                ? 3 : 1));
-                                            };
-                                            x = ((SCREEN_TITLE_X
-                                                + (((opponent) ? -1 : 1)
-                                                    * 200)) -
-                                                    int((text_width / 2)));
-                                            y = (FIGHT_WEAPONS_Y - 100);
-                                        };
-                                        if (
-                                            ((((opponent)
-                                            and ((charLife <= 0))))
-                                            or (((!(opponent))
-                                            and ((oppLife <= 0)))))){
-                                            DoSkip = True;
-                                        };
-                                    };
-                                    break;
-                                if case(2:
-                                    DamageAlpha = (DamageAlpha - 0.075);
-                                    StrikeAlpha = (StrikeAlpha - 0.2);
-                                    ShieldAlpha = (ShieldAlpha - 0.2);
-                                    actor[LBL_DAMAGE_INDICATOR].y = (
-                                        actor[LBL_DAMAGE_INDICATOR].y - 2);
-                                    if (ShieldAlpha <= 0){
-                                        ShieldAlpha = 0;
-                                    };
-                                    if (StrikeAlpha <= 0){
-                                        StrikeAlpha = 0;
-                                    };
-                                    if (DamageAlpha <= 0){
-                                        DamageAlpha = 0;
-                                        inStrikeAni = False;
-                                        if (strikeBreak){
-                                            next_fight_timer.start();
-                                        };
-                                        StrikeAniTimer.stop();
-                                        StrikeAniTimer.removeEventListener(
-                                            TimerEvent.TIMER,
-                                            StrikeAniTimerEvent);
-                                        DoStrikeTimer.start();
-                                    };
-                                    break;
-                            };
-                        } else {
-                            Switch (strikePhase){
-                                if case(0:
-                                    if ((strikeVal == 0)){
-                                        play(get_weapon_sound(
-                                            ((opponent)
-                                                ? oppWeaponType
-                                                : charWeaponType),
-                                            ((opponent)
-                                                ? oppWeapon
-                                                : charWeapon), 0));
-                                    };
-                                    strikeVal = (strikeVal + 0.1);
-                                    if (
-                                        (((((opponent)
-                                            ? oppFlag
-                                            : charFlag) == 1))
-                                        and ((strikeVal >= 0.5)))){
-                                        ShieldAlpha = 1;
-                                    };
-                                    if (strikeVal >= 0.8){
-                                        strikePhase++;
-                                    };
-                                    break;
-                                if case(1:
-                                    strikeVal = (strikeVal + 0.15);
-                                    if (strikeVal >= 1){
-                                        SetCnt(
-                                            FIGHT_ONO, onoID, 0, 0, True);
-                                        OnoAlpha = 1;
-                                        strikeVal = 1;
-                                        strikePhase++;
-                                        damageIndicatorActive = True;
-                                        DamageAlpha = 1;
-                                        SetLifeBars(((opponent) ? 1 : 2));
-                                        _local3 = actor[LBL_DAMAGE_INDICATOR];
-                                        with (_local3) {
-                                            text = (
-                                                "-" + str((
-                                                    (opponent)
-                                                        ? oppDamage
-                                                        : charDamage)));
-                                            if (text == "-0"){
-                                                if (
-                                                    ((opponent)
-                                                        ? oppFlag
-                                                        : charFlag) == 1){
-                                                    text = texts[
-                                                    TXT_GEBLOCKT];
-                                                    play(get_weapon_sound(
-                                                        ((opponent)
-                                                            ? oppWeaponType
-                                                            : charWeaponType),
-                                                        ((opponent)
-                                                            ? oppWeapon
-                                                            : charWeapon),
-                                                        2));
-                                                } else {
-                                                    text = texts[
-                                                        TXT_AUSGEWICHEN];
-                                                };
-                                            } else {
-                                                play(get_weapon_sound(
-                                                    ((opponent)
-                                                        ? oppWeaponType
-                                                        : charWeaponType),
-                                                    ((opponent)
-                                                        ? oppWeapon
-                                                        : charWeapon),
-                                                    ((((opponent)
-                                                        ? oppFlag
-                                                        : charFlag))==3)
-                                                            ? 3 : 1));
-                                            };
-                                            x = ((SCREEN_TITLE_X
-                                                + (((opponent) ? -1 : 1)
-                                                    * 200))
-                                                    - int((text_width / 2)));
-                                            y = (FIGHT_WEAPONS_Y - 100);
-                                        };
-                                        if (
-                                            ((((opponent)
-                                            and ((charLife <= 0))))
-                                            or (((!(opponent))
-                                            and ((oppLife <= 0)))))){
-                                            DoSkip = True;
-                                        };
-                                    };
-                                    break;
-                                if case(2:
-                                    DamageAlpha = (DamageAlpha - 0.075);
-                                    StrikeAlpha = (StrikeAlpha - 0.2);
-                                    ShieldAlpha = (ShieldAlpha - 0.2);
-                                    OnoAlpha = (OnoAlpha - 0.2);
-                                    actor[LBL_DAMAGE_INDICATOR].y = (
-                                        actor[LBL_DAMAGE_INDICATOR].y - 2);
-                                    if (OnoAlpha <= 0){
-                                        OnoAlpha = 0;
-                                    };
-                                    if (ShieldAlpha <= 0){
-                                        ShieldAlpha = 0;
-                                    };
-                                    if (StrikeAlpha <= 0){
-                                        StrikeAlpha = 0;
-                                    };
-                                    if (DamageAlpha <= 0){
-                                        DamageAlpha = 0;
-                                        inStrikeAni = False;
-                                        if (strikeBreak){
-                                            next_fight_timer.start();
-                                        };
-                                        StrikeAniTimer.stop();
-                                        StrikeAniTimer.removeEventListener(
-                                            TimerEvent.TIMER,
-                                            StrikeAniTimerEvent);
-                                        DoStrikeTimer.start();
-                                    };
-                                    break;
-                            };
-                        };
-                        break;
-                    if case(2:
-                        Switch (strikePhase){
-                            if case(0:
-                                strikeVal = (strikeVal + 0.15);
-                                if (strikeVal >= 0.4){
-                                    strikePhase++;
-                                    BulletAlpha = 1;
-                                    play(get_weapon_sound(
-                                        ((opponent)
-                                            ? oppWeaponType
-                                            : charWeaponType),
-                                        ((opponent)
-                                            ? oppWeapon
-                                            : charWeapon), 0));
-                                };
-                                break;
-                            if case(1:
-                                strikeVal = (strikeVal + 0.15);
-                                if (
-                                    (((((opponent)
-                                        ? oppFlag
-                                        : charFlag) == 1))
-                                    and ((strikeVal >= 0.5)))){
-                                    ShieldAlpha = 1;
-                                };
-                                if (strikeVal >= 1){
-                                    SetCnt(FIGHT_ONO, onoID, 0, 0, True);
-                                    OnoAlpha = 1;
-                                    strikeVal = 1;
-                                    strikePhase++;
-                                    DamageAlpha = 1;
-                                    damageIndicatorActive = True;
-                                    SetLifeBars(((opponent) ? 1 : 2));
-                                    _local3 = actor[LBL_DAMAGE_INDICATOR];
-                                    with (_local3) {
-                                        text = ("-" + str((
-                                            (opponent)
-                                            ? oppDamage
-                                            : charDamage)));
-                                        if (text == "-0"){
-                                            if (
-                                                ((opponent)
-                                                    ? oppFlag
-                                                    : charFlag) == 1){
-                                                text = texts[TXT_GEBLOCKT];
-                                                play(get_weapon_sound(
-                                                    ((opponent)
-                                                        ? oppWeaponType
-                                                        : charWeaponType),
-                                                    ((opponent)
-                                                        ? oppWeapon
-                                                        : charWeapon), 2));
-                                            } else {
-                                                text = texts[TXT_AUSGEWICHEN];
-                                            };
-                                        } else {
-                                            play(get_weapon_sound(
-                                                ((opponent)
-                                                    ? oppWeaponType
-                                                    : charWeaponType),
-                                                ((opponent)
-                                                    ? oppWeapon
-                                                    : charWeapon),
-                                                ((((opponent)
-                                                    ? oppFlag
-                                                    : charFlag))==3)
-                                                        ? 3 : 1));
-                                        };
-                                        x = ((SCREEN_TITLE_X + (
-                                            ((opponent) ? -1 : 1) * 200))
-                                            - int((text_width / 2)));
-                                        y = (FIGHT_WEAPONS_Y - 100);
-                                    };
-                                    if (
-                                        ((((opponent)
-                                        and ((charLife <= 0))))
-                                        or (((!(opponent))
-                                        and ((oppLife <= 0)))))){
-                                        DoSkip = True;
-                                    };
-                                };
-                                break;
-                            if case(2:
-                                DamageAlpha = (DamageAlpha - 0.075);
-                                StrikeAlpha = (StrikeAlpha - 0.2);
-                                ShieldAlpha = (ShieldAlpha - 0.2);
-                                BulletAlpha = (BulletAlpha - 0.2);
-                                OnoAlpha = (OnoAlpha - 0.2);
-                                actor[LBL_DAMAGE_INDICATOR].y = (
-                                    actor[LBL_DAMAGE_INDICATOR].y - 2);
-                                if (OnoAlpha <= 0){
-                                    OnoAlpha = 0;
-                                };
-                                if (ShieldAlpha <= 0){
-                                    ShieldAlpha = 0;
-                                };
-                                if (StrikeAlpha <= 0){
-                                    StrikeAlpha = 0;
-                                };
-                                if (DamageAlpha <= 0){
-                                    DamageAlpha = 0;
-                                    inStrikeAni = False;
-                                    if (strikeBreak){
-                                        next_fight_timer.start();
-                                    };
-                                    StrikeAniTimer.stop();
-                                    StrikeAniTimer.removeEventListener(
-                                        TimerEvent.TIMER,
-                                        StrikeAniTimerEvent);
-                                    DoStrikeTimer.start();
-                                };
-                                break;
-                        };
-                        break;
-                    if case(3:
-                        Switch (strikePhase){
-                            if case(0:
-                                strikeVal = (strikeVal + 0.05);
-                                BulletAlpha = 1;
-                                if (strikeVal >= 0.3){
-                                    strikePhase++;
-                                    play(get_weapon_sound(
-                                        ((opponent)
-                                            ? oppWeaponType
-                                            : charWeaponType),
-                                        ((opponent)
-                                            ? oppWeapon
-                                            : charWeapon), 0));
-                                };
-                                break;
-                            if case(1:
-                                strikeVal = (strikeVal + 0.1);
-                                if (
-                                    (((((opponent)
-                                        ? oppFlag
-                                        : charFlag) == 1))
-                                    and ((strikeVal >= 0.5)))){
-                                    ShieldAlpha = 1;
-                                };
-                                if (strikeVal >= 1){
-                                    SetCnt(FIGHT_ONO, onoID, 0, 0, True);
-                                    OnoAlpha = 1;
-                                    strikeVal = 1;
-                                    strikePhase++;
-                                    DamageAlpha = 1;
-                                    damageIndicatorActive = True;
-                                    SetLifeBars(((opponent) ? 1 : 2));
-                                    _local3 = actor[LBL_DAMAGE_INDICATOR];
-                                    with (_local3) {
-                                        text = ("-" + str((
-                                            (opponent)
-                                                ? oppDamage
-                                                : charDamage)));
-                                        if (text == "-0"){
-                                            if (
-                                                ((opponent)
-                                                    ? oppFlag
-                                                    : charFlag) == 1){
-                                                text = texts[TXT_GEBLOCKT];
-                                                play(get_weapon_sound(
-                                                    ((opponent)
-                                                        ? oppWeaponType
-                                                        : charWeaponType),
-                                                    ((opponent)
-                                                        ? oppWeapon
-                                                        : charWeapon), 2));
-                                            } else {
-                                                text = texts[TXT_AUSGEWICHEN];
-                                            };
-                                        } else {
-                                            play(get_weapon_sound(
-                                                ((opponent)
-                                                    ? oppWeaponType
-                                                    : charWeaponType),
-                                                ((opponent)
-                                                    ? oppWeapon
-                                                    : charWeapon),
-                                                ((((opponent)
-                                                    ? oppFlag
-                                                    : charFlag))==3)
-                                                        ? 3 : 1));
-                                        };
-                                        x = ((SCREEN_TITLE_X +
-                                            (((opponent) ? -1 : 1) * 200))
-                                            - int((text_width / 2)));
-                                        y = (FIGHT_WEAPONS_Y - 100);
-                                    };
-                                    if (
-                                        ((((opponent)
-                                        and ((charLife <= 0))))
-                                        or (((!(opponent))
-                                            and ((oppLife <= 0)))))){
-                                        DoSkip = True;
-                                    };
-                                };
-                                break;
-                            if case(2:
-                                DamageAlpha = (DamageAlpha - 0.075);
-                                StrikeAlpha = (StrikeAlpha - 0.2);
-                                ShieldAlpha = (ShieldAlpha - 0.2);
-                                BulletAlpha = (BulletAlpha - 0.2);
-                                OnoAlpha = (OnoAlpha - 0.2);
-                                actor[LBL_DAMAGE_INDICATOR].y = (
-                                    actor[LBL_DAMAGE_INDICATOR].y - 2);
-                                if (OnoAlpha <= 0){
-                                    OnoAlpha = 0;
-                                };
-                                if (ShieldAlpha <= 0){
-                                    ShieldAlpha = 0;
-                                };
-                                if (StrikeAlpha <= 0){
-                                    StrikeAlpha = 0;
-                                };
-                                if (DamageAlpha <= 0){
-                                    DamageAlpha = 0;
-                                    inStrikeAni = False;
-                                    if (strikeBreak){
-                                        next_fight_timer.start();
-                                    };
-                                    StrikeAniTimer.stop();
-                                    StrikeAniTimer.removeEventListener(
-                                        TimerEvent.TIMER,
-                                        StrikeAniTimerEvent);
-                                    DoStrikeTimer.start();
-                                };
-                                break;
-                        };
-                        break;
-                    if case(4:
-                        Switch (strikePhase){
-                            if case(0:
-                                if (strikeVal == 0){
-                                    play(SND_CATAPULT_LAUNCH);
-                                    load(FIGHT_MUSH);
-                                };
-                                strikeVal = (strikeVal + 0.01);
-                                if (strikeVal >= 0.3){
-                                    strikePhase++;
-                                    add(FIGHT_MUSH);
-                                };
-                                break;
-                            if case(1:
-                                strikeVal = (strikeVal + 0.1);
-                                if (strikeVal >= 1){
-                                    strikeVal = 1;
-                                    strikePhase++;
-                                    DamageAlpha = 1;
-                                    damageIndicatorActive = True;
-                                    SetLifeBars(((opponent) ? 1 : 2));
-                                    play(SND_CATAPULT_HIT);
-                                    _local3 = actor[LBL_DAMAGE_INDICATOR];
-                                    with (_local3) {
-                                        text = ("-" + str((
-                                            (opponent)
-                                                ? oppDamage
-                                                : charDamage)));
-                                        x = ((SCREEN_TITLE_X + (
-                                            ((opponent) ? -1 : 1) * 200))
-                                            - int((text_width / 2)));
-                                        y = (FIGHT_WEAPONS_Y - 100);
-                                    };
-                                    if (
-                                        ((((opponent)
-                                            and ((charLife <= 0))))
-                                        or (((!(opponent))
-                                            and ((oppLife <= 0)))))){
-                                        DoSkip = True;
-                                    };
-                                };
-                                break;
-                            if case(2:
-                                strikeVal = (strikeVal - 0.1);
-                                DamageAlpha = (DamageAlpha - 0.05);
-                                actor[LBL_DAMAGE_INDICATOR].y = (
-                                    actor[LBL_DAMAGE_INDICATOR].y - 2);
-                                if (DamageAlpha <= 0){
-                                    DamageAlpha = 0;
-                                    inStrikeAni = False;
-                                    if (strikeBreak){
-                                        next_fight_timer.start();
-                                    };
-                                    remove(FIGHT_MUSH);
-                                    StrikeAniTimer.stop();
-                                    StrikeAniTimer.removeEventListener(
-                                        TimerEvent.TIMER,
-                                        StrikeAniTimerEvent);
-                                    DoStrikeTimer.start();
-                                };
-                                break;
-                        };
-                        break;
-                };
-                if (catapultStrike){
-                    _local3 = actor[FIGHT_MUSH];
-                    with (_local3) {
-                        x = ((SCREEN_TITLE_X - 128)
-                            + ((230 + (100 * ((
-                                (strikePhase > 1))
-                                    ? (2 - strikeVal)
-                                    : strikeVal)))
-                            * ((opponent) ? -1 : 1)));
-                        y = ((0 - 265) + (strikeVal * 500));
-                        scaleY = (((strikeVal >= 0.7))
-                            ? (1.7 - strikeVal) : 1);
-                    };
-                } else {
-                    _local3 = actor[
-                        ((opponent) ? WEAPON_OPP : WEAPON_CHAR)];
-                    with (_local3) {
-                        if (weaponType == 1){
-                            if (
-                                (((((((opponent)
-                                    ? oppWeapon
-                                    : charWeapon) < 0))
-                                and ((((opponent)
-                                    ? oppWeapon
-                                    : charWeapon) > -4))))
-                                or ((((opponent)
-                                    ? oppWeapon
-                                    : charWeapon) < -6)))){
-                                if (
-                                    ((opponent)
-                                        ? oppWeapon
-                                        : charWeapon) == -1){
-                                    SetCnt(
-                                        ((opponent)
-                                            ? WEAPON_OPP
-                                            : WEAPON_CHAR),
-                                        (WEAPON_CLAW + int((strikeVal * 3.9);
-                                } else {
-                                    if (
-                                        ((opponent)
-                                            ? oppWeapon
-                                            : charWeapon) == -3){
-                                        SetCnt(
-                                            ((opponent)
-                                                ? WEAPON_OPP
-                                                : WEAPON_CHAR),
-                                            (WEAPON_SPLAT
-                                                + int((strikeVal * 2.9))));
-                                    } else {
-                                        if (
-                                            ((opponent)
-                                                ? oppWeapon
-                                                : charWeapon) == -7){
-                                            SetCnt(
-                                                ((opponent)
-                                                    ? WEAPON_OPP
-                                                    : WEAPON_CHAR),
-                                                (WEAPON_FIRE
-                                                    + int((strikeVal * 2.9))));
-                                        } else {
-                                            SetCnt(
-                                                ((opponent)
-                                                    ? WEAPON_OPP
-                                                    : WEAPON_CHAR),
-                                                (WEAPON_SWOOSH
-                                                    + int((strikeVal * 2.9))));
-                                scaleX = (((opponent) ? 1 : -1) * 1);
-                                scaleY = 1;
-                                y = (FIGHT_WEAPONS_Y - 240);
-                                x = (((SCREEN_TITLE_X
-                                    + ((opponent) ? 231 : 0)) - 115)
-                                    + ((((opponent) ? -1 : 1) * 560)
-                                    * ((((opponent)
-                                        ? oppFlag
-                                        : charFlag))==1) ? 0.7 : 1));
-                                rotation = (0 * ((opponent) ? -1 : 1));
-                                alpha = StrikeAlpha;
-                                visible = True;
-                            } else {
-                                scaleX = (((opponent) ? 1 : -1)
-                                    * SPRITE_SCALE);
-                                scaleY = SPRITE_SCALE;
-                                y = (FIGHT_WEAPONS_Y
-                                    - (math.cos((strikeVal * (TWOPI / 4)))
-                                        * (75 + ((((opponent) ? oppFlag
-                                            : charFlag))==3) ? 75 : 0)));
-                                x = (((SCREEN_TITLE_X
-                                    + ((opponent) ? 231 : 0)) - 115)
-                                    + (((((opponent) ? -1 : 1) * 230)
-                                    * strikeVal) * ((((opponent)
-                                        ? oppFlag : charFlag))==1)
-                                            ? 0.7 : 1));
-                                rotation = ((280 + (100 * strikeVal))
-                                    * ((opponent) ? -1 : 1));
-                                alpha = StrikeAlpha;
-                                visible = True;
-                            };
-                        } else {
-                            if (weaponType == 2){
-                                scaleX = (((opponent) ? -1 : 1)
-                                    * SPRITE_SCALE);
-                                scaleY = SPRITE_SCALE;
-                                y = FIGHT_WEAPONS_Y;
-                                x = (SCREEN_TITLE_X
-                                    + (((opponent) ? 1 : -1) * 170));
-                                rotation = (((opponent) ? -1 : 1)
-                                    * (-30 + (70 * strikeVal)));
-                                alpha = StrikeAlpha;
-                                visible = True;
-                            } else {
-                                if (weaponType == 3){
-                                    scaleX = (((opponent) ? -1 : 1)
-                                        * SPRITE_SCALE);
-                                    scaleY = SPRITE_SCALE;
-                                    y = (FIGHT_WEAPONS_Y - 140);
-                                    if (strikeVal <= 0.3){
-                                        x = ((SCREEN_TITLE_X
-                                            + (((opponent) ? 1 : -1) * 200))
-                                            + (((opponent) ? -1 : 1)
-                                                * ((0.3 / strikeVal) * 10)));
-                                    } else {
-                                        x = ((SCREEN_TITLE_X
-                                            + (((opponent) ? 1 : -1) * 200))
-                                            + (((1 - strikeVal)
-                                                * math.sin(((strikeVal * 4)
-                                                    * TWOPI))) * -10));
-                                    };
-                                    rotation = ((opponent) ? -42 : 42);
-                                    alpha = StrikeAlpha;
-                                    visible = True;
 
-                    if (weaponType == 2){
-                        SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
-                            get_arrow_id(0, ((opponent) ? 1 : 0),
-                            weaponData, True, int((math.random() * 3))));
-                    };
-                    _local3 = actor[
-                        ((opponent) ? BULLET_OPP : BULLET_CHAR)];
-                    with (_local3) {
-                        if (weaponType == 2){
-                            scaleX = ((((opponent) ? -1 : 1)
-                                * strikeVal) * 2);
-                            scaleY = (strikeVal * 2);
-                            y = ((FIGHT_WEAPONS_Y - 70) - (height / 2));
-                            x = ((SCREEN_TITLE_X
-                                + (((opponent) ? 1 : -1) * 200))
-                                + ((((opponent) ? -1 : 1) * 300)
-                                    * strikeVal));
-                            rotation = 0;
-                        } else {
-                            if (weaponType == 3){
-                                scaleX = ((opponent) ? -1 : 1);
-                                scaleY = 1;
-                                y = (FIGHT_WEAPONS_Y - 110);
-                                if (strikeVal <= 0.3){
-                                    x = ((SCREEN_TITLE_X
-                                        + (((opponent) ? 1 : -1) * 200))
-                                        + (((opponent) ? -1 : 1)
-                                            * ((0.3 / strikeVal) * 10)));
-                                } else {
-                                    x = ((SCREEN_TITLE_X
-                                        + (((opponent) ? 1 : -1) * 200))
-                                        + (((((opponent) ? -1 : 1) * 400)
-                                            * strikeVal)
-                                        * ((((opponent)
-                                            ? oppFlag : charFlag))==1)
-                                                ? 0.7 : 1));
-                                };
-                                rotation = (
-                                    ((opponent) ? -1 : 1)
-                                    * (42 + ((strikeVal - 0.3) * 6)));
-                            };
-                        };
-                        alpha = BulletAlpha;
-                        visible = (weaponType >= 2);
-                    };
-                    _local3 = actor[
-                        ((opponent) ? SHIELD_CHAR : SHIELD_OPP)];
-                    with (_local3) {
-                        scaleX = (((opponent) ? 1 : -1) * SPRITE_SCALE);
-                        scaleY = SPRITE_SCALE;
-                        y = ((FIGHT_WEAPONS_Y
-                            - (math.cos((strikeVal * TWOPI)) * 20)) - 20);
-                        x = (((SCREEN_TITLE_X
-                            + ((opponent) ? 0 : 231)) - 115)
-                            + ((((opponent) ? -1 : 1) * 50)
-                                * (((((strikeVal > 0.9))
-                                    and ((weaponType == 1))))
-                                        ? (strikeVal + 0.2) : 1)));
-                        alpha = ShieldAlpha;
-                        visible = (
-                            ((opponent) ? oppFlag : charFlag) == 1);
-                    };
-                };
-                if (damageIndicatorActive){
-                    _local3 = actor[LBL_DAMAGE_INDICATOR];
-                    with (_local3) {
-                        visible = True;
-                        alpha = DamageAlpha;
-                        if (((opponent) ? oppFlag : charFlag) == 4){
-                            default_text_format = FontFormat_CatapultDamage;
-                        } else {
-                            if (((opponent) ? oppFlag : charFlag) == 3){
-                                default_text_format =
-                                     FontFormat_CriticalDamage;
-                            } else {
-                                default_text_format = FontFormat_Damage;
-                            };
-                        };
-                        text = text;
-                    };
-                    _local3 = actor[FIGHT_ONO];
-                    with (_local3) {
-                        visible = (
-                            ((((opponent) ? oppFlag : charFlag) == 0))
-                            or ((((opponent) ? oppFlag : charFlag) == 3)));
-                        Switch (weaponType){
-                            if case(1:
-                                x = (SCREEN_TITLE_X
-                                    + (((opponent) ? -1 : 1) * 200));
-                                y = (FIGHT_WEAPONS_Y - 20);
-                                if (OnoAlpha == 1){
-                                    scaleX = 0.6;
-                                    scaleY = 0.6;
-                                } else {
-                                    if (OnoAlpha > 0){
-                                        scaleX = (scaleX + 0.2);
-                                        scaleY = (scaleY + 0.2);
-                                    };
-                                };
-                                break;
-                            if case(2:
-                                x = (SCREEN_TITLE_X
-                                    + (((opponent) ? -1 : 1) * 230));
-                                y = (FIGHT_WEAPONS_Y - 40);
-                                if (OnoAlpha == 1){
-                                    scaleX = 0.3;
-                                    scaleY = 0.3;
-                                } else {
-                                    if (OnoAlpha > 0){
-                                        scaleX = (scaleX + 0.1);
-                                        scaleY = (scaleY + 0.1);
-                                    };
-                                };
-                                break;
-                            if case(3:
-                                x = (SCREEN_TITLE_X
-                                    + (((opponent) ? -1 : 1) * 235));
-                                y = (FIGHT_WEAPONS_Y - 42);
-                                if (OnoAlpha == 1){
-                                    scaleX = (0.4 * ((opponent) ? -1 : 1));
-                                    scaleY = 0.4;
-                                } else {
-                                    if (OnoAlpha > 0){
-                                        scaleX = (scaleX
-                                            + (0.05 * (
-                                                (opponent) ? -1 : 1)));
-                                        scaleY = (scaleY + 0.05);
-                                    };
-                                };
-                                break;
-                        };
-                        alpha = OnoAlpha;
-                    };
-                    if (DoSkip){
-                        DoSkipFight();
-                        DoSkip = False;
-                    };
-                };
-            };
-            StrikeAniTimer = new Timer(40);
-            StrikeAlpha = 1;
-            BulletAlpha = 0;
-            ShieldAlpha = 0;
-            DamageAlpha = 0;
-            OnoAlpha = 0;
-            const SPRITE_SCALE:Number = 1.5;
-            const TWOPI:Number = (math.pi * 2);
-            strikeVal = 0;
-            strikePhase = 0;
-            damageIndicatorActive = False;
-            weaponType = ((opponent) ? oppWeaponType : charWeaponType);
-            onoID = (int((math.random() * 6)) + FIGHT_ONO);
-            DoSkip = False;
-            catapultStrike = False;
-            if (((opponent) ? oppFlag : charFlag) == 4){
-                catapultStrike = True;
-            } else {
-                if (weaponType == 2){
-                    onoID = get_arrow_id(
-                        0, ((opponent) ? 1 : 0),
-                        weaponData, True, 3);
-                } else {
-                    if (weaponType == 3){
-                        onoID = FIGHT_ARROW_SMASH;
-                    };
-                };
-            };
-            StrikeAniTimer.add_event_listener(
-                TimerEvent.TIMER, StrikeAniTimerEvent);
-            StrikeAniTimer.start();
-            inStrikeAni = True;
-        };
-        DoStrikeTimer = new Timer(200);
-        if (((((isPvP) and (!(isReplay)))) and (!(is_guildBattle)))){
-            if (!WaitingFor(savegame[SG_PVP_REROLL_TIME])){
-                savegame[SG_PVP_REROLL_TIME] = (
-                    int((game_time.getTime() / 1000)) + (70 * 60));
-            };
-        };
-        if (is_guildBattle){
-            remove_all();
-            if (tower_fight_mode){
-                add(SCR_TOWER_BG);
-            } else {
-                if (isRaid){
-                    add(GUILD_RAID_BG);
-                } else {
-                    add(GUILD_BATTLE_BG);
-                };
-            };
-            if (tower_fight_mode){
-                add(LBL_HERO_OF_THE_DAY_TITLE);
-                actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
-                    TXT_TOWER_LEVEL].split(
-                        "%1").join(str((tower_level + 1)));
-                actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
-                    SCREEN_TITLE_X -
-                    (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
-            } else {
-                if (((isRaid) and (texts[TXT_DUNGEON_NAMES]))){
-                    add(LBL_HERO_OF_THE_DAY_TITLE);
-                    actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
-                        ((TXT_DUNGEON_NAMES + raidLevel) - 1)];
-                    actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
-                        SCREEN_TITLE_X
-                        - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
-                } else {
-                    if (((!(isRaid)) and (texts[TXT_FIGHTS_COUNTER]))){
-                        add(LBL_HERO_OF_THE_DAY_TITLE);
-                        actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
-                            TXT_FIGHTS_COUNTER].split(
-                                "%1").join(str(fightNumber)).split(
-                                "%2").join(str(guild_fight_count));
-                        actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
-                            SCREEN_TITLE_X - (
-                                actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
-                    };
-                };
-            };
-        } else {
-            if (on_stage(QUESTBAR_BG)){
-                remove(
-                    QUESTBAR_BG,
-                    QUESTBAR_FILL,
-                    QUESTBAR_LIGHT,
-                    LBL_QUESTBAR_TEXT,
-                    QUEST_CANCEL,
-                    QUEST_SKIP,
-                    LBL_SCREEN_TITLE
-                );
-            } else {
-                if (isPvP){
-                    remove_all();
-                    Switch (tz){
-                        if case(0:
-                            add(SCREEN_ARENA_NIGHT);
-                            break;
-                        if case(1:
-                            add(SCREEN_ARENA_DAWN);
-                            break;
-                        if case(2:
-                            add(SCREEN_ARENA_DAY);
-                            break;
-                    };
-                } else {
-                    remove_all();
-                    if (isMQ){
-                        if (SelectedDungeon == 100){
-                            add(SCR_TOWER_BG);
-                        } else {
-                            add(((SCR_QUEST_BG_1 + 50) + SelectedDungeon));
-                        };
-                    } else {
-                        if (int(savegame[SG_ACTION_STATUS]) == 2){
-                            add(get_quest_bg());
-
-        SetCnt(LIFEBAR_OPP, LIFEBAR_CHAR);
-        SetCnt(LIFEBAR_FILL_OPP, LIFEBAR_FILL_CHAR);
-        SetCnt(FIGHT_OPP_BORDER, FIGHT_CHAR_BORDER);
-        SetCnt(FIGHT_BOX3, FIGHT_BOX1);
-        SetCnt(FIGHT_REWARDGOLD, IF_GOLD);
-        SetCnt(FIGHT_REWARDSILVER, IF_SILBER);
-        SetCnt(FIGHT_REWARDMUSH, IF_PILZE);
-        var _local3 = actor[LBL_NAMERANK_CHAR];
-        with (_local3) {
-            if (text_dir == "right"){
-                text = ((((("(" + str(charLevel)) + " ")
-                    + texts[TXT_HALL_LIST_COLUMN_4]) + ") ")
-                    + thisCharName);
-            } else {
-                text = (((((thisCharName + " (")
-                    + texts[TXT_HALL_LIST_COLUMN_4]) + " ")
-                    + str(charLevel)) + ")");
-            };
-            x = ((FIGHT_CHARX + 150) - int((text_width / 2)));
-            y = ((OPPY + 290) - textHeight);
-        };
-        _local3 = actor[LBL_NAMERANK_OPP];
-        with (_local3) {
-            if (text_dir == "right"){
-                text = ((((("(" + str(oppLevel)) + " ")
-                    + texts[TXT_HALL_LIST_COLUMN_4]) + ") ") + oppName);
-            } else {
-                text = (((((oppName + " (")
-                    + texts[TXT_HALL_LIST_COLUMN_4]) + " ")
-                    + str(oppLevel)) + ")");
-            };
-            x = ((OPPX + 150) - int((text_width / 2)));
-            y = ((OPPY + 290) - textHeight);
-        };
-        i = 0;
-        while (i < 10) {
-            _local3 = actor[(CHARBACKGROUND + i)];
-            with (_local3) {
-                x = (FIGHT_CHARX + 300);
-                y = OPPY;
-                scaleX = -1;
-                scaleY = 1;
-            };
-            _local3 = actor[(CHARBACKGROUND2 + i)];
-            with (_local3) {
-                x = (FIGHT_CHARX + 300);
-                y = OPPY;
-                scaleX = -1;
-                scaleY = 1;
-            };
-            i = (i + 1);
-        };
-        add(SCREEN_FIGHT);
-        if (oppMonster > 0){
-            add(((OPPMONSTER + oppMonster) - 1));
-        } else {
-            LoadCharacterImage(
-                ((alternate_char_opp_img)
-                    ? OPPBACKGROUND2
-                    : OPPBACKGROUND),
-                     False, oppVolk, oppMann,
-                     oppKaste, oppMouth, oppBeard,
-                     oppNose, oppEyes, oppBrows,
-                     oppEars, oppHair, oppSpecial,
-                     oppSpecial2);
-        };
-        if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
-            add(((FIGHT_COPYCAT + thisCharMonster) - 391));
-        } else {
-            LoadCharacterImage(
-                ((alternate_char_opp_img)
-                    ? CHARBACKGROUND2
-                    : CHARBACKGROUND),
-                    False, thischar_volk, thischar_male, thischar_class,
-                    thischar_mouth, thischar_beard, thischar_nose,
-                    thischar_eyes, thischar_brows, thischar_ears,
-                    thischar_hair, thischar_special, thischar_special2);
-        };
-        if (is_guildBattle){
-            alternate_char_opp_img = !(alternate_char_opp_img);
-        };
-        AddSome(LBL_NAMERANK_CHAR, LBL_NAMERANK_OPP);
-        AddSome(
-            SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR,
-            WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
-        hide(
-            SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR,
-            WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
-        AddSome(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
-        hide(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
-        actor[FIGHT_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
-        actor[BATTLE_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
-        actor[BATTLE_SKIPONE].add_event_listener(MouseEvent.CLICK, DoSkipFight);
-        if (is_guildBattle){
-            add(BATTLE_SKIP);
-            add(BATTLE_SKIPONE);
-            remove(FIGHT_SKIP);
-            if (!tower_fight_mode){
-                add(LBL_FIGHT_PLAYERGUILD);
-                add(LBL_FIGHT_OPPGUILD);
-            };
-            _local3 = actor[LBL_FIGHT_PLAYERGUILD];
-            with (_local3) {
-                if (tower_fight_mode){
-                    text = texts[TXT_TOWER_GUYS];
-                } else {
-                    text = ownGuild;
-                };
-                x = ((FIGHT_CHARX + 150) - (text_width / 2));
-            };
-            _local3 = actor[LBL_FIGHT_OPPGUILD];
-            with (_local3) {
-                if (tower_fight_mode){
-                    text = texts[TXT_TOWER_LEVEL].split(
-                        "%1").join(str((tower_level + 1)));
-                } else {
-                    text = oppGuild;
-                };
-                x = ((OPPX + 150) - (text_width / 2));
-            };
-        };
-        SetLifeBars();
-        i = 0;
-        while (i < 5) {
-            if (is_guildBattle){
-                actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = "";
-                actor[(LBL_FIGHT_OPP_STAERKE + i)].text = "";
-                if (((tower_fight_mode)
-                    and (!((int(GuildBattleData[(i + 1)]) == 0))))){
-                    actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = texts[
-                        ((TXT_COPYCAT_NAME
-                            + int(GuildBattleData[(i + 1)])) - 1)];
-                } else {
-                    actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = str(
-                        GuildBattleData[(i + 1)]);
-                };
-                if (tower_fight_mode){
-                    actor[(LBL_FIGHT_OPP_STAERKE + i)].text = str(
-                        fighterData[(i + 7)]);
-                    actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = texts[
-                        (TXT_CHAR_STAERKE + i)];
-                } else {
-                    if (int(GuildBattleData[(i + 7)]) != 0){
-                        if (-(int(GuildBattleData[(i + 7)])) >= 400){
-                            actor[
-                                (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
-                            ].text = texts[
-                                ((TXT_TOWER_ENEMY_NAMES +
-                                -(int(GuildBattleData[(i + 7)]))) - 400)
-                            ].split("|")[0];
-                        } else {
-                            if (-(int(GuildBattleData[(i + 7)])) > 220){
-                                actor[
-                                    (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
-                                ].text = texts[
-                                    ((TXT_NEW_MONSTER_NAMES
-                                        + -(int(GuildBattleData[(
-                                            i + 7)]))) - 221)];
-                            } else {
-                                actor[
-                                    (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
-                                ].text = texts[
-                                    ((TXT_MONSTER_NAME
-                                        + -(int(GuildBattleData[(i + 7)])))
-                                        - 1)];
-                            };
-                        };
-                    } else {
-                        actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = str(
-                            GuildBattleData[(i + 7)]);
-                    };
-                };
-            } else {
-                actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = str(
-                    fighterData[(i + 1)]);
-                actor[(LBL_FIGHT_OPP_STAERKE + i)].text = str(
-                    fighterData[(i + 7)]);
-                actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = texts[
-                    (TXT_CHAR_STAERKE + i)];
-                actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = texts[
-                    (TXT_CHAR_STAERKE + i)];
-            };
-            i = (i + 1);
-        };
-        if (text_dir == "right"){
-            i = 0;
-            while (i < 5) {
-                actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].x = (
-                    (FIGHT_CHAR_PROP_COLUMN_2_X + 30)
-                    - actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text_width);
-                actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].x = (
-                    (FIGHT_CHAR_PROP_COLUMN_4_X + 30)
-                    - actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text_width);
-                actor[(LBL_FIGHT_CHAR_STAERKE + i)].x = (
-                    (FIGHT_CHAR_PROP_COLUMN_1_X + 40)
-                    - actor[(LBL_FIGHT_CHAR_STAERKE + i)].text_width);
-                actor[(LBL_FIGHT_OPP_STAERKE + i)].x = (
-                    (FIGHT_CHAR_PROP_COLUMN_3_X + 40)
-                    - actor[(LBL_FIGHT_OPP_STAERKE + i)].text_width);
-                i = (i + 1);
-            };
-        };
-        strikeBreak = False;
-        var inStrikeAni:* = False;
-        DoStrikeTimer.add_event_listener(TimerEvent.TIMER, DoStrikeEvent);
-        DoStrikeTimer.start();
-    };
     is_guildBattle = False;
     if (GuildBattleData){
         is_guildBattle = True;
@@ -9095,7 +9048,7 @@ def show_disconnect_screen(){
         if (on_stage(LBL_DISCONNECTED)){
             request_login();
         } else {
-            ReconnectTimer.removeEventListener(
+            ReconnectTimer.remove_event_listener(
                 TimerEvent.TIMER, TryReconnect);
         };
     };
@@ -9122,7 +9075,7 @@ def show_quest_screen(evt:Event=None){
             var evt:* = evt;
             if (!on_stage(QUESTBAR_BG)){
                 questBarTimer.stop();
-                questBarTimer.removeEventListener(
+                questBarTimer.remove_event_listener(
                     TimerEvent.TIMER, QuestBarUpdate);
                 set_title_bar(WaitingTime(savegame[SG_ACTION_ENDTIME]));
                 return;
@@ -9145,7 +9098,7 @@ def show_quest_screen(evt:Event=None){
                 };
             } else {
                 questBarTimer.stop();
-                questBarTimer.removeEventListener(
+                questBarTimer.remove_event_listener(
                     TimerEvent.TIMER, QuestBarUpdate);
                 send_action(ACT_SCREEN_TAVERNE);
             };
@@ -9200,7 +9153,7 @@ def show_taverne_screen(evt:Event=None){
                 HutBlinzelStep++;
                 if (HutBlinzelStep > 70){
                     hide(TAVERNE_HUTMANN_BLINZELN);
-                    HutBlinzelStep = int((math.random() * 30));
+                    HutBlinzelStep = int((random.random() * 30));
                 } else {
                     if (HutBlinzelStep > 68){
                         show(TAVERNE_HUTMANN_BLINZELN);
@@ -9230,10 +9183,10 @@ def show_taverne_screen(evt:Event=None){
                         };
                     };
                 };
-                actor[TAVERNE_KERZEN].visible = (math.random() >= 0.5);
+                actor[TAVERNE_KERZEN].visible = (random.random() >= 0.5);
             } else {
                 HutBlinzelTimer.stop();
-                HutBlinzelTimer.removeEventListener(
+                HutBlinzelTimer.remove_event_listener(
                     TimerEvent.TIMER, HutBlinzelTimerEvent);
             };
         };
@@ -9336,12 +9289,12 @@ def show_stall_screen(evt:Event=None){
         BauerHandEvent = function (evt:TimerEvent){
             var iHand:int;
             var i:int;
-            iHand = int((math.random() * 5));
+            iHand = int((random.random() * 5));
             if (
                 ((!(on_stage(STALL_BG_GUT)))
                     and (!(on_stage(STALL_BG_BOESE))))){
                 HandTimer.stop();
-                HandTimer.removeEventListener(
+                HandTimer.remove_event_listener(
                     TimerEvent.TIMER, BauerHandEvent);
             };
             i = 0;
@@ -9452,7 +9405,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
     };
     PvPDelayCheck = function (evt:TimerEvent=None){
         if (!on_stage(INP_ARENA_ENEMY)){
-            pvp_delay_timer.removeEventListener(TimerEvent.TIMER,
+            pvp_delay_timer.remove_event_listener(TimerEvent.TIMER,
                                                 PvPDelayCheck);
             pvp_delay_timer.stop();
             return;
@@ -9502,7 +9455,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
             set_btn_text(ARENA_OK, texts[TXT_OK]);
             hide(LBL_ARENA_DELAY);
             set_title_bar();
-            pvp_delay_timer.removeEventListener(
+            pvp_delay_timer.remove_event_listener(
                 TimerEvent.TIMER, PvPDelayCheck);
             pvp_delay_timer.stop();
         };
@@ -9637,23 +9590,23 @@ def show_city_screen(evt:Event=None):void{
         add(SCREEN_CITY);
         if (StatistenBleiben){
             MakeTemporary(CITY_STATISTEN, BUBBLES);
-            VisibleToFront(CITY_STATISTEN, BUBBLES);
+            visible_to_front(CITY_STATISTEN, BUBBLES);
         } else {
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_MAGIER1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_ORK1);
                 define_bunch(CITY_ORK, CITY_ORK1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_SANDWICH1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_ZWERG1);
                 define_bunch(CITY_ZWERG, CITY_ZWERG1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_ELF1);
             };
         };
@@ -9708,8 +9661,8 @@ def show_post_screen(par:Array=None){
             if (thisInstance != postInstance){
                 var _local3 = actor[POST_LIST];
                 with (_local3) {
-                    removeEventListener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
-                    removeEventListener(FocusEvent.FOCUS_OUT, PostSetFocus);
+                    remove_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+                    remove_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
             } else {
                 stage.stageFocusRect = False;
@@ -9724,8 +9677,8 @@ def show_post_screen(par:Array=None){
             if (thisInstance != postInstance){
                 var _local3 = actor[POST_LIST];
                 with (_local3) {
-                    removeEventListener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
-                    removeEventListener(FocusEvent.FOCUS_OUT, PostSetFocus);
+                    remove_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+                    remove_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
                 return;
             };
@@ -9788,8 +9741,8 @@ def show_post_screen(par:Array=None){
         ){
             SetAlpha(POST_LIST, 0);
             SetAlpha(SHP_POST_BLACK_SQUARE, 0);
-            FadeIn(POST_LIST);
-            FadeIn(SHP_POST_BLACK_SQUARE, 20, 0.05, 0.6);
+            fade_in(POST_LIST);
+            fade_in(SHP_POST_BLACK_SQUARE, 20, 0.05, 0.6);
         };
     };
     BuildPostList = function (evt:Event=None){
@@ -10194,7 +10147,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                     or ((savegame[SG_MOUNT] == 0)))
             ){
                 MountTimeTimer.stop();
-                MountTimeTimer.removeEventListener(
+                MountTimeTimer.remove_event_listener(
                     TimerEvent.TIMER, MountTimeEvent);
                 return;
             };
@@ -10401,7 +10354,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
             );
         };
         display_inventory(None, NoPrices);
-        vanityRandom = math.random();
+        vanityRandom = random.random();
         if (
             (((((((uint(savegame[SG_NEW_FLAGS]) & 32))
             and ((int(so.data.vanityMode) == 0))))
@@ -10414,7 +10367,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
             add(SCREEN_CHAR);
         };
         LoadCharacterImage();
-        AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
+        add_some(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         mirror_ani_timer.stop();
         i = 0;
         while (i < 13) {
@@ -10431,7 +10384,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                 or ((((int(so.data.vanityMode) == 3))
                 and ((vanityRandom < 0.5)))))
             ){
-            AddSome(GOLDEN_FRAME, SCR_CHAR_NAME);
+            add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
             actor[SCR_CHAR_NAME].y = (CHAR_NAME_Y + 8);
             AddFilter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
         } else {
@@ -10440,7 +10393,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
         };
         if (texts[(TXT_ACH_4 + 4)]){
             if (int(savegame[SG_EMAIL_VALID]) == 1){
-                AddSome(CHAR_INVITE);
+                add_some(CHAR_INVITE);
             };
         };
         if (texts[TXT_ALBUM]){
@@ -10477,7 +10430,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                 level_upAniStep++;
                 if (level_upAniStep > 125){
                     level_upTimer.stop();
-                    level_upTimer.removeEventListener(
+                    level_upTimer.remove_event_listener(
                         TimerEvent.TIMER, level_upAniEvent);
                     var _local3 = actor[LBL_SCR_CHAR_EXPLABEL];
                     with (_local3) {
@@ -10612,7 +10565,7 @@ def ShowPlayerScreen(
         PvPDelayCheck = function (evt:TimerEvent=None){
             var evt:* = evt;
             if (!on_stage(CHAR_ATTACK)){
-                pvp_delay_timer.removeEventListener(
+                pvp_delay_timer.remove_event_listener(
                     TimerEvent.TIMER, PvPDelayCheck);
                 pvp_delay_timer.stop();
                 return;
@@ -10638,7 +10591,7 @@ def ShowPlayerScreen(
                 set_title_bar();
                 set_btn_text(CHAR_ATTACK, texts[TXT_ATTACK]);
                 hide(LBL_CHAR_DELAY);
-                pvp_delay_timer.removeEventListener(
+                pvp_delay_timer.remove_event_listener(
                     TimerEvent.TIMER, PvPDelayCheck
                 );
                 pvp_delay_timer.stop();
@@ -10791,7 +10744,7 @@ def ShowPlayerScreen(
         SetAlpha(CHAR_SECONDPROP, 1);
         SetAlpha(CHAR_PREISE, 0);
         display_inventory(PlayerSG);
-        vanityRandom = math.random();
+        vanityRandom = random.random();
         if (
             (((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32))
             and ((int(so.data.vanityMode) == 0))))
@@ -10827,18 +10780,18 @@ def ShowPlayerScreen(
             };
         };
         if ((((PlayerGilde == gilde)) and (!((gilde == ""))))){
-            AddSome(CHAR_MESSAGE, CHAR_GILDE);
+            add_some(CHAR_MESSAGE, CHAR_GILDE);
         } else {
-            AddSome(CHAR_MESSAGE);
+            add_some(CHAR_MESSAGE);
             if (
                 (((savegame[SG_ACTION_STATUS] == 0))
                 or ((((savegame[SG_ACTION_STATUS] >= 1))
                 and (has_mirror))))
             ){
                 if (can_rob){
-                    AddSome(CHAR_ATTACK, LBL_CHAR_DELAY);
+                    add_some(CHAR_ATTACK, LBL_CHAR_DELAY);
                 } else {
-                    AddSome(CHAR_ATTACK, LBL_CHAR_DELAY);
+                    add_some(CHAR_ATTACK, LBL_CHAR_DELAY);
                 };
             };
         };
@@ -10868,7 +10821,7 @@ def ShowPlayerScreen(
             PlayerSG[SG_FACE_8],
             PlayerSG[SG_FACE_9]
         );
-        AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
+        add_some(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         if (
             (((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32))
             and ((int(so.data.vanityMode) == 0))))
@@ -10876,7 +10829,7 @@ def ShowPlayerScreen(
             or ((((int(so.data.vanityMode) == 3))
             and ((vanityRandom < 0.5)))))
         ){
-            AddSome(GOLDEN_FRAME, SCR_CHAR_NAME);
+            add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
             actor[SCR_CHAR_NAME].y = (CHAR_NAME_Y + 8);
             AddFilter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
         } else {
@@ -11057,80 +11010,80 @@ def show_screen_gilden(
                 removeListenersTimer.stop();
                 var _local3 = removeListenersTimer;
                 with (_local3) {
-                    removeEventListener(TimerEvent.TIMER, removeListeners);
+                    remove_event_listener(TimerEvent.TIMER, removeListeners);
                 };
-                actor[GILDE_SCROLL_UP].removeEventListener(
+                actor[GILDE_SCROLL_UP].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_SCROLL_DOWN].removeEventListener(
+                actor[GILDE_SCROLL_DOWN].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_CANCEL].removeEventListener(
+                actor[GILDE_DIALOG_CANCEL].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_KICK].removeEventListener(
+                actor[GILDE_DIALOG_OK_KICK].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_MASTER].removeEventListener(
+                actor[GILDE_DIALOG_OK_MASTER].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_INVITE].removeEventListener(
+                actor[GILDE_DIALOG_OK_INVITE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_REVOLT].removeEventListener(
+                actor[GILDE_DIALOG_OK_REVOLT].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_RAID].removeEventListener(
+                actor[GILDE_DIALOG_OK_RAID].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_INVITE].removeEventListener(
+                actor[GILDE_INVITE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_PROFILE].removeEventListener(
+                actor[GILDE_PROFILE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_KICK].removeEventListener(
+                actor[GILDE_KICK].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_PROMOTE].removeEventListener(
+                actor[GILDE_PROMOTE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DEMOTE].removeEventListener(
+                actor[GILDE_DEMOTE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_MASTER].removeEventListener(
+                actor[GILDE_MASTER].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_REVOLT].removeEventListener(
+                actor[GILDE_REVOLT].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_GEBAEUDE_IMPROVE].removeEventListener(
+                actor[GILDE_GEBAEUDE_IMPROVE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_GEBAEUDE_IMPROVE + 1)].removeEventListener(
+                actor[(GILDE_GEBAEUDE_IMPROVE + 1)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_GEBAEUDE_IMPROVE + 2)].removeEventListener(
+                actor[(GILDE_GEBAEUDE_IMPROVE + 2)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_KATAPULT].removeEventListener(
+                actor[GILDE_KATAPULT].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_KATAPULT + 1)].removeEventListener(
+                actor[(GILDE_KATAPULT + 1)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_KATAPULT + 2)].removeEventListener(
+                actor[(GILDE_KATAPULT + 2)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_GOLD].removeEventListener(
+                actor[GILDE_GOLD].remove_event_listener(
                     MouseEvent.MOUSE_DOWN, GuildBtnHandler);
-                actor[GILDE_MUSH].removeEventListener(
+                actor[GILDE_MUSH].remove_event_listener(
                     MouseEvent.MOUSE_DOWN, GuildBtnHandler);
-                actor[GILDE_GOLD].removeEventListener(
+                actor[GILDE_GOLD].remove_event_listener(
                     MouseEvent.MOUSE_OUT, DoDonate);
-                actor[GILDE_MUSH].removeEventListener(
+                actor[GILDE_MUSH].remove_event_listener(
                     MouseEvent.MOUSE_OUT, DoDonate);
                 _local3 = actor[GILDE_GOLD];
                 with (_local3) {
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_UP, GuildBtnUpHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
                 };
                 _local3 = actor[GILDE_MUSH];
                 with (_local3) {
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_UP, GuildBtnUpHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
                 };
                 _local3 = actor[INP_GILDE_TEXT];
                 with (_local3) {
-                    removeEventListener(FocusEvent.FOCUS_IN, EnterGuildDesc);
-                    removeEventListener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
+                    remove_event_listener(FocusEvent.FOCUS_IN, EnterGuildDesc);
+                    remove_event_listener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
                 };
             };
         };
@@ -11182,7 +11135,7 @@ def show_screen_gilden(
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        removeEventListener(
+                        remove_event_listener(
                             TimerEvent.TIMER, DoPushGuildBtn);
                     };
                 } else {
@@ -11285,7 +11238,7 @@ def show_screen_gilden(
                 remove(GILDE_KICK_GRAY);
                 remove(GILDE_PROMOTE);
                 remove(GILDE_MASTER);
-                AddSome(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
+                add_some(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
             } else {
                 if ((((selRank <= 2)) and ((myRank == 2)))){
                     remove(GILDE_KICK);
@@ -11295,14 +11248,14 @@ def show_screen_gilden(
             if (selRank == 4){
                 remove(GILDE_PROMOTE);
                 remove(GILDE_MASTER);
-                AddSome(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
+                add_some(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
             };
             if (int(guildData[3]) >= int(guildData[5])){
                 remove(GILDE_INVITE);
                 if (guildData[0] == savegame[SG_GUILD_INDEX]){
                     hide(PLAYER_GUILD_INVITE);
                 };
-                AddSome(GILDE_INVITE_GRAY);
+                add_some(GILDE_INVITE_GRAY);
             };
             if ((((selRank == 2)) and ((myRank == 1)))){
                 remove(GILDE_PROMOTE);
@@ -13523,7 +13476,7 @@ def show_work_screen(evt:Event=None):void{
                         );
                     } else {
                         ArbeitCountdown.stop();
-                        ArbeitCountdown.removeEventListener(
+                        ArbeitCountdown.remove_event_listener(
                             TimerEvent.TIMER, ArbeitCountdownEvent
                         );
                         if (on_stage(LBL_SCR_ARBEITEN_TIME)){
@@ -13600,7 +13553,7 @@ def show_main_quests_screen(NextEnemies:Array){
                 while (i < 9) {
                     var _local3 = actor[(MQS_BUTTON + i)].content;
                     with (_local3) {
-                        removeEventListener(MouseEvent.CLICK, MainQuestsClick);
+                        remove_event_listener(MouseEvent.CLICK, MainQuestsClick);
                     };
                     i++;
                 };
@@ -14086,7 +14039,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     };
     MQDelayCheck = function (evt:TimerEvent=None){
         if (!on_stage(SHP_MAINQUEST)){
-            MQDelayTimer.removeEventListener(TimerEvent.TIMER, MQDelayCheck);
+            MQDelayTimer.remove_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.stop();
             return;
         };
@@ -14098,7 +14051,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         } else {
             hide(LBL_MAINQUEST_MUSHHINT);
             set_title_bar();
-            MQDelayTimer.removeEventListener(TimerEvent.TIMER, MQDelayCheck);
+            MQDelayTimer.remove_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.stop();
         };
         if (text_dir == "right"){
@@ -14214,7 +14167,7 @@ def show_toilet(
                     actor[gatheredItemId].y = itemDestY;
                     actor[gatheredItemId].alpha = 1;
                     toiletItemAddTimer.stop();
-                    toiletItemAddTimer.removeEventListener(
+                    toiletItemAddTimer.remove_event_listener(
                        TimerEvent.TIMER, toiletItemAddFrameEvent
                     );
                 } else {
@@ -14308,7 +14261,7 @@ def show_witch(
                 None,
                 0)
             );
-            suggestionSlot[(WITCH_SCROLL + i)] = (
+            suggestion_slot[(WITCH_SCROLL + i)] = (
                 CHAR_SLOT_1 + CorrectItemType.find(math.floor(
                    (int(witchData[(9 + (3 * i))]) / 10))));
             trace(
@@ -15164,7 +15117,7 @@ def show_bet_result(won:Boolean){
                     BallX = HUTMANN_KUGEL_X1;
                 } else {
                     BallX = (
-                        (math.random())<0.5)
+                        (random.random())<0.5)
                             ? HUTMANN_KUGEL_X2
                             : HUTMANN_KUGEL_X3;
                 };
@@ -15176,7 +15129,7 @@ def show_bet_result(won:Boolean){
                     BallX = HUTMANN_KUGEL_X2;
                 } else {
                     BallX = (
-                        (math.random())<0.5)
+                        (random.random())<0.5)
                         ? HUTMANN_KUGEL_X1
                         : HUTMANN_KUGEL_X3;
                 };
@@ -15188,7 +15141,7 @@ def show_bet_result(won:Boolean){
                     BallX = HUTMANN_KUGEL_X3;
                 } else {
                     BallX = (
-                        (math.random())<0.5)
+                        (random.random())<0.5)
                         ? HUTMANN_KUGEL_X1
                         : HUTMANN_KUGEL_X2;
                 };
@@ -15287,7 +15240,7 @@ def ShowSignupScreen(evt:Event=None):void{
                 j++;
                 if (j > 10){
                     jumpTimer.stop();
-                    jumpTimer.removeEventListener(TimerEvent.TIMER, DoJump);
+                    jumpTimer.remove_event_listener(TimerEvent.TIMER, DoJump);
                     SignupJumpRunning = False;
                 };
             };
@@ -15305,95 +15258,117 @@ def ShowSignupScreen(evt:Event=None):void{
 #------------------------------------------------------------------------------
 # low level graphic stuff
 
+
+def remove(*actor_ids):
+    '''
+        remove actor
+    '''
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    remove(i_bunch)
+                return
+
+            if actor[actor_id] is Sound:
+                return
+
+            with actor[actor_id]:
+                if parent:
+                    parent.removeChild(actor[actor_id])
+
+
+def show(*actor_ids):
+    '''
+        show actor
+    '''
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    show(i_bunch)
+                return
+
+            with actor[actor_id]:
+                visible = True
+
+
+def hide(*actor_ids):
+    '''
+        hide actor(s)
+    '''
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    hide(i_bunch)
+                return
+
+            with actor[actor_id]:
+                visible = False
+
+
+def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
+        scale_y=None, vis=None, container_id=-1
+):
+    '''
+        add actor to global list
+    '''
+    if actor[actor_id] is Sound:
+        return
+
+    if actor[actor_id] is list:
+        for i_bunch in actor[actor_id]:
+            if i_bunch == actor_id:
+                return
+
+            add(i_bunch, pos_x, pos_y, scale_x, scale_y, vis, container_id)
+        return
+
+    if actor[actor_id] is Loader:
+        if actorLoaded[actor_id] == 0:
+            load(actor_id)
+
+    with actor[actor_id]:
+        if pos_x:
+            x = pos_x
+
+        if pos_y:
+            y = pos_y
+
+        if scale_x:
+            scaleX = size_x
+
+        if scale_y:
+            scaleY = size_y
+
+        if vis != None:
+            visible = bool(vis)
+
+    if container_id == -1:
+        addChild(actor[actor_id])
+    else:
+        actor[container_id].addChild(actor[actor_id])
+
+
+def visible_to_front(*actor_ids):
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    visible_to_front(i_bunch)
+                return
+
+            with actor[actor_id]:
+                if on_stage(actor_id):
+                    add(actor_id)
+
+
+
+
 '''
 
-def VisibleToFront(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    VisibleToFront(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                if (on_stage(actor_ids[i])){
-                    add(actor_ids[i]);
-                };
-            };
-        };
-        i = (i + 1);
-    };
-}
 
-def add(
-    actor_id:int, pos_x:int=None, pos_y:int=None, scale_x:Number=None,
-    scale_y:Number=None, vis=None, containerID:int=-1
-):void{
-    var i:* = 0;
-    var req:* = None;
-    var i_bunch:* = 0;
-    var actor_id:* = actor_id;
-    var pos_x:* = pos_x;
-    var pos_y:* = pos_y;
-    var scale_x:* = scale_x;
-    var scale_y:* = scale_y;
-    var vis:* = vis;
-    var containerID:int = containerID;
-    i = actor_id;
-    if ((actor[actor_id] is Sound)){
-        return;
-    };
-    if ((actor[actor_id] is Array)){
-        i_bunch = 0;
-        while (i_bunch < actor[actor_id].length) {
-            if (actor[actor_id][i_bunch] == actor_id){
-                return;
-            };
-            add(
-                actor[actor_id][i_bunch],
-                pos_x, pos_y, scale_x, scale_y, vis, containerID
-            );
-            i_bunch = (i_bunch + 1);
-        };
-        return;
-    };
-    if ((actor[i] is Loader)){
-        if (actorLoaded[i] == 0){
-            load(i);
-        };
-    };
-    var _local9 = actor[i];
-    with (_local9) {
-        if (pos_x){
-            x = pos_x;
-        };
-        if (pos_y){
-            y = pos_y;
-        };
-        if (scale_x){
-            scaleX = size_x;
-        };
-        if (scale_y){
-            scaleY = size_y;
-        };
-        if (vis !== None){
-            visible = Boolean(vis);
-        };
-    };
-    if (containerID == -1){
-        addChild(actor[i]);
-    } else {
-        actor[containerID].addChild(actor[i]);
-    };
-}
 
 def Move(actor_id:int, pos_x:int, pos_y:int):void{
     var i:* = 0;
@@ -15415,7 +15390,7 @@ def Move(actor_id:int, pos_x:int, pos_y:int):void{
     };
 }
 
-def AddSome(... _args):void{
+def add_some(... _args):void{
     var i:int;
     var i_bunch:int;
     i = 0;
@@ -15435,35 +15410,6 @@ def AddSome(... _args):void{
     };
 }
 
-def remove(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    remove(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            if ((actor[actor_ids[i]] is Sound)){
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                if (parent){
-                    parent.removeChild(actor[actor_ids[i]]);
-                };
-            };
-        };
-        i = (i + 1);
-    };
-}
-
 def remove_all(alsoPersistent:Boolean=False):void{
     var i:int;
     i = 0;
@@ -15478,54 +15424,6 @@ def remove_all(alsoPersistent:Boolean=False):void{
         i++;
     };
     ExternalInterface.call("hideSocial");
-}
-
-def show(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    show(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                visible = True;
-            };
-        };
-        i = (i + 1);
-    };
-}
-
-def hide(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    hide(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                visible = False;
-            };
-        };
-        i = (i + 1);
-    };
 }
 
 def Visible(actor_id):Boolean{
@@ -15573,22 +15471,22 @@ def GetAlpha(actor_id:int):Number{
     return (0);
 }
 
-def FadeIn(
+def fade_in(
     actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1
 ){
     var fadeTimer:* = None;
     var currentAlpha:* = NaN;
-    var FadeInEvent:* = None;
+    var fade_inEvent:* = None;
     var actor_id:* = actor_id;
     var timerInterval:int = timerInterval;
     var alphaStep:Number = alphaStep;
     var alphaMax:int = alphaMax;
-    FadeInEvent = function (evt:TimerEvent){
+    fade_inEvent = function (evt:TimerEvent){
         currentAlpha = (currentAlpha + alphaStep);
         if (currentAlpha >= alphaMax){
             currentAlpha = alphaMax;
             fadeTimer.stop();
-            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeInEvent);
+            fadeTimer.remove_event_listener(TimerEvent.TIMER, fade_inEvent);
         };
         SetAlpha(actor_id, currentAlpha);
     };
@@ -15597,7 +15495,7 @@ def FadeIn(
     if (alphaStep <= 0){
         return;
     };
-    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeInEvent);
+    fadeTimer.add_event_listener(TimerEvent.TIMER, fade_inEvent);
     fadeTimer.start();
     SetAlpha(actor_id, currentAlpha);
 }
@@ -15619,7 +15517,7 @@ def fade_out(
         if (currentAlpha <= alphaMin){
             currentAlpha = alphaMin;
             fadeTimer.stop();
-            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeOutEvent);
+            fadeTimer.remove_event_listener(TimerEvent.TIMER, FadeOutEvent);
             if (HideThen){
                 hide(actor_id);
             };
@@ -16283,6 +16181,7 @@ def set_font(fontName:String){
 
 #------------------------------------------------------------------------------
 # unsorted stuff
+
 
 def do_act_zauberladen():
     '''
@@ -18531,7 +18430,7 @@ def enable_popup(actor_id, *args):
         enable popup actor
     '''
     i = 0
-    popupWidth = 0
+    popup_width = 0
     textY = 0
     textX = 0
     my_stamp = 0
@@ -18563,192 +18462,250 @@ def on_stage(actor_id):
     return False
 
 
+def tv_timer_event_handler():
+    '''
+        handle tev timer event
+    '''
+    tv_wobble += 0.1
+    while tv_wobble > (2 * math.pi):
+        tv_wobble -= 2 * math.pi
+    if (tv_status_dest - tv_status) >= 0.1:
+        tv_status += 0.1
+    elif (tv_status - tv_status_dest) >= 0.1:
+        tv_status -= 0.1
+    else:
+        tv_status = tv_status_dest
+
+    tv_ani += 1
+    if tv_ani >= 4:
+        tv_ani = 0
+
+    if tv_status == 1:
+        show(CA['TV'])
+    if tv_status == 0:
+        hide(CA['TV'])
+
+    for i in range(4):
+        actor[IMG['TV'] + i].scaleX = tv_status
+        actor[IMG['TV'] + i].scaleY = tv_status
+        actor[IMG['TV'] + i].rotation = math.sin(tv_wobble) * 5
+        actor[IMG['TV'] + i].alpha = tv_status
+        if (i == tv_ani) and (tv_status > 0):
+            show(IMG['TV'] + i)
+        else:
+            hide(IMG['TV'] + i)
+
+    if not on_stage(IMG['TV']):
+        tv_timer.stop()
+
+        for i in range(4):
+            hide(IMG['TV'] + i)
+
+        tv_status = 0
+        tv_status_dest = 0
+
+
+def witch_timer_event_handler():
+    '''
+        handle itch time event
+    '''
+    witch_ani_step += 1
+
+    if witch_ani_step >= 15:
+        witch_ani_step = 0
+
+    for i in range(15):
+        if i == witch_ani_step:
+            show(IMG['WITCH_ANI'] + i)
+        else:
+            hide(IMG['WITCH_ANI'] + i)
+
+    if not on_stage(IMG['WITCH']):
+        witch_ani_timer.stop()
+
+
+def sound_loaded(duration):
+    LOG.debug("Sound " + actor_id + " geladen.")
+    actor[actor_id].play(0, duration, stObject)
+
+
+def play(actor_id, endless=False):
+    sound_loaded = None
+
+    if actorLoaded[actor_id] == 2:
+        duration = 0
+        if endless:
+            duration = 30000
+        actor[actor_id].play(0, duration, stObject)
+    else:
+        LOG.warning(' '.join("Warnung: Sound",
+                             actor_id,
+                             "nicht geladen! Wird geladen..."))
+        actor[actor_id].add_event_listener(Event.COMPLETE, sound_loaded)
+        load(actor_id)
+
+
+def process_arg(arg):
+    i_array = 0
+    tmp_do = None
+    if arg is list:
+        for i_array in arg:
+            process_arg(i_array)
+
+    elif arg is int:
+        if arg < 0:
+            popup_width = -arg
+        elif arg == 0:
+            textX = 0
+            if text_dir == "right":
+                textX = popup_width
+
+            textY += last_text_height + 10
+        elif text_dir == "right":
+            textX = popup_width - arg
+        else:
+            textX = arg
+
+    elif arg is TextFormat:
+        tmp_text_format = arg
+
+    elif arg is DisplayObject:
+        tmp_do = Bitmap(arg.content.bitmapData.clone())
+        with tmp_do:
+            if text_dir == "right":
+                if textX < popup_width:
+                    x = textX - width
+                    textX = textX - width + 5
+                    y = textY
+                else:
+                    x = popup_width - 5 - width
+                    y = textY
+                    textY = textY + textHeight + 10
+            else:
+                if textX > 0:
+                    x = textX
+                    textX = textX + width + 5
+                    y = textY
+                else:
+                    x = 5
+                    y = textY
+                    textY = textY + textHeight + 10
+        actor[POPUP_INFO].addChild(tmp_do)
+
+    elif arg is str:
+            arg = arg.replace("#", chr(13))
+            tmp_text_field = TextField()
+            with tmp_text_field:
+                auto_size = TextFieldAutoSize.LEFT
+                background = False
+                selectable = False
+                embed_fonts = font_embedded
+                default_text_format = tmp_text_format
+                htmlText = arg
+                last_text_height = textHeight
+                if text_dir == "right":
+                    auto_size = TextFieldAutoSize.RIGHT
+                    if textX < popup_width:
+                        x = textX - text_width
+                        textX -= text_width + 5
+                        y = textY
+                    else:
+                        x = popup_width - 5 - text_width
+                        y = textY
+                        textY += textHeight + 10
+                else:
+                    if textX > 0:
+                        x = textX
+                        textX += text_width + 5
+                        y = textY
+                    else:
+                        x = 5
+                        y = textY;
+                        textY += textHeight + 10
+
+                    if (x + text_width + 10) > popup_width:
+                        popup_width = x + text_width + 10
+
+            actor[POPUP_INFO].addChild(tmp_text_field)
+
+
+def show_popup(evt, *args):
+    '''
+        Show popup window
+    '''
+    if evt.buttonDown:
+        return
+
+    if actorpopup_stamp[actor_id] != my_stamp:
+        remove_event_listener(MouseEvent.MOUSE_OVER, show_popup)
+        remove_event_listener(MouseEvent.MOUSE_MOVE, position_popup)
+        remove_event_listener(MouseEvent.MOUSE_OUT, hide_popup)
+        remove_event_listener(MouseEvent.MOUSE_DOWN, hide_popup)
+        remove_event_listener(MouseEvent.MOUSE_UP, hide_popup)
+        return
+
+    if on_stage(POPUP_INFO):
+        remove(POPUP_INFO)
+
+    actor[POPUP_INFO] = MovieClip()
+    if suggestion_slot[actor_id]:
+        actor[SLOT_SUGGESTION].x = actor[suggestion_slot[actor_id]].x
+        actor[SLOT_SUGGESTION].y = actor[suggestion_slot[actor_id]].y
+        if not on_stage(SLOT_SUGGESTION):
+            add_some(SLOT_SUGGESTION, suggestion_slot[actor_id])
+            actor[SLOT_SUGGESTION].alpha = 0
+            fade_in(SLOT_SUGGESTION)
+
+    tmp_text_format = FontFormat_Popup
+    last_text_height = 0
+
+    popup_width = 0
+    if text_dir == "right":
+        popup_width = 50
+        textX = popup_width
+
+    textY = 10
+
+    for arg in args:
+        process_arg(arg)
+
+    with actor[POPUP_INFO]:
+        for i in range(numChildren):
+            if getChildAt(i).x < 5:
+                dist = 5 - getChildAt(i).x
+
+                for j in range(numChildren):
+                    getChildAt(j).x += dist
+                    if (getChildAt(j).x
+                        + getChildAt(j).width + 5) > popup_width:
+                        popup_width = getChildAt(j).x + getChildAt(j).width + 5
+
+        mouse_enabled = False
+        mouseChildren = False
+        allow_smoothing = True
+        force_smoothing = True
+        smoothing = True
+
+    with actor[POPUP_INFO].graphics:
+        beginFill(0, 0)
+        lineStyle(0, 0, 0)
+        drawRect(0, 0, popup_width, textY)
+        beginFill(CLR_BLACK, 0.8)
+        lineStyle(1, CLR_SFORANGE, 1)
+        drawRect(1, 1, (popup_width - 1), (textY - 1))
+
+    position_popup(evt)
+    add(POPUP_INFO)
+
+
 
 '''
-show_popup = function (evt:MouseEvent):void{
-    var tmpTextField:* = None;
-    var lastTextHeight:* = 0;
-    var ii:* = 0;
-    var dist:* = 0;
-    var evt:* = evt;
-    if (evt.buttonDown){
-        return;
-    };
-    if (actorpopup_stamp[actor_id] != my_stamp){
-        removeEventListener(MouseEvent.MOUSE_OVER, show_popup);
-        removeEventListener(MouseEvent.MOUSE_MOVE, position_popup);
-        removeEventListener(MouseEvent.MOUSE_OUT, hide_popup);
-        removeEventListener(MouseEvent.MOUSE_DOWN, hide_popup);
-        removeEventListener(MouseEvent.MOUSE_UP, hide_popup);
-        return;
-    };
-    if (on_stage(POPUP_INFO)){
-        remove(POPUP_INFO);
-    };
-    actor[POPUP_INFO] = new MovieClip();
-    if (suggestionSlot[actor_id]){
-        actor[SLOT_SUGGESTION].x = actor[suggestionSlot[actor_id]].x;
-        actor[SLOT_SUGGESTION].y = actor[suggestionSlot[actor_id]].y;
-        if (!on_stage(SLOT_SUGGESTION)){
-            AddSome(SLOT_SUGGESTION, suggestionSlot[actor_id]);
-            actor[SLOT_SUGGESTION].alpha = 0;
-            FadeIn(SLOT_SUGGESTION);
-        };
-    };
-    var tmpTextFormat:* = FontFormat_Popup;
-    lastTextHeight = 0;
-    popupWidth = ((text_dir)=="right") ? 50 : 0;
-    if (text_dir == "right"){
-        textX = popupWidth;
-    };
-    textY = 10;
-    i = 0;
-    while (i < args.length) {
-        var processArg:* = function (arg){
-            var iArray:* = 0;
-            var tmpDO:* = None;
-            var arg:* = arg;
-            if ((arg is Array)){
-                iArray = 0;
-                while (iArray < arg.length) {
-                    processArg(arg[iArray]);
-                    iArray = (iArray + 1);
-                };
-            } else {
-                if ((arg is int)){
-                    if (arg < 0){
-                        popupWidth = -(arg);
-                    } else {
-                        if (arg == 0){
-                            textX = ((text_dir)=="right") ? popupWidth : 0;
-                            textY = (textY + (lastTextHeight + 10));
-                        } else {
-                            if (text_dir == "right"){
-                                textX = (popupWidth - arg);
-                            } else {
-                                textX = arg;
-                            };
-                        };
-                    };
-                } else {
-                    if ((arg is TextFormat)){
-                        tmpTextFormat = arg;
-                    } else {
-                        if ((arg is DisplayObject)){
-                            tmpDO = new Bitmap(arg.content.bitmapData.clone());
-                            var _local3 = tmpDO;
-                            with (_local3) {
-                                if (text_dir == "right"){
-                                    if (textX < popupWidth){
-                                        x = (textX - width);
-                                        textX = (textX - (width + 5));
-                                        y = textY;
-                                    } else {
-                                        x = ((popupWidth - 5) - width);
-                                        y = textY;
-                                        textY = (textY + (textHeight + 10));
-                                    };
-                                } else {
-                                    if (textX > 0){
-                                        x = textX;
-                                        textX = (textX + (width + 5));
-                                        y = textY;
-                                    } else {
-                                        x = 5;
-                                        y = textY;
-                                        textY = (textY + (textHeight + 10));
-                                    };
-                                };
-                            };
-                            actor[POPUP_INFO].addChild(tmpDO);
-                        } else {
-                            if ((arg is String)){
-                                arg = arg.split("#").join(chr(13));
-                                tmpTextField = new TextField();
-                                _local3 = tmpTextField;
-                                with (_local3) {
-                                    auto_size = ((text_dir)=="right") ? TextFieldAutoSize.RIGHT : TextFieldAutoSize.LEFT;
-                                    background = False;
-                                    selectable = False;
-                                    embed_fonts = font_embedded;
-                                    default_text_format = tmpTextFormat;
-                                    htmlText = arg;
-                                    lastTextHeight = textHeight;
-                                    if (text_dir == "right"){
-                                        if (textX < popupWidth){
-                                            x = (textX - text_width);
-                                            textX = (textX - (text_width + 5));
-                                            y = textY;
-                                        } else {
-                                            x = ((popupWidth - 5) - text_width);
-                                            y = textY;
-                                            textY = (textY + (textHeight + 10));
-                                        };
-                                    } else {
-                                        if (textX > 0){
-                                            x = textX;
-                                            textX = (textX + (text_width + 5));
-                                            y = textY;
-                                        } else {
-                                            x = 5;
-                                            y = textY;
-                                            textY = (textY + (textHeight + 10));
-                                        };
-                                        if (((x + text_width) + 10) > popupWidth){
-                                            popupWidth = ((x + text_width) + 10);
-                                        };
-                                    };
-                                };
-                                actor[POPUP_INFO].addChild(tmpTextField);
-                            };
-                        };
-                    };
-                };
-            };
-        };
-        processArg(args[i]);
-        i++;
-    };
-    var _local3 = actor[POPUP_INFO];
-    with (_local3) {
-        i = 0;
-        while (i < numChildren) {
-            if (getChildAt(i).x < 5){
-                dist = (5 - getChildAt(i).x);
-                ii = 0;
-                while (ii < numChildren) {
-                    getChildAt(ii).x = (getChildAt(ii).x + dist);
-                    if (((getChildAt(ii).x + getChildAt(ii).width) + 5) > popupWidth){
-                        popupWidth = ((getChildAt(ii).x + getChildAt(ii).width) + 5);
-                    };
-                    ii++;
-                };
-            };
-            i++;
-        };
-        mouse_enabled = False;
-        mouseChildren = False;
-        allow_smoothing = True;
-        force_smoothing = True;
-        smoothing = True;
-    };
-    _local3 = actor[POPUP_INFO].graphics;
-    with (_local3) {
-        beginFill(0, 0);
-        lineStyle(0, 0, 0);
-        drawRect(0, 0, popupWidth, textY);
-        beginFill(CLR_BLACK, 0.8);
-        lineStyle(1, CLR_SFORANGE, 1);
-        drawRect(1, 1, (popupWidth - 1), (textY - 1));
-    };
-    position_popup(evt);
-    add(POPUP_INFO);
-};
+
 position_popup = function (evt:MouseEvent):void{
     var evt:* = evt;
     var _local3 = actor[POPUP_INFO];
     with (_local3) {
-        x = (evt.stageX - int((popupWidth / 2)));
+        x = (evt.stageX - int((popup_width / 2)));
         y = ((evt.stageY - 20) - textY);
         if (x < 0){
             x = 0;
@@ -18756,19 +18713,19 @@ position_popup = function (evt:MouseEvent):void{
         if (y < 0){
             y = 0;
         };
-        if (x > (RES_X - popupWidth)){
-            x = (RES_X - popupWidth);
+        if (x > (RES_X - popup_width)){
+            x = (RES_X - popup_width);
         };
         if (y > (RES_Y - textY)){
             y = (RES_Y - textY);
         };
-        if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popupWidth) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
+        if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popup_width) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
             if (evt.stageY < (textY + 20)){
                 y = (evt.stageY + 40);
             };
-            if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popupWidth) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
-                if (evt.stageX > ((RES_X - popupWidth) - 20)){
-                    x = ((evt.stageX - popupWidth) - 20);
+            if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popup_width) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
+                if (evt.stageX > ((RES_X - popup_width) - 20)){
+                    x = ((evt.stageX - popup_width) - 20);
                 };
             };
         };
@@ -19023,7 +18980,7 @@ def load_language_file():
             "lang/sfgame_",
             lang_code,
             ".txt?rnd=",
-            str(math.random())
+            str(random.random())
         )))
 
     pendingdo_loaders += 1
@@ -19463,9 +19420,9 @@ def configuration_filedo_loaded(evt):
             elif (so.data.img_url_index <= len(img_url)) and (not force_reroll):
                 img_url_index = so.data.img_url_index - 1
             else:
-                img_url_index = int(math.random() * len(img_url))
+                img_url_index = int(random.random() * len(img_url))
         else:
-            img_url_index = int((math.random() * len(img_url)))
+            img_url_index = int((random.random() * len(img_url)))
 
         if so.data.snd_url_index:
             if param_imgsvr > 0:
@@ -19474,9 +19431,9 @@ def configuration_filedo_loaded(evt):
                   and (not force_reroll)):
                 snd_url_index = so.data.snd_url_index - 1
             else:
-                snd_url_index = int(math.random() * len(snd_url))
+                snd_url_index = int(random.random() * len(snd_url))
         else:
-            snd_url_index = int(math.random() * len(snd_url))
+            snd_url_index = int(random.random() * len(snd_url))
 
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
@@ -19629,15 +19586,15 @@ def whendo_loaded_timeout_event():
     if to_error_count == 10:
         old_img_url_index = img_url_index
         if len(img_url) > 1:
-            img_url_index = int(math.random() * len(img_url))
+            img_url_index = int(random.random() * len(img_url))
             while img_url_index == old_img_url_index:
-                img_url_index = int(math.random() * len(img_url))
+                img_url_index = int(random.random() * len(img_url))
 
         old_snd_url_index = snd_url_index
         if len(snd_url) > 1:
-            snd_url_index = int(math.random() * len(snd_url))
+            snd_url_index = int(random.random() * len(snd_url))
             while snd_url_index == old_snd_url_index:
-                snd_url_index = int(math.random() * len(snd_url))
+                snd_url_index = int(random.random() * len(snd_url))
 
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
@@ -19685,15 +19642,15 @@ def loader_error():
     if io_error_count == 10:
         old_img_url_index = img_url_index
         if len(img_url) > 1:
-            img_url_index = int(math.random() * len(img_url))
+            img_url_index = int(random.random() * len(img_url))
             while img_url_index == old_img_url_index:
-                img_url_index = int(math.random() * len(img_url))
+                img_url_index = int(random.random() * len(img_url))
 
         old_snd_url_index = snd_url_index
         if len(snd_url) > 1:
-            snd_url_index = int(math.random() * len(snd_url))
+            snd_url_index = int(random.random() * len(snd_url))
             while snd_url_index == old_snd_url_index:
-                snd_url_index = int(math.random() * len(snd_url))
+                snd_url_index = int(random.random() * len(snd_url))
 
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
@@ -19712,9 +19669,9 @@ def pixel_success():
             or (pixel_data.lower().substr(0, 8) == "https://")):
         ExternalInterface.call("loadpixel", pixel_data)
 
-    # pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    # pixeldo_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    # pixeldo_loader.removeEventListener(
+    # pixeldo_loader.remove_event_listener(Event.COMPLETE, pixel_success)
+    # pixeldo_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
+    # pixeldo_loader.remove_event_listener(
     #     SecurityErrorEvent.SECURITY_ERROR, pixel_failed
     # )
 
@@ -19723,9 +19680,9 @@ def pixel_failed():
     '''
         TODO: Obsolete?
     '''
-    #pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    #pixeldo_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    #pixeldo_loader.removeEventListener(
+    #pixeldo_loader.remove_event_listener(Event.COMPLETE, pixel_success)
+    #pixeldo_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
+    #pixeldo_loader.remove_event_listener(
     #    SecurityErrorEvent.SECURITY_ERROR, pixel_failed
     #)
     pass
@@ -19750,13 +19707,13 @@ def load_tracking_pixel(url=''):
     else:
         url = url + "&random="
 
-    url += str(int((math.random() * 100000)))
+    url += str(int((random.random() * 100000)))
     url += ("&had_account=") + int(had_account)
 
     if param_reload_pixel:
-        LOG.debug("Tracking Pixel Reload Mode for:", url)
-        LOG.debug("CID userd", param_cid)
-        LOG.debug("Action", act)
+        LOG.debug("Tracking Pixel Reload Mode for: " + url)
+        LOG.debug("CID userd " + param_cid)
+        LOG.debug("Action " + act)
 
         #req = new URLRequest("index.php")
         #req.method = URLRequestMethod.POST
@@ -20903,7 +20860,7 @@ def load_tracking_pixel(url=''):
                 };
                 if (
                     (((CityAniFrame == 3))
-                    and ((int((math.random() * 2)) == 0)))
+                    and ((int((random.random() * 2)) == 0)))
                 ){
                     if (get_child_by_name(actor[CITY_ORK1].name)){
                         remove(CITY_ORK1);
@@ -20927,7 +20884,7 @@ def load_tracking_pixel(url=''):
                 };
                 if (
                     (((((CityAniFrame == 2))
-                    and ((int((math.random() * 2)) == 0))))
+                    and ((int((random.random() * 2)) == 0))))
                     and (get_child_by_name(actor[CITY_ZWERG1].name)))
                 ){
                     remove(CITY_ZWERG1);
@@ -20967,7 +20924,7 @@ def load_tracking_pixel(url=''):
                         if (on_stage(LBL['ERROR'])){
                             add(LBL['ERROR']);
                         };
-                        if (int((math.random() * 8)) == 0){
+                        if (int((random.random() * 8)) == 0){
                             SandwichPause = 4;
                         };
                     };
@@ -21003,7 +20960,7 @@ def load_tracking_pixel(url=''):
                 } else {
                     if (
                         ((on_stage(CITY_MAGIER1))
-                        and ((int((math.random() * 15)) == 0)))
+                        and ((int((random.random() * 15)) == 0)))
                     ){
                         ZwergFussTapp = 6;
                     };
@@ -21045,7 +21002,7 @@ def load_tracking_pixel(url=''):
                 or (on_stage(CA_SCR_INVITE_BLOCKCITY)))
             ){
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(
+                SchildTimer.remove_event_listener(
                     TimerEvent.TIMER, SchildFrame
                 );
                 return;
@@ -21063,13 +21020,13 @@ def load_tracking_pixel(url=''):
             if ((((iFrame < 0)) and ((SchildDir < 0)))){
                 iFrame = -1;
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(TimerEvent.TIMER, SchildFrame);
+                SchildTimer.remove_event_listener(TimerEvent.TIMER, SchildFrame);
                 return;
             };
             if ((((iFrame >= 3)) and ((SchildDir > 0)))){
                 iFrame = 3;
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(
+                SchildTimer.remove_event_listener(
                     TimerEvent.TIMER, SchildFrame
                 );
                 return;
@@ -21115,7 +21072,7 @@ def load_tracking_pixel(url=''):
         };
         HideDealerEyes = function ():void{
             DealerStepTimer.stop();
-            DealerStepTimer.removeEventListener(TimerEvent.TIMER, DealerStep);
+            DealerStepTimer.remove_event_listener(TimerEvent.TIMER, DealerStep);
         };
         var DealerAni:* = function (evt:Event):void{
             if (
@@ -21127,7 +21084,7 @@ def load_tracking_pixel(url=''):
                     DealerStepTimer.add_event_listener(
                         TimerEvent.TIMER, DealerStep
                     );
-                    if (int((math.random() * 5)) == 0){
+                    if (int((random.random() * 5)) == 0){
                         DealerAniStep = 5;
                     } else {
                         DealerAniStep = 1;
@@ -21136,7 +21093,7 @@ def load_tracking_pixel(url=''):
                 };
             } else {
                 DealerStepTimer.stop();
-                DealerStepTimer.removeEventListener(
+                DealerStepTimer.remove_event_listener(
                     TimerEvent.TIMER, DealerStep
                 );
             };
@@ -21196,7 +21153,7 @@ def load_tracking_pixel(url=''):
                 };
                 if (DealerAniStep == 0){
                     DealerStepTimer.stop();
-                    DealerStepTimer.removeEventListener(
+                    DealerStepTimer.remove_event_listener(
                         TimerEvent.TIMER, DealerStep
                     );
                     return;
@@ -21212,14 +21169,14 @@ def load_tracking_pixel(url=''):
         };
         HideArenaOno = function ():void{
             if (OnoTimer){
-                OnoTimer.removeEventListener(TimerEvent.TIMER, PopupArenaOno);
+                OnoTimer.remove_event_listener(TimerEvent.TIMER, PopupArenaOno);
             };
-            OnoPopupTimer.removeEventListener(TimerEvent.TIMER, StepArenaOno);
+            OnoPopupTimer.remove_event_listener(TimerEvent.TIMER, StepArenaOno);
             remove(ThisOno);
         };
         PopupArenaOno = function (evt:Event=None):void{
             while (ThisOno == LastOno) {
-                ThisOno = (CITY_ARENA_ONO1 + int((math.random() * 4)));
+                ThisOno = (CITY_ARENA_ONO1 + int((random.random() * 4)));
             };
             LastOno = ThisOno;
             OnoPopupTimer.add_event_listener(TimerEvent.TIMER, StepArenaOno);
@@ -21234,7 +21191,7 @@ def load_tracking_pixel(url=''):
                 if (actor[ThisOno].alpha <= 0){
                     PopupDir = False;
                     remove(ThisOno);
-                    OnoPopupTimer.removeEventListener(
+                    OnoPopupTimer.remove_event_listener(
                         TimerEvent.TIMER, StepArenaOno
                     );
                 };
@@ -21693,7 +21650,7 @@ def load_tracking_pixel(url=''):
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        removeEventListener(TimerEvent.TIMER, DoPushBoostBtn);
+                        remove_event_listener(TimerEvent.TIMER, DoPushBoostBtn);
                     };
                 } else {
                     ClickCount++;
@@ -21748,7 +21705,7 @@ def load_tracking_pixel(url=''):
                         SetAlpha(CHAR_PREISE, 1);
                         SetAlpha(CHAR_SECONDPROP, 0);
                     } else {
-                        FadeIn(CHAR_PREISE, 20, 0.2);
+                        fade_in(CHAR_PREISE, 20, 0.2);
                         fade_out(CHAR_SECONDPROP, 20, 0.2);
                     };
                 } else {
@@ -21766,7 +21723,7 @@ def load_tracking_pixel(url=''):
                             if (on_stage(POPUP_INFO)){
                                 add(POPUP_INFO);
                             };
-                            FadeIn(CHAR_SECONDPROP, 20, 0.2);
+                            fade_in(CHAR_SECONDPROP, 20, 0.2);
                         };
                     };
                 };
@@ -22098,7 +22055,7 @@ def load_tracking_pixel(url=''):
         ShowTowerBoostPrices = function (evt:MouseEvent){
             var i:int;
             towerBoostPriceFadeoutTimer.stop();
-            FadeIn(TOWER_BOOSTPRICE);
+            fade_in(TOWER_BOOSTPRICE);
             tower_levelLabelPos = (SCR_CHAR_CHARX + 3);
             tower_levelLabelTimer.start();
         };
@@ -22208,7 +22165,7 @@ def load_tracking_pixel(url=''):
             if (on_stage(SCR_SHAKES_BG)){
                 ShakesBlinzeln++;
                 if (ShakesBlinzeln > 73){
-                    ShakesBlinzeln = int((math.random() * 30));
+                    ShakesBlinzeln = int((random.random() * 30));
                     WasPassiert = True;
                     ShakesAugenZu = 0;
                 } else {
@@ -22298,8 +22255,8 @@ def load_tracking_pixel(url=''):
                     AffeBlinzeln++;
                     FidgetBlinzeln++;
                     if (AffeBlinzeln > 73){
-                        AffeBlinzeln = int((math.random() * 30));
-                        if (int((math.random() * 2)) == 1){
+                        AffeBlinzeln = int((random.random() * 30));
+                        if (int((random.random() * 2)) == 1){
                             AffeStep = 1;
                             WasPassiert = True;
                         } else {
@@ -22313,7 +22270,7 @@ def load_tracking_pixel(url=''):
                         };
                     };
                     if (FidgetBlinzeln > 73){
-                        FidgetBlinzeln = int((math.random() * 30));
+                        FidgetBlinzeln = int((random.random() * 30));
                         FidgetAugenZu = False;
                         WasPassiert = True;
                     } else {
@@ -22377,7 +22334,7 @@ def load_tracking_pixel(url=''):
             var evt:* = evt;
             RerollReset = function (evt:Event){
                 BlockReroll = False;
-                RerollResetTimer.removeEventListener(
+                RerollResetTimer.remove_event_listener(
                     TimerEvent.TIMER, RerollReset
                 );
             };
@@ -22509,7 +22466,7 @@ def load_tracking_pixel(url=''):
                             : (actor_id - CA_STALL_BOX_BOESE1)) + 1
                     );
             };
-            AddSome(LBL_STALL_LAUFZEIT, STALL_BUY);
+            add_some(LBL_STALL_LAUFZEIT, STALL_BUY);
             SetCnt(STALL_MUSH, IF_PILZE);
             SetCnt(STALL_GOLD, IF_GOLD);
             SetCnt(STALL_SCHATZGOLD, IF_GOLD);
@@ -22559,7 +22516,7 @@ def load_tracking_pixel(url=''):
                     ) + 10);
                 };
                 if (gold_anteil(stundenlohn) > 0){
-                    AddSome(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD);
+                    add_some(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD);
                     actor[LBL_STALL_SCHATZGOLD].text = str(
                         gold_anteil(stundenlohn)
                     );
@@ -22582,7 +22539,7 @@ def load_tracking_pixel(url=''):
                     };
                 };
                 if (silber_anteil(stundenlohn) > 0){
-                    AddSome(LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER);
+                    add_some(LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER);
                     actor[LBL_STALL_SCHATZSILBER].text = str(
                         silber_anteil(stundenlohn)
                     );
@@ -22708,7 +22665,7 @@ def load_tracking_pixel(url=''):
                 if (GoldKosten > int((savegame[SG_GOLD] / 100))){
                     remove(STALL_BUY);
                 };
-                AddSome(LBL_STALL_GOLD, STALL_GOLD);
+                add_some(LBL_STALL_GOLD, STALL_GOLD);
                 actor[LBL_STALL_GOLD].text = str(GoldKosten);
                 actor[STALL_GOLD].x = (
                     (actor[LBL_STALL_GOLD].x
@@ -22719,7 +22676,7 @@ def load_tracking_pixel(url=''):
                 if (PilzKosten > int(savegame[SG_MUSH])){
                     remove(STALL_BUY);
                 };
-                AddSome(LBL_STALL_MUSH, STALL_MUSH);
+                add_some(LBL_STALL_MUSH, STALL_MUSH);
                 actor[LBL_STALL_MUSH].text = str(PilzKosten);
                 if (GoldKosten > 0){
                     actor[LBL_STALL_MUSH].x = (
@@ -23135,25 +23092,25 @@ def load_tracking_pixel(url=''):
                 i = 0;
                 while (i < len(actor)) {
                     myFlt = [new ColorMatrixFilter(
-                        [math.random(),
-                        math.random(), 0, 0, 0, 0,
-                        math.random(), math.random(), 0, 0,
-                        math.random(), 0, math.random(),
+                        [random.random(),
+                        random.random(), 0, 0, 0, 0,
+                        random.random(), random.random(), 0, 0,
+                        random.random(), 0, random.random(),
                         0, 0, 0, 0, 0,
-                        ((math.random() * 0.5) + 0.5), 0]),
-                        new BlurFilter((10 * math.random()),
-                        (10 * math.random()), 1)
+                        ((random.random() * 0.5) + 0.5), 0]),
+                        new BlurFilter((10 * random.random()),
+                        (10 * random.random()), 1)
                         ];
                     if ((actor[i] is DisplayObject)){
                         actor[i].filters = myFlt;
                         actor[i].scaleX = (
-                            actor[i].scaleX * (1.1 - (math.random() * 0.2))
+                            actor[i].scaleX * (1.1 - (random.random() * 0.2))
                         );
                         actor[i].scaleY = (
-                            actor[i].scaleY * (1.1 - (math.random() * 0.2))
+                            actor[i].scaleY * (1.1 - (random.random() * 0.2))
                         );
-                        actor[i].x = (actor[i].x + (2 - (math.random() * 4)));
-                        actor[i].y = (actor[i].y + (2 - (math.random() * 4)));
+                        actor[i].x = (actor[i].x + (2 - (random.random() * 4)));
+                        actor[i].y = (actor[i].y + (2 - (random.random() * 4)));
                     };
                     i++;
                 };
@@ -23445,7 +23402,7 @@ def load_tracking_pixel(url=''):
                             crestMoveTimer.start();
                             SetAlpha(GILDE_CREST_CONTROLS, 0);
                             add(GILDE_CREST_CONTROLS);
-                            FadeIn(GILDE_CREST_CONTROLS);
+                            fade_in(GILDE_CREST_CONTROLS);
                         };
                     };
                     selecterCrestElement = (get_actor_id(evt.target) - CLA_GILDE_CREST);
@@ -23571,7 +23528,7 @@ def load_tracking_pixel(url=''):
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        removeEventListener(TimerEvent.TIMER, DoPushHutBtn);
+                        remove_event_listener(TimerEvent.TIMER, DoPushHutBtn);
                     };
                 } else {
                     ClickCount++;
@@ -23640,7 +23597,7 @@ def load_tracking_pixel(url=''):
                 };
             };
             remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
-            AddSome(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
+            add_some(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
             Switch (get_actor_id(evt.target)){
                 if case(HUTMANN_GOLDBET:
                     if (int((int(savegame[SG_GOLD]) / 100)) > int(actor[LBL_HUTMANN_GOLDBET2].text)){
@@ -25788,9 +25745,9 @@ def load_tracking_pixel(url=''):
         define_bunch(SCREEN_SHAKES, SCR_SHAKES_BG, SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3, SHAKES_DAY, SHAKES_BLINZELN1, SHAKES_BLINZELN2, SHAKES_NIGHT, IF_OVL, SHOPS_NEWWAREZ, CA_SCR_CHAR_EXPBAR, IF_EXIT);
         DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png", False, (SCR_SHOP_BG_X - 65), (100 + 210));
         DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png", False, (SCR_SHOP_BG_X + 200), (100 + 250));
-        AffeBlinzeln = int((math.random() * 30));
-        FidgetBlinzeln = int((math.random() * 30));
-        ShakesBlinzeln = int((math.random() * 30));
+        AffeBlinzeln = int((random.random() * 30));
+        FidgetBlinzeln = int((random.random() * 30));
+        ShakesBlinzeln = int((random.random() * 30));
         ShakesIdleStep = 0;
         ShakesIdlePhase = 0;
         WasIdleCount = 0;
@@ -26724,7 +26681,7 @@ def load_tracking_pixel(url=''):
         hide(CA_TV);
         add_bunch(SCREEN_TAVERNE, CA_TV);
         cursedDescr = "Fliegende";
-        if (int((math.random() * 100)) == 0){
+        if (int((random.random() * 100)) == 0){
             cursedDescr = "Verfluchte";
         };
         enable_popup(CA_TV, POPUP_BEGIN_LINE, texts[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[TXT_TV_HINT].split("|")[1].split("#").join(chr(13)), POPUP_END_LINE);
@@ -27355,7 +27312,7 @@ def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:
             add(imgActorID);
         };
         if (ovlActorID != C_EMPTY){
-            VisibleToFront(ovlActorID);
+            visible_to_front(ovlActorID);
         };
         if (!stayPut){
             add(actor_id);
@@ -27754,22 +27711,6 @@ def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=Fals
     };
 }
 
-def play(actor_id:int, endless:Boolean=False):void{
-    var SoundLoaded:* = None;
-    var actor_id:* = actor_id;
-    var endless:Boolean = endless;
-    if (actorLoaded[actor_id] == 2){
-        actor[actor_id].play(0, ((endless) ? 30000 : 0), stObject);
-    } else {
-        SoundLoaded = function (evt:Event){
-            trc((("Sound " + actor_id) + " geladen."));
-            actor[actor_id].play(0, ((endless) ? 30000 : 0), stObject);
-        };
-        trc((("Warnung: Sound " + actor_id) + " nicht geladen! Wird geladen..."));
-        actor[actor_id].add_event_listener(Event.COMPLETE, SoundLoaded);
-        load(actor_id);
-    };
-}
 
 def AddBMO(bunch_id:int, offset:int){
     var i:int;
@@ -28481,7 +28422,7 @@ def getRandomCrest(){
     result = list();
     i = 0;
     while (i < crestElementPos.length) {
-        result.append(int((math.random() * crestElementPos[i][4])));
+        result.append(int((random.random() * crestElementPos[i][4])));
         i++;
     };
     return (result);
@@ -28727,7 +28668,7 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function)
             fnClick(tmpEvt);
             fnDoubleClick(evt);
             dblClickTimer.stop();
-            dblClickTimer.removeEventListener(TimerEvent.TIMER, dblClickTimerEvent);
+            dblClickTimer.remove_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
             waiting = False;
         } else {
             tmpEvt = evt;
@@ -28738,7 +28679,7 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function)
     };
     dblClickTimerEvent = function (evt:TimerEvent){
         waiting = False;
-        dblClickTimer.removeEventListener(TimerEvent.TIMER, dblClickTimerEvent);
+        dblClickTimer.remove_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
         fnClick(tmpEvt);
     };
     dblClickTimer = new Timer(300, 1);
@@ -29182,7 +29123,7 @@ def AnimateAch(actor_id:int, y_level:int=635, AchAniPow:Number=-10){
                 AchAniPow = (AchAniPow * -0.5);
                 if (math.abs(AchAniPow) <= 3){
                     y = y_level;
-                    AchAniTimer.removeEventListener(TimerEvent.TIMER, AchAniEvent);
+                    AchAniTimer.remove_event_listener(TimerEvent.TIMER, AchAniEvent);
                     AchAniTimer.stop();
                     return;
                 };
@@ -29359,7 +29300,7 @@ def CheckWrongPage(correctAct:int){
 }
 
 def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
-    var tmpTextFormat:* = None;
+    var tmp_text_format:* = None;
     var actor_id:* = actor_id;
     var child:int = child;
     var createHandler:Boolean = createHandler;
@@ -29369,15 +29310,15 @@ def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
     if (text_dir != "right"){
         return;
     };
-    tmpTextFormat = actor[actor_id].getChildAt(child).default_text_format;
-    tmpTextFormat.align = "right";
+    tmp_text_format = actor[actor_id].getChildAt(child).default_text_format;
+    tmp_text_format.align = "right";
     if (!actor[actor_id].hasHandler){
         if (createHandler){
             actor[actor_id].hasHandler = True;
         };
     };
-    actor[actor_id].getChildAt(child).default_text_format = tmpTextFormat;
-    actor[actor_id].getChildAt(child).setTextFormat(tmpTextFormat);
+    actor[actor_id].getChildAt(child).default_text_format = tmp_text_format;
+    actor[actor_id].getChildAt(child).setTextFormat(tmp_text_format);
 }
 
 def display_inventory(SG:Array=None, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
@@ -30033,10 +29974,10 @@ def ItemPopup(slot_id:int, sgIndex:int, SG:Array=None, HideBackPack:Boolean=Fals
         };
         i = 0;
         while (i < 10) {
-            suggestionSlot[slot_id] = 0;
+            suggestion_slot[slot_id] = 0;
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == CorrectItemType[i]){
                 if ((((slot_id >= CHAR_SLOT_11)) and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
-                    suggestionSlot[slot_id] = (i + CHAR_SLOT_1);
+                    suggestion_slot[slot_id] = (i + CHAR_SLOT_1);
                     if (SG[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i)) + SG_ITM_TYP)] > 0){
                         if (((compare_items) and (!(towerMode)))){
                             compareIndex = (SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i));
@@ -31077,7 +31018,7 @@ def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0, isM
             PositionModifyCharacterButtons();
             if (!on_stage(CREATE_CHARACTER)){
                 remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE, KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT, CREATE_CHARACTER, BLACK_SQUARE);
-                AddSome(MODIFY_CHARACTER, IF_EXIT);
+                add_some(MODIFY_CHARACTER, IF_EXIT);
             };
         };
         return;
@@ -31233,8 +31174,8 @@ def getCharSuffix(itemIndex:int, itemValue:int):String{
 }
 
 def RandomizeCharacter(evt:Event=None):void{
-    char_volk = (int((math.random() * 8)) + 1);
-    char_male = (math.random() > 0.5);
+    char_volk = (int((random.random() * 8)) + 1);
+    char_male = (random.random() > 0.5);
     if (param_obj["playerclass"]){
         char_class = int(param_obj["playerclass"]);
         if (char_class < 1){
@@ -31245,7 +31186,7 @@ def RandomizeCharacter(evt:Event=None):void{
         };
         KlasseGewählt = True;
     } else {
-        char_class = (int((math.random() * 3)) + 1);
+        char_class = (int((random.random() * 3)) + 1);
         KlasseGewählt = False;
     };
     RandomizeCharImage();
@@ -31259,16 +31200,16 @@ def RandomizeCharImage(evt:Event=None):void{
         };
         return (0);
     };
-    char_color = int(((math.random() * getCharImageBound(char_volk, char_male, 10)) + 1));
-    char_mouth = int(((math.random() * getCharImageBound(char_volk, char_male, 1)) + 1));
-    char_beard = (int(((math.random() * getCharImageBound(char_volk, char_male, 2)) + 1)) + ColorOffset(C_BEARD));
-    char_nose = int(((math.random() * getCharImageBound(char_volk, char_male, 3)) + 1));
-    char_eyes = int(((math.random() * getCharImageBound(char_volk, char_male, 4)) + 1));
-    char_brows = (int(((math.random() * getCharImageBound(char_volk, char_male, 5)) + 1)) + ColorOffset(C_BROWS));
-    char_ears = int(((math.random() * getCharImageBound(char_volk, char_male, 6)) + 1));
-    char_hair = (int(((math.random() * getCharImageBound(char_volk, char_male, 7)) + 1)) + ColorOffset(C_HAIR));
-    char_special = int(((math.random() * getCharImageBound(char_volk, char_male, 8)) + 1));
-    char_special2 = (int(((math.random() * getCharImageBound(char_volk, char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
+    char_color = int(((random.random() * getCharImageBound(char_volk, char_male, 10)) + 1));
+    char_mouth = int(((random.random() * getCharImageBound(char_volk, char_male, 1)) + 1));
+    char_beard = (int(((random.random() * getCharImageBound(char_volk, char_male, 2)) + 1)) + ColorOffset(C_BEARD));
+    char_nose = int(((random.random() * getCharImageBound(char_volk, char_male, 3)) + 1));
+    char_eyes = int(((random.random() * getCharImageBound(char_volk, char_male, 4)) + 1));
+    char_brows = (int(((random.random() * getCharImageBound(char_volk, char_male, 5)) + 1)) + ColorOffset(C_BROWS));
+    char_ears = int(((random.random() * getCharImageBound(char_volk, char_male, 6)) + 1));
+    char_hair = (int(((random.random() * getCharImageBound(char_volk, char_male, 7)) + 1)) + ColorOffset(C_HAIR));
+    char_special = int(((random.random() * getCharImageBound(char_volk, char_male, 8)) + 1));
+    char_special2 = (int(((random.random() * getCharImageBound(char_volk, char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
     LoadCharacterImage();
 }
 
@@ -31733,7 +31674,7 @@ def DrachenSetzen():void{
         x = actor[i].x;
         y = actor[i].y;
         delete actor[i];
-        d = (math.random() * 5);
+        d = (random.random() * 5);
         actorBitmap[i] = d;
         Switch (d){
             if case(0:

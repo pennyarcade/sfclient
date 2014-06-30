@@ -1,0 +1,14 @@
+doc-warnings: yes
+test-warnings: no
+strictness: veryhigh
+max-line-length: 80
+#uses:
+#    - django
+#    - celery
+autodetect: yes
+ignore-paths:
+    - resources
+    - metrics
+#ignore-patterns:
+#    - ^example/doc_.*\.py$
+#    - (^|/)docs(/|$)

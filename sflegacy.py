@@ -9,6 +9,77 @@
     Module for obsolete legacy stuff
 '''
 
+class Sound(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class Loader(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class Bitmap(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class MouseEvent(object):
+    '''
+        obsolete with cli?
+    '''
+    MOUSE_UP = None
+    MOUSE_DOWN = None
+    MOUSE_OVER = None
+    MOUSE_MOVE = None
+    MOUSE_OUT = None
+    CLICK = None
+
+
+class Timer(object):
+    '''
+        obsolete with cli?
+    '''
+    TIMER = None
+    start = None
+
+    def add_event_listener():
+        pass
+
+
+class TimerEvent(object):
+    '''
+        obsolete with cli?
+    '''
+    TIMER = None
+
+
+class KeyboardEvent(object):
+    '''
+        obsolete with cli?
+    '''
+    keyCode = None
+
+
+class ExternalInterface(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class SharedObject(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
 
 def get_quest_bg():
     '''
