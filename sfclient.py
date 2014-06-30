@@ -28670,7 +28670,8 @@ def ArbeitenSliderChange(value:int):void{
     };
 }
 
-def DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function){
+def DoubleClickHandler(dispObj:Object, fnClick:Function,
+                       fnDoubleClick:Function){
     var dblClickTimer:* = None;
     var waiting:* = False;
     var tmpEvt:* = None;
@@ -29336,7 +29337,9 @@ def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
     actor[actor_id].getChildAt(child).setTextFormat(tmp_text_format);
 }
 
-def display_inventory(SG:Array=None, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
+def display_inventory(SG:Array=None, NoPrices:Boolean=False,
+                      towerMode:Boolean=False, copyCatIdRaw:int=0,
+                      witchMode:Boolean=False):void{
     var i:* = 0;
     var ii:* = 0;
     var HideBackPack:* = False;
@@ -29884,7 +29887,9 @@ def display_inventory(SG:Array=None, NoPrices:Boolean=False, towerMode:Boolean=F
     };
 }
 
-def ItemPopup(slot_id:int, sgIndex:int, SG:Array=None, HideBackPack:Boolean=False, NoPrices:Boolean=False, towerMode:Boolean=False, witchMode:Boolean=False){
+def ItemPopup(slot_id:int, sgIndex:int, SG:Array=None,
+              HideBackPack:Boolean=False, NoPrices:Boolean=False,
+              towerMode:Boolean=False, witchMode:Boolean=False){
     var attribLines:Array;
     var shopLines:Array;
     var i:int;
@@ -30269,7 +30274,8 @@ def get_hl_index(inStr:String):int{
     return (int(decode_chat(inStr, True)));
 }
 
-def decode_chat(inStr:String, getHLMode:Boolean=False, getGBMode:Boolean=False):String{
+def decode_chat(inStr:String, getHLMode:Boolean=False,
+                getGBMode:Boolean=False):String{
     var namePart:String;
     var timePart:String;
     var crestStr:String;
@@ -30509,7 +30515,8 @@ def decode_chat(inStr:String, getHLMode:Boolean=False, getGBMode:Boolean=False):
     return (inStr);
 }
 
-def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1, isWhisper:Boolean=False){
+def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1,
+              isWhisper:Boolean=False){
     var i:* = 0;
     var nextLine:* = None;
     var line:* = line;
@@ -30956,11 +30963,13 @@ def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0,
     var isHair:int = isHair;
     var isSpecial:int = isSpecial;
     var isSpecial2:int = isSpecial2;
-    var LoadCharacterItemImage:* = function (localActorID:int, parURL:String, itemIndex:int):void{
+    var LoadCharacterItemImage:* = function (localActorID:int,
+                                             parURL:String, itemIndex:int):
         var newLoad:Boolean;
         var url:String;
         url = (img_url[img_url_index] + parURL);
-        if ((((itemIndex > 0)) and ((getCharImageBound(isVolk, isMann, itemIndex) == 0)))){
+        if ((((itemIndex > 0)) and ((getCharImageBound(isVolk,
+            isMann, itemIndex) == 0)))){
             url = (img_url[img_url_index] + "res/gfx/empty.png");
         };
         newLoad = !((actorURL[localActorID] == url));
@@ -30977,31 +30986,45 @@ def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0,
             with (_local16) {
                 text = texts[((TXT_RACENAME + char_volk) - 1)];
                 if (text_dir == "right"){
-                    x = ((actor[LBL_CREATE_RACE_DESC].x + actor[LBL_CREATE_RACE_DESC].width) - text_width);
+                    x = ((actor[LBL_CREATE_RACE_DESC].x
+                         + actor[LBL_CREATE_RACE_DESC].width) - text_width);
                 };
             };
             _local16 = actor[LBL_CREATE_RACE_DESC];
             with (_local16) {
                 text = texts[((TXT_RACEDESC + char_volk) - 1)];
-                y = ((actor[LBL_CREATE_RACE].y + actor[LBL_CREATE_RACE].textHeight) + BUILDCHAR_LINES_Y);
+                y = ((actor[LBL_CREATE_RACE].y
+                     + actor[LBL_CREATE_RACE].textHeight) + BUILDCHAR_LINES_Y);
             };
             arabize(LBL_CREATE_RACE_DESC);
             _local16 = actor[LBL_CREATE_CLASS];
             with (_local16) {
-                text = texts[((KlasseGewählt) ? ((TXT_CLASSNAME + char_class) - 1) : TXT_NOCLASS)];
-                y = ((actor[LBL_CREATE_RACE_DESC].y + actor[LBL_CREATE_RACE_DESC].textHeight) + BUILDCHAR_LINES_Y);
+                text = texts[((KlasseGewählt)
+                              ? ((TXT_CLASSNAME + char_class) - 1)
+                              : TXT_NOCLASS)];
+                y = ((actor[LBL_CREATE_RACE_DESC].y
+                     + actor[LBL_CREATE_RACE_DESC].textHeight)
+                     + BUILDCHAR_LINES_Y);
                 if (text_dir == "right"){
-                    x = ((actor[LBL_CREATE_RACE_DESC].x + actor[LBL_CREATE_RACE_DESC].width) - text_width);
+                    x = ((actor[LBL_CREATE_RACE_DESC].x
+                         + actor[LBL_CREATE_RACE_DESC].width) - text_width);
                 };
             };
             _local16 = actor[LBL_CREATE_CLASS_DESC];
             with (_local16) {
-                text = texts[((KlasseGewählt) ? ((TXT_CLASSDESC + char_class) - 1) : TXT_NOCLASS_DESC)];
-                y = ((actor[LBL_CREATE_CLASS].y + actor[LBL_CREATE_CLASS].textHeight) + BUILDCHAR_LINES_Y);
+                text = texts[((KlasseGewählt)
+                              ? ((TXT_CLASSDESC + char_class) - 1)
+                              : TXT_NOCLASS_DESC)];
+                y = ((actor[LBL_CREATE_CLASS].y +
+                     actor[LBL_CREATE_CLASS].textHeight)
+                    + BUILDCHAR_LINES_Y);
             };
             arabize(LBL_CREATE_CLASS_DESC);
         };
-        LoadCharacterImage(CHARBACKGROUND, loadOnly, char_volk, char_male, char_class, char_mouth, char_beard, char_nose, char_eyes, char_brows, char_ears, char_hair, char_special, char_special2);
+        LoadCharacterImage(CHARBACKGROUND, loadOnly, char_volk, char_male,
+                           char_class, char_mouth, char_beard, char_nose,
+                           char_eyes, char_brows, char_ears, char_hair,
+                           char_special, char_special2);
         if (on_stage(SCR_BUILDCHAR_BACKGROUND)){
             remove(VOLK_BTNS_ALL);
             add(F_IDLE);
@@ -31036,22 +31059,34 @@ def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0,
             };
             PositionModifyCharacterButtons();
             if (!on_stage(CREATE_CHARACTER)){
-                remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE, KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT, CREATE_CHARACTER, BLACK_SQUARE);
+                remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE,
+                       KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT,
+                       CREATE_CHARACTER, BLACK_SQUARE);
                 add_some(MODIFY_CHARACTER, IF_EXIT);
             };
         };
         return;
     };
-    LoadCharacterItemImage(actor_id, (charPrefix + getCharSuffix(0, isKaste)), 0);
-    LoadCharacterItemImage((actor_id + 1), (charPrefix + getCharSuffix(1, isMouth)), 1);
-    LoadCharacterItemImage((actor_id + 2), (charPrefix + getCharSuffix(2, isBeard)), 2);
-    LoadCharacterItemImage((actor_id + 3), (charPrefix + getCharSuffix(3, isNose)), 3);
-    LoadCharacterItemImage((actor_id + 4), (charPrefix + getCharSuffix(4, isEyes)), 4);
-    LoadCharacterItemImage((actor_id + 5), (charPrefix + getCharSuffix(5, isBrows)), 5);
-    LoadCharacterItemImage((actor_id + 6), (charPrefix + getCharSuffix(6, isEars)), 6);
-    LoadCharacterItemImage((actor_id + 7), (charPrefix + getCharSuffix(7, isHair)), 7);
-    LoadCharacterItemImage((actor_id + 8), (charPrefix + getCharSuffix(8, isSpecial)), 8);
-    LoadCharacterItemImage((actor_id + 9), (charPrefix + getCharSuffix(9, isSpecial2)), 9);
+    LoadCharacterItemImage(actor_id,
+                           (charPrefix + getCharSuffix(0, isKaste)), 0);
+    LoadCharacterItemImage((actor_id + 1),
+                           (charPrefix + getCharSuffix(1, isMouth)), 1);
+    LoadCharacterItemImage((actor_id + 2),
+                           (charPrefix + getCharSuffix(2, isBeard)), 2);
+    LoadCharacterItemImage((actor_id + 3),
+                           (charPrefix + getCharSuffix(3, isNose)), 3);
+    LoadCharacterItemImage((actor_id + 4),
+                           (charPrefix + getCharSuffix(4, isEyes)), 4);
+    LoadCharacterItemImage((actor_id + 5),
+                           (charPrefix + getCharSuffix(5, isBrows)), 5);
+    LoadCharacterItemImage((actor_id + 6),
+                           (charPrefix + getCharSuffix(6, isEars)), 6);
+    LoadCharacterItemImage((actor_id + 7),
+                           (charPrefix + getCharSuffix(7, isHair)), 7);
+    LoadCharacterItemImage((actor_id + 8),
+                           (charPrefix + getCharSuffix(8, isSpecial)), 8);
+    LoadCharacterItemImage((actor_id + 9),
+                           (charPrefix + getCharSuffix(9, isSpecial2)), 9);
     actorOffset = (actor_id - CHARBACKGROUND);
     if (!loadOnly){
         add((CHARIMG + actorOffset));
@@ -31783,7 +31818,9 @@ def InterfaceBtnHandler(evt:Event):void{
             tmpAction = ACT_SCREEN_PILZDEALER;
             break;
         if case(FIGHT_OK:
-            tmpAction = ((post_fight_mode) ? ACT_SCREEN_POST : ACT['SCREEN']['CHAR']);
+            tmpAction = ((post_fight_mode)
+                         ? ACT_SCREEN_POST
+                         : ACT['SCREEN']['CHAR']);
             if (hasFoughtGuildBattle){
                 if (tower_fight_mode){
                     tmpAction = ACT_SCREEN_TOWER;
