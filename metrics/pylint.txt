@@ -1166,15 +1166,6 @@ R:143, 0: Too few public methods (0/2) (too-few-public-methods)
 R:150, 0: Too few public methods (0/2) (too-few-public-methods)
 C:172, 4: Invalid method name "getLocal" (invalid-name)
 R:168, 0: Too few public methods (1/2) (too-few-public-methods)
-W:193,20: Unused argument 'quest_id' (unused-argument)
-W:207,19: Unused argument 'quest_id' (unused-argument)
-W:221,31: Unused argument 'random_range' (unused-argument)
-W:221,21: Unused argument 'quest_id' (unused-argument)
-W:221,45: Unused argument 'random_mod' (unused-argument)
-W:260,19: Unused argument 'str_save_game' (unused-argument)
-W:260,60: Unused argument 'no_spoil' (unused-argument)
-W:260,34: Unused argument 'fill_face_variables' (unused-argument)
-W:459,15: Unused argument 'vol' (unused-argument)
 R:157, 0: Interface not implemented (interface-not-implemented)
 
 
@@ -1232,7 +1223,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |66     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |332    |NC       |NC         |
+|warning    |323    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |679    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1245,9 +1236,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |95.18   |71.21    |93.94      |
+|sfclient |100.00 |97.83   |71.21    |93.94      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |4.82    |28.79    |6.06       |
+|sflegacy |0.00   |2.17    |28.79    |6.06       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1272,8 +1263,6 @@ Messages
 +-----------------------------+------------+
 |too-many-branches            |11          |
 +-----------------------------+------------+
-|unused-argument              |10          |
-+-----------------------------+------------+
 |too-many-locals              |9           |
 +-----------------------------+------------+
 |unused-wildcard-import       |7           |
@@ -1296,6 +1285,8 @@ Messages
 +-----------------------------+------------+
 |unused-import                |1           |
 +-----------------------------+------------+
+|unused-argument              |1           |
++-----------------------------+------------+
 |too-many-lines               |1           |
 +-----------------------------+------------+
 |redefined-builtin            |1           |
@@ -1309,7 +1300,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.22/10
+Your code has been rated at -2.20/10
 
 Statistics by type
 ------------------
