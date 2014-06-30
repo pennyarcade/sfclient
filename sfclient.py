@@ -5846,7 +5846,7 @@ def get_weapon_level(wpn_class, wpn_pic):
     return 0
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Savegame handling
 
 class Savegame(object):
@@ -12540,7 +12540,7 @@ def show_screen_gilden(
                 > LeftBoxWidth
             ){
                 LeftBoxWidth = (
-                    (text_width + GILDE_GOLDMUSH_C1) + actor[GILDE_MUSH].width);
+                    (text_width + GILDE_GOLDMUSH_C1) + actor[GILDE_MUSH].width)
             };
             if (text_dir == "right"){
                 actor[GILDE_MUSH].x = (
@@ -16463,7 +16463,7 @@ def action_handler(event):
 
         if case(ERR['SERVER_DOWN']):
             show_disconnect_screen()
-            if (param_reconnect * interval_multiplier_reconnect) < (1000 * 120):
+            if (param_reconnect * interval_multiplier_reconnect) < (120000):
                 interval_multiplier_reconnect += 0.1
             break
 
@@ -16471,7 +16471,8 @@ def action_handler(event):
             parse_savgame(par[0])
             error_message(texts[TXT['GUILD']['JOINED_TOO_RECENTLY']].replace(
                 "%1", time_str(
-                    int(savegame[SG['GUILD']['JOIN_DATE']]) + 60 * 60 * 24, True
+                    int(savegame[SG['GUILD']['JOIN_DATE']]) + 60 * 60 * 24,
+                    True
                 )
             ))
             break
@@ -16837,8 +16838,7 @@ def action_handler(event):
                     external_whisperer = external_whisperer[
                         0: external_whisperer.find(":§")
                     ]
-                    chat_line(decode_chat(
-                        tmp_array[i]),
+                    chat_line(decode_chat(tmp_array[i]),
                               False,
                               get_hl_index(tmp_array[i]),
                               True)
@@ -17038,9 +17038,10 @@ def action_handler(event):
                 if act != RESP['QUEST']['STOP']:
                     special_action = 0
                 else:
-                    LOG.info("Quest cancelled, preserving special action flag!")
+                    LOG.info(
+                        "Quest cancelled, preserving special action flag!")
             LOG.info("Tavern says special action is " + special_action)
-            if par[2] != None:
+            if par[2] is not None:
                 prevent_tv = (par[2] == 1)
 
             show_taverne_screen()
@@ -17274,7 +17275,8 @@ def action_handler(event):
                         er_ende = tmp_fight_array[len(tmp_fight_array) - 4]
                         runden_zahl = int(len(tmp_fight_array) / 6)
                         tmp_honor = abs(tmp_battle_info.split("#")[7])
-                        tmp_gold = abs(int(tmp_battle_info.split("#")[8] / 100))
+                        tmp_gold = abs(int(
+                            tmp_battle_info.split("#")[8] / 100))
                         tmp_silver = abs(
                             int(tmp_battle_info.split("#")[8] % 100)
                         )
@@ -17370,8 +17372,7 @@ def action_handler(event):
 
                 for i in range(len(alert_words)):
                     if (post_read_text.lower().find(
-                            alert_words[i].lower()
-                        ) != -1):
+                            alert_words[i].lower()) != -1):
                         post_read_text = texts[TXT['ALERT_TEXT']].replace(
                             "%1", post_read_text
                         )
@@ -18193,7 +18194,6 @@ def swap_words(tmp_str):
         tmp_str2 = ""
         tmp_char = ""
         tmp_arr = tmp_str.split(" ").reverse()
-
 
         for k in range(len(tmp_arr)):
             if len(tmp_arr[k]) >= 2:
