@@ -9,6 +9,33 @@
     Module for obsolete legacy stuff
 '''
 
+class Sound(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class Loader(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class Bitmap(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class MouseEvent(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
 
 def get_quest_bg():
     '''

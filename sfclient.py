@@ -15296,7 +15296,8 @@ def hide(*actor_ids):
 
 
 def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
-            scale_y=None, vis=None, container_id=-1):
+        scale_y=None, vis=None, container_id=-1
+):
     '''
         add actor to global list
     '''
@@ -15335,6 +15336,7 @@ def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
         addChild(actor[actor_id])
     else:
         actor[container_id].addChild(actor[actor_id])
+
 
 
 
@@ -16178,6 +16180,7 @@ def set_font(fontName:String){
 
 #------------------------------------------------------------------------------
 # unsorted stuff
+
 
 def do_act_zauberladen():
     '''
