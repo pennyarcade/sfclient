@@ -318,7 +318,6 @@ E:16229, 7: Undefined variable 'this_field_popup' (undefined-variable)
 E:16230,42: Undefined variable 'this_field_popup' (undefined-variable)
 R:16235, 0: Too many arguments (6/5) (too-many-arguments)
 R:16235, 0: Too many local variables (22/15) (too-many-locals)
-E:16268,24: Class 'TextFieldAutoSize' has no 'LEFT' member (no-member)
 E:16271,26: Undefined variable 'font_embedded' (undefined-variable)
 E:16272,30: Undefined variable 'AntiAliasType' (undefined-variable)
 E:16276,31: Undefined variable 'trim_too_long' (undefined-variable)
@@ -575,8 +574,7 @@ E:18050,12: Undefined variable 'so' (undefined-variable)
 E:18057,17: Undefined variable 'trackPixels' (undefined-variable)
 E:18058,40: Using variable 'next_pxl' before assignment (used-before-assignment)
 C:18062,16: Invalid variable name "pa" (invalid-name)
-E:18070,40: Instance of 'list' has no 'find' member (no-member)
-E:18070,53: Undefined variable 'param_adv' (undefined-variable)
+E:18070,54: Undefined variable 'param_adv' (undefined-variable)
 E:18072,34: Undefined variable 'savegame' (undefined-variable)
 E:18079,19: Undefined variable 'so' (undefined-variable)
 E:18086,31: Undefined variable 'so' (undefined-variable)
@@ -781,12 +779,10 @@ C:18589,20: Invalid variable name "x" (invalid-name)
 C:18590,20: Invalid variable name "y" (invalid-name)
 C:18591,20: Invalid variable name "textY" (invalid-name)
 E:18591,36: Undefined variable 'textHeight' (undefined-variable)
-E:18598,24: Class 'TextFieldAutoSize' has no 'LEFT' member (no-member)
 E:18601,26: Undefined variable 'font_embedded' (undefined-variable)
 C:18603,12: Invalid variable name "htmlText" (invalid-name)
 E:18604,31: Undefined variable 'textHeight' (undefined-variable)
 E:18605,15: Undefined variable 'text_dir' (undefined-variable)
-E:18606,28: Class 'TextFieldAutoSize' has no 'RIGHT' member (no-member)
 C:18608,20: Invalid variable name "x" (invalid-name)
 E:18608,32: Undefined variable 'text_width' (undefined-variable)
 C:18609,20: Invalid variable name "textX" (invalid-name)
@@ -895,7 +891,6 @@ E:18961,20: Undefined variable 'evt' (undefined-variable)
 R:18906, 0: Too many branches (18/12) (too-many-branches)
 W:18943, 4: Unused variable 'pending_language_file' (unused-variable)
 W:18950, 8: Unused variable 'chosen_lang_font' (unused-variable)
-E:18970,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
 E:18971, 8: Undefined variable 'add_event_listener' (undefined-variable)
 E:18971,27: Undefined variable 'Event' (undefined-variable)
 E:18971,43: Undefined variable 'LanguageFileLoaded' (undefined-variable)
@@ -920,7 +915,6 @@ E:19026,27: Undefined variable 'chosen_lang_font' (undefined-variable)
 E:19027, 4: Too many positional arguments for function call (too-many-function-args)
 W:19005,20: Unused variable 'old_str' (unused-variable)
 W:19025, 4: Unused variable 'pending_language_file' (unused-variable)
-E:19035,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
 E:19036, 8: Undefined variable 'add_event_listener' (undefined-variable)
 E:19036,27: Undefined variable 'Event' (undefined-variable)
 E:19036,43: Undefined variable 'OriginalLanguageFileLoaded' (undefined-variable)
@@ -942,7 +936,6 @@ E:19250,28: Undefined variable 'defined_pixel_calls' (undefined-variable)
 E:19300, 4: Undefined variable 'pending_configuration_files' (undefined-variable)
 E:19302, 8: Undefined variable 'loader2' (undefined-variable)
 C:19305, 8: Invalid variable name "so" (invalid-name)
-E:19305,13: Class 'SharedObject' has no 'getLocal' member (no-member)
 E:19410,15: Undefined variable 'img_url' (undefined-variable)
 E:19411,12: Undefined variable 'img_url' (undefined-variable)
 E:19413,15: Undefined variable 'snd_url' (undefined-variable)
@@ -1142,51 +1135,52 @@ W: 23, 0: Unused import curses (unused-import)
 W: 26, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import set_volume from wildcard import (unused-wildcard-import)
 ************* Module sflegacy
-W:180, 0: TODO: obsolete (fixme)
-W:195, 0: TODO: obsolete (fixme)
-W:209, 0: TODO: obsolete (fixme)
-W:225, 0: TODO: obsolete (fixme)
-W:249, 0: TODO WTF? (fixme)
-W:271, 0: TODO: better way to zero fill? (fixme)
-W:458, 0: TODO: Obsolete (fixme)
+W:185, 0: TODO: obsolete (fixme)
+W:200, 0: TODO: obsolete (fixme)
+W:214, 0: TODO: obsolete (fixme)
+W:230, 0: TODO: obsolete (fixme)
+W:254, 0: TODO WTF? (fixme)
+W:276, 0: TODO: better way to zero fill? (fixme)
+W:463, 0: TODO: Obsolete (fixme)
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 20, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 27, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 34, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
-R: 34, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 41, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 48, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 55, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
-R: 55, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 62, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
-R: 62, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 69, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
-R: 69, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 76, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
-R: 76, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 83, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 90, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 97, 0: Too few public methods (0/2) (too-few-public-methods)
-R:104, 0: Too few public methods (0/2) (too-few-public-methods)
-R:111, 0: Too few public methods (0/2) (too-few-public-methods)
-R:142, 0: Too few public methods (0/2) (too-few-public-methods)
-R:149, 0: Too few public methods (0/2) (too-few-public-methods)
-R:167, 0: Too few public methods (0/2) (too-few-public-methods)
-W:188,20: Unused argument 'quest_id' (unused-argument)
-W:202,19: Unused argument 'quest_id' (unused-argument)
-W:216,31: Unused argument 'random_range' (unused-argument)
-W:216,21: Unused argument 'quest_id' (unused-argument)
-W:216,45: Unused argument 'random_mod' (unused-argument)
-W:255,19: Unused argument 'str_save_game' (unused-argument)
-W:255,60: Unused argument 'no_spoil' (unused-argument)
-W:255,34: Unused argument 'fill_face_variables' (unused-argument)
-W:454,15: Unused argument 'vol' (unused-argument)
-R:156, 0: Interface not implemented (interface-not-implemented)
+R: 28, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 35, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
+R: 35, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 42, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 49, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 56, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
+R: 56, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 63, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
+R: 63, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 70, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
+R: 70, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 77, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
+R: 77, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 84, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 91, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 98, 0: Too few public methods (0/2) (too-few-public-methods)
+R:105, 0: Too few public methods (0/2) (too-few-public-methods)
+R:112, 0: Too few public methods (0/2) (too-few-public-methods)
+R:143, 0: Too few public methods (0/2) (too-few-public-methods)
+R:150, 0: Too few public methods (0/2) (too-few-public-methods)
+C:172, 4: Invalid method name "getLocal" (invalid-name)
+R:168, 0: Too few public methods (1/2) (too-few-public-methods)
+W:193,20: Unused argument 'quest_id' (unused-argument)
+W:207,19: Unused argument 'quest_id' (unused-argument)
+W:221,31: Unused argument 'random_range' (unused-argument)
+W:221,21: Unused argument 'quest_id' (unused-argument)
+W:221,45: Unused argument 'random_mod' (unused-argument)
+W:260,19: Unused argument 'str_save_game' (unused-argument)
+W:260,60: Unused argument 'no_spoil' (unused-argument)
+W:260,34: Unused argument 'fill_face_variables' (unused-argument)
+W:459,15: Unused argument 'vol' (unused-argument)
+R:157, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-3182 statements analysed.
+3184 statements analysed.
 
 External dependencies
 ---------------------
@@ -1204,13 +1198,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |17543  |54.89 |NC       |NC         |
+|code      |17545  |54.88 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12961  |40.55 |NC       |NC         |
+|docstring |12964  |40.55 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |702    |2.20  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |755    |2.36  |NC       |NC         |
+|empty     |756    |2.36  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1234,13 +1228,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |98     |NC       |NC         |
+|convention |99     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |66     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |332    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |686    |NC       |NC         |
+|error      |679    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1251,9 +1245,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |95.18   |71.21    |94.90      |
+|sfclient |100.00 |95.18   |71.21    |93.94      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |4.82    |28.79    |5.10       |
+|sflegacy |0.00   |4.82    |28.79    |6.06       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1268,7 +1262,7 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|invalid-name                 |97          |
+|invalid-name                 |98          |
 +-----------------------------+------------+
 |fixme                        |36          |
 +-----------------------------+------------+
@@ -1285,8 +1279,6 @@ Messages
 |unused-wildcard-import       |7           |
 +-----------------------------+------------+
 |too-many-statements          |7           |
-+-----------------------------+------------+
-|no-member                    |7           |
 +-----------------------------+------------+
 |too-many-arguments           |6           |
 +-----------------------------+------------+
@@ -1317,7 +1309,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.34/10
+Your code has been rated at -2.22/10
 
 Statistics by type
 ------------------
@@ -1329,7 +1321,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |34     |NC         |NC         |100.00      |14.71    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |31     |NC         |NC         |100.00      |0.00     |
+|method   |32     |NC         |NC         |100.00      |3.12     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |87     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
