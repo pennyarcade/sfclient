@@ -9,6 +9,85 @@
     Module for obsolete legacy stuff
 '''
 
+
+class TextField(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class TextFieldAutoSize(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class URLLoader(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class URLLoaderdata_format(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class URLRequest(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+
+class TextFieldType(object):
+    '''
+        obsolete with cli?
+    '''
+    DYNAMIC = None
+
+
+class FontFormat_HallListHeading(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_GuildHallNoAttack(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_ClassError(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_DefaultLeft(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class DisplayObject(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
 class Sound(object):
     '''
         obsolete with cli?
@@ -47,9 +126,11 @@ class Timer(object):
         obsolete with cli?
     '''
     TIMER = None
-    start = None
 
-    def add_event_listener():
+    def add_event_listener(self, *args):
+        pass
+
+    def start(self, *args):
         pass
 
 
@@ -71,7 +152,8 @@ class ExternalInterface(object):
     '''
         obsolete with cli?
     '''
-    pass
+    def call(self, *args):
+        pass
 
 
 class SharedObject(object):
@@ -174,7 +256,7 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
     bin_str = int(savegame[SG['GENDER']]).tostr(2)
 
     # TODO: better way to zero fill?
-    while (len(bin_str) < 32):
+    while len(bin_str) < 32:
         bin_str = "0" + bin_str
 
     mirror_pieces = list()
@@ -212,7 +294,8 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
 
     for i in range(3):
         expand_item_structure(
-            savegame, (SG['QUEST']['OFFER']['REWARD_ITM1'] + (i * SG['ITM']['SIZE']))
+            savegame,
+            (SG['QUEST']['OFFER']['REWARD_ITM1'] + (i * SG['ITM']['SIZE']))
         )
 
     debug_info = ""

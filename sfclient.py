@@ -15309,8 +15309,7 @@ def hide(*actor_ids):
 
 
 def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
-        scale_y=None, vis=None, container_id=-1
-):
+        scale_y=None, vis=None, container_id=-1):
     '''
         add actor to global list
     '''
@@ -15352,6 +15351,9 @@ def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
 
 
 def visible_to_front(*actor_ids):
+    '''
+        is visible from front of screen
+    '''
     for actor_id in actor_ids:
         if actor[actor_id]:
             if actor[actor_id] is list:
@@ -16701,7 +16703,7 @@ def action_handler(event):
         if case(RESP['VALIDATE_OK']):
             if par[0]:
                 param_cid = par[0]
-                log.debug("cid set by server:", param_cid)
+                LOG.debug("cid set by server:", param_cid)
             show_email_nag_screen(1)
             break
 
@@ -17049,7 +17051,7 @@ def action_handler(event):
                     special_action = 0
                 else:
                     LOG.info("Quest cancelled, preserving special action flag!")
-            LOG.info("Tavern says special action is", special_action)
+            LOG.info("Tavern says special action is " + special_action)
             if par[2] != None:
                 prevent_tv = (par[2] == 1)
 
@@ -18525,11 +18527,17 @@ def witch_timer_event_handler():
 
 
 def sound_loaded(duration):
+    '''
+        load sound success callback
+    '''
     LOG.debug("Sound " + actor_id + " geladen.")
     actor[actor_id].play(0, duration, stObject)
 
 
 def play(actor_id, endless=False):
+    '''
+        play a sound
+    '''
     sound_loaded = None
 
     if actorLoaded[actor_id] == 2:
@@ -18546,6 +18554,9 @@ def play(actor_id, endless=False):
 
 
 def process_arg(arg):
+    '''
+        process popup argument
+    '''
     i_array = 0
     tmp_do = None
     if arg is list:
@@ -18593,38 +18604,38 @@ def process_arg(arg):
         actor[POPUP_INFO].addChild(tmp_do)
 
     elif arg is str:
-            arg = arg.replace("#", chr(13))
-            tmp_text_field = TextField()
-            with tmp_text_field:
-                auto_size = TextFieldAutoSize.LEFT
-                background = False
-                selectable = False
-                embed_fonts = font_embedded
-                default_text_format = tmp_text_format
-                htmlText = arg
-                last_text_height = textHeight
-                if text_dir == "right":
-                    auto_size = TextFieldAutoSize.RIGHT
-                    if textX < popup_width:
-                        x = textX - text_width
-                        textX -= text_width + 5
-                        y = textY
-                    else:
-                        x = popup_width - 5 - text_width
-                        y = textY
-                        textY += textHeight + 10
+        arg = arg.replace("#", chr(13))
+        tmp_text_field = TextField()
+        with tmp_text_field:
+            auto_size = TextFieldAutoSize.LEFT
+            background = False
+            selectable = False
+            embed_fonts = font_embedded
+            default_text_format = tmp_text_format
+            htmlText = arg
+            last_text_height = textHeight
+            if text_dir == "right":
+                auto_size = TextFieldAutoSize.RIGHT
+                if textX < popup_width:
+                    x = textX - text_width
+                    textX -= text_width + 5
+                    y = textY
                 else:
-                    if textX > 0:
-                        x = textX
-                        textX += text_width + 5
-                        y = textY
-                    else:
-                        x = 5
-                        y = textY;
-                        textY += textHeight + 10
+                    x = popup_width - 5 - text_width
+                    y = textY
+                    textY += textHeight + 10
+            else:
+                if textX > 0:
+                    x = textX
+                    textX += text_width + 5
+                    y = textY
+                else:
+                    x = 5
+                    y = textY
+                    textY += textHeight + 10
 
-                    if (x + text_width + 10) > popup_width:
-                        popup_width = x + text_width + 10
+                if (x + text_width + 10) > popup_width:
+                    popup_width = x + text_width + 10
 
             actor[POPUP_INFO].addChild(tmp_text_field)
 
@@ -18677,7 +18688,7 @@ def show_popup(evt, *args):
                 for j in range(numChildren):
                     getChildAt(j).x += dist
                     if (getChildAt(j).x
-                        + getChildAt(j).width + 5) > popup_width:
+                            + getChildAt(j).width + 5) > popup_width:
                         popup_width = getChildAt(j).x + getChildAt(j).width + 5
 
         mouse_enabled = False
