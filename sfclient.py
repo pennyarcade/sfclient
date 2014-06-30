@@ -4006,7 +4006,7 @@ SHP = {
 }
 
 
-#Slider Indices
+# Slider Indices
 SLDR = {
     "ARBEITEN": {
         "SLDR": 298,
@@ -4139,7 +4139,7 @@ class Session(object):
         '''
             Constructor to Session object
         '''
-        #TODO: Check if needed?
+        # TODO: Check if needed?
         self.param_poll_tunnel_url = ""
         self.poll_lock = False
         self.send_lock = False
@@ -4297,7 +4297,8 @@ class Session(object):
                 LOG.debug(str("Antwort auf %s: %s" % (action, data)))
 
                 if data == "":
-                    LOG.error("Fehler: Keine (leere) Antwort vom Tunnelskript.")
+                    LOG.error(
+                        "Fehler: Keine (leere) Antwort vom Tunnelskript.")
                     success = False
                 else:
                     return data
@@ -4449,7 +4450,7 @@ def md5hash(instr):
     return md5.new(instr).hexdigest().lower()
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 
 def setup_logging():
@@ -4503,13 +4504,13 @@ def init_vars():
 
         TODO: check vars if needed
     '''
-    #values char_*
+    # values char_*
     defaultface = Face()
 
-    #values revertchar_*
+    # values revertchar_*
     revertface = Face()
 
-    #values album_*
+    # values album_*
     col_album = Album()
 
     global actor
@@ -4881,7 +4882,6 @@ def init_vars():
 
     # witchDesiredType = -1
 
-
     # worlds = list()
     #     new DropShadowFilter(3, 45, 0, 0.8),
     #     new GradientGlowFilter(
@@ -4932,9 +4932,8 @@ def init_vars():
     #     toiletTankAdjustEvent
     # )
 
-
     # get buffered registration?
-    if param_obj["reg"] != None:
+    if param_obj["reg"] is not None:
         buffed_req = True
         buffed_reg = ExternalInterface.call("get_base64")
         if (buffed_reg) and (buffed_reg != ""):
@@ -4986,7 +4985,8 @@ def init_vars():
     # Fight timers
     next_fight_timer.add_event_listener(TimerEvent.TIMER, next_fight)
     guild_fight_timer = Timer(1000)
-    guild_fight_timer.add_event_listener(TimerEvent.TIMER, guild_fight_timer_fn)
+    guild_fight_timer.add_event_listener(TimerEvent.TIMER,
+                                         guild_fight_timer_fn)
     guild_fight_timer.start()
 
     # Guild chat poll
@@ -5009,7 +5009,7 @@ def configure(session):
     whendo_loaded(dodo_load_language_file)
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # gold stuff
 
 def geld(amount):
@@ -5053,7 +5053,7 @@ def silber_anteil(amount):
     '''
     return int(amount % 100)
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Time and date stuff
 
 
@@ -5066,7 +5066,7 @@ def tageszeit():
 
         @return int
     '''
-    #TODO: make this a parameter?
+    # TODO: make this a parameter?
     hours = time.strftime('%H')
 
     if hours < 4:
@@ -5087,7 +5087,7 @@ def sleep_time():
 
         @return bool True= Time to sleep
     '''
-    #TODO: make this a parameter?
+    # TODO: make this a parameter?
     hours = time.strftime('%H')
 
     if C['TIMEOFDAY'] >= 0:
@@ -5132,7 +5132,7 @@ def time_str(req_time, short=False):
     }
 
     code = lang_code
-    if not code in formats.keys():
+    if code not in formats.keys():
         code = "default"
 
     length = 'long'
@@ -5155,7 +5155,7 @@ def time_calc_event():
         current_time.getTime() + server_time.getTime() - local_time.getTime()
     )
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Quest stuff
 
 
@@ -5169,7 +5169,7 @@ class Quest(object):
             Setup Quest object
         '''
 
-        #set members directly
+        # set members directly
         self.qtype = qtype
         self.qid = qid
         self.qlevel = qlevel
@@ -5394,7 +5394,7 @@ class Quest(object):
         return LBL['SCR']['QUEST']['BG'][str(self.qlocation)]
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Item stuff
 
 class Item(object):
@@ -5438,7 +5438,7 @@ class Item(object):
 
             @return self
         '''
-        #Preset values
+        # Preset values
         pic = 0
         typ = 0
         cclass = 1
@@ -5537,7 +5537,7 @@ class Item(object):
             self.pic -= 49
             txt_suffix = ""
 
-        if texts[txt_base + self.pic - 1] == None:
+        if texts[txt_base + self.pic - 1] is None:
             return "Unknown Item (base=%d, entry=%d)" % (
                 txt_base, (txt_base + self.pic - 1)
             )
@@ -5622,9 +5622,9 @@ class Item(object):
 
         if item_id >= SG['ITM']['MAX']:
             # FIXME
-            #LOG.error("Fehler: Zu wenige Indizes für Items:", item_id,
-            #">=", ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
-            #itm_color, "Class:", itm_class)
+            # LOG.error("Fehler: Zu wenige Indizes für Items:", item_id,
+            # ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
+            # itm_color, "Class:", itm_class)
             return 0
 
         if is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10):
@@ -5701,7 +5701,7 @@ def get_arrow_id(itm_class, itm_pic, some_obj=False, slot_mode=False,
     return arrow_id
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Weapon stuff
 
 def get_weapon_sound_file(wpn_class, wpn_pic, use_case):
@@ -5783,7 +5783,7 @@ def get_weapon_level(wpn_class, wpn_pic):
             elif wpn_pic == 59:
                 result = 13
 
-            if result != None:
+            if result is not None:
                 return result
             break
         if case(2):
@@ -5812,7 +5812,7 @@ def get_weapon_level(wpn_class, wpn_pic):
             elif wpn_pic == 59:
                 result = 13
 
-            if result != None:
+            if result is not None:
                 return result
             break
         if case(3):
@@ -5839,7 +5839,7 @@ def get_weapon_level(wpn_class, wpn_pic):
             elif wpn_pic == 60:
                 result = 13
 
-            if result != None:
+            if result is not None:
                 return result
             break
 
@@ -5886,12 +5886,11 @@ class Savegame(object):
         has_mirror = bin_str.substr(23, 1) == "1"
         can_rob = bin_str.substr(22, 1) == "1"
 
-        #TODO: save in character object
+        # TODO: save in character object
         if bin_str.substr(31) == "1":
             savegame[SG['GENDER']] = 1
         else:
             savegame[SG['GENDER']] = 2
-
 
         if (savegame[SG['ALBUM']] - 10000) > content_max:
             savegame[SG['ALBUM']] = content_max + 10000
@@ -6058,7 +6057,7 @@ class Savegame(object):
             next_pxl = abs(next_pxl)
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # request functions
 
 # TODO: How to do Event stuff?
@@ -6324,7 +6323,7 @@ def request_tv():
     tv_status_dest = 0
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Tower stuff
 
 '''
@@ -6503,7 +6502,7 @@ def TowerTimerFn(evt:Event=None){
 
 '''
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # show functions
 
 '''
@@ -9397,7 +9396,8 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
                     remove(ARENA_FEUER);
                 };
             };
-            pvp_delay_timer.add_event_listener(TimerEvent.TIMER, PvPDelayCheck);
+            pvp_delay_timer.add_event_listener(TimerEvent.TIMER,
+                                               PvPDelayCheck);
             pvp_delay_timer.start();
             PvPDelayCheck();
             actor[INP_ARENA_ENEMY].getChildAt(1).text = oppName;
@@ -9661,7 +9661,8 @@ def show_post_screen(par:Array=None){
             if (thisInstance != postInstance){
                 var _local3 = actor[POST_LIST];
                 with (_local3) {
-                    remove_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+                    remove_event_listener(KeyboardEvent.KEY_DOWN,
+                                          PostKeyEvent);
                     remove_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
             } else {
@@ -9677,7 +9678,8 @@ def show_post_screen(par:Array=None){
             if (thisInstance != postInstance){
                 var _local3 = actor[POST_LIST];
                 with (_local3) {
-                    remove_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+                    remove_event_listener(KeyboardEvent.KEY_DOWN,
+                                          PostKeyEvent);
                     remove_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
                 return;
@@ -11083,7 +11085,8 @@ def show_screen_gilden(
                 _local3 = actor[INP_GILDE_TEXT];
                 with (_local3) {
                     remove_event_listener(FocusEvent.FOCUS_IN, EnterGuildDesc);
-                    remove_event_listener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
+                    remove_event_listener(FocusEvent.FOCUS_OUT,
+                                          LeaveGuildDesc);
                 };
             };
         };
@@ -12353,7 +12356,7 @@ def show_screen_gilden(
                 if (text_dir == "right"){
                     actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].x = (
                         ((GILDE_GEBAEUDE_X + GILDE_TEXT_X) + 130)
-                        - actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].text_width
+                        - actor[LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i].text_width
                     );
                 } else {
                     actor[(LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i)].x = (
@@ -12986,7 +12989,8 @@ def show_screen_gilden(
                     POPUP_BEGIN_LINE,
                     texts[(TXT_RAID_TEXT + 15)],
                     (POPUP_TAB + POPUP_TAB_ADD),
-                    texts[TXT_DUNGEON_NAMES + int(guildData[GUILD_RAID_LEVEL])],
+                    texts[TXT_DUNGEON_NAMES
+                            + int(guildData[GUILD_RAID_LEVEL])],
                     "(" + str((int(guildData[GUILD_RAID_LEVEL]) + 1)) + "/50)",
                     POPUP_END_LINE,
                     POPUP_BEGIN_LINE,
@@ -13045,8 +13049,8 @@ def show_screen_gilden(
                                     (POPUP_TAB + POPUP_TAB_ADD),
                                     texts[(TXT_DUNGEON_NAMES
                                         + int(guildData[GUILD_RAID_LEVEL]))],
-                                    ("(" + str((int(guildData[GUILD_RAID_LEVEL])
-                                        + 1))) + "/50)",
+                                    ("(" + str(int(guildData[GUILD_RAID_LEVEL])
+                                        + 1)) + "/50)",
                                     POPUP_END_LINE,
                                     POPUP_BEGIN_LINE,
                                     texts[(TXT_RAID_TEXT + 16)],
@@ -13147,7 +13151,7 @@ def show_screen_gilden(
                             };
                         } else {
                             if (isRaid){
-                                if ((int(savegame[SG_GUILD_FIGHT_STATUS]) & 1)){
+                                if (int(savegame[SG_GUILD_FIGHT_STATUS]) & 1):
                                     add(GILDE_RAID_OK);
                                     if (texts[TXT_RAID_TEXT]){
                                         enable_popup(
@@ -13177,7 +13181,7 @@ def show_screen_gilden(
                                     };
                                 };
                             } else {
-                                if ((int(savegame[SG_GUILD_FIGHT_STATUS]) & 1)){
+                                if (int(savegame[SG_GUILD_FIGHT_STATUS]) & 1):
                                     add(GILDE_ATTACK_OK);
                                     enable_popup(
                                         GILDE_ATTACK_OK,
@@ -13570,7 +13574,7 @@ def show_main_quests_screen(NextEnemies:Array){
                         ShowMainQuestScreen(10, (int(NextEnemies[10]) - 1));
                     } else {
                         if (countDone == 11){
-                            ShowMainQuestScreen(11, (int(NextEnemies[11]) - 1));
+                            ShowMainQuestScreen(11, int(NextEnemies[11] - 1))
                         } else {
                             if (countDone == 12){
                                 ShowMainQuestScreen(
@@ -13618,7 +13622,7 @@ def show_main_quests_screen(NextEnemies:Array){
                         NextEnemy = texts[
                             ((int(NextEnemies[i]))==-1)
                                 ? TXT_ENEMY_SELF
-                                : ((TXT_MONSTER_NAME + int(NextEnemies[i])) - 1)
+                                : (TXT_MONSTER_NAME + int(NextEnemies[i]) - 1)
                             ];
                     };
                 };
@@ -13633,7 +13637,7 @@ def show_main_quests_screen(NextEnemies:Array){
                     int(savegame[(SG_DUNGEON_LEVEL + i)]) >= 12
                 );
                 SetCnt((MQS_BUTTON + i), (MQS_BUTTON + i));
-                DungeonLevel = str((int(savegame[(SG_DUNGEON_LEVEL + i)]) - 1));
+                DungeonLevel = str((int(savegame[(SG_DUNGEON_LEVEL + i)]) - 1))
                 if (DungeonLevel == "0"){
                     PlayUnlockSound = True;
                     fade_out((MQS_DISABLED + i), 20, 0.05, 0, True);
@@ -13731,9 +13735,11 @@ def show_main_quests_screen(NextEnemies:Array){
                                 if (countDone == 10){
                                     actor[HLMQS_COMPLETED + i].visible = False
                                     actor[(HLMQS_DISABLED + i)].alpha = 1;
-                                    DungeonLevel = savegame[SG_NEW_DUNGEONS + 0]
+                                    DungeonLevel = savegame[
+                                            SG_NEW_DUNGEONS + 0]
                                     if (DungeonLevel == "0"){
-                                        actor[HLMQS_DISABLED + i].visible = True
+                                        actor[
+                                            HLMQS_DISABLED + i].visible = True
                                         PlayUnlockSound = True;
                                         fade_out(
                                             (HLMQS_DISABLED + i),
@@ -13754,12 +13760,12 @@ def show_main_quests_screen(NextEnemies:Array){
                                     actor[(HLMQS_DISABLED + i)].visible = True;
                                 };
                             };
-                            NextEnemy = texts[((2372 + int(DungeonLevel)) - 1)];
+                            NextEnemy = texts[(2372 + int(DungeonLevel)) - 1]
                         } else {
                             if (i == 2){
                                 if (countDone > 11){
-                                    actor[(HLMQS_DISABLED + i)].visible = False;
-                                    actor[(HLMQS_COMPLETED + i)].visible = True;
+                                    actor[(HLMQS_DISABLED + i)].visible = False
+                                    actor[(HLMQS_COMPLETED + i)].visible = True
                                 } else {
                                     if (countDone == 11){
                                         actor[
@@ -13948,7 +13954,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
             } else {
                 if (DungeonNr >= 10){
                     DungeonLevel = str(
-                       (int(savegame[((SG_NEW_DUNGEONS + DungeonNr) - 10)]) - 1)
+                       (int(savegame[(SG_NEW_DUNGEONS + DungeonNr - 10)]) - 1)
                     );
                 } else {
                     DungeonLevel = str(
@@ -14179,8 +14185,8 @@ def show_toilet(
                         actor[gatheredItemId].y = (
                             (actor[gatheredItemId].y + itemDestY) / 2);
                     } else {
-                        actor[gatheredItemId].alpha = (toiletItemAddFrame / 35);
-                        actor[gatheredItemId].y = (actor[gatheredItemId].y - 5);
+                        actor[gatheredItemId].alpha = (toiletItemAddFrame / 35)
+                        actor[gatheredItemId].y = (actor[gatheredItemId].y - 5)
                     };
                 };
                 i = 0;
@@ -14829,7 +14835,7 @@ def Showalbum_content(evt:Event=None){
                     } elif (albumPage <= 32){
                         if ((((albumPage < 32)) or ((i <= 1)))){
                             SetAlbumItems(
-                                ((1556 + 16 + (albumPage - 30) * 20) + (i * 5)),
+                                (1556 + 16 + (albumPage - 30) * 20) + (i * 5),
                                 6,
                                 ((1 + ((albumPage - 30) * 4)) + i),
                                 1
@@ -14847,7 +14853,7 @@ def Showalbum_content(evt:Event=None){
                     } elif (albumPage <= 37){
                         if ((((albumPage < 37)) or ((i <= 1)))){
                             SetAlbumItems(
-                                ((1672 + 16 + (albumPage - 35) * 20) + (i * 5)),
+                                (1672 + 16 + (albumPage - 35) * 20) + (i * 5),
                                 7,
                                 ((1 + ((albumPage - 35) * 4)) + i),
                                 1
@@ -15063,7 +15069,7 @@ def show_login_screen(
     actor[LBL_WINDOW_TITLE].x = (
         (IF_WIN_X + IF_WIN_WELCOME_X) - int(
         (actor[LBL_WINDOW_TITLE].text_width / 2)));
-    actor[INP['NAME']].add_event_listener(KeyboardEvent.KEY_DOWN, RequestLOGin);
+    actor[INP['NAME']].add_event_listener(KeyboardEvent.KEY_DOWN, RequestLOGin)
     actor[INP['LOGIN_PASSWORD']].add_event_listener(
         KeyboardEvent.KEY_DOWN, RequestLOGin
     );
@@ -15087,7 +15093,7 @@ def show_login_screen(
     };
     if (sso_mode){
         actor[INP['NAME']].getChildAt(1).type = TextFieldType.DYNAMIC;
-        actor[INP['LOGIN_PASSWORD']].getChildAt(1).type = TextFieldType.DYNAMIC;
+        actor[INP['LOGIN_PASSWORD']].getChildAt(1).type = TextFieldType.DYNAMIC
         playername = ExternalInterface.call("sso_get_uid");
         actor[INP['NAME']].getChildAt(1).text = playername;
         actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = mp_api_user_token;
@@ -15256,7 +15262,7 @@ def ShowSignupScreen(evt:Event=None):void{
 
 '''
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # low level graphic stuff
 
 
@@ -15342,7 +15348,7 @@ def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
         if scale_y:
             scaleY = size_y
 
-        if vis != None:
+        if vis is not None:
             visible = bool(vis)
 
     if container_id == -1:
@@ -15365,8 +15371,6 @@ def visible_to_front(*actor_ids):
             with actor[actor_id]:
                 if on_stage(actor_id):
                     add(actor_id)
-
-
 
 
 '''
@@ -15474,9 +15478,8 @@ def GetAlpha(actor_id:int):Number{
     return (0);
 }
 
-def fade_in(
-    actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1
-){
+def fade_in(actor_id:int, timerInterval:int=20,
+            alphaStep:Number=0.05, alphaMax:Number=1){
     var fadeTimer:* = None;
     var currentAlpha:* = NaN;
     var fade_inEvent:* = None;
@@ -16182,7 +16185,7 @@ def set_font(fontName:String){
 
 '''
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # unsorted stuff
 
 
@@ -16253,7 +16256,8 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
     this_field_popup = ""
 
     if txt == "[K]":
-        tmp_obj = Bitmap(actor[IMG['IF']['KRIEGER']].content.bitmapData.clone())
+        tmp_obj = Bitmap(
+            actor[IMG['IF']['KRIEGER']].content.bitmapData.clone())
         with (tmp_obj):
             allow_smoothing = True
             force_smoothing = True
@@ -16360,7 +16364,6 @@ def action_handler(event):
                 x = (POS['QO']['BLACK']['SQUARE_X']
                      + REL['QO']['QUESTNAME_X']
                      - text_width / 2)
-
 
             with actor[LBL['QO']['QUESTTEXT']]:
                 text = texts[TXT['TOILET']['HINT'] + 6].replace(
