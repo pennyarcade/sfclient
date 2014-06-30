@@ -1139,13 +1139,14 @@ W: 23, 0: Unused import curses (unused-import)
 W: 26, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import set_volume from wildcard import (unused-wildcard-import)
 ************* Module sflegacy
-W:177, 0: TODO: obsolete (fixme)
-W:191, 0: TODO: obsolete (fixme)
-W:204, 0: TODO: obsolete (fixme)
-W:219, 0: TODO: obsolete (fixme)
-W:242, 0: TODO WTF? (fixme)
-W:263, 0: TODO: better way to zero fill? (fixme)
-W:449, 0: TODO: Obsolete (fixme)
+W:180, 0: TODO: obsolete (fixme)
+W:195, 0: TODO: obsolete (fixme)
+W:209, 0: TODO: obsolete (fixme)
+W:225, 0: TODO: obsolete (fixme)
+W:249, 0: TODO WTF? (fixme)
+W:271, 0: TODO: better way to zero fill? (fixme)
+W:458, 0: TODO: Obsolete (fixme)
+C:462, 0: Final newline missing (missing-final-newline)
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 20, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 27, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1166,425 +1167,24 @@ R: 90, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 97, 0: Too few public methods (0/2) (too-few-public-methods)
 R:104, 0: Too few public methods (0/2) (too-few-public-methods)
 R:111, 0: Too few public methods (0/2) (too-few-public-methods)
-C:129, 4: Empty method docstring (empty-docstring)
-C:134, 4: Empty method docstring (empty-docstring)
-R:140, 0: Too few public methods (0/2) (too-few-public-methods)
-R:147, 0: Too few public methods (0/2) (too-few-public-methods)
-C:158, 4: Empty method docstring (empty-docstring)
-R:164, 0: Too few public methods (0/2) (too-few-public-methods)
-E:179,13: Undefined variable 'savegame' (undefined-variable)
-E:179,22: Undefined variable 'SG' (undefined-variable)
-E:180,15: Undefined variable 'savegame' (undefined-variable)
-E:180,24: Undefined variable 'SG' (undefined-variable)
-E:181,11: Undefined variable 'LBL' (undefined-variable)
-E:193,12: Undefined variable 'Quest' (undefined-variable)
-E:193,36: Undefined variable 'savegame' (undefined-variable)
-E:206,12: Undefined variable 'Quest' (undefined-variable)
-E:206,36: Undefined variable 'savegame' (undefined-variable)
-E:221,12: Undefined variable 'Quest' (undefined-variable)
-E:221,36: Undefined variable 'savegame' (undefined-variable)
-E:233,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
-E:234, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:234,27: Undefined variable 'Event' (undefined-variable)
-E:234,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
-E:235, 8: Undefined variable 'load' (undefined-variable)
-E:238,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
-E:239, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:239,27: Undefined variable 'Event' (undefined-variable)
-E:239,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
-E:241, 4: Undefined variable 'pending_loaders' (undefined-variable)
-W:241, 4: Unused variable 'pending_loaders' (unused-variable)
-W:243, 4: Unused variable 'pending_configuration_files' (unused-variable)
-W:233, 8: Unused variable 'data_format' (unused-variable)
-R:247, 0: Too many local variables (37/15) (too-many-locals)
-E:256,36: Undefined variable 'SG' (undefined-variable)
-E:258,13: Undefined variable 'SG' (undefined-variable)
-E:261,14: Instance of 'int' has no 'tostr' member (no-member)
-E:261,27: Undefined variable 'SG' (undefined-variable)
-E:275,17: Undefined variable 'SG' (undefined-variable)
-E:277,17: Undefined variable 'SG' (undefined-variable)
-E:279,17: Undefined variable 'SG' (undefined-variable)
-E:279,41: Undefined variable 'content_max' (undefined-variable)
-E:280,17: Undefined variable 'SG' (undefined-variable)
-E:280,32: Undefined variable 'content_max' (undefined-variable)
-E:282,19: Undefined variable 'SG' (undefined-variable)
-E:283, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:284,22: Undefined variable 'SG' (undefined-variable)
-E:284,51: Undefined variable 'SG' (undefined-variable)
-E:287,19: Undefined variable 'SG' (undefined-variable)
-E:288, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:289,23: Undefined variable 'SG' (undefined-variable)
-E:289,53: Undefined variable 'SG' (undefined-variable)
-E:293, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:294,22: Undefined variable 'SG' (undefined-variable)
-E:294,50: Undefined variable 'SG' (undefined-variable)
-E:296, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:297,22: Undefined variable 'SG' (undefined-variable)
-E:297,50: Undefined variable 'SG' (undefined-variable)
-E:301, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:303,13: Undefined variable 'SG' (undefined-variable)
-E:303,56: Undefined variable 'SG' (undefined-variable)
-E:310, 8: Using variable 'last_level' before assignment (used-before-assignment)
-E:310,43: Undefined variable 'SG' (undefined-variable)
-E:314,30: Undefined variable 'SG' (undefined-variable)
-E:316,30: Undefined variable 'server' (undefined-variable)
-E:317,28: Undefined variable 'SG' (undefined-variable)
-E:319,11: Undefined variable 'old_ach' (undefined-variable)
-E:321,15: Undefined variable 'ach_level' (undefined-variable)
-E:321,40: Undefined variable 'old_ach' (undefined-variable)
-E:322,16: Undefined variable 'old_ach' (undefined-variable)
-E:322,34: Undefined variable 'ach_level' (undefined-variable)
-E:324,16: Undefined variable 'old_ach' (undefined-variable)
-E:324,29: Undefined variable 'ach_level' (undefined-variable)
-E:327,12: Undefined variable 'old_ach' (undefined-variable)
-E:327,25: Undefined variable 'ach_level' (undefined-variable)
-E:329, 8: Using variable 'old_album' before assignment (used-before-assignment)
-E:329,38: Undefined variable 'SG' (undefined-variable)
-E:331,25: Undefined variable 'SG' (undefined-variable)
-E:334,29: Undefined variable 'SG' (undefined-variable)
-E:335,30: Undefined variable 'SG' (undefined-variable)
-E:336,30: Undefined variable 'SG' (undefined-variable)
-E:337,30: Undefined variable 'SG' (undefined-variable)
-E:338,30: Undefined variable 'SG' (undefined-variable)
-E:339,29: Undefined variable 'SG' (undefined-variable)
-E:340,29: Undefined variable 'SG' (undefined-variable)
-E:341,30: Undefined variable 'SG' (undefined-variable)
-E:342,29: Undefined variable 'SG' (undefined-variable)
-E:343,29: Undefined variable 'SG' (undefined-variable)
-E:344,32: Undefined variable 'SG' (undefined-variable)
-E:345,33: Undefined variable 'SG' (undefined-variable)
-E:355,11: Undefined variable 'text_dir' (undefined-variable)
-E:356,12: Undefined variable 'actor' (undefined-variable)
-E:356,18: Undefined variable 'IF' (undefined-variable)
-E:356,34: Undefined variable 'IF' (undefined-variable)
-E:358,17: Undefined variable 'actor' (undefined-variable)
-E:358,23: Undefined variable 'LBL' (undefined-variable)
-E:359,40: Undefined variable 'SG' (undefined-variable)
-C:360,16: Invalid variable name "x" (invalid-name)
-E:360,20: Undefined variable 'IF' (undefined-variable)
-E:360,47: Undefined variable 'textWidth' (undefined-variable)
-E:361,12: Undefined variable 'actor' (undefined-variable)
-E:361,18: Undefined variable 'IF' (undefined-variable)
-E:361,36: Undefined variable 'actor' (undefined-variable)
-E:361,42: Undefined variable 'LBL' (undefined-variable)
-E:361,65: Undefined variable 'width' (undefined-variable)
-E:363,18: Undefined variable 'actor' (undefined-variable)
-E:363,24: Undefined variable 'LBL' (undefined-variable)
-E:364,32: Undefined variable 'SG_GOLD' (undefined-variable)
-E:368,41: Undefined variable 'SG' (undefined-variable)
-C:369,16: Invalid variable name "x" (invalid-name)
-E:369,20: Undefined variable 'actor' (undefined-variable)
-E:369,26: Undefined variable 'IF' (undefined-variable)
-E:369,44: Undefined variable 'textWidth' (undefined-variable)
-E:371,17: Undefined variable 'actor' (undefined-variable)
-E:371,23: Undefined variable 'LBL' (undefined-variable)
-E:372,32: Undefined variable 'SG' (undefined-variable)
-C:373,16: Invalid variable name "x" (invalid-name)
-E:373,20: Undefined variable 'IF' (undefined-variable)
-E:373,50: Undefined variable 'textWidth' (undefined-variable)
-E:375,15: Undefined variable 'texts' (undefined-variable)
-E:375,21: Undefined variable 'TXT' (undefined-variable)
-E:376,16: Undefined variable 'enable_popup' (undefined-variable)
-E:377,20: Undefined variable 'LBL' (undefined-variable)
-E:378,20: Undefined variable 'texts' (undefined-variable)
-E:378,26: Undefined variable 'TXT' (undefined-variable)
-E:379,39: Undefined variable 'SG' (undefined-variable)
-E:383,18: Undefined variable 'actor' (undefined-variable)
-E:383,24: Undefined variable 'LBL' (undefined-variable)
-E:384,32: Undefined variable 'SG_GOLD' (undefined-variable)
-E:388,41: Undefined variable 'SG' (undefined-variable)
-C:389,16: Invalid variable name "x" (invalid-name)
-E:389,20: Undefined variable 'actor' (undefined-variable)
-E:389,26: Undefined variable 'IF' (undefined-variable)
-E:389,44: Undefined variable 'textWidth' (undefined-variable)
-E:391,12: Undefined variable 'actor' (undefined-variable)
-E:391,18: Undefined variable 'IF' (undefined-variable)
-E:391,34: Undefined variable 'actor' (undefined-variable)
-E:391,40: Undefined variable 'LBL' (undefined-variable)
-E:393,17: Undefined variable 'actor' (undefined-variable)
-E:393,23: Undefined variable 'LBL' (undefined-variable)
-E:394,40: Undefined variable 'SG' (undefined-variable)
-C:395,16: Invalid variable name "x" (invalid-name)
-E:395,20: Undefined variable 'actor' (undefined-variable)
-E:395,26: Undefined variable 'IF' (undefined-variable)
-E:395,42: Undefined variable 'textWidth' (undefined-variable)
-E:397,17: Undefined variable 'actor' (undefined-variable)
-E:397,23: Undefined variable 'LBL' (undefined-variable)
-E:398,32: Undefined variable 'SG' (undefined-variable)
-C:399,16: Invalid variable name "x" (invalid-name)
-E:399,20: Undefined variable 'IF' (undefined-variable)
-E:399,50: Undefined variable 'textWidth' (undefined-variable)
-E:401,15: Undefined variable 'texts' (undefined-variable)
-E:401,21: Undefined variable 'TXT' (undefined-variable)
-E:402,16: Undefined variable 'enable_popup' (undefined-variable)
-E:403,20: Undefined variable 'LBL' (undefined-variable)
-E:404,20: Undefined variable 'texts' (undefined-variable)
-E:404,26: Undefined variable 'TXT' (undefined-variable)
-E:405,39: Undefined variable 'SG' (undefined-variable)
-E:409, 4: Undefined variable 'add' (undefined-variable)
-E:409, 8: Undefined variable 'IF' (undefined-variable)
-E:410,20: Undefined variable 'SG' (undefined-variable)
-E:411, 8: Undefined variable 'server_time' (undefined-variable)
-E:412,32: Undefined variable 'SG' (undefined-variable)
-E:414,21: Undefined variable 'datetime' (undefined-variable)
-E:415, 8: Undefined variable 'time_calc' (undefined-variable)
-E:417, 7: Undefined variable 'session_id' (undefined-variable)
-E:418, 8: Undefined variable 'log' (undefined-variable)
-E:422, 8: Undefined variable 'show_login_screen' (undefined-variable)
-E:424, 8: Undefined variable 'log' (undefined-variable)
-E:424,52: Undefined variable 'session_id' (undefined-variable)
-E:426,20: Undefined variable 'SG' (undefined-variable)
-E:426,46: Using variable 'gilden_id' before assignment (used-before-assignment)
-E:427,33: Undefined variable 'SG' (undefined-variable)
-E:429,12: Undefined variable 'send_action' (undefined-variable)
-E:430,16: Undefined variable 'ACT' (undefined-variable)
-E:431,25: Undefined variable 'SG' (undefined-variable)
-E:434,13: Undefined variable 'SG' (undefined-variable)
-E:435,44: Undefined variable 'on_stage' (undefined-variable)
-E:435,53: Undefined variable 'POST' (undefined-variable)
-E:438,20: Undefined variable 'SG' (undefined-variable)
-E:439, 8: Undefined variable 'request_logout' (undefined-variable)
-E:441, 7: Using variable 'next_pxl' before assignment (used-before-assignment)
-R:247, 0: Too many branches (38/12) (too-many-branches)
-R:247, 0: Too many statements (114/50) (too-many-statements)
-W:337, 8: Unused variable 'char_mouth' (unused-variable)
-W:272, 4: Unused variable 'can_rob' (unused-variable)
-W:359,16: Unused variable 'text' (unused-variable)
-W:349, 8: Unused variable 'char_color' (unused-variable)
-W:345, 8: Unused variable 'char_special2' (unused-variable)
-W:330, 8: Unused variable 'album_effect' (unused-variable)
-W:436, 8: Unused variable 'pulse_post' (unused-variable)
-W:312, 8: Unused variable 'pulse_char' (unused-variable)
-W:341, 8: Unused variable 'char_brows' (unused-variable)
-W:338, 8: Unused variable 'char_beard' (unused-variable)
-W:336, 8: Unused variable 'char_class' (unused-variable)
-W:306, 4: Unused variable 'debug_info' (unused-variable)
-W:316, 4: Unused variable 'friend_link' (unused-variable)
-W:334, 8: Unused variable 'char_volk' (unused-variable)
-W:342, 8: Unused variable 'char_ears' (unused-variable)
-W:360,16: Unused variable 'x' (unused-variable)
-W:311, 8: Unused variable 'level_up' (unused-variable)
-W:339, 8: Unused variable 'char_nose' (unused-variable)
-W:344, 8: Unused variable 'char_special' (unused-variable)
-W:340, 8: Unused variable 'char_eyes' (unused-variable)
-W:335, 8: Unused variable 'char_male' (unused-variable)
-W:414, 8: Unused variable 'local_time' (unused-variable)
-W:271, 4: Unused variable 'has_mirror' (unused-variable)
-E:451,10: Undefined variable 'stObject' (undefined-variable)
-E:452, 8: Undefined variable 'stObject' (undefined-variable)
-R:154, 0: Interface not implemented (interface-not-implemented)
-R:  1, 0: Similar lines in 2 files
-==sfclient:5889
-==sflegacy:273
-    if bin_str.substr(31) == "1":
-        savegame[SG['GENDER']] = 1
-    else:
-        savegame[SG['GENDER']] = 2
-
-    if (savegame[SG['ALBUM']] - 10000) > content_max:
-        savegame[SG['ALBUM']] = content_max + 10000
-
-    for i in range(SG['BACKPACK']['SIZE']):
-        expand_item_structure(
-            savegame, SG['BACKPACK']['OFFS'] + i * SG['ITM']['SIZE']
-        )
-
-    for i in range(SG['INVENTORY']['SIZE']):
-        expand_item_structure(
-            savegame, (SG['INVENTORY']['OFFS'] + i * SG['ITM']['SIZE'])
-        )
-
-    for i in range(6):
-        expand_item_structure(
-            savegame, SG['SHAKES']['ITEM1'] + i * SG['ITM']['SIZE']
-        )
-        expand_item_structure(
-            savegame, SG['FIDGET']['ITEM1'] + i * SG['ITM']['SIZE']
-        )
-
-    for i in range(3):
-        expand_item_structure(
-            savegame,
-            (SG['QUEST']['OFFER']['REWARD_ITM1'] + (i * SG['ITM']['SIZE']))
-        )
-
-    debug_info = ""
-    for i in range(len(savegame)):
-        debug_info += str(i) + "=" + savegame[i] + ", "
-
-    if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
-        level_up = True
-        pulse_char = True
-
-    last_level = int(savegame[SG['LEVEL']])
-
-    friend_link = "http://" + server + "/index.php?rec="
-    friend_link += savegame[SG['PLAYER']['ID']]
-
-    if len(old_ach) != 0:
-        for i in range(8):
-            if ach_level(savegame, i) > old_ach[i]:
-                old_ach[i] = -1 * ach_level(savegame, i)
-            else:
-                old_ach[i] = ach_level(savegame, i)
-    else:
-        for i in range(8):
-            old_ach[i] = ach_level(savegame, i)
-
-    if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
-        album_effect = True
-    old_album = savegame[SG['ALBUM']]
-
-    if fill_face_variables:
-        char_volk = savegame[SG['RACE']]
-        char_male = (savegame[SG['GENDER']] == 1)
-        char_class = savegame[SG['CLASS']]
-        char_mouth = savegame[SG['FACE']['1']]
-        char_beard = savegame[SG['FACE']['5']]
-        char_nose = savegame[SG['FACE']['6']]
-        char_eyes = savegame[SG['FACE']['4']]
-        char_brows = savegame[SG['FACE']['3']]
-        char_ears = savegame[SG['FACE']['7']]
-        char_hair = savegame[SG['FACE']['2']]
-        char_special = savegame[SG['FACE']['8']]
-        char_special2 = savegame[SG['FACE']['9']]
-
-        i = char_hair
-
-        char_color = 0
-        while i > 100:
-            i -= 100
-            char_color += 1
-
-    if not no_spoil:
-        if text_dir == "right": (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:6050
-==sflegacy:435
-            pulse_post = True
-
-        if int(savegame[SG['LOCKDURATION']]) != 0:
-            request_logout()
-
-        if next_pxl < 0:
-            next_pxl = abs(next_pxl)
-
- (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:6040
-==sflegacy:425
-        if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
-            gilden_id = int(savegame[SG['GUILD']['INDEX']])
-            if gilden_id != 0:
-                send_action(
-                    ACT['REQUEST']['GUILD'],
-                    savegame[SG['GUILD']['INDEX']]
-                )
-
-        sg_idx = SG['UNREAD']['MESSAGES'] (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:5990
-==sflegacy:374
-            if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                enable_popup(
-                    LBL['IF']['PILZE'],
-                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                    )
-                )
-        else:
-            with (actor[LBL['IF']['SILBER']]): (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:6024
-==sflegacy:409
-        if int(savegame[SG['SERVER']['TIME']]) > 0:
-            server_time.setTime(
-                1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
-            )
-            local_time = datetime.now()
-            time_calc.start()
-
-        if session_id == "": (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:6015
-==sflegacy:400
-                if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                    enable_popup(
-                        LBL['IF']['PILZE'],
-                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                        )
-                    )
- (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:6015
-==sflegacy:374
-                if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                    enable_popup(
-                        LBL['IF']['PILZE'],
-                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                        )
-                    ) (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:5990
-==sflegacy:400
-            if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                enable_popup(
-                    LBL['IF']['PILZE'],
-                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                    )
-                ) (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:5881
-==sflegacy:266
-    mirror_pieces = list()
-    for i in range(13):
-        mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
-
-    has_mirror = bin_str.substr(23, 1) == "1"
-    can_rob = bin_str.substr(22, 1) == "1"
- (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:5870
-==sflegacy:254
-    if not no_spoil:
-        tower_level = int((savegame[SG['MOUNT']] / 65536))
-
-    savegame[SG['MOUNT']] -= tower_level * 65536
-
-    # Extract mirror pieces from gender entry (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==sfclient:6033
-==sflegacy:418
-            "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
-            "PHP-Tunneling wird deaktiviert."
-        ))
-        show_login_screen()
-    else: (duplicate-code)
-R:  1, 0: Similar lines in 4 files
-==sfclient:5980
-==sfclient:6000
-==sflegacy:364
-==sflegacy:384
-                        text = "0"
-                    else:
-                        text = ""
-                    text += str(int(savegame[SG['GOLD']] % 100)) (duplicate-code)
-R:  1, 0: Similar lines in 4 files
-==sfclient:16584
-==sfclient:16672
-==sfclient:19519
-==sflegacy:379
-                    )
-                )
-            else: (duplicate-code)
+R:142, 0: Too few public methods (0/2) (too-few-public-methods)
+R:149, 0: Too few public methods (0/2) (too-few-public-methods)
+R:167, 0: Too few public methods (0/2) (too-few-public-methods)
+W:188,20: Unused argument 'quest_id' (unused-argument)
+W:202,19: Unused argument 'quest_id' (unused-argument)
+W:216,31: Unused argument 'random_range' (unused-argument)
+W:216,21: Unused argument 'quest_id' (unused-argument)
+W:216,45: Unused argument 'random_mod' (unused-argument)
+W:255,19: Unused argument 'str_save_game' (unused-argument)
+W:255,60: Unused argument 'no_spoil' (unused-argument)
+W:255,34: Unused argument 'fill_face_variables' (unused-argument)
+W:454,15: Unused argument 'vol' (unused-argument)
+R:156, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-3292 statements analysed.
+3160 statements analysed.
 
 External dependencies
 ---------------------
@@ -1602,13 +1202,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |17594  |55.36 |NC       |NC         |
+|code      |17430  |54.76 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12953  |40.75 |NC       |NC         |
+|docstring |12952  |40.69 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |526    |1.65  |NC       |NC         |
+|comment   |702    |2.21  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |710    |2.23  |NC       |NC         |
+|empty     |748    |2.35  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1619,9 +1219,9 @@ Duplication
 +-------------------------+------+---------+-----------+
 |                         |now   |previous |difference |
 +=========================+======+=========+===========+
-|nb duplicated lines      |178   |NC       |NC         |
+|nb duplicated lines      |0     |NC       |NC         |
 +-------------------------+------+---------+-----------+
-|percent duplicated lines |0.551 |NC       |NC         |
+|percent duplicated lines |0.000 |NC       |NC         |
 +-------------------------+------+---------+-----------+
 
 
@@ -1632,13 +1232,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |104    |NC       |NC         |
+|convention |96     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |82     |NC       |NC         |
+|refactor   |66     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |347    |NC       |NC         |
+|warning    |330    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |853    |NC       |NC         |
+|error      |688    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1646,13 +1246,13 @@ Messages by category
 % errors / warnings by module
 -----------------------------
 
-+---------+------+--------+---------+-----------+
-|module   |error |warning |refactor |convention |
-+=========+======+========+=========+===========+
-|sfclient |80.66 |90.49   |57.32    |86.54      |
-+---------+------+--------+---------+-----------+
-|sflegacy |19.34 |9.51    |42.68    |13.46      |
-+---------+------+--------+---------+-----------+
++---------+-------+--------+---------+-----------+
+|module   |error  |warning |refactor |convention |
++=========+=======+========+=========+===========+
+|sfclient |100.00 |95.15   |71.21    |93.75      |
++---------+-------+--------+---------+-----------+
+|sflegacy |0.00   |4.85    |28.79    |6.25       |
++---------+-------+--------+---------+-----------+
 
 
 
@@ -1662,29 +1262,29 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |811         |
+|undefined-variable           |653         |
 +-----------------------------+------------+
-|unused-variable              |287         |
+|unused-variable              |261         |
 +-----------------------------+------------+
-|invalid-name                 |100         |
+|invalid-name                 |94          |
 +-----------------------------+------------+
 |fixme                        |36          |
 +-----------------------------+------------+
-|used-before-assignment       |28          |
-+-----------------------------+------------+
 |too-few-public-methods       |28          |
 +-----------------------------+------------+
-|duplicate-code               |13          |
+|used-before-assignment       |24          |
 +-----------------------------+------------+
-|too-many-branches            |12          |
+|too-many-branches            |11          |
 +-----------------------------+------------+
-|too-many-locals              |10          |
+|unused-argument              |10          |
 +-----------------------------+------------+
-|no-member                    |10          |
-+-----------------------------+------------+
-|too-many-statements          |8           |
+|too-many-locals              |9           |
 +-----------------------------+------------+
 |unused-wildcard-import       |7           |
++-----------------------------+------------+
+|too-many-statements          |7           |
++-----------------------------+------------+
+|no-member                    |7           |
 +-----------------------------+------------+
 |too-many-arguments           |6           |
 +-----------------------------+------------+
@@ -1698,19 +1298,17 @@ Messages
 +-----------------------------+------------+
 |global-statement             |3           |
 +-----------------------------+------------+
-|empty-docstring              |3           |
-+-----------------------------+------------+
 |wildcard-import              |1           |
 +-----------------------------+------------+
 |unused-import                |1           |
-+-----------------------------+------------+
-|unused-argument              |1           |
 +-----------------------------+------------+
 |too-many-lines               |1           |
 +-----------------------------+------------+
 |redefined-builtin            |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
++-----------------------------+------------+
+|missing-final-newline        |1           |
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
@@ -1719,7 +1317,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -4.57/10
+Your code has been rated at -2.44/10
 
 Statistics by type
 ------------------
@@ -1731,7 +1329,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |34     |NC         |NC         |100.00      |14.71    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |31     |NC         |NC         |90.32       |0.00     |
+|method   |31     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |84     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+

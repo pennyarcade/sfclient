@@ -17229,3 +17229,10 @@ sfclient.py:31786:80: E501 line too long (86 > 79 characters)
 
     Reports error E501.
 checking sflegacy.py
+sflegacy.py:462:9: W292 no newline at end of file
+    Trailing blank lines are superfluous.
+
+    Okay: spam(1)
+    W391: spam(1)\n
+
+    However the last line should end with a new line (warning W292).
