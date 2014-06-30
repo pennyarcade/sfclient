@@ -13553,7 +13553,8 @@ def show_main_quests_screen(NextEnemies:Array){
                 while (i < 9) {
                     var _local3 = actor[(MQS_BUTTON + i)].content;
                     with (_local3) {
-                        remove_event_listener(MouseEvent.CLICK, MainQuestsClick);
+                        remove_event_listener(
+                                MouseEvent.CLICK, MainQuestsClick)
                     };
                     i++;
                 };
@@ -16703,7 +16704,7 @@ def action_handler(event):
         if case(RESP['VALIDATE_OK']):
             if par[0]:
                 param_cid = par[0]
-                LOG.debug("cid set by server:", param_cid)
+                LOG.debug("cid set by server: " + param_cid)
             show_email_nag_screen(1)
             break
 

@@ -128,9 +128,13 @@ class Timer(object):
     TIMER = None
 
     def add_event_listener(self, *args):
+        '''
+        '''
         pass
 
     def start(self, *args):
+        '''
+        '''
         pass
 
 
@@ -153,6 +157,8 @@ class ExternalInterface(object):
         obsolete with cli?
     '''
     def call(self, *args):
+        '''
+        '''
         pass
 
 
