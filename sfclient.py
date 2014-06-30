@@ -15246,8 +15246,11 @@ def ShowSignupScreen(evt:Event=None):void{
 # low level graphic stuff
 
 
-def remove(*args):
-    for actor_id in args:
+def remove(*actor_ids):
+    '''
+        remove actor
+    '''
+    for actor_id in actor_ids:
         if actor[actor_id]:
             if actor[actor_id] is list:
                 for i_bunch in actor[actor_id]:
@@ -15263,6 +15266,9 @@ def remove(*args):
 
 
 def show(*actor_ids):
+    '''
+        show actor
+    '''
     for actor_id in actor_ids:
         if actor[actor_id]:
             if actor[actor_id] is list:
@@ -15275,6 +15281,9 @@ def show(*actor_ids):
 
 
 def hide(*actor_ids):
+    '''
+        hide actor(s)
+    '''
     for actor_id in actor_ids:
         if actor[actor_id]:
             if actor[actor_id] is list:
@@ -15284,6 +15293,48 @@ def hide(*actor_ids):
 
             with actor[actor_id]:
                 visible = False
+
+
+def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
+            scale_y=None, vis=None, container_id=-1):
+    '''
+        add actor to global list
+    '''
+    if actor[actor_id] is Sound:
+        return
+
+    if actor[actor_id] is list:
+        for i_bunch in actor[actor_id]:
+            if i_bunch == actor_id:
+                return
+
+            add(i_bunch, pos_x, pos_y, scale_x, scale_y, vis, container_id)
+        return
+
+    if actor[actor_id] is Loader:
+        if actorLoaded[actor_id] == 0:
+            load(actor_id)
+
+    with actor[actor_id]:
+        if pos_x:
+            x = pos_x
+
+        if pos_y:
+            y = pos_y
+
+        if scale_x:
+            scaleX = size_x
+
+        if scale_y:
+            scaleY = size_y
+
+        if vis != None:
+            visible = bool(vis)
+
+    if container_id == -1:
+        addChild(actor[actor_id])
+    else:
+        actor[container_id].addChild(actor[actor_id])
 
 
 
@@ -15315,67 +15366,6 @@ def VisibleToFront(... _args):void{
     };
 }
 
-def add(
-    actor_id:int, pos_x:int=None, pos_y:int=None, scale_x:Number=None,
-    scale_y:Number=None, vis=None, containerID:int=-1
-):void{
-    var i:* = 0;
-    var req:* = None;
-    var i_bunch:* = 0;
-    var actor_id:* = actor_id;
-    var pos_x:* = pos_x;
-    var pos_y:* = pos_y;
-    var scale_x:* = scale_x;
-    var scale_y:* = scale_y;
-    var vis:* = vis;
-    var containerID:int = containerID;
-    i = actor_id;
-    if ((actor[actor_id] is Sound)){
-        return;
-    };
-    if ((actor[actor_id] is Array)){
-        i_bunch = 0;
-        while (i_bunch < actor[actor_id].length) {
-            if (actor[actor_id][i_bunch] == actor_id){
-                return;
-            };
-            add(
-                actor[actor_id][i_bunch],
-                pos_x, pos_y, scale_x, scale_y, vis, containerID
-            );
-            i_bunch = (i_bunch + 1);
-        };
-        return;
-    };
-    if ((actor[i] is Loader)){
-        if (actorLoaded[i] == 0){
-            load(i);
-        };
-    };
-    var _local9 = actor[i];
-    with (_local9) {
-        if (pos_x){
-            x = pos_x;
-        };
-        if (pos_y){
-            y = pos_y;
-        };
-        if (scale_x){
-            scaleX = size_x;
-        };
-        if (scale_y){
-            scaleY = size_y;
-        };
-        if (vis !== None){
-            visible = Boolean(vis);
-        };
-    };
-    if (containerID == -1){
-        addChild(actor[i]);
-    } else {
-        actor[containerID].addChild(actor[i]);
-    };
-}
 
 def Move(actor_id:int, pos_x:int, pos_y:int):void{
     var i:* = 0;
