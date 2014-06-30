@@ -34,6 +34,30 @@ class MouseEvent(object):
     '''
         obsolete with cli?
     '''
+    MOUSE_UP = None
+    MOUSE_DOWN = None
+    CLICK = None
+    pass
+
+
+class Timer(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class TimerEvent(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class KeyboardEvent(object):
+    '''
+        obsolete with cli?
+    '''
     pass
 
 

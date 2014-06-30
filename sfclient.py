@@ -9577,7 +9577,7 @@ def show_city_screen(evt:Event=None):void{
         add(SCREEN_CITY);
         if (StatistenBleiben){
             MakeTemporary(CITY_STATISTEN, BUBBLES);
-            VisibleToFront(CITY_STATISTEN, BUBBLES);
+            visible_to_front(CITY_STATISTEN, BUBBLES);
         } else {
             if (int((math.random() * 3)) == 0){
                 add(CITY_MAGIER1);
@@ -15338,35 +15338,23 @@ def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
         actor[container_id].addChild(actor[actor_id])
 
 
+def visible_to_front(*actor_ids):
+    for actor_id in actor_ids:
+        if actor[actor_id]:
+            if actor[actor_id] is list:
+                for i_bunch in actor[actor_id]:
+                    visible_to_front(i_bunch)
+                return
+
+            with actor[actor_id]:
+                if on_stage(actor_id):
+                    add(actor_id)
+
+
 
 
 '''
 
-def VisibleToFront(... _args):void{
-    var i:* = 0;
-    var i_bunch:* = 0;
-    var actor_ids:* = _args;
-    i = 0;
-    while (i < actor_ids.length) {
-        if (actor[actor_ids[i]]){
-            if ((actor[actor_ids[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[actor_ids[i]].length) {
-                    VisibleToFront(actor[actor_ids[i]][i_bunch]);
-                    i_bunch = (i_bunch + 1);
-                };
-                return;
-            };
-            var _local3 = actor[actor_ids[i]];
-            with (_local3) {
-                if (on_stage(actor_ids[i])){
-                    add(actor_ids[i]);
-                };
-            };
-        };
-        i = (i + 1);
-    };
-}
 
 
 def Move(actor_id:int, pos_x:int, pos_y:int):void{
@@ -27336,7 +27324,7 @@ def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:
             add(imgActorID);
         };
         if (ovlActorID != C_EMPTY){
-            VisibleToFront(ovlActorID);
+            visible_to_front(ovlActorID);
         };
         if (!stayPut){
             add(actor_id);
