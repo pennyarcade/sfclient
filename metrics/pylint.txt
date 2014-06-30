@@ -28,7 +28,7 @@ W:18189, 0: TODO: hat does this do? (fixme)
 W:19664, 0: TODO: What does this do? (fixme)
 W:19680, 0: TODO: Obsolete? (fixme)
 W:19703, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (31877) (too-many-lines)
+C:  1, 0: Too many lines in module (31987) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 C:4089, 0: Invalid constant name "param_obj" (invalid-name)
 C:4090, 0: Invalid constant name "actor" (invalid-name)
@@ -1132,7 +1132,7 @@ W:19697, 4: Unused variable 'pixel_success' (unused-variable)
 W:27224,-1: String statement has no effect (pointless-string-statement)
 W:27232, 4: Using the global statement (global-statement)
 C:27238, 4: Invalid variable name "s" (invalid-name)
-W:31877,-1: String statement has no effect (pointless-string-statement)
+W:31987,-1: String statement has no effect (pointless-string-statement)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
@@ -1204,13 +1204,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |17433  |54.73 |NC       |NC         |
+|code      |17543  |54.89 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12961  |40.69 |NC       |NC         |
+|docstring |12961  |40.55 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |702    |2.20  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |755    |2.37  |NC       |NC         |
+|empty     |755    |2.36  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
