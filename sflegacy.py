@@ -21,7 +21,8 @@ class TextFieldAutoSize(object):
     '''
         obsolete with cli?
     '''
-    pass
+    RIGHT = None
+    LEFT = None
 
 
 class URLLoader(object):
@@ -35,7 +36,7 @@ class URLLoaderdata_format(object):
     '''
         obsolete with cli?
     '''
-    pass
+    TEXT = None
 
 
 class URLRequest(object):
@@ -168,7 +169,11 @@ class SharedObject(object):
     '''
         obsolete with cli?
     '''
-    pass
+    def getLocal(self, *args):
+        '''
+            obsolete
+        '''
+        pass
 
 
 def get_quest_bg():

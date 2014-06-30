@@ -18067,7 +18067,7 @@ def action_handler(event):
                 else:
                     pas.append(int(pa))
 
-            if (pixel[1] == "") or (not pas.find(int(param_adv)) != -1):
+            if (pixel[1] == "") or (not pas.index(int(param_adv)) != -1):
                 pxl_str = pixel[2].replace(
                     "%playerid%", savegame[SG['PLAYER_ID']]
                 ).replace(
