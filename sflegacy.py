@@ -45,7 +45,6 @@ class URLRequest(object):
     pass
 
 
-
 class TextFieldType(object):
     '''
         obsolete with cli?
@@ -451,7 +450,3 @@ def set_volume(vol):
     '''
     with (stObject):
         stObject.volume = vol
-
-
-
-

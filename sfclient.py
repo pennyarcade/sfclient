@@ -30934,7 +30934,11 @@ def ModifyCharacter(evt:Event):void{
     LoadCharacterImage();
 }
 
-def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0, isMann:Boolean=False, isKaste:int=0, isMouth:int=0, isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0, isEars:int=0, isHair:int=0, isSpecial:int=0, isSpecial2:int=0):void{
+def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0,
+                       isMann:Boolean=False, isKaste:int=0, isMouth:int=0,
+                       isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0,
+                       isEars:int=0, isHair:int=0, isSpecial:int=0,
+                       isSpecial2:int=0):void{
     var charPrefix:* = None;
     var i:* = 0;
     var actorOffset:* = 0;
@@ -31091,7 +31095,8 @@ def PositionModifyCharacterButtons():void{
     var i:* = 0;
     var positionModifyCharacterBtn:* = function (actor_id:int):void{
         if (on_stage(actor_id)){
-            actor[actor_id].y = (MODIFY_CHARACTER_BUTTONS_Y + (iPosi++ * MODIFY_CHARACTER_BUTTONS_1));
+            actor[actor_id].y = (MODIFY_CHARACTER_BUTTONS_Y
+                                 + (iPosi++ * MODIFY_CHARACTER_BUTTONS_1));
         };
     };
     var iPosi:* = 0;
@@ -31108,17 +31113,24 @@ def PositionModifyCharacterButtons():void{
     i = 0;
     while (i < 10) {
         if (text_dir == "right"){
-            actor[(LBL_MOUTH + i)].x = ((MODIFY_CHARACTER_BUTTONS_X - actor[(LBL_MOUTH + i)].text_width) + 20);
-            actor[(MOUTH_MINUS + (i * 2))].x = (MODIFY_CHARACTER_BUTTONS_X + MODIFY_CHARACTER_LABEL_X);
-            actor[(MOUTH_PLUS + (i * 2))].x = (actor[(MOUTH_MINUS + (i * 2))].x + MODIFY_CHARACTER_BUTTONS_2);
+            actor[(LBL_MOUTH + i)].x = ((MODIFY_CHARACTER_BUTTONS_X
+                                - actor[(LBL_MOUTH + i)].text_width) + 20);
+            actor[(MOUTH_MINUS + (i * 2))].x = (MODIFY_CHARACTER_BUTTONS_X
+                                                + MODIFY_CHARACTER_LABEL_X);
+            actor[(MOUTH_PLUS + (i * 2))].x = (actor[(MOUTH_MINUS + (i * 2))].x
+                                               + MODIFY_CHARACTER_BUTTONS_2);
             actor[(MOUTH_MINUS + (i * 2))].y = actor[(MOUTH_PLUS + (i * 2))].y;
-            actor[(LBL_MOUTH + i)].y = (actor[(MOUTH_PLUS + (i * 2))].y + MODIFY_CHARACTER_LABEL_Y);
+            actor[(LBL_MOUTH + i)].y = (actor[(MOUTH_PLUS + (i * 2))].y
+                                        + MODIFY_CHARACTER_LABEL_Y);
         } else {
             actor[(MOUTH_MINUS + (i * 2))].x = MODIFY_CHARACTER_BUTTONS_X;
-            actor[(MOUTH_PLUS + (i * 2))].x = (actor[(MOUTH_MINUS + (i * 2))].x + MODIFY_CHARACTER_BUTTONS_2);
+            actor[(MOUTH_PLUS + (i * 2))].x = (actor[(MOUTH_MINUS + (i * 2))].x
+                                               + MODIFY_CHARACTER_BUTTONS_2);
             actor[(MOUTH_MINUS + (i * 2))].y = actor[(MOUTH_PLUS + (i * 2))].y;
-            actor[(LBL_MOUTH + i)].x = (actor[(MOUTH_PLUS + (i * 2))].x + MODIFY_CHARACTER_LABEL_X);
-            actor[(LBL_MOUTH + i)].y = (actor[(MOUTH_PLUS + (i * 2))].y + MODIFY_CHARACTER_LABEL_Y);
+            actor[(LBL_MOUTH + i)].x = (actor[(MOUTH_PLUS + (i * 2))].x
+                                        + MODIFY_CHARACTER_LABEL_X);
+            actor[(LBL_MOUTH + i)].y = (actor[(MOUTH_PLUS + (i * 2))].y
+                                        + MODIFY_CHARACTER_LABEL_Y);
         };
         i = (i + 1);
     };
@@ -31215,16 +31227,26 @@ def RandomizeCharImage(evt:Event=None):void{
         };
         return (0);
     };
-    char_color = int(((random.random() * getCharImageBound(char_volk, char_male, 10)) + 1));
-    char_mouth = int(((random.random() * getCharImageBound(char_volk, char_male, 1)) + 1));
-    char_beard = (int(((random.random() * getCharImageBound(char_volk, char_male, 2)) + 1)) + ColorOffset(C_BEARD));
-    char_nose = int(((random.random() * getCharImageBound(char_volk, char_male, 3)) + 1));
-    char_eyes = int(((random.random() * getCharImageBound(char_volk, char_male, 4)) + 1));
-    char_brows = (int(((random.random() * getCharImageBound(char_volk, char_male, 5)) + 1)) + ColorOffset(C_BROWS));
-    char_ears = int(((random.random() * getCharImageBound(char_volk, char_male, 6)) + 1));
-    char_hair = (int(((random.random() * getCharImageBound(char_volk, char_male, 7)) + 1)) + ColorOffset(C_HAIR));
-    char_special = int(((random.random() * getCharImageBound(char_volk, char_male, 8)) + 1));
-    char_special2 = (int(((random.random() * getCharImageBound(char_volk, char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
+    char_color = int(((random.random() * getCharImageBound(char_volk,
+                     char_male, 10)) + 1));
+    char_mouth = int(((random.random() * getCharImageBound(char_volk,
+                     char_male, 1)) + 1));
+    char_beard = (int(((random.random() * getCharImageBound(char_volk,
+                  char_male, 2)) + 1)) + ColorOffset(C_BEARD));
+    char_nose = int(((random.random() * getCharImageBound(char_volk,
+                    char_male, 3)) + 1));
+    char_eyes = int(((random.random() * getCharImageBound(char_volk,
+                    char_male, 4)) + 1));
+    char_brows = (int(((random.random() * getCharImageBound(char_volk,
+                  char_male, 5)) + 1)) + ColorOffset(C_BROWS));
+    char_ears = int(((random.random() * getCharImageBound(char_volk,
+                    char_male, 6)) + 1));
+    char_hair = (int(((random.random() * getCharImageBound(char_volk,
+                 char_male, 7)) + 1)) + ColorOffset(C_HAIR));
+    char_special = int(((random.random() * getCharImageBound(char_volk,
+                       char_male, 8)) + 1));
+    char_special2 = (int(((random.random() * getCharImageBound(char_volk,
+                     char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
     LoadCharacterImage();
 }
 
@@ -31639,7 +31661,7 @@ def getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
     return (0);
 }
 
-def getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste:int):String{
+def getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste:int):
     var strTemp:String;
     var strRace:String;
     strTemp = "res/gfx/char/";
@@ -31727,7 +31749,8 @@ def InterfaceBtnHandler(evt:Event):void{
         if case(CA_CITY_RUHMESHALLE:
         if case(IF_EHRENHALLE:
             ruhmes_halle_such_string = actor[INP['NAME']].getChildAt(1).text;
-            send_action(ACT_SCREEN_EHRENHALLE, actor[INP['NAME']].getChildAt(1).text, -1);
+            send_action(ACT_SCREEN_EHRENHALLE,
+                        actor[INP['NAME']].getChildAt(1).text, -1);
             break;
         if case(CA_CITY_ARENA:
         if case(IF_ARENA:
