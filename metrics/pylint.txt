@@ -28,7 +28,7 @@ W:18205, 0: TODO: hat does this do? (fixme)
 W:19680, 0: TODO: What does this do? (fixme)
 W:19696, 0: TODO: Obsolete? (fixme)
 W:19719, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (31833) (too-many-lines)
+C:  1, 0: Too many lines in module (31856) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 C:4089, 0: Invalid constant name "param_obj" (invalid-name)
 C:4090, 0: Invalid constant name "actor" (invalid-name)
@@ -1129,7 +1129,7 @@ W:19713, 4: Unused variable 'pixel_success' (unused-variable)
 W:27240,-1: String statement has no effect (pointless-string-statement)
 W:27248, 4: Using the global statement (global-statement)
 C:27254, 4: Invalid variable name "s" (invalid-name)
-W:31833,-1: String statement has no effect (pointless-string-statement)
+W:31856,-1: String statement has no effect (pointless-string-statement)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
@@ -1139,243 +1139,243 @@ W: 23, 0: Unused import curses (unused-import)
 W: 26, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import set_volume from wildcard import (unused-wildcard-import)
 ************* Module sflegacy
-W:178, 0: TODO: obsolete (fixme)
-W:192, 0: TODO: obsolete (fixme)
-W:205, 0: TODO: obsolete (fixme)
-W:220, 0: TODO: obsolete (fixme)
-W:243, 0: TODO WTF? (fixme)
-W:264, 0: TODO: better way to zero fill? (fixme)
-W:450, 0: TODO: Obsolete (fixme)
+W:177, 0: TODO: obsolete (fixme)
+W:191, 0: TODO: obsolete (fixme)
+W:204, 0: TODO: obsolete (fixme)
+W:219, 0: TODO: obsolete (fixme)
+W:242, 0: TODO WTF? (fixme)
+W:263, 0: TODO: better way to zero fill? (fixme)
+W:449, 0: TODO: Obsolete (fixme)
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 20, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 27, 0: Too few public methods (0/2) (too-few-public-methods)
 C: 34, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
 R: 34, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 41, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 49, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 56, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
-R: 56, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 63, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
-R: 63, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 70, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
-R: 70, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 77, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
-R: 77, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 84, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 91, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 98, 0: Too few public methods (0/2) (too-few-public-methods)
-R:105, 0: Too few public methods (0/2) (too-few-public-methods)
-R:112, 0: Too few public methods (0/2) (too-few-public-methods)
-C:130, 4: Empty method docstring (empty-docstring)
-C:135, 4: Empty method docstring (empty-docstring)
-R:141, 0: Too few public methods (0/2) (too-few-public-methods)
-R:148, 0: Too few public methods (0/2) (too-few-public-methods)
-C:159, 4: Empty method docstring (empty-docstring)
-R:165, 0: Too few public methods (0/2) (too-few-public-methods)
-E:180,13: Undefined variable 'savegame' (undefined-variable)
-E:180,22: Undefined variable 'SG' (undefined-variable)
-E:181,15: Undefined variable 'savegame' (undefined-variable)
-E:181,24: Undefined variable 'SG' (undefined-variable)
-E:182,11: Undefined variable 'LBL' (undefined-variable)
-E:194,12: Undefined variable 'Quest' (undefined-variable)
-E:194,36: Undefined variable 'savegame' (undefined-variable)
-E:207,12: Undefined variable 'Quest' (undefined-variable)
-E:207,36: Undefined variable 'savegame' (undefined-variable)
-E:222,12: Undefined variable 'Quest' (undefined-variable)
-E:222,36: Undefined variable 'savegame' (undefined-variable)
-E:234,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
-E:235, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:235,27: Undefined variable 'Event' (undefined-variable)
-E:235,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
-E:236, 8: Undefined variable 'load' (undefined-variable)
-E:239,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
-E:240, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:240,27: Undefined variable 'Event' (undefined-variable)
-E:240,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
-E:242, 4: Undefined variable 'pending_loaders' (undefined-variable)
-W:242, 4: Unused variable 'pending_loaders' (unused-variable)
-W:244, 4: Unused variable 'pending_configuration_files' (unused-variable)
-W:234, 8: Unused variable 'data_format' (unused-variable)
-R:248, 0: Too many local variables (37/15) (too-many-locals)
-E:257,36: Undefined variable 'SG' (undefined-variable)
-E:259,13: Undefined variable 'SG' (undefined-variable)
-E:262,14: Instance of 'int' has no 'tostr' member (no-member)
-E:262,27: Undefined variable 'SG' (undefined-variable)
-E:276,17: Undefined variable 'SG' (undefined-variable)
-E:278,17: Undefined variable 'SG' (undefined-variable)
+R: 48, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 55, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
+R: 55, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 62, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
+R: 62, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 69, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
+R: 69, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 76, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
+R: 76, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 83, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 90, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 97, 0: Too few public methods (0/2) (too-few-public-methods)
+R:104, 0: Too few public methods (0/2) (too-few-public-methods)
+R:111, 0: Too few public methods (0/2) (too-few-public-methods)
+C:129, 4: Empty method docstring (empty-docstring)
+C:134, 4: Empty method docstring (empty-docstring)
+R:140, 0: Too few public methods (0/2) (too-few-public-methods)
+R:147, 0: Too few public methods (0/2) (too-few-public-methods)
+C:158, 4: Empty method docstring (empty-docstring)
+R:164, 0: Too few public methods (0/2) (too-few-public-methods)
+E:179,13: Undefined variable 'savegame' (undefined-variable)
+E:179,22: Undefined variable 'SG' (undefined-variable)
+E:180,15: Undefined variable 'savegame' (undefined-variable)
+E:180,24: Undefined variable 'SG' (undefined-variable)
+E:181,11: Undefined variable 'LBL' (undefined-variable)
+E:193,12: Undefined variable 'Quest' (undefined-variable)
+E:193,36: Undefined variable 'savegame' (undefined-variable)
+E:206,12: Undefined variable 'Quest' (undefined-variable)
+E:206,36: Undefined variable 'savegame' (undefined-variable)
+E:221,12: Undefined variable 'Quest' (undefined-variable)
+E:221,36: Undefined variable 'savegame' (undefined-variable)
+E:233,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
+E:234, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:234,27: Undefined variable 'Event' (undefined-variable)
+E:234,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
+E:235, 8: Undefined variable 'load' (undefined-variable)
+E:238,22: Class 'URLLoaderdata_format' has no 'TEXT' member (no-member)
+E:239, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:239,27: Undefined variable 'Event' (undefined-variable)
+E:239,43: Undefined variable 'configuration_file_loaded' (undefined-variable)
+E:241, 4: Undefined variable 'pending_loaders' (undefined-variable)
+W:241, 4: Unused variable 'pending_loaders' (unused-variable)
+W:243, 4: Unused variable 'pending_configuration_files' (unused-variable)
+W:233, 8: Unused variable 'data_format' (unused-variable)
+R:247, 0: Too many local variables (37/15) (too-many-locals)
+E:256,36: Undefined variable 'SG' (undefined-variable)
+E:258,13: Undefined variable 'SG' (undefined-variable)
+E:261,14: Instance of 'int' has no 'tostr' member (no-member)
+E:261,27: Undefined variable 'SG' (undefined-variable)
+E:275,17: Undefined variable 'SG' (undefined-variable)
+E:277,17: Undefined variable 'SG' (undefined-variable)
+E:279,17: Undefined variable 'SG' (undefined-variable)
+E:279,41: Undefined variable 'content_max' (undefined-variable)
 E:280,17: Undefined variable 'SG' (undefined-variable)
-E:280,41: Undefined variable 'content_max' (undefined-variable)
-E:281,17: Undefined variable 'SG' (undefined-variable)
-E:281,32: Undefined variable 'content_max' (undefined-variable)
-E:283,19: Undefined variable 'SG' (undefined-variable)
-E:284, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:285,22: Undefined variable 'SG' (undefined-variable)
-E:285,51: Undefined variable 'SG' (undefined-variable)
-E:288,19: Undefined variable 'SG' (undefined-variable)
-E:289, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:290,23: Undefined variable 'SG' (undefined-variable)
-E:290,53: Undefined variable 'SG' (undefined-variable)
-E:294, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:295,22: Undefined variable 'SG' (undefined-variable)
-E:295,50: Undefined variable 'SG' (undefined-variable)
-E:297, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:298,22: Undefined variable 'SG' (undefined-variable)
-E:298,50: Undefined variable 'SG' (undefined-variable)
-E:302, 8: Undefined variable 'expand_item_structure' (undefined-variable)
-E:304,13: Undefined variable 'SG' (undefined-variable)
-E:304,56: Undefined variable 'SG' (undefined-variable)
-E:311, 8: Using variable 'last_level' before assignment (used-before-assignment)
-E:311,43: Undefined variable 'SG' (undefined-variable)
-E:315,30: Undefined variable 'SG' (undefined-variable)
-E:317,30: Undefined variable 'server' (undefined-variable)
-E:318,28: Undefined variable 'SG' (undefined-variable)
-E:320,11: Undefined variable 'old_ach' (undefined-variable)
-E:322,15: Undefined variable 'ach_level' (undefined-variable)
-E:322,40: Undefined variable 'old_ach' (undefined-variable)
-E:323,16: Undefined variable 'old_ach' (undefined-variable)
-E:323,34: Undefined variable 'ach_level' (undefined-variable)
-E:325,16: Undefined variable 'old_ach' (undefined-variable)
-E:325,29: Undefined variable 'ach_level' (undefined-variable)
-E:328,12: Undefined variable 'old_ach' (undefined-variable)
-E:328,25: Undefined variable 'ach_level' (undefined-variable)
-E:330, 8: Using variable 'old_album' before assignment (used-before-assignment)
-E:330,38: Undefined variable 'SG' (undefined-variable)
-E:332,25: Undefined variable 'SG' (undefined-variable)
-E:335,29: Undefined variable 'SG' (undefined-variable)
+E:280,32: Undefined variable 'content_max' (undefined-variable)
+E:282,19: Undefined variable 'SG' (undefined-variable)
+E:283, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:284,22: Undefined variable 'SG' (undefined-variable)
+E:284,51: Undefined variable 'SG' (undefined-variable)
+E:287,19: Undefined variable 'SG' (undefined-variable)
+E:288, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:289,23: Undefined variable 'SG' (undefined-variable)
+E:289,53: Undefined variable 'SG' (undefined-variable)
+E:293, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:294,22: Undefined variable 'SG' (undefined-variable)
+E:294,50: Undefined variable 'SG' (undefined-variable)
+E:296, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:297,22: Undefined variable 'SG' (undefined-variable)
+E:297,50: Undefined variable 'SG' (undefined-variable)
+E:301, 8: Undefined variable 'expand_item_structure' (undefined-variable)
+E:303,13: Undefined variable 'SG' (undefined-variable)
+E:303,56: Undefined variable 'SG' (undefined-variable)
+E:310, 8: Using variable 'last_level' before assignment (used-before-assignment)
+E:310,43: Undefined variable 'SG' (undefined-variable)
+E:314,30: Undefined variable 'SG' (undefined-variable)
+E:316,30: Undefined variable 'server' (undefined-variable)
+E:317,28: Undefined variable 'SG' (undefined-variable)
+E:319,11: Undefined variable 'old_ach' (undefined-variable)
+E:321,15: Undefined variable 'ach_level' (undefined-variable)
+E:321,40: Undefined variable 'old_ach' (undefined-variable)
+E:322,16: Undefined variable 'old_ach' (undefined-variable)
+E:322,34: Undefined variable 'ach_level' (undefined-variable)
+E:324,16: Undefined variable 'old_ach' (undefined-variable)
+E:324,29: Undefined variable 'ach_level' (undefined-variable)
+E:327,12: Undefined variable 'old_ach' (undefined-variable)
+E:327,25: Undefined variable 'ach_level' (undefined-variable)
+E:329, 8: Using variable 'old_album' before assignment (used-before-assignment)
+E:329,38: Undefined variable 'SG' (undefined-variable)
+E:331,25: Undefined variable 'SG' (undefined-variable)
+E:334,29: Undefined variable 'SG' (undefined-variable)
+E:335,30: Undefined variable 'SG' (undefined-variable)
 E:336,30: Undefined variable 'SG' (undefined-variable)
 E:337,30: Undefined variable 'SG' (undefined-variable)
 E:338,30: Undefined variable 'SG' (undefined-variable)
-E:339,30: Undefined variable 'SG' (undefined-variable)
+E:339,29: Undefined variable 'SG' (undefined-variable)
 E:340,29: Undefined variable 'SG' (undefined-variable)
-E:341,29: Undefined variable 'SG' (undefined-variable)
-E:342,30: Undefined variable 'SG' (undefined-variable)
+E:341,30: Undefined variable 'SG' (undefined-variable)
+E:342,29: Undefined variable 'SG' (undefined-variable)
 E:343,29: Undefined variable 'SG' (undefined-variable)
-E:344,29: Undefined variable 'SG' (undefined-variable)
-E:345,32: Undefined variable 'SG' (undefined-variable)
-E:346,33: Undefined variable 'SG' (undefined-variable)
-E:356,11: Undefined variable 'text_dir' (undefined-variable)
-E:357,12: Undefined variable 'actor' (undefined-variable)
-E:357,18: Undefined variable 'IF' (undefined-variable)
-E:357,34: Undefined variable 'IF' (undefined-variable)
-E:359,17: Undefined variable 'actor' (undefined-variable)
-E:359,23: Undefined variable 'LBL' (undefined-variable)
-E:360,40: Undefined variable 'SG' (undefined-variable)
-C:361,16: Invalid variable name "x" (invalid-name)
-E:361,20: Undefined variable 'IF' (undefined-variable)
-E:361,47: Undefined variable 'textWidth' (undefined-variable)
-E:362,12: Undefined variable 'actor' (undefined-variable)
-E:362,18: Undefined variable 'IF' (undefined-variable)
-E:362,36: Undefined variable 'actor' (undefined-variable)
-E:362,42: Undefined variable 'LBL' (undefined-variable)
-E:362,65: Undefined variable 'width' (undefined-variable)
-E:364,18: Undefined variable 'actor' (undefined-variable)
-E:364,24: Undefined variable 'LBL' (undefined-variable)
-E:365,32: Undefined variable 'SG_GOLD' (undefined-variable)
-E:369,41: Undefined variable 'SG' (undefined-variable)
-C:370,16: Invalid variable name "x" (invalid-name)
-E:370,20: Undefined variable 'actor' (undefined-variable)
-E:370,26: Undefined variable 'IF' (undefined-variable)
-E:370,44: Undefined variable 'textWidth' (undefined-variable)
-E:372,17: Undefined variable 'actor' (undefined-variable)
-E:372,23: Undefined variable 'LBL' (undefined-variable)
-E:373,32: Undefined variable 'SG' (undefined-variable)
-C:374,16: Invalid variable name "x" (invalid-name)
-E:374,20: Undefined variable 'IF' (undefined-variable)
-E:374,50: Undefined variable 'textWidth' (undefined-variable)
-E:376,15: Undefined variable 'texts' (undefined-variable)
-E:376,21: Undefined variable 'TXT' (undefined-variable)
-E:377,16: Undefined variable 'enable_popup' (undefined-variable)
-E:378,20: Undefined variable 'LBL' (undefined-variable)
-E:379,20: Undefined variable 'texts' (undefined-variable)
-E:379,26: Undefined variable 'TXT' (undefined-variable)
-E:380,39: Undefined variable 'SG' (undefined-variable)
-E:384,18: Undefined variable 'actor' (undefined-variable)
-E:384,24: Undefined variable 'LBL' (undefined-variable)
-E:385,32: Undefined variable 'SG_GOLD' (undefined-variable)
-E:389,41: Undefined variable 'SG' (undefined-variable)
-C:390,16: Invalid variable name "x" (invalid-name)
-E:390,20: Undefined variable 'actor' (undefined-variable)
-E:390,26: Undefined variable 'IF' (undefined-variable)
-E:390,44: Undefined variable 'textWidth' (undefined-variable)
-E:392,12: Undefined variable 'actor' (undefined-variable)
-E:392,18: Undefined variable 'IF' (undefined-variable)
-E:392,34: Undefined variable 'actor' (undefined-variable)
-E:392,40: Undefined variable 'LBL' (undefined-variable)
-E:394,17: Undefined variable 'actor' (undefined-variable)
-E:394,23: Undefined variable 'LBL' (undefined-variable)
-E:395,40: Undefined variable 'SG' (undefined-variable)
-C:396,16: Invalid variable name "x" (invalid-name)
-E:396,20: Undefined variable 'actor' (undefined-variable)
-E:396,26: Undefined variable 'IF' (undefined-variable)
-E:396,42: Undefined variable 'textWidth' (undefined-variable)
-E:398,17: Undefined variable 'actor' (undefined-variable)
-E:398,23: Undefined variable 'LBL' (undefined-variable)
-E:399,32: Undefined variable 'SG' (undefined-variable)
-C:400,16: Invalid variable name "x" (invalid-name)
-E:400,20: Undefined variable 'IF' (undefined-variable)
-E:400,50: Undefined variable 'textWidth' (undefined-variable)
-E:402,15: Undefined variable 'texts' (undefined-variable)
-E:402,21: Undefined variable 'TXT' (undefined-variable)
-E:403,16: Undefined variable 'enable_popup' (undefined-variable)
-E:404,20: Undefined variable 'LBL' (undefined-variable)
-E:405,20: Undefined variable 'texts' (undefined-variable)
-E:405,26: Undefined variable 'TXT' (undefined-variable)
-E:406,39: Undefined variable 'SG' (undefined-variable)
-E:410, 4: Undefined variable 'add' (undefined-variable)
-E:410, 8: Undefined variable 'IF' (undefined-variable)
-E:411,20: Undefined variable 'SG' (undefined-variable)
-E:412, 8: Undefined variable 'server_time' (undefined-variable)
-E:413,32: Undefined variable 'SG' (undefined-variable)
-E:415,21: Undefined variable 'datetime' (undefined-variable)
-E:416, 8: Undefined variable 'time_calc' (undefined-variable)
-E:418, 7: Undefined variable 'session_id' (undefined-variable)
-E:419, 8: Undefined variable 'log' (undefined-variable)
-E:423, 8: Undefined variable 'show_login_screen' (undefined-variable)
-E:425, 8: Undefined variable 'log' (undefined-variable)
-E:425,52: Undefined variable 'session_id' (undefined-variable)
-E:427,20: Undefined variable 'SG' (undefined-variable)
-E:427,46: Using variable 'gilden_id' before assignment (used-before-assignment)
-E:428,33: Undefined variable 'SG' (undefined-variable)
-E:430,12: Undefined variable 'send_action' (undefined-variable)
-E:431,16: Undefined variable 'ACT' (undefined-variable)
-E:432,25: Undefined variable 'SG' (undefined-variable)
-E:435,13: Undefined variable 'SG' (undefined-variable)
-E:436,44: Undefined variable 'on_stage' (undefined-variable)
-E:436,53: Undefined variable 'POST' (undefined-variable)
-E:439,20: Undefined variable 'SG' (undefined-variable)
-E:440, 8: Undefined variable 'request_logout' (undefined-variable)
-E:442, 7: Using variable 'next_pxl' before assignment (used-before-assignment)
-R:248, 0: Too many branches (38/12) (too-many-branches)
-R:248, 0: Too many statements (114/50) (too-many-statements)
-W:338, 8: Unused variable 'char_mouth' (unused-variable)
-W:273, 4: Unused variable 'can_rob' (unused-variable)
-W:360,16: Unused variable 'text' (unused-variable)
-W:350, 8: Unused variable 'char_color' (unused-variable)
-W:346, 8: Unused variable 'char_special2' (unused-variable)
-W:331, 8: Unused variable 'album_effect' (unused-variable)
-W:437, 8: Unused variable 'pulse_post' (unused-variable)
-W:313, 8: Unused variable 'pulse_char' (unused-variable)
-W:342, 8: Unused variable 'char_brows' (unused-variable)
-W:339, 8: Unused variable 'char_beard' (unused-variable)
-W:337, 8: Unused variable 'char_class' (unused-variable)
-W:307, 4: Unused variable 'debug_info' (unused-variable)
-W:317, 4: Unused variable 'friend_link' (unused-variable)
-W:335, 8: Unused variable 'char_volk' (unused-variable)
-W:343, 8: Unused variable 'char_ears' (unused-variable)
-W:361,16: Unused variable 'x' (unused-variable)
-W:312, 8: Unused variable 'level_up' (unused-variable)
-W:340, 8: Unused variable 'char_nose' (unused-variable)
-W:345, 8: Unused variable 'char_special' (unused-variable)
-W:341, 8: Unused variable 'char_eyes' (unused-variable)
-W:336, 8: Unused variable 'char_male' (unused-variable)
-W:415, 8: Unused variable 'local_time' (unused-variable)
-W:272, 4: Unused variable 'has_mirror' (unused-variable)
-E:452,10: Undefined variable 'stObject' (undefined-variable)
-E:453, 8: Undefined variable 'stObject' (undefined-variable)
-R:155, 0: Interface not implemented (interface-not-implemented)
+E:344,32: Undefined variable 'SG' (undefined-variable)
+E:345,33: Undefined variable 'SG' (undefined-variable)
+E:355,11: Undefined variable 'text_dir' (undefined-variable)
+E:356,12: Undefined variable 'actor' (undefined-variable)
+E:356,18: Undefined variable 'IF' (undefined-variable)
+E:356,34: Undefined variable 'IF' (undefined-variable)
+E:358,17: Undefined variable 'actor' (undefined-variable)
+E:358,23: Undefined variable 'LBL' (undefined-variable)
+E:359,40: Undefined variable 'SG' (undefined-variable)
+C:360,16: Invalid variable name "x" (invalid-name)
+E:360,20: Undefined variable 'IF' (undefined-variable)
+E:360,47: Undefined variable 'textWidth' (undefined-variable)
+E:361,12: Undefined variable 'actor' (undefined-variable)
+E:361,18: Undefined variable 'IF' (undefined-variable)
+E:361,36: Undefined variable 'actor' (undefined-variable)
+E:361,42: Undefined variable 'LBL' (undefined-variable)
+E:361,65: Undefined variable 'width' (undefined-variable)
+E:363,18: Undefined variable 'actor' (undefined-variable)
+E:363,24: Undefined variable 'LBL' (undefined-variable)
+E:364,32: Undefined variable 'SG_GOLD' (undefined-variable)
+E:368,41: Undefined variable 'SG' (undefined-variable)
+C:369,16: Invalid variable name "x" (invalid-name)
+E:369,20: Undefined variable 'actor' (undefined-variable)
+E:369,26: Undefined variable 'IF' (undefined-variable)
+E:369,44: Undefined variable 'textWidth' (undefined-variable)
+E:371,17: Undefined variable 'actor' (undefined-variable)
+E:371,23: Undefined variable 'LBL' (undefined-variable)
+E:372,32: Undefined variable 'SG' (undefined-variable)
+C:373,16: Invalid variable name "x" (invalid-name)
+E:373,20: Undefined variable 'IF' (undefined-variable)
+E:373,50: Undefined variable 'textWidth' (undefined-variable)
+E:375,15: Undefined variable 'texts' (undefined-variable)
+E:375,21: Undefined variable 'TXT' (undefined-variable)
+E:376,16: Undefined variable 'enable_popup' (undefined-variable)
+E:377,20: Undefined variable 'LBL' (undefined-variable)
+E:378,20: Undefined variable 'texts' (undefined-variable)
+E:378,26: Undefined variable 'TXT' (undefined-variable)
+E:379,39: Undefined variable 'SG' (undefined-variable)
+E:383,18: Undefined variable 'actor' (undefined-variable)
+E:383,24: Undefined variable 'LBL' (undefined-variable)
+E:384,32: Undefined variable 'SG_GOLD' (undefined-variable)
+E:388,41: Undefined variable 'SG' (undefined-variable)
+C:389,16: Invalid variable name "x" (invalid-name)
+E:389,20: Undefined variable 'actor' (undefined-variable)
+E:389,26: Undefined variable 'IF' (undefined-variable)
+E:389,44: Undefined variable 'textWidth' (undefined-variable)
+E:391,12: Undefined variable 'actor' (undefined-variable)
+E:391,18: Undefined variable 'IF' (undefined-variable)
+E:391,34: Undefined variable 'actor' (undefined-variable)
+E:391,40: Undefined variable 'LBL' (undefined-variable)
+E:393,17: Undefined variable 'actor' (undefined-variable)
+E:393,23: Undefined variable 'LBL' (undefined-variable)
+E:394,40: Undefined variable 'SG' (undefined-variable)
+C:395,16: Invalid variable name "x" (invalid-name)
+E:395,20: Undefined variable 'actor' (undefined-variable)
+E:395,26: Undefined variable 'IF' (undefined-variable)
+E:395,42: Undefined variable 'textWidth' (undefined-variable)
+E:397,17: Undefined variable 'actor' (undefined-variable)
+E:397,23: Undefined variable 'LBL' (undefined-variable)
+E:398,32: Undefined variable 'SG' (undefined-variable)
+C:399,16: Invalid variable name "x" (invalid-name)
+E:399,20: Undefined variable 'IF' (undefined-variable)
+E:399,50: Undefined variable 'textWidth' (undefined-variable)
+E:401,15: Undefined variable 'texts' (undefined-variable)
+E:401,21: Undefined variable 'TXT' (undefined-variable)
+E:402,16: Undefined variable 'enable_popup' (undefined-variable)
+E:403,20: Undefined variable 'LBL' (undefined-variable)
+E:404,20: Undefined variable 'texts' (undefined-variable)
+E:404,26: Undefined variable 'TXT' (undefined-variable)
+E:405,39: Undefined variable 'SG' (undefined-variable)
+E:409, 4: Undefined variable 'add' (undefined-variable)
+E:409, 8: Undefined variable 'IF' (undefined-variable)
+E:410,20: Undefined variable 'SG' (undefined-variable)
+E:411, 8: Undefined variable 'server_time' (undefined-variable)
+E:412,32: Undefined variable 'SG' (undefined-variable)
+E:414,21: Undefined variable 'datetime' (undefined-variable)
+E:415, 8: Undefined variable 'time_calc' (undefined-variable)
+E:417, 7: Undefined variable 'session_id' (undefined-variable)
+E:418, 8: Undefined variable 'log' (undefined-variable)
+E:422, 8: Undefined variable 'show_login_screen' (undefined-variable)
+E:424, 8: Undefined variable 'log' (undefined-variable)
+E:424,52: Undefined variable 'session_id' (undefined-variable)
+E:426,20: Undefined variable 'SG' (undefined-variable)
+E:426,46: Using variable 'gilden_id' before assignment (used-before-assignment)
+E:427,33: Undefined variable 'SG' (undefined-variable)
+E:429,12: Undefined variable 'send_action' (undefined-variable)
+E:430,16: Undefined variable 'ACT' (undefined-variable)
+E:431,25: Undefined variable 'SG' (undefined-variable)
+E:434,13: Undefined variable 'SG' (undefined-variable)
+E:435,44: Undefined variable 'on_stage' (undefined-variable)
+E:435,53: Undefined variable 'POST' (undefined-variable)
+E:438,20: Undefined variable 'SG' (undefined-variable)
+E:439, 8: Undefined variable 'request_logout' (undefined-variable)
+E:441, 7: Using variable 'next_pxl' before assignment (used-before-assignment)
+R:247, 0: Too many branches (38/12) (too-many-branches)
+R:247, 0: Too many statements (114/50) (too-many-statements)
+W:337, 8: Unused variable 'char_mouth' (unused-variable)
+W:272, 4: Unused variable 'can_rob' (unused-variable)
+W:359,16: Unused variable 'text' (unused-variable)
+W:349, 8: Unused variable 'char_color' (unused-variable)
+W:345, 8: Unused variable 'char_special2' (unused-variable)
+W:330, 8: Unused variable 'album_effect' (unused-variable)
+W:436, 8: Unused variable 'pulse_post' (unused-variable)
+W:312, 8: Unused variable 'pulse_char' (unused-variable)
+W:341, 8: Unused variable 'char_brows' (unused-variable)
+W:338, 8: Unused variable 'char_beard' (unused-variable)
+W:336, 8: Unused variable 'char_class' (unused-variable)
+W:306, 4: Unused variable 'debug_info' (unused-variable)
+W:316, 4: Unused variable 'friend_link' (unused-variable)
+W:334, 8: Unused variable 'char_volk' (unused-variable)
+W:342, 8: Unused variable 'char_ears' (unused-variable)
+W:360,16: Unused variable 'x' (unused-variable)
+W:311, 8: Unused variable 'level_up' (unused-variable)
+W:339, 8: Unused variable 'char_nose' (unused-variable)
+W:344, 8: Unused variable 'char_special' (unused-variable)
+W:340, 8: Unused variable 'char_eyes' (unused-variable)
+W:335, 8: Unused variable 'char_male' (unused-variable)
+W:414, 8: Unused variable 'local_time' (unused-variable)
+W:271, 4: Unused variable 'has_mirror' (unused-variable)
+E:451,10: Undefined variable 'stObject' (undefined-variable)
+E:452, 8: Undefined variable 'stObject' (undefined-variable)
+R:154, 0: Interface not implemented (interface-not-implemented)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5889
-==sflegacy:274
+==sflegacy:273
     if bin_str.substr(31) == "1":
         savegame[SG['GENDER']] = 1
     else:
@@ -1460,31 +1460,31 @@ R:  1, 0: Similar lines in 2 files
         if text_dir == "right": (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:6050
-==sflegacy:436
-        pulse_post = True
+==sflegacy:435
+            pulse_post = True
 
-    if int(savegame[SG['LOCKDURATION']]) != 0:
-        request_logout()
+        if int(savegame[SG['LOCKDURATION']]) != 0:
+            request_logout()
 
-    if next_pxl < 0:
-        next_pxl = abs(next_pxl)
+        if next_pxl < 0:
+            next_pxl = abs(next_pxl)
 
  (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:6040
-==sflegacy:426
-    if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
-        gilden_id = int(savegame[SG['GUILD']['INDEX']])
-        if gilden_id != 0:
-            send_action(
-                ACT['REQUEST']['GUILD'],
-                savegame[SG['GUILD']['INDEX']]
-            )
+==sflegacy:425
+        if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
+            gilden_id = int(savegame[SG['GUILD']['INDEX']])
+            if gilden_id != 0:
+                send_action(
+                    ACT['REQUEST']['GUILD'],
+                    savegame[SG['GUILD']['INDEX']]
+                )
 
-    sg_idx = SG['UNREAD']['MESSAGES'] (duplicate-code)
+        sg_idx = SG['UNREAD']['MESSAGES'] (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5990
-==sflegacy:375
+==sflegacy:374
             if texts[TXT['MUSHROOMS']['BOUGHT']]:
                 enable_popup(
                     LBL['IF']['PILZE'],
@@ -1496,18 +1496,18 @@ R:  1, 0: Similar lines in 2 files
             with (actor[LBL['IF']['SILBER']]): (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:6024
-==sflegacy:410
-    if int(savegame[SG['SERVER']['TIME']]) > 0:
-        server_time.setTime(
-            1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
-        )
-        local_time = datetime.now()
-        time_calc.start()
+==sflegacy:409
+        if int(savegame[SG['SERVER']['TIME']]) > 0:
+            server_time.setTime(
+                1000 * int(savegame[SG['SERVER']['TIME']]) - 1000 * 60 * 60
+            )
+            local_time = datetime.now()
+            time_calc.start()
 
-    if session_id == "": (duplicate-code)
+        if session_id == "": (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:6015
-==sflegacy:401
+==sflegacy:400
                 if texts[TXT['MUSHROOMS']['BOUGHT']]:
                     enable_popup(
                         LBL['IF']['PILZE'],
@@ -1518,7 +1518,7 @@ R:  1, 0: Similar lines in 2 files
  (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:6015
-==sflegacy:375
+==sflegacy:374
                 if texts[TXT['MUSHROOMS']['BOUGHT']]:
                     enable_popup(
                         LBL['IF']['PILZE'],
@@ -1528,17 +1528,17 @@ R:  1, 0: Similar lines in 2 files
                     ) (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5990
-==sflegacy:401
-                if texts[TXT['MUSHROOMS']['BOUGHT']]:
-                    enable_popup(
-                        LBL['IF']['PILZE'],
-                        texts[TXT['MUSHROOMS']['BOUGHT']].replace(
-                            "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
-                        )
-                    ) (duplicate-code)
+==sflegacy:400
+            if texts[TXT['MUSHROOMS']['BOUGHT']]:
+                enable_popup(
+                    LBL['IF']['PILZE'],
+                    texts[TXT['MUSHROOMS']['BOUGHT']].replace(
+                        "%1", savegame[SG['MUSHROOMS']['MAY']['DONATE']]
+                    )
+                ) (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5881
-==sflegacy:267
+==sflegacy:266
     mirror_pieces = list()
     for i in range(13):
         mirror_pieces[i] = bin_str.substr(i + 1, 1) == "1"
@@ -1548,7 +1548,7 @@ R:  1, 0: Similar lines in 2 files
  (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:5870
-==sflegacy:255
+==sflegacy:254
     if not no_spoil:
         tower_level = int((savegame[SG['MOUNT']] / 65536))
 
@@ -1557,7 +1557,7 @@ R:  1, 0: Similar lines in 2 files
     # Extract mirror pieces from gender entry (duplicate-code)
 R:  1, 0: Similar lines in 2 files
 ==sfclient:6033
-==sflegacy:419
+==sflegacy:418
             "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
             "PHP-Tunneling wird deaktiviert."
         ))
@@ -1566,8 +1566,8 @@ R:  1, 0: Similar lines in 2 files
 R:  1, 0: Similar lines in 4 files
 ==sfclient:5980
 ==sfclient:6000
-==sflegacy:365
-==sflegacy:385
+==sflegacy:364
+==sflegacy:384
                         text = "0"
                     else:
                         text = ""
@@ -1576,10 +1576,10 @@ R:  1, 0: Similar lines in 4 files
 ==sfclient:16584
 ==sfclient:16672
 ==sfclient:19519
-==sflegacy:380
+==sflegacy:379
                     )
                 )
-        else: (duplicate-code)
+            else: (duplicate-code)
 
 
 Report
@@ -1602,13 +1602,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |17571  |55.32 |NC       |NC         |
+|code      |17594  |55.36 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12953  |40.78 |NC       |NC         |
+|docstring |12953  |40.75 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |526    |1.66  |NC       |NC         |
+|comment   |526    |1.65  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |714    |2.25  |NC       |NC         |
+|empty     |710    |2.23  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
