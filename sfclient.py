@@ -6329,7 +6329,7 @@ def request_tv():
 '''
 
 def TowerBtnHandler(evt:Event){
-    var i:int;
+    var i;
     Switch (get_actor_id(evt.target)){
         if case(PREV_COPYCAT:
             copyCatSel--;
@@ -6356,7 +6356,7 @@ def TowerScrollGrab(evt:MouseEvent){
     towerScrollSpeed = 0;
 }
 
-def TowerScrollMove(evt:MouseEvent){
+def TowerScrollmove(evt:MouseEvent){
     if (towerScrollGrabPos != -1){
         towerScrollSpeed = (evt.localY - towerScrollGrabPos);
         towerScroll = (towerScroll + (towerScrollSpeed / 375));
@@ -6432,7 +6432,7 @@ def TowerScrollSetFocus(evt:Event){
 }
 
 def TowerTimerFn(evt:Event=None){
-    var i:int;
+    var i;
     var towerScrollMax = "";
     var towerScrollLvl:Array;
     var thisFloor:*;
@@ -6507,7 +6507,7 @@ def TowerTimerFn(evt:Event=None){
 
 '''
 DoShowScreenAlbum = function (){
-    var i:int;
+    var i;
     i = 0;
     while (i < 4) {
         SetCnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
@@ -6708,7 +6708,7 @@ def show_option_screen(evt:Event=None){
     whendo_loaded(DoShowOptionScreen);
 }
 
-DoSkipFight = function (evt:MouseEvent=None, fightDone:Boolean=False){
+DoSkipFight = function (evt:MouseEvent=None, fightDone=False){
     var quest_id:* = 0;
     var PilzBekommen:* = False;
     var i:* = 0;
@@ -7326,9 +7326,9 @@ DoSkipFight = function (evt:MouseEvent=None, fightDone:Boolean=False){
     arabize(LBL_FIGHT_SUMMARY);
 };
 
-var SetLifeBars:* = function (whichOne:int=0){
+var SetLifeBars:* = function (whichOne=0){
     var barWidth:* = 0;
-    var whichOne:int = whichOne;
+    var whichOne = whichOne;
     if ((((whichOne == 0)) or ((whichOne == 1)))){
         var _local3 = actor[LBL_LIFEBAR_CHAR];
         with (_local3) {
@@ -7419,7 +7419,7 @@ DoStrikeEvent = function (evt:TimerEvent){
     };
 };
 
-var WeaponStrike:* = function (opponent:Boolean=False){
+var WeaponStrike:* = function (opponent=False){
     var StrikeAniTimer:* = None;
     var StrikeAlpha:* = NaN;
     var BulletAlpha:* = NaN;
@@ -8586,18 +8586,18 @@ def show_fight_screen(
     faceData:Array,
     isPvP:Boolean,
     weaponData:Array,
-    HonorGain:int,
-    GoldGain:int,
+    HonorGain,
+    GoldGain,
     isMQ:Boolean,
-    isReplay:Boolean=False,
-    BackPackSlot:int=-1,
+    isReplay=False,
+    BackPackSlot=-1,
     GuildBattleData:Array=None,
-    lastFight:Boolean=False,
-    guildFightExp:int=0,
-    guildFightHonor:int=0,
+    lastFight=False,
+    guildFightExp=0,
+    guildFightHonor=0,
     ownGuild:String="", o
     ppGuild:String="",
-    raidLevel:int=0
+    raidLevel=0
 ){
     var is_guildBattle:* = False;
     var charWeapon:* = 0;
@@ -8659,14 +8659,14 @@ def show_fight_screen(
     var GoldGain:* = GoldGain;
     var isMQ:* = isMQ;
     var isReplay:Boolean = isReplay;
-    var BackPackSlot:int = BackPackSlot;
+    var BackPackSlot = BackPackSlot;
     var GuildBattleData:* = GuildBattleData;
     var lastFight:Boolean = lastFight;
-    var guildFightExp:int = guildFightExp;
-    var guildFightHonor:int = guildFightHonor;
+    var guildFightExp = guildFightExp;
+    var guildFightHonor = guildFightHonor;
     var ownGuild:String = ownGuild;
     var oppGuild:String = oppGuild;
-    var raidLevel:int = raidLevel;
+    var raidLevel = raidLevel;
 
     is_guildBattle = False;
     if (GuildBattleData){
@@ -8998,9 +8998,9 @@ def show_fight_screen(
     whendo_loaded(DoShowFightScreen);
 }
 
-def show_email_nag_screen(valMode:int=-1){
+def show_email_nag_screen(valMode=-1){
     var doShowEmailNagScreen:* = None;
-    var valMode:int = valMode;
+    var valMode = valMode;
     doShowEmailNagScreen = function (){
         remove_all();
         actor[LBL_EMAIL_RESEND].htmlText = texts[TXT_EMAIL_RESEND];
@@ -9286,8 +9286,8 @@ def show_stall_screen(evt:Event=None){
         var HandTimer:* = None;
         var BauerHandEvent:* = None;
         BauerHandEvent = function (evt:TimerEvent){
-            var iHand:int;
-            var i:int;
+            var iHand;
+            var i;
             iHand = int((random.random() * 5));
             if (
                 ((!(on_stage(STALL_BG_GUT)))
@@ -9363,7 +9363,7 @@ def show_stall_screen(evt:Event=None){
     whendo_loaded(DoShowStall);
 }
 
-def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
+def show_arena_screen(oppName:String, oppGilde:String, oppStufe){
     var tz:* = 0;
     var DoShowArenaScreen:* = None;
     var PvPDelayCheck:* = None;
@@ -9484,7 +9484,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
     whendo_loaded(DoShowArenaScreen);
 }
 
-def show_hall_screen(evt:Event=None):void{
+def show_hall_screen(evt:Event=None):
     var DoShowHallScreen:* = None;
     var evt:* = evt;
     DoShowHallScreen = function (){
@@ -9504,7 +9504,7 @@ def show_hall_screen(evt:Event=None):void{
     whendo_loaded(DoShowHallScreen);
 }
 
-def show_dealer_screen(evt:Event=None, loadOnly:Boolean=False){
+def show_dealer_screen(evt:Event=None, loadOnly=False){
     var papaya_firebug:* = None;
     var url:* = None;
     var DoShowDealerScreen:* = None;
@@ -9562,7 +9562,7 @@ def show_screen_gilde_gruenden(evt:Event=None){
     whendo_loaded(DoShowScreenGilden);
 }
 
-def show_city_screen(evt:Event=None):void{
+def show_city_screen(evt:Event=None):
     var StatistenBleiben:* = False;
     var doShowCityScreen:* = None;
     var evt:* = evt;
@@ -10011,8 +10011,8 @@ def show_post_screen(par:Array=None){
         fight_flush_mode = False;
     };
     var PostListAddField:* = function (
-        pos_x:int, pos_y:int, txt:String, fmt:TextFormat
-    ):void{
+        pos_x, pos_y, txt:String, fmt:TextFormat
+    ):
         var tmpLbl:* = None;
         var pos_x:* = pos_x;
         var pos_y:* = pos_y;
@@ -10046,7 +10046,7 @@ def show_post_screen(par:Array=None){
     whendo_loaded(DoShowPost);
 }
 
-def show_build_character_screen(evt:Event=None):void{
+def show_build_character_screen(evt:Event=None):
     var RebuildMode:* = False;
     var i:* = 0;
     var evt:* = evt;
@@ -10128,7 +10128,7 @@ def show_build_character_screen(evt:Event=None):void{
     LoadCharacterImage();
 }
 
-def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
+def show_character_screen(evt:Event=None, NoPrices=False):
     var DoShowCharacterScreen:* = None;
     var evt:* = evt;
     var NoPrices:Boolean = NoPrices;
@@ -10550,7 +10550,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
 def ShowPlayerScreen(
     PlayerSG:Array, PlayerName:String, PlayerGilde:String,
     PlayerComment:String
-):void{
+):
     var i:* = 0;
     var bin_str:* = None;
     var Playermirror_pieces:* = None;
@@ -10959,8 +10959,8 @@ def ShowPlayerScreen(
 
 def show_screen_gilden(
     guildData:Array, guildDescr:String, guildMembers:Array,
-    ThisGilde:String, is_mine:Boolean=True, GildenRang:int=0,
-    GildenEhre:int=0, AttackCost:int=0
+    ThisGilde:String, is_mine=True, GildenRang=0,
+    GildenEhre=0, AttackCost=0
 ){
     var DoShowScreenGilden:* = None;
     var guildData:* = guildData;
@@ -10968,9 +10968,9 @@ def show_screen_gilden(
     var guildMembers:* = guildMembers;
     var ThisGilde:* = ThisGilde;
     var is_mine:Boolean = is_mine;
-    var GildenRang:int = GildenRang;
-    var GildenEhre:int = GildenEhre;
-    var AttackCost:int = AttackCost;
+    var GildenRang = GildenRang;
+    var GildenEhre = GildenEhre;
+    var AttackCost = AttackCost;
     DoShowScreenGilden = function (evt:Event=None){
         var i:* = 0;
         var myRank:* = 0;
@@ -11090,8 +11090,8 @@ def show_screen_gilden(
                 };
             };
         };
-        var DonateVal:* = function (avg:int, localMax:int):String{
-            var dval:int;
+        var DonateVal:* = function (avg, localMax):String{
+            var dval;
             dval = 1;
             if (avg >= 10000){
                 dval = 10;
@@ -11208,7 +11208,7 @@ def show_screen_gilden(
                         text = texts[TXT_ENTERGUILDDESC];
 
         var PlaceButtonSet:* = function (){
-            var selRank:int;
+            var selRank;
             Switch (myRank){
                 if case(1:
                     add(GILDE_SET_MASTER);
@@ -11275,7 +11275,7 @@ def show_screen_gilden(
             };
         };
         GuildBtnHandler = function (
-            evt:Event, typematic:Boolean=False
+            evt:Event, typematic=False
         ):Boolean{
             var actor_id:* = 0;
             var selRank:* = 0;
@@ -11512,7 +11512,7 @@ def show_screen_gilden(
         };
         RequestPlayerScreen = function (){
             var playerName:String;
-            var selRank:int;
+            var selRank;
             playerName = guildMembers[((selectLevel + scrollLevel) + 1)];
             if (playerName == ""){
                 return;
@@ -11569,7 +11569,7 @@ def show_screen_gilden(
         };
         var ToggleOfficer:* = function (){
             var sel_name:String;
-            var selRank:int;
+            var selRank;
             sel_name = guildMembers[((selectLevel + scrollLevel) + 1)];
             selRank = guildData[
                 ((GUILD_MEMBERRANK + selectLevel) + scrollLevel)
@@ -11612,7 +11612,7 @@ def show_screen_gilden(
             var attackStatus:* = 0;
             var avgCount:* = None;
             var evt:* = evt;
-            var AddGuildImage:* = function (rank:int, line:int){
+            var AddGuildImage:* = function (rank, line){
                 var tmp_obj:* = None;
                 var rank:* = rank;
                 var line:* = line;
@@ -11641,9 +11641,9 @@ def show_screen_gilden(
                 actor[GILDE_LIST].addChild(tmp_obj);
             };
             var BuildGuildPopup:* = function (evt:MouseEvent){
-                var hoverLevel:int;
-                var lvl:int;
-                var attackStatus:int;
+                var hoverLevel;
+                var lvl;
+                var attackStatus;
                 var attackError:Boolean;
                 var attackHint:String;
                 hoverLevel = int(
@@ -12031,8 +12031,8 @@ def show_screen_gilden(
             };
 
             var AddGuildPlayer:* = function (
-                memberName:String, rank:int, line:int, onlineStatus:Boolean,
-                thisAttackError:Boolean, thisAttackStatus:int
+                memberName:String, rank, line, onlineStatus:Boolean,
+                thisAttackError:Boolean, thisAttackStatus
             ){
                 var tmp_obj:* = None;
                 var memberName:* = memberName;
@@ -13429,7 +13429,7 @@ def show_screen_gilden(
     whendo_loaded(DoShowScreenGilden);
 }
 
-def show_work_success_screen(evt:Event=None):void{
+def show_work_success_screen(evt:Event=None):
     show_city_screen();
     add(SCREEN_ARBEITEN_SUCCESS);
     actor[LBL_WINDOW_TITLE].text = texts[TXT_TITLE_WORK];
@@ -13447,7 +13447,7 @@ def show_work_success_screen(evt:Event=None):void{
     CheckWrongPage(ACT_SCREEN_ARBEITEN);
 }
 
-def show_work_screen(evt:Event=None):void{
+def show_work_screen(evt:Event=None):
     var ArbeitCountdown:* = None;
     var DoShowWorking:* = None;
     var evt:* = evt;
@@ -13456,7 +13456,7 @@ def show_work_screen(evt:Event=None):void{
     if (savegame[SG_ACTION_STATUS] == 1){
         DoShowWorking = function (){
             var ArbeitCountdownEvent:* = None;
-            ArbeitCountdownEvent = function (evt:Event):void{
+            ArbeitCountdownEvent = function (evt:Event):
                 var evt:* = evt;
                 var _local3 = actor[LBL_SCR_ARBEITEN_TIME];
                 with (_local3) {
@@ -13937,11 +13937,11 @@ def show_main_quests_screen(NextEnemies:Array){
     whendo_loaded(DoShowMainQuestsScreen);
 }
 
-def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
+def ShowMainQuestScreen(DungeonNr=0, Enemy=0){
     var DoShowMainQuestScreen:* = None;
     var MQDelayCheck:* = None;
-    var DungeonNr:int = DungeonNr;
-    var Enemy:int = Enemy;
+    var DungeonNr = DungeonNr;
+    var Enemy = Enemy;
     DoShowMainQuestScreen = function (){
         var DungeonLevel:* = None;
         var i:* = 0;
@@ -14119,16 +14119,16 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
 }
 
 def show_toilet(
-    isFull:int, toiletLevel:int, toiletExp:Number, toiletMaxExp:Number,
-    itemAdded:int=-1
+    isFull, toiletLevel, toiletExp:Number, toiletMaxExp:Number,
+    itemAdded=-1
 ){
     var doShowToilet:* = None;
     var isFull:* = isFull;
     var toiletLevel:* = toiletLevel;
     var toiletExp:* = toiletExp;
     var toiletMaxExp:* = toiletMaxExp;
-    var itemAdded:int = itemAdded;
-    doShowToilet = function (buildScreen:Boolean=True){
+    var itemAdded = itemAdded;
+    doShowToilet = function (buildScreen=True){
         var i:* = 0;
         var toiletItemAddFrame:* = 0;
         var toiletItemAddTimer:* = None;
@@ -14242,14 +14242,14 @@ def show_toilet(
 }
 
 def show_witch(
-    witchData:Array, chaldronBubble:Boolean=False, enchantCost:int=0
+    witchData:Array, chaldronBubble=False, enchantCost=0
 ){
     var doShowWitch:* = None;
     var witchData:* = witchData;
     var chaldronBubble:Boolean = chaldronBubble;
-    var enchantCost:int = enchantCost;
-    doShowWitch = function (buildScreen:Boolean=True){
-        var i:int;
+    var enchantCost = enchantCost;
+    doShowWitch = function (buildScreen=True){
+        var i;
         if (buildScreen){
             remove(CHAR_RIGHTPANE);
             add(SCREEN_WITCH);
@@ -14414,11 +14414,11 @@ def Showalbum_content(evt:Event=None){
     var catCount:* = None;
     var evt:* = evt;
     var SetAlbumItems:* = function (
-        aOffs:int, itmTyp:int, itm_pic:int, itm_class:int
+        aOffs, itmTyp, itm_pic, itm_class
     ){
         var itemSet:Array;
         var anyItem:Boolean;
-        var j:int;
+        var j;
         itemSet = list();
         anyItem = False;
         j = 0;
@@ -14483,7 +14483,7 @@ def Showalbum_content(evt:Event=None){
         };
     };
     var SetAlbumEpic:* = function (
-        aOffs:int, itmTyp:int, itm_pic:int, itm_class:int
+        aOffs, itmTyp, itm_pic, itm_class
     ){
         if (album_content[aOffs] == 1){
             entryText = GetItemName(itmTyp, itm_pic, itm_class);
@@ -14538,7 +14538,7 @@ def Showalbum_content(evt:Event=None){
         if (album_content[i] == 1){
             if (i < 300){
                 var _local3 = catCount;
-                var _local4:int;
+                var _local4;
                 var _local5 = (_local3[_local4] + 1);
                 _local3[_local4] = _local5;
             } else {
@@ -15050,8 +15050,8 @@ def Showalbum_content(evt:Event=None){
 }
 
 def show_login_screen(
-    evt:Event=None, noBC:Boolean=False, noCookie:Boolean=False
-):void{
+    evt:Event=None, noBC=False, noCookie=False
+):
     var playername:String;
     if (
         ((((((((!(so.data.HasAccount))
@@ -15185,7 +15185,7 @@ def show_bet_result(won:Boolean){
     whendo_loaded(doShowBetResults);
 }
 
-def ShowSignupScreen(evt:Event=None):void{
+def ShowSignupScreen(evt:Event=None):
     var i:* = 0;
     var j:* = 0;
     var jumpTimer:* = None;
@@ -15373,65 +15373,49 @@ def visible_to_front(*actor_ids):
                     add(actor_id)
 
 
+def move(actor_id, pos_x, pos_y):
+    '''
+        move actor to coords x/y
+    '''
+    if actor[actor_id] is list:
+        for current in actor[actor_id]:
+            move(current, pos_x, pos_y)
+    else:
+        with actor[actor_id]:
+            x = pos_x
+            y = pos_y
+
+
+def add_some(*args):
+    '''
+        add multiple actors
+    '''
+    for arg in args:
+        if actor[arg]:
+            if actor[arg] is list:
+                for i_bunch in actor[arg]:
+                    add(i_bunch)
+                return
+
+            add(arg)
+
+
+def remove_all(alsoPersistent=False):
+    '''
+        remove all actors
+    '''
+    for i in range(len(actor)):
+        if actor[i]:
+            if actor[i] is not list:
+                if (not actorPersistent[i]) or alsoPersistent:
+                    remove(i)
+
+    ExternalInterface.call("hideSocial")
+
+
 '''
 
 
-
-def Move(actor_id:int, pos_x:int, pos_y:int):void{
-    var i:* = 0;
-    var actor_id:* = actor_id;
-    var pos_x:* = pos_x;
-    var pos_y:* = pos_y;
-    if ((actor[actor_id] is Array)){
-        i = 0;
-        while (i < actor[actor_id].length) {
-            Move(actor[actor_id][i], pos_x, pos_y);
-            i = (i + 1);
-        };
-    } else {
-        var _local5 = actor[actor_id];
-        with (_local5) {
-            x = pos_x;
-            y = pos_y;
-        };
-    };
-}
-
-def add_some(... _args):void{
-    var i:int;
-    var i_bunch:int;
-    i = 0;
-    while (i < _args.length) {
-        if (actor[_args[i]]){
-            if ((actor[_args[i]] is Array)){
-                i_bunch = 0;
-                while (i_bunch < actor[_args[i]].length) {
-                    add(actor[_args[i]][i_bunch]);
-                    i_bunch++;
-                };
-                return;
-            };
-            add(_args[i]);
-        };
-        i++;
-    };
-}
-
-def remove_all(alsoPersistent:Boolean=False):void{
-    var i:int;
-    i = 0;
-    while (i < actor.length) {
-        if (actor[i]){
-            if (!(actor[i] is Array)){
-                if (((!(actorPersistent[i])) or (alsoPersistent))){
-                    remove(i);
-                };
-            };
-        };
-        i++;
-    };
-    ExternalInterface.call("hideSocial");
-}
 
 def Visible(actor_id):Boolean{
     if ((actor[actor_id] is DisplayObject)){
@@ -15443,8 +15427,8 @@ def Visible(actor_id):Boolean{
     return (False);
 }
 
-def SetAlpha(actor_id:int, alphaValue:Number){
-    var i:int;
+def SetAlpha(actor_id, alphaValue:Number){
+    var i;
     if ((actor[actor_id] is Array)){
         i = 0;
         while (i < actor[actor_id].length) {
@@ -15458,8 +15442,8 @@ def SetAlpha(actor_id:int, alphaValue:Number){
     };
 }
 
-def GetAlpha(actor_id:int):Number{
-    var i:int;
+def GetAlpha(actor_id):Number{
+    var i;
     var tmpAlpha:Number;
     tmpAlpha = 0;
     if ((actor[actor_id] is Array)){
@@ -15478,15 +15462,15 @@ def GetAlpha(actor_id:int):Number{
     return (0);
 }
 
-def fade_in(actor_id:int, timerInterval:int=20,
+def fade_in(actor_id, timerInterval=20,
             alphaStep:Number=0.05, alphaMax:Number=1){
     var fadeTimer:* = None;
     var currentAlpha:* = NaN;
     var fade_inEvent:* = None;
     var actor_id:* = actor_id;
-    var timerInterval:int = timerInterval;
+    var timerInterval = timerInterval;
     var alphaStep:Number = alphaStep;
-    var alphaMax:int = alphaMax;
+    var alphaMax = alphaMax;
     fade_inEvent = function (evt:TimerEvent){
         currentAlpha = (currentAlpha + alphaStep);
         if (currentAlpha >= alphaMax){
@@ -15507,16 +15491,16 @@ def fade_in(actor_id:int, timerInterval:int=20,
 }
 
 def fade_out(
-    actor_id:int, timerInterval:int=20, alphaStep:Number=0.05,
-    alphaMin:Number=0, HideThen:Boolean=False
+    actor_id, timerInterval=20, alphaStep:Number=0.05,
+    alphaMin:Number=0, HideThen=False
 ){
     var fadeTimer:* = None;
     var currentAlpha:* = NaN;
     var FadeOutEvent:* = None;
     var actor_id:* = actor_id;
-    var timerInterval:int = timerInterval;
+    var timerInterval = timerInterval;
     var alphaStep:Number = alphaStep;
-    var alphaMin:int = alphaMin;
+    var alphaMin = alphaMin;
     var HideThen:Boolean = HideThen;
     FadeOutEvent = function (evt:TimerEvent){
         currentAlpha = (currentAlpha - alphaStep);
@@ -15540,7 +15524,7 @@ def fade_out(
     SetAlpha(actor_id, currentAlpha);
 }
 
-def AddFilter(actor_id:int, filter:Array):void{
+def AddFilter(actor_id, filter:Array):
     actor[actor_id].filters = filter;
 }
 
@@ -18716,7 +18700,7 @@ def show_popup(evt, *args):
 
 '''
 
-position_popup = function (evt:MouseEvent):void{
+position_popup = function (evt:MouseEvent):
     var evt:* = evt;
     var _local3 = actor[POPUP_INFO];
     with (_local3) {
@@ -18747,7 +18731,7 @@ position_popup = function (evt:MouseEvent):void{
     };
 };
 
-hide_popup = function (evt:MouseEvent):void{
+hide_popup = function (evt:MouseEvent):
     remove(SLOT_SUGGESTION);
     remove(POPUP_INFO);
 };
@@ -18763,15 +18747,15 @@ var DoAddBtnImage:* = function (){
     };
 };
 
-var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
+var CenterTextField:* = function (obj:Object, aoffsx=0, aoffsy=0):
     var btnText:* = None;
     var char:* = None;
     var i:* = 0;
     var imgActor:* = 0;
     var tmpImage:* = None;
     var obj:* = obj;
-    var aoffsx:int = aoffsx;
-    var aoffsy:int = aoffsy;
+    var aoffsx = aoffsx;
+    var aoffsy = aoffsy;
     btnText = "";
     var imgIndex:* = -1;
     while (obj.numChildren > 2) {
@@ -18820,7 +18804,7 @@ var CenterTextField:* = function (obj:Object, aoffsx:int=0, aoffsy:int=0):void{
 };
 
 
-def set_btn_text(actor_id:int, caption:String){
+def set_btn_text(actor_id, caption:String){
     var i:* = 0;
     var offsy:* = 0;
     var actor_id:* = actor_id;
@@ -18864,15 +18848,15 @@ def set_btn_text(actor_id:int, caption:String){
 }
 
 def DefineLbl(
-    actor_id:int, caption:String, pos_x:int=0, pos_y:int=0, fmt:TextFormat=None,
-    vis:Boolean=True
-):void{
+    actor_id, caption:String, pos_x=0, pos_y=0, fmt:TextFormat=None,
+    vis=True
+):
     var i:* = 0;
     var fmtUL:* = None;
     var actor_id:* = actor_id;
     var caption:* = caption;
-    var pos_x:int = pos_x;
-    var pos_y:int = pos_y;
+    var pos_x = pos_x;
+    var pos_y = pos_y;
     var fmt:* = fmt;
     var vis:Boolean = vis;
     i = actor_id;
@@ -19962,7 +19946,7 @@ def load_tracking_pixel(url=''):
         var killFieldContent:* = None;
         var fillFieldContent:* = None;
         var ShowSocial:* = function (evt:MouseEvent){
-            var thisActor:int;
+            var thisActor;
             thisActor = get_actor_id(evt.target);
             ExternalInterface.call(
                 "showSocial",
@@ -20156,17 +20140,17 @@ def load_tracking_pixel(url=''):
             };
         };
         var DefiniereInterfaceButton:* = function (
-            actor_id:int, txtID:int
+            actor_id, txtID
             ){
             var dragonID:* = 0;
             var InterfaceButtonDown:* = None;
             var InterfaceButtonUp:* = None;
             var actor_id:* = actor_id;
             var txtID:* = txtID;
-            InterfaceButtonDown = function (evt:MouseEvent):void{
-                var x:int;
-                var y:int;
-                var i:int;
+            InterfaceButtonDown = function (evt:MouseEvent):
+                var x;
+                var y;
+                var i;
                 i = dragonID;
                 x = actor[i].x;
                 y = actor[i].y;
@@ -20177,11 +20161,11 @@ def load_tracking_pixel(url=''):
                 actor[i].y = y;
                 addChild(actor[i]);
             };
-            InterfaceButtonUp = function (evt:MouseEvent):void{
-                var x:int;
-                var y:int;
-                var i:int;
-                var d:int;
+            InterfaceButtonUp = function (evt:MouseEvent):
+                var x;
+                var y;
+                var i;
+                var d;
                 i = dragonID;
                 if (actor[i]){
                     x = actor[i].x;
@@ -20284,9 +20268,9 @@ def load_tracking_pixel(url=''):
             var badWords:Array;
             var newPwd:String;
             var lastChar:String;
-            var pwdScore:int;
-            var i:int;
-            var ii:int;
+            var pwdScore;
+            var i;
+            var ii;
             var cmp:String;
             var badSequences:*;
             var hasBadSequence:Boolean;
@@ -20486,7 +20470,7 @@ def load_tracking_pixel(url=''):
         var ShowAGB:* = function (evt:Event=None){
             navigate_to_url(new URLRequest(legal_url), "_blank");
         };
-        var ShowForgotPasswordScreen:* = function (evt:Event=None):void{
+        var ShowForgotPasswordScreen:* = function (evt:Event=None):
             remove_all();
             actor[LBL_WINDOW_TITLE].text = texts[TXT_TITLE_FORGOT_PASSWORD];
             actor[LBL_WINDOW_TITLE].x = (
@@ -20505,7 +20489,7 @@ def load_tracking_pixel(url=''):
             LOGonRTL();
             add(WINDOW_FORGOT_PASSWORD);
         };
-        RequestPassword = function (evt:Event):void{
+        RequestPassword = function (evt:Event):
             if ((evt is KeyboardEvent)){
                 if (
                     ((((!((KeyboardEvent(evt).keyCode == 13)))
@@ -20521,21 +20505,21 @@ def load_tracking_pixel(url=''):
                 actor[INP['EMAIL']].getChildAt(1).text
             );
         };
-        CheckAGB = function (evt:MouseEvent):void{
+        CheckAGB = function (evt:MouseEvent):
             add(CB['AGB_CHECKED']);
         };
-        UncheckAGB = function (evt:MouseEvent):void{
+        UncheckAGB = function (evt:MouseEvent):
             remove(CB['AGB_CHECKED']);
         };
-        CheckFuck = function (evt:MouseEvent):void{
+        CheckFuck = function (evt:MouseEvent):
             add(CB_FUCK_CHECKED);
         };
-        UncheckFuck = function (evt:MouseEvent):void{
+        UncheckFuck = function (evt:MouseEvent):
             remove(CB_FUCK_CHECKED);
         };
         var PulseEvent:* = function (evt:Event){
             var evt:* = evt;
-            var ButtonPulse:* = function (doPulse:Boolean, btnID:int){
+            var ButtonPulse:* = function (doPulse:Boolean, btnID){
                 var doPulse:* = doPulse;
                 var btnID:* = btnID;
                 var LabelPulse:* = function (obj:DisplayObjectContainer){
@@ -20620,8 +20604,8 @@ def load_tracking_pixel(url=''):
             ButtonPulse(pulse_char, IF_CHARAKTER);
             ButtonPulse(pulse_dealer, IF_PILZDEALER);
         };
-        CloneMarker = function ():void{
-            var i:int;
+        CloneMarker = function ():
+            var i;
             SetCnt(M_ACT, VOLK_MARKER);
             SetCnt(F_ACT, VOLK_MARKER);
             SetCnt(KASTE_1_ACT, VOLK_MARKER);
@@ -20634,8 +20618,8 @@ def load_tracking_pixel(url=''):
                 i++;
             };
         };
-        SelectRace = function (evt:MouseEvent):void{
-            var actor_id:int;
+        SelectRace = function (evt:MouseEvent):
+            var actor_id;
             actor_id = get_actor_id(evt.target);
             if (
                 (((actor_id >= VOLK_1_M_IDLE))
@@ -20656,8 +20640,8 @@ def load_tracking_pixel(url=''):
                 add(POPUP_INFO);
             };
         };
-        SelectGender = function (evt:MouseEvent):void{
-            var actor_id:int;
+        SelectGender = function (evt:MouseEvent):
+            var actor_id;
             actor_id = get_actor_id(evt.target);
             if (actor_id == M_IDLE){
                 char_male = True;
@@ -20670,8 +20654,8 @@ def load_tracking_pixel(url=''):
                 add(POPUP_INFO);
             };
         };
-        SelectCaste = function (evt:MouseEvent):void{
-            var actor_id:int;
+        SelectCaste = function (evt:MouseEvent):
+            var actor_id;
             actor_id = get_actor_id(evt.target);
             KlasseGewählt = True;
             if (actor_id == KASTE_1_IDLE){
@@ -20688,24 +20672,24 @@ def load_tracking_pixel(url=''):
                 add(POPUP_INFO);
             };
         };
-        def AddMimickInterfaceButtonHoverHandler(actor_id:int){
+        def AddMimickInterfaceButtonHoverHandler(actor_id){
             actor[actor_id].add_event_listener(
                 MouseEvent.MOUSE_OVER,
                 MimickInterfaceButtonHover
             );
         };
-        MimickInterfaceButtonHover = function (evt:MouseEvent):void{
+        MimickInterfaceButtonHover = function (evt:MouseEvent):
             var tmpContainer:* = None;
             var EndMimickInterfaceButtonHover:* = None;
             var evt:* = evt;
-            var MimickHover:* = function (actor_id:int){
+            var MimickHover:* = function (actor_id){
                 tmpContainer = new MovieClip();
                 tmpContainer.x = actor[actor_id].x;
                 tmpContainer.y = actor[actor_id].y;
                 tmpContainer.addChild(actor[actor_id].overState);
                 addChild(tmpContainer);
             };
-            EndMimickInterfaceButtonHover = function (evt:MouseEvent):void{
+            EndMimickInterfaceButtonHover = function (evt:MouseEvent):
                 if (get_child_by_name(tmpContainer.name)){
                     removeChild(tmpContainer);
                 };
@@ -20744,15 +20728,15 @@ def load_tracking_pixel(url=''):
                     break;
             };
         };
-        BuhHover = function ():void{
+        BuhHover = function ():
             Buh = True;
         };
-        BuhOut = function ():void{
+        BuhOut = function ():
             Buh = False;
         };
-        Bubbles = function (evt:Event):void{
+        Bubbles = function (evt:Event):
             var evt:* = evt;
-            var BubbleFade:* = function (inOut:Boolean, bubbleID:int):void{
+            var BubbleFade:* = function (inOut:Boolean, bubbleID):
                 if (inOut){
                     if (
                         ((((!(on_stage(bubbleID)))
@@ -20850,7 +20834,7 @@ def load_tracking_pixel(url=''):
             BubbleFade(on_stage(CITY_SHAKES), BUBBLE_SHAKES);
             BubbleFade(on_stage(CITY_ZAUBERLADEN), BUBBLE_ZAUBERLADEN);
         };
-        CityAni = function (evt:Event):void{
+        CityAni = function (evt:Event):
             if (!light_mode){
                 CityAniFrame++;
                 if (
@@ -20999,17 +20983,17 @@ def load_tracking_pixel(url=''):
                 add(SCREEN_INVITE);
             };
         };
-        WacheOver = function ():void{
+        WacheOver = function ():
             SchildTimer.add_event_listener(TimerEvent.TIMER, SchildFrame);
             SchildTimer.start();
             SchildDir = 1;
         };
-        WacheOut = function ():void{
+        WacheOut = function ():
             SchildTimer.add_event_listener(TimerEvent.TIMER, SchildFrame);
             SchildTimer.start();
             SchildDir = -1;
         };
-        SchildFrame = function (evt:Event):void{
+        SchildFrame = function (evt:Event):
             if (
                 ((((!(((on_stage(CITY_WACHE_DAY))
                 or (on_stage(CITY_WACHE_NIGHT)))))
@@ -21048,10 +21032,10 @@ def load_tracking_pixel(url=''):
             };
             iFrame = (iFrame + SchildDir);
         };
-        EselOver = function ():void{
+        EselOver = function ():
             remove(CITY_ESEL1);
         };
-        EselOut = function ():void{
+        EselOut = function ():
             if (
                 ((on_stage(STALL_BG_GUT))
                 or (on_stage(STALL_BG_BOESE)))
@@ -21061,7 +21045,7 @@ def load_tracking_pixel(url=''):
             add(CITY_ESEL1);
             add(CITY_CA_OVL);
         };
-        ShowDealerEyes = function ():void{
+        ShowDealerEyes = function ():
             if (
                 ((((on_stage(SCR_CITY_BACKG_NIGHT))
                 or (on_stage(SCR_CITY_BACKG_DAWN))))
@@ -21085,11 +21069,11 @@ def load_tracking_pixel(url=''):
                 };
             };
         };
-        HideDealerEyes = function ():void{
+        HideDealerEyes = function ():
             DealerStepTimer.stop();
             DealerStepTimer.remove_event_listener(TimerEvent.TIMER, DealerStep);
         };
-        var DealerAni:* = function (evt:Event):void{
+        var DealerAni:* = function (evt:Event):
             if (
                 ((((on_stage(SCR_CITY_BACKG_NIGHT))
                 or (on_stage(SCR_CITY_BACKG_DAWN))))
@@ -21113,7 +21097,7 @@ def load_tracking_pixel(url=''):
                 );
             };
         };
-        DealerStep = function (evt:Event):void{
+        DealerStep = function (evt:Event):
             if (
                 ((((on_stage(SCR_CITY_BACKG_NIGHT))
                 or (on_stage(SCR_CITY_BACKG_DAWN))))
@@ -21176,20 +21160,20 @@ def load_tracking_pixel(url=''):
                 DealerAniStep++;
             };
         };
-        ShowArenaOno = function ():void{
+        ShowArenaOno = function ():
             OnoTimer = new Timer(2000);
             OnoTimer.add_event_listener(TimerEvent.TIMER, PopupArenaOno);
             OnoTimer.start();
             PopupArenaOno();
         };
-        HideArenaOno = function ():void{
+        HideArenaOno = function ():
             if (OnoTimer){
                 OnoTimer.remove_event_listener(TimerEvent.TIMER, PopupArenaOno);
             };
             OnoPopupTimer.remove_event_listener(TimerEvent.TIMER, StepArenaOno);
             remove(ThisOno);
         };
-        PopupArenaOno = function (evt:Event=None):void{
+        PopupArenaOno = function (evt:Event=None):
             while (ThisOno == LastOno) {
                 ThisOno = (CITY_ARENA_ONO1 + int((random.random() * 4)));
             };
@@ -21200,7 +21184,7 @@ def load_tracking_pixel(url=''):
             add(CA_CITY_ARENA);
             actor[ThisOno].alpha = 0;
         };
-        StepArenaOno = function (evt:Event):void{
+        StepArenaOno = function (evt:Event):
             if (PopupDir){
                 actor[ThisOno].alpha = (actor[ThisOno].alpha - 0.1);
                 if (actor[ThisOno].alpha <= 0){
@@ -21217,7 +21201,7 @@ def load_tracking_pixel(url=''):
                 };
             };
         };
-        InterfaceButtonHover = function (evt:MouseEvent):void{
+        InterfaceButtonHover = function (evt:MouseEvent):
             if (
                 ((((((((on_stage(SCR_CITY_BACKG_NIGHT))
                 or (on_stage(SCR_CITY_BACKG_DAWN))))
@@ -21291,14 +21275,14 @@ def load_tracking_pixel(url=''):
                 };
             };
         };
-        HalleSuchClick = function (evt:Event):void{
+        HalleSuchClick = function (evt:Event):
             if (actor[INP_HALLE_GOTO].getChildAt(
                 1
             ).text == texts[TXT_HALLE_SUCHFELD_TEXT]){
                 actor[INP_HALLE_GOTO].getChildAt(1).text = "";
             };
         };
-        RuhmesHalleScroll = function (evt:Event):void{
+        RuhmesHalleScroll = function (evt:Event):
             var evt:* = evt;
             if ((evt is KeyboardEvent)){
                 if (
@@ -21772,10 +21756,10 @@ def load_tracking_pixel(url=''):
             remove(CA_SELL_ITEM);
             remove(CA_USE_ITEM);
         };
-        DropHandler = function (actor_id:int, targetID:int):Boolean{
+        DropHandler = function (actor_id, targetID):Boolean{
             var towerMode:Boolean;
-            var sourceSlot:int;
-            var targetSlot:int;
+            var sourceSlot;
+            var targetSlot;
             towerMode = on_stage(PREV_COPYCAT);
             trc("dragdrop", actor_id, targetID, towerMode);
             sourceSlot = 0;
@@ -22068,14 +22052,14 @@ def load_tracking_pixel(url=''):
             };
         };
         ShowTowerBoostPrices = function (evt:MouseEvent){
-            var i:int;
+            var i;
             towerBoostPriceFadeoutTimer.stop();
             fade_in(TOWER_BOOSTPRICE);
             tower_levelLabelPos = (SCR_CHAR_CHARX + 3);
             tower_levelLabelTimer.start();
         };
         HideTowerBoostPrices = function (evt:MouseEvent){
-            var i:int;
+            var i;
             towerBoostPriceFadeoutTimer.start();
             tower_levelLabelPos = (
                 (SCR_CHAR_CHARX + 127)
@@ -22094,9 +22078,9 @@ def load_tracking_pixel(url=''):
         };
         ShopAniFrame = function (evt:TimerEvent){
             var pv:Boolean;
-            var AffeStep:int;
+            var AffeStep;
             var FidgetAugenZu:Boolean;
-            var ShakesAugenZu:int;
+            var ShakesAugenZu;
             var WasPassiert:Boolean;
             pv = on_stage(POPUP_INFO);
             WasPassiert = False;
@@ -22452,10 +22436,10 @@ def load_tracking_pixel(url=''):
             };
         };
         ClickMount = function (evt:MouseEvent){
-            var actor_id:int;
-            var GoldKosten:int;
-            var PilzKosten:int;
-            var tmpX:int;
+            var actor_id;
+            var GoldKosten;
+            var PilzKosten;
+            var tmpX;
             actor_id = get_actor_id(evt.target);
             GoldKosten = 0;
             PilzKosten = 0;
@@ -22740,7 +22724,7 @@ def load_tracking_pixel(url=''):
         var OpenGuildLink:* = function (evt:MouseEvent=None){
             navigate_to_url(new URLRequest(guildForumLink), "_blank");
         };
-        var CleanupField:* = function (actor_id:int){
+        var CleanupField:* = function (actor_id){
             var actor_id:* = actor_id;
             var FixContent:* = function (evt:KeyboardEvent){
                 if (actor[actor_id].getChildAt(0).text != RemoveIllegalChars(
@@ -22763,7 +22747,7 @@ def load_tracking_pixel(url=''):
         };
         AdvancedChatHandler = function (evt:KeyboardEvent){
             var whisperCmd:String;
-            var i:int;
+            var i;
             var textEntered:String;
             whisperCmd = "/whisper ";
             if (texts[TXT_WHISPER]){
@@ -23688,7 +23672,7 @@ def load_tracking_pixel(url=''):
             CupChosen = (get_actor_id(evt.target) - CA_HUTBECHER_1);
             send_action(ACT_PLACE_BET, str((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
         };
-        var PlaceHutBet:* = function (LeftToCenter:Boolean=False){
+        var PlaceHutBet:* = function (LeftToCenter=False){
             var LeftBoxWidth:* = 0;
             var RightBoxWidth:* = 0;
             var LeftToCenter:Boolean = LeftToCenter;
@@ -23865,7 +23849,7 @@ def load_tracking_pixel(url=''):
             };
         };
         ShowQuestOffer = function (evt:Event=None){
-            var i:int;
+            var i;
             var enoughTime:Boolean;
             var highStakes:Boolean;
             i = 0;
@@ -23923,11 +23907,11 @@ def load_tracking_pixel(url=''):
         };
 
         var ChooseQuest:* = function (evt:Event=None){
-            var quest_id:int;
+            var quest_id;
             quest_id = (get_actor_id(evt.target) - QO_CHOICE1);
             SelectQuestOffer(quest_id);
         };
-        var SelectQuestOffer:* = function (quest_id:int){
+        var SelectQuestOffer:* = function (quest_id){
             var i:* = 0;
             var rewardX:* = 0;
             var GoldBonusText:* = None;
@@ -24074,7 +24058,7 @@ def load_tracking_pixel(url=''):
             };
         };
         toiletChainAni = function (evt:TimerEvent){
-            var i:int;
+            var i;
             if (toiletChainFrame >= 6){
                 toiletChainTimer.stop();
                 return;
@@ -24160,7 +24144,7 @@ def load_tracking_pixel(url=''):
             so.data.disable_tv = disable_tv;
             so.flush();
         };
-        VolumeChange = function (value:int):void{
+        VolumeChange = function (value):
             var value:* = value;
             if (notFirstVolChange){
                 notFirstVolChange = False;
@@ -25831,7 +25815,7 @@ def load_tracking_pixel(url=''):
             actor[(WITCH_SCROLL + i)].useHandCursor = True;
             actor[(WITCH_SCROLL + i)].buttonMode = True;
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.CLICK, function (evt:MouseEvent){
-                var id:int;
+                var id;
                 id = ((get_actor_id(evt.target) - WITCH_SCROLL) + 1);
                 if (spellClicking){
                     send_action(ACT_WITCH_ENCHANT, id);
@@ -25839,8 +25823,8 @@ def load_tracking_pixel(url=''):
                 spellClicking = False;
             });
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_DOWN, function (evt:MouseEvent){
-                var actorId:int;
-                var i:int;
+                var actorId;
+                var i;
                 actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = ((((280 + 500) + 37) + ((i % 5) * 83)) + 1);
@@ -25848,16 +25832,16 @@ def load_tracking_pixel(url=''):
                 spellClicking = True;
             });
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_UP, function (evt:MouseEvent){
-                var actorId:int;
-                var i:int;
+                var actorId;
+                var i;
                 actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
                 actor[actorId].y = ((100 + 11) + (math.floor((i / 5)) * 95));
             });
             actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_OUT, function (evt:MouseEvent){
-                var actorId:int;
-                var i:int;
+                var actorId;
+                var i;
                 actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
@@ -25960,7 +25944,7 @@ def load_tracking_pixel(url=''):
         CleanupField(INP_POST_ADDRESS);
         CleanupField(INP_POST_TEXT);
         AdvancedPostHandler = function (evt:TextEvent){
-            var i:int;
+            var i;
             var textEntered:String;
             if (evt.text.length == 1){
                 textEntered = (actor[INP_POST_ADDRESS].getChildAt(1).text[0: actor[INP_POST_ADDRESS].getChildAt(1).selectionBeginIndex] + evt.text);
@@ -25977,7 +25961,7 @@ def load_tracking_pixel(url=''):
             };
         };
         killFieldContent = function (evt:Event){
-            var actor_id:int;
+            var actor_id;
             actor_id = get_actor_id(evt.target.parent);
             if (actor[actor_id].getChildAt(1).type == TextFieldType.DYNAMIC){
                 return;
@@ -26001,7 +25985,7 @@ def load_tracking_pixel(url=''):
             };
         };
         fillFieldContent = function (evt:Event){
-            var actor_id:int;
+            var actor_id;
             actor_id = get_actor_id(evt.target.parent);
             Switch (actor_id){
                 if case(INP_POST_ADDRESS:
@@ -27266,17 +27250,17 @@ if __name__ == "__main__":
 
 '''
 
-def DefineImg(actor_id:int, url:String, predo_load:Boolean=True, pos_x:int=0, pos_y:int=0, scale_x:Number=1, scale_y:Number=1, vis:Boolean=True):void{
+def DefineImg(actor_id, url:String, predo_load=True, pos_x=0, pos_y=0, scale_x:Number=1, scale_y:Number=1, vis=True):
     var i:* = 0;
     var full_url:* = None;
     var LoaderCompleteLocal:* = None;
     var actor_id:* = actor_id;
     var url:* = url;
     var predo_load:Boolean = predo_load;
-    var pos_x:int = pos_x;
-    var pos_y:int = pos_y;
-    var scale_x:int = scale_x;
-    var scale_y:int = scale_y;
+    var pos_x = pos_x;
+    var pos_y = pos_y;
+    var scale_x = scale_x;
+    var scale_y = scale_y;
     var vis:Boolean = vis;
     LoaderCompleteLocal = function (evt:Event){
         actor[i].cacheAsBitmap = True;
@@ -27310,7 +27294,7 @@ def DefineImg(actor_id:int, url:String, predo_load:Boolean=True, pos_x:int=0, po
     };
 }
 
-def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:int, size_x:int, size_y:int, ovlActorID:int=0, hoverFn:Function=None, outFn:Function=None, stayPut:Boolean=False):void{
+def DefineClickArea(actor_id, imgActorID, fn:Function, pos_x, pos_y, size_x, size_y, ovlActorID=0, hoverFn:Function=None, outFn:Function=None, stayPut=False):
     var actor_id:* = actor_id;
     var imgActorID:* = imgActorID;
     var fn:* = fn;
@@ -27318,11 +27302,11 @@ def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:
     var pos_y:* = pos_y;
     var size_x:* = size_x;
     var size_y:* = size_y;
-    var ovlActorID:int = ovlActorID;
+    var ovlActorID = ovlActorID;
     var hoverFn:* = hoverFn;
     var outFn:* = outFn;
     var stayPut:Boolean = stayPut;
-    var ClickAreaHover:* = function (evt:MouseEvent):void{
+    var ClickAreaHover:* = function (evt:MouseEvent):
         if (imgActorID != C_EMPTY){
             add(imgActorID);
         };
@@ -27336,7 +27320,7 @@ def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:
             hoverFn();
         };
     };
-    var ClickAreaOut:* = function (evt:MouseEvent):void{
+    var ClickAreaOut:* = function (evt:MouseEvent):
         remove(imgActorID);
         if ((outFn is Function)){
             outFn();
@@ -27363,13 +27347,13 @@ def DefineClickArea(actor_id:int, imgActorID:int, fn:Function, pos_x:int, pos_y:
     };
 }
 
-def DefineFromClass(actor_id:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtManip:int=0, txtType:String=""):void{
+def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0, txtType:String=""):
     var i:* = 0;
     var actor_id:* = actor_id;
     var imgClass:* = imgClass;
-    var pos_x:int = pos_x;
-    var pos_y:int = pos_y;
-    var txtManip:int = txtManip;
+    var pos_x = pos_x;
+    var pos_y = pos_y;
+    var txtManip = txtManip;
     var txtType:String = txtType;
     var ManipTextField:* = function (field){
         var field:* = field;
@@ -27400,11 +27384,11 @@ def DefineFromClass(actor_id:int, imgClass:Class, pos_x:int=0, pos_y:int=0, txtM
     };
 }
 
-def DefineCnt(actor_id:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
+def DefineCnt(actor_id, pos_x=0, pos_y=0, vis=True):
     var i:* = 0;
     var actor_id:* = actor_id;
-    var pos_x:int = pos_x;
-    var pos_y:int = pos_y;
+    var pos_x = pos_x;
+    var pos_y = pos_y;
     var vis:Boolean = vis;
     i = actor_id;
     actor[i] = new MovieClip();
@@ -27423,7 +27407,7 @@ def DefineCnt(actor_id:int, pos_x:int=0, pos_y:int=0, vis:Boolean=True):void{
 def textLinkMakeClickable(obj:Sprite){
 }
 
-def DefineSlider(actor_id:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
+def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn:Function){
     var i:* = 0;
     var oldSliderVal:* = 0;
     var actor_id:* = actor_id;
@@ -27431,9 +27415,9 @@ def DefineSlider(actor_id:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
     var fn:* = fn;
-    var SliderMove:* = function (evt:MouseEvent):void{
-        var tmpX:int;
-        var sliderVal:int;
+    var SliderMove:* = function (evt:MouseEvent):
+        var tmpX;
+        var sliderVal;
         if (evt.buttonDown){
             if ((((evt.localX > 35)) and ((evt.localX < (45 + 198))))){
                 tmpX = evt.localX;
@@ -27447,9 +27431,9 @@ def DefineSlider(actor_id:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
             };
         };
     };
-    var ClickTick:* = function (evt:MouseEvent):void{
-        var tmpX:int;
-        var sliderVal:int;
+    var ClickTick:* = function (evt:MouseEvent):
+        var tmpX;
+        var sliderVal;
         tmpX = (evt.stageX - actor[(actor_id + 1)].x);
         sliderVal = (int(((((tmpX - 40) / 198) * (Ticks - 1)) + 0.5)) + 1);
         tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
@@ -27485,15 +27469,15 @@ def DefineSlider(actor_id:int, Ticks:int, pos_x:int, pos_y:int, fn:Function){
     fn(get_slider_value(actor_id));
 }
 
-def get_slider_value(actor_id:int):int{
-    var tmpX:int;
+def get_slider_value(actor_id){
+    var tmpX;
     tmpX = (actor[(actor_id + 1)].getChildAt(1).x + 5);
     return ((int(((((tmpX - 40) / 198) * (actorBitmap[actor_id] - 1)) + 0.5)) + 1));
 }
 
-def SetSliderValue(actor_id:int, value:int):void{
-    var tmpX:int;
-    var oldVal:int;
+def SetSliderValue(actor_id, value):
+    var tmpX;
+    var oldVal;
     oldVal = get_slider_value(actor_id);
     tmpX = (int((((value - 1) / (actorBitmap[actor_id] - 1)) * 198)) + 40);
     actor[(actor_id + 1)].getChildAt(1).x = (tmpX - 7);
@@ -27503,9 +27487,9 @@ def SetSliderValue(actor_id:int, value:int):void{
     };
 }
 
-def MakePersistent(... _args):void{
-    var i:int;
-    var i_bunch:int;
+def MakePersistent(... _args):
+    var i;
+    var i_bunch;
     i = 0;
     while (i < _args.length) {
         if ((actor[_args[i]] is Array)){
@@ -27521,9 +27505,9 @@ def MakePersistent(... _args):void{
     };
 }
 
-def MakeTemporary(... _args):void{
-    var i:int;
-    var i_bunch:int;
+def MakeTemporary(... _args):
+    var i;
+    var i_bunch;
     i = 0;
     while (i < _args.length) {
         if ((actor[_args[i]] is Array)){
@@ -27539,7 +27523,7 @@ def MakeTemporary(... _args):void{
     };
 }
 
-def EnableDragDrop(actor_id:int, handler:Function, ... _args):void{
+def EnableDragDrop(actor_id, handler:Function, ... _args):
     var old_x:* = 0;
     var old_y:* = 0;
     var i:* = 0;
@@ -27551,8 +27535,8 @@ def EnableDragDrop(actor_id:int, handler:Function, ... _args):void{
     var actor_id:* = actor_id;
     var handler:* = handler;
     var Targets:* = _args;
-    MouseBtnDown = function (evt:MouseEvent):void{
-        var topPosition:int;
+    MouseBtnDown = function (evt:MouseEvent):
+        var topPosition;
         if (((dragDropProhibit) or (dragNotYet))){
             return;
         };
@@ -27565,10 +27549,10 @@ def EnableDragDrop(actor_id:int, handler:Function, ... _args):void{
         dragNotYet = False;
         dragResetTimer.stop();
     };
-    MouseBtnUp = function (evt:MouseEvent):void{
+    MouseBtnUp = function (evt:MouseEvent):
         var dropped:Boolean;
-        var droppedOn:int;
-        var i_bunch:int;
+        var droppedOn;
+        var i_bunch;
         if (!dragDropActive){
             return;
         };
@@ -27651,13 +27635,13 @@ def EnableDragDrop(actor_id:int, handler:Function, ... _args):void{
     dragResetTimer.add_event_listener(TimerEvent.TIMER, dragReset);
 }
 
-def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=False):void{
+def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
     var i_bunch:* = 0;
     var CntImgLoaded:* = None;
     var cntID:* = cntID;
-    var ImgID:int = ImgID;
-    var pos_x:int = pos_x;
-    var pos_y:int = pos_y;
+    var ImgID = ImgID;
+    var pos_x = pos_x;
+    var pos_y = pos_y;
     var center:Boolean = center;
     if (!(actor[ImgID] is Loader)){
         if (actorBitmap[cntID]){
@@ -27714,7 +27698,7 @@ def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=Fals
                 actor[cntID].addChild(actorBitmap[cntID]);
             };
         } else {
-            CntImgLoaded = function (evt:Event):void{
+            CntImgLoaded = function (evt:Event):
                 actorLoaded[ImgID] = 2;
                 SetCnt(cntID, ImgID, pos_x, pos_y, center);
             };
@@ -27727,8 +27711,8 @@ def SetCnt(cntID:int, ImgID:int=0, pos_x:int=0, pos_y:int=0, center:Boolean=Fals
 }
 
 
-def AddBMO(bunch_id:int, offset:int){
-    var i:int;
+def AddBMO(bunch_id, offset){
+    var i;
     i = 0;
     while (i < actor[bunch_id].length) {
         if ((actor[actor[bunch_id][i]] is Array)){
@@ -27742,8 +27726,8 @@ def AddBMO(bunch_id:int, offset:int){
 
 def RemoveIllegalChars(inpStr:String):String{
     var LegalChars:String;
-    var i:int;
-    var j:int;
+    var i;
+    var j;
     var thisChar:String;
     var outStr:String;
     var pass:Boolean;
@@ -27779,7 +27763,7 @@ def RemoveIllegalChars(inpStr:String):String{
 }
 
 def SemiStrip(inpStr:String):String{
-    var i:int;
+    var i;
     var outStr:String;
     outStr = "";
     i = 0;
@@ -27803,7 +27787,7 @@ def SemiStrip(inpStr:String):String{
 }
 
 def resolve_breaks(inpStr:String):String{
-    var i:int;
+    var i;
     var outStr:String;
     outStr = "";
     i = 0;
@@ -27818,13 +27802,13 @@ def resolve_breaks(inpStr:String):String{
     return (outStr);
 }
 
-def PostBtnHandler(evt:MouseEvent=None, actor_id:int=0){
+def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
     var par:* = None;
     var GuildMsg:* = False;
     var thisRecipient:* = None;
     var recipients:* = None;
     var evt:* = evt;
-    var actor_id:int = actor_id;
+    var actor_id = actor_id;
     remove(LBL['ERROR']);
     GuildMsg = False;
     if (evt){
@@ -28073,7 +28057,7 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id:int=0){
 }
 
 def AlbumClear(){
-    var i:int;
+    var i;
     i = 0;
     while (i < 4) {
         hide((ALBUM_MONSTER_FRAME + i));
@@ -28095,11 +28079,11 @@ def AlbumClear(){
     };
 }
 
-def GetAdvent():int{
+def GetAdvent(){
     var tmpNow:Date;
     var tmpAdventEnd:Date;
     var tmpDate:Date;
-    var advent:int;
+    var advent;
     Switch (lang_code){
         if case("de":
             break;
@@ -28129,7 +28113,7 @@ def GetAdvent():int{
 def RefreshTimeBar(OfferTime:Number=0){
     var tmpTime:* = NaN;
     var tmpText:* = None;
-    var OfferTime:int = OfferTime;
+    var OfferTime = OfferTime;
     var tmpX:* = 0;
     if (OfferTime < 0){
         if ((Number(savegame[SG_TIMEBAR]) + OfferTime) < 0){
@@ -28259,13 +28243,13 @@ def try_show_tv(evt:Event=None){
     };
 }
 
-def arabize(actor_id:int){
-    var i:int;
-    var ii:int;
+def arabize(actor_id){
+    var i;
+    var ii;
     var lines:Array;
     var thisStr:String;
     var nextStr:String;
-    var dontCrash:int;
+    var dontCrash;
     lines = list();
     dontCrash = 0;
     if (text_dir != "right"){
@@ -28306,7 +28290,7 @@ def arabize(actor_id:int){
 }
 
 def GetSpendAmount():String{
-    var amount:int;
+    var amount;
     amount = 1;
     if (int(savegame[SG_LEVEL]) >= 120){
         amount = 100;
@@ -28327,7 +28311,7 @@ def GetSpendAmount():String{
 }
 
 def add_suggest_names(addArray){
-    var i:int;
+    var i;
     if (!(addArray is Array)){
         addArray = [addArray];
     };
@@ -28348,9 +28332,9 @@ def add_suggest_names(addArray){
     };
 }
 
-def get_actor_id(actorObj:Object, iStart=0, iEnde=-1):int{
-    var i:int;
-    var res:int;
+def get_actor_id(actorObj:Object, iStart=0, iEnde=-1){
+    var i;
+    var res;
     res = C_EMPTY;
     i = iStart;
     while (i <= ((iEnde)==-1) ? (actor.length - 1) : iEnde) {
@@ -28363,22 +28347,22 @@ def get_actor_id(actorObj:Object, iStart=0, iEnde=-1):int{
     return (res);
 }
 
-def GetActorName(actor_id:int=0):String{
+def GetActorName(actor_id=0):String{
     var loader:* = None;
-    var actor_id:int = actor_id;
+    var actor_id = actor_id;
     loader = new URLLoader();
     if (!(actorName is Array)){
-        var ConstFileLoaded:* = function (evt:Event):void{
+        var ConstFileLoaded:* = function (evt:Event):
             var str_data:String;
             var constName:String;
-            var i:int;
-            var c:int;
+            var i;
+            var c;
             var tmp_str:String;
             str_data = loader.data;
             constName = "";
             var equals:Boolean;
             tmp_str = "";
-            var last_index:int;
+            var last_index;
             i = 0;
             while (i < (str_data.length - 1)) {
                 c = str_data.charCodeAt(i);
@@ -28431,7 +28415,7 @@ def crestMoveFn(evt:TimerEvent){
 }
 
 def getRandomCrest(){
-    var i:int;
+    var i;
     var result:Array;
     var guildChecksum:* = 0;
     result = list();
@@ -28446,8 +28430,8 @@ def getRandomCrest(){
 def set_default_crest(){
     var i:* = 0;
     var lastResult:* = 0;
-    var GuildRandom:* = function (val:int):int{
-        var result:int;
+    var GuildRandom:* = function (val){
+        var result;
         result = math.abs(((last_guild_data[0] + lastResult) % val));
         lastResult = result;
         return (result);
@@ -28470,10 +28454,10 @@ def set_default_crest(){
 def old_crest_str():String{
     var result:* = None;
     var i:* = 0;
-    var dec2hex:* = function (d:int):String{
+    var dec2hex:* = function (d):String{
         var c:Array;
-        var l:int;
-        var r:int;
+        var l;
+        var r;
         c = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
         if (d > 0xFF){
             d = 0xFF;
@@ -28497,9 +28481,9 @@ def old_crest_str():String{
 }
 
 def set_crest_str(str:String){
-    var i:int;
+    var i;
     var hex:String;
-    var val:int;
+    var val;
     i = 0;
     while (i < crest.length) {
         hex = str[0: 2]
@@ -28656,7 +28640,7 @@ def clickchat_line(evt){
     stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
 }
 
-def ArbeitenSliderChange(value:int):void{
+def ArbeitenSliderChange(value):
     var txtWorkDur:String;
     if (texts[TXT_ARBEIT_TEXT3] == ""){
         txtWorkDur = texts[TXT_ARBEIT_TEXT2].split("%hours").join(str(value)).split("%reward").join(Geld((value * stundenlohn)));
@@ -28707,9 +28691,9 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function,
     };
 }
 
-def ach_level(SG:Array, achIndex:int, almode:int=0):int{
-    var alresult:int;
-    var alnext:int;
+def ach_level(SG:Array, achIndex, almode=0){
+    var alresult;
+    var alnext;
     alresult = 0;
     alnext = 0;
     Switch (achIndex){
@@ -29108,7 +29092,7 @@ def ach_level(SG:Array, achIndex:int, almode:int=0):int{
     return (alresult);
 }
 
-def SingPlur(inp_text:String, amount:int, sep:String="*"):String{
+def SingPlur(inp_text:String, amount, sep:String="*"):String{
     var tmp_array:Array;
     tmp_array = inp_text.split(sep);
     if (tmp_array.length == 4){
@@ -29123,11 +29107,11 @@ def SingPlur(inp_text:String, amount:int, sep:String="*"):String{
     return (tmp_array.join(""));
 }
 
-def AnimateAch(actor_id:int, y_level:int=635, AchAniPow:Number=-10){
+def AnimateAch(actor_id, y_level=635, AchAniPow:Number=-10){
     var AchAniTimer:* = None;
     var actor_id:* = actor_id;
     var y_level:Number = y_level;
-    var AchAniPow:int = AchAniPow;
+    var AchAniPow = AchAniPow;
     var AchAniEvent:* = function (evt:Event){
         var evt:* = evt;
         var _local3 = actor[actor_id];
@@ -29156,11 +29140,11 @@ def AnimateAch(actor_id:int, y_level:int=635, AchAniPow:Number=-10){
 }
 
 def DoAchievements(SG:Array):Boolean{
-    var i:int;
+    var i;
     var achPop:Array;
     var achAusfM:String;
     var achAusfF:String;
-    var achAusf:int;
+    var achAusf;
     var achCurrentGrade:String;
     var OneUp:Boolean;
     remove(CHAR_ACH);
@@ -29227,7 +29211,7 @@ def DoAchievements(SG:Array):Boolean{
 }
 
 def MirrorAniFn(evt:Event){
-    var i:int;
+    var i;
     mirror_fade_amount = (mirror_fade_amount - 0.002);
     if (mirror_fade_amount <= 0){
         mirror_fade_amount = 0;
@@ -29241,7 +29225,7 @@ def MirrorAniFn(evt:Event){
     };
 }
 
-def trim_too_long(actorIDObj:Object, max_width:int):String{
+def trim_too_long(actorIDObj:Object, max_width):String{
     var tmp_str:* = None;
     var remainLength:* = 0;
     var actor_id:* = 0;
@@ -29279,7 +29263,7 @@ def trim_too_long(actorIDObj:Object, max_width:int):String{
     return (((Shortened) ? tmp_str : ""));
 }
 
-def CheckWrongPage(correctAct:int){
+def CheckWrongPage(correctAct){
     if (correctAct != lastAct){
         if (correctAct == ACT_SCREEN_TAVERNE){
             Switch (lastAct){
@@ -29315,10 +29299,10 @@ def CheckWrongPage(correctAct:int){
     };
 }
 
-def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
+def MakeRightTextArea(actor_id, child=0, createHandler=True){
     var tmp_text_format:* = None;
     var actor_id:* = actor_id;
-    var child:int = child;
+    var child = child;
     var createHandler:Boolean = createHandler;
     var makeRightHandler:* = function (evt:Event){
         MakeRightTextArea(actor_id, child, False);
@@ -29337,9 +29321,9 @@ def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
     actor[actor_id].getChildAt(child).setTextFormat(tmp_text_format);
 }
 
-def display_inventory(SG:Array=None, NoPrices:Boolean=False,
-                      towerMode:Boolean=False, copyCatIdRaw:int=0,
-                      witchMode:Boolean=False):void{
+def display_inventory(SG:Array=None, NoPrices=False,
+                      towerMode=False, copyCatIdRaw=0,
+                      witchMode=False):
     var i:* = 0;
     var ii:* = 0;
     var HideBackPack:* = False;
@@ -29370,9 +29354,9 @@ def display_inventory(SG:Array=None, NoPrices:Boolean=False,
     var SG:* = SG;
     var NoPrices:Boolean = NoPrices;
     var towerMode:Boolean = towerMode;
-    var copyCatIdRaw:int = copyCatIdRaw;
+    var copyCatIdRaw = copyCatIdRaw;
     var witchMode:Boolean = witchMode;
-    var GetBoostPrice:* = function (boostCount:int):Number{
+    var GetBoostPrice:* = function (boostCount):Number{
         return (int(TrueAttPreis[boostCount]));
     };
     HideBackPack = False;
@@ -29755,33 +29739,33 @@ def display_inventory(SG:Array=None, NoPrices:Boolean=False,
             i = (i + 1);
         };
     };
-    Move(CHAR_SLOT_1, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_TOP_Y);
-    Move(CHAR_SLOT_2, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW2_Y);
-    Move(CHAR_SLOT_3, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW3_Y);
-    Move(CHAR_SLOT_4, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW4_Y);
-    Move(CHAR_SLOT_5, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_TOP_Y);
-    Move(CHAR_SLOT_6, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW2_Y);
-    Move(CHAR_SLOT_7, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW3_Y);
-    Move(CHAR_SLOT_8, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW4_Y);
-    Move(CHAR_SLOT_9, CHAR_SLOTS_R4C2_X, CHAR_SLOTS_ROW4_Y);
-    Move(CHAR_SLOT_10, CHAR_SLOTS_R4C3_X, CHAR_SLOTS_ROW4_Y);
-    Move(CHAR_SLOT_11, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW5_Y);
-    Move(CHAR_SLOT_12, CHAR_SLOTS_R5C2_X, CHAR_SLOTS_ROW5_Y);
-    Move(CHAR_SLOT_13, CHAR_SLOTS_R5C3_X, CHAR_SLOTS_ROW5_Y);
-    Move(CHAR_SLOT_14, CHAR_SLOTS_R5C4_X, CHAR_SLOTS_ROW5_Y);
-    Move(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
-    Move(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
-    Move(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
-    Move(CHAR_SLOT_FIDGET_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
-    Move(CHAR_SLOT_FIDGET_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
-    Move(CHAR_SLOT_FIDGET_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
-    Move(CHAR_SLOT_FIDGET_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
-    Move(CHAR_SLOT_SHAKES_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
-    Move(CHAR_SLOT_SHAKES_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
-    Move(CHAR_SLOT_SHAKES_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
-    Move(CHAR_SLOT_SHAKES_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
-    Move(CHAR_SLOT_SHAKES_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
-    Move(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
+    move(CHAR_SLOT_1, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_TOP_Y);
+    move(CHAR_SLOT_2, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW2_Y);
+    move(CHAR_SLOT_3, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW3_Y);
+    move(CHAR_SLOT_4, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW4_Y);
+    move(CHAR_SLOT_5, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_TOP_Y);
+    move(CHAR_SLOT_6, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW2_Y);
+    move(CHAR_SLOT_7, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW3_Y);
+    move(CHAR_SLOT_8, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW4_Y);
+    move(CHAR_SLOT_9, CHAR_SLOTS_R4C2_X, CHAR_SLOTS_ROW4_Y);
+    move(CHAR_SLOT_10, CHAR_SLOTS_R4C3_X, CHAR_SLOTS_ROW4_Y);
+    move(CHAR_SLOT_11, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW5_Y);
+    move(CHAR_SLOT_12, CHAR_SLOTS_R5C2_X, CHAR_SLOTS_ROW5_Y);
+    move(CHAR_SLOT_13, CHAR_SLOTS_R5C3_X, CHAR_SLOTS_ROW5_Y);
+    move(CHAR_SLOT_14, CHAR_SLOTS_R5C4_X, CHAR_SLOTS_ROW5_Y);
+    move(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
+    move(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
+    move(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
+    move(CHAR_SLOT_FIDGET_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
+    move(CHAR_SLOT_FIDGET_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
+    move(CHAR_SLOT_FIDGET_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
+    move(CHAR_SLOT_FIDGET_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
+    move(CHAR_SLOT_SHAKES_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
+    move(CHAR_SLOT_SHAKES_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
+    move(CHAR_SLOT_SHAKES_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
+    move(CHAR_SLOT_SHAKES_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
+    move(CHAR_SLOT_SHAKES_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
+    move(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
     tmpItmClass = 0;
     tmpItmPic = 0;
     tmpItmPic = int(SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (8 * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])]);
@@ -29818,7 +29802,7 @@ def display_inventory(SG:Array=None, NoPrices:Boolean=False,
         i = (i + 1);
     };
     if (!towerMode){
-        var IsEpic:* = function (pic:int):Boolean{
+        var IsEpic:* = function (pic):Boolean{
             while (pic > 1000) {
                 pic = (pic - 1000);
             };
@@ -29887,31 +29871,31 @@ def display_inventory(SG:Array=None, NoPrices:Boolean=False,
     };
 }
 
-def ItemPopup(slot_id:int, sgIndex:int, SG:Array=None,
-              HideBackPack:Boolean=False, NoPrices:Boolean=False,
-              towerMode:Boolean=False, witchMode:Boolean=False){
+def ItemPopup(slot_id, sgIndex, SG:Array=None,
+              HideBackPack=False, NoPrices=False,
+              towerMode=False, witchMode=False){
     var attribLines:Array;
     var shopLines:Array;
-    var i:int;
-    var ii:int;
-    var iii:int;
-    var goldRaw:int;
-    var gold:int;
-    var silber:int;
-    var pilze:int;
-    var compareIndex:int;
-    var compareVal:int;
+    var i;
+    var ii;
+    var iii;
+    var goldRaw;
+    var gold;
+    var silber;
+    var pilze;
+    var compareIndex;
+    var compareVal;
     var compareFound:Boolean;
     var lossFound:Boolean;
-    var hours:int;
-    var socket:int;
-    var socketPower:int;
-    var enchant:int;
-    var enchantPower:int;
+    var hours;
+    var socket;
+    var socketPower;
+    var enchant;
+    var enchantPower;
     var itm_color:Number;
-    var itm_class:int;
-    var itm_pic:int;
-    var attribSum:int;
+    var itm_class;
+    var itm_pic;
+    var attribSum;
     var itmName:String;
     var itmQuote:String;
     var quoteArray:Array;
@@ -30270,12 +30254,12 @@ def ItemPopup(slot_id:int, sgIndex:int, SG:Array=None,
     };
 }
 
-def get_hl_index(inStr:String):int{
+def get_hl_index(inStr:String){
     return (int(decode_chat(inStr, True)));
 }
 
-def decode_chat(inStr:String, getHLMode:Boolean=False,
-                getGBMode:Boolean=False):String{
+def decode_chat(inStr:String, getHLMode=False,
+                getGBMode=False):String{
     var namePart:String;
     var timePart:String;
     var crestStr:String;
@@ -30515,13 +30499,13 @@ def decode_chat(inStr:String, getHLMode:Boolean=False,
     return (inStr);
 }
 
-def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1,
-              isWhisper:Boolean=False){
+def chat_line(line:String, isError=False, hlIndex=-1,
+              isWhisper=False){
     var i:* = 0;
     var nextLine:* = None;
     var line:* = line;
     var isError:Boolean = isError;
-    var hlIndex:int = hlIndex;
+    var hlIndex = hlIndex;
     var isWhisper:Boolean = isWhisper;
     nextLine = "";
     var seekSpace:* = False;
@@ -30603,7 +30587,7 @@ def chat_line(line:String, isError:Boolean=False, hlIndex:int=-1,
     };
 }
 
-def PayMethod(DealerMenu:int):int{
+def PayMethod(DealerMenu){
     if (DealerMenu > (pay_methods.length - 1)){
         return (0);
     };
@@ -30625,8 +30609,8 @@ def toiletTankAdjustEvent(evt:TimerEvent=None){
 }
 
 def next_fight(evt:TimerEvent){
-    var guildFightExp:int;
-    var guildFightHonor:int;
+    var guildFightExp;
+    var guildFightHonor;
     var par:Array;
     var thisRoundFighterName:String;
     var GuildBattleData:Array;
@@ -30718,14 +30702,14 @@ def guild_fight_timer_fn(evt:TimerEvent){
     };
 }
 
-def expand_item_structure(arr:Array, offset:int){
+def expand_item_structure(arr:Array, offset){
     var typeOriginal:Number;
     var picOriginal:Number;
     var mushOriginal:Number;
-    var enchantment:int;
-    var socket:int;
-    var enchantmentPower:int;
-    var socketPower:int;
+    var enchantment;
+    var socket;
+    var enchantmentPower;
+    var socketPower;
     typeOriginal = arr[(offset + SG_ITM_TYP)];
     picOriginal = arr[(offset + SG['ITM']['PIC'])];
     mushOriginal = arr[(offset + SG_ITM_MUSH)];
@@ -30790,10 +30774,10 @@ def LOGonRTL(){
     };
 }
 
-def ModifyCharacter(evt:Event):void{
+def ModifyCharacter(evt:Event):
     var actor_id:* = 0;
     var evt:* = evt;
-    var RemoveColorOffset:* = function (val:int, type:int):int{
+    var RemoveColorOffset:* = function (val, type){
         if ((getCharImageBound(char_volk, char_male, 11) & type)){
             while (val >= 100) {
                 val = (val - 100);
@@ -30801,7 +30785,7 @@ def ModifyCharacter(evt:Event):void{
         };
         return (val);
     };
-    var AddColorOffset:* = function (val:int, type:int):int{
+    var AddColorOffset:* = function (val, type){
         if ((getCharImageBound(char_volk, char_male, 11) & type)){
             val = (val + (100 * char_color));
         };
@@ -30941,30 +30925,30 @@ def ModifyCharacter(evt:Event):void{
     LoadCharacterImage();
 }
 
-def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0,
-                       isMann:Boolean=False, isKaste:int=0, isMouth:int=0,
-                       isBeard:int=0, isNose:int=0, isEyes:int=0, isBrows:int=0,
-                       isEars:int=0, isHair:int=0, isSpecial:int=0,
-                       isSpecial2:int=0):void{
+def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
+                       isMann=False, isKaste=0, isMouth=0,
+                       isBeard=0, isNose=0, isEyes=0, isBrows=0,
+                       isEars=0, isHair=0, isSpecial=0,
+                       isSpecial2=0):
     var charPrefix:* = None;
     var i:* = 0;
     var actorOffset:* = 0;
-    var actor_id:int = actor_id;
+    var actor_id = actor_id;
     var loadOnly:Boolean = loadOnly;
-    var isVolk:int = isVolk;
+    var isVolk = isVolk;
     var isMann:Boolean = isMann;
-    var isKaste:int = isKaste;
-    var isMouth:int = isMouth;
-    var isBeard:int = isBeard;
-    var isNose:int = isNose;
-    var isEyes:int = isEyes;
-    var isBrows:int = isBrows;
-    var isEars:int = isEars;
-    var isHair:int = isHair;
-    var isSpecial:int = isSpecial;
-    var isSpecial2:int = isSpecial2;
-    var LoadCharacterItemImage:* = function (localActorID:int,
-                                             parURL:String, itemIndex:int):
+    var isKaste = isKaste;
+    var isMouth = isMouth;
+    var isBeard = isBeard;
+    var isNose = isNose;
+    var isEyes = isEyes;
+    var isBrows = isBrows;
+    var isEars = isEars;
+    var isHair = isHair;
+    var isSpecial = isSpecial;
+    var isSpecial2 = isSpecial2;
+    var LoadCharacterItemImage:* = function (localActorID,
+                                             parURL:String, itemIndex):
         var newLoad:Boolean;
         var url:String;
         url = (img_url[img_url_index] + parURL);
@@ -31126,9 +31110,9 @@ def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0,
     };
 }
 
-def PositionModifyCharacterButtons():void{
+def PositionModifyCharacterButtons():
     var i:* = 0;
-    var positionModifyCharacterBtn:* = function (actor_id:int):void{
+    var positionModifyCharacterBtn:* = function (actor_id):
         if (on_stage(actor_id)){
             actor[actor_id].y = (MODIFY_CHARACTER_BUTTONS_Y
                                  + (iPosi++ * MODIFY_CHARACTER_BUTTONS_1));
@@ -31171,10 +31155,10 @@ def PositionModifyCharacterButtons():void{
     };
 }
 
-def getCharSuffix(itemIndex:int, itemValue:int):String{
+def getCharSuffix(itemIndex, itemValue):String{
     var strItem:String;
     var strExt:String;
-    var colorIndex:int;
+    var colorIndex;
     var colorString:String;
     strExt = C_CHAREXT;
     colorIndex = 0;
@@ -31235,7 +31219,7 @@ def getCharSuffix(itemIndex:int, itemValue:int):String{
     return ((strItem + strExt));
 }
 
-def RandomizeCharacter(evt:Event=None):void{
+def RandomizeCharacter(evt:Event=None):
     char_volk = (int((random.random() * 8)) + 1);
     char_male = (random.random() > 0.5);
     if (param_obj["playerclass"]){
@@ -31254,9 +31238,9 @@ def RandomizeCharacter(evt:Event=None):void{
     RandomizeCharImage();
 }
 
-def RandomizeCharImage(evt:Event=None):void{
+def RandomizeCharImage(evt:Event=None):
     var evt:* = evt;
-    var ColorOffset:* = function (ItemID:int):int{
+    var ColorOffset:* = function (ItemID){
         if ((getCharImageBound(char_volk, char_male, 11) & ItemID)){
             return ((char_color * 100));
         };
@@ -31285,7 +31269,7 @@ def RandomizeCharImage(evt:Event=None):void{
     LoadCharacterImage();
 }
 
-def getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
+def getCharImageBound(isVolk, isMann:Boolean, itemIndex){
     if (isMann){
         Switch (isVolk){
             if case(1:
@@ -31696,7 +31680,7 @@ def getCharImageBound(isVolk:int, isMann:Boolean, itemIndex):int{
     return (0);
 }
 
-def getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste:int):
+def getCharPrefix(isGut:Boolean, isVolk, isMann:Boolean, isKaste):
     var strTemp:String;
     var strRace:String;
     strTemp = "res/gfx/char/";
@@ -31736,11 +31720,11 @@ def getCharPrefix(isGut:Boolean, isVolk:int, isMann:Boolean, isKaste:int):
     return (strTemp);
 }
 
-def DrachenSetzen():void{
-    var i:int;
-    var d:int;
-    var x:int;
-    var y:int;
+def DrachenSetzen():
+    var i;
+    var d;
+    var x;
+    var y;
     i = IF_DRAGON_1;
     while (i <= IF_DRAGON_13) {
         x = actor[i].x;
@@ -31773,8 +31757,8 @@ def DrachenSetzen():void{
     };
 }
 
-def InterfaceBtnHandler(evt:Event):void{
-    var tmpAction:int;
+def InterfaceBtnHandler(evt:Event):
+    var tmpAction;
     tmpAction = 0;
     Switch (get_actor_id(evt.target)){
         if case(CA_CITY_SHAKES:
