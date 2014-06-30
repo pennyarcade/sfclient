@@ -4850,7 +4850,7 @@ def init_vars():
     # stObject = new SoundTransform()
     # ststep = 0
     # stundenlohn = 10
-    # suggestionSlot = list()
+    # suggestion_slot = list()
     # suggestNames = list()
     # text_dir = "left"
     # tmp_battle_info = ""
@@ -6413,8 +6413,8 @@ def TowerKeyEvent(evt:KeyboardEvent){
     } else {
         var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
-            removeEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
-            removeEventListener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
+            remove_event_listener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
+            remove_event_listener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
         };
     };
 }
@@ -6426,8 +6426,8 @@ def TowerScrollSetFocus(evt:Event){
     } else {
         var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
-            removeEventListener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
-            removeEventListener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
+            remove_event_listener(KeyboardEvent.KEY_DOWN, TowerKeyEvent);
+            remove_event_listener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
         };
     };
 }
@@ -6728,12 +6728,12 @@ DoSkipFight = function (evt:MouseEvent=None, fightDone:Boolean=False){
     var fightStyle:* = 5;
     fight_lock = False;
     DoStrikeTimer.stop();
-    DoStrikeTimer.removeEventListener(TimerEvent.TIMER, DoStrikeEvent);
-    actor[FIGHT_SKIP].removeEventListener(
+    DoStrikeTimer.remove_event_listener(TimerEvent.TIMER, DoStrikeEvent);
+    actor[FIGHT_SKIP].remove_event_listener(
         MouseEvent.CLICK, DoSkipFight);
-    actor[BATTLE_SKIP].removeEventListener(
+    actor[BATTLE_SKIP].remove_event_listener(
         MouseEvent.CLICK, DoSkipFight);
-    actor[BATTLE_SKIPONE].removeEventListener(
+    actor[BATTLE_SKIPONE].remove_event_listener(
         MouseEvent.CLICK, DoSkipFight);
     fightRound = (int((fightData.length / 6)) - 1);
     charLife = fightData[(fightRound * 6)];
@@ -7377,14 +7377,14 @@ var SetLifeBars:* = function (whichOne:int=0){
 DoStrikeEvent = function (evt:TimerEvent){
     if (((!(on_stage(FIGHT_BOX1))) or (strikeBreak))){
         DoStrikeTimer.stop();
-        DoStrikeTimer.removeEventListener(
+        DoStrikeTimer.remove_event_listener(
             TimerEvent.TIMER, DoStrikeEvent);
         return;
     };
     if ((((skip_guild_fights > 0)) and (is_guildBattle))){
         DoSkipFight();
         DoStrikeTimer.stop();
-        DoStrikeTimer.removeEventListener(
+        DoStrikeTimer.remove_event_listener(
             TimerEvent.TIMER, DoStrikeEvent);
         return;
     };
@@ -7444,7 +7444,7 @@ var WeaponStrike:* = function (opponent:Boolean=False){
                 next_fight_timer.start();
             };
             StrikeAniTimer.stop();
-            StrikeAniTimer.removeEventListener(
+            StrikeAniTimer.remove_event_listener(
                 TimerEvent.TIMER,
                 StrikeAniTimerEvent);
             return;
@@ -7556,7 +7556,7 @@ var WeaponStrike:* = function (opponent:Boolean=False){
                                     next_fight_timer.start();
                                 };
                                 StrikeAniTimer.stop();
-                                StrikeAniTimer.removeEventListener(
+                                StrikeAniTimer.remove_event_listener(
                                     TimerEvent.TIMER,
                                     StrikeAniTimerEvent);
                                 DoStrikeTimer.start();
@@ -7675,7 +7675,7 @@ var WeaponStrike:* = function (opponent:Boolean=False){
                                     next_fight_timer.start();
                                 };
                                 StrikeAniTimer.stop();
-                                StrikeAniTimer.removeEventListener(
+                                StrikeAniTimer.remove_event_listener(
                                     TimerEvent.TIMER,
                                     StrikeAniTimerEvent);
                                 DoStrikeTimer.start();
@@ -7790,7 +7790,7 @@ var WeaponStrike:* = function (opponent:Boolean=False){
                                 next_fight_timer.start();
                             };
                             StrikeAniTimer.stop();
-                            StrikeAniTimer.removeEventListener(
+                            StrikeAniTimer.remove_event_listener(
                                 TimerEvent.TIMER,
                                 StrikeAniTimerEvent);
                             DoStrikeTimer.start();
@@ -7904,7 +7904,7 @@ var WeaponStrike:* = function (opponent:Boolean=False){
                                 next_fight_timer.start();
                             };
                             StrikeAniTimer.stop();
-                            StrikeAniTimer.removeEventListener(
+                            StrikeAniTimer.remove_event_listener(
                                 TimerEvent.TIMER,
                                 StrikeAniTimerEvent);
                             DoStrikeTimer.start();
@@ -7967,7 +7967,7 @@ var WeaponStrike:* = function (opponent:Boolean=False){
                             };
                             remove(FIGHT_MUSH);
                             StrikeAniTimer.stop();
-                            StrikeAniTimer.removeEventListener(
+                            StrikeAniTimer.remove_event_listener(
                                 TimerEvent.TIMER,
                                 StrikeAniTimerEvent);
                             DoStrikeTimer.start();
@@ -8452,14 +8452,14 @@ DoShowFightScreen = function (evt:Event=None){
     if (is_guildBattle){
         alternate_char_opp_img = !(alternate_char_opp_img);
     };
-    AddSome(LBL_NAMERANK_CHAR, LBL_NAMERANK_OPP);
-    AddSome(
+    add_some(LBL_NAMERANK_CHAR, LBL_NAMERANK_OPP);
+    add_some(
         SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR,
         WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
     hide(
         SHIELD_CHAR, SHIELD_OPP, WEAPON_CHAR,
         WEAPON_OPP, BULLET_CHAR, BULLET_OPP);
-    AddSome(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
+    add_some(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
     hide(LBL_DAMAGE_INDICATOR, FIGHT_ONO);
     actor[FIGHT_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
     actor[BATTLE_SKIP].add_event_listener(MouseEvent.CLICK, DoSkipFight);
@@ -9048,7 +9048,7 @@ def show_disconnect_screen(){
         if (on_stage(LBL_DISCONNECTED)){
             request_login();
         } else {
-            ReconnectTimer.removeEventListener(
+            ReconnectTimer.remove_event_listener(
                 TimerEvent.TIMER, TryReconnect);
         };
     };
@@ -9075,7 +9075,7 @@ def show_quest_screen(evt:Event=None){
             var evt:* = evt;
             if (!on_stage(QUESTBAR_BG)){
                 questBarTimer.stop();
-                questBarTimer.removeEventListener(
+                questBarTimer.remove_event_listener(
                     TimerEvent.TIMER, QuestBarUpdate);
                 set_title_bar(WaitingTime(savegame[SG_ACTION_ENDTIME]));
                 return;
@@ -9098,7 +9098,7 @@ def show_quest_screen(evt:Event=None){
                 };
             } else {
                 questBarTimer.stop();
-                questBarTimer.removeEventListener(
+                questBarTimer.remove_event_listener(
                     TimerEvent.TIMER, QuestBarUpdate);
                 send_action(ACT_SCREEN_TAVERNE);
             };
@@ -9186,7 +9186,7 @@ def show_taverne_screen(evt:Event=None){
                 actor[TAVERNE_KERZEN].visible = (random.random() >= 0.5);
             } else {
                 HutBlinzelTimer.stop();
-                HutBlinzelTimer.removeEventListener(
+                HutBlinzelTimer.remove_event_listener(
                     TimerEvent.TIMER, HutBlinzelTimerEvent);
             };
         };
@@ -9294,7 +9294,7 @@ def show_stall_screen(evt:Event=None){
                 ((!(on_stage(STALL_BG_GUT)))
                     and (!(on_stage(STALL_BG_BOESE))))){
                 HandTimer.stop();
-                HandTimer.removeEventListener(
+                HandTimer.remove_event_listener(
                     TimerEvent.TIMER, BauerHandEvent);
             };
             i = 0;
@@ -9405,7 +9405,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
     };
     PvPDelayCheck = function (evt:TimerEvent=None){
         if (!on_stage(INP_ARENA_ENEMY)){
-            pvp_delay_timer.removeEventListener(TimerEvent.TIMER,
+            pvp_delay_timer.remove_event_listener(TimerEvent.TIMER,
                                                 PvPDelayCheck);
             pvp_delay_timer.stop();
             return;
@@ -9455,7 +9455,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe:int){
             set_btn_text(ARENA_OK, texts[TXT_OK]);
             hide(LBL_ARENA_DELAY);
             set_title_bar();
-            pvp_delay_timer.removeEventListener(
+            pvp_delay_timer.remove_event_listener(
                 TimerEvent.TIMER, PvPDelayCheck);
             pvp_delay_timer.stop();
         };
@@ -9661,8 +9661,8 @@ def show_post_screen(par:Array=None){
             if (thisInstance != postInstance){
                 var _local3 = actor[POST_LIST];
                 with (_local3) {
-                    removeEventListener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
-                    removeEventListener(FocusEvent.FOCUS_OUT, PostSetFocus);
+                    remove_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+                    remove_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
             } else {
                 stage.stageFocusRect = False;
@@ -9677,8 +9677,8 @@ def show_post_screen(par:Array=None){
             if (thisInstance != postInstance){
                 var _local3 = actor[POST_LIST];
                 with (_local3) {
-                    removeEventListener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
-                    removeEventListener(FocusEvent.FOCUS_OUT, PostSetFocus);
+                    remove_event_listener(KeyboardEvent.KEY_DOWN, PostKeyEvent);
+                    remove_event_listener(FocusEvent.FOCUS_OUT, PostSetFocus);
                 };
                 return;
             };
@@ -9741,8 +9741,8 @@ def show_post_screen(par:Array=None){
         ){
             SetAlpha(POST_LIST, 0);
             SetAlpha(SHP_POST_BLACK_SQUARE, 0);
-            FadeIn(POST_LIST);
-            FadeIn(SHP_POST_BLACK_SQUARE, 20, 0.05, 0.6);
+            fade_in(POST_LIST);
+            fade_in(SHP_POST_BLACK_SQUARE, 20, 0.05, 0.6);
         };
     };
     BuildPostList = function (evt:Event=None){
@@ -10147,7 +10147,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                     or ((savegame[SG_MOUNT] == 0)))
             ){
                 MountTimeTimer.stop();
-                MountTimeTimer.removeEventListener(
+                MountTimeTimer.remove_event_listener(
                     TimerEvent.TIMER, MountTimeEvent);
                 return;
             };
@@ -10367,7 +10367,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
             add(SCREEN_CHAR);
         };
         LoadCharacterImage();
-        AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
+        add_some(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         mirror_ani_timer.stop();
         i = 0;
         while (i < 13) {
@@ -10384,7 +10384,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                 or ((((int(so.data.vanityMode) == 3))
                 and ((vanityRandom < 0.5)))))
             ){
-            AddSome(GOLDEN_FRAME, SCR_CHAR_NAME);
+            add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
             actor[SCR_CHAR_NAME].y = (CHAR_NAME_Y + 8);
             AddFilter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
         } else {
@@ -10393,7 +10393,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
         };
         if (texts[(TXT_ACH_4 + 4)]){
             if (int(savegame[SG_EMAIL_VALID]) == 1){
-                AddSome(CHAR_INVITE);
+                add_some(CHAR_INVITE);
             };
         };
         if (texts[TXT_ALBUM]){
@@ -10430,7 +10430,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
                 level_upAniStep++;
                 if (level_upAniStep > 125){
                     level_upTimer.stop();
-                    level_upTimer.removeEventListener(
+                    level_upTimer.remove_event_listener(
                         TimerEvent.TIMER, level_upAniEvent);
                     var _local3 = actor[LBL_SCR_CHAR_EXPLABEL];
                     with (_local3) {
@@ -10565,7 +10565,7 @@ def ShowPlayerScreen(
         PvPDelayCheck = function (evt:TimerEvent=None){
             var evt:* = evt;
             if (!on_stage(CHAR_ATTACK)){
-                pvp_delay_timer.removeEventListener(
+                pvp_delay_timer.remove_event_listener(
                     TimerEvent.TIMER, PvPDelayCheck);
                 pvp_delay_timer.stop();
                 return;
@@ -10591,7 +10591,7 @@ def ShowPlayerScreen(
                 set_title_bar();
                 set_btn_text(CHAR_ATTACK, texts[TXT_ATTACK]);
                 hide(LBL_CHAR_DELAY);
-                pvp_delay_timer.removeEventListener(
+                pvp_delay_timer.remove_event_listener(
                     TimerEvent.TIMER, PvPDelayCheck
                 );
                 pvp_delay_timer.stop();
@@ -10780,18 +10780,18 @@ def ShowPlayerScreen(
             };
         };
         if ((((PlayerGilde == gilde)) and (!((gilde == ""))))){
-            AddSome(CHAR_MESSAGE, CHAR_GILDE);
+            add_some(CHAR_MESSAGE, CHAR_GILDE);
         } else {
-            AddSome(CHAR_MESSAGE);
+            add_some(CHAR_MESSAGE);
             if (
                 (((savegame[SG_ACTION_STATUS] == 0))
                 or ((((savegame[SG_ACTION_STATUS] >= 1))
                 and (has_mirror))))
             ){
                 if (can_rob){
-                    AddSome(CHAR_ATTACK, LBL_CHAR_DELAY);
+                    add_some(CHAR_ATTACK, LBL_CHAR_DELAY);
                 } else {
-                    AddSome(CHAR_ATTACK, LBL_CHAR_DELAY);
+                    add_some(CHAR_ATTACK, LBL_CHAR_DELAY);
                 };
             };
         };
@@ -10821,7 +10821,7 @@ def ShowPlayerScreen(
             PlayerSG[SG_FACE_8],
             PlayerSG[SG_FACE_9]
         );
-        AddSome(SCR_CHAR_NAME, SCR_CHAR_GILDE);
+        add_some(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         if (
             (((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32))
             and ((int(so.data.vanityMode) == 0))))
@@ -10829,7 +10829,7 @@ def ShowPlayerScreen(
             or ((((int(so.data.vanityMode) == 3))
             and ((vanityRandom < 0.5)))))
         ){
-            AddSome(GOLDEN_FRAME, SCR_CHAR_NAME);
+            add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
             actor[SCR_CHAR_NAME].y = (CHAR_NAME_Y + 8);
             AddFilter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
         } else {
@@ -11010,80 +11010,80 @@ def show_screen_gilden(
                 removeListenersTimer.stop();
                 var _local3 = removeListenersTimer;
                 with (_local3) {
-                    removeEventListener(TimerEvent.TIMER, removeListeners);
+                    remove_event_listener(TimerEvent.TIMER, removeListeners);
                 };
-                actor[GILDE_SCROLL_UP].removeEventListener(
+                actor[GILDE_SCROLL_UP].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_SCROLL_DOWN].removeEventListener(
+                actor[GILDE_SCROLL_DOWN].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_CANCEL].removeEventListener(
+                actor[GILDE_DIALOG_CANCEL].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_KICK].removeEventListener(
+                actor[GILDE_DIALOG_OK_KICK].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_MASTER].removeEventListener(
+                actor[GILDE_DIALOG_OK_MASTER].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_INVITE].removeEventListener(
+                actor[GILDE_DIALOG_OK_INVITE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_REVOLT].removeEventListener(
+                actor[GILDE_DIALOG_OK_REVOLT].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DIALOG_OK_RAID].removeEventListener(
+                actor[GILDE_DIALOG_OK_RAID].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_INVITE].removeEventListener(
+                actor[GILDE_INVITE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_PROFILE].removeEventListener(
+                actor[GILDE_PROFILE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_KICK].removeEventListener(
+                actor[GILDE_KICK].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_PROMOTE].removeEventListener(
+                actor[GILDE_PROMOTE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_DEMOTE].removeEventListener(
+                actor[GILDE_DEMOTE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_MASTER].removeEventListener(
+                actor[GILDE_MASTER].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_REVOLT].removeEventListener(
+                actor[GILDE_REVOLT].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_GEBAEUDE_IMPROVE].removeEventListener(
+                actor[GILDE_GEBAEUDE_IMPROVE].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_GEBAEUDE_IMPROVE + 1)].removeEventListener(
+                actor[(GILDE_GEBAEUDE_IMPROVE + 1)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_GEBAEUDE_IMPROVE + 2)].removeEventListener(
+                actor[(GILDE_GEBAEUDE_IMPROVE + 2)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_KATAPULT].removeEventListener(
+                actor[GILDE_KATAPULT].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_KATAPULT + 1)].removeEventListener(
+                actor[(GILDE_KATAPULT + 1)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[(GILDE_KATAPULT + 2)].removeEventListener(
+                actor[(GILDE_KATAPULT + 2)].remove_event_listener(
                     MouseEvent.CLICK, GuildBtnHandler);
-                actor[GILDE_GOLD].removeEventListener(
+                actor[GILDE_GOLD].remove_event_listener(
                     MouseEvent.MOUSE_DOWN, GuildBtnHandler);
-                actor[GILDE_MUSH].removeEventListener(
+                actor[GILDE_MUSH].remove_event_listener(
                     MouseEvent.MOUSE_DOWN, GuildBtnHandler);
-                actor[GILDE_GOLD].removeEventListener(
+                actor[GILDE_GOLD].remove_event_listener(
                     MouseEvent.MOUSE_OUT, DoDonate);
-                actor[GILDE_MUSH].removeEventListener(
+                actor[GILDE_MUSH].remove_event_listener(
                     MouseEvent.MOUSE_OUT, DoDonate);
                 _local3 = actor[GILDE_GOLD];
                 with (_local3) {
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_UP, GuildBtnUpHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
                 };
                 _local3 = actor[GILDE_MUSH];
                 with (_local3) {
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_DOWN, GuildBtnDownHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_UP, GuildBtnUpHandler);
-                    removeEventListener(
+                    remove_event_listener(
                         MouseEvent.MOUSE_OUT, GuildBtnUpHandler);
                 };
                 _local3 = actor[INP_GILDE_TEXT];
                 with (_local3) {
-                    removeEventListener(FocusEvent.FOCUS_IN, EnterGuildDesc);
-                    removeEventListener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
+                    remove_event_listener(FocusEvent.FOCUS_IN, EnterGuildDesc);
+                    remove_event_listener(FocusEvent.FOCUS_OUT, LeaveGuildDesc);
                 };
             };
         };
@@ -11135,7 +11135,7 @@ def show_screen_gilden(
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        removeEventListener(
+                        remove_event_listener(
                             TimerEvent.TIMER, DoPushGuildBtn);
                     };
                 } else {
@@ -11238,7 +11238,7 @@ def show_screen_gilden(
                 remove(GILDE_KICK_GRAY);
                 remove(GILDE_PROMOTE);
                 remove(GILDE_MASTER);
-                AddSome(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
+                add_some(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
             } else {
                 if ((((selRank <= 2)) and ((myRank == 2)))){
                     remove(GILDE_KICK);
@@ -11248,14 +11248,14 @@ def show_screen_gilden(
             if (selRank == 4){
                 remove(GILDE_PROMOTE);
                 remove(GILDE_MASTER);
-                AddSome(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
+                add_some(GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
             };
             if (int(guildData[3]) >= int(guildData[5])){
                 remove(GILDE_INVITE);
                 if (guildData[0] == savegame[SG_GUILD_INDEX]){
                     hide(PLAYER_GUILD_INVITE);
                 };
-                AddSome(GILDE_INVITE_GRAY);
+                add_some(GILDE_INVITE_GRAY);
             };
             if ((((selRank == 2)) and ((myRank == 1)))){
                 remove(GILDE_PROMOTE);
@@ -13476,7 +13476,7 @@ def show_work_screen(evt:Event=None):void{
                         );
                     } else {
                         ArbeitCountdown.stop();
-                        ArbeitCountdown.removeEventListener(
+                        ArbeitCountdown.remove_event_listener(
                             TimerEvent.TIMER, ArbeitCountdownEvent
                         );
                         if (on_stage(LBL_SCR_ARBEITEN_TIME)){
@@ -13553,7 +13553,7 @@ def show_main_quests_screen(NextEnemies:Array){
                 while (i < 9) {
                     var _local3 = actor[(MQS_BUTTON + i)].content;
                     with (_local3) {
-                        removeEventListener(MouseEvent.CLICK, MainQuestsClick);
+                        remove_event_listener(MouseEvent.CLICK, MainQuestsClick);
                     };
                     i++;
                 };
@@ -14039,7 +14039,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
     };
     MQDelayCheck = function (evt:TimerEvent=None){
         if (!on_stage(SHP_MAINQUEST)){
-            MQDelayTimer.removeEventListener(TimerEvent.TIMER, MQDelayCheck);
+            MQDelayTimer.remove_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.stop();
             return;
         };
@@ -14051,7 +14051,7 @@ def ShowMainQuestScreen(DungeonNr:int=0, Enemy:int=0){
         } else {
             hide(LBL_MAINQUEST_MUSHHINT);
             set_title_bar();
-            MQDelayTimer.removeEventListener(TimerEvent.TIMER, MQDelayCheck);
+            MQDelayTimer.remove_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.stop();
         };
         if (text_dir == "right"){
@@ -14167,7 +14167,7 @@ def show_toilet(
                     actor[gatheredItemId].y = itemDestY;
                     actor[gatheredItemId].alpha = 1;
                     toiletItemAddTimer.stop();
-                    toiletItemAddTimer.removeEventListener(
+                    toiletItemAddTimer.remove_event_listener(
                        TimerEvent.TIMER, toiletItemAddFrameEvent
                     );
                 } else {
@@ -14261,7 +14261,7 @@ def show_witch(
                 None,
                 0)
             );
-            suggestionSlot[(WITCH_SCROLL + i)] = (
+            suggestion_slot[(WITCH_SCROLL + i)] = (
                 CHAR_SLOT_1 + CorrectItemType.find(math.floor(
                    (int(witchData[(9 + (3 * i))]) / 10))));
             trace(
@@ -15240,7 +15240,7 @@ def ShowSignupScreen(evt:Event=None):void{
                 j++;
                 if (j > 10){
                     jumpTimer.stop();
-                    jumpTimer.removeEventListener(TimerEvent.TIMER, DoJump);
+                    jumpTimer.remove_event_listener(TimerEvent.TIMER, DoJump);
                     SignupJumpRunning = False;
                 };
             };
@@ -15390,7 +15390,7 @@ def Move(actor_id:int, pos_x:int, pos_y:int):void{
     };
 }
 
-def AddSome(... _args):void{
+def add_some(... _args):void{
     var i:int;
     var i_bunch:int;
     i = 0;
@@ -15471,22 +15471,22 @@ def GetAlpha(actor_id:int):Number{
     return (0);
 }
 
-def FadeIn(
+def fade_in(
     actor_id:int, timerInterval:int=20, alphaStep:Number=0.05, alphaMax:Number=1
 ){
     var fadeTimer:* = None;
     var currentAlpha:* = NaN;
-    var FadeInEvent:* = None;
+    var fade_inEvent:* = None;
     var actor_id:* = actor_id;
     var timerInterval:int = timerInterval;
     var alphaStep:Number = alphaStep;
     var alphaMax:int = alphaMax;
-    FadeInEvent = function (evt:TimerEvent){
+    fade_inEvent = function (evt:TimerEvent){
         currentAlpha = (currentAlpha + alphaStep);
         if (currentAlpha >= alphaMax){
             currentAlpha = alphaMax;
             fadeTimer.stop();
-            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeInEvent);
+            fadeTimer.remove_event_listener(TimerEvent.TIMER, fade_inEvent);
         };
         SetAlpha(actor_id, currentAlpha);
     };
@@ -15495,7 +15495,7 @@ def FadeIn(
     if (alphaStep <= 0){
         return;
     };
-    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeInEvent);
+    fadeTimer.add_event_listener(TimerEvent.TIMER, fade_inEvent);
     fadeTimer.start();
     SetAlpha(actor_id, currentAlpha);
 }
@@ -15517,7 +15517,7 @@ def fade_out(
         if (currentAlpha <= alphaMin){
             currentAlpha = alphaMin;
             fadeTimer.stop();
-            fadeTimer.removeEventListener(TimerEvent.TIMER, FadeOutEvent);
+            fadeTimer.remove_event_listener(TimerEvent.TIMER, FadeOutEvent);
             if (HideThen){
                 hide(actor_id);
             };
@@ -18430,7 +18430,7 @@ def enable_popup(actor_id, *args):
         enable popup actor
     '''
     i = 0
-    popupWidth = 0
+    popup_width = 0
     textY = 0
     textX = 0
     my_stamp = 0
@@ -18545,192 +18545,167 @@ def play(actor_id, endless=False):
         load(actor_id)
 
 
+def process_arg(arg):
+    i_array = 0
+    tmp_do = None
+    if arg is list:
+        for i_array in arg:
+            process_arg(i_array)
+
+    elif arg is int:
+        if arg < 0:
+            popup_width = -arg
+        elif arg == 0:
+            textX = 0
+            if text_dir == "right":
+                textX = popup_width
+
+            textY += last_text_height + 10
+        elif text_dir == "right":
+            textX = popup_width - arg
+        else:
+            textX = arg
+
+    elif arg is TextFormat:
+        tmp_text_format = arg
+
+    elif arg is DisplayObject:
+        tmp_do = Bitmap(arg.content.bitmapData.clone())
+        with tmp_do:
+            if text_dir == "right":
+                if textX < popup_width:
+                    x = textX - width
+                    textX = textX - width + 5
+                    y = textY
+                else:
+                    x = popup_width - 5 - width
+                    y = textY
+                    textY = textY + textHeight + 10
+            else:
+                if textX > 0:
+                    x = textX
+                    textX = textX + width + 5
+                    y = textY
+                else:
+                    x = 5
+                    y = textY
+                    textY = textY + textHeight + 10
+        actor[POPUP_INFO].addChild(tmp_do)
+
+    elif arg is str:
+            arg = arg.replace("#", chr(13))
+            tmp_text_field = TextField()
+            with tmp_text_field:
+                auto_size = TextFieldAutoSize.LEFT
+                background = False
+                selectable = False
+                embed_fonts = font_embedded
+                default_text_format = tmp_text_format
+                htmlText = arg
+                last_text_height = textHeight
+                if text_dir == "right":
+                    auto_size = TextFieldAutoSize.RIGHT
+                    if textX < popup_width:
+                        x = textX - text_width
+                        textX -= text_width + 5
+                        y = textY
+                    else:
+                        x = popup_width - 5 - text_width
+                        y = textY
+                        textY += textHeight + 10
+                else:
+                    if textX > 0:
+                        x = textX
+                        textX += text_width + 5
+                        y = textY
+                    else:
+                        x = 5
+                        y = textY;
+                        textY += textHeight + 10
+
+                    if (x + text_width + 10) > popup_width:
+                        popup_width = x + text_width + 10
+
+            actor[POPUP_INFO].addChild(tmp_text_field)
+
+
+def show_popup(evt, *args):
+    '''
+        Show popup window
+    '''
+    if evt.buttonDown:
+        return
+
+    if actorpopup_stamp[actor_id] != my_stamp:
+        remove_event_listener(MouseEvent.MOUSE_OVER, show_popup)
+        remove_event_listener(MouseEvent.MOUSE_MOVE, position_popup)
+        remove_event_listener(MouseEvent.MOUSE_OUT, hide_popup)
+        remove_event_listener(MouseEvent.MOUSE_DOWN, hide_popup)
+        remove_event_listener(MouseEvent.MOUSE_UP, hide_popup)
+        return
+
+    if on_stage(POPUP_INFO):
+        remove(POPUP_INFO)
+
+    actor[POPUP_INFO] = MovieClip()
+    if suggestion_slot[actor_id]:
+        actor[SLOT_SUGGESTION].x = actor[suggestion_slot[actor_id]].x
+        actor[SLOT_SUGGESTION].y = actor[suggestion_slot[actor_id]].y
+        if not on_stage(SLOT_SUGGESTION):
+            add_some(SLOT_SUGGESTION, suggestion_slot[actor_id])
+            actor[SLOT_SUGGESTION].alpha = 0
+            fade_in(SLOT_SUGGESTION)
+
+    tmp_text_format = FontFormat_Popup
+    last_text_height = 0
+
+    popup_width = 0
+    if text_dir == "right":
+        popup_width = 50
+        textX = popup_width
+
+    textY = 10
+
+    for arg in args:
+        process_arg(arg)
+
+    with actor[POPUP_INFO]:
+        for i in range(numChildren):
+            if getChildAt(i).x < 5:
+                dist = 5 - getChildAt(i).x
+
+                for j in range(numChildren):
+                    getChildAt(j).x += dist
+                    if (getChildAt(j).x
+                        + getChildAt(j).width + 5) > popup_width:
+                        popup_width = getChildAt(j).x + getChildAt(j).width + 5
+
+        mouse_enabled = False
+        mouseChildren = False
+        allow_smoothing = True
+        force_smoothing = True
+        smoothing = True
+
+    with actor[POPUP_INFO].graphics:
+        beginFill(0, 0)
+        lineStyle(0, 0, 0)
+        drawRect(0, 0, popup_width, textY)
+        beginFill(CLR_BLACK, 0.8)
+        lineStyle(1, CLR_SFORANGE, 1)
+        drawRect(1, 1, (popup_width - 1), (textY - 1))
+
+    position_popup(evt)
+    add(POPUP_INFO)
+
+
+
 '''
-show_popup = function (evt:MouseEvent):void{
-    var tmpTextField:* = None;
-    var lastTextHeight:* = 0;
-    var ii:* = 0;
-    var dist:* = 0;
-    var evt:* = evt;
-    if (evt.buttonDown){
-        return;
-    };
-    if (actorpopup_stamp[actor_id] != my_stamp){
-        removeEventListener(MouseEvent.MOUSE_OVER, show_popup);
-        removeEventListener(MouseEvent.MOUSE_MOVE, position_popup);
-        removeEventListener(MouseEvent.MOUSE_OUT, hide_popup);
-        removeEventListener(MouseEvent.MOUSE_DOWN, hide_popup);
-        removeEventListener(MouseEvent.MOUSE_UP, hide_popup);
-        return;
-    };
-    if (on_stage(POPUP_INFO)){
-        remove(POPUP_INFO);
-    };
-    actor[POPUP_INFO] = new MovieClip();
-    if (suggestionSlot[actor_id]){
-        actor[SLOT_SUGGESTION].x = actor[suggestionSlot[actor_id]].x;
-        actor[SLOT_SUGGESTION].y = actor[suggestionSlot[actor_id]].y;
-        if (!on_stage(SLOT_SUGGESTION)){
-            AddSome(SLOT_SUGGESTION, suggestionSlot[actor_id]);
-            actor[SLOT_SUGGESTION].alpha = 0;
-            FadeIn(SLOT_SUGGESTION);
-        };
-    };
-    var tmpTextFormat:* = FontFormat_Popup;
-    lastTextHeight = 0;
-    popupWidth = ((text_dir)=="right") ? 50 : 0;
-    if (text_dir == "right"){
-        textX = popupWidth;
-    };
-    textY = 10;
-    i = 0;
-    while (i < args.length) {
-        var processArg:* = function (arg){
-            var iArray:* = 0;
-            var tmpDO:* = None;
-            var arg:* = arg;
-            if ((arg is Array)){
-                iArray = 0;
-                while (iArray < arg.length) {
-                    processArg(arg[iArray]);
-                    iArray = (iArray + 1);
-                };
-            } else {
-                if ((arg is int)){
-                    if (arg < 0){
-                        popupWidth = -(arg);
-                    } else {
-                        if (arg == 0){
-                            textX = ((text_dir)=="right") ? popupWidth : 0;
-                            textY = (textY + (lastTextHeight + 10));
-                        } else {
-                            if (text_dir == "right"){
-                                textX = (popupWidth - arg);
-                            } else {
-                                textX = arg;
-                            };
-                        };
-                    };
-                } else {
-                    if ((arg is TextFormat)){
-                        tmpTextFormat = arg;
-                    } else {
-                        if ((arg is DisplayObject)){
-                            tmpDO = new Bitmap(arg.content.bitmapData.clone());
-                            var _local3 = tmpDO;
-                            with (_local3) {
-                                if (text_dir == "right"){
-                                    if (textX < popupWidth){
-                                        x = (textX - width);
-                                        textX = (textX - (width + 5));
-                                        y = textY;
-                                    } else {
-                                        x = ((popupWidth - 5) - width);
-                                        y = textY;
-                                        textY = (textY + (textHeight + 10));
-                                    };
-                                } else {
-                                    if (textX > 0){
-                                        x = textX;
-                                        textX = (textX + (width + 5));
-                                        y = textY;
-                                    } else {
-                                        x = 5;
-                                        y = textY;
-                                        textY = (textY + (textHeight + 10));
-                                    };
-                                };
-                            };
-                            actor[POPUP_INFO].addChild(tmpDO);
-                        } else {
-                            if ((arg is String)){
-                                arg = arg.split("#").join(chr(13));
-                                tmpTextField = new TextField();
-                                _local3 = tmpTextField;
-                                with (_local3) {
-                                    auto_size = ((text_dir)=="right") ? TextFieldAutoSize.RIGHT : TextFieldAutoSize.LEFT;
-                                    background = False;
-                                    selectable = False;
-                                    embed_fonts = font_embedded;
-                                    default_text_format = tmpTextFormat;
-                                    htmlText = arg;
-                                    lastTextHeight = textHeight;
-                                    if (text_dir == "right"){
-                                        if (textX < popupWidth){
-                                            x = (textX - text_width);
-                                            textX = (textX - (text_width + 5));
-                                            y = textY;
-                                        } else {
-                                            x = ((popupWidth - 5) - text_width);
-                                            y = textY;
-                                            textY = (textY + (textHeight + 10));
-                                        };
-                                    } else {
-                                        if (textX > 0){
-                                            x = textX;
-                                            textX = (textX + (text_width + 5));
-                                            y = textY;
-                                        } else {
-                                            x = 5;
-                                            y = textY;
-                                            textY = (textY + (textHeight + 10));
-                                        };
-                                        if (((x + text_width) + 10) > popupWidth){
-                                            popupWidth = ((x + text_width) + 10);
-                                        };
-                                    };
-                                };
-                                actor[POPUP_INFO].addChild(tmpTextField);
-                            };
-                        };
-                    };
-                };
-            };
-        };
-        processArg(args[i]);
-        i++;
-    };
-    var _local3 = actor[POPUP_INFO];
-    with (_local3) {
-        i = 0;
-        while (i < numChildren) {
-            if (getChildAt(i).x < 5){
-                dist = (5 - getChildAt(i).x);
-                ii = 0;
-                while (ii < numChildren) {
-                    getChildAt(ii).x = (getChildAt(ii).x + dist);
-                    if (((getChildAt(ii).x + getChildAt(ii).width) + 5) > popupWidth){
-                        popupWidth = ((getChildAt(ii).x + getChildAt(ii).width) + 5);
-                    };
-                    ii++;
-                };
-            };
-            i++;
-        };
-        mouse_enabled = False;
-        mouseChildren = False;
-        allow_smoothing = True;
-        force_smoothing = True;
-        smoothing = True;
-    };
-    _local3 = actor[POPUP_INFO].graphics;
-    with (_local3) {
-        beginFill(0, 0);
-        lineStyle(0, 0, 0);
-        drawRect(0, 0, popupWidth, textY);
-        beginFill(CLR_BLACK, 0.8);
-        lineStyle(1, CLR_SFORANGE, 1);
-        drawRect(1, 1, (popupWidth - 1), (textY - 1));
-    };
-    position_popup(evt);
-    add(POPUP_INFO);
-};
 
 position_popup = function (evt:MouseEvent):void{
     var evt:* = evt;
     var _local3 = actor[POPUP_INFO];
     with (_local3) {
-        x = (evt.stageX - int((popupWidth / 2)));
+        x = (evt.stageX - int((popup_width / 2)));
         y = ((evt.stageY - 20) - textY);
         if (x < 0){
             x = 0;
@@ -18738,19 +18713,19 @@ position_popup = function (evt:MouseEvent):void{
         if (y < 0){
             y = 0;
         };
-        if (x > (RES_X - popupWidth)){
-            x = (RES_X - popupWidth);
+        if (x > (RES_X - popup_width)){
+            x = (RES_X - popup_width);
         };
         if (y > (RES_Y - textY)){
             y = (RES_Y - textY);
         };
-        if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popupWidth) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
+        if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popup_width) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
             if (evt.stageY < (textY + 20)){
                 y = (evt.stageY + 40);
             };
-            if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popupWidth) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
-                if (evt.stageX > ((RES_X - popupWidth) - 20)){
-                    x = ((evt.stageX - popupWidth) - 20);
+            if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popup_width) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
+                if (evt.stageX > ((RES_X - popup_width) - 20)){
+                    x = ((evt.stageX - popup_width) - 20);
                 };
             };
         };
@@ -19694,9 +19669,9 @@ def pixel_success():
             or (pixel_data.lower().substr(0, 8) == "https://")):
         ExternalInterface.call("loadpixel", pixel_data)
 
-    # pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    # pixeldo_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    # pixeldo_loader.removeEventListener(
+    # pixeldo_loader.remove_event_listener(Event.COMPLETE, pixel_success)
+    # pixeldo_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
+    # pixeldo_loader.remove_event_listener(
     #     SecurityErrorEvent.SECURITY_ERROR, pixel_failed
     # )
 
@@ -19705,9 +19680,9 @@ def pixel_failed():
     '''
         TODO: Obsolete?
     '''
-    #pixeldo_loader.removeEventListener(Event.COMPLETE, pixel_success)
-    #pixeldo_loader.removeEventListener(IOErrorEvent.IO_ERROR, pixel_failed)
-    #pixeldo_loader.removeEventListener(
+    #pixeldo_loader.remove_event_listener(Event.COMPLETE, pixel_success)
+    #pixeldo_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
+    #pixeldo_loader.remove_event_listener(
     #    SecurityErrorEvent.SECURITY_ERROR, pixel_failed
     #)
     pass
@@ -21027,7 +21002,7 @@ def load_tracking_pixel(url=''):
                 or (on_stage(CA_SCR_INVITE_BLOCKCITY)))
             ){
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(
+                SchildTimer.remove_event_listener(
                     TimerEvent.TIMER, SchildFrame
                 );
                 return;
@@ -21045,13 +21020,13 @@ def load_tracking_pixel(url=''):
             if ((((iFrame < 0)) and ((SchildDir < 0)))){
                 iFrame = -1;
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(TimerEvent.TIMER, SchildFrame);
+                SchildTimer.remove_event_listener(TimerEvent.TIMER, SchildFrame);
                 return;
             };
             if ((((iFrame >= 3)) and ((SchildDir > 0)))){
                 iFrame = 3;
                 SchildTimer.stop();
-                SchildTimer.removeEventListener(
+                SchildTimer.remove_event_listener(
                     TimerEvent.TIMER, SchildFrame
                 );
                 return;
@@ -21097,7 +21072,7 @@ def load_tracking_pixel(url=''):
         };
         HideDealerEyes = function ():void{
             DealerStepTimer.stop();
-            DealerStepTimer.removeEventListener(TimerEvent.TIMER, DealerStep);
+            DealerStepTimer.remove_event_listener(TimerEvent.TIMER, DealerStep);
         };
         var DealerAni:* = function (evt:Event):void{
             if (
@@ -21118,7 +21093,7 @@ def load_tracking_pixel(url=''):
                 };
             } else {
                 DealerStepTimer.stop();
-                DealerStepTimer.removeEventListener(
+                DealerStepTimer.remove_event_listener(
                     TimerEvent.TIMER, DealerStep
                 );
             };
@@ -21178,7 +21153,7 @@ def load_tracking_pixel(url=''):
                 };
                 if (DealerAniStep == 0){
                     DealerStepTimer.stop();
-                    DealerStepTimer.removeEventListener(
+                    DealerStepTimer.remove_event_listener(
                         TimerEvent.TIMER, DealerStep
                     );
                     return;
@@ -21194,9 +21169,9 @@ def load_tracking_pixel(url=''):
         };
         HideArenaOno = function ():void{
             if (OnoTimer){
-                OnoTimer.removeEventListener(TimerEvent.TIMER, PopupArenaOno);
+                OnoTimer.remove_event_listener(TimerEvent.TIMER, PopupArenaOno);
             };
-            OnoPopupTimer.removeEventListener(TimerEvent.TIMER, StepArenaOno);
+            OnoPopupTimer.remove_event_listener(TimerEvent.TIMER, StepArenaOno);
             remove(ThisOno);
         };
         PopupArenaOno = function (evt:Event=None):void{
@@ -21216,7 +21191,7 @@ def load_tracking_pixel(url=''):
                 if (actor[ThisOno].alpha <= 0){
                     PopupDir = False;
                     remove(ThisOno);
-                    OnoPopupTimer.removeEventListener(
+                    OnoPopupTimer.remove_event_listener(
                         TimerEvent.TIMER, StepArenaOno
                     );
                 };
@@ -21675,7 +21650,7 @@ def load_tracking_pixel(url=''):
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        removeEventListener(TimerEvent.TIMER, DoPushBoostBtn);
+                        remove_event_listener(TimerEvent.TIMER, DoPushBoostBtn);
                     };
                 } else {
                     ClickCount++;
@@ -21730,7 +21705,7 @@ def load_tracking_pixel(url=''):
                         SetAlpha(CHAR_PREISE, 1);
                         SetAlpha(CHAR_SECONDPROP, 0);
                     } else {
-                        FadeIn(CHAR_PREISE, 20, 0.2);
+                        fade_in(CHAR_PREISE, 20, 0.2);
                         fade_out(CHAR_SECONDPROP, 20, 0.2);
                     };
                 } else {
@@ -21748,7 +21723,7 @@ def load_tracking_pixel(url=''):
                             if (on_stage(POPUP_INFO)){
                                 add(POPUP_INFO);
                             };
-                            FadeIn(CHAR_SECONDPROP, 20, 0.2);
+                            fade_in(CHAR_SECONDPROP, 20, 0.2);
                         };
                     };
                 };
@@ -22080,7 +22055,7 @@ def load_tracking_pixel(url=''):
         ShowTowerBoostPrices = function (evt:MouseEvent){
             var i:int;
             towerBoostPriceFadeoutTimer.stop();
-            FadeIn(TOWER_BOOSTPRICE);
+            fade_in(TOWER_BOOSTPRICE);
             tower_levelLabelPos = (SCR_CHAR_CHARX + 3);
             tower_levelLabelTimer.start();
         };
@@ -22359,7 +22334,7 @@ def load_tracking_pixel(url=''):
             var evt:* = evt;
             RerollReset = function (evt:Event){
                 BlockReroll = False;
-                RerollResetTimer.removeEventListener(
+                RerollResetTimer.remove_event_listener(
                     TimerEvent.TIMER, RerollReset
                 );
             };
@@ -22491,7 +22466,7 @@ def load_tracking_pixel(url=''):
                             : (actor_id - CA_STALL_BOX_BOESE1)) + 1
                     );
             };
-            AddSome(LBL_STALL_LAUFZEIT, STALL_BUY);
+            add_some(LBL_STALL_LAUFZEIT, STALL_BUY);
             SetCnt(STALL_MUSH, IF_PILZE);
             SetCnt(STALL_GOLD, IF_GOLD);
             SetCnt(STALL_SCHATZGOLD, IF_GOLD);
@@ -22541,7 +22516,7 @@ def load_tracking_pixel(url=''):
                     ) + 10);
                 };
                 if (gold_anteil(stundenlohn) > 0){
-                    AddSome(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD);
+                    add_some(LBL_STALL_SCHATZGOLD, STALL_SCHATZGOLD);
                     actor[LBL_STALL_SCHATZGOLD].text = str(
                         gold_anteil(stundenlohn)
                     );
@@ -22564,7 +22539,7 @@ def load_tracking_pixel(url=''):
                     };
                 };
                 if (silber_anteil(stundenlohn) > 0){
-                    AddSome(LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER);
+                    add_some(LBL_STALL_SCHATZSILBER, STALL_SCHATZSILBER);
                     actor[LBL_STALL_SCHATZSILBER].text = str(
                         silber_anteil(stundenlohn)
                     );
@@ -22690,7 +22665,7 @@ def load_tracking_pixel(url=''):
                 if (GoldKosten > int((savegame[SG_GOLD] / 100))){
                     remove(STALL_BUY);
                 };
-                AddSome(LBL_STALL_GOLD, STALL_GOLD);
+                add_some(LBL_STALL_GOLD, STALL_GOLD);
                 actor[LBL_STALL_GOLD].text = str(GoldKosten);
                 actor[STALL_GOLD].x = (
                     (actor[LBL_STALL_GOLD].x
@@ -22701,7 +22676,7 @@ def load_tracking_pixel(url=''):
                 if (PilzKosten > int(savegame[SG_MUSH])){
                     remove(STALL_BUY);
                 };
-                AddSome(LBL_STALL_MUSH, STALL_MUSH);
+                add_some(LBL_STALL_MUSH, STALL_MUSH);
                 actor[LBL_STALL_MUSH].text = str(PilzKosten);
                 if (GoldKosten > 0){
                     actor[LBL_STALL_MUSH].x = (
@@ -23427,7 +23402,7 @@ def load_tracking_pixel(url=''):
                             crestMoveTimer.start();
                             SetAlpha(GILDE_CREST_CONTROLS, 0);
                             add(GILDE_CREST_CONTROLS);
-                            FadeIn(GILDE_CREST_CONTROLS);
+                            fade_in(GILDE_CREST_CONTROLS);
                         };
                     };
                     selecterCrestElement = (get_actor_id(evt.target) - CLA_GILDE_CREST);
@@ -23553,7 +23528,7 @@ def load_tracking_pixel(url=''):
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        removeEventListener(TimerEvent.TIMER, DoPushHutBtn);
+                        remove_event_listener(TimerEvent.TIMER, DoPushHutBtn);
                     };
                 } else {
                     ClickCount++;
@@ -23622,7 +23597,7 @@ def load_tracking_pixel(url=''):
                 };
             };
             remove(HUTBECHER_1_CLICK, HUTBECHER_2_CLICK, HUTBECHER_3_CLICK);
-            AddSome(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
+            add_some(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
             Switch (get_actor_id(evt.target)){
                 if case(HUTMANN_GOLDBET:
                     if (int((int(savegame[SG_GOLD]) / 100)) > int(actor[LBL_HUTMANN_GOLDBET2].text)){
@@ -28693,7 +28668,7 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function)
             fnClick(tmpEvt);
             fnDoubleClick(evt);
             dblClickTimer.stop();
-            dblClickTimer.removeEventListener(TimerEvent.TIMER, dblClickTimerEvent);
+            dblClickTimer.remove_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
             waiting = False;
         } else {
             tmpEvt = evt;
@@ -28704,7 +28679,7 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function, fnDoubleClick:Function)
     };
     dblClickTimerEvent = function (evt:TimerEvent){
         waiting = False;
-        dblClickTimer.removeEventListener(TimerEvent.TIMER, dblClickTimerEvent);
+        dblClickTimer.remove_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
         fnClick(tmpEvt);
     };
     dblClickTimer = new Timer(300, 1);
@@ -29148,7 +29123,7 @@ def AnimateAch(actor_id:int, y_level:int=635, AchAniPow:Number=-10){
                 AchAniPow = (AchAniPow * -0.5);
                 if (math.abs(AchAniPow) <= 3){
                     y = y_level;
-                    AchAniTimer.removeEventListener(TimerEvent.TIMER, AchAniEvent);
+                    AchAniTimer.remove_event_listener(TimerEvent.TIMER, AchAniEvent);
                     AchAniTimer.stop();
                     return;
                 };
@@ -29325,7 +29300,7 @@ def CheckWrongPage(correctAct:int){
 }
 
 def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
-    var tmpTextFormat:* = None;
+    var tmp_text_format:* = None;
     var actor_id:* = actor_id;
     var child:int = child;
     var createHandler:Boolean = createHandler;
@@ -29335,15 +29310,15 @@ def MakeRightTextArea(actor_id:int, child:int=0, createHandler:Boolean=True){
     if (text_dir != "right"){
         return;
     };
-    tmpTextFormat = actor[actor_id].getChildAt(child).default_text_format;
-    tmpTextFormat.align = "right";
+    tmp_text_format = actor[actor_id].getChildAt(child).default_text_format;
+    tmp_text_format.align = "right";
     if (!actor[actor_id].hasHandler){
         if (createHandler){
             actor[actor_id].hasHandler = True;
         };
     };
-    actor[actor_id].getChildAt(child).default_text_format = tmpTextFormat;
-    actor[actor_id].getChildAt(child).setTextFormat(tmpTextFormat);
+    actor[actor_id].getChildAt(child).default_text_format = tmp_text_format;
+    actor[actor_id].getChildAt(child).setTextFormat(tmp_text_format);
 }
 
 def display_inventory(SG:Array=None, NoPrices:Boolean=False, towerMode:Boolean=False, copyCatIdRaw:int=0, witchMode:Boolean=False):void{
@@ -29999,10 +29974,10 @@ def ItemPopup(slot_id:int, sgIndex:int, SG:Array=None, HideBackPack:Boolean=Fals
         };
         i = 0;
         while (i < 10) {
-            suggestionSlot[slot_id] = 0;
+            suggestion_slot[slot_id] = 0;
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == CorrectItemType[i]){
                 if ((((slot_id >= CHAR_SLOT_11)) and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
-                    suggestionSlot[slot_id] = (i + CHAR_SLOT_1);
+                    suggestion_slot[slot_id] = (i + CHAR_SLOT_1);
                     if (SG[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i)) + SG_ITM_TYP)] > 0){
                         if (((compare_items) and (!(towerMode)))){
                             compareIndex = (SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i));
@@ -31043,7 +31018,7 @@ def LoadCharacterImage(actor_id:int=0, loadOnly:Boolean=False, isVolk:int=0, isM
             PositionModifyCharacterButtons();
             if (!on_stage(CREATE_CHARACTER)){
                 remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE, KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT, CREATE_CHARACTER, BLACK_SQUARE);
-                AddSome(MODIFY_CHARACTER, IF_EXIT);
+                add_some(MODIFY_CHARACTER, IF_EXIT);
             };
         };
         return;
