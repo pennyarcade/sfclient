@@ -29930,25 +29930,33 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
             shopLines[shopLines.length] = FontFormat_Popup;
             if (gold > 0){
                 if (silber > 0){
-                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(gold), actor[IF_GOLD], str(silber), actor[IF_SILBER], POPUP_END_LINE];
+                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(gold),
+                    actor[IF_GOLD], str(silber), actor[IF_SILBER],
+                    POPUP_END_LINE];
                 } else {
-                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(gold), actor[IF_GOLD], POPUP_END_LINE];
+                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(gold),
+                    actor[IF_GOLD], POPUP_END_LINE];
                 };
             } else {
                 if (silber > 0){
-                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(silber), actor[IF_SILBER], POPUP_END_LINE];
+                    shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                    str(silber), actor[IF_SILBER], POPUP_END_LINE];
                 };
             };
             if (pilze > 0){
-                shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(pilze), actor[IF_PILZE], POPUP_END_LINE];
+                shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(pilze),
+                actor[IF_PILZE], POPUP_END_LINE];
             };
             if (witchMode){
                 if (SG[(sgIndex + SG_ITM_TYP)] != witchDesiredType){
-                    shopLines.append([POPUP_BEGIN_LINE, texts[TXT_WITCH_WRONGTYPE], POPUP_END_LINE]);
+                    shopLines.append([POPUP_BEGIN_LINE,
+                    texts[TXT_WITCH_WRONGTYPE], POPUP_END_LINE]);
                 };
             } else {
-                if ((((((pilze + gold) + silber) == 0)) and ((SG[(sgIndex + SG_ITM_TYP)] <= 10)))){
-                    shopLines.append([POPUP_BEGIN_LINE, texts[TXT_TOILET_ITEM], POPUP_END_LINE]);
+                if ((((((pilze + gold) + silber) == 0))
+                    and ((SG[(sgIndex + SG_ITM_TYP)] <= 10)))){
+                    shopLines.append([POPUP_BEGIN_LINE,
+                                     texts[TXT_TOILET_ITEM], POPUP_END_LINE]);
                 };
             };
         };
@@ -29957,7 +29965,8 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
         itm_pic = int(SG[(sgIndex + SG['ITM']['PIC'])]);
         i = 0;
         while (i < 8) {
-            itm_color = (itm_color + Number(SG[((sgIndex + SG['ITM']['SCHADEN_MIN']) + i)]));
+            itm_color = (itm_color + Number(SG[((sgIndex
+                         + SG['ITM']['SCHADEN_MIN']) + i)]));
             i++;
         };
         itm_color = (itm_color % 5);
@@ -29966,15 +29975,25 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
             itm_class++;
         };
         if (C_DISPLAY_ITEM_INFO){
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, actorURL[GetItemID(sgIndex, 0, SG)], POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Typ: ", POPUP_TAB, str(SG[(sgIndex + SG_ITM_TYP)]), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Pic: ", POPUP_TAB, str(itm_pic), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Color: ", POPUP_TAB, str((itm_color + 1)), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Class: ", POPUP_TAB, str((itm_class + 1)), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Sock: ", POPUP_TAB, str(socket), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "SockPwr: ", POPUP_TAB, str(socketPower), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "Enchant: ", POPUP_TAB, str(enchant), POPUP_END_LINE];
-            shopLines[shopLines.length] = [POPUP_BEGIN_LINE, "EnchantPwr: ", POPUP_TAB, str(enchantPower), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                actorURL[GetItemID(sgIndex, 0, SG)], POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "Typ: ", POPUP_TAB, str(SG[(sgIndex + SG_ITM_TYP)]),
+                POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "Pic: ", POPUP_TAB, str(itm_pic), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "Color: ", POPUP_TAB, str((itm_color + 1)), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "Class: ", POPUP_TAB, str((itm_class + 1)), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "Sock: ", POPUP_TAB, str(socket), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "SockPwr: ", POPUP_TAB, str(socketPower), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "Enchant: ", POPUP_TAB, str(enchant), POPUP_END_LINE];
+            shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
+                "EnchantPwr: ", POPUP_TAB, str(enchantPower), POPUP_END_LINE];
         };
         i = 0;
         while (i < 10) {
@@ -30273,7 +30292,8 @@ def decode_chat(inStr:String, getHLMode=False,
             };
             timePart = namePart[0: namePart.find(" ")]
             namePart = namePart[(namePart.find(" ") + 1):]
-            inStr = ((((inStr.split("§")[1] + " §:") + namePart) + " ") + timePart);
+            inStr = ((((inStr.split("§")[1] + " §:")
+                     + namePart) + " ") + timePart);
         };
     };
     inStr = inStr.split("§").join(((getHLMode) ? "§" : ""));
@@ -30283,7 +30303,8 @@ def decode_chat(inStr:String, getHLMode=False,
         dateStr = inStr[0: 5]
         authorStr = authorStr[6:]
         authorStr = authorStr[0: (authorStr.length - 3)]
-        inStr = ((dateStr + " ") + texts[TXT_CREST_SUGGESTION].split("%1").join(authorStr));
+        inStr = ((dateStr + " ") + texts[TXT_CREST_SUGGESTION]
+                 .split("%1").join(authorStr));
         if (!crestSuggestion[inStr]){
             new_crest_suggested = inStr;
         };
@@ -30296,193 +30317,256 @@ def decode_chat(inStr:String, getHLMode=False,
     if (inStr[0: 1] == "#"){
         if (text_dir == "right"){
             if (inStr[0: 4] == "#dg#"){
-                inStr = ((((((((texts[TXT_DONATE_GOLD_2] + " ") + str((Number(inStr.split("#")[3]) / 100))) + " ") + texts[TXT_DONATE_GOLD_1]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
+                inStr = ((((((((texts[TXT_DONATE_GOLD_2] + " ")
+                         + str((Number(inStr.split("#")[3]) / 100))) + " ")
+                        + texts[TXT_DONATE_GOLD_1]) + " ") + inStr
+                        .split("#")[2].split(" ")[1]) + " ")
+                        + inStr.split("#")[2].split(" ")[0]);
             } else {
                 if (inStr[0: 4] == "#dm#"){
-                    inStr = ((((((((texts[TXT_DONATE_MUSH_2] + " ") + inStr.split("#")[3]) + " ") + texts[TXT_DONATE_MUSH_1]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
-                } else {
-                    if (inStr[0: 4] == "#sr#"){
-                        if (texts[TXT_SERVER_STARTED]){
-                            inStr = texts[TXT_SERVER_STARTED].split("%1").join(time_str(int(inStr.split("#")[2])));
-                        } else {
-                            inStr = "Server restarted at %1".split("%1").join(time_str(int(inStr.split("#")[2])));
-                        };
+                    inStr = ((((((((texts[TXT_DONATE_MUSH_2] + " ")
+                             + inStr.split("#")[3]) + " ")
+                            + texts[TXT_DONATE_MUSH_1]) + " ")
+                            + inStr.split("#")[2].split(" ")[1]) + " ")
+                            + inStr.split("#")[2].split(" ")[0]);
+            } else {
+                if (inStr[0: 4] == "#sr#"){
+                    if (texts[TXT_SERVER_STARTED]){
+                        inStr = texts[TXT_SERVER_STARTED].split("%1")
+                        .join(time_str(int(inStr.split("#")[2])));
                     } else {
-                        if (inStr[0: 4] == "#bd#"){
-                            if (int(inStr.split("#")[3]) == 0){
-                                inStr = texts[(TXT_CATAPULT + 7)];
-                            } else {
-                                inStr = ((((texts[TXT_BUILDING_1].split("%1").join(texts[((TXT_GILDE_GEBAEUDE_NAME1 + int(inStr.split("#")[3])) - 1)]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
-                            };
-                        } else {
-                            if (inStr[0: 4] == "#ra#"){
-                                inStr = ((((((((texts[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))] + " ") + inStr.split("#")[4]) + " ") + texts[(TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
-                            } else {
-                                if (inStr[0: 4] == "#in#"){
-                                    inStr = ((((texts[TXT_GUILD_JOINED] + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
-                                } else {
-                                    if (inStr[0: 4] == "#ou#"){
-                                        inStr = ((((texts[TXT_GUILD_QUIT] + " ") + inStr.split("#")[2].split(" ")[1]) + " ") + inStr.split("#")[2].split(" ")[0]);
-                                    } else {
-                                        if (inStr[0: 4] == "#rv#"){
-                                            inStr = texts[TXT_REVOLT_CHAT_MSG].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]).split("%3").join(inStr.split("#")[4]);
-                                        } else {
-                                            if (inStr[0: 4] == "#a+#"){
-                                                inStr = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
-                                                if (getGBMode){
-                                                    return ("1");
-                                                };
-                                            } else {
-                                                if (inStr[0: 4] == "#a-#"){
-                                                    inStr = texts[TXT_GUILD_ATTACK_FAIL].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
-                                                    if (getGBMode){
-                                                        return ("1");
-                                                    };
-                                                } else {
-                                                    if (inStr[0: 4] == "#d+#"){
-                                                        inStr = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
-                                                        if (getGBMode){
-                                                            return ("1");
-                                                        };
-                                                    } else {
-                                                        if (inStr[0: 4] == "#d-#"){
-                                                            inStr = texts[TXT_GUILD_DEFENSE_FAIL].split("%1").join(((inStr.split("#")[2].split(" ")[1] + " ") + inStr.split("#")[2].split(" ")[0])).split("%2").join(inStr.split("#")[3]);
-                                                            if (getGBMode){
-                                                                return ("1");
-                                                            };
-                                                        } else {
-                                                            if (inStr[0: 4] == "#r+#"){
-                                                                inStr = texts[TXT_GUILD_RAID_SUCCESS].split("%1").join(((("(50/" + inStr.split("#")[2]) + ") ") + texts[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]));
-                                                                if (getGBMode){
-                                                                    return ("1");
-                                                                };
-                                                            } else {
-                                                                if (inStr[0: 4] == "#r-#"){
-                                                                    inStr = texts[TXT_GUILD_RAID_FAIL].split("%1").join(((("(50/" + inStr.split("#")[2]) + ") ") + texts[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]));
-                                                                    if (getGBMode){
-                                                                        return ("1");
-                                                                    };
-                                                                } else {
-                                                                    if (inStr[0: 4] == "#lu#"){
-                                                                        inStr = texts[TXT_GUILD_LEVEL_UP].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
-                                                                    } else {
-                                                                        if (inStr[0: 4] == "#du#"){
-                                                                            inStr = texts[TXT_GUILD_DUNGEON_COMPLETED].split("%1").join(inStr.split("#")[2]).split("%2").join(texts[(((inStr.split("#")[3] == 100)) ? 9538 : ((TXT_DUNGEON_NAME + (1 * inStr.split("#")[3])) - 1))].split("|")[0]).split("%3").join(inStr.split("#")[4]);
-                                                                        } else {
-                                                                            if (inStr[0: 4] == "#ep#"){
-                                                                                inStr = texts[TXT_GUILD_EPICITEM].split("%1").join(inStr.split("#")[2]).split("%2").join(GetItemName(0, inStr.split("#")[3].split("/")));
-                                                                            };
-                                                                        };
-                                                                    };
-                                                                };
-                                                            };
-                                                        };
-                                                    };
-                                                };
-                                            };
-                                        };
-                                    };
-                                };
-                            };
-                        };
+                        inStr = "Server restarted at %1".split("%1")
+                        .join(time_str(int(inStr.split("#")[2])));
                     };
+            } else {
+                if (inStr[0: 4] == "#bd#"){
+                    if (int(inStr.split("#")[3]) == 0){
+                        inStr = texts[(TXT_CATAPULT + 7)];
+                    } else {
+                        inStr = ((((texts[TXT_BUILDING_1].split("%1")
+                                 .join(texts[((TXT_GILDE_GEBAEUDE_NAME1
+                                       + int(inStr.split("#")[3])) - 1)])
+                                + " ") + inStr.split("#")[2].split(" ")[1])
+                                + " ") + inStr.split("#")[2].split(" ")[0]);
+                    };
+            } else {
+                if (inStr[0: 4] == "#ra#"){
+                    inStr = ((((((((texts[(TXT_RANKMSG_6
+                             + int(inStr.split("#")[3]))] + " ")
+                            + inStr.split("#")[4]) + " ")
+                            + texts[(TXT_RANKMSG_1
+                            + int(inStr.split("#")[3]))]) + " ")
+                            + inStr.split("#")[2].split(" ")[1]) + " ")
+                            + inStr.split("#")[2].split(" ")[0]);
+            } else {
+                if (inStr[0: 4] == "#in#"){
+                    inStr = ((((texts[TXT_GUILD_JOINED] + " ")
+                        + inStr.split("#")[2].split(" ")[1]) + " ")
+                        + inStr.split("#")[2].split(" ")[0]);
+            } else {
+                if (inStr[0: 4] == "#ou#"){
+                    inStr = ((((texts[TXT_GUILD_QUIT] + " ") + inStr
+                             .split("#")[2].split(" ")[1]) + " ")
+                            + inStr.split("#")[2].split(" ")[0]);
+            } else {
+                if (inStr[0: 4] == "#rv#"){
+                    inStr = texts[TXT_REVOLT_CHAT_MSG].split("%1")
+                        .join(inStr.split("#")[2]).split("%2")
+                        .join(inStr.split("#")[3]).split("%3")
+                        .join(inStr.split("#")[4]);
+            } else {
+                if (inStr[0: 4] == "#a+#"){
+                    inStr = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1")
+                        .join(((inStr.split("#")[2].split(" ")[1] + " ")
+                          + inStr.split("#")[2].split(" ")[0])).split("%2")
+                            .join(inStr.split("#")[3]);
+                    if (getGBMode){
+                        return ("1");
+                    };
+            } else {
+                if (inStr[0: 4] == "#a-#"){
+                    inStr = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
+                        .join(((inStr.split("#")[2].split(" ")[1] + " ")
+                              + inStr.split("#")[2].split(" ")[0])).split("%2")
+                            .join(inStr.split("#")[3]);
+                    if (getGBMode){
+                        return ("1");
+                    };
+            } else {
+                if (inStr[0: 4] == "#d+#"){
+                    inStr = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1")
+                        .join(((inStr.split("#")[2].split(" ")[1] + " ")
+                          + inStr.split("#")[2].split(" ")[0])).split("%2")
+                            .join(inStr.split("#")[3]);
+                    if (getGBMode){
+                        return ("1");
+                    };
+            } else {
+                if (inStr[0: 4] == "#d-#"){
+                    inStr = texts[TXT_GUILD_DEFENSE_FAIL]
+                        .split("%1").join(((inStr.split("#")[2].split(" ")[1]
+                          + " ") + inStr.split("#")[2].split(" ")[0]))
+                            .split("%2").join(inStr.split("#")[3]);
+                    if (getGBMode){
+                        return ("1");
+                    };
+            } else {
+                if (inStr[0: 4] == "#r+#"){
+                    inStr = texts[TXT_GUILD_RAID_SUCCESS]
+                        .split("%1").join(((("(50/" + inStr.split("#")[2])
+                          + ") ") + texts[((TXT_DUNGEON_NAMES
+                          + int(inStr.split("#")[2])) - 1)]));
+                    if (getGBMode){
+                        return ("1");
+                    };
+            } else {
+                if (inStr[0: 4] == "#r-#"){
+                    inStr = texts[TXT_GUILD_RAID_FAIL].split("%1")
+                        .join(((("(50/" + inStr.split("#")[2]) + ") ")
+                              + texts[((TXT_DUNGEON_NAMES
+                                       + int(inStr.split("#")[2])) - 1)]));
+                    if (getGBMode){
+                        return ("1");
+                    };
+            } else {
+                if (inStr[0: 4] == "#lu#"){
+                    inStr = texts[TXT_GUILD_LEVEL_UP].split("%1")
+                        .join(inStr.split("#")[2]).split("%2")
+                        .join(inStr.split("#")[3]);
+            } else {
+                if (inStr[0: 4] == "#du#"){
+                    inStr = texts[TXT_GUILD_DUNGEON_COMPLETED].split("%1")
+                        .join(inStr.split("#")[2]).split("%2")
+                        .join(texts[(((inStr.split("#")[3] == 100)) ? 9538
+                              : ((TXT_DUNGEON_NAME + (1 * inStr.split("#")[3]))
+                                 - 1))].split("|")[0]).split("%3")
+                                    .join(inStr.split("#")[4]);
+            } else {
+                if (inStr[0: 4] == "#ep#"){
+                    inStr = texts[TXT_GUILD_EPICITEM].split("%1")
+                        .join(inStr.split("#")[2]).split("%2")
+                        .join(GetItemName(0, inStr.split("#")[3].split("/")));
                 };
-            };
         } else {
             if (inStr[0: 4] == "#dg#"){
-                inStr = ((((((inStr.split("#")[2] + " ") + texts[TXT_DONATE_GOLD_1]) + " ") + str((Number(inStr.split("#")[3]) / 100))) + " ") + texts[TXT_DONATE_GOLD_2]);
-            } else {
-                if (inStr[0: 4] == "#dm#"){
-                    inStr = ((((((inStr.split("#")[2] + " ") + texts[TXT_DONATE_MUSH_1]) + " ") + inStr.split("#")[3]) + " ") + texts[TXT_DONATE_MUSH_2]);
+                inStr = ((((((inStr.split("#")[2] + " ")
+                         + texts[TXT_DONATE_GOLD_1]) + " ")
+                        + str((Number(inStr.split("#")[3]) / 100))) + " ")
+                        + texts[TXT_DONATE_GOLD_2]);
+        } else {
+            if (inStr[0: 4] == "#dm#"){
+                inStr = ((((((inStr.split("#")[2] + " ")
+                         + texts[TXT_DONATE_MUSH_1]) + " ")
+                            + inStr.split("#")[3]) + " ")
+                            + texts[TXT_DONATE_MUSH_2]);
+        } else {
+            if (inStr[0: 4] == "#sr#"){
+                if (texts[TXT_SERVER_STARTED]){
+                    inStr = texts[TXT_SERVER_STARTED].split("%1")
+                        .join(time_str(int(inStr.split("#")[2])));
                 } else {
-                    if (inStr[0: 4] == "#sr#"){
-                        if (texts[TXT_SERVER_STARTED]){
-                            inStr = texts[TXT_SERVER_STARTED].split("%1").join(time_str(int(inStr.split("#")[2])));
-                        } else {
-                            inStr = "Server restarted at %1".split("%1").join(time_str(int(inStr.split("#")[2])));
-                        };
-                    } else {
-                        if (inStr[0: 4] == "#bd#"){
-                            if (int(inStr.split("#")[3]) == 0){
-                                inStr = ((inStr.split("#")[2] + " ") + texts[(TXT_CATAPULT + 7)]);
-                            } else {
-                                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_BUILDING_1].split("%1").join(texts[((TXT_GILDE_GEBAEUDE_NAME1 + int(inStr.split("#")[3])) - 1)]));
-                            };
-                        } else {
-                            if (inStr[0: 4] == "#ra#"){
-                                inStr = ((((((inStr.split("#")[2] + " ") + texts[(TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ") + inStr.split("#")[4]) + " ") + texts[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))]);
-                            } else {
-                                if (inStr[0: 4] == "#in#"){
-                                    inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_JOINED]);
-                                } else {
-                                    if (inStr[0: 4] == "#ou#"){
-                                        inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_QUIT]);
-                                    } else {
-                                        if (inStr[0: 4] == "#rv#"){
-                                            inStr = texts[TXT_REVOLT_CHAT_MSG].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]).split("%3").join(inStr.split("#")[4]);
-                                        } else {
-                                            if (inStr[0: 4] == "#a+#"){
-                                                inStr = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
-                                                if (getGBMode){
-                                                    return ("1");
-                                                };
-                                            } else {
-                                                if (inStr[0: 4] == "#a-#"){
-                                                    inStr = texts[TXT_GUILD_ATTACK_FAIL].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
-                                                    if (getGBMode){
-                                                        return ("1");
-                                                    };
-                                                } else {
-                                                    if (inStr[0: 4] == "#d+#"){
-                                                        inStr = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
-                                                        if (getGBMode){
-                                                            return ("1");
-                                                        };
-                                                    } else {
-                                                        if (inStr[0: 4] == "#d-#"){
-                                                            inStr = texts[TXT_GUILD_DEFENSE_FAIL].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
-                                                            if (getGBMode){
-                                                                return ("1");
-                                                            };
-                                                        } else {
-                                                            if (inStr[0: 4] == "#r+#"){
-                                                                inStr = texts[TXT_GUILD_RAID_SUCCESS].split("%1").join((((texts[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)] + " (") + inStr.split("#")[2]) + "/50)"));
-                                                                if (getGBMode){
-                                                                    return ("1");
-                                                                };
-                                                            } else {
-                                                                if (inStr[0:4] == "#r-#"){
-                                                                    inStr = texts[TXT_GUILD_RAID_FAIL].split("%1").join((((texts[((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)] + " (") + inStr.split("#")[2]) + "/50)"));
-                                                                    if (getGBMode){
-                                                                        return ("1");
-                                                                    };
-                                                                } else {
-                                                                    if (inStr[0:4] == "#lu#"){
-                                                                        inStr = texts[TXT_GUILD_LEVEL_UP].split("%1").join(inStr.split("#")[2]).split("%2").join(inStr.split("#")[3]);
-                                                                    } else {
-                                                                        if (inStr[0:4] == "#du#"){
-                                                                            inStr = texts[TXT_GUILD_DUNGEON_COMPLETED].split("%1").join(inStr.split("#")[2]).split("%2").join(texts[(((inStr.split("#")[3] == 100)) ? 9538 : ((TXT_DUNGEON_NAME + (1 * inStr.split("#")[3])) - 1))].split("|")[0]).split("%3").join(inStr.split("#")[4]);
-                                                                        } else {
-                                                                            if (inStr[0:4] == "#ep#"){
-                                                                                inStr = texts[TXT_GUILD_EPICITEM].split("%1").join(inStr.split("#")[2]).split("%2").join(GetItemName(0, inStr.split("#")[3].split("/")));
-                                                                            };
-                                                                        };
-                                                                    };
-                                                                };
-                                                            };
-                                                        };
-                                                    };
-                                                };
-                                            };
-                                        };
-                                    };
-                                };
-                            };
-                        };
-                    };
+                    inStr = "Server restarted at %1".split("%1")
+                        .join(time_str(int(inStr.split("#")[2])));
                 };
+        } else {
+            if (inStr[0: 4] == "#bd#"){
+                if (int(inStr.split("#")[3]) == 0){
+                    inStr = ((inStr.split("#")[2] + " ")
+                             + texts[(TXT_CATAPULT + 7)]);
+                } else {
+                    inStr = ((inStr.split("#")[2] + " ")
+                             + texts[TXT_BUILDING_1].split("%1")
+                             .join(texts[((TXT_GILDE_GEBAEUDE_NAME1
+                                   + int(inStr.split("#")[3])) - 1)]));
+                };
+        } else {
+            if (inStr[0: 4] == "#ra#"){
+                inStr = ((((((inStr.split("#")[2] + " ") + texts[
+                         (TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ")
+                            + inStr.split("#")[4]) + " ")
+                        + texts[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))]);
+        } else {
+            if (inStr[0: 4] == "#in#"){
+                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_JOINED]);
+        } else {
+            if (inStr[0: 4] == "#ou#"){
+                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_QUIT]);
+        } else {
+            if (inStr[0: 4] == "#rv#"){
+                inStr = texts[TXT_REVOLT_CHAT_MSG].split("%1")
+                    .join(inStr.split("#")[2]).split("%2")
+                    .join(inStr.split("#")[3]).split("%3")
+                    .join(inStr.split("#")[4]);
+        } else {
+            if (inStr[0: 4] == "#a+#"){
+                inStr = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1")
+                    .join(inStr.split("#")[2]).split("%2")
+                    .join(inStr.split("#")[3]);
+                if (getGBMode){
+                    return ("1");
+                };
+        } else {
+            if (inStr[0: 4] == "#a-#"){
+                inStr = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
+                    .join(inStr.split("#")[2]).split("%2")
+                    .join(inStr.split("#")[3]);
+                if (getGBMode){
+                    return ("1");
+                };
+        } else {
+            if (inStr[0: 4] == "#d+#"){
+                inStr = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1")
+                    .join(inStr.split("#")[2]).split("%2")
+                    .join(inStr.split("#")[3]);
+                if (getGBMode){
+                    return ("1");
+                };
+        } else {
+            if (inStr[0: 4] == "#d-#"){
+                inStr = texts[TXT_GUILD_DEFENSE_FAIL].split("%1")
+                    .join(inStr.split("#")[2]).split("%2")
+                    .join(inStr.split("#")[3]);
+                if (getGBMode){
+                    return ("1");
+                };
+        } else {
+            if (inStr[0: 4] == "#r+#"){
+                inStr = texts[TXT_GUILD_RAID_SUCCESS].split("%1")
+                    .join((((texts[((TXT_DUNGEON_NAMES + int(inStr
+                          .split("#")[2])) - 1)] + " (") + inStr
+                            .split("#")[2]) + "/50)"));
+                if (getGBMode){
+                    return ("1");
+                };
+        } else {
+            if (inStr[0:4] == "#r-#"){
+                inStr = texts[TXT_GUILD_RAID_FAIL]
+                    .split("%1").join((((texts[
+                        ((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]
+                        + " (") + inStr.split("#")[2]) + "/50)"));
+                if (getGBMode){
+                    return ("1");
+                };
+        } else {
+            if (inStr[0:4] == "#lu#"){
+                inStr = texts[TXT_GUILD_LEVEL_UP].split("%1")
+                    .join(inStr.split("#")[2])
+                    .split("%2").join(inStr.split("#")[3]);
+        } else {
+            if (inStr[0:4] == "#du#"){
+                inStr = texts[TXT_GUILD_DUNGEON_COMPLETED]
+                    .split("%1").join(inStr.split("#")[2])
+                    .split("%2").join(texts[(((inStr.split("#")[3] == 100))
+                        ? 9538 : (TXT_DUNGEON_NAME + (1 * inStr.split("#")[3]))
+                        - 1)].split("|")[0])
+                        .split("%3").join(inStr.split("#")[4]);
+        } else {
+            if (inStr[0:4] == "#ep#"){
+                inStr = texts[TXT_GUILD_EPICITEM]
+                    .split("%1").join(inStr.split("#")[2])
+                    .split("%2").join(
+                          GetItemName(0, inStr.split("#")[3].split("/")));
             };
-        };
         if (on_stage(LBL_GILDE_TITEL)){
             send_action(ACT_SCREEN_GILDEN);
         };
@@ -30525,16 +30609,19 @@ def chat_line(line:String, isError=False, hlIndex=-1,
     while (i < 39) {
         var _local6 = actor[(LBL['GILDE']['CHAT'] + i)];
         with (_local6) {
-            default_text_format = actor[((LBL['GILDE']['CHAT'] + i) + 1)].default_text_format;
+            default_text_format = actor[((LBL['GILDE']['CHAT']
+                                         + i) + 1)].default_text_format;
             htmlText = actor[((LBL['GILDE']['CHAT'] + i) + 1)].htmlText;
             y = (GILDE_CHAT_Y + (((i + GildeChatScroll) - 35) * GILDE_CHAT_Y));
-            visible = ((((i + GildeChatScroll) >= 35)) and (((i + GildeChatScroll) < 40)));
+            visible = ((((i + GildeChatScroll) >= 35)) and
+                       (((i + GildeChatScroll) < 40)));
         };
         i = (i + 1);
     };
     _local6 = actor[(LBL['GILDE']['CHAT'] + 39)];
     with (_local6) {
-        default_text_format = ((isError) ? font_format_chatError : font_format_chat);
+        default_text_format = ((isError)
+                               ? font_format_chatError : font_format_chat);
         if (isWhisper){
             default_text_format = font_format_chatWhisper;
         };
@@ -30544,7 +30631,8 @@ def chat_line(line:String, isError=False, hlIndex=-1,
                 if (!noSpace){
                     seekSpace = True;
                 };
-                if ((((text_width <= GILDE_TEXT_X)) and ((line[(line.length - 1):] == " ")))){
+                if ((((text_width <= GILDE_TEXT_X)) and (
+                    (line[(line.length - 1):] == " ")))){
                     seekSpace = False;
                 } else {
                     nextLine = (line[(line.length - 1):] + nextLine);
@@ -30635,7 +30723,8 @@ def next_fight(evt:TimerEvent){
                 thisRoundFighterName = "?";
             };
             thisRoundOppName = fights[0].split(";")[2].split("/")[15];
-            if (thisRoundFighterName.lower() == actor[INP['NAME']].getChildAt(1).text.lower()){
+            if (thisRoundFighterName.lower() == actor[INP['NAME'
+                ]].getChildAt(1).text.lower()){
                 if (skip_guild_fights == 1){
                     skip_guild_fights = -1;
                     break;
@@ -30659,7 +30748,8 @@ def next_fight(evt:TimerEvent){
         };
     };
     thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
-    if (thisRoundFighterName.lower() == actor[INP['NAME']].getChildAt(1).text.lower()){
+    if (thisRoundFighterName.lower() == actor[INP['NAME'
+        ]].getChildAt(1).text.lower()){
         if (skip_guild_fights == 1){
             skip_guild_fights = -1;
         };
@@ -30672,11 +30762,18 @@ def next_fight(evt:TimerEvent){
         guildFightHonor = tmp_str.split(";")[2];
     };
     post_fight_mode = False;
-    fightNumber = ((guild_fight_count - int(((fights.length + 1) / 2))) + (((guild_fight_count % 2))==0) ? 1 : 0);
+    fightNumber = ((guild_fight_count - int(((fights.length + 1) / 2)))
+     (((guild_fight_count % 2))==0) ? 1 : 0);
     if (fightNumber > guild_fight_count){
         fightNumber = 1;
     };
-    show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), False, int(par[9]), GuildBattleData, (fights.length <= 1), guildFightExp, guildFightHonor, par[10], par[11], par[12]);
+    show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"),
+                      par[2].split("/"), (par[5] == "2"), ((par[3] + "/")
+                                                       + par[4]).split("/"),
+                        int(par[7]), int(par[8]), (par[5] == "3"), False,
+                        int(par[9]), GuildBattleData, (fights.length <= 1),
+                        guildFightExp, guildFightHonor, par[10], par[11],
+                        par[12]);
 }
 
 def guild_fight_timer_fn(evt:TimerEvent){
@@ -30716,7 +30813,8 @@ def expand_item_structure(arr:Array, offset){
     enchantment = int((typeOriginal / math.pow(2, 24)));
     socket = (typeOriginal - (enchantment * math.pow(2, 24)));
     socket = (socket / math.pow(2, 16));
-    typeOriginal = ((typeOriginal - (enchantment * math.pow(2, 24))) - (socket * math.pow(2, 16)));
+    typeOriginal = ((typeOriginal - (enchantment * math.pow(2, 24)))
+                    - (socket * math.pow(2, 16)));
     enchantmentPower = int((picOriginal / math.pow(2, 16)));
     picOriginal = (picOriginal - (enchantmentPower * math.pow(2, 16)));
     socketPower = int((mushOriginal / math.pow(2, 16)));
@@ -30748,7 +30846,14 @@ def WaitingTime(targetTime:Number):String{
     timeDiff.setTime((tmpTime.getTime() - game_time.getTime()));
     var _local3 = timeDiff;
     diffDays = ((((timeDiff.getTime() / 1000) / 60) / 60) / 24);
-    return ((((diffDays > 0)) ? ((str((diffDays + 1)) + " ") + texts[(((diffDays == 0)) ? TXT_TAG : TXT_TAGE)]) : ((((((getUTCHours())>0) ? (str((getUTCHours() - 0)) + ":") : "" + ((getUTCMinutes())<10) ? "0" : "") + str(getUTCMinutes())) + ((getUTCSeconds())<10) ? ":0" : ":") + str(getUTCSeconds()))));
+    return ((((diffDays > 0)) ? ((str((diffDays + 1)) + " ")
+            + texts[(((diffDays == 0))
+                     ? TXT_TAG : TXT_TAGE)])
+                    : ((((((getUTCHours())>0)
+                       ? (str((getUTCHours() - 0)) + ":")
+                       : "" + ((getUTCMinutes())<10) ? "0" : "")
+                        + str(getUTCMinutes())) + ((getUTCSeconds())<10)
+                    ? ":0" : ":") + str(getUTCSeconds()))));
 }
 
 def WaitingProgress(startTime:Number, targetTime:Number):Number{
@@ -30758,15 +30863,20 @@ def WaitingProgress(startTime:Number, targetTime:Number):Number{
     tmpTime2 = new Date();
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
     tmpTime2.setTime(((startTime * 1000) - ((1000 * 60) * 60)));
-    return (((game_time.getTime() - tmpTime2.getTime()) / (tmpTime.getTime() - tmpTime2.getTime())));
+    return (((game_time.getTime() - tmpTime2.getTime())
+            / (tmpTime.getTime() - tmpTime2.getTime())));
 }
 
 def LOGonRTL(){
     if (text_dir == "right"){
-        actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_NAME].text_width);
-        actor[LBL_LOGIN_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_LOGIN_PASSWORD].text_width);
-        actor[LBL_EMAIL].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_EMAIL].text_width);
-        actor[LBL_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15) - actor[LBL_PASSWORD].text_width);
+        actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15)
+                             - actor[LBL_NAME].text_width);
+        actor[LBL_LOGIN_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15)
+                                       - actor[LBL_LOGIN_PASSWORD].text_width);
+        actor[LBL_EMAIL].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15)
+                              - actor[LBL_EMAIL].text_width);
+        actor[LBL_PASSWORD].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15)
+                                 - actor[LBL_PASSWORD].text_width);
         actor[INP['NAME']].x = (IF_WIN_X + IF_WIN_INPUTS_X);
         actor[INP['LOGIN_PASSWORD']].x = (IF_WIN_X + IF_WIN_INPUTS_X);
         actor[INP['EMAIL']].x = (IF_WIN_X + IF_WIN_INPUTS_X);
