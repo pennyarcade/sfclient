@@ -36,6 +36,9 @@ class MouseEvent(object):
     '''
     MOUSE_UP = None
     MOUSE_DOWN = None
+    MOUSE_OVER = None
+    MOUSE_MOVE = None
+    MOUSE_OUT = None
     CLICK = None
 
 
@@ -44,13 +47,17 @@ class Timer(object):
         obsolete with cli?
     '''
     TIMER = None
+    start = None
+
+    def add_event_listener():
+        pass
 
 
 class TimerEvent(object):
     '''
         obsolete with cli?
     '''
-    pass
+    TIMER = None
 
 
 class KeyboardEvent(object):

@@ -4087,6 +4087,8 @@ LOG = logging.getLogger()
 
 # TODO: refactor into config object
 param_obj = dict()
+actor = dict()
+texts = dict()
 
 
 class RequestFailedException(Exception):
@@ -7368,31 +7370,31 @@ def show_fight_screen(
                         if (tower_fight_mode){
                             if (charWin){
                                 text = texts[
-                                    (TXT_TOWER_WON + int((math.random() * 5)))
+                                    (TXT_TOWER_WON + int((random.random() * 5)))
                                 ];
                             } else {
                                 text = texts[
-                                    (TXT_TOWER_LOST + int((math.random() * 5)))
+                                    (TXT_TOWER_LOST + int((random.random() * 5)))
                                 ];
                             };
                         } else {
                             if (isRaid){
                                 if (charWin){
                                     text = texts[
-                                        TXT_RAID_WON + int(math.random() * 5)
+                                        TXT_RAID_WON + int(random.random() * 5)
                                     ];
                                 } else {
                                     text = texts[
                                         (TXT_RAID_LOST +
-                                            int((math.random() * 5)))];
+                                            int((random.random() * 5)))];
                                 };
                             } else {
                                 if (charWin){
                                     text = texts[(TXT_GUILD_BATTLE_WON
-                                        + int((math.random() * 5)))];
+                                        + int((random.random() * 5)))];
                                 } else {
                                     text = texts[(TXT_GUILD_BATTLE_LOST
-                                        + int((math.random() * 5)))];
+                                        + int((random.random() * 5)))];
                     } else {
                         if (!inStrikeAni){
                             next_fight_timer.start();
@@ -7404,13 +7406,13 @@ def show_fight_screen(
                 } else {
                     if (isPvP){
                         text = texts[
-                            ((int((math.random() * 5)) + fightStyle)
+                            ((int((random.random() * 5)) + fightStyle)
                                 + ((charWin)
                                     ? TXT_PVP_WIN
                                     : TXT_PVP_LOSE))];
                     } else {
                         text = texts[
-                            ((int((math.random() * 5)) + fightStyle)
+                            ((int((random.random() * 5)) + fightStyle)
                                 + ((charWin)
                                     ? TXT_FIGHT_WIN
                                     : TXT_FIGHT_LOSE))];
@@ -8199,7 +8201,7 @@ def show_fight_screen(
                     if (weaponType == 2){
                         SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
                             get_arrow_id(0, ((opponent) ? 1 : 0),
-                            weaponData, True, int((math.random() * 3))));
+                            weaponData, True, int((random.random() * 3))));
                     };
                     _local3 = actor[
                         ((opponent) ? BULLET_OPP : BULLET_CHAR)];
@@ -8347,7 +8349,7 @@ def show_fight_screen(
             strikePhase = 0;
             damageIndicatorActive = False;
             weaponType = ((opponent) ? oppWeaponType : charWeaponType);
-            onoID = (int((math.random() * 6)) + FIGHT_ONO);
+            onoID = (int((random.random() * 6)) + FIGHT_ONO);
             DoSkip = False;
             catapultStrike = False;
             if (((opponent) ? oppFlag : charFlag) == 4){
@@ -9143,7 +9145,7 @@ def show_taverne_screen(evt:Event=None){
                 HutBlinzelStep++;
                 if (HutBlinzelStep > 70){
                     hide(TAVERNE_HUTMANN_BLINZELN);
-                    HutBlinzelStep = int((math.random() * 30));
+                    HutBlinzelStep = int((random.random() * 30));
                 } else {
                     if (HutBlinzelStep > 68){
                         show(TAVERNE_HUTMANN_BLINZELN);
@@ -9173,7 +9175,7 @@ def show_taverne_screen(evt:Event=None){
                         };
                     };
                 };
-                actor[TAVERNE_KERZEN].visible = (math.random() >= 0.5);
+                actor[TAVERNE_KERZEN].visible = (random.random() >= 0.5);
             } else {
                 HutBlinzelTimer.stop();
                 HutBlinzelTimer.removeEventListener(
@@ -9279,7 +9281,7 @@ def show_stall_screen(evt:Event=None){
         BauerHandEvent = function (evt:TimerEvent){
             var iHand:int;
             var i:int;
-            iHand = int((math.random() * 5));
+            iHand = int((random.random() * 5));
             if (
                 ((!(on_stage(STALL_BG_GUT)))
                     and (!(on_stage(STALL_BG_BOESE))))){
@@ -9582,21 +9584,21 @@ def show_city_screen(evt:Event=None):void{
             MakeTemporary(CITY_STATISTEN, BUBBLES);
             visible_to_front(CITY_STATISTEN, BUBBLES);
         } else {
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_MAGIER1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_ORK1);
                 define_bunch(CITY_ORK, CITY_ORK1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_SANDWICH1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_ZWERG1);
                 define_bunch(CITY_ZWERG, CITY_ZWERG1);
             };
-            if (int((math.random() * 3)) == 0){
+            if (int((random.random() * 3)) == 0){
                 add(CITY_ELF1);
             };
         };
@@ -10344,7 +10346,7 @@ def show_character_screen(evt:Event=None, NoPrices:Boolean=False):void{
             );
         };
         display_inventory(None, NoPrices);
-        vanityRandom = math.random();
+        vanityRandom = random.random();
         if (
             (((((((uint(savegame[SG_NEW_FLAGS]) & 32))
             and ((int(so.data.vanityMode) == 0))))
@@ -10734,7 +10736,7 @@ def ShowPlayerScreen(
         SetAlpha(CHAR_SECONDPROP, 1);
         SetAlpha(CHAR_PREISE, 0);
         display_inventory(PlayerSG);
-        vanityRandom = math.random();
+        vanityRandom = random.random();
         if (
             (((((((uint(PlayerSG[SG_NEW_FLAGS]) & 32))
             and ((int(so.data.vanityMode) == 0))))
@@ -15107,7 +15109,7 @@ def show_bet_result(won:Boolean){
                     BallX = HUTMANN_KUGEL_X1;
                 } else {
                     BallX = (
-                        (math.random())<0.5)
+                        (random.random())<0.5)
                             ? HUTMANN_KUGEL_X2
                             : HUTMANN_KUGEL_X3;
                 };
@@ -15119,7 +15121,7 @@ def show_bet_result(won:Boolean){
                     BallX = HUTMANN_KUGEL_X2;
                 } else {
                     BallX = (
-                        (math.random())<0.5)
+                        (random.random())<0.5)
                         ? HUTMANN_KUGEL_X1
                         : HUTMANN_KUGEL_X3;
                 };
@@ -15131,7 +15133,7 @@ def show_bet_result(won:Boolean){
                     BallX = HUTMANN_KUGEL_X3;
                 } else {
                     BallX = (
-                        (math.random())<0.5)
+                        (random.random())<0.5)
                         ? HUTMANN_KUGEL_X1
                         : HUTMANN_KUGEL_X2;
                 };
@@ -18995,7 +18997,7 @@ def load_language_file():
             "lang/sfgame_",
             lang_code,
             ".txt?rnd=",
-            str(math.random())
+            str(random.random())
         )))
 
     pendingdo_loaders += 1
@@ -19435,9 +19437,9 @@ def configuration_filedo_loaded(evt):
             elif (so.data.img_url_index <= len(img_url)) and (not force_reroll):
                 img_url_index = so.data.img_url_index - 1
             else:
-                img_url_index = int(math.random() * len(img_url))
+                img_url_index = int(random.random() * len(img_url))
         else:
-            img_url_index = int((math.random() * len(img_url)))
+            img_url_index = int((random.random() * len(img_url)))
 
         if so.data.snd_url_index:
             if param_imgsvr > 0:
@@ -19446,9 +19448,9 @@ def configuration_filedo_loaded(evt):
                   and (not force_reroll)):
                 snd_url_index = so.data.snd_url_index - 1
             else:
-                snd_url_index = int(math.random() * len(snd_url))
+                snd_url_index = int(random.random() * len(snd_url))
         else:
-            snd_url_index = int(math.random() * len(snd_url))
+            snd_url_index = int(random.random() * len(snd_url))
 
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
@@ -19601,15 +19603,15 @@ def whendo_loaded_timeout_event():
     if to_error_count == 10:
         old_img_url_index = img_url_index
         if len(img_url) > 1:
-            img_url_index = int(math.random() * len(img_url))
+            img_url_index = int(random.random() * len(img_url))
             while img_url_index == old_img_url_index:
-                img_url_index = int(math.random() * len(img_url))
+                img_url_index = int(random.random() * len(img_url))
 
         old_snd_url_index = snd_url_index
         if len(snd_url) > 1:
-            snd_url_index = int(math.random() * len(snd_url))
+            snd_url_index = int(random.random() * len(snd_url))
             while snd_url_index == old_snd_url_index:
-                snd_url_index = int(math.random() * len(snd_url))
+                snd_url_index = int(random.random() * len(snd_url))
 
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
@@ -19657,15 +19659,15 @@ def loader_error():
     if io_error_count == 10:
         old_img_url_index = img_url_index
         if len(img_url) > 1:
-            img_url_index = int(math.random() * len(img_url))
+            img_url_index = int(random.random() * len(img_url))
             while img_url_index == old_img_url_index:
-                img_url_index = int(math.random() * len(img_url))
+                img_url_index = int(random.random() * len(img_url))
 
         old_snd_url_index = snd_url_index
         if len(snd_url) > 1:
-            snd_url_index = int(math.random() * len(snd_url))
+            snd_url_index = int(random.random() * len(snd_url))
             while snd_url_index == old_snd_url_index:
-                snd_url_index = int(math.random() * len(snd_url))
+                snd_url_index = int(random.random() * len(snd_url))
 
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
@@ -19722,7 +19724,7 @@ def load_tracking_pixel(url=''):
     else:
         url = url + "&random="
 
-    url += str(int((math.random() * 100000)))
+    url += str(int((random.random() * 100000)))
     url += ("&had_account=") + int(had_account)
 
     if param_reload_pixel:
@@ -20875,7 +20877,7 @@ def load_tracking_pixel(url=''):
                 };
                 if (
                     (((CityAniFrame == 3))
-                    and ((int((math.random() * 2)) == 0)))
+                    and ((int((random.random() * 2)) == 0)))
                 ){
                     if (get_child_by_name(actor[CITY_ORK1].name)){
                         remove(CITY_ORK1);
@@ -20899,7 +20901,7 @@ def load_tracking_pixel(url=''):
                 };
                 if (
                     (((((CityAniFrame == 2))
-                    and ((int((math.random() * 2)) == 0))))
+                    and ((int((random.random() * 2)) == 0))))
                     and (get_child_by_name(actor[CITY_ZWERG1].name)))
                 ){
                     remove(CITY_ZWERG1);
@@ -20939,7 +20941,7 @@ def load_tracking_pixel(url=''):
                         if (on_stage(LBL['ERROR'])){
                             add(LBL['ERROR']);
                         };
-                        if (int((math.random() * 8)) == 0){
+                        if (int((random.random() * 8)) == 0){
                             SandwichPause = 4;
                         };
                     };
@@ -20975,7 +20977,7 @@ def load_tracking_pixel(url=''):
                 } else {
                     if (
                         ((on_stage(CITY_MAGIER1))
-                        and ((int((math.random() * 15)) == 0)))
+                        and ((int((random.random() * 15)) == 0)))
                     ){
                         ZwergFussTapp = 6;
                     };
@@ -21099,7 +21101,7 @@ def load_tracking_pixel(url=''):
                     DealerStepTimer.add_event_listener(
                         TimerEvent.TIMER, DealerStep
                     );
-                    if (int((math.random() * 5)) == 0){
+                    if (int((random.random() * 5)) == 0){
                         DealerAniStep = 5;
                     } else {
                         DealerAniStep = 1;
@@ -21191,7 +21193,7 @@ def load_tracking_pixel(url=''):
         };
         PopupArenaOno = function (evt:Event=None):void{
             while (ThisOno == LastOno) {
-                ThisOno = (CITY_ARENA_ONO1 + int((math.random() * 4)));
+                ThisOno = (CITY_ARENA_ONO1 + int((random.random() * 4)));
             };
             LastOno = ThisOno;
             OnoPopupTimer.add_event_listener(TimerEvent.TIMER, StepArenaOno);
@@ -22180,7 +22182,7 @@ def load_tracking_pixel(url=''):
             if (on_stage(SCR_SHAKES_BG)){
                 ShakesBlinzeln++;
                 if (ShakesBlinzeln > 73){
-                    ShakesBlinzeln = int((math.random() * 30));
+                    ShakesBlinzeln = int((random.random() * 30));
                     WasPassiert = True;
                     ShakesAugenZu = 0;
                 } else {
@@ -22270,8 +22272,8 @@ def load_tracking_pixel(url=''):
                     AffeBlinzeln++;
                     FidgetBlinzeln++;
                     if (AffeBlinzeln > 73){
-                        AffeBlinzeln = int((math.random() * 30));
-                        if (int((math.random() * 2)) == 1){
+                        AffeBlinzeln = int((random.random() * 30));
+                        if (int((random.random() * 2)) == 1){
                             AffeStep = 1;
                             WasPassiert = True;
                         } else {
@@ -22285,7 +22287,7 @@ def load_tracking_pixel(url=''):
                         };
                     };
                     if (FidgetBlinzeln > 73){
-                        FidgetBlinzeln = int((math.random() * 30));
+                        FidgetBlinzeln = int((random.random() * 30));
                         FidgetAugenZu = False;
                         WasPassiert = True;
                     } else {
@@ -23107,25 +23109,25 @@ def load_tracking_pixel(url=''):
                 i = 0;
                 while (i < len(actor)) {
                     myFlt = [new ColorMatrixFilter(
-                        [math.random(),
-                        math.random(), 0, 0, 0, 0,
-                        math.random(), math.random(), 0, 0,
-                        math.random(), 0, math.random(),
+                        [random.random(),
+                        random.random(), 0, 0, 0, 0,
+                        random.random(), random.random(), 0, 0,
+                        random.random(), 0, random.random(),
                         0, 0, 0, 0, 0,
-                        ((math.random() * 0.5) + 0.5), 0]),
-                        new BlurFilter((10 * math.random()),
-                        (10 * math.random()), 1)
+                        ((random.random() * 0.5) + 0.5), 0]),
+                        new BlurFilter((10 * random.random()),
+                        (10 * random.random()), 1)
                         ];
                     if ((actor[i] is DisplayObject)){
                         actor[i].filters = myFlt;
                         actor[i].scaleX = (
-                            actor[i].scaleX * (1.1 - (math.random() * 0.2))
+                            actor[i].scaleX * (1.1 - (random.random() * 0.2))
                         );
                         actor[i].scaleY = (
-                            actor[i].scaleY * (1.1 - (math.random() * 0.2))
+                            actor[i].scaleY * (1.1 - (random.random() * 0.2))
                         );
-                        actor[i].x = (actor[i].x + (2 - (math.random() * 4)));
-                        actor[i].y = (actor[i].y + (2 - (math.random() * 4)));
+                        actor[i].x = (actor[i].x + (2 - (random.random() * 4)));
+                        actor[i].y = (actor[i].y + (2 - (random.random() * 4)));
                     };
                     i++;
                 };
@@ -25760,9 +25762,9 @@ def load_tracking_pixel(url=''):
         define_bunch(SCREEN_SHAKES, SCR_SHAKES_BG, SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3, SHAKES_DAY, SHAKES_BLINZELN1, SHAKES_BLINZELN2, SHAKES_NIGHT, IF_OVL, SHOPS_NEWWAREZ, CA_SCR_CHAR_EXPBAR, IF_EXIT);
         DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png", False, (SCR_SHOP_BG_X - 65), (100 + 210));
         DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png", False, (SCR_SHOP_BG_X + 200), (100 + 250));
-        AffeBlinzeln = int((math.random() * 30));
-        FidgetBlinzeln = int((math.random() * 30));
-        ShakesBlinzeln = int((math.random() * 30));
+        AffeBlinzeln = int((random.random() * 30));
+        FidgetBlinzeln = int((random.random() * 30));
+        ShakesBlinzeln = int((random.random() * 30));
         ShakesIdleStep = 0;
         ShakesIdlePhase = 0;
         WasIdleCount = 0;
@@ -26696,7 +26698,7 @@ def load_tracking_pixel(url=''):
         hide(CA_TV);
         add_bunch(SCREEN_TAVERNE, CA_TV);
         cursedDescr = "Fliegende";
-        if (int((math.random() * 100)) == 0){
+        if (int((random.random() * 100)) == 0){
             cursedDescr = "Verfluchte";
         };
         enable_popup(CA_TV, POPUP_BEGIN_LINE, texts[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[TXT_TV_HINT].split("|")[1].split("#").join(chr(13)), POPUP_END_LINE);
@@ -28437,7 +28439,7 @@ def getRandomCrest(){
     result = list();
     i = 0;
     while (i < crestElementPos.length) {
-        result.append(int((math.random() * crestElementPos[i][4])));
+        result.append(int((random.random() * crestElementPos[i][4])));
         i++;
     };
     return (result);
@@ -31189,8 +31191,8 @@ def getCharSuffix(itemIndex:int, itemValue:int):String{
 }
 
 def RandomizeCharacter(evt:Event=None):void{
-    char_volk = (int((math.random() * 8)) + 1);
-    char_male = (math.random() > 0.5);
+    char_volk = (int((random.random() * 8)) + 1);
+    char_male = (random.random() > 0.5);
     if (param_obj["playerclass"]){
         char_class = int(param_obj["playerclass"]);
         if (char_class < 1){
@@ -31201,7 +31203,7 @@ def RandomizeCharacter(evt:Event=None):void{
         };
         KlasseGewählt = True;
     } else {
-        char_class = (int((math.random() * 3)) + 1);
+        char_class = (int((random.random() * 3)) + 1);
         KlasseGewählt = False;
     };
     RandomizeCharImage();
@@ -31215,16 +31217,16 @@ def RandomizeCharImage(evt:Event=None):void{
         };
         return (0);
     };
-    char_color = int(((math.random() * getCharImageBound(char_volk, char_male, 10)) + 1));
-    char_mouth = int(((math.random() * getCharImageBound(char_volk, char_male, 1)) + 1));
-    char_beard = (int(((math.random() * getCharImageBound(char_volk, char_male, 2)) + 1)) + ColorOffset(C_BEARD));
-    char_nose = int(((math.random() * getCharImageBound(char_volk, char_male, 3)) + 1));
-    char_eyes = int(((math.random() * getCharImageBound(char_volk, char_male, 4)) + 1));
-    char_brows = (int(((math.random() * getCharImageBound(char_volk, char_male, 5)) + 1)) + ColorOffset(C_BROWS));
-    char_ears = int(((math.random() * getCharImageBound(char_volk, char_male, 6)) + 1));
-    char_hair = (int(((math.random() * getCharImageBound(char_volk, char_male, 7)) + 1)) + ColorOffset(C_HAIR));
-    char_special = int(((math.random() * getCharImageBound(char_volk, char_male, 8)) + 1));
-    char_special2 = (int(((math.random() * getCharImageBound(char_volk, char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
+    char_color = int(((random.random() * getCharImageBound(char_volk, char_male, 10)) + 1));
+    char_mouth = int(((random.random() * getCharImageBound(char_volk, char_male, 1)) + 1));
+    char_beard = (int(((random.random() * getCharImageBound(char_volk, char_male, 2)) + 1)) + ColorOffset(C_BEARD));
+    char_nose = int(((random.random() * getCharImageBound(char_volk, char_male, 3)) + 1));
+    char_eyes = int(((random.random() * getCharImageBound(char_volk, char_male, 4)) + 1));
+    char_brows = (int(((random.random() * getCharImageBound(char_volk, char_male, 5)) + 1)) + ColorOffset(C_BROWS));
+    char_ears = int(((random.random() * getCharImageBound(char_volk, char_male, 6)) + 1));
+    char_hair = (int(((random.random() * getCharImageBound(char_volk, char_male, 7)) + 1)) + ColorOffset(C_HAIR));
+    char_special = int(((random.random() * getCharImageBound(char_volk, char_male, 8)) + 1));
+    char_special2 = (int(((random.random() * getCharImageBound(char_volk, char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
     LoadCharacterImage();
 }
 
@@ -31689,7 +31691,7 @@ def DrachenSetzen():void{
         x = actor[i].x;
         y = actor[i].y;
         delete actor[i];
-        d = (math.random() * 5);
+        d = (random.random() * 5);
         actorBitmap[i] = d;
         Switch (d){
             if case(0:
