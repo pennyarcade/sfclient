@@ -37,14 +37,13 @@ class MouseEvent(object):
     MOUSE_UP = None
     MOUSE_DOWN = None
     CLICK = None
-    pass
 
 
 class Timer(object):
     '''
         obsolete with cli?
     '''
-    pass
+    TIMER = None
 
 
 class TimerEvent(object):
@@ -55,6 +54,20 @@ class TimerEvent(object):
 
 
 class KeyboardEvent(object):
+    '''
+        obsolete with cli?
+    '''
+    keyCode = None
+
+
+class ExternalInterface(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class SharedObject(object):
     '''
         obsolete with cli?
     '''

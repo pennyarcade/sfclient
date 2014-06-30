@@ -4085,6 +4085,9 @@ RES_Y = 800
 # global for logger
 LOG = logging.getLogger()
 
+# TODO: refactor into config object
+param_obj = dict()
+
 
 class RequestFailedException(Exception):
     '''
@@ -19723,9 +19726,9 @@ def load_tracking_pixel(url=''):
     url += ("&had_account=") + int(had_account)
 
     if param_reload_pixel:
-        LOG.debug("Tracking Pixel Reload Mode for:", url)
-        LOG.debug("CID userd", param_cid)
-        LOG.debug("Action", act)
+        LOG.debug("Tracking Pixel Reload Mode for: " + url)
+        LOG.debug("CID userd " + param_cid)
+        LOG.debug("Action " + act)
 
         #req = new URLRequest("index.php")
         #req.method = URLRequestMethod.POST
