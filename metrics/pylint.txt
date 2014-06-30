@@ -28,7 +28,7 @@ W:18205, 0: TODO: hat does this do? (fixme)
 W:19680, 0: TODO: What does this do? (fixme)
 W:19696, 0: TODO: Obsolete? (fixme)
 W:19719, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (31856) (too-many-lines)
+C:  1, 0: Too many lines in module (31893) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 C:4089, 0: Invalid constant name "param_obj" (invalid-name)
 C:4090, 0: Invalid constant name "actor" (invalid-name)
@@ -1129,7 +1129,7 @@ W:19713, 4: Unused variable 'pixel_success' (unused-variable)
 W:27240,-1: String statement has no effect (pointless-string-statement)
 W:27248, 4: Using the global statement (global-statement)
 C:27254, 4: Invalid variable name "s" (invalid-name)
-W:31856,-1: String statement has no effect (pointless-string-statement)
+W:31893,-1: String statement has no effect (pointless-string-statement)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
@@ -1146,7 +1146,6 @@ W:225, 0: TODO: obsolete (fixme)
 W:249, 0: TODO WTF? (fixme)
 W:271, 0: TODO: better way to zero fill? (fixme)
 W:458, 0: TODO: Obsolete (fixme)
-C:462, 0: Final newline missing (missing-final-newline)
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 20, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 27, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1202,13 +1201,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |17430  |54.76 |NC       |NC         |
+|code      |17466  |54.81 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12952  |40.69 |NC       |NC         |
+|docstring |12952  |40.64 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |702    |2.21  |NC       |NC         |
+|comment   |702    |2.20  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |748    |2.35  |NC       |NC         |
+|empty     |749    |2.35  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1232,7 +1231,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |96     |NC       |NC         |
+|convention |95     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |66     |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1249,9 +1248,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |95.15   |71.21    |93.75      |
+|sfclient |100.00 |95.15   |71.21    |94.74      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |4.85    |28.79    |6.25       |
+|sflegacy |0.00   |4.85    |28.79    |5.26       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1307,8 +1306,6 @@ Messages
 |redefined-builtin            |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
-+-----------------------------+------------+
-|missing-final-newline        |1           |
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+

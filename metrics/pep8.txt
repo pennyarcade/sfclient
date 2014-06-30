@@ -14071,7 +14071,7 @@ sfclient.py:28669:80: E501 line too long (163 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:28673:80: E501 line too long (81 > 79 characters)
+sfclient.py:28687:80: E501 line too long (86 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14082,7 +14082,7 @@ sfclient.py:28673:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:28686:80: E501 line too long (86 > 79 characters)
+sfclient.py:28691:80: E501 line too long (83 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14093,7 +14093,7 @@ sfclient.py:28686:80: E501 line too long (86 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:28690:80: E501 line too long (83 > 79 characters)
+sfclient.py:28698:80: E501 line too long (82 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14104,7 +14104,7 @@ sfclient.py:28690:80: E501 line too long (83 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:28697:80: E501 line too long (82 > 79 characters)
+sfclient.py:29104:80: E501 line too long (302 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14115,7 +14115,7 @@ sfclient.py:28697:80: E501 line too long (82 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29103:80: E501 line too long (302 > 79 characters)
+sfclient.py:29106:80: E501 line too long (89 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14126,7 +14126,7 @@ sfclient.py:29103:80: E501 line too long (302 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29105:80: E501 line too long (89 > 79 characters)
+sfclient.py:29115:80: E501 line too long (88 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14137,7 +14137,7 @@ sfclient.py:29105:80: E501 line too long (89 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29114:80: E501 line too long (88 > 79 characters)
+sfclient.py:29118:80: E501 line too long (112 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14148,7 +14148,7 @@ sfclient.py:29114:80: E501 line too long (88 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29117:80: E501 line too long (112 > 79 characters)
+sfclient.py:29121:80: E501 line too long (137 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14159,7 +14159,7 @@ sfclient.py:29117:80: E501 line too long (112 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29120:80: E501 line too long (137 > 79 characters)
+sfclient.py:29142:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14170,7 +14170,7 @@ sfclient.py:29120:80: E501 line too long (137 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29141:80: E501 line too long (85 > 79 characters)
+sfclient.py:29190:80: E501 line too long (161 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14181,7 +14181,7 @@ sfclient.py:29141:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29189:80: E501 line too long (161 > 79 characters)
+sfclient.py:29192:80: E501 line too long (161 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14192,7 +14192,7 @@ sfclient.py:29189:80: E501 line too long (161 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29191:80: E501 line too long (161 > 79 characters)
+sfclient.py:29197:80: E501 line too long (140 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14203,7 +14203,7 @@ sfclient.py:29191:80: E501 line too long (161 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29196:80: E501 line too long (140 > 79 characters)
+sfclient.py:29199:80: E501 line too long (190 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14214,7 +14214,7 @@ sfclient.py:29196:80: E501 line too long (140 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29198:80: E501 line too long (190 > 79 characters)
+sfclient.py:29201:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14225,7 +14225,7 @@ sfclient.py:29198:80: E501 line too long (190 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29200:80: E501 line too long (85 > 79 characters)
+sfclient.py:29205:80: E501 line too long (125 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14236,7 +14236,7 @@ sfclient.py:29200:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29204:80: E501 line too long (125 > 79 characters)
+sfclient.py:29209:80: E501 line too long (135 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14247,7 +14247,7 @@ sfclient.py:29204:80: E501 line too long (125 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29208:80: E501 line too long (135 > 79 characters)
+sfclient.py:29215:80: E501 line too long (218 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14258,7 +14258,7 @@ sfclient.py:29208:80: E501 line too long (135 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29214:80: E501 line too long (218 > 79 characters)
+sfclient.py:29217:80: E501 line too long (221 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14269,7 +14269,7 @@ sfclient.py:29214:80: E501 line too long (218 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29216:80: E501 line too long (221 > 79 characters)
+sfclient.py:29221:80: E501 line too long (102 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14280,7 +14280,7 @@ sfclient.py:29216:80: E501 line too long (221 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29220:80: E501 line too long (102 > 79 characters)
+sfclient.py:29223:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14291,7 +14291,7 @@ sfclient.py:29220:80: E501 line too long (102 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29222:80: E501 line too long (81 > 79 characters)
+sfclient.py:29239:80: E501 line too long (128 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14302,7 +14302,7 @@ sfclient.py:29222:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29238:80: E501 line too long (128 > 79 characters)
+sfclient.py:29389:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14313,7 +14313,7 @@ sfclient.py:29238:80: E501 line too long (128 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29339:80: E501 line too long (136 > 79 characters)
+sfclient.py:29406:80: E501 line too long (103 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14324,7 +14324,7 @@ sfclient.py:29339:80: E501 line too long (136 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29386:80: E501 line too long (81 > 79 characters)
+sfclient.py:29412:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14335,7 +14335,7 @@ sfclient.py:29386:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29403:80: E501 line too long (103 > 79 characters)
+sfclient.py:29416:80: E501 line too long (107 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14346,7 +14346,7 @@ sfclient.py:29403:80: E501 line too long (103 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29409:80: E501 line too long (85 > 79 characters)
+sfclient.py:29419:80: E501 line too long (126 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14357,7 +14357,7 @@ sfclient.py:29409:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29413:80: E501 line too long (107 > 79 characters)
+sfclient.py:29442:80: E501 line too long (97 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14368,7 +14368,7 @@ sfclient.py:29413:80: E501 line too long (107 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29416:80: E501 line too long (126 > 79 characters)
+sfclient.py:29444:80: E501 line too long (97 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14379,7 +14379,7 @@ sfclient.py:29416:80: E501 line too long (126 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29439:80: E501 line too long (97 > 79 characters)
+sfclient.py:29451:80: E501 line too long (95 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14390,7 +14390,7 @@ sfclient.py:29439:80: E501 line too long (97 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29441:80: E501 line too long (97 > 79 characters)
+sfclient.py:29457:80: E501 line too long (118 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14401,7 +14401,7 @@ sfclient.py:29441:80: E501 line too long (97 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29448:80: E501 line too long (95 > 79 characters)
+sfclient.py:29458:80: E501 line too long (110 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14412,7 +14412,7 @@ sfclient.py:29448:80: E501 line too long (95 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29454:80: E501 line too long (118 > 79 characters)
+sfclient.py:29472:80: E501 line too long (289 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14423,7 +14423,7 @@ sfclient.py:29454:80: E501 line too long (118 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29455:80: E501 line too long (110 > 79 characters)
+sfclient.py:29474:80: E501 line too long (290 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14434,7 +14434,7 @@ sfclient.py:29455:80: E501 line too long (110 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29469:80: E501 line too long (289 > 79 characters)
+sfclient.py:29477:80: E501 line too long (131 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14445,7 +14445,7 @@ sfclient.py:29469:80: E501 line too long (289 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29471:80: E501 line too long (290 > 79 characters)
+sfclient.py:29498:80: E501 line too long (104 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14456,7 +14456,7 @@ sfclient.py:29471:80: E501 line too long (290 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29474:80: E501 line too long (131 > 79 characters)
+sfclient.py:29499:80: E501 line too long (91 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14467,7 +14467,7 @@ sfclient.py:29474:80: E501 line too long (131 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29495:80: E501 line too long (104 > 79 characters)
+sfclient.py:29501:80: E501 line too long (86 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14478,7 +14478,7 @@ sfclient.py:29495:80: E501 line too long (104 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29496:80: E501 line too long (91 > 79 characters)
+sfclient.py:29503:80: E501 line too long (220 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14489,7 +14489,7 @@ sfclient.py:29496:80: E501 line too long (91 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29498:80: E501 line too long (86 > 79 characters)
+sfclient.py:29505:80: E501 line too long (125 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14500,7 +14500,7 @@ sfclient.py:29498:80: E501 line too long (86 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29500:80: E501 line too long (220 > 79 characters)
+sfclient.py:29507:80: E501 line too long (159 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14511,7 +14511,7 @@ sfclient.py:29500:80: E501 line too long (220 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29502:80: E501 line too long (125 > 79 characters)
+sfclient.py:29509:80: E501 line too long (166 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14522,7 +14522,7 @@ sfclient.py:29502:80: E501 line too long (125 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29504:80: E501 line too long (159 > 79 characters)
+sfclient.py:29514:80: E501 line too long (142 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14533,7 +14533,7 @@ sfclient.py:29504:80: E501 line too long (159 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29506:80: E501 line too long (166 > 79 characters)
+sfclient.py:29515:80: E501 line too long (123 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14544,7 +14544,7 @@ sfclient.py:29506:80: E501 line too long (166 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29511:80: E501 line too long (142 > 79 characters)
+sfclient.py:29516:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14555,7 +14555,7 @@ sfclient.py:29511:80: E501 line too long (142 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29512:80: E501 line too long (123 > 79 characters)
+sfclient.py:29517:80: E501 line too long (129 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14566,7 +14566,7 @@ sfclient.py:29512:80: E501 line too long (123 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29513:80: E501 line too long (94 > 79 characters)
+sfclient.py:29519:80: E501 line too long (98 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14577,7 +14577,7 @@ sfclient.py:29513:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29514:80: E501 line too long (129 > 79 characters)
+sfclient.py:29520:80: E501 line too long (132 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14588,7 +14588,7 @@ sfclient.py:29514:80: E501 line too long (129 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29516:80: E501 line too long (98 > 79 characters)
+sfclient.py:29522:80: E501 line too long (102 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14599,7 +14599,7 @@ sfclient.py:29516:80: E501 line too long (98 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29517:80: E501 line too long (132 > 79 characters)
+sfclient.py:29523:80: E501 line too long (134 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14610,7 +14610,7 @@ sfclient.py:29517:80: E501 line too long (132 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29519:80: E501 line too long (102 > 79 characters)
+sfclient.py:29526:80: E501 line too long (143 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14621,7 +14621,7 @@ sfclient.py:29519:80: E501 line too long (102 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29520:80: E501 line too long (134 > 79 characters)
+sfclient.py:29531:80: E501 line too long (204 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14632,7 +14632,7 @@ sfclient.py:29520:80: E501 line too long (134 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29523:80: E501 line too long (143 > 79 characters)
+sfclient.py:29533:80: E501 line too long (107 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14643,7 +14643,7 @@ sfclient.py:29523:80: E501 line too long (143 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29528:80: E501 line too long (204 > 79 characters)
+sfclient.py:29541:80: E501 line too long (87 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14654,7 +14654,7 @@ sfclient.py:29528:80: E501 line too long (204 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29530:80: E501 line too long (107 > 79 characters)
+sfclient.py:29543:80: E501 line too long (163 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14665,7 +14665,7 @@ sfclient.py:29530:80: E501 line too long (107 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29538:80: E501 line too long (87 > 79 characters)
+sfclient.py:29545:80: E501 line too long (226 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14676,7 +14676,7 @@ sfclient.py:29538:80: E501 line too long (87 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29540:80: E501 line too long (163 > 79 characters)
+sfclient.py:29548:80: E501 line too long (295 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14687,7 +14687,7 @@ sfclient.py:29540:80: E501 line too long (163 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29542:80: E501 line too long (226 > 79 characters)
+sfclient.py:29550:80: E501 line too long (295 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14698,7 +14698,7 @@ sfclient.py:29542:80: E501 line too long (226 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29545:80: E501 line too long (295 > 79 characters)
+sfclient.py:29553:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14709,7 +14709,7 @@ sfclient.py:29545:80: E501 line too long (295 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29547:80: E501 line too long (295 > 79 characters)
+sfclient.py:29556:80: E501 line too long (192 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14720,7 +14720,7 @@ sfclient.py:29547:80: E501 line too long (295 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29550:80: E501 line too long (85 > 79 characters)
+sfclient.py:29559:80: E501 line too long (261 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14731,7 +14731,7 @@ sfclient.py:29550:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29553:80: E501 line too long (192 > 79 characters)
+sfclient.py:29561:80: E501 line too long (261 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14742,7 +14742,7 @@ sfclient.py:29553:80: E501 line too long (192 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29556:80: E501 line too long (261 > 79 characters)
+sfclient.py:29564:80: E501 line too long (112 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14753,7 +14753,7 @@ sfclient.py:29556:80: E501 line too long (261 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29558:80: E501 line too long (261 > 79 characters)
+sfclient.py:29573:80: E501 line too long (148 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14764,7 +14764,7 @@ sfclient.py:29558:80: E501 line too long (261 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29561:80: E501 line too long (112 > 79 characters)
+sfclient.py:29588:80: E501 line too long (118 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14775,7 +14775,7 @@ sfclient.py:29561:80: E501 line too long (112 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29570:80: E501 line too long (148 > 79 characters)
+sfclient.py:29589:80: E501 line too long (82 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14786,7 +14786,7 @@ sfclient.py:29570:80: E501 line too long (148 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29585:80: E501 line too long (118 > 79 characters)
+sfclient.py:29641:80: E501 line too long (304 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14797,7 +14797,7 @@ sfclient.py:29585:80: E501 line too long (118 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29586:80: E501 line too long (82 > 79 characters)
+sfclient.py:29648:80: E501 line too long (84 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14808,7 +14808,7 @@ sfclient.py:29586:80: E501 line too long (82 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29638:80: E501 line too long (304 > 79 characters)
+sfclient.py:29649:80: E501 line too long (84 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14819,7 +14819,7 @@ sfclient.py:29638:80: E501 line too long (304 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29645:80: E501 line too long (84 > 79 characters)
+sfclient.py:29657:80: E501 line too long (203 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14830,7 +14830,7 @@ sfclient.py:29645:80: E501 line too long (84 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29646:80: E501 line too long (84 > 79 characters)
+sfclient.py:29663:80: E501 line too long (217 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14841,7 +14841,7 @@ sfclient.py:29646:80: E501 line too long (84 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29654:80: E501 line too long (203 > 79 characters)
+sfclient.py:29669:80: E501 line too long (227 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14852,7 +14852,7 @@ sfclient.py:29654:80: E501 line too long (203 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29660:80: E501 line too long (217 > 79 characters)
+sfclient.py:29675:80: E501 line too long (210 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14863,7 +14863,7 @@ sfclient.py:29660:80: E501 line too long (217 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29666:80: E501 line too long (227 > 79 characters)
+sfclient.py:29676:80: E501 line too long (236 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14874,7 +14874,7 @@ sfclient.py:29666:80: E501 line too long (227 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29672:80: E501 line too long (210 > 79 characters)
+sfclient.py:29677:80: E501 line too long (222 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14885,7 +14885,7 @@ sfclient.py:29672:80: E501 line too long (210 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29673:80: E501 line too long (236 > 79 characters)
+sfclient.py:29678:80: E501 line too long (120 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14896,7 +14896,7 @@ sfclient.py:29673:80: E501 line too long (236 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29674:80: E501 line too long (222 > 79 characters)
+sfclient.py:29679:80: E501 line too long (386 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14907,7 +14907,7 @@ sfclient.py:29674:80: E501 line too long (222 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29675:80: E501 line too long (120 > 79 characters)
+sfclient.py:29682:80: E501 line too long (110 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14918,7 +14918,7 @@ sfclient.py:29675:80: E501 line too long (120 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29676:80: E501 line too long (386 > 79 characters)
+sfclient.py:29684:80: E501 line too long (234 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14929,7 +14929,7 @@ sfclient.py:29676:80: E501 line too long (386 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29679:80: E501 line too long (110 > 79 characters)
+sfclient.py:29686:80: E501 line too long (241 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14940,7 +14940,7 @@ sfclient.py:29679:80: E501 line too long (110 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29681:80: E501 line too long (234 > 79 characters)
+sfclient.py:29691:80: E501 line too long (133 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14951,7 +14951,7 @@ sfclient.py:29681:80: E501 line too long (234 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29683:80: E501 line too long (241 > 79 characters)
+sfclient.py:29693:80: E501 line too long (341 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14962,7 +14962,7 @@ sfclient.py:29683:80: E501 line too long (241 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29688:80: E501 line too long (133 > 79 characters)
+sfclient.py:29695:80: E501 line too long (341 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14973,7 +14973,7 @@ sfclient.py:29688:80: E501 line too long (133 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29690:80: E501 line too long (341 > 79 characters)
+sfclient.py:29700:80: E501 line too long (135 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14984,7 +14984,7 @@ sfclient.py:29690:80: E501 line too long (341 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29692:80: E501 line too long (341 > 79 characters)
+sfclient.py:29702:80: E501 line too long (198 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -14995,7 +14995,7 @@ sfclient.py:29692:80: E501 line too long (341 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29697:80: E501 line too long (135 > 79 characters)
+sfclient.py:29704:80: E501 line too long (205 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15006,7 +15006,7 @@ sfclient.py:29697:80: E501 line too long (135 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29699:80: E501 line too long (198 > 79 characters)
+sfclient.py:29706:80: E501 line too long (117 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15017,7 +15017,7 @@ sfclient.py:29699:80: E501 line too long (198 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29701:80: E501 line too long (205 > 79 characters)
+sfclient.py:29714:80: E501 line too long (116 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15028,7 +15028,7 @@ sfclient.py:29701:80: E501 line too long (205 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29703:80: E501 line too long (117 > 79 characters)
+sfclient.py:29717:80: E501 line too long (111 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15039,7 +15039,7 @@ sfclient.py:29703:80: E501 line too long (117 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29711:80: E501 line too long (116 > 79 characters)
+sfclient.py:29718:80: E501 line too long (115 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15050,7 +15050,7 @@ sfclient.py:29711:80: E501 line too long (116 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29714:80: E501 line too long (111 > 79 characters)
+sfclient.py:29719:80: E501 line too long (107 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15061,7 +15061,7 @@ sfclient.py:29714:80: E501 line too long (111 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29715:80: E501 line too long (115 > 79 characters)
+sfclient.py:29720:80: E501 line too long (113 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15072,7 +15072,7 @@ sfclient.py:29715:80: E501 line too long (115 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29716:80: E501 line too long (107 > 79 characters)
+sfclient.py:29721:80: E501 line too long (117 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15083,7 +15083,7 @@ sfclient.py:29716:80: E501 line too long (107 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29717:80: E501 line too long (113 > 79 characters)
+sfclient.py:29722:80: E501 line too long (128 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15094,7 +15094,7 @@ sfclient.py:29717:80: E501 line too long (113 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29718:80: E501 line too long (117 > 79 characters)
+sfclient.py:29723:80: E501 line too long (132 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15105,7 +15105,7 @@ sfclient.py:29718:80: E501 line too long (117 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29719:80: E501 line too long (128 > 79 characters)
+sfclient.py:29724:80: E501 line too long (124 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15116,7 +15116,7 @@ sfclient.py:29719:80: E501 line too long (128 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29720:80: E501 line too long (132 > 79 characters)
+sfclient.py:29725:80: E501 line too long (130 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15127,7 +15127,7 @@ sfclient.py:29720:80: E501 line too long (132 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29721:80: E501 line too long (124 > 79 characters)
+sfclient.py:29726:80: E501 line too long (134 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15138,7 +15138,7 @@ sfclient.py:29721:80: E501 line too long (124 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29722:80: E501 line too long (130 > 79 characters)
+sfclient.py:29729:80: E501 line too long (127 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15149,51 +15149,7 @@ sfclient.py:29722:80: E501 line too long (130 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29723:80: E501 line too long (134 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:29726:80: E501 line too long (127 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:29727:80: E501 line too long (144 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:29731:80: E501 line too long (122 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:29733:80: E501 line too long (128 > 79 characters)
+sfclient.py:29730:80: E501 line too long (144 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15215,7 +15171,7 @@ sfclient.py:29734:80: E501 line too long (122 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29736:80: E501 line too long (122 > 79 characters)
+sfclient.py:29736:80: E501 line too long (128 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15226,7 +15182,7 @@ sfclient.py:29736:80: E501 line too long (122 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29742:80: E501 line too long (139 > 79 characters)
+sfclient.py:29737:80: E501 line too long (122 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15237,7 +15193,7 @@ sfclient.py:29742:80: E501 line too long (139 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29747:80: E501 line too long (477 > 79 characters)
+sfclient.py:29739:80: E501 line too long (122 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15248,7 +15204,7 @@ sfclient.py:29747:80: E501 line too long (477 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29749:80: E501 line too long (661 > 79 characters)
+sfclient.py:29745:80: E501 line too long (139 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15259,7 +15215,7 @@ sfclient.py:29749:80: E501 line too long (661 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29784:80: E501 line too long (134 > 79 characters)
+sfclient.py:29750:80: E501 line too long (477 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15270,7 +15226,7 @@ sfclient.py:29784:80: E501 line too long (134 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29793:80: E501 line too long (134 > 79 characters)
+sfclient.py:29752:80: E501 line too long (661 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15281,7 +15237,7 @@ sfclient.py:29793:80: E501 line too long (134 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29794:80: E501 line too long (133 > 79 characters)
+sfclient.py:29787:80: E501 line too long (134 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15292,7 +15248,7 @@ sfclient.py:29794:80: E501 line too long (133 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29802:80: E501 line too long (159 > 79 characters)
+sfclient.py:29796:80: E501 line too long (134 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15303,7 +15259,7 @@ sfclient.py:29802:80: E501 line too long (159 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29805:80: E501 line too long (257 > 79 characters)
+sfclient.py:29797:80: E501 line too long (133 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15314,7 +15270,7 @@ sfclient.py:29805:80: E501 line too long (257 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29806:80: E501 line too long (259 > 79 characters)
+sfclient.py:29805:80: E501 line too long (159 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15325,7 +15281,7 @@ sfclient.py:29806:80: E501 line too long (259 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29807:80: E501 line too long (254 > 79 characters)
+sfclient.py:29808:80: E501 line too long (257 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15336,7 +15292,7 @@ sfclient.py:29807:80: E501 line too long (254 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29827:80: E501 line too long (90 > 79 characters)
+sfclient.py:29809:80: E501 line too long (259 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15347,7 +15303,7 @@ sfclient.py:29827:80: E501 line too long (90 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29828:80: E501 line too long (89 > 79 characters)
+sfclient.py:29810:80: E501 line too long (254 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15358,7 +15314,7 @@ sfclient.py:29828:80: E501 line too long (89 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29830:80: E501 line too long (80 > 79 characters)
+sfclient.py:29830:80: E501 line too long (90 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15369,7 +15325,7 @@ sfclient.py:29830:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29831:80: E501 line too long (111 > 79 characters)
+sfclient.py:29831:80: E501 line too long (89 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15380,7 +15336,7 @@ sfclient.py:29831:80: E501 line too long (111 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29832:80: E501 line too long (128 > 79 characters)
+sfclient.py:29833:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15391,7 +15347,7 @@ sfclient.py:29832:80: E501 line too long (128 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29835:80: E501 line too long (90 > 79 characters)
+sfclient.py:29834:80: E501 line too long (111 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15402,7 +15358,7 @@ sfclient.py:29835:80: E501 line too long (90 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29836:80: E501 line too long (89 > 79 characters)
+sfclient.py:29835:80: E501 line too long (128 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15413,7 +15369,7 @@ sfclient.py:29836:80: E501 line too long (89 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29838:80: E501 line too long (80 > 79 characters)
+sfclient.py:29838:80: E501 line too long (90 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15424,7 +15380,7 @@ sfclient.py:29838:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29839:80: E501 line too long (111 > 79 characters)
+sfclient.py:29839:80: E501 line too long (89 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15435,7 +15391,7 @@ sfclient.py:29839:80: E501 line too long (111 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29840:80: E501 line too long (128 > 79 characters)
+sfclient.py:29841:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15446,7 +15402,7 @@ sfclient.py:29840:80: E501 line too long (128 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29855:80: E501 line too long (94 > 79 characters)
+sfclient.py:29842:80: E501 line too long (111 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15457,7 +15413,7 @@ sfclient.py:29855:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29857:80: E501 line too long (94 > 79 characters)
+sfclient.py:29843:80: E501 line too long (128 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15468,7 +15424,7 @@ sfclient.py:29857:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29873:80: E501 line too long (119 > 79 characters)
+sfclient.py:29858:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15479,7 +15435,7 @@ sfclient.py:29873:80: E501 line too long (119 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29875:80: E501 line too long (262 > 79 characters)
+sfclient.py:29860:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15490,7 +15446,7 @@ sfclient.py:29875:80: E501 line too long (262 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29877:80: E501 line too long (263 > 79 characters)
+sfclient.py:29876:80: E501 line too long (119 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15501,7 +15457,7 @@ sfclient.py:29877:80: E501 line too long (263 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29880:80: E501 line too long (125 > 79 characters)
+sfclient.py:29878:80: E501 line too long (262 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15512,7 +15468,7 @@ sfclient.py:29880:80: E501 line too long (125 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29887:80: E501 line too long (157 > 79 characters)
+sfclient.py:29880:80: E501 line too long (263 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15523,7 +15479,7 @@ sfclient.py:29887:80: E501 line too long (157 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29944:80: E501 line too long (143 > 79 characters)
+sfclient.py:29883:80: E501 line too long (125 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15534,7 +15490,7 @@ sfclient.py:29944:80: E501 line too long (143 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29946:80: E501 line too long (112 > 79 characters)
+sfclient.py:29949:80: E501 line too long (143 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15545,7 +15501,7 @@ sfclient.py:29946:80: E501 line too long (112 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29950:80: E501 line too long (116 > 79 characters)
+sfclient.py:29951:80: E501 line too long (112 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15556,7 +15512,7 @@ sfclient.py:29950:80: E501 line too long (116 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29954:80: E501 line too long (110 > 79 characters)
+sfclient.py:29955:80: E501 line too long (116 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15567,7 +15523,7 @@ sfclient.py:29954:80: E501 line too long (110 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29958:80: E501 line too long (101 > 79 characters)
+sfclient.py:29959:80: E501 line too long (110 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15578,7 +15534,7 @@ sfclient.py:29958:80: E501 line too long (101 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29961:80: E501 line too long (99 > 79 characters)
+sfclient.py:29963:80: E501 line too long (101 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15589,7 +15545,7 @@ sfclient.py:29961:80: E501 line too long (99 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29962:80: E501 line too long (97 > 79 characters)
+sfclient.py:29966:80: E501 line too long (99 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15600,7 +15556,7 @@ sfclient.py:29962:80: E501 line too long (97 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29971:80: E501 line too long (93 > 79 characters)
+sfclient.py:29967:80: E501 line too long (97 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15611,7 +15567,7 @@ sfclient.py:29971:80: E501 line too long (93 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29980:80: E501 line too long (114 > 79 characters)
+sfclient.py:29976:80: E501 line too long (93 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15622,7 +15578,7 @@ sfclient.py:29980:80: E501 line too long (114 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29981:80: E501 line too long (130 > 79 characters)
+sfclient.py:29985:80: E501 line too long (114 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15633,7 +15589,7 @@ sfclient.py:29981:80: E501 line too long (130 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29982:80: E501 line too long (111 > 79 characters)
+sfclient.py:29986:80: E501 line too long (130 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15644,7 +15600,7 @@ sfclient.py:29982:80: E501 line too long (111 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29983:80: E501 line too long (121 > 79 characters)
+sfclient.py:29987:80: E501 line too long (111 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15655,7 +15611,7 @@ sfclient.py:29983:80: E501 line too long (121 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29984:80: E501 line too long (121 > 79 characters)
+sfclient.py:29988:80: E501 line too long (121 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15666,7 +15622,7 @@ sfclient.py:29984:80: E501 line too long (121 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29985:80: E501 line too long (111 > 79 characters)
+sfclient.py:29989:80: E501 line too long (121 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15677,7 +15633,7 @@ sfclient.py:29985:80: E501 line too long (111 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29986:80: E501 line too long (119 > 79 characters)
+sfclient.py:29990:80: E501 line too long (111 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15688,7 +15644,7 @@ sfclient.py:29986:80: E501 line too long (119 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29987:80: E501 line too long (115 > 79 characters)
+sfclient.py:29991:80: E501 line too long (119 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15699,7 +15655,7 @@ sfclient.py:29987:80: E501 line too long (115 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29988:80: E501 line too long (123 > 79 characters)
+sfclient.py:29992:80: E501 line too long (115 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15710,7 +15666,7 @@ sfclient.py:29988:80: E501 line too long (123 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29994:80: E501 line too long (89 > 79 characters)
+sfclient.py:29993:80: E501 line too long (123 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15721,7 +15677,7 @@ sfclient.py:29994:80: E501 line too long (89 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29996:80: E501 line too long (94 > 79 characters)
+sfclient.py:29999:80: E501 line too long (89 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15732,7 +15688,7 @@ sfclient.py:29996:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:29998:80: E501 line too long (89 > 79 characters)
+sfclient.py:30001:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15743,7 +15699,7 @@ sfclient.py:29998:80: E501 line too long (89 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30009:80: E501 line too long (129 > 79 characters)
+sfclient.py:30003:80: E501 line too long (89 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15754,7 +15710,7 @@ sfclient.py:30009:80: E501 line too long (129 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30028:80: E501 line too long (120 > 79 characters)
+sfclient.py:30014:80: E501 line too long (129 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15765,7 +15721,7 @@ sfclient.py:30028:80: E501 line too long (120 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30038:80: E501 line too long (324 > 79 characters)
+sfclient.py:30033:80: E501 line too long (120 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15776,7 +15732,7 @@ sfclient.py:30038:80: E501 line too long (324 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30048:80: E501 line too long (105 > 79 characters)
+sfclient.py:30043:80: E501 line too long (324 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15787,7 +15743,7 @@ sfclient.py:30048:80: E501 line too long (105 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30059:80: E501 line too long (113 > 79 characters)
+sfclient.py:30053:80: E501 line too long (105 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15798,7 +15754,7 @@ sfclient.py:30059:80: E501 line too long (113 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30064:80: E501 line too long (105 > 79 characters)
+sfclient.py:30064:80: E501 line too long (113 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15809,7 +15765,7 @@ sfclient.py:30064:80: E501 line too long (105 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30070:80: E501 line too long (92 > 79 characters)
+sfclient.py:30069:80: E501 line too long (105 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15820,7 +15776,7 @@ sfclient.py:30070:80: E501 line too long (92 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30078:80: E501 line too long (260 > 79 characters)
+sfclient.py:30075:80: E501 line too long (92 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15831,7 +15787,7 @@ sfclient.py:30078:80: E501 line too long (260 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30079:80: E501 line too long (142 > 79 characters)
+sfclient.py:30083:80: E501 line too long (260 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15842,7 +15798,7 @@ sfclient.py:30079:80: E501 line too long (142 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30080:80: E501 line too long (90 > 79 characters)
+sfclient.py:30084:80: E501 line too long (142 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15853,7 +15809,7 @@ sfclient.py:30080:80: E501 line too long (90 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30087:80: E501 line too long (179 > 79 characters)
+sfclient.py:30085:80: E501 line too long (90 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15864,7 +15820,7 @@ sfclient.py:30087:80: E501 line too long (179 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30095:80: E501 line too long (117 > 79 characters)
+sfclient.py:30092:80: E501 line too long (179 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15875,7 +15831,7 @@ sfclient.py:30095:80: E501 line too long (117 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30125:80: E501 line too long (156 > 79 characters)
+sfclient.py:30100:80: E501 line too long (117 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15886,7 +15842,7 @@ sfclient.py:30125:80: E501 line too long (156 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30130:80: E501 line too long (153 > 79 characters)
+sfclient.py:30130:80: E501 line too long (156 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15897,7 +15853,7 @@ sfclient.py:30130:80: E501 line too long (153 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30138:80: E501 line too long (168 > 79 characters)
+sfclient.py:30135:80: E501 line too long (153 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15908,7 +15864,7 @@ sfclient.py:30138:80: E501 line too long (168 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30142:80: E501 line too long (256 > 79 characters)
+sfclient.py:30143:80: E501 line too long (168 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15919,7 +15875,7 @@ sfclient.py:30142:80: E501 line too long (256 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30156:80: E501 line too long (129 > 79 characters)
+sfclient.py:30147:80: E501 line too long (256 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15930,7 +15886,7 @@ sfclient.py:30156:80: E501 line too long (129 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30180:80: E501 line too long (162 > 79 characters)
+sfclient.py:30161:80: E501 line too long (129 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15941,7 +15897,7 @@ sfclient.py:30180:80: E501 line too long (162 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30189:80: E501 line too long (159 > 79 characters)
+sfclient.py:30185:80: E501 line too long (162 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15952,7 +15908,7 @@ sfclient.py:30189:80: E501 line too long (159 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30201:80: E501 line too long (119 > 79 characters)
+sfclient.py:30194:80: E501 line too long (159 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15963,7 +15919,7 @@ sfclient.py:30201:80: E501 line too long (119 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30207:80: E501 line too long (90 > 79 characters)
+sfclient.py:30206:80: E501 line too long (119 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15974,7 +15930,7 @@ sfclient.py:30207:80: E501 line too long (90 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30210:80: E501 line too long (127 > 79 characters)
+sfclient.py:30212:80: E501 line too long (90 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15985,7 +15941,7 @@ sfclient.py:30210:80: E501 line too long (127 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30223:80: E501 line too long (121 > 79 characters)
+sfclient.py:30215:80: E501 line too long (127 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -15996,7 +15952,7 @@ sfclient.py:30223:80: E501 line too long (121 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30229:80: E501 line too long (106 > 79 characters)
+sfclient.py:30228:80: E501 line too long (121 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16007,7 +15963,7 @@ sfclient.py:30229:80: E501 line too long (106 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30231:80: E501 line too long (171 > 79 characters)
+sfclient.py:30234:80: E501 line too long (106 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16018,7 +15974,7 @@ sfclient.py:30231:80: E501 line too long (171 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30237:80: E501 line too long (271 > 79 characters)
+sfclient.py:30236:80: E501 line too long (171 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16029,7 +15985,7 @@ sfclient.py:30237:80: E501 line too long (271 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30238:80: E501 line too long (650 > 79 characters)
+sfclient.py:30242:80: E501 line too long (271 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16040,7 +15996,7 @@ sfclient.py:30238:80: E501 line too long (650 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30240:80: E501 line too long (392 > 79 characters)
+sfclient.py:30243:80: E501 line too long (650 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16051,7 +16007,7 @@ sfclient.py:30240:80: E501 line too long (392 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30245:80: E501 line too long (134 > 79 characters)
+sfclient.py:30245:80: E501 line too long (392 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16062,7 +16018,7 @@ sfclient.py:30245:80: E501 line too long (134 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30246:80: E501 line too long (479 > 79 characters)
+sfclient.py:30250:80: E501 line too long (134 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16073,7 +16029,7 @@ sfclient.py:30246:80: E501 line too long (479 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30248:80: E501 line too long (221 > 79 characters)
+sfclient.py:30251:80: E501 line too long (479 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16084,7 +16040,7 @@ sfclient.py:30248:80: E501 line too long (221 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30253:80: E501 line too long (138 > 79 characters)
+sfclient.py:30253:80: E501 line too long (221 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16095,7 +16051,7 @@ sfclient.py:30253:80: E501 line too long (138 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30254:80: E501 line too long (475 > 79 characters)
+sfclient.py:30258:80: E501 line too long (138 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16106,7 +16062,7 @@ sfclient.py:30254:80: E501 line too long (475 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30256:80: E501 line too long (217 > 79 characters)
+sfclient.py:30259:80: E501 line too long (475 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16117,7 +16073,7 @@ sfclient.py:30256:80: E501 line too long (217 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30259:80: E501 line too long (87 > 79 characters)
+sfclient.py:30261:80: E501 line too long (217 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16128,7 +16084,7 @@ sfclient.py:30259:80: E501 line too long (87 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30272:80: E501 line too long (87 > 79 characters)
+sfclient.py:30264:80: E501 line too long (87 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16139,7 +16095,7 @@ sfclient.py:30272:80: E501 line too long (87 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30286:80: E501 line too long (84 > 79 characters)
+sfclient.py:30292:80: E501 line too long (84 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16150,7 +16106,7 @@ sfclient.py:30286:80: E501 line too long (84 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30296:80: E501 line too long (92 > 79 characters)
+sfclient.py:30302:80: E501 line too long (92 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16161,7 +16117,7 @@ sfclient.py:30296:80: E501 line too long (92 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30309:80: E501 line too long (231 > 79 characters)
+sfclient.py:30315:80: E501 line too long (231 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16172,7 +16128,7 @@ sfclient.py:30309:80: E501 line too long (231 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30312:80: E501 line too long (214 > 79 characters)
+sfclient.py:30318:80: E501 line too long (214 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16183,7 +16139,7 @@ sfclient.py:30312:80: E501 line too long (214 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30316:80: E501 line too long (115 > 79 characters)
+sfclient.py:30322:80: E501 line too long (115 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16194,7 +16150,7 @@ sfclient.py:30316:80: E501 line too long (115 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30318:80: E501 line too long (114 > 79 characters)
+sfclient.py:30324:80: E501 line too long (114 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16205,7 +16161,7 @@ sfclient.py:30318:80: E501 line too long (114 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30325:80: E501 line too long (239 > 79 characters)
+sfclient.py:30331:80: E501 line too long (239 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16216,7 +16172,7 @@ sfclient.py:30325:80: E501 line too long (239 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30329:80: E501 line too long (276 > 79 characters)
+sfclient.py:30335:80: E501 line too long (276 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16227,7 +16183,7 @@ sfclient.py:30329:80: E501 line too long (276 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30332:80: E501 line too long (160 > 79 characters)
+sfclient.py:30338:80: E501 line too long (160 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16238,7 +16194,7 @@ sfclient.py:30332:80: E501 line too long (160 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30335:80: E501 line too long (162 > 79 characters)
+sfclient.py:30341:80: E501 line too long (162 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16249,7 +16205,7 @@ sfclient.py:30335:80: E501 line too long (162 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30338:80: E501 line too long (193 > 79 characters)
+sfclient.py:30344:80: E501 line too long (193 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16260,7 +16216,7 @@ sfclient.py:30338:80: E501 line too long (193 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30341:80: E501 line too long (224 > 79 characters)
+sfclient.py:30347:80: E501 line too long (224 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16271,7 +16227,7 @@ sfclient.py:30341:80: E501 line too long (224 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30347:80: E501 line too long (225 > 79 characters)
+sfclient.py:30353:80: E501 line too long (225 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16282,7 +16238,7 @@ sfclient.py:30347:80: E501 line too long (225 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30353:80: E501 line too long (233 > 79 characters)
+sfclient.py:30359:80: E501 line too long (233 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16293,7 +16249,7 @@ sfclient.py:30353:80: E501 line too long (233 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30358:80: E501 line too long (83 > 79 characters)
+sfclient.py:30364:80: E501 line too long (83 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16304,7 +16260,7 @@ sfclient.py:30358:80: E501 line too long (83 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30359:80: E501 line too long (234 > 79 characters)
+sfclient.py:30365:80: E501 line too long (234 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16315,7 +16271,7 @@ sfclient.py:30359:80: E501 line too long (234 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30364:80: E501 line too long (87 > 79 characters)
+sfclient.py:30370:80: E501 line too long (87 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16326,7 +16282,7 @@ sfclient.py:30364:80: E501 line too long (87 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30365:80: E501 line too long (224 > 79 characters)
+sfclient.py:30371:80: E501 line too long (224 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16337,7 +16293,7 @@ sfclient.py:30365:80: E501 line too long (224 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30367:80: E501 line too long (81 > 79 characters)
+sfclient.py:30373:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16348,7 +16304,7 @@ sfclient.py:30367:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30370:80: E501 line too long (91 > 79 characters)
+sfclient.py:30376:80: E501 line too long (91 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16359,7 +16315,7 @@ sfclient.py:30370:80: E501 line too long (91 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30371:80: E501 line too long (225 > 79 characters)
+sfclient.py:30377:80: E501 line too long (225 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16370,7 +16326,7 @@ sfclient.py:30371:80: E501 line too long (225 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30372:80: E501 line too long (83 > 79 characters)
+sfclient.py:30378:80: E501 line too long (83 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16381,7 +16337,7 @@ sfclient.py:30372:80: E501 line too long (83 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30373:80: E501 line too long (85 > 79 characters)
+sfclient.py:30379:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16392,7 +16348,7 @@ sfclient.py:30373:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30376:80: E501 line too long (95 > 79 characters)
+sfclient.py:30382:80: E501 line too long (95 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16403,7 +16359,7 @@ sfclient.py:30376:80: E501 line too long (95 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30377:80: E501 line too long (182 > 79 characters)
+sfclient.py:30383:80: E501 line too long (182 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16414,7 +16370,7 @@ sfclient.py:30377:80: E501 line too long (182 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30379:80: E501 line too long (99 > 79 characters)
+sfclient.py:30385:80: E501 line too long (99 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16425,7 +16381,7 @@ sfclient.py:30379:80: E501 line too long (99 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30380:80: E501 line too long (329 > 79 characters)
+sfclient.py:30386:80: E501 line too long (329 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16436,7 +16392,7 @@ sfclient.py:30380:80: E501 line too long (329 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30381:80: E501 line too long (80 > 79 characters)
+sfclient.py:30387:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16447,7 +16403,7 @@ sfclient.py:30381:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30382:80: E501 line too long (103 > 79 characters)
+sfclient.py:30388:80: E501 line too long (103 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16458,7 +16414,7 @@ sfclient.py:30382:80: E501 line too long (103 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30383:80: E501 line too long (217 > 79 characters)
+sfclient.py:30389:80: E501 line too long (217 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16469,7 +16425,7 @@ sfclient.py:30383:80: E501 line too long (217 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30403:80: E501 line too long (171 > 79 characters)
+sfclient.py:30409:80: E501 line too long (171 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16480,7 +16436,7 @@ sfclient.py:30403:80: E501 line too long (171 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30406:80: E501 line too long (154 > 79 characters)
+sfclient.py:30412:80: E501 line too long (154 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16491,7 +16447,7 @@ sfclient.py:30406:80: E501 line too long (154 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30410:80: E501 line too long (115 > 79 characters)
+sfclient.py:30416:80: E501 line too long (115 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16502,7 +16458,7 @@ sfclient.py:30410:80: E501 line too long (115 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30412:80: E501 line too long (114 > 79 characters)
+sfclient.py:30418:80: E501 line too long (114 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16513,7 +16469,7 @@ sfclient.py:30412:80: E501 line too long (114 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30417:80: E501 line too long (98 > 79 characters)
+sfclient.py:30423:80: E501 line too long (98 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16524,7 +16480,7 @@ sfclient.py:30417:80: E501 line too long (98 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30419:80: E501 line too long (179 > 79 characters)
+sfclient.py:30425:80: E501 line too long (179 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16535,7 +16491,7 @@ sfclient.py:30419:80: E501 line too long (179 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30423:80: E501 line too long (216 > 79 characters)
+sfclient.py:30429:80: E501 line too long (216 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16546,7 +16502,7 @@ sfclient.py:30423:80: E501 line too long (216 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30426:80: E501 line too long (100 > 79 characters)
+sfclient.py:30432:80: E501 line too long (100 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16557,7 +16513,7 @@ sfclient.py:30426:80: E501 line too long (100 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30429:80: E501 line too long (102 > 79 characters)
+sfclient.py:30435:80: E501 line too long (102 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16568,7 +16524,7 @@ sfclient.py:30429:80: E501 line too long (102 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30432:80: E501 line too long (193 > 79 characters)
+sfclient.py:30438:80: E501 line too long (193 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16579,7 +16535,7 @@ sfclient.py:30432:80: E501 line too long (193 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30435:80: E501 line too long (164 > 79 characters)
+sfclient.py:30441:80: E501 line too long (164 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16590,7 +16546,7 @@ sfclient.py:30435:80: E501 line too long (164 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30441:80: E501 line too long (165 > 79 characters)
+sfclient.py:30447:80: E501 line too long (165 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16601,7 +16557,7 @@ sfclient.py:30441:80: E501 line too long (165 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30447:80: E501 line too long (173 > 79 characters)
+sfclient.py:30453:80: E501 line too long (173 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16612,7 +16568,7 @@ sfclient.py:30447:80: E501 line too long (173 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30452:80: E501 line too long (83 > 79 characters)
+sfclient.py:30458:80: E501 line too long (83 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16623,7 +16579,7 @@ sfclient.py:30452:80: E501 line too long (83 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30453:80: E501 line too long (174 > 79 characters)
+sfclient.py:30459:80: E501 line too long (174 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16634,7 +16590,7 @@ sfclient.py:30453:80: E501 line too long (174 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30458:80: E501 line too long (87 > 79 characters)
+sfclient.py:30464:80: E501 line too long (87 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16645,7 +16601,7 @@ sfclient.py:30458:80: E501 line too long (87 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30459:80: E501 line too long (224 > 79 characters)
+sfclient.py:30465:80: E501 line too long (224 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16656,7 +16612,7 @@ sfclient.py:30459:80: E501 line too long (224 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30461:80: E501 line too long (81 > 79 characters)
+sfclient.py:30467:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16667,7 +16623,7 @@ sfclient.py:30461:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30464:80: E501 line too long (90 > 79 characters)
+sfclient.py:30470:80: E501 line too long (90 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16678,7 +16634,7 @@ sfclient.py:30464:80: E501 line too long (90 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30465:80: E501 line too long (225 > 79 characters)
+sfclient.py:30471:80: E501 line too long (225 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16689,7 +16645,7 @@ sfclient.py:30465:80: E501 line too long (225 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30466:80: E501 line too long (83 > 79 characters)
+sfclient.py:30472:80: E501 line too long (83 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16700,7 +16656,7 @@ sfclient.py:30466:80: E501 line too long (83 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30467:80: E501 line too long (85 > 79 characters)
+sfclient.py:30473:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16711,7 +16667,7 @@ sfclient.py:30467:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30470:80: E501 line too long (94 > 79 characters)
+sfclient.py:30476:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16722,7 +16678,7 @@ sfclient.py:30470:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30471:80: E501 line too long (182 > 79 characters)
+sfclient.py:30477:80: E501 line too long (182 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16733,7 +16689,7 @@ sfclient.py:30471:80: E501 line too long (182 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30473:80: E501 line too long (98 > 79 characters)
+sfclient.py:30479:80: E501 line too long (98 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16744,7 +16700,7 @@ sfclient.py:30473:80: E501 line too long (98 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30474:80: E501 line too long (329 > 79 characters)
+sfclient.py:30480:80: E501 line too long (329 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16755,7 +16711,7 @@ sfclient.py:30474:80: E501 line too long (329 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30475:80: E501 line too long (80 > 79 characters)
+sfclient.py:30481:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16766,7 +16722,7 @@ sfclient.py:30475:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30476:80: E501 line too long (102 > 79 characters)
+sfclient.py:30482:80: E501 line too long (102 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16777,7 +16733,7 @@ sfclient.py:30476:80: E501 line too long (102 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30477:80: E501 line too long (217 > 79 characters)
+sfclient.py:30483:80: E501 line too long (217 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16788,7 +16744,7 @@ sfclient.py:30477:80: E501 line too long (217 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30512:80: E501 line too long (91 > 79 characters)
+sfclient.py:30544:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16799,7 +16755,7 @@ sfclient.py:30512:80: E501 line too long (91 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30537:80: E501 line too long (94 > 79 characters)
+sfclient.py:30547:80: E501 line too long (91 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16810,7 +16766,7 @@ sfclient.py:30537:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30540:80: E501 line too long (91 > 79 characters)
+sfclient.py:30553:80: E501 line too long (85 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16821,7 +16777,7 @@ sfclient.py:30540:80: E501 line too long (91 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30546:80: E501 line too long (85 > 79 characters)
+sfclient.py:30563:80: E501 line too long (94 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16832,7 +16788,7 @@ sfclient.py:30546:80: E501 line too long (85 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30556:80: E501 line too long (94 > 79 characters)
+sfclient.py:30584:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16843,7 +16799,7 @@ sfclient.py:30556:80: E501 line too long (94 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30577:80: E501 line too long (80 > 79 characters)
+sfclient.py:30654:80: E501 line too long (95 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16854,7 +16810,7 @@ sfclient.py:30577:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30647:80: E501 line too long (95 > 79 characters)
+sfclient.py:30678:80: E501 line too long (87 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16865,7 +16821,7 @@ sfclient.py:30647:80: E501 line too long (95 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30671:80: E501 line too long (87 > 79 characters)
+sfclient.py:30691:80: E501 line too long (114 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16876,7 +16832,7 @@ sfclient.py:30671:80: E501 line too long (87 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30684:80: E501 line too long (114 > 79 characters)
+sfclient.py:30695:80: E501 line too long (312 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16887,7 +16843,7 @@ sfclient.py:30684:80: E501 line too long (114 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30688:80: E501 line too long (312 > 79 characters)
+sfclient.py:30735:80: E501 line too long (99 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16898,7 +16854,7 @@ sfclient.py:30688:80: E501 line too long (312 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30728:80: E501 line too long (99 > 79 characters)
+sfclient.py:30767:80: E501 line too long (304 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16909,7 +16865,7 @@ sfclient.py:30728:80: E501 line too long (99 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30760:80: E501 line too long (304 > 79 characters)
+sfclient.py:30777:80: E501 line too long (101 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16920,7 +16876,7 @@ sfclient.py:30760:80: E501 line too long (304 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30770:80: E501 line too long (101 > 79 characters)
+sfclient.py:30782:80: E501 line too long (95 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16931,7 +16887,7 @@ sfclient.py:30770:80: E501 line too long (101 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30775:80: E501 line too long (95 > 79 characters)
+sfclient.py:30783:80: E501 line too long (115 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16942,7 +16898,7 @@ sfclient.py:30775:80: E501 line too long (95 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30776:80: E501 line too long (115 > 79 characters)
+sfclient.py:30784:80: E501 line too long (97 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16953,7 +16909,7 @@ sfclient.py:30776:80: E501 line too long (115 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30777:80: E501 line too long (97 > 79 characters)
+sfclient.py:30785:80: E501 line too long (103 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -16964,260 +16920,7 @@ sfclient.py:30777:80: E501 line too long (97 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:30778:80: E501 line too long (103 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30939:80: E501 line too long (80 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30959:80: E501 line too long (98 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30963:80: E501 line too long (91 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30980:80: E501 line too long (107 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30986:80: E501 line too long (105 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30991:80: E501 line too long (99 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30992:80: E501 line too long (115 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30994:80: E501 line too long (107 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:30999:80: E501 line too long (104 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31000:80: E501 line too long (107 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31004:80: E501 line too long (196 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31039:80: E501 line too long (155 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31045:80: E501 line too long (82 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31046:80: E501 line too long (88 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31047:80: E501 line too long (88 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31048:80: E501 line too long (87 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31049:80: E501 line too long (87 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31050:80: E501 line too long (88 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31051:80: E501 line too long (87 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31052:80: E501 line too long (87 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31053:80: E501 line too long (90 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31054:80: E501 line too long (91 > 79 characters)
-    Limit all lines to a maximum of 79 characters.
-
-    There are still many devices around that are limited to 80 character
-    lines; plus, limiting windows to 80 characters makes it possible to have
-    several windows side-by-side.  The default wrapping on such devices looks
-    ugly.  Therefore, please limit all lines to a maximum of 79 characters.
-    For flowing long blocks of text (docstrings or comments), limiting the
-    length to 72 characters is recommended.
-
-    Reports error E501.
-sfclient.py:31786:80: E501 line too long (86 > 79 characters)
+sfclient.py:30946:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -17229,10 +16932,3 @@ sfclient.py:31786:80: E501 line too long (86 > 79 characters)
 
     Reports error E501.
 checking sflegacy.py
-sflegacy.py:462:9: W292 no newline at end of file
-    Trailing blank lines are superfluous.
-
-    Okay: spam(1)
-    W391: spam(1)\n
-
-    However the last line should end with a new line (warning W292).
