@@ -26570,18 +26570,29 @@ def load_tracking_pixel(url=''):
                                                        towerBoostPriceFadeout);
         i = 0;
         while (i < 3) {
-            DefineImg((TOWER_PORTRAIT + i), (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"), False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
-            DefineImg((TOWER_NO_PORTRAIT + i), (("res/gfx/npc/copycat_" + str((i + 1))) + "_empty.jpg"), False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
-            define_btn((TOWER_STEIGERN1 + i), "", BoostCopycat, btn_classPlus, (SCR_CHAR_CHARX + 232), (SCR_CHAR_CHARY + 260));
+            DefineImg((TOWER_PORTRAIT + i),
+                      (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"),
+                      False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
+            DefineImg((TOWER_NO_PORTRAIT + i),
+                      (("res/gfx/npc/copycat_" + str((i + 1))) + "_empty.jpg"),
+                      False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
+            define_btn((TOWER_STEIGERN1 + i), "", BoostCopycat, btn_classPlus,
+                       (SCR_CHAR_CHARX + 232), (SCR_CHAR_CHARY + 260));
             actor[(TOWER_STEIGERN1 + i)].scaleX = 0.8;
             actor[(TOWER_STEIGERN1 + i)].scaleY = 0.8;
-            actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OVER, ShowTowerBoostPrices);
-            actor[(TOWER_STEIGERN1 + i)].add_event_listener(MouseEvent.MOUSE_OUT, HideTowerBoostPrices);
+            actor[(TOWER_STEIGERN1 + i)].add_event_listener(
+                                MouseEvent.MOUSE_OVER, ShowTowerBoostPrices);
+            actor[(TOWER_STEIGERN1 + i)].add_event_listener(
+                                MouseEvent.MOUSE_OUT, HideTowerBoostPrices);
             enable_popup((TOWER_STEIGERN1 + i), texts[TXT_BOOST_COPYCAT]);
-            DefineLbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0, (EXPERIENCE_BAR_Y + 2), FontFormat_Default);
-            AddFilter((LBL_TOWER_BOOSTPRICELABEL + i), Filter_Shadow);
+            DefineLbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0,
+                      (EXPERIENCE_BAR_Y + 2), FontFormat_Default);
+            AddFilter((LBL_TOWER_BOOSTPRICELABEL + i),
+                      Filter_Shadow);
             actor[(LBL_TOWER_BOOSTPRICELABEL + i)].alpha = 0;
-            add_bunch(SCREEN_TOWER, (TOWER_PORTRAIT + i), (TOWER_NO_PORTRAIT + i), (TOWER_STEIGERN1 + i), (LBL_TOWER_BOOSTPRICELABEL + i));
+            add_bunch(SCREEN_TOWER, (TOWER_PORTRAIT + i),
+                      (TOWER_NO_PORTRAIT + i), (TOWER_STEIGERN1 + i),
+                      (LBL_TOWER_BOOSTPRICELABEL + i));
             i = (i + 1);
         };
         i = 0;
@@ -26589,29 +26600,44 @@ def load_tracking_pixel(url=''):
             add_bunch(SCREEN_TOWER, (CHAR_SLOT_1 + i));
             i = (i + 1);
         };
-        define_btn(PREV_COPYCAT, "", TowerBtnHandler, btn_classArrowLeft, (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
-        define_btn(NEXT_COPYCAT, "", TowerBtnHandler, btn_classArrowRight, (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
+        define_btn(PREV_COPYCAT, "", TowerBtnHandler, btn_classArrowLeft,
+                   (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
+        define_btn(NEXT_COPYCAT, "", TowerBtnHandler, btn_classArrowRight,
+                   (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
         DefineCnt(TOWER_BOOSTCOIN, (SCR_CHAR_CHARX + 205), EXPERIENCE_BAR_Y);
         actor[TOWER_BOOSTCOIN].alpha = 0;
-        define_bunch(TOWER_BOOSTPRICE, LBL_TOWER_BOOSTPRICELABEL, (LBL_TOWER_BOOSTPRICELABEL + 1), (LBL_TOWER_BOOSTPRICELABEL + 2), TOWER_BOOSTCOIN);
-        DefineLbl(LBL_TOWER_EXPLABEL, "", (SCR_CHAR_CHARX + 3), (EXPERIENCE_BAR_Y + 2), FontFormat_LifeBar);
+        define_bunch(TOWER_BOOSTPRICE, LBL_TOWER_BOOSTPRICELABEL,
+                     (LBL_TOWER_BOOSTPRICELABEL + 1),
+                     (LBL_TOWER_BOOSTPRICELABEL + 2), TOWER_BOOSTCOIN);
+        DefineLbl(LBL_TOWER_EXPLABEL, "", (SCR_CHAR_CHARX + 3),
+                  (EXPERIENCE_BAR_Y + 2), FontFormat_LifeBar);
         AddFilter(LBL_TOWER_EXPLABEL, Filter_Shadow);
         add_bunch(SCREEN_TOWER, PREV_COPYCAT, NEXT_COPYCAT);
-        add_bunch(SCREEN_TOWER, LBL_TOWER_EXPLABEL, TOWER_BOOSTCOIN, SCR_CHAR_NAME);
+        add_bunch(SCREEN_TOWER, LBL_TOWER_EXPLABEL, TOWER_BOOSTCOIN,
+                  SCR_CHAR_NAME);
         i = 0;
         while (i < 5) {
-            add_bunch(SCREEN_TOWER, (LBL_SCR_CHAR_STAERKE + i), (LBL_SCR_CHAR_STAERKE_CAPTION + i), (LBL_SCR_CHAR_SCHADEN + i), (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
+            add_bunch(SCREEN_TOWER, (LBL_SCR_CHAR_STAERKE + i),
+                      (LBL_SCR_CHAR_STAERKE_CAPTION + i),
+                      (LBL_SCR_CHAR_SCHADEN + i),
+                      (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
             i = (i + 1);
         };
         DefineImg(TOWER_BG, "res/gfx/scr/tower/tower_back.jpg", False, 0, 0);
         DefineImg(TOWER_BASE, "res/gfx/scr/tower/tower_base.png", False, 0, 0);
-        DefineImg(TOWER_LEVEL, "res/gfx/scr/tower/tower_level.png", False, 0, 0);
-        DefineImg((TOWER_LEVEL + 1), "res/gfx/scr/tower/tower_level.png", False, 0, 0);
-        DefineImg((TOWER_LEVEL + 2), "res/gfx/scr/tower/tower_level.png", False, 0, 0);
+        DefineImg(TOWER_LEVEL, "res/gfx/scr/tower/tower_level.png",
+                  False, 0, 0);
+        DefineImg((TOWER_LEVEL + 1), "res/gfx/scr/tower/tower_level.png",
+         False, 0, 0);
+        DefineImg((TOWER_LEVEL + 2), "res/gfx/scr/tower/tower_level.png",
+                  False, 0, 0);
         DefineImg(TOWER_ROOF, "res/gfx/scr/tower/tower_roof.png", False, 0, 0);
-        DefineImg(TOWER_WINDOW_OPEN, "res/gfx/scr/tower/tower_window_open.png", False, 0, 0);
-        DefineImg(TOWER_WINDOW_CLOSED, "res/gfx/scr/tower/tower_window_closed.png", False, 0, 0);
-        DefineImg(TOWER_WINDOW_BURNT, "res/gfx/scr/tower/tower_window_destroyed.png", False, 0, 0);
+        DefineImg(TOWER_WINDOW_OPEN, "res/gfx/scr/tower/tower_window_open.png",
+                  False, 0, 0);
+        DefineImg(TOWER_WINDOW_CLOSED,
+                  "res/gfx/scr/tower/tower_window_closed.png", False, 0, 0);
+        DefineImg(TOWER_WINDOW_BURNT,
+                  "res/gfx/scr/tower/tower_window_destroyed.png", False, 0, 0);
         DefineCnt(TOWER_WINDOW, 0, 0);
         DefineCnt((TOWER_WINDOW + 1), 0, 0);
         DefineCnt((TOWER_WINDOW + 2), 0, 0);
@@ -26622,41 +26648,71 @@ def load_tracking_pixel(url=''):
             actor[(TOWER_FACE + i)].scaleY = 0.5;
             i = (i + 1);
         };
-        define_bunch(TOWER_PIECES, TOWER_BG, TOWER_BASE, TOWER_LEVEL, (TOWER_LEVEL + 1), (TOWER_LEVEL + 2), TOWER_ROOF);
-        add_bunch(TOWER_PIECES, TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2), TOWER_WINDOW_OPEN, TOWER_WINDOW_CLOSED, TOWER_WINDOW_BURNT);
-        MakePersistent(TOWER_BG, TOWER_BASE, TOWER_LEVEL, (TOWER_LEVEL + 1), (TOWER_LEVEL + 2), TOWER_ROOF);
-        MakePersistent(TOWER_WINDOW, (TOWER_WINDOW + 1), (TOWER_WINDOW + 2), TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2));
-        DefineImg(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", False, SCR_SHOP_BG_X, 100);
-        DefineImg(FIDGET_AFFE1, "res/gfx/scr/shops/fidget_affe1.jpg", False, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-        DefineImg(FIDGET_AFFE2, "res/gfx/scr/shops/fidget_affe2.jpg", False, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-        DefineImg(FIDGET_AFFE3, "res/gfx/scr/shops/fidget_affe3.jpg", False, (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
+        define_bunch(TOWER_PIECES, TOWER_BG, TOWER_BASE, TOWER_LEVEL,
+                     (TOWER_LEVEL + 1), (TOWER_LEVEL + 2), TOWER_ROOF);
+        add_bunch(TOWER_PIECES, TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2),
+                  TOWER_WINDOW_OPEN, TOWER_WINDOW_CLOSED, TOWER_WINDOW_BURNT);
+        MakePersistent(TOWER_BG, TOWER_BASE, TOWER_LEVEL, (TOWER_LEVEL + 1),
+                       (TOWER_LEVEL + 2), TOWER_ROOF);
+        MakePersistent(TOWER_WINDOW, (TOWER_WINDOW + 1), (TOWER_WINDOW + 2),
+                       TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2));
+        DefineImg(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", False,
+                  SCR_SHOP_BG_X, 100);
+        DefineImg(FIDGET_AFFE1, "res/gfx/scr/shops/fidget_affe1.jpg", False,
+                  (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
+        DefineImg(FIDGET_AFFE2, "res/gfx/scr/shops/fidget_affe2.jpg", False,
+                  (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
+        DefineImg(FIDGET_AFFE3, "res/gfx/scr/shops/fidget_affe3.jpg", False,
+                  (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
         actor[FIDGET_AFFE1].mouse_enabled = False;
         actor[FIDGET_AFFE2].mouse_enabled = False;
         actor[FIDGET_AFFE3].mouse_enabled = False;
         if (Capabilities.version[0: 3] != "IOS"){
-            DefineImg(FIDGET_TAGKERZE, "res/gfx/scr/shops/tagkerze.swf", False, (SCR_SHOP_BG_X + FIDGET_TAGKERZE_X), (100 + FIDGET_TAGKERZE_Y));
-            DefineImg(FIDGET_NACHTKERZE, "res/gfx/scr/shops/nachtkerze.swf", False, (SCR_SHOP_BG_X + FIDGET_NACHTKERZE_X), (100 + FIDGET_NACHTKERZE_Y));
+            DefineImg(FIDGET_TAGKERZE, "res/gfx/scr/shops/tagkerze.swf", False,
+                      (SCR_SHOP_BG_X + FIDGET_TAGKERZE_X),
+                      (100 + FIDGET_TAGKERZE_Y));
+            DefineImg(FIDGET_NACHTKERZE, "res/gfx/scr/shops/nachtkerze.swf",
+                      False, (SCR_SHOP_BG_X + FIDGET_NACHTKERZE_X),
+                      (100 + FIDGET_NACHTKERZE_Y));
             actor[FIDGET_TAGKERZE].mouse_enabled = False;
             actor[FIDGET_NACHTKERZE].mouse_enabled = False;
         };
-        DefineImg(FIDGET_DAY, "res/gfx/scr/shops/fidget_normal.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        DefineImg(FIDGET_IDLE, "res/gfx/scr/shops/fidget_langeweile.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        DefineImg(FIDGET_SALE, "res/gfx/scr/shops/fidget_wasverkauft.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-        DefineImg(FIDGET_NIGHT, "res/gfx/scr/shops/fidget_nachts.jpg", False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_DAY, "res/gfx/scr/shops/fidget_normal.jpg", False,
+                  (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_IDLE, "res/gfx/scr/shops/fidget_langeweile.jpg",
+                  False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_SALE, "res/gfx/scr/shops/fidget_wasverkauft.jpg",
+                  False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
+        DefineImg(FIDGET_NIGHT, "res/gfx/scr/shops/fidget_nachts.jpg", False,
+                  (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
         actor[FIDGET_DAY].mouse_enabled = False;
         actor[FIDGET_IDLE].mouse_enabled = False;
         actor[FIDGET_SALE].mouse_enabled = False;
         actor[FIDGET_NIGHT].mouse_enabled = False;
-        DefineImg(FIDGET_BLINZELN, "res/gfx/scr/shops/fidget_normal_blinzeln.jpg", False, ((SCR_SHOP_BG_X + FIDGET_X) + FIDGET_BLINZELN_X), ((100 + FIDGET_Y) + FIDGET_BLINZELN_Y));
+        DefineImg(FIDGET_BLINZELN,
+                  "res/gfx/scr/shops/fidget_normal_blinzeln.jpg", False,
+                  ((SCR_SHOP_BG_X + FIDGET_X) + FIDGET_BLINZELN_X),
+                  ((100 + FIDGET_Y) + FIDGET_BLINZELN_Y));
         actor[FIDGET_BLINZELN].mouse_enabled = False;
-        DefineImg(SHAKES_DAY, "res/gfx/scr/shops/shakes_normal.jpg", False, (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
-        DefineImg(SHAKES_NIGHT, "res/gfx/scr/shops/shakes_nacht.jpg", False, (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
-        DefineImg(SHAKES_IDLE, "res/gfx/scr/shops/shakes_gelangweilt.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE_X), (100 + SHAKES_IDLE_Y));
-        DefineImg(SHAKES_IDLE1, "res/gfx/scr/shops/shakes_spielt1.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-        DefineImg(SHAKES_IDLE2, "res/gfx/scr/shops/shakes_spielt2.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-        DefineImg(SHAKES_IDLE3, "res/gfx/scr/shops/shakes_spielt3.jpg", False, (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-        DefineImg(SHAKES_BLINZELN1, "res/gfx/scr/shops/shakes_augen1.jpg", False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X), ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
-        DefineImg(SHAKES_BLINZELN2, "res/gfx/scr/shops/shakes_augen2.jpg", False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X), ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
+        DefineImg(SHAKES_DAY, "res/gfx/scr/shops/shakes_normal.jpg", False,
+                  (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
+        DefineImg(SHAKES_NIGHT, "res/gfx/scr/shops/shakes_nacht.jpg", False,
+                  (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
+        DefineImg(SHAKES_IDLE, "res/gfx/scr/shops/shakes_gelangweilt.jpg",
+                  False, (SCR_SHOP_BG_X + SHAKES_IDLE_X),
+                  (100 + SHAKES_IDLE_Y));
+        DefineImg(SHAKES_IDLE1, "res/gfx/scr/shops/shakes_spielt1.jpg", False,
+                  (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
+        DefineImg(SHAKES_IDLE2, "res/gfx/scr/shops/shakes_spielt2.jpg", False,
+                  (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
+        DefineImg(SHAKES_IDLE3, "res/gfx/scr/shops/shakes_spielt3.jpg", False,
+                  (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
+        DefineImg(SHAKES_BLINZELN1, "res/gfx/scr/shops/shakes_augen1.jpg",
+                  False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X),
+                  ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
+        DefineImg(SHAKES_BLINZELN2, "res/gfx/scr/shops/shakes_augen2.jpg",
+                  False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X),
+                  ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
         if (Capabilities.version[0: 3] == "IOS"){
             define_bunch(FIDGET_DAY, FIDGET_DAY);
             define_bunch(FIDGET_NIGHT, FIDGET_NIGHT);
@@ -26664,9 +26720,12 @@ def load_tracking_pixel(url=''):
             define_bunch(FIDGET_DAY, FIDGET_DAY, FIDGET_TAGKERZE);
             define_bunch(FIDGET_NIGHT, FIDGET_NIGHT, FIDGET_NACHTKERZE);
         };
-        DefineImg(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", False, SCR_SHOP_BG_X, 100);
-        define_btn(SHOPS_NEWWAREZ, texts[TXT_SHOPS_NEWWAREZ], RequestNewWarez, btn_classBasic, 0, NEW_WAREZ_Y);
-        actor[SHOPS_NEWWAREZ].x = (NEW_WAREZ_X - int((actor[SHOPS_NEWWAREZ].width / 2)));
+        DefineImg(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", False,
+                  SCR_SHOP_BG_X, 100);
+        define_btn(SHOPS_NEWWAREZ, texts[TXT_SHOPS_NEWWAREZ], RequestNewWarez,
+                   btn_classBasic, 0, NEW_WAREZ_Y);
+        actor[SHOPS_NEWWAREZ].x = (NEW_WAREZ_X
+                                   - int((actor[SHOPS_NEWWAREZ].width / 2)));
         DefineCnt(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
         DefineCnt(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
         DefineCnt(CHAR_SLOT_FIDGET_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
@@ -26679,10 +26738,18 @@ def load_tracking_pixel(url=''):
         DefineCnt(CHAR_SLOT_SHAKES_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
         DefineCnt(CHAR_SLOT_SHAKES_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
         DefineCnt(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
-        define_bunch(SCREEN_FIDGET, SCR_FIDGET_BG, FIDGET_AFFE2, FIDGET_AFFE3, FIDGET_AFFE1, FIDGET_SALE, FIDGET_IDLE, FIDGET_DAY, FIDGET_BLINZELN, FIDGET_NIGHT, IF_OVL, SHOPS_NEWWAREZ, CA_SCR_CHAR_EXPBAR, IF_EXIT);
-        define_bunch(SCREEN_SHAKES, SCR_SHAKES_BG, SHAKES_IDLE, SHAKES_IDLE1, SHAKES_IDLE2, SHAKES_IDLE3, SHAKES_DAY, SHAKES_BLINZELN1, SHAKES_BLINZELN2, SHAKES_NIGHT, IF_OVL, SHOPS_NEWWAREZ, CA_SCR_CHAR_EXPBAR, IF_EXIT);
-        DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png", False, (SCR_SHOP_BG_X - 65), (100 + 210));
-        DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png", False, (SCR_SHOP_BG_X + 200), (100 + 250));
+        define_bunch(SCREEN_FIDGET, SCR_FIDGET_BG, FIDGET_AFFE2, FIDGET_AFFE3,
+                     FIDGET_AFFE1, FIDGET_SALE, FIDGET_IDLE, FIDGET_DAY,
+                     FIDGET_BLINZELN, FIDGET_NIGHT, IF_OVL, SHOPS_NEWWAREZ,
+                     CA_SCR_CHAR_EXPBAR, IF_EXIT);
+        define_bunch(SCREEN_SHAKES, SCR_SHAKES_BG, SHAKES_IDLE, SHAKES_IDLE1,
+                     SHAKES_IDLE2, SHAKES_IDLE3, SHAKES_DAY, SHAKES_BLINZELN1,
+                     SHAKES_BLINZELN2, SHAKES_NIGHT, IF_OVL, SHOPS_NEWWAREZ,
+                     CA_SCR_CHAR_EXPBAR, IF_EXIT);
+        DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png",
+                  False, (SCR_SHOP_BG_X - 65), (100 + 210));
+        DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png",
+                  False, (SCR_SHOP_BG_X + 200), (100 + 250));
         AffeBlinzeln = int((random.random() * 30));
         FidgetBlinzeln = int((random.random() * 30));
         ShakesBlinzeln = int((random.random() * 30));
@@ -26701,8 +26768,14 @@ def load_tracking_pixel(url=''):
         };
         i = 0;
         while (i < 5) {
-            add_bunch(SCREEN_FIDGET, (LBL_SCR_CHAR_STAERKE + i), (LBL_SCR_CHAR_STAERKE_CAPTION + i), (LBL_SCR_CHAR_SCHADEN + i), (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
-            add_bunch(SCREEN_SHAKES, (LBL_SCR_CHAR_STAERKE + i), (LBL_SCR_CHAR_STAERKE_CAPTION + i), (LBL_SCR_CHAR_SCHADEN + i), (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
+            add_bunch(SCREEN_FIDGET, (LBL_SCR_CHAR_STAERKE + i),
+                      (LBL_SCR_CHAR_STAERKE_CAPTION + i),
+                      (LBL_SCR_CHAR_SCHADEN + i),
+                      (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
+            add_bunch(SCREEN_SHAKES, (LBL_SCR_CHAR_STAERKE + i),
+                      (LBL_SCR_CHAR_STAERKE_CAPTION + i),
+                      (LBL_SCR_CHAR_SCHADEN + i),
+                      (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
             i = (i + 1);
         };
         i = 0;
@@ -26711,12 +26784,16 @@ def load_tracking_pixel(url=''):
             SetCnt((CHAR_SLOT_SHAKES_1 + i), ITM_OFFS);
             add_bunch(SCREEN_FIDGET, (CHAR_SLOT_FIDGET_1 + i));
             add_bunch(SCREEN_SHAKES, (CHAR_SLOT_SHAKES_1 + i));
-            actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
-            actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
+            actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(
+                                   MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
+            actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(
+                                   MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
             EnableDragDrop((CHAR_SLOT_FIDGET_1 + i), DropHandler);
             EnableDragDrop((CHAR_SLOT_SHAKES_1 + i), DropHandler);
-            actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(MouseEvent.MOUSE_UP, ShopMouseUpEvent);
-            actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(MouseEvent.MOUSE_UP, ShopMouseUpEvent);
+            actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(
+                                   MouseEvent.MOUSE_UP, ShopMouseUpEvent);
+            actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(
+                                   MouseEvent.MOUSE_UP, ShopMouseUpEvent);
             i = (i + 1);
         };
         i = 0;
@@ -26726,14 +26803,17 @@ def load_tracking_pixel(url=''):
             i = (i + 1);
         };
         RollFrenzy.add_event_listener(TimerEvent.TIMER, RequestNewWarez);
-        DefineImg(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", False, ((280 + 500) + 360), (100 + 220));
+        DefineImg(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", False,
+                  ((280 + 500) + 360), (100 + 220));
         actor[GOTO_WITCH_OVL].mouse_enabled = False;
-        DefineClickArea(CA_GOTO_WITCH, GOTO_WITCH_OVL, RequestWitchScreen, ((280 + 500) + 359), (100 + 215), 45, 65);
+        DefineClickArea(CA_GOTO_WITCH, GOTO_WITCH_OVL, RequestWitchScreen,
+                        ((280 + 500) + 359), (100 + 215), 45, 65);
         enable_popup(CA_GOTO_WITCH, texts[TXT_WITCH_BOOK]);
         define_bunch(SCREEN_WITCH);
         define_snd(SND_WITCH_DROP, "res/sfx/toilet/drop.mp3", False);
         add_bunch(SCREEN_WITCH, SND_WITCH_DROP);
-        DefineImg(WITCH, "res/gfx/scr/shops/witch.jpg", False, SCR_SHOP_BG_X, 100);
+        DefineImg(WITCH, "res/gfx/scr/shops/witch.jpg",
+                  False, SCR_SHOP_BG_X, 100);
         add_bunch(SCREEN_WITCH, WITCH);
         i = 0;
         while (i < 15) {
@@ -26742,7 +26822,10 @@ def load_tracking_pixel(url=''):
         };
         i = 0;
         while (i < 15) {
-            DefineImg((WITCH_ANI + i), (("res/gfx/scr/shops/witch_animation/witch" + str(((i * 2) + 1))) + ".jpg"), False, (280 + 500), (100 + 380));
+            DefineImg((WITCH_ANI + i),
+                      (("res/gfx/scr/shops/witch_animation/witch"
+                       + str(((i * 2) + 1))) + ".jpg"), False, (280 + 500),
+                            (100 + 380));
             hide((WITCH_ANI + i));
             add_bunch(SCREEN_WITCH, (WITCH_ANI + i));
             i = (i + 1);
@@ -26750,10 +26833,13 @@ def load_tracking_pixel(url=''):
         spellClicking = False;
         i = 0;
         while (i < 10) {
-            DefineCnt((WITCH_SCROLL + i), (((280 + 500) + 37) + ((i % 5) * 83)), ((100 + 11) + (math.floor((i / 5)) * 95)));
+            DefineCnt((WITCH_SCROLL + i),
+                      (((280 + 500) + 37) + ((i % 5) * 83)),
+                      ((100 + 11) + (math.floor((i / 5)) * 95)));
             actor[(WITCH_SCROLL + i)].useHandCursor = True;
             actor[(WITCH_SCROLL + i)].buttonMode = True;
-            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.CLICK, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.CLICK,
+                                                 function (evt:MouseEvent){
                 var id;
                 id = ((get_actor_id(evt.target) - WITCH_SCROLL) + 1);
                 if (spellClicking){
@@ -26761,16 +26847,18 @@ def load_tracking_pixel(url=''):
                 };
                 spellClicking = False;
             });
-            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_DOWN, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_DOWN,
+                                                 function (evt:MouseEvent){
                 var actorId;
                 var i;
                 actorId = get_actor_id(evt.target);
                 i = (actorId - WITCH_SCROLL);
                 actor[actorId].x = ((((280 + 500) + 37) + ((i % 5) * 83)) + 1);
-                actor[actorId].y = (((100 + 11) + (math.floor((i / 5)) * 95)) + 2);
+                actor[actorId].y = ((100 + 11 + math.floor((i / 5)) * 95) + 2);
                 spellClicking = True;
             });
-            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_UP, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_UP,
+                                                 function (evt:MouseEvent){
                 var actorId;
                 var i;
                 actorId = get_actor_id(evt.target);
@@ -26778,7 +26866,8 @@ def load_tracking_pixel(url=''):
                 actor[actorId].x = (((280 + 500) + 37) + ((i % 5) * 83));
                 actor[actorId].y = ((100 + 11) + (math.floor((i / 5)) * 95));
             });
-            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_OUT, function (evt:MouseEvent){
+            actor[(WITCH_SCROLL + i)].add_event_listener(MouseEvent.MOUSE_OUT,
+                                                     function (evt:MouseEvent){
                 var actorId;
                 var i;
                 actorId = get_actor_id(evt.target);
@@ -26789,8 +26878,10 @@ def load_tracking_pixel(url=''):
             });
             i = (i + 1);
         };
-        DefineClickArea(CA_WITCH, C_EMPTY, None, (SCR_SHOP_BG_X + 180), 400, 135, 155);
-        DefineClickArea(CA_CHALDRON, C_EMPTY, None, (SCR_SHOP_BG_X + 120), 585, 260, 160);
+        DefineClickArea(CA_WITCH, C_EMPTY, None, (SCR_SHOP_BG_X + 180), 400,
+                        135, 155);
+        DefineClickArea(CA_CHALDRON, C_EMPTY, None, (SCR_SHOP_BG_X + 120), 585,
+                        260, 160);
         enable_popup(CA_WITCH, texts[TXT_WITCH_HINT]);
         enable_popup(CA_CHALDRON, texts[(TXT_WITCH_HINT + 1)]);
         actor[CA_WITCH].useHandCursor = False;
@@ -26798,68 +26889,119 @@ def load_tracking_pixel(url=''):
         add_bunch(SCREEN_WITCH, IF_OVL, CA_WITCH, CA_CHALDRON, IF_EXIT);
         DefineImg(SCR_DEALER_BG, "", False, 280, 100);
         define_bunch(SCREEN_DEALER, SCR_DEALER_BG, IF_OVL, IF_EXIT);
-        DefineImg(SCR_WORLDMAP_BG, "res/gfx/scr/map/worldmap.jpg", False, 280, 100);
+        DefineImg(SCR_WORLDMAP_BG, "res/gfx/scr/map/worldmap.jpg", False,
+                  280, 100);
         define_bunch(SCREEN_WORLDMAP, SCR_WORLDMAP_BG, IF_OVL, IF_EXIT);
         i = 0;
         while (i < 100) {
-            DefineImg((SCR_QUEST_BG_1 + i), (("res/gfx/scr/quest/locations/location" + str((i + 1))) + ".jpg"), False, 280, 100);
+            DefineImg((SCR_QUEST_BG_1 + i),
+                      (("res/gfx/scr/quest/locations/location" + str((i + 1)))
+                       + ".jpg"), False, 280, 100);
             i = (i + 1);
         };
-        DefineImg(QUESTBAR_BG, "res/gfx/if/adventurebar.png", False, QUESTBAR_X, QUESTBAR_Y);
-        DefineImg(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", False, (QUESTBAR_X + 110), (QUESTBAR_Y + 44));
-        DefineImg(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", False, ((QUESTBAR_X + 110) - 5), (QUESTBAR_Y + 44));
-        DefineLbl(LBL_QUESTBAR_TEXT, "", 0, QUESTBAR_LABEL_Y, FontFormat_QuestBar);
-        define_btn(QUEST_CANCEL, texts[TXT_QUEST_CANCEL], CancelQuest, btn_classBasic, 0, QUEST_CANCEL_Y);
-        define_btn(QUEST_SKIP, (texts[TXT_SKIP_FIGHT] + " ~P"), SkipQuest, btn_classBasic, 0, QUEST_CANCEL_Y);
-        define_bunch(SCREEN_QUEST, QUESTBAR_BG, QUESTBAR_FILL, QUESTBAR_LIGHT, LBL_QUESTBAR_TEXT, IF_OVL, LBL_SCREEN_TITLE, QUEST_CANCEL, QUEST_SKIP, IF_EXIT);
+        DefineImg(QUESTBAR_BG, "res/gfx/if/adventurebar.png", False,
+                  QUESTBAR_X, QUESTBAR_Y);
+        DefineImg(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", False,
+                  (QUESTBAR_X + 110), (QUESTBAR_Y + 44));
+        DefineImg(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", False,
+                  ((QUESTBAR_X + 110) - 5), (QUESTBAR_Y + 44));
+        DefineLbl(LBL_QUESTBAR_TEXT, "", 0, QUESTBAR_LABEL_Y,
+                  FontFormat_QuestBar);
+        define_btn(QUEST_CANCEL, texts[TXT_QUEST_CANCEL], CancelQuest,
+                   btn_classBasic, 0, QUEST_CANCEL_Y);
+        define_btn(QUEST_SKIP, (texts[TXT_SKIP_FIGHT] + " ~P"), SkipQuest,
+                   btn_classBasic, 0, QUEST_CANCEL_Y);
+        define_bunch(SCREEN_QUEST, QUESTBAR_BG, QUESTBAR_FILL, QUESTBAR_LIGHT,
+                     LBL_QUESTBAR_TEXT, IF_OVL, LBL_SCREEN_TITLE, QUEST_CANCEL,
+                     QUEST_SKIP, IF_EXIT);
         i = 0;
         while (i < 4) {
             add_bunch(SCREEN_QUEST, (TV + i));
             i = (i + 1);
         };
         add_bunch(SCREEN_QUEST, CA_TV);
-        actor[QUEST_SKIP].x = int(((QUEST_CANCEL_X - actor[QUEST_SKIP].width) - 5));
+        actor[QUEST_SKIP].x = int(((QUEST_CANCEL_X
+                                  - actor[QUEST_SKIP].width) - 5));
         actor[QUESTBAR_FILL].scaleX = 0;
         DefineImg(POST_BG, "res/gfx/scr/post/postamt.jpg", False, 280, 100);
-        DefineImg(POST_DAWN1, "res/gfx/scr/post/postamt_abend1.jpg", False, (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
-        DefineImg(POST_DAWN2, "res/gfx/scr/post/postamt_abend2.jpg", False, (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
-        DefineImg(POST_NIGHT1, "res/gfx/scr/post/postamt_nacht1.jpg", False, (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
-        DefineImg(POST_NIGHT2, "res/gfx/scr/post/postamt_nacht2.jpg", False, (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
+        DefineImg(POST_DAWN1, "res/gfx/scr/post/postamt_abend1.jpg", False,
+                  (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
+        DefineImg(POST_DAWN2, "res/gfx/scr/post/postamt_abend2.jpg", False,
+                  (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
+        DefineImg(POST_NIGHT1, "res/gfx/scr/post/postamt_nacht1.jpg", False,
+                  (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
+        DefineImg(POST_NIGHT2, "res/gfx/scr/post/postamt_nacht2.jpg", False,
+                  (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
         define_bunch(POST_DAWN, POST_DAWN1, POST_DAWN2);
         define_bunch(POST_NIGHT, POST_NIGHT1, POST_NIGHT2);
-        DefineFromClass(SHP_POST_BLACK_SQUARE, black_square, POST_SQUARE_X, POST_SQUARE_Y);
+        DefineFromClass(SHP_POST_BLACK_SQUARE, black_square, POST_SQUARE_X,
+                        POST_SQUARE_Y);
         _local2 = actor[SHP_POST_BLACK_SQUARE];
         with (_local2) {
             width = POST_SQUARE_X;
             height = POST_SQUARE_Y;
             alpha = 0.6;
         };
-        DefineLbl(LBL_POST_TITLE_INBOX, texts[TXT_POST_TITLE_INBOX], SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
-        actor[LBL_POST_TITLE_INBOX].x = (SCREEN_TITLE_X - int((actor[LBL_POST_TITLE_INBOX].text_width / 2)));
-        DefineLbl(LBL_POST_TITLE_READ, texts[TXT_POST_TITLE_READ], SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
-        actor[LBL_POST_TITLE_READ].x = (SCREEN_TITLE_X - int((actor[LBL_POST_TITLE_READ].text_width / 2)));
-        DefineLbl(LBL_POST_TITLE_WRITE, texts[TXT_POST_TITLE_WRITE], SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
-        actor[LBL_POST_TITLE_WRITE].x = (SCREEN_TITLE_X - int((actor[LBL_POST_TITLE_WRITE].text_width / 2)));
+        DefineLbl(LBL_POST_TITLE_INBOX, texts[TXT_POST_TITLE_INBOX],
+                  SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
+        actor[LBL_POST_TITLE_INBOX].x = (SCREEN_TITLE_X
+                         - int((actor[LBL_POST_TITLE_INBOX].text_width / 2)));
+        DefineLbl(LBL_POST_TITLE_READ, texts[TXT_POST_TITLE_READ],
+                  SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
+        actor[LBL_POST_TITLE_READ].x = (SCREEN_TITLE_X
+                        - int((actor[LBL_POST_TITLE_READ].text_width / 2)));
+        DefineLbl(LBL_POST_TITLE_WRITE, texts[TXT_POST_TITLE_WRITE],
+                  SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
+        actor[LBL_POST_TITLE_WRITE].x = (SCREEN_TITLE_X
+                     - int((actor[LBL_POST_TITLE_WRITE].text_width / 2)));
         AddFilter(LBL_POST_TITLE_INBOX, Filter_Shadow);
         AddFilter(LBL_POST_TITLE_READ, Filter_Shadow);
         AddFilter(LBL_POST_TITLE_WRITE, Filter_Shadow);
         DefineCnt(POST_LIST, POST_LIST_X, POST_LIST_Y);
-        define_btn(POST_READ, texts[TXT_POST_READ], PostBtnHandler, btn_classBasic, POST_BUTTONS_X, POST_BUTTONS_Y);
-        define_btn(POST_DELETE, texts[TXT_POST_DELETE], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
-        define_btn(POST_WRITE, texts[TXT_POST_WRITE], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 1)), POST_BUTTONS_Y);
-        define_btn(POST_FLUSH, texts[(TXT_POST_FLUSH_TEXT + 2)], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
-        define_btn(POST_DELETEREAD, texts[TXT_POST_DELETE], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
-        define_btn(POST_FORWARD, texts[TXT_POST_FORWARD], PostBtnHandler, btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
-        define_btn(POST_PROFILE, "", PostBtnHandler, btn_classView, POST_PROFILE_X, POST_BUTTONS_Y);
-        define_btn(POST_UP, "", PostBtnHandler, btn_classArrowUp, POST_SCROLLX, POST_SCROLLUP_Y);
-        define_btn(POST_DOWN, "", PostBtnHandler, btn_classArrowDown, POST_SCROLLX, POST_SCROLLDOWN_Y);
-        define_btn(POST_READ_NEXT, "", PostBtnHandler, btn_classArrowRight, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
-        define_btn(POST_READ_PREV, "", PostBtnHandler, btn_classArrowLeft, ((POST_BUTTONS_X + ((actor[POST_READ].width + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
+        define_btn(POST_READ, texts[TXT_POST_READ], PostBtnHandler,
+                   btn_classBasic, POST_BUTTONS_X, POST_BUTTONS_Y);
+        define_btn(POST_DELETE, texts[TXT_POST_DELETE], PostBtnHandler,
+                   btn_classBasic,
+                   (POST_BUTTONS_X
+                    + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)),
+                    POST_BUTTONS_Y);
+        define_btn(POST_WRITE, texts[TXT_POST_WRITE], PostBtnHandler,
+                   btn_classBasic,
+                   (POST_BUTTONS_X + ((actor[POST_READ].width
+                    + POST_BUTTONS_X) * 1)), POST_BUTTONS_Y);
+        define_btn(POST_FLUSH, texts[(TXT_POST_FLUSH_TEXT + 2)],
+                   PostBtnHandler, btn_classBasic,
+                   (POST_BUTTONS_X + ((actor[POST_READ].width
+                    + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
+        define_btn(POST_DELETEREAD, texts[TXT_POST_DELETE], PostBtnHandler,
+                   btn_classBasic,
+                   (POST_BUTTONS_X + ((actor[POST_READ].width
+                    + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
+        define_btn(POST_FORWARD, texts[TXT_POST_FORWARD], PostBtnHandler,
+                   btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width
+                                    + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
+        define_btn(POST_PROFILE, "", PostBtnHandler, btn_classView,
+                   POST_PROFILE_X, POST_BUTTONS_Y);
+        define_btn(POST_UP, "", PostBtnHandler, btn_classArrowUp,
+                   POST_SCROLLX, POST_SCROLLUP_Y);
+        define_btn(POST_DOWN, "", PostBtnHandler, btn_classArrowDown,
+                   POST_SCROLLX, POST_SCROLLDOWN_Y);
+        define_btn(POST_READ_NEXT, "", PostBtnHandler, btn_classArrowRight,
+                   ((POST_BUTTONS_X + ((actor[POST_READ].width
+                    + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
+        define_btn(POST_READ_PREV, "", PostBtnHandler, btn_classArrowLeft,
+                   ((POST_BUTTONS_X + ((actor[POST_READ].width
+                    + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
         enable_popup(POST_PROFILE, texts[TXT_POPUP_PROFILE]);
-        DefineLbl(LBL_POST_FLUSH_TEXT, texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(chr(13)), ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_POST_FLUSH_TEXT,
+                  texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(chr(13)),
+                   ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)),
+                   (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
         AddFilter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
-        define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
         _local2 = actor[POST_FLUSH_CANCEL];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) + 10);
@@ -26869,16 +27011,22 @@ def load_tracking_pixel(url=''):
             x = (((IF_WIN_X + IF_WIN_WELCOME_X) - int(width)) - 10);
         };
         define_bunch(POST_FLUSHMSG);
-        add_bunch(POST_FLUSHMSG, CA_POST_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_POST_FLUSH_TEXT, POST_FLUSH_OK, POST_FLUSH_CANCEL, IF_EXIT);
-        DefineClickArea(CA_POST_BLOCK, C_EMPTY, None, 280, 100, (RES_X - 280), (RES_Y - 100));
+        add_bunch(POST_FLUSHMSG, CA_POST_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE,
+                  LBL_POST_FLUSH_TEXT, POST_FLUSH_OK, POST_FLUSH_CANCEL,
+                  IF_EXIT);
+        DefineClickArea(CA_POST_BLOCK, C_EMPTY, None, 280, 100, (RES_X - 280),
+                        (RES_Y - 100));
         _local2 = actor[CA_POST_BLOCK];
         with (_local2) {
             useHandCursor = False;
             buttonMode = False;
         };
-        DefineFromClass(INP_POST_SUBJECT, SimpleTextField, POST_INP_X, POST_SUBJECT_Y, 2, "text");
-        DefineFromClass(INP_POST_ADDRESS, SimpleTextField, POST_INP_X, POST_ADDRESS_Y, 2, "name");
-        DefineFromClass(INP_POST_TEXT, SimpleTextArea, POST_INP_X, POST_TEXT_Y, 2, "text");
+        DefineFromClass(INP_POST_SUBJECT, SimpleTextField, POST_INP_X,
+                        POST_SUBJECT_Y, 2, "text");
+        DefineFromClass(INP_POST_ADDRESS, SimpleTextField, POST_INP_X,
+                        POST_ADDRESS_Y, 2, "name");
+        DefineFromClass(INP_POST_TEXT, SimpleTextArea, POST_INP_X, POST_TEXT_Y,
+                        2, "text");
         CleanupField(INP_POST_SUBJECT);
         CleanupField(INP_POST_ADDRESS);
         CleanupField(INP_POST_TEXT);
@@ -26886,12 +27034,19 @@ def load_tracking_pixel(url=''):
             var i;
             var textEntered:String;
             if (evt.text.length == 1){
-                textEntered = (actor[INP_POST_ADDRESS].getChildAt(1).text[0: actor[INP_POST_ADDRESS].getChildAt(1).selectionBeginIndex] + evt.text);
+                textEntered = (actor[INP_POST_ADDRESS].getChildAt(1).text[
+                               0: actor[INP_POST_ADDRESS].getChildAt(1)
+                               .selectionBeginIndex] + evt.text);
                 i = 0;
                 while (i < suggestNames.length) {
-                    if ((((textEntered.length > 0)) and ((textEntered.lower() == suggestNames[i].lower()[0: textEntered.length])))){
-                        actor[INP_POST_ADDRESS].getChildAt(1).text = (textEntered + suggestNames[i][textEntered.length:]);
-                        actor[INP_POST_ADDRESS].getChildAt(1).setSelection(textEntered.length, actor[INP_POST_ADDRESS].getChildAt(1).text.length);
+                    if ((((textEntered.length > 0))
+                        and ((textEntered.lower() == suggestNames[i].lower()[
+                             0: textEntered.length])))){
+                        actor[INP_POST_ADDRESS].getChildAt(1).text = (
+                          textEntered + suggestNames[i][textEntered.length:]);
+                        actor[INP_POST_ADDRESS].getChildAt(1).setSelection(
+                           textEntered.length, actor[INP_POST_ADDRESS]
+                           .getChildAt(1).text.length);
                         evt.preventDefault();
                         break;
                     };
@@ -26907,17 +27062,20 @@ def load_tracking_pixel(url=''):
             };
             Switch (actor_id){
                 if case(INP_POST_ADDRESS:
-                    if (actor[actor_id].getChildAt(1).text == texts[TXT_EMPFAENGER]){
+                    if (actor[actor_id].getChildAt(1).text == texts[
+                        TXT_EMPFAENGER]){
                         actor[actor_id].getChildAt(1).text = "";
                     };
                     break;
                 if case(INP_POST_SUBJECT:
-                    if (actor[actor_id].getChildAt(1).text == texts[TXT_BETREFF]){
+                    if (actor[actor_id].getChildAt(1).text == texts[
+                        TXT_BETREFF]){
                         actor[actor_id].getChildAt(1).text = "";
                     };
                     break;
                 if case(INP_POST_TEXT:
-                    if (actor[actor_id].getChildAt(1).text == texts[TXT_NACHRICHT]){
+                    if (actor[actor_id].getChildAt(1).text == texts[
+                            TXT_NACHRICHT]){
                         actor[actor_id].getChildAt(1).text = "";
                     };
                     break;
@@ -26929,35 +27087,60 @@ def load_tracking_pixel(url=''):
             Switch (actor_id){
                 if case(INP_POST_ADDRESS:
                     if (actor[actor_id].getChildAt(1).text == ""){
-                        actor[actor_id].getChildAt(1).text = texts[TXT_EMPFAENGER];
+                        actor[actor_id].getChildAt(1).text = texts[
+                            TXT_EMPFAENGER];
                     };
                     break;
                 if case(INP_POST_SUBJECT:
                     if (actor[actor_id].getChildAt(1).text == ""){
-                        actor[actor_id].getChildAt(1).text = texts[TXT_BETREFF];
+                        actor[actor_id].getChildAt(1).text = texts[
+                            TXT_BETREFF];
                     };
                     break;
                 if case(INP_POST_TEXT:
                     if (actor[actor_id].getChildAt(1).text == ""){
-                        actor[actor_id].getChildAt(1).text = texts[TXT_NACHRICHT];
+                        actor[actor_id].getChildAt(1).text = texts[
+                            TXT_NACHRICHT];
                     };
                     break;
             };
         };
-        actor[INP_POST_ADDRESS].getChildAt(1).add_event_listener(TextEvent.TEXT_INPUT, AdvancedPostHandler);
-        actor[INP_POST_SUBJECT].add_event_listener(MouseEvent.MOUSE_DOWN, killFieldContent);
-        actor[INP_POST_ADDRESS].add_event_listener(MouseEvent.MOUSE_DOWN, killFieldContent);
-        actor[INP_POST_TEXT].add_event_listener(MouseEvent.MOUSE_DOWN, killFieldContent);
-        actor[INP_POST_SUBJECT].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
-        actor[INP_POST_ADDRESS].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
-        actor[INP_POST_TEXT].add_event_listener(FocusEvent.FOCUS_OUT, fillFieldContent);
-        define_btn(POST_SEND, texts[TXT_POST_SEND], PostBtnHandler, btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
-        define_btn(POST_CANCEL, texts[TXT_POST_CANCEL], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        define_btn(POST_RETURN, texts[TXT_POST_RETURN], PostBtnHandler, btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
-        define_btn(POST_ACCEPT, texts[TXT_POST_ACCEPT], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        define_btn(POST_REPLY, texts[TXT_POST_REPLY], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        define_btn(POST_VIEWFIGHT, texts[TXT_POST_VIEWFIGHT], PostBtnHandler, btn_classBasic, ((POST_BUTTONS_X + actor[POST_SEND].width) + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-        DefineLbl(LBL_POST_LIMIT, "", POST_SQUARE_X, (POST_SQUARE_Y - POST_LIMIT_Y), FontFormat_Default);
+        actor[INP_POST_ADDRESS].getChildAt(1).add_event_listener(
+                                 TextEvent.TEXT_INPUT, AdvancedPostHandler);
+        actor[INP_POST_SUBJECT].add_event_listener(
+                                   MouseEvent.MOUSE_DOWN, killFieldContent);
+        actor[INP_POST_ADDRESS].add_event_listener(
+                                   MouseEvent.MOUSE_DOWN, killFieldContent);
+        actor[INP_POST_TEXT].add_event_listener(
+                                MouseEvent.MOUSE_DOWN, killFieldContent);
+        actor[INP_POST_SUBJECT].add_event_listener(
+                                   FocusEvent.FOCUS_OUT, fillFieldContent);
+        actor[INP_POST_ADDRESS].add_event_listener(
+                               FocusEvent.FOCUS_OUT, fillFieldContent);
+        actor[INP_POST_TEXT].add_event_listener(
+                                FocusEvent.FOCUS_OUT, fillFieldContent);
+        define_btn(POST_SEND, texts[TXT_POST_SEND], PostBtnHandler,
+                   btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
+        define_btn(POST_CANCEL, texts[TXT_POST_CANCEL], PostBtnHandler,
+                   btn_classBasic,
+                   ((POST_BUTTONS_X + actor[POST_SEND].width)
+                    + POST_BUTTONS_X), POST_SENDBUTTON_Y);
+        define_btn(POST_RETURN, texts[TXT_POST_RETURN], PostBtnHandler,
+                   btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
+        define_btn(POST_ACCEPT, texts[TXT_POST_ACCEPT], PostBtnHandler,
+                   btn_classBasic,
+                   (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
+                   POST_SENDBUTTON_Y);
+        define_btn(POST_REPLY, texts[TXT_POST_REPLY], PostBtnHandler,
+                   btn_classBasic,
+                   (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
+                   POST_SENDBUTTON_Y);
+        define_btn(POST_VIEWFIGHT, texts[TXT_POST_VIEWFIGHT], PostBtnHandler,
+                   btn_classBasic,
+                   (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
+                   POST_SENDBUTTON_Y);
+        DefineLbl(LBL_POST_LIMIT, "", POST_SQUARE_X,
+                  (POST_SQUARE_Y - POST_LIMIT_Y), FontFormat_Default);
         AddFilter(LBL_POST_LIMIT, Filter_Shadow);
         DefineCnt(POST_GUILD, 0, (POST_ADDRESS_Y + 2));
         DefineLbl(LBL_POST_GUILD, texts[TXT_GILDEN], 0, 0, FontFormat_Default);
@@ -26973,18 +27156,36 @@ def load_tracking_pixel(url=''):
             useHandCursor = True;
             buttonMode = True;
         };
-        define_bunch(POST_LIST, LBL_POST_TITLE_INBOX, POST_LIST, POST_READ, POST_DELETE, POST_FLUSH, POST_WRITE, POST_UP, POST_DOWN, LBL_POST_LIMIT);
-        define_bunch(POST_WRITE, LBL_POST_TITLE_WRITE, INP_POST_SUBJECT, INP_POST_ADDRESS, POST_GUILD, INP_POST_TEXT, POST_SEND, POST_CANCEL);
-        define_bunch(POST_READ, LBL_POST_TITLE_READ, INP_POST_SUBJECT, INP_POST_ADDRESS, INP_POST_TEXT, POST_RETURN, POST_DELETEREAD, POST_READ_NEXT, POST_READ_PREV, POST_PROFILE, POST_FORWARD);
-        define_bunch(SCREEN_POST, POST_BG, IF_OVL, POST_NIGHT, POST_DAWN, SHP_POST_BLACK_SQUARE, POST_LIST, IF_EXIT);
-        DefineImg(ARENA_BG_DAY, "res/gfx/scr/arena/arena_tag.jpg", False, 280, 100);
-        DefineImg(ARENA_BG_DAWN, "res/gfx/scr/arena/arena_abend.jpg", False, 280, 100);
-        DefineImg(ARENA_BG_NIGHT, "res/gfx/scr/arena/arena_nacht.jpg", False, 280, 100);
+        define_bunch(POST_LIST, LBL_POST_TITLE_INBOX, POST_LIST, POST_READ,
+                     POST_DELETE, POST_FLUSH, POST_WRITE, POST_UP, POST_DOWN,
+                     LBL_POST_LIMIT);
+        define_bunch(POST_WRITE, LBL_POST_TITLE_WRITE, INP_POST_SUBJECT,
+                     INP_POST_ADDRESS, POST_GUILD, INP_POST_TEXT, POST_SEND,
+                     POST_CANCEL);
+        define_bunch(POST_READ, LBL_POST_TITLE_READ, INP_POST_SUBJECT,
+                     INP_POST_ADDRESS, INP_POST_TEXT, POST_RETURN,
+                     POST_DELETEREAD, POST_READ_NEXT, POST_READ_PREV,
+                     POST_PROFILE, POST_FORWARD);
+        define_bunch(SCREEN_POST, POST_BG, IF_OVL, POST_NIGHT, POST_DAWN,
+                     SHP_POST_BLACK_SQUARE, POST_LIST, IF_EXIT);
+        DefineImg(ARENA_BG_DAY, "res/gfx/scr/arena/arena_tag.jpg",
+                  False, 280, 100);
+        DefineImg(ARENA_BG_DAWN, "res/gfx/scr/arena/arena_abend.jpg",
+                  False, 280, 100);
+        DefineImg(ARENA_BG_NIGHT, "res/gfx/scr/arena/arena_nacht.jpg",
+                  False, 280, 100);
         if (Capabilities.version[0: 3] != "IOS"){
-            DefineImg(ARENA_FEUER, "res/gfx/scr/arena/arenafeuer.swf", False, ARENA_FEUER_X, ARENA_FEUER_Y);
+            DefineImg(ARENA_FEUER, "res/gfx/scr/arena/arenafeuer.swf",
+                      False, ARENA_FEUER_X, ARENA_FEUER_Y);
         };
-        DefineLbl(LBL_ARENA_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)), ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY), FontFormat_Default);
-        DefineLbl(LBL_ARENA_DELAY, "", (IF_WIN_X + ARENA_DELAY_X), ((IF_WIN_Y + ARENA_DELAY_Y) + AIRRelMoveY), FontFormat_Default);
+        DefineLbl(LBL_ARENA_TEXT, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)),
+                  ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY),
+                  FontFormat_Default);
+        DefineLbl(LBL_ARENA_DELAY, "",
+                  (IF_WIN_X + ARENA_DELAY_X),
+                  ((IF_WIN_Y + ARENA_DELAY_Y) + AIRRelMoveY),
+                  FontFormat_Default);
         AddFilter(LBL_ARENA_TEXT, Filter_Shadow);
         AddFilter(LBL_ARENA_DELAY, Filter_Shadow);
         _local2 = actor[LBL_ARENA_TEXT];
@@ -26993,101 +27194,178 @@ def load_tracking_pixel(url=''):
             width = ARENA_TEXT_X;
             text = texts[TXT_ARENA_1];
         };
-        DefineFromClass(INP_ARENA_ENEMY, text_input1, 0, ((IF_WIN_Y + ARENA_INP_Y) + AIRRelMoveY), 2, "name");
+        DefineFromClass(INP_ARENA_ENEMY, text_input1, 0,
+                        ((IF_WIN_Y + ARENA_INP_Y) + AIRRelMoveY), 2, "name");
         _local2 = actor[INP_ARENA_ENEMY];
         with (_local2) {
             getChildAt(1).text = "";
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
             add_event_listener(KeyboardEvent.KEY_DOWN, AttackEnemy);
         };
-        define_btn(ARENA_OK, texts[TXT_OK], AttackEnemy, btn_classBasic, 0, ((IF_WIN_Y + ARENA_OK_Y) + AIRRelMoveY));
+        define_btn(ARENA_OK, texts[TXT_OK], AttackEnemy, btn_classBasic, 0,
+                   ((IF_WIN_Y + ARENA_OK_Y) + AIRRelMoveY));
         _local2 = actor[ARENA_OK];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
         };
-        define_bunch(WINDOW_ARENA, IF_WINDOW, LBL_WINDOW_TITLE, LBL_ARENA_TEXT, INP_ARENA_ENEMY, LBL_ARENA_DELAY, ARENA_OK);
+        define_bunch(WINDOW_ARENA, IF_WINDOW, LBL_WINDOW_TITLE, LBL_ARENA_TEXT,
+                     INP_ARENA_ENEMY, LBL_ARENA_DELAY, ARENA_OK);
         define_bunch(SCREEN_ARENA_DAY, ARENA_BG_DAY);
         define_bunch(SCREEN_ARENA_DAWN, ARENA_BG_DAWN);
         define_bunch(SCREEN_ARENA_NIGHT, ARENA_BG_NIGHT);
         if (Capabilities.version[0: 3] == "IOS"){
             define_bunch(SCREEN_ARENA, IF_OVL, WINDOW_ARENA, IF_EXIT);
         } else {
-            define_bunch(SCREEN_ARENA, ARENA_FEUER, IF_OVL, WINDOW_ARENA, IF_EXIT);
+            define_bunch(SCREEN_ARENA, ARENA_FEUER, IF_OVL, WINDOW_ARENA,
+                         IF_EXIT);
         };
-        DefineImg(STALL_BG_GUT, "res/gfx/scr/stall/stall_gut.jpg", False, 280, 100);
-        DefineImg(STALL_BG_BOESE, "res/gfx/scr/stall/stall_boese.jpg", False, 280, 100);
-        DefineImg(STALL_DAWN, "res/gfx/scr/stall/stall_abend.jpg", False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
-        DefineImg(STALL_NIGHT, "res/gfx/scr/stall/stall_nacht.jpg", False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
-        DefineImg(STALL_ARME1, "res/gfx/scr/stall/stall_arme1.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME2, "res/gfx/scr/stall/stall_arme2.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME3, "res/gfx/scr/stall/stall_arme3.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME4, "res/gfx/scr/stall/stall_arme4.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_ARME5, "res/gfx/scr/stall/stall_arme5.png", False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-        DefineImg(STALL_OVL_GUT1, "res/gfx/scr/stall/tiger2_mouseover.jpg", False, (280 + STALL_OVL_GUT1_X), (100 + STALL_OVL_GUT1_Y));
-        DefineImg(STALL_OVL_GUT2, "res/gfx/scr/stall/kuh_mouseover.jpg", False, (280 + STALL_OVL_GUT2_X), (100 + STALL_OVL_GUT2_Y));
-        DefineImg(STALL_OVL_GUT3, "res/gfx/scr/stall/horse_mouseover.jpg", False, (280 + STALL_OVL_GUT3_X), (100 + STALL_OVL_GUT3_Y));
-        DefineImg(STALL_OVL_GUT4, "res/gfx/scr/stall/greif_mouseover.jpg", False, (280 + STALL_OVL_GUT4_X), (100 + STALL_OVL_GUT4_Y));
-        DefineImg(STALL_OVL_BOESE1, "res/gfx/scr/stall/pig_mouseover.jpg", False, (280 + STALL_OVL_BOESE1_X), (100 + STALL_OVL_BOESE1_Y));
-        DefineImg(STALL_OVL_BOESE2, "res/gfx/scr/stall/wolf_mouseover.jpg", False, (280 + STALL_OVL_BOESE2_X), (100 + STALL_OVL_BOESE2_Y));
-        DefineImg(STALL_OVL_BOESE3, "res/gfx/scr/stall/raptor_mouseover.jpg", False, (280 + STALL_OVL_BOESE3_X), (100 + STALL_OVL_BOESE3_Y));
-        DefineImg(STALL_OVL_BOESE4, "res/gfx/scr/stall/dragon_mouseover.jpg", False, (280 + STALL_OVL_BOESE4_X), (100 + STALL_OVL_BOESE4_Y));
-        DefineClickArea(CA_STALL_BOX_GUT1, STALL_OVL_GUT1, ClickMount, (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100), STALL_BOX1_X, STALL_BOX1_Y);
-        DefineClickArea(CA_STALL_BOX_GUT2, STALL_OVL_GUT2, ClickMount, (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100), STALL_BOX2_X, STALL_BOX2_Y);
-        DefineClickArea(CA_STALL_BOX_GUT3, STALL_OVL_GUT3, ClickMount, (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100), STALL_BOX3_X, STALL_BOX3_Y);
-        DefineClickArea(CA_STALL_BOX_GUT4, STALL_OVL_GUT4, ClickMount, (STALL_BOX4_X + 280), (STALL_BOX4_Y + 100), STALL_BOX4_X, STALL_BOX4_Y);
-        DefineClickArea(CA_STALL_BOX_BOESE1, STALL_OVL_BOESE1, ClickMount, (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100), STALL_BOX1_X, STALL_BOX1_Y);
-        DefineClickArea(CA_STALL_BOX_BOESE2, STALL_OVL_BOESE2, ClickMount, (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100), STALL_BOX2_X, STALL_BOX2_Y);
-        DefineClickArea(CA_STALL_BOX_BOESE3, STALL_OVL_BOESE3, ClickMount, (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100), STALL_BOX3_X, STALL_BOX3_Y);
-        DefineClickArea(CA_STALL_BOX_BOESE4, STALL_OVL_BOESE4, ClickMount, (STALL_BOX4_X + 280), (STALL_BOX4_Y + 100), STALL_BOX4_X, STALL_BOX4_Y);
+        DefineImg(STALL_BG_GUT, "res/gfx/scr/stall/stall_gut.jpg",
+                  False, 280, 100);
+        DefineImg(STALL_BG_BOESE, "res/gfx/scr/stall/stall_boese.jpg",
+                  False, 280, 100);
+        DefineImg(STALL_DAWN, "res/gfx/scr/stall/stall_abend.jpg",
+                  False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
+        DefineImg(STALL_NIGHT, "res/gfx/scr/stall/stall_nacht.jpg",
+                  False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
+        DefineImg(STALL_ARME1, "res/gfx/scr/stall/stall_arme1.png",
+                  False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME2, "res/gfx/scr/stall/stall_arme2.png",
+                  False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME3, "res/gfx/scr/stall/stall_arme3.png",
+                  False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME4, "res/gfx/scr/stall/stall_arme4.png",
+                  False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_ARME5, "res/gfx/scr/stall/stall_arme5.png",
+                  False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
+        DefineImg(STALL_OVL_GUT1, "res/gfx/scr/stall/tiger2_mouseover.jpg",
+                  False, (280 + STALL_OVL_GUT1_X), (100 + STALL_OVL_GUT1_Y));
+        DefineImg(STALL_OVL_GUT2, "res/gfx/scr/stall/kuh_mouseover.jpg",
+                  False, (280 + STALL_OVL_GUT2_X), (100 + STALL_OVL_GUT2_Y));
+        DefineImg(STALL_OVL_GUT3, "res/gfx/scr/stall/horse_mouseover.jpg",
+                  False, (280 + STALL_OVL_GUT3_X), (100 + STALL_OVL_GUT3_Y));
+        DefineImg(STALL_OVL_GUT4, "res/gfx/scr/stall/greif_mouseover.jpg",
+                  False, (280 + STALL_OVL_GUT4_X), (100 + STALL_OVL_GUT4_Y));
+        DefineImg(STALL_OVL_BOESE1, "res/gfx/scr/stall/pig_mouseover.jpg",
+                  False, (280 + STALL_OVL_BOESE1_X),
+                  (100 + STALL_OVL_BOESE1_Y));
+        DefineImg(STALL_OVL_BOESE2, "res/gfx/scr/stall/wolf_mouseover.jpg",
+                  False, (280 + STALL_OVL_BOESE2_X),
+                  (100 + STALL_OVL_BOESE2_Y));
+        DefineImg(STALL_OVL_BOESE3, "res/gfx/scr/stall/raptor_mouseover.jpg",
+                  False, (280 + STALL_OVL_BOESE3_X),
+                  (100 + STALL_OVL_BOESE3_Y));
+        DefineImg(STALL_OVL_BOESE4, "res/gfx/scr/stall/dragon_mouseover.jpg",
+                  False, (280 + STALL_OVL_BOESE4_X),
+                  (100 + STALL_OVL_BOESE4_Y));
+        DefineClickArea(CA_STALL_BOX_GUT1, STALL_OVL_GUT1, ClickMount,
+                        (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100),
+                        STALL_BOX1_X, STALL_BOX1_Y);
+        DefineClickArea(CA_STALL_BOX_GUT2, STALL_OVL_GUT2, ClickMount,
+                        (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100),
+                        STALL_BOX2_X, STALL_BOX2_Y);
+        DefineClickArea(CA_STALL_BOX_GUT3, STALL_OVL_GUT3, ClickMount,
+                        (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100),
+                        STALL_BOX3_X, STALL_BOX3_Y);
+        DefineClickArea(CA_STALL_BOX_GUT4, STALL_OVL_GUT4, ClickMount,
+                        (STALL_BOX4_X + 280), (STALL_BOX4_Y + 100),
+                        STALL_BOX4_X, STALL_BOX4_Y);
+        DefineClickArea(CA_STALL_BOX_BOESE1, STALL_OVL_BOESE1, ClickMount,
+                        (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100),
+                        STALL_BOX1_X, STALL_BOX1_Y);
+        DefineClickArea(CA_STALL_BOX_BOESE2, STALL_OVL_BOESE2, ClickMount,
+                        (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100),
+                        STALL_BOX2_X, STALL_BOX2_Y);
+        DefineClickArea(CA_STALL_BOX_BOESE3, STALL_OVL_BOESE3, ClickMount,
+                        (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100),
+                        STALL_BOX3_X, STALL_BOX3_Y);
+        DefineClickArea(CA_STALL_BOX_BOESE4, STALL_OVL_BOESE4, ClickMount,
+                        (STALL_BOX4_X + 280), (STALL_BOX4_Y + 100),
+                        STALL_BOX4_X, STALL_BOX4_Y);
         i = 0;
         while (i < 8) {
-            define_snd((SND_MOUNT_1 + i), (("res/sfx/mounts/mount" + str((i + 1))) + ".mp3"));
+            define_snd((SND_MOUNT_1 + i),
+                       (("res/sfx/mounts/mount" + str((i + 1))) + ".mp3"));
             i = (i + 1);
         };
-        define_bunch(STALL_GUT, STALL_BG_GUT, IF_OVL, CA_STALL_BOX_GUT1, CA_STALL_BOX_GUT2, CA_STALL_BOX_GUT3, CA_STALL_BOX_GUT4);
-        define_bunch(STALL_BOESE, STALL_BG_BOESE, IF_OVL, CA_STALL_BOX_BOESE1, CA_STALL_BOX_BOESE2, CA_STALL_BOX_BOESE3, CA_STALL_BOX_BOESE4);
-        define_bunch(SCREEN_STALL, STALL_DAWN, STALL_NIGHT, STALL_ARME1, STALL_ARME2, STALL_ARME3, STALL_ARME4, STALL_ARME5, IF_EXIT);
-        DefineFromClass(SHP_STALL_BLACK_SQUARE, black_square_neutral, (SCREEN_TITLE_X - int((STALL_SQUARE_X / 2))), STALL_SQUARE_Y);
+        define_bunch(STALL_GUT, STALL_BG_GUT, IF_OVL, CA_STALL_BOX_GUT1,
+                     CA_STALL_BOX_GUT2, CA_STALL_BOX_GUT3, CA_STALL_BOX_GUT4);
+        define_bunch(STALL_BOESE, STALL_BG_BOESE, IF_OVL, CA_STALL_BOX_BOESE1,
+                     CA_STALL_BOX_BOESE2, CA_STALL_BOX_BOESE3,
+                     CA_STALL_BOX_BOESE4);
+        define_bunch(SCREEN_STALL, STALL_DAWN, STALL_NIGHT, STALL_ARME1,
+                     STALL_ARME2, STALL_ARME3, STALL_ARME4, STALL_ARME5,
+                     IF_EXIT);
+        DefineFromClass(SHP_STALL_BLACK_SQUARE, black_square_neutral,
+                        (SCREEN_TITLE_X - int((STALL_SQUARE_X / 2))),
+                        STALL_SQUARE_Y);
         _local2 = actor[SHP_STALL_BLACK_SQUARE];
         with (_local2) {
             width = STALL_SQUARE_X;
             height = STALL_SQUARE_Y;
             alpha = 0.65;
         };
-        DefineLbl(LBL_STALL_TITEL, texts[TXT_STALL_TITEL], (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), (actor[SHP_STALL_BLACK_SQUARE].y + STALL_TITEL_Y), FontFormat_Heading);
-        DefineLbl(LBL_STALL_TEXT, texts[TXT_STALL_TEXT], (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), ((actor[LBL_STALL_TITEL].y + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_STALL_TITEL, texts[TXT_STALL_TITEL],
+                  (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
+                  (actor[SHP_STALL_BLACK_SQUARE].y + STALL_TITEL_Y),
+                  FontFormat_Heading);
+        DefineLbl(LBL_STALL_TEXT, texts[TXT_STALL_TEXT],
+                  (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
+                  ((actor[LBL_STALL_TITEL].y
+                   + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y),
+                    FontFormat_DefaultLeft);
         _local2 = actor[LBL_STALL_TEXT];
         with (_local2) {
             wordWrap = True;
             width = (STALL_SQUARE_X - (STALL_TITEL_X * 2));
         };
-        DefineLbl(LBL_STALL_GAIN, "", (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), (((actor[LBL_STALL_TITEL].y + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y) + STALL_GAIN_Y), FontFormat_DefaultLeft);
-        DefineLbl(LBL_STALL_SCHATZ, texts[TXT_STALL_SCHATZ], 0, actor[LBL_STALL_GAIN].y, FontFormat_DefaultLeft);
-        DefineLbl(LBL_STALL_SCHATZGOLD, "", 0, actor[LBL_STALL_GAIN].y, FontFormat_DefaultLeft);
-        DefineLbl(LBL_STALL_SCHATZSILBER, "", 0, actor[LBL_STALL_GAIN].y, FontFormat_DefaultLeft);
+        DefineLbl(LBL_STALL_GAIN, "",
+                  (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
+                  (((actor[LBL_STALL_TITEL].y
+                   + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y)
+                + STALL_GAIN_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_STALL_SCHATZ, texts[TXT_STALL_SCHATZ], 0,
+                  actor[LBL_STALL_GAIN].y, FontFormat_DefaultLeft);
+        DefineLbl(LBL_STALL_SCHATZGOLD, "", 0, actor[LBL_STALL_GAIN].y,
+                  FontFormat_DefaultLeft);
+        DefineLbl(LBL_STALL_SCHATZSILBER, "", 0, actor[LBL_STALL_GAIN].y,
+                  FontFormat_DefaultLeft);
         DefineCnt(STALL_SCHATZGOLD, 0, actor[LBL_STALL_GAIN].y);
         DefineCnt(STALL_SCHATZSILBER, 0, actor[LBL_STALL_GAIN].y);
-        DefineLbl(LBL_STALL_GOLD, "0", (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), 0, FontFormat_Default);
+        DefineLbl(LBL_STALL_GOLD, "0",
+                  (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), 0,
+                  FontFormat_Default);
         _local2 = actor[LBL_STALL_GOLD];
         with (_local2) {
-            y = (((STALL_SQUARE_Y + STALL_SQUARE_Y) - STALL_TITEL_Y) - textHeight);
-            DefineCnt(STALL_GOLD, (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), y);
+            y = (((STALL_SQUARE_Y + STALL_SQUARE_Y)
+                 - STALL_TITEL_Y) - textHeight);
+            DefineCnt(STALL_GOLD,
+                      (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), y);
             DefineLbl(LBL_STALL_MUSH, "0", 0, y, FontFormat_Default);
             DefineCnt(STALL_MUSH, 0, y);
-            DefineLbl(LBL_STALL_LAUFZEIT, texts[TXT_STALL_LAUFZEIT], (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), ((y - textHeight) - STALL_ZEILEN_Y), FontFormat_Default);
+            DefineLbl(LBL_STALL_LAUFZEIT, texts[TXT_STALL_LAUFZEIT],
+                      (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
+                      ((y - textHeight) - STALL_ZEILEN_Y),
+                      FontFormat_Default);
         };
-        define_btn(STALL_BUY, texts[TXT_STALL_BUY], BuyMount, btn_classBasic, 0, 0);
+        define_btn(STALL_BUY, texts[TXT_STALL_BUY], BuyMount,
+                   btn_classBasic, 0, 0);
         _local2 = actor[STALL_BUY];
         with (_local2) {
-            x = (((SCREEN_TITLE_X + int((STALL_SQUARE_X / 2))) - width) - STALL_TITEL_X);
+            x = (((SCREEN_TITLE_X + int((STALL_SQUARE_X / 2)))
+                 - width) - STALL_TITEL_X);
             y = (((STALL_SQUARE_Y + STALL_SQUARE_Y) - STALL_TITEL_Y) - height);
         };
-        add_bunch(SCREEN_STALL, SHP_STALL_BLACK_SQUARE, LBL_STALL_TITEL, LBL_STALL_TEXT, LBL_STALL_GAIN);
+        add_bunch(SCREEN_STALL, SHP_STALL_BLACK_SQUARE, LBL_STALL_TITEL,
+                  LBL_STALL_TEXT, LBL_STALL_GAIN);
         SelectedMount = 0;
         OldMount = 0;
         DefineImg(GILDEN_BG, "res/gfx/scr/gilde/gilde.jpg", False, 280, 100);
-        DefineImg(GILDE_RAHMEN, "res/gfx/scr/gilde/gilde_interface.png", False, 280, 100);
-        DefineLbl(LBL_GILDE_GRUENDEN_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_GRUENDEN_TEXT_X / 2)), ((IF_WIN_Y + GILDE_GRUENDEN_TEXT_Y) + AIRRelMoveY), FontFormat_Default);
+        DefineImg(GILDE_RAHMEN, "res/gfx/scr/gilde/gilde_interface.png",
+                  False, 280, 100);
+        DefineLbl(LBL_GILDE_GRUENDEN_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X)
+                  - (GILDE_GRUENDEN_TEXT_X / 2)),
+                ((IF_WIN_Y + GILDE_GRUENDEN_TEXT_Y) + AIRRelMoveY),
+                FontFormat_Default);
         AddFilter(LBL_GILDE_GRUENDEN_TEXT, Filter_Shadow);
         _local2 = actor[LBL_GILDE_GRUENDEN_TEXT];
         with (_local2) {
@@ -27096,13 +27374,17 @@ def load_tracking_pixel(url=''):
             text = texts[TXT_GILDE_GRUENDEN];
         };
         arabize(LBL_GILDE_GRUENDEN_TEXT);
-        DefineFromClass(INP_GILDE_GRUENDEN, text_input1, 0, ((IF_WIN_Y + GILDE_GRUENDEN_INP_Y) + AIRRelMoveY), 2, "name");
+        DefineFromClass(INP_GILDE_GRUENDEN, text_input1, 0,
+                        ((IF_WIN_Y + GILDE_GRUENDEN_INP_Y) + AIRRelMoveY),
+                        2, "name");
         _local2 = actor[INP_GILDE_GRUENDEN];
         with (_local2) {
             getChildAt(1).text = "";
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
         };
-        define_btn(GILDE_GRUENDEN, texts[TXT_GILDE_GRUENDEN_OK], GildeGruenden, btn_classBasic, 0, ((IF_WIN_Y + GILDE_GRUENDEN_OK_Y) + AIRRelMoveY));
+        define_btn(GILDE_GRUENDEN, texts[TXT_GILDE_GRUENDEN_OK], GildeGruenden,
+                   btn_classBasic, 0,
+                   ((IF_WIN_Y + GILDE_GRUENDEN_OK_Y) + AIRRelMoveY));
         _local2 = actor[GILDE_GRUENDEN];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
@@ -27110,18 +27392,57 @@ def load_tracking_pixel(url=''):
         define_bunch(GILDE_GEBAEUDE);
         i = 0;
         while (i < 3) {
-            DefineImg((GILDE_GEBAEUDE + i), (("res/gfx/scr/gilde/building" + str((i + 1))) + ".png"), False, GILDE_GEBAEUDE_X, (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)));
-            DefineLbl((LBL_GILDE_GEBAEUDE_NAME + i), texts[(TXT_GILDE_GEBAEUDE_NAME1 + i)], (GILDE_GEBAEUDE_X + GILDE_TEXT_X), (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)), FontFormat_GuildBuilding);
-            DefineLbl((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), texts[(TXT_GILDE_GEBAEUDE_WERT1 + i)], (GILDE_GEBAEUDE_X + GILDE_TEXT_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 1)), FontFormat_GuildBuilding);
-            DefineLbl((LBL_GILDE_GEBAEUDE_WERT + i), "", (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 2)), FontFormat_GuildBuilding);
-            DefineLbl((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i), texts[TXT_GILDE_GEBAEUDE_STUFE], (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 3)), FontFormat_GuildBuilding);
-            DefineLbl((LBL_GILDE_GEBAEUDE_STUFE + i), "", ((actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].x + actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].text_width) + 10), actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].y, FontFormat_GuildBuilding);
-            DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), "", 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
-            DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), "", 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
-            DefineCnt((GILDE_GEBAEUDE_GOLD + i), 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)));
-            DefineCnt((GILDE_GEBAEUDE_MUSH + i), 0, ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + (GILDE_GEBAEUDE_LINE * 4)));
-            define_btn((GILDE_GEBAEUDE_IMPROVE + i), "", GildeBtnHandler, btn_classPlus, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
-            DefineImg((GILDE_GEBAEUDE_IMPROVE_GRAY + i), "res/gfx/scr/gilde/plus_disabled.png", False, (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X), ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)) + GILDE_GEBAEUDE_IMPROVE_Y));
+            DefineImg((GILDE_GEBAEUDE + i),
+                      (("res/gfx/scr/gilde/building" + str((i + 1))) + ".png"),
+                      False, GILDE_GEBAEUDE_X,
+                      (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)));
+            DefineLbl((LBL_GILDE_GEBAEUDE_NAME + i),
+                      texts[(TXT_GILDE_GEBAEUDE_NAME1 + i)],
+                      (GILDE_GEBAEUDE_X + GILDE_TEXT_X),
+                      (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)),
+                      FontFormat_GuildBuilding);
+            DefineLbl((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i),
+                      texts[(TXT_GILDE_GEBAEUDE_WERT1 + i)],
+                      (GILDE_GEBAEUDE_X + GILDE_TEXT_X),
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 1)), FontFormat_GuildBuilding);
+            DefineLbl((LBL_GILDE_GEBAEUDE_WERT + i), "",
+                      (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X),
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 2)), FontFormat_GuildBuilding);
+            DefineLbl((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i),
+                      texts[TXT_GILDE_GEBAEUDE_STUFE],
+                      (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X),
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 3)), FontFormat_GuildBuilding);
+            DefineLbl((LBL_GILDE_GEBAEUDE_STUFE + i), "",
+                      ((actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].x
+                       + actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION
+                                + i)].text_width) + 10),
+                        actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].y,
+                        FontFormat_GuildBuilding);
+            DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), "", 0,
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
+            DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), "", 0,
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
+            DefineCnt((GILDE_GEBAEUDE_GOLD + i), 0,
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 4)));
+            DefineCnt((GILDE_GEBAEUDE_MUSH + i), 0,
+                      ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                       + (GILDE_GEBAEUDE_LINE * 4)));
+            define_btn((GILDE_GEBAEUDE_IMPROVE + i), "", GildeBtnHandler,
+                       btn_classPlus,
+                       (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X),
+                       ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                        + GILDE_GEBAEUDE_IMPROVE_Y));
+            DefineImg((GILDE_GEBAEUDE_IMPROVE_GRAY + i),
+                      "res/gfx/scr/gilde/plus_disabled.png", False,
+                      (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X),
+                       ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
+                        + GILDE_GEBAEUDE_IMPROVE_Y));
             AddFilter((LBL_GILDE_GEBAEUDE_NAME + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_WERT + i), Filter_Shadow);
@@ -27129,27 +27450,47 @@ def load_tracking_pixel(url=''):
             AddFilter((LBL_GILDE_GEBAEUDE_STUFE + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), Filter_Shadow);
             AddFilter((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), Filter_Shadow);
-            enable_popup((GILDE_GEBAEUDE + i), texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            enable_popup((LBL_GILDE_GEBAEUDE_NAME + i), texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            enable_popup((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            enable_popup((LBL_GILDE_GEBAEUDE_WERT + i), texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            enable_popup((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i), texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            enable_popup((LBL_GILDE_GEBAEUDE_STUFE + i), texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
-            enable_popup((GILDE_GEBAEUDE_IMPROVE + i), texts[TXT_GILDE_AUSBAUEN]);
-            add_bunch(GILDE_GEBAEUDE, (GILDE_GEBAEUDE + i), (LBL_GILDE_GEBAEUDE_NAME + i), (LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), (LBL_GILDE_GEBAEUDE_WERT + i), (LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i));
-            add_bunch(GILDE_GEBAEUDE, (LBL_GILDE_GEBAEUDE_STUFE + i), (LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), (LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), (GILDE_GEBAEUDE_GOLD + i), (GILDE_GEBAEUDE_MUSH + i), (GILDE_GEBAEUDE_IMPROVE_GRAY + i), (GILDE_GEBAEUDE_IMPROVE + i));
+            enable_popup((GILDE_GEBAEUDE + i),
+                         texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_NAME + i),
+                         texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i),
+                         texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_WERT + i),
+                         texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i),
+                         texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((LBL_GILDE_GEBAEUDE_STUFE + i),
+                         texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
+            enable_popup((GILDE_GEBAEUDE_IMPROVE + i),
+                         texts[TXT_GILDE_AUSBAUEN]);
+            add_bunch(GILDE_GEBAEUDE, (GILDE_GEBAEUDE + i),
+                      (LBL_GILDE_GEBAEUDE_NAME + i),
+                      (LBL_GILDE_GEBAEUDE_WERT_CAPTION + i),
+                      (LBL_GILDE_GEBAEUDE_WERT + i),
+                      (LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i));
+            add_bunch(GILDE_GEBAEUDE, (LBL_GILDE_GEBAEUDE_STUFE + i),
+                      (LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i),
+                      (LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i),
+                      (GILDE_GEBAEUDE_GOLD + i), (GILDE_GEBAEUDE_MUSH + i),
+                      (GILDE_GEBAEUDE_IMPROVE_GRAY + i),
+                      (GILDE_GEBAEUDE_IMPROVE + i));
             i = (i + 1);
         };
-        define_btn(GILDE_GEBAEUDE_GOTO_CREST, " ", GildeBtnHandler, btn_classBack, (GILDE_GEBAEUDE_X + 211), (GILDE_GEBAEUDE_Y - 5));
+        define_btn(GILDE_GEBAEUDE_GOTO_CREST, " ", GildeBtnHandler,
+                   btn_classBack, (GILDE_GEBAEUDE_X + 211),
+                   (GILDE_GEBAEUDE_Y - 5));
         _local2 = actor[GILDE_GEBAEUDE_GOTO_CREST];
         with (_local2) {
             scaleX = 0.4;
             scaleY = 0.4;
         };
-        enable_popup(GILDE_GEBAEUDE_GOTO_CREST, texts[TXT_BUILDINGS_GOTO_CREST]);
+        enable_popup(GILDE_GEBAEUDE_GOTO_CREST,
+                     texts[TXT_BUILDINGS_GOTO_CREST]);
         add_bunch(GILDE_GEBAEUDE, GILDE_GEBAEUDE_GOTO_CREST);
         define_bunch(GILDE_CREST);
-        DefineCnt(GILDE_CREST, (GILDE_GEBAEUDE_X - 2), (GILDE_GEBAEUDE_Y + 60));
+        DefineCnt(GILDE_CREST, (GILDE_GEBAEUDE_X - 2),
+                  (GILDE_GEBAEUDE_Y + 60));
         i = 0;
         while (i < crestElementPos.length) {
             DefineImg((GILDE_CREST + i), "", False, 0, 0);
@@ -27163,7 +27504,12 @@ def load_tracking_pixel(url=''):
                     crestClaI = 1;
                 };
             };
-            DefineClickArea((CLA_GILDE_CREST + crestClaI), C_EMPTY, GildeBtnHandler, crestElementPos[crestClaI][0], crestElementPos[crestClaI][1], crestElementPos[crestClaI][2], crestElementPos[crestClaI][3], 0, None, None, True);
+            DefineClickArea((CLA_GILDE_CREST + crestClaI), C_EMPTY,
+                            GildeBtnHandler, crestElementPos[crestClaI][0],
+                            crestElementPos[crestClaI][1],
+                            crestElementPos[crestClaI][2],
+                            crestElementPos[crestClaI][3],
+                            0, None, None, True);
             MakePersistent((CLA_GILDE_CREST + crestClaI));
             _local2 = actor[GILDE_CREST];
             with (_local2) {
@@ -27176,7 +27522,8 @@ def load_tracking_pixel(url=''):
                     addChild(actor[GILDE_CREST_SHIELDCOLOR]);
                 };
                 if (i == 3){
-                    DefineLbl(LBL_GILDE_CREST_INSCRIPTION, "Gildenname", 15, 210, FontFormat_Book);
+                    DefineLbl(LBL_GILDE_CREST_INSCRIPTION, "Gildenname", 15,
+                              210, FontFormat_Book);
                     actor[LBL_GILDE_CREST_INSCRIPTION].mouse_enabled = False;
                     MakePersistent(LBL_GILDE_CREST_INSCRIPTION);
                     addChild(actor[LBL_GILDE_CREST_INSCRIPTION]);
@@ -27184,28 +27531,49 @@ def load_tracking_pixel(url=''):
             };
             i = (i + 1);
         };
-        define_btn(GILDE_CREST_GOTO_GEBAEUDE, " ", GildeBtnHandler, btn_classBack, (GILDE_GEBAEUDE_X + 211), (GILDE_GEBAEUDE_Y - 5));
+        define_btn(GILDE_CREST_GOTO_GEBAEUDE, " ", GildeBtnHandler,
+                   btn_classBack, (GILDE_GEBAEUDE_X + 211),
+                   (GILDE_GEBAEUDE_Y - 5));
         _local2 = actor[GILDE_CREST_GOTO_GEBAEUDE];
         with (_local2) {
             scaleX = 0.4;
             scaleY = 0.4;
         };
-        enable_popup(GILDE_CREST_GOTO_GEBAEUDE, texts[TXT_CREST_GOTO_BUILDINGS]);
+        enable_popup(GILDE_CREST_GOTO_GEBAEUDE,
+                     texts[TXT_CREST_GOTO_BUILDINGS]);
         define_bunch(GILDE_CREST_CONTROLS);
-        define_btn(GILDE_CREST_CHANGE_PREV, "", GildeBtnHandler, btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 250));
-        define_btn(GILDE_CREST_CHANGE_NEXT, "", GildeBtnHandler, btn_classArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 250));
-        DefineLbl(LBL_GILDE_CREST_ELEMENT, "Element", (GILDE_GEBAEUDE_X + 120), (GILDE_GEBAEUDE_Y + 0xFF), FontFormat_Default);
+        define_btn(GILDE_CREST_CHANGE_PREV, "", GildeBtnHandler,
+                   btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10),
+                   (GILDE_GEBAEUDE_Y + 250));
+        define_btn(GILDE_CREST_CHANGE_NEXT, "", GildeBtnHandler,
+                   btn_classArrowRight, (GILDE_GEBAEUDE_X + 193),
+                   (GILDE_GEBAEUDE_Y + 250));
+        DefineLbl(LBL_GILDE_CREST_ELEMENT, "Element",
+                  (GILDE_GEBAEUDE_X + 120), (GILDE_GEBAEUDE_Y + 0xFF),
+                  FontFormat_Default);
         AddFilter(LBL_GILDE_CREST_ELEMENT, Filter_Shadow);
-        define_btn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler, btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10), (GILDE_GEBAEUDE_Y + 295));
-        define_btn(GILDE_CREST_COLOR_NEXT, "", GildeBtnHandler, btn_classArrowRight, (GILDE_GEBAEUDE_X + 193), (GILDE_GEBAEUDE_Y + 295));
-        define_btn(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST], GildeBtnHandler, btn_classBasic, (GILDE_GEBAEUDE_X + 30), (GILDE_GEBAEUDE_Y + 340));
-        enable_popup(GILDE_CREST_OK, texts[TXT_CREST_INFO].split("#").join(chr(13)));
+        define_btn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler,
+                   btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10),
+                   (GILDE_GEBAEUDE_Y + 295));
+        define_btn(GILDE_CREST_COLOR_NEXT, "", GildeBtnHandler,
+                   btn_classArrowRight, (GILDE_GEBAEUDE_X + 193),
+                   (GILDE_GEBAEUDE_Y + 295));
+        define_btn(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST],
+                   GildeBtnHandler, btn_classBasic, (GILDE_GEBAEUDE_X + 30),
+                   (GILDE_GEBAEUDE_Y + 340));
+        enable_popup(GILDE_CREST_OK,
+                     texts[TXT_CREST_INFO].split("#").join(chr(13)));
         i = 1;
         while (i < 4) {
-            DefineCnt((GILDE_CREST_COLOR + i), ((GILDE_GEBAEUDE_X + 23) + (i * 40)), (GILDE_GEBAEUDE_Y + 296));
-            DefineImg((GILDE_CREST_COLOR_UNSELECTED + i), "res/gfx/scr/gilde/crest/color_idle.jpg", False, 0, 0);
-            DefineImg((GILDE_CREST_COLOR_SELECTED + i), "res/gfx/scr/gilde/crest/color_hover.jpg", False, 0, 0);
-            DefineImg((GILDE_CREST_COLOR_FILLIN + i), "res/gfx/scr/gilde/crest/color_field.jpg", False, 2, 2);
+            DefineCnt((GILDE_CREST_COLOR + i),
+                      ((GILDE_GEBAEUDE_X + 23) + (i * 40)),
+                      (GILDE_GEBAEUDE_Y + 296));
+            DefineImg((GILDE_CREST_COLOR_UNSELECTED + i),
+                      "res/gfx/scr/gilde/crest/color_idle.jpg", False, 0, 0);
+            DefineImg((GILDE_CREST_COLOR_SELECTED + i),
+                      "res/gfx/scr/gilde/crest/color_hover.jpg", False, 0, 0);
+            DefineImg((GILDE_CREST_COLOR_FILLIN + i),
+                      "res/gfx/scr/gilde/crest/color_field.jpg", False, 2, 2);
             MakePersistent((GILDE_CREST_COLOR_UNSELECTED + i));
             MakePersistent((GILDE_CREST_COLOR_SELECTED + i));
             MakePersistent((GILDE_CREST_COLOR_FILLIN + i));
@@ -27215,7 +27583,8 @@ def load_tracking_pixel(url=''):
                 addChild(actor[(GILDE_CREST_COLOR_SELECTED + i)]);
                 addChild(actor[(GILDE_CREST_COLOR_FILLIN + i)]);
             };
-            actor[(GILDE_CREST_COLOR + i)].add_event_listener(MouseEvent.CLICK, GildeBtnHandler);
+            actor[(GILDE_CREST_COLOR + i)].add_event_listener(
+                                      MouseEvent.CLICK, GildeBtnHandler);
             actor[(GILDE_CREST_COLOR + i)].buttonMode = True;
             actor[(GILDE_CREST_COLOR + i)].useHandCursor = True;
             actor[(GILDE_CREST_COLOR + i)].mouseChildren = False;
