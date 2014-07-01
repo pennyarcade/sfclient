@@ -24252,7 +24252,8 @@ def load_tracking_pixel(url=''):
                     actor[LBL_QO_TIME].text = (((((str(int((int(savegame[
                                                (SG_QUEST_OFFER_DURATION1
                                                 + quest_id)]) / 60))) + ":")
-                            + (((str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
+                            + (((str(int((int(
+                               savegame[(SG_QUEST_OFFER_DURATION1
                                + quest_id)]) % 60))).length == 1)) ? "0" : ""))
                             + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
                                   + quest_id)]) % 60)))) + " :") +
@@ -25458,8 +25459,8 @@ def load_tracking_pixel(url=''):
                     break;
             };
             DefineImg((VOLK_1_M_IDLE + i),
-                      "res/gfx/scr/buildchar/button_" + volk + "_male_idle.jpg", F
-                      alse, pos_x, pos_y);
+                      "res/gfx/scr/buildchar/button_" + volk
+                      + "_male_idle.jpg", False, pos_x, pos_y);
             DefineCnt((VOLK_1_M_ACT + i), pos_x, pos_y);
             DefineImg((VOLK_1_F_IDLE + i),
                       "res/gfx/scr/buildchar/button_" + volk
@@ -25634,7 +25635,8 @@ def load_tracking_pixel(url=''):
                   "res/gfx/scr/stadt/arena2.png", False, CITY_ARENA_X,
                   CITY_ARENA_Y);
         DefineImg(CITY_ARENA_ONO2,
-                  "res/gfx/scr/stadt/arena3.png", False, CITY_ARENA_X, CITY_ARENA_Y);
+                  "res/gfx/scr/stadt/arena3.png", False, CITY_ARENA_X,
+                  CITY_ARENA_Y);
         DefineImg(CITY_ARENA_ONO3,
                   "res/gfx/scr/stadt/arena4.png",
                   False, CITY_ARENA_X, CITY_ARENA_Y);
@@ -27591,44 +27593,72 @@ def load_tracking_pixel(url=''):
             add_bunch(GILDE_CREST_CONTROLS, (GILDE_CREST_COLOR + i));
             i = (i + 1);
         };
-        add_bunch(GILDE_CREST_CONTROLS, GILDE_CREST_CHANGE_PREV, GILDE_CREST_CHANGE_NEXT, LBL_GILDE_CREST_ELEMENT, GILDE_CREST_COLOR_PREV, GILDE_CREST_COLOR_NEXT, GILDE_CREST_OK);
+        add_bunch(GILDE_CREST_CONTROLS, GILDE_CREST_CHANGE_PREV,
+                  GILDE_CREST_CHANGE_NEXT, LBL_GILDE_CREST_ELEMENT,
+                  GILDE_CREST_COLOR_PREV, GILDE_CREST_COLOR_NEXT,
+                  GILDE_CREST_OK);
         add_bunch(GILDE_CREST, GILDE_CREST, GILDE_CREST_GOTO_GEBAEUDE);
-        DefineLbl(LBL_GILDE_GOLD, "", 0, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)), FontFormat_GuildMoney);
+        DefineLbl(LBL_GILDE_GOLD, "", 0, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)),
+                  FontFormat_GuildMoney);
         AddFilter(LBL_GILDE_GOLD, Filter_Shadow);
-        DefineLbl(LBL_GILDE_MUSH, "", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
+        DefineLbl(LBL_GILDE_MUSH, "", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
+                  FontFormat_GuildMoney);
         AddFilter(LBL_GILDE_MUSH, Filter_Shadow);
-        DefineCnt(GILDE_GOLD, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
+        DefineCnt(GILDE_GOLD, GILDE_GOLDMUSH_X,
+                  (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
         DefineCnt(GILDE_MUSH, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + GILDE_MUSH_Y));
-        define_btn(GILDE_GOLD, "", GildeBtnHandler, btn_classPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
+        define_btn(GILDE_GOLD, "", GildeBtnHandler, btn_classPlus,
+                   (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2),
+                   (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
         _local2 = actor[GILDE_GOLD];
         with (_local2) {
             scaleX = 0.8;
             scaleY = 0.8;
         };
         enable_popup(GILDE_GOLD, texts[TXT_GILDE_GOLD]);
-        define_btn(GILDE_MUSH, "", GildeBtnHandler, btn_classPlus, (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2), (GILDE_GOLD_Y + GILDE_MUSH_Y));
+        define_btn(GILDE_MUSH, "", GildeBtnHandler, btn_classPlus,
+                   (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2),
+                   (GILDE_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[GILDE_MUSH];
         with (_local2) {
             scaleX = 0.8;
             scaleY = 0.8;
         };
         enable_popup(GILDE_MUSH, texts[TXT_GILDE_MUSH]);
-        DefineLbl(LBL_GILDE_GOLD2, "1", (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C3), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)), FontFormat_GuildMoney);
+        DefineLbl(LBL_GILDE_GOLD2, "1", (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C3),
+                  (GILDE_GOLD_Y + ((noMush) ? 15 : 0)), FontFormat_GuildMoney);
         AddFilter(LBL_GILDE_GOLD2, Filter_Shadow);
         enable_popup(LBL_GILDE_GOLD2, texts[TXT_GILDE_GOLD]);
-        DefineLbl(LBL_GILDE_MUSH2, "1", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
+        DefineLbl(LBL_GILDE_MUSH2, "1", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
+                  FontFormat_GuildMoney);
         AddFilter(LBL_GILDE_MUSH2, Filter_Shadow);
         enable_popup(LBL_GILDE_MUSH2, texts[TXT_GILDE_MUSH]);
-        actor[LBL_GILDE_MUSH2].x = ((actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].text_width) - actor[LBL_GILDE_MUSH2].text_width);
-        DefineCnt(GILDE_GOLD2, ((actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].text_width) + 15), (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
-        DefineCnt(GILDE_MUSH2, ((actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].text_width) + 15), (GILDE_GOLD_Y + GILDE_MUSH_Y));
+        actor[LBL_GILDE_MUSH2].x = ((actor[LBL_GILDE_GOLD2].x
+                                    + actor[LBL_GILDE_GOLD2].text_width)
+                                        - actor[LBL_GILDE_MUSH2].text_width);
+        DefineCnt(GILDE_GOLD2,
+                  ((actor[LBL_GILDE_GOLD2].x
+                   + actor[LBL_GILDE_GOLD2].text_width) + 15),
+                    (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
+        DefineCnt(GILDE_MUSH2,
+                  ((actor[LBL_GILDE_GOLD2].x
+                   + actor[LBL_GILDE_GOLD2].text_width) + 15),
+                    (GILDE_GOLD_Y + GILDE_MUSH_Y));
         if (noMush){
-            define_bunch(GILDE_SCHATZ, LBL_GILDE_GOLD, GILDE_GOLD, GILDE_GOLD, LBL_GILDE_GOLD2, GILDE_GOLD2);
+            define_bunch(GILDE_SCHATZ, LBL_GILDE_GOLD, GILDE_GOLD, GILDE_GOLD,
+                         LBL_GILDE_GOLD2, GILDE_GOLD2);
         } else {
-            define_bunch(GILDE_SCHATZ, LBL_GILDE_GOLD, LBL_GILDE_MUSH, GILDE_GOLD, GILDE_MUSH, GILDE_GOLD, GILDE_MUSH, LBL_GILDE_GOLD2, LBL_GILDE_MUSH2, GILDE_GOLD2, GILDE_MUSH2);
+            define_bunch(GILDE_SCHATZ, LBL_GILDE_GOLD, LBL_GILDE_MUSH,
+                         GILDE_GOLD, GILDE_MUSH, GILDE_GOLD, GILDE_MUSH,
+                         LBL_GILDE_GOLD2, LBL_GILDE_MUSH2, GILDE_GOLD2,
+                         GILDE_MUSH2);
         };
-        define_bunch(SCREEN_GILDE_GRUENDEN, GILDEN_BG, IF_WINDOW, LBL_WINDOW_TITLE, IF_OVL, LBL_GILDE_GRUENDEN_TEXT, INP_GILDE_GRUENDEN, GILDE_GRUENDEN, IF_EXIT);
-        define_bunch(SCREEN_GILDEN, GILDEN_BG, IF_OVL, GILDE_RAHMEN, IF_EXIT, LBL_SCREEN_TITLE, GILDE_GEBAEUDE, GILDE_CREST, GILDE_SCHATZ);
+        define_bunch(SCREEN_GILDE_GRUENDEN, GILDEN_BG, IF_WINDOW,
+                     LBL_WINDOW_TITLE, IF_OVL, LBL_GILDE_GRUENDEN_TEXT,
+                     INP_GILDE_GRUENDEN, GILDE_GRUENDEN, IF_EXIT);
+        define_bunch(SCREEN_GILDEN, GILDEN_BG, IF_OVL, GILDE_RAHMEN, IF_EXIT,
+                     LBL_SCREEN_TITLE, GILDE_GEBAEUDE, GILDE_CREST,
+                     GILDE_SCHATZ);
         DefineCnt(GILDE_RANG, GILDE_RANG_X, GILDE_RANG_Y);
         DefineLbl(LBL_GILDE_RANG, "", 0, 0, FontFormat_Default);
         AddFilter(LBL_GILDE_RANG, Filter_Shadow);
@@ -27643,51 +27673,104 @@ def load_tracking_pixel(url=''):
             add_event_listener(MouseEvent.CLICK, JumpToGuildHall);
         };
         MakePersistent(LBL_GILDE_RANG);
-        DefineFromClass(INP_GILDE_TEXT, SimpleTextAreaGuild, GILDE_TEXT_X, GILDE_LIST_Y, 1, "text");
+        DefineFromClass(INP_GILDE_TEXT, SimpleTextAreaGuild, GILDE_TEXT_X,
+                        GILDE_LIST_Y, 1, "text");
         CleanupField(INP_GILDE_TEXT);
         AddFilter(INP_GILDE_TEXT, Filter_Shadow);
         DefineCnt(GILDE_LIST, GILDE_LIST_X, GILDE_LIST_Y);
-        DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png", False, 0, 0);
-        DefineImg((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png", False, 0, 0);
-        DefineImg((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png", False, 0, 0);
-        define_btn(GILDE_SCROLL_UP, "", GildeBtnHandler, btn_classArrowUp, GILDE_LIST_SCROLLX, GILDE_LIST_Y);
-        define_btn(GILDE_SCROLL_DOWN, "", GildeBtnHandler, btn_classArrowDown, GILDE_LIST_SCROLLX, GILDE_LIST_SCROLLY);
+        DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png",
+                  False, 0, 0);
+        DefineImg((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png",
+                  False, 0, 0);
+        DefineImg((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png",
+                  False, 0, 0);
+        define_btn(GILDE_SCROLL_UP, "", GildeBtnHandler, btn_classArrowUp,
+                   GILDE_LIST_SCROLLX, GILDE_LIST_Y);
+        define_btn(GILDE_SCROLL_DOWN, "", GildeBtnHandler, btn_classArrowDown,
+                   GILDE_LIST_SCROLLX, GILDE_LIST_SCROLLY);
         i = 0;
-        DefineImg(GILDE_INVITE_GRAY, "res/gfx/scr/gilde/button_gilde_einladen_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_INVITE_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_einladen_grau.jpg", False,
+                  (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_INVITE, "", GildeBtnHandler, btn_classInvite, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_INVITE, "", GildeBtnHandler, btn_classInvite,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_PROFILE, "", GildeBtnHandler, btn_classView, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        DefineImg(GILDE_KICK_GRAY, "res/gfx/scr/gilde/button_gilde_rauswerfen_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_PROFILE, "", GildeBtnHandler, btn_classView,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_KICK_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_rauswerfen_grau.jpg", False,
+                  (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_KICK, "", GildeBtnHandler, btn_classKick, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        DefineImg(GILDE_PROMOTE_GRAY, "res/gfx/scr/gilde/button_gilde_orden_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        define_btn(GILDE_PROMOTE, "", GildeBtnHandler, btn_classPromote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_KICK, "", GildeBtnHandler, btn_classKick,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_PROMOTE_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_orden_grau.jpg", False,
+                  (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_PROMOTE, "", GildeBtnHandler, btn_classPromote,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_DEMOTE, "", GildeBtnHandler, btn_classDemote, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        DefineImg(GILDE_MASTER_GRAY, "res/gfx/scr/gilde/button_gilde_gildenleiter_grau.jpg", False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        define_btn(GILDE_MASTER, "", GildeBtnHandler, btn_classMaster, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_DEMOTE, "", GildeBtnHandler, btn_classDemote,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        DefineImg(GILDE_MASTER_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_gildenleiter_grau.jpg",
+                  False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_MASTER, "", GildeBtnHandler, btn_classMaster,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
         i = (i + 1);
-        define_btn(GILDE_REVOLT, "", GildeBtnHandler, btn_classRevolt, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-        define_btn(GILDE_RAID, "", GildeBtnHandler, btn_classRaid, (GILDE_ATTACKX - 50), GILDE_TOOLY);
-        DefineImg(GILDE_RAID_GRAY, "res/gfx/scr/gilde/button_gilde_raid_grey.jpg", False, (GILDE_ATTACKX - 50), GILDE_TOOLY);
-        DefineImg(GILDE_RAID_OK, "res/gfx/scr/gilde/button_gilde_raid_check.jpg", False, (GILDE_ATTACKX - 50), GILDE_TOOLY);
-        define_btn(GILDE_ATTACK, "", GildeBtnHandler, btn_classAttack, (GILDE_ATTACKX + 5), GILDE_TOOLY);
-        define_btn(GILDE_DEFEND, "", GildeBtnHandler, btn_classDefend, (GILDE_DEFENDX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_ATTACK_GRAY, "res/gfx/scr/gilde/button_gilde_attack_grau.jpg", False, (GILDE_ATTACKX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_ATTACK_OK, "res/gfx/scr/gilde/button_gilde_attack_check.jpg", False, (GILDE_ATTACKX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_DEFEND_GRAY, "res/gfx/scr/gilde/button_gilde_defend_grau.jpg", False, (GILDE_DEFENDX + 5), GILDE_TOOLY);
-        DefineImg(GILDE_DEFEND_OK, "res/gfx/scr/gilde/button_gilde_defend_check.jpg", False, (GILDE_DEFENDX + 5), GILDE_TOOLY);
-        define_btn(GILDE_KATAPULT, "", GildeBtnHandler, btn_classCatapult0, (GILDE_ATTACKX - 105), GILDE_TOOLY);
-        define_btn((GILDE_KATAPULT + 1), "", GildeBtnHandler, btn_classCatapult1, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        define_btn((GILDE_KATAPULT + 2), "", GildeBtnHandler, btn_classCatapult2, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg(GILDE_KATAPULT_GRAY, "res/gfx/scr/gilde/button_gilde_catapult0_grau.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg(GILDE_KATAPULT_OK, "res/gfx/scr/gilde/button_gilde_catapult1_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg((GILDE_KATAPULT_OK + 1), "res/gfx/scr/gilde/button_gilde_catapult2_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        DefineImg((GILDE_KATAPULT_OK + 2), "res/gfx/scr/gilde/button_gilde_catapult3_idle.png", False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-        define_bunch(GILDE_KATAPULT, GILDE_KATAPULT, (GILDE_KATAPULT + 1), (GILDE_KATAPULT + 2), GILDE_KATAPULT_GRAY, GILDE_KATAPULT_OK, (GILDE_KATAPULT_OK + 1), (GILDE_KATAPULT_OK + 2));
+        define_btn(GILDE_REVOLT, "", GildeBtnHandler, btn_classRevolt,
+                   (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
+        define_btn(GILDE_RAID, "", GildeBtnHandler, btn_classRaid,
+                   (GILDE_ATTACKX - 50), GILDE_TOOLY);
+        DefineImg(GILDE_RAID_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_raid_grey.jpg", False,
+                  (GILDE_ATTACKX - 50), GILDE_TOOLY);
+        DefineImg(GILDE_RAID_OK,
+                  "res/gfx/scr/gilde/button_gilde_raid_check.jpg", False,
+                  (GILDE_ATTACKX - 50), GILDE_TOOLY);
+        define_btn(GILDE_ATTACK, "", GildeBtnHandler, btn_classAttack,
+                   (GILDE_ATTACKX + 5), GILDE_TOOLY);
+        define_btn(GILDE_DEFEND, "", GildeBtnHandler, btn_classDefend,
+                   (GILDE_DEFENDX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_ATTACK_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_attack_grau.jpg", False,
+                  (GILDE_ATTACKX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_ATTACK_OK,
+                  "res/gfx/scr/gilde/button_gilde_attack_check.jpg", False,
+                  (GILDE_ATTACKX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_DEFEND_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_defend_grau.jpg", False,
+                  (GILDE_DEFENDX + 5), GILDE_TOOLY);
+        DefineImg(GILDE_DEFEND_OK,
+                  "res/gfx/scr/gilde/button_gilde_defend_check.jpg", False,
+                  (GILDE_DEFENDX + 5), GILDE_TOOLY);
+        define_btn(GILDE_KATAPULT, "", GildeBtnHandler, btn_classCatapult0,
+                   (GILDE_ATTACKX - 105), GILDE_TOOLY);
+        define_btn((GILDE_KATAPULT + 1), "", GildeBtnHandler,
+                   btn_classCatapult1, actor[GILDE_KATAPULT].x,
+                   actor[GILDE_KATAPULT].y);
+        define_btn((GILDE_KATAPULT + 2), "", GildeBtnHandler,
+                   btn_classCatapult2, actor[GILDE_KATAPULT].x,
+                   actor[GILDE_KATAPULT].y);
+        DefineImg(GILDE_KATAPULT_GRAY,
+                  "res/gfx/scr/gilde/button_gilde_catapult0_grau.png",
+                  False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg(GILDE_KATAPULT_OK,
+                  "res/gfx/scr/gilde/button_gilde_catapult1_idle.png", False,
+                  actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg((GILDE_KATAPULT_OK + 1),
+                  "res/gfx/scr/gilde/button_gilde_catapult2_idle.png",
+                  False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        DefineImg((GILDE_KATAPULT_OK + 2),
+                  "res/gfx/scr/gilde/button_gilde_catapult3_idle.png",
+                  False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
+        define_bunch(GILDE_KATAPULT, GILDE_KATAPULT, (GILDE_KATAPULT + 1),
+                     (GILDE_KATAPULT + 2), GILDE_KATAPULT_GRAY,
+                     GILDE_KATAPULT_OK, (GILDE_KATAPULT_OK + 1),
+                     (GILDE_KATAPULT_OK + 2));
         DefineCnt(GILDE_ATTACK, GILDE_ATTACKLABEL_X, GILDE_TOOLY);
-        DefineCnt(GILDE_DEFENCE, GILDE_ATTACKLABEL_X, (GILDE_TOOLY + GILDE_DEFENSELABEL_Y));
+        DefineCnt(GILDE_DEFENCE, GILDE_ATTACKLABEL_X,
+                  (GILDE_TOOLY + GILDE_DEFENSELABEL_Y));
         DefineLbl(LBL_GILDE_ATTACK, "", 0, 0, FontFormat_AttackLabel);
         DefineLbl(LBL_GILDE_DEFENCE, "", 0, 0, FontFormat_AttackLabel);
         AddFilter(LBL_GILDE_ATTACK, Filter_Shadow);
@@ -27722,13 +27805,20 @@ def load_tracking_pixel(url=''):
         enable_popup(GILDE_MASTER, texts[TXT_POPUP_LEITER]);
         enable_popup(GILDE_MASTER_GRAY, texts[TXT_POPUP_LEITER]);
         enable_popup(GILDE_REVOLT, texts[TXT_POPUP_REVOLT]);
-        define_bunch(GILDE_SET_MEMBER, GILDE_INVITE_GRAY, GILDE_PROFILE, GILDE_KICK_GRAY, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
-        define_bunch(GILDE_SET_OFFICER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
-        define_bunch(GILDE_SET_MASTER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK, GILDE_PROMOTE, GILDE_MASTER);
-        define_bunch(GILDE_LISTBUTTONS, GILDE_SET_MEMBER, GILDE_SET_OFFICER, GILDE_SET_MASTER);
-        add_bunch(SCREEN_GILDEN, INP_GILDE_TEXT, GILDE_LIST, LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN);
-        add_bunch(SCREEN_GILDEN, INP_GILDE_CHAT, GILDE_SCROLL_UP, GILDE_SCROLL_DOWN, GILDE_RANG, GILDE_ATTACK, GILDE_DEFENCE);
-        DefineLbl(LBL['GILDE']['CHAT']_CAPTION, texts[TXT_CHAT_CAPTION], GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
+        define_bunch(GILDE_SET_MEMBER, GILDE_INVITE_GRAY, GILDE_PROFILE,
+                     GILDE_KICK_GRAY, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
+        define_bunch(GILDE_SET_OFFICER, GILDE_INVITE, GILDE_PROFILE,
+                     GILDE_KICK, GILDE_PROMOTE_GRAY, GILDE_MASTER_GRAY);
+        define_bunch(GILDE_SET_MASTER, GILDE_INVITE, GILDE_PROFILE, GILDE_KICK,
+                     GILDE_PROMOTE, GILDE_MASTER);
+        define_bunch(GILDE_LISTBUTTONS, GILDE_SET_MEMBER, GILDE_SET_OFFICER,
+                     GILDE_SET_MASTER);
+        add_bunch(SCREEN_GILDEN, INP_GILDE_TEXT, GILDE_LIST,
+                  LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN)
+        add_bunch(SCREEN_GILDEN, INP_GILDE_CHAT, GILDE_SCROLL_UP,
+                  GILDE_SCROLL_DOWN, GILDE_RANG, GILDE_ATTACK, GILDE_DEFENCE);
+        DefineLbl(LBL['GILDE']['CHAT']_CAPTION, texts[TXT_CHAT_CAPTION],
+                  GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
         AddFilter(LBL['GILDE']['CHAT']_CAPTION, Filter_Shadow);
         hide(LBL['GILDE']['CHAT']_CAPTION);
         DefineCnt(GILDE_LINK, 0, GILDE_RANG_Y);
@@ -27745,43 +27835,67 @@ def load_tracking_pixel(url=''):
             useHandCursor = True;
             buttonMode = True;
         };
-        define_btn(GILDE_CHAT_UP, "", GildeBtnHandler, btn_classArrowUp, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_UP_Y));
-        define_btn(GILDE_CHAT_DOWN, "", GildeBtnHandler, btn_classArrowDown, GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_DOWN_Y));
-        define_bunch(GILDE_CHAT, LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN, INP_GILDE_CHAT);
+        define_btn(GILDE_CHAT_UP, "", GildeBtnHandler, btn_classArrowUp,
+                   GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_UP_Y));
+        define_btn(GILDE_CHAT_DOWN, "", GildeBtnHandler, btn_classArrowDown,
+                   GILDE_LIST_SCROLLX, (GILDE_CHAT_Y + GILDE_CHAT_DOWN_Y));
+        define_bunch(GILDE_CHAT, LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP,
+                     GILDE_CHAT_DOWN, INP_GILDE_CHAT);
         i = 0;
         while (i < 40) {
-            DefineLbl((LBL['GILDE']['CHAT'] + i), "", GILDE_CHAT_X, (GILDE_CHAT_Y + ((i - 35) * GILDE_CHAT_Y)));
+            DefineLbl((LBL['GILDE']['CHAT'] + i), "", GILDE_CHAT_X,
+                      (GILDE_CHAT_Y + ((i - 35) * GILDE_CHAT_Y)));
             actor[(LBL['GILDE']['CHAT'] + i)].visible = (i >= 35);
-            actor[(LBL['GILDE']['CHAT'] + i)].add_event_listener(MouseEvent.CLICK, clickChatLine);
+            actor[(LBL['GILDE']['CHAT'] + i)].add_event_listener(
+                                             MouseEvent.CLICK, clickChatLine);
             AddFilter((LBL['GILDE']['CHAT'] + i), Filter_Shadow);
             add_bunch(SCREEN_GILDEN, (LBL['GILDE']['CHAT'] + i));
             add_bunch(GILDE_CHAT, (LBL['GILDE']['CHAT'] + i));
             i = (i + 1);
         };
-        DefineFromClass(INP_GILDE_CHAT, ChatInputField, GILDE_CHAT_X, GILDE_CHAT_FIELD_Y, 1, "chat");
+        DefineFromClass(INP_GILDE_CHAT, ChatInputField, GILDE_CHAT_X,
+                        GILDE_CHAT_FIELD_Y, 1, "chat");
         actor[INP_GILDE_CHAT].getChildAt(0).text = "";
         AddFilter(INP_GILDE_CHAT, Filter_Shadow);
-        actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_DOWN, SendChatMsg);
-        actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_UP, AdvancedChatHandler);
-        actor[INP_GILDE_CHAT].add_event_listener(FocusEvent.FOCUS_IN, ShowExtendedHistory);
-        actor[INP_GILDE_CHAT].add_event_listener(FocusEvent.FOCUS_OUT, HideExtendedHistory);
+        actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_DOWN,
+                                                 SendChatMsg);
+        actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_UP,
+                                                 AdvancedChatHandler);
+        actor[INP_GILDE_CHAT].add_event_listener(FocusEvent.FOCUS_IN,
+                                                 ShowExtendedHistory);
+        actor[INP_GILDE_CHAT].add_event_listener(FocusEvent.FOCUS_OUT,
+                                                 HideExtendedHistory);
         CleanupField(INP_GILDE_CHAT);
         lastChatLine = "";
         nextSuggestionTimer = new Timer((62 * 1000));
         suggestionAllowed = True;
-        nextSuggestionTimer.add_event_listener(TimerEvent.TIMER, nextSuggestionAllow);
-        DefineClickArea(CA_GILDE_DIALOG_BLOCK, C_EMPTY, None, 280, 100, (RES_X - 280), (RES_Y - 100));
+        nextSuggestionTimer.add_event_listener(TimerEvent.TIMER,
+                                               nextSuggestionAllow);
+        DefineClickArea(CA_GILDE_DIALOG_BLOCK, C_EMPTY, None, 280, 100,
+                        (RES_X - 280), (RES_Y - 100));
         _local2 = actor[CA_GILDE_DIALOG_BLOCK];
         with (_local2) {
             useHandCursor = False;
             buttonMode = False;
         };
-        DefineLbl(LBL_GILDE_DIALOG_TEXT_KICK, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-        DefineLbl(LBL_GILDE_DIALOG_TEXT_QUIT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-        DefineLbl(LBL_GILDE_DIALOG_TEXT_MASTER, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-        DefineLbl(LBL_GILDE_DIALOG_TEXT_INVITE, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-        DefineLbl(LBL_GILDE_DIALOG_TEXT_REVOLT, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-        DefineLbl(LBL_GILDE_DIALOG_TEXT_RAID, "", ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)), (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_GILDE_DIALOG_TEXT_KICK, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
+                  (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_GILDE_DIALOG_TEXT_QUIT, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
+                  (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_GILDE_DIALOG_TEXT_MASTER, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
+                  (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_GILDE_DIALOG_TEXT_INVITE, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
+                  (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_GILDE_DIALOG_TEXT_REVOLT, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
+                  (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_GILDE_DIALOG_TEXT_RAID, "",
+                  ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
+                  (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
         _local2 = actor[LBL_GILDE_DIALOG_TEXT_KICK];
         with (_local2) {
             wordWrap = True;
@@ -27812,18 +27926,25 @@ def load_tracking_pixel(url=''):
             width = GILDE_TEXT2_X;
             text = texts[TXT_REVOLT_WARNING];
         };
-        DefineFromClass(INP_GILDE_DIALOG_INVITE, text_input1, 0, (IF_WIN_Y + GILDE_INP_Y), 2, "name");
+        DefineFromClass(INP_GILDE_DIALOG_INVITE, text_input1, 0,
+                        (IF_WIN_Y + GILDE_INP_Y), 2, "name");
         _local2 = actor[INP_GILDE_DIALOG_INVITE];
         with (_local2) {
             getChildAt(1).text = "";
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2)));
         };
-        define_btn(GILDE_DIALOG_CANCEL, texts[TXT_ABBRECHEN], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_KICK, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_MASTER, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_INVITE, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_REVOLT, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-        define_btn(GILDE_DIALOG_OK_RAID, texts[TXT_OK], GildeBtnHandler, btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_CANCEL, texts[TXT_ABBRECHEN], GildeBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_KICK, texts[TXT_OK], GildeBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_MASTER, texts[TXT_OK], GildeBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_INVITE, texts[TXT_OK], GildeBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_REVOLT, texts[TXT_OK], GildeBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
+        define_btn(GILDE_DIALOG_OK_RAID, texts[TXT_OK], GildeBtnHandler,
+                   btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
         _local2 = actor[GILDE_DIALOG_CANCEL];
         with (_local2) {
             x = ((IF_WIN_X + IF_WIN_WELCOME_X) + 10);
@@ -27848,56 +27969,135 @@ def load_tracking_pixel(url=''):
         with (_local2) {
             x = (((IF_WIN_X + IF_WIN_WELCOME_X) - int(width)) - 10);
         };
-        define_bunch(GILDE_DIALOG_KICK, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_KICK, GILDE_DIALOG_OK_KICK, GILDE_DIALOG_CANCEL);
-        define_bunch(GILDE_DIALOG_MASTER, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_MASTER, GILDE_DIALOG_OK_MASTER, GILDE_DIALOG_CANCEL);
-        define_bunch(GILDE_DIALOG_INVITE, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_INVITE, INP_GILDE_DIALOG_INVITE, GILDE_DIALOG_OK_INVITE, GILDE_DIALOG_CANCEL);
-        define_bunch(GILDE_DIALOG_REVOLT, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_REVOLT, GILDE_DIALOG_OK_REVOLT, GILDE_DIALOG_CANCEL);
-        define_bunch(GILDE_DIALOG_RAID, CA_GILDE_DIALOG_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_RAID, GILDE_DIALOG_OK_RAID, GILDE_DIALOG_CANCEL);
-        actor[GILDE_DIALOG_CANCEL].add_event_listener(MouseEvent.CLICK, PlayerGuildInviteCancel);
-        actor[GILDE_DIALOG_OK_INVITE].add_event_listener(MouseEvent.CLICK, PlayerGuildInviteOK);
-        DefineImg(HUTMANN_BG, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler.jpg", False, 280, 100);
-        DefineImg(HUTFACE_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_neutral.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_keinelust.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_WIN, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_gewonnen.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_LOSE1, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_LOSE2, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren2.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTFACE_LOSE3, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_verloren3.jpg", False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-        DefineImg(HUTBECHER_1_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_1.jpg", False, (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y));
-        DefineImg(HUTBECHER_1_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_2.jpg", False, ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X2), ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y2));
-        DefineImg(HUTBECHER_1_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher1_3.jpg", False, ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X3), ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y3));
+        define_bunch(GILDE_DIALOG_KICK, CA_GILDE_DIALOG_BLOCK, IF_WINDOW,
+                     LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_KICK,
+                     GILDE_DIALOG_OK_KICK, GILDE_DIALOG_CANCEL);
+        define_bunch(GILDE_DIALOG_MASTER, CA_GILDE_DIALOG_BLOCK, IF_WINDOW,
+                     LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_MASTER,
+                     GILDE_DIALOG_OK_MASTER, GILDE_DIALOG_CANCEL);
+        define_bunch(GILDE_DIALOG_INVITE, CA_GILDE_DIALOG_BLOCK, IF_WINDOW,
+                     LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_INVITE,
+                     INP_GILDE_DIALOG_INVITE, GILDE_DIALOG_OK_INVITE,
+                     GILDE_DIALOG_CANCEL);
+        define_bunch(GILDE_DIALOG_REVOLT, CA_GILDE_DIALOG_BLOCK, IF_WINDOW,
+                     LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_REVOLT,
+                     GILDE_DIALOG_OK_REVOLT, GILDE_DIALOG_CANCEL);
+        define_bunch(GILDE_DIALOG_RAID, CA_GILDE_DIALOG_BLOCK, IF_WINDOW,
+                     LBL_WINDOW_TITLE, LBL_GILDE_DIALOG_TEXT_RAID, G
+                     ILDE_DIALOG_OK_RAID, GILDE_DIALOG_CANCEL);
+        actor[GILDE_DIALOG_CANCEL].add_event_listener(MouseEvent.CLICK,
+                                                      PlayerGuildInviteCancel);
+        actor[GILDE_DIALOG_OK_INVITE].add_event_listener(MouseEvent.CLICK,
+                                                         PlayerGuildInviteOK);
+        DefineImg(HUTMANN_BG,
+                  "res/gfx/scr/taverne/huetchenspieler/huetchenspieler.jpg",
+                  False, 280, 100);
+        DefineImg(HUTFACE_IDLE,
+                  "res/gfx/scr/taverne/huetchenspieler/" +
+                  "huetchenspieler_neutral.jpg", False,
+                  (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_HOVER,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_keinelust.jpg", False,
+                  (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_WIN,
+                  "res/gfx/scr/taverne/huetchenspieler/" +
+                  "huetchenspieler_gewonnen.jpg", False,
+                  (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_LOSE1,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_verloren.jpg", False,
+                  (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_LOSE2,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_verloren2.jpg",
+                  False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTFACE_LOSE3,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_verloren3.jpg", False,
+                  (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
+        DefineImg(HUTBECHER_1_IDLE,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher1_1.jpg", False,
+                  (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y));
+        DefineImg(HUTBECHER_1_HOVER,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher1_2.jpg", False,
+                  ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X2),
+                  ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y2));
+        DefineImg(HUTBECHER_1_CLICK,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher1_3.jpg", False,
+                  ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X3),
+                  ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y3));
         define_bunch(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTFACE_HOVER);
-        DefineClickArea(CA_HUTBECHER_1, HUTBECHER_1_HOVER, ChooseCup, (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y), HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-        DefineImg(HUTBECHER_2_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_1.jpg", False, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y));
-        DefineImg(HUTBECHER_2_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_2.jpg", False, ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X2), ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y2));
-        DefineImg(HUTBECHER_2_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher2_3.jpg", False, ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X3), ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y3));
+        DefineClickArea(CA_HUTBECHER_1, HUTBECHER_1_HOVER, ChooseCup,
+                        (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y),
+                        HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
+        DefineImg(HUTBECHER_2_IDLE,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher2_1.jpg",
+                  False, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y));
+        DefineImg(HUTBECHER_2_HOVER,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher2_2.jpg", False,
+                  ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X2),
+                  ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y2));
+        DefineImg(HUTBECHER_2_CLICK,
+                  "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher2_3.jpg", False,
+                  ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X3),
+                  ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y3));
         define_bunch(HUTBECHER_2_HOVER, HUTBECHER_2_HOVER, HUTFACE_HOVER);
-        DefineClickArea(CA_HUTBECHER_2, HUTBECHER_2_HOVER, ChooseCup, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y), HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-        DefineImg(HUTBECHER_3_IDLE, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_1.jpg", False, (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y));
-        DefineImg(HUTBECHER_3_HOVER, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_2.jpg", False, ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X2), ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y2));
-        DefineImg(HUTBECHER_3_CLICK, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_becher3_3.jpg", False, ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X3), ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y3));
+        DefineClickArea(CA_HUTBECHER_2, HUTBECHER_2_HOVER, ChooseCup,
+                        (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y),
+                        HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
+        DefineImg(HUTBECHER_3_IDLE, "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher3_1.jpg", False,
+                  (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y));
+        DefineImg(HUTBECHER_3_HOVER, "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher3_2.jpg", False,
+                  ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X2),
+                  ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y2));
+        DefineImg(HUTBECHER_3_CLICK, "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_becher3_3.jpg", False,
+                  ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X3),
+                  ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y3));
         define_bunch(HUTBECHER_3_HOVER, HUTBECHER_3_HOVER, HUTFACE_HOVER);
-        DefineClickArea(CA_HUTBECHER_3, HUTBECHER_3_HOVER, ChooseCup, (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y), HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-        define_bunch(HUTMANN_BECHERCHOOSE, CA_HUTBECHER_1, CA_HUTBECHER_2, CA_HUTBECHER_3, HUTFACE_IDLE);
-        DefineImg(HUTKUGEL, "res/gfx/scr/taverne/huetchenspieler/huetchenspieler_ball.png", False, 0, (100 + HUTKUGEL_Y));
-        DefineLbl(LBL_HUTMANN_TEXT, texts[TXT_HUTMANN_OFFER], 0, (100 + HUTMANN_TEXT_Y), FontFormat_Default);
-        actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X - (actor[LBL_HUTMANN_TEXT].text_width / 2));
+        DefineClickArea(CA_HUTBECHER_3, HUTBECHER_3_HOVER, ChooseCup,
+                        (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y),
+                        HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
+        define_bunch(HUTMANN_BECHERCHOOSE, CA_HUTBECHER_1, CA_HUTBECHER_2,
+                     CA_HUTBECHER_3, HUTFACE_IDLE);
+        DefineImg(HUTKUGEL, "res/gfx/scr/taverne/huetchenspieler/"
+                  + "huetchenspieler_ball.png", False, 0, (100 + HUTKUGEL_Y));
+        DefineLbl(LBL_HUTMANN_TEXT, texts[TXT_HUTMANN_OFFER], 0,
+                  (100 + HUTMANN_TEXT_Y), FontFormat_Default);
+        actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X -
+                                     (actor[LBL_HUTMANN_TEXT].text_width / 2));
         AddFilter(LBL_HUTMANN_TEXT, Filter_Shadow);
-        DefineLbl(LBL_HUTMANN_GOLDBET, "", 0, HUTMANN_GOLD_Y, FontFormat_GuildMoney);
+        DefineLbl(LBL_HUTMANN_GOLDBET, "", 0, HUTMANN_GOLD_Y,
+                  FontFormat_GuildMoney);
         AddFilter(LBL_HUTMANN_GOLDBET, Filter_Shadow);
-        DefineLbl(LBL_HUTMANN_MUSHBET, "", 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
+        DefineLbl(LBL_HUTMANN_MUSHBET, "", 0,
+                  (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
         AddFilter(LBL_HUTMANN_MUSHBET, Filter_Shadow);
         DefineCnt(HUTMANN_GOLDBET, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
-        define_btn(HUTMANN_GOLDBET, "", HutBtnHandler, btn_classPlus, 0, HUTMANN_GOLD_Y);
+        define_btn(HUTMANN_GOLDBET, "", HutBtnHandler, btn_classPlus,
+                   0, HUTMANN_GOLD_Y);
         _local2 = actor[HUTMANN_GOLDBET];
         with (_local2) {
             scaleX = 0.8;
             scaleY = 0.8;
         };
         enable_popup(HUTMANN_GOLDBET, texts[TXT_HUTMANN_GOLDBET]);
-        DefineImg(HUTMANN_MUSHBET_DISABLED, "res/gfx/scr/gilde/plus_disabled.png", False, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
+        DefineImg(HUTMANN_MUSHBET_DISABLED,
+                  "res/gfx/scr/gilde/plus_disabled.png", False, 0,
+                  (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         enable_popup(HUTMANN_MUSHBET_DISABLED, texts[TXT_MUSHBET_BOUGHT]);
-        define_btn(HUTMANN_MUSHBET, "", HutBtnHandler, btn_classPlus, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
+        define_btn(HUTMANN_MUSHBET, "", HutBtnHandler, btn_classPlus, 0,
+                   (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         _local2 = actor[HUTMANN_MUSHBET];
         with (_local2) {
             scaleX = 0.8;
@@ -27909,20 +28109,32 @@ def load_tracking_pixel(url=''):
             scaleY = 0.8;
         };
         enable_popup(HUTMANN_MUSHBET, texts[TXT_HUTMANN_MUSHBET]);
-        DefineLbl(LBL_HUTMANN_GOLDBET2, "1", 0, HUTMANN_GOLD_Y, FontFormat_GuildMoney);
+        DefineLbl(LBL_HUTMANN_GOLDBET2, "1", 0, HUTMANN_GOLD_Y,
+                  FontFormat_GuildMoney);
         AddFilter(LBL_HUTMANN_GOLDBET2, Filter_Shadow);
         enable_popup(LBL_HUTMANN_GOLDBET2, texts[TXT_HUTMANN_GOLDBET]);
-        DefineLbl(LBL_HUTMANN_MUSHBET2, "1", 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
+        DefineLbl(LBL_HUTMANN_MUSHBET2, "1", 0,
+                  (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
         AddFilter(LBL_HUTMANN_MUSHBET2, Filter_Shadow);
         enable_popup(LBL_HUTMANN_MUSHBET2, texts[TXT_HUTMANN_MUSHBET]);
         DefineCnt(HUTMANN_GOLDBET2, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET2, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
-        define_bunch(HUTMANN_PLACEBET, HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET, LBL_HUTMANN_MUSHBET2, HUTMANN_MUSHBET2, HUTMANN_GOLDBET, LBL_HUTMANN_GOLDBET2, HUTMANN_GOLDBET2, HUTFACE_IDLE);
-        DefineLbl(LBL_HUTMANN_INSTR, texts[TXT_HUTMANN_INSTR].split("#").join(((text_dir)=="right") ? "" : chr(13)), HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
+        define_bunch(HUTMANN_PLACEBET, HUTMANN_MUSHBET_DISABLED,
+                     HUTMANN_MUSHBET, LBL_HUTMANN_MUSHBET2, HUTMANN_MUSHBET2,
+                     HUTMANN_GOLDBET, LBL_HUTMANN_GOLDBET2, HUTMANN_GOLDBET2,
+                     HUTFACE_IDLE);
+        DefineLbl(LBL_HUTMANN_INSTR,
+                  texts[TXT_HUTMANN_INSTR]
+                  .split("#").join(((text_dir)=="right") ? "" : chr(13)),
+                  HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
         AddFilter(LBL_HUTMANN_INSTR, Filter_Shadow);
-        define_bunch(SCREEN_HUTMANN, HUTMANN_BG, IF_OVL, IF_EXIT, HUTFACE_HOVER, HUTFACE_WIN, HUTFACE_LOSE1, HUTFACE_LOSE2, HUTFACE_LOSE3, HUTFACE_IDLE);
-        define_btn(HUTMANN_OK, texts[TXT_HUTMANN_START], HutBtnHandler, btn_classLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
-        define_btn(HUTMANN_BACK, texts[TXT_HUTMANN_BACK], InterfaceBtnHandler, btn_classBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
+        define_bunch(SCREEN_HUTMANN, HUTMANN_BG, IF_OVL, IF_EXIT,
+                     HUTFACE_HOVER, HUTFACE_WIN, HUTFACE_LOSE1, HUTFACE_LOSE2,
+                     HUTFACE_LOSE3, HUTFACE_IDLE);
+        define_btn(HUTMANN_OK, texts[TXT_HUTMANN_START], HutBtnHandler,
+                   btn_classLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
+        define_btn(HUTMANN_BACK, texts[TXT_HUTMANN_BACK], InterfaceBtnHandler,
+                   btn_classBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
         HutBtnRepeatTimer = new Timer(1000);
         DestroyHutBtnTimer = False;
         _local2 = actor[HUTMANN_GOLDBET];
@@ -27942,90 +28154,167 @@ def load_tracking_pixel(url=''):
         add_bunch(SCREEN_HUTMANN, HUTBECHER_1_IDLE);
         add_bunch(SCREEN_HUTMANN, HUTBECHER_2_IDLE);
         add_bunch(SCREEN_HUTMANN, HUTBECHER_3_IDLE);
-        add_bunch(SCREEN_HUTMANN, LBL_HUTMANN_TEXT, LBL_HUTMANN_GOLDBET, LBL_HUTMANN_MUSHBET, LBL_HUTMANN_GOLDBET2, LBL_HUTMANN_MUSHBET2, LBL_HUTMANN_INSTR, HUTMANN_BACK);
-        add_bunch(SCREEN_HUTMANN, HUTMANN_GOLDBET, HUTMANN_MUSHBET, HUTMANN_GOLDBET2, HUTMANN_MUSHBET2, HUTMANN_GOLDBET, HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET);
+        add_bunch(SCREEN_HUTMANN, LBL_HUTMANN_TEXT, LBL_HUTMANN_GOLDBET,
+                  LBL_HUTMANN_MUSHBET, LBL_HUTMANN_GOLDBET2,
+                  LBL_HUTMANN_MUSHBET2, LBL_HUTMANN_INSTR, HUTMANN_BACK);
+        add_bunch(SCREEN_HUTMANN, HUTMANN_GOLDBET, HUTMANN_MUSHBET,
+                  HUTMANN_GOLDBET2, HUTMANN_MUSHBET2, HUTMANN_GOLDBET,
+                  HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET);
         HutFaceResetTimer = new Timer(2000, 1);
         HutFaceResetTimer.add_event_listener(TimerEvent.TIMER, HutFaceReset);
-        DefineImg(TAVERNE_BG, "res/gfx/scr/taverne/taverne.jpg", False, 280, 100);
-        DefineImg(TAVERNE_BARKEEPER1, "res/gfx/scr/taverne/taverne_barkeeper1.jpg", False, (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
-        DefineImg(TAVERNE_BARKEEPER2, "res/gfx/scr/taverne/taverne_barkeeper2.jpg", False, (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
-        DefineImg(TAVERNE_BARKEEPER_HINT, "res/gfx/scr/taverne/exclamation.png", False, ((280 + TAVERNE_BARKEEPER_X) + 50), ((100 + TAVERNE_BARKEEPER_Y) - 215));
-        DefineImg(TAVERNE_HUTMANN_BLINZELN, "res/gfx/scr/taverne/huetchenspieler_blink.jpg", False, (280 + TAVERNE_HUTAUGEN_X), (100 + TAVERNE_HUTAUGEN_Y));
-        DefineImg(TAVERNE_HUTMANN_OVL, "res/gfx/scr/taverne/huetchenspieler_mouseover.jpg", False, (280 + TAVERNE_HUTAUGEN_X), (100 + TAVERNE_HUTAUGEN_Y));
-        DefineClickArea(CA_TAVERNE_HUTMANN, TAVERNE_HUTMANN_OVL, ShowHutmann, (TAVERNE_HUT_X + 280), (TAVERNE_HUT_Y + 100), TAVERNE_HUT_X, TAVERNE_HUT_Y);
-        DefineClickArea(CA_TAVERNE_QUESTOFFER, TAVERNE_QUESTOVL, ShowQuestOffer, (TAVERNE_QUEST_X + 280), (TAVERNE_QUEST_Y + 100), TAVERNE_QUEST_X, TAVERNE_QUEST_Y);
-        DefineClickArea(CA_TAVERNE_TOILETTE, C_EMPTY, RequestToilet, (280 + 470), (100 + 195), 36, 30);
-        DefineImg(TAVERNE_KERZEN, "res/gfx/scr/taverne/taverne_kerzen.jpg", False, (280 + TAVERNE_KERZEN_X), (100 + TAVERNE_KERZEN_Y));
-        DefineImg(TAVERNE_QUESTOVL1, "res/gfx/scr/taverne/taverne_orc_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL1_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL1_Y));
-        DefineImg(TAVERNE_QUESTOVL2, "res/gfx/scr/taverne/taverne_bauer_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL2_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL2_Y));
-        DefineImg(TAVERNE_QUESTOVL3, "res/gfx/scr/taverne/taverne_zauberin_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL3_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL3_Y));
-        DefineImg(TAVERNE_QUESTOVL4, "res/gfx/scr/taverne/taverne_questgeber_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL4_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL4_Y));
-        DefineImg(TAVERNE_QUESTOVL5, "res/gfx/scr/taverne/taverne_tourist_mouseover.jpg", False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL5_X), ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL5_Y));
-        DefineImg(TAVERNE_BAROVL, "res/gfx/scr/taverne/barkeeper_mouseover.jpg", False, TAVERNE_BAROVL_X, TAVERNE_BAROVL_Y);
-        DefineClickArea(CA_TAVERNE_BAR, TAVERNE_BAROVL, ShowBeerOffer, TAVERNE_BAR_X, TAVERNE_BAR_Y, TAVERNE_BAR_X, TAVERNE_BAR_Y);
-        DefineImg(TIMEBAR_BG, "res/gfx/if/adventurebar.png", False, TIMEBAR_X, TIMEBAR_Y);
-        DefineImg(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", False, (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
+        DefineImg(TAVERNE_BG, "res/gfx/scr/taverne/taverne.jpg",
+                  False, 280, 100);
+        DefineImg(TAVERNE_BARKEEPER1,
+                  "res/gfx/scr/taverne/taverne_barkeeper1.jpg", False,
+                  (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
+        DefineImg(TAVERNE_BARKEEPER2,
+                  "res/gfx/scr/taverne/taverne_barkeeper2.jpg", False,
+                  (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
+        DefineImg(TAVERNE_BARKEEPER_HINT,
+                  "res/gfx/scr/taverne/exclamation.png",
+                  False, ((280 + TAVERNE_BARKEEPER_X) + 50),
+                  ((100 + TAVERNE_BARKEEPER_Y) - 215));
+        DefineImg(TAVERNE_HUTMANN_BLINZELN,
+                  "res/gfx/scr/taverne/huetchenspieler_blink.jpg",
+                  False, (280 + TAVERNE_HUTAUGEN_X),
+                  (100 + TAVERNE_HUTAUGEN_Y));
+        DefineImg(TAVERNE_HUTMANN_OVL,
+                  "res/gfx/scr/taverne/huetchenspieler_mouseover.jpg",
+                  False, (280 + TAVERNE_HUTAUGEN_X),
+                  (100 + TAVERNE_HUTAUGEN_Y));
+        DefineClickArea(CA_TAVERNE_HUTMANN,
+                        TAVERNE_HUTMANN_OVL, ShowHutmann,
+                        (TAVERNE_HUT_X + 280), (TAVERNE_HUT_Y + 100),
+                        TAVERNE_HUT_X, TAVERNE_HUT_Y);
+        DefineClickArea(CA_TAVERNE_QUESTOFFER, TAVERNE_QUESTOVL,
+                        ShowQuestOffer, (TAVERNE_QUEST_X + 280),
+                        (TAVERNE_QUEST_Y + 100), TAVERNE_QUEST_X,
+                        TAVERNE_QUEST_Y);
+        DefineClickArea(CA_TAVERNE_TOILETTE, C_EMPTY, RequestToilet,
+                        (280 + 470), (100 + 195), 36, 30);
+        DefineImg(TAVERNE_KERZEN,
+                  "res/gfx/scr/taverne/taverne_kerzen.jpg", False,
+                  (280 + TAVERNE_KERZEN_X), (100 + TAVERNE_KERZEN_Y));
+        DefineImg(TAVERNE_QUESTOVL1,
+                  "res/gfx/scr/taverne/taverne_orc_mouseover.jpg", False,
+                  ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL1_X),
+                  ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL1_Y));
+        DefineImg(TAVERNE_QUESTOVL2,
+                  "res/gfx/scr/taverne/taverne_bauer_mouseover.jpg", False,
+                  ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL2_X),
+                  ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL2_Y));
+        DefineImg(TAVERNE_QUESTOVL3,
+                  "res/gfx/scr/taverne/taverne_zauberin_mouseover.jpg",
+                  False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL3_X),
+                  ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL3_Y));
+        DefineImg(TAVERNE_QUESTOVL4,
+                  "res/gfx/scr/taverne/taverne_questgeber_mouseover.jpg",
+                  False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL4_X),
+                  ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL4_Y));
+        DefineImg(TAVERNE_QUESTOVL5,
+                  "res/gfx/scr/taverne/taverne_tourist_mouseover.jpg",
+                  False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL5_X),
+                  ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL5_Y));
+        DefineImg(TAVERNE_BAROVL,
+                  "res/gfx/scr/taverne/barkeeper_mouseover.jpg", False,
+                  TAVERNE_BAROVL_X, TAVERNE_BAROVL_Y);
+        DefineClickArea(CA_TAVERNE_BAR, TAVERNE_BAROVL, ShowBeerOffer,
+                        TAVERNE_BAR_X, TAVERNE_BAR_Y, TAVERNE_BAR_X,
+                        TAVERNE_BAR_Y);
+        DefineImg(TIMEBAR_BG, "res/gfx/if/adventurebar.png", False,
+                  TIMEBAR_X, TIMEBAR_Y);
+        DefineImg(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", False,
+                  (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
         DefineCnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
-        DefineLbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar);
+        DefineLbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar)
         AddFilter(LBL_TIMEBAR_TEXT, Filter_Shadow);
         enable_popup(TIMEBAR_BG, texts[TXT_TIMEBAR]);
         enable_popup(TIMEBAR_FILL, texts[TXT_TIMEBAR]);
         enable_popup(TIMEBAR_FILL, texts[TXT_TIMEBAR]);
         enable_popup(LBL_TIMEBAR_TEXT, texts[TXT_TIMEBAR]);
-        define_bunch(SCREEN_TAVERNE, TAVERNE_BG, IF_OVL, TAVERNE_BARKEEPER1, TAVERNE_BARKEEPER2, TAVERNE_HUTMANN_BLINZELN, CA_TAVERNE_BAR);
-        define_bunch(TAVERNE_CAS, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN, CA_TAVERNE_TOILETTE, CA_TAVERNE_BAR);
-        DefineImg(BEERFEST, "res/gfx/scr/taverne/beerfest.png", False, 280, 100);
+        define_bunch(SCREEN_TAVERNE, TAVERNE_BG, IF_OVL, TAVERNE_BARKEEPER1,
+                     TAVERNE_BARKEEPER2, TAVERNE_HUTMANN_BLINZELN,
+                     CA_TAVERNE_BAR);
+        define_bunch(TAVERNE_CAS, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN,
+                     CA_TAVERNE_TOILETTE, CA_TAVERNE_BAR);
+        DefineImg(BEERFEST,
+                  "res/gfx/scr/taverne/beerfest.png", False, 280, 100);
         actor[BEERFEST].mouse_enabled = False;
-        define_bunch(BEERFEST, BEERFEST, TIMEBAR_BG, TIMEBAR_FILL, TIMEBAR_FILL, LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
+        define_bunch(BEERFEST, BEERFEST, TIMEBAR_BG, TIMEBAR_FILL,
+                     TIMEBAR_FILL, LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
         i = 0;
         while (i < 4) {
-            DefineImg((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" + str((i + 1))) + ".png"), False, (280 + 20), (100 + 20));
+            DefineImg((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" +
+                      str((i + 1))) + ".png"), False, (280 + 20), (100 + 20));
             hide((TV + i));
             add_bunch(SCREEN_TAVERNE, (TV + i));
             i = (i + 1);
         };
-        DefineClickArea(CA_TV, C_EMPTY, request_tv, (280 + 20), (100 + 20), 280, 160);
+        DefineClickArea(CA_TV, C_EMPTY, request_tv, (280 + 20), (100 + 20),
+                        280, 160);
         hide(CA_TV);
         add_bunch(SCREEN_TAVERNE, CA_TV);
         cursedDescr = "Fliegende";
         if (int((random.random() * 100)) == 0){
             cursedDescr = "Verfluchte";
         };
-        enable_popup(CA_TV, POPUP_BEGIN_LINE, texts[TXT_TV_HINT].split("|")[0].split("Fliegende").join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[TXT_TV_HINT].split("|")[1].split("#").join(chr(13)), POPUP_END_LINE);
+        enable_popup(CA_TV, POPUP_BEGIN_LINE,
+                     texts[TXT_TV_HINT].split("|")[0].split("Fliegende")
+                     .join(cursedDescr), POPUP_END_LINE, POPUP_BEGIN_LINE,
+                     FontFormat_EpicItemQuote, texts[TXT_TV_HINT]
+                     .split("|")[1].split("#").join(chr(13)), POPUP_END_LINE);
         i = 0;
         while (i < 4) {
-            DefineImg((TAVERN_ADVENT + i), (("res/gfx/scr/taverne/advent_wreath_" + str((i + 1))) + ".jpg"), False, (280 + 337), 100);
+            DefineImg((TAVERN_ADVENT + i),
+                      (("res/gfx/scr/taverne/advent_wreath_"
+                       + str((i + 1))) + ".jpg"), False, (280 + 337), 100);
             actor[(TAVERN_ADVENT + i)].mouse_enabled = False;
             i = (i + 1);
         };
         i = 0;
         while (i < 5) {
-            DefineImg((SPECIAL_ACTION + i), (("res/gfx/scr/taverne/event_ovl_" + str((i + 1))) + ".png"), False, 280, 100);
-            define_bunch((SPECIAL_ACTION + i), (SPECIAL_ACTION + i), TIMEBAR_BG, TIMEBAR_FILL, TIMEBAR_FILL, LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
+            DefineImg((SPECIAL_ACTION + i),
+                      (("res/gfx/scr/taverne/event_ovl_" + str((i + 1)))
+                       + ".png"), False, 280, 100);
+            define_bunch((SPECIAL_ACTION + i), (SPECIAL_ACTION + i),
+                         TIMEBAR_BG, TIMEBAR_FILL, TIMEBAR_FILL,
+                         LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
             i = (i + 1);
         };
         i = 0;
         while (i < 5) {
-            DefineImg((TAVERNE_QUEST1 + i), (("res/gfx/scr/taverne/taverne_quest" + str((i + 1))) + ".jpg"), False, (280 + TAVERNE_QUEST_X), (100 + TAVERNE_QUEST_Y));
+            DefineImg((TAVERNE_QUEST1 + i),
+                      (("res/gfx/scr/taverne/taverne_quest"
+                       + str((i + 1))) + ".jpg"), False,
+                        (280 + TAVERNE_QUEST_X), (100 + TAVERNE_QUEST_Y));
             add_bunch(SCREEN_TAVERNE, (TAVERNE_QUEST1 + i));
             i = (i + 1);
         };
-        add_bunch(SCREEN_TAVERNE, TAVERNE_KERZEN, IF_EXIT, TIMEBAR_BG, TIMEBAR_FILL, TIMEBAR_FILL, LBL_TIMEBAR_TEXT);
-        add_bunch(SCREEN_TAVERNE, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN, CA_TAVERNE_TOILETTE);
-        DefineFromClass(SHP_QO_BLACK_SQUARE, black_square_neutral, QO_BLACK_SQUARE_X, QO_BLACK_SQUARE_Y);
+        add_bunch(SCREEN_TAVERNE,
+                  TAVERNE_KERZEN, IF_EXIT, TIMEBAR_BG, TIMEBAR_FILL,
+                  TIMEBAR_FILL, LBL_TIMEBAR_TEXT);
+        add_bunch(SCREEN_TAVERNE, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN,
+                  CA_TAVERNE_TOILETTE);
+        DefineFromClass(SHP_QO_BLACK_SQUARE, black_square_neutral,
+                        QO_BLACK_SQUARE_X, QO_BLACK_SQUARE_Y);
         _local2 = actor[SHP_QO_BLACK_SQUARE];
         with (_local2) {
             width = QO_BLACK_SQUARE_X;
             height = QO_BLACK_SQUARE_Y;
             alpha = 0.6;
         };
-        DefineLbl(LBL_QO_CHOOSE, texts[TXT_QO_CHOOSE], (QO_BLACK_SQUARE_X + QO_CHOOSE_X), (QO_BLACK_SQUARE_Y + QO_CHOOSE_Y), FontFormat_Default);
+        DefineLbl(LBL_QO_CHOOSE, texts[TXT_QO_CHOOSE], (QO_BLACK_SQUARE_X
+                  + QO_CHOOSE_X), (QO_BLACK_SQUARE_Y + QO_CHOOSE_Y),
+FontFormat_Default);
         i = 0;
         while (i < 3) {
             DefineLbl((LBL_QO_CHOICE1 + i), "TEST", 0, 0, FontFormat_Default);
-            DefineLbl((LBL_QO_CHOICE1_HL + i), "TEST", 0, 0, FontFormat_Highlight);
+            DefineLbl((LBL_QO_CHOICE1_HL + i), "TEST", 0, 0,
+                      FontFormat_Highlight);
             MakePersistent((LBL_QO_CHOICE1 + i), (LBL_QO_CHOICE1_HL + i));
-            DefineCnt((QO_CHOICE1 + i), (QO_BLACK_SQUARE_X + QO_CHOOSE_X), ((QO_BLACK_SQUARE_Y + QO_CHOOSE_Y) + ((i + 1) * QO_CHOICES_Y)));
+            DefineCnt((QO_CHOICE1 + i), (QO_BLACK_SQUARE_X + QO_CHOOSE_X),
+                      ((QO_BLACK_SQUARE_Y + QO_CHOOSE_Y) +
+                       ((i + 1) * QO_CHOICES_Y)));
             _local2 = actor[(QO_CHOICE1 + i)];
             with (_local2) {
                 addChild(actor[(LBL_QO_CHOICE1 + i)]);
@@ -28038,35 +28327,81 @@ def load_tracking_pixel(url=''):
             i = (i + 1);
         };
         define_bunch(QUESTOFFER);
-        DefineLbl(LBL_QO_QUESTNAME, "QuestName", 0, (QO_BLACK_SQUARE_Y + QO_QUESTNAME_Y), FontFormat_Heading);
-        DefineLbl(LBL_QO_QUESTTEXT, "quest_text", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_QUESTTEXT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_QO_QUESTNAME, "QuestName", 0, (QO_BLACK_SQUARE_Y +
+                  QO_QUESTNAME_Y), FontFormat_Heading);
+        DefineLbl(LBL_QO_QUESTTEXT, "quest_text", (QO_BLACK_SQUARE_X
+                  + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_QUESTTEXT_Y),
+                    FontFormat_DefaultLeft);
         actor[LBL_QO_QUESTTEXT].width = LBL_QO_TEXT_X;
         actor[LBL_QO_QUESTTEXT].wordWrap = True;
         actor[LBL_QO_QUESTTEXT].default_text_format.align = "right";
-        DefineLbl(LBL_QO_REWARD, texts[TXT_QO_REWARD], (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_REWARD_Y), FontFormat_Default);
-        DefineCnt(QO_REWARDGOLD, 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
-        DefineCnt(QO_REWARDSILVER, 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
-        DefineLbl(LBL_QO_REWARDGOLD, "", 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y), FontFormat_Default);
-        DefineLbl(LBL_QO_REWARDSILVER, "", 0, ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y), FontFormat_Default);
-        DefineLbl(LBL_QO_REWARDEXP, "", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 2)), FontFormat_Default);
-        DefineLbl(LBL_QO_TIME, "", (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X), ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 3)), FontFormat_Default);
-        define_btn(QO_START, texts[TXT_QO_START], RequestQuest, btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
-        define_btn(BO_BUY, texts[TXT_BO_BUY], BuyBeer, btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
-        define_btn(QO_RETURN, texts[TXT_QO_RETURN], ReturnQuest, btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X), (QO_BLACK_SQUARE_Y + QO_START_Y));
-        DefineLbl(LBL_QO_QUESTSTODAY, "", 0, (QO_BLACK_SQUARE_Y + QO_QUESTSTODAY_Y), FontFormat_Default);
-        DefineCnt(QUEST_SLOT, ((QO_BLACK_SQUARE_X + QO_SLOT_X) + 20), (QO_BLACK_SQUARE_Y + QO_SLOT_Y));
-        add_bunch(QUESTOFFER, SHP_QO_BLACK_SQUARE, LBL_QO_CHOOSE, QO_CHOICE1, QO_CHOICE2, QO_CHOICE3, LBL_QO_QUESTNAME, LBL_QO_QUESTTEXT);
-        add_bunch(QUESTOFFER, LBL_QO_REWARD, LBL_QO_REWARDGOLD, LBL_QO_REWARDSILVER, QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDEXP, LBL_QO_TIME, QUEST_SLOT, QO_START, QO_RETURN, LBL_QO_QUESTSTODAY);
+        DefineLbl(LBL_QO_REWARD, texts[TXT_QO_REWARD],
+                  (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
+                  (QO_BLACK_SQUARE_Y + QO_REWARD_Y), FontFormat_Default);
+        DefineCnt(QO_REWARDGOLD, 0,
+                  ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
+        DefineCnt(QO_REWARDSILVER, 0,
+                  ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
+        DefineLbl(LBL_QO_REWARDGOLD, "", 0,
+                  ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y),
+                  FontFormat_Default);
+        DefineLbl(LBL_QO_REWARDSILVER, "", 0,
+                  ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y),
+                  FontFormat_Default);
+        DefineLbl(LBL_QO_REWARDEXP, "",
+                  (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
+                  ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 2)),
+                  FontFormat_Default);
+        DefineLbl(LBL_QO_TIME, "",
+                  (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
+                  ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 3)),
+                  FontFormat_Default);
+        define_btn(QO_START, texts[TXT_QO_START], RequestQuest, btn_classBasic,
+                   (QO_BLACK_SQUARE_X + QO_START_X),
+                   (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
+        define_btn(BO_BUY, texts[TXT_BO_BUY], BuyBeer, btn_classBasic,
+                   (QO_BLACK_SQUARE_X + QO_START_X),
+                   (QO_BLACK_SQUARE_Y + QO_RETURN_Y));
+        define_btn(QO_RETURN, texts[TXT_QO_RETURN], ReturnQuest,
+                   btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X),
+                   (QO_BLACK_SQUARE_Y + QO_START_Y));
+        DefineLbl(LBL_QO_QUESTSTODAY, "", 0,
+                  (QO_BLACK_SQUARE_Y + QO_QUESTSTODAY_Y),
+                  FontFormat_Default);
+        DefineCnt(QUEST_SLOT, ((QO_BLACK_SQUARE_X + QO_SLOT_X) + 20),
+                  (QO_BLACK_SQUARE_Y + QO_SLOT_Y));
+        add_bunch(QUESTOFFER, SHP_QO_BLACK_SQUARE, LBL_QO_CHOOSE, QO_CHOICE1,
+                  QO_CHOICE2, QO_CHOICE3, LBL_QO_QUESTNAME, LBL_QO_QUESTTEXT);
+        add_bunch(QUESTOFFER, LBL_QO_REWARD, LBL_QO_REWARDGOLD,
+                  LBL_QO_REWARDSILVER, QO_REWARDGOLD, QO_REWARDSILVER,
+                  LBL_QO_REWARDEXP, LBL_QO_TIME, QUEST_SLOT, QO_START,
+                  QO_RETURN, LBL_QO_QUESTSTODAY);
         i = 0;
         while (i < 5) {
-            DefineImg((QO_PORTRAIT1 + i), (("res/gfx/scr/taverne/portrait_questgeber_" + str((i + 1))) + ".png"), False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+            DefineImg((QO_PORTRAIT1 + i),
+                      (("res/gfx/scr/taverne/portrait_questgeber_"
+                       + str((i + 1))) + ".png"), False,
+                        (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
+                        (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
             add_bunch(QUESTOFFER, (QO_PORTRAIT1 + i));
             i = (i + 1);
         };
-        DefineImg(BO_PORTRAIT_OK, "res/gfx/scr/taverne/portrait_barkeeper_2.png", False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-        DefineImg(BO_PORTRAIT_NO, "res/gfx/scr/taverne/portrait_barkeeper_3.png", False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-        DefineImg(BO_PORTRAIT_TH, "res/gfx/scr/taverne/portrait_barkeeper_1.png", False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X), (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-        define_bunch(BEEROFFER, SHP_QO_BLACK_SQUARE, LBL_QO_QUESTNAME, LBL_QO_QUESTTEXT, LBL_QO_TIME, LBL_QO_REWARDEXP, BO_BUY, BO_BUY, QO_RETURN, BO_PORTRAIT_OK, BO_PORTRAIT_NO, BO_PORTRAIT_TH);
+        DefineImg(BO_PORTRAIT_OK,
+                  "res/gfx/scr/taverne/portrait_barkeeper_2.png",
+                  False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
+                  (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+        DefineImg(BO_PORTRAIT_NO,
+                  "res/gfx/scr/taverne/portrait_barkeeper_3.png", False,
+                  (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
+                  (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+        DefineImg(BO_PORTRAIT_TH,
+                  "res/gfx/scr/taverne/portrait_barkeeper_1.png", False,
+                  (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
+                  (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
+        define_bunch(BEEROFFER, SHP_QO_BLACK_SQUARE, LBL_QO_QUESTNAME,
+                     LBL_QO_QUESTTEXT, LBL_QO_TIME, LBL_QO_REWARDEXP, BO_BUY,
+                     BO_BUY, QO_RETURN, BO_PORTRAIT_OK, BO_PORTRAIT_NO,
+                     BO_PORTRAIT_TH);
         TimeBarAniTimer = new Timer(20);
         TimeBarAniTimer.add_event_listener(TimerEvent.TIMER, TimeBarAniEvent);
         TimeBarAniTimer.start();
@@ -28075,24 +28410,33 @@ def load_tracking_pixel(url=''):
         define_snd(SND_TOILET_FLUSHTRY, "res/sfx/toilet/flush_try.mp3", False);
         define_snd(SND_TOILET_FLUSH, "res/sfx/toilet/flush.mp3", False);
         define_snd(SND_TOILET_DROP, "res/sfx/toilet/drop.mp3", False);
-        add_bunch(SCREEN_TOILET, SND_TOILET_FLUSHTRY, SND_TOILET_FLUSH, SND_TOILET_DROP);
-        DefineImg(TOILET, "res/gfx/scr/taverne/toilet/toilet_bg.png", False, SCR_SHOP_BG_X, 100);
-        DefineImg((TOILET + 1), "res/gfx/scr/taverne/toilet/tank_content.png", False, (SCR_SHOP_BG_X + 170), 190);
-        DefineImg((TOILET + 2), "res/gfx/scr/taverne/toilet/toilet_ovl.png", False, SCR_SHOP_BG_X, 100);
+        add_bunch(SCREEN_TOILET, SND_TOILET_FLUSHTRY, SND_TOILET_FLUSH,
+                  SND_TOILET_DROP);
+        DefineImg(TOILET, "res/gfx/scr/taverne/toilet/toilet_bg.png", False,
+                  SCR_SHOP_BG_X, 100);
+        DefineImg((TOILET + 1), "res/gfx/scr/taverne/toilet/tank_content.png",
+                  False, (SCR_SHOP_BG_X + 170), 190);
+        DefineImg((TOILET + 2), "res/gfx/scr/taverne/toilet/toilet_ovl.png",
+                  False, SCR_SHOP_BG_X, 100);
         i = 0;
         while (i < 3) {
             add_bunch(SCREEN_TOILET, (TOILET + i));
             i = (i + 1);
         };
-        DefineImg(TOILET_IDLE, "res/gfx/scr/taverne/toilet/bowl_idle.png", False, SCR_SHOP_BG_X, 100);
-        DefineImg(TOILET_DROP, "res/gfx/scr/taverne/toilet/bowl_dropitem.png", False, SCR_SHOP_BG_X, 100);
+        DefineImg(TOILET_IDLE, "res/gfx/scr/taverne/toilet/bowl_idle.png",
+                  False, SCR_SHOP_BG_X, 100);
+        DefineImg(TOILET_DROP, "res/gfx/scr/taverne/toilet/bowl_dropitem.png",
+                  False, SCR_SHOP_BG_X, 100);
         add_bunch(SCREEN_TOILET, TOILET_IDLE, TOILET_DROP);
         define_bunch(TOILET_OVERLAYS, TOILET_IDLE, TOILET_DROP);
-        DefineLbl(LBL_TOILET_AURA, "0", (SCR_SHOP_BG_X + 240), 430, FontFormat_ToiletAura);
+        DefineLbl(LBL_TOILET_AURA, "0", (SCR_SHOP_BG_X + 240), 430,
+                  FontFormat_ToiletAura);
         add_bunch(SCREEN_TOILET, LBL_TOILET_AURA);
         i = 0;
         while (i < 7) {
-            DefineImg((TOILET_FLUSH + i), (("res/gfx/scr/taverne/toilet/bowl_flush_" + str((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
+            DefineImg((TOILET_FLUSH + i),
+                      ("res/gfx/scr/taverne/toilet/bowl_flush_" + str((i + 1)))
+                      + ".png"), False, SCR_SHOP_BG_X, 100);
             hide((TOILET_FLUSH + i));
             add_bunch(SCREEN_TOILET, (TOILET_FLUSH + i));
             add_bunch(TOILET_OVERLAYS, (TOILET_FLUSH + i));
@@ -28100,7 +28444,9 @@ def load_tracking_pixel(url=''):
         };
         i = 0;
         while (i < 3) {
-            DefineImg((TOILET_CHAIN + i), (("res/gfx/scr/taverne/toilet/chain_" + str((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
+            DefineImg((TOILET_CHAIN + i),
+                      (("res/gfx/scr/taverne/toilet/chain_"
+                       + str((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
             hide((TOILET_CHAIN + i));
             add_bunch(SCREEN_TOILET, (TOILET_CHAIN + i));
             add_bunch(TOILET_OVERLAYS, (TOILET_CHAIN + i));
@@ -28111,28 +28457,37 @@ def load_tracking_pixel(url=''):
             add_bunch(SCREEN_TOILET, (CHAR_SLOT_1 + i));
             i = (i + 1);
         };
-        DefineClickArea(CA_TOILET_TANK, C_EMPTY, None, (SCR_SHOP_BG_X + 170), 190, 156, 120);
-        DefineClickArea(CA_TOILET_CHAIN, C_EMPTY, ToiletHandler, (SCR_SHOP_BG_X + 320), 210, 36, 206);
-        DefineClickArea(CA_TOILET_BOWL, C_EMPTY, None, (SCR_SHOP_BG_X + 120), 540, 260, 120);
-        DefineClickArea(CA_TOILET_LID, C_EMPTY, None, (SCR_SHOP_BG_X + 180), 380, 135, 155);
+        DefineClickArea(CA_TOILET_TANK, C_EMPTY, None, (SCR_SHOP_BG_X + 170),
+                        190, 156, 120);
+        DefineClickArea(CA_TOILET_CHAIN, C_EMPTY, ToiletHandler,
+                        (SCR_SHOP_BG_X + 320), 210, 36, 206);
+        DefineClickArea(CA_TOILET_BOWL, C_EMPTY, None, (SCR_SHOP_BG_X + 120),
+                        540, 260, 120);
+        DefineClickArea(CA_TOILET_LID, C_EMPTY, None, (SCR_SHOP_BG_X + 180),
+                        380, 135, 155);
         enable_popup(CA_TOILET_CHAIN, texts[(TXT_TOILET_HINT + 1)]);
         enable_popup(CA_TOILET_BOWL, texts[(TXT_TOILET_HINT + 2)]);
         enable_popup(CA_TOILET_LID, texts[(TXT_TOILET_HINT + 3)]);
         actor[CA_TOILET_TANK].useHandCursor = False;
         actor[CA_TOILET_BOWL].useHandCursor = False;
-        add_bunch(SCREEN_TOILET, IF_OVL, CA_TOILET_LID, CA_TOILET_TANK, CA_TOILET_CHAIN, CA_TOILET_BOWL, IF_EXIT);
+        add_bunch(SCREEN_TOILET, IF_OVL, CA_TOILET_LID, CA_TOILET_TANK,
+                  CA_TOILET_CHAIN, CA_TOILET_BOWL, IF_EXIT);
         toiletChainTimer = new Timer(50);
         toiletChainFrame = 0;
         toiletChainTimer.add_event_listener(TimerEvent.TIMER, toiletChainAni);
         i = 0;
         while (i < 6) {
-            DefineImg((FIGHT_ONO + i), (("res/gfx/scr/fight/smash" + str((i + 1))) + ".png"), False, 0, 0);
+            DefineImg((FIGHT_ONO + i), (("res/gfx/scr/fight/smash"
+                      + str((i + 1))) + ".png"), False, 0, 0);
             i = (i + 1);
         };
-        DefineImg(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png", False, 0, 0);
+        DefineImg(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png",
+                  False, 0, 0);
         DefineCnt(FIGHT_ONO, 0, 0);
-        DefineLbl(LBL_FIGHT_PLAYERGUILD, "", 0, (OPPY + 5), FontFormat_ScreenTitle);
-        DefineLbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5), FontFormat_ScreenTitle);
+        DefineLbl(LBL_FIGHT_PLAYERGUILD, "", 0, (OPPY + 5),
+                  FontFormat_ScreenTitle);
+        DefineLbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5),
+                  FontFormat_ScreenTitle);
         AddFilter(LBL_FIGHT_PLAYERGUILD, Filter_Shadow);
         AddFilter(LBL_FIGHT_OPPGUILD, Filter_Shadow);
         define_bunch(OPPIMG);
@@ -28162,9 +28517,13 @@ def load_tracking_pixel(url=''):
             };
             if (i >= 399){
                 monsterChecksum = MD5((str(i) + "ScriptKiddieLovesToPeek"));
-                DefineImg((OPPMONSTER + k), (("res/gfx/scr/fight/monster/monster" + monsterChecksum) + ".jpg"), False, OPPX, OPPY);
+                DefineImg((OPPMONSTER + k),
+                          (("res/gfx/scr/fight/monster/monster"
+                           + monsterChecksum) + ".jpg"), False, OPPX, OPPY);
             } else {
-                DefineImg((OPPMONSTER + k), (("res/gfx/scr/fight/monster/monster" + str((i + 1))) + ".jpg"), False, OPPX, OPPY);
+                DefineImg((OPPMONSTER + k),
+                          (("res/gfx/scr/fight/monster/monster"
+                           + str((i + 1))) + ".jpg"), False, OPPX, OPPY);
             };
             k = (k + 1);
         };
@@ -28174,24 +28533,32 @@ def load_tracking_pixel(url=''):
             while (ii < 100) {
                 iii = 0;
                 while (iii < 4) {
-                    define_snd(get_weapon_sound((i + 1), (ii + 1), iii), get_weapon_sound_file((i + 1), (ii + 1), iii));
+                    define_snd(get_weapon_sound((i + 1), (ii + 1), iii),
+                               get_weapon_sound_file((i + 1), (ii + 1), iii));
                     iii = (iii + 1);
                 };
                 ii = (ii + 1);
             };
             i = (i + 1);
         };
-        DefineLbl(LBL_NAMERANK_CHAR, "", (FIGHT_CHARX + 310), OPPY, FontFormat_Default);
+        DefineLbl(LBL_NAMERANK_CHAR, "", (FIGHT_CHARX + 310), OPPY,
+                  FontFormat_Default);
         AddFilter(LBL_NAMERANK_CHAR, Filter_Shadow);
         DefineLbl(LBL_NAMERANK_OPP, "", 0, OPPY, FontFormat_Default);
         AddFilter(LBL_NAMERANK_OPP, Filter_Shadow);
-        DefineImg(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", False, FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
-        DefineImg(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png", False, (FIGHT_CHARX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
+        DefineImg(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", False,
+                  FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
+        DefineImg(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png",
+                  False, (FIGHT_CHARX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
         DefineCnt(LIFEBAR_OPP, OPPX, ((OPPY + 300) + LIFEBAR_Y));
-        DefineCnt(LIFEBAR_FILL_OPP, (OPPX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
-        DefineLbl(LBL_LIFEBAR_CHAR, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y), FontFormat_LifeBar);
-        DefineLbl(LBL_LIFEBAR_OPP, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y), FontFormat_LifeBar);
-        DefineImg(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png", False, (FIGHT_CHARX - 10), (OPPY - 10));
+        DefineCnt(LIFEBAR_FILL_OPP, (OPPX + 10), (((OPPY + 300) + 8)
+                  + LIFEBAR_Y));
+        DefineLbl(LBL_LIFEBAR_CHAR, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
+                  FontFormat_LifeBar);
+        DefineLbl(LBL_LIFEBAR_OPP, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
+                  FontFormat_LifeBar);
+        DefineImg(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png",
+                  False, (FIGHT_CHARX - 10), (OPPY - 10));
         DefineCnt(FIGHT_OPP_BORDER, (OPPX - 10), (OPPY - 10));
         DefineCnt(BULLET_CHAR, 0, 0);
         SetCnt(BULLET_CHAR, ITM_OFFS);
@@ -28206,7 +28573,8 @@ def load_tracking_pixel(url=''):
         DefineCnt(SHIELD_OPP, 0, 0);
         SetCnt(SHIELD_OPP, ITM_OFFS);
         DefineImg(WEAPON_FIST, "res/gfx/itm/kampf_faust.png", False, 0, 0);
-        DefineImg(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png", False, 0, 0);
+        DefineImg(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png",
+                  False, 0, 0);
         DefineImg(WEAPON_BONE, "res/gfx/itm/kampf_knochen.png", False, 0, 0);
         DefineImg(WEAPON_STICK, "res/gfx/itm/kampf_stock.png", False, 0, 0);
         DefineImg(WEAPON_CLAW, "res/gfx/itm/kampf_kralle1.png", False, 0, 0);
@@ -28224,8 +28592,10 @@ def load_tracking_pixel(url=''):
         DefineImg(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", False, 0, 0);
         DefineLbl(LBL_DAMAGE_INDICATOR, "", 0, 0, FontFormat_Damage);
         AddFilter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
-        define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight, btn_classBasic, 0, 0);
-        define_btn(FIGHT_OK, texts[TXT_OK], InterfaceBtnHandler, btn_classBasic, 0, 0);
+        define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight,
+                   btn_classBasic, 0, 0);
+        define_btn(FIGHT_OK, texts[TXT_OK], InterfaceBtnHandler,
+                   btn_classBasic, 0, 0);
         _local2 = actor[FIGHT_OK];
         with (_local2) {
             y = FIGHT_Y;
@@ -28236,8 +28606,10 @@ def load_tracking_pixel(url=''):
             y = FIGHT_Y;
             x = (SCREEN_TITLE_X - int((width / 2)));
         };
-        define_btn(BATTLE_SKIP, texts[TXT_SKIP_FIGHT], SkipFight, btn_classBasic, 0, 0);
-        define_btn(BATTLE_SKIPONE, texts[TXT_GUILD_BATTLE_SKIP], SkipFight, btn_classBasic, 0, 0);
+        define_btn(BATTLE_SKIP, texts[TXT_SKIP_FIGHT], SkipFight,
+                   btn_classBasic, 0, 0);
+        define_btn(BATTLE_SKIPONE, texts[TXT_GUILD_BATTLE_SKIP],
+                   SkipFight, btn_classBasic, 0, 0);
         _local2 = actor[BATTLE_SKIPONE];
         with (_local2) {
             y = FIGHT_Y;
@@ -28248,47 +28620,85 @@ def load_tracking_pixel(url=''):
             y = FIGHT_Y;
             x = (SCREEN_TITLE_X + 5);
         };
-        DefineLbl(LBL_FIGHT_SUMMARY, "", 0, FIGHT_SUMMARY_Y, FontFormat_Default);
+        DefineLbl(LBL_FIGHT_SUMMARY, "", 0, FIGHT_SUMMARY_Y,
+                  FontFormat_Default);
         AddFilter(LBL_FIGHT_SUMMARY, Filter_Shadow);
-        DefineImg(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg", False, 280, 100);
-        DefineImg(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", False, 280, 100);
-        define_bunch(SCREEN_FIGHT, BLACK_SQUARE, LBL_NAMERANK_CHAR, LIFEBAR_CHAR, LIFEBAR_FILL_CHAR, LBL_LIFEBAR_CHAR, LBL_NAMERANK_OPP, IF_EXIT);
-        add_bunch(SCREEN_FIGHT, LIFEBAR_OPP, LIFEBAR_FILL_OPP, LBL_LIFEBAR_OPP, IF_OVL, FIGHT_SKIP, FIGHT_CHAR_BORDER, FIGHT_OPP_BORDER);
-        DefineImg(FIGHT_BOX1, "res/gfx/scr/fight/box1.png", False, (FIGHT_CHAR_PROP_COLUMN_1_X + FIGHT_BOX1_X), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
-        DefineImg(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", False, (SCREEN_TITLE_X - 254), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
-        DefineCnt(FIGHT_BOX3, (FIGHT_CHAR_PROP_COLUMN_3_X + FIGHT_BOX3_X), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
+        DefineImg(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg",
+                  False, 280, 100);
+        DefineImg(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", False,
+                  280, 100);
+        define_bunch(SCREEN_FIGHT, BLACK_SQUARE, LBL_NAMERANK_CHAR,
+                     LIFEBAR_CHAR, LIFEBAR_FILL_CHAR, LBL_LIFEBAR_CHAR,
+                     LBL_NAMERANK_OPP, IF_EXIT);
+        add_bunch(SCREEN_FIGHT, LIFEBAR_OPP, LIFEBAR_FILL_OPP, LBL_LIFEBAR_OPP,
+                  IF_OVL, FIGHT_SKIP, FIGHT_CHAR_BORDER, FIGHT_OPP_BORDER);
+        DefineImg(FIGHT_BOX1, "res/gfx/scr/fight/box1.png", False,
+                  (FIGHT_CHAR_PROP_COLUMN_1_X + FIGHT_BOX1_X),
+                  (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
+        DefineImg(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", False,
+                  (SCREEN_TITLE_X - 254), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
+        DefineCnt(FIGHT_BOX3, (FIGHT_CHAR_PROP_COLUMN_3_X + FIGHT_BOX3_X),
+                  (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
         DefineCnt(FIGHT_SLOT, (SCREEN_TITLE_X - 45), FIGHT_SLOT_Y);
         DefineCnt(FIGHT_REWARDGOLD, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
         DefineCnt(FIGHT_REWARDSILVER, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
         DefineCnt(FIGHT_REWARDMUSH, FIGHT_REWARDGOLD_X, FIGHT_REWARDMUSH_Y);
-        DefineLbl(LBL_FIGHT_REWARDGOLD, "", 0, FIGHT_REWARDGOLD_Y, FontFormat_Default);
+        DefineLbl(LBL_FIGHT_REWARDGOLD, "", 0, FIGHT_REWARDGOLD_Y,
+                  FontFormat_Default);
         AddFilter(LBL_FIGHT_REWARDGOLD, Filter_Shadow);
-        DefineLbl(LBL_FIGHT_REWARDSILVER, "", 0, FIGHT_REWARDGOLD_Y, FontFormat_Default);
+        DefineLbl(LBL_FIGHT_REWARDSILVER, "", 0, FIGHT_REWARDGOLD_Y,
+                  FontFormat_Default);
         AddFilter(LBL_FIGHT_REWARDSILVER, Filter_Shadow);
-        DefineLbl(LBL_FIGHT_REWARDMUSH, "", 0, FIGHT_REWARDMUSH_Y, FontFormat_Default);
+        DefineLbl(LBL_FIGHT_REWARDMUSH, "", 0, FIGHT_REWARDMUSH_Y,
+                  FontFormat_Default);
         AddFilter(LBL_FIGHT_REWARDMUSH, Filter_Shadow);
-        DefineLbl(LBL_FIGHT_REWARDEXP, "", FIGHT_REWARDEXP_X, FIGHT_REWARDGOLD_Y, FontFormat_Default);
+        DefineLbl(LBL_FIGHT_REWARDEXP, "", FIGHT_REWARDEXP_X,
+                  FIGHT_REWARDGOLD_Y, FontFormat_Default);
         AddFilter(LBL_FIGHT_REWARDEXP, Filter_Shadow);
         add_bunch(SCREEN_FIGHT, FIGHT_BOX1, FIGHT_BOX2, FIGHT_BOX3);
-        define_bunch(FIGHT_REWARDS, FIGHT_SLOT, FIGHT_REWARDGOLD, LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER, LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH, LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
-        DefineLbl(LBL_HERO_OF_THE_DAY_TITLE, ((texts[TXT_HERO_OF_THE_DAY_TITLE]) ? texts[TXT_HERO_OF_THE_DAY_TITLE] : ""), 0, 120, FontFormat_Heading);
-        actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
+        define_bunch(FIGHT_REWARDS, FIGHT_SLOT, FIGHT_REWARDGOLD,
+                     LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER,
+                     LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH,
+                     LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
+        DefineLbl(LBL_HERO_OF_THE_DAY_TITLE,
+                  ((texts[TXT_HERO_OF_THE_DAY_TITLE])
+                   ? texts[TXT_HERO_OF_THE_DAY_TITLE] : ""), 0, 120,
+                    FontFormat_Heading);
+        actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X
+                          - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
         DefineLbl(LBL_HERO_OF_THE_DAY, "", 0, 160, FontFormat_Default);
         actor[LBL_HERO_OF_THE_DAY].default_text_format.align = "center";
         AddFilter(LBL_HERO_OF_THE_DAY_TITLE, Filter_Shadow);
         AddFilter(LBL_HERO_OF_THE_DAY, Filter_Shadow);
-        define_bunch(HERO_OF_THE_DAY, LBL_HERO_OF_THE_DAY_TITLE, LBL_HERO_OF_THE_DAY);
+        define_bunch(HERO_OF_THE_DAY, LBL_HERO_OF_THE_DAY_TITLE,
+                     LBL_HERO_OF_THE_DAY);
         i = 0;
         while (i < 5) {
-            DefineLbl((LBL_FIGHT_CHAR_STAERKE_CAPTION + i), texts[(TXT_CHAR_STAERKE + i)], FIGHT_CHAR_PROP_COLUMN_1_X, (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)), FontFormat_Default);
-            DefineLbl((LBL_FIGHT_CHAR_STAERKE + i), "", FIGHT_CHAR_PROP_COLUMN_2_X, (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)), FontFormat_Attrib);
-            DefineLbl((LBL_FIGHT_OPP_STAERKE_CAPTION + i), texts[(TXT_CHAR_STAERKE + i)], FIGHT_CHAR_PROP_COLUMN_3_X, (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)), FontFormat_Default);
-            DefineLbl((LBL_FIGHT_OPP_STAERKE + i), "", FIGHT_CHAR_PROP_COLUMN_4_X, (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)), FontFormat_Attrib);
+            DefineLbl((LBL_FIGHT_CHAR_STAERKE_CAPTION + i),
+                      texts[(TXT_CHAR_STAERKE + i)],
+                      FIGHT_CHAR_PROP_COLUMN_1_X,
+                      (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
+                      FontFormat_Default);
+            DefineLbl((LBL_FIGHT_CHAR_STAERKE + i), "",
+                      FIGHT_CHAR_PROP_COLUMN_2_X,
+                      (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
+                      FontFormat_Attrib);
+            DefineLbl((LBL_FIGHT_OPP_STAERKE_CAPTION + i),
+                      texts[(TXT_CHAR_STAERKE + i)],
+                      FIGHT_CHAR_PROP_COLUMN_3_X, (FIGHT_CHAR_PROP_Y
+                       + (i * FIGHT_CHAR_PROP_Y)), FontFormat_Default);
+            DefineLbl((LBL_FIGHT_OPP_STAERKE + i), "",
+                      FIGHT_CHAR_PROP_COLUMN_4_X,
+                      (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
+                      FontFormat_Attrib);
             AddFilter((LBL_FIGHT_CHAR_STAERKE_CAPTION + i), Filter_Shadow);
             AddFilter((LBL_FIGHT_CHAR_STAERKE + i), Filter_Shadow);
             AddFilter((LBL_FIGHT_OPP_STAERKE_CAPTION + i), Filter_Shadow);
             AddFilter((LBL_FIGHT_OPP_STAERKE + i), Filter_Shadow);
-            add_bunch(SCREEN_FIGHT, (LBL_FIGHT_CHAR_STAERKE + i), (LBL_FIGHT_CHAR_STAERKE_CAPTION + i), (LBL_FIGHT_OPP_STAERKE + i), (LBL_FIGHT_OPP_STAERKE_CAPTION + i));
+            add_bunch(SCREEN_FIGHT, (LBL_FIGHT_CHAR_STAERKE + i),
+                      (LBL_FIGHT_CHAR_STAERKE_CAPTION + i),
+                      (LBL_FIGHT_OPP_STAERKE + i),
+                      (LBL_FIGHT_OPP_STAERKE_CAPTION + i));
             i = (i + 1);
         };
         DefineImg(FIGHT_MUSH, "res/gfx/scr/fight/bigmush.png", False, 0, 0);
@@ -28296,159 +28706,317 @@ def load_tracking_pixel(url=''):
         define_snd(SND_CATAPULT_HIT, "res/sfx/catapult_hit.mp3");
         i = 0;
         while (i < 3) {
-            DefineImg((FIGHT_COPYCAT + i), (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"), False, FIGHT_CHARX, OPPY);
+            DefineImg((FIGHT_COPYCAT + i),
+                      (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"),
+                      False, FIGHT_CHARX, OPPY);
             i = (i + 1);
         };
         DefineImg(BG_DEMO, "res/gfx/scr/demo/demo.png", False, 0, DEMO_Y);
-        define_btn(DEMO_LOGOFF, texts[TXT_OK], RequestLOGout, btn_classBasic, DEMO_X, DEMO_Y);
+        define_btn(DEMO_LOGOFF, texts[TXT_OK], RequestLOGout, btn_classBasic,
+                   DEMO_X, DEMO_Y);
         define_bunch(SCREEN_DEMO, BG_DEMO, IF_OVL, DEMO_LOGOFF, BLACK_SQUARE);
-        DefineFromClass(SHP_OPTION_BLACK, black_square_neutral, OPTION_X, OPTION_Y);
+        DefineFromClass(SHP_OPTION_BLACK, black_square_neutral, OPTION_X,
+                        OPTION_Y);
         _local2 = actor[SHP_OPTION_BLACK];
         with (_local2) {
             width = OPTION_X;
             height = OPTION_Y;
             alpha = 0.65;
         };
-        DefineLbl(LBL_OPTION_TITLE, texts[TXT_OPTION_TITLE], 0, (OPTION_Y + OPTION_Y0), FontFormat_ScreenTitle);
+        DefineLbl(LBL_OPTION_TITLE, texts[TXT_OPTION_TITLE], 0,
+                  (OPTION_Y + OPTION_Y0), FontFormat_ScreenTitle);
         AddFilter(LBL_OPTION_TITLE, Filter_Shadow);
-        DefineLbl(LBL_OPTION_IMAGE, texts[TXT_CHARIMG], (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
+        DefineLbl(LBL_OPTION_IMAGE, texts[TXT_CHARIMG],
+                  (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y1),
+                  FontFormat_Heading);
         AddFilter(LBL_OPTION_IMAGE, Filter_Shadow);
-        DefineImg(OPTION_IMAGEBORDER, "res/gfx/scr/option/character_border_small.png", False, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
-        define_btn(OPTION_CHANGEIMG, texts[TXT_CHANGEIMG], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_IMAGE_X), ((OPTION_Y + OPTION_Y5) - 2));
-        DefineLbl(LBL_OPTION_CHANGE, texts[TXT_CHANGE], (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
+        DefineImg(OPTION_IMAGEBORDER,
+                  "res/gfx/scr/option/character_border_small.png",
+                  False, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
+        define_btn(OPTION_CHANGEIMG, texts[TXT_CHANGEIMG], OptionBtnHandler,
+                   btn_classBasic, (OPTION_X + OPTION_IMAGE_X),
+                   ((OPTION_Y + OPTION_Y5) - 2));
+        DefineLbl(LBL_OPTION_CHANGE, texts[TXT_CHANGE],
+                  (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y1),
+                  FontFormat_Heading);
         AddFilter(LBL_OPTION_CHANGE, Filter_Shadow);
-        define_btn(OPTION_CHANGE_NAME, texts[TXT_CHANGE_NAME], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
-        define_btn(OPTION_RESEND, texts[TXT_RESEND_BTN1], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y4));
-        define_btn(OPTION_CHANGE_EMAIL, texts[TXT_CHANGE_EMAIL], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
-        define_btn(OPTION_CHANGE_PASSWORD, texts[TXT_CHANGE_PASSWORD], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y3));
-        define_btn(OPTION_DELETE, texts[TXT_DELETE_ACCOUNT], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y5));
-        define_btn(OPTION_LUXURY, texts[TXT_LUXURY_BUTTON], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_CHANGE_X), ((OPTION_Y + OPTION_Y5) - 2));
-        DefineImg(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg", False, 1100, 190);
+        define_btn(OPTION_CHANGE_NAME, texts[TXT_CHANGE_NAME],
+                   OptionBtnHandler, btn_classBasic,
+                   (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
+        define_btn(OPTION_RESEND, texts[TXT_RESEND_BTN1], OptionBtnHandler,
+                   btn_classBasic, (OPTION_X + OPTION_CHANGE_X),
+                   (OPTION_Y + OPTION_Y4));
+        define_btn(OPTION_CHANGE_EMAIL, texts[TXT_CHANGE_EMAIL],
+                   OptionBtnHandler, btn_classBasic,
+                   (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
+        define_btn(OPTION_CHANGE_PASSWORD, texts[TXT_CHANGE_PASSWORD],
+                   OptionBtnHandler, btn_classBasic,
+                   (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y3));
+        define_btn(OPTION_DELETE, texts[TXT_DELETE_ACCOUNT],
+                   OptionBtnHandler, btn_classBasic,
+                   (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y5));
+        define_btn(OPTION_LUXURY, texts[TXT_LUXURY_BUTTON],
+                   OptionBtnHandler, btn_classBasic,
+                   (OPTION_X + OPTION_CHANGE_X), ((OPTION_Y + OPTION_Y5) - 2));
+        DefineImg(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg",
+                  False, 1100, 190);
         DefineFromClass(CB_LM_UNCHECKED, cb_unchecked, LM_X, LM_Y);
         actor[CB_LM_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckLM);
         DefineFromClass(CB_LM_CHECKED, cb_checked, LM_X, LM_Y);
         actor[CB_LM_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckLM);
-        DefineLbl(LBL_LM, texts[TXT_LM], (LM_X + LM_X), (LM_Y + LM_Y), FontFormat_Default);
+        DefineLbl(LBL_LM, texts[TXT_LM], (LM_X + LM_X), (LM_Y + LM_Y),
+                  FontFormat_Default);
         AddFilter(LBL_LM, Filter_Shadow);
         DefineFromClass(CB_CS_UNCHECKED, cb_unchecked, LM_X, (LM_Y - 50));
         actor[CB_CS_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckCS);
         DefineFromClass(CB_CS_CHECKED, cb_checked, LM_X, (LM_Y - 50));
         actor[CB_CS_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckCS);
-        DefineLbl(LBL_CS, ((texts[TXT_CS]) ? texts[TXT_CS] : "Chat Sound"), (LM_X + LM_X), ((LM_Y + LM_Y) - 50), FontFormat_Default);
+        DefineLbl(LBL_CS, ((texts[TXT_CS]) ? texts[TXT_CS] : "Chat Sound"),
+                  (LM_X + LM_X), ((LM_Y + LM_Y) - 50), FontFormat_Default);
         AddFilter(LBL_CS, Filter_Shadow);
-        DefineFromClass(CB_COMPARE_UNCHECKED, cb_unchecked, (LM_X + 250), (LM_Y - 50));
-        actor[CB_COMPARE_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckCompare);
-        DefineFromClass(CB_COMPARE_CHECKED, cb_checked, (LM_X + 250), (LM_Y - 50));
-        actor[CB_COMPARE_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckCompare);
-        DefineLbl(LBL_COMPARE, texts[TXT_COMPARE], ((LM_X + LM_X) + 250), ((LM_Y + LM_Y) - 50), FontFormat_Default);
+        DefineFromClass(CB_COMPARE_UNCHECKED, cb_unchecked, (LM_X + 250),
+                        (LM_Y - 50));
+        actor[CB_COMPARE_UNCHECKED].add_event_listener(MouseEvent.CLICK,
+                                                       CheckCompare);
+        DefineFromClass(CB_COMPARE_CHECKED, cb_checked, (LM_X + 250),
+                        (LM_Y - 50));
+        actor[CB_COMPARE_CHECKED].add_event_listener(MouseEvent.CLICK,
+                                                     UncheckCompare);
+        DefineLbl(LBL_COMPARE, texts[TXT_COMPARE], ((LM_X + LM_X) + 250),
+                  ((LM_Y + LM_Y) - 50), FontFormat_Default);
         AddFilter(LBL_COMPARE, Filter_Shadow);
         DefineFromClass(CB_TV_UNCHECKED, cb_unchecked, (LM_X + 250), LM_Y);
         actor[CB_TV_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckTV);
         DefineFromClass(CB_TV_CHECKED, cb_checked, (LM_X + 250), LM_Y);
         actor[CB_TV_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckTV);
-        DefineLbl(LBL_TV_CHECKBOX, texts[TXT_TV_DISABLE], ((LM_X + LM_X) + 250), (LM_Y + LM_Y), FontFormat_Default);
+        DefineLbl(LBL_TV_CHECKBOX, texts[TXT_TV_DISABLE],
+                  ((LM_X + LM_X) + 250), (LM_Y + LM_Y), FontFormat_Default);
         AddFilter(LBL_TV_CHECKBOX, Filter_Shadow);
-        DefineLbl(LBL_OPTION_DOCHANGE, "", (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y1), FontFormat_Heading);
+        DefineLbl(LBL_OPTION_DOCHANGE, "", (OPTION_X + OPTION_DOCHANGE_X),
+                  (OPTION_Y + OPTION_Y1), FontFormat_Heading);
         AddFilter(LBL_OPTION_DOCHANGE, Filter_Shadow);
-        DefineLbl(LBL_OPTION_FIELD1, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X), ((OPTION_Y + OPTION_Y2) + OPTION_TEXT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_OPTION_FIELD1, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
+                  ((OPTION_Y + OPTION_Y2) + OPTION_TEXT_Y),
+                  FontFormat_DefaultLeft);
         _local2 = actor[LBL_OPTION_FIELD1];
         with (_local2) {
             wordWrap = True;
             width = 300;
         };
-        DefineLbl(LBL_OPTION_FIELD2, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X), ((OPTION_Y + OPTION_Y3) + OPTION_TEXT_Y), FontFormat_Default);
-        DefineLbl(LBL_OPTION_FIELD3, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X), ((OPTION_Y + OPTION_Y4) + OPTION_TEXT_Y), FontFormat_Default);
+        DefineLbl(LBL_OPTION_FIELD2, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
+                  ((OPTION_Y + OPTION_Y3) + OPTION_TEXT_Y), FontFormat_Default)
+        DefineLbl(LBL_OPTION_FIELD3, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
+                  ((OPTION_Y + OPTION_Y4) + OPTION_TEXT_Y), FontFormat_Default)
         AddFilter(LBL_OPTION_FIELD1, Filter_Shadow);
         AddFilter(LBL_OPTION_FIELD2, Filter_Shadow);
         AddFilter(LBL_OPTION_FIELD3, Filter_Shadow);
-        DefineFromClass(INP_OPTION_FIELD1, text_input1, (OPTION_X + OPTION_DOCHANGE_FIELD_X), (OPTION_Y + OPTION_Y2), 2, "name");
-        DefineFromClass(INP_OPTION_FIELD2, text_input2, (OPTION_X + OPTION_DOCHANGE_FIELD_X), (OPTION_Y + OPTION_Y3), 2, "name");
-        DefineFromClass(INP_OPTION_FIELD3, text_input1, (OPTION_X + OPTION_DOCHANGE_FIELD_X), (OPTION_Y + OPTION_Y4), 2, "name");
-        actor[INP_OPTION_FIELD1].add_event_listener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
-        actor[INP_OPTION_FIELD2].add_event_listener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
-        actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_DOWN, OptionBtnHandler);
-        actor[INP_OPTION_FIELD2].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
-        actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_UP, gradePassword);
-        DefineCnt(CHANGE_PASSWORD_SMILEY_SAD, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
-        DefineCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
-        DefineCnt(CHANGE_PASSWORD_SMILEY_HAPPY, ((OPTION_X + OPTION_DOCHANGE_X) - 50), (OPTION_Y + OPTION_Y5));
-        enable_popup(CHANGE_PASSWORD_SMILEY_SAD, texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(chr(13)));
-        enable_popup(CHANGE_PASSWORD_SMILEY_NEUTRAL, texts[TXT_PASSWORD_SMILEY_NEUTRAL].split("#").join(chr(13)));
-        enable_popup(CHANGE_PASSWORD_SMILEY_HAPPY, texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(chr(13)));
-        define_btn(OPTION_DOCHANGE, texts[TXT_DOCHANGE], OptionBtnHandler, btn_classBasic, (OPTION_X + OPTION_DOCHANGE_X), (OPTION_Y + OPTION_Y5));
-        DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6), FontFormat_Default);
+        DefineFromClass(INP_OPTION_FIELD1, text_input1,
+                        (OPTION_X + OPTION_DOCHANGE_FIELD_X),
+                        (OPTION_Y + OPTION_Y2), 2, "name");
+        DefineFromClass(INP_OPTION_FIELD2, text_input2,
+                        (OPTION_X + OPTION_DOCHANGE_FIELD_X),
+                        (OPTION_Y + OPTION_Y3), 2, "name");
+        DefineFromClass(INP_OPTION_FIELD3, text_input1,
+                        (OPTION_X + OPTION_DOCHANGE_FIELD_X),
+                        (OPTION_Y + OPTION_Y4), 2, "name");
+        actor[INP_OPTION_FIELD1].add_event_listener(KeyboardEvent.KEY_DOWN,
+                                                    OptionBtnHandler);
+        actor[INP_OPTION_FIELD2].add_event_listener(KeyboardEvent.KEY_DOWN,
+                                                    OptionBtnHandler);
+        actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_DOWN,
+                                                    OptionBtnHandler);
+        actor[INP_OPTION_FIELD2].add_event_listener(KeyboardEvent.KEY_UP,
+                                                    gradePassword);
+        actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_UP,
+                                                    gradePassword);
+        DefineCnt(CHANGE_PASSWORD_SMILEY_SAD,
+                  ((OPTION_X + OPTION_DOCHANGE_X) - 50),
+                  (OPTION_Y + OPTION_Y5));
+        DefineCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL,
+                  ((OPTION_X + OPTION_DOCHANGE_X) - 50),
+                  (OPTION_Y + OPTION_Y5));
+        DefineCnt(CHANGE_PASSWORD_SMILEY_HAPPY,
+                  ((OPTION_X + OPTION_DOCHANGE_X) - 50),
+                  (OPTION_Y + OPTION_Y5));
+        enable_popup(CHANGE_PASSWORD_SMILEY_SAD,
+                     texts[TXT_PASSWORD_SMILEY_SAD].split("#").join(chr(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_NEUTRAL,
+                     texts[TXT_PASSWORD_SMILEY_NEUTRAL].split(
+                                          "#").join(chr(13)));
+        enable_popup(CHANGE_PASSWORD_SMILEY_HAPPY,
+                     texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(chr(13)))
+        define_btn(OPTION_DOCHANGE, texts[TXT_DOCHANGE], OptionBtnHandler,
+                   btn_classBasic, (OPTION_X + OPTION_DOCHANGE_X),
+                   (OPTION_Y + OPTION_Y5));
+        DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6),
+                  FontFormat_Default);
         AddFilter(LBL_OPTION_VOLUME, Filter_Shadow);
-        DefineSlider(SLDR_OPTION_VOLUME, 11, ((OPTION_X + OPTION_VOLUME_X) + 250), (OPTION_Y + OPTION_Y7), VolumeChange);
+        DefineSlider(SLDR_OPTION_VOLUME, 11,
+                     ((OPTION_X + OPTION_VOLUME_X) + 250),
+                     (OPTION_Y + OPTION_Y7), VolumeChange);
         define_snd(SND_TEST, "res/sfx/click.mp3");
-        define_bunch(OPTION_DOCHANGE, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1, LBL_OPTION_FIELD2, LBL_OPTION_FIELD3, INP_OPTION_FIELD1, INP_OPTION_FIELD2, INP_OPTION_FIELD3, OPTION_DOCHANGE);
-        define_bunch(OPTION_DORESEND, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1, OPTION_DOCHANGE);
-        DefineLbl(LBL_OPTION_VER, ("v1.70" + (((get_file_version() == 0)) ? "" : ("." + str(get_file_version())))), 0, ((OPTION_Y + OPTION_VER_Y) + 110), FontFormat_Default);
-        actor[LBL_OPTION_VER].x = (((OPTION_X + OPTION_VER_X) + 60) - actor[LBL_OPTION_VER].text_width);
+        define_bunch(OPTION_DOCHANGE, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1,
+                     LBL_OPTION_FIELD2, LBL_OPTION_FIELD3, INP_OPTION_FIELD1,
+                     INP_OPTION_FIELD2, INP_OPTION_FIELD3, OPTION_DOCHANGE);
+        define_bunch(OPTION_DORESEND, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1,
+                     OPTION_DOCHANGE);
+        DefineLbl(LBL_OPTION_VER,
+                  ("v1.70" + (((get_file_version() == 0)) ? ""
+                   : ("." + str(get_file_version())))), 0,
+                    ((OPTION_Y + OPTION_VER_Y) + 110), FontFormat_Default);
+        actor[LBL_OPTION_VER].x = (((OPTION_X + OPTION_VER_X) + 60)
+                                   - actor[LBL_OPTION_VER].text_width);
         AddFilter(LBL_OPTION_VER, Filter_Shadow);
-        define_bunch(SCREEN_OPTION, SHP_OPTION_BLACK, OPTION_IMAGEBORDER, LBL_OPTION_TITLE, LBL_OPTION_IMAGE, OPTION_CHANGEIMG, LBL_OPTION_CHANGE, OPTION_RESEND);
-        add_bunch(SCREEN_OPTION, OPTION_CHANGE_EMAIL, OPTION_CHANGE_PASSWORD, OPTION_DELETE, LBL_OPTION_VOLUME, SLDR_OPTION_VOLUME, IF_EXIT, SND_TEST, LBL_OPTION_VER, CB_LM_UNCHECKED, LBL_LM);
-        add_bunch(SCREEN_OPTION, CHANGE_PASSWORD_SMILEY_SAD, CHANGE_PASSWORD_SMILEY_NEUTRAL, CHANGE_PASSWORD_SMILEY_HAPPY, CB_CS_UNCHECKED, LBL_CS, CB_COMPARE_UNCHECKED, LBL_COMPARE, CB_TV_UNCHECKED, LBL_TV_CHECKBOX);
-        Filter_Glow = [new GradientGlowFilter(0, 45, [16777026, 16777026], [0, 0.4], [0, 127], 16, 16, 1, 1, "outer")];
+        define_bunch(SCREEN_OPTION, SHP_OPTION_BLACK, OPTION_IMAGEBORDER,
+                     LBL_OPTION_TITLE, LBL_OPTION_IMAGE, OPTION_CHANGEIMG,
+                     LBL_OPTION_CHANGE, OPTION_RESEND);
+        add_bunch(SCREEN_OPTION, OPTION_CHANGE_EMAIL, OPTION_CHANGE_PASSWORD,
+                  OPTION_DELETE, LBL_OPTION_VOLUME, SLDR_OPTION_VOLUME,
+                  IF_EXIT, SND_TEST, LBL_OPTION_VER, CB_LM_UNCHECKED, LBL_LM);
+        add_bunch(SCREEN_OPTION, CHANGE_PASSWORD_SMILEY_SAD,
+                  CHANGE_PASSWORD_SMILEY_NEUTRAL, CHANGE_PASSWORD_SMILEY_HAPPY,
+                  CB_CS_UNCHECKED, LBL_CS, CB_COMPARE_UNCHECKED, LBL_COMPARE,
+                  CB_TV_UNCHECKED, LBL_TV_CHECKBOX);
+        Filter_Glow = [new GradientGlowFilter(0, 45, [16777026, 16777026],
+                                              [0, 0.4], [0, 127], 16, 16, 1, 1,
+                                              "outer")];
         i = 0;
         while (i < param_languages.length) {
-            DefineImg((OPTION_FLAG + i), (("res/gfx/if/flags/flag_" + param_languages[i]) + ".png"), False, ((LM_X + (35 * i)) - ((lang_code)==param_languages[i]) ? 8 : 0), (LM_Y + ((lang_code)==param_languages[i]) ? 53 : 60), ((lang_code)==param_languages[i]) ? 0.9 : 0.6, ((lang_code)==param_languages[i]) ? 0.9 : 0.6);
+            DefineImg((OPTION_FLAG + i),
+                      ("res/gfx/if/flags/flag_" + param_languages[i] + ".png"),
+                      False,
+                      ((LM_X + (35 * i)) - ((lang_code)==param_languages[i])
+                       ? 8 : 0),
+                        (LM_Y + ((lang_code)==param_languages[i]) ? 53 : 60),
+                        ((lang_code)==param_languages[i]) ? 0.9 : 0.6,
+                        ((lang_code)==param_languages[i]) ? 0.9 : 0.6);
             if (lang_code == param_languages[i]){
                 AddFilter((OPTION_FLAG + i), Filter_Glow);
             };
-            actor[(OPTION_FLAG + i)].add_event_listener(MouseEvent.CLICK, ChooseLanguageIcon);
+            actor[(OPTION_FLAG + i)].add_event_listener(MouseEvent.CLICK,
+                                                        ChooseLanguageIcon);
             add_bunch(SCREEN_OPTION, (OPTION_FLAG + i));
             enable_popup((OPTION_FLAG + i), param_language_names[i]);
             i = (i + 1);
         };
         optionMenuSelect = 0;
-        DefineLbl(LBL_HLMAINQUESTS_TITLE, texts[TXT_HL_MAINQUESTS_TITLE], 0, MQS_TITLE_Y, FontFormat_ScreenTitle);
+        DefineLbl(LBL_HLMAINQUESTS_TITLE, texts[TXT_HL_MAINQUESTS_TITLE], 0,
+                  MQS_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_HLMAINQUESTS_TITLE, Filter_Shadow);
-        DefineImg(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
-        DefineImg(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png", False, 0, 0);
-        DefineImg(HLMQS_TOWER_DISABLED, "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
-        DefineImg(HLMQS_TOWER_COMPLETED, "res/gfx/scr/dungeons/done_tower.png", False, 0, 0);
-        define_bunch(SCREEN_HLMAINQUESTS, IF_OVL, IF_EXIT, LBL_HLMAINQUESTS_TITLE, SND_MAINQUESTS_UNLOCK);
+        DefineImg(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png",
+                  False, 0, 0);
+        DefineImg(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png",
+                  False, 0, 0);
+        DefineImg(HLMQS_TOWER_DISABLED, "res/gfx/scr/dungeons/unknown.png",
+                  False, 0, 0);
+        DefineImg(HLMQS_TOWER_COMPLETED, "res/gfx/scr/dungeons/done_tower.png",
+                  False, 0, 0);
+        define_bunch(SCREEN_HLMAINQUESTS, IF_OVL, IF_EXIT,
+                     LBL_HLMAINQUESTS_TITLE, SND_MAINQUESTS_UNLOCK);
         i = 0;
         while (i < 5) {
             if (i == 4){
-                DefineCnt((HLMQS_BUTTON + 4), ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-                DefineImg((HLMQS_BUTTON + 4), "res/gfx/scr/dungeons/button_tower.jpg", False, ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-                DefineCnt((HLMQS_DISABLED + 4), ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-                DefineCnt((HLMQS_COMPLETED + 4), ((MQS_BUTTON_X + MQS_BUTTON_X) + 0), ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
+                DefineCnt((HLMQS_BUTTON + 4),
+                          ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
+                          ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
+                DefineImg((HLMQS_BUTTON + 4),
+                          "res/gfx/scr/dungeons/button_tower.jpg", False,
+                          ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
+                          ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
+                DefineCnt((HLMQS_DISABLED + 4),
+                          ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
+                          ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
+                DefineCnt((HLMQS_COMPLETED + 4),
+                          ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
+                          ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
             } else {
-                DefineCnt((HLMQS_BUTTON + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-                DefineImg((HLMQS_BUTTON + i), (("res/gfx/scr/dungeons/button" + str((60 + i))) + ".jpg"), False, (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-                DefineCnt((HLMQS_DISABLED + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-                DefineCnt((HLMQS_COMPLETED + i), (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))), ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
+                DefineCnt((HLMQS_BUTTON + i),
+                          (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
+                          ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
+                DefineImg((HLMQS_BUTTON + i),
+                          (("res/gfx/scr/dungeons/button" + str((60 + i)))
+                           + ".jpg"), False, (MQS_BUTTON_X +
+                           ((MQS_BUTTON_X * 2) * int((i % 2)))),
+                            ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
+                DefineCnt((HLMQS_DISABLED + i),
+                          (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
+                          ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
+                DefineCnt((HLMQS_COMPLETED + i),
+                          (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
+                          ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
             };
-            add_bunch(SCREEN_HLMAINQUESTS, (HLMQS_BUTTON + i), (HLMQS_DISABLED + i), (HLMQS_COMPLETED + i));
-            enable_popup((HLMQS_DISABLED + i), POPUP_BEGIN_LINE, texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
-            enable_popup((HLMQS_COMPLETED + i), POPUP_BEGIN_LINE, texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
+            add_bunch(SCREEN_HLMAINQUESTS, (HLMQS_BUTTON + i),
+                      (HLMQS_DISABLED + i), (HLMQS_COMPLETED + i));
+            enable_popup((HLMQS_DISABLED + i), POPUP_BEGIN_LINE,
+                         texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0],
+                         POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         FontFormat_EpicItemQuote,
+                         texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1],
+                         FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         texts[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
+            enable_popup((HLMQS_COMPLETED + i), POPUP_BEGIN_LINE,
+                         texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0],
+                         POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         FontFormat_EpicItemQuote,
+                         texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1],
+                         FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         texts[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
             i = (i + 1);
         };
-        DefineLbl(LBL_MAINQUESTS_TITLE, texts[(TXT_DUNGEON_INFO + 4)], 0, MQS_TITLE_Y, FontFormat_ScreenTitle);
+        DefineLbl(LBL_MAINQUESTS_TITLE, texts[(TXT_DUNGEON_INFO + 4)], 0,
+                  MQS_TITLE_Y, FontFormat_ScreenTitle);
         AddFilter(LBL_MAINQUESTS_TITLE, Filter_Shadow);
         define_snd(SND_MAINQUESTS_UNLOCK, "res/sfx/unlock.mp3", False);
-        DefineImg(MQS_DISABLED, "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
-        DefineImg(MQS_COMPLETED, "res/gfx/scr/dungeons/done.png", False, 0, 0);
-        define_bunch(SCREEN_MAINQUESTS, IF_OVL, IF_EXIT, LBL_MAINQUESTS_TITLE, SND_MAINQUESTS_UNLOCK);
+        DefineImg(MQS_DISABLED,
+                  "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
+        DefineImg(MQS_COMPLETED,
+                  "res/gfx/scr/dungeons/done.png", False, 0, 0);
+        define_bunch(SCREEN_MAINQUESTS, IF_OVL, IF_EXIT, LBL_MAINQUESTS_TITLE,
+                     SND_MAINQUESTS_UNLOCK);
         i = 0;
         while (i < 9) {
-            DefineCnt((MQS_BUTTON + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-            DefineImg((MQS_BUTTON + i), (("res/gfx/scr/dungeons/button" + str((51 + i))) + ".jpg"), False, (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-            DefineCnt((MQS_DISABLED + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-            DefineCnt((MQS_COMPLETED + i), (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))), (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-            add_bunch(SCREEN_MAINQUESTS, (MQS_BUTTON + i), (MQS_DISABLED + i), (MQS_COMPLETED + i));
-            enable_popup((MQS_DISABLED + i), POPUP_BEGIN_LINE, texts[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
-            enable_popup((MQS_COMPLETED + i), POPUP_BEGIN_LINE, texts[(TXT_DUNGEON_NAME + i)].split("|")[0], POPUP_END_LINE, POPUP_BEGIN_LINE, FontFormat_EpicItemQuote, texts[(TXT_DUNGEON_NAME + i)].split("|")[1], FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
+            DefineCnt((MQS_BUTTON + i),
+                      (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
+                      (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
+            DefineImg((MQS_BUTTON + i),
+                      (("res/gfx/scr/dungeons/button" + str(51 + i)) + ".jpg"),
+                      False, (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
+                      (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
+            DefineCnt((MQS_DISABLED + i),
+                      (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
+                      (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
+            DefineCnt((MQS_COMPLETED + i),
+                      (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
+                      (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
+            add_bunch(SCREEN_MAINQUESTS, (MQS_BUTTON + i), (MQS_DISABLED + i),
+                      (MQS_COMPLETED + i));
+            enable_popup((MQS_DISABLED + i), POPUP_BEGIN_LINE,
+                         texts[(TXT_DUNGEON_NAME + i)].split("|")[0],
+                         POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         FontFormat_EpicItemQuote,
+                         texts[(TXT_DUNGEON_NAME + i)].split("|")[1],
+                         FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         texts[(TXT_DUNGEON_INFO + 1)], POPUP_END_LINE);
+            enable_popup((MQS_COMPLETED + i), POPUP_BEGIN_LINE,
+                         texts[(TXT_DUNGEON_NAME + i)].split("|")[0],
+                         POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         FontFormat_EpicItemQuote,
+                         texts[(TXT_DUNGEON_NAME + i)].split("|")[1],
+                         FontFormat_Popup, POPUP_END_LINE, POPUP_BEGIN_LINE,
+                         texts[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
             i = (i + 1);
         };
-        DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg", False, 280, 100);
-        DefineLbl(LBL_DUNGEON_CONGRATS, ((texts[TXT_CONGRATS]) ? texts[TXT_CONGRATS].split("#").join(chr(13)) : ""), 1000, 600, FontFormat_Default);
+        DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg",
+                  False, 280, 100);
+        DefineLbl(LBL_DUNGEON_CONGRATS,
+                  ((texts[TXT_CONGRATS])
+                   ? texts[TXT_CONGRATS].split("#").join(chr(13))
+                   : ""), 1000, 600, FontFormat_Default);
         actor[LBL_DUNGEON_CONGRATS].wordWrap = True;
         actor[LBL_DUNGEON_CONGRATS].default_text_format.align = "right";
         AddFilter(LBL_DUNGEON_CONGRATS, Filter_Shadow);
-        define_bunch(DUNGEON_CONGRATS, DUNGEON_CONGRATS, LBL_DUNGEON_CONGRATS, IF_OVL, IF_EXIT);
+        define_bunch(DUNGEON_CONGRATS, DUNGEON_CONGRATS, LBL_DUNGEON_CONGRATS,
+                     IF_OVL, IF_EXIT);
         DefineFromClass(SHP_MAINQUEST, black_square, MQ_SQUARE_X, MQ_SQUARE_Y);
         _local2 = actor[SHP_MAINQUEST];
         with (_local2) {
@@ -28456,50 +29024,68 @@ def load_tracking_pixel(url=''):
             height = MQ_SQUARE_Y;
             alpha = 0.6;
         };
-        DefineLbl(LBL_MAINQUEST_TITLE, "", 0, (MQ_SQUARE_Y + MQ_TITLE_Y), FontFormat_ScreenTitle);
+        DefineLbl(LBL_MAINQUEST_TITLE, "", 0, (MQ_SQUARE_Y + MQ_TITLE_Y),
+                  FontFormat_ScreenTitle);
         AddFilter(LBL_MAINQUEST_TITLE, Filter_Shadow);
-        DefineLbl(LBL_MAINQUEST_TEXT, "", (MQ_SQUARE_X + MQ_TEXT_X), (MQ_SQUARE_Y + MQ_TEXT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_MAINQUEST_TEXT, "", (MQ_SQUARE_X + MQ_TEXT_X),
+                  (MQ_SQUARE_Y + MQ_TEXT_Y), FontFormat_DefaultLeft);
         _local2 = actor[LBL_MAINQUEST_TEXT];
         with (_local2) {
             width = (MQ_SQUARE_X - (MQ_TEXT_X * 2));
             wordWrap = True;
         };
         AddFilter(LBL_MAINQUEST_TEXT, Filter_Shadow);
-        define_btn(MAINQUEST_START, "", RequestMainQuest, btn_classBasic, 0, ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_BUTTON_Y));
+        define_btn(MAINQUEST_START, "", RequestMainQuest, btn_classBasic, 0,
+                   ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_BUTTON_Y));
         _local2 = actor[MAINQUEST_START];
         with (_local2) {
             x = (((MQ_SQUARE_X + MQ_SQUARE_X) - MQ_TEXT_X) - width);
         };
-        DefineLbl(LBL_MAINQUEST_MUSHHINT, texts[TXT_MQ_MUSHHINT], (MQ_SQUARE_X + MQ_TEXT_X), ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_MUSHHINT_Y), FontFormat_DefaultLeft);
+        DefineLbl(LBL_MAINQUEST_MUSHHINT, texts[TXT_MQ_MUSHHINT],
+                  (MQ_SQUARE_X + MQ_TEXT_X),
+                  ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_MUSHHINT_Y),
+                  FontFormat_DefaultLeft);
         _local2 = actor[LBL_MAINQUEST_MUSHHINT];
         with (_local2) {
-            width = ((MQ_SQUARE_X - (MQ_TEXT_X * 3)) - actor[MAINQUEST_START].width);
+            width = ((MQ_SQUARE_X - (MQ_TEXT_X * 3))
+                     - actor[MAINQUEST_START].width);
             wordWrap = True;
         };
         AddFilter(LBL_MAINQUEST_MUSHHINT, Filter_Shadow);
         DefineCnt(MAINQUEST_ENEMY, MAINQUEST_ENEMY_X, MAINQUEST_ENEMY_Y);
-        DefineCnt(MAINQUEST_ENEMY_BORDER, (MAINQUEST_ENEMY_X - MQ_BORDER_X), (MAINQUEST_ENEMY_Y - MQ_BORDER_Y));
-        define_bunch(SCREEN_MAINQUEST, SHP_MAINQUEST, IF_OVL, LBL_MAINQUEST_TITLE, LBL_MAINQUEST_TEXT, MAINQUEST_ENEMY_BORDER, MAINQUEST_ENEMY, LBL_MAINQUEST_MUSHHINT, MAINQUEST_START, IF_EXIT);
-        DefineLbl(LBL_DISCONNECTED, texts[TXT_DISCONNECTED], ((DISCONNECTED_X - (DISCONNECTED_X / 2)) + 10), (DISCONNECTED_Y + 10), FontFormat_Error);
+        DefineCnt(MAINQUEST_ENEMY_BORDER, (MAINQUEST_ENEMY_X - MQ_BORDER_X),
+                  (MAINQUEST_ENEMY_Y - MQ_BORDER_Y));
+        define_bunch(SCREEN_MAINQUEST, SHP_MAINQUEST, IF_OVL,
+                     LBL_MAINQUEST_TITLE, LBL_MAINQUEST_TEXT,
+                     MAINQUEST_ENEMY_BORDER, MAINQUEST_ENEMY,
+                     LBL_MAINQUEST_MUSHHINT, MAINQUEST_START, IF_EXIT);
+        DefineLbl(LBL_DISCONNECTED, texts[TXT_DISCONNECTED],
+                  ((DISCONNECTED_X - (DISCONNECTED_X / 2)) + 10),
+                  (DISCONNECTED_Y + 10), FontFormat_Error);
         _local2 = actor[LBL_DISCONNECTED];
         with (_local2) {
             wordWrap = True;
             width = (DISCONNECTED_X - 20);
         };
         AddFilter(LBL_DISCONNECTED, Filter_Shadow);
-        DefineFromClass(SHP_DISCONNECTED, black_square_neutral, (DISCONNECTED_X - (DISCONNECTED_X / 2)), DISCONNECTED_Y);
+        DefineFromClass(SHP_DISCONNECTED, black_square_neutral,
+                        (DISCONNECTED_X - (DISCONNECTED_X / 2)),
+                        DISCONNECTED_Y);
         _local2 = actor[SHP_DISCONNECTED];
         with (_local2) {
             width = DISCONNECTED_X;
             height = (actor[LBL_DISCONNECTED].textHeight + 20);
             alpha = 0.8;
         };
-        define_bunch(SCREEN_DISCONNECTED, BLACK_SQUARE, SHP_DISCONNECTED, LBL_DISCONNECTED);
-        DefineLbl(LBL_EMAIL_NAG, texts[TXT_EMAIL_NAG], EMAIL_NAG_X, EMAIL_NAG_Y, FontFormat_DefaultLeft);
+        define_bunch(SCREEN_DISCONNECTED, BLACK_SQUARE, SHP_DISCONNECTED,
+                     LBL_DISCONNECTED);
+        DefineLbl(LBL_EMAIL_NAG, texts[TXT_EMAIL_NAG], EMAIL_NAG_X,
+                  EMAIL_NAG_Y, FontFormat_DefaultLeft);
         actor[LBL_EMAIL_NAG].width = EMAIL_NAG_TEXT_X;
         actor[LBL_EMAIL_NAG].wordWrap = True;
         AddFilter(LBL_EMAIL_NAG, Filter_Shadow);
-        DefineLbl(LBL_EMAIL_RESEND, texts[TXT_EMAIL_RESEND], 0, 0, FontFormat_Default);
+        DefineLbl(LBL_EMAIL_RESEND, texts[TXT_EMAIL_RESEND], 0, 0,
+                  FontFormat_Default);
         AddFilter(LBL_EMAIL_RESEND, Filter_Shadow);
         MakePersistent(LBL_EMAIL_RESEND);
         DefineCnt(EMAIL_RESEND, EMAIL_NAG_X, (EMAIL_NAG_Y + EMAIL_RESEND_Y));
@@ -28513,8 +29099,11 @@ def load_tracking_pixel(url=''):
             useHandCursor = True;
             add_event_listener(MouseEvent.CLICK, ResendConfirmationEmail);
         };
-        define_btn(EMAIL_NAG, texts[TXT_OK], ShowCityScreen, btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X), (IF_WIN_Y + EMAIL_NAG_Y));
-        define_bunch(SCREEN_EMAIL_NAG, IF_WINDOW, LBL_WINDOW_TITLE, LBL_EMAIL_NAG, EMAIL_NAG, IF_EXIT);
+        define_btn(EMAIL_NAG, texts[TXT_OK], ShowCityScreen, btn_classBasic,
+                   ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X),
+                   (IF_WIN_Y + EMAIL_NAG_Y));
+        define_bunch(SCREEN_EMAIL_NAG, IF_WINDOW, LBL_WINDOW_TITLE,
+                     LBL_EMAIL_NAG, EMAIL_NAG, IF_EXIT);
         DefineCnt(POPUP_INFO);
         _local2 = actor[POPUP_INFO];
         with (_local2) {
@@ -28555,7 +29144,8 @@ if __name__ == "__main__":
 
 '''
 
-def DefineImg(actor_id, url:String, predo_load=True, pos_x=0, pos_y=0, scale_x:Number=1, scale_y:Number=1, vis=True):
+def DefineImg(actor_id, url:String, predo_load=True, pos_x=0, pos_y=0,
+              scale_x:Number=1, scale_y:Number=1, vis=True):
     var i:* = 0;
     var full_url:* = None;
     var LoaderCompleteLocal:* = None;
@@ -28577,9 +29167,12 @@ def DefineImg(actor_id, url:String, predo_load=True, pos_x=0, pos_y=0, scale_x:N
         full_url = (img_url[img_url_index] + url);
     };
     actor[i] = new Loader();
-    actor[i].contentLoaderInfo.add_event_listener(IOErrorEvent.IO_ERROR, LoaderError);
-    actor[i].contentLoaderInfo.add_event_listener(Event.COMPLETE, LoaderComplete);
-    actor[i].contentLoaderInfo.add_event_listener(Event.COMPLETE, LoaderCompleteLocal);
+    actor[i].contentLoaderInfo.add_event_listener(IOErrorEvent.IO_ERROR,
+                                                  LoaderError);
+    actor[i].contentLoaderInfo.add_event_listener(Event.COMPLETE,
+                                                  LoaderComplete);
+    actor[i].contentLoaderInfo.add_event_listener(Event.COMPLETE,
+                                                  LoaderCompleteLocal);
     actorLoaded[i] = 0;
     actorURL[i] = full_url;
     var _local10 = actor[i];
@@ -28599,7 +29192,9 @@ def DefineImg(actor_id, url:String, predo_load=True, pos_x=0, pos_y=0, scale_x:N
     };
 }
 
-def DefineClickArea(actor_id, imgActorID, fn:Function, pos_x, pos_y, size_x, size_y, ovlActorID=0, hoverFn:Function=None, outFn:Function=None, stayPut=False):
+def DefineClickArea(actor_id, imgActorID, fn:Function, pos_x, pos_y, size_x,
+                    size_y, ovlActorID=0, hoverFn:Function=None,
+                    outFn:Function=None, stayPut=False):
     var actor_id:* = actor_id;
     var imgActorID:* = imgActorID;
     var fn:* = fn;
@@ -28652,7 +29247,8 @@ def DefineClickArea(actor_id, imgActorID, fn:Function, pos_x, pos_y, size_x, siz
     };
 }
 
-def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0, txtType:String=""):
+def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0,
+                    txtType:String=""):
     var i:* = 0;
     var actor_id:* = actor_id;
     var imgClass:* = imgClass;
@@ -28665,7 +29261,9 @@ def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0, txtT
         var _local3 = field;
         with (_local3) {
             embed_fonts = font_embedded;
-            default_text_format = new TextFormat(gameFont, (default_text_format.size + sizeMod), default_text_format.color);
+            default_text_format = new TextFormat(gameFont,
+                     (default_text_format.size + sizeMod),
+                     default_text_format.color);
         };
     };
     i = actor_id;
@@ -28726,7 +29324,8 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn:Function){
         if (evt.buttonDown){
             if ((((evt.localX > 35)) and ((evt.localX < (45 + 198))))){
                 tmpX = evt.localX;
-                sliderVal = (int(((((tmpX - 40) / 198) * (Ticks - 1)) + 0.5)) + 1);
+                sliderVal = (int(((((tmpX - 40) / 198)
+                             * (Ticks - 1)) + 0.5)) + 1);
                 tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
                 evt.target.getChildAt(1).x = (tmpX - 7);
                 if (oldSliderVal != sliderVal){
@@ -28761,7 +29360,9 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn:Function){
     };
     i = 1;
     while (i <= Ticks) {
-        DefineFromClass(((actor_id + 1) + i), SliderTick, (((pos_x + 40) + int((198 * ((i - 1) / (Ticks - 1))))) - 5), (pos_y - 10));
+        DefineFromClass(((actor_id + 1) + i), SliderTick,
+                        (((pos_x + 40) + int((198 * ((i - 1)
+                         / (Ticks - 1))))) - 5), (pos_y - 10));
         _local7 = actor[((actor_id + 1) + i)];
         with (_local7) {
             add_event_listener(MouseEvent.MOUSE_DOWN, ClickTick);
@@ -28777,7 +29378,8 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn:Function){
 def get_slider_value(actor_id){
     var tmpX;
     tmpX = (actor[(actor_id + 1)].getChildAt(1).x + 5);
-    return ((int(((((tmpX - 40) / 198) * (actorBitmap[actor_id] - 1)) + 0.5)) + 1));
+    return ((int(((((tmpX - 40) / 198) * (actorBitmap[actor_id] - 1))
+            + 0.5)) + 1));
 }
 
 def SetSliderValue(actor_id, value):
@@ -28872,7 +29474,8 @@ def EnableDragDrop(actor_id, handler:Function, ... _args):
                 if ((actor[Targets[i]] is Array)){
                     i_bunch = 0;
                     while (i_bunch < actor[Targets[i]].length) {
-                        if (actor[actor[Targets[i]][i_bunch]] == evt.target.dropTarget.parent){
+                        if (actor[actor[Targets[i]][i_bunch]] == evt.target
+                                    .dropTarget.parent){
                             dropped = True;
                             droppedOn = actor[Targets[i]][i_bunch];
                             break;
@@ -28892,7 +29495,8 @@ def EnableDragDrop(actor_id, handler:Function, ... _args):
                 i = 0;
                 while (i < actor.length) {
                     if ((actor[i] is DisplayObject)){
-                        if ((((actor[i] == evt.target.dropTarget.parent)) or ((actor[i] == evt.target.dropTarget)))){
+                        if ((((actor[i] == evt.target.dropTarget.parent))
+                            or ((actor[i] == evt.target.dropTarget)))){
                             dropped = True;
                             droppedOn = i;
                             break;
@@ -28920,18 +29524,22 @@ def EnableDragDrop(actor_id, handler:Function, ... _args):
     if ((actor[actor_id] is Array)){
         i_bunch = 0;
         while (i_bunch < actor[actor_id].length) {
-            if ((((actor[actor[actor_id][i_bunch]] is MovieClip)) or ((actor[actor[actor_id][i_bunch]] is Sprite)))){
-                actor[actor[actor_id][i_bunch]].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
-                actor[actor[actor_id][i_bunch]].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
+            if ((((actor[actor[actor_id][i_bunch]] is MovieClip))
+                or ((actor[actor[actor_id][i_bunch]] is Sprite)))){
+                actor[actor[actor_id][i_bunch]].add_event_listener(
+                                       MouseEvent.MOUSE_DOWN, MouseBtnDown);
+                actor[actor[actor_id][i_bunch]].add_event_listener(
+                                        MouseEvent.MOUSE_UP, MouseBtnUp);
             } else {
-                trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor[actor_id][i_bunch]));
+                trc(("Fehler: Drag & Drop nicht unterstützt für Actor "
+                    + actor[actor_id][i_bunch]));
             };
             i_bunch = (i_bunch + 1);
         };
         return;
     };
     if ((((actor[actor_id] is MovieClip)) or ((actor[actor_id] is Sprite)))){
-        actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown);
+        actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, MouseBtnDown)
         actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, MouseBtnUp);
     } else {
         trc(("Fehler: Drag & Drop nicht unterstützt für Actor " + actor_id));
@@ -28969,7 +29577,8 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
     };
     if (ImgID != 0){
         if (actorLoaded[ImgID] == 2){
-            if ((((((ImgID == ITM_EMPTY)) or ((ImgID == ITM_OFFS)))) and ((actor[cntID].width == 0)))){
+            if ((((((ImgID == ITM_EMPTY)) or ((ImgID == ITM_OFFS))))
+                and ((actor[cntID].width == 0)))){
                 var _local7 = actor[cntID];
                 with (_local7) {
                     graphics.beginFill(0, 0);
@@ -28978,7 +29587,7 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
             };
             if ((actor[ImgID].content is Bitmap)){
                 actorBitmap[cntID] = new Bitmap();
-                actorBitmap[cntID].bitmapData = actor[ImgID].content.bitmapData;
+                actorBitmap[cntID].bitmapData = actor[ImgID].content.bitmapData
                 _local7 = actorBitmap[cntID];
                 with (_local7) {
                     allow_smoothing = True;
@@ -28990,8 +29599,11 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
                 actor[cntID].addChild(actorBitmap[cntID]);
             } else {
                 actorBitmap[cntID] = new Bitmap();
-                actorBitmap[cntID].bitmapData = new BitmapData(actor[ImgID].width, actor[ImgID].height, True, 0);
-                actorBitmap[cntID].bitmapData.draw((actor[ImgID] as IBitmapDrawable));
+                actorBitmap[cntID].bitmapData = BitmapData(actor[ImgID].width,
+                                                           actor[ImgID].height,
+                                                           True, 0);
+                actorBitmap[cntID].bitmapData.draw(
+                                           (actor[ImgID] as IBitmapDrawable));
                 _local7 = actorBitmap[cntID];
                 with (_local7) {
                     allow_smoothing = True;
@@ -29007,7 +29619,8 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
                 actorLoaded[ImgID] = 2;
                 SetCnt(cntID, ImgID, pos_x, pos_y, center);
             };
-            actor[ImgID].contentLoaderInfo.add_event_listener(Event.COMPLETE, CntImgLoaded);
+            actor[ImgID].contentLoaderInfo.add_event_listener(
+                                              Event.COMPLETE, CntImgLoaded);
             if (actorLoaded[ImgID] == 0){
                 load(ImgID);
             };
@@ -29049,7 +29662,8 @@ def RemoveIllegalChars(inpStr:String):String{
         pass = False;
         j = 0;
         while (j < LegalChars.length) {
-            if ((((thisChar.charCodeAt() == 13)) or ((thisChar.charCodeAt() == 10)))){
+            if ((((thisChar.charCodeAt() == 13))
+                or ((thisChar.charCodeAt() == 10)))){
                 pass = True;
                 break;
             };
@@ -29127,12 +29741,17 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
             if (!on_stage(INP_POST_ADDRESS)){
                 GuildMsg = True;
             } else {
-                last_message_target = actor[INP_POST_ADDRESS].getChildAt(1).text;
+                last_message_target = actor[INP_POST_ADDRESS]
+                    .getChildAt(1).text;
             };
-            if (actor[INP_POST_TEXT].getChildAt(1).text.find(actor[INP['LOGIN_PASSWORD']].getChildAt(1).text) != -1){
-                error_message(((texts[TXT_ERROR_COMPROMISED_ACCOUNT]) ? texts[TXT_ERROR_COMPROMISED_ACCOUNT] : "You should never give your password away."));
+            if (actor[INP_POST_TEXT].getChildAt(1).text.find(
+                    actor[INP['LOGIN_PASSWORD']].getChildAt(1).text) != -1){
+                error_message(((texts[TXT_ERROR_COMPROMISED_ACCOUNT])
+                              ? texts[TXT_ERROR_COMPROMISED_ACCOUNT]
+                              : "You should never give your password away."));
             } else {
-                if (actor[INP_POST_ADDRESS].getChildAt(1).text == texts[TXT_EMPFAENGER]){
+                if (actor[INP_POST_ADDRESS].getChildAt(1).text == texts[
+                    TXT_EMPFAENGER]){
                     error_message(texts[TXT_ERROR_RECIPIENT_NOT_FOUND]);
                 } else {
                     thisRecipient = actor[INP_POST_ADDRESS].getChildAt(1).text;
@@ -29146,10 +29765,20 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                         while (thisRecipient[0: 1] == " ") {
                             thisRecipient = thisRecipient[1:]
                         };
-                        while (thisRecipient[(thisRecipient.length - 1): 1] == " ") {
-                            thisRecipient = thisRecipient[0: (thisRecipient.length - 1)]
+                        while (thisRecipient[
+                               (thisRecipient.length - 1): 1] == " ") {
+                            thisRecipient = thisRecipient[
+                                0: (thisRecipient.length - 1)]
                         };
-                        send_action(((GuildMsg) ? ACT_POST_SEND_GUILD : ACT_POST_SEND), RemoveIllegalChars(SemiStrip(thisRecipient)), RemoveIllegalChars(SemiStrip(actor[INP_POST_SUBJECT].getChildAt(1).text.split("/").join(""))), RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT].getChildAt(1).text)));
+                        send_action(((GuildMsg)
+                                    ? ACT_POST_SEND_GUILD
+                                    : ACT_POST_SEND),
+                            RemoveIllegalChars(SemiStrip(thisRecipient)),
+                            RemoveIllegalChars(SemiStrip(
+                               actor[INP_POST_SUBJECT].getChildAt(1).text
+                               .split("/").join(""))),
+                            RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT]
+                                               .getChildAt(1).text)));
                     };
                 };
             };
@@ -29208,7 +29837,8 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
             if (post_sel > 0){
                 send_action(ACT_POST_DELETE, ((post_sel + post_scroll) - 1));
                 if (int(savegame[SG_MSG_COUNT]) > 0){
-                    savegame[SG_MSG_COUNT] = str((int(savegame[SG_MSG_COUNT]) - 1));
+                    savegame[SG_MSG_COUNT] = str((int(
+                                                 savegame[SG_MSG_COUNT]) - 1));
                 };
             };
             break;
@@ -29244,7 +29874,9 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                 if (text_dir == "right"){
                     actor[POST_GUILD].x = (POST_INP_X + 5);
                 } else {
-                    actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
+                    actor[POST_GUILD].x = (((POST_INP_X
+                        + actor[INP_POST_ADDRESS].width)
+                            - actor[POST_GUILD].width) - 5);
                 };
                 show(POST_GUILD);
             } else {
@@ -29273,13 +29905,19 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
             break;
         if case(POST_ACCEPT:
             if (invitegilden_id > 0){
-                send_action(ACT_GUILD_JOIN, actor[INP['NAME']].getChildAt(1).text, invitegilden_id, MD5(actor[INP['LOGIN_PASSWORD']].getChildAt(1).text));
+                send_action(ACT_GUILD_JOIN,
+                            actor[INP['NAME']].getChildAt(1).text,
+                            invitegilden_id,
+                            MD5(actor[INP['LOGIN_PASSWORD']]
+                                .getChildAt(1).text));
             };
             break;
         if case(POST_REPLY:
             if (reply_address != ""){
-                actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
-                actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_ADDRESS]
+                    .getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_SUBJECT]
+                    .getChildAt(1).type = TextFieldType.INPUT;
                 actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
                 remove(POST_READ);
                 remove(POST_REPLY);
@@ -29288,7 +29926,9 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                     if (text_dir == "right"){
                         actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
-                        actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
+                        actor[POST_GUILD].x = (((POST_INP_X
+                                   + actor[INP_POST_ADDRESS].width)
+                                    - actor[POST_GUILD].width) - 5);
                     };
                     show(POST_GUILD);
                 } else {
@@ -29299,23 +29939,29 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                 actor[INP_POST_ADDRESS].getChildAt(1).text = reply_address;
                 actor[INP_POST_TEXT].getChildAt(1).text = texts[TXT_NACHRICHT];
                 if (text_dir == "right"){
-                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.find(texts[TXT_RE]) == -1){
-                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((reply_subject + " ") + texts[TXT_RE]);
+                    if (actor[INP_POST_SUBJECT].getChildAt(
+                            1).text.find(texts[TXT_RE]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(
+                           1).text = ((reply_subject + " ") + texts[TXT_RE]);
                     };
                     MakeRightTextArea(INP_POST_ADDRESS, 1);
                     MakeRightTextArea(INP_POST_SUBJECT, 1);
                     MakeRightTextArea(INP_POST_TEXT, 1);
                 } else {
-                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.find(texts[TXT_RE]) == -1){
-                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((texts[TXT_RE] + " ") + reply_subject);
+                    if (actor[INP_POST_SUBJECT].getChildAt(
+                            1).text.find(texts[TXT_RE]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1)
+                        .text = ((texts[TXT_RE] + " ") + reply_subject);
                     };
                 };
             };
             break;
         if case(POST_FORWARD:
             if (forward_text != ""){
-                actor[INP_POST_ADDRESS].getChildAt(1).type = TextFieldType.INPUT;
-                actor[INP_POST_SUBJECT].getChildAt(1).type = TextFieldType.INPUT;
+                actor[INP_POST_ADDRESS].getChildAt(1)
+                    .type = TextFieldType.INPUT;
+                actor[INP_POST_SUBJECT].getChildAt(1)
+                    .type = TextFieldType.INPUT;
                 actor[INP_POST_TEXT].getChildAt(1).type = TextFieldType.INPUT;
                 remove(POST_READ);
                 remove(POST_REPLY);
@@ -29324,7 +29970,9 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                     if (text_dir == "right"){
                         actor[POST_GUILD].x = (POST_INP_X + 5);
                     } else {
-                        actor[POST_GUILD].x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - actor[POST_GUILD].width) - 5);
+                        actor[POST_GUILD].x = (((POST_INP_X
+                                   + actor[INP_POST_ADDRESS].width)
+                                    - actor[POST_GUILD].width) - 5);
                     };
                     show(POST_GUILD);
                 } else {
@@ -29334,17 +29982,26 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                 show(POST_GUILD);
                 stage.focus = actor[INP_POST_ADDRESS].getChildAt(1);
                 actor[INP_POST_ADDRESS].getChildAt(1).text = "";
-                actor[INP_POST_TEXT].getChildAt(1).text = texts[(TXT_POST_FORWARD + 2)].split("%1").join(reply_address).split("%2").join(forward_text).split("#").join(chr(13));
+                actor[INP_POST_TEXT].getChildAt(1)
+                    .text = texts[(TXT_POST_FORWARD + 2)].split("%1")
+                    .join(reply_address).split("%2").join(forward_text)
+                    .split("#").join(chr(13));
                 if (text_dir == "right"){
-                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.find(texts[(TXT_POST_FORWARD + 1)]) == -1){
-                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((reply_subject + " ") + texts[(TXT_POST_FORWARD + 1)]);
+                    if (actor[INP_POST_SUBJECT].getChildAt(1).text
+                            .find(texts[(TXT_POST_FORWARD + 1)]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1)
+                            .text = ((reply_subject + " ")
+                                     + texts[(TXT_POST_FORWARD + 1)]);
                     };
                     MakeRightTextArea(INP_POST_ADDRESS, 1);
                     MakeRightTextArea(INP_POST_SUBJECT, 1);
                     MakeRightTextArea(INP_POST_TEXT, 1);
                 } else {
-                    if (actor[INP_POST_SUBJECT].getChildAt(1).text.find(texts[(TXT_POST_FORWARD + 1)]) == -1){
-                        actor[INP_POST_SUBJECT].getChildAt(1).text = ((texts[(TXT_POST_FORWARD + 1)] + " ") + reply_subject);
+                    if (actor[INP_POST_SUBJECT].getChildAt(1).text
+                            .find(texts[(TXT_POST_FORWARD + 1)]) == -1){
+                        actor[INP_POST_SUBJECT].getChildAt(1)
+                            .text = ((texts[(TXT_POST_FORWARD + 1)] + " ")
+                                     + reply_subject);
                     };
                 };
             };
@@ -29352,7 +30009,11 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
         if case(POST_VIEWFIGHT:
             par = tmp_battle_info.split("#");
             post_fight_mode = True;
-            show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"), par[2].split("/"), (par[5] == "2"), ((par[3] + "/") + par[4]).split("/"), int(par[7]), int(par[8]), (par[5] == "3"), True);
+            show_fight_screen(par[0].split("/"), par[1].split("/"),
+                              (par[6] == "1"), par[2].split("/"),
+                              (par[5] == "2"),
+                              ((par[3] + "/") + par[4]).split("/"),
+                              int(par[7]), int(par[8]), (par[5] == "3"), True);
             break;
         default:
             if (post_sel > 0){
@@ -29476,18 +30137,22 @@ def RefreshTimeBar(OfferTime:Number=0){
     tmpTime = Number(savegame[SG_TIMEBAR]);
     if (text_dir == "right"){
         tmpText = (" :" + texts[TXT_AUSDAUER]);
-        tmpText = (str(Number((tmpTime / 60)).toFixed(1)).split(".0")[0] + tmpText);
+        tmpText = (str(Number((tmpTime / 60)).toFixed(1))
+                   .split(".0")[0] + tmpText);
     } else {
         tmpText = (texts[TXT_AUSDAUER] + ": ");
-        tmpText = (tmpText + str(Number((tmpTime / 60)).toFixed(1)).split(".0")[0]);
+        tmpText = (tmpText + str(Number((tmpTime / 60)).toFixed(1))
+                   .split(".0")[0]);
     };
     if (OfferTime != 0){
         if (text_dir == "right"){
             tmpText = (((((OfferTime > 0)) ? "+" : "-") + ") ") + tmpText);
-            tmpText = (("(" + str(Number((math.abs(OfferTime) / 60)).toFixed(1)).split(".0")[0]) + tmpText);
+            tmpText = (("(" + str(Number((math.abs(OfferTime) / 60))
+                       .toFixed(1)).split(".0")[0]) + tmpText);
         } else {
             tmpText = (tmpText + (" (" + (((OfferTime > 0)) ? "+" : "-")));
-            tmpText = (tmpText + (str(Number((math.abs(OfferTime) / 60)).toFixed(1)).split(".0")[0] + ")"));
+            tmpText = (tmpText + (str(Number((math.abs(OfferTime) / 60))
+                       .toFixed(1)).split(".0")[0] + ")"));
         };
     };
     _local3 = actor[LBL_TIMEBAR_TEXT];
@@ -29504,19 +30169,25 @@ def try_show_tv(evt:Event=None){
         tv_timer.start();
         tvTest = False;
     } else {
-        if (((((!((tv_function_name == ""))) and (!(disable_tv)))) and (!(prevent_tv)))){
+        if (((((!((tv_function_name == ""))) and (!(disable_tv))))
+                and (!(prevent_tv)))){
             if (!evt){
                 tv_poll_timer.start();
                 tv_poll_timer.delay = tv_poll_normal;
             } else {
-                if (((!(on_stage(TAVERNE_BG))) and (!(on_stage(QUESTBAR_BG))))){
+                if (((!(on_stage(TAVERNE_BG)))
+                        and (!(on_stage(QUESTBAR_BG))))){
                     tv_poll_timer.stop();
                     return;
                 };
             };
-            trc((("Calling TV function \"" + tv_function_name) + "\" with parameter \"requesttv\"!"));
+            trc((("Calling TV function \"" + tv_function_name)
+                + "\" with parameter \"requesttv\"!"));
             try {
-                tv_return_value = ExternalInterface.call(tv_function_name, "requesttv", (((((savegame[SG['PLAYER_ID']] + "_") + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"), savegame[SG_GENDER], 0);
+                tv_return_value = ExternalInterface.call(tv_function_name,
+                     "requesttv", (((((savegame[SG['PLAYER_ID']] + "_")
+                   + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"),
+                    savegame[SG_GENDER], 0);
             } catch(e:Error) {
                 trc(("There was an error: " + e.message));
                 tv_poll_timer.delay = tv_poll_long;
@@ -29629,7 +30300,8 @@ def add_suggest_names(addArray){
     };
     i = 0;
     while (i < suggestNames.length) {
-        if (suggestNames[i].lower() == actor[INP['NAME']].getChildAt(1).text.lower()){
+        if (suggestNames[i].lower() == actor[INP['NAME']].getChildAt(1)
+                .text.lower()){
             suggestNames.splice(i, 1);
             i--;
         };
@@ -29763,7 +30435,8 @@ def old_crest_str():String{
         var c:Array;
         var l;
         var r;
-        c = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+        c = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C",
+            "D", "E", "F"];
         if (d > 0xFF){
             d = 0xFF;
         };
@@ -29828,19 +30501,40 @@ def loadCrest(){
     var tmpFltFigure:* = None;
     var tmpFltShield:* = None;
     var tmpFlt:* = None;
-    tmpFltFigure = new ColorMatrixFilter([heraldicColors[crestColor[3]][0], 0, 0, 0, 0, heraldicColors[crestColor[3]][1], 0, 0, 0, 0, heraldicColors[crestColor[3]][2], 0, 0, 0, 0, 0, 0, 0, 1, 0]);
-    tmpFltShield = new ColorMatrixFilter([0, heraldicColors[crestColor[1]][0], heraldicColors[crestColor[2]][0], 0, 0, 0, heraldicColors[crestColor[1]][1], heraldicColors[crestColor[2]][1], 0, 0, 0, heraldicColors[crestColor[1]][2], heraldicColors[crestColor[2]][2], 0, 0, 0, 0, 0, 1, 0]);
+    tmpFltFigure = new ColorMatrixFilter([heraldicColors[crestColor[3]][0], 0,
+                                         0, 0, 0,
+                                         heraldicColors[crestColor[3]][1], 0,
+                                         0, 0, 0,
+                                         heraldicColors[crestColor[3]][2],
+                                         0, 0, 0, 0, 0, 0, 0, 1, 0]);
+    tmpFltShield = new ColorMatrixFilter([0, heraldicColors[crestColor[1]][0],
+                                         heraldicColors[crestColor[2]][0],
+                                         0, 0, 0,
+                                         heraldicColors[crestColor[1]][1],
+                                         heraldicColors[crestColor[2]][1],
+                                         0, 0, 0,
+                                         heraldicColors[crestColor[1]][2],
+                                         heraldicColors[crestColor[2]][2],
+                                         0, 0, 0, 0, 0, 1, 0]);
     i = 1;
     while (i < 4) {
-        tmpFlt = new ColorMatrixFilter([0, heraldicColors[crestColor[i]][0], 0, 0, 0, 0, heraldicColors[crestColor[i]][1], 0, 0, 0, 0, heraldicColors[crestColor[i]][2], 0, 0, 0, 0, 0, 0, 1, 0]);
+        tmpFlt = new ColorMatrixFilter([0, heraldicColors[crestColor[i]][0],
+                                       0, 0, 0, 0,
+                                       heraldicColors[crestColor[i]][1], 0, 0,
+                                       0, 0, heraldicColors[crestColor[i]][2],
+                                       0, 0, 0, 0, 0, 0, 1, 0]);
         actor[(GILDE_CREST_COLOR_FILLIN + i)].filters = [tmpFlt];
-        enable_popup((GILDE_CREST_COLOR + i), texts[(TXT_CREST_TINCTUREBOXES + i)].split("%1").join(texts[(TXT_CREST_TINCTURES + crestColor[i])]));
+        enable_popup((GILDE_CREST_COLOR + i),
+                     texts[(TXT_CREST_TINCTUREBOXES + i)].split("%1")
+                     .join(texts[(TXT_CREST_TINCTURES + crestColor[i])]));
         i = (i + 1);
     };
     i = 0;
     while (i < crestElementPos.length) {
         localActorID = (GILDE_CREST + i);
-        url = (((((img_url[img_url_index] + "res/gfx/scr/gilde/crest/tiles/crest_") + str((i + 1))) + "_") + str((crest[i] + 1))) + ".png");
+        url = (((((img_url[img_url_index]
+               + "res/gfx/scr/gilde/crest/tiles/crest_") + str((i + 1))) + "_")
+                + str((crest[i] + 1))) + ".png");
         newLoad = !((actorURL[localActorID] == url));
         actorURL[localActorID] = url;
         if (newLoad){
@@ -29848,7 +30542,10 @@ def loadCrest(){
             load(localActorID);
         };
         if (i == 2){
-            url = (((((img_url[img_url_index] + "res/gfx/scr/gilde/crest/tiles/crest_") + str((i + 1))) + "_") + str((crest[i] + 1))) + "_color.png");
+            url = (((((img_url[img_url_index]
+                   + "res/gfx/scr/gilde/crest/tiles/crest_")
+                    + str((i + 1))) + "_") + str((crest[i] + 1)))
+                        + "_color.png");
             newLoad = !((actorURL[GILDE_CREST_SHIELDCOLOR] == url));
             actorURL[GILDE_CREST_SHIELDCOLOR] = url;
             if (newLoad){
@@ -29884,7 +30581,8 @@ def loadCrest(){
         };
         if (i == 6){
             if (selecterCrestElement == i){
-                actor[(GILDE_CREST + i)].filters = [tmpFltFigure, Filter_CrestSelected];
+                actor[(GILDE_CREST + i)].filters = [tmpFltFigure,
+                    Filter_CrestSelected];
             } else {
                 actor[(GILDE_CREST + i)].filters = [tmpFltFigure];
             };
@@ -29898,8 +30596,13 @@ def loadCrest(){
         i = (i + 1);
     };
     if (selecterCrestElement >= 0){
-        actor[LBL_GILDE_CREST_ELEMENT].text = texts[(TXT_CREST_ELEMENT + selecterCrestElement)].split("%1").join(str((crest[selecterCrestElement] + 1))).split("%2").join(str(crestElementPos[selecterCrestElement][4]));
-        actor[LBL_GILDE_CREST_ELEMENT].x = ((GILDE_GEBAEUDE_X + 120) - (actor[LBL_GILDE_CREST_ELEMENT].text_width / 2));
+        actor[LBL_GILDE_CREST_ELEMENT].text = texts[(TXT_CREST_ELEMENT
+                 + selecterCrestElement)].split("%1")
+                .join(str((crest[selecterCrestElement] + 1)))
+                .split("%2")
+                .join(str(crestElementPos[selecterCrestElement][4]));
+        actor[LBL_GILDE_CREST_ELEMENT].x = ((GILDE_GEBAEUDE_X + 120)
+                        - (actor[LBL_GILDE_CREST_ELEMENT].text_width / 2));
     };
 }
 
@@ -29936,9 +30639,12 @@ def clickchat_line(evt){
         if (chatAuthor.length <= 20){
             if (chatAuthor.find(" > ") == -1){
                 if (actor[INP_GILDE_CHAT].getChildAt(0).text == ""){
-                    actor[INP_GILDE_CHAT].getChildAt(0).text = (("/w " + chatAuthor.split(" ").join("#")) + " ");
+                    actor[INP_GILDE_CHAT].getChildAt(0).text = (("/w "
+                                + chatAuthor.split(" ").join("#")) + " ");
                 };
-                actor[INP_GILDE_CHAT].getChildAt(0).setSelection(actor[INP_GILDE_CHAT].getChildAt(0).text.length, actor[INP_GILDE_CHAT].getChildAt(0).text.length);
+                actor[INP_GILDE_CHAT].getChildAt(0).setSelection(
+                     actor[INP_GILDE_CHAT].getChildAt(0).text.length,
+                     actor[INP_GILDE_CHAT].getChildAt(0).text.length);
             };
         };
     };
@@ -29948,14 +30654,21 @@ def clickchat_line(evt){
 def ArbeitenSliderChange(value):
     var txtWorkDur:String;
     if (texts[TXT_ARBEIT_TEXT3] == ""){
-        txtWorkDur = texts[TXT_ARBEIT_TEXT2].split("%hours").join(str(value)).split("%reward").join(Geld((value * stundenlohn)));
+        txtWorkDur = texts[TXT_ARBEIT_TEXT2].split("%hours")
+            .join(str(value)).split("%reward")
+            .join(Geld((value * stundenlohn)));
         if (texts[TXT_WORK_FINISH]){
-            actor[LBL_SCR_ARBEITEN_TEXT2].text = texts[TXT_WORK_FINISH].split("%1").join(txtWorkDur).split("%2").join(time_str((int((game_time.getTime() / 1000)) + (((value + 1) * 60) * 60)), True));
+            actor[LBL_SCR_ARBEITEN_TEXT2].text = texts[TXT_WORK_FINISH]
+            .split("%1").join(txtWorkDur).split("%2")
+            .join(time_str((int((game_time.getTime() / 1000))
+                  + (((value + 1) * 60) * 60)), True));
         } else {
             actor[LBL_SCR_ARBEITEN_TEXT2].text = txtWorkDur;
         };
     } else {
-        actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((((value + " ") + texts[TXT_ARBEIT_TEXT2]) + " ") + Geld((value * stundenlohn))) + " ") + texts[TXT_ARBEIT_TEXT3]);
+        actor[LBL_SCR_ARBEITEN_TEXT2].text = ((((((value + " ")
+          + texts[TXT_ARBEIT_TEXT2]) + " ") + Geld((value * stundenlohn)))
+            + " ") + texts[TXT_ARBEIT_TEXT3]);
     };
 }
 
@@ -29973,18 +30686,21 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function,
             fnClick(tmpEvt);
             fnDoubleClick(evt);
             dblClickTimer.stop();
-            dblClickTimer.remove_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
+            dblClickTimer.remove_event_listener(TimerEvent.TIMER,
+                                                dblClickTimerEvent);
             waiting = False;
         } else {
             tmpEvt = evt;
-            dblClickTimer.add_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
+            dblClickTimer.add_event_listener(TimerEvent.TIMER,
+                                             dblClickTimerEvent);
             dblClickTimer.start();
             waiting = True;
         };
     };
     dblClickTimerEvent = function (evt:TimerEvent){
         waiting = False;
-        dblClickTimer.remove_event_listener(TimerEvent.TIMER, dblClickTimerEvent);
+        dblClickTimer.remove_event_listener(TimerEvent.TIMER,
+                                            dblClickTimerEvent);
         fnClick(tmpEvt);
     };
     dblClickTimer = new Timer(300, 1);
@@ -29992,7 +30708,8 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function,
     var _local5 = dispObj;
     with (_local5) {
         mouse_enabled = True;
-        add_event_listener(MouseEvent.MOUSE_DOWN, dblClickEvent);
+        add_event_listener(MouseEvent.MOUSE_DOWN,
+                           dblClickEvent);
     };
 }
 
@@ -30390,9 +31107,16 @@ def ach_level(SG:Array, achIndex, almode=0){
     };
     if (almode == 4){
         if (achIndex == 1){
-            return ((((int(SG[(SG_ACHIEVEMENTS + achIndex)]) + (((int(SG[SG_NEW_DUNGEONS]) >= 2)) ? (int(SG[SG_NEW_DUNGEONS]) - 2) : 0)) + (((int(SG[(SG_NEW_DUNGEONS + 1)]) >= 2)) ? (int(SG[(SG_NEW_DUNGEONS + 1)]) - 2) : 0)) + (((int(SG[SG_DUNGEON_13]) >= 122)) ? (int(SG[SG_DUNGEON_13]) - 122) : 0)));
+            return ((((int(SG[(SG_ACHIEVEMENTS + achIndex)])
+                    + (((int(SG[SG_NEW_DUNGEONS]) >= 2))
+                       ? (int(SG[SG_NEW_DUNGEONS]) - 2) : 0))
+                    + (((int(SG[(SG_NEW_DUNGEONS + 1)]) >= 2))
+                       ? (int(SG[(SG_NEW_DUNGEONS + 1)]) - 2) : 0))
+                    + (((int(SG[SG_DUNGEON_13]) >= 122))
+                       ? (int(SG[SG_DUNGEON_13]) - 122) : 0)));
         };
-        return ((int(SG[(SG_ACHIEVEMENTS + achIndex)]) / (((achIndex == 5)) ? 100 : 1)));
+        return ((int(SG[(SG_ACHIEVEMENTS + achIndex)]) / (((achIndex == 5))
+                ? 100 : 1)));
     };
     return (alresult);
 }
@@ -30401,13 +31125,20 @@ def SingPlur(inp_text:String, amount, sep:String="*"):String{
     var tmp_array:Array;
     tmp_array = inp_text.split(sep);
     if (tmp_array.length == 4){
-        return (((tmp_array[0] + tmp_array[(((amount == 1)) ? 1 : 2)]) + tmp_array[3]));
+        return (((tmp_array[0] +
+                tmp_array[(((amount == 1)) ? 1 : 2)]) + tmp_array[3]));
     };
     if (tmp_array.length == 5){
-        return (((tmp_array[0] + tmp_array[(((amount == 1)) ? 1 : (((amount == 2)) ? 2 : 3))]) + tmp_array[4]));
+        return (((tmp_array[0]
+                + tmp_array[(((amount == 1))
+                         ? 1 : (((amount == 2)) ? 2 : 3))]) + tmp_array[4]));
     };
     if (tmp_array.length == 6){
-        return (((tmp_array[0] + tmp_array[(((amount == 1)) ? 1 : (((amount == 2)) ? 2 : (((amount <= 10)) ? 3 : 4)))]) + tmp_array[4]));
+        return (((tmp_array[0]
+                + tmp_array[(((amount == 1))
+                             ? 1 : (((amount == 2))
+                                    ? 2 : (((amount <= 10)) ? 3 : 4)))])
+                                        + tmp_array[4]));
     };
     return (tmp_array.join(""));
 }
@@ -30428,7 +31159,8 @@ def AnimateAch(actor_id, y_level=635, AchAniPow:Number=-10){
                 AchAniPow = (AchAniPow * -0.5);
                 if (math.abs(AchAniPow) <= 3){
                     y = y_level;
-                    AchAniTimer.remove_event_listener(TimerEvent.TIMER, AchAniEvent);
+                    AchAniTimer.remove_event_listener(TimerEvent.TIMER,
+                                                      AchAniEvent);
                     AchAniTimer.stop();
                     return;
                 };
@@ -30476,40 +31208,66 @@ def DoAchievements(SG:Array):Boolean{
             default:
                 achAusfM = (texts[((TXT_ACH_5 + (achAusf * 2)) - 1)] + " ");
                 achAusfF = (texts[(TXT_ACH_5 + (achAusf * 2))] + " ");
-                achCurrentGrade = texts[(TXT_ACH_2 + (i % 8))].split("%1").join(str(ach_level(SG, (i % 8), 0))).split("%2").join(str(ach_level(SG, (i % 8), 4)));
+                achCurrentGrade = texts[(TXT_ACH_2 + (i % 8))].split("%1")
+                    .join(str(ach_level(SG, (i % 8), 0))).split("%2")
+                    .join(str(ach_level(SG, (i % 8), 4)));
                 if (i == 6){
-                    achCurrentGrade = texts[TXT_NEW_HONOR_ACH].split("%1").join(str(ach_level(SG, (i % 8), 0))).split("%2").join(str(ach_level(SG, (i % 8), 4)));
+                    achCurrentGrade = texts[TXT_NEW_HONOR_ACH]
+                        .split("%1").join(str(ach_level(SG, (i % 8), 0)))
+                        .split("%2").join(str(ach_level(SG, (i % 8), 4)));
                 };
         };
         achPop = list();
         if (texts[(TXT_ACH_4 + 4)]){
-            achPop[achPop.length] = texts[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join("");
+            achPop[achPop.length] = texts[(TXT_ACH_1 + (i % 8))]
+                .split("%1").join(achAusfM).split("%2")
+                .join(achAusfF).split("%3").join("");
         } else {
-            achPop[achPop.length] = texts[(TXT_ACH_1 + (i % 8))].split("%1").join(achAusfM).split("%2").join(achAusfF).split("%3").join(texts[(TXT_ACH_4 + 3)].split("%1").join(friend_link));
+            achPop[achPop.length] = texts[(TXT_ACH_1 + (i % 8))]
+                .split("%1").join(achAusfM).split("%2")
+                .join(achAusfF).split("%3").join(texts[(TXT_ACH_4 + 3)]
+                     .split("%1").join(friend_link));
         };
-        achPop[achPop.length] = SingPlur(achCurrentGrade, ach_level(SG, (i % 8), 4));
+        achPop[achPop.length] = SingPlur(achCurrentGrade,
+                                         ach_level(SG, (i % 8), 4));
         if (i == 1){
             if (SG[SG['PLAYER_ID']] == savegame[SG['PLAYER_ID']]){
                 if (tower_level > 0){
-                    achPop[achPop.length] = SingPlur(texts[(TXT_ACH_2 + 8)].split("%1").join(str(tower_level)), tower_level);
+                    achPop[achPop.length] = SingPlur(texts[(TXT_ACH_2 + 8)].
+                                                     split("%1")
+                                                     .join(str(tower_level)),
+                                                     tower_level);
                 };
             } else {
                 if (playerTowerLevel > 0){
-                    achPop[achPop.length] = SingPlur(texts[(TXT_ACH_2 + 8)].split("%1").join(str(playerTowerLevel)), playerTowerLevel);
+                    achPop[achPop.length] = SingPlur(texts[(TXT_ACH_2 + 8)].
+                                                     split("%1")
+                                                 .join(str(playerTowerLevel)),
+                                                 playerTowerLevel);
                 };
             };
         };
         if (ach_level(SG, (i % 8), 2) > 0){
             if (i == 6){
-                achPop[achPop.length] = SingPlur(texts[TXT_NEW_HONOR_ACH2].split("%1").join(str(ach_level(SG, (i % 8), 2))).split("%2").join(texts[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), ach_level(SG, (i % 8), 2));
+                achPop[achPop.length] = SingPlur(texts[TXT_NEW_HONOR_ACH2]
+                                                 .split("%1")
+                                                 .join(str(ach_level(
+                                                       SG, (i % 8), 2)))
+            .split("%2").join(texts[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]),
+            ach_level(SG, (i % 8), 2));
             } else {
-                achPop[achPop.length] = SingPlur(texts[(TXT_ACH_3 + (i % 8))].split("%1").join(str(ach_level(SG, (i % 8), 2))).split("%2").join(texts[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]), ach_level(SG, (i % 8), 2));
+                achPop[achPop.length] = SingPlur(texts[(TXT_ACH_3 + (i % 8))]
+                                                 .split("%1")
+                .join(str(ach_level(SG, (i % 8), 2))).split("%2")
+                .join(texts[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]),
+                ach_level(SG, (i % 8), 2));
             };
         };
         if (ach_level(SG, (i % 8), 3) > 0){
-            achPop[achPop.length] = texts[TXT_ACH_4].split("%1").join(str(ach_level(SG, (i % 8), 3)));
+            achPop[achPop.length] = texts[TXT_ACH_4]
+                .split("%1").join(str(ach_level(SG, (i % 8), 3)));
         };
-        enable_popup(((CHAR_ACH + i) + (ach_level(SG, (i % 8), 1) * 8)), achPop);
+        enable_popup((CHAR_ACH + i + (ach_level(SG, (i % 8), 1) * 8)), achPop);
         i++;
     };
     return (OneUp);
@@ -30525,7 +31283,9 @@ def MirrorAniFn(evt:Event){
     mirrorAniStep = (mirrorAniStep + 0.1);
     i = 0;
     while (i < 13) {
-        actor[(MIRROR_PIECE + i)].alpha = (0.3 + (math.sin((mirrorAniStep + (((i / 13) * 2) * math.pi))) * mirror_fade_amount));
+        actor[(MIRROR_PIECE + i)].alpha = (0.3 + (math.sin((mirrorAniStep
+                                           + (((i / 13) * 2) * math.pi)))
+                                        * mirror_fade_amount));
         i++;
     };
 }
@@ -30675,7 +31435,8 @@ def display_inventory(SG:Array=None, NoPrices=False,
         i = 0;
         while (i < 3) {
             if (i == copyCatIdRaw){
-                if (int(SG[(copyCatId + CPC_LEVEL)]) >= int(savegame[SG_LEVEL])){
+                if (int(SG[(copyCatId + CPC_LEVEL)])
+                        >= int(savegame[SG_LEVEL])){
                     hide((TOWER_STEIGERN1 + i));
                     hide((LBL_TOWER_BOOSTPRICELABEL + i));
                 } else {
@@ -30692,20 +31453,25 @@ def display_inventory(SG:Array=None, NoPrices=False,
         while (i < 5) {
             ii = 0;
             while (ii < 12) {
-                SG[((TSG_LOOT_SACK + (i * 12)) + ii)] = savegame[((SG_BACKPACK_OFFS + (i * 12)) + ii)];
+                SG[((TSG_LOOT_SACK + (i * 12)) + ii)] = savegame[
+                    ((SG_BACKPACK_OFFS + (i * 12)) + ii)];
                 ii = (ii + 1);
             };
             i = (i + 1);
         };
         if (SG[(copyCatId + CPC_LEVEL)] != 0){
-            actor[LBL_SCR_CHAR_NAME].text = texts[(TXT_COPYCAT_NAME + copyCatIdRaw)];
+            actor[LBL_SCR_CHAR_NAME].text = texts[
+                (TXT_COPYCAT_NAME + copyCatIdRaw)];
         } else {
             actor[LBL_SCR_CHAR_NAME].text = "";
         };
-        actor[SCR_CHAR_NAME].x = ((SCR_CHAR_CHARX + 128) - int((actor[LBL_SCR_CHAR_NAME].text_width / 2)));
+        actor[SCR_CHAR_NAME].x = ((SCR_CHAR_CHARX + 128)
+                      - int((actor[LBL_SCR_CHAR_NAME].text_width / 2)));
         var _local7 = actor[SCR_CHAR_EXPBAR];
         with (_local7) {
-            width = int(((Number(SG[(copyCatId + CPC_GOLD_STOLEN)]) / Number(SG[(copyCatId + CPC_GOLD_STOLEN_NEXT)])) * 254));
+            width = int(((Number(SG[(copyCatId + CPC_GOLD_STOLEN)])
+                        / Number(SG[(copyCatId + CPC_GOLD_STOLEN_NEXT)]))
+                            * 254));
         };
         i = 0;
         while (i < 3) {
@@ -30728,23 +31494,28 @@ def display_inventory(SG:Array=None, NoPrices=False,
             if (SG[(copyCatId + CPC_LEVEL)] != 0){
                 show((TOWER_PORTRAIT + copyCatIdRaw));
                 if (text_dir == "right"){
-                    text = ((SG[(copyCatId + CPC_LEVEL)] + " ") + texts[TXT_HALL_LIST_COLUMN_4]);
+                    text = ((SG[(copyCatId + CPC_LEVEL)] + " ")
+                            + texts[TXT_HALL_LIST_COLUMN_4]);
                 } else {
-                    text = ((texts[TXT_HALL_LIST_COLUMN_4] + " ") + SG[(copyCatId + CPC_LEVEL)]);
+                    text = ((texts[TXT_HALL_LIST_COLUMN_4] + " ")
+                            + SG[(copyCatId + CPC_LEVEL)]);
                 };
             } else {
                 show((TOWER_NO_PORTRAIT + copyCatIdRaw));
                 text = "";
             };
             if (tower_levelLabelPos > (SCR_CHAR_CHARX + 3)){
-                x = ((SCR_CHAR_CHARX + 127) - int((actor[LBL_TOWER_EXPLABEL].text_width / 2)));
+                x = ((SCR_CHAR_CHARX + 127)
+                     - int((actor[LBL_TOWER_EXPLABEL].text_width / 2)));
             } else {
                 x = (SCR_CHAR_CHARX + 3);
             };
         };
         popupLinesCpc = list();
-        popupLinesCpc.append([POPUP_BEGIN_LINE, ((texts[163] + ": ") + SG[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
-        DamageReductionCpc = int((Number(SG[(copyCatId + CPC_ARMOR)]) / Number(SG[(copyCatId + CPC_LEVEL)])));
+        popupLinesCpc.append([POPUP_BEGIN_LINE, ((texts[163] + ": ")
+                             + SG[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
+        DamageReductionCpc = int((Number(SG[(copyCatId + CPC_ARMOR)])
+                                 / Number(SG[(copyCatId + CPC_LEVEL)])));
         DamageReductionMaxCpc = 50;
         Switch (int(SG[(copyCatId + CPC_CLASS)])){
             if case(2:
@@ -30758,12 +31529,25 @@ def display_inventory(SG:Array=None, NoPrices=False,
             DamageReductionCpc = DamageReductionMaxCpc;
         };
         if (text_dir == "right"){
-            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, ((((((((("(" + texts[TXT_MAX]) + " -") + str(DamageReductionMaxCpc)) + "%) ") + str(DamageReductionCpc)) + "% :") + SG[(copyCatId + CPC_LEVEL)]) + " ") + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
+            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib, ((((((((("(" + texts[TXT_MAX]) + " -")
+                                    + str(DamageReductionMaxCpc)) + "%) ")
+                + str(DamageReductionCpc)) + "% :")
+                + SG[(copyCatId + CPC_LEVEL)]) + " ")
+                + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
-            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ") + SG[(copyCatId + CPC_LEVEL)]) + ": -") + str(DamageReductionCpc)) + "% (") + texts[TXT_MAX]) + " -") + str(DamageReductionMaxCpc)) + "%)"), POPUP_END_LINE];
+            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE,
+            FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
+                                + SG[(copyCatId + CPC_LEVEL)]) + ": -")
+                                + str(DamageReductionCpc))
+                                + "% (") + texts[TXT_MAX]) + " -")
+                                + str(DamageReductionMaxCpc)) + "%)"),
+                    POPUP_END_LINE];
         };
         if (texts[TXT_SHIELD_FORMULA]){
-            popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
+            popupLinesCpc[popupLinesCpc.length] = [
+                POPUP_BEGIN_LINE, FontFormat_Attrib,
+                texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
         enable_popup(LBL_TOWER_EXPLABEL, popupLinesCpc);
         i = 0;
@@ -30784,42 +31568,64 @@ def display_inventory(SG:Array=None, NoPrices=False,
     };
     i = 0;
     while (i < 5) {
-        if (int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)]) > 0){
-            actor[(LBL_SCR_CHAR_STAERKE + i)].default_text_format = FontFormat_AttribBonus;
+        if (int(SG[(((towerMode)
+                ? (copyCatId + CPC_ATTRIBS_BONUS)
+                : SG_ATTR_STAERKE_BONUS) + i)]) > 0){
+            actor[(LBL_SCR_CHAR_STAERKE + i)]
+                .default_text_format = FontFormat_AttribBonus;
         } else {
-            actor[(LBL_SCR_CHAR_STAERKE + i)].default_text_format = FontFormat_Attrib;
+            actor[(LBL_SCR_CHAR_STAERKE + i)]
+                .default_text_format = FontFormat_Attrib;
         };
-        actor[(LBL_SCR_CHAR_STAERKE + i)].text = str((int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE) + i)]) + int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)])));
+        actor[(LBL_SCR_CHAR_STAERKE + i)].text = str((int(SG[(((towerMode)
+                                ? (copyCatId + CPC_ATTRIBS)
+                            : SG_ATTR_STAERKE) + i)]) + int(SG[(((towerMode)
+                                ? (copyCatId + CPC_ATTRIBS_BONUS)
+                                : SG_ATTR_STAERKE_BONUS) + i)])));
         popupLines = list();
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[(TXT_CHAR_SCHADEN + i)], POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+            FontFormat_Attrib, texts[(TXT_CHAR_SCHADEN + i)], POPUP_END_LINE];
         if (text_dir == "right"){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text + " ÷ 2 ="), POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib,
+                (actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text + " ÷ 2 ="),
+                POPUP_END_LINE];
         } else {
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text) + " / 2"), POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+            FontFormat_Attrib,
+            (("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text) + " / 2"),
+            POPUP_END_LINE];
         };
         enable_popup((LBL_SCR_CHAR_SCHADEN + i), popupLines);
         enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + i), popupLines);
         popupLines = list();
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, POPUP_END_LINE];
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
-        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 1)) and ((i == 0)))){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+            FontFormat_Attrib, texts[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
+        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 1))
+                and ((i == 0)))){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+            FontFormat_Attrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
         } else {
-            if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 3)) and ((i == 1)))){
-                popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER], POPUP_END_LINE];
-            } else {
-                if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 2)) and ((i == 2)))){
-                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
-                } else {
-                    if (i <= 2){
-                        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[(TXT_ATTRIBHELP_EXT + i)], POPUP_END_LINE];
-                    };
-                };
-            };
-        };
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_BASIS], POPUP_TAB, str(int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE) + i)])), POPUP_END_LINE];
+        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 3)) and ((i == 1)))){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER], POPUP_END_LINE];
+        } else {
+        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 2)) and ((i == 2)))){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
+        } else {
+        if (i <= 2){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[(TXT_ATTRIBHELP_EXT + i)], POPUP_END_LINE];
+
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            texts[TXT_BASIS], POPUP_TAB,
+            str(int(SG[(((towerMode)
+                ? (copyCatId + CPC_ATTRIBS)
+                : SG_ATTR_STAERKE) + i)])), POPUP_END_LINE];
         tempBonus = 0;
-        tempBonus = int(SG[(((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS) + i)]);
+        tempBonus = int(SG[(((towerMode)
+                        ? (copyCatId + CPC_ATTRIBS_BONUS)
+                        : SG_ATTR_STAERKE_BONUS) + i)]);
         if (!towerMode){
             ii = 0;
             while (ii < 3) {
@@ -30827,30 +31633,82 @@ def display_inventory(SG:Array=None, NoPrices=False,
                     tmpHealth = int(SG[(SG_POTION_GAIN + ii)]);
                 } else {
                     if (((int(SG[(SG_POTION_TYPE + ii)]) - 1) % 5) == i){
-                        potionDuration = time_str(SG[(SG_POTION_DURATION + ii)], True);
+                        potionDuration = time_str(
+                                      SG[(SG_POTION_DURATION + ii)], True);
                         if (int(SG[(SG_POTION_GAIN + ii)]) <= 25){
-                            tempBonus = ((int(SG[(SG_ATTR_STAERKE + i)]) + int(SG[(SG_ATTR_STAERKE_BONUS + i)])) / ((100 + int(SG[(SG_POTION_GAIN + ii)])) / 100));
+                            tempBonus = ((int(SG[(SG_ATTR_STAERKE + i)])
+                                 + int(SG[(SG_ATTR_STAERKE_BONUS + i)]))
+                            / ((100 + int(SG[(SG_POTION_GAIN + ii)])) / 100));
+
                             if (HideBackPack){
-                                popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, texts[TXT_TEMPORARY], POPUP_TAB, str(math.round(((int(SG[(SG_POTION_GAIN + ii)]) / 100) * tempBonus))), POPUP_END_LINE];
+                                popupLines[popupLines.length] = [
+                                    POPUP_BEGIN_LINE, FontFormat_AttribTemp,
+                                    texts[TXT_TEMPORARY], POPUP_TAB,
+                                    str(math.round(
+                                        ((int(SG[(SG_POTION_GAIN + ii)])
+                                         / 100) * tempBonus))),
+                                    POPUP_END_LINE];
                             } else {
                                 if (text_dir == "right"){
-                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, texts[TXT_TEMPORARY], POPUP_TAB, ((((("(" + potionDuration) + " ") + texts[TXT_UNTIL]) + ") ") + str(math.round(((int(SG[(SG_POTION_GAIN + ii)]) / 100) * tempBonus)))), POPUP_END_LINE];
+                                    popupLines[popupLines.length] =
+                                        [POPUP_BEGIN_LINE,
+                                        FontFormat_AttribTemp,
+                                        texts[TXT_TEMPORARY],
+                                        POPUP_TAB,
+                                        ((((("(" + potionDuration) + " ")
+                                         + texts[TXT_UNTIL]) + ") ")
+                                        + str(math.round(((int(SG[(
+                                          SG_POTION_GAIN + ii)]) / 100)
+                                        * tempBonus)))), POPUP_END_LINE];
                                 } else {
-                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, texts[TXT_TEMPORARY], POPUP_TAB, (((((str(math.round(((int(SG[(SG_POTION_GAIN + ii)]) / 100) * tempBonus))) + " (") + texts[TXT_UNTIL]) + " ") + potionDuration) + ")"), POPUP_END_LINE];
+                                    popupLines[popupLines.length] = [
+                                        POPUP_BEGIN_LINE,
+                                        FontFormat_AttribTemp,
+                                        texts[TXT_TEMPORARY],
+                                        POPUP_TAB,
+                                        (((((str(math.round(((int(SG[
+                                         (SG_POTION_GAIN + ii)]) / 100)
+                                        * tempBonus))) + " (")
+                                        + texts[TXT_UNTIL]) + " ")
+                                        + potionDuration) + ")"),
+                                        POPUP_END_LINE];
                                 };
                             };
-                            tempBonus = (tempBonus - int(SG[(SG_ATTR_STAERKE + i)]));
+                            tempBonus = (tempBonus
+                                         - int(SG[(SG_ATTR_STAERKE + i)]));
                         } else {
                             if (HideBackPack){
-                                popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, texts[TXT_TEMPORARY], POPUP_TAB, str(int(SG[(SG_POTION_GAIN + ii)])), POPUP_END_LINE];
+                                popupLines[popupLines.length] = [
+                                    POPUP_BEGIN_LINE,
+                                    FontFormat_AttribTemp,
+                                    texts[TXT_TEMPORARY], POPUP_TAB,
+                                    str(int(SG[(SG_POTION_GAIN + ii)])),
+                                    POPUP_END_LINE];
                             } else {
                                 if (text_dir == "right"){
-                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, texts[TXT_TEMPORARY], POPUP_TAB, ((((("(" + potionDuration) + " ") + texts[TXT_UNTIL]) + ") ") + str(int(SG[(SG_POTION_GAIN + ii)]))), POPUP_END_LINE];
+                                    popupLines[popupLines.length] =
+                                        [POPUP_BEGIN_LINE,
+                                        FontFormat_AttribTemp,
+                                        texts[TXT_TEMPORARY],
+                                        POPUP_TAB,
+                                        ((((("(" + potionDuration) + " ")
+                                         + texts[TXT_UNTIL]) + ") ")
+                                        + str(int(SG[(SG_POTION_GAIN + ii)]))),
+                                        POPUP_END_LINE];
                                 } else {
-                                    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribTemp, texts[TXT_TEMPORARY], POPUP_TAB, (((((str(int(SG[(SG_POTION_GAIN + ii)])) + " (") + texts[TXT_UNTIL]) + " ") + potionDuration) + ")"), POPUP_END_LINE];
+                                    popupLines[popupLines.length] = [
+                                        POPUP_BEGIN_LINE,
+                                        FontFormat_AttribTemp,
+                                        texts[TXT_TEMPORARY],
+                                        POPUP_TAB,
+                                        ((((str(int(SG[(SG_POTION_GAIN + ii)]))
+                                         + " (") + texts[TXT_UNTIL]) + " ")
+                                            + potionDuration) + ")"),
+                                        POPUP_END_LINE];
                                 };
                             };
-                            tempBonus = (int(SG[(SG_ATTR_STAERKE_BONUS + i)]) - int(SG[(SG_POTION_GAIN + ii)]));
+                            tempBonus = (int(SG[(SG_ATTR_STAERKE_BONUS + i)])
+                                         - int(SG[(SG_POTION_GAIN + ii)]));
                         };
                         break;
                     };
@@ -30859,7 +31717,9 @@ def display_inventory(SG:Array=None, NoPrices=False,
             };
         };
         if (tempBonus > 0){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_AttribBonus, texts[TXT_BONUS], POPUP_TAB, str(tempBonus), POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_AttribBonus, texts[TXT_BONUS],
+                POPUP_TAB, str(tempBonus), POPUP_END_LINE];
         };
         enable_popup((LBL_SCR_CHAR_STAERKE + i), popupLines);
         enable_popup((LBL_SCR_CHAR_STAERKE_CAPTION + i), popupLines);
@@ -30874,8 +31734,10 @@ def display_inventory(SG:Array=None, NoPrices=False,
             canBoost[i] = Boolean((boostPrice <= Number(SG[SG_GOLD])));
             boostGold = int((boostPrice / 100));
             boostSilver = (boostPrice % 100);
-            hide((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i), (LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
-            preisX = (CHAR_PROP_COLUMN_4_X + (((text_dir == "right")) ? 240 : 0));
+            hide((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i),
+                 (LBL_SCR_CHAR_SILBER1 + i), (SCR_CHAR_SILBER1 + i));
+            preisX = (CHAR_PROP_COLUMN_4_X + (
+                      ((text_dir == "right")) ? 240 : 0));
             if (boostGold > 0){
                 _local7 = actor[(LBL_SCR_CHAR_PREIS1 + i)];
                 with (_local7) {
@@ -30927,72 +31789,145 @@ def display_inventory(SG:Array=None, NoPrices=False,
         };
         i = (i + 1);
     };
-    tmpKritische = (math.round(((((int(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 4) : SG_ATTR_WILLENSKRAFT)]) + int(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 4) : SG_ATTR_WILLENSKRAFT_BONUS)])) * 25) / (Number(SG[((towerMode) ? (copyCatId + CPC_LEVEL) : SG_LEVEL)]) * 10)) * 100)) / 100);
+    tmpKritische = (math.round(((((int(SG[((towerMode)
+                    ? ((copyCatId + CPC_ATTRIBS) + 4)
+                    : SG_ATTR_WILLENSKRAFT)]) + int(SG[((towerMode)
+                    ? ((copyCatId + CPC_ATTRIBS_BONUS) + 4)
+                    : SG_ATTR_WILLENSKRAFT_BONUS)])) * 25)
+                    / (Number(SG[((towerMode)
+                       ? (copyCatId + CPC_LEVEL) : SG_LEVEL)]) * 10))
+                    * 100)) / 100);
     if (tmpKritische < 0){
         tmpKritische = 0;
     };
     if (tmpKritische > 50){
         tmpKritische = 50;
     };
-    tmpDamageMin = SG[((towerMode) ? (copyCatId + CPC_DAMAGE_MIN) : SG_DAMAGE_MIN)];
-    tmpDamageMax = SG[((towerMode) ? (copyCatId + CPC_DAMAGE_MAX) : SG_DAMAGE_MAX)];
+    tmpDamageMin = SG[((towerMode)
+                       ? (copyCatId + CPC_DAMAGE_MIN)
+                       : SG_DAMAGE_MIN)];
+    tmpDamageMax = SG[((towerMode)
+                       ? (copyCatId + CPC_DAMAGE_MAX)
+                       : SG_DAMAGE_MAX)];
     tmpDamageFactor = 0;
     tmpLifeFactor = 5;
     SchadenLblID = 0;
-    Switch (int(((towerMode) ? (copyCatIdRaw + 1) : SG[SG_CLASS]))){
+    Switch (int(((towerMode)
+            ? (copyCatIdRaw + 1)
+            : SG[SG_CLASS]))){
         if case(1:
             SchadenLblID = LBL_SCR_CHAR_SCHADEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_SCHADEN;
-            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS)])) / 10));
+            tmpDamageFactor = (1 + ((Number(SG[((towerMode)
+                               ? (copyCatId + CPC_ATTRIBS)
+                               : SG_ATTR_STAERKE)]) + Number(SG[((towerMode)
+                               ? (copyCatId + CPC_ATTRIBS_BONUS)
+                               : SG_ATTR_STAERKE_BONUS)])) / 10));
             tmpLifeFactor = 5;
             break;
         if case(2:
             SchadenLblID = LBL_SCR_CHAR_LEBEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_LEBEN;
-            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 2) : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2) : SG_ATTR_AUSDAUER_BONUS)])) / 10));
+            tmpDamageFactor = (1 + ((Number(SG[((towerMode)
+                               ? ((copyCatId + CPC_ATTRIBS) + 2)
+                               : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode)
+                               ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
+                               : SG_ATTR_AUSDAUER_BONUS)])) / 10));
             tmpLifeFactor = 2;
             break;
         if case(3:
             SchadenLblID = LBL_SCR_CHAR_KAMPFWERT_CAPTION;
             SchadenID = LBL_SCR_CHAR_KAMPFWERT;
-            tmpDamageFactor = (1 + ((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 1) : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1) : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 10));
+            tmpDamageFactor = (1 + ((Number(SG[((towerMode)
+                               ? ((copyCatId + CPC_ATTRIBS) + 1)
+                               : SG_ATTR_BEWEGLICHKEIT)])
+                                + Number(SG[((towerMode)
+                                     ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1)
+                                     : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 10));
             tmpLifeFactor = 4;
             break;
     };
     tmpDamageMin = math.round((tmpDamageMin * tmpDamageFactor));
     tmpDamageMax = math.round((tmpDamageMax * tmpDamageFactor));
-    actor[LBL_SCR_CHAR_SCHADEN].text = int(((Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS) : SG_ATTR_STAERKE)]) + Number(SG[((towerMode) ? (copyCatId + CPC_ATTRIBS_BONUS) : SG_ATTR_STAERKE_BONUS)])) / 2));
-    actor[LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 1) : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1) : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
-    actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 2) : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2) : SG_ATTR_AUSDAUER_BONUS)])) / 2));
-    actor[LBL_SCR_CHAR_RUESTUNG].default_text_format = (((tmpHealth > 0)) ? FontFormat_AttribBonus : FontFormat_Attrib);
-    actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS) + 3) : SG_ATTR_INTELLIGENZ)]) + Number(SG[((towerMode) ? ((copyCatId + CPC_ATTRIBS_BONUS) + 3) : SG_ATTR_INTELLIGENZ_BONUS)])) * (tmpLifeFactor * 2)) * (((tmpHealth > 0)) ? (Number((tmpHealth + 100)) / 100) : 1)) * (0.5 + (SG[((towerMode) ? (copyCatId + CPC_LEVEL) : SG_LEVEL)] / 2))));
+    actor[LBL_SCR_CHAR_SCHADEN].text = int(((Number(SG[((towerMode)
+                                       ? (copyCatId + CPC_ATTRIBS)
+                                       : SG_ATTR_STAERKE)])
+                            + Number(SG[((towerMode)
+                                     ? (copyCatId + CPC_ATTRIBS_BONUS)
+                                     : SG_ATTR_STAERKE_BONUS)])) / 2));
+    actor[LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(SG[((towerMode)
+                         ? ((copyCatId + CPC_ATTRIBS) + 1)
+                         : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((towerMode)
+                         ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1)
+                         : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
+    actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((towerMode)
+                                 ? ((copyCatId + CPC_ATTRIBS) + 2)
+                                 : SG_ATTR_AUSDAUER)]) + Number(SG[((towerMode)
+                                 ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
+                                 : SG_ATTR_AUSDAUER_BONUS)])) / 2));
+    actor[LBL_SCR_CHAR_RUESTUNG].default_text_format = (((tmpHealth > 0))
+                            ? FontFormat_AttribBonus : FontFormat_Attrib);
+    actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(SG[((towerMode)
+            ? ((copyCatId + CPC_ATTRIBS) + 3)
+            : SG_ATTR_INTELLIGENZ)]) + Number(SG[((towerMode)
+            ? ((copyCatId + CPC_ATTRIBS_BONUS) + 3)
+            : SG_ATTR_INTELLIGENZ_BONUS)])) * (tmpLifeFactor * 2))
+            * (((tmpHealth > 0)) ? (Number((tmpHealth + 100)) / 100) : 1))
+            * (0.5 + (SG[((towerMode) ? (copyCatId + CPC_LEVEL)
+               : SG_LEVEL)] / 2))));
     actor[LBL_SCR_CHAR_WIDERSTAND].text = (str(tmpKritische) + str("%"));
     popupLines = list();
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_SCHADEN], POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+        FontFormat_Attrib, texts[TXT_SCHADEN], POPUP_END_LINE];
     if (text_dir == "right"){
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((texts[TXT_WAFFENSCHADEN] + " × (1 + ") + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - LBL_SCR_CHAR_SCHADEN)].text) + " ÷ 10) ="), POPUP_END_LINE];
+        popupLines[popupLines.length] = [
+            POPUP_BEGIN_LINE, FontFormat_Attrib,
+            (((texts[TXT_WAFFENSCHADEN] + " × (1 + ") +
+             actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) -
+              LBL_SCR_CHAR_SCHADEN)].text) + " ÷ 10) ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((("= " + texts[TXT_WAFFENSCHADEN]) + " * (1 + ") + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) - LBL_SCR_CHAR_SCHADEN)].text) + " / 10)"), POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            (((("= " + texts[TXT_WAFFENSCHADEN]) + " * (1 + ")
+             + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID)
+                  - LBL_SCR_CHAR_SCHADEN)].text) + " / 10)"), POPUP_END_LINE];
     };
     enable_popup(SchadenID, popupLines);
     enable_popup(SchadenLblID, popupLines);
     popupLines = list();
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text, POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text, POPUP_END_LINE];
     if (text_dir == "right"){
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((((((tmpHealth > 0)) ? "(" : "") + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " × ") + str(tmpLifeFactor)) + " × (") + texts[TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + str(tmpHealth)) + "%") : "")) + " ="), POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            (((((((((((tmpHealth > 0)) ? "(" : "")
+             + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " × ")
+            + str(tmpLifeFactor)) + " × (") + texts[TXT_HALL_LIST_COLUMN_4])
+            + " + 1)") + (((tmpHealth > 0)) ? ((") + " + str(tmpHealth))
+            + "%") : "")) + " ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((("= " + (((tmpHealth > 0)) ? "(" : "")) + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " * ") + str(tmpLifeFactor)) + " * (") + texts[TXT_HALL_LIST_COLUMN_4]) + " + 1)") + (((tmpHealth > 0)) ? ((") + " + str(tmpHealth)) + "%") : "")), POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            (((((((("= " + (((tmpHealth > 0)) ? "(" : ""))
+             + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " * ")
+            + str(tmpLifeFactor)) + " * (") + texts[TXT_HALL_LIST_COLUMN_4])
+            + " + 1)") + (((tmpHealth > 0)) ? ((") + " + str(tmpHealth)) + "%")
+            : "")), POPUP_END_LINE];
     };
     enable_popup((LBL_SCR_CHAR_SCHADEN + 3), popupLines);
     enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + 3), popupLines);
     popupLines = list();
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text, POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+                actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text, POPUP_END_LINE];
     if (text_dir == "right"){
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text + " × 5 ÷ (") + texts[TXT_GEGNERSTUFE]) + " × 2) ="), POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+                (((actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text + " × 5 ÷ (")
+                 + texts[TXT_GEGNERSTUFE]) + " × 2) ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text) + " * 5 / (") + texts[TXT_GEGNERSTUFE]) + " * 2)"), POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+                (((("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text)
+                 + " * 5 / (") + texts[TXT_GEGNERSTUFE]) + " * 2)"),
+                POPUP_END_LINE];
     };
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_KRITISCHMINMAX], POPUP_END_LINE];
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            texts[TXT_KRITISCHMINMAX], POPUP_END_LINE];
     enable_popup((LBL_SCR_CHAR_SCHADEN + 4), popupLines);
     enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + 4), popupLines);
     actor[LBL_SCR_CHAR_SCHADEN_CAPTION].text = texts[TXT_CHAR_SCHADEN];
@@ -31000,45 +31935,100 @@ def display_inventory(SG:Array=None, NoPrices=False,
     actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].text = texts[TXT_CHAR_KAMPFWERT];
     if (SchadenLblID > 0){
         actor[SchadenLblID].text = texts[TXT_SCHADEN];
-        actor[SchadenID].text = ((tmpDamageMin + (((str(tmpDamageMin).length >= 6)) ? "-" : " - ")) + tmpDamageMax);
+        actor[SchadenID].text = ((tmpDamageMin
+                     + (((str(tmpDamageMin).length >= 6)) ? "-" : " - "))
+                    + tmpDamageMax);
     };
     if (text_dir == "right"){
-        actor[LBL_SCR_CHAR_SCHADEN].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_SCHADEN].text_width);
-        actor[LBL_SCR_CHAR_KAMPFWERT].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_KAMPFWERT].text_width);
-        actor[LBL_SCR_CHAR_LEBEN].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_LEBEN].text_width);
-        actor[LBL_SCR_CHAR_RUESTUNG].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_RUESTUNG].text_width);
-        actor[LBL_SCR_CHAR_WIDERSTAND].x = ((CHAR_PROP_COLUMN_6_X - 15) - actor[LBL_SCR_CHAR_WIDERSTAND].text_width);
-        actor[LBL_SCR_CHAR_SCHADEN_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_SCHADEN_CAPTION].text_width);
-        actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].text_width);
-        actor[LBL_SCR_CHAR_LEBEN_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_LEBEN_CAPTION].text_width);
-        actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text_width);
-        actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110) - actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text_width);
+        actor[LBL_SCR_CHAR_SCHADEN].x = ((CHAR_PROP_COLUMN_6_X - 15)
+                                     - actor[LBL_SCR_CHAR_SCHADEN].text_width);
+        actor[LBL_SCR_CHAR_KAMPFWERT].x = ((CHAR_PROP_COLUMN_6_X - 15)
+                                   - actor[LBL_SCR_CHAR_KAMPFWERT].text_width);
+        actor[LBL_SCR_CHAR_LEBEN].x = ((CHAR_PROP_COLUMN_6_X - 15)
+                                   - actor[LBL_SCR_CHAR_LEBEN].text_width);
+        actor[LBL_SCR_CHAR_RUESTUNG].x = ((CHAR_PROP_COLUMN_6_X - 15)
+                                  - actor[LBL_SCR_CHAR_RUESTUNG].text_width);
+        actor[LBL_SCR_CHAR_WIDERSTAND].x = ((CHAR_PROP_COLUMN_6_X - 15)
+                                - actor[LBL_SCR_CHAR_WIDERSTAND].text_width);
+        actor[LBL_SCR_CHAR_SCHADEN_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110)
+                             - actor[LBL_SCR_CHAR_SCHADEN_CAPTION].text_width);
+        actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110)
+                           - actor[LBL_SCR_CHAR_KAMPFWERT_CAPTION].text_width);
+        actor[LBL_SCR_CHAR_LEBEN_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110)
+                               - actor[LBL_SCR_CHAR_LEBEN_CAPTION].text_width);
+        actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].x = ((CHAR_PROP_COLUMN_6_X + 110)
+                          - actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text_width);
+        actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].x = (
+                            (CHAR_PROP_COLUMN_6_X + 110)
+                        - actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text_width);
         i = 0;
         while (i < 5) {
-            actor[(LBL_SCR_CHAR_STAERKE + i)].x = ((CHAR_PROP_COLUMN_1_X + 50) - actor[(LBL_SCR_CHAR_STAERKE + i)].text_width);
-            actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].x = ((CHAR_PROP_COLUMN_1_X + 150) - actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text_width);
+            actor[(LBL_SCR_CHAR_STAERKE + i)].x = (
+                       (CHAR_PROP_COLUMN_1_X + 50)
+                       - actor[(LBL_SCR_CHAR_STAERKE + i)].text_width);
+            actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].x =
+                        ((CHAR_PROP_COLUMN_1_X + 150)
+                         - actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)]
+                         .text_width);
             i = (i + 1);
         };
         if (!towerMode){
-            actor[LBL_CHAR_MOUNT_NAME].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20) - actor[LBL_CHAR_MOUNT_NAME].text_width);
+            actor[LBL_CHAR_MOUNT_NAME].x =
+                (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20)
+                 - actor[LBL_CHAR_MOUNT_NAME].text_width);
             actor[LBL_CHAR_MOUNT_DESCR].width = (CHAR_MOUNT_X - 20);
-            actor[LBL_CHAR_MOUNT_RUNTIME].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20) - actor[LBL_CHAR_MOUNT_RUNTIME].text_width);
-            actor[LBL_CHAR_MOUNT_GAIN].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X) - 20) - actor[LBL_CHAR_MOUNT_GAIN].text_width);
+            actor[LBL_CHAR_MOUNT_RUNTIME].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X)
+                           - 20) - actor[LBL_CHAR_MOUNT_RUNTIME].text_width);
+            actor[LBL_CHAR_MOUNT_GAIN].x = (((CHAR_MOUNT_X + CHAR_MOUNT_X)
+                                - 20) - actor[LBL_CHAR_MOUNT_GAIN].text_width);
             MakeRightTextArea(INP_CHARDESC);
-            actor[SCR_CHAR_GILDE].x = ((((GILDEEHRE_X + GILDEEHRE_X) + 40) + 280) - actor[LBL_SCR_CHAR_GILDE].text_width);
+            actor[SCR_CHAR_GILDE].x = ((((GILDEEHRE_X + GILDEEHRE_X) + 40)
+                               + 280) - actor[LBL_SCR_CHAR_GILDE].text_width);
         };
     };
     if (!towerMode){
         i = 0;
         while (i < 3) {
-            SetCnt((CHAR_POTION + i), ((int(SG[(SG_POTION_TYPE + i)]))==0) ? C_EMPTY : GetItemID(12, int(SG[(SG_POTION_TYPE + i)]), 0, 0));
+            SetCnt((CHAR_POTION + i),
+                   ((int(SG[(SG_POTION_TYPE + i)]))==0)
+                   ? C_EMPTY
+                   : GetItemID(12, int(SG[(SG_POTION_TYPE + i)]), 0, 0));
             if (int(SG[(SG_POTION_TYPE + i)]) == 0){
                 enable_popup((CHAR_POTION + i));
             } else {
                 if (HideBackPack){
-                    enable_popup((CHAR_POTION + i), POPUP_BEGIN_LINE, texts[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE);
+                    enable_popup((CHAR_POTION + i),
+                                 POPUP_BEGIN_LINE,
+                                 texts[((TXT_ITMNAME_12
+                                    + int(SG[(SG_POTION_TYPE + i)])) - 1)],
+                                POPUP_END_LINE, POPUP_BEGIN_LINE,
+                                texts[(((int(SG[(SG_POTION_TYPE + i)]) == 16))
+                               ? TXT_ITEM_ATTRIB_CLASS_12
+                               : (TXT_ITEM_ATTRIB_CLASS_1
+                                  + ((int(SG[(SG_POTION_TYPE + i)])
+                                     - 1) % 5)))], POPUP_TAB,
+                                (("+ " + SG[(SG_POTION_GAIN + i)])
+                                 + (((((int(SG[(SG_POTION_TYPE + i)]) == 16))
+                                    or ((SG[(SG_POTION_GAIN + i)] <= 25))))
+                                ? "%" : "")), POPUP_END_LINE);
                 } else {
-                    enable_popup((CHAR_POTION + i), POPUP_BEGIN_LINE, texts[((TXT_ITMNAME_12 + int(SG[(SG_POTION_TYPE + i)])) - 1)], POPUP_END_LINE, POPUP_BEGIN_LINE, texts[(((int(SG[(SG_POTION_TYPE + i)]) == 16)) ? TXT_ITEM_ATTRIB_CLASS_12 : (TXT_ITEM_ATTRIB_CLASS_1 + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))], POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)]) + (((((int(SG[(SG_POTION_TYPE + i)]) == 16)) or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_REMAINING], POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)], True), POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
+                    enable_popup((CHAR_POTION + i),
+                                 POPUP_BEGIN_LINE,
+                                 texts[((TXT_ITMNAME_12
+                                    + int(SG[(SG_POTION_TYPE + i)])) - 1)],
+                                POPUP_END_LINE,
+                                POPUP_BEGIN_LINE,
+                                texts[(((int(SG[(SG_POTION_TYPE + i)]) == 16))
+                                       ? TXT_ITEM_ATTRIB_CLASS_12
+                                       : (TXT_ITEM_ATTRIB_CLASS_1
+                              + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))],
+                            POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)])
+                            + (((((int(SG[(SG_POTION_TYPE + i)]) == 16))
+                       or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")),
+                        POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_REMAINING],
+                        POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)],
+                            True), POPUP_END_LINE, POPUP_BEGIN_LINE,
+                        texts[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
                 };
             };
             i = (i + 1);
@@ -31073,7 +32063,10 @@ def display_inventory(SG:Array=None, NoPrices=False,
     move(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
     tmpItmClass = 0;
     tmpItmPic = 0;
-    tmpItmPic = int(SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (8 * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])]);
+    tmpItmPic = int(SG[((((towerMode)
+                    ? (copyCatId + CPC_ITEMS)
+                    : SG_INVENTORY_OFFS) + (8 * SG['ITM']['SIZE']))
+                    + SG['ITM']['PIC'])]);
     tmpItmClass = 0;
     while (tmpItmPic >= 1000) {
         tmpItmPic = (tmpItmPic - 1000);
@@ -31082,8 +32075,14 @@ def display_inventory(SG:Array=None, NoPrices=False,
     i = 0;
     while (i < 15) {
         if ((((i < 10)) or (!(towerMode)))){
-            if (int(SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (i * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) == 0){
-                SG[((((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS) + (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])] = 0;
+            if (int(SG[((((towerMode)
+                ? (copyCatId + CPC_ITEMS)
+                : SG_INVENTORY_OFFS) + (i * SG['ITM']['SIZE']))
+                + SG_ITM_TYP)]) == 0){
+                SG[((((towerMode)
+                    ? (copyCatId + CPC_ITEMS)
+                    : SG_INVENTORY_OFFS) +
+                    (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])] = 0;
             };
         };
         if ((((i > 9)) and (HideBackPack))){
@@ -31091,12 +32090,27 @@ def display_inventory(SG:Array=None, NoPrices=False,
             enable_popup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
-                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((towerMode) ? (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG, True, ((tmpItmClass)==1) ? 1 : -1));
+                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((towerMode) ?
+                       (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG,
+                        True, ((tmpItmClass)==1) ? 1 : -1));
                 actor[(CHAR_SLOT_1 + i)].mouse_enabled = False;
             } else {
-                SetCnt((CHAR_SLOT_1 + i), GetItemID(((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9)))) ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1 : (-(copyCatSel) - 3)) : -2)));
-                ItemPopup((CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG['ITM']['SIZE'])), SG, HideBackPack, NoPrices, towerMode, witchMode);
-                actor[(CHAR_SLOT_1 + i)].mouse_enabled = !((int(SG[((((towerMode) ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS)) : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9)))) ? (i - 10) : i) * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) == 0));
+                SetCnt((CHAR_SLOT_1 + i),
+                       GetItemID(((towerMode) ? (((i > 9))
+                                 ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
+                        : SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9))))
+                        ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1
+                                         : (-(copyCatSel) - 3)) : -2)));
+                ItemPopup((CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9))
+                          ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
+                    : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9))))
+                         ? (i - 10) : i) * SG['ITM']['SIZE'])), SG,
+                        HideBackPack, NoPrices, towerMode, witchMode);
+                actor[(CHAR_SLOT_1 + i)]
+                    .mouse_enabled = !((int(SG[((((towerMode)
+                    ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
+                    : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9))))
+                  ? (i - 10) : i) * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) == 0));
             };
         };
         if (HideBackPack){
@@ -31116,20 +32130,29 @@ def display_inventory(SG:Array=None, NoPrices=False,
         hasEpic = False;
         i = 0;
         while (i < 6) {
-            if (int(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) == 0){
-                SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])] = 0;
+            if (int(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
+                + SG_ITM_TYP)]) == 0){
+                SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
+                    + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG));
-            ItemPopup((CHAR_SLOT_FIDGET_1 + i), (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])), SG, HideBackPack);
-            if (((IsEpic(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])])) and (on_stage(SCR_FIDGET_BG)))){
+            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG))
+            ItemPopup((CHAR_SLOT_FIDGET_1 + i),
+                      (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
+                      SG, HideBackPack);
+            if (((IsEpic(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
+                    + SG['ITM']['PIC'])])) and (on_stage(SCR_FIDGET_BG)))){
                 hasEpic = True;
             };
-            if (int(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) == 0){
+            if (int(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
+                    + SG_ITM_TYP)]) == 0){
                 SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG));
-            ItemPopup((CHAR_SLOT_SHAKES_1 + i), (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])), SG, HideBackPack);
-            if (((IsEpic(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])])) and (on_stage(SCR_SHAKES_BG)))){
+            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG))
+            ItemPopup((CHAR_SLOT_SHAKES_1 + i),
+                      (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
+                      SG, HideBackPack);
+            if (((IsEpic(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
+                    + SG['ITM']['PIC'])])) and (on_stage(SCR_SHAKES_BG)))){
                 hasEpic = True;
             };
             i = (i + 1);
@@ -31144,9 +32167,11 @@ def display_inventory(SG:Array=None, NoPrices=False,
             };
         };
         if (text_dir == "right"){
-            actor[LBL_CHAR_RUESTUNG].text = ((SG[SG_ARMOR] + " :") + texts[TXT_RUESTUNG_SUM]);
+            actor[LBL_CHAR_RUESTUNG]
+                .text = ((SG[SG_ARMOR] + " :") + texts[TXT_RUESTUNG_SUM]);
         } else {
-            actor[LBL_CHAR_RUESTUNG].text = ((texts[TXT_RUESTUNG_SUM] + ": ") + SG[SG_ARMOR]);
+            actor[LBL_CHAR_RUESTUNG]
+                .text = ((texts[TXT_RUESTUNG_SUM] + ": ") + SG[SG_ARMOR]);
         };
         DamageReduction = int((Number(SG[SG_ARMOR]) / Number(SG[SG_LEVEL])));
         DamageReductionMax = 50;
@@ -31162,14 +32187,25 @@ def display_inventory(SG:Array=None, NoPrices=False,
             DamageReduction = DamageReductionMax;
         };
         popupLines = list();
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_RUESTUNG_SUM], POPUP_END_LINE];
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+            texts[TXT_RUESTUNG_SUM], POPUP_END_LINE];
         if (text_dir == "right"){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, ((((((((("(" + texts[TXT_MAX]) + " -") + str(DamageReductionMax)) + "%) ") + str(DamageReduction)) + "% :") + SG[SG_LEVEL]) + " ") + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib,
+                ((((((((("(" + texts[TXT_MAX]) + " -")
+                 + str(DamageReductionMax)) + "%) ")
+                    + str(DamageReduction)) + "% :") + SG[SG_LEVEL]) + " ")
+                + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ") + SG[SG_LEVEL]) + ": -") + str(DamageReduction)) + "% (") + texts[TXT_MAX]) + " -") + str(DamageReductionMax)) + "%)"), POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+            FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
+                + SG[SG_LEVEL]) + ": -") + str(DamageReduction)) + "% (")
+                + texts[TXT_MAX]) + " -") + str(DamageReductionMax)) + "%)"),
+            POPUP_END_LINE];
         };
         if (texts[TXT_SHIELD_FORMULA]){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib, texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
         enable_popup(LBL_CHAR_RUESTUNG, popupLines);
         enable_popup(CHAR_RUESTUNG, popupLines);
@@ -31304,11 +32340,14 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
         while (i < 10) {
             suggestion_slot[slot_id] = 0;
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == CorrectItemType[i]){
-                if ((((slot_id >= CHAR_SLOT_11)) and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
+                if ((((slot_id >= CHAR_SLOT_11))
+                        and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
                     suggestion_slot[slot_id] = (i + CHAR_SLOT_1);
-                    if (SG[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i)) + SG_ITM_TYP)] > 0){
+                    if (SG[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i))
+                            + SG_ITM_TYP)] > 0){
                         if (((compare_items) and (!(towerMode)))){
-                            compareIndex = (SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i));
+                            compareIndex = (SG_INVENTORY_OFFS
+                                            + (SG['ITM']['SIZE'] * i));
                         };
                     };
                 };
@@ -31319,7 +32358,8 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
         attribSum = 0;
         i = 0;
         while (i < 3) {
-            if ((((int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0)) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+            if ((((int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0))
+                    and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
                 var _temp1 = ii;
                 ii = (ii + 1);
                 var _local33 = _temp1;
@@ -31338,7 +32378,8 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                 var _temp4 = ii;
                 ii = (ii + 1);
                 _local34 = _temp4;
-                attribLines[_local34] = texts[(TXT_ITEM_ATTRIB_CLASSES + int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))];
+                attribLines[_local34] = texts[(TXT_ITEM_ATTRIB_CLASSES
+                           + int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))];
                 var _temp5 = ii;
                 ii = (ii + 1);
                 var _local35 = _temp5;
@@ -31348,7 +32389,14 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                     var _temp6 = ii;
                     ii = (ii + 1);
                     var _local36 = _temp6;
-                    attribLines[_local36] = (((int((hours / 24)))>0) ? (((str(int((hours / 24))) + " ") + texts[(((int((hours / 24)) == 1)) ? TXT_DAY : TXT_DAYS)]) + ((((hours % 24) > 0)) ? ", " : "")) : "" + ((((hours % 24) > 0)) ? ((str((hours % 24)) + " ") + texts[((((hours % 24) == 1)) ? TXT_HOUR : TXT_HOURS)]) : ""));
+                    attribLines[_local36] = (((int((hours / 24)))>0)
+                        ? (((str(int((hours / 24))) + " ")
+                           + texts[(((int((hours / 24)) == 1))
+                            ? TXT_DAY : TXT_DAYS)]) + ((((hours % 24) > 0))
+                            ? ", " : "")) : "" + ((((hours % 24) > 0))
+                            ? ((str((hours % 24)) + " ")
+                           + texts[((((hours % 24) == 1))
+                                    ? TXT_HOUR : TXT_HOURS)]) : ""));
                 } else {
                     if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) == 12){
                         var _temp7 = ii;
@@ -31358,7 +32406,8 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                         var _temp8 = ii;
                         ii = (ii + 1);
                         var _local37 = _temp8;
-                        attribLines[_local37] = (("+ " + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) + "%");
+                        attribLines[_local37] = (("+ " + SG[((sgIndex
+                                 + SG_ITM_ATTRIBVAL1) + i)]) + "%");
                     } else {
                         if (SG[(sgIndex + SG_ITM_TYP)] == 12){
                             var _temp9 = ii;
@@ -31369,18 +32418,22 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                                 var _temp10 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp10;
-                                attribLines[_local37] = (("+ " + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) + "%");
+                                attribLines[_local37] = (("+ "
+                                     + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)])
+                                    + "%");
                             } else {
                                 var _temp11 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp11;
-                                attribLines[_local37] = ("+ " + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]);
+                                attribLines[_local37] = ("+ "
+                                 + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]);
                             };
                         } else {
                             var _temp12 = ii;
                             ii = (ii + 1);
                             _local36 = _temp12;
-                            attribLines[_local36] = SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)];
+                            attribLines[_local36] =
+                                SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)];
                         };
                     };
                 };
@@ -31388,16 +32441,29 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                     compareFound = False;
                     iii = 0;
                     while (iii < 3) {
-                        if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + iii)]) == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + iii)]) > 0)))) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
-                            compareVal = (int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) - int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + iii)]));
-                            if (int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + iii)]) == 6){
+                        if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1)
+                                + iii)]) == int(SG[((sgIndex
+                                 + SG_ITM_ATTRIBTYP1) + i)])))
+                                and ((int(SG[((compareIndex
+                                     + SG_ITM_ATTRIBVAL1) + iii)]) > 0))))
+                                and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1)
+                                     + i)]) > 0)))){
+                            compareVal = (int(SG[((sgIndex
+                                          + SG_ITM_ATTRIBVAL1) + i)])
+                                    - int(SG[((compareIndex +
+                                     SG_ITM_ATTRIBVAL1) + iii)]));
+                            if (int(SG[((compareIndex + SG_ITM_ATTRIBTYP1)
+                                + iii)]) == 6){
                                 compareVal = (compareVal * 5);
                             };
                             attribSum = (attribSum + compareVal);
                             var _temp13 = ii;
                             ii = (ii + 1);
                             _local36 = _temp13;
-                            attribLines[_local36] = (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse));
+                            attribLines[_local36] = (((compareVal == 0))
+                                 ? FontFormat_Popup : (((compareVal > 0))
+                               ? FontFormat_PopupCompareBetter
+                               : FontFormat_PopupCompareWorse));
                             var _temp14 = ii;
                             ii = (ii + 1);
                             _local37 = _temp14;
@@ -31405,7 +32471,8 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                             var _temp15 = ii;
                             ii = (ii + 1);
                             var _local38 = _temp15;
-                            attribLines[_local38] = (((compareVal >= 0)) ? (((compareVal == 0)) ? "+-" : "+") : "-");
+                            attribLines[_local38] = (((compareVal >= 0))
+                                 ? (((compareVal == 0)) ? "+-" : "+") : "-");
                             var _temp16 = ii;
                             ii = (ii + 1);
                             var _local39 = _temp16;
@@ -31435,12 +32502,17 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                         var _temp21 = ii;
                         ii = (ii + 1);
                         _local39 = _temp21;
-                        attribLines[_local39] = str((SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                        attribLines[_local39] = str((SG[((sgIndex
+                            + SG_ITM_ATTRIBVAL1) + i)]
+                            * (((SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]
+                               == 6)) ? 5 : 1)));
                         var _temp22 = ii;
                         ii = (ii + 1);
                         _local40 = _temp22;
                         attribLines[_local40] = FontFormat_Popup;
-                        attribSum = (attribSum + (SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                        attribSum = (attribSum + (SG[((sgIndex
+                             + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex
+                             + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
                     };
                 };
                 var _temp23 = ii;
@@ -31448,11 +32520,19 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                 _local36 = _temp23;
                 attribLines[_local36] = POPUP_END_LINE;
             };
-            if ((((((compareIndex > 0)) and ((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0)))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+            if ((((((compareIndex > 0)) and ((int(SG[((compareIndex
+                + SG_ITM_ATTRIBTYP1) + i)]) > 0))))
+                and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)])
+                     > 0)))){
                 lossFound = False;
                 iii = 0;
                 while (iii < 3) {
-                    if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]) == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + iii)]))) and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))) and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + iii)]) > 0)))){
+                    if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)])
+                        == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + iii)])))
+                         and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1)
+                              + i)]) > 0)))) and
+                            ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1)
+                             + iii)]) > 0)))){
                         lossFound = True;
                         break;
                     };
@@ -31466,7 +32546,8 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                     var _temp25 = ii;
                     ii = (ii + 1);
                     _local34 = _temp25;
-                    attribLines[_local34] = texts[(TXT_ITEM_ATTRIB_CLASSES + int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]))];
+                    attribLines[_local34] = texts[(TXT_ITEM_ATTRIB_CLASSES
+                       + int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]))];
                     var _temp26 = ii;
                     ii = (ii + 1);
                     _local35 = _temp26;
@@ -31490,7 +32571,10 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                     var _temp31 = ii;
                     ii = (ii + 1);
                     _local40 = _temp31;
-                    attribLines[_local40] = str((SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                    attribLines[_local40] = str((SG[((compareIndex
+                                                + SG_ITM_ATTRIBVAL1) + i)]
+                                * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1)
+                                   + i)] == 6)) ? 5 : 1)));
                     var _temp32 = ii;
                     ii = (ii + 1);
                     var _local41 = _temp32;
@@ -31499,7 +32583,10 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                     ii = (ii + 1);
                     var _local42 = _temp33;
                     attribLines[_local42] = POPUP_END_LINE;
-                    attribSum = (attribSum - (SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
+                    attribSum = (attribSum - (SG[((compareIndex
+                                 + SG_ITM_ATTRIBVAL1) + i)]
+                        * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]
+                           == 6)) ? 5 : 1)));
                 };
             };
             i++;
@@ -31511,16 +32598,19 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
             itmQuote = itmName.split("|")[1];
             itmName = itmName.split("|")[0];
             quoteArray[0] = POPUP_BEGIN_LINE;
-            quoteArray[1] = ((SG[(sgIndex + SG_ITM_TYP)])==14) ? FontFormat_ItemEnchantment : FontFormat_EpicItemQuote;
+            quoteArray[1] = ((SG[(sgIndex + SG_ITM_TYP)])==14)
+                ? FontFormat_ItemEnchantment : FontFormat_EpicItemQuote;
             quoteArray[2] = itmQuote;
             quoteArray[3] = FontFormat_Popup;
             quoteArray[4] = POPUP_END_LINE;
         };
         if (SG[(sgIndex + SG_ITM_TYP)] < 8){
-            if ((itm_class + 1) != ((towerMode) ? (copyCatSel + 1) : savegame[SG_CLASS])){
+            if ((itm_class + 1) != ((towerMode)
+                ? (copyCatSel + 1) : savegame[SG_CLASS])){
                 quoteArray.append(POPUP_BEGIN_LINE);
                 quoteArray.append(FontFormat_Error);
-                quoteArray.append(texts[TXT_NECESSARY_CLASS].split("%1").join(texts[((TXT_NECESSARY_CLASS + itm_class) + 1)]));
+                quoteArray.append(texts[TXT_NECESSARY_CLASS].split("%1")
+                      .join(texts[((TXT_NECESSARY_CLASS + itm_class) + 1)]));
                 quoteArray.append(FontFormat_Popup);
                 quoteArray.append(POPUP_END_LINE);
             };
@@ -31533,43 +32623,120 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
                 quoteArray.append(FontFormat_ItemEnchantment);
                 quoteArray.append(texts[TXT_ENCHANT_HINT]);
                 quoteArray.append((POPUP_TAB + POPUP_TAB_ADD));
-                quoteArray.append(texts[((TXT_ITMNAME_14 + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)].split("|")[0]);
+                quoteArray.append(texts[((TXT_ITMNAME_14
+                 + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)]
+                    .split("|")[0]);
                 quoteArray.append(FontFormat_Popup);
                 quoteArray.append(POPUP_END_LINE);
             };
             quoteArray.append(POPUP_BEGIN_LINE);
             quoteArray.append(FontFormat_ItemEnchantment);
-            quoteArray.append(texts[((TXT_ENCHANT_NAMES + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)]);
+            quoteArray.append(texts[((TXT_ENCHANT_NAMES + int(SG[(sgIndex
+                              + SG_ITM_EXT_ENCHANT)])) - 1)]);
             quoteArray.append((POPUP_TAB + POPUP_TAB_ADD));
-            quoteArray.append(texts[((TXT_ENCHANT_VALUES + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)].split("%1").join(str(SG[(sgIndex + SG_ITM_EXT_ENCHANT_POWER)])));
+            quoteArray.append(texts[((TXT_ENCHANT_VALUES + int(SG[(sgIndex
+                              + SG_ITM_EXT_ENCHANT)])) - 1)].split("%1")
+                    .join(str(SG[(sgIndex + SG_ITM_EXT_ENCHANT_POWER)])));
             quoteArray.append(FontFormat_Popup);
             quoteArray.append(POPUP_END_LINE);
         };
         if (int(SG[(sgIndex + SG_ITM_TYP)]) == 1){
             if (compareIndex > 0){
-                compareVal = (math.round(((Number(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)) - math.round(((Number(SG[(compareIndex + SG['ITM']['SCHADEN_MIN'])]) + Number(SG[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
-                enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + str(math.round(((Number(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + str(math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                compareVal = (math.round(((Number(SG[(sgIndex
+                    + SG['ITM']['SCHADEN_MIN'])])
+                    + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2))
+                    - math.round(((Number(SG[(compareIndex
+                    + SG['ITM']['SCHADEN_MIN'])]) +
+                    Number(SG[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
+                enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
+                             texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD),
+                             ((SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + "-")
+                              + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]),
+                            (("(~" + str(math.round(((Number(SG[(sgIndex
+                             + SG['ITM']['SCHADEN_MIN'])])
+                            + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)]))
+                            / 2)))) + ")"), (((compareVal == 0))
+                            ? FontFormat_Popup : (((compareVal > 0))
+                            ? FontFormat_PopupCompareBetter
+                            : FontFormat_PopupCompareWorse)), COMPARE_TAB,
+                            ((((compareVal >= 0)) ? (((compareVal == 0))
+                             ? "+- " : "+ ") : "- ")
+                            + str(math.abs(compareVal))), FontFormat_Popup,
+                            POPUP_END_LINE, attribLines, shopLines);
             } else {
-                enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD), ((SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + "-") + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]), (("(~" + str(math.round(((Number(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2)))) + ")"), POPUP_END_LINE, attribLines, shopLines);
+                enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
+                             texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD),
+                             ((SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + "-")
+                              + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]),
+                            (("(~" + str(math.round(((Number(SG[(sgIndex
+                             + SG['ITM']['SCHADEN_MIN'])])
+                            + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)]))
+                            / 2)))) + ")"), POPUP_END_LINE,
+                            attribLines, shopLines);
             };
         } else {
             if (int(SG[(sgIndex + SG_ITM_TYP)]) == 2){
                 if (compareIndex > 0){
-                    compareVal = (int(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) - int(SG[(compareIndex + SG['ITM']['SCHADEN_MIN'])]));
-                    enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, texts[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + " %"), (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + str(math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                    compareVal = (int(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])])
+                                  - int(SG[(compareIndex
+                                        + SG['ITM']['SCHADEN_MIN'])]));
+                    enable_popup(slot_id, itmName, quoteArray,
+                                 POPUP_BEGIN_LINE, texts[TXT_BLOCKEN],
+                                 (POPUP_TAB + POPUP_TAB_ADD),
+                                 (SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]
+                                  + " %"),
+                                 (((compareVal == 0))
+                                  ? FontFormat_Popup
+                                  : (((compareVal > 0))
+                                     ? FontFormat_PopupCompareBetter
+                                     : FontFormat_PopupCompareWorse)),
+                                 COMPARE_TAB,
+                                 ((((compareVal >= 0))
+                                    ? (((compareVal == 0))
+                                       ? "+- " : "+ ") : "- ")
+                                    + str(math.abs(compareVal))),
+                                    FontFormat_Popup, POPUP_END_LINE,
+                                    attribLines, shopLines);
                 } else {
-                    enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, texts[TXT_BLOCKEN], (POPUP_TAB + POPUP_TAB_ADD), (SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + " %"), POPUP_END_LINE, attribLines, shopLines);
+                    enable_popup(slot_id, itmName, quoteArray,
+                                 POPUP_BEGIN_LINE, texts[TXT_BLOCKEN],
+                                 (POPUP_TAB + POPUP_TAB_ADD),
+                                 (SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]
+                                  + " %"), POPUP_END_LINE, attribLines,
+                                shopLines);
                 };
             } else {
                 if (int(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) > 0){
                     if (compareIndex > 0){
-                        compareVal = (int(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) - int(SG[(compareIndex + SG['ITM']['SCHADEN_MIN'])]));
-                        enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, texts[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])], (((compareVal == 0)) ? FontFormat_Popup : (((compareVal > 0)) ? FontFormat_PopupCompareBetter : FontFormat_PopupCompareWorse)), COMPARE_TAB, ((((compareVal >= 0)) ? (((compareVal == 0)) ? "+- " : "+ ") : "- ") + str(math.abs(compareVal))), FontFormat_Popup, POPUP_END_LINE, attribLines, shopLines);
+                        compareVal = (int(SG[(sgIndex
+                                  + SG['ITM']['SCHADEN_MIN'])])
+                                - int(SG[(compareIndex
+                                      + SG['ITM']['SCHADEN_MIN'])]));
+                        enable_popup(slot_id, itmName, quoteArray,
+                                     POPUP_BEGIN_LINE, texts[TXT_RUESTUNG],
+                                     (POPUP_TAB + POPUP_TAB_ADD),
+                                     SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])],
+                                     (((compareVal == 0))
+                                      ? FontFormat_Popup : (((compareVal > 0))
+                                      ? FontFormat_PopupCompareBetter
+                                      : FontFormat_PopupCompareWorse)),
+                                    COMPARE_TAB,
+                                    ((((compareVal >= 0))
+                                     ? (((compareVal == 0))
+                                        ? "+- " : "+ ") : "- ")
+                                        + str(math.abs(compareVal))),
+                                        FontFormat_Popup, POPUP_END_LINE,
+                                        attribLines, shopLines);
                     } else {
-                        enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE, texts[TXT_RUESTUNG], (POPUP_TAB + POPUP_TAB_ADD), SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])], POPUP_END_LINE, attribLines, shopLines);
+                        enable_popup(slot_id, itmName, quoteArray,
+                                     POPUP_BEGIN_LINE, texts[TXT_RUESTUNG],
+                                     (POPUP_TAB + POPUP_TAB_ADD),
+                                     SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])],
+                                     POPUP_END_LINE, attribLines, shopLines);
                     };
                 } else {
-                    enable_popup(slot_id, itmName, quoteArray, attribLines, shopLines);
+                    enable_popup(slot_id, itmName, quoteArray, attribLines,
+                                 shopLines);
                 };
             };
         };
@@ -31792,7 +32959,7 @@ def decode_chat(inStr:String, getHLMode=False,
                         + texts[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))]);
         } else {
             if (inStr[0: 4] == "#in#"){
-                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_JOINED]);
+                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_JOINED])
         } else {
             if (inStr[0: 4] == "#ou#"){
                 inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_QUIT]);
@@ -31958,7 +33125,7 @@ def chat_line(line:String, isError=False, hlIndex=-1,
             };
             if (isWhisper){
                 if (text_dir == "right"){
-                    setTextFormat(FontFormat_HighlightWhisper, hlIndex, length);
+                    setTextFormat(FontFormat_HighlightWhisper, hlIndex, length)
                 } else {
                     setTextFormat(FontFormat_HighlightWhisper, 0, hlIndex);
                 };
