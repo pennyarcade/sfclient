@@ -1,12 +1,2 @@
 checking sfclient.py
-sfclient.py:18671:1: W293 blank line contains whitespace
-    Trailing whitespace is superfluous.
-
-    The warning returned varies on whether the line itself is blank, for easier
-    filtering for those who want to indent their blank lines.
-
-    Okay: spam(1)\n#
-    W291: spam(1) \n#
-    W293: class Foo(object):\n    \n    bang = 12
 checking sflegacy.py
-1       W293 blank line contains whitespace

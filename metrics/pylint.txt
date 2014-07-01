@@ -29,7 +29,6 @@ W:19734, 0: TODO: What does this do? (fixme)
 W:19750, 0: TODO: Obsolete? (fixme)
 W:19773, 0: TODO: set via requests params (fixme)
 W:15435, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
-C:18671, 0: Trailing whitespace (trailing-whitespace)
 C:  1, 0: Too many lines in module (34386) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 C:4089, 0: Invalid constant name "param_obj" (invalid-name)
@@ -55,7 +54,7 @@ R:4399, 0: Too few public methods (0/2) (too-few-public-methods)
 R:4410, 0: Too few public methods (0/2) (too-few-public-methods)
 R:4421, 0: Too few public methods (0/2) (too-few-public-methods)
 R:4432, 0: Too few public methods (0/2) (too-few-public-methods)
-R:4500, 0: Too many local variables (23/15) (too-many-locals)
+R:4500, 0: Too many local variables (24/15) (too-many-locals)
 C:4516, 4: Invalid constant name "actor" (invalid-name)
 W:4516, 4: Using the global statement (global-statement)
 C:4947, 4: Invalid constant name "texts" (invalid-name)
@@ -66,7 +65,6 @@ C:4953, 4: Invalid constant name "whendo_loaded_timeout" (invalid-name)
 W:4953, 4: Global variable 'whendo_loaded_fn' undefined at the module level (global-variable-undefined)
 W:4953, 4: Global variable 'whendo_loaded_active' undefined at the module level (global-variable-undefined)
 W:4953, 4: Global variable 'whendo_loaded_timeout' undefined at the module level (global-variable-undefined)
-E:4987, 4: Undefined variable 'next_fight_timer' (undefined-variable)
 E:4990,41: Undefined variable 'guild_fight_timer_fn' (undefined-variable)
 E:4995,57: Undefined variable 'guild_chat_poll_fn' (undefined-variable)
 W:4981, 4: Unused variable 'witch_ani_step' (unused-variable)
@@ -1465,7 +1463,7 @@ R:163, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3737 statements analysed.
+3738 statements analysed.
 
 External dependencies
 ---------------------
@@ -1483,13 +1481,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19694  |57.42 |NC       |NC         |
+|code      |19695  |57.43 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |13132  |38.29 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |699    |2.04  |NC       |NC         |
+|comment   |697    |2.03  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |771    |2.25  |NC       |NC         |
+|empty     |772    |2.25  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1513,13 +1511,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |172    |NC       |NC         |
+|convention |171    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |67     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |347    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |875    |NC       |NC         |
+|error      |874    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1530,9 +1528,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |97.98   |71.64    |96.51      |
+|sfclient |100.00 |97.98   |71.64    |96.49      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |2.02    |28.36    |3.49       |
+|sflegacy |0.00   |2.02    |28.36    |3.51       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1543,7 +1541,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |845         |
+|undefined-variable           |844         |
 +-----------------------------+------------+
 |unused-variable              |270         |
 +-----------------------------+------------+
@@ -1587,8 +1585,6 @@ Messages
 +-----------------------------+------------+
 |unused-import                |1           |
 +-----------------------------+------------+
-|trailing-whitespace          |1           |
-+-----------------------------+------------+
 |too-many-lines               |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
@@ -1602,7 +1598,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -3.28/10
+Your code has been rated at -3.26/10
 
 Statistics by type
 ------------------
