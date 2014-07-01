@@ -4933,7 +4933,7 @@ def init_vars():
     # )
 
     # get buffered registration?
-    if param_obj["reg"] is not None:
+    if ('reg' in param_obj.keys()) and (param_obj["reg"] is not None):
         buffed_req = True
         buffed_reg = ExternalInterface.call("get_base64")
         if (buffed_reg) and (buffed_reg != ""):
