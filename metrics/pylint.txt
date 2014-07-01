@@ -54,7 +54,7 @@ R:4399, 0: Too few public methods (0/2) (too-few-public-methods)
 R:4410, 0: Too few public methods (0/2) (too-few-public-methods)
 R:4421, 0: Too few public methods (0/2) (too-few-public-methods)
 R:4432, 0: Too few public methods (0/2) (too-few-public-methods)
-R:4500, 0: Too many local variables (22/15) (too-many-locals)
+R:4500, 0: Too many local variables (23/15) (too-many-locals)
 C:4516, 4: Invalid constant name "actor" (invalid-name)
 W:4516, 4: Using the global statement (global-statement)
 C:4947, 4: Invalid constant name "texts" (invalid-name)
@@ -65,7 +65,6 @@ C:4953, 4: Invalid constant name "whendo_loaded_timeout" (invalid-name)
 W:4953, 4: Global variable 'whendo_loaded_fn' undefined at the module level (global-variable-undefined)
 W:4953, 4: Global variable 'whendo_loaded_active' undefined at the module level (global-variable-undefined)
 W:4953, 4: Global variable 'whendo_loaded_timeout' undefined at the module level (global-variable-undefined)
-E:4956,41: Undefined variable 'image_timeout' (undefined-variable)
 E:4964,51: Undefined variable 'time_calcEvent' (undefined-variable)
 E:4976,55: Undefined variable 'try_show_tv' (undefined-variable)
 E:4987, 4: Undefined variable 'next_fight_timer' (undefined-variable)
@@ -1467,7 +1466,7 @@ R:157, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3730 statements analysed.
+3731 statements analysed.
 
 External dependencies
 ---------------------
@@ -1485,13 +1484,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19824  |57.83 |NC       |NC         |
+|code      |19825  |57.83 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |12992  |37.90 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |701    |2.04  |NC       |NC         |
+|comment   |699    |2.04  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |765    |2.23  |NC       |NC         |
+|empty     |766    |2.23  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1521,7 +1520,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |346    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |879    |NC       |NC         |
+|error      |878    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1545,7 +1544,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |849         |
+|undefined-variable           |848         |
 +-----------------------------+------------+
 |unused-variable              |270         |
 +-----------------------------+------------+
@@ -1602,7 +1601,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -3.35/10
+Your code has been rated at -3.33/10
 
 Statistics by type
 ------------------
