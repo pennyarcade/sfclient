@@ -18608,6 +18608,68 @@ def show_popup(evt, *args):
     add(POPUP_INFO)
 
 
+def try_show_tv():
+    '''
+
+    var evt:* = evt;
+    if (tvTest){
+        tv_status_dest = 1;
+        tv_timer.start();
+        tvTest = False;
+    } else {
+        if (((((!((tv_function_name == ""))) and (!(disable_tv))))
+                and (!(prevent_tv)))){
+            if (!evt){
+                tv_poll_timer.start();
+                tv_poll_timer.delay = tv_poll_normal;
+            } else {
+                if (((!(on_stage(TAVERNE_BG)))
+                        and (!(on_stage(QUESTBAR_BG))))){
+                    tv_poll_timer.stop();
+                    return;
+                };
+            };
+            trc((("Calling TV function \"" + tv_function_name)
+                + "\" with parameter \"requesttv\"!"));
+            try {
+                tv_return_value = ExternalInterface.call(tv_function_name,
+                     "requesttv", (((((savegame[SG['PLAYER_ID']] + "_")
+                   + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"),
+                    savegame[SG_GENDER], 0);
+            } catch(e:Error) {
+                trc(("There was an error: " + e.message));
+                tv_poll_timer.delay = tv_poll_long;
+            };
+            trc(("Return value is " + str(tv_return_value)));
+            if (tv_return_value > 0){
+                tv_status_dest = 1;
+                tv_poll_timer.delay = tv_poll_long;
+            } else {
+                tv_status_dest = 0;
+                if (tv_return_value == -2){
+                    tv_poll_timer.stop();
+                } else {
+                    if (tv_return_value == -1){
+                        tv_poll_timer.delay = tv_poll_long;
+                    } else {
+                        tv_poll_timer.delay = tv_poll_normal;
+                    };
+                };
+            };
+            if (tv_status_dest != tv_status){
+                tv_timer.start();
+            };
+        } else {
+            if (((!(disable_tv)) and (!(prevent_tv)))){
+                trc("Notice: No TV function set!");
+            };
+        };
+    };
+
+    '''
+    pass
+    
+
 '''
 
 position_popup = function (evt:MouseEvent):
@@ -30070,63 +30132,6 @@ def RefreshTimeBar(OfferTime=0){
     with (_local3) {
         text = tmpText;
         x = int((TIMEBAR_LABEL_X - (text_width / 2)));
-    };
-}
-
-def try_show_tv(evt:Event=None){
-    var evt:* = evt;
-    if (tvTest){
-        tv_status_dest = 1;
-        tv_timer.start();
-        tvTest = False;
-    } else {
-        if (((((!((tv_function_name == ""))) and (!(disable_tv))))
-                and (!(prevent_tv)))){
-            if (!evt){
-                tv_poll_timer.start();
-                tv_poll_timer.delay = tv_poll_normal;
-            } else {
-                if (((!(on_stage(TAVERNE_BG)))
-                        and (!(on_stage(QUESTBAR_BG))))){
-                    tv_poll_timer.stop();
-                    return;
-                };
-            };
-            trc((("Calling TV function \"" + tv_function_name)
-                + "\" with parameter \"requesttv\"!"));
-            try {
-                tv_return_value = ExternalInterface.call(tv_function_name,
-                     "requesttv", (((((savegame[SG['PLAYER_ID']] + "_")
-                   + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"),
-                    savegame[SG_GENDER], 0);
-            } catch(e:Error) {
-                trc(("There was an error: " + e.message));
-                tv_poll_timer.delay = tv_poll_long;
-            };
-            trc(("Return value is " + str(tv_return_value)));
-            if (tv_return_value > 0){
-                tv_status_dest = 1;
-                tv_poll_timer.delay = tv_poll_long;
-            } else {
-                tv_status_dest = 0;
-                if (tv_return_value == -2){
-                    tv_poll_timer.stop();
-                } else {
-                    if (tv_return_value == -1){
-                        tv_poll_timer.delay = tv_poll_long;
-                    } else {
-                        tv_poll_timer.delay = tv_poll_normal;
-                    };
-                };
-            };
-            if (tv_status_dest != tv_status){
-                tv_timer.start();
-            };
-        } else {
-            if (((!(disable_tv)) and (!(prevent_tv)))){
-                trc("Notice: No TV function set!");
-            };
-        };
     };
 }
 

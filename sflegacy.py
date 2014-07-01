@@ -133,7 +133,6 @@ class Timer(object):
         '''
         pass
 
-
     def add_event_listener(self, *args):
         '''
             obsolete
