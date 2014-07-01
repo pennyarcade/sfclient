@@ -8,7 +8,7 @@
 
     Module for obsolete legacy stuff
 '''
-
+from sfglobals import *
 
 class TextField(object):
     '''
