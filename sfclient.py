@@ -4663,7 +4663,7 @@ def init_vars():
     # forward_text = ""
     # FrenzyMode = False
     # friend_link = ""
-    # gameFont = ""
+    # game_font = ""
     # game_time = new Date()
     # gilde = ""
     # GildeBuildingGold = list()
@@ -4831,14 +4831,14 @@ def init_vars():
     # server_id = 0
     # server_time = new Date()
     # session_id = ""
-    # set_font(new SFGameFont().fontName)
+    # set_font(new SFGameFont().font_name)
     # shop_url = ""
 
     # showActivityTime = False
     # showAlbumOffset = False
     # SignupJumpRunning = False
 
-    # sizeMod = 0
+    # size_mod = 0
     # skip_allowed = False
     # skip_guild_fights = 0
     # slm_count = 0
@@ -10388,10 +10388,10 @@ def show_character_screen(evt:Event=None, NoPrices=False):
             ){
             add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
             actor[SCR_CHAR_NAME].y = (CHAR_NAME_Y + 8);
-            AddFilter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
+            add_filter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
         } else {
             actor[SCR_CHAR_NAME].y = CHAR_NAME_Y;
-            AddFilter(LBL_SCR_CHAR_NAME, Filter_Shadow);
+            add_filter(LBL_SCR_CHAR_NAME, Filter_Shadow);
         };
         if (texts[(TXT_ACH_4 + 4)]){
             if (int(savegame[SG_EMAIL_VALID]) == 1){
@@ -10833,10 +10833,10 @@ def ShowPlayerScreen(
         ){
             add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
             actor[SCR_CHAR_NAME].y = (CHAR_NAME_Y + 8);
-            AddFilter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
+            add_filter(LBL_SCR_CHAR_NAME, Filter_HeavyShadow);
         } else {
             actor[SCR_CHAR_NAME].y = CHAR_NAME_Y;
-            AddFilter(LBL_SCR_CHAR_NAME, Filter_Shadow);
+            add_filter(LBL_SCR_CHAR_NAME, Filter_Shadow);
         };
         if (arrow_hall_mode){
             enable_popup(PREV_PLAYER, texts[TXT_EHRENHALLE]);
@@ -15453,9 +15453,9 @@ def get_alpha(actor_id):
 
 def fade_in_event(evt):
     '''
-        update alpha for fade in/out
+        update alpha for fade in
     '''
-    current_alpha = current_alpha + alpha_step
+    current_alpha += alpha_step
     if current_alpha >= alpha_max:
         current_alpha = alpha_max
         fade_timer.stop()
@@ -15477,689 +15477,607 @@ def fade_in(actor_id, timer_interval=20, alpha_step=0.05, alpha_max=1):
     set_alpha(actor_id, current_alpha)
 
 
-
-'''
-
-
-
-def fade_out(
-    actor_id, timer_interval=20, alpha_step=0.05,
-    alphaMin=0, HideThen=False
-){
-    var fade_timer:* = None;
-    var current_alpha:* = NaN;
-    var FadeOutEvent:* = None;
-    var actor_id:* = actor_id;
-    var timer_interval = timer_interval;
-    var alpha_step:Number = alpha_step;
-    var alphaMin = alphaMin;
-    var HideThen:Boolean = HideThen;
-    FadeOutEvent = function (evt:TimerEvent){
-        current_alpha = (current_alpha - alpha_step);
-        if (current_alpha <= alphaMin){
-            current_alpha = alphaMin;
-            fade_timer.stop();
-            fade_timer.remove_event_listener(TimerEvent.TIMER, FadeOutEvent);
-            if (HideThen){
-                hide(actor_id);
-            };
-        };
-        set_alpha(actor_id, current_alpha);
-    };
-    fade_timer = new Timer(timer_interval);
-    current_alpha = get_alpha(actor_id);
-    if (alpha_step <= 0){
-        return;
-    };
-    fade_timer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
-    fade_timer.start();
-    set_alpha(actor_id, current_alpha);
-}
-
-def AddFilter(actor_id, filter:Array):
-    actor[actor_id].filters = filter;
-}
-
-def set_font(fontName:String){
-    var fontName:* = fontName;
-    gameFont = fontName;
-    font_embedded = True;
-    if (
-        (((((fontName == "Verdana"))
-        or ((fontName == "Arial Narrow"))))
-        or ((fontName == "Geeza Pro")))
-    ){
-        font_embedded = False;
-        sizeMod = -6;
-    };
-    trc(("Font chosen: " + fontName));
-    var _local3 = FontFormat_ToiletAura;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 35);
-        color = CLR_BLACK;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorHalf;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_OFFLINE_HALF;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorOnlineHalf;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_ONLINE_HALF;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Error;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ERROR;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Default;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakes;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakesHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_HIGHLIGHT;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakesGrayed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_GRAYED;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighStakesHighLightGrayed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_HIGHLIGHT_GRAYED;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Book;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = 0;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_BookHint;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 18);
-        color = 136;
-        align = "center";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_BookLeft;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 16);
-        color = 0;
-        align = "left";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Bullshit;
-    with (_local3) {
-        font = fontName;
-        size = 14;
-        color = CLR_SFORANGE;
-        align = "left";
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_AttackLabel;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Speech;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Grayed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_GRAYED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GrayedHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_GRAYED_HL;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_ClassError;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ERROR;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = font_format_chat;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = font_format_chatWhisper;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_CHAT_WHISPER;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = font_format_chatError;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ERROR;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildBuilding;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildMoney;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_DefaultLeft;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Highlight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HighlightWhisper;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFHIGHLIGHT_WHISPER;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Heading;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 30);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_ScreenTitle;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 34);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Popup;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompare;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_OFFLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareSum;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareBetter;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_GREEN;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareWorse;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareBetterHL;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_GREEN_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PopupCompareWorseHL;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_SYSMSG_RED_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_EpicItemQuote;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_EPICITEMQUOTE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_ItemEnchantment;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ITEMENCHANTMENT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_LOGoutLink;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 22);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_LOGoutLinkHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 22);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HallListHeading;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HallListText;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildHallNoAttack;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_NOATTACK;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_HallListHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_AttribBonus;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_ATTRIBBONUS;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_AttribTemp;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SYSMSG_GREEN;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Attrib;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PayIcon;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 19);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHeading;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 26);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        bold = True;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListText;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SFORANGE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListTextSys;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListText;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_OFFLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextOnline;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackError;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_OFFLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorOnline;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_ERROR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackErrorOnlinePopup;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ATTACK_ERROR_ONLINE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackOk;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_ATTACK_OK;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_GuildListTextAttackOkPopup;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_ATTACK_OK;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLight;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SFHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLightSys;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSGHIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListTextSysRed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_RED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLightSysRed;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_RED_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListTextSysGreen;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_GREEN;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_PostListHighLightSysGreen;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_SYSMSG_GREEN_HIGHLIGHT;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_QuestBar;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_TimeBar;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 24);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_LifeBar;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 20);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_Damage;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 30);
-        color = CLR_WHITE;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_CriticalDamage;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 34);
-        color = CLR_RED;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-    _local3 = FontFormat_CatapultDamage;
-    with (_local3) {
-        font = fontName;
-        size = (sizeMod + 38);
-        color = CLR_ATTACK_ERROR_ONLINE_HALF;
-        align = text_dir;
-        leftMargin = 0;
-        kerning = True;
-    };
-}
+def fade_out_event(evt):
+    '''
+        update alpha for fade out
+    '''
+    current_alpha -= alpha_step
+    if current_alpha <= alpha_min:
+        current_alpha = alpha_min
+        fade_timer.stop()
+        fade_timer.remove_event_listener(TimerEvent.TIMER, fade_out_event)
+        if hide_then:
+            hide(actor_id)
+    set_alpha(actor_id, current_alpha)
 
 
+def fade_out(actor_id, timer_interval=20, alpha_step=0.05,
+             alpha_min=0, hide_then=False):
+    '''
+        perform fade out animation on actor
+    '''
+    fade_timer = Timer(timer_interval)
+    current_alpha = get_alpha(actor_id)
+    if alpha_step <= 0:
+        return
 
-'''
+    fade_timer.add_event_listener(TimerEvent.TIMER, fade_out_event)
+    fade_timer.start()
+    set_alpha(actor_id, current_alpha)
+
+
+def add_filter(actor_id, filter):
+    '''
+        add filter to actor
+    '''
+    actor[actor_id].filters = filter
+
+
+def set_font(font_name):
+    '''
+        set up fonts by name
+    '''
+    game_font = font_name
+    font_embedded = True
+    if font_name in ("Verdana", "Arial Narrow", "Geeza Pro"):
+        font_embedded = False
+        size_mod = -6
+
+    LOG.info("Font chosen: " + font_name)
+
+    with (FontFormat_ToiletAura):
+        font = font_name
+        size = size_mod + 35
+        color = CLR_BLACK
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackErrorHalf:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ATTACK_ERROR_OFFLINE_HALF
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackErrorOnlineHalf:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ATTACK_ERROR_ONLINE_HALF
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Error:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ERROR
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Default:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFORANGE
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HighStakes:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_RED
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HighStakesHighLight:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_RED_HIGHLIGHT
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HighStakesHighLight:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_RED_GRAYED
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HighStakesHighLightGrayed:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_RED_HIGHLIGHT_GRAYED
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Book:
+        font = font_name
+        size = size_mod + 20
+        color = 0
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_BookHint:
+        font = font_name
+        size = size_mod + 18
+        color = 136
+        align = "center"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_BookLeft:
+        font = font_name
+        size = size_mod + 16
+        color = 0
+        align = "left"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Bullshit:
+        font = font_name
+        size = 14
+        color = CLR_SFORANGE
+        align = "left"
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_AttackLabel:
+        font = font_name
+        size = size_mod + 19
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Speech:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_WHITE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Grayed:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_GRAYED
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GrayedHighLight:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_GRAYED_HL
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_ClassError:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_ERROR
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with font_format_chat:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with font_format_chatWhisper:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_CHAT_WHISPER
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with font_format_chatError:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_ERROR
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildBuilding:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildMoney:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_DefaultLeft:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Highlight:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFHIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HighlightWhisper:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFHIGHLIGHT_WHISPER
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Heading:
+        font = font_name
+        size = (size_mod + 30)
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_ScreenTitle:
+        font = font_name
+        size = size_mod + 34
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Popup:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PopupCompare:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_OFFLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PopupCompareSum:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_ONLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PopupCompareBetter:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_GREEN
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PopupCompareWorse:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_RED
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PopupCompareBetterHL:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_GREEN_HIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PopupCompareWorseHL:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_SYSMSG_RED_HIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_EpicItemQuote:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_EPICITEMQUOTE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_ItemEnchantment:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_ITEMENCHANTMENT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_LOGoutLink:
+        font = font_name
+        size = (size_mod + 22)
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_LOGoutLinkHighLight:
+        font = font_name
+        size = (size_mod + 22)
+        color = CLR_SFHIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HallListHeading:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HallListText:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildHallNoAttack:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_NOATTACK
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_HallListHighLight:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_SFHIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_AttribBonus:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_ATTRIBBONUS
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_AttribTemp:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_SYSMSG_GREEN
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Attrib:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PayIcon:
+        font = font_name
+        size = (size_mod + 19)
+        color = CLR_WHITE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListHeading:
+        font = font_name
+        size = (size_mod + 26)
+        color = CLR_SFORANGE
+        align = text_dir
+        bold = True
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListText:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SFORANGE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListTextSys:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SYSMSG
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListText:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_OFFLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextOnline:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ONLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackError:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ATTACK_ERROR_OFFLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackErrorOnline:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ATTACK_ERROR_ONLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackErrorOnlinePopup:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_ATTACK_ERROR_ONLINE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackOk:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_ATTACK_OK
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_GuildListTextAttackOkPopup:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_ATTACK_OK
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListHighLight:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SFHIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListHighLightSys:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SYSMSGHIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListTextSysRed:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SYSMSG_RED
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListHighLightSysRed:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SYSMSG_RED_HIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListTextSysGreen:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SYSMSG_GREEN
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_PostListHighLightSysGreen:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_SYSMSG_GREEN_HIGHLIGHT
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_QuestBar:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_WHITE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_TimeBar:
+        font = font_name
+        size = size_mod + 24
+        color = CLR_WHITE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_LifeBar:
+        font = font_name
+        size = size_mod + 20
+        color = CLR_WHITE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_Damage:
+        font = font_name
+        size = (size_mod + 30)
+        color = CLR_WHITE
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_CriticalDamage:
+        font = font_name
+        size = size_mod + 34
+        color = CLR_RED
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
+    with FontFormat_CatapultDamage:
+        font = font_name
+        size = size_mod + 38
+        color = CLR_ATTACK_ERROR_ONLINE_HALF
+        align = text_dir
+        leftMargin = 0
+        kerning = True
+
 
 # -----------------------------------------------------------------------------
 # unsorted stuff
@@ -18692,17 +18610,17 @@ def show_popup(evt, *args):
 '''
 
 position_popup = function (evt:MouseEvent):
-    var evt:* = evt;
-    var _local3 = actor[POPUP_INFO];
+    var evt:* = evt
+    var _local3 = actor[POPUP_INFO]
     with (_local3) {
-        x = (evt.stageX - int((popup_width / 2)));
-        y = ((evt.stageY - 20) - textY);
+        x = (evt.stageX - int((popup_width / 2)))
+        y = ((evt.stageY - 20) - textY)
         if (x < 0){
-            x = 0;
-        };
+            x = 0
+        }
         if (y < 0){
-            y = 0;
-        };
+            y = 0
+        }
         if (x > (RES_X - popup_width)){
             x = (RES_X - popup_width);
         };
@@ -18791,7 +18709,7 @@ var CenterTextField:* = function (obj:Object, aoffsx=0, aoffsy=0):
     with (_local5) {
         auto_size = TextFieldAutoSize.LEFT;
         embed_fonts = font_embedded;
-        default_text_format = new TextFormat(gameFont,
+        default_text_format = new TextFormat(game_font,
                                              (((specialFontSize == 0))
                                               ? default_text_format.size
                                               : specialFontSize),
@@ -18838,10 +18756,10 @@ def set_btn_text(actor_id, caption:String){
     if ((actor[i] is btn_classBack)){
         offsy = 50;
     };
-    if (gameFont == "Verdana"){
+    if (game_font == "Verdana"){
         offsy = (offsy - 6);
     };
-    if (gameFont == "Arial Narrow"){
+    if (game_font == "Arial Narrow"){
         specialFontSize = 16;
         offsy = (offsy - 4);
     };
@@ -24830,7 +24748,7 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_IF_LOGOUT,
                   texts[TXT_LOGOUT], 0, 0,
                   FontFormat_LOGoutLink);
-        AddFilter(LBL_IF_LOGOUT, Filter_Shadow);
+        add_filter(LBL_IF_LOGOUT, Filter_Shadow);
         MakePersistent(IF_LOGOUT, LBL_IF_LOGOUT);
         _local2 = actor[IF_LOGOUT];
         with (_local2) {
@@ -24847,7 +24765,7 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_IF_IMPRESSUM,
                   texts[TXT_IMPRESSUM_LINK], 0, 0,
                   FontFormat_LOGoutLink);
-        AddFilter(LBL_IF_IMPRESSUM, Filter_Shadow);
+        add_filter(LBL_IF_IMPRESSUM, Filter_Shadow);
         MakePersistent(IF_IMPRESSUM, LBL_IF_IMPRESSUM);
         _local2 = actor[IF_IMPRESSUM];
         with (_local2) {
@@ -24863,7 +24781,7 @@ def load_tracking_pixel(url=''):
                   ((shop_url)!="") ? FORUM_X_WITH_SHOP : FORUM_X, LOGOUT_Y);
         DefineLbl(LBL_IF_FORUM,
                   texts[TXT_FORUM_LINK], 0, 0, FontFormat_LOGoutLink);
-        AddFilter(LBL_IF_FORUM, Filter_Shadow);
+        add_filter(LBL_IF_FORUM, Filter_Shadow);
         MakePersistent(IF_FORUM, LBL_IF_FORUM);
         _local2 = actor[IF_FORUM];
         with (_local2) {
@@ -24878,7 +24796,7 @@ def load_tracking_pixel(url=''):
         };
         DefineCnt(IF_AGB, AGB_X, LOGOUT_Y);
         DefineLbl(LBL_IF_AGB, texts[TXT_AGB_LINK], 0, 0, FontFormat_LOGoutLink)
-        AddFilter(LBL_IF_AGB, Filter_Shadow);
+        add_filter(LBL_IF_AGB, Filter_Shadow);
         MakePersistent(IF_AGB, LBL_IF_AGB);
         _local2 = actor[IF_AGB];
         with (_local2) {
@@ -24893,7 +24811,7 @@ def load_tracking_pixel(url=''):
         DefineCnt(IF_DATENSCHUTZ, DATENSCHUTZ_X, LOGOUT_Y);
         DefineLbl(LBL_IF_DATENSCHUTZ,
                   texts[TXT_DATENSCHUTZ_LINK], 0, 0, FontFormat_LOGoutLink);
-        AddFilter(LBL_IF_DATENSCHUTZ, Filter_Shadow);
+        add_filter(LBL_IF_DATENSCHUTZ, Filter_Shadow);
         MakePersistent(IF_DATENSCHUTZ, LBL_IF_DATENSCHUTZ);
         _local2 = actor[IF_DATENSCHUTZ];
         with (_local2) {
@@ -24911,7 +24829,7 @@ def load_tracking_pixel(url=''):
                     : ANLEITUNG_X, LOGOUT_Y);
         DefineLbl(LBL_IF_ANLEITUNG,
                   texts[TXT_ANLEITUNG_LINK], 0, 0, FontFormat_LOGoutLink);
-        AddFilter(LBL_IF_ANLEITUNG, Filter_Shadow);
+        add_filter(LBL_IF_ANLEITUNG, Filter_Shadow);
         MakePersistent(IF_ANLEITUNG, LBL_IF_ANLEITUNG);
         _local2 = actor[IF_ANLEITUNG];
         with (_local2) {
@@ -24927,7 +24845,7 @@ def load_tracking_pixel(url=''):
         DefineCnt(IF_SHOP, SHOP_X, LOGOUT_Y);
         DefineLbl(LBL_IF_SHOP,
                   texts[TXT_SHOP_LINK], 0, 0, FontFormat_LOGoutLink);
-        AddFilter(LBL_IF_SHOP, Filter_Shadow);
+        add_filter(LBL_IF_SHOP, Filter_Shadow);
         MakePersistent(IF_SHOP, LBL_IF_SHOP);
         _local2 = actor[IF_SHOP];
         with (_local2) {
@@ -25076,7 +24994,7 @@ def load_tracking_pixel(url=''):
         actor[BLACK_SQUARE].alpha = 0.5;
         DefineLbl(LBL_WINDOW_TITLE, "", 0, (IF_WIN_Y + IF_WIN_WELCOME_Y),
                   FontFormat_Heading);
-        AddFilter(LBL_WINDOW_TITLE, Filter_Shadow);
+        add_filter(LBL_WINDOW_TITLE, Filter_Shadow);
         iPosi = 0;
         AIRRelMoveY = 0;
         AIRRelMoveYButton = 0;
@@ -25102,10 +25020,10 @@ def load_tracking_pixel(url=''):
                   (((IF_WIN_Y + IF_WIN_INPUTS_Y)
                    + (IF_WIN_INPUTS_DISTANCE_Y * iPosi)) + AIRRelMoveY),
                     FontFormat_Default);
-        AddFilter(LBL_NAME, Filter_Shadow);
-        AddFilter(LBL_LOGIN_PASSWORD, Filter_Shadow);
-        AddFilter(LBL_EMAIL, Filter_Shadow);
-        AddFilter(LBL_PASSWORD, Filter_Shadow);
+        add_filter(LBL_NAME, Filter_Shadow);
+        add_filter(LBL_LOGIN_PASSWORD, Filter_Shadow);
+        add_filter(LBL_EMAIL, Filter_Shadow);
+        add_filter(LBL_PASSWORD, Filter_Shadow);
         DefineFromClass(INP['NAME'], text_input1,
                         (actor[LBL_NAME].x + IF_WIN_INPUTS_FIELD_X),
                         (actor[LBL_NAME].y + IF_WIN_INPUTS_FIELD_Y), 2, "name")
@@ -25149,7 +25067,7 @@ def load_tracking_pixel(url=''):
                   (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_1_Y) + AIRRelMoveY));
         DefineLbl(LBL_FORGOT_PASSWORD, texts[TXT_FORGOT_PASSWORD], 0, 0,
                   FontFormat_Default);
-        AddFilter(LBL_FORGOT_PASSWORD, Filter_Shadow);
+        add_filter(LBL_FORGOT_PASSWORD, Filter_Shadow);
         DefineCnt(GOTO_LOGIN, 0,
                   ((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_2_Y) + AIRRelMoveYButton)
         DefineLbl(LBL_GOTO_LOGIN, texts[TXT_GOTO_LOGIN], 0, 0,
@@ -25158,8 +25076,8 @@ def load_tracking_pixel(url=''):
                   (IF_WIN_Y + IF_WIN_Y + IF_WIN_LNK_2_Y) + AIRRelMoveYButton2)
         DefineLbl(LBL_GOTO_SIGNUP, texts[TXT_GOTO_SIGNUP], 0, 0,
                   FontFormat_Default);
-        AddFilter(LBL_GOTO_LOGIN, Filter_Shadow);
-        AddFilter(LBL_GOTO_SIGNUP, Filter_Shadow);
+        add_filter(LBL_GOTO_LOGIN, Filter_Shadow);
+        add_filter(LBL_GOTO_SIGNUP, Filter_Shadow);
         MakePersistent(LBL_FORGOT_PASSWORD, LBL_GOTO_LOGIN, LBL_GOTO_SIGNUP);
         _local2 = actor[FORGOT_PASSWORD];
         with (_local2) {
@@ -25210,12 +25128,12 @@ def load_tracking_pixel(url=''):
                    ? texts[TXT_LOGIN_LEGAL_1].split("%link")[0] : ""),
                     (actor[CB_AGB_UNCHECKED].x + AGB_LBL_X),
                     (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
-        AddFilter(LBL_LOGIN_LEGAL_0, Filter_Shadow);
+        add_filter(LBL_LOGIN_LEGAL_0, Filter_Shadow);
         DefineCnt(AGB, ((actor[LBL_LOGIN_LEGAL_0].x + 6)
                   + actor[LBL_LOGIN_LEGAL_0].width),
                     (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
         DefineLbl(LBL_AGB, texts[TXT_AGB], 0, 0, FontFormat_Default);
-        AddFilter(LBL_AGB, Filter_Shadow);
+        add_filter(LBL_AGB, Filter_Shadow);
         MakePersistent(LBL_AGB);
         _local2 = actor[AGB];
         with (_local2) {
@@ -25231,14 +25149,14 @@ def load_tracking_pixel(url=''):
                    : texts[TXT_LOGIN_LEGAL_1]),
                     ((actor[AGB].x + 6) + actor[AGB].width),
                     (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
-        AddFilter(LBL_LOGIN_LEGAL_1, Filter_Shadow);
+        add_filter(LBL_LOGIN_LEGAL_1, Filter_Shadow);
         DefineCnt(DATENSCHUTZ,
                   ((actor[LBL_LOGIN_LEGAL_1].x + 6)
                    + actor[LBL_LOGIN_LEGAL_1].width),
                     (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
         DefineLbl(LBL_DATENSCHUTZ, texts[TXT_DATENSCHUTZ], 0, 0,
                   FontFormat_Default);
-        AddFilter(LBL_DATENSCHUTZ, Filter_Shadow);
+        add_filter(LBL_DATENSCHUTZ, Filter_Shadow);
         MakePersistent(LBL_DATENSCHUTZ);
         _local2 = actor[DATENSCHUTZ];
         with (_local2) {
@@ -25254,7 +25172,7 @@ def load_tracking_pixel(url=''):
                    : texts[TXT_LOGIN_LEGAL_2]),
                   ((actor[DATENSCHUTZ].x + 6) + actor[DATENSCHUTZ].width),
                   (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
-        AddFilter(LBL_LOGIN_LEGAL_2, Filter_Shadow);
+        add_filter(LBL_LOGIN_LEGAL_2, Filter_Shadow);
         textLinkMakeClickable(actor[AGB]);
         textLinkMakeClickable(actor[DATENSCHUTZ]);
         DefineFromClass(SHP_FUCK_BLACK_SQUARE, black_square, 310,
@@ -25275,7 +25193,7 @@ def load_tracking_pixel(url=''):
                                                   UncheckFuck);
         DefineLbl(LBL_FUCK, param_bullshit_text, 380,
                   ((IF_WIN_Y + IF_WIN_CB_Y) + 150), FontFormat_Bullshit);
-        AddFilter(LBL_FUCK, Filter_Shadow);
+        add_filter(LBL_FUCK, Filter_Shadow);
         _local2 = actor[LBL_FUCK];
         with (_local2) {
             width = 840;
@@ -25293,7 +25211,7 @@ def load_tracking_pixel(url=''):
                    ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X),
                    ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveY));
         DefineLbl(LBL['ERROR'], "", IF_ERROR_X, IF_ERROR_Y, FontFormat_Error);
-        AddFilter(LBL['ERROR'], Filter_Shadow);
+        add_filter(LBL['ERROR'], Filter_Shadow);
         define_bunch(WINDOW_LOGIN, BLACK_SQUARE, IF_WINDOW, LBL_WINDOW_TITLE,
                      IF_LOGIN, LBL_NAME, INP['NAME']);
         add_bunch(WINDOW_LOGIN, LBL_LOGIN_PASSWORD, INP['LOGIN_PASSWORD'],
@@ -25324,7 +25242,7 @@ def load_tracking_pixel(url=''):
         define_bunch(SCR_BUILDCHAR, SCR_BUILDCHAR_BACKGROUND, IF_MAIN);
         DefineLbl(LBL_SCREEN_TITLE, texts[TXT_CREATE_CHARACTER],
                   SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
-        AddFilter(LBL_SCREEN_TITLE, Filter_Shadow);
+        add_filter(LBL_SCREEN_TITLE, Filter_Shadow);
         actor[LBL_SCREEN_TITLE].x = (SCREEN_TITLE_X
                              - int((actor[LBL_SCREEN_TITLE].text_width / 2)));
         define_btn(RANDOM, texts[TXT_RANDOM], RandomizeCharImage,
@@ -25353,13 +25271,13 @@ def load_tracking_pixel(url=''):
             width = BUILDCHAR_LINES_X;
             wordWrap = True;
         };
-        AddFilter(LBL_CREATE_RACE, Filter_Shadow);
-        AddFilter(LBL_CREATE_RACE_DESC, Filter_Shadow);
-        AddFilter(LBL_CREATE_CLASS, Filter_Shadow);
-        AddFilter(LBL_CREATE_CLASS_DESC, Filter_Shadow);
+        add_filter(LBL_CREATE_RACE, Filter_Shadow);
+        add_filter(LBL_CREATE_RACE_DESC, Filter_Shadow);
+        add_filter(LBL_CREATE_CLASS, Filter_Shadow);
+        add_filter(LBL_CREATE_CLASS_DESC, Filter_Shadow);
         DefineLbl(LBL_CREATE_GOTO_LOGIN, texts[TXT_CREATE_GOTO_LOGIN], 0, 0,
                   FontFormat_Default);
-        AddFilter(LBL_CREATE_GOTO_LOGIN, Filter_Shadow);
+        add_filter(LBL_CREATE_GOTO_LOGIN, Filter_Shadow);
         MakePersistent(LBL_CREATE_GOTO_LOGIN);
         DefineCnt(CREATE_GOTO_LOGIN, 0, SCR_BUILDCHAR_LOGIN_Y);
         _local2 = actor[CREATE_GOTO_LOGIN];
@@ -25511,7 +25429,7 @@ def load_tracking_pixel(url=''):
                        ? texts[(TXT_MOUTH + i)]
                        : texts[((TXT_SPECIAL + i) - 7)]),
                         0, 0, FontFormat_Default);
-            AddFilter((LBL_MOUTH + i), Filter_Shadow);
+            add_filter((LBL_MOUTH + i), Filter_Shadow);
             i = (i + 1);
         };
         define_bunch(CHARIMG, CHARBACKGROUND, CHARMOUTH, CHAREARS, CHARBEARD,
@@ -25910,16 +25828,16 @@ def load_tracking_pixel(url=''):
                   HALLE_GOTO_SPIELERGILDEN_Y);
         DefineLbl(LBL_HALL_GOTO_SPIELER, texts[TXT_GOTO_SPIELER], 0, 0,
                   FontFormat_LOGoutLink);
-        AddFilter(LBL_HALL_GOTO_SPIELER, Filter_Shadow);
+        add_filter(LBL_HALL_GOTO_SPIELER, Filter_Shadow);
         DefineLbl(LBL_HALL_GOTO_GILDEN, texts[TXT_GOTO_GILDEN], 0, 0,
                   FontFormat_LOGoutLink);
-        AddFilter(LBL_HALL_GOTO_GILDEN, Filter_Shadow);
+        add_filter(LBL_HALL_GOTO_GILDEN, Filter_Shadow);
         DefineLbl(LBL_HALL_GOTO_SPIELER_HL, texts[TXT_GOTO_SPIELER], 0, 0,
                   FontFormat_LOGoutLinkHighLight);
-        AddFilter(LBL_HALL_GOTO_SPIELER_HL, Filter_Shadow);
+        add_filter(LBL_HALL_GOTO_SPIELER_HL, Filter_Shadow);
         DefineLbl(LBL_HALL_GOTO_GILDEN_HL, texts[TXT_GOTO_GILDEN], 0, 0,
                   FontFormat_LOGoutLinkHighLight);
-        AddFilter(LBL_HALL_GOTO_GILDEN_HL, Filter_Shadow);
+        add_filter(LBL_HALL_GOTO_GILDEN_HL, Filter_Shadow);
         MakePersistent(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN);
         MakePersistent(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN_HL);
         _local2 = actor[HALL_GOTO_SPIELER];
@@ -25965,11 +25883,11 @@ def load_tracking_pixel(url=''):
         actor[LBL_SCR_ARBEITEN_TEXT].wordWrap = True;
         actor[LBL_SCR_ARBEITEN_TEXT2].width = LBL_ARBEITEN_TEXT_X;
         actor[LBL_SCR_ARBEITEN_TEXT2].wordWrap = True;
-        AddFilter(LBL_SCR_ARBEITEN_TEXT, Filter_Shadow);
-        AddFilter(LBL_SCR_ARBEITEN_TEXT2, Filter_Shadow);
+        add_filter(LBL_SCR_ARBEITEN_TEXT, Filter_Shadow);
+        add_filter(LBL_SCR_ARBEITEN_TEXT2, Filter_Shadow);
         DefineLbl(LBL_SCR_ARBEITEN_TIME, "", 0,
                   (IF_WIN_Y + LBL_ARBEITEN_TIME_Y), FontFormat_Default);
-        AddFilter(LBL_SCR_ARBEITEN_TIME, Filter_Shadow);
+        add_filter(LBL_SCR_ARBEITEN_TIME, Filter_Shadow);
         DefineCnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X),
                   (IF_WIN_Y + ARBEITEN_BAR_Y));
         DefineCnt(SCR_ARBEITEN_FILL, (IF_WIN_X + ARBEITEN_FILL_X),
@@ -26007,7 +25925,7 @@ def load_tracking_pixel(url=''):
                   ((IF_WIN_X + IF_WIN_WELCOME_X) - (420 / 2)),
                   ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY),
                   FontFormat_Default);
-        AddFilter(LBL_INVITE_SUCCESS, Filter_Shadow);
+        add_filter(LBL_INVITE_SUCCESS, Filter_Shadow);
         _local2 = actor[LBL_INVITE_SUCCESS];
         with (_local2) {
             wordWrap = True;
@@ -26018,7 +25936,7 @@ def load_tracking_pixel(url=''):
                   ((IF_WIN_X + IF_WIN_WELCOME_X) - (420 / 2)),
                   ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY),
                   FontFormat_Default);
-        AddFilter(LBL_INVITE_TEXT, Filter_Shadow);
+        add_filter(LBL_INVITE_TEXT, Filter_Shadow);
         _local2 = actor[LBL_INVITE_TEXT];
         with (_local2) {
             wordWrap = True;
@@ -26037,7 +25955,7 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_INVITE_TEXT2, texts[TXT_INVITEEMAIL], 0,
                   ((actor[INP_CHAR_INVITE].y + 10) + AIRRelMoveY),
                   FontFormat_Default);
-        AddFilter(LBL_INVITE_TEXT2, Filter_Shadow);
+        add_filter(LBL_INVITE_TEXT2, Filter_Shadow);
         actor[LBL_INVITE_TEXT2].x = ((actor[INP_CHAR_INVITE].x
                                      - actor[LBL_INVITE_TEXT2].width) - 5);
         DefineFromClass(INP_CHAR_INVITE2, text_input1, 0,
@@ -26052,7 +25970,7 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_INVITE_TEXT3, texts[TXT_INVITESUBJECT], 0,
                   ((actor[INP_CHAR_INVITE2].y + 10) + AIRRelMoveY),
                   FontFormat_Default);
-        AddFilter(LBL_INVITE_TEXT3, Filter_Shadow);
+        add_filter(LBL_INVITE_TEXT3, Filter_Shadow);
         actor[LBL_INVITE_TEXT3].x = ((actor[INP_CHAR_INVITE2].x
                                      - actor[LBL_INVITE_TEXT3].width) - 5);
         define_btn(SCR_INVITE_OK, texts[TXT_OK], SendPlayerInvite,
@@ -26249,7 +26167,7 @@ def load_tracking_pixel(url=''):
                         (((GILDEEHRE_Y + GILDEEHRE_Y) + BLACK_CHARDESC_Y)
                          + GILDEEHRE_Y), 1, "text");
         CleanupField(INP_CHARDESC);
-        AddFilter(INP_CHARDESC, Filter_Shadow);
+        add_filter(INP_CHARDESC, Filter_Shadow);
         _local2 = actor[INP_CHARDESC];
         with (_local2) {
             mouse_enabled = True;
@@ -26258,18 +26176,18 @@ def load_tracking_pixel(url=''):
         };
         DefineLbl(LBL_CHAR_DELAY, "", 0, (100 + CHAR_DELAY_Y),
                   FontFormat_Default);
-        AddFilter(LBL_CHAR_DELAY, Filter_Shadow);
+        add_filter(LBL_CHAR_DELAY, Filter_Shadow);
         define_bunch(CHAR_RIGHTPANE, SCR_CHAR_BG_RIGHT, IF_OVL,
                      SCR_CHAR_KLASSE_1, SCR_CHAR_KLASSE_2, SCR_CHAR_KLASSE_3,
                      SCR_CHAR_GILDE, LBL_SCR_CHAR_EHRE, INP_CHARDESC);
-        AddFilter(LBL_SCR_CHAR_NAME, Filter_Shadow);
-        AddFilter(LBL_SCR_CHAR_GILDE, Filter_Shadow);
-        AddFilter(LBL_SCR_CHAR_EHRE, Filter_Shadow);
+        add_filter(LBL_SCR_CHAR_NAME, Filter_Shadow);
+        add_filter(LBL_SCR_CHAR_GILDE, Filter_Shadow);
+        add_filter(LBL_SCR_CHAR_EHRE, Filter_Shadow);
         DefineImg(SCR_CHAR_EXPBAR, "res/gfx/scr/char/experience.jpg", False,
                   EXPERIENCE_BAR_X, EXPERIENCE_BAR_Y);
         DefineLbl(LBL_SCR_CHAR_EXPLABEL, "", 0, (EXPERIENCE_BAR_Y + 2),
                   FontFormat_LifeBar);
-        AddFilter(LBL_SCR_CHAR_EXPLABEL, Filter_Shadow);
+        add_filter(LBL_SCR_CHAR_EXPLABEL, Filter_Shadow);
         DefineClickArea(CA_SCR_CHAR_EXPBAR, C_EMPTY, None, EXPERIENCE_BAR_X,
                         EXPERIENCE_BAR_Y, 254, 24);
         define_btn(CHAR_MESSAGE, texts[TXT_MESSAGE], PlayerSendMessage,
@@ -26302,7 +26220,7 @@ def load_tracking_pixel(url=''):
         };
         DefineLbl(LBL_CHAR_MOUNT_NAME, "", CHAR_MOUNT_X, CHAR_MOUNT_Y,
                   FontFormat_Default);
-        AddFilter(LBL_CHAR_MOUNT_NAME, Filter_Shadow);
+        add_filter(LBL_CHAR_MOUNT_NAME, Filter_Shadow);
         DefineLbl(LBL_CHAR_MOUNT_DESCR, "", CHAR_MOUNT_X,
                   (CHAR_MOUNT_Y + CHAR_MOUNT_LINE_Y), FontFormat_DefaultLeft);
         _local2 = actor[LBL_CHAR_MOUNT_DESCR];
@@ -26310,20 +26228,20 @@ def load_tracking_pixel(url=''):
             wordWrap = True;
             width = (CHAR_MOUNT_X - 5);
         };
-        AddFilter(LBL_CHAR_MOUNT_DESCR, Filter_Shadow);
+        add_filter(LBL_CHAR_MOUNT_DESCR, Filter_Shadow);
         DefineLbl(LBL_CHAR_MOUNT_RUNTIME, "", CHAR_MOUNT_X,
                   (CHAR_MOUNT_Y + (CHAR_MOUNT_LINE_Y * 5)), FontFormat_Default)
-        AddFilter(LBL_CHAR_MOUNT_RUNTIME, Filter_Shadow);
+        add_filter(LBL_CHAR_MOUNT_RUNTIME, Filter_Shadow);
         DefineLbl(LBL_CHAR_MOUNT_GAIN, "", CHAR_MOUNT_X,
                   (CHAR_MOUNT_Y + (CHAR_MOUNT_LINE_Y * 4)), FontFormat_Default)
-        AddFilter(LBL_CHAR_MOUNT_GAIN, Filter_Shadow);
+        add_filter(LBL_CHAR_MOUNT_GAIN, Filter_Shadow);
         DefineImg(CHAR_RUESTUNG, "res/gfx/scr/char/icon_schild.jpg", False,
                   ((280 + 500) + CHAR_RUESTUNG_X), (100 + CHAR_RUESTUNG_Y));
         DefineLbl(LBL_CHAR_RUESTUNG, "",
                   (((280 + 500) + CHAR_RUESTUNG_X) + CHAR_RUESTUNG_TEXT_X),
                   ((100 + CHAR_RUESTUNG_Y) + CHAR_RUESTUNG_TEXT_Y),
                   FontFormat_Default);
-        AddFilter(LBL_CHAR_RUESTUNG, Filter_Shadow);
+        add_filter(LBL_CHAR_RUESTUNG, Filter_Shadow);
         DefineImg(CHAR_ALBUM, "res/gfx/scr/char/icon_foliant.png", False,
                   ((280 + 500) + 350), (100 + 20));
         add_bunch(CHAR_RIGHTPANE, LBL_CHAR_MOUNT_NAME, LBL_CHAR_MOUNT_RUNTIME,
@@ -26581,7 +26499,7 @@ def load_tracking_pixel(url=''):
             enable_popup((TOWER_STEIGERN1 + i), texts[TXT_BOOST_COPYCAT]);
             DefineLbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0,
                       (EXPERIENCE_BAR_Y + 2), FontFormat_Default);
-            AddFilter((LBL_TOWER_BOOSTPRICELABEL + i),
+            add_filter((LBL_TOWER_BOOSTPRICELABEL + i),
                       Filter_Shadow);
             actor[(LBL_TOWER_BOOSTPRICELABEL + i)].alpha = 0;
             add_bunch(SCREEN_TOWER, (TOWER_PORTRAIT + i),
@@ -26605,7 +26523,7 @@ def load_tracking_pixel(url=''):
                      (LBL_TOWER_BOOSTPRICELABEL + 2), TOWER_BOOSTCOIN);
         DefineLbl(LBL_TOWER_EXPLABEL, "", (SCR_CHAR_CHARX + 3),
                   (EXPERIENCE_BAR_Y + 2), FontFormat_LifeBar);
-        AddFilter(LBL_TOWER_EXPLABEL, Filter_Shadow);
+        add_filter(LBL_TOWER_EXPLABEL, Filter_Shadow);
         add_bunch(SCREEN_TOWER, PREV_COPYCAT, NEXT_COPYCAT);
         add_bunch(SCREEN_TOWER, LBL_TOWER_EXPLABEL, TOWER_BOOSTCOIN,
                   SCR_CHAR_NAME);
@@ -26948,9 +26866,9 @@ def load_tracking_pixel(url=''):
                   SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
         actor[LBL_POST_TITLE_WRITE].x = (SCREEN_TITLE_X
                      - int((actor[LBL_POST_TITLE_WRITE].text_width / 2)));
-        AddFilter(LBL_POST_TITLE_INBOX, Filter_Shadow);
-        AddFilter(LBL_POST_TITLE_READ, Filter_Shadow);
-        AddFilter(LBL_POST_TITLE_WRITE, Filter_Shadow);
+        add_filter(LBL_POST_TITLE_INBOX, Filter_Shadow);
+        add_filter(LBL_POST_TITLE_READ, Filter_Shadow);
+        add_filter(LBL_POST_TITLE_WRITE, Filter_Shadow);
         DefineCnt(POST_LIST, POST_LIST_X, POST_LIST_Y);
         define_btn(POST_READ, texts[TXT_POST_READ], PostBtnHandler,
                    btn_classBasic, POST_BUTTONS_X, POST_BUTTONS_Y);
@@ -26991,7 +26909,7 @@ def load_tracking_pixel(url=''):
                   texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(chr(13)),
                    ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)),
                    (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
-        AddFilter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
+        add_filter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
         define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler,
                    btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
         define_btn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler,
@@ -27135,10 +27053,10 @@ def load_tracking_pixel(url=''):
                    POST_SENDBUTTON_Y);
         DefineLbl(LBL_POST_LIMIT, "", POST_SQUARE_X,
                   (POST_SQUARE_Y - POST_LIMIT_Y), FontFormat_Default);
-        AddFilter(LBL_POST_LIMIT, Filter_Shadow);
+        add_filter(LBL_POST_LIMIT, Filter_Shadow);
         DefineCnt(POST_GUILD, 0, (POST_ADDRESS_Y + 2));
         DefineLbl(LBL_POST_GUILD, texts[TXT_GILDEN], 0, 0, FontFormat_Default);
-        AddFilter(LBL_POST_GUILD, Filter_Shadow);
+        add_filter(LBL_POST_GUILD, Filter_Shadow);
         MakePersistent(LBL_POST_GUILD);
         _local2 = actor[POST_GUILD];
         with (_local2) {
@@ -27180,8 +27098,8 @@ def load_tracking_pixel(url=''):
                   (IF_WIN_X + ARENA_DELAY_X),
                   ((IF_WIN_Y + ARENA_DELAY_Y) + AIRRelMoveY),
                   FontFormat_Default);
-        AddFilter(LBL_ARENA_TEXT, Filter_Shadow);
-        AddFilter(LBL_ARENA_DELAY, Filter_Shadow);
+        add_filter(LBL_ARENA_TEXT, Filter_Shadow);
+        add_filter(LBL_ARENA_DELAY, Filter_Shadow);
         _local2 = actor[LBL_ARENA_TEXT];
         with (_local2) {
             wordWrap = True;
@@ -27360,7 +27278,7 @@ def load_tracking_pixel(url=''):
                   - (GILDE_GRUENDEN_TEXT_X / 2)),
                 ((IF_WIN_Y + GILDE_GRUENDEN_TEXT_Y) + AIRRelMoveY),
                 FontFormat_Default);
-        AddFilter(LBL_GILDE_GRUENDEN_TEXT, Filter_Shadow);
+        add_filter(LBL_GILDE_GRUENDEN_TEXT, Filter_Shadow);
         _local2 = actor[LBL_GILDE_GRUENDEN_TEXT];
         with (_local2) {
             wordWrap = True;
@@ -27437,13 +27355,13 @@ def load_tracking_pixel(url=''):
                       (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X),
                        ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                         + GILDE_GEBAEUDE_IMPROVE_Y));
-            AddFilter((LBL_GILDE_GEBAEUDE_NAME + i), Filter_Shadow);
-            AddFilter((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), Filter_Shadow);
-            AddFilter((LBL_GILDE_GEBAEUDE_WERT + i), Filter_Shadow);
-            AddFilter((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i), Filter_Shadow);
-            AddFilter((LBL_GILDE_GEBAEUDE_STUFE + i), Filter_Shadow);
-            AddFilter((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), Filter_Shadow);
-            AddFilter((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_NAME + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_WERT + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_STUFE + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), Filter_Shadow);
+            add_filter((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), Filter_Shadow);
             enable_popup((GILDE_GEBAEUDE + i),
                          texts[(TXT_GILDE_GEBAEUDE1_POPUP + i)]);
             enable_popup((LBL_GILDE_GEBAEUDE_NAME + i),
@@ -27545,7 +27463,7 @@ def load_tracking_pixel(url=''):
         DefineLbl(LBL_GILDE_CREST_ELEMENT, "Element",
                   (GILDE_GEBAEUDE_X + 120), (GILDE_GEBAEUDE_Y + 0xFF),
                   FontFormat_Default);
-        AddFilter(LBL_GILDE_CREST_ELEMENT, Filter_Shadow);
+        add_filter(LBL_GILDE_CREST_ELEMENT, Filter_Shadow);
         define_btn(GILDE_CREST_COLOR_PREV, "", GildeBtnHandler,
                    btn_classArrowLeft, (GILDE_GEBAEUDE_X + 10),
                    (GILDE_GEBAEUDE_Y + 295));
@@ -27592,10 +27510,10 @@ def load_tracking_pixel(url=''):
         add_bunch(GILDE_CREST, GILDE_CREST, GILDE_CREST_GOTO_GEBAEUDE);
         DefineLbl(LBL_GILDE_GOLD, "", 0, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)),
                   FontFormat_GuildMoney);
-        AddFilter(LBL_GILDE_GOLD, Filter_Shadow);
+        add_filter(LBL_GILDE_GOLD, Filter_Shadow);
         DefineLbl(LBL_GILDE_MUSH, "", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
                   FontFormat_GuildMoney);
-        AddFilter(LBL_GILDE_MUSH, Filter_Shadow);
+        add_filter(LBL_GILDE_MUSH, Filter_Shadow);
         DefineCnt(GILDE_GOLD, GILDE_GOLDMUSH_X,
                   (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
         DefineCnt(GILDE_MUSH, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + GILDE_MUSH_Y));
@@ -27619,11 +27537,11 @@ def load_tracking_pixel(url=''):
         enable_popup(GILDE_MUSH, texts[TXT_GILDE_MUSH]);
         DefineLbl(LBL_GILDE_GOLD2, "1", (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C3),
                   (GILDE_GOLD_Y + ((noMush) ? 15 : 0)), FontFormat_GuildMoney);
-        AddFilter(LBL_GILDE_GOLD2, Filter_Shadow);
+        add_filter(LBL_GILDE_GOLD2, Filter_Shadow);
         enable_popup(LBL_GILDE_GOLD2, texts[TXT_GILDE_GOLD]);
         DefineLbl(LBL_GILDE_MUSH2, "1", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
                   FontFormat_GuildMoney);
-        AddFilter(LBL_GILDE_MUSH2, Filter_Shadow);
+        add_filter(LBL_GILDE_MUSH2, Filter_Shadow);
         enable_popup(LBL_GILDE_MUSH2, texts[TXT_GILDE_MUSH]);
         actor[LBL_GILDE_MUSH2].x = ((actor[LBL_GILDE_GOLD2].x
                                     + actor[LBL_GILDE_GOLD2].text_width)
@@ -27653,7 +27571,7 @@ def load_tracking_pixel(url=''):
                      GILDE_SCHATZ);
         DefineCnt(GILDE_RANG, GILDE_RANG_X, GILDE_RANG_Y);
         DefineLbl(LBL_GILDE_RANG, "", 0, 0, FontFormat_Default);
-        AddFilter(LBL_GILDE_RANG, Filter_Shadow);
+        add_filter(LBL_GILDE_RANG, Filter_Shadow);
         _local2 = actor[GILDE_RANG];
         with (_local2) {
             addChild(actor[LBL_GILDE_RANG]);
@@ -27668,7 +27586,7 @@ def load_tracking_pixel(url=''):
         DefineFromClass(INP_GILDE_TEXT, SimpleTextAreaGuild, GILDE_TEXT_X,
                         GILDE_LIST_Y, 1, "text");
         CleanupField(INP_GILDE_TEXT);
-        AddFilter(INP_GILDE_TEXT, Filter_Shadow);
+        add_filter(INP_GILDE_TEXT, Filter_Shadow);
         DefineCnt(GILDE_LIST, GILDE_LIST_X, GILDE_LIST_Y);
         DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png",
                   False, 0, 0);
@@ -27765,8 +27683,8 @@ def load_tracking_pixel(url=''):
                   (GILDE_TOOLY + GILDE_DEFENSELABEL_Y));
         DefineLbl(LBL_GILDE_ATTACK, "", 0, 0, FontFormat_AttackLabel);
         DefineLbl(LBL_GILDE_DEFENCE, "", 0, 0, FontFormat_AttackLabel);
-        AddFilter(LBL_GILDE_ATTACK, Filter_Shadow);
-        AddFilter(LBL_GILDE_DEFENCE, Filter_Shadow);
+        add_filter(LBL_GILDE_ATTACK, Filter_Shadow);
+        add_filter(LBL_GILDE_DEFENCE, Filter_Shadow);
         MakePersistent(LBL_GILDE_ATTACK, LBL_GILDE_DEFENCE);
         _local2 = actor[GILDE_ATTACK];
         with (_local2) {
@@ -27811,11 +27729,11 @@ def load_tracking_pixel(url=''):
                   GILDE_SCROLL_DOWN, GILDE_RANG, GILDE_ATTACK, GILDE_DEFENCE);
         DefineLbl(LBL['GILDE']['CHAT']_CAPTION, texts[TXT_CHAT_CAPTION],
                   GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
-        AddFilter(LBL['GILDE']['CHAT']_CAPTION, Filter_Shadow);
+        add_filter(LBL['GILDE']['CHAT']_CAPTION, Filter_Shadow);
         hide(LBL['GILDE']['CHAT']_CAPTION);
         DefineCnt(GILDE_LINK, 0, GILDE_RANG_Y);
         DefineLbl(LBL_GILDE_LINK, texts[TXT_FORUM_LINK], 0, 0);
-        AddFilter(LBL_GILDE_LINK, Filter_HeavyShadow);
+        add_filter(LBL_GILDE_LINK, Filter_HeavyShadow);
         MakePersistent(LBL_GILDE_LINK);
         _local2 = actor[GILDE_LINK];
         with (_local2) {
@@ -27840,7 +27758,7 @@ def load_tracking_pixel(url=''):
             actor[(LBL['GILDE']['CHAT'] + i)].visible = (i >= 35);
             actor[(LBL['GILDE']['CHAT'] + i)].add_event_listener(
                                              MouseEvent.CLICK, clickChatLine);
-            AddFilter((LBL['GILDE']['CHAT'] + i), Filter_Shadow);
+            add_filter((LBL['GILDE']['CHAT'] + i), Filter_Shadow);
             add_bunch(SCREEN_GILDEN, (LBL['GILDE']['CHAT'] + i));
             add_bunch(GILDE_CHAT, (LBL['GILDE']['CHAT'] + i));
             i = (i + 1);
@@ -27848,7 +27766,7 @@ def load_tracking_pixel(url=''):
         DefineFromClass(INP_GILDE_CHAT, ChatInputField, GILDE_CHAT_X,
                         GILDE_CHAT_FIELD_Y, 1, "chat");
         actor[INP_GILDE_CHAT].getChildAt(0).text = "";
-        AddFilter(INP_GILDE_CHAT, Filter_Shadow);
+        add_filter(INP_GILDE_CHAT, Filter_Shadow);
         actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_DOWN,
                                                  SendChatMsg);
         actor[INP_GILDE_CHAT].add_event_listener(KeyboardEvent.KEY_UP,
@@ -28067,13 +27985,13 @@ def load_tracking_pixel(url=''):
                   (100 + HUTMANN_TEXT_Y), FontFormat_Default);
         actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X -
                                      (actor[LBL_HUTMANN_TEXT].text_width / 2));
-        AddFilter(LBL_HUTMANN_TEXT, Filter_Shadow);
+        add_filter(LBL_HUTMANN_TEXT, Filter_Shadow);
         DefineLbl(LBL_HUTMANN_GOLDBET, "", 0, HUTMANN_GOLD_Y,
                   FontFormat_GuildMoney);
-        AddFilter(LBL_HUTMANN_GOLDBET, Filter_Shadow);
+        add_filter(LBL_HUTMANN_GOLDBET, Filter_Shadow);
         DefineLbl(LBL_HUTMANN_MUSHBET, "", 0,
                   (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
-        AddFilter(LBL_HUTMANN_MUSHBET, Filter_Shadow);
+        add_filter(LBL_HUTMANN_MUSHBET, Filter_Shadow);
         DefineCnt(HUTMANN_GOLDBET, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
         define_btn(HUTMANN_GOLDBET, "", HutBtnHandler, btn_classPlus,
@@ -28103,11 +28021,11 @@ def load_tracking_pixel(url=''):
         enable_popup(HUTMANN_MUSHBET, texts[TXT_HUTMANN_MUSHBET]);
         DefineLbl(LBL_HUTMANN_GOLDBET2, "1", 0, HUTMANN_GOLD_Y,
                   FontFormat_GuildMoney);
-        AddFilter(LBL_HUTMANN_GOLDBET2, Filter_Shadow);
+        add_filter(LBL_HUTMANN_GOLDBET2, Filter_Shadow);
         enable_popup(LBL_HUTMANN_GOLDBET2, texts[TXT_HUTMANN_GOLDBET]);
         DefineLbl(LBL_HUTMANN_MUSHBET2, "1", 0,
                   (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
-        AddFilter(LBL_HUTMANN_MUSHBET2, Filter_Shadow);
+        add_filter(LBL_HUTMANN_MUSHBET2, Filter_Shadow);
         enable_popup(LBL_HUTMANN_MUSHBET2, texts[TXT_HUTMANN_MUSHBET]);
         DefineCnt(HUTMANN_GOLDBET2, 0, HUTMANN_GOLD_Y);
         DefineCnt(HUTMANN_MUSHBET2, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
@@ -28119,7 +28037,7 @@ def load_tracking_pixel(url=''):
                   texts[TXT_HUTMANN_INSTR]
                   .split("#").join(((text_dir)=="right") ? "" : chr(13)),
                   HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
-        AddFilter(LBL_HUTMANN_INSTR, Filter_Shadow);
+        add_filter(LBL_HUTMANN_INSTR, Filter_Shadow);
         define_bunch(SCREEN_HUTMANN, HUTMANN_BG, IF_OVL, IF_EXIT,
                      HUTFACE_HOVER, HUTFACE_WIN, HUTFACE_LOSE1, HUTFACE_LOSE2,
                      HUTFACE_LOSE3, HUTFACE_IDLE);
@@ -28219,7 +28137,7 @@ def load_tracking_pixel(url=''):
                   (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
         DefineCnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
         DefineLbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar)
-        AddFilter(LBL_TIMEBAR_TEXT, Filter_Shadow);
+        add_filter(LBL_TIMEBAR_TEXT, Filter_Shadow);
         enable_popup(TIMEBAR_BG, texts[TXT_TIMEBAR]);
         enable_popup(TIMEBAR_FILL, texts[TXT_TIMEBAR]);
         enable_popup(TIMEBAR_FILL, texts[TXT_TIMEBAR]);
@@ -28480,8 +28398,8 @@ FontFormat_Default);
                   FontFormat_ScreenTitle);
         DefineLbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5),
                   FontFormat_ScreenTitle);
-        AddFilter(LBL_FIGHT_PLAYERGUILD, Filter_Shadow);
-        AddFilter(LBL_FIGHT_OPPGUILD, Filter_Shadow);
+        add_filter(LBL_FIGHT_PLAYERGUILD, Filter_Shadow);
+        add_filter(LBL_FIGHT_OPPGUILD, Filter_Shadow);
         define_bunch(OPPIMG);
         define_bunch(OPPIMG2);
         i = 0;
@@ -28535,9 +28453,9 @@ FontFormat_Default);
         };
         DefineLbl(LBL_NAMERANK_CHAR, "", (FIGHT_CHARX + 310), OPPY,
                   FontFormat_Default);
-        AddFilter(LBL_NAMERANK_CHAR, Filter_Shadow);
+        add_filter(LBL_NAMERANK_CHAR, Filter_Shadow);
         DefineLbl(LBL_NAMERANK_OPP, "", 0, OPPY, FontFormat_Default);
-        AddFilter(LBL_NAMERANK_OPP, Filter_Shadow);
+        add_filter(LBL_NAMERANK_OPP, Filter_Shadow);
         DefineImg(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", False,
                   FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
         DefineImg(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png",
@@ -28583,7 +28501,7 @@ FontFormat_Default);
         DefineImg(WEAPON_FIRE2, "res/gfx/itm/kampf_feuer2.png", False, 0, 0);
         DefineImg(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", False, 0, 0);
         DefineLbl(LBL_DAMAGE_INDICATOR, "", 0, 0, FontFormat_Damage);
-        AddFilter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
+        add_filter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
         define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight,
                    btn_classBasic, 0, 0);
         define_btn(FIGHT_OK, texts[TXT_OK], InterfaceBtnHandler,
@@ -28614,7 +28532,7 @@ FontFormat_Default);
         };
         DefineLbl(LBL_FIGHT_SUMMARY, "", 0, FIGHT_SUMMARY_Y,
                   FontFormat_Default);
-        AddFilter(LBL_FIGHT_SUMMARY, Filter_Shadow);
+        add_filter(LBL_FIGHT_SUMMARY, Filter_Shadow);
         DefineImg(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg",
                   False, 280, 100);
         DefineImg(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", False,
@@ -28637,16 +28555,16 @@ FontFormat_Default);
         DefineCnt(FIGHT_REWARDMUSH, FIGHT_REWARDGOLD_X, FIGHT_REWARDMUSH_Y);
         DefineLbl(LBL_FIGHT_REWARDGOLD, "", 0, FIGHT_REWARDGOLD_Y,
                   FontFormat_Default);
-        AddFilter(LBL_FIGHT_REWARDGOLD, Filter_Shadow);
+        add_filter(LBL_FIGHT_REWARDGOLD, Filter_Shadow);
         DefineLbl(LBL_FIGHT_REWARDSILVER, "", 0, FIGHT_REWARDGOLD_Y,
                   FontFormat_Default);
-        AddFilter(LBL_FIGHT_REWARDSILVER, Filter_Shadow);
+        add_filter(LBL_FIGHT_REWARDSILVER, Filter_Shadow);
         DefineLbl(LBL_FIGHT_REWARDMUSH, "", 0, FIGHT_REWARDMUSH_Y,
                   FontFormat_Default);
-        AddFilter(LBL_FIGHT_REWARDMUSH, Filter_Shadow);
+        add_filter(LBL_FIGHT_REWARDMUSH, Filter_Shadow);
         DefineLbl(LBL_FIGHT_REWARDEXP, "", FIGHT_REWARDEXP_X,
                   FIGHT_REWARDGOLD_Y, FontFormat_Default);
-        AddFilter(LBL_FIGHT_REWARDEXP, Filter_Shadow);
+        add_filter(LBL_FIGHT_REWARDEXP, Filter_Shadow);
         add_bunch(SCREEN_FIGHT, FIGHT_BOX1, FIGHT_BOX2, FIGHT_BOX3);
         define_bunch(FIGHT_REWARDS, FIGHT_SLOT, FIGHT_REWARDGOLD,
                      LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER,
@@ -28660,8 +28578,8 @@ FontFormat_Default);
                           - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
         DefineLbl(LBL_HERO_OF_THE_DAY, "", 0, 160, FontFormat_Default);
         actor[LBL_HERO_OF_THE_DAY].default_text_format.align = "center";
-        AddFilter(LBL_HERO_OF_THE_DAY_TITLE, Filter_Shadow);
-        AddFilter(LBL_HERO_OF_THE_DAY, Filter_Shadow);
+        add_filter(LBL_HERO_OF_THE_DAY_TITLE, Filter_Shadow);
+        add_filter(LBL_HERO_OF_THE_DAY, Filter_Shadow);
         define_bunch(HERO_OF_THE_DAY, LBL_HERO_OF_THE_DAY_TITLE,
                      LBL_HERO_OF_THE_DAY);
         i = 0;
@@ -28683,10 +28601,10 @@ FontFormat_Default);
                       FIGHT_CHAR_PROP_COLUMN_4_X,
                       (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
                       FontFormat_Attrib);
-            AddFilter((LBL_FIGHT_CHAR_STAERKE_CAPTION + i), Filter_Shadow);
-            AddFilter((LBL_FIGHT_CHAR_STAERKE + i), Filter_Shadow);
-            AddFilter((LBL_FIGHT_OPP_STAERKE_CAPTION + i), Filter_Shadow);
-            AddFilter((LBL_FIGHT_OPP_STAERKE + i), Filter_Shadow);
+            add_filter((LBL_FIGHT_CHAR_STAERKE_CAPTION + i), Filter_Shadow);
+            add_filter((LBL_FIGHT_CHAR_STAERKE + i), Filter_Shadow);
+            add_filter((LBL_FIGHT_OPP_STAERKE_CAPTION + i), Filter_Shadow);
+            add_filter((LBL_FIGHT_OPP_STAERKE + i), Filter_Shadow);
             add_bunch(SCREEN_FIGHT, (LBL_FIGHT_CHAR_STAERKE + i),
                       (LBL_FIGHT_CHAR_STAERKE_CAPTION + i),
                       (LBL_FIGHT_OPP_STAERKE + i),
@@ -28717,11 +28635,11 @@ FontFormat_Default);
         };
         DefineLbl(LBL_OPTION_TITLE, texts[TXT_OPTION_TITLE], 0,
                   (OPTION_Y + OPTION_Y0), FontFormat_ScreenTitle);
-        AddFilter(LBL_OPTION_TITLE, Filter_Shadow);
+        add_filter(LBL_OPTION_TITLE, Filter_Shadow);
         DefineLbl(LBL_OPTION_IMAGE, texts[TXT_CHARIMG],
                   (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y1),
                   FontFormat_Heading);
-        AddFilter(LBL_OPTION_IMAGE, Filter_Shadow);
+        add_filter(LBL_OPTION_IMAGE, Filter_Shadow);
         DefineImg(OPTION_IMAGEBORDER,
                   "res/gfx/scr/option/character_border_small.png",
                   False, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
@@ -28731,7 +28649,7 @@ FontFormat_Default);
         DefineLbl(LBL_OPTION_CHANGE, texts[TXT_CHANGE],
                   (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y1),
                   FontFormat_Heading);
-        AddFilter(LBL_OPTION_CHANGE, Filter_Shadow);
+        add_filter(LBL_OPTION_CHANGE, Filter_Shadow);
         define_btn(OPTION_CHANGE_NAME, texts[TXT_CHANGE_NAME],
                    OptionBtnHandler, btn_classBasic,
                    (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y2));
@@ -28758,14 +28676,14 @@ FontFormat_Default);
         actor[CB_LM_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckLM);
         DefineLbl(LBL_LM, texts[TXT_LM], (LM_X + LM_X), (LM_Y + LM_Y),
                   FontFormat_Default);
-        AddFilter(LBL_LM, Filter_Shadow);
+        add_filter(LBL_LM, Filter_Shadow);
         DefineFromClass(CB_CS_UNCHECKED, cb_unchecked, LM_X, (LM_Y - 50));
         actor[CB_CS_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckCS);
         DefineFromClass(CB_CS_CHECKED, cb_checked, LM_X, (LM_Y - 50));
         actor[CB_CS_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckCS);
         DefineLbl(LBL_CS, ((texts[TXT_CS]) ? texts[TXT_CS] : "Chat Sound"),
                   (LM_X + LM_X), ((LM_Y + LM_Y) - 50), FontFormat_Default);
-        AddFilter(LBL_CS, Filter_Shadow);
+        add_filter(LBL_CS, Filter_Shadow);
         DefineFromClass(CB_COMPARE_UNCHECKED, cb_unchecked, (LM_X + 250),
                         (LM_Y - 50));
         actor[CB_COMPARE_UNCHECKED].add_event_listener(MouseEvent.CLICK,
@@ -28776,17 +28694,17 @@ FontFormat_Default);
                                                      UncheckCompare);
         DefineLbl(LBL_COMPARE, texts[TXT_COMPARE], ((LM_X + LM_X) + 250),
                   ((LM_Y + LM_Y) - 50), FontFormat_Default);
-        AddFilter(LBL_COMPARE, Filter_Shadow);
+        add_filter(LBL_COMPARE, Filter_Shadow);
         DefineFromClass(CB_TV_UNCHECKED, cb_unchecked, (LM_X + 250), LM_Y);
         actor[CB_TV_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckTV);
         DefineFromClass(CB_TV_CHECKED, cb_checked, (LM_X + 250), LM_Y);
         actor[CB_TV_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckTV);
         DefineLbl(LBL_TV_CHECKBOX, texts[TXT_TV_DISABLE],
                   ((LM_X + LM_X) + 250), (LM_Y + LM_Y), FontFormat_Default);
-        AddFilter(LBL_TV_CHECKBOX, Filter_Shadow);
+        add_filter(LBL_TV_CHECKBOX, Filter_Shadow);
         DefineLbl(LBL_OPTION_DOCHANGE, "", (OPTION_X + OPTION_DOCHANGE_X),
                   (OPTION_Y + OPTION_Y1), FontFormat_Heading);
-        AddFilter(LBL_OPTION_DOCHANGE, Filter_Shadow);
+        add_filter(LBL_OPTION_DOCHANGE, Filter_Shadow);
         DefineLbl(LBL_OPTION_FIELD1, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
                   ((OPTION_Y + OPTION_Y2) + OPTION_TEXT_Y),
                   FontFormat_DefaultLeft);
@@ -28799,9 +28717,9 @@ FontFormat_Default);
                   ((OPTION_Y + OPTION_Y3) + OPTION_TEXT_Y), FontFormat_Default)
         DefineLbl(LBL_OPTION_FIELD3, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
                   ((OPTION_Y + OPTION_Y4) + OPTION_TEXT_Y), FontFormat_Default)
-        AddFilter(LBL_OPTION_FIELD1, Filter_Shadow);
-        AddFilter(LBL_OPTION_FIELD2, Filter_Shadow);
-        AddFilter(LBL_OPTION_FIELD3, Filter_Shadow);
+        add_filter(LBL_OPTION_FIELD1, Filter_Shadow);
+        add_filter(LBL_OPTION_FIELD2, Filter_Shadow);
+        add_filter(LBL_OPTION_FIELD3, Filter_Shadow);
         DefineFromClass(INP_OPTION_FIELD1, text_input1,
                         (OPTION_X + OPTION_DOCHANGE_FIELD_X),
                         (OPTION_Y + OPTION_Y2), 2, "name");
@@ -28842,7 +28760,7 @@ FontFormat_Default);
                    (OPTION_Y + OPTION_Y5));
         DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6),
                   FontFormat_Default);
-        AddFilter(LBL_OPTION_VOLUME, Filter_Shadow);
+        add_filter(LBL_OPTION_VOLUME, Filter_Shadow);
         DefineSlider(SLDR_OPTION_VOLUME, 11,
                      ((OPTION_X + OPTION_VOLUME_X) + 250),
                      (OPTION_Y + OPTION_Y7), VolumeChange);
@@ -28858,7 +28776,7 @@ FontFormat_Default);
                     ((OPTION_Y + OPTION_VER_Y) + 110), FontFormat_Default);
         actor[LBL_OPTION_VER].x = (((OPTION_X + OPTION_VER_X) + 60)
                                    - actor[LBL_OPTION_VER].text_width);
-        AddFilter(LBL_OPTION_VER, Filter_Shadow);
+        add_filter(LBL_OPTION_VER, Filter_Shadow);
         define_bunch(SCREEN_OPTION, SHP_OPTION_BLACK, OPTION_IMAGEBORDER,
                      LBL_OPTION_TITLE, LBL_OPTION_IMAGE, OPTION_CHANGEIMG,
                      LBL_OPTION_CHANGE, OPTION_RESEND);
@@ -28883,7 +28801,7 @@ FontFormat_Default);
                         ((lang_code)==param_languages[i]) ? 0.9 : 0.6,
                         ((lang_code)==param_languages[i]) ? 0.9 : 0.6);
             if (lang_code == param_languages[i]){
-                AddFilter((OPTION_FLAG + i), Filter_Glow);
+                add_filter((OPTION_FLAG + i), Filter_Glow);
             };
             actor[(OPTION_FLAG + i)].add_event_listener(MouseEvent.CLICK,
                                                         ChooseLanguageIcon);
@@ -28894,7 +28812,7 @@ FontFormat_Default);
         optionMenuSelect = 0;
         DefineLbl(LBL_HLMAINQUESTS_TITLE, texts[TXT_HL_MAINQUESTS_TITLE], 0,
                   MQS_TITLE_Y, FontFormat_ScreenTitle);
-        AddFilter(LBL_HLMAINQUESTS_TITLE, Filter_Shadow);
+        add_filter(LBL_HLMAINQUESTS_TITLE, Filter_Shadow);
         DefineImg(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png",
                   False, 0, 0);
         DefineImg(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png",
@@ -28957,7 +28875,7 @@ FontFormat_Default);
         };
         DefineLbl(LBL_MAINQUESTS_TITLE, texts[(TXT_DUNGEON_INFO + 4)], 0,
                   MQS_TITLE_Y, FontFormat_ScreenTitle);
-        AddFilter(LBL_MAINQUESTS_TITLE, Filter_Shadow);
+        add_filter(LBL_MAINQUESTS_TITLE, Filter_Shadow);
         define_snd(SND_MAINQUESTS_UNLOCK, "res/sfx/unlock.mp3", False);
         DefineImg(MQS_DISABLED,
                   "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
@@ -29006,7 +28924,7 @@ FontFormat_Default);
                    : ""), 1000, 600, FontFormat_Default);
         actor[LBL_DUNGEON_CONGRATS].wordWrap = True;
         actor[LBL_DUNGEON_CONGRATS].default_text_format.align = "right";
-        AddFilter(LBL_DUNGEON_CONGRATS, Filter_Shadow);
+        add_filter(LBL_DUNGEON_CONGRATS, Filter_Shadow);
         define_bunch(DUNGEON_CONGRATS, DUNGEON_CONGRATS, LBL_DUNGEON_CONGRATS,
                      IF_OVL, IF_EXIT);
         DefineFromClass(SHP_MAINQUEST, black_square, MQ_SQUARE_X, MQ_SQUARE_Y);
@@ -29018,7 +28936,7 @@ FontFormat_Default);
         };
         DefineLbl(LBL_MAINQUEST_TITLE, "", 0, (MQ_SQUARE_Y + MQ_TITLE_Y),
                   FontFormat_ScreenTitle);
-        AddFilter(LBL_MAINQUEST_TITLE, Filter_Shadow);
+        add_filter(LBL_MAINQUEST_TITLE, Filter_Shadow);
         DefineLbl(LBL_MAINQUEST_TEXT, "", (MQ_SQUARE_X + MQ_TEXT_X),
                   (MQ_SQUARE_Y + MQ_TEXT_Y), FontFormat_DefaultLeft);
         _local2 = actor[LBL_MAINQUEST_TEXT];
@@ -29026,7 +28944,7 @@ FontFormat_Default);
             width = (MQ_SQUARE_X - (MQ_TEXT_X * 2));
             wordWrap = True;
         };
-        AddFilter(LBL_MAINQUEST_TEXT, Filter_Shadow);
+        add_filter(LBL_MAINQUEST_TEXT, Filter_Shadow);
         define_btn(MAINQUEST_START, "", RequestMainQuest, btn_classBasic, 0,
                    ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_BUTTON_Y));
         _local2 = actor[MAINQUEST_START];
@@ -29043,7 +28961,7 @@ FontFormat_Default);
                      - actor[MAINQUEST_START].width);
             wordWrap = True;
         };
-        AddFilter(LBL_MAINQUEST_MUSHHINT, Filter_Shadow);
+        add_filter(LBL_MAINQUEST_MUSHHINT, Filter_Shadow);
         DefineCnt(MAINQUEST_ENEMY, MAINQUEST_ENEMY_X, MAINQUEST_ENEMY_Y);
         DefineCnt(MAINQUEST_ENEMY_BORDER, (MAINQUEST_ENEMY_X - MQ_BORDER_X),
                   (MAINQUEST_ENEMY_Y - MQ_BORDER_Y));
@@ -29059,7 +28977,7 @@ FontFormat_Default);
             wordWrap = True;
             width = (DISCONNECTED_X - 20);
         };
-        AddFilter(LBL_DISCONNECTED, Filter_Shadow);
+        add_filter(LBL_DISCONNECTED, Filter_Shadow);
         DefineFromClass(SHP_DISCONNECTED, black_square_neutral,
                         (DISCONNECTED_X - (DISCONNECTED_X / 2)),
                         DISCONNECTED_Y);
@@ -29075,10 +28993,10 @@ FontFormat_Default);
                   EMAIL_NAG_Y, FontFormat_DefaultLeft);
         actor[LBL_EMAIL_NAG].width = EMAIL_NAG_TEXT_X;
         actor[LBL_EMAIL_NAG].wordWrap = True;
-        AddFilter(LBL_EMAIL_NAG, Filter_Shadow);
+        add_filter(LBL_EMAIL_NAG, Filter_Shadow);
         DefineLbl(LBL_EMAIL_RESEND, texts[TXT_EMAIL_RESEND], 0, 0,
                   FontFormat_Default);
-        AddFilter(LBL_EMAIL_RESEND, Filter_Shadow);
+        add_filter(LBL_EMAIL_RESEND, Filter_Shadow);
         MakePersistent(LBL_EMAIL_RESEND);
         DefineCnt(EMAIL_RESEND, EMAIL_NAG_X, (EMAIL_NAG_Y + EMAIL_RESEND_Y));
         _local2 = actor[EMAIL_RESEND];
@@ -29253,8 +29171,8 @@ def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0,
         var _local3 = field;
         with (_local3) {
             embed_fonts = font_embedded;
-            default_text_format = new TextFormat(gameFont,
-                     (default_text_format.size + sizeMod),
+            default_text_format = new TextFormat(game_font,
+                     (default_text_format.size + size_mod),
                      default_text_format.color);
         };
     };
