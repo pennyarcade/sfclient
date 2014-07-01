@@ -32152,7 +32152,8 @@ def display_inventory(SG:Array=None, NoPrices=False,
             };
             if (int(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG_ITM_TYP)]) == 0){
-                SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])] = 0;
+                SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
+                    + SG['ITM']['PIC'])] = 0;
             };
             SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG))
             ItemPopup((CHAR_SLOT_SHAKES_1 + i),
