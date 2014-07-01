@@ -6562,8 +6562,8 @@ def show_tower_screen(towerData:Array){
                 towerScroll = 0;
             };
             towerScrollTimer.start();
-            SetAlpha(CHAR_SECONDPROP, 1);
-            SetAlpha(CHAR_PREISE, 0);
+            set_alpha(CHAR_SECONDPROP, 1);
+            set_alpha(CHAR_PREISE, 0);
         };
         remove_all();
         add(SCREEN_TOWER);
@@ -9741,8 +9741,8 @@ def show_post_screen(par:Array=None){
             and ((par is Array))))
             and (!(light_mode)))
         ){
-            SetAlpha(POST_LIST, 0);
-            SetAlpha(SHP_POST_BLACK_SQUARE, 0);
+            set_alpha(POST_LIST, 0);
+            set_alpha(SHP_POST_BLACK_SQUARE, 0);
             fade_in(POST_LIST);
             fade_in(SHP_POST_BLACK_SQUARE, 20, 0.05, 0.6);
         };
@@ -10176,8 +10176,8 @@ def show_character_screen(evt:Event=None, NoPrices=False):
         level_upTimer = new Timer(20);
         error_message(" ");
         if (!on_stage(SCR_CHAR_BG)){
-            SetAlpha(CHAR_SECONDPROP, 1);
-            SetAlpha(CHAR_PREISE, 0);
+            set_alpha(CHAR_SECONDPROP, 1);
+            set_alpha(CHAR_PREISE, 0);
         };
         remove_all();
         i = 0;
@@ -10743,8 +10743,8 @@ def ShowPlayerScreen(
             x = ((EXPERIENCE_BAR_X + 127) - int((text_width / 2)));
         };
         enable_popup(CA_SCR_CHAR_EXPBAR);
-        SetAlpha(CHAR_SECONDPROP, 1);
-        SetAlpha(CHAR_PREISE, 0);
+        set_alpha(CHAR_SECONDPROP, 1);
+        set_alpha(CHAR_PREISE, 0);
         display_inventory(PlayerSG);
         vanityRandom = random.random();
         if (
@@ -11276,7 +11276,7 @@ def show_screen_gilden(
         };
         GuildBtnHandler = function (
             evt:Event, typematic=False
-        ):Boolean{
+        ):
             var actor_id:* = 0;
             var selRank:* = 0;
             var evt:* = evt;
@@ -12583,7 +12583,7 @@ def show_screen_gilden(
         add(SCREEN_GILDEN);
         if (crestView){
             if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
-                SetAlpha(GILDE_CREST_CONTROLS, 1);
+                set_alpha(GILDE_CREST_CONTROLS, 1);
                 add(GILDE_CREST_CONTROLS);
             };
             remove(GILDE_GEBAEUDE);
@@ -15413,115 +15413,107 @@ def remove_all(alsoPersistent=False):
     ExternalInterface.call("hideSocial")
 
 
+def visible(actor_id):
+    '''
+        actor is visible?
+    '''
+    if actor[actor_id] is DisplayObject:
+        return bool(get_child_by_name(actor[actor_id].name)
+                    and actor[actor_id].visible)
+    return False
+
+
+def set_alpha(actor_id, alpha_value):
+    '''
+        set alpha value for actor(s)
+    '''
+    if actor[actor_id] is list:
+        for act in actor[actor_id]:
+            set_alpha(act, alpha_value)
+    elif getattr(actor[actor_id], 'alpha', None) is not None:
+            actor[actor_id].alpha = alpha_value
+
+
+def get_alpha(actor_id):
+    '''
+        get highest alpha value from actor(s)
+    '''
+    tmp_alpha = 0
+    if actor[actor_id] is list:
+        for act in actor[actor_id]:
+            if get_alpha(act) > tmp_alpha:
+                tmp_alpha = get_alpha(act)
+        return tmp_alpha
+
+    if getattr(actor[actor_id], 'alpha', None) is not None:
+        return actor[actor_id].alpha
+
+    return 0
+
+
+def fade_in_event(evt):
+    '''
+        update alpha for fade in/out
+    '''
+    current_alpha = current_alpha + alpha_step
+    if current_alpha >= alpha_max:
+        current_alpha = alpha_max
+        fade_timer.stop()
+        fade_timer.remove_event_listener(TimerEvent.TIMER, fade_in_event)
+    set_alpha(actor_id, current_alpha)
+
+
+def fade_in(actor_id, timer_interval=20, alpha_step=0.05, alpha_max=1):
+    '''
+        perform fade in animation on actor
+    '''
+    fade_timer = Timer(timer_interval)
+    current_alpha = get_alpha(actor_id)
+    if alpha_step <= 0:
+        return
+
+    fade_timer.add_event_listener(TimerEvent.TIMER, fade_in_event)
+    fade_timer.start()
+    set_alpha(actor_id, current_alpha)
+
+
+
 '''
 
 
 
-def Visible(actor_id):Boolean{
-    if ((actor[actor_id] is DisplayObject)){
-        return (
-            ((Boolean(get_child_by_name(actor[actor_id].name)))
-            and (actor[actor_id].visible))
-        );
-    };
-    return (False);
-}
-
-def SetAlpha(actor_id, alphaValue:Number){
-    var i;
-    if ((actor[actor_id] is Array)){
-        i = 0;
-        while (i < actor[actor_id].length) {
-            SetAlpha(actor[actor_id][i], alphaValue);
-            i++;
-        };
-    } else {
-        if (actor[actor_id].hasOwnProperty("alpha")){
-            actor[actor_id].alpha = alphaValue;
-        };
-    };
-}
-
-def GetAlpha(actor_id):Number{
-    var i;
-    var tmpAlpha:Number;
-    tmpAlpha = 0;
-    if ((actor[actor_id] is Array)){
-        i = 0;
-        while (i < actor[actor_id].length) {
-            if (GetAlpha(actor[actor_id][i]) > tmpAlpha){
-                tmpAlpha = GetAlpha(actor[actor_id][i]);
-            };
-            i++;
-        };
-        return (tmpAlpha);
-    };
-    if (actor[actor_id].hasOwnProperty("alpha")){
-        return (actor[actor_id].alpha);
-    };
-    return (0);
-}
-
-def fade_in(actor_id, timerInterval=20,
-            alphaStep:Number=0.05, alphaMax:Number=1){
-    var fadeTimer:* = None;
-    var currentAlpha:* = NaN;
-    var fade_inEvent:* = None;
-    var actor_id:* = actor_id;
-    var timerInterval = timerInterval;
-    var alphaStep:Number = alphaStep;
-    var alphaMax = alphaMax;
-    fade_inEvent = function (evt:TimerEvent){
-        currentAlpha = (currentAlpha + alphaStep);
-        if (currentAlpha >= alphaMax){
-            currentAlpha = alphaMax;
-            fadeTimer.stop();
-            fadeTimer.remove_event_listener(TimerEvent.TIMER, fade_inEvent);
-        };
-        SetAlpha(actor_id, currentAlpha);
-    };
-    fadeTimer = new Timer(timerInterval);
-    currentAlpha = GetAlpha(actor_id);
-    if (alphaStep <= 0){
-        return;
-    };
-    fadeTimer.add_event_listener(TimerEvent.TIMER, fade_inEvent);
-    fadeTimer.start();
-    SetAlpha(actor_id, currentAlpha);
-}
-
 def fade_out(
-    actor_id, timerInterval=20, alphaStep:Number=0.05,
-    alphaMin:Number=0, HideThen=False
+    actor_id, timer_interval=20, alpha_step=0.05,
+    alphaMin=0, HideThen=False
 ){
-    var fadeTimer:* = None;
-    var currentAlpha:* = NaN;
+    var fade_timer:* = None;
+    var current_alpha:* = NaN;
     var FadeOutEvent:* = None;
     var actor_id:* = actor_id;
-    var timerInterval = timerInterval;
-    var alphaStep:Number = alphaStep;
+    var timer_interval = timer_interval;
+    var alpha_step:Number = alpha_step;
     var alphaMin = alphaMin;
     var HideThen:Boolean = HideThen;
     FadeOutEvent = function (evt:TimerEvent){
-        currentAlpha = (currentAlpha - alphaStep);
-        if (currentAlpha <= alphaMin){
-            currentAlpha = alphaMin;
-            fadeTimer.stop();
-            fadeTimer.remove_event_listener(TimerEvent.TIMER, FadeOutEvent);
+        current_alpha = (current_alpha - alpha_step);
+        if (current_alpha <= alphaMin){
+            current_alpha = alphaMin;
+            fade_timer.stop();
+            fade_timer.remove_event_listener(TimerEvent.TIMER, FadeOutEvent);
             if (HideThen){
                 hide(actor_id);
             };
         };
-        SetAlpha(actor_id, currentAlpha);
+        set_alpha(actor_id, current_alpha);
     };
-    fadeTimer = new Timer(timerInterval);
-    currentAlpha = GetAlpha(actor_id);
-    if (alphaStep <= 0){
+    fade_timer = new Timer(timer_interval);
+    current_alpha = get_alpha(actor_id);
+    if (alpha_step <= 0){
         return;
     };
-    fadeTimer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
-    fadeTimer.start();
-    SetAlpha(actor_id, currentAlpha);
+    fade_timer.add_event_listener(TimerEvent.TIMER, FadeOutEvent);
+    fade_timer.start();
+    set_alpha(actor_id, current_alpha);
 }
 
 def AddFilter(actor_id, filter:Array):
@@ -21698,7 +21690,7 @@ def load_tracking_pixel(url=''):
                 DestroyBoostBtnTimer = True;
             };
         };
-        BoostAttribute = function (evt:Event):Boolean{
+        BoostAttribute = function (evt:Event):
             if (canBoost[(get_actor_id(evt.target) - SCR_CHAR_STEIGERN1)]){
                 send_action(
                     ACT_BUY_ATTRIB,
@@ -21716,8 +21708,8 @@ def load_tracking_pixel(url=''):
                 BoostBtnChange = 0;
                 if (inBoostBtn){
                     if (light_mode){
-                        SetAlpha(CHAR_PREISE, 1);
-                        SetAlpha(CHAR_SECONDPROP, 0);
+                        set_alpha(CHAR_PREISE, 1);
+                        set_alpha(CHAR_SECONDPROP, 0);
                     } else {
                         fade_in(CHAR_PREISE, 20, 0.2);
                         fade_out(CHAR_SECONDPROP, 20, 0.2);
@@ -21729,8 +21721,8 @@ def load_tracking_pixel(url=''):
                             if (on_stage(POPUP_INFO)){
                                 add(POPUP_INFO);
                             };
-                            SetAlpha(CHAR_PREISE, 0);
-                            SetAlpha(CHAR_SECONDPROP, 1);
+                            set_alpha(CHAR_PREISE, 0);
+                            set_alpha(CHAR_SECONDPROP, 1);
                         } else {
                             fade_out(CHAR_PREISE, 20, 0.2);
                             add(CHAR_SECONDPROP);
@@ -21771,7 +21763,7 @@ def load_tracking_pixel(url=''):
             remove(CA_SELL_ITEM);
             remove(CA_USE_ITEM);
         };
-        DropHandler = function (actor_id, targetID):Boolean{
+        DropHandler = function (actor_id, targetID):
             var towerMode:Boolean;
             var sourceSlot;
             var targetSlot;
@@ -22896,7 +22888,7 @@ def load_tracking_pixel(url=''):
                 remove(GILDE_GEBAEUDE);
                 add(GILDE_CREST);
                 if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
-                    SetAlpha(GILDE_CREST_CONTROLS, 1);
+                    set_alpha(GILDE_CREST_CONTROLS, 1);
                     add(GILDE_CREST_CONTROLS);
                 };
                 loadCrest();
@@ -23444,7 +23436,7 @@ def load_tracking_pixel(url=''):
                         if (!on_stage(LBL_GILDE_CREST_ELEMENT)){
                             crestMoveDest = GILDE_GEBAEUDE_Y;
                             crestMoveTimer.start();
-                            SetAlpha(GILDE_CREST_CONTROLS, 0);
+                            set_alpha(GILDE_CREST_CONTROLS, 0);
                             add(GILDE_CREST_CONTROLS);
                             fade_in(GILDE_CREST_CONTROLS);
                         };
@@ -23469,7 +23461,7 @@ def load_tracking_pixel(url=''):
                     remove(GILDE_GEBAEUDE);
                     add(GILDE_CREST);
                     if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
-                        SetAlpha(GILDE_CREST_CONTROLS, 1);
+                        set_alpha(GILDE_CREST_CONTROLS, 1);
                         add(GILDE_CREST_CONTROLS);
                     } else {
                         set_crest_str(old_crest_str);
@@ -23633,7 +23625,7 @@ def load_tracking_pixel(url=''):
                 add(HUTFACE_IDLE);
             };
         };
-        HutBtnHandler = function (evt:Event=None):Boolean{
+        HutBtnHandler = function (evt:Event=None):
             var evt:* = evt;
             var BetRisen:* = function (){
                 if ((int(actor[LBL_HUTMANN_GOLDBET].text)
@@ -29145,7 +29137,7 @@ if __name__ == "__main__":
 '''
 
 def DefineImg(actor_id, url:String, predo_load=True, pos_x=0, pos_y=0,
-              scale_x:Number=1, scale_y:Number=1, vis=True):
+              scale_x=1, scale_y=1, vis=True):
     var i:* = 0;
     var full_url:* = None;
     var LoaderCompleteLocal:* = None;
@@ -30076,7 +30068,7 @@ def GetAdvent(){
     return (0);
 }
 
-def RefreshTimeBar(OfferTime:Number=0){
+def RefreshTimeBar(OfferTime=0){
     var tmpTime:* = NaN;
     var tmpText:* = None;
     var OfferTime = OfferTime;
@@ -30618,7 +30610,7 @@ def clickchat_line(evt){
         remove(GILDE_GEBAEUDE);
         add(GILDE_CREST);
         if (actor[GILDE_CREST].y == GILDE_GEBAEUDE_Y){
-            SetAlpha(GILDE_CREST_CONTROLS, 1);
+            set_alpha(GILDE_CREST_CONTROLS, 1);
             add(GILDE_CREST_CONTROLS);
         } else {
             selecterCrestElement = -1;
@@ -31143,7 +31135,7 @@ def SingPlur(inp_text:String, amount, sep:String="*"):String{
     return (tmp_array.join(""));
 }
 
-def AnimateAch(actor_id, y_level=635, AchAniPow:Number=-10){
+def AnimateAch(actor_id, y_level=635, AchAniPow=-10){
     var AchAniTimer:* = None;
     var actor_id:* = actor_id;
     var y_level:Number = y_level;
@@ -31176,7 +31168,7 @@ def AnimateAch(actor_id, y_level=635, AchAniPow:Number=-10){
     };
 }
 
-def DoAchievements(SG:Array):Boolean{
+def DoAchievements(SG:Array):
     var i;
     var achPop:Array;
     var achAusfM:String;
@@ -31421,7 +31413,7 @@ def display_inventory(SG:Array=None, NoPrices=False,
     var towerMode:Boolean = towerMode;
     var copyCatIdRaw = copyCatIdRaw;
     var witchMode:Boolean = witchMode;
-    var GetBoostPrice:* = function (boostCount):Number{
+    var GetBoostPrice:* = function (boostCount):
         return (int(TrueAttPreis[boostCount]));
     };
     HideBackPack = False;
@@ -32128,7 +32120,7 @@ def display_inventory(SG:Array=None, NoPrices=False,
         i = (i + 1);
     };
     if (!towerMode){
-        var IsEpic:* = function (pic):Boolean{
+        var IsEpic:* = function (pic):
             while (pic > 1000) {
                 pic = (pic - 1000);
             };
@@ -33308,7 +33300,7 @@ def expand_item_structure(arr:Array, offset){
     arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
 }
 
-def WaitingFor(targetTime:Number):Boolean{
+def WaitingFor(targetTime:Number):
     var tmpTime:Date;
     tmpTime = new Date();
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
@@ -33336,7 +33328,7 @@ def WaitingTime(targetTime:Number):String{
                     ? ":0" : ":") + str(getUTCSeconds()))));
 }
 
-def WaitingProgress(startTime:Number, targetTime:Number):Number{
+def WaitingProgress(startTime:Number, targetTime:Number):
     var tmpTime:Date;
     var tmpTime2:Date;
     tmpTime = new Date();
