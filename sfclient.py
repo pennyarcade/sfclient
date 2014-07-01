@@ -4737,7 +4737,7 @@ def init_vars():
     # my_own_guild_money = -1
     # my_own_rank = -1
     # new_crest_suggested = ""
-    # next_fight_timer = new Timer(10, 1)
+    next_fight_timer = Timer(10, 1)
     # next_pxl = 0
     # no_crossdomain = False
     # noMush = False
@@ -18668,7 +18668,7 @@ def try_show_tv():
 
     '''
     pass
-    
+
 
 def next_fight(evt):
     '''
