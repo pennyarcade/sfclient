@@ -13,7 +13,7 @@ before_script:
 
 script:
   - pylint --rcfile=.pylintrc sf*.py > metrics/pylint.txt || true
-  - pep8 --verbose --show-pep8 --statistics sf*.py > metrics/pep8.txt || true
+  - pep8 --verbose --show-pep8 --statistics --count sf*.py > metrics/pep8.txt || true
   - cat metrics/pylint.txt | python resources/extract.py >> metrics/stats.csv
   - git add metrics
   - git commit -m "[skip ci] shippable build $BUILD_NUMBER"

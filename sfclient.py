@@ -19430,8 +19430,7 @@ def configuration_filedo_loaded(evt):
         if so.data.img_url_index:
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
-            elif (so.data.img_url_index <= len(img_url))
-                    and (not force_reroll):
+            elif (so.data.img_url_index <= len(img_url)) and not force_reroll:
                 img_url_index = so.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
