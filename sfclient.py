@@ -4950,6 +4950,7 @@ def init_vars():
         texts.append("")
 
     # setup image loading timeout event
+    global whendo_loaded_fn, whendo_loaded_active, whendo_loaded_timeout
     whendo_loaded_fn = list()
     whendo_loaded_active = False
     whendo_loaded_timeout = Timer(1000 * image_timeout, 1)
@@ -29040,7 +29041,7 @@ def main():
 
     LOG = setup_logging()
 
-    # init_vars()
+    init_vars()
 
     s = Session()
     configure(s)
