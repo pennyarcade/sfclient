@@ -23783,7 +23783,8 @@ def load_tracking_pixel(url=''):
                                              + actor[HUTMANN_MUSHBET].width)
                                             + GILDE_GOLDMUSH_C1);
             actor[HUTMANN_GOLDBET2].x = ((actor[LBL_HUTMANN_GOLDBET2].x
-                                         + actor[LBL_HUTMANN_GOLDBET2].text_width)
+                                         + actor[LBL_HUTMANN_GOLDBET2]
+                                         .text_width)
                                         + GILDE_GOLDMUSH_C1);
             actor[HUTMANN_MUSHBET2].x = ((actor[LBL_HUTMANN_MUSHBET2].x
                                 + actor[LBL_HUTMANN_MUSHBET2].text_width)
@@ -23936,23 +23937,33 @@ def load_tracking_pixel(url=''):
                                 + special_action) - 1)
                                 : TXT_BO_TEXT_NO))];
                     } else {
-                        text = texts[((canBuy) ? TXT_BO_TEXT_OK : ((tooHealthy) ? TXT_BO_TEXT_TOOHEALTHY : TXT_BO_TEXT_NO))];
+                        text = texts[((canBuy)
+                                      ? TXT_BO_TEXT_OK
+                                      : ((tooHealthy)
+                                         ? TXT_BO_TEXT_TOOHEALTHY
+                                         : TXT_BO_TEXT_NO))];
                     };
                 };
             };
             arabize(LBL_QO_QUESTTEXT);
-            actor[LBL_QO_REWARDEXP].text = ((canBuy) ? texts[TXT_BO_TIME] : "");
-            if (savegame[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * 5)) + SG_ITM_EXT_ENCHANT)] == 71){
+            actor[LBL_QO_REWARDEXP].text = ((canBuy) ? texts[TXT_BO_TIME] : "")
+            if (savegame[((SG_INVENTORY_OFFS
+                    + (SG['ITM']['SIZE'] * 5))
+                    + SG_ITM_EXT_ENCHANT)] == 71){
                 if (text_dir == "right"){
-                    actor[LBL_QO_TIME].text = ((("11/" + savegame[SG_BEERS]) + " ") + texts[TXT_BO_BOUGHT]);
+                    actor[LBL_QO_TIME].text = ((("11/" + savegame[SG_BEERS])
+                                               + " ") + texts[TXT_BO_BOUGHT]);
                 } else {
-                    actor[LBL_QO_TIME].text = (((texts[TXT_BO_BOUGHT] + " ") + savegame[SG_BEERS]) + "/11");
+                    actor[LBL_QO_TIME].text = (((texts[TXT_BO_BOUGHT] + " ")
+                                               + savegame[SG_BEERS]) + "/11");
                 };
             } else {
                 if (text_dir == "right"){
-                    actor[LBL_QO_TIME].text = ((("10/" + savegame[SG_BEERS]) + " ") + texts[TXT_BO_BOUGHT]);
+                    actor[LBL_QO_TIME].text = ((("10/" + savegame[SG_BEERS])
+                                               + " ") + texts[TXT_BO_BOUGHT]);
                 } else {
-                    actor[LBL_QO_TIME].text = (((texts[TXT_BO_BOUGHT] + " ") + savegame[SG_BEERS]) + "/10");
+                    actor[LBL_QO_TIME].text = (((texts[TXT_BO_BOUGHT] + " ")
+                                               + savegame[SG_BEERS]) + "/10");
                 };
             };
             if (beer_fest){
@@ -23963,7 +23974,9 @@ def load_tracking_pixel(url=''):
             if (!canBuy){
                 remove(BO_BUY);
             };
-            add(((canBuy) ? BO_PORTRAIT_OK : ((tooHealthy) ? BO_PORTRAIT_TH : BO_PORTRAIT_NO)));
+            add(((canBuy) ? BO_PORTRAIT_OK : ((tooHealthy)
+                ? BO_PORTRAIT_TH
+                : BO_PORTRAIT_NO)));
         };
         TimeBarAniEvent = function (evt:Event=None){
             var evt:* = evt;
@@ -23998,30 +24011,43 @@ def load_tracking_pixel(url=''):
                         highStakes = True;
                         break;
                 };
-                enoughTime = (int(savegame[(SG_QUEST_OFFER_DURATION1 + i)]) <= int(savegame[SG_TIMEBAR]));
+                enoughTime = (int(savegame[(SG_QUEST_OFFER_DURATION1 + i)]) <=
+                              int(savegame[SG_TIMEBAR]));
                 if (highStakes){
                     if (enoughTime){
-                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_HighStakes;
-                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_HighStakesHighLight;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format =
+                                FontFormat_HighStakes;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format =
+                                FontFormat_HighStakesHighLight;
                     } else {
-                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_HighStakesGrayed;
-                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_HighStakesHighLightGrayed;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format =
+                                FontFormat_HighStakesGrayed;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format =
+                                FontFormat_HighStakesHighLightGrayed;
                     };
                 } else {
                     if (enoughTime){
-                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_Default;
-                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_Highlight;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format =
+                                FontFormat_Default;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format =
+                                FontFormat_Highlight;
                     } else {
-                        actor[(LBL_QO_CHOICE1 + i)].default_text_format = FontFormat_Grayed;
-                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format = FontFormat_GrayedHighLight;
+                        actor[(LBL_QO_CHOICE1 + i)].default_text_format =
+                            FontFormat_Grayed;
+                        actor[(LBL_QO_CHOICE1_HL + i)].default_text_format =
+                            FontFormat_GrayedHighLight;
                     };
                 };
                 actor[(LBL_QO_CHOICE1 + i)].text = get_quest_title(i);
                 actor[(LBL_QO_CHOICE1_HL + i)].text = get_quest_title(i);
                 hide((LBL_QO_CHOICE1_HL + i));
                 if (text_dir == "right"){
-                    actor[LBL_QO_CHOOSE].x = (((QO_BLACK_SQUARE_X + QO_CHOOSE_X) + 140) - actor[LBL_QO_CHOOSE].text_width);
-                    actor[(QO_CHOICE1 + i)].x = (((QO_BLACK_SQUARE_X + QO_CHOOSE_X) + 140) - actor[(LBL_QO_CHOICE1 + i)].text_width);
+                    actor[LBL_QO_CHOOSE].x = (((QO_BLACK_SQUARE_X
+                                              + QO_CHOOSE_X) + 140)
+                                        - actor[LBL_QO_CHOOSE].text_width);
+                    actor[(QO_CHOICE1 + i)].x = (((QO_BLACK_SQUARE_X
+                                                 + QO_CHOOSE_X) + 140)
+                                    - actor[(LBL_QO_CHOICE1 + i)].text_width);
                 };
                 i++;
             };
@@ -24050,14 +24076,18 @@ def load_tracking_pixel(url=''):
             var GoldBonusText:* = None;
             var quest_id:* = quest_id;
             SelectedQuest = quest_id;
-            rewardX = ((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) + (((text_dir == "right")) ? 130 : 0));
+            rewardX = ((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) +
+                       (((text_dir == "right")) ? 130 : 0));
             GoldBonusText = "";
             if ((int(savegame[SG_GOLD_BONUS]) > 0)){
                 GoldBonusText = (texts[TXT_GOLDBONUS_PREFIX] + " ");
                 if ((int(savegame[SG_GOLD_BONUS]) > 0)){
-                    GoldBonusText = (((GoldBonusText + savegame[SG_GOLD_BONUS]) + "% ") + texts[TXT_GOLDBONUS_SUFFIX]);
+                    GoldBonusText = (((GoldBonusText + savegame[SG_GOLD_BONUS])
+                                     + "% ") + texts[TXT_GOLDBONUS_SUFFIX]);
                     if (tower_level > 0){
-                        GoldBonusText = ((((GoldBonusText + " + ") + str(tower_level)) + "% ") + texts[TXT_TOWER_BONUS]);
+                        GoldBonusText = ((((GoldBonusText + " + ")
+                                         + str(tower_level)) + "% ")
+                                        + texts[TXT_TOWER_BONUS]);
                     };
                 };
             };
@@ -24069,13 +24099,21 @@ def load_tracking_pixel(url=''):
             };
             var _local3 = actor[LBL_QO_QUESTNAME];
             with (_local3) {
-                text = ((quest_id)==-1) ? texts[(TXT_QUEST_OFFER_TITLE + get_quest_random(0, 5))] : get_quest_title(quest_id);
-                x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((text_width / 2)));
+                text = ((quest_id)==-1)
+                    ? texts[(TXT_QUEST_OFFER_TITLE + get_quest_random(0, 5))]
+                    : get_quest_title(quest_id);
+                x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X)
+                     - int((text_width / 2)));
             };
-            actor[LBL_QO_QUESTTEXT].text = ((quest_id)==-1) ? texts[(TXT_QUEST_OFFER_TEXT + get_quest_random(0, 5))] : get_quest_text(quest_id);
+            actor[LBL_QO_QUESTTEXT].text = ((quest_id)==-1)
+                    ? texts[(TXT_QUEST_OFFER_TEXT + get_quest_random(0, 5))]
+                    : get_quest_text(quest_id);
             arabize(LBL_QO_QUESTTEXT);
             if (quest_id == -1){
-                hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
+                hide(QO_REWARDGOLD,
+                     LBL_QO_REWARDGOLD,
+                     QO_REWARDSILVER,
+                     LBL_QO_REWARDSILVER);
                 hide(LBL_QO_REWARD);
                 hide(QO_START);
                 actor[LBL_QO_REWARDEXP].text = "";
@@ -24085,11 +24123,16 @@ def load_tracking_pixel(url=''):
             } else {
                 show(LBL_QO_REWARD);
                 show(QO_START);
-                hide(QO_REWARDGOLD, LBL_QO_REWARDGOLD, QO_REWARDSILVER, LBL_QO_REWARDSILVER);
+                hide(QO_REWARDGOLD,
+                     LBL_QO_REWARDGOLD,
+                     QO_REWARDSILVER,
+                     LBL_QO_REWARDSILVER);
                 if (text_dir == "right"){
-                    actor[LBL_QO_REWARD].x = (rewardX - actor[LBL_QO_REWARD].text_width);
+                    actor[LBL_QO_REWARD].x = (rewardX
+                                            - actor[LBL_QO_REWARD].text_width);
                 };
-                if (gold_anteil(savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
+                if (gold_anteil(savegame[(SG_QUEST_OFFER_GOLD1
+                        + quest_id)]) > 0){
                     _local3 = actor[QO_REWARDGOLD];
                     with (_local3) {
                         visible = True;
@@ -24104,7 +24147,8 @@ def load_tracking_pixel(url=''):
                     _local3 = actor[LBL_QO_REWARDGOLD];
                     with (_local3) {
                         visible = True;
-                        text = gold_anteil(savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
+                        text = gold_anteil(savegame[(SG_QUEST_OFFER_GOLD1
+                                           + quest_id)]);
                         if (text_dir == "right"){
                             x = (rewardX - text_width);
                             rewardX = (x - 8);
@@ -24114,7 +24158,8 @@ def load_tracking_pixel(url=''):
                         };
                     };
                 };
-                if (silber_anteil(savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]) > 0){
+                if (silber_anteil(savegame[(SG_QUEST_OFFER_GOLD1
+                    + quest_id)]) > 0){
                     _local3 = actor[QO_REWARDSILVER];
                     with (_local3) {
                         visible = True;
@@ -24129,7 +24174,8 @@ def load_tracking_pixel(url=''):
                     _local3 = actor[LBL_QO_REWARDSILVER];
                     with (_local3) {
                         visible = True;
-                        text = silber_anteil(savegame[(SG_QUEST_OFFER_GOLD1 + quest_id)]);
+                        text = silber_anteil(savegame[(SG_QUEST_OFFER_GOLD1
+                                             + quest_id)]);
                         if (text_dir == "right"){
                             x = (rewardX - text_width);
                             rewardX = (x - 8);
@@ -24140,20 +24186,40 @@ def load_tracking_pixel(url=''):
                     };
                 };
                 if (text_dir == "right"){
-                    actor[LBL_QO_REWARDEXP].text = ((savegame[(SG_QUEST_OFFER_EXP1 + quest_id)] + " :") + texts[TXT_EXP]);
-                    actor[LBL_QO_REWARDEXP].x = (((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) + 130) - actor[LBL_QO_REWARDEXP].text_width);
+                    actor[LBL_QO_REWARDEXP].text = ((savegame[(
+                            SG_QUEST_OFFER_EXP1 + quest_id)] + " :")
+                            + texts[TXT_EXP]);
+                    actor[LBL_QO_REWARDEXP].x = (((QO_BLACK_SQUARE_X
+                                                 + QO_QUESTTEXT_X) + 130)
+                                        - actor[LBL_QO_REWARDEXP].text_width);
                 } else {
-                    actor[LBL_QO_REWARDEXP].text = ((texts[TXT_EXP] + ": ") + savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]);
+                    actor[LBL_QO_REWARDEXP].text = ((texts[TXT_EXP] + ": ")
+                                + savegame[(SG_QUEST_OFFER_EXP1 + quest_id)]);
                 };
                 if (int(savegame[SG_EXP_BONUS]) > 0){
-                    if (math.round((((savegame[SG_ALBUM] - 10000) / contentMax) * 100)) >= 1){
-                        enable_popup(LBL_QO_REWARDEXP, ((((((((texts[TXT_EXPBONUS_PREFIX] + " ") + savegame[SG_EXP_BONUS]) + "% ") + texts[TXT_EXPBONUS_SUFFIX]) + " + ") + str(math.round((((savegame[SG_ALBUM] - 10000) / contentMax) * 100)))) + "% ") + texts[(TXT_COLLECTION + 1)]));
+                    if (math.round((((savegame[SG_ALBUM] - 10000) / contentMax)
+                            * 100)) >= 1){
+                        enable_popup(LBL_QO_REWARDEXP,
+                                     ((((((((texts[TXT_EXPBONUS_PREFIX] + " ")
+                                      + savegame[SG_EXP_BONUS]) + "% ")
+                                        + texts[TXT_EXPBONUS_SUFFIX]) + " + ")
+                                        + str(math.round((((savegame[SG_ALBUM]
+                                              - 10000) / contentMax) * 100))))
+                                    + "% ") + texts[(TXT_COLLECTION + 1)]));
                     } else {
-                        enable_popup(LBL_QO_REWARDEXP, ((((texts[TXT_EXPBONUS_PREFIX] + " ") + savegame[SG_EXP_BONUS]) + "% ") + texts[TXT_EXPBONUS_SUFFIX]));
+                        enable_popup(LBL_QO_REWARDEXP,
+                                     ((((texts[TXT_EXPBONUS_PREFIX] + " ")
+                                      + savegame[SG_EXP_BONUS]) + "% ")
+                                        + texts[TXT_EXPBONUS_SUFFIX]));
                     };
                 } else {
-                    if (math.round((((savegame[SG_ALBUM] - 10000) / contentMax) * 100)) >= 1){
-                        enable_popup(LBL_QO_REWARDEXP, ((((texts[TXT_EXPBONUS_PREFIX] + " ") + str(math.round((((savegame[SG_ALBUM] - 10000) / contentMax) * 100)))) + "% ") + texts[(TXT_COLLECTION + 1)]));
+                    if (math.round((((savegame[SG_ALBUM] - 10000) / contentMax)
+                        * 100)) >= 1){
+                        enable_popup(LBL_QO_REWARDEXP,
+                                     ((((texts[TXT_EXPBONUS_PREFIX] + " ")
+                                      + str(math.round((((savegame[SG_ALBUM]
+                                            - 10000) / contentMax) * 100))))
+                                        + "% ") + texts[(TXT_COLLECTION + 1)]))
                     } else {
                         enable_popup(LBL_QO_REWARDEXP);
                     };
@@ -24169,25 +24235,48 @@ def load_tracking_pixel(url=''):
                     enable_popup(LBL_QO_REWARDGOLD);
                     enable_popup(LBL_QO_REWARDSILVER);
                 };
-                if (int(savegame[((SG['QUEST']['OFFER']['REWARD_ITM1'] + (quest_id * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) > 0){
-                    SetCnt(QUEST_SLOT, GetItemID(SG['QUEST']['OFFER']['REWARD_ITM1'], quest_id));
-                    ItemPopup(QUEST_SLOT, (SG['QUEST']['OFFER']['REWARD_ITM1'] + (quest_id * SG['ITM']['SIZE'])), None, False, False, False);
+                if (int(savegame[((SG['QUEST']['OFFER']['REWARD_ITM1']
+                        + (quest_id * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) > 0){
+                    SetCnt(QUEST_SLOT,
+                           GetItemID(SG['QUEST']['OFFER']['REWARD_ITM1'],
+                                     quest_id));
+                    ItemPopup(QUEST_SLOT,
+                              (SG['QUEST']['OFFER']['REWARD_ITM1']
+                               + (quest_id * SG['ITM']['SIZE'])),
+                                None, False, False, False);
                 } else {
                     SetCnt(QUEST_SLOT, C_EMPTY);
                     enable_popup(FIGHT_SLOT);
                 };
                 if (text_dir == "right"){
-                    actor[LBL_QO_TIME].text = (((((str(int((int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) / 60))) + ":") + (((str(int((int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))).length == 1)) ? "0" : "")) + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60)))) + " :") + texts[TXT_DURATION]);
-                    actor[LBL_QO_TIME].x = (((QO_BLACK_SQUARE_X + QO_QUESTTEXT_X) + 130) - actor[LBL_QO_TIME].text_width);
+                    actor[LBL_QO_TIME].text = (((((str(int((int(savegame[
+                                               (SG_QUEST_OFFER_DURATION1
+                                                + quest_id)]) / 60))) + ":")
+                            + (((str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
+                               + quest_id)]) % 60))).length == 1)) ? "0" : ""))
+                            + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
+                                  + quest_id)]) % 60)))) + " :") +
+                            texts[TXT_DURATION]);
+                    actor[LBL_QO_TIME].x = (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X)
+                        + 130) - actor[LBL_QO_TIME].text_width);
                 } else {
-                    actor[LBL_QO_TIME].text = (((((texts[TXT_DURATION] + ": ") + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) / 60)))) + ":") + (((str(int((int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))).length == 1)) ? "0" : "")) + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)]) % 60))));
+                    actor[LBL_QO_TIME].text = (((((texts[TXT_DURATION] + ": ")
+                           + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
+                             + quest_id)]) / 60)))) + ":")
+                        + (((str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
+                           + quest_id)]) % 60))).length == 1)) ? "0" : ""))
+                        + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
+                              + quest_id)]) % 60))));
                 };
-                RefreshTimeBar(-(int(savegame[(SG_QUEST_OFFER_DURATION1 + quest_id)])));
+                RefreshTimeBar(-(int(savegame[(SG_QUEST_OFFER_DURATION1
+                               + quest_id)])));
             };
         };
         RequestQuest = function (evt:Event=None){
             if (SelectedQuest >= 0){
-                send_action(ACT_QUEST_BEGIN, (SelectedQuest + 1), ((force_adventure) ? 1 : 0));
+                send_action(ACT_QUEST_BEGIN,
+                            (SelectedQuest + 1),
+                            ((force_adventure) ? 1 : 0));
             };
         };
         toiletChainAni = function (evt:TimerEvent){
@@ -24300,16 +24389,24 @@ def load_tracking_pixel(url=''):
             var _local3 = actor[LBL_OPTION_VOLUME];
             with (_local3) {
                 if (text_dir == "right"){
-                    text = (((so.data.volume == 0)) ? texts[TXT_MUTE] : ((str((so.data.volume * 10)) + "% ") + texts[TXT_VOLUME]));
+                    text = (((so.data.volume == 0))
+                            ? texts[TXT_MUTE]
+                            : ((str((so.data.volume * 10)) + "% ")
+                               + texts[TXT_VOLUME]));
                 } else {
-                    text = (((so.data.volume == 0)) ? texts[TXT_MUTE] : (((texts[TXT_VOLUME] + " ") + str((so.data.volume * 10))) + "%"));
+                    text = (((so.data.volume == 0))
+                            ? texts[TXT_MUTE]
+                            : (((texts[TXT_VOLUME] + " ")
+                               + str((so.data.volume * 10))) + "%"));
                 };
-                x = (((OPTION_X + 250) + int((OPTION_X / 2))) - int((text_width / 2)));
+                x = (((OPTION_X + 250) + int((OPTION_X / 2)))
+                     - int((text_width / 2)));
             };
         };
         ChooseLanguageIcon = function (evt:MouseEvent){
             var req:URLRequest;
-            so.data.lang_code = param_languages[(get_actor_id(evt.target) - OPTION_FLAG)];
+            so.data.lang_code = param_languages[(get_actor_id(evt.target)
+                                                 - OPTION_FLAG)];
             so.flush();
             trc("Language set:", so.data.lang_code);
             req = new URLRequest("index.php");
@@ -24320,7 +24417,9 @@ def load_tracking_pixel(url=''):
             hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
             hide(CHANGE_PASSWORD_SMILEY_HAPPY);
             if ((evt is KeyboardEvent)){
-                if (((((!((KeyboardEvent(evt).keyCode == 13))) and (!((KeyboardEvent(evt).keyCode == 10))))) and (!((KeyboardEvent(evt).keyCode == 16777230))))){
+                if (((((!((KeyboardEvent(evt).keyCode == 13)))
+                        and (!((KeyboardEvent(evt).keyCode == 10)))))
+                        and (!((KeyboardEvent(evt).keyCode == 16777230))))){
                     return;
                 };
             };
@@ -24335,74 +24434,106 @@ def load_tracking_pixel(url=''):
                     add(OPTION_DORESEND);
                     add(LUXURY_SELLER);
                     if ((uint(savegame[SG_NEW_FLAGS]) & 32)){
-                        actor[LBL_OPTION_FIELD1].text = texts[TXT_LUXURY_ALREADY];
+                        actor[LBL_OPTION_FIELD1].text = texts[
+                            TXT_LUXURY_ALREADY];
                         remove(OPTION_DOCHANGE);
                     };
                     arabize(LBL_OPTION_FIELD1);
                     break;
                 if case(OPTION_CHANGE_NAME:
                     optionMenuSelect = 1;
-                    actor[LBL_OPTION_DOCHANGE].text = texts[TXT_DOCHANGE_NAME_TITLE];
-                    actor[LBL_OPTION_FIELD1].text = texts[TXT_DOCHANGE_NAME_FIELD_1];
-                    actor[LBL_OPTION_FIELD2].text = texts[TXT_DOCHANGE_NAME_FIELD_2];
-                    actor[LBL_OPTION_FIELD3].text = texts[TXT_DOCHANGE_NAME_FIELD_3];
+                    actor[LBL_OPTION_DOCHANGE].text = texts[
+                        TXT_DOCHANGE_NAME_TITLE];
+                    actor[LBL_OPTION_FIELD1].text = texts[
+                        TXT_DOCHANGE_NAME_FIELD_1];
+                    actor[LBL_OPTION_FIELD2].text = texts[
+                        TXT_DOCHANGE_NAME_FIELD_2];
+                    actor[LBL_OPTION_FIELD3].text = texts[
+                        TXT_DOCHANGE_NAME_FIELD_3];
                     set_btn_text(OPTION_DOCHANGE, texts[TXT_DOCHANGENAME]);
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = False;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
+                    actor[INP_OPTION_FIELD1].getChildAt(1)
+                        .displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1)
+                        .displayAsPassword = False;
+                    actor[INP_OPTION_FIELD3].getChildAt(1)
+                        .displayAsPassword = False;
                     add(OPTION_DOCHANGE);
                     break;
                 if case(OPTION_CHANGE_EMAIL:
                     optionMenuSelect = 2;
-                    actor[LBL_OPTION_DOCHANGE].text = texts[TXT_DOCHANGE_EMAIL_TITLE];
-                    actor[LBL_OPTION_FIELD1].text = texts[TXT_DOCHANGE_EMAIL_FIELD_1];
+                    actor[LBL_OPTION_DOCHANGE].text = texts[
+                        TXT_DOCHANGE_EMAIL_TITLE];
+                    actor[LBL_OPTION_FIELD1].text = texts[
+                        TXT_DOCHANGE_EMAIL_FIELD_1];
                     if (savegame[SG_EMAIL_VALID] == 1){
-                        actor[LBL_OPTION_FIELD2].text = ((texts[TXT_OLD_EMAIL]) ? texts[TXT_OLD_EMAIL] : "Old E-Mail:");
-                        actor[LBL_OPTION_FIELD3].text = texts[TXT_DOCHANGE_EMAIL_FIELD_2];
+                        actor[LBL_OPTION_FIELD2].text = ((texts[TXT_OLD_EMAIL])
+                                                         ? texts[TXT_OLD_EMAIL]
+                                                         : "Old E-Mail:");
+                        actor[LBL_OPTION_FIELD3].text = texts[
+                            TXT_DOCHANGE_EMAIL_FIELD_2];
                     } else {
-                        actor[LBL_OPTION_FIELD2].text = texts[TXT_DOCHANGE_EMAIL_FIELD_2];
-                        actor[LBL_OPTION_FIELD3].text = texts[TXT_DOCHANGE_EMAIL_FIELD_3];
+                        actor[LBL_OPTION_FIELD2].text = texts[
+                            TXT_DOCHANGE_EMAIL_FIELD_2];
+                        actor[LBL_OPTION_FIELD3].text = texts[
+                            TXT_DOCHANGE_EMAIL_FIELD_3];
                     };
                     set_btn_text(OPTION_DOCHANGE, texts[TXT_DOCHANGE]);
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = False;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
+                    actor[INP_OPTION_FIELD1].getChildAt(1)
+                        .displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1)
+                        .displayAsPassword = False;
+                    actor[INP_OPTION_FIELD3].getChildAt(1)
+                        .displayAsPassword = False;
                     add(OPTION_DOCHANGE);
                     break;
                 if case(OPTION_CHANGE_PASSWORD:
                     optionMenuSelect = 3;
-                    actor[LBL_OPTION_DOCHANGE].text = texts[TXT_DOCHANGE_PASSWORD_TITLE];
-                    actor[LBL_OPTION_FIELD1].text = texts[TXT_DOCHANGE_PASSWORD_FIELD_1];
-                    actor[LBL_OPTION_FIELD2].text = texts[TXT_DOCHANGE_PASSWORD_FIELD_2];
-                    actor[LBL_OPTION_FIELD3].text = texts[TXT_DOCHANGE_PASSWORD_FIELD_3];
+                    actor[LBL_OPTION_DOCHANGE].text = texts[
+                        TXT_DOCHANGE_PASSWORD_TITLE];
+                    actor[LBL_OPTION_FIELD1].text = texts[
+                        TXT_DOCHANGE_PASSWORD_FIELD_1];
+                    actor[LBL_OPTION_FIELD2].text = texts[
+                        TXT_DOCHANGE_PASSWORD_FIELD_2];
+                    actor[LBL_OPTION_FIELD3].text = texts[
+                        TXT_DOCHANGE_PASSWORD_FIELD_3];
                     set_btn_text(OPTION_DOCHANGE, texts[TXT_DOCHANGE]);
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = True;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = True;
+                    actor[INP_OPTION_FIELD1].getChildAt(1)
+                        .displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1)
+                        .displayAsPassword = True;
+                    actor[INP_OPTION_FIELD3].getChildAt(1)
+                        .displayAsPassword = True;
                     add(OPTION_DOCHANGE);
                     break;
                 if case(OPTION_DELETE:
                     optionMenuSelect = 4;
-                    actor[LBL_OPTION_DOCHANGE].text = texts[TXT_DELETE_ACCOUNT_TITLE];
-                    actor[LBL_OPTION_FIELD1].text = texts[TXT_DELETE_ACCOUNT_FIELD_1];
-                    actor[LBL_OPTION_FIELD2].text = texts[TXT_DELETE_ACCOUNT_FIELD_2];
-                    actor[LBL_OPTION_FIELD3].text = texts[TXT_DELETE_ACCOUNT_FIELD_3];
+                    actor[LBL_OPTION_DOCHANGE].text = texts[
+                        TXT_DELETE_ACCOUNT_TITLE];
+                    actor[LBL_OPTION_FIELD1].text = texts[
+                        TXT_DELETE_ACCOUNT_FIELD_1];
+                    actor[LBL_OPTION_FIELD2].text = texts[
+                        TXT_DELETE_ACCOUNT_FIELD_2];
+                    actor[LBL_OPTION_FIELD3].text = texts[
+                        TXT_DELETE_ACCOUNT_FIELD_3];
                     set_btn_text(OPTION_DOCHANGE, texts[TXT_DOCHANGE]);
                     actor[INP_OPTION_FIELD1].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD2].getChildAt(1).text = "";
                     actor[INP_OPTION_FIELD3].getChildAt(1).text = "";
-                    actor[INP_OPTION_FIELD1].getChildAt(1).displayAsPassword = True;
-                    actor[INP_OPTION_FIELD2].getChildAt(1).displayAsPassword = True;
-                    actor[INP_OPTION_FIELD3].getChildAt(1).displayAsPassword = False;
+                    actor[INP_OPTION_FIELD1].getChildAt(1)
+                        .displayAsPassword = True;
+                    actor[INP_OPTION_FIELD2].getChildAt(1)
+                        .displayAsPassword = True;
+                    actor[INP_OPTION_FIELD3].getChildAt(1)
+                        .displayAsPassword = False;
                     add(OPTION_DOCHANGE);
                     break;
                 if case(OPTION_RESEND:
@@ -24413,7 +24544,8 @@ def load_tracking_pixel(url=''):
                     set_btn_text(OPTION_DOCHANGE, texts[TXT_RESEND_BTN2]);
                     add(OPTION_DORESEND);
                     if (int(savegame[SG_EMAIL_VALID]) == 1){
-                        actor[LBL_OPTION_FIELD1].text = texts[TXT_ALREADY_VALID];
+                        actor[LBL_OPTION_FIELD1].text = texts[
+                            TXT_ALREADY_VALID];
                         remove(OPTION_DOCHANGE);
                     };
                     arabize(LBL_OPTION_FIELD1);
@@ -24424,34 +24556,62 @@ def load_tracking_pixel(url=''):
                 default:
                     Switch (optionMenuSelect){
                         if case(1:
-                            if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
-                                send_action(ACT_CHANGE_NAME, actor[INP['NAME']].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
-                                option_new_data = actor[INP_OPTION_FIELD2].getChildAt(1).text;
+                            if (actor[INP_OPTION_FIELD2].getChildAt(1).text ==
+                                    actor[INP_OPTION_FIELD3]
+                                    .getChildAt(1).text){
+                                send_action(ACT_CHANGE_NAME,
+                                       actor[INP['NAME']].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD1].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD2].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD3].getChildAt(1).text)
+                                option_new_data = actor[
+                                    INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
                                 error_message(texts[TXT_ERROR_NAME_MISMATCH]);
                             };
                             break;
                         if case(2:
-                            if ((((actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text)) or ((savegame[SG_EMAIL_VALID] == 1)))){
-                                send_action(ACT_CHANGE_MAIL, actor[INP['NAME']].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
-                                option_new_data = actor[INP_OPTION_FIELD2].getChildAt(1).text;
+                            if ((((actor[INP_OPTION_FIELD2]
+                                    .getChildAt(1).text == actor[
+                                    INP_OPTION_FIELD3].getChildAt(1).text))
+                                    or ((savegame[SG_EMAIL_VALID] == 1)))){
+                                send_action(ACT_CHANGE_MAIL,
+                                   actor[INP['NAME']].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD1].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD2].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD3].getChildAt(1).text)
+                                option_new_data = actor[INP_OPTION_FIELD2]
+                                    .getChildAt(1).text;
                             } else {
                                 error_message(texts[TXT_ERROR_EMAIL_MISMATCH]);
                             };
                             break;
                         if case(3:
-                            if (actor[INP_OPTION_FIELD2].getChildAt(1).text == actor[INP_OPTION_FIELD3].getChildAt(1).text){
-                                send_action(ACT_CHANGE_PASS, actor[INP['NAME']].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD2].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text);
-                                option_new_data = actor[INP_OPTION_FIELD2].getChildAt(1).text;
+                            if (actor[INP_OPTION_FIELD2].getChildAt(1).text ==
+                                actor[INP_OPTION_FIELD3].getChildAt(1).text){
+                                send_action(ACT_CHANGE_PASS,
+                                   actor[INP['NAME']].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD1].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD2].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD3].getChildAt(1).text)
+                                option_new_data = actor[
+                                    INP_OPTION_FIELD2].getChildAt(1).text;
                             } else {
-                                error_message(texts[TXT_ERROR_PASSWORD_MISMATCH]);
+                                error_message(
+                                      texts[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
                             break;
                         if case(4:
-                            if (actor[INP_OPTION_FIELD1].getChildAt(1).text == actor[INP_OPTION_FIELD2].getChildAt(1).text){
-                                send_action(ACT_DELETE_ACCOUNT, actor[INP['NAME']].getChildAt(1).text, actor[INP_OPTION_FIELD1].getChildAt(1).text, actor[INP_OPTION_FIELD3].getChildAt(1).text.lower());
+                            if (actor[INP_OPTION_FIELD1].getChildAt(1).text ==
+                                actor[INP_OPTION_FIELD2].getChildAt(1).text){
+                                send_action(ACT_DELETE_ACCOUNT,
+                                   actor[INP['NAME']].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD1].getChildAt(1).text,
+                                   actor[INP_OPTION_FIELD3].getChildAt(1)
+                                    .text.lower());
                             } else {
-                                error_message(texts[TXT_ERROR_PASSWORD_MISMATCH]);
+                                error_message(
+                                      texts[TXT_ERROR_PASSWORD_MISMATCH]);
                             };
                             break;
                         if case(5:
@@ -24460,9 +24620,12 @@ def load_tracking_pixel(url=''):
                         if case(6:
                             remove(OPTION_DOCHANGE);
                             optionMenuSelect = 7;
-                            actor[LBL_OPTION_DOCHANGE].text = texts[TXT_LUXURY_TITLE];
-                            actor[LBL_OPTION_FIELD1].text = texts[TXT_LUXURY_CONFIRM];
-                            set_btn_text(OPTION_DOCHANGE, texts[TXT_LUXURY_BTN2]);
+                            actor[LBL_OPTION_DOCHANGE].text = texts[
+                                TXT_LUXURY_TITLE];
+                            actor[LBL_OPTION_FIELD1].text = texts[
+                                TXT_LUXURY_CONFIRM];
+                            set_btn_text(OPTION_DOCHANGE,
+                                         texts[TXT_LUXURY_BTN2]);
                             add(OPTION_DORESEND);
                             add(LUXURY_SELLER);
                             arabize(LBL_OPTION_FIELD1);
@@ -24470,9 +24633,12 @@ def load_tracking_pixel(url=''):
                         if case(7:
                             remove(OPTION_DOCHANGE);
                             optionMenuSelect = 8;
-                            actor[LBL_OPTION_DOCHANGE].text = texts[TXT_LUXURY_TITLE];
-                            actor[LBL_OPTION_FIELD1].text = texts[TXT_LUXURY_CONFIRM2];
-                            set_btn_text(OPTION_DOCHANGE, texts[TXT_LUXURY_BTN3]);
+                            actor[LBL_OPTION_DOCHANGE].text = texts[
+                                TXT_LUXURY_TITLE];
+                            actor[LBL_OPTION_FIELD1].text = texts[
+                                TXT_LUXURY_CONFIRM2];
+                            set_btn_text(OPTION_DOCHANGE, texts[
+                                         TXT_LUXURY_BTN3]);
                             add(OPTION_DORESEND);
                             add(LUXURY_SELLER);
                             arabize(LBL_OPTION_FIELD1);
@@ -27366,19 +27532,16 @@ def main():
 
     LOG = setup_logging()
 
-    #init_vars()
+    # init_vars()
 
     s = Session()
     configure(s)
 
-    #response = s.login()
+    # response = s.login()
 
 
 if __name__ == "__main__":
     main()
-
-
-
 
 
 '''
