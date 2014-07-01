@@ -1430,13 +1430,13 @@ W: 23, 0: Unused import curses (unused-import)
 W: 26, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import set_volume from wildcard import (unused-wildcard-import)
 ************* Module sflegacy
-W:185, 0: TODO: obsolete (fixme)
-W:200, 0: TODO: obsolete (fixme)
-W:214, 0: TODO: obsolete (fixme)
-W:230, 0: TODO: obsolete (fixme)
-W:254, 0: TODO WTF? (fixme)
-W:276, 0: TODO: better way to zero fill? (fixme)
-W:463, 0: TODO: Obsolete (fixme)
+W:192, 0: TODO: obsolete (fixme)
+W:207, 0: TODO: obsolete (fixme)
+W:221, 0: TODO: obsolete (fixme)
+W:237, 0: TODO: obsolete (fixme)
+W:261, 0: TODO WTF? (fixme)
+W:283, 0: TODO: better way to zero fill? (fixme)
+W:470, 0: TODO: Obsolete (fixme)
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 20, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 28, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1457,16 +1457,16 @@ R: 91, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 98, 0: Too few public methods (0/2) (too-few-public-methods)
 R:105, 0: Too few public methods (0/2) (too-few-public-methods)
 R:112, 0: Too few public methods (0/2) (too-few-public-methods)
-R:143, 0: Too few public methods (0/2) (too-few-public-methods)
 R:150, 0: Too few public methods (0/2) (too-few-public-methods)
-C:172, 4: Invalid method name "getLocal" (invalid-name)
-R:168, 0: Too few public methods (1/2) (too-few-public-methods)
-R:157, 0: Interface not implemented (interface-not-implemented)
+R:157, 0: Too few public methods (0/2) (too-few-public-methods)
+C:179, 4: Invalid method name "getLocal" (invalid-name)
+R:175, 0: Too few public methods (1/2) (too-few-public-methods)
+R:164, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-3731 statements analysed.
+3733 statements analysed.
 
 External dependencies
 ---------------------
@@ -1484,13 +1484,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19825  |57.83 |NC       |NC         |
+|code      |19827  |57.82 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12992  |37.90 |NC       |NC         |
+|docstring |12995  |37.90 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |699    |2.04  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |766    |2.23  |NC       |NC         |
+|empty     |768    |2.24  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1601,7 +1601,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -3.33/10
+Your code has been rated at -3.32/10
 
 Statistics by type
 ------------------
@@ -1613,7 +1613,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |34     |NC         |NC         |100.00      |14.71    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |32     |NC         |NC         |100.00      |3.12     |
+|method   |33     |NC         |NC         |100.00      |3.03     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |96     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
