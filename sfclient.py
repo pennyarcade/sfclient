@@ -4961,7 +4961,7 @@ def init_vars():
 
     # timer event to generate Ticks
     time_calc = Timer(50)
-    time_calc.add_event_listener(TimerEvent.TIMER, time_calcEvent)
+    time_calc.add_event_listener(TimerEvent.TIMER, time_calc_event)
 
     # TV Stuff
     tv_status = 0
