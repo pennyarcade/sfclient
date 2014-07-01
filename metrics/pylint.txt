@@ -28,7 +28,7 @@ W:18190, 0: TODO: hat does this do? (fixme)
 W:19678, 0: TODO: What does this do? (fixme)
 W:19694, 0: TODO: Obsolete? (fixme)
 W:19717, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (32923) (too-many-lines)
+C:  1, 0: Too many lines in module (33292) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 C:4089, 0: Invalid constant name "param_obj" (invalid-name)
 C:4090, 0: Invalid constant name "actor" (invalid-name)
@@ -1122,10 +1122,10 @@ W:19742, 8: Unused variable 'log_in_after_pixel' (unused-variable)
 W:19710, 4: Unused variable 'pixeldo_loader' (unused-variable)
 W:19709, 4: Unused variable 'variables' (unused-variable)
 W:19711, 4: Unused variable 'pixel_success' (unused-variable)
-W:28163,-1: String statement has no effect (pointless-string-statement)
-W:28171, 4: Using the global statement (global-statement)
-C:28177, 4: Invalid variable name "s" (invalid-name)
-W:32923,-1: String statement has no effect (pointless-string-statement)
+W:28532,-1: String statement has no effect (pointless-string-statement)
+W:28540, 4: Using the global statement (global-statement)
+C:28546, 4: Invalid variable name "s" (invalid-name)
+W:33292,-1: String statement has no effect (pointless-string-statement)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
@@ -1189,13 +1189,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |18486  |56.18 |NC       |NC         |
+|code      |18855  |56.67 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |12965  |39.40 |NC       |NC         |
+|docstring |12965  |38.97 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |702    |2.13  |NC       |NC         |
+|comment   |702    |2.11  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |750    |2.28  |NC       |NC         |
+|empty     |750    |2.25  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
