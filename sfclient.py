@@ -19756,8 +19756,6 @@ def load_tracking_pixel(url=''):
             ExternalInterface.call("loadpixel", url)
 
 
-
-
 # -----------------------------------------------------------------------------
 
 '''
@@ -22889,7 +22887,7 @@ def load_tracking_pixel(url=''):
                 return;
             };
             if (textToSend.lower() == "/level"){
-                chat_line(("Average level of guild members: " + str(avgLevel)));
+                chat_line(("Average level of guild members: " + str(avgLevel)))
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
             };
@@ -23027,7 +23025,8 @@ def load_tracking_pixel(url=''):
                         } else {
                             chat_line(' '.join(
                                 "Error: Dungeon already cleaned",
-                                "by player 'dream 25'. Please try another code."
+                                "by player 'dream 25'.",
+                                "Please try another code."
                             ));
                         };
                     } else {
@@ -23056,7 +23055,8 @@ def load_tracking_pixel(url=''):
                 showAlbumOffset = !(showAlbumOffset);
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 chat_line(
-                    ("/album mode is now " + ((showAlbumOffset) ? "on" : "off"))
+                    ("/album mode is now " +
+                     ((showAlbumOffset) ? "on" : "off"))
                 );
                 return;
             };
@@ -23125,8 +23125,8 @@ def load_tracking_pixel(url=''):
                         actor[i].scaleY = (
                             actor[i].scaleY * (1.1 - (random.random() * 0.2))
                         );
-                        actor[i].x = (actor[i].x + (2 - (random.random() * 4)));
-                        actor[i].y = (actor[i].y + (2 - (random.random() * 4)));
+                        actor[i].x = (actor[i].x + (2 - (random.random() * 4)))
+                        actor[i].y = (actor[i].y + (2 - (random.random() * 4)))
                     };
                     i++;
                 };
@@ -23279,23 +23279,34 @@ def load_tracking_pixel(url=''):
                     actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 } else {
                     if (actor[INP_GILDE_CHAT].getChildAt(0).text[-1:] != " "){
-                        actor[INP_GILDE_CHAT].getChildAt(0).text = (actor[INP_GILDE_CHAT].getChildAt(0).text + " ");
+                        actor[INP_GILDE_CHAT].getChildAt(0).text = (
+                            actor[INP_GILDE_CHAT].getChildAt(0).text + " ");
                     };
-                    len(actor[INP_GILDE_CHAT].getChildAt(0).setSelection(actor[INP_GILDE_CHAT].getChildAt(0)), actor[INP_GILDE_CHAT].getChildAt(0).length);
+                    len(actor[INP_GILDE_CHAT].getChildAt(0).setSelection(
+                        actor[INP_GILDE_CHAT].getChildAt(0)),
+                        actor[INP_GILDE_CHAT].getChildAt(0).length);
                 };
                 return;
             };
             if (textToSend.lower()[0: len(whisperCmd)] == whisperCmd){
                 textToSend = textToSend[whisperCmd.length:]
                 if (textToSend.find(" ") != -1){
-                    last_whisper_target = textToSend[0: textToSend.find(" ")].split("#").join(" ");
-                    send_action(ACT_WHISPER, textToSend[0: textToSend.find(" ")].split("#").join(" "), EncodeChat(textToSend.substr((textToSend.find(" ") + 1))));
+                    last_whisper_target = textToSend[0: textToSend.find(" ")]
+                        .split("#").join(" ");
+                    send_action(ACT_WHISPER,
+                                textToSend[0: textToSend.find(" ")]
+                                    .split("#").join(" "),
+                                EncodeChat(textToSend.substr(
+                                           (textToSend.find(" ") + 1))));
                     actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 } else {
                     if (actor[INP_GILDE_CHAT].getChildAt(0).text[-1:] != " "){
-                        actor[INP_GILDE_CHAT].getChildAt(0).text = (actor[INP_GILDE_CHAT].getChildAt(0).text + " ");
+                        actor[INP_GILDE_CHAT].getChildAt(0).text = (
+                            actor[INP_GILDE_CHAT].getChildAt(0).text + " ");
                     };
-                    actor[INP_GILDE_CHAT].getChildAt(0).setSelection(actor[INP_GILDE_CHAT].getChildAt(0).length, actor[INP_GILDE_CHAT].getChildAt(0).length);
+                    actor[INP_GILDE_CHAT].getChildAt(0).setSelection(
+                        actor[INP_GILDE_CHAT].getChildAt(0).length,
+                        actor[INP_GILDE_CHAT].getChildAt(0).length);
                 };
                 return;
             };
@@ -23304,8 +23315,9 @@ def load_tracking_pixel(url=''):
                 chat_line("Unknown command.");
                 return;
             };
-            textToSend = textToSend.split("/steal").join((texts[TXT_CMD_DONATE_MUSH] + " 1"));
-            send_action(ACT_SEND_CHAT, EncodeChat(textToSend), last_chat_index);
+            textToSend = textToSend.split("/steal")
+                .join((texts[TXT_CMD_DONATE_MUSH] + " 1"));
+            send_action(ACT_SEND_CHAT, EncodeChat(textToSend), last_chat_index)
             actor[INP_GILDE_CHAT].getChildAt(0).text = "";
         };
         var EncodeChat:* = function (inStr:String):String{
@@ -23325,7 +23337,8 @@ def load_tracking_pixel(url=''):
                 if case((GILDE_CREST_COLOR + 1):
                 if case((GILDE_CREST_COLOR + 2):
                 if case((GILDE_CREST_COLOR + 3):
-                    crestColorSelection = (get_actor_id(evt.target) - GILDE_CREST_COLOR);
+                    crestColorSelection = (get_actor_id(evt.target)
+                                           - GILDE_CREST_COLOR);
                     i = 1;
                     while (i < crestColor.length) {
                         if (i == crestColorSelection){
@@ -23345,7 +23358,8 @@ def load_tracking_pixel(url=''):
                     var _local5 = (_local3[_local4] - 1);
                     _local3[_local4] = _local5;
                     if (crestColor[crestColorSelection] < 0){
-                        crestColor[crestColorSelection] = (heraldicColors.length - 1);
+                        crestColor[crestColorSelection] = (
+                                   heraldicColors.length - 1);
                     };
                     loadCrest();
                     break;
@@ -23356,7 +23370,8 @@ def load_tracking_pixel(url=''):
                     _local4 = crestColorSelection;
                     _local5 = (_local3[_local4] + 1);
                     _local3[_local4] = _local5;
-                    if (crestColor[crestColorSelection] >= heraldicColors.length){
+                    if (crestColor[crestColorSelection] >=
+                            heraldicColors.length){
                         crestColor[crestColorSelection] = 0;
                     };
                     loadCrest();
@@ -23369,7 +23384,8 @@ def load_tracking_pixel(url=''):
                     _local5 = (_local3[_local4] - 1);
                     _local3[_local4] = _local5;
                     if (crest[selecterCrestElement] < 0){
-                        crest[selecterCrestElement] = (crestElementPos[selecterCrestElement][4] - 1);
+                        crest[selecterCrestElement] = (
+                            crestElementPos[selecterCrestElement][4] - 1);
                     };
                     loadCrest();
                     break;
@@ -23380,14 +23396,23 @@ def load_tracking_pixel(url=''):
                     _local4 = selecterCrestElement;
                     _local5 = (_local3[_local4] + 1);
                     _local3[_local4] = _local5;
-                    if (crest[selecterCrestElement] >= crestElementPos[selecterCrestElement][4]){
+                    if (crest[selecterCrestElement] >= crestElementPos[
+                            selecterCrestElement][4]){
                         crest[selecterCrestElement] = 0;
                     };
                     loadCrest();
                     break;
                 if case(GILDE_CREST_OK:
                     if ((((my_own_rank == 1)) and (crestSuggested))){
-                        send_action(ACT_GUILD_SET_DESC, actor[INP['NAME']].getChildAt(1).text, gilde, ((old_crest_str() + "§") + RemoveIllegalChars(SemiStrip(actor[INP_GILDE_TEXT].getChildAt(0).text))), MD5(actor[INP['LOGIN_PASSWORD']].getChildAt(1).text));
+                        send_action(ACT_GUILD_SET_DESC,
+                                    actor[INP['NAME']].getChildAt(1).text,
+                                    gilde,
+                                    ((old_crest_str() + "§")
+                                        + RemoveIllegalChars(SemiStrip(
+                                        actor[INP_GILDE_TEXT].getChildAt(0)
+                                        .text))),
+                                    MD5(actor[INP['LOGIN_PASSWORD']]
+                                        .getChildAt(1).text));
                         old_crest_str = old_crest_str();
                     } else {
                         if (suggestionAllowed){
@@ -23395,11 +23420,14 @@ def load_tracking_pixel(url=''):
                             suggestionAllowed = False;
                             if (my_own_rank == 1){
                                 crestSuggested = True;
-                                set_btn_text(GILDE_CREST_OK, texts[TXT_CREST_APPLY]);
+                                set_btn_text(GILDE_CREST_OK,
+                                             texts[TXT_CREST_APPLY]);
                             };
-                            send_action(ACT_SEND_CHAT, ("#?" + old_crest_str()), last_chat_index);
+                            send_action(ACT_SEND_CHAT,
+                                        ("#?" + old_crest_str()),
+                                        last_chat_index);
                         } else {
-                            error_message(texts[TXT_ERROR_TOO_SOON_SUGGESTION]);
+                            error_message(texts[TXT_ERROR_TOO_SOON_SUGGESTION])
                         };
                     };
                     break;
@@ -23421,7 +23449,8 @@ def load_tracking_pixel(url=''):
                             fade_in(GILDE_CREST_CONTROLS);
                         };
                     };
-                    selecterCrestElement = (get_actor_id(evt.target) - CLA_GILDE_CREST);
+                    selecterCrestElement = (get_actor_id(evt.target)
+                                            - CLA_GILDE_CREST);
                     i = 0;
                     while (i < crestColor.length) {
                         if (i == crestColorSelection){
@@ -23466,12 +23495,16 @@ def load_tracking_pixel(url=''):
                             with (_local3) {
                                 wordWrap = True;
                                 width = GILDE_TEXT2_X;
-                                text = texts[TXT_GILDE_RAIDSTART].split("%1").join(texts[(TXT_DUNGEON_NAMES + int(last_guild_data[GUILD_RAID_LEVEL]))]).split("%2").join(str(lastRaidCost));
+                                text = texts[TXT_GILDE_RAIDSTART]
+                                    .split("%1").join(texts[(TXT_DUNGEON_NAMES
+                                    + int(last_guild_data[GUILD_RAID_LEVEL]))])
+                                    .split("%2").join(str(lastRaidCost));
                             };
                             _local3 = actor[LBL_WINDOW_TITLE];
                             with (_local3) {
                                 text = texts[TXT_GILDE_RAIDSTART_TITLE];
-                                x = ((IF_WIN_X + IF_WIN_WELCOME_X) - int((text_width / 2)));
+                                x = ((IF_WIN_X + IF_WIN_WELCOME_X)
+                                     - int((text_width / 2)));
                             };
                         } else {
                             send_action(ACT_GUILD_COMMENCE_ATTACK, -1);
@@ -23483,9 +23516,13 @@ def load_tracking_pixel(url=''):
                 if case(GILDE_ATTACK:
                     if (my_own_attack_target == 0){
                         if (last_guild_shown == gilde){
-                            send_action(ACT_SCREEN_GILDENHALLE, "", savegame[SG_GUILD_INDEX], 0);
+                            send_action(ACT_SCREEN_GILDENHALLE,
+                                        "",
+                                        savegame[SG_GUILD_INDEX],
+                                        0);
                         } else {
-                            send_action(ACT_GUILD_COMMENCE_ATTACK, last_guild_shown);
+                            send_action(ACT_GUILD_COMMENCE_ATTACK,
+                                        last_guild_shown);
                         };
                     } else {
                         send_action(ACT_GUILD_JOIN_ATTACK, "", "");
@@ -23505,7 +23542,8 @@ def load_tracking_pixel(url=''):
                     if (GildeChatScroll > 35){
                         GildeChatScroll = 35;
                     };
-                    while (actor[((LBL['GILDE']['CHAT'] + 35) - GildeChatScroll)].text == "") {
+                    while (actor[((LBL['GILDE']['CHAT'] + 35)
+                           - GildeChatScroll)].text == "") {
                         GildeChatScroll--;
                         if (GildeChatScroll < 0){
                             GildeChatScroll = 0;
@@ -23518,8 +23556,10 @@ def load_tracking_pixel(url=''):
             while (i < 40) {
                 _local3 = actor[(LBL['GILDE']['CHAT'] + i)];
                 with (_local3) {
-                    y = (GILDE_CHAT_Y + (((i - 35) + GildeChatScroll) * GILDE_CHAT_Y));
-                    visible = (((i >= (35 - GildeChatScroll))) and ((i < (40 - GildeChatScroll))));
+                    y = (GILDE_CHAT_Y + (((i - 35) + GildeChatScroll)
+                         * GILDE_CHAT_Y));
+                    visible = (((i >= (35 - GildeChatScroll)))
+                               and ((i < (40 - GildeChatScroll))));
                 };
                 i = (i + 1);
             };
@@ -23530,7 +23570,11 @@ def load_tracking_pixel(url=''):
             if (GildenName == ""){
                 error_message(texts[TXT_ERROR_EMPTY_GUILD_NAME]);
             } else {
-                send_action(ACT_GUILD_FOUND, actor[INP['NAME']].getChildAt(1).text, actor[INP_GILDE_GRUENDEN].getChildAt(1).text, MD5(actor[INP['LOGIN_PASSWORD']].getChildAt(1).text));
+                send_action(ACT_GUILD_FOUND,
+                            actor[INP['NAME']].getChildAt(1).text,
+                            actor[INP_GILDE_GRUENDEN].getChildAt(1).text,
+                            MD5(actor[INP['LOGIN_PASSWORD']]
+                                .getChildAt(1).text));
             };
         };
         var HutBtnDownHandler:* = function (evt:Event){
@@ -23592,22 +23636,32 @@ def load_tracking_pixel(url=''):
         HutBtnHandler = function (evt:Event=None):Boolean{
             var evt:* = evt;
             var BetRisen:* = function (){
-                if ((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0){
+                if ((int(actor[LBL_HUTMANN_GOLDBET].text)
+                        + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0){
                     set_btn_text(HUTMANN_OK, texts[TXT_HUTMANN_START]);
                     add(HUTMANN_OK);
-                    if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (50 * int(GetSpendAmount())))) or ((int(actor[LBL_HUTMANN_MUSHBET].text) >= 20)))){
-                        actor[LBL_HUTMANN_TEXT].text = texts[TXT_HUTMANN_BETCOMMENT3];
+                    if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (
+                            50 * int(GetSpendAmount()))))
+                            or (int(actor[LBL_HUTMANN_MUSHBET].text) >= 20))):
+                        actor[LBL_HUTMANN_TEXT].text = texts[
+                            TXT_HUTMANN_BETCOMMENT3];
                         add(HUTFACE_LOSE3);
                     } else {
-                        if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (10 * int(GetSpendAmount())))) or ((int(actor[LBL_HUTMANN_MUSHBET].text) >= 10)))){
-                            actor[LBL_HUTMANN_TEXT].text = texts[TXT_HUTMANN_BETCOMMENT2];
+                        if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (
+                                10 * int(GetSpendAmount()))))
+                                or ((int(actor[LBL_HUTMANN_MUSHBET].text)
+                                    >= 10)))){
+                            actor[LBL_HUTMANN_TEXT].text = texts[
+                                TXT_HUTMANN_BETCOMMENT2];
                             add(HUTFACE_WIN);
                         } else {
-                            actor[LBL_HUTMANN_TEXT].text = texts[TXT_HUTMANN_BETCOMMENT1];
+                            actor[LBL_HUTMANN_TEXT].text = texts[
+                                TXT_HUTMANN_BETCOMMENT1];
                             add(HUTFACE_WIN);
                         };
                     };
-                    actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X - (actor[LBL_HUTMANN_TEXT].text_width / 2));
+                    actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X
+                                 - (actor[LBL_HUTMANN_TEXT].text_width / 2));
                     HutFaceResetTimer.stop();
                     HutFaceResetTimer.start();
                 };
@@ -23616,8 +23670,11 @@ def load_tracking_pixel(url=''):
             add_some(HUTBECHER_1_IDLE, HUTBECHER_2_IDLE, HUTBECHER_3_IDLE);
             Switch (get_actor_id(evt.target)){
                 if case(HUTMANN_GOLDBET:
-                    if (int((int(savegame[SG_GOLD]) / 100)) > int(actor[LBL_HUTMANN_GOLDBET2].text)){
-                        actor[LBL_HUTMANN_GOLDBET].text = str((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_GOLDBET2].text)));
+                    if (int((int(savegame[SG_GOLD]) / 100))
+                            > int(actor[LBL_HUTMANN_GOLDBET2].text)){
+                        actor[LBL_HUTMANN_GOLDBET].text = str((int(
+                              actor[LBL_HUTMANN_GOLDBET].text)
+                                + int(actor[LBL_HUTMANN_GOLDBET2].text)));
                         BetRisen();
                     } else {
                         var _local3 = actor[LBL_HUTMANN_TEXT];
@@ -23635,8 +23692,11 @@ def load_tracking_pixel(url=''):
                     };
                     break;
                 if case(HUTMANN_MUSHBET:
-                    if (int(savegame[SG_MUSH]) > int(actor[LBL_HUTMANN_MUSHBET2].text)){
-                        actor[LBL_HUTMANN_MUSHBET].text = str((int(actor[LBL_HUTMANN_MUSHBET].text) + int(actor[LBL_HUTMANN_MUSHBET2].text)));
+                    if (int(savegame[SG_MUSH]) >
+                            int(actor[LBL_HUTMANN_MUSHBET2].text)){
+                        actor[LBL_HUTMANN_MUSHBET].text = str(
+                          (int(actor[LBL_HUTMANN_MUSHBET].text)
+                           + int(actor[LBL_HUTMANN_MUSHBET2].text)));
                         BetRisen();
                     } else {
                         _local3 = actor[LBL_HUTMANN_TEXT];
@@ -23654,7 +23714,9 @@ def load_tracking_pixel(url=''):
                     };
                     break;
                 if case(HUTMANN_OK:
-                    if (((((int(actor[LBL_HUTMANN_GOLDBET].text) + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0)) and (on_stage(HUTMANN_GOLDBET)))){
+                    if (((((int(actor[LBL_HUTMANN_GOLDBET].text)
+                            + int(actor[LBL_HUTMANN_MUSHBET].text)) > 0))
+                            and (on_stage(HUTMANN_GOLDBET)))){
                         remove(HUTMANN_OK, HUTMANN_PLACEBET);
                         add(HUTMANN_BECHERCHOOSE);
                         PlaceHutBet(True);
@@ -23687,36 +23749,67 @@ def load_tracking_pixel(url=''):
             remove(HUTMANN_BECHERCHOOSE);
             add(HUTFACE_HOVER);
             CupChosen = (get_actor_id(evt.target) - CA_HUTBECHER_1);
-            send_action(ACT_PLACE_BET, str((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)), actor[LBL_HUTMANN_MUSHBET].text);
+            send_action(ACT_PLACE_BET,
+                        str((int(actor[LBL_HUTMANN_GOLDBET].text) * 100)),
+                        actor[LBL_HUTMANN_MUSHBET].text);
         };
         var PlaceHutBet:* = function (LeftToCenter=False){
             var LeftBoxWidth:* = 0;
             var RightBoxWidth:* = 0;
             var LeftToCenter:Boolean = LeftToCenter;
-            RightBoxWidth = ((((actor[HUTMANN_GOLDBET].width + GILDE_GOLDMUSH_C1) + actor[LBL_HUTMANN_GOLDBET2].text_width) + GILDE_GOLDMUSH_C1) + actor[HUTMANN_GOLDBET2].width);
-            if (((((actor[HUTMANN_MUSHBET].width + GILDE_GOLDMUSH_C1) + actor[LBL_HUTMANN_MUSHBET2].text_width) + GILDE_GOLDMUSH_C1) + actor[HUTMANN_MUSHBET2].width) > RightBoxWidth){
-                RightBoxWidth = ((((actor[HUTMANN_MUSHBET].width + GILDE_GOLDMUSH_C1) + actor[LBL_HUTMANN_MUSHBET2].text_width) + GILDE_GOLDMUSH_C1) + actor[HUTMANN_MUSHBET2].width);
+            RightBoxWidth = ((((actor[HUTMANN_GOLDBET].width
+                             + GILDE_GOLDMUSH_C1)
+                            + actor[LBL_HUTMANN_GOLDBET2].text_width)
+                            + GILDE_GOLDMUSH_C1)
+                            + actor[HUTMANN_GOLDBET2].width);
+            if (((((actor[HUTMANN_MUSHBET].width + GILDE_GOLDMUSH_C1)
+                    + actor[LBL_HUTMANN_MUSHBET2].text_width)
+                    + GILDE_GOLDMUSH_C1) + actor[HUTMANN_MUSHBET2].width) >
+                    RightBoxWidth){
+                RightBoxWidth = ((((actor[HUTMANN_MUSHBET].width
+                                 + GILDE_GOLDMUSH_C1)
+                                + actor[LBL_HUTMANN_MUSHBET2].text_width)
+                                + GILDE_GOLDMUSH_C1)
+                                + actor[HUTMANN_MUSHBET2].width);
             };
-            actor[HUTMANN_GOLDBET].x = ((GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2) - int((RightBoxWidth / 2)));
+            actor[HUTMANN_GOLDBET].x = ((GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2)
+                                        - int((RightBoxWidth / 2)));
             actor[HUTMANN_MUSHBET].x = actor[HUTMANN_GOLDBET].x;
             actor[HUTMANN_MUSHBET_DISABLED].x = actor[HUTMANN_GOLDBET].x;
-            actor[LBL_HUTMANN_GOLDBET2].x = ((actor[HUTMANN_GOLDBET].x + actor[HUTMANN_GOLDBET].width) + GILDE_GOLDMUSH_C1);
-            actor[LBL_HUTMANN_MUSHBET2].x = ((actor[HUTMANN_MUSHBET].x + actor[HUTMANN_MUSHBET].width) + GILDE_GOLDMUSH_C1);
-            actor[HUTMANN_GOLDBET2].x = ((actor[LBL_HUTMANN_GOLDBET2].x + actor[LBL_HUTMANN_GOLDBET2].text_width) + GILDE_GOLDMUSH_C1);
-            actor[HUTMANN_MUSHBET2].x = ((actor[LBL_HUTMANN_MUSHBET2].x + actor[LBL_HUTMANN_MUSHBET2].text_width) + GILDE_GOLDMUSH_C1);
+            actor[LBL_HUTMANN_GOLDBET2].x = ((actor[HUTMANN_GOLDBET].x
+                                             + actor[HUTMANN_GOLDBET].width)
+                                                + GILDE_GOLDMUSH_C1);
+            actor[LBL_HUTMANN_MUSHBET2].x = ((actor[HUTMANN_MUSHBET].x
+                                             + actor[HUTMANN_MUSHBET].width)
+                                            + GILDE_GOLDMUSH_C1);
+            actor[HUTMANN_GOLDBET2].x = ((actor[LBL_HUTMANN_GOLDBET2].x
+                                         + actor[LBL_HUTMANN_GOLDBET2].text_width)
+                                        + GILDE_GOLDMUSH_C1);
+            actor[HUTMANN_MUSHBET2].x = ((actor[LBL_HUTMANN_MUSHBET2].x
+                                + actor[LBL_HUTMANN_MUSHBET2].text_width)
+                                + GILDE_GOLDMUSH_C1);
             var _local3 = actor[LBL_HUTMANN_GOLDBET];
             with (_local3) {
-                LeftBoxWidth = ((text_width + GILDE_GOLDMUSH_C1) + actor[HUTMANN_GOLDBET].width);
+                LeftBoxWidth = ((text_width + GILDE_GOLDMUSH_C1)
+                                + actor[HUTMANN_GOLDBET].width);
             };
             _local3 = actor[LBL_HUTMANN_MUSHBET];
             with (_local3) {
-                if (((text_width + GILDE_GOLDMUSH_C1) + actor[HUTMANN_MUSHBET].width) > LeftBoxWidth){
-                    LeftBoxWidth = ((text_width + GILDE_GOLDMUSH_C1) + actor[HUTMANN_MUSHBET].width);
+                if (((text_width + GILDE_GOLDMUSH_C1)
+                    + actor[HUTMANN_MUSHBET].width) > LeftBoxWidth){
+                    LeftBoxWidth = ((text_width + GILDE_GOLDMUSH_C1)
+                                    + actor[HUTMANN_MUSHBET].width);
                 };
-                actor[HUTMANN_MUSHBET].x = ((LeftToCenter) ? SCREEN_TITLE_X : (GILDE_GOLDMUSH_X - int((LeftBoxWidth / 2))));
+                actor[HUTMANN_MUSHBET].x = ((LeftToCenter)
+                                            ? SCREEN_TITLE_X
+                                            : (GILDE_GOLDMUSH_X
+                                               - int((LeftBoxWidth / 2))));
                 actor[HUTMANN_GOLDBET].x = actor[HUTMANN_MUSHBET].x;
-                actor[LBL_HUTMANN_GOLDBET].x = ((actor[HUTMANN_GOLDBET].x + actor[HUTMANN_GOLDBET].width) + GILDE_GOLDMUSH_C1);
-                x = ((actor[HUTMANN_MUSHBET].x + actor[HUTMANN_MUSHBET].width) + GILDE_GOLDMUSH_C1);
+                actor[LBL_HUTMANN_GOLDBET].x = ((actor[HUTMANN_GOLDBET].x
+                                                + actor[HUTMANN_GOLDBET].width)
+                                                + GILDE_GOLDMUSH_C1);
+                x = ((actor[HUTMANN_MUSHBET].x + actor[HUTMANN_MUSHBET].width)
+                                            + GILDE_GOLDMUSH_C1);
             };
         };
         RequestToilet = function (evt:Event=None){
@@ -23775,7 +23868,8 @@ def load_tracking_pixel(url=''):
             var tooHealthy:* = False;
             var evt:* = evt;
             canBuy = (int(savegame[SG_BEERS]) < 10);
-            if (savegame[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * 5)) + SG_ITM_EXT_ENCHANT)] == 71){
+            if (savegame[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * 5))
+                    + SG_ITM_EXT_ENCHANT)] == 71){
                 canBuy = (int(savegame[SG_BEERS]) < 11);
             };
             tooHealthy = False;
@@ -23796,29 +23890,51 @@ def load_tracking_pixel(url=''):
             if (!texts[TXT_BEERFEST_TITLE_TOOHEALTHY]){
                 texts[TXT_BEERFEST_TITLE_TOOHEALTHY] = "Beerfest!";
                 texts[TXT_BEERFEST_TITLE_OK] = "Beerfest!";
-                texts[TXT_BEERFEST_TEXT_TOOHEALTHY] = texts[TXT_BO_TEXT_TOOHEALTHY];
+                texts[TXT_BEERFEST_TEXT_TOOHEALTHY] = texts[
+                    TXT_BO_TEXT_TOOHEALTHY];
                 texts[TXT_BEERFEST_TEXT_OK] = texts[TXT_BO_TEXT_OK];
             };
             var _local3 = actor[LBL_QO_QUESTNAME];
             with (_local3) {
                 if (beer_fest){
-                    text = texts[((tooHealthy) ? TXT_BEERFEST_TITLE_TOOHEALTHY : ((canBuy) ? TXT_BEERFEST_TITLE_OK : TXT_BO_TITLE_NO))];
+                    text = texts[((tooHealthy)
+                                  ? TXT_BEERFEST_TITLE_TOOHEALTHY
+                                  : ((canBuy)
+                                     ? TXT_BEERFEST_TITLE_OK
+                                     : TXT_BO_TITLE_NO))];
                 } else {
                     if (special_action > 0){
-                        text = texts[((((canBuy) or (tooHealthy))) ? ((TXT_SPECIAL_ACTION_TITLE + special_action) - 1) : TXT_BO_TITLE_NO)];
+                        text = texts[((((canBuy) or (tooHealthy)))
+                                      ? ((TXT_SPECIAL_ACTION_TITLE
+                                         + special_action) - 1)
+                                        : TXT_BO_TITLE_NO)];
                     } else {
-                        text = texts[((canBuy) ? TXT_BO_TITLE_OK : ((tooHealthy) ? TXT_BO_TITLE_TOOHEALTHY : TXT_BO_TITLE_NO))];
+                        text = texts[((canBuy)
+                                      ? TXT_BO_TITLE_OK
+                                      : ((tooHealthy)
+                                         ? TXT_BO_TITLE_TOOHEALTHY
+                                         : TXT_BO_TITLE_NO))];
                     };
                 };
-                x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X) - int((text_width / 2)));
+                x = ((QO_BLACK_SQUARE_X + QO_QUESTNAME_X)
+                     - int((text_width / 2)));
             };
             _local3 = actor[LBL_QO_QUESTTEXT];
             with (_local3) {
                 if (beer_fest){
-                    text = texts[((tooHealthy) ? TXT_BEERFEST_TEXT_TOOHEALTHY : ((canBuy) ? TXT_BEERFEST_TEXT_OK : TXT_BO_TEXT_NO))];
+                    text = texts[((tooHealthy)
+                                  ? TXT_BEERFEST_TEXT_TOOHEALTHY
+                                  : ((canBuy)
+                                     ? TXT_BEERFEST_TEXT_OK
+                                     : TXT_BO_TEXT_NO))];
                 } else {
                     if (special_action > 0){
-                        text = texts[((canBuy) ? ((TXT_SPECIAL_ACTION_TEXT_OK + special_action) - 1) : ((tooHealthy) ? ((TXT_SPECIAL_ACTION_TEXT_TOOHEALTHY + special_action) - 1) : TXT_BO_TEXT_NO))];
+                        text = texts[((canBuy)
+                          ? ((TXT_SPECIAL_ACTION_TEXT_OK + special_action) - 1)
+                          : ((tooHealthy)
+                             ? ((TXT_SPECIAL_ACTION_TEXT_TOOHEALTHY
+                                + special_action) - 1)
+                                : TXT_BO_TEXT_NO))];
                     } else {
                         text = texts[((canBuy) ? TXT_BO_TEXT_OK : ((tooHealthy) ? TXT_BO_TEXT_TOOHEALTHY : TXT_BO_TEXT_NO))];
                     };
