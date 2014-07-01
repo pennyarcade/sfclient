@@ -65,7 +65,6 @@ C:4953, 4: Invalid constant name "whendo_loaded_timeout" (invalid-name)
 W:4953, 4: Global variable 'whendo_loaded_fn' undefined at the module level (global-variable-undefined)
 W:4953, 4: Global variable 'whendo_loaded_active' undefined at the module level (global-variable-undefined)
 W:4953, 4: Global variable 'whendo_loaded_timeout' undefined at the module level (global-variable-undefined)
-E:4964,51: Undefined variable 'time_calcEvent' (undefined-variable)
 E:4976,55: Undefined variable 'try_show_tv' (undefined-variable)
 E:4987, 4: Undefined variable 'next_fight_timer' (undefined-variable)
 E:4987,58: Undefined variable 'next_fight' (undefined-variable)
@@ -1520,7 +1519,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |346    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |878    |NC       |NC         |
+|error      |877    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1544,7 +1543,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |848         |
+|undefined-variable           |847         |
 +-----------------------------+------------+
 |unused-variable              |270         |
 +-----------------------------+------------+
@@ -1601,7 +1600,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -3.32/10
+Your code has been rated at -3.31/10
 
 Statistics by type
 ------------------
