@@ -4686,7 +4686,7 @@ def init_vars():
     # hasFoughtGuildBattle = False
     # hasLostMQ = False
 
-    # image_timeout = 3
+    image_timeout = 3
     # img_url = list()
     # img_url_index = 0
     # imprint_url = ""
