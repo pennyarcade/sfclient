@@ -17533,7 +17533,7 @@ def action_handler(event):
             tmp_array = par[0].split("/")
             line = 1
 
-            for i in range(len(tmp_array) -1):
+            for i in range(len(tmp_array) - 1):
                 tmp_str = ''
                 if tmp_array[i] < 0:
                     tmp_str += '-'
@@ -18697,7 +18697,6 @@ def show_popup(evt, *args):
     add(POPUP_INFO)
 
 
-
 '''
 
 position_popup = function (evt:MouseEvent):
@@ -18718,11 +18717,17 @@ position_popup = function (evt:MouseEvent):
         if (y > (RES_Y - textY)){
             y = (RES_Y - textY);
         };
-        if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popup_width) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
+        if ((((((((evt.stageX > (x - 20)))
+            and ((evt.stageX < ((x + popup_width) + 15)))))
+            and ((evt.stageY > (y - 20)))))
+            and ((evt.stageY < ((y + textY) + 15))))){
             if (evt.stageY < (textY + 20)){
                 y = (evt.stageY + 40);
             };
-            if ((((((((evt.stageX > (x - 20))) and ((evt.stageX < ((x + popup_width) + 15))))) and ((evt.stageY > (y - 20))))) and ((evt.stageY < ((y + textY) + 15))))){
+            if ((((((((evt.stageX > (x - 20)))
+                and ((evt.stageX < ((x + popup_width) + 15)))))
+                and ((evt.stageY > (y - 20)))))
+                and ((evt.stageY < ((y + textY) + 15))))){
                 if (evt.stageX > ((RES_X - popup_width) - 20)){
                     x = ((evt.stageX - popup_width) - 20);
                 };
@@ -18742,7 +18747,8 @@ var DoAddBtnImage:* = function (){
     with (_local2) {
         tmpImage = new Bitmap(actor[imgActor].content.bitmapData.clone());
         tmpImage.x = ((getCharBoundaries(imgIndex).x + x) + 4);
-        tmpImage.y = (((getCharBoundaries(imgIndex).y + y) - 3) + (((text_dir == "right")) ? 7 : 0));
+        tmpImage.y = (((getCharBoundaries(imgIndex).y + y) - 3)
+                      + (((text_dir == "right")) ? 7 : 0));
         obj.addChild(tmpImage);
     };
 };
@@ -18793,10 +18799,16 @@ var CenterTextField:* = function (obj:Object, aoffsx=0, aoffsy=0):
     with (_local5) {
         auto_size = TextFieldAutoSize.LEFT;
         embed_fonts = font_embedded;
-        default_text_format = new TextFormat(gameFont, (((specialFontSize == 0)) ? default_text_format.size : specialFontSize), default_text_format.color);
+        default_text_format = new TextFormat(gameFont,
+                                             (((specialFontSize == 0))
+                                              ? default_text_format.size
+                                              : specialFontSize),
+                                             default_text_format.color);
         text = btnText;
-        x = int(((((obj.getChildAt(0).width / 2) - (text_width / 2)) + offs) + aoffsx));
-        y = int(((((obj.getChildAt(0).height / 2) - (textHeight / 2)) + offsy) + aoffsy));
+        x = int(((((obj.getChildAt(0).width / 2)
+                - (text_width / 2)) + offs) + aoffsx));
+        y = int(((((obj.getChildAt(0).height / 2)
+                - (textHeight / 2)) + offsy) + aoffsy));
         if (imgIndex != -1){
             whendo_loaded(DoAddBtnImage);
         };
@@ -18884,8 +18896,9 @@ def DefineLbl(
 
 '''
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # (File) Loaders
+
 
 def language_file_error():
     '''
@@ -18912,7 +18925,7 @@ def language_filedo_loaded():
     tmp_str = ""
     last_index = 0
 
-    for i in range(len(str_data) -1):
+    for i in range(len(str_data) - 1):
         c = str_data.charCodeAt(i)
         for case in Switch(c):
             if case(10, 13):
@@ -18970,7 +18983,8 @@ def load_language_file():
         data_format = URLLoaderdata_format.TEXT
         add_event_listener(Event.COMPLETE, LanguageFileLoaded)
         add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
-        add_event_listener(SecurityErrorEvent.SECURITY_ERROR, LanguageFileError)
+        add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
+                           LanguageFileError)
         if lang_code == "ar":
             text_dir = "right"
 
@@ -19311,59 +19325,59 @@ def configuration_filedo_loaded(evt):
         compare_items = False
         disable_tv = False
 
-        if so.data.light_mode == False:
+        if so.data.light_mode is False:
             light_mode = False
-        if so.data.light_mode == True:
+        if so.data.light_mode is True:
             light_mode = True
-        if so.data.chat_sound == False:
+        if so.data.chat_sound is False:
             chat_sound = False
-        if so.data.chat_sound == True:
+        if so.data.chat_sound is True:
             chat_sound = True
-        if so.data.compare_items == False:
+        if so.data.compare_items is False:
             compare_items = False
-        if so.data.compare_items == True:
+        if so.data.compare_items is True:
             compare_items = True
-        if so.data.disable_tv == False:
+        if so.data.disable_tv is False:
             disable_tv = False
-        if so.data.disable_tv == True:
+        if so.data.disable_tv is True:
             disable_tv = True
-        if param_obj["lang"] != None:
+        if param_obj["lang"] is not None:
             lang_code = param_obj["lang"]
-        if param_obj["id"] != None:
+        if param_obj["id"] is not None:
             param_id = str(param_obj["id"])
 
-        if param_obj["rec"] != None:
+        if param_obj["rec"] is not None:
             param_rec = str(param_obj["rec"])
             if so.data.had_account:
                 param_rec = ""
 
-        if param_obj["viewplayer"] != None:
+        if param_obj["viewplayer"] is not None:
             view_player = str(param_obj["viewplayer"])
 
-        if param_obj["adminlogin"] != None:
+        if param_obj["adminlogin"] is not None:
             admin_login = str(param_obj["adminlogin"])
 
-        if param_obj["mp_api_user_id"] != None:
+        if param_obj["mp_api_user_id"] is not None:
             mp_api_user_id = str(param_obj["mp_api_user_id"])
 
-        if param_obj["mp_api_user_token"] != None:
+        if param_obj["mp_api_user_token"] is not None:
             mp_api_user_token = str(param_obj["mp_api_user_token"])
 
-        if ((param_obj["mp_api_user_id"] != None)
-                and (param_obj["mp_api_user_token"] != None)):
+        if ((param_obj["mp_api_user_id"] is not None)
+                and (param_obj["mp_api_user_token"] is not None)):
             sso_mode = True
 
-        if param_obj["cid"] != None:
+        if param_obj["cid"] is not None:
             param_cid = str(param_obj["cid"])
             param_cid_original = True
             so.data.cid = param_cid
             so.flush()
-        elif param_obj["CID"] != None:
+        elif param_obj["CID"] is not None:
             param_cid = str(param_obj["CID"])
             param_cid_original = True
             so.data.cid = param_cid
             so.flush()
-        elif param_obj["Cid"] != None:
+        elif param_obj["Cid"] is not None:
             param_cid = str(param_obj["Cid"])
             param_cid_original = True
             so.data.cid = param_cid
@@ -19375,30 +19389,30 @@ def configuration_filedo_loaded(evt):
             param_cid = so.data.cid
 
         had_account = so.data.had_account
-        if param_obj["adv"] != None:
+        if param_obj["adv"] is not None:
             param_adv = str(param_obj["adv"])
             so.data.adv = param_adv
             so.data.advpar = param_obj
             so.flush()
-        elif param_obj["cid"] != None:
+        elif param_obj["cid"] is not None:
             so.data.advpar = param_obj
             so.flush()
         elif so.data.adv:
             param_adv = so.data.adv
 
-        if param_obj["valid"] != None:
+        if param_obj["valid"] is not None:
             param_valid = str(param_obj["valid"])
 
-        if param_obj["val"] != None:
+        if param_obj["val"] is not None:
             param_valid = str(param_obj["val"])
 
-        if param_obj["hall"] != None:
+        if param_obj["hall"] is not None:
             param_hall = str(param_obj["hall"])
 
-        if param_obj["imgsvr"] != None:
+        if param_obj["imgsvr"] is not None:
             param_imgsvr = int(param_obj["imgsvr"])
 
-        if param_obj["port"] != None:
+        if param_obj["port"] is not None:
             param_forceport = int(param_obj["port"])
 
         force_reroll = (param_reroll_img > int(so.data.force_reroll))
@@ -24148,7 +24162,7 @@ def load_tracking_pixel(url=''):
             var value:* = value;
             if (notFirstVolChange){
                 notFirstVolChange = False;
-                if (so.data.volume == None){
+                if (so.data.volume is None){
                     so.data.volume = 5;
                 };
                 so.flush();
@@ -27561,7 +27575,7 @@ def EnableDragDrop(actor_id, handler:Function, ... _args):
         dragNotYet = True;
         dragResetTimer.start();
         evt.target.stopDrag();
-        if (evt.target.dropTarget != None){
+        if (evt.target.dropTarget is not None){
             i = 0;
             while (i < Targets.length) {
                 if ((actor[Targets[i]] is Array)){
