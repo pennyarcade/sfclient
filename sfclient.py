@@ -28582,8 +28582,8 @@ FontFormat_Default);
         DefineImg(WEAPON_CLAW3, "res/gfx/itm/kampf_kralle3.png", False, 0, 0);
         DefineImg(WEAPON_CLAW4, "res/gfx/itm/kampf_kralle4.png", False, 0, 0);
         DefineImg(WEAPON_SWOOSH, "res/gfx/itm/kampf_swoosh1.png", False, 0, 0);
-        DefineImg(WEAPON_SWOOSH2, "res/gfx/itm/kampf_swoosh2.png", False, 0, 0);
-        DefineImg(WEAPON_SWOOSH3, "res/gfx/itm/kampf_swoosh3.png", False, 0, 0);
+        DefineImg(WEAPON_SWOOSH2, "res/gfx/itm/kampf_swoosh2.png", False, 0, 0)
+        DefineImg(WEAPON_SWOOSH3, "res/gfx/itm/kampf_swoosh3.png", False, 0, 0)
         DefineImg(WEAPON_SPLAT, "res/gfx/itm/kampf_splat1.png", False, 0, 0);
         DefineImg(WEAPON_SPLAT2, "res/gfx/itm/kampf_splat2.png", False, 0, 0);
         DefineImg(WEAPON_SPLAT3, "res/gfx/itm/kampf_splat3.png", False, 0, 0);
@@ -31608,14 +31608,21 @@ def display_inventory(SG:Array=None, NoPrices=False,
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
         } else {
-        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 3)) and ((i == 1)))){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER], POPUP_END_LINE];
+        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 3))
+                and ((i == 1)))){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER],
+                POPUP_END_LINE];
         } else {
-        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 2)) and ((i == 2)))){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
+        if ((((((towerMode) ? (copyCatIdRaw + 1) : int(SG[SG_CLASS])) == 2))
+                and ((i == 2)))){
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
         } else {
         if (i <= 2){
-            popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib, texts[(TXT_ATTRIBHELP_EXT + i)], POPUP_END_LINE];
+            popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
+                FontFormat_Attrib, texts[(TXT_ATTRIBHELP_EXT + i)],
+                POPUP_END_LINE];
 
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
             texts[TXT_BASIS], POPUP_TAB,
