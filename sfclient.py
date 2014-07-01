@@ -19430,7 +19430,8 @@ def configuration_filedo_loaded(evt):
         if so.data.img_url_index:
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
-            elif (so.data.img_url_index <= len(img_url)) and (not force_reroll):
+            elif (so.data.img_url_index <= len(img_url))
+                    and (not force_reroll):
                 img_url_index = so.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
@@ -19693,11 +19694,11 @@ def pixel_failed():
     '''
         TODO: Obsolete?
     '''
-    #pixeldo_loader.remove_event_listener(Event.COMPLETE, pixel_success)
-    #pixeldo_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
-    #pixeldo_loader.remove_event_listener(
-    #    SecurityErrorEvent.SECURITY_ERROR, pixel_failed
-    #)
+    # pixeldo_loader.remove_event_listener(Event.COMPLETE, pixel_success)
+    # pixeldo_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
+    # pixeldo_loader.remove_event_listener(
+    #     SecurityErrorEvent.SECURITY_ERROR, pixel_failed
+    # )
     pass
 
 
@@ -19728,16 +19729,16 @@ def load_tracking_pixel(url=''):
         LOG.debug("CID userd " + param_cid)
         LOG.debug("Action " + act)
 
-        #req = new URLRequest("index.php")
-        #req.method = URLRequestMethod.POST
+        # req = new URLRequest("index.php")
+        # req.method = URLRequestMethod.POST
 
-        #variables = new URLVariables()
-        #variables.pixel_url = url
-        #variables.pixel_cid = param_cid
-        #variables.pixel_player_id = savegame[SG['PLAYER_ID']]
-        #variables.pixel_action = (((next_pxl == 0)) ? act : abs(next_pxl)
+        # variables = new URLVariables()
+        # variables.pixel_url = url
+        # variables.pixel_cid = param_cid
+        # variables.pixel_player_id = savegame[SG['PLAYER_ID']]
+        # variables.pixel_action = (((next_pxl == 0)) ? act : abs(next_pxl)
 
-        #req.data = variables
+        # req.data = variables
 
         log_in_after_pixel = False
         navigate_to_url(req, "_self")
@@ -19758,7 +19759,7 @@ def load_tracking_pixel(url=''):
 
 
 
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 '''
     build_interface = function (){
@@ -21033,7 +21034,8 @@ def load_tracking_pixel(url=''):
             if ((((iFrame < 0)) and ((SchildDir < 0)))){
                 iFrame = -1;
                 SchildTimer.stop();
-                SchildTimer.remove_event_listener(TimerEvent.TIMER, SchildFrame);
+                SchildTimer.remove_event_listener(TimerEvent.TIMER,
+                                                  SchildFrame)
                 return;
             };
             if ((((iFrame >= 3)) and ((SchildDir > 0)))){
@@ -21085,7 +21087,7 @@ def load_tracking_pixel(url=''):
         };
         HideDealerEyes = function ():
             DealerStepTimer.stop();
-            DealerStepTimer.remove_event_listener(TimerEvent.TIMER, DealerStep);
+            DealerStepTimer.remove_event_listener(TimerEvent.TIMER, DealerStep)
         };
         var DealerAni:* = function (evt:Event):
             if (
@@ -21182,9 +21184,9 @@ def load_tracking_pixel(url=''):
         };
         HideArenaOno = function ():
             if (OnoTimer){
-                OnoTimer.remove_event_listener(TimerEvent.TIMER, PopupArenaOno);
+                OnoTimer.remove_event_listener(TimerEvent.TIMER, PopupArenaOno)
             };
-            OnoPopupTimer.remove_event_listener(TimerEvent.TIMER, StepArenaOno);
+            OnoPopupTimer.remove_event_listener(TimerEvent.TIMER, StepArenaOno)
             remove(ThisOno);
         };
         PopupArenaOno = function (evt:Event=None):
@@ -21516,10 +21518,12 @@ def load_tracking_pixel(url=''):
         PrevPlayer = function (evt:MouseEvent=None){
             if (arrow_hall_mode){
                 sel_name = last_hall_members[indexInHall];
-                send_action(ACT['REQUEST']['CHAR'], last_hall_members[indexInHall]);
+                send_action(ACT['REQUEST']['CHAR'],
+                            last_hall_members[indexInHall]);
             } else {
                 sel_name = lastGuildMembers[indexInGuild];
-                send_action(ACT['REQUEST']['CHAR'], lastGuildMembers[indexInGuild]);
+                send_action(ACT['REQUEST']['CHAR'],
+                            lastGuildMembers[indexInGuild]);
             };
         };
         NextPlayer = function (evt:MouseEvent=None){
@@ -21663,7 +21667,7 @@ def load_tracking_pixel(url=''):
                     with (_local3) {
                         stop();
                         delay = 1000;
-                        remove_event_listener(TimerEvent.TIMER, DoPushBoostBtn);
+                        remove_event_listener(TimerEvent.TIMER, DoPushBoostBtn)
                     };
                 } else {
                     ClickCount++;
@@ -21941,14 +21945,14 @@ def load_tracking_pixel(url=''):
                                                 : (((sourceSlot <= 21))
                                                 ? SG_FIDGET_ITEM1
                                                 : SG_SHAKES_ITEM1))
-                                                    + ((sourceSlot
-                                                    - (((sourceSlot <= 15))
-                                                       ? 1
-                                                       : (((sourceSlot <= 21))
-                                                          ? 16
-                                                          : 22)))
-                                                            * SG['ITM']['SIZE']))
-                                                            + SG_ITM_TYP)] > 0
+                                                  + ((sourceSlot
+                                                  - (((sourceSlot <= 15))
+                                                     ? 1
+                                                     : (((sourceSlot <= 21))
+                                                        ? 16
+                                                        : 22)))
+                                                          * SG['ITM']['SIZE']))
+                                                          + SG_ITM_TYP)] > 0
                                     ){
                                         trc("do it");
                                         send_action(
@@ -21996,7 +22000,7 @@ def load_tracking_pixel(url=''):
                                     (((actor_id >= CHAR_SLOT_10))
                                     and ((actor_id <= CHAR_SLOT_SHAKES_6)))
                                 ){
-                                    sourceSlot = ((actor_id - CHAR_SLOT_1) + 1);
+                                    sourceSlot = ((actor_id - CHAR_SLOT_1) + 1)
                                     send_action(
                                         ACT_INVENTORY_CHANGE,
                                         (((sourceSlot <= 10))
