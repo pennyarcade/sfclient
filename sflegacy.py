@@ -127,6 +127,13 @@ class Timer(object):
     '''
     TIMER = None
 
+    def __init__(self, *args):
+        '''
+            obsolete
+        '''
+        pass
+
+
     def add_event_listener(self, *args):
         '''
             obsolete
