@@ -18670,6 +18670,89 @@ def try_show_tv():
     pass
     
 
+def next_fight(evt):
+    '''
+    var guildFightExp;
+    var guildFightHonor;
+    var par:Array;
+    var thisRoundFighterName:String;
+    var GuildBattleData:Array;
+    var tmp_str:*;
+    guildFightExp = 0;
+    guildFightHonor = 0;
+    if (fights.length < 2){
+        fights = list();
+        return;
+    };
+    thisRoundFighterName = "";
+    var nextRoundFighterName:String = "";
+    var thisRoundOppName:String = "";
+    if (skip_guild_fights > 0){
+        while (fights.length > 3) {
+            if (thisRoundFighterName != ""){
+                last_round_fighter_name = thisRoundFighterName;
+            };
+            if (fights[0].split(";")[2].split("/")[5] > 0){
+                thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
+            } else {
+                thisRoundFighterName = "?";
+            };
+            thisRoundOppName = fights[0].split(";")[2].split("/")[15];
+            if (thisRoundFighterName.lower() == actor[INP['NAME'
+                ]].getChildAt(1).text.lower()){
+                if (skip_guild_fights == 1){
+                    skip_guild_fights = -1;
+                    break;
+                };
+            };
+            if (fights[2]){
+                nextRoundFighterName = fights[2].split(";")[2].split("/")[0];
+                if (last_round_fighter_name == thisRoundFighterName){
+                    if (winners[("name_" + thisRoundFighterName)]){
+                        var _local10 = winners;
+                        var _local11 = ("name_" + thisRoundFighterName);
+                        var _local12 = (_local10[_local11] + 1);
+                        _local10[_local11] = _local12;
+                    } else {
+                        winners[("name_" + thisRoundFighterName)] = 1;
+                    };
+                };
+            };
+            fights.shift();
+            fights.shift();
+        };
+    };
+    thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
+    if (thisRoundFighterName.lower() == actor[INP['NAME'
+        ]].getChildAt(1).text.lower()){
+        if (skip_guild_fights == 1){
+            skip_guild_fights = -1;
+        };
+    };
+    par = fights.shift().split(";");
+    GuildBattleData = fights.shift().split("/");
+    if (fights.length == 1){
+        tmp_str = fights.pop();
+        guildFightExp = tmp_str.split(";")[1];
+        guildFightHonor = tmp_str.split(";")[2];
+    };
+    post_fight_mode = False;
+    fightNumber = ((guild_fight_count - int(((fights.length + 1) / 2)))
+     (((guild_fight_count % 2))==0) ? 1 : 0);
+    if (fightNumber > guild_fight_count){
+        fightNumber = 1;
+    };
+    show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"),
+                      par[2].split("/"), (par[5] == "2"), ((par[3] + "/")
+                                                       + par[4]).split("/"),
+                        int(par[7]), int(par[8]), (par[5] == "3"), False,
+                        int(par[9]), GuildBattleData, (fights.length <= 1),
+                        guildFightExp, guildFightHonor, par[10], par[11],
+                        par[12]);
+    '''
+    pass
+
+
 '''
 
 position_popup = function (evt:MouseEvent):
@@ -33090,86 +33173,6 @@ def toiletTankAdjustEvent(evt:TimerEvent=None){
             toiletTankAdjustTimer.stop();
         };
     };
-}
-
-def next_fight(evt:TimerEvent){
-    var guildFightExp;
-    var guildFightHonor;
-    var par:Array;
-    var thisRoundFighterName:String;
-    var GuildBattleData:Array;
-    var tmp_str:*;
-    guildFightExp = 0;
-    guildFightHonor = 0;
-    if (fights.length < 2){
-        fights = list();
-        return;
-    };
-    thisRoundFighterName = "";
-    var nextRoundFighterName:String = "";
-    var thisRoundOppName:String = "";
-    if (skip_guild_fights > 0){
-        while (fights.length > 3) {
-            if (thisRoundFighterName != ""){
-                last_round_fighter_name = thisRoundFighterName;
-            };
-            if (fights[0].split(";")[2].split("/")[5] > 0){
-                thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
-            } else {
-                thisRoundFighterName = "?";
-            };
-            thisRoundOppName = fights[0].split(";")[2].split("/")[15];
-            if (thisRoundFighterName.lower() == actor[INP['NAME'
-                ]].getChildAt(1).text.lower()){
-                if (skip_guild_fights == 1){
-                    skip_guild_fights = -1;
-                    break;
-                };
-            };
-            if (fights[2]){
-                nextRoundFighterName = fights[2].split(";")[2].split("/")[0];
-                if (last_round_fighter_name == thisRoundFighterName){
-                    if (winners[("name_" + thisRoundFighterName)]){
-                        var _local10 = winners;
-                        var _local11 = ("name_" + thisRoundFighterName);
-                        var _local12 = (_local10[_local11] + 1);
-                        _local10[_local11] = _local12;
-                    } else {
-                        winners[("name_" + thisRoundFighterName)] = 1;
-                    };
-                };
-            };
-            fights.shift();
-            fights.shift();
-        };
-    };
-    thisRoundFighterName = fights[0].split(";")[2].split("/")[0];
-    if (thisRoundFighterName.lower() == actor[INP['NAME'
-        ]].getChildAt(1).text.lower()){
-        if (skip_guild_fights == 1){
-            skip_guild_fights = -1;
-        };
-    };
-    par = fights.shift().split(";");
-    GuildBattleData = fights.shift().split("/");
-    if (fights.length == 1){
-        tmp_str = fights.pop();
-        guildFightExp = tmp_str.split(";")[1];
-        guildFightHonor = tmp_str.split(";")[2];
-    };
-    post_fight_mode = False;
-    fightNumber = ((guild_fight_count - int(((fights.length + 1) / 2)))
-     (((guild_fight_count % 2))==0) ? 1 : 0);
-    if (fightNumber > guild_fight_count){
-        fightNumber = 1;
-    };
-    show_fight_screen(par[0].split("/"), par[1].split("/"), (par[6] == "1"),
-                      par[2].split("/"), (par[5] == "2"), ((par[3] + "/")
-                                                       + par[4]).split("/"),
-                        int(par[7]), int(par[8]), (par[5] == "3"), False,
-                        int(par[9]), GuildBattleData, (fights.length <= 1),
-                        guildFightExp, guildFightHonor, par[10], par[11],
-                        par[12]);
 }
 
 def guild_fight_timer_fn(evt:TimerEvent){
