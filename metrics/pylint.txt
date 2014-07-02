@@ -1318,17 +1318,12 @@ W:15226,28: Unused variable 'param_reconnect' (unused-variable)
 W:15257,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
 W:15286,28: Unused variable 'param_server_version_cfg' (unused-variable)
 W:15467,12: Unused variable 'param_hall' (unused-variable)
-E:15534, 4: Undefined variable 'Security' (undefined-variable)
 E:15534,28: Undefined variable 'img_url' (undefined-variable)
 E:15534,36: Undefined variable 'img_url_index' (undefined-variable)
-E:15535, 4: Undefined variable 'Security' (undefined-variable)
 E:15535,28: Undefined variable 'snd_url' (undefined-variable)
 E:15535,36: Undefined variable 'snd_url_index' (undefined-variable)
-E:15536, 4: Undefined variable 'Security' (undefined-variable)
 E:15536,28: Undefined variable 'lang_url' (undefined-variable)
-E:15537, 4: Undefined variable 'Security' (undefined-variable)
 E:15537,40: Undefined variable 'server' (undefined-variable)
-E:15538, 4: Undefined variable 'Security' (undefined-variable)
 E:15539,22: Undefined variable 'img_url' (undefined-variable)
 E:15539,30: Undefined variable 'img_url_index' (undefined-variable)
 E:15540,22: Undefined variable 'snd_url' (undefined-variable)
@@ -1337,7 +1332,6 @@ E:15541,22: Undefined variable 'lang_url' (undefined-variable)
 E:15542, 8: Undefined variable 'server' (undefined-variable)
 E:15545,18: Undefined variable 'build_interface' (undefined-variable)
 E:15552, 7: Undefined variable 'actorLoaded' (undefined-variable)
-E:15554,12: Undefined variable 'Security' (undefined-variable)
 E:15554,33: Undefined variable 'actorURL' (undefined-variable)
 E:15555,29: Undefined variable 'actorURL' (undefined-variable)
 E:15556,38: Undefined variable 'actorSoundLoader' (undefined-variable)
@@ -1346,7 +1340,6 @@ E:15560,16: Undefined variable 'IOErrorEvent' (undefined-variable)
 E:15560,39: Undefined variable 'LoaderError' (undefined-variable)
 E:15563,16: Undefined variable 'Event' (undefined-variable)
 E:15563,32: Undefined variable 'LoaderComplete' (undefined-variable)
-E:15565,12: Undefined variable 'Security' (undefined-variable)
 E:15565,33: Undefined variable 'actorURL' (undefined-variable)
 E:15566,29: Undefined variable 'actorURL' (undefined-variable)
 E:15567,17: Undefined variable 'actorURL' (undefined-variable)
@@ -1381,7 +1374,6 @@ E:15683,21: Undefined variable 'LoaderInfo' (undefined-variable)
 E:15684, 8: Undefined variable 'actorLoaded' (undefined-variable)
 E:15684,20: Undefined variable 'get_actor_id' (undefined-variable)
 E:15684,33: Undefined variable 'evt' (undefined-variable)
-E:15685, 8: Undefined variable 'Security' (undefined-variable)
 E:15685,29: Undefined variable 'evt' (undefined-variable)
 E:15686,19: Undefined variable 'get_actor_id' (undefined-variable)
 E:15686,32: Undefined variable 'evt' (undefined-variable)
@@ -1450,13 +1442,13 @@ W: 26, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-imp
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:210, 0: TODO: obsolete (fixme)
-W:225, 0: TODO: obsolete (fixme)
-W:239, 0: TODO: obsolete (fixme)
-W:255, 0: TODO: obsolete (fixme)
-W:279, 0: TODO WTF? (fixme)
-W:301, 0: TODO: better way to zero fill? (fixme)
-W:488, 0: TODO: Obsolete (fixme)
+W:227, 0: TODO: obsolete (fixme)
+W:242, 0: TODO: obsolete (fixme)
+W:256, 0: TODO: obsolete (fixme)
+W:272, 0: TODO: obsolete (fixme)
+W:296, 0: TODO WTF? (fixme)
+W:318, 0: TODO: better way to zero fill? (fixme)
+W:505, 0: TODO: Obsolete (fixme)
 W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1480,9 +1472,11 @@ R:107, 0: Too few public methods (0/2) (too-few-public-methods)
 R:114, 0: Too few public methods (0/2) (too-few-public-methods)
 R:157, 0: Too few public methods (0/2) (too-few-public-methods)
 R:164, 0: Too few public methods (0/2) (too-few-public-methods)
-R:182, 0: Too few public methods (1/2) (too-few-public-methods)
-C:197, 4: Invalid method name "getLocal" (invalid-name)
-R:193, 0: Too few public methods (1/2) (too-few-public-methods)
+C:186, 4: Invalid method name "loadPolicyFile" (invalid-name)
+C:192, 4: Invalid method name "allowDomain" (invalid-name)
+R:199, 0: Too few public methods (1/2) (too-few-public-methods)
+C:214, 4: Invalid method name "getLocal" (invalid-name)
+R:210, 0: Too few public methods (1/2) (too-few-public-methods)
 W: 12, 0: Unused import CPC from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import REL from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ACT from wildcard import (unused-wildcard-import)
@@ -1526,7 +1520,7 @@ R:171, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3756 statements analysed.
+3761 statements analysed.
 
 External dependencies
 ---------------------
@@ -1544,13 +1538,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19666  |57.27 |NC       |NC         |
+|code      |19671  |57.26 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13192  |38.42 |NC       |NC         |
+|docstring |13201  |38.42 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |696    |2.03  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |784    |2.28  |NC       |NC         |
+|empty     |788    |2.29  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1574,13 +1568,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |177    |NC       |NC         |
+|convention |179    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |69     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |411    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |864    |NC       |NC         |
+|error      |856    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1591,9 +1585,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |88.81   |71.01    |96.05      |
+|sfclient |100.00 |88.81   |71.01    |94.97      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |11.19   |28.99    |3.39       |
+|sflegacy |0.00   |11.19   |28.99    |4.47       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1604,11 +1598,11 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |837         |
+|undefined-variable           |829         |
 +-----------------------------+------------+
 |unused-variable              |270         |
 +-----------------------------+------------+
-|invalid-name                 |175         |
+|invalid-name                 |177         |
 +-----------------------------+------------+
 |unused-wildcard-import       |59          |
 +-----------------------------+------------+
@@ -1659,7 +1653,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -3.25/10
+Your code has been rated at -3.13/10
 
 Statistics by type
 ------------------
@@ -1669,9 +1663,9 @@ Statistics by type
 +=========+=======+===========+===========+============+=========+
 |module   |3      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |35     |NC         |NC         |100.00      |14.29    |
+|class    |36     |NC         |NC         |100.00      |13.89    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |35     |NC         |NC         |100.00      |2.86     |
+|method   |37     |NC         |NC         |100.00      |8.11     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |100    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
