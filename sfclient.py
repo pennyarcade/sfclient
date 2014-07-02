@@ -521,7 +521,7 @@ def init_vars():
     # CupChosen = 0
     # dataprot_url = ""
     # dealer_aktion = 0
-    # DealerMenuSelect = 0
+    # dealer_menuSelect = 0
     # defined_pixel_calls = list()
     # DemoMode = False
     # destroy_guild_btn_timer = False
@@ -901,7 +901,7 @@ def init_vars():
 
     # toiletTankAdjustTimer.add_event_listener(
     #     TimerEvent.TIMER,
-    #     toiletTankAdjustEvent
+    #     toilet_tank_adjust_event
     # )
 
     # get buffered registration?
@@ -4317,7 +4317,7 @@ def DoShowFightScreen(evt=None):
     var evt:* = evt;
     DoStrikeTimer = new Timer(200);
     if (((((isPvP) and (!(isReplay)))) and (!(is_guildBattle)))){
-        if (!WaitingFor(savegame[SG_PVP_REROLL_TIME])){
+        if (!waiting_for(savegame[SG_PVP_REROLL_TIME])){
             savegame[SG_PVP_REROLL_TIME] = (
                 int((game_time.getTime() / 1000)) + (70 * 60));
         };
@@ -5116,13 +5116,13 @@ def show_quest_screen(evt=None):
                 questBarTimer.stop();
                 questBarTimer.remove_event_listener(
                     TimerEvent.TIMER, QuestBarUpdate);
-                set_title_bar(WaitingTime(savegame[SG_ACTION_ENDTIME]));
+                set_title_bar(waiting_time(savegame[SG_ACTION_ENDTIME]));
                 return;
             };
-            if (WaitingFor(savegame[SG_ACTION_ENDTIME])){
+            if (waiting_for(savegame[SG_ACTION_ENDTIME])){
                 var _local3 = actor[QUESTBAR_FILL];
                 with (_local3) {
-                    width = (WaitingProgress(
+                    width = (waiting_progress(
                         (savegame[SG_ACTION_ENDTIME]
                             - savegame[(SG_QUEST_OFFER_DURATION1
                                 + (savegame[SG_ACTION_INDEX] - 1))]),
@@ -5131,7 +5131,7 @@ def show_quest_screen(evt=None):
                 };
                 _local3 = actor[LBL_QUESTBAR_TEXT];
                 with (_local3) {
-                    text = WaitingTime(savegame[SG_ACTION_ENDTIME]);
+                    text = waiting_time(savegame[SG_ACTION_ENDTIME]);
                     set_title_bar(text);
                     x = int((QUESTBAR_LABEL_X - (text_width / 2)));
                 };
@@ -5459,7 +5459,7 @@ def show_arena_screen(oppName, oppGilde, oppStufe):
             pvp_delay_timer.stop();
             return;
         };
-        if (WaitingFor(savegame[SG_PVP_REROLL_TIME])){
+        if (waiting_for(savegame[SG_PVP_REROLL_TIME])){
             if (text_dir == "right"){
                 actor[LBL_ARENA_TEXT].text = (
                     ((((((((texts[TXT_ARENA_4] + " (")
@@ -5476,9 +5476,9 @@ def show_arena_screen(oppName, oppGilde, oppStufe):
                     + " (") + texts[TXT_HALL_LIST_COLUMN_4]) + " ")
                     + str(oppStufe)) + ") ") + texts[TXT_ARENA_4]);
             };
-            actor[LBL_ARENA_DELAY].text = WaitingTime(
+            actor[LBL_ARENA_DELAY].text = waiting_time(
                 savegame[SG_PVP_REROLL_TIME]);
-            set_title_bar(WaitingTime(savegame[SG_PVP_REROLL_TIME]));
+            set_title_bar(waiting_time(savegame[SG_PVP_REROLL_TIME]));
             if (text_dir == "right"){
                 set_btn_text(ARENA_OK, ("(~P1) " + texts[TXT_OK]));
             } else {
@@ -6232,13 +6232,13 @@ def show_character_screen(evt=None, NoPrices=False):
             } else {
                 if (text_dir == "right"){
                     actor[LBL_CHAR_MOUNT_RUNTIME].text = (
-                        (WaitingTime(savegame[SG_MOUNT_DURATION]) + " ")
+                        (waiting_time(savegame[SG_MOUNT_DURATION]) + " ")
                         + texts[TXT_MOUNT_DURATION]
                     );
                 } else {
                     actor[LBL_CHAR_MOUNT_RUNTIME].text = (
                         (texts[TXT_MOUNT_DURATION] + " ")
-                        + WaitingTime(savegame[SG_MOUNT_DURATION])
+                        + waiting_time(savegame[SG_MOUNT_DURATION])
                     );
                 };
             };
@@ -6645,8 +6645,8 @@ def ShowPlayerScreen(
                 pvp_delay_timer.stop();
                 return;
             };
-            if (WaitingFor(savegame[SG_PVP_REROLL_TIME])){
-                set_title_bar(WaitingTime(savegame[SG_PVP_REROLL_TIME]));
+            if (waiting_for(savegame[SG_PVP_REROLL_TIME])){
+                set_title_bar(waiting_time(savegame[SG_PVP_REROLL_TIME]));
                 if (text_dir == "right"){
                     set_btn_text(
                         CHAR_ATTACK, ("(~P1) " + texts[TXT_ATTACK])
@@ -6659,7 +6659,7 @@ def ShowPlayerScreen(
                 show(LBL_CHAR_DELAY);
                 var _local3 = actor[LBL_CHAR_DELAY];
                 with (_local3) {
-                    text = WaitingTime(savegame[SG_PVP_REROLL_TIME]);
+                    text = waiting_time(savegame[SG_PVP_REROLL_TIME]);
                     x = (((280 + 500) + CHAR_DELAY_X) - (text_width / 2));
                 };
             } else {
@@ -8239,7 +8239,7 @@ def show_screen_gilden(
             };
             i = 0;
             while (i < int(guildData[3])) {
-                isOnline = WaitingFor((Number(
+                isOnline = waiting_for((Number(
                     guildData[(GUILD_MEMBERONLINE + i)]) + (60 * 5)));
                 lvl = int(guildData[(GUILD_MEMBERLEVEL + i)]);
                 attackStatus = 0;
@@ -9542,21 +9542,21 @@ def show_work_screen(evt=None):
                 var evt:* = evt;
                 var _local3 = actor[LBL_SCR_ARBEITEN_TIME];
                 with (_local3) {
-                    if (WaitingFor(savegame[SG_ACTION_ENDTIME])){
+                    if (waiting_for(savegame[SG_ACTION_ENDTIME])){
                         if (texts[TXT_WORK_FINISH]){
                             text = texts[TXT_WORK_FINISH].split(
-                                "%1").join(WaitingTime(
+                                "%1").join(waiting_time(
                                    savegame[SG_ACTION_ENDTIME])).split(
                                 "%2").join(time_str(savegame[SG_ACTION_ENDTIME],
                             True));
                         } else {
-                            text = WaitingTime(savegame[SG_ACTION_ENDTIME]);
+                            text = waiting_time(savegame[SG_ACTION_ENDTIME]);
                         };
                         if (on_stage(LBL_SCR_ARBEITEN_TIME)){
                             set_title_bar(text);
                         };
                         actor[SCR_ARBEITEN_FILL].width = (
-                            WaitingProgress((savegame[SG_ACTION_ENDTIME]
+                            waiting_progress((savegame[SG_ACTION_ENDTIME]
                             - ((savegame[SG_ACTION_INDEX] * 60) * 60)),
                             savegame[SG_ACTION_ENDTIME]) * 278
                         );
@@ -10087,20 +10087,20 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0):
         if (text_dir == "right"){
             set_btn_text(
                 MAINQUEST_START,
-                (((WaitingFor(savegame[SG_MQ_REROLL_TIME])) ? "(~P1) " : "")
+                (((waiting_for(savegame[SG_MQ_REROLL_TIME])) ? "(~P1) " : "")
                     + texts[TXT_OK]));
         } else {
             set_btn_text(
                 MAINQUEST_START,
-                (texts[TXT_OK] + ((WaitingFor(savegame[SG_MQ_REROLL_TIME]))
+                (texts[TXT_OK] + ((waiting_for(savegame[SG_MQ_REROLL_TIME]))
                     ? " (1~P)" : ""))
                 );
         };
-        if (WaitingFor(savegame[SG_MQ_REROLL_TIME])){
+        if (waiting_for(savegame[SG_MQ_REROLL_TIME])){
             show(LBL_MAINQUEST_MUSHHINT);
             actor[LBL_MAINQUEST_MUSHHINT].text =
                 texts[TXT_MQ_MUSHHINT].split(
-                    "%1").join(WaitingTime(savegame[SG_MQ_REROLL_TIME]));
+                    "%1").join(waiting_time(savegame[SG_MQ_REROLL_TIME]));
             arabize(LBL_MAINQUEST_MUSHHINT);
             MQDelayTimer.add_event_listener(TimerEvent.TIMER, MQDelayCheck);
             MQDelayTimer.start();
@@ -10138,11 +10138,11 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0):
             MQDelayTimer.stop();
             return;
         };
-        if (WaitingFor(savegame[SG_MQ_REROLL_TIME])){
+        if (waiting_for(savegame[SG_MQ_REROLL_TIME])){
             show(LBL_MAINQUEST_MUSHHINT);
             actor[LBL_MAINQUEST_MUSHHINT].text = texts[TXT_MQ_MUSHHINT].split(
-                "%1").join(WaitingTime(savegame[SG_MQ_REROLL_TIME]));
-            set_title_bar(WaitingTime(savegame[SG_MQ_REROLL_TIME]));
+                "%1").join(waiting_time(savegame[SG_MQ_REROLL_TIME]));
+            set_title_bar(waiting_time(savegame[SG_MQ_REROLL_TIME]));
         } else {
             hide(LBL_MAINQUEST_MUSHHINT);
             set_title_bar();
@@ -10152,13 +10152,13 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0):
         if (text_dir == "right"){
             set_btn_text(
                 MAINQUEST_START,
-                (((WaitingFor(savegame[SG_MQ_REROLL_TIME])) ? "(~P1) " : "")
+                (((waiting_for(savegame[SG_MQ_REROLL_TIME])) ? "(~P1) " : "")
                 + texts[TXT_OK])
             );
         } else {
             set_btn_text(
                 MAINQUEST_START,
-                (texts[TXT_OK] + ((WaitingFor(savegame[SG_MQ_REROLL_TIME]))
+                (texts[TXT_OK] + ((waiting_for(savegame[SG_MQ_REROLL_TIME]))
                     ? " (1~P)" : "")));
         };
     };
@@ -10254,7 +10254,7 @@ def show_toilet(
             "#").join(chr(13)).split("%1").join(str(toiletLevel));
         actor[LBL_TOILET_AURA].x = (
             (SCR_SHOP_BG_X + 248) - (actor[LBL_TOILET_AURA].text_width / 2));
-        toiletTankAdjustEvent();
+        toilet_tank_adjust_event();
         if (toiletTankDest != toiletTankCurrent){
             toiletTankAdjustTimer.start();
         };
@@ -11184,7 +11184,7 @@ def show_login_screen(
         };
     };
     add(WINDOW_LOGIN);
-    LOGonRTL();
+    log_on_rtl();
     if (buffed_mode){
         actor[LBL_GOTO_SIGNUP].htmlText = buffed_link_text;
         actor[GOTO_SIGNUP].x = (
@@ -11326,7 +11326,7 @@ def ShowSignupScreen(evt=None):
             actor[INP['EMAIL']].getChildAt(1).text = email;
             actor[INP['PASSWORD']].getChildAt(1).text = mp_api_user_token;
         };
-        LOGonRTL();
+        log_on_rtl();
         hide(
             PASSWORD_SMILEY_SAD,
             PASSWORD_SMILEY_NEUTRAL,
@@ -14860,7 +14860,7 @@ def next_fight(evt):
 def guild_fight_timer_fn(evt):
     '''
     if (guild_attack_time != 0){
-        if (!WaitingFor(guild_attack_time)){
+        if (!waiting_for(guild_attack_time)){
             if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
             } else {
@@ -14870,7 +14870,7 @@ def guild_fight_timer_fn(evt):
         };
     };
     if (guild_defense_time != 0){
-        if (!WaitingFor(guild_defense_time)){
+        if (!waiting_for(guild_defense_time)){
             if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
             } else {
@@ -16233,10 +16233,10 @@ def build_interface():
         set_btn_text(IF_WELTKARTE, texts[TXT_WELTKARTE]);
     };
     dungeonBtnUpdateDelay = function (evt:TimerEvent=None){
-        if (WaitingFor(savegame[SG_MQ_REROLL_TIME])){
+        if (waiting_for(savegame[SG_MQ_REROLL_TIME])){
             set_btn_text(
                 IF_WELTKARTE,
-                WaitingTime(savegame[SG_MQ_REROLL_TIME])
+                waiting_time(savegame[SG_MQ_REROLL_TIME])
             )
         } else {
             dungeonBtnLeave();
@@ -16251,11 +16251,11 @@ def build_interface():
         set_btn_text(IF_ARBEITEN, texts[TXT_ARBEITEN]);
     };
     workBtnUpdateDelay = function (evt:TimerEvent=None){
-        if (((WaitingFor(savegame[SG_ACTION_ENDTIME]))
+        if (((waiting_for(savegame[SG_ACTION_ENDTIME]))
             and ((savegame[SG_ACTION_STATUS] == 1)))){
             set_btn_text(
                 IF_ARBEITEN,
-                WaitingTime(savegame[SG_ACTION_ENDTIME])
+                waiting_time(savegame[SG_ACTION_ENDTIME])
             );
         } else {
             workBtnLeave();
@@ -16270,11 +16270,11 @@ def build_interface():
         set_btn_text(IF_TAVERNE, texts[TXT_TAVERNE]);
     };
     tavBtnUpdateDelay = function (evt:TimerEvent=None){
-        if (((WaitingFor(savegame[SG_ACTION_ENDTIME]))
+        if (((waiting_for(savegame[SG_ACTION_ENDTIME]))
             and ((savegame[SG_ACTION_STATUS] == 2)))){
             set_btn_text(
                 IF_TAVERNE,
-                WaitingTime(savegame[SG_ACTION_ENDTIME])
+                waiting_time(savegame[SG_ACTION_ENDTIME])
             );
         } else {
             tavBtnLeave();
@@ -16289,10 +16289,10 @@ def build_interface():
         set_btn_text(IF_ARENA, texts[TXT_ARENA]);
     };
     arenaBtnUpdateDelay = function (evt:TimerEvent=None){
-        if (WaitingFor(savegame[SG_PVP_REROLL_TIME])){
+        if (waiting_for(savegame[SG_PVP_REROLL_TIME])){
             set_btn_text(
                 IF_ARENA,
-                WaitingTime(savegame[SG_PVP_REROLL_TIME])
+                waiting_time(savegame[SG_PVP_REROLL_TIME])
             );
         } else {
             arenaBtnLeave();
@@ -16719,7 +16719,7 @@ def build_interface():
             KeyboardEvent.KEY_DOWN,
             RequestPassword
         );
-        LOGonRTL();
+        log_on_rtl();
         add(WINDOW_FORGOT_PASSWORD);
     };
     RequestPassword = function (evt:Event):
@@ -16782,12 +16782,12 @@ def build_interface():
             return;
         };
         if (int(savegame[SG_ACTION_STATUS]) == 1){
-            if (!WaitingFor(savegame[SG_ACTION_ENDTIME])){
+            if (!waiting_for(savegame[SG_ACTION_ENDTIME])){
                 pulse_arbeiten = True;
             };
         };
         if (int(savegame[SG_ACTION_STATUS]) == 2){
-            if (!WaitingFor(savegame[SG_ACTION_ENDTIME])){
+            if (!waiting_for(savegame[SG_ACTION_ENDTIME])){
                 pulse_taverne = True;
             };
         };
@@ -17839,7 +17839,7 @@ def build_interface():
         show_post_screen();
     };
     PlayerAttack = function (){
-        if (WaitingFor(savegame[SG_PVP_REROLL_TIME])){
+        if (waiting_for(savegame[SG_PVP_REROLL_TIME])){
             var _local2 = actor[LBL_IF_PILZE];
             with (_local2) {
                 if (int(savegame[SG_MUSH]) > 0){
@@ -18648,7 +18648,7 @@ def build_interface():
                 return;
             };
         };
-        if (WaitingFor(savegame[SG_PVP_REROLL_TIME])){
+        if (waiting_for(savegame[SG_PVP_REROLL_TIME])){
             var _local3 = actor[LBL_IF_PILZE];
             with (_local3) {
                 if (int(savegame[SG_MUSH]) > 0){
@@ -20890,7 +20890,7 @@ def build_interface():
     };
     RequestMainQuest = function (evt:Event=None){
         var evt:* = evt;
-        if (WaitingFor(savegame[SG_MQ_REROLL_TIME])){
+        if (waiting_for(savegame[SG_MQ_REROLL_TIME])){
             if (int(actor[LBL_IF_PILZE].text) <= 0){
                 return;
             };
@@ -20904,7 +20904,7 @@ def build_interface():
         if (SelectedDungeon == 100){
             send_action(ACT_TOWER_TRY,
                         str((tower_level + 1)),
-                        ((WaitingFor(savegame[SG_MQ_REROLL_TIME]))
+                        ((waiting_for(savegame[SG_MQ_REROLL_TIME]))
                          ? 1 : 0));
         } else {
             send_action(ACT_MAINQUEST, str((SelectedDungeon + 1)));
@@ -21712,26 +21712,26 @@ def build_interface():
                   (SCREEN_TITLE_Y + CHARY));
         i = (i + 1);
     };
-    define_btn(MOUTH_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(MOUTH_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(HAIR_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(HAIR_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(BROWS_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(BROWS_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(EYES_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(EYES_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(NOSE_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(NOSE_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(EARS_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(EARS_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(BEARD_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(BEARD_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(SPECIAL_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(SPECIAL_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(SPECIAL2_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(SPECIAL2_PLUS, "", ModifyCharacter, btn_classArrowRight);
-    define_btn(COLOR_MINUS, "", ModifyCharacter, btn_classArrowLeft);
-    define_btn(COLOR_PLUS, "", ModifyCharacter, btn_classArrowRight);
+    define_btn(MOUTH_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(MOUTH_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(HAIR_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(HAIR_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(BROWS_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(BROWS_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(EYES_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(EYES_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(NOSE_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(NOSE_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(EARS_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(EARS_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(BEARD_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(BEARD_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(SPECIAL_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(SPECIAL_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(SPECIAL2_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(SPECIAL2_PLUS, "", modify_character, btn_classArrowRight);
+    define_btn(COLOR_MINUS, "", modify_character, btn_classArrowLeft);
+    define_btn(COLOR_PLUS, "", modify_character, btn_classArrowRight);
     i = 0;
     while (i < 10) {
         DefineLbl((LBL_MOUTH + i),
@@ -25469,7 +25469,7 @@ def DefineClickArea(actor_id, imgActorID, fn, pos_x, pos_y, size_x,
     };
     '''
     pass
-    
+
 
 def DefineFromClass(actor_id, imgClass, pos_x=0, pos_y=0, txtManip=0,
                     txtType=""):
@@ -25542,7 +25542,7 @@ def textLinkMakeClickable(obj):
         does nothing?
     '''
     pass
-    
+
 
 def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
     '''
@@ -25620,7 +25620,7 @@ def get_slider_value(actor_id):
             + 0.5)) + 1));
     '''
     pass
-    
+
 
 def SetSliderValue(actor_id, value):
     '''
@@ -26644,7 +26644,7 @@ def getRandomCrest():
     return (result);
     '''
     pass
-    
+
 
 def set_default_crest():
     '''
@@ -29358,14 +29358,14 @@ def decode_chat(inStr, getHLMode=False, getGBMode=False):
     pass
 
 
-def chat_line(line, isError=False, hlIndex=-1, isWhisper=False):
+def chat_line(line, is_error=False, hl_index=-1, is_whisper=False):
     '''
     var i:* = 0;
     var nextLine:* = None;
     var line:* = line;
-    var isError:Boolean = isError;
-    var hlIndex = hlIndex;
-    var isWhisper:Boolean = isWhisper;
+    var is_error:Boolean = is_error;
+    var hl_index = hl_index;
+    var is_whisper:Boolean = is_whisper;
     nextLine = "";
     var seekSpace:* = False;
     var noSpace:* = False;
@@ -29395,9 +29395,9 @@ def chat_line(line, isError=False, hlIndex=-1, isWhisper=False):
     };
     _local6 = actor[(LBL['GILDE']['CHAT'] + 39)];
     with (_local6) {
-        default_text_format = ((isError)
+        default_text_format = ((is_error)
                                ? font_format_chatError : font_format_chat);
-        if (isWhisper){
+        if (is_whisper){
             default_text_format = font_format_chatWhisper;
         };
         do  {
@@ -29422,21 +29422,21 @@ def chat_line(line, isError=False, hlIndex=-1, isWhisper=False):
                 };
             };
         } while ((((text_width > GILDE_TEXT_X)) or (seekSpace)));
-        if (hlIndex > -1){
-            if (hlIndex > text.length){
-                hlIndex = text.length;
+        if (hl_index > -1){
+            if (hl_index > text.length){
+                hl_index = text.length;
             };
-            if (isWhisper){
+            if (is_whisper){
                 if (text_dir == "right"){
-                    setTextFormat(FontFormat_HighlightWhisper, hlIndex, length)
+                    setTextFormat(FontFormat_HighlightWhisper, hl_index, length)
                 } else {
-                    setTextFormat(FontFormat_HighlightWhisper, 0, hlIndex);
+                    setTextFormat(FontFormat_HighlightWhisper, 0, hl_index);
                 };
             } else {
                 if (text_dir == "right"){
-                    setTextFormat(FontFormat_Highlight, hlIndex, length);
+                    setTextFormat(FontFormat_Highlight, hl_index, length);
                 } else {
-                    setTextFormat(FontFormat_Highlight, 0, hlIndex);
+                    setTextFormat(FontFormat_Highlight, 0, hl_index);
                 };
             };
         };
@@ -29446,23 +29446,23 @@ def chat_line(line, isError=False, hlIndex=-1, isWhisper=False):
         };
     };
     if (nextLine != ""){
-        chat_line(nextLine, isError, -1, isWhisper);
+        chat_line(nextLine, is_error, -1, is_whisper);
     };
     '''
     pass
 
 
-def PayMethod(DealerMenu):
+def pay_method(dealer_menu):
     '''
-    if (DealerMenu > (pay_methods.length - 1)){
+    if (dealer_menu > (pay_methods.length - 1)){
         return (0);
     };
-    return (pay_methods[DealerMenu]);
+    return (pay_methods[dealer_menu]);
     '''
     pass
 
 
-def toiletTankAdjustEvent(evt=None):
+def toilet_tank_adjust_event(evt=None):
     '''
     actor[(TOILET + 1)].y = ((190 + 122) - (toiletTankCurrent * 118));
     if (toiletTankCurrent > (toiletTankDest + 0.01)){
@@ -29511,25 +29511,25 @@ def expand_item_structure(arr, offset):
     pass
 
 
-def WaitingFor(targetTime):
+def waiting_for(target_time):
     '''
     var tmpTime:Date;
     tmpTime = new Date();
-    tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
+    tmpTime.setTime(((target_time * 1000) - ((1000 * 60) * 60)));
     return ((game_time.getTime() < tmpTime.getTime()));
     '''
     pass
 
 
-def WaitingTime(targetTime):
+def waiting_time(target_time):
     '''
     var tmpTime:* = None;
     var timeDiff:* = None;
-    var targetTime:* = targetTime;
+    var target_time:* = target_time;
     tmpTime = new Date();
     timeDiff = new Date();
     var diffDays:* = 0;
-    tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
+    tmpTime.setTime(((target_time * 1000) - ((1000 * 60) * 60)));
     timeDiff.setTime((tmpTime.getTime() - game_time.getTime()));
     var _local3 = timeDiff;
     diffDays = ((((timeDiff.getTime() / 1000) / 60) / 60) / 24);
@@ -29545,13 +29545,13 @@ def WaitingTime(targetTime):
     pass
 
 
-def WaitingProgress(startTime, targetTime):
+def waiting_progress(startTime, target_time):
     '''
     var tmpTime:Date;
     var tmpTime2:Date;
     tmpTime = new Date();
     tmpTime2 = new Date();
-    tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
+    tmpTime.setTime(((target_time * 1000) - ((1000 * 60) * 60)));
     tmpTime2.setTime(((startTime * 1000) - ((1000 * 60) * 60)));
     return (((game_time.getTime() - tmpTime2.getTime())
             / (tmpTime.getTime() - tmpTime2.getTime())));
@@ -29559,7 +29559,7 @@ def WaitingProgress(startTime, targetTime):
     pass
 
 
-def LOGonRTL():
+def log_on_rtl():
     '''
     if (text_dir == "right"){
         actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15)
@@ -29579,7 +29579,7 @@ def LOGonRTL():
     pass
 
 
-def ModifyCharacter(evt):
+def modify_character(evt):
     '''
     var actor_id:* = 0;
     var evt:* = evt;
@@ -29734,10 +29734,10 @@ def ModifyCharacter(evt):
 
 
 def load_character_image(actor_id=0, load_only=False, is_volk=0,
-                       is_mann=False, is_kaste=0, is_mouth=0,
-                       is_beard=0, is_nose=0, is_eyes=0, is_brows=0,
-                       is_ears=0, is_hair=0, is_special=0,
-                       is_special2=0):
+                         is_mann=False, is_kaste=0, is_mouth=0,
+                         is_beard=0, is_nose=0, is_eyes=0, is_brows=0,
+                         is_ears=0, is_hair=0, is_special=0,
+                         is_special2=0):
     '''
     var charPrefix:* = None;
     var i:* = 0;
@@ -29924,23 +29924,23 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
 def position_modify_character_buttons():
     '''
     var i:* = 0;
-    var positionModifyCharacterBtn:* = function (actor_id):
+    var positionmodify_characterBtn:* = function (actor_id):
         if (on_stage(actor_id)){
             actor[actor_id].y = (MODIFY_CHARACTER_BUTTONS_Y
                                  + (iPosi++ * MODIFY_CHARACTER_BUTTONS_1));
         };
     };
     var iPosi:* = 0;
-    positionModifyCharacterBtn(EYES_PLUS);
-    positionModifyCharacterBtn(BROWS_PLUS);
-    positionModifyCharacterBtn(MOUTH_PLUS);
-    positionModifyCharacterBtn(NOSE_PLUS);
-    positionModifyCharacterBtn(EARS_PLUS);
-    positionModifyCharacterBtn(HAIR_PLUS);
-    positionModifyCharacterBtn(COLOR_PLUS);
-    positionModifyCharacterBtn(BEARD_PLUS);
-    positionModifyCharacterBtn(SPECIAL_PLUS);
-    positionModifyCharacterBtn(SPECIAL2_PLUS);
+    positionmodify_characterBtn(EYES_PLUS);
+    positionmodify_characterBtn(BROWS_PLUS);
+    positionmodify_characterBtn(MOUTH_PLUS);
+    positionmodify_characterBtn(NOSE_PLUS);
+    positionmodify_characterBtn(EARS_PLUS);
+    positionmodify_characterBtn(HAIR_PLUS);
+    positionmodify_characterBtn(COLOR_PLUS);
+    positionmodify_characterBtn(BEARD_PLUS);
+    positionmodify_characterBtn(SPECIAL_PLUS);
+    positionmodify_characterBtn(SPECIAL2_PLUS);
     i = 0;
     while (i < 10) {
         if (text_dir == "right"){
