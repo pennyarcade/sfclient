@@ -147,7 +147,6 @@ class Timer(object):
         '''
         pass
 
-
     def stop(self, *args):
         '''
             obsolete

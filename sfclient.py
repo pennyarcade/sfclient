@@ -734,9 +734,11 @@ def init_vars():
     # param_support_email = "support@sfgame.de"
     # param_valid = ""
     # pay_methods = list()
-    # pending_configuration_files = False
-    # pending_debug_file = False
-    # pending_language_file = False
+    global pending_configuration_files, pending_debug_file
+    global pending_language_file
+    pending_configuration_files = False
+    pending_debug_file = False
+    pending_language_file = False
     # pendingdo_loaders = 0
     # player_desc = ""
     # playerTowerLevel = 0
