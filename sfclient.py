@@ -25362,10 +25362,9 @@ if __name__ == "__main__":
     main()
 
 
-'''
-
-def DefineImg(actor_id, url:String, pre_load=True, pos_x=0, pos_y=0,
+def DefineImg(actor_id, url, pre_load=True, pos_x=0, pos_y=0,
               scale_x=1, scale_y=1, vis=True):
+    '''
     var i:* = 0;
     var full_url:* = None;
     var LoaderCompleteLocal:* = None;
@@ -25410,11 +25409,14 @@ def DefineImg(actor_id, url:String, pre_load=True, pos_x=0, pos_y=0,
     if (pre_load){
         load(i);
     };
-}
+    '''
+    pass
 
-def DefineClickArea(actor_id, imgActorID, fn:Function, pos_x, pos_y, size_x,
-                    size_y, ovlActorID=0, hoverFn:Function=None,
-                    outFn:Function=None, stayPut=False):
+
+def DefineClickArea(actor_id, imgActorID, fn, pos_x, pos_y, size_x,
+                    size_y, ovlActorID=0, hoverFn=None,
+                    outFn=None, stayPut=False):
+    '''
     var actor_id:* = actor_id;
     var imgActorID:* = imgActorID;
     var fn:* = fn;
@@ -25465,10 +25467,13 @@ def DefineClickArea(actor_id, imgActorID, fn:Function, pos_x, pos_y, size_x,
             buttonMode = True;
         };
     };
-}
+    '''
+    pass
+    
 
-def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0,
-                    txtType:String=""):
+def DefineFromClass(actor_id, imgClass, pos_x=0, pos_y=0, txtManip=0,
+                    txtType=""):
+    '''
     var i:* = 0;
     var actor_id:* = actor_id;
     var imgClass:* = imgClass;
@@ -25505,9 +25510,12 @@ def DefineFromClass(actor_id, imgClass:Class, pos_x=0, pos_y=0, txtManip=0,
             ManipTextField(actor[i].getChildAt(1));
         };
     };
-}
+    '''
+    pass
+
 
 def DefineCnt(actor_id, pos_x=0, pos_y=0, vis=True):
+    '''
     var i:* = 0;
     var actor_id:* = actor_id;
     var pos_x = pos_x;
@@ -25525,12 +25533,19 @@ def DefineCnt(actor_id, pos_x=0, pos_y=0, vis=True):
         allow_smoothing = True;
         smoothing = True;
     };
-}
+    '''
+    pass
 
-def textLinkMakeClickable(obj:Sprite){
-}
 
-def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn:Function){
+def textLinkMakeClickable(obj):
+    '''
+        does nothing?
+    '''
+    pass
+    
+
+def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
+    '''
     var i:* = 0;
     var oldSliderVal:* = 0;
     var actor_id:* = actor_id;
@@ -25593,16 +25608,22 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn:Function){
         i = (i + 1);
     };
     fn(get_slider_value(actor_id));
-}
+    '''
+    pass
 
-def get_slider_value(actor_id){
+
+def get_slider_value(actor_id):
+    '''
     var tmpX;
     tmpX = (actor[(actor_id + 1)].getChildAt(1).x + 5);
     return ((int(((((tmpX - 40) / 198) * (actorBitmap[actor_id] - 1))
             + 0.5)) + 1));
-}
+    '''
+    pass
+    
 
 def SetSliderValue(actor_id, value):
+    '''
     var tmpX;
     var oldVal;
     oldVal = get_slider_value(actor_id);
@@ -25612,9 +25633,12 @@ def SetSliderValue(actor_id, value):
         var _local5 = actorBitmap[(actor_id + 1)];
         _local5[0](value);
     };
-}
+    '''
+    pass
 
-def MakePersistent(... _args):
+
+def MakePersistent(*args):
+    '''
     var i;
     var i_bunch;
     i = 0;
@@ -25630,9 +25654,12 @@ def MakePersistent(... _args):
         actorPersistent[_args[i]] = True;
         i++;
     };
-}
+    '''
+    pass
 
-def MakeTemporary(... _args):
+
+def MakeTemporary(*args):
+    '''
     var i;
     var i_bunch;
     i = 0;
@@ -25648,9 +25675,12 @@ def MakeTemporary(... _args):
         actorPersistent[_args[i]] = False;
         i++;
     };
-}
+    '''
+    pass
 
-def EnableDragDrop(actor_id, handler:Function, ... _args):
+
+def EnableDragDrop(actor_id, handler, *args):
+    '''
     var old_x:* = 0;
     var old_y:* = 0;
     var i:* = 0;
@@ -25766,9 +25796,12 @@ def EnableDragDrop(actor_id, handler:Function, ... _args):
     };
     dragResetTimer = new Timer(500);
     dragResetTimer.add_event_listener(TimerEvent.TIMER, dragReset);
-}
+    '''
+    pass
+
 
 def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
+    '''
     var i_bunch:* = 0;
     var CntImgLoaded:* = None;
     var cntID:* = cntID;
@@ -25846,10 +25879,12 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
             };
         };
     };
-}
+    '''
+    pass
 
 
-def AddBMO(bunch_id, offset){
+def AddBMO(bunch_id, offset):
+    '''
     var i;
     i = 0;
     while (i < actor[bunch_id].length) {
@@ -25860,9 +25895,12 @@ def AddBMO(bunch_id, offset){
         };
         i++;
     };
-}
+    '''
+    pass
 
-def RemoveIllegalChars(inpStr:String):String{
+
+def RemoveIllegalChars(inpStr):
+    '''
     var LegalChars:String;
     var i;
     var j;
@@ -25899,9 +25937,12 @@ def RemoveIllegalChars(inpStr:String):String{
         i++;
     };
     return (outStr);
-}
+    '''
+    pass
 
-def SemiStrip(inpStr:String):String{
+
+def SemiStrip(inpStr):
+    '''
     var i;
     var outStr:String;
     outStr = "";
@@ -25923,9 +25964,12 @@ def SemiStrip(inpStr:String):String{
         i++;
     };
     return (outStr);
-}
+    '''
+    pass
 
-def resolve_breaks(inpStr:String):String{
+
+def resolve_breaks(inpStr):
+    '''
     var i;
     var outStr:String;
     outStr = "";
@@ -25939,9 +25983,12 @@ def resolve_breaks(inpStr:String):String{
         i++;
     };
     return (outStr);
-}
+    '''
+    pass
 
-def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
+
+def PostBtnHandler(evt=None, actor_id=0):
+    '''
     var par:* = None;
     var GuildMsg:* = False;
     var thisRecipient:* = None;
@@ -26240,9 +26287,12 @@ def PostBtnHandler(evt:MouseEvent=None, actor_id=0){
                 send_action(ACT_POST_READ, ((post_sel + post_scroll) - 1));
             };
     };
-}
+    '''
+    pass
 
-def AlbumClear(){
+
+def AlbumClear():
+    '''
     var i;
     i = 0;
     while (i < 4) {
@@ -26263,9 +26313,12 @@ def AlbumClear(){
         actor[(LBL_ALBUM_HINT + i)].text = "";
         i++;
     };
-}
+    '''
+    pass
 
-def GetAdvent(){
+
+def GetAdvent():
+    '''
     var tmpNow:Date;
     var tmpAdventEnd:Date;
     var tmpDate:Date;
@@ -26294,9 +26347,12 @@ def GetAdvent(){
         };
     };
     return (0);
-}
+    '''
+    pass
 
-def RefreshTimeBar(OfferTime=0){
+
+def RefreshTimeBar(OfferTime=0):
+    '''
     var tmpTime:* = NaN;
     var tmpText:* = None;
     var OfferTime = OfferTime;
@@ -26380,9 +26436,12 @@ def RefreshTimeBar(OfferTime=0){
         text = tmpText;
         x = int((TIMEBAR_LABEL_X - (text_width / 2)));
     };
-}
+    '''
+    pass
 
-def arabize(actor_id){
+
+def arabize(actor_id):
+    '''
     var i;
     var ii;
     var lines:Array;
@@ -26426,9 +26485,12 @@ def arabize(actor_id){
         actor[actor_id].text = ((lines[i] + chr(13)) + actor[actor_id].text);
         i++;
     };
-}
+    '''
+    pass
 
-def GetSpendAmount():String{
+
+def GetSpendAmount():
+    '''
     var amount;
     amount = 1;
     if (int(savegame[SG_LEVEL]) >= 120){
@@ -26447,9 +26509,12 @@ def GetSpendAmount():String{
         };
     };
     return (str(amount));
-}
+    '''
+    pass
 
-def add_suggest_names(addArray){
+
+def add_suggest_names(addArray):
+    '''
     var i;
     if (!(addArray is Array)){
         addArray = [addArray];
@@ -26470,9 +26535,12 @@ def add_suggest_names(addArray){
         };
         i++;
     };
-}
+    '''
+    pass
 
-def get_actor_id(actorObj:Object, iStart=0, iEnde=-1){
+
+def get_actor_id(actorObj, iStart=0, iEnde=-1):
+    '''
     var i;
     var res;
     res = C_EMPTY;
@@ -26485,9 +26553,12 @@ def get_actor_id(actorObj:Object, iStart=0, iEnde=-1){
         i++;
     };
     return (res);
-}
+    '''
+    pass
 
-def GetActorName(actor_id=0):String{
+
+def GetActorName(actor_id=0):
+    '''
     var loader:* = None;
     var actor_id = actor_id;
     loader = new URLLoader();
@@ -26540,9 +26611,12 @@ def GetActorName(actor_id=0):String{
         pending_debug_file = True;
     };
     return (actorName[actor_id]);
-}
+    '''
+    pass
 
-def crestMoveFn(evt:TimerEvent){
+
+def crestMoveFn(evt):
+    '''
     if (actor[GILDE_CREST].y > crestMoveDest){
         actor[GILDE_CREST].y = (actor[GILDE_CREST].y - 5);
     } else {
@@ -26552,9 +26626,12 @@ def crestMoveFn(evt:TimerEvent){
             crestMoveTimer.stop();
         };
     };
-}
+    '''
+    pass
 
-def getRandomCrest(){
+
+def getRandomCrest():
+    '''
     var i;
     var result:Array;
     var guildChecksum:* = 0;
@@ -26565,9 +26642,12 @@ def getRandomCrest(){
         i++;
     };
     return (result);
-}
+    '''
+    pass
+    
 
-def set_default_crest(){
+def set_default_crest():
+    '''
     var i:* = 0;
     var lastResult:* = 0;
     var GuildRandom:* = function (val){
@@ -26589,9 +26669,11 @@ def set_default_crest(){
         i = (i + 1);
     };
     loadCrest();
-}
+    '''
+    pass
 
-def old_crest_str():String{
+def old_crest_str():
+    '''
     var result:* = None;
     var i:* = 0;
     var dec2hex:* = function (d):String{
@@ -26619,9 +26701,12 @@ def old_crest_str():String{
         i = (i + 1);
     };
     return (result);
-}
+    '''
+    pass
 
-def set_crest_str(str:String){
+
+def set_crest_str(str):
+    '''
     var i;
     var hex:String;
     var val;
@@ -26654,9 +26739,12 @@ def set_crest_str(str:String){
         i++;
     };
     loadCrest();
-}
+    '''
+    pass
 
-def loadCrest(){
+
+def loadCrest():
+    '''
     var i:* = 0;
     var newLoad:* = False;
     var url:* = None;
@@ -26767,9 +26855,12 @@ def loadCrest(){
         actor[LBL_GILDE_CREST_ELEMENT].x = ((GILDE_GEBAEUDE_X + 120)
                         - (actor[LBL_GILDE_CREST_ELEMENT].text_width / 2));
     };
-}
+    '''
+    pass
 
-def clickchat_line(evt){
+
+def clickchat_line(evt):
+    '''
     var lineText:String;
     var chatAuthor:*;
     if ((evt is MouseEvent)){
@@ -26812,9 +26903,12 @@ def clickchat_line(evt){
         };
     };
     stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
-}
+    '''
+    pass
+
 
 def ArbeitenSliderChange(value):
+    '''
     var txtWorkDur:String;
     if (texts[TXT_ARBEIT_TEXT3] == ""){
         txtWorkDur = texts[TXT_ARBEIT_TEXT2].split("%hours")
@@ -26833,10 +26927,12 @@ def ArbeitenSliderChange(value):
           + texts[TXT_ARBEIT_TEXT2]) + " ") + Geld((value * stundenlohn)))
             + " ") + texts[TXT_ARBEIT_TEXT3]);
     };
-}
+    '''
+    pass
 
-def DoubleClickHandler(dispObj:Object, fnClick:Function,
-                       fnDoubleClick:Function){
+
+def DoubleClickHandler(dispObj, fnClick, fnDoubleClick):
+    '''
     var dblClickTimer:* = None;
     var waiting:* = False;
     var tmpEvt:* = None;
@@ -26874,9 +26970,12 @@ def DoubleClickHandler(dispObj:Object, fnClick:Function,
         add_event_listener(MouseEvent.MOUSE_DOWN,
                            dblClickEvent);
     };
-}
+    '''
+    pass
 
-def ach_level(SG:Array, achIndex, almode=0){
+
+def ach_level(SG, achIndex, almode=0):
+    '''
     var alresult;
     var alnext;
     alresult = 0;
@@ -27282,9 +27381,12 @@ def ach_level(SG:Array, achIndex, almode=0){
                 ? 100 : 1)));
     };
     return (alresult);
-}
+    '''
+    pass
 
-def SingPlur(inp_text:String, amount, sep:String="*"):String{
+
+def SingPlur(inp_text, amount, sep="*"):
+    '''
     var tmp_array:Array;
     tmp_array = inp_text.split(sep);
     if (tmp_array.length == 4){
@@ -27304,9 +27406,12 @@ def SingPlur(inp_text:String, amount, sep:String="*"):String{
                                         + tmp_array[4]));
     };
     return (tmp_array.join(""));
-}
+    '''
+    pass
 
-def AnimateAch(actor_id, y_level=635, AchAniPow=-10){
+
+def AnimateAch(actor_id, y_level=635, AchAniPow=-10):
+    '''
     var AchAniTimer:* = None;
     var actor_id:* = actor_id;
     var y_level:Number = y_level;
@@ -27337,9 +27442,12 @@ def AnimateAch(actor_id, y_level=635, AchAniPow=-10){
         add_event_listener(TimerEvent.TIMER, AchAniEvent);
         start();
     };
-}
+    '''
+    pass
 
-def DoAchievements(SG:Array):
+
+def DoAchievements(SG):
+    '''
     var i;
     var achPop:Array;
     var achAusfM:String;
@@ -27434,9 +27542,12 @@ def DoAchievements(SG:Array):
         i++;
     };
     return (OneUp);
-}
+    '''
+    pass
 
-def MirrorAniFn(evt:Event){
+
+def MirrorAniFn(evt):
+    '''
     var i;
     mirror_fade_amount = (mirror_fade_amount - 0.002);
     if (mirror_fade_amount <= 0){
@@ -27451,9 +27562,12 @@ def MirrorAniFn(evt:Event){
                                         * mirror_fade_amount));
         i++;
     };
-}
+    '''
+    pass
 
-def trim_too_long(actorIDObj:Object, max_width):String{
+
+def trim_too_long(actorIDObj, max_width):
+    '''
     var tmp_str:* = None;
     var remainLength:* = 0;
     var actor_id:* = 0;
@@ -27489,9 +27603,12 @@ def trim_too_long(actorIDObj:Object, max_width):String{
         };
     };
     return (((Shortened) ? tmp_str : ""));
-}
+    '''
+    pass
 
-def CheckWrongPage(correctAct){
+
+def CheckWrongPage(correctAct):
+    '''
     if (correctAct != lastAct){
         if (correctAct == ACT_SCREEN_TAVERNE){
             Switch (lastAct){
@@ -27525,9 +27642,12 @@ def CheckWrongPage(correctAct){
             };
         };
     };
-}
+    '''
+    pass
 
-def MakeRightTextArea(actor_id, child=0, createHandler=True){
+
+def MakeRightTextArea(actor_id, child=0, createHandler=True):
+    '''
     var tmp_text_format:* = None;
     var actor_id:* = actor_id;
     var child = child;
@@ -27547,11 +27667,13 @@ def MakeRightTextArea(actor_id, child=0, createHandler=True){
     };
     actor[actor_id].getChildAt(child).default_text_format = tmp_text_format;
     actor[actor_id].getChildAt(child).setTextFormat(tmp_text_format);
-}
+    '''
+    pass
 
-def display_inventory(SG:Array=None, NoPrices=False,
-                      towerMode=False, copyCatIdRaw=0,
+
+def display_inventory(SG=None, NoPrices=False, towerMode=False, copyCatIdRaw=0,
                       witchMode=False):
+    '''
     var i:* = 0;
     var ii:* = 0;
     var HideBackPack:* = False;
@@ -28381,11 +28503,13 @@ def display_inventory(SG:Array=None, NoPrices=False,
         enable_popup(LBL_CHAR_RUESTUNG, popupLines);
         enable_popup(CHAR_RUESTUNG, popupLines);
     };
-}
+    '''
+    pass
 
-def ItemPopup(slot_id, sgIndex, SG:Array=None,
-              HideBackPack=False, NoPrices=False,
-              towerMode=False, witchMode=False){
+
+def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
+              towerMode=False, witchMode=False):
+    '''
     var attribLines:Array;
     var shopLines:Array;
     var i;
@@ -28914,14 +29038,19 @@ def ItemPopup(slot_id, sgIndex, SG:Array=None,
     } else {
         enable_popup(slot_id);
     };
-}
+    '''
+    pass
 
-def get_hl_index(inStr:String){
+
+def get_hl_index(inStr):
+    '''
     return (int(decode_chat(inStr, True)));
-}
+    '''
+    pass
 
-def decode_chat(inStr:String, getHLMode=False,
-                getGBMode=False):String{
+
+def decode_chat(inStr, getHLMode=False, getGBMode=False):
+    '''
     var namePart:String;
     var timePart:String;
     var crestStr:String;
@@ -29224,10 +29353,12 @@ def decode_chat(inStr:String, getHLMode=False,
         return (str(inStr.find("§")));
     };
     return (inStr);
-}
+    '''
+    pass
 
-def chat_line(line:String, isError=False, hlIndex=-1,
-              isWhisper=False){
+
+def chat_line(line, isError=False, hlIndex=-1, isWhisper=False):
+    '''
     var i:* = 0;
     var nextLine:* = None;
     var line:* = line;
@@ -29316,16 +29447,22 @@ def chat_line(line:String, isError=False, hlIndex=-1,
     if (nextLine != ""){
         chat_line(nextLine, isError, -1, isWhisper);
     };
-}
+    '''
+    pass
 
-def PayMethod(DealerMenu){
+
+def PayMethod(DealerMenu):
+    '''
     if (DealerMenu > (pay_methods.length - 1)){
         return (0);
     };
     return (pay_methods[DealerMenu]);
-}
+    '''
+    pass
 
-def toiletTankAdjustEvent(evt:TimerEvent=None){
+
+def toiletTankAdjustEvent(evt=None):
+    '''
     actor[(TOILET + 1)].y = ((190 + 122) - (toiletTankCurrent * 118));
     if (toiletTankCurrent > (toiletTankDest + 0.01)){
         toiletTankCurrent = (toiletTankCurrent - 0.01);
@@ -29337,9 +29474,12 @@ def toiletTankAdjustEvent(evt:TimerEvent=None){
             toiletTankAdjustTimer.stop();
         };
     };
-}
+    '''
+    pass
 
-def expand_item_structure(arr:Array, offset){
+
+def expand_item_structure(arr, offset):
+    '''
     var typeOriginal:Number;
     var picOriginal:Number;
     var mushOriginal:Number;
@@ -29366,16 +29506,22 @@ def expand_item_structure(arr:Array, offset){
     arr[(offset + SG_ITM_EXT_ENCHANT)] = enchantment;
     arr[(offset + SG_ITM_EXT_ENCHANT_POWER)] = enchantmentPower;
     arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
-}
+    '''
+    pass
 
-def WaitingFor(targetTime:Number):
+
+def WaitingFor(targetTime):
+    '''
     var tmpTime:Date;
     tmpTime = new Date();
     tmpTime.setTime(((targetTime * 1000) - ((1000 * 60) * 60)));
     return ((game_time.getTime() < tmpTime.getTime()));
-}
+    '''
+    pass
 
-def WaitingTime(targetTime:Number):String{
+
+def WaitingTime(targetTime):
+    '''
     var tmpTime:* = None;
     var timeDiff:* = None;
     var targetTime:* = targetTime;
@@ -29394,9 +29540,12 @@ def WaitingTime(targetTime:Number):String{
                        : "" + ((getUTCMinutes())<10) ? "0" : "")
                         + str(getUTCMinutes())) + ((getUTCSeconds())<10)
                     ? ":0" : ":") + str(getUTCSeconds()))));
-}
+    '''
+    pass
 
-def WaitingProgress(startTime:Number, targetTime:Number):
+
+def WaitingProgress(startTime, targetTime):
+    '''
     var tmpTime:Date;
     var tmpTime2:Date;
     tmpTime = new Date();
@@ -29405,9 +29554,12 @@ def WaitingProgress(startTime:Number, targetTime:Number):
     tmpTime2.setTime(((startTime * 1000) - ((1000 * 60) * 60)));
     return (((game_time.getTime() - tmpTime2.getTime())
             / (tmpTime.getTime() - tmpTime2.getTime())));
-}
+    '''
+    pass
 
-def LOGonRTL(){
+
+def LOGonRTL():
+    '''
     if (text_dir == "right"){
         actor[LBL_NAME].x = (((IF_WIN_X + IF_GOTO_LOGIN_X) - 15)
                              - actor[LBL_NAME].text_width);
@@ -29422,9 +29574,12 @@ def LOGonRTL(){
         actor[INP['EMAIL']].x = (IF_WIN_X + IF_WIN_INPUTS_X);
         actor[INP['PASSWORD']].x = (IF_WIN_X + IF_WIN_INPUTS_X);
     };
-}
+    '''
+    pass
 
-def ModifyCharacter(evt:Event):
+
+def ModifyCharacter(evt):
+    '''
     var actor_id:* = 0;
     var evt:* = evt;
     var RemoveColorOffset:* = function (val, type){
@@ -29573,13 +29728,17 @@ def ModifyCharacter(evt:Event):
     char_beard = AddColorOffset(char_beard, C_BEARD);
     char_special2 = AddColorOffset(char_special2, C_SPECIAL2);
     LoadCharacterImage();
-}
+    '''
+    pass
+
+
 
 def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
                        isMann=False, isKaste=0, isMouth=0,
                        isBeard=0, isNose=0, isEyes=0, isBrows=0,
                        isEars=0, isHair=0, isSpecial=0,
                        isSpecial2=0):
+    '''
     var charPrefix:* = None;
     var i:* = 0;
     var actorOffset:* = 0;
@@ -29758,9 +29917,12 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
             AddBMO(CHARSPECIALOVL_DWARF_F, actorOffset);
         };
     };
-}
+    '''
+    pass
+
 
 def PositionModifyCharacterButtons():
+    '''
     var i:* = 0;
     var positionModifyCharacterBtn:* = function (actor_id):
         if (on_stage(actor_id)){
@@ -29803,9 +29965,12 @@ def PositionModifyCharacterButtons():
         };
         i = (i + 1);
     };
-}
+    '''
+    pass
 
-def getCharSuffix(itemIndex, itemValue):String{
+
+def getCharSuffix(itemIndex, itemValue):
+    '''
     var strItem:String;
     var strExt:String;
     var colorIndex;
@@ -29867,9 +30032,12 @@ def getCharSuffix(itemIndex, itemValue):String{
             break;
     };
     return ((strItem + strExt));
-}
+    '''
+    pass
 
-def RandomizeCharacter(evt:Event=None):
+
+def RandomizeCharacter(evt=None):
+    '''
     char_volk = (int((random.random() * 8)) + 1);
     char_male = (random.random() > 0.5);
     if (param_obj["playerclass"]){
@@ -29886,9 +30054,12 @@ def RandomizeCharacter(evt:Event=None):
         KlasseGewählt = False;
     };
     RandomizeCharImage();
-}
+    '''
+    pass
 
-def RandomizeCharImage(evt:Event=None):
+
+def RandomizeCharImage(evt=None):
+    '''
     var evt:* = evt;
     var ColorOffset:* = function (ItemID){
         if ((getCharImageBound(char_volk, char_male, 11) & ItemID)){
@@ -29917,9 +30088,12 @@ def RandomizeCharImage(evt:Event=None):
     char_special2 = (int(((random.random() * getCharImageBound(char_volk,
                      char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
     LoadCharacterImage();
-}
+    '''
+    pass
 
-def getCharImageBound(isVolk, isMann:Boolean, itemIndex){
+
+def getCharImageBound(isVolk, isMann, itemIndex):
+    '''
     if (isMann){
         Switch (isVolk){
             if case(1:
@@ -30328,9 +30502,12 @@ def getCharImageBound(isVolk, isMann:Boolean, itemIndex){
         };
     };
     return (0);
-}
+    '''
+    pass
 
-def getCharPrefix(isGut:Boolean, isVolk, isMann:Boolean, isKaste):
+
+def getCharPrefix(isGut, isinstanceVolk, isMann, isKaste):
+    '''
     var strTemp:String;
     var strRace:String;
     strTemp = "res/gfx/char/";
@@ -30368,9 +30545,12 @@ def getCharPrefix(isGut:Boolean, isVolk, isMann:Boolean, isKaste):
         strTemp = (strTemp + "female_");
     };
     return (strTemp);
-}
+    '''
+    pass
+
 
 def DrachenSetzen():
+    '''
     var i;
     var d;
     var x;
@@ -30405,9 +30585,12 @@ def DrachenSetzen():
         addChild(actor[i]);
         i++;
     };
-}
+    '''
+    pass
 
-def InterfaceBtnHandler(evt:Event):
+
+def InterfaceBtnHandler(evt):
+    '''
     var tmpAction;
     tmpAction = 0;
     Switch (get_actor_id(evt.target)){
@@ -30490,14 +30673,15 @@ def InterfaceBtnHandler(evt:Event):
     if (tmpAction > 0){
         send_action(tmpAction);
     };
-}
+    '''
+    pass
 
-def ChatPollIntervalReset(){
+
+def ChatPollIntervalReset():
+    '''
     if (param_poll_tunnel_url != ""){
         guild_chat_poll.stop();
         guild_chat_poll.start();
     };
-}
-
-
-'''
+    '''
+    pass
