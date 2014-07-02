@@ -14723,6 +14723,33 @@ def guild_fight_timer_fn(evt):
 
 
 
+def guild_chat_poll_fn(evt):
+    '''
+    if (param_poll_tunnel_url == ""){
+        if (gilde == ""){
+            guild_chat_poll.delay = 1000;
+            return;
+        };
+        if (on_stage(INP_GILDE_CHAT)){
+            guild_chat_poll.delay = (1000 * interval_multiplier_chat);
+        } else {
+            if (param_idle_polling > 0){
+                guild_chat_poll.delay = (1000 * param_idle_polling);
+            } else {
+                guild_chat_poll.delay = (1000 * 60);
+            };
+        };
+    } else {
+        guild_chat_poll.delay = 1000;
+        if (gilde == ""){
+            return;
+        };
+    };
+    send_action(ACT_GET_CHAT_HISTORY, last_chat_index);
+    '''
+    pass
+    
+    
 '''
 
 position_popup = function (evt:MouseEvent):
@@ -30296,30 +30323,6 @@ def InterfaceBtnHandler(evt:Event):
     if (tmpAction > 0){
         send_action(tmpAction);
     };
-}
-
-def guild_chat_poll_fn(e:Event){
-    if (param_poll_tunnel_url == ""){
-        if (gilde == ""){
-            guild_chat_poll.delay = 1000;
-            return;
-        };
-        if (on_stage(INP_GILDE_CHAT)){
-            guild_chat_poll.delay = (1000 * interval_multiplier_chat);
-        } else {
-            if (param_idle_polling > 0){
-                guild_chat_poll.delay = (1000 * param_idle_polling);
-            } else {
-                guild_chat_poll.delay = (1000 * 60);
-            };
-        };
-    } else {
-        guild_chat_poll.delay = 1000;
-        if (gilde == ""){
-            return;
-        };
-    };
-    send_action(ACT_GET_CHAT_HISTORY, last_chat_index);
 }
 
 def ChatPollIntervalReset(){
