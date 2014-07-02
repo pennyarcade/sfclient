@@ -36,7 +36,7 @@ actor = dict()
 texts = dict()
 
 # TODO: should be obsolete
-whendo_loaded_fn = list()
+when_loaded_fn = list()
 Security = SecurityHandler()
 
 
@@ -2495,7 +2495,7 @@ def show_screen_album(){
         load((ALBUM_CAT_OUT + i));
         i = (i + 1);
     };
-    whendo_loaded(DoShowScreenAlbum);
+    when_loaded(DoShowScreenAlbum);
 }
 
 def show_tower_screen(towerData:Array){
@@ -2566,7 +2566,7 @@ def show_tower_screen(towerData:Array){
     if (towerSG[TSG_TOWER_LEVEL] < 100){
         load(((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399));
     };
-    whendo_loaded(DoShowTowerScreen);
+    when_loaded(DoShowTowerScreen);
 }
 
 def show_demo_screen(){
@@ -2582,7 +2582,7 @@ def show_demo_screen(){
         remove(IF_STATS, IF_LOGOUT);
     };
     load(SCREEN_DEMO);
-    whendo_loaded(DoShowDemoScreen);
+    when_loaded(DoShowDemoScreen);
 }
 
 def show_option_screen(evt:Event=None){
@@ -2672,7 +2672,7 @@ def show_option_screen(evt:Event=None){
     load(PASSWORD_SMILEY_SAD);
     load(PASSWORD_SMILEY_NEUTRAL);
     load(PASSWORD_SMILEY_HAPPY);
-    whendo_loaded(DoShowOptionScreen);
+    when_loaded(DoShowOptionScreen);
 }
 
 DoSkipFight = function (evt:MouseEvent=None, fightDone=False){
@@ -4962,7 +4962,7 @@ def show_fight_screen(
             };
         };
     };
-    whendo_loaded(DoShowFightScreen);
+    when_loaded(DoShowFightScreen);
 }
 
 def show_email_nag_screen(valMode=-1){
@@ -5002,7 +5002,7 @@ def show_email_nag_screen(valMode=-1){
         };
     };
     load(SCREEN_EMAIL_NAG);
-    whendo_loaded(doShowEmailNagScreen);
+    when_loaded(doShowEmailNagScreen);
 }
 
 def show_disconnect_screen(){
@@ -5100,7 +5100,7 @@ def show_quest_screen(evt:Event=None){
     if (text_dir == "right"){
         set_btn_text(QUEST_SKIP, ("~P " + texts[TXT_SKIP_FIGHT]));
     };
-    whendo_loaded(DoShowQuestScreen);
+    when_loaded(DoShowQuestScreen);
 }
 
 def show_taverne_screen(evt:Event=None){
@@ -5242,7 +5242,7 @@ def show_taverne_screen(evt:Event=None){
     if (GetAdvent() != 0){
         load(((TAVERN_ADVENT + GetAdvent()) - 1));
     };
-    whendo_loaded(DoShowTaverneScreen);
+    when_loaded(DoShowTaverneScreen);
 }
 
 def show_stall_screen(evt:Event=None){
@@ -5327,7 +5327,7 @@ def show_stall_screen(evt:Event=None){
             i = (i + 1);
         };
     };
-    whendo_loaded(DoShowStall);
+    when_loaded(DoShowStall);
 }
 
 def show_arena_screen(oppName:String, oppGilde:String, oppStufe){
@@ -5448,7 +5448,7 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe){
             load(SCREEN_ARENA_DAY);
             break;
     };
-    whendo_loaded(DoShowArenaScreen);
+    when_loaded(DoShowArenaScreen);
 }
 
 def show_hall_screen(evt:Event=None):
@@ -5468,7 +5468,7 @@ def show_hall_screen(evt:Event=None):
         add(SCREEN_HALLE);
     };
     load(SCREEN_HALLE);
-    whendo_loaded(DoShowHallScreen);
+    when_loaded(DoShowHallScreen);
 }
 
 def show_dealer_screen(evt:Event=None, loadOnly=False){
@@ -5504,7 +5504,7 @@ def show_dealer_screen(evt:Event=None, loadOnly=False){
     actor[SCR_DEALER_BG].mouse_enabled = True;
     load(SCREEN_DEALER);
     if (!loadOnly){
-        whendo_loaded(DoShowDealerScreen);
+        when_loaded(DoShowDealerScreen);
     };
 }
 
@@ -5526,7 +5526,7 @@ def show_screen_gilde_gruenden(evt:Event=None){
         add(SCREEN_GILDE_GRUENDEN);
     };
     load(SCREEN_GILDE_GRUENDEN);
-    whendo_loaded(DoShowScreenGilden);
+    when_loaded(DoShowScreenGilden);
 }
 
 def show_city_screen(evt:Event=None):
@@ -5609,7 +5609,7 @@ def show_city_screen(evt:Event=None):
     load(CITY_ESEL2);
     load(CITY_SANDWICH1);
     load(CITY_SANDWICH2);
-    whendo_loaded(doShowCityScreen);
+    when_loaded(doShowCityScreen);
 }
 
 def show_post_screen(par:Array=None){
@@ -6010,7 +6010,7 @@ def show_post_screen(par:Array=None){
         actor[POST_LIST].addChild(tmpLbl);
     };
     load(SCREEN_POST);
-    whendo_loaded(DoShowPost);
+    when_loaded(DoShowPost);
 }
 
 def show_build_character_screen(evt:Event=None):
@@ -6511,7 +6511,7 @@ def show_character_screen(evt:Event=None, NoPrices=False):
         load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
-    whendo_loaded(DoShowCharacterScreen);
+    when_loaded(DoShowCharacterScreen);
 }
 
 def ShowPlayerScreen(
@@ -6921,7 +6921,7 @@ def ShowPlayerScreen(
         load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
-    whendo_loaded(DoShowPlayerScreen);
+    when_loaded(DoShowPlayerScreen);
 }
 
 def show_screen_gilden(
@@ -9393,7 +9393,7 @@ def show_screen_gilden(
     load(GILDE_SET_MASTER);
     load(GILDE_RANK, (GILDE_RANK + 1), (GILDE_RANK + 2));
     load(GILDE_DIALOG_INVITE, GILDE_DIALOG_KICK, GILDE_DIALOG_MASTER);
-    whendo_loaded(DoShowScreenGilden);
+    when_loaded(DoShowScreenGilden);
 }
 
 def show_work_success_screen(evt:Event=None):
@@ -9485,7 +9485,7 @@ def show_work_screen(evt:Event=None):
         add(SCREEN_ARBEITEN_WAIT);
         SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
         SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
-        whendo_loaded(DoShowWorking);
+        when_loaded(DoShowWorking);
     } else {
         if (savegame[SG_ACTION_STATUS] == 0){
             add(SCREEN_ARBEITEN);
@@ -9901,7 +9901,7 @@ def show_main_quests_screen(NextEnemies:Array){
         load((MQS_BUTTON + i));
         i = (i + 1);
     };
-    whendo_loaded(DoShowMainQuestsScreen);
+    when_loaded(DoShowMainQuestsScreen);
 }
 
 def ShowMainQuestScreen(DungeonNr=0, Enemy=0){
@@ -10082,7 +10082,7 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0){
     if (Enemy >= 0){
         load((OPPMONSTER + Enemy));
     };
-    whendo_loaded(DoShowMainQuestScreen);
+    when_loaded(DoShowMainQuestScreen);
 }
 
 def show_toilet(
@@ -10205,7 +10205,7 @@ def show_toilet(
     };
     load(SCREEN_TOILET);
     show_character_screen();
-    whendo_loaded(doShowToilet);
+    when_loaded(doShowToilet);
 }
 
 def show_witch(
@@ -10367,7 +10367,7 @@ def show_witch(
     };
     load(SCREEN_WITCH);
     show_character_screen(None, True);
-    whendo_loaded(doShowWitch);
+    when_loaded(doShowWitch);
 }
 
 def Showalbum_content(evt:Event=None){
@@ -11149,7 +11149,7 @@ def show_bet_result(won:Boolean){
     if (won){
         load(HUTKUGEL);
     };
-    whendo_loaded(doShowBetResults);
+    when_loaded(doShowBetResults);
 }
 
 def ShowSignupScreen(evt:Event=None):
@@ -13684,7 +13684,7 @@ def action_handler(event):
             else:
                 load(IMG['SCR']['FIDGET_BG'])
                 show_character_screen()
-                whendo_loaded(do_act_zauberladen)
+                when_loaded(do_act_zauberladen)
             break
 
         if case(ACT['SCREEN']['SCHMIEDE']):
@@ -13699,7 +13699,7 @@ def action_handler(event):
             else:
                 load(IMG['SCR']['SHAKES_BG'])
                 show_character_screen()
-                whendo_loaded(do_act_schmiede)
+                when_loaded(do_act_schmiede)
             break
 
         if case(RESP['UPDATE']['CHECK']):
@@ -14883,7 +14883,7 @@ var CenterTextField:* = function (obj:Object, aoffsx=0, aoffsy=0):
         y = int(((((obj.getChildAt(0).height / 2)
                 - (textHeight / 2)) + offsy) + aoffsy));
         if (imgIndex != -1){
-            whendo_loaded(DoAddBtnImage);
+            when_loaded(DoAddBtnImage);
         };
     };
 };
@@ -15557,7 +15557,7 @@ def do_load_language_file():
         server
     )
     load_language_file()
-    whendo_loaded(build_interface)
+    when_loaded(build_interface)
 
 
 def do_load(actor_id):
@@ -15613,13 +15613,13 @@ def when_loaded(function=None):
         async loading finished
     '''
     pending = False
-    global whendo_loaded_fn
+    global when_loaded_fn
 
     if isinstance(function, types.FunctionType):
-        whendo_loaded_fn.append(function)
-        whendo_loaded_active = True
-        whendo_loaded_timeout.stop()
-        whendo_loaded_timeout.start()
+        when_loaded_fn.append(function)
+        when_loaded_active = True
+        when_loaded_timeout.stop()
+        when_loaded_timeout.start()
 
     for i in range(len(actor)):
         if actorLoaded[i] == 1:
@@ -15636,15 +15636,15 @@ def when_loaded(function=None):
         pending = True
 
     if not pending:
-        if whendo_loaded_active:
-            whendo_loaded_timeout.stop()
-            whendo_loaded_active = False
-            whendo_loaded_fn_temp = whendo_loaded_fn
-            whendo_loaded_fn = list()
+        if when_loaded_active:
+            when_loaded_timeout.stop()
+            when_loaded_active = False
+            when_loaded_fn_temp = when_loaded_fn
+            when_loaded_fn = list()
 
-            for i in range(len(whendo_loaded_fn_temp)):
-                tmp_fn = whendo_loaded_fn_temp[i]
-                whendo_loaded_fn_temp[i] = Function()
+            for i in range(len(when_loaded_fn_temp)):
+                tmp_fn = when_loaded_fn_temp[i]
+                when_loaded_fn_temp[i] = Function()
                 tmp_fn()
 
 
@@ -15652,7 +15652,7 @@ def when_loaded_timeout_event():
     '''
         loading stuff timeout
     '''
-    whendo_loaded_timeout.stop()
+    when_loaded_timeout.stop()
 
     for i in range(len(actor)):
         if actor[i] is Loader:
@@ -15667,7 +15667,7 @@ def when_loaded_timeout_event():
                 )
                 actorLoaded[i] = 0
 
-    whendo_loaded()
+    when_loaded()
     to_error_count += 1
 
     if to_error_count == 10:
@@ -15702,7 +15702,7 @@ def loader_complete():
             force_smoothing = True
             allow_smoothing = True
             smoothing = True
-    whendo_loaded()
+    when_loaded()
 
 
 def loader_error():
@@ -15723,7 +15723,7 @@ def loader_error():
                     )
                     actorLoaded[i] = 0
 
-    whendo_loaded()
+    when_loaded()
     io_error_count += 1
 
     if io_error_count == 10:
@@ -17725,7 +17725,7 @@ def load_tracking_pixel(url=''):
                 add(SCREEN_INVITE);
             };
             load(SCREEN_INVITE);
-            whendo_loaded(ShowInviteScreen);
+            when_loaded(ShowInviteScreen);
         };
         var BoostBtnDownHandler:* = function (evt:Event){
             var ClickCount:* = 0;
@@ -19932,7 +19932,7 @@ def load_tracking_pixel(url=''):
             load(SCREEN_HUTMANN);
             load(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTBECHER_1_HOVER);
             actor[LBL_HUTMANN_GOLDBET2].text = GetSpendAmount();
-            whendo_loaded(doShowHutmann);
+            when_loaded(doShowHutmann);
         };
         BuyBeer = function (evt:Event=None){
             send_action(ACT_BUY_BEER);
@@ -21500,7 +21500,7 @@ def load_tracking_pixel(url=''):
         define_bunch(VOLK_BTNS_F);
         define_bunch(VOLK_BTNS_ALL);
         DefineImg(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", True)
-        whendo_loaded(CloneMarker);
+        when_loaded(CloneMarker);
         i = 0;
         while (i <= 7) {
             pos_x = (SCR_BUILDCHAR_VOLK_X + ((i)<4) ? 0 : SCR_BUILDCHAR_VOLK_X)
