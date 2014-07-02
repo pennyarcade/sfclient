@@ -15052,7 +15052,7 @@ def load_language_file():
         I18N file loader
     '''
     loader = URLLoader()
-    with (loader):
+    with loader:
         data_format = URLLoaderdata_format.TEXT
         add_event_listener(Event.COMPLETE, LanguageFileLoaded)
         add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)

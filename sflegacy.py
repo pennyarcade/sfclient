@@ -31,7 +31,11 @@ class URLLoader(object):
     '''
         obsolete with cli?
     '''
-    pass
+    def __exit__(self):
+        '''
+            support with statement
+        '''
+        pass
 
 
 class URLLoaderdata_format(object):
