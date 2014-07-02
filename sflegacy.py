@@ -135,18 +135,6 @@ class Bitmap(object):
     pass
 
 
-class MouseEvent(Event):
-    '''
-        obsolete with cli?
-    '''
-    MOUSE_UP = None
-    MOUSE_DOWN = None
-    MOUSE_OVER = None
-    MOUSE_MOVE = None
-    MOUSE_OUT = None
-    CLICK = None
-
-
 class Timer(object):
     '''
         obsolete with cli?
@@ -178,6 +166,13 @@ class Timer(object):
         pass
 
 
+class Event(object):
+    '''
+        obsolete with cli?
+    '''
+    COMPLETE = None
+
+
 class TimerEvent(Event):
     '''
         obsolete with cli?
@@ -185,11 +180,16 @@ class TimerEvent(Event):
     TIMER = None
 
 
-class Event(object):
+class MouseEvent(Event):
     '''
         obsolete with cli?
     '''
-    COMPLETE = None
+    MOUSE_UP = None
+    MOUSE_DOWN = None
+    MOUSE_OVER = None
+    MOUSE_MOVE = None
+    MOUSE_OUT = None
+    CLICK = None
 
 
 class IOErrorEvent(Event):
