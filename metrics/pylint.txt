@@ -31,7 +31,7 @@ W:14070, 0: TODO: hat does this do? (fixme)
 W:15756, 0: TODO: What does this do? (fixme)
 W:15772, 0: TODO: Obsolete? (fixme)
 W:15795, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (30361) (too-many-lines)
+C:  1, 0: Too many lines in module (30359) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
 C: 34, 0: Invalid constant name "param_obj" (invalid-name)
@@ -1298,7 +1298,6 @@ W:15245,28: Unused variable 'param_reconnect' (unused-variable)
 W:15276,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
 W:15305,28: Unused variable 'param_server_version_cfg' (unused-variable)
 W:15486,12: Unused variable 'param_hall' (unused-variable)
-E:15564,16: Undefined variable 'build_interface' (undefined-variable)
 E:15571, 7: Undefined variable 'actorLoaded' (undefined-variable)
 E:15573,33: Undefined variable 'actorURL' (undefined-variable)
 E:15574,29: Undefined variable 'actorURL' (undefined-variable)
@@ -1349,7 +1348,7 @@ E:15731, 4: Undefined variable 'io_error_count' (undefined-variable)
 E:15749, 8: Undefined variable 'so' (undefined-variable)
 E:15750, 8: Undefined variable 'so' (undefined-variable)
 E:15751, 8: Undefined variable 'so' (undefined-variable)
-E:15758,17: Undefined variable 'pixeldo_loader' (undefined-variable)
+E:15758,17: Undefined variable 'pixel_loader' (undefined-variable)
 W:15790, 4: Redefining name 'pixel_failed' from outer scope (line 15770) (redefined-outer-name)
 W:15789, 4: Redefining name 'pixel_success' from outer scope (line 15754) (redefined-outer-name)
 E:15802,35: Undefined variable 'had_account' (undefined-variable)
@@ -1360,13 +1359,12 @@ E:15821, 8: Undefined variable 'navigate_to_url' (undefined-variable)
 E:15823,11: Undefined variable 'param_internal_pixel' (undefined-variable)
 W:15790, 4: Unused variable 'pixel_failed' (unused-variable)
 W:15820, 8: Unused variable 'log_in_after_pixel' (unused-variable)
-W:15788, 4: Unused variable 'pixeldo_loader' (unused-variable)
+W:15788, 4: Unused variable 'pixel_loader' (unused-variable)
 W:15787, 4: Unused variable 'variables' (unused-variable)
 W:15789, 4: Unused variable 'pixel_success' (unused-variable)
-W:25199,-1: String statement has no effect (pointless-string-statement)
-W:25207, 4: Using the global statement (global-statement)
-C:25213, 4: Invalid variable name "s" (invalid-name)
-W:30361,-1: String statement has no effect (pointless-string-statement)
+W:25205, 4: Using the global statement (global-statement)
+C:25211, 4: Invalid variable name "s" (invalid-name)
+W:30359,-1: String statement has no effect (pointless-string-statement)
 W: 26, 0: Unused import ITM_MAX from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import DIST_DEALER_Y from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
@@ -1472,7 +1470,7 @@ R:220, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3792 statements analysed.
+3793 statements analysed.
 
 External dependencies
 ---------------------
@@ -1490,13 +1488,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19702  |57.24 |NC       |NC         |
+|code      |10343  |30.05 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13225  |38.42 |NC       |NC         |
+|docstring |22583  |65.62 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |2.01  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |799    |2.32  |NC       |NC         |
+|empty     |797    |2.32  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1524,9 +1522,9 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |71     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |429    |NC       |NC         |
+|warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |777    |NC       |NC         |
+|error      |776    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1537,9 +1535,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |89.28   |69.01    |95.26      |
+|sfclient |100.00 |89.25   |69.01    |95.26      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |10.72   |30.99    |4.21       |
+|sflegacy |0.00   |10.75   |30.99    |4.21       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1550,7 +1548,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |755         |
+|undefined-variable           |754         |
 +-----------------------------+------------+
 |unused-variable              |268         |
 +-----------------------------+------------+
@@ -1578,11 +1576,11 @@ Messages
 +-----------------------------+------------+
 |too-many-arguments           |6           |
 +-----------------------------+------------+
-|pointless-string-statement   |5           |
-+-----------------------------+------------+
 |global-statement             |5           |
 +-----------------------------+------------+
 |too-many-function-args       |4           |
++-----------------------------+------------+
+|pointless-string-statement   |4           |
 +-----------------------------+------------+
 |wildcard-import              |3           |
 +-----------------------------+------------+
@@ -1603,7 +1601,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.06/10
+Your code has been rated at -2.05/10
 
 Statistics by type
 ------------------
@@ -1617,7 +1615,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |42     |NC         |NC         |100.00      |7.14     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |100    |NC         |NC         |100.00      |0.00     |
+|function |101    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
