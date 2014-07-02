@@ -805,7 +805,7 @@ def init_vars():
     snd_url_index = 0
 
     # TODO: remove this when configuration loading works
-    img_url.append('')
+    snd_url.append('')
 
     # special_action = 0
     # special_actionHint = False
