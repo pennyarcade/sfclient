@@ -18,6 +18,24 @@ sfclient.py:14726:1: E303 too many blank lines (3)
     E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
     E303: def a():\n\n\n\n    pass
     E304: @decorator\n\ndef a():\n    pass
+sfclient.py:14751:1: W293 blank line contains whitespace
+    Trailing whitespace is superfluous.
+
+    The warning returned varies on whether the line itself is blank, for easier
+    filtering for those who want to indent their blank lines.
+
+    Okay: spam(1)\n#
+    W291: spam(1) \n#
+    W293: class Foo(object):\n    \n    bang = 12
+sfclient.py:14752:1: W293 blank line contains whitespace
+    Trailing whitespace is superfluous.
+
+    The warning returned varies on whether the line itself is blank, for easier
+    filtering for those who want to indent their blank lines.
+
+    Okay: spam(1)\n#
+    W291: spam(1) \n#
+    W293: class Foo(object):\n    \n    bang = 12
 checking sfglobals.py
 checking sflegacy.py
 sflegacy.py:13:1: E302 expected 2 blank lines, found 1
@@ -41,3 +59,4 @@ sflegacy.py:13:1: E302 expected 2 blank lines, found 1
     E304: @decorator\n\ndef a():\n    pass
 1       E302 expected 2 blank lines, found 1
 1       E303 too many blank lines (3)
+2       W293 blank line contains whitespace
