@@ -2694,7 +2694,7 @@ def show_option_screen(evt=None):
         with (_local2) {
             x = ((OPTION_X + int((OPTION_X / 2))) - int((text_width / 2)));
         };
-        LoadCharacterImage();
+        load_character_image();
         SetSliderValue(SLDR_OPTION_VOLUME, (so.data.volume + 1));
         if (light_mode){
             add(CB_LM_CHECKED);
@@ -4455,7 +4455,7 @@ def DoShowFightScreen(evt=None):
     if (oppMonster > 0){
         add(((OPPMONSTER + oppMonster) - 1));
     } else {
-        LoadCharacterImage(
+        load_character_image(
             ((alternate_char_opp_img)
                 ? OPPBACKGROUND2
                 : OPPBACKGROUND),
@@ -4468,7 +4468,7 @@ def DoShowFightScreen(evt=None):
     if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
         add(((FIGHT_COPYCAT + thisCharMonster) - 391));
     } else {
-        LoadCharacterImage(
+        load_character_image(
             ((alternate_char_opp_img)
                 ? CHARBACKGROUND2
                 : CHARBACKGROUND),
@@ -4996,7 +4996,7 @@ def show_fight_screen(
     if (oppMonster > 0){
         load(((OPPMONSTER + oppMonster) - 1));
     } else {
-        LoadCharacterImage(
+        load_character_image(
             ((alternate_char_opp_img)
                 ? OPPBACKGROUND2
                 : OPPBACKGROUND),
@@ -5007,7 +5007,7 @@ def show_fight_screen(
     if ((((thisCharMonster >= 391)) and ((thisCharMonster <= 393)))){
         load(((FIGHT_COPYCAT + thisCharMonster) - 391));
     } else {
-        LoadCharacterImage(
+        load_character_image(
             ((alternate_char_opp_img)
                 ? CHARBACKGROUND2
                 : CHARBACKGROUND), True,
@@ -5558,13 +5558,13 @@ def show_hall_screen(evt=None):
     pass
 
 
-def show_dealer_screen(evt=None, loadOnly=False):
+def show_dealer_screen(evt=None, load_only=False):
     '''
     var papaya_firebug:* = None;
     var url:* = None;
     var DoShowDealerScreen:* = None;
     var evt:* = evt;
-    var loadOnly:Boolean = loadOnly;
+    var load_only:Boolean = load_only;
     DoShowDealerScreen = function (par:Object=None){
         remove_all();
         add(SCREEN_DEALER);
@@ -5591,7 +5591,7 @@ def show_dealer_screen(evt=None, loadOnly=False):
     actor[SCR_DEALER_BG].mouseChildren = True;
     actor[SCR_DEALER_BG].mouse_enabled = True;
     load(SCREEN_DEALER);
-    if (!loadOnly){
+    if (!load_only){
         when_loaded(DoShowDealerScreen);
     };
     '''
@@ -6174,7 +6174,7 @@ def show_build_character_screen(evt=None):
         remove(CREATE_GOTO_LOGIN, IF_LOGOUT);
     };
     if (char_volk == 0){
-        RandomizeCharacter();
+        randomize_character();
     };
     if (RebuildMode){
         remove(CREATE_CHARACTER);
@@ -6192,7 +6192,7 @@ def show_build_character_screen(evt=None):
         revertchar_special2 = char_special2;
         KlasseGewählt = True;
     };
-    LoadCharacterImage();
+    load_character_image();
     '''
     pass
 
@@ -6438,7 +6438,7 @@ def show_character_screen(evt=None, NoPrices=False):
         } else {
             add(SCREEN_CHAR);
         };
-        LoadCharacterImage();
+        load_character_image();
         add_some(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         mirror_ani_timer.stop();
         i = 0;
@@ -6880,7 +6880,7 @@ def ShowPlayerScreen(
             i = (i + 1);
         };
         remove(LBL_CHAR_MOUNT_RUNTIME);
-        LoadCharacterImage(
+        load_character_image(
             CHARBACKGROUND,
             False,
             PlayerSG[SG_RACE],
@@ -10126,7 +10126,7 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0):
                 };
                 i = (i + 1);
             };
-            LoadCharacterImage();
+            load_character_image();
         } else {
             SetCnt(MAINQUEST_ENEMY, (OPPMONSTER + Enemy));
         };
@@ -16460,7 +16460,7 @@ def build_interface():
         define_btn(
             actor_id,
             texts[txtID],
-            InterfaceBtnHandler,
+            interface_btn_handler,
             btn_classInterface,
             IF_X,
             ((IF_Y + (IF_1 * iPosi++)) + yOffs)
@@ -16868,7 +16868,7 @@ def build_interface():
             char_volk = ((actor_id - VOLK_1_F_IDLE) + 1);
             char_male = False;
         };
-        RandomizeCharImage();
+        randomize_char_image();
         if (on_stage(POPUP_INFO)){
             add(POPUP_INFO);
         };
@@ -16882,7 +16882,7 @@ def build_interface():
         if (actor_id == F_IDLE){
             char_male = False;
         };
-        RandomizeCharImage();
+        randomize_char_image();
         if (on_stage(POPUP_INFO)){
             add(POPUP_INFO);
         };
@@ -16900,7 +16900,7 @@ def build_interface():
         if (actor_id == KASTE_3_IDLE){
             char_class = 3;
         };
-        LoadCharacterImage();
+        load_character_image();
         if (on_stage(POPUP_INFO)){
             add(POPUP_INFO);
         };
@@ -21539,7 +21539,7 @@ def build_interface():
                  LBL_WINDOW_TITLE, IF_REQUEST_PASSWORD, LBL_NAME,
                  INP['NAME']);
     add_bunch(WINDOW_FORGOT_PASSWORD, LBL_EMAIL, INP['EMAIL'], GOTO_LOGIN);
-    DrachenSetzen();
+    drachen_setzen();
     PulseTimer = new Timer(20);
     PulseLevel = 0;
     _local2 = PulseTimer;
@@ -21556,7 +21556,7 @@ def build_interface():
     add_filter(LBL_SCREEN_TITLE, Filter_Shadow);
     actor[LBL_SCREEN_TITLE].x = (SCREEN_TITLE_X
                          - int((actor[LBL_SCREEN_TITLE].text_width / 2)));
-    define_btn(RANDOM, texts[TXT_RANDOM], RandomizeCharImage,
+    define_btn(RANDOM, texts[TXT_RANDOM], randomize_char_image,
                btn_classLOGin, SCREEN_RANDOM_BUTTON_X,
                SCREEN_RANDOM_BUTTON_Y);
     define_btn(CREATE_CHARACTER, texts[TXT_CREATE_CHARACTER],
@@ -21952,38 +21952,38 @@ def build_interface():
                  CA_CITY_RUHMESHALLE, CA_CITY_ARENA, CA_CITY_DEALER,
                  CA_CITY_ESEL, CA_CITY_TAVERNE, CA_CITY_POST,
                  CA_CITY_WACHE, CA_CITY_BUH);
-    DefineClickArea(CA_CITY_SHAKES, CITY_SHAKES, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_SHAKES, CITY_SHAKES, interface_btn_handler,
                     CITY_CA_SHAKES_X, CITY_CA_SHAKES_Y, CITY_CA_SHAKES_X,
                     CITY_CA_SHAKES_Y, CITY_CA_OVL);
     DefineClickArea(CA_CITY_ZAUBERLADEN, CITY_ZAUBERLADEN,
-                    InterfaceBtnHandler, CITY_CA_ZAUBERLADEN_X,
+                    interface_btn_handler, CITY_CA_ZAUBERLADEN_X,
                     CITY_CA_ZAUBERLADEN_Y, CITY_CA_ZAUBERLADEN_X,
                     CITY_CA_ZAUBERLADEN_Y, CITY_CA_OVL);
     DefineClickArea(CA_CITY_RUHMESHALLE, CITY_RUHMESHALLE,
-                    InterfaceBtnHandler, CITY_CA_RUHMESHALLE_X,
+                    interface_btn_handler, CITY_CA_RUHMESHALLE_X,
                     CITY_CA_RUHMESHALLE_Y, (CITY_CA_RUHMESHALLE_X - 45),
                     CITY_CA_RUHMESHALLE_Y, CITY_CA_OVL);
-    DefineClickArea(CA_CITY_ARENA, CITY_ARENA, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_ARENA, CITY_ARENA, interface_btn_handler,
                     CITY_CA_ARENA_X, CITY_CA_ARENA_Y, CITY_CA_ARENA_X,
                     CITY_CA_ARENA_Y, CITY_CA_OVL, ShowArenaOno,
                     HideArenaOno);
-    DefineClickArea(CA_CITY_DEALER, CITY_DEALER, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_DEALER, CITY_DEALER, interface_btn_handler,
                     CITY_CA_DEALER_X, CITY_CA_DEALER_Y, CITY_CA_DEALER_X,
                     CITY_CA_DEALER_Y, CITY_CA_OVL, HideDealerEyes,
                     ShowDealerEyes);
-    DefineClickArea(CA_CITY_ESEL, CITY_ESEL2, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_ESEL, CITY_ESEL2, interface_btn_handler,
                     CITY_CA_ESEL_X, CITY_CA_ESEL_Y, CITY_CA_ESEL_X,
                     CITY_CA_ESEL_Y, CITY_CA_OVL, EselOver, EselOut);
-    DefineClickArea(CA_CITY_TAVERNE, CITY_TAVERNE, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_TAVERNE, CITY_TAVERNE, interface_btn_handler,
                     CITY_CA_TAVERNE_X, CITY_CA_TAVERNE_Y,
                     CITY_CA_TAVERNE_X, CITY_CA_TAVERNE_Y, CITY_ZWERG);
-    DefineClickArea(CA_CITY_POST, CITY_POST, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_POST, CITY_POST, interface_btn_handler,
                     CITY_CA_POST_X, CITY_CA_POST_Y, CITY_CA_POST_X,
                     CITY_CA_POST_Y, CITY_ORK);
-    DefineClickArea(CA_CITY_WACHE, C_EMPTY, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_WACHE, C_EMPTY, interface_btn_handler,
                     CITY_CA_WACHE_X, CITY_CA_WACHE_Y, CITY_CA_WACHE_X,
                     CITY_CA_WACHE_Y, CITY_CA_OVL, WacheOver, WacheOut);
-    DefineClickArea(CA_CITY_BUH, C_EMPTY, InterfaceBtnHandler,
+    DefineClickArea(CA_CITY_BUH, C_EMPTY, interface_btn_handler,
                     CITY_CA_BUH_X, CITY_CA_BUH_Y, CITY_CA_BUH_X,
                     CITY_CA_BUH_Y, CITY_CA_OVL, BuhHover, BuhOut);
     AddMimickInterfaceButtonHoverHandler(CA_CITY_SHAKES);
@@ -22178,7 +22178,7 @@ def build_interface():
                  HALLE_DOWN, HALLE_GOTO, INP_HALLE_GOTO, HALL_LIST,
                  HALL_GOTO_SPIELER, HALL_GOTO_GILDEN);
     DefineClickArea(CA_SCR_ARBEITEN_BLOCKCITY, C_EMPTY,
-                    InterfaceBtnHandler, 280, 100, (RES_X - 280),
+                    interface_btn_handler, 280, 100, (RES_X - 280),
                     (RES_Y - 100));
     _local2 = actor[CA_SCR_ARBEITEN_BLOCKCITY];
     with (_local2) {
@@ -22225,7 +22225,7 @@ def build_interface():
     define_bunch(SCREEN_ARBEITEN_SUCCESS, CA_SCR_ARBEITEN_BLOCKCITY,
                  IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT,
                  LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_CLOSE, IF_EXIT);
-    DefineClickArea(CA_SCR_INVITE_BLOCKCITY, C_EMPTY, InterfaceBtnHandler,
+    DefineClickArea(CA_SCR_INVITE_BLOCKCITY, C_EMPTY, interface_btn_handler,
                     280, 100, (RES_X - 280), (RES_Y - 100));
     _local2 = actor[CA_SCR_INVITE_BLOCKCITY];
     with (_local2) {
@@ -24354,7 +24354,7 @@ def build_interface():
                  HUTFACE_LOSE3, HUTFACE_IDLE);
     define_btn(HUTMANN_OK, texts[TXT_HUTMANN_START], HutBtnHandler,
                btn_classLOGin, HUTMANN_OK_X, HUTMANN_OK_Y);
-    define_btn(HUTMANN_BACK, texts[TXT_HUTMANN_BACK], InterfaceBtnHandler,
+    define_btn(HUTMANN_BACK, texts[TXT_HUTMANN_BACK], interface_btn_handler,
                btn_classBack, HUTMANN_BACK_X, HUTMANN_BACK_Y);
     HutBtnRepeatTimer = new Timer(1000);
     DestroyHutBtnTimer = False;
@@ -24815,7 +24815,7 @@ def build_interface():
     add_filter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
     define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight,
                btn_classBasic, 0, 0);
-    define_btn(FIGHT_OK, texts[TXT_OK], InterfaceBtnHandler,
+    define_btn(FIGHT_OK, texts[TXT_OK], interface_btn_handler,
                btn_classBasic, 0, 0);
     _local2 = actor[FIGHT_OK];
     with (_local2) {
@@ -26671,6 +26671,7 @@ def set_default_crest():
     loadCrest();
     '''
     pass
+
 
 def old_crest_str():
     '''
@@ -29583,7 +29584,7 @@ def ModifyCharacter(evt):
     var actor_id:* = 0;
     var evt:* = evt;
     var RemoveColorOffset:* = function (val, type){
-        if ((getCharImageBound(char_volk, char_male, 11) & type)){
+        if ((get_char_image_bound(char_volk, char_male, 11) & type)){
             while (val >= 100) {
                 val = (val - 100);
             };
@@ -29591,7 +29592,7 @@ def ModifyCharacter(evt):
         return (val);
     };
     var AddColorOffset:* = function (val, type){
-        if ((getCharImageBound(char_volk, char_male, 11) & type)){
+        if ((get_char_image_bound(char_volk, char_male, 11) & type)){
             val = (val + (100 * char_color));
         };
         return (val);
@@ -29605,121 +29606,121 @@ def ModifyCharacter(evt):
         if case(MOUTH_MINUS:
             char_mouth--;
             if (char_mouth < 1){
-                char_mouth = getCharImageBound(char_volk, char_male, 1);
+                char_mouth = get_char_image_bound(char_volk, char_male, 1);
             };
             break;
         if case(MOUTH_PLUS:
             char_mouth++;
-            if (char_mouth > getCharImageBound(char_volk, char_male, 1)){
+            if (char_mouth > get_char_image_bound(char_volk, char_male, 1)){
                 char_mouth = 1;
             };
             break;
         if case(HAIR_MINUS:
             char_hair--;
             if (char_hair < 1){
-                char_hair = getCharImageBound(char_volk, char_male, 7);
+                char_hair = get_char_image_bound(char_volk, char_male, 7);
             };
             break;
         if case(HAIR_PLUS:
             char_hair++;
-            if (char_hair > getCharImageBound(char_volk, char_male, 7)){
+            if (char_hair > get_char_image_bound(char_volk, char_male, 7)){
                 char_hair = 1;
             };
             break;
         if case(BROWS_MINUS:
             char_brows--;
             if (char_brows < 1){
-                char_brows = getCharImageBound(char_volk, char_male, 5);
+                char_brows = get_char_image_bound(char_volk, char_male, 5);
             };
             break;
         if case(BROWS_PLUS:
             char_brows++;
-            if (char_brows > getCharImageBound(char_volk, char_male, 5)){
+            if (char_brows > get_char_image_bound(char_volk, char_male, 5)){
                 char_brows = 1;
             };
             break;
         if case(EYES_MINUS:
             char_eyes--;
             if (char_eyes < 1){
-                char_eyes = getCharImageBound(char_volk, char_male, 4);
+                char_eyes = get_char_image_bound(char_volk, char_male, 4);
             };
             break;
         if case(EYES_PLUS:
             char_eyes++;
-            if (char_eyes > getCharImageBound(char_volk, char_male, 4)){
+            if (char_eyes > get_char_image_bound(char_volk, char_male, 4)){
                 char_eyes = 1;
             };
             break;
         if case(BEARD_MINUS:
             char_beard--;
             if (char_beard < 1){
-                char_beard = getCharImageBound(char_volk, char_male, 2);
+                char_beard = get_char_image_bound(char_volk, char_male, 2);
             };
             break;
         if case(BEARD_PLUS:
             char_beard++;
-            if (char_beard > getCharImageBound(char_volk, char_male, 2)){
+            if (char_beard > get_char_image_bound(char_volk, char_male, 2)){
                 char_beard = 1;
             };
             break;
         if case(NOSE_MINUS:
             char_nose--;
             if (char_nose < 1){
-                char_nose = getCharImageBound(char_volk, char_male, 3);
+                char_nose = get_char_image_bound(char_volk, char_male, 3);
             };
             break;
         if case(NOSE_PLUS:
             char_nose++;
-            if (char_nose > getCharImageBound(char_volk, char_male, 3)){
+            if (char_nose > get_char_image_bound(char_volk, char_male, 3)){
                 char_nose = 1;
             };
             break;
         if case(EARS_MINUS:
             char_ears--;
             if (char_ears < 1){
-                char_ears = getCharImageBound(char_volk, char_male, 6);
+                char_ears = get_char_image_bound(char_volk, char_male, 6);
             };
             break;
         if case(EARS_PLUS:
             char_ears++;
-            if (char_ears > getCharImageBound(char_volk, char_male, 6)){
+            if (char_ears > get_char_image_bound(char_volk, char_male, 6)){
                 char_ears = 1;
             };
             break;
         if case(SPECIAL_MINUS:
             char_special--;
             if (char_special < 1){
-                char_special = getCharImageBound(char_volk, char_male, 8);
+                char_special = get_char_image_bound(char_volk, char_male, 8);
             };
             break;
         if case(SPECIAL_PLUS:
             char_special++;
-            if (char_special > getCharImageBound(char_volk, char_male, 8)){
+            if (char_special > get_char_image_bound(char_volk, char_male, 8)){
                 char_special = 1;
             };
             break;
         if case(SPECIAL2_MINUS:
             char_special2--;
             if (char_special2 < 1){
-                char_special2 = getCharImageBound(char_volk, char_male, 9);
+                char_special2 = get_char_image_bound(char_volk, char_male, 9);
             };
             break;
         if case(SPECIAL2_PLUS:
             char_special2++;
-            if (char_special2 > getCharImageBound(char_volk, char_male, 9)){
+            if (char_special2 > get_char_image_bound(char_volk, char_male, 9)){
                 char_special2 = 1;
             };
             break;
         if case(COLOR_PLUS:
             char_color++;
-            if (char_color > getCharImageBound(char_volk, char_male, 10)){
+            if (char_color > get_char_image_bound(char_volk, char_male, 10)){
                 char_color = 1;
             };
             break;
         if case(COLOR_MINUS:
             char_color--;
             if (char_color < 1){
-                char_color = getCharImageBound(char_volk, char_male, 10);
+                char_color = get_char_image_bound(char_volk, char_male, 10);
             };
             break;
     };
@@ -29727,42 +29728,41 @@ def ModifyCharacter(evt):
     char_brows = AddColorOffset(char_brows, C_BROWS);
     char_beard = AddColorOffset(char_beard, C_BEARD);
     char_special2 = AddColorOffset(char_special2, C_SPECIAL2);
-    LoadCharacterImage();
+    load_character_image();
     '''
     pass
 
 
-
-def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
-                       isMann=False, isKaste=0, isMouth=0,
-                       isBeard=0, isNose=0, isEyes=0, isBrows=0,
-                       isEars=0, isHair=0, isSpecial=0,
-                       isSpecial2=0):
+def load_character_image(actor_id=0, load_only=False, is_volk=0,
+                       is_mann=False, is_kaste=0, is_mouth=0,
+                       is_beard=0, is_nose=0, is_nose=0, is_brows=0,
+                       is_ears=0, is_hair=0, is_special=0,
+                       is_special2=0):
     '''
     var charPrefix:* = None;
     var i:* = 0;
     var actorOffset:* = 0;
     var actor_id = actor_id;
-    var loadOnly:Boolean = loadOnly;
-    var isVolk = isVolk;
-    var isMann:Boolean = isMann;
-    var isKaste = isKaste;
-    var isMouth = isMouth;
-    var isBeard = isBeard;
-    var isNose = isNose;
+    var load_only:Boolean = load_only;
+    var is_volk = is_volk;
+    var is_mann:Boolean = is_mann;
+    var is_kaste = is_kaste;
+    var is_mouth = is_mouth;
+    var is_beard = is_beard;
+    var is_nose = is_nose;
     var isEyes = isEyes;
-    var isBrows = isBrows;
-    var isEars = isEars;
-    var isHair = isHair;
-    var isSpecial = isSpecial;
-    var isSpecial2 = isSpecial2;
+    var is_brows = is_brows;
+    var is_ears = is_ears;
+    var is_hair = is_hair;
+    var is_special = is_special;
+    var is_special2 = is_special2;
     var LoadCharacterItemImage:* = function (localActorID,
-                                             parURL:String, itemIndex):
+                                             parURL:String, item_index):
         var newLoad:Boolean;
         var url:String;
         url = (img_url[img_url_index] + parURL);
-        if ((((itemIndex > 0)) and ((getCharImageBound(isVolk,
-            isMann, itemIndex) == 0)))){
+        if ((((item_index > 0)) and ((get_char_image_bound(is_volk,
+            is_mann, item_index) == 0)))){
             url = (img_url[img_url_index] + "res/gfx/empty.png");
         };
         newLoad = !((actorURL[localActorID] == url));
@@ -29772,7 +29772,7 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
             load(localActorID);
         };
     };
-    charPrefix = getCharPrefix(False, isVolk, isMann, isKaste);
+    charPrefix = get_char_prefix(False, is_volk, is_mann, is_kaste);
     if (actor_id == C_EMPTY){
         if (on_stage(SCR_BUILDCHAR_BACKGROUND)){
             var _local16 = actor[LBL_CREATE_RACE];
@@ -29814,7 +29814,7 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
             };
             arabize(LBL_CREATE_CLASS_DESC);
         };
-        LoadCharacterImage(CHARBACKGROUND, loadOnly, char_volk, char_male,
+        load_character_image(CHARBACKGROUND, load_only, char_volk, char_male,
                            char_class, char_mouth, char_beard, char_nose,
                            char_eyes, char_brows, char_ears, char_hair,
                            char_special, char_special2);
@@ -29839,7 +29839,7 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
             };
             i = 1;
             while (i < 11) {
-                if (getCharImageBound(char_volk, char_male, i) == 0){
+                if (get_char_image_bound(char_volk, char_male, i) == 0){
                     remove((MOUTH_MINUS + ((i - 1) * 2)));
                     remove((MOUTH_PLUS + ((i - 1) * 2)));
                     remove((LBL_MOUTH + (i - 1)));
@@ -29850,7 +29850,7 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
                 };
                 i = (i + 1);
             };
-            PositionModifyCharacterButtons();
+            position_modify_character_buttons();
             if (!on_stage(CREATE_CHARACTER)){
                 remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE,
                        KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT,
@@ -29861,59 +29861,59 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
         return;
     };
     LoadCharacterItemImage(actor_id,
-                           (charPrefix + getCharSuffix(0, isKaste)), 0);
+                           (charPrefix + get_char_suffix(0, is_kaste)), 0);
     LoadCharacterItemImage((actor_id + 1),
-                           (charPrefix + getCharSuffix(1, isMouth)), 1);
+                           (charPrefix + get_char_suffix(1, is_mouth)), 1);
     LoadCharacterItemImage((actor_id + 2),
-                           (charPrefix + getCharSuffix(2, isBeard)), 2);
+                           (charPrefix + get_char_suffix(2, is_beard)), 2);
     LoadCharacterItemImage((actor_id + 3),
-                           (charPrefix + getCharSuffix(3, isNose)), 3);
+                           (charPrefix + get_char_suffix(3, is_nose)), 3);
     LoadCharacterItemImage((actor_id + 4),
-                           (charPrefix + getCharSuffix(4, isEyes)), 4);
+                           (charPrefix + get_char_suffix(4, isEyes)), 4);
     LoadCharacterItemImage((actor_id + 5),
-                           (charPrefix + getCharSuffix(5, isBrows)), 5);
+                           (charPrefix + get_char_suffix(5, is_brows)), 5);
     LoadCharacterItemImage((actor_id + 6),
-                           (charPrefix + getCharSuffix(6, isEars)), 6);
+                           (charPrefix + get_char_suffix(6, is_ears)), 6);
     LoadCharacterItemImage((actor_id + 7),
-                           (charPrefix + getCharSuffix(7, isHair)), 7);
+                           (charPrefix + get_char_suffix(7, is_hair)), 7);
     LoadCharacterItemImage((actor_id + 8),
-                           (charPrefix + getCharSuffix(8, isSpecial)), 8);
+                           (charPrefix + get_char_suffix(8, is_special)), 8);
     LoadCharacterItemImage((actor_id + 9),
-                           (charPrefix + getCharSuffix(9, isSpecial2)), 9);
+                           (charPrefix + get_char_suffix(9, is_special2)), 9);
     actorOffset = (actor_id - CHARBACKGROUND);
-    if (!loadOnly){
+    if (!load_only){
         add((CHARIMG + actorOffset));
-        if ((((isVolk == 2)) and (isMann))){
+        if ((((is_volk == 2)) and (is_mann))){
             AddBMO(CHARSPECIALOVL_ELF_M, actorOffset);
         };
-        if ((((isVolk == 7)) and (isMann))){
+        if ((((is_volk == 7)) and (is_mann))){
             AddBMO(CHARSPECIALOVL_GOBLIN_M, actorOffset);
         };
-        if ((((isVolk == 6)) and (isMann))){
+        if ((((is_volk == 6)) and (is_mann))){
             AddBMO(CHARSPECIALOVL_DARKELF_M, actorOffset);
         };
-        if ((((isVolk == 3)) and (isMann))){
+        if ((((is_volk == 3)) and (is_mann))){
             AddBMO(CHARSPECIALOVL_DWARF_M, actorOffset);
         };
-        if ((((isVolk == 1)) and (isMann))){
+        if ((((is_volk == 1)) and (is_mann))){
             AddBMO(CHARSPECIALOVL_HUMAN_M, actorOffset);
         };
-        if ((((isVolk == 4)) and (isMann))){
+        if ((((is_volk == 4)) and (is_mann))){
             AddBMO(CHARSPECIALOVL_GNOM_M, actorOffset);
         };
-        if ((((isVolk == 7)) and (!(isMann)))){
+        if ((((is_volk == 7)) and (!(is_mann)))){
             AddBMO(CHARSPECIALOVL_GOBLIN_F, actorOffset);
         };
-        if ((((isVolk == 5)) and (!(isMann)))){
+        if ((((is_volk == 5)) and (!(is_mann)))){
             AddBMO(CHARSPECIALOVL_ORC_F, actorOffset);
         };
-        if ((((isVolk == 2)) and (!(isMann)))){
+        if ((((is_volk == 2)) and (!(is_mann)))){
             AddBMO(CHARSPECIALOVL_ELF_F, actorOffset);
         };
-        if ((((isVolk == 1)) and (!(isMann)))){
+        if ((((is_volk == 1)) and (!(is_mann)))){
             AddBMO(CHARSPECIALOVL_HUMAN_F, actorOffset);
         };
-        if ((((isVolk == 3)) and (!(isMann)))){
+        if ((((is_volk == 3)) and (!(is_mann)))){
             AddBMO(CHARSPECIALOVL_DWARF_F, actorOffset);
         };
     };
@@ -29921,7 +29921,7 @@ def LoadCharacterImage(actor_id=0, loadOnly=False, isVolk=0,
     pass
 
 
-def PositionModifyCharacterButtons():
+def position_modify_character_buttons():
     '''
     var i:* = 0;
     var positionModifyCharacterBtn:* = function (actor_id):
@@ -29969,7 +29969,7 @@ def PositionModifyCharacterButtons():
     pass
 
 
-def getCharSuffix(itemIndex, itemValue):
+def get_char_suffix(item_index, item_value):
     '''
     var strItem:String;
     var strExt:String;
@@ -29978,17 +29978,17 @@ def getCharSuffix(itemIndex, itemValue):
     strExt = C_CHAREXT;
     colorIndex = 0;
     colorString = "";
-    while (itemValue > 100) {
-        itemValue = (itemValue - 100);
+    while (item_value > 100) {
+        item_value = (item_value - 100);
         colorIndex++;
     };
     if (colorIndex > 0){
         colorString = (("_" + str(colorIndex)) + "_");
     };
-    Switch (itemIndex){
+    Switch (item_index){
         if case(0:
             strExt = ".jpg";
-            Switch (itemValue){
+            Switch (item_value){
                 if case(1:
                     strItem = "body_hunter";
                     break;
@@ -30001,34 +30001,34 @@ def getCharSuffix(itemIndex, itemValue):
             };
             break;
         if case(1:
-            strItem = ("mund" + str(itemValue));
+            strItem = ("mund" + str(item_value));
             break;
         if case(2:
-            strItem = (("bart" + colorString) + str(itemValue));
+            strItem = (("bart" + colorString) + str(item_value));
             break;
         if case(-2:
-            strItem = ("tattoo" + str(itemValue));
+            strItem = ("tattoo" + str(item_value));
             break;
         if case(3:
-            strItem = ("nase" + str(itemValue));
+            strItem = ("nase" + str(item_value));
             break;
         if case(4:
-            strItem = ("augen" + str(itemValue));
+            strItem = ("augen" + str(item_value));
             break;
         if case(5:
-            strItem = (("brauen" + colorString) + str(itemValue));
+            strItem = (("brauen" + colorString) + str(item_value));
             break;
         if case(6:
-            strItem = ("ohren" + str(itemValue));
+            strItem = ("ohren" + str(item_value));
             break;
         if case(7:
-            strItem = (("haare" + colorString) + str(itemValue));
+            strItem = (("haare" + colorString) + str(item_value));
             break;
         if case(8:
-            strItem = ("special" + str(itemValue));
+            strItem = ("special" + str(item_value));
             break;
         if case(9:
-            strItem = (("special2" + colorString) + str(itemValue));
+            strItem = (("special2" + colorString) + str(item_value));
             break;
     };
     return ((strItem + strExt));
@@ -30036,7 +30036,7 @@ def getCharSuffix(itemIndex, itemValue):
     pass
 
 
-def RandomizeCharacter(evt=None):
+def randomize_character(evt=None):
     '''
     char_volk = (int((random.random() * 8)) + 1);
     char_male = (random.random() > 0.5);
@@ -30053,51 +30053,51 @@ def RandomizeCharacter(evt=None):
         char_class = (int((random.random() * 3)) + 1);
         KlasseGewählt = False;
     };
-    RandomizeCharImage();
+    randomize_char_image();
     '''
     pass
 
 
-def RandomizeCharImage(evt=None):
+def randomize_char_image(evt=None):
     '''
     var evt:* = evt;
     var ColorOffset:* = function (ItemID){
-        if ((getCharImageBound(char_volk, char_male, 11) & ItemID)){
+        if ((get_char_image_bound(char_volk, char_male, 11) & ItemID)){
             return ((char_color * 100));
         };
         return (0);
     };
-    char_color = int(((random.random() * getCharImageBound(char_volk,
+    char_color = int(((random.random() * get_char_image_bound(char_volk,
                      char_male, 10)) + 1));
-    char_mouth = int(((random.random() * getCharImageBound(char_volk,
+    char_mouth = int(((random.random() * get_char_image_bound(char_volk,
                      char_male, 1)) + 1));
-    char_beard = (int(((random.random() * getCharImageBound(char_volk,
+    char_beard = (int(((random.random() * get_char_image_bound(char_volk,
                   char_male, 2)) + 1)) + ColorOffset(C_BEARD));
-    char_nose = int(((random.random() * getCharImageBound(char_volk,
+    char_nose = int(((random.random() * get_char_image_bound(char_volk,
                     char_male, 3)) + 1));
-    char_eyes = int(((random.random() * getCharImageBound(char_volk,
+    char_eyes = int(((random.random() * get_char_image_bound(char_volk,
                     char_male, 4)) + 1));
-    char_brows = (int(((random.random() * getCharImageBound(char_volk,
+    char_brows = (int(((random.random() * get_char_image_bound(char_volk,
                   char_male, 5)) + 1)) + ColorOffset(C_BROWS));
-    char_ears = int(((random.random() * getCharImageBound(char_volk,
+    char_ears = int(((random.random() * get_char_image_bound(char_volk,
                     char_male, 6)) + 1));
-    char_hair = (int(((random.random() * getCharImageBound(char_volk,
+    char_hair = (int(((random.random() * get_char_image_bound(char_volk,
                  char_male, 7)) + 1)) + ColorOffset(C_HAIR));
-    char_special = int(((random.random() * getCharImageBound(char_volk,
+    char_special = int(((random.random() * get_char_image_bound(char_volk,
                        char_male, 8)) + 1));
-    char_special2 = (int(((random.random() * getCharImageBound(char_volk,
+    char_special2 = (int(((random.random() * get_char_image_bound(char_volk,
                      char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
-    LoadCharacterImage();
+    load_character_image();
     '''
     pass
 
 
-def getCharImageBound(isVolk, isMann, itemIndex):
+def get_char_image_bound(is_volk, is_mann, item_index):
     '''
-    if (isMann){
-        Switch (isVolk){
+    if (is_mann){
+        Switch (is_volk){
             if case(1:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (9);
                     if case(2:
@@ -30122,7 +30122,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
             if case(2:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (8);
                     if case(2:
@@ -30147,7 +30147,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (((C_HAIR + C_BROWS) + C_BEARD));
                 };
             if case(3:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (5);
                     if case(2:
@@ -30172,7 +30172,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (((C_BROWS + C_HAIR) + C_BEARD));
                 };
             if case(4:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (10);
                     if case(2:
@@ -30197,7 +30197,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
             if case(5:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (7);
                     if case(2:
@@ -30222,7 +30222,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return ((C_HAIR + C_BEARD));
                 };
             if case(6:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (6);
                     if case(2:
@@ -30247,7 +30247,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (((C_HAIR + C_BEARD) + C_BROWS));
                 };
             if case(7:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (6);
                     if case(2:
@@ -30272,7 +30272,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (0);
                 };
             if case(8:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (9);
                     if case(2:
@@ -30298,9 +30298,9 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                 };
         };
     } else {
-        Switch (isVolk){
+        Switch (is_volk){
             if case(1:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (8);
                     if case(2:
@@ -30325,7 +30325,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return ((C_BROWS + C_HAIR));
                 };
             if case(2:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (8);
                     if case(2:
@@ -30350,7 +30350,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return ((C_HAIR + C_BROWS));
                 };
             if case(3:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (9);
                     if case(2:
@@ -30375,7 +30375,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return ((C_HAIR + C_BROWS));
                 };
             if case(4:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (7);
                     if case(2:
@@ -30400,7 +30400,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return ((C_HAIR + C_BROWS));
                 };
             if case(5:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (7);
                     if case(2:
@@ -30425,7 +30425,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (C_HAIR);
                 };
             if case(6:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (9);
                     if case(2:
@@ -30450,7 +30450,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (C_HAIR);
                 };
             if case(7:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (9);
                     if case(2:
@@ -30475,7 +30475,7 @@ def getCharImageBound(isVolk, isMann, itemIndex):
                         return (C_HAIR);
                 };
             if case(8:
-                Switch (itemIndex){
+                Switch (item_index){
                     if case(1:
                         return (8);
                     if case(2:
@@ -30506,13 +30506,13 @@ def getCharImageBound(isVolk, isMann, itemIndex):
     pass
 
 
-def getCharPrefix(isGut, isinstanceVolk, isMann, isKaste):
+def get_char_prefix(is_gut, isinstance_volk, is_mann, is_kaste):
     '''
     var strTemp:String;
     var strRace:String;
     strTemp = "res/gfx/char/";
     strRace = "";
-    Switch (isVolk){
+    Switch (is_volk){
         if case(1:
             strRace = "human";
             break;
@@ -30539,9 +30539,9 @@ def getCharPrefix(isGut, isinstanceVolk, isMann, isKaste):
             break;
     };
     strTemp = (strTemp + (strRace + " "));
-    strTemp = (strTemp + ((isMann) ? "m" : "f"));
+    strTemp = (strTemp + ((is_mann) ? "m" : "f"));
     strTemp = (strTemp + (("/" + strRace) + "_"));
-    if (!isMann){
+    if (!is_mann){
         strTemp = (strTemp + "female_");
     };
     return (strTemp);
@@ -30549,7 +30549,7 @@ def getCharPrefix(isGut, isinstanceVolk, isMann, isKaste):
     pass
 
 
-def DrachenSetzen():
+def drachen_setzen():
     '''
     var i;
     var d;
@@ -30589,7 +30589,7 @@ def DrachenSetzen():
     pass
 
 
-def InterfaceBtnHandler(evt):
+def interface_btn_handler(evt):
     '''
     var tmpAction;
     tmpAction = 0;
