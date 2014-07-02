@@ -31,9 +31,6 @@ W:14067, 0: TODO: hat does this do? (fixme)
 W:15752, 0: TODO: What does this do? (fixme)
 W:15768, 0: TODO: Obsolete? (fixme)
 W:15791, 0: TODO: set via requests params (fixme)
-C:15059, 0: Wrong continued indentation.
-                           LanguageFileError)
-                           ^  | (bad-continuation)
 C:  1, 0: Too many lines in module (30357) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
@@ -1062,7 +1059,6 @@ E:14399,38: Undefined variable 'stObject' (undefined-variable)
 W:14406, 4: Redefining name 'sound_loaded' from outer scope (line 14394) (redefined-outer-name)
 E:14408, 7: Undefined variable 'actorLoaded' (undefined-variable)
 E:14412,42: Undefined variable 'stObject' (undefined-variable)
-E:14417,43: Undefined variable 'Event' (undefined-variable)
 R:14421, 0: Too many local variables (17/15) (too-many-locals)
 C:14435,12: Invalid variable name "textX" (invalid-name)
 E:14436,15: Undefined variable 'text_dir' (undefined-variable)
@@ -1205,12 +1201,9 @@ R:14992, 0: Too many branches (18/12) (too-many-branches)
 W:15029, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15036, 8: Unused variable 'chosen_lang_font' (unused-variable)
 W:15072, 4: Redefining name 'pending_language_file' from outer scope (line 748) (redefined-outer-name)
-E:15056,30: Undefined variable 'Event' (undefined-variable)
 E:15056,46: Undefined variable 'LanguageFileLoaded' (undefined-variable)
-E:15057,30: Undefined variable 'IOErrorEvent' (undefined-variable)
 E:15057,53: Undefined variable 'LanguageFileError' (undefined-variable)
-E:15058,30: Undefined variable 'SecurityErrorEvent' (undefined-variable)
-E:15059,27: Undefined variable 'LanguageFileError' (undefined-variable)
+E:15059,30: Undefined variable 'LanguageFileError' (undefined-variable)
 E:15071, 4: Undefined variable 'pendingdo_loaders' (undefined-variable)
 W:15072, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15071, 4: Unused variable 'pendingdo_loaders' (unused-variable)
@@ -1224,7 +1217,6 @@ W:15091,20: Unused variable 'old_str' (unused-variable)
 W:15111, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15128, 4: Redefining name 'pending_language_file' from outer scope (line 748) (redefined-outer-name)
 E:15122, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:15122,27: Undefined variable 'Event' (undefined-variable)
 E:15122,43: Undefined variable 'OriginalLanguageFileLoaded' (undefined-variable)
 E:15124,40: Undefined variable 'original_lang_code' (undefined-variable)
 E:15127, 4: Undefined variable 'pendingdo_loaders' (undefined-variable)
@@ -1313,9 +1305,7 @@ E:15569,33: Undefined variable 'actorURL' (undefined-variable)
 E:15570,29: Undefined variable 'actorURL' (undefined-variable)
 E:15571,38: Undefined variable 'actorSoundLoader' (undefined-variable)
 E:15572,12: Undefined variable 'actorLoaded' (undefined-variable)
-E:15575,16: Undefined variable 'IOErrorEvent' (undefined-variable)
 E:15575,39: Undefined variable 'LoaderError' (undefined-variable)
-E:15578,16: Undefined variable 'Event' (undefined-variable)
 E:15578,32: Undefined variable 'LoaderComplete' (undefined-variable)
 E:15580,33: Undefined variable 'actorURL' (undefined-variable)
 E:15581,29: Undefined variable 'actorURL' (undefined-variable)
@@ -1403,13 +1393,13 @@ W: 26, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-imp
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:251, 0: TODO: obsolete (fixme)
-W:266, 0: TODO: obsolete (fixme)
-W:280, 0: TODO: obsolete (fixme)
-W:296, 0: TODO: obsolete (fixme)
-W:320, 0: TODO WTF? (fixme)
-W:342, 0: TODO: better way to zero fill? (fixme)
-W:529, 0: TODO: Obsolete (fixme)
+W:272, 0: TODO: obsolete (fixme)
+W:287, 0: TODO: obsolete (fixme)
+W:301, 0: TODO: obsolete (fixme)
+W:317, 0: TODO: obsolete (fixme)
+W:341, 0: TODO WTF? (fixme)
+W:363, 0: TODO: better way to zero fill? (fixme)
+W:550, 0: TODO: Obsolete (fixme)
 W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1429,14 +1419,19 @@ R:110, 0: Too few public methods (0/2) (too-few-public-methods)
 R:117, 0: Too few public methods (0/2) (too-few-public-methods)
 R:124, 0: Too few public methods (0/2) (too-few-public-methods)
 R:131, 0: Too few public methods (0/2) (too-few-public-methods)
+W:138, 0: Class has no __init__ method (no-init)
 R:138, 0: Too few public methods (0/2) (too-few-public-methods)
+W:181, 0: Class has no __init__ method (no-init)
 R:181, 0: Too few public methods (0/2) (too-few-public-methods)
 R:188, 0: Too few public methods (0/2) (too-few-public-methods)
-C:210, 4: Invalid method name "loadPolicyFile" (invalid-name)
-C:216, 4: Invalid method name "allowDomain" (invalid-name)
-R:223, 0: Too few public methods (1/2) (too-few-public-methods)
-C:238, 4: Invalid method name "getLocal" (invalid-name)
-R:234, 0: Too few public methods (1/2) (too-few-public-methods)
+R:195, 0: Too few public methods (0/2) (too-few-public-methods)
+R:202, 0: Too few public methods (0/2) (too-few-public-methods)
+R:209, 0: Too few public methods (0/2) (too-few-public-methods)
+C:231, 4: Invalid method name "loadPolicyFile" (invalid-name)
+C:237, 4: Invalid method name "allowDomain" (invalid-name)
+R:244, 0: Too few public methods (1/2) (too-few-public-methods)
+C:259, 4: Invalid method name "getLocal" (invalid-name)
+R:255, 0: Too few public methods (1/2) (too-few-public-methods)
 W: 12, 0: Unused import CPC from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import REL from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ACT from wildcard import (unused-wildcard-import)
@@ -1475,12 +1470,12 @@ W: 12, 0: Unused import CFG from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import INP from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ITM_EMPTY from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import BTN from wildcard import (unused-wildcard-import)
-R:195, 0: Interface not implemented (interface-not-implemented)
+R:216, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-3782 statements analysed.
+3788 statements analysed.
 
 External dependencies
 ---------------------
@@ -1498,13 +1493,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19692  |57.26 |NC       |NC         |
+|code      |19698  |57.24 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13213  |38.42 |NC       |NC         |
+|docstring |13222  |38.42 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |2.01  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |792    |2.30  |NC       |NC         |
+|empty     |798    |2.32  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1528,13 +1523,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |188    |NC       |NC         |
+|convention |187    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |68     |NC       |NC         |
+|refactor   |71     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |428    |NC       |NC         |
+|warning    |430    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |789    |NC       |NC         |
+|error      |782    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1545,9 +1540,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |89.25   |72.06    |95.21      |
+|sfclient |100.00 |88.84   |69.01    |95.19      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |10.75   |27.94    |4.26       |
+|sflegacy |0.00   |11.16   |30.99    |4.28       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1558,7 +1553,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |767         |
+|undefined-variable           |760         |
 +-----------------------------+------------+
 |unused-variable              |269         |
 +-----------------------------+------------+
@@ -1568,7 +1563,7 @@ Messages
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
-|too-few-public-methods       |28          |
+|too-few-public-methods       |31          |
 +-----------------------------+------------+
 |redefined-outer-name         |25          |
 +-----------------------------+------------+
@@ -1600,20 +1595,20 @@ Messages
 +-----------------------------+------------+
 |redefined-builtin            |2           |
 +-----------------------------+------------+
+|no-init                      |2           |
++-----------------------------+------------+
 |unused-import                |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
-|bad-continuation             |1           |
-+-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -2.24/10
+Your code has been rated at -2.14/10
 
 Statistics by type
 ------------------
@@ -1623,7 +1618,7 @@ Statistics by type
 +=========+=======+===========+===========+============+=========+
 |module   |3      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |36     |NC         |NC         |100.00      |13.89    |
+|class    |39     |NC         |NC         |100.00      |12.82    |
 +---------+-------+-----------+-----------+------------+---------+
 |method   |41     |NC         |NC         |100.00      |7.32     |
 +---------+-------+-----------+-----------+------------+---------+
