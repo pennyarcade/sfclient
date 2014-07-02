@@ -37,6 +37,12 @@ class URLLoader(object):
         '''
         pass
 
+    def __enter__(self):
+        '''
+            support with statement
+        '''
+        pass
+
 
 class URLLoaderdata_format(object):
     '''
