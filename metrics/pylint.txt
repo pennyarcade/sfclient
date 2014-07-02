@@ -37,7 +37,7 @@ W: 27, 0: Wildcard import sfglobals (wildcard-import)
 C: 34, 0: Invalid constant name "param_obj" (invalid-name)
 C: 35, 0: Invalid constant name "actor" (invalid-name)
 C: 36, 0: Invalid constant name "texts" (invalid-name)
-C: 39, 0: Invalid constant name "whendo_loaded_fn" (invalid-name)
+C: 39, 0: Invalid constant name "when_loaded_fn" (invalid-name)
 C: 40, 0: Invalid constant name "Security" (invalid-name)
 R: 50, 0: Too few public methods (1/2) (too-few-public-methods)
 R: 83, 0: Too many instance attributes (14/7) (too-many-instance-attributes)
@@ -87,7 +87,6 @@ W:913, 4: Using the global statement (global-statement)
 C:919, 4: Invalid constant name "when_loaded_fn" (invalid-name)
 C:919, 4: Invalid constant name "when_loaded_active" (invalid-name)
 C:919, 4: Invalid constant name "when_loaded_timeout" (invalid-name)
-W:919, 4: Global variable 'when_loaded_fn' undefined at the module level (global-variable-undefined)
 W:919, 4: Global variable 'when_loaded_active' undefined at the module level (global-variable-undefined)
 W:919, 4: Global variable 'when_loaded_timeout' undefined at the module level (global-variable-undefined)
 R:449, 0: Too many statements (65/50) (too-many-statements)
@@ -827,11 +826,9 @@ E:13671,16: Undefined variable 'show_character_screen' (undefined-variable)
 E:13675,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13683,16: Undefined variable 'display_inventory' (undefined-variable)
 E:13686,16: Undefined variable 'show_character_screen' (undefined-variable)
-E:13687,16: Undefined variable 'whendo_loaded' (undefined-variable)
 E:13691,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13698,16: Undefined variable 'display_inventory' (undefined-variable)
 E:13701,16: Undefined variable 'show_character_screen' (undefined-variable)
-E:13702,16: Undefined variable 'whendo_loaded' (undefined-variable)
 E:13736,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13746,12: Undefined variable 'so' (undefined-variable)
 E:13747,19: Undefined variable 'so' (undefined-variable)
@@ -1299,8 +1296,7 @@ W:15241,28: Unused variable 'param_reconnect' (unused-variable)
 W:15272,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
 W:15301,28: Unused variable 'param_server_version_cfg' (unused-variable)
 W:15482,12: Unused variable 'param_hall' (unused-variable)
-E:15560, 4: Undefined variable 'whendo_loaded' (undefined-variable)
-E:15560,18: Undefined variable 'build_interface' (undefined-variable)
+E:15560,16: Undefined variable 'build_interface' (undefined-variable)
 E:15567, 7: Undefined variable 'actorLoaded' (undefined-variable)
 E:15569,33: Undefined variable 'actorURL' (undefined-variable)
 E:15570,29: Undefined variable 'actorURL' (undefined-variable)
@@ -1316,19 +1312,15 @@ E:15586,20: Undefined variable 'LoaderContext' (undefined-variable)
 E:15588,24: Undefined variable 'ApplicationDomain' (undefined-variable)
 E:15589,24: Undefined variable 'SecurityDomain' (undefined-variable)
 E:15595,12: Undefined variable 'actorLoaded' (undefined-variable)
-C:15616, 4: Invalid constant name "whendo_loaded_fn" (invalid-name)
+W:15620, 8: Redefining name 'when_loaded_active' from outer scope (line 921) (redefined-outer-name)
+C:15616, 4: Invalid constant name "when_loaded_fn" (invalid-name)
 W:15616, 4: Using the global statement (global-statement)
-E:15621, 8: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
-E:15622, 8: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
 E:15625,11: Undefined variable 'actorLoaded' (undefined-variable)
-E:15640,12: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
 W:15682,12: Redefining name 'snd_url_index' from outer scope (line 809) (redefined-outer-name)
 W:15676,12: Redefining name 'img_url_index' from outer scope (line 641) (redefined-outer-name)
-E:15655, 4: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
 E:15659,15: Undefined variable 'actorLoaded' (undefined-variable)
 E:15666,20: Undefined variable 'actorURL' (undefined-variable)
 E:15668,16: Undefined variable 'actorLoaded' (undefined-variable)
-E:15670, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 E:15671, 4: Undefined variable 'to_error_count' (undefined-variable)
 E:15689, 8: Undefined variable 'so' (undefined-variable)
 E:15690, 8: Undefined variable 'so' (undefined-variable)
@@ -1341,7 +1333,6 @@ E:15699,33: Undefined variable 'evt' (undefined-variable)
 E:15700,29: Undefined variable 'evt' (undefined-variable)
 E:15701,19: Undefined variable 'get_actor_id' (undefined-variable)
 E:15701,32: Undefined variable 'evt' (undefined-variable)
-E:15705, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 W:15703,12: Unused variable 'allow_smoothing' (unused-variable)
 W:15702,12: Unused variable 'force_smoothing' (unused-variable)
 W:15704,12: Unused variable 'smoothing' (unused-variable)
@@ -1352,7 +1343,6 @@ E:15712,21: Undefined variable 'LoaderInfo' (undefined-variable)
 E:15715,19: Undefined variable 'actorLoaded' (undefined-variable)
 E:15722,24: Undefined variable 'actorURL' (undefined-variable)
 E:15724,20: Undefined variable 'actorLoaded' (undefined-variable)
-E:15726, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 E:15727, 4: Undefined variable 'io_error_count' (undefined-variable)
 E:15745, 8: Undefined variable 'so' (undefined-variable)
 E:15746, 8: Undefined variable 'so' (undefined-variable)
@@ -1534,7 +1524,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |789    |NC       |NC         |
+|error      |779    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1558,7 +1548,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |767         |
+|undefined-variable           |757         |
 +-----------------------------+------------+
 |unused-variable              |269         |
 +-----------------------------+------------+
@@ -1570,11 +1560,11 @@ Messages
 +-----------------------------+------------+
 |too-few-public-methods       |31          |
 +-----------------------------+------------+
-|redefined-outer-name         |24          |
+|redefined-outer-name         |25          |
 +-----------------------------+------------+
 |used-before-assignment       |18          |
 +-----------------------------+------------+
-|global-variable-undefined    |13          |
+|global-variable-undefined    |12          |
 +-----------------------------+------------+
 |too-many-branches            |11          |
 +-----------------------------+------------+
@@ -1611,7 +1601,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.23/10
+Your code has been rated at -2.09/10
 
 Statistics by type
 ------------------
