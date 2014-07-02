@@ -15071,6 +15071,7 @@ def load_language_file():
         str(random.random())
     ])))
 
+    global pending_loaders
     pending_loaders += 1
     pending_language_file = True
 
