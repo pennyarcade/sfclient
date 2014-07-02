@@ -799,8 +799,14 @@ def init_vars():
     # skip_guild_fights = 0
     # slm_count = 0
     # smoothing = True
-    # snd_url = list()
-    # snd_url_index = 0
+
+    global snd_url, snd_url_index
+    snd_url = list()
+    snd_url_index = 0
+
+    # TODO: remove this when configuration loading works
+    img_url.append('')
+
     # special_action = 0
     # special_actionHint = False
     # sso_mode = False
