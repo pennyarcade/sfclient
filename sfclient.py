@@ -2721,7 +2721,7 @@ def show_option_screen(evt=None):
     pass
 
 
-def DoSkipFight (evt=None, fightDone=False):
+def DoSkipFight(evt=None, fightDone=False):
     '''
     var quest_id:* = 0;
     var PilzBekommen:* = False;
@@ -4606,24 +4606,24 @@ def DoShowFightScreen(evt=None):
 
 
 def show_fight_screen(
-    fighterData,
-    fightData,
-    getPilz,
-    faceData,
-    isPvP,
-    weaponData,
-    HonorGain,
-    GoldGain,
-    isMQ,
-    isReplay=False,
-    BackPackSlot=-1,
-    GuildBattleData=None,
-    lastFight=False,
-    guildFightExp=0,
-    guildFightHonor=0,
-    ownGuild="",
-    ppGuild="",
-    raidLevel=0
+        fighterData,
+        fightData,
+        getPilz,
+        faceData,
+        isPvP,
+        weaponData,
+        HonorGain,
+        GoldGain,
+        isMQ,
+        isReplay=False,
+        BackPackSlot=-1,
+        GuildBattleData=None,
+        lastFight=False,
+        guildFightExp=0,
+        guildFightHonor=0,
+        ownGuild="",
+        ppGuild="",
+        raidLevel=0
 ):
     '''
     var is_guildBattle:* = False;
@@ -6616,8 +6616,8 @@ def show_character_screen(evt=None, NoPrices=False):
 
 
 def ShowPlayerScreen(
-    PlayerSG, PlayerName, PlayerGilde,
-    PlayerComment
+        PlayerSG, PlayerName, PlayerGilde,
+        PlayerComment
 ):
     '''
     var i:* = 0;
@@ -7029,9 +7029,9 @@ def ShowPlayerScreen(
 
 
 def show_screen_gilden(
-    guildData, guildDescr, guildMembers,
-    ThisGilde, is_mine=True, GildenRang=0,
-    GildenEhre=0, AttackCost=0
+        guildData, guildDescr, guildMembers,
+        ThisGilde, is_mine=True, GildenRang=0,
+        GildenEhre=0, AttackCost=0
 ):
     '''
     var DoShowScreenGilden:* = None;
@@ -10205,8 +10205,8 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0):
 
 
 def show_toilet(
-    isFull, toiletLevel, toiletExp, toiletMaxExp,
-    itemAdded=-1
+        isFull, toiletLevel, toiletExp, toiletMaxExp,
+        itemAdded=-1
 ):
     '''
     var doShowToilet:* = None;
@@ -10331,7 +10331,7 @@ def show_toilet(
 
 
 def show_witch(
-    witchData, chaldronBubble=False, enchantCost=0
+        witchData, chaldronBubble=False, enchantCost=0
 ):
     '''
     var doShowWitch:* = None;
@@ -11145,7 +11145,7 @@ def Showalbum_content(evt=None):
 
 
 def show_login_screen(
-    evt=None, noBC=False, noCookie=False
+        evt=None, noBC=False, noCookie=False
 ):
     '''
     var playername:String;
