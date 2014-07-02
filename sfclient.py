@@ -635,8 +635,9 @@ def init_vars():
     # hasLostMQ = False
 
     image_timeout = 3
-    # img_url = list()
-    # img_url_index = 0
+    global img_url, img_url_index
+    img_url = list()
+    img_url_index = 0
     # imprint_url = ""
     # indexInGuild = 0
     # indexInHall = 0
