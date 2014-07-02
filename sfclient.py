@@ -35,6 +35,9 @@ param_obj = dict()
 actor = dict()
 texts = dict()
 
+# TODO: should be obsolete
+whendo_loaded_fn = list()
+
 
 class RequestFailedException(Exception):
     '''
