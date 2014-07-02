@@ -922,7 +922,7 @@ def init_vars():
     when_loaded_timeout = Timer(1000 * image_timeout, 1)
     when_loaded_timeout.add_event_listener(
         TimerEvent.TIMER,
-        whendo_loaded_timeout_event
+        when_loaded_timeout_event
     )
 
     # timer event to generate Ticks
