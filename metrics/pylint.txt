@@ -89,6 +89,7 @@ C:919, 4: Invalid constant name "whendo_loaded_active" (invalid-name)
 C:919, 4: Invalid constant name "whendo_loaded_timeout" (invalid-name)
 W:919, 4: Global variable 'whendo_loaded_active' undefined at the module level (global-variable-undefined)
 W:919, 4: Global variable 'whendo_loaded_timeout' undefined at the module level (global-variable-undefined)
+E:925, 8: Undefined variable 'whendo_loaded_timeout_event' (undefined-variable)
 R:449, 0: Too many statements (65/50) (too-many-statements)
 W:947, 4: Unused variable 'witch_ani_step' (unused-variable)
 W:463, 4: Unused variable 'col_album' (unused-variable)
@@ -104,6 +105,8 @@ W:903, 8: Unused variable 'buffed_req' (unused-variable)
 W:934, 4: Unused variable 'tv_status_dest' (unused-variable)
 W:937, 4: Unused variable 'tv_return_value' (unused-variable)
 W:457, 4: Unused variable 'defaultface' (unused-variable)
+E:976, 4: Undefined variable 'whendo_loaded' (undefined-variable)
+E:976,18: Undefined variable 'dodo_load_language_file' (undefined-variable)
 W:974, 4: Unused variable 'serverconfig' (unused-variable)
 E:1117, 8: Using variable 'slm_count' before assignment (used-before-assignment)
 E:1117,29: Undefined variable 'ststep' (undefined-variable)
@@ -826,9 +829,11 @@ E:13671,16: Undefined variable 'show_character_screen' (undefined-variable)
 E:13675,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13683,16: Undefined variable 'display_inventory' (undefined-variable)
 E:13686,16: Undefined variable 'show_character_screen' (undefined-variable)
+E:13687,16: Undefined variable 'whendo_loaded' (undefined-variable)
 E:13691,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13698,16: Undefined variable 'display_inventory' (undefined-variable)
 E:13701,16: Undefined variable 'show_character_screen' (undefined-variable)
+E:13702,16: Undefined variable 'whendo_loaded' (undefined-variable)
 E:13736,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13746,12: Undefined variable 'so' (undefined-variable)
 E:13747,19: Undefined variable 'so' (undefined-variable)
@@ -1201,7 +1206,6 @@ R:14992, 0: Too many branches (18/12) (too-many-branches)
 W:15029, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15036, 8: Unused variable 'chosen_lang_font' (unused-variable)
 W:15072, 4: Redefining name 'pending_language_file' from outer scope (line 748) (redefined-outer-name)
-E:15056,46: Undefined variable 'LanguageFileLoaded' (undefined-variable)
 E:15057,53: Undefined variable 'LanguageFileError' (undefined-variable)
 E:15059,30: Undefined variable 'LanguageFileError' (undefined-variable)
 E:15071, 4: Undefined variable 'pendingdo_loaders' (undefined-variable)
@@ -1217,7 +1221,7 @@ W:15091,20: Unused variable 'old_str' (unused-variable)
 W:15111, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15128, 4: Redefining name 'pending_language_file' from outer scope (line 748) (redefined-outer-name)
 E:15122, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:15122,43: Undefined variable 'OriginalLanguageFileLoaded' (undefined-variable)
+E:15122,43: Undefined variable 'Originallanguage_file_loaded' (undefined-variable)
 E:15124,40: Undefined variable 'original_lang_code' (undefined-variable)
 E:15127, 4: Undefined variable 'pendingdo_loaders' (undefined-variable)
 W:15127, 4: Unused variable 'pendingdo_loaders' (unused-variable)
@@ -1299,6 +1303,7 @@ W:15241,28: Unused variable 'param_reconnect' (unused-variable)
 W:15272,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
 W:15301,28: Unused variable 'param_server_version_cfg' (unused-variable)
 W:15482,12: Unused variable 'param_hall' (unused-variable)
+E:15560, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 E:15560,18: Undefined variable 'build_interface' (undefined-variable)
 E:15567, 7: Undefined variable 'actorLoaded' (undefined-variable)
 E:15569,33: Undefined variable 'actorURL' (undefined-variable)
@@ -1324,6 +1329,7 @@ W:15676,12: Redefining name 'img_url_index' from outer scope (line 641) (redefin
 E:15659,15: Undefined variable 'actorLoaded' (undefined-variable)
 E:15666,20: Undefined variable 'actorURL' (undefined-variable)
 E:15668,16: Undefined variable 'actorLoaded' (undefined-variable)
+E:15670, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 E:15671, 4: Undefined variable 'to_error_count' (undefined-variable)
 E:15689, 8: Undefined variable 'so' (undefined-variable)
 E:15690, 8: Undefined variable 'so' (undefined-variable)
@@ -1336,6 +1342,7 @@ E:15699,33: Undefined variable 'evt' (undefined-variable)
 E:15700,29: Undefined variable 'evt' (undefined-variable)
 E:15701,19: Undefined variable 'get_actor_id' (undefined-variable)
 E:15701,32: Undefined variable 'evt' (undefined-variable)
+E:15705, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 W:15703,12: Unused variable 'allow_smoothing' (unused-variable)
 W:15702,12: Unused variable 'force_smoothing' (unused-variable)
 W:15704,12: Unused variable 'smoothing' (unused-variable)
@@ -1346,6 +1353,7 @@ E:15712,21: Undefined variable 'LoaderInfo' (undefined-variable)
 E:15715,19: Undefined variable 'actorLoaded' (undefined-variable)
 E:15722,24: Undefined variable 'actorURL' (undefined-variable)
 E:15724,20: Undefined variable 'actorLoaded' (undefined-variable)
+E:15726, 4: Undefined variable 'whendo_loaded' (undefined-variable)
 E:15727, 4: Undefined variable 'io_error_count' (undefined-variable)
 E:15745, 8: Undefined variable 'so' (undefined-variable)
 E:15746, 8: Undefined variable 'so' (undefined-variable)
@@ -1375,11 +1383,11 @@ W: 26, 0: Unused import CPC from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import load_configuration_file from wildcard import (unused-wildcard-import)
 W: 23, 0: Unused import curses (unused-import)
+W: 26, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import TSG from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import POPUP_BEGIN_LINE from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import parse_savegame from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import BLACK_SQUARE from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import set_volume from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import ITM_OFFS from wildcard import (unused-wildcard-import)
@@ -1527,7 +1535,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |782    |NC       |NC         |
+|error      |790    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1551,7 +1559,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |760         |
+|undefined-variable           |768         |
 +-----------------------------+------------+
 |unused-variable              |269         |
 +-----------------------------+------------+
@@ -1604,7 +1612,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.13/10
+Your code has been rated at -2.24/10
 
 Statistics by type
 ------------------
