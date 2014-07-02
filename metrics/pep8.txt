@@ -1,18 +1,4 @@
 checking sfclient.py
-sfclient.py:2724:16: E211 whitespace before '('
-    Avoid extraneous whitespace.
-
-    Avoid extraneous whitespace in the following situations:
-    - before the open parenthesis that starts the argument list of a
-      function call.
-    - before the open parenthesis that starts an indexing or slicing.
-
-    Okay: spam(1)
-    E211: spam (1)
-
-    Okay: dict['key'] = list[index]
-    E211: dict ['key'] = list[index]
-    E211: dict['key'] = list [index]
 sfclient.py:3443:1: E302 expected 2 blank lines, found 1
     Separate top-level function and class definitions with two blank lines.
 
@@ -34,5 +20,4 @@ sfclient.py:3443:1: E302 expected 2 blank lines, found 1
     E304: @decorator\n\ndef a():\n    pass
 checking sfglobals.py
 checking sflegacy.py
-1       E211 whitespace before '('
 1       E302 expected 2 blank lines, found 1

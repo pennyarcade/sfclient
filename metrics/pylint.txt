@@ -31,90 +31,6 @@ W:14201, 0: TODO: hat does this do? (fixme)
 W:15887, 0: TODO: What does this do? (fixme)
 W:15903, 0: TODO: Obsolete? (fixme)
 W:15926, 0: TODO: set via requests params (fixme)
-C:2724, 0: No space allowed before bracket
-def DoSkipFight (evt=None, fightDone=False):
-                ^ (bad-whitespace)
-C:4609, 0: Wrong hanging indentation before block.
-    fighterData,
-    ^   | (bad-continuation)
-C:4610, 0: Wrong hanging indentation before block.
-    fightData,
-    ^   | (bad-continuation)
-C:4611, 0: Wrong hanging indentation before block.
-    getPilz,
-    ^   | (bad-continuation)
-C:4612, 0: Wrong hanging indentation before block.
-    faceData,
-    ^   | (bad-continuation)
-C:4613, 0: Wrong hanging indentation before block.
-    isPvP,
-    ^   | (bad-continuation)
-C:4614, 0: Wrong hanging indentation before block.
-    weaponData,
-    ^   | (bad-continuation)
-C:4615, 0: Wrong hanging indentation before block.
-    HonorGain,
-    ^   | (bad-continuation)
-C:4616, 0: Wrong hanging indentation before block.
-    GoldGain,
-    ^   | (bad-continuation)
-C:4617, 0: Wrong hanging indentation before block.
-    isMQ,
-    ^   | (bad-continuation)
-C:4618, 0: Wrong hanging indentation before block.
-    isReplay=False,
-    ^   | (bad-continuation)
-C:4619, 0: Wrong hanging indentation before block.
-    BackPackSlot=-1,
-    ^   | (bad-continuation)
-C:4620, 0: Wrong hanging indentation before block.
-    GuildBattleData=None,
-    ^   | (bad-continuation)
-C:4621, 0: Wrong hanging indentation before block.
-    lastFight=False,
-    ^   | (bad-continuation)
-C:4622, 0: Wrong hanging indentation before block.
-    guildFightExp=0,
-    ^   | (bad-continuation)
-C:4623, 0: Wrong hanging indentation before block.
-    guildFightHonor=0,
-    ^   | (bad-continuation)
-C:4624, 0: Wrong hanging indentation before block.
-    ownGuild="",
-    ^   | (bad-continuation)
-C:4625, 0: Wrong hanging indentation before block.
-    ppGuild="",
-    ^   | (bad-continuation)
-C:4626, 0: Wrong hanging indentation before block.
-    raidLevel=0
-    ^   | (bad-continuation)
-C:6619, 0: Wrong hanging indentation before block.
-    PlayerSG, PlayerName, PlayerGilde,
-    ^   | (bad-continuation)
-C:6620, 0: Wrong hanging indentation before block.
-    PlayerComment
-    ^   | (bad-continuation)
-C:7032, 0: Wrong hanging indentation before block.
-    guildData, guildDescr, guildMembers,
-    ^   | (bad-continuation)
-C:7033, 0: Wrong hanging indentation before block.
-    ThisGilde, is_mine=True, GildenRang=0,
-    ^   | (bad-continuation)
-C:7034, 0: Wrong hanging indentation before block.
-    GildenEhre=0, AttackCost=0
-    ^   | (bad-continuation)
-C:10208, 0: Wrong hanging indentation before block.
-    isFull, toiletLevel, toiletExp, toiletMaxExp,
-    ^   | (bad-continuation)
-C:10209, 0: Wrong hanging indentation before block.
-    itemAdded=-1
-    ^   | (bad-continuation)
-C:10334, 0: Wrong hanging indentation before block.
-    witchData, chaldronBubble=False, enchantCost=0
-    ^   | (bad-continuation)
-C:11148, 0: Wrong hanging indentation before block.
-    evt=None, noBC=False, noCookie=False
-    ^   | (bad-continuation)
 C:  1, 0: Too many lines in module (30491) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
@@ -411,8 +327,8 @@ W:2538,22: Unused argument 'towerData' (unused-argument)
 W:2631,23: Unused argument 'evt' (unused-argument)
 C:2724, 0: Invalid function name "DoSkipFight" (invalid-name)
 C:2724, 0: Invalid argument name "fightDone" (invalid-name)
-W:2724,27: Unused argument 'fightDone' (unused-argument)
-W:2724,17: Unused argument 'evt' (unused-argument)
+W:2724,26: Unused argument 'fightDone' (unused-argument)
+W:2724,16: Unused argument 'evt' (unused-argument)
 C:3345, 0: Invalid function name "SetLifeBars" (invalid-name)
 C:3345, 0: Invalid argument name "whichOne" (invalid-name)
 W:3345,16: Unused argument 'whichOne' (unused-argument)
@@ -442,24 +358,24 @@ C:4608, 0: Invalid argument name "ppGuild" (invalid-name)
 C:4608, 0: Invalid argument name "raidLevel" (invalid-name)
 R:4608, 0: Too many arguments (18/5) (too-many-arguments)
 R:4608, 0: Too many local variables (18/15) (too-many-locals)
-W:4615, 4: Unused argument 'HonorGain' (unused-argument)
-W:4624, 4: Unused argument 'ownGuild' (unused-argument)
-W:4626, 4: Unused argument 'raidLevel' (unused-argument)
-W:4621, 4: Unused argument 'lastFight' (unused-argument)
-W:4623, 4: Unused argument 'guildFightHonor' (unused-argument)
-W:4612, 4: Unused argument 'faceData' (unused-argument)
-W:4619, 4: Unused argument 'BackPackSlot' (unused-argument)
-W:4613, 4: Unused argument 'isPvP' (unused-argument)
-W:4610, 4: Unused argument 'fightData' (unused-argument)
-W:4620, 4: Unused argument 'GuildBattleData' (unused-argument)
-W:4625, 4: Unused argument 'ppGuild' (unused-argument)
-W:4617, 4: Unused argument 'isMQ' (unused-argument)
-W:4616, 4: Unused argument 'GoldGain' (unused-argument)
-W:4611, 4: Unused argument 'getPilz' (unused-argument)
-W:4614, 4: Unused argument 'weaponData' (unused-argument)
-W:4622, 4: Unused argument 'guildFightExp' (unused-argument)
-W:4618, 4: Unused argument 'isReplay' (unused-argument)
-W:4609, 4: Unused argument 'fighterData' (unused-argument)
+W:4615, 8: Unused argument 'HonorGain' (unused-argument)
+W:4624, 8: Unused argument 'ownGuild' (unused-argument)
+W:4626, 8: Unused argument 'raidLevel' (unused-argument)
+W:4621, 8: Unused argument 'lastFight' (unused-argument)
+W:4623, 8: Unused argument 'guildFightHonor' (unused-argument)
+W:4612, 8: Unused argument 'faceData' (unused-argument)
+W:4619, 8: Unused argument 'BackPackSlot' (unused-argument)
+W:4613, 8: Unused argument 'isPvP' (unused-argument)
+W:4610, 8: Unused argument 'fightData' (unused-argument)
+W:4620, 8: Unused argument 'GuildBattleData' (unused-argument)
+W:4625, 8: Unused argument 'ppGuild' (unused-argument)
+W:4617, 8: Unused argument 'isMQ' (unused-argument)
+W:4616, 8: Unused argument 'GoldGain' (unused-argument)
+W:4611, 8: Unused argument 'getPilz' (unused-argument)
+W:4614, 8: Unused argument 'weaponData' (unused-argument)
+W:4622, 8: Unused argument 'guildFightExp' (unused-argument)
+W:4618, 8: Unused argument 'isReplay' (unused-argument)
+W:4609, 8: Unused argument 'fighterData' (unused-argument)
 C:5030, 0: Invalid argument name "valMode" (invalid-name)
 W:5030,26: Unused argument 'valMode' (unused-argument)
 W:5101,22: Unused argument 'evt' (unused-argument)
@@ -487,10 +403,10 @@ C:6618, 0: Invalid argument name "PlayerSG" (invalid-name)
 C:6618, 0: Invalid argument name "PlayerName" (invalid-name)
 C:6618, 0: Invalid argument name "PlayerGilde" (invalid-name)
 C:6618, 0: Invalid argument name "PlayerComment" (invalid-name)
-W:6619,14: Unused argument 'PlayerName' (unused-argument)
-W:6619,26: Unused argument 'PlayerGilde' (unused-argument)
-W:6619, 4: Unused argument 'PlayerSG' (unused-argument)
-W:6620, 4: Unused argument 'PlayerComment' (unused-argument)
+W:6619,18: Unused argument 'PlayerName' (unused-argument)
+W:6619,30: Unused argument 'PlayerGilde' (unused-argument)
+W:6619, 8: Unused argument 'PlayerSG' (unused-argument)
+W:6620, 8: Unused argument 'PlayerComment' (unused-argument)
 C:7031, 0: Invalid argument name "guildData" (invalid-name)
 C:7031, 0: Invalid argument name "guildDescr" (invalid-name)
 C:7031, 0: Invalid argument name "guildMembers" (invalid-name)
@@ -499,14 +415,14 @@ C:7031, 0: Invalid argument name "GildenRang" (invalid-name)
 C:7031, 0: Invalid argument name "GildenEhre" (invalid-name)
 C:7031, 0: Invalid argument name "AttackCost" (invalid-name)
 R:7031, 0: Too many arguments (8/5) (too-many-arguments)
-W:7033,29: Unused argument 'GildenRang' (unused-argument)
-W:7033,15: Unused argument 'is_mine' (unused-argument)
-W:7032,15: Unused argument 'guildDescr' (unused-argument)
-W:7034, 4: Unused argument 'GildenEhre' (unused-argument)
-W:7033, 4: Unused argument 'ThisGilde' (unused-argument)
-W:7032,27: Unused argument 'guildMembers' (unused-argument)
-W:7032, 4: Unused argument 'guildData' (unused-argument)
-W:7034,18: Unused argument 'AttackCost' (unused-argument)
+W:7033,33: Unused argument 'GildenRang' (unused-argument)
+W:7033,19: Unused argument 'is_mine' (unused-argument)
+W:7032,19: Unused argument 'guildDescr' (unused-argument)
+W:7034, 8: Unused argument 'GildenEhre' (unused-argument)
+W:7033, 8: Unused argument 'ThisGilde' (unused-argument)
+W:7032,31: Unused argument 'guildMembers' (unused-argument)
+W:7032, 8: Unused argument 'guildData' (unused-argument)
+W:7034,22: Unused argument 'AttackCost' (unused-argument)
 W:9506,29: Unused argument 'evt' (unused-argument)
 W:9527,21: Unused argument 'evt' (unused-argument)
 C:9617, 0: Invalid argument name "NextEnemies" (invalid-name)
@@ -521,24 +437,24 @@ C:10207, 0: Invalid argument name "toiletLevel" (invalid-name)
 C:10207, 0: Invalid argument name "toiletExp" (invalid-name)
 C:10207, 0: Invalid argument name "toiletMaxExp" (invalid-name)
 C:10207, 0: Invalid argument name "itemAdded" (invalid-name)
-W:10208,36: Unused argument 'toiletMaxExp' (unused-argument)
-W:10208, 4: Unused argument 'isFull' (unused-argument)
-W:10208,12: Unused argument 'toiletLevel' (unused-argument)
-W:10209, 4: Unused argument 'itemAdded' (unused-argument)
-W:10208,25: Unused argument 'toiletExp' (unused-argument)
+W:10208,40: Unused argument 'toiletMaxExp' (unused-argument)
+W:10208, 8: Unused argument 'isFull' (unused-argument)
+W:10208,16: Unused argument 'toiletLevel' (unused-argument)
+W:10209, 8: Unused argument 'itemAdded' (unused-argument)
+W:10208,29: Unused argument 'toiletExp' (unused-argument)
 C:10333, 0: Invalid argument name "witchData" (invalid-name)
 C:10333, 0: Invalid argument name "chaldronBubble" (invalid-name)
 C:10333, 0: Invalid argument name "enchantCost" (invalid-name)
-W:10334, 4: Unused argument 'witchData' (unused-argument)
-W:10334,15: Unused argument 'chaldronBubble' (unused-argument)
-W:10334,37: Unused argument 'enchantCost' (unused-argument)
+W:10334, 8: Unused argument 'witchData' (unused-argument)
+W:10334,19: Unused argument 'chaldronBubble' (unused-argument)
+W:10334,41: Unused argument 'enchantCost' (unused-argument)
 C:10498, 0: Invalid function name "Showalbum_content" (invalid-name)
 W:10498,22: Unused argument 'evt' (unused-argument)
 C:11147, 0: Invalid argument name "noBC" (invalid-name)
 C:11147, 0: Invalid argument name "noCookie" (invalid-name)
-W:11148,14: Unused argument 'noBC' (unused-argument)
-W:11148,26: Unused argument 'noCookie' (unused-argument)
-W:11148, 4: Unused argument 'evt' (unused-argument)
+W:11148,18: Unused argument 'noBC' (unused-argument)
+W:11148,30: Unused argument 'noCookie' (unused-argument)
+W:11148, 8: Unused argument 'evt' (unused-argument)
 W:11201,20: Unused argument 'won' (unused-argument)
 C:11289, 0: Invalid function name "ShowSignupScreen" (invalid-name)
 W:11289,21: Unused argument 'evt' (unused-argument)
@@ -1711,7 +1627,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |289    |NC       |NC         |
+|convention |261    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |74     |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1728,9 +1644,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |90.96   |70.27    |96.89      |
+|sfclient |100.00 |90.96   |70.27    |96.55      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |9.04    |29.73    |2.77       |
+|sflegacy |0.00   |9.04    |29.73    |3.07       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1754,8 +1670,6 @@ Messages
 |fixme                        |39          |
 +-----------------------------+------------+
 |too-few-public-methods       |31          |
-+-----------------------------+------------+
-|bad-continuation             |27          |
 +-----------------------------+------------+
 |redefined-outer-name         |26          |
 +-----------------------------+------------+
@@ -1791,14 +1705,12 @@ Messages
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
-|bad-whitespace               |1           |
-+-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -1.64/10
+Your code has been rated at -1.57/10
 
 Statistics by type
 ------------------
