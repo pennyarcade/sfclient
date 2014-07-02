@@ -1,5 +1,5 @@
 checking sfclient.py
-sfclient.py:14726:1: E303 too many blank lines (3)
+sfclient.py:14729:1: E303 too many blank lines (3)
     Separate top-level function and class definitions with two blank lines.
 
     Method definitions inside a class are separated by a single blank line.
@@ -18,7 +18,7 @@ sfclient.py:14726:1: E303 too many blank lines (3)
     E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
     E303: def a():\n\n\n\n    pass
     E304: @decorator\n\ndef a():\n    pass
-sfclient.py:14751:1: W293 blank line contains whitespace
+sfclient.py:14754:1: W293 blank line contains whitespace
     Trailing whitespace is superfluous.
 
     The warning returned varies on whether the line itself is blank, for easier
@@ -27,7 +27,7 @@ sfclient.py:14751:1: W293 blank line contains whitespace
     Okay: spam(1)\n#
     W291: spam(1) \n#
     W293: class Foo(object):\n    \n    bang = 12
-sfclient.py:14752:1: W293 blank line contains whitespace
+sfclient.py:14755:1: W293 blank line contains whitespace
     Trailing whitespace is superfluous.
 
     The warning returned varies on whether the line itself is blank, for easier
