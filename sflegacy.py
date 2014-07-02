@@ -69,7 +69,11 @@ class URLRequest(object):
     '''
         obsolete with cli?
     '''
-    pass
+    def __init__(self, *args):
+        '''
+            obsolete with cli?
+        '''
+        pass
 
 
 class TextFieldType(object):
