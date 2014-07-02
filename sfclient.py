@@ -741,12 +741,14 @@ def init_vars():
     # param_support_email = "support@sfgame.de"
     # param_valid = ""
     # pay_methods = list()
+
     global pending_configuration_files, pending_debug_file
-    global pending_language_file
+    global pending_language_file, pending_loaders
     pending_configuration_files = False
     pending_debug_file = False
     pending_language_file = False
-    # pendingdo_loaders = 0
+    pending_loaders = 0
+
     # player_desc = ""
     # playerTowerLevel = 0
     # pollLock = False
@@ -2271,8 +2273,8 @@ def request_tv():
     '''
     if tv_function_name != "":
         LOG.debug(''.join(['Calling TV function "',
-                          tv_function_name,
-                          '" with parameter "showtv"!']))
+                           tv_function_name,
+                           '" with parameter "showtv"!']))
 
         ExternalInterface.call(tv_function_name,
                                "showtv",
@@ -15068,7 +15070,7 @@ def load_language_file():
         str(random.random())
     ])))
 
-    pendingdo_loaders += 1
+    pending_loaders += 1
     pending_language_file = True
 
 
@@ -15124,7 +15126,7 @@ def load_original_language_file():
             lang_url + "lang/sfgame_" + original_lang_code + ".txt"
         ))
 
-    pendingdo_loaders += 1
+    pending_loaders += 1
     pending_language_file = True
 
 
@@ -26390,7 +26392,7 @@ def GetActorName(actor_id=0):String{
             add_event_listener(Event.COMPLETE, ConstFileLoaded);
             load(new URLRequest("constants.as"));
         };
-        pendingdo_loaders = (pendingdo_loaders + 1);
+        pending_loaders = (pending_loaders + 1);
         pending_debug_file = True;
     };
     return (actorName[actor_id]);
