@@ -179,6 +179,17 @@ class ExternalInterface(object):
         pass
 
 
+class Function(object):
+    '''
+        obsolete with cli?
+    '''
+    def call(self, *args):
+        '''
+            obsolete
+        '''
+        pass
+
+
 class SharedObject(object):
     '''
         obsolete with cli?
