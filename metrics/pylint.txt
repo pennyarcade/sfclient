@@ -31,6 +31,7 @@ W:14205, 0: TODO: hat does this do? (fixme)
 W:15899, 0: TODO: What does this do? (fixme)
 W:15915, 0: TODO: Obsolete? (fixme)
 W:15938, 0: TODO: set via requests params (fixme)
+C:27579, 0: Line too long (81/80) (line-too-long)
 C:  1, 0: Too many lines in module (30697) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
@@ -384,9 +385,8 @@ W:5601,31: Unused argument 'evt' (unused-argument)
 W:5625,21: Unused argument 'evt' (unused-argument)
 W:5711,21: Unused argument 'par' (unused-argument)
 W:6115,32: Unused argument 'evt' (unused-argument)
-C:6200, 0: Invalid argument name "NoPrices" (invalid-name)
-W:6200,36: Unused argument 'NoPrices' (unused-argument)
 W:6200,26: Unused argument 'evt' (unused-argument)
+W:6200,36: Unused argument 'no_prices' (unused-argument)
 C:6622, 0: Invalid function name "ShowPlayerScreen" (invalid-name)
 C:6622, 0: Invalid argument name "PlayerSG" (invalid-name)
 C:6622, 0: Invalid argument name "PlayerName" (invalid-name)
@@ -1555,71 +1555,47 @@ W:26709,18: Redefining built-in 'str' (redefined-builtin)
 W:26709,18: Unused argument 'str' (unused-argument)
 C:26747, 0: Invalid function name "loadCrest" (invalid-name)
 W:26863,19: Unused argument 'evt' (unused-argument)
-C:26911, 0: Invalid function name "ArbeitenSliderChange" (invalid-name)
-W:26911,25: Unused argument 'value' (unused-argument)
-C:26935, 0: Invalid function name "DoubleClickHandler" (invalid-name)
-C:26935, 0: Invalid argument name "dispObj" (invalid-name)
-C:26935, 0: Invalid argument name "fnClick" (invalid-name)
-C:26935, 0: Invalid argument name "fnDoubleClick" (invalid-name)
-W:26935,23: Unused argument 'dispObj' (unused-argument)
-W:26935,32: Unused argument 'fnClick' (unused-argument)
-W:26935,41: Unused argument 'fnDoubleClick' (unused-argument)
+W:26911,27: Unused argument 'value' (unused-argument)
+W:26935,35: Unused argument 'fn_click' (unused-argument)
+W:26935,25: Unused argument 'disp_obj' (unused-argument)
+W:26935,45: Unused argument 'fn_double_click' (unused-argument)
 C:26978, 0: Invalid argument name "SG" (invalid-name)
-C:26978, 0: Invalid argument name "achIndex" (invalid-name)
-W:26978,14: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:26978,28: Unused argument 'almode' (unused-argument)
+W:26978,14: Redefining name 'SG' from outer scope (line 27) (redefined-outer-name)
+W:26978,18: Unused argument 'ach_index' (unused-argument)
+W:26978,29: Unused argument 'almode' (unused-argument)
 W:26978,14: Unused argument 'SG' (unused-argument)
-W:26978,18: Unused argument 'achIndex' (unused-argument)
-C:27389, 0: Invalid function name "SingPlur" (invalid-name)
-W:27389,23: Unused argument 'amount' (unused-argument)
-W:27389,13: Unused argument 'inp_text' (unused-argument)
-W:27389,31: Unused argument 'sep' (unused-argument)
-C:27414, 0: Invalid function name "AnimateAch" (invalid-name)
-C:27414, 0: Invalid argument name "AchAniPow" (invalid-name)
-W:27414,25: Unused argument 'y_level' (unused-argument)
-W:27414,15: Unused argument 'actor_id' (unused-argument)
-W:27414,38: Unused argument 'AchAniPow' (unused-argument)
-C:27450, 0: Invalid function name "DoAchievements" (invalid-name)
+W:27389,24: Unused argument 'amount' (unused-argument)
+W:27389,14: Unused argument 'inp_text' (unused-argument)
+W:27389,32: Unused argument 'sep' (unused-argument)
+W:27414,26: Unused argument 'y_level' (unused-argument)
+W:27414,39: Unused argument 'ach_ani_pow' (unused-argument)
+W:27414,16: Unused argument 'actor_id' (unused-argument)
 C:27450, 0: Invalid argument name "SG" (invalid-name)
-W:27450,19: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:27450,19: Unused argument 'SG' (unused-argument)
-C:27550, 0: Invalid function name "MirrorAniFn" (invalid-name)
-W:27550,16: Unused argument 'evt' (unused-argument)
-C:27570, 0: Invalid argument name "actorIDObj" (invalid-name)
-W:27570,18: Unused argument 'actorIDObj' (unused-argument)
-W:27570,30: Unused argument 'max_width' (unused-argument)
-C:27611, 0: Invalid function name "CheckWrongPage" (invalid-name)
-C:27611, 0: Invalid argument name "correctAct" (invalid-name)
-W:27611,19: Unused argument 'correctAct' (unused-argument)
-C:27650, 0: Invalid function name "MakeRightTextArea" (invalid-name)
-C:27650, 0: Invalid argument name "createHandler" (invalid-name)
-W:27650,32: Unused argument 'child' (unused-argument)
-W:27650,41: Unused argument 'createHandler' (unused-argument)
-W:27650,22: Unused argument 'actor_id' (unused-argument)
+W:27450,20: Redefining name 'SG' from outer scope (line 27) (redefined-outer-name)
+W:27450,20: Unused argument 'SG' (unused-argument)
+W:27550,18: Unused argument 'evt' (unused-argument)
+W:27570,18: Unused argument 'actor_id_obj' (unused-argument)
+W:27570,32: Unused argument 'max_width' (unused-argument)
+W:27611,21: Unused argument 'correct_act' (unused-argument)
+W:27650,44: Unused argument 'create_handler' (unused-argument)
+W:27650,25: Unused argument 'actor_id' (unused-argument)
+W:27650,35: Unused argument 'child' (unused-argument)
 C:27675, 0: Invalid argument name "SG" (invalid-name)
-C:27675, 0: Invalid argument name "NoPrices" (invalid-name)
-C:27675, 0: Invalid argument name "towerMode" (invalid-name)
-C:27675, 0: Invalid argument name "copyCatIdRaw" (invalid-name)
-C:27675, 0: Invalid argument name "witchMode" (invalid-name)
-W:27675,22: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:27675,64: Unused argument 'copyCatIdRaw' (unused-argument)
-W:27675,31: Unused argument 'NoPrices' (unused-argument)
+W:27675,22: Redefining name 'SG' from outer scope (line 27) (redefined-outer-name)
+W:27676,22: Unused argument 'copy_cat_id_raw' (unused-argument)
+W:27675,31: Unused argument 'no_prices' (unused-argument)
 W:27675,22: Unused argument 'SG' (unused-argument)
-W:27676,22: Unused argument 'witchMode' (unused-argument)
-W:27675,47: Unused argument 'towerMode' (unused-argument)
+W:27675,48: Unused argument 'tower_mode' (unused-argument)
+W:27676,41: Unused argument 'witch_mode' (unused-argument)
 C:28511, 0: Invalid argument name "SG" (invalid-name)
-C:28511, 0: Invalid argument name "HideBackPack" (invalid-name)
-C:28511, 0: Invalid argument name "NoPrices" (invalid-name)
-C:28511, 0: Invalid argument name "towerMode" (invalid-name)
-C:28511, 0: Invalid argument name "witchMode" (invalid-name)
 R:28511, 0: Too many arguments (7/5) (too-many-arguments)
-W:28511,34: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:28511,63: Unused argument 'NoPrices' (unused-argument)
-W:28512,15: Unused argument 'towerMode' (unused-argument)
-W:28511,34: Unused argument 'SG' (unused-argument)
+W:28511,34: Redefining name 'SG' from outer scope (line 27) (redefined-outer-name)
+W:28511,43: Unused argument 'hide_back_pack' (unused-argument)
 W:28511,15: Unused argument 'slot_id' (unused-argument)
-W:28512,32: Unused argument 'witchMode' (unused-argument)
-W:28511,43: Unused argument 'HideBackPack' (unused-argument)
+W:28512,32: Unused argument 'tower_mode' (unused-argument)
+W:28512,15: Unused argument 'no_prices' (unused-argument)
+W:28512,50: Unused argument 'witch_mode' (unused-argument)
+W:28511,34: Unused argument 'SG' (unused-argument)
 W:28511,24: Unused argument 'sg_index' (unused-argument)
 W:29050,17: Unused argument 'in_str' (unused-argument)
 W:29057,16: Unused argument 'in_str' (unused-argument)
@@ -1728,13 +1704,12 @@ C:241, 4: Invalid method name "allowDomain" (invalid-name)
 R:248, 0: Too few public methods (1/2) (too-few-public-methods)
 C:263, 4: Invalid method name "getLocal" (invalid-name)
 R:259, 0: Too few public methods (1/2) (too-few-public-methods)
-W: 12, 0: Unused import SG (unused-import)
 R:220, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-4026 statements analysed.
+4025 statements analysed.
 
 External dependencies
 ---------------------
@@ -1742,7 +1717,6 @@ External dependencies
 
     datetime (sfclient)
     requests (sfclient)
-    sfglobals (sflegacy)
     types (sfclient)
 
 
@@ -1753,13 +1727,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5111   |14.71 |NC       |NC         |
+|code      |5110   |14.71 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |27920  |80.35 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |691    |1.99  |NC       |NC         |
+|comment   |692    |1.99  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1027   |2.96  |NC       |NC         |
+|empty     |1028   |2.96  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1783,11 +1757,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |338    |NC       |NC         |
+|convention |314    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |633    |NC       |NC         |
+|warning    |632    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |678    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1800,9 +1774,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.74   |72.50    |97.34      |
+|sfclient |100.00 |98.89   |72.50    |97.13      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.26    |27.50    |2.37       |
+|sflegacy |0.00   |1.11    |27.50    |2.55       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1815,7 +1789,7 @@ Messages
 +=============================+============+
 |undefined-variable           |651         |
 +-----------------------------+------------+
-|invalid-name                 |336         |
+|invalid-name                 |311         |
 +-----------------------------+------------+
 |unused-variable              |267         |
 +-----------------------------+------------+
@@ -1853,11 +1827,13 @@ Messages
 +-----------------------------+------------+
 |wildcard-import              |2           |
 +-----------------------------+------------+
-|unused-import                |2           |
-+-----------------------------+------------+
 |too-many-lines               |2           |
 +-----------------------------+------------+
+|unused-import                |1           |
++-----------------------------+------------+
 |no-self-use                  |1           |
++-----------------------------+------------+
+|line-too-long                |1           |
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
@@ -1866,7 +1842,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -1.03/10
+Your code has been rated at -0.97/10
 
 Statistics by type
 ------------------
@@ -1880,7 +1856,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |42     |NC         |NC         |100.00      |7.14     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |218    |NC         |NC         |100.00      |25.69    |
+|function |218    |NC         |NC         |100.00      |22.02    |
 +---------+-------+-----------+-----------+------------+---------+
 
 
