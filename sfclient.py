@@ -653,8 +653,9 @@ def init_vars():
     # io_error_count = 0
     # KlasseGewählt = False
 
-    # lang_code = "de"
-    # lang_url = ""
+    global lang_code, lang_url
+    lang_code = "de"
+    lang_url = ""
 
     # last_chat_hist = ""
     # last_chat_index = 0
@@ -11394,7 +11395,7 @@ def set_alpha(actor_id, alpha_value):
         for act in actor[actor_id]:
             set_alpha(act, alpha_value)
     elif getattr(actor[actor_id], 'alpha', None) is not None:
-            actor[actor_id].alpha = alpha_value
+        actor[actor_id].alpha = alpha_value
 
 
 def get_alpha(actor_id):
