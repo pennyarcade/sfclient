@@ -38,6 +38,7 @@ texts = dict()
 # TODO: should be obsolete
 when_loaded_fn = list()
 Security = SecurityHandler()
+pending_loaders = None
 
 
 class RequestFailedException(Exception):
