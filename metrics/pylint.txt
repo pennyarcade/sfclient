@@ -31,7 +31,11 @@ W:14205, 0: TODO: hat does this do? (fixme)
 W:15899, 0: TODO: What does this do? (fixme)
 W:15915, 0: TODO: Obsolete? (fixme)
 W:15938, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (30503) (too-many-lines)
+C:25472, 0: Trailing whitespace (trailing-whitespace)
+C:25545, 0: Trailing whitespace (trailing-whitespace)
+C:25623, 0: Trailing whitespace (trailing-whitespace)
+C:26647, 0: Trailing whitespace (trailing-whitespace)
+C:  1, 0: Too many lines in module (30687) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
 C: 34, 0: Invalid constant name "param_obj" (invalid-name)
@@ -125,21 +129,14 @@ R:1722, 0: Too many statements (85/50) (too-many-statements)
 R:1836, 4: Too many local variables (38/15) (too-many-locals)
 E:1869,45: Undefined variable 'content_max' (undefined-variable)
 E:1870,36: Undefined variable 'content_max' (undefined-variable)
-E:1873,12: Undefined variable 'expand_item_structure' (undefined-variable)
-E:1878,12: Undefined variable 'expand_item_structure' (undefined-variable)
-E:1883,12: Undefined variable 'expand_item_structure' (undefined-variable)
-E:1886,12: Undefined variable 'expand_item_structure' (undefined-variable)
-E:1891,12: Undefined variable 'expand_item_structure' (undefined-variable)
 E:1900,12: Using variable 'last_level' before assignment (used-before-assignment)
 E:1909,15: Undefined variable 'old_ach' (undefined-variable)
-E:1911,19: Undefined variable 'ach_level' (undefined-variable)
 E:1911,44: Undefined variable 'old_ach' (undefined-variable)
 E:1912,20: Undefined variable 'old_ach' (undefined-variable)
-E:1912,38: Undefined variable 'ach_level' (undefined-variable)
+E:1914,20: Assigning to function call which doesn't return (assignment-from-no-return)
 E:1914,20: Undefined variable 'old_ach' (undefined-variable)
-E:1914,33: Undefined variable 'ach_level' (undefined-variable)
+E:1917,16: Assigning to function call which doesn't return (assignment-from-no-return)
 E:1917,16: Undefined variable 'old_ach' (undefined-variable)
-E:1917,29: Undefined variable 'ach_level' (undefined-variable)
 E:1919,12: Using variable 'old_album' before assignment (used-before-assignment)
 E:1945,15: Undefined variable 'text_dir' (undefined-variable)
 C:1950,20: Invalid variable name "x" (invalid-name)
@@ -248,7 +245,6 @@ W:2178, 4: Unused variable 'my_own_attack_target' (unused-variable)
 W:2185, 4: Unused variable 'pulse_arbeiten' (unused-variable)
 E:2201, 4: Undefined variable 'send_action' (undefined-variable)
 E:2208, 4: Undefined variable 'send_action' (undefined-variable)
-E:2208,31: Undefined variable 'get_slider_value' (undefined-variable)
 E:2222, 9: Undefined variable 'char_volk' (undefined-variable)
 E:2222,22: Undefined variable 'revertchar_volk' (undefined-variable)
 E:2223,17: Undefined variable 'char_male' (undefined-variable)
@@ -790,7 +786,7 @@ R:12250, 0: Too many local variables (22/15) (too-many-locals)
 W:12306, 8: Redefining name 'visible' from outer scope (line 11521) (redefined-outer-name)
 E:12286,26: Undefined variable 'font_embedded' (undefined-variable)
 E:12287,30: Undefined variable 'AntiAliasType' (undefined-variable)
-E:12291,31: Undefined variable 'trim_too_long' (undefined-variable)
+E:12291,12: Assigning to function call which doesn't return (assignment-from-no-return)
 E:12295,12: Undefined variable 'add_event_listener' (undefined-variable)
 E:12297,12: Undefined variable 'add_event_listener' (undefined-variable)
 E:12299, 8: Undefined variable 'add_event_listener' (undefined-variable)
@@ -815,13 +811,13 @@ W:12262,12: Unused variable 'force_smoothing' (unused-variable)
 W:12305, 8: Unused variable 'y' (unused-variable)
 W:12301,12: Unused variable 'x' (unused-variable)
 R:12311, 0: Too many local variables (143/15) (too-many-locals)
+W:13125,16: Redefining name 'old_crest_str' from outer scope (line 26675) (redefined-outer-name)
 W:13206,16: Redefining built-in 'type' (redefined-builtin)
 E:12321,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
 E:12322,12: Undefined variable 'send_action' (undefined-variable)
 E:12347,12: Undefined variable 'parse_savgame' (undefined-variable)
 C:12363,16: Invalid variable name "x" (invalid-name)
 E:12365,23: Undefined variable 'text_width' (undefined-variable)
-E:12372,12: Undefined variable 'arabize' (undefined-variable)
 E:12395,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:12413,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:12443,29: Undefined variable 'Base64' (undefined-variable)
@@ -839,47 +835,24 @@ E:12690,16: Undefined variable 'send_action' (undefined-variable)
 E:12735,25: Undefined variable 'tmpAmount' (undefined-variable)
 E:12737,20: Undefined variable 'tmpAmount' (undefined-variable)
 E:12741,12: Undefined variable 'navigate_to_url' (undefined-variable)
-E:12750,12: Undefined variable 'arabize' (undefined-variable)
-E:12754,12: Undefined variable 'arabize' (undefined-variable)
 E:12759,25: Using variable 'last_chat_hist' before assignment (used-before-assignment)
 E:12773,15: Using variable 'last_chat_index' before assignment (used-before-assignment)
 E:12778,46: Undefined variable 'font_format_chat' (undefined-variable)
-E:12785,37: Undefined variable 'decode_chat' (undefined-variable)
-E:12789,24: Undefined variable 'chat_line' (undefined-variable)
-E:12789,34: Undefined variable 'decode_chat' (undefined-variable)
-E:12791,34: Undefined variable 'get_hl_index' (undefined-variable)
 E:12794,37: Undefined variable 'so' (undefined-variable)
 E:12799,47: Undefined variable 'offline_guild_members' (undefined-variable)
 E:12800,42: Undefined variable 'offline_guild_members' (undefined-variable)
 E:12804,40: Undefined variable 'send_action' (undefined-variable)
 E:12808,55: Undefined variable 'chat_sound' (undefined-variable)
-E:12813,41: Undefined variable 'decode_chat' (undefined-variable)
-E:12817,28: Undefined variable 'chat_line' (undefined-variable)
-E:12818,32: Undefined variable 'decode_chat' (undefined-variable)
-E:12820,32: Undefined variable 'get_hl_index' (undefined-variable)
 E:12824,41: Undefined variable 'so' (undefined-variable)
 E:12828,47: Undefined variable 'offline_guild_members' (undefined-variable)
 E:12829,42: Undefined variable 'offline_guild_members' (undefined-variable)
 E:12833,40: Undefined variable 'send_action' (undefined-variable)
 E:12847,19: Undefined variable 'chat_sound' (undefined-variable)
-E:12856,20: Undefined variable 'chat_line' (undefined-variable)
-E:12856,30: Undefined variable 'decode_chat' (undefined-variable)
-E:12858,30: Undefined variable 'get_hl_index' (undefined-variable)
-E:12861,20: Undefined variable 'add_suggest_names' (undefined-variable)
 E:12864,43: Undefined variable 'offline_guild_members' (undefined-variable)
 E:12865,38: Undefined variable 'offline_guild_members' (undefined-variable)
 E:12869,36: Undefined variable 'send_action' (undefined-variable)
 E:12874,17: Using variable 'new_crest_suggested' before assignment (used-before-assignment)
-E:12877,16: Undefined variable 'clickchat_line' (undefined-variable)
-E:12883,12: Undefined variable 'add_suggest_names' (undefined-variable)
 E:12883,30: Undefined variable 'last_whisper_target' (undefined-variable)
-E:12884,12: Undefined variable 'chat_line' (undefined-variable)
-E:12884,22: Undefined variable 'decode_chat' (undefined-variable)
-E:12884,50: Undefined variable 'get_hl_index' (undefined-variable)
-E:12908,15: Undefined variable 'decode_chat' (undefined-variable)
-E:12911,12: Undefined variable 'chat_line' (undefined-variable)
-E:12911,22: Undefined variable 'decode_chat' (undefined-variable)
-E:12911,50: Undefined variable 'get_hl_index' (undefined-variable)
 E:12918,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:12919,12: Undefined variable 'send_action' (undefined-variable)
 E:12923,12: Too many positional arguments for function call (too-many-function-args)
@@ -895,7 +868,6 @@ E:12943,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:12954,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:12965,12: Too many positional arguments for function call (too-many-function-args)
 E:12967,16: Using variable 'sel_name' before assignment (used-before-assignment)
-E:12967,34: Undefined variable 'resolve_breaks' (undefined-variable)
 E:12979,25: Undefined variable 'savegame' (undefined-variable)
 E:12983,12: Undefined variable 'send_action' (undefined-variable)
 E:12988,12: Undefined variable 'parse_savgame' (undefined-variable)
@@ -911,11 +883,8 @@ E:13102,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13103,12: Undefined variable 'send_action' (undefined-variable)
 E:13107,12: Undefined variable 'savegame' (undefined-variable)
 E:13117,24: Undefined variable 'last_guild_crest_id' (undefined-variable)
-E:13118,37: Using variable 'old_crest_str' before assignment (used-before-assignment)
-E:13120,20: Undefined variable 'set_crest_str' (undefined-variable)
-E:13124,20: Undefined variable 'set_default_crest' (undefined-variable)
+E:13125,16: Assigning to function call which doesn't return (assignment-from-no-return)
 E:13130,15: Undefined variable 'last_guild_crest_id' (undefined-variable)
-E:13177,12: Undefined variable 'add_suggest_names' (undefined-variable)
 E:13177,30: Undefined variable 'last_message_target' (undefined-variable)
 E:13195,16: Undefined variable 'post_sel' (undefined-variable)
 E:13195,27: Undefined variable 'post_scroll' (undefined-variable)
@@ -936,15 +905,12 @@ E:13757,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13762,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13779,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13787,24: Undefined variable 'mirror_ani_timer' (undefined-variable)
-E:13792,20: Undefined variable 'display_inventory' (undefined-variable)
 E:13797,27: Undefined variable 'mirror_pieces' (undefined-variable)
 E:13804,12: Undefined variable 'parse_savgame' (undefined-variable)
-E:13805,26: Undefined variable 'resolve_breaks' (undefined-variable)
+E:13805,12: Assigning to function call which doesn't return (assignment-from-no-return)
 E:13806,15: Undefined variable 'savegame' (undefined-variable)
 E:13813,12: Undefined variable 'parse_savgame' (undefined-variable)
-E:13821,16: Undefined variable 'display_inventory' (undefined-variable)
 E:13829,12: Undefined variable 'parse_savgame' (undefined-variable)
-E:13836,16: Undefined variable 'display_inventory' (undefined-variable)
 E:13874,12: Undefined variable 'parse_savgame' (undefined-variable)
 E:13884,12: Undefined variable 'so' (undefined-variable)
 E:13885,19: Undefined variable 'so' (undefined-variable)
@@ -1103,7 +1069,6 @@ C:14377,16: Invalid variable name "scaleY" (invalid-name)
 C:14378,16: Invalid variable name "x" (invalid-name)
 E:14378,47: Undefined variable 'text_width' (undefined-variable)
 C:14379,16: Invalid variable name "y" (invalid-name)
-E:14385,20: Undefined variable 'chat_line' (undefined-variable)
 C:14400,24: Invalid variable name "scaleX" (invalid-name)
 C:14401,24: Invalid variable name "scaleY" (invalid-name)
 C:14403,28: Invalid variable name "x" (invalid-name)
@@ -1450,10 +1415,8 @@ E:15838, 8: Undefined variable 'so' (undefined-variable)
 E:15845, 7: Undefined variable 'evt' (undefined-variable)
 E:15845,21: Undefined variable 'LoaderInfo' (undefined-variable)
 E:15846, 8: Undefined variable 'actorLoaded' (undefined-variable)
-E:15846,20: Undefined variable 'get_actor_id' (undefined-variable)
 E:15846,33: Undefined variable 'evt' (undefined-variable)
 E:15847,29: Undefined variable 'evt' (undefined-variable)
-E:15848,19: Undefined variable 'get_actor_id' (undefined-variable)
 E:15848,32: Undefined variable 'evt' (undefined-variable)
 W:15850,12: Unused variable 'allow_smoothing' (unused-variable)
 W:15849,12: Unused variable 'force_smoothing' (unused-variable)
@@ -1484,7 +1447,282 @@ W:15931, 4: Unused variable 'pixel_loader' (unused-variable)
 W:15930, 4: Unused variable 'variables' (unused-variable)
 W:15932, 4: Unused variable 'pixel_success' (unused-variable)
 W:25349, 4: Using the global statement (global-statement)
-W:30503,-1: String statement has no effect (pointless-string-statement)
+C:25365, 0: Invalid function name "DefineImg" (invalid-name)
+R:25365, 0: Too many arguments (8/5) (too-many-arguments)
+W:25365,44: Unused argument 'pos_x' (unused-argument)
+W:25365,53: Unused argument 'pos_y' (unused-argument)
+W:25365,29: Unused argument 'pre_load' (unused-argument)
+W:25365,24: Unused argument 'url' (unused-argument)
+W:25366,36: Unused argument 'vis' (unused-argument)
+W:25365,14: Unused argument 'actor_id' (unused-argument)
+W:25366,14: Unused argument 'scale_x' (unused-argument)
+W:25366,25: Unused argument 'scale_y' (unused-argument)
+C:25416, 0: Invalid function name "DefineClickArea" (invalid-name)
+C:25416, 0: Invalid argument name "imgActorID" (invalid-name)
+C:25416, 0: Invalid argument name "fn" (invalid-name)
+C:25416, 0: Invalid argument name "ovlActorID" (invalid-name)
+C:25416, 0: Invalid argument name "hoverFn" (invalid-name)
+C:25416, 0: Invalid argument name "outFn" (invalid-name)
+C:25416, 0: Invalid argument name "stayPut" (invalid-name)
+R:25416, 0: Too many arguments (11/5) (too-many-arguments)
+W:25418,32: Unused argument 'stayPut' (unused-argument)
+W:25416,46: Unused argument 'pos_x' (unused-argument)
+W:25416,53: Unused argument 'pos_y' (unused-argument)
+W:25417,28: Unused argument 'ovlActorID' (unused-argument)
+W:25417,20: Unused argument 'size_y' (unused-argument)
+W:25416,30: Unused argument 'imgActorID' (unused-argument)
+W:25416,60: Unused argument 'size_x' (unused-argument)
+W:25417,42: Unused argument 'hoverFn' (unused-argument)
+W:25418,20: Unused argument 'outFn' (unused-argument)
+W:25416,42: Unused argument 'fn' (unused-argument)
+W:25416,20: Unused argument 'actor_id' (unused-argument)
+C:25474, 0: Invalid function name "DefineFromClass" (invalid-name)
+C:25474, 0: Invalid argument name "imgClass" (invalid-name)
+C:25474, 0: Invalid argument name "txtManip" (invalid-name)
+C:25474, 0: Invalid argument name "txtType" (invalid-name)
+R:25474, 0: Too many arguments (6/5) (too-many-arguments)
+W:25474,30: Unused argument 'imgClass' (unused-argument)
+W:25474,40: Unused argument 'pos_x' (unused-argument)
+W:25474,49: Unused argument 'pos_y' (unused-argument)
+W:25474,20: Unused argument 'actor_id' (unused-argument)
+W:25475,20: Unused argument 'txtType' (unused-argument)
+W:25474,58: Unused argument 'txtManip' (unused-argument)
+C:25517, 0: Invalid function name "DefineCnt" (invalid-name)
+W:25517,42: Unused argument 'vis' (unused-argument)
+W:25517,24: Unused argument 'pos_x' (unused-argument)
+W:25517,33: Unused argument 'pos_y' (unused-argument)
+W:25517,14: Unused argument 'actor_id' (unused-argument)
+C:25540, 0: Invalid function name "textLinkMakeClickable" (invalid-name)
+W:25540,26: Unused argument 'obj' (unused-argument)
+C:25547, 0: Invalid function name "DefineSlider" (invalid-name)
+C:25547, 0: Invalid argument name "Ticks" (invalid-name)
+C:25547, 0: Invalid argument name "fn" (invalid-name)
+W:25547,34: Unused argument 'pos_x' (unused-argument)
+W:25547,27: Unused argument 'Ticks' (unused-argument)
+W:25547,17: Unused argument 'actor_id' (unused-argument)
+W:25547,48: Unused argument 'fn' (unused-argument)
+W:25547,41: Unused argument 'pos_y' (unused-argument)
+W:25615,21: Unused argument 'actor_id' (unused-argument)
+C:25625, 0: Invalid function name "SetSliderValue" (invalid-name)
+W:25625,19: Unused argument 'actor_id' (unused-argument)
+W:25625,29: Unused argument 'value' (unused-argument)
+C:25640, 0: Invalid function name "MakePersistent" (invalid-name)
+W:25640, 0: Unused argument 'args' (unused-argument)
+C:25661, 0: Invalid function name "MakeTemporary" (invalid-name)
+W:25661, 0: Unused argument 'args' (unused-argument)
+C:25682, 0: Invalid function name "EnableDragDrop" (invalid-name)
+W:25682,29: Unused argument 'handler' (unused-argument)
+W:25682,19: Unused argument 'actor_id' (unused-argument)
+W:25682, 0: Unused argument 'args' (unused-argument)
+C:25803, 0: Invalid function name "SetCnt" (invalid-name)
+C:25803, 0: Invalid argument name "cntID" (invalid-name)
+C:25803, 0: Invalid argument name "ImgID" (invalid-name)
+W:25803,27: Unused argument 'pos_x' (unused-argument)
+W:25803,18: Unused argument 'ImgID' (unused-argument)
+W:25803,45: Unused argument 'center' (unused-argument)
+W:25803,11: Unused argument 'cntID' (unused-argument)
+W:25803,36: Unused argument 'pos_y' (unused-argument)
+C:25886, 0: Invalid function name "AddBMO" (invalid-name)
+W:25886,11: Unused argument 'bunch_id' (unused-argument)
+W:25886,21: Unused argument 'offset' (unused-argument)
+C:25902, 0: Invalid function name "RemoveIllegalChars" (invalid-name)
+C:25902, 0: Invalid argument name "inpStr" (invalid-name)
+W:25902,23: Unused argument 'inpStr' (unused-argument)
+C:25944, 0: Invalid function name "SemiStrip" (invalid-name)
+C:25944, 0: Invalid argument name "inpStr" (invalid-name)
+W:25944,14: Unused argument 'inpStr' (unused-argument)
+C:25971, 0: Invalid argument name "inpStr" (invalid-name)
+W:25971,19: Unused argument 'inpStr' (unused-argument)
+C:25990, 0: Invalid function name "PostBtnHandler" (invalid-name)
+W:25990,19: Unused argument 'evt' (unused-argument)
+W:25990,29: Unused argument 'actor_id' (unused-argument)
+C:26294, 0: Invalid function name "AlbumClear" (invalid-name)
+C:26320, 0: Invalid function name "GetAdvent" (invalid-name)
+C:26354, 0: Invalid function name "RefreshTimeBar" (invalid-name)
+C:26354, 0: Invalid argument name "OfferTime" (invalid-name)
+W:26354,19: Unused argument 'OfferTime' (unused-argument)
+W:26443,12: Unused argument 'actor_id' (unused-argument)
+C:26492, 0: Invalid function name "GetSpendAmount" (invalid-name)
+C:26516, 0: Invalid argument name "addArray" (invalid-name)
+W:26516,22: Unused argument 'addArray' (unused-argument)
+C:26542, 0: Invalid argument name "actorObj" (invalid-name)
+C:26542, 0: Invalid argument name "iStart" (invalid-name)
+C:26542, 0: Invalid argument name "iEnde" (invalid-name)
+W:26542,37: Unused argument 'iEnde' (unused-argument)
+W:26542,17: Unused argument 'actorObj' (unused-argument)
+W:26542,27: Unused argument 'iStart' (unused-argument)
+C:26560, 0: Invalid function name "GetActorName" (invalid-name)
+W:26560,17: Unused argument 'actor_id' (unused-argument)
+C:26618, 0: Invalid function name "crestMoveFn" (invalid-name)
+W:26618,16: Unused argument 'evt' (unused-argument)
+C:26633, 0: Invalid function name "getRandomCrest" (invalid-name)
+W:26708,18: Redefining built-in 'str' (redefined-builtin)
+W:26708,18: Unused argument 'str' (unused-argument)
+C:26746, 0: Invalid function name "loadCrest" (invalid-name)
+W:26862,19: Unused argument 'evt' (unused-argument)
+C:26910, 0: Invalid function name "ArbeitenSliderChange" (invalid-name)
+W:26910,25: Unused argument 'value' (unused-argument)
+C:26934, 0: Invalid function name "DoubleClickHandler" (invalid-name)
+C:26934, 0: Invalid argument name "dispObj" (invalid-name)
+C:26934, 0: Invalid argument name "fnClick" (invalid-name)
+C:26934, 0: Invalid argument name "fnDoubleClick" (invalid-name)
+W:26934,23: Unused argument 'dispObj' (unused-argument)
+W:26934,32: Unused argument 'fnClick' (unused-argument)
+W:26934,41: Unused argument 'fnDoubleClick' (unused-argument)
+C:26977, 0: Invalid argument name "SG" (invalid-name)
+C:26977, 0: Invalid argument name "achIndex" (invalid-name)
+W:26977,14: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:26977,28: Unused argument 'almode' (unused-argument)
+W:26977,14: Unused argument 'SG' (unused-argument)
+W:26977,18: Unused argument 'achIndex' (unused-argument)
+C:27388, 0: Invalid function name "SingPlur" (invalid-name)
+W:27388,23: Unused argument 'amount' (unused-argument)
+W:27388,13: Unused argument 'inp_text' (unused-argument)
+W:27388,31: Unused argument 'sep' (unused-argument)
+C:27413, 0: Invalid function name "AnimateAch" (invalid-name)
+C:27413, 0: Invalid argument name "AchAniPow" (invalid-name)
+W:27413,25: Unused argument 'y_level' (unused-argument)
+W:27413,15: Unused argument 'actor_id' (unused-argument)
+W:27413,38: Unused argument 'AchAniPow' (unused-argument)
+C:27449, 0: Invalid function name "DoAchievements" (invalid-name)
+C:27449, 0: Invalid argument name "SG" (invalid-name)
+W:27449,19: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:27449,19: Unused argument 'SG' (unused-argument)
+C:27549, 0: Invalid function name "MirrorAniFn" (invalid-name)
+W:27549,16: Unused argument 'evt' (unused-argument)
+C:27569, 0: Invalid argument name "actorIDObj" (invalid-name)
+W:27569,18: Unused argument 'actorIDObj' (unused-argument)
+W:27569,30: Unused argument 'max_width' (unused-argument)
+C:27610, 0: Invalid function name "CheckWrongPage" (invalid-name)
+C:27610, 0: Invalid argument name "correctAct" (invalid-name)
+W:27610,19: Unused argument 'correctAct' (unused-argument)
+C:27649, 0: Invalid function name "MakeRightTextArea" (invalid-name)
+C:27649, 0: Invalid argument name "createHandler" (invalid-name)
+W:27649,32: Unused argument 'child' (unused-argument)
+W:27649,41: Unused argument 'createHandler' (unused-argument)
+W:27649,22: Unused argument 'actor_id' (unused-argument)
+C:27674, 0: Invalid argument name "SG" (invalid-name)
+C:27674, 0: Invalid argument name "NoPrices" (invalid-name)
+C:27674, 0: Invalid argument name "towerMode" (invalid-name)
+C:27674, 0: Invalid argument name "copyCatIdRaw" (invalid-name)
+C:27674, 0: Invalid argument name "witchMode" (invalid-name)
+W:27674,22: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:27674,64: Unused argument 'copyCatIdRaw' (unused-argument)
+W:27674,31: Unused argument 'NoPrices' (unused-argument)
+W:27674,22: Unused argument 'SG' (unused-argument)
+W:27675,22: Unused argument 'witchMode' (unused-argument)
+W:27674,47: Unused argument 'towerMode' (unused-argument)
+C:28510, 0: Invalid function name "ItemPopup" (invalid-name)
+C:28510, 0: Invalid argument name "sgIndex" (invalid-name)
+C:28510, 0: Invalid argument name "SG" (invalid-name)
+C:28510, 0: Invalid argument name "HideBackPack" (invalid-name)
+C:28510, 0: Invalid argument name "NoPrices" (invalid-name)
+C:28510, 0: Invalid argument name "towerMode" (invalid-name)
+C:28510, 0: Invalid argument name "witchMode" (invalid-name)
+R:28510, 0: Too many arguments (7/5) (too-many-arguments)
+W:28510,32: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:28510,61: Unused argument 'NoPrices' (unused-argument)
+W:28511,14: Unused argument 'towerMode' (unused-argument)
+W:28510,32: Unused argument 'SG' (unused-argument)
+W:28510,14: Unused argument 'slot_id' (unused-argument)
+W:28510,23: Unused argument 'sgIndex' (unused-argument)
+W:28510,41: Unused argument 'HideBackPack' (unused-argument)
+W:28511,31: Unused argument 'witchMode' (unused-argument)
+C:29045, 0: Invalid argument name "inStr" (invalid-name)
+W:29045,17: Unused argument 'inStr' (unused-argument)
+C:29052, 0: Invalid argument name "inStr" (invalid-name)
+C:29052, 0: Invalid argument name "getHLMode" (invalid-name)
+C:29052, 0: Invalid argument name "getGBMode" (invalid-name)
+W:29052,23: Unused argument 'getHLMode' (unused-argument)
+W:29052,40: Unused argument 'getGBMode' (unused-argument)
+W:29052,16: Unused argument 'inStr' (unused-argument)
+C:29360, 0: Invalid argument name "isError" (invalid-name)
+C:29360, 0: Invalid argument name "hlIndex" (invalid-name)
+C:29360, 0: Invalid argument name "isWhisper" (invalid-name)
+W:29360,14: Unused argument 'line' (unused-argument)
+W:29360,35: Unused argument 'hlIndex' (unused-argument)
+W:29360,20: Unused argument 'isError' (unused-argument)
+W:29360,47: Unused argument 'isWhisper' (unused-argument)
+C:29454, 0: Invalid function name "PayMethod" (invalid-name)
+C:29454, 0: Invalid argument name "DealerMenu" (invalid-name)
+W:29454,14: Unused argument 'DealerMenu' (unused-argument)
+C:29464, 0: Invalid function name "toiletTankAdjustEvent" (invalid-name)
+W:29464,26: Unused argument 'evt' (unused-argument)
+W:29481,26: Unused argument 'arr' (unused-argument)
+W:29481,31: Unused argument 'offset' (unused-argument)
+C:29513, 0: Invalid function name "WaitingFor" (invalid-name)
+C:29513, 0: Invalid argument name "targetTime" (invalid-name)
+W:29513,15: Unused argument 'targetTime' (unused-argument)
+C:29523, 0: Invalid function name "WaitingTime" (invalid-name)
+C:29523, 0: Invalid argument name "targetTime" (invalid-name)
+W:29523,16: Unused argument 'targetTime' (unused-argument)
+C:29547, 0: Invalid function name "WaitingProgress" (invalid-name)
+C:29547, 0: Invalid argument name "startTime" (invalid-name)
+C:29547, 0: Invalid argument name "targetTime" (invalid-name)
+W:29547,31: Unused argument 'targetTime' (unused-argument)
+W:29547,20: Unused argument 'startTime' (unused-argument)
+C:29561, 0: Invalid function name "LOGonRTL" (invalid-name)
+C:29581, 0: Invalid function name "ModifyCharacter" (invalid-name)
+W:29581,20: Unused argument 'evt' (unused-argument)
+C:29736, 0: Invalid function name "LoadCharacterImage" (invalid-name)
+C:29736, 0: Invalid argument name "loadOnly" (invalid-name)
+C:29736, 0: Invalid argument name "isVolk" (invalid-name)
+C:29736, 0: Invalid argument name "isMann" (invalid-name)
+C:29736, 0: Invalid argument name "isKaste" (invalid-name)
+C:29736, 0: Invalid argument name "isMouth" (invalid-name)
+C:29736, 0: Invalid argument name "isBeard" (invalid-name)
+C:29736, 0: Invalid argument name "isNose" (invalid-name)
+C:29736, 0: Invalid argument name "isEyes" (invalid-name)
+C:29736, 0: Invalid argument name "isBrows" (invalid-name)
+C:29736, 0: Invalid argument name "isEars" (invalid-name)
+C:29736, 0: Invalid argument name "isHair" (invalid-name)
+C:29736, 0: Invalid argument name "isSpecial" (invalid-name)
+C:29736, 0: Invalid argument name "isSpecial2" (invalid-name)
+R:29736, 0: Too many arguments (14/5) (too-many-arguments)
+W:29736,51: Unused argument 'isVolk' (unused-argument)
+W:29739,23: Unused argument 'isEars' (unused-argument)
+W:29738,54: Unused argument 'isBrows' (unused-argument)
+W:29740,23: Unused argument 'isSpecial2' (unused-argument)
+W:29737,37: Unused argument 'isKaste' (unused-argument)
+W:29738,44: Unused argument 'isEyes' (unused-argument)
+W:29738,23: Unused argument 'isBeard' (unused-argument)
+W:29737,23: Unused argument 'isMann' (unused-argument)
+W:29736,23: Unused argument 'actor_id' (unused-argument)
+W:29739,43: Unused argument 'isSpecial' (unused-argument)
+W:29736,35: Unused argument 'loadOnly' (unused-argument)
+W:29739,33: Unused argument 'isHair' (unused-argument)
+W:29737,48: Unused argument 'isMouth' (unused-argument)
+W:29738,34: Unused argument 'isNose' (unused-argument)
+C:29924, 0: Invalid function name "PositionModifyCharacterButtons" (invalid-name)
+C:29972, 0: Invalid function name "getCharSuffix" (invalid-name)
+C:29972, 0: Invalid argument name "itemIndex" (invalid-name)
+C:29972, 0: Invalid argument name "itemValue" (invalid-name)
+W:29972,29: Unused argument 'itemValue' (unused-argument)
+W:29972,18: Unused argument 'itemIndex' (unused-argument)
+C:30039, 0: Invalid function name "RandomizeCharacter" (invalid-name)
+W:30039,23: Unused argument 'evt' (unused-argument)
+C:30061, 0: Invalid function name "RandomizeCharImage" (invalid-name)
+W:30061,23: Unused argument 'evt' (unused-argument)
+C:30095, 0: Invalid function name "getCharImageBound" (invalid-name)
+C:30095, 0: Invalid argument name "isVolk" (invalid-name)
+C:30095, 0: Invalid argument name "isMann" (invalid-name)
+C:30095, 0: Invalid argument name "itemIndex" (invalid-name)
+W:30095,22: Unused argument 'isVolk' (unused-argument)
+W:30095,30: Unused argument 'isMann' (unused-argument)
+W:30095,38: Unused argument 'itemIndex' (unused-argument)
+C:30509, 0: Invalid function name "getCharPrefix" (invalid-name)
+C:30509, 0: Invalid argument name "isGut" (invalid-name)
+C:30509, 0: Invalid argument name "isinstanceVolk" (invalid-name)
+C:30509, 0: Invalid argument name "isMann" (invalid-name)
+C:30509, 0: Invalid argument name "isKaste" (invalid-name)
+W:30509,18: Unused argument 'isGut' (unused-argument)
+W:30509,41: Unused argument 'isMann' (unused-argument)
+W:30509,49: Unused argument 'isKaste' (unused-argument)
+W:30509,25: Unused argument 'isinstanceVolk' (unused-argument)
+C:30552, 0: Invalid function name "DrachenSetzen" (invalid-name)
+C:30592, 0: Invalid function name "InterfaceBtnHandler" (invalid-name)
+W:30592,24: Unused argument 'evt' (unused-argument)
+C:30680, 0: Invalid function name "ChatPollIntervalReset" (invalid-name)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import CPC from wildcard import (unused-wildcard-import)
@@ -1497,8 +1735,8 @@ W: 26, 0: Unused import ITM_MAX from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import CLA_GILDE_CREST from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import load_configuration_file from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import parse_savegame from wildcard import (unused-wildcard-import)
+W: 26, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
 W: 23, 0: Unused import curses (unused-import)
 W: 26, 0: Unused import ITM_OFFS from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import DIST_DEALER_Y from wildcard import (unused-wildcard-import)
@@ -1590,7 +1828,7 @@ R:220, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3897 statements analysed.
+4026 statements analysed.
 
 External dependencies
 ---------------------
@@ -1608,13 +1846,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |10110  |29.26 |NC       |NC         |
+|code      |5111   |14.71 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |22855  |66.14 |NC       |NC         |
+|docstring |27910  |80.34 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |691    |2.00  |NC       |NC         |
+|comment   |691    |1.99  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |899    |2.60  |NC       |NC         |
+|empty     |1027   |2.96  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1638,13 +1876,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |265    |NC       |NC         |
+|convention |394    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |75     |NC       |NC         |
+|refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |525    |NC       |NC         |
+|warning    |671    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |720    |NC       |NC         |
+|error      |678    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1655,9 +1893,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |91.24   |70.67    |96.60      |
+|sfclient |100.00 |93.14   |72.50    |97.72      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |8.76    |29.33    |3.02       |
+|sflegacy |0.00   |6.86    |27.50    |2.03       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1668,23 +1906,25 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |697         |
+|undefined-variable           |651         |
++-----------------------------+------------+
+|invalid-name                 |388         |
 +-----------------------------+------------+
 |unused-variable              |267         |
 +-----------------------------+------------+
-|invalid-name                 |263         |
-+-----------------------------+------------+
-|unused-argument              |105         |
+|unused-argument              |246         |
 +-----------------------------+------------+
 |unused-wildcard-import       |59          |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
+|redefined-outer-name         |34          |
++-----------------------------+------------+
 |too-few-public-methods       |31          |
 +-----------------------------+------------+
-|redefined-outer-name         |29          |
+|used-before-assignment       |17          |
 +-----------------------------+------------+
-|used-before-assignment       |18          |
+|too-many-arguments           |14          |
 +-----------------------------+------------+
 |global-variable-undefined    |14          |
 +-----------------------------+------------+
@@ -1694,23 +1934,23 @@ Messages
 +-----------------------------+------------+
 |too-many-statements          |9           |
 +-----------------------------+------------+
-|too-many-arguments           |9           |
-+-----------------------------+------------+
 |too-many-function-args       |5           |
 +-----------------------------+------------+
 |global-statement             |5           |
++-----------------------------+------------+
+|assignment-from-no-return    |5           |
++-----------------------------+------------+
+|trailing-whitespace          |4           |
 +-----------------------------+------------+
 |wildcard-import              |3           |
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
 +-----------------------------+------------+
+|redefined-builtin            |3           |
++-----------------------------+------------+
 |too-many-lines               |2           |
 +-----------------------------+------------+
-|redefined-builtin            |2           |
-+-----------------------------+------------+
 |unused-import                |1           |
-+-----------------------------+------------+
-|pointless-string-statement   |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
@@ -1721,7 +1961,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -1.46/10
+Your code has been rated at -1.26/10
 
 Statistics by type
 ------------------
@@ -1735,7 +1975,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |42     |NC         |NC         |100.00      |7.14     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |153    |NC         |NC         |100.00      |15.03    |
+|function |218    |NC         |NC         |100.00      |33.03    |
 +---------+-------+-----------+-----------+------------+---------+
 
 
