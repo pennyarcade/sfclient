@@ -39,7 +39,7 @@ C:29737, 0: Wrong continued indentation.
                        is_mann=False, is_kaste=0, is_mouth=0,
                        ^ | (bad-continuation)
 C:29738, 0: Wrong continued indentation.
-                       is_beard=0, is_nose=0, is_nose=0, is_brows=0,
+                       is_beard=0, is_nose=0, is_eyes=0, is_brows=0,
                        ^ | (bad-continuation)
 C:29739, 0: Wrong continued indentation.
                        is_ears=0, is_hair=0, is_special=0,
@@ -1675,12 +1675,12 @@ W:29548,20: Unused argument 'startTime' (unused-argument)
 C:29562, 0: Invalid function name "LOGonRTL" (invalid-name)
 C:29582, 0: Invalid function name "ModifyCharacter" (invalid-name)
 W:29582,20: Unused argument 'evt' (unused-argument)
-E:29736, 0: Duplicate argument name is_nose in function definition (duplicate-argument-name)
 R:29736, 0: Too many arguments (14/5) (too-many-arguments)
 W:29738,57: Unused argument 'is_brows' (unused-argument)
 W:29736,54: Unused argument 'is_volk' (unused-argument)
 W:29736,37: Unused argument 'load_only' (unused-argument)
 W:29739,45: Unused argument 'is_special' (unused-argument)
+W:29738,46: Unused argument 'is_eyes' (unused-argument)
 W:29739,34: Unused argument 'is_hair' (unused-argument)
 W:29736,25: Unused argument 'actor_id' (unused-argument)
 W:29737,23: Unused argument 'is_mann' (unused-argument)
@@ -1861,9 +1861,9 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |670    |NC       |NC         |
+|warning    |671    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |679    |NC       |NC         |
+|error      |678    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1874,9 +1874,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |93.13   |72.50    |97.55      |
+|sfclient |100.00 |93.14   |72.50    |97.55      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |6.87    |27.50    |2.18       |
+|sflegacy |0.00   |6.86    |27.50    |2.18       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1893,7 +1893,7 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |267         |
 +-----------------------------+------------+
-|unused-argument              |245         |
+|unused-argument              |246         |
 +-----------------------------+------------+
 |unused-wildcard-import       |59          |
 +-----------------------------+------------+
@@ -1939,14 +1939,12 @@ Messages
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
-|duplicate-argument-name      |1           |
-+-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -1.21/10
+Your code has been rated at -1.20/10
 
 Statistics by type
 ------------------
