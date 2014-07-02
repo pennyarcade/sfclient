@@ -3440,6 +3440,7 @@ def DoStrikeEvent(evt):
     '''
     pass
 
+
 def WeaponStrike(opponent=False):
     '''
     var StrikeAniTimer:* = None;
@@ -14904,9 +14905,8 @@ def guild_chat_poll_fn(evt):
     pass
 
 
-'''
-
-position_popup = function (evt:MouseEvent):
+def position_popup(evt:):
+    '''
     var evt:* = evt
     var _local3 = actor[POPUP_INFO]
     with (_local3) {
@@ -14941,15 +14941,20 @@ position_popup = function (evt:MouseEvent):
             };
         };
     };
-};
+    '''
+    pass
 
-hide_popup = function (evt:MouseEvent):
+
+def hide_popup(evt):
+    '''
     remove(SLOT_SUGGESTION);
     remove(POPUP_INFO);
-};
+    '''
+    pass
 
 
-var DoAddBtnImage:* = function (){
+def DoAddBtnImage():
+    '''
     var _local2 = obj.getChildAt(1);
     with (_local2) {
         tmpImage = new Bitmap(actor[imgActor].content.bitmapData.clone());
@@ -14958,9 +14963,12 @@ var DoAddBtnImage:* = function (){
                       + (((text_dir == "right")) ? 7 : 0));
         obj.addChild(tmpImage);
     };
-};
+    '''
+    pass
 
-var CenterTextField:* = function (obj:Object, aoffsx=0, aoffsy=0):
+
+def CenterTextField(obj, aoffsx=0, aoffsy=0):
+    '''
     var btnText:* = None;
     var char:* = None;
     var i:* = 0;
@@ -15020,10 +15028,12 @@ var CenterTextField:* = function (obj:Object, aoffsx=0, aoffsy=0):
             when_loaded(DoAddBtnImage);
         };
     };
-};
+    '''
+    pass
 
 
-def set_btn_text(actor_id, caption:String){
+def set_btn_text(actor_id, caption):
+    '''
     var i:* = 0;
     var offsy:* = 0;
     var actor_id:* = actor_id;
@@ -15064,12 +15074,12 @@ def set_btn_text(actor_id, caption:String){
     CenterTextField(actor[i].downState, 1, 2);
     CenterTextField(actor[i].overState);
     CenterTextField(actor[i].hitTestState);
-}
+    '''
+    pass
 
-def DefineLbl(
-    actor_id, caption:String, pos_x=0, pos_y=0, fmt:TextFormat=None,
-    vis=True
-):
+
+def DefineLbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
+    '''
     var i:* = 0;
     var fmtUL:* = None;
     var actor_id:* = actor_id;
@@ -15098,10 +15108,9 @@ def DefineLbl(
         y = pos_y;
         visible = Boolean(vis);
     };
-}
+    '''
+    pass
 
-
-'''
 
 # -----------------------------------------------------------------------------
 # (File) Loaders
