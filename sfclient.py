@@ -14699,8 +14699,8 @@ def next_fight(evt):
 
 
 def guild_fight_timer_fn(evt):
-  '''
-  if (guild_attack_time != 0){
+    '''
+    if (guild_attack_time != 0){
         if (!WaitingFor(guild_attack_time)){
             if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
                 send_action(ACT_SCREEN_GILDEN);
