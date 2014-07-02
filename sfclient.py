@@ -14725,7 +14725,6 @@ def guild_fight_timer_fn(evt):
     pass
 
 
-
 def guild_chat_poll_fn(evt):
     '''
     if (param_poll_tunnel_url == ""){
@@ -14751,8 +14750,8 @@ def guild_chat_poll_fn(evt):
     send_action(ACT_GET_CHAT_HISTORY, last_chat_index);
     '''
     pass
-    
-    
+
+
 '''
 
 position_popup = function (evt:MouseEvent):

@@ -8,7 +8,9 @@
 
     Module for obsolete legacy stuff
 '''
+
 from sfglobals import *
+
 
 class TextField(object):
     '''
@@ -140,6 +142,13 @@ class Timer(object):
         pass
 
     def start(self, *args):
+        '''
+            obsolete
+        '''
+        pass
+
+
+    def stop(self, *args):
         '''
             obsolete
         '''
