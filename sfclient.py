@@ -15052,22 +15052,21 @@ def load_language_file():
         I18N file loader
     '''
     loader = URLLoader()
-    with loader:
-        data_format = URLLoaderdata_format.TEXT
-        add_event_listener(Event.COMPLETE, LanguageFileLoaded)
-        add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
-        add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
+    loader.data_format = URLLoaderdata_format.TEXT
+    loader.add_event_listener(Event.COMPLETE, LanguageFileLoaded)
+    loader.add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
+    loader.add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
                            LanguageFileError)
-        if lang_code == "ar":
-            text_dir = "right"
+    if lang_code == "ar":
+        text_dir = "right"
 
-        load(URLRequest(''.join(
-            lang_url,
-            "lang/sfgame_",
-            lang_code,
-            ".txt?rnd=",
-            str(random.random())
-        )))
+    loader.load(URLRequest(''.join(
+        lang_url,
+        "lang/sfgame_",
+        lang_code,
+        ".txt?rnd=",
+        str(random.random())
+    )))
 
     pendingdo_loaders += 1
     pending_language_file = True
