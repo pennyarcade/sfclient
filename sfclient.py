@@ -1227,11 +1227,11 @@ class Quest(object):
             # Constants
             idx = TXT['QUEST']
 
-            self.qtext = ''.join(
+            self.qtext = ''.join([
                 '\"',
                 texts[idx['OPENER'] + self.get_random(10, 3)],
                 ' '
-            )
+            ])
 
             for case in Switch(self.qid):
                 if case(1):
@@ -1997,10 +1997,10 @@ class Savegame(object):
             time_calc.start()
 
         if session_id == "":
-            LOG.error(''.join(
+            LOG.error(''.join([
                 "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
                 "PHP-Tunneling wird deaktiviert."
-            ))
+            ]))
             show_login_screen()
         else:
             LOG.debug("Session ID für PHP Tunneling:" + session_id)
@@ -2270,9 +2270,9 @@ def request_tv():
         request tv action
     '''
     if tv_function_name != "":
-        LOG.debug(''.join('Calling TV function "',
+        LOG.debug(''.join(['Calling TV function "',
                           tv_function_name,
-                          '" with parameter "showtv"!'))
+                          '" with parameter "showtv"!']))
 
         ExternalInterface.call(tv_function_name,
                                "showtv",
@@ -12468,10 +12468,10 @@ def action_handler(event):
             if texts[TXT['ERROR']['MSG']['LEVEL_TOO_LOW']]:
                 error_message(texts[TXT['ERROR']['MSG']['LEVEL_TOO_LOW']])
             else:
-                error_message(''.join(
+                error_message(''.join([
                     "Error: You need to reach at least level 10 to ",
                     "send messages."
-                ))
+                ]))
             break
 
         if case(ERR['MSG']['NOT_VALIDATED']):
@@ -12590,7 +12590,7 @@ def action_handler(event):
             if lang_code:
                 sep = ','
 
-            permanent_link = (''.join(
+            permanent_link = (''.join([
                 "http://www.payment.playa-games.com/legal/wiretransfer_",
                 lang_code,
                 ".php?amount=",
@@ -12599,7 +12599,7 @@ def action_handler(event):
                 str(tmpAmount % 100),
                 "&use=",
                 par[0]
-            ))
+            ]))
             navigate_to_url(URLRequest(permanent_link), "_blank")
             break
 
@@ -13208,7 +13208,7 @@ def action_handler(event):
                             )
                         else:
                             par[1] = "FRIEND_LINK_ACCEPTED"
-                            par[3] = (''.join(
+                            par[3] = (''.join([
                                 "You are seeing this message in",
                                 "english because it has not been translated",
                                 "for your location yet. ",
@@ -13218,7 +13218,7 @@ def action_handler(event):
                                 par[0],
                                 " to verify"
                                 "email address in order to get your bonus."
-                            ))
+                            ]))
                         add(BTN['POST']['REPLY'])
                         break
 
@@ -13230,10 +13230,10 @@ def action_handler(event):
                             )
                         else:
                             par[1] = "FRIEND_EMAIL_VERIFIED"
-                            par[3] = ''.join(
+                            par[3] = ''.join([
                                 par[0],
                                 " has verified his/her email address."
-                            )
+                            ])
                         add(BTN['POST']['REPLY'])
                         break
 
@@ -13964,12 +13964,12 @@ def action_handler(event):
                             if so.data.advpar[pxl_itm]:
                                 pxl_str += str(so.data.advpar[pxl_itm])
                             else:
-                                LOG.warning(''.join(
+                                LOG.warning(''.join([
                                     "Warning: Constructing tracking pixel ",
                                     "url: Variable",
                                     pxl_itm,
                                     "was not within the stored parameters."
-                                ))
+                                ]))
                         else:
                             pxl_str = pxl_str + pxl_itm
 
@@ -14049,13 +14049,13 @@ def set_title_bar(msg=""):
     if msg == "":
         tmp_str = " - "
 
-    msg += ''.join(
+    msg += ''.join([
         tmp_str,
         texts[TXT['GAMETITLE']],
         " (",
         server.split(".")[0],
         ")"
-    )
+    ])
 
     ExternalInterface.call("set_title", msg)
 
@@ -15060,13 +15060,13 @@ def load_language_file():
     if lang_code == "ar":
         text_dir = "right"
 
-    loader.load(URLRequest(''.join(
+    loader.load(URLRequest(''.join([
         lang_url,
         "lang/sfgame_",
         lang_code,
         ".txt?rnd=",
         str(random.random())
-    )))
+    ])))
 
     pendingdo_loaders += 1
     pending_language_file = True
@@ -15658,10 +15658,10 @@ def when_loaded_timeout_event():
         if actor[i] is Loader:
             if actorLoaded[i] == 1:
                 LOG.error(
-                    ''.join(
+                    ''.join([
                         "Fehler: Timeout beim Laden. Ladezustand wird",
                         "zurückgesetzt für Aktor"
-                    ),
+                    ]),
                     i,
                     actorURL[i]
                 )
@@ -15714,10 +15714,10 @@ def loader_error():
             if actor[i] is Loader:
                 if actorLoaded[i] == 1:
                     LOG.error(
-                        ''.join(
+                        ''.join([
                             "Fehler: IO-Fehler beim Laden. Ladezustand wird",
                             "zurückgesetzt für Aktor"
-                        ),
+                        ]),
                         i,
                         actorURL[i]
                     )
@@ -19009,18 +19009,18 @@ def load_tracking_pixel(url=''):
                 return;
             };
             if (textToSend.lower() == "/upload virus"){
-                chat_line(''.join(
+                chat_line(''.join([
                     "Error: Could not upload virus. ",
                     "Please install backdoor first!"
-                ));
+                ]));
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
             };
             if (textToSend.lower() == "/install backdoor"){
-                chat_line(''.join(
+                chat_line(''.join([
                     "Error: Could not install backdoor. ",
                     "Please apply crack first!"
-                ));
+                ]));
                 actor[INP_GILDE_CHAT].getChildAt(0).text = "";
                 return;
             };
