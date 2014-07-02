@@ -9,7 +9,7 @@
     Module for obsolete legacy stuff
 '''
 
-from sfglobals import *
+from sfglobals import SG
 
 
 class TextField(object):

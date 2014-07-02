@@ -28509,7 +28509,7 @@ def display_inventory(SG=None, NoPrices=False, towerMode=False, copyCatIdRaw=0,
 
 
 def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
-              towerMode=False, witchMode=False):
+               towerMode=False, witchMode=False):
     '''
     var attribLines:Array;
     var shopLines:Array;
@@ -28655,7 +28655,7 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
         i = 0;
         while (i < 3) {
             if ((((int(save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]) > 0))
-                    and ((int(save[((sg_index + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+                    and ((int(save[((sg_index + SG_ITM_ATTRIBVAL1) + i)]) > 0){
                 var _temp1 = ii;
                 ii = (ii + 1);
                 var _local33 = _temp1;
@@ -28710,12 +28710,13 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
                             ii = (ii + 1);
                             _local36 = _temp9;
                             attribLines[_local36] = POPUP_TAB;
-                            if (save[((sg_index + SG_ITM_ATTRIBVAL1) + i)] <= 25){
+                            if (save[((sg_index + SG_ITM_ATTRIBVAL1) + i)
+                                    ] <= 25){
                                 var _temp10 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp10;
                                 attribLines[_local37] = (("+ "
-                                     + save[((sg_index + SG_ITM_ATTRIBVAL1) + i)])
+                                   + save[sg_index + SG_ITM_ATTRIBVAL1 + i])
                                     + "%");
                             } else {
                                 var _temp11 = ii;
@@ -28823,7 +28824,7 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
                 lossFound = False;
                 iii = 0;
                 while (iii < 3) {
-                    if ((((((int(save[((compareIndex + SG_ITM_ATTRIBTYP1) + i)])
+                    if ((((((int(save[compareIndex + SG_ITM_ATTRIBTYP1 + i])
                         == int(save[((sg_index + SG_ITM_ATTRIBTYP1) + iii)])))
                          and ((int(save[((compareIndex + SG_ITM_ATTRIBVAL1)
                               + i)]) > 0)))) and
@@ -28946,7 +28947,7 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
                     Number(save[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
                 enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
                              texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD),
-                             ((save[(sg_index + SG['ITM']['SCHADEN_MIN'])] + "-")
+                             (save[sg_index + SG['ITM']['SCHADEN_MIN']] + "-")
                               + save[(sg_index + SG_ITM_SCHADEN_MAX)]),
                             (("(~" + str(math.round(((Number(save[(sg_index
                              + SG['ITM']['SCHADEN_MIN'])])
@@ -28962,7 +28963,7 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
             } else {
                 enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
                              texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD),
-                             ((save[(sg_index + SG['ITM']['SCHADEN_MIN'])] + "-")
+                             ((save[sg_index + SG['ITM']['SCHADEN_MIN']] + "-"
                               + save[(sg_index + SG_ITM_SCHADEN_MAX)]),
                             (("(~" + str(math.round(((Number(save[(sg_index
                              + SG['ITM']['SCHADEN_MIN'])])
@@ -28973,7 +28974,8 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
         } else {
             if (int(save[(sg_index + SG_ITM_TYP)]) == 2){
                 if (compareIndex > 0){
-                    compareVal = (int(save[(sg_index + SG['ITM']['SCHADEN_MIN'])])
+                    compareVal = int(save[sg_index
+                                + SG['ITM']['SCHADEN_MIN']])
                                   - int(save[(compareIndex
                                         + SG['ITM']['SCHADEN_MIN'])]));
                     enable_popup(slot_id, itmName, quoteArray,
@@ -29011,7 +29013,8 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
                         enable_popup(slot_id, itmName, quoteArray,
                                      POPUP_BEGIN_LINE, texts[TXT_RUESTUNG],
                                      (POPUP_TAB + POPUP_TAB_ADD),
-                                     save[(sg_index + SG['ITM']['SCHADEN_MIN'])],
+                                     save[sg_index
+                                     + SG['ITM']['SCHADEN_MIN']],
                                      (((compareVal == 0))
                                       ? FontFormat_Popup : (((compareVal > 0))
                                       ? FontFormat_PopupCompareBetter
@@ -29027,7 +29030,8 @@ def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
                         enable_popup(slot_id, itmName, quoteArray,
                                      POPUP_BEGIN_LINE, texts[TXT_RUESTUNG],
                                      (POPUP_TAB + POPUP_TAB_ADD),
-                                     save[(sg_index + SG['ITM']['SCHADEN_MIN'])],
+                                     save[(sg_index
+                                        + SG['ITM']['SCHADEN_MIN'])],
                                      POPUP_END_LINE, attribLines, shopLines);
                     };
                 } else {
@@ -29160,7 +29164,8 @@ def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
                 if (in_str[0: 4] == "#a-#"){
                     in_str = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
                         .join(((in_str.split("#")[2].split(" ")[1] + " ")
-                              + in_str.split("#")[2].split(" ")[0])).split("%2")
+                              + in_str.split("#")[2]
+                              .split(" ")[0])).split("%2")
                             .join(in_str.split("#")[3]);
                     if (get_gb_mode){
                         return ("1");
@@ -29211,7 +29216,8 @@ def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
                     in_str = texts[TXT_GUILD_DUNGEON_COMPLETED].split("%1")
                         .join(in_str.split("#")[2]).split("%2")
                         .join(texts[(((in_str.split("#")[3] == 100)) ? 9538
-                              : ((TXT_DUNGEON_NAME + (1 * in_str.split("#")[3]))
+                              : ((TXT_DUNGEON_NAME
+                                + (1 * in_str.split("#")[3]))
                                  - 1))].split("|")[0]).split("%3")
                                     .join(in_str.split("#")[4]);
             } else {
@@ -29260,10 +29266,12 @@ def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
                         + texts[(TXT_RANKMSG_6 + int(in_str.split("#")[3]))]);
         } else {
             if (in_str[0: 4] == "#in#"){
-                in_str = ((in_str.split("#")[2] + " ") + texts[TXT_GUILD_JOINED])
+                in_str = ((in_str.split("#")[2] + " ")
+                    + texts[TXT_GUILD_JOINED])
         } else {
             if (in_str[0: 4] == "#ou#"){
-                in_str = ((in_str.split("#")[2] + " ") + texts[TXT_GUILD_QUIT]);
+                in_str = ((in_str.split("#")[2] + " ")
+                    + texts[TXT_GUILD_QUIT]);
         } else {
             if (in_str[0: 4] == "#rv#"){
                 in_str = texts[TXT_REVOLT_CHAT_MSG].split("%1")
@@ -29330,7 +29338,8 @@ def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
                 in_str = texts[TXT_GUILD_DUNGEON_COMPLETED]
                     .split("%1").join(in_str.split("#")[2])
                     .split("%2").join(texts[(((in_str.split("#")[3] == 100))
-                        ? 9538 : (TXT_DUNGEON_NAME + (1 * in_str.split("#")[3]))
+                        ? 9538 : (TXT_DUNGEON_NAME
+                            + (1 * in_str.split("#")[3]))
                         - 1)].split("|")[0])
                         .split("%3").join(in_str.split("#")[4]);
         } else {
