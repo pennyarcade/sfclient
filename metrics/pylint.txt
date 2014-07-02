@@ -31,19 +31,7 @@ W:14205, 0: TODO: hat does this do? (fixme)
 W:15899, 0: TODO: What does this do? (fixme)
 W:15915, 0: TODO: Obsolete? (fixme)
 W:15938, 0: TODO: set via requests params (fixme)
-C:28512, 0: Wrong continued indentation.
-              towerMode=False, witchMode=False):
-              ^| (bad-continuation)
-C:28658, 0: Line too long (82/80) (line-too-long)
-C:28713, 0: Line too long (82/80) (line-too-long)
-C:28718, 0: Line too long (82/80) (line-too-long)
-C:28949, 0: Line too long (81/80) (line-too-long)
-C:28965, 0: Line too long (81/80) (line-too-long)
-C:28976, 0: Line too long (82/80) (line-too-long)
-C:29014, 0: Line too long (81/80) (line-too-long)
-C:29030, 0: Line too long (81/80) (line-too-long)
-C:29263, 0: Line too long (81/80) (line-too-long)
-C:  1, 0: Too many lines in module (30688) (too-many-lines)
+C:  1, 0: Too many lines in module (30697) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
 C: 34, 0: Invalid constant name "param_obj" (invalid-name)
@@ -1627,80 +1615,80 @@ C:28511, 0: Invalid argument name "witchMode" (invalid-name)
 R:28511, 0: Too many arguments (7/5) (too-many-arguments)
 W:28511,34: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
 W:28511,63: Unused argument 'NoPrices' (unused-argument)
-W:28512,14: Unused argument 'towerMode' (unused-argument)
+W:28512,15: Unused argument 'towerMode' (unused-argument)
 W:28511,34: Unused argument 'SG' (unused-argument)
 W:28511,15: Unused argument 'slot_id' (unused-argument)
-W:28512,31: Unused argument 'witchMode' (unused-argument)
+W:28512,32: Unused argument 'witchMode' (unused-argument)
 W:28511,43: Unused argument 'HideBackPack' (unused-argument)
 W:28511,24: Unused argument 'sg_index' (unused-argument)
-W:29046,17: Unused argument 'in_str' (unused-argument)
-W:29053,16: Unused argument 'in_str' (unused-argument)
-W:29053,24: Unused argument 'get_hl_mode' (unused-argument)
-W:29053,43: Unused argument 'get_gb_mode' (unused-argument)
-W:29361,14: Unused argument 'line' (unused-argument)
-W:29361,20: Unused argument 'is_error' (unused-argument)
-W:29361,36: Unused argument 'hl_index' (unused-argument)
-W:29361,49: Unused argument 'is_whisper' (unused-argument)
-W:29456,15: Unused argument 'dealer_menu' (unused-argument)
-W:29466,29: Unused argument 'evt' (unused-argument)
-W:29483,26: Unused argument 'arr' (unused-argument)
-W:29483,31: Unused argument 'offset' (unused-argument)
-W:29515,16: Unused argument 'target_time' (unused-argument)
-W:29525,17: Unused argument 'target_time' (unused-argument)
-W:29549,21: Unused argument 'start_time' (unused-argument)
-W:29549,33: Unused argument 'target_time' (unused-argument)
-W:29583,21: Unused argument 'evt' (unused-argument)
-R:29737, 0: Too many arguments (14/5) (too-many-arguments)
-W:29739,59: Unused argument 'is_brows' (unused-argument)
-W:29737,54: Unused argument 'is_volk' (unused-argument)
-W:29737,37: Unused argument 'load_only' (unused-argument)
-W:29740,47: Unused argument 'is_special' (unused-argument)
-W:29739,48: Unused argument 'is_eyes' (unused-argument)
-W:29740,36: Unused argument 'is_hair' (unused-argument)
-W:29737,25: Unused argument 'actor_id' (unused-argument)
-W:29738,25: Unused argument 'is_mann' (unused-argument)
-W:29740,25: Unused argument 'is_ears' (unused-argument)
-W:29739,37: Unused argument 'is_nose' (unused-argument)
-W:29741,25: Unused argument 'is_special2' (unused-argument)
-W:29738,40: Unused argument 'is_kaste' (unused-argument)
-W:29738,52: Unused argument 'is_mouth' (unused-argument)
-W:29739,25: Unused argument 'is_beard' (unused-argument)
-C:29925, 0: Invalid function name "position_modify_character_buttons" (invalid-name)
-W:29973,32: Unused argument 'item_value' (unused-argument)
-W:29973,20: Unused argument 'item_index' (unused-argument)
-W:30040,24: Unused argument 'evt' (unused-argument)
-W:30062,25: Unused argument 'evt' (unused-argument)
-W:30096,25: Unused argument 'is_volk' (unused-argument)
-W:30096,34: Unused argument 'is_mann' (unused-argument)
-W:30096,43: Unused argument 'item_index' (unused-argument)
-W:30510,28: Unused argument 'isinstance_volk' (unused-argument)
-W:30510,54: Unused argument 'is_kaste' (unused-argument)
-W:30510,45: Unused argument 'is_mann' (unused-argument)
-W:30510,20: Unused argument 'is_gut' (unused-argument)
-W:30593,26: Unused argument 'evt' (unused-argument)
-C:30681, 0: Invalid function name "ChatPollIntervalReset" (invalid-name)
+W:29050,17: Unused argument 'in_str' (unused-argument)
+W:29057,16: Unused argument 'in_str' (unused-argument)
+W:29057,24: Unused argument 'get_hl_mode' (unused-argument)
+W:29057,43: Unused argument 'get_gb_mode' (unused-argument)
+W:29370,14: Unused argument 'line' (unused-argument)
+W:29370,20: Unused argument 'is_error' (unused-argument)
+W:29370,36: Unused argument 'hl_index' (unused-argument)
+W:29370,49: Unused argument 'is_whisper' (unused-argument)
+W:29465,15: Unused argument 'dealer_menu' (unused-argument)
+W:29475,29: Unused argument 'evt' (unused-argument)
+W:29492,26: Unused argument 'arr' (unused-argument)
+W:29492,31: Unused argument 'offset' (unused-argument)
+W:29524,16: Unused argument 'target_time' (unused-argument)
+W:29534,17: Unused argument 'target_time' (unused-argument)
+W:29558,21: Unused argument 'start_time' (unused-argument)
+W:29558,33: Unused argument 'target_time' (unused-argument)
+W:29592,21: Unused argument 'evt' (unused-argument)
+R:29746, 0: Too many arguments (14/5) (too-many-arguments)
+W:29748,59: Unused argument 'is_brows' (unused-argument)
+W:29746,54: Unused argument 'is_volk' (unused-argument)
+W:29746,37: Unused argument 'load_only' (unused-argument)
+W:29749,47: Unused argument 'is_special' (unused-argument)
+W:29748,48: Unused argument 'is_eyes' (unused-argument)
+W:29749,36: Unused argument 'is_hair' (unused-argument)
+W:29746,25: Unused argument 'actor_id' (unused-argument)
+W:29747,25: Unused argument 'is_mann' (unused-argument)
+W:29749,25: Unused argument 'is_ears' (unused-argument)
+W:29748,37: Unused argument 'is_nose' (unused-argument)
+W:29750,25: Unused argument 'is_special2' (unused-argument)
+W:29747,40: Unused argument 'is_kaste' (unused-argument)
+W:29747,52: Unused argument 'is_mouth' (unused-argument)
+W:29748,25: Unused argument 'is_beard' (unused-argument)
+C:29934, 0: Invalid function name "position_modify_character_buttons" (invalid-name)
+W:29982,32: Unused argument 'item_value' (unused-argument)
+W:29982,20: Unused argument 'item_index' (unused-argument)
+W:30049,24: Unused argument 'evt' (unused-argument)
+W:30071,25: Unused argument 'evt' (unused-argument)
+W:30105,25: Unused argument 'is_volk' (unused-argument)
+W:30105,34: Unused argument 'is_mann' (unused-argument)
+W:30105,43: Unused argument 'item_index' (unused-argument)
+W:30519,28: Unused argument 'isinstance_volk' (unused-argument)
+W:30519,54: Unused argument 'is_kaste' (unused-argument)
+W:30519,45: Unused argument 'is_mann' (unused-argument)
+W:30519,20: Unused argument 'is_gut' (unused-argument)
+W:30602,26: Unused argument 'evt' (unused-argument)
+C:30690, 0: Invalid function name "ChatPollIntervalReset" (invalid-name)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import CPC from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import TSG from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import POPUP_BEGIN_LINE from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import BLACK_SQUARE from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import CPC from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import TSG from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import POPUP_BEGIN_LINE from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import BLACK_SQUARE from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import set_volume from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_bg from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import ITM_MAX from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import ITM_MAX from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_text from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import CLA_GILDE_CREST from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import CLA_GILDE_CREST from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import load_configuration_file from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import parse_savegame from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
 W: 23, 0: Unused import curses (unused-import)
-W: 26, 0: Unused import ITM_OFFS from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import DIST_DEALER_Y from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import CLR from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import ITM_EMPTY from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import RES_X from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import RES_Y from wildcard import (unused-wildcard-import)
-W: 26, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import ITM_OFFS from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import DIST_DEALER_Y from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import CLR from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import ITM_EMPTY from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import RES_X from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import RES_Y from wildcard import (unused-wildcard-import)
+W: 27, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-import)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1711,7 +1699,6 @@ W:321, 0: TODO: obsolete (fixme)
 W:345, 0: TODO WTF? (fixme)
 W:367, 0: TODO: better way to zero fill? (fixme)
 W:554, 0: TODO: Obsolete (fixme)
-W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
 C: 61, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
@@ -1741,44 +1728,7 @@ C:241, 4: Invalid method name "allowDomain" (invalid-name)
 R:248, 0: Too few public methods (1/2) (too-few-public-methods)
 C:263, 4: Invalid method name "getLocal" (invalid-name)
 R:259, 0: Too few public methods (1/2) (too-few-public-methods)
-W: 12, 0: Unused import CPC from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import REL from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ACT from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ARROW_MAX from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import SLDR from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ITM_MAX from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ITM_OFFS from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import LBL from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import IMG from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import CB from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import CA from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import BNC from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import DIST_DEALER_Y from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import CLR from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import SND from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import POPUP_INFO from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ARROW_OFFS from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import SG from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ERR from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import TSG from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import POPUP_BEGIN_LINE from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import POS from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import CLA_GILDE_CREST from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import TXT from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import BLACK_SQUARE from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import SHP from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import CNT from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import GUILD from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import RESP from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import SIZE from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import RES_X from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import RES_Y from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import C from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import CFG from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import INP from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import ITM_EMPTY from wildcard import (unused-wildcard-import)
-W: 12, 0: Unused import BTN from wildcard import (unused-wildcard-import)
+W: 12, 0: Unused import SG (unused-import)
 R:220, 0: Interface not implemented (interface-not-implemented)
 
 
@@ -1792,6 +1742,7 @@ External dependencies
 
     datetime (sfclient)
     requests (sfclient)
+    sfglobals (sflegacy)
     types (sfclient)
 
 
@@ -1804,7 +1755,7 @@ Raw metrics
 +==========+=======+======+=========+===========+
 |code      |5111   |14.71 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27911  |80.34 |NC       |NC         |
+|docstring |27920  |80.35 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |691    |1.99  |NC       |NC         |
 +----------+-------+------+---------+-----------+
@@ -1832,11 +1783,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |348    |NC       |NC         |
+|convention |338    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |671    |NC       |NC         |
+|warning    |633    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |678    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1849,9 +1800,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |93.14   |72.50    |97.41      |
+|sfclient |100.00 |98.74   |72.50    |97.34      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |6.86    |27.50    |2.30       |
+|sflegacy |0.00   |1.26    |27.50    |2.37       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1870,13 +1821,13 @@ Messages
 +-----------------------------+------------+
 |unused-argument              |246         |
 +-----------------------------+------------+
-|unused-wildcard-import       |59          |
-+-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
 |redefined-outer-name         |34          |
 +-----------------------------+------------+
 |too-few-public-methods       |31          |
++-----------------------------+------------+
+|unused-wildcard-import       |21          |
 +-----------------------------+------------+
 |used-before-assignment       |17          |
 +-----------------------------+------------+
@@ -1890,36 +1841,32 @@ Messages
 +-----------------------------+------------+
 |too-many-statements          |9           |
 +-----------------------------+------------+
-|line-too-long                |9           |
-+-----------------------------+------------+
 |too-many-function-args       |5           |
 +-----------------------------+------------+
 |global-statement             |5           |
 +-----------------------------+------------+
 |assignment-from-no-return    |5           |
 +-----------------------------+------------+
-|wildcard-import              |3           |
-+-----------------------------+------------+
 |too-many-instance-attributes |3           |
 +-----------------------------+------------+
 |redefined-builtin            |3           |
 +-----------------------------+------------+
-|too-many-lines               |2           |
+|wildcard-import              |2           |
 +-----------------------------+------------+
-|unused-import                |1           |
+|unused-import                |2           |
++-----------------------------+------------+
+|too-many-lines               |2           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
-+-----------------------------+------------+
-|bad-continuation             |1           |
 +-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -1.15/10
+Your code has been rated at -1.03/10
 
 Statistics by type
 ------------------
