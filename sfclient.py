@@ -15597,6 +15597,7 @@ def whendo_loaded(function=None):
         async loading finished
     '''
     pending = False
+    global whendo_loaded_fn
 
     if isinstance(function, types.FunctionType):
         whendo_loaded_fn.append(function)
