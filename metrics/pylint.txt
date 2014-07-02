@@ -1419,11 +1419,9 @@ R:110, 0: Too few public methods (0/2) (too-few-public-methods)
 R:117, 0: Too few public methods (0/2) (too-few-public-methods)
 R:124, 0: Too few public methods (0/2) (too-few-public-methods)
 R:131, 0: Too few public methods (0/2) (too-few-public-methods)
-W:138, 0: Class has no __init__ method (no-init)
-R:138, 0: Too few public methods (0/2) (too-few-public-methods)
-W:181, 0: Class has no __init__ method (no-init)
-R:181, 0: Too few public methods (0/2) (too-few-public-methods)
-R:188, 0: Too few public methods (0/2) (too-few-public-methods)
+R:169, 0: Too few public methods (0/2) (too-few-public-methods)
+R:176, 0: Too few public methods (0/2) (too-few-public-methods)
+R:183, 0: Too few public methods (0/2) (too-few-public-methods)
 R:195, 0: Too few public methods (0/2) (too-few-public-methods)
 R:202, 0: Too few public methods (0/2) (too-few-public-methods)
 R:209, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1527,7 +1525,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |71     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |430    |NC       |NC         |
+|warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |782    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1540,9 +1538,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |88.84   |69.01    |95.19      |
+|sfclient |100.00 |89.25   |69.01    |95.19      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |11.16   |30.99    |4.28       |
+|sflegacy |0.00   |10.75   |30.99    |4.28       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1595,8 +1593,6 @@ Messages
 +-----------------------------+------------+
 |redefined-builtin            |2           |
 +-----------------------------+------------+
-|no-init                      |2           |
-+-----------------------------+------------+
 |unused-import                |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
@@ -1608,7 +1604,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.14/10
+Your code has been rated at -2.13/10
 
 Statistics by type
 ------------------
