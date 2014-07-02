@@ -135,7 +135,7 @@ class Bitmap(object):
     pass
 
 
-class MouseEvent(object):
+class MouseEvent(Event):
     '''
         obsolete with cli?
     '''
@@ -178,18 +178,39 @@ class Timer(object):
         pass
 
 
-class TimerEvent(object):
+class TimerEvent(Event):
     '''
         obsolete with cli?
     '''
     TIMER = None
 
 
-class KeyboardEvent(object):
+class Event(object):
+    '''
+        obsolete with cli?
+    '''
+    COMPLETE = None
+
+
+class IOErrorEvent(Event):
+    '''
+        obsolete with cli?
+    '''
+    IO_ERROR = None
+
+
+class KeyboardEvent(Event):
     '''
         obsolete with cli?
     '''
     keyCode = None
+
+
+class SecurityErrorEvent(Event):
+    '''
+        obsolete with cli?
+    '''
+    SECURITY_ERROR = None
 
 
 class ExternalInterface(object):

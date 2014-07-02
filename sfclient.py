@@ -15056,7 +15056,7 @@ def load_language_file():
     loader.add_event_listener(Event.COMPLETE, LanguageFileLoaded)
     loader.add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
     loader.add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
-                           LanguageFileError)
+                              LanguageFileError)
     if lang_code == "ar":
         text_dir = "right"
 
