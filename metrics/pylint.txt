@@ -90,7 +90,6 @@ C:919, 4: Invalid constant name "when_loaded_timeout" (invalid-name)
 W:919, 4: Global variable 'when_loaded_fn' undefined at the module level (global-variable-undefined)
 W:919, 4: Global variable 'when_loaded_active' undefined at the module level (global-variable-undefined)
 W:919, 4: Global variable 'when_loaded_timeout' undefined at the module level (global-variable-undefined)
-E:925, 8: Undefined variable 'whendo_loaded_timeout_event' (undefined-variable)
 R:449, 0: Too many statements (65/50) (too-many-statements)
 W:947, 4: Unused variable 'witch_ani_step' (unused-variable)
 W:463, 4: Unused variable 'col_album' (unused-variable)
@@ -1537,7 +1536,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |792    |NC       |NC         |
+|error      |791    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1561,7 +1560,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |770         |
+|undefined-variable           |769         |
 +-----------------------------+------------+
 |unused-variable              |269         |
 +-----------------------------+------------+
@@ -1614,7 +1613,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.27/10
+Your code has been rated at -2.25/10
 
 Statistics by type
 ------------------
