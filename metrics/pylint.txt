@@ -1396,43 +1396,43 @@ W: 26, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-imp
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:272, 0: TODO: obsolete (fixme)
-W:287, 0: TODO: obsolete (fixme)
-W:301, 0: TODO: obsolete (fixme)
-W:317, 0: TODO: obsolete (fixme)
-W:341, 0: TODO WTF? (fixme)
-W:363, 0: TODO: better way to zero fill? (fixme)
-W:550, 0: TODO: Obsolete (fixme)
+W:276, 0: TODO: obsolete (fixme)
+W:291, 0: TODO: obsolete (fixme)
+W:305, 0: TODO: obsolete (fixme)
+W:321, 0: TODO: obsolete (fixme)
+W:345, 0: TODO WTF? (fixme)
+W:367, 0: TODO: better way to zero fill? (fixme)
+W:554, 0: TODO: Obsolete (fixme)
 W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
 C: 61, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
 R: 61, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 68, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 75, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 82, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
-R: 82, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 89, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
-R: 89, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 96, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
-R: 96, 0: Too few public methods (0/2) (too-few-public-methods)
-C:103, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
-R:103, 0: Too few public methods (0/2) (too-few-public-methods)
-R:110, 0: Too few public methods (0/2) (too-few-public-methods)
-R:117, 0: Too few public methods (0/2) (too-few-public-methods)
-R:124, 0: Too few public methods (0/2) (too-few-public-methods)
-R:131, 0: Too few public methods (0/2) (too-few-public-methods)
-R:169, 0: Too few public methods (0/2) (too-few-public-methods)
-R:176, 0: Too few public methods (0/2) (too-few-public-methods)
-R:183, 0: Too few public methods (0/2) (too-few-public-methods)
-R:195, 0: Too few public methods (0/2) (too-few-public-methods)
-R:202, 0: Too few public methods (0/2) (too-few-public-methods)
-R:209, 0: Too few public methods (0/2) (too-few-public-methods)
-C:231, 4: Invalid method name "loadPolicyFile" (invalid-name)
-C:237, 4: Invalid method name "allowDomain" (invalid-name)
-R:244, 0: Too few public methods (1/2) (too-few-public-methods)
-C:259, 4: Invalid method name "getLocal" (invalid-name)
-R:255, 0: Too few public methods (1/2) (too-few-public-methods)
+R: 79, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 86, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
+R: 86, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 93, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
+R: 93, 0: Too few public methods (0/2) (too-few-public-methods)
+C:100, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
+R:100, 0: Too few public methods (0/2) (too-few-public-methods)
+C:107, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
+R:107, 0: Too few public methods (0/2) (too-few-public-methods)
+R:114, 0: Too few public methods (0/2) (too-few-public-methods)
+R:121, 0: Too few public methods (0/2) (too-few-public-methods)
+R:128, 0: Too few public methods (0/2) (too-few-public-methods)
+R:135, 0: Too few public methods (0/2) (too-few-public-methods)
+R:173, 0: Too few public methods (0/2) (too-few-public-methods)
+R:180, 0: Too few public methods (0/2) (too-few-public-methods)
+R:187, 0: Too few public methods (0/2) (too-few-public-methods)
+R:199, 0: Too few public methods (0/2) (too-few-public-methods)
+R:206, 0: Too few public methods (0/2) (too-few-public-methods)
+R:213, 0: Too few public methods (0/2) (too-few-public-methods)
+C:235, 4: Invalid method name "loadPolicyFile" (invalid-name)
+C:241, 4: Invalid method name "allowDomain" (invalid-name)
+R:248, 0: Too few public methods (1/2) (too-few-public-methods)
+C:263, 4: Invalid method name "getLocal" (invalid-name)
+R:259, 0: Too few public methods (1/2) (too-few-public-methods)
 W: 12, 0: Unused import CPC from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import REL from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ACT from wildcard import (unused-wildcard-import)
@@ -1471,12 +1471,12 @@ W: 12, 0: Unused import CFG from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import INP from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ITM_EMPTY from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import BTN from wildcard import (unused-wildcard-import)
-R:216, 0: Interface not implemented (interface-not-implemented)
+R:220, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-3788 statements analysed.
+3789 statements analysed.
 
 External dependencies
 ---------------------
@@ -1494,13 +1494,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19698  |57.24 |NC       |NC         |
+|code      |19699  |57.24 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13222  |38.42 |NC       |NC         |
+|docstring |13225  |38.43 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |2.01  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |798    |2.32  |NC       |NC         |
+|empty     |799    |2.32  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1621,7 +1621,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |39     |NC         |NC         |100.00      |12.82    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |41     |NC         |NC         |100.00      |7.32     |
+|method   |42     |NC         |NC         |100.00      |7.14     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |100    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
