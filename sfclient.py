@@ -394,7 +394,7 @@ def md5hash(instr):
     '''
         Calculate MD5 Hash
 
-        @param string inStr
+        @param string in_str
         @return string MD5 hash
     '''
     return md5.new(instr).hexdigest().lower()
@@ -2798,7 +2798,7 @@ def DoSkipFight(evt=None, fightDone=False):
                      savegame
                  )
             );
-            ItemPopup(
+            item_popup(
                 FIGHT_SLOT,
                 (SG_INVENTORY_OFFS
                     + ((guildFightHonor + 10)
@@ -3134,7 +3134,7 @@ def DoSkipFight(evt=None, fightDone=False):
                         GetItemID(SG_INVENTORY_OFFS,
                             (BackPackSlot + 10),
                             savegame));
-                    ItemPopup(
+                    item_popup(
                         FIGHT_SLOT,
                         (SG_INVENTORY_OFFS
                             + ((BackPackSlot + 10)
@@ -3253,7 +3253,7 @@ def DoSkipFight(evt=None, fightDone=False):
                                 GetItemID(
                                     SG['QUEST']['OFFER']['REWARD_ITM1'],
                                     quest_id));
-                            ItemPopup(
+                            item_popup(
                                 FIGHT_SLOT,
                                 (SG['QUEST']['OFFER']['REWARD_ITM1']
                                     + (quest_id * SG['ITM']['SIZE'])),
@@ -3318,7 +3318,7 @@ def DoSkipFight(evt=None, fightDone=False):
                             text = texts[(TXT_GUILD_BATTLE_LOST
                                 + int((random.random() * 5)))];
             } else {
-                if (!inStrikeAni){
+                if (!in_strikeAni){
                     next_fight_timer.start();
                 } else {
                     strikeBreak = True;
@@ -3464,7 +3464,7 @@ def WeaponStrike(opponent=False):
     StrikeAniTimerEvent = function (evt:TimerEvent){
         var evt:* = evt;
         if (!on_stage(FIGHT_BOX1)){
-            inStrikeAni = False;
+            in_strikeAni = False;
             if (strikeBreak){
                 next_fight_timer.start();
             };
@@ -3576,7 +3576,7 @@ def WeaponStrike(opponent=False):
                             };
                             if (DamageAlpha <= 0){
                                 DamageAlpha = 0;
-                                inStrikeAni = False;
+                                in_strikeAni = False;
                                 if (strikeBreak){
                                     next_fight_timer.start();
                                 };
@@ -3695,7 +3695,7 @@ def WeaponStrike(opponent=False):
                             };
                             if (DamageAlpha <= 0){
                                 DamageAlpha = 0;
-                                inStrikeAni = False;
+                                in_strikeAni = False;
                                 if (strikeBreak){
                                     next_fight_timer.start();
                                 };
@@ -3810,7 +3810,7 @@ def WeaponStrike(opponent=False):
                         };
                         if (DamageAlpha <= 0){
                             DamageAlpha = 0;
-                            inStrikeAni = False;
+                            in_strikeAni = False;
                             if (strikeBreak){
                                 next_fight_timer.start();
                             };
@@ -3924,7 +3924,7 @@ def WeaponStrike(opponent=False):
                         };
                         if (DamageAlpha <= 0){
                             DamageAlpha = 0;
-                            inStrikeAni = False;
+                            in_strikeAni = False;
                             if (strikeBreak){
                                 next_fight_timer.start();
                             };
@@ -3986,7 +3986,7 @@ def WeaponStrike(opponent=False):
                             actor[LBL_DAMAGE_INDICATOR].y - 2);
                         if (DamageAlpha <= 0){
                             DamageAlpha = 0;
-                            inStrikeAni = False;
+                            in_strikeAni = False;
                             if (strikeBreak){
                                 next_fight_timer.start();
                             };
@@ -4302,7 +4302,7 @@ def WeaponStrike(opponent=False):
     StrikeAniTimer.add_event_listener(
         TimerEvent.TIMER, StrikeAniTimerEvent);
     StrikeAniTimer.start();
-    inStrikeAni = True;
+    in_strikeAni = True;
     '''
     pass
 
@@ -4602,7 +4602,7 @@ def DoShowFightScreen(evt=None):
         };
     };
     strikeBreak = False;
-    var inStrikeAni:* = False;
+    var in_strikeAni:* = False;
     DoStrikeTimer.add_event_listener(TimerEvent.TIMER, DoStrikeEvent);
     DoStrikeTimer.start();
     '''
@@ -19541,11 +19541,11 @@ def build_interface():
         send_action(ACT_SEND_CHAT, EncodeChat(textToSend), last_chat_index)
         actor[INP_GILDE_CHAT].getChildAt(0).text = "";
     };
-    var EncodeChat:* = function (inStr:String):String{
-        inStr = inStr.split("#").join("##");
-        inStr = inStr.split("/").join("#{");
-        inStr = inStr.split(";").join("#}");
-        return (inStr);
+    var EncodeChat:* = function (in_str:String):String{
+        in_str = in_str.split("#").join("##");
+        in_str = in_str.split("/").join("#{");
+        in_str = in_str.split(";").join("#}");
+        return (in_str);
     };
     nextSuggestionAllow = function (evt:TimerEvent){
         nextSuggestionTimer.stop();
@@ -20461,7 +20461,7 @@ def build_interface():
                 SetCnt(QUEST_SLOT,
                        GetItemID(SG['QUEST']['OFFER']['REWARD_ITM1'],
                                  quest_id));
-                ItemPopup(QUEST_SLOT,
+                item_popup(QUEST_SLOT,
                           (SG['QUEST']['OFFER']['REWARD_ITM1']
                            + (quest_id * SG['ITM']['SIZE'])),
                             None, False, False, False);
@@ -28394,7 +28394,7 @@ def display_inventory(SG=None, NoPrices=False, towerMode=False, copyCatIdRaw=0,
                         : SG_INVENTORY_OFFS), ((((towerMode) and ((i > 9))))
                         ? (i - 10) : i), SG, ((towerMode) ? (((i > 9)) ? -1
                                          : (-(copyCatSel) - 3)) : -2)));
-                ItemPopup((CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9))
+                item_popup((CHAR_SLOT_1 + i), (((towerMode) ? (((i > 9))
                           ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
                     : SG_INVENTORY_OFFS) + (((((towerMode) and ((i > 9))))
                          ? (i - 10) : i) * SG['ITM']['SIZE'])), SG,
@@ -28429,7 +28429,7 @@ def display_inventory(SG=None, NoPrices=False, towerMode=False, copyCatIdRaw=0,
                     + SG['ITM']['PIC'])] = 0;
             };
             SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG))
-            ItemPopup((CHAR_SLOT_FIDGET_1 + i),
+            item_popup((CHAR_SLOT_FIDGET_1 + i),
                       (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
                       SG, HideBackPack);
             if (((IsEpic(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
@@ -28442,7 +28442,7 @@ def display_inventory(SG=None, NoPrices=False, towerMode=False, copyCatIdRaw=0,
                     + SG['ITM']['PIC'])] = 0;
             };
             SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG))
-            ItemPopup((CHAR_SLOT_SHAKES_1 + i),
+            item_popup((CHAR_SLOT_SHAKES_1 + i),
                       (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
                       SG, HideBackPack);
             if (((IsEpic(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
@@ -28508,7 +28508,7 @@ def display_inventory(SG=None, NoPrices=False, towerMode=False, copyCatIdRaw=0,
     pass
 
 
-def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
+def item_popup(slot_id, sg_index, SG=None, HideBackPack=False, NoPrices=False,
               towerMode=False, witchMode=False):
     '''
     var attribLines:Array;
@@ -28539,15 +28539,15 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
     towerMode = on_stage(PREV_COPYCAT);
     attribLines = list();
     shopLines = list();
-    if (!(SG is Array)){
-        SG = savegame;
+    if (!(save is Array)){
+        save = savegame;
     };
-    if (SG[(sgIndex + SG_ITM_TYP)] > 0){
+    if (save[(sg_index + SG_ITM_TYP)] > 0){
         ii = 0;
         iii = 0;
-        goldRaw = SG[(sgIndex + SG_ITM_GOLD)];
+        goldRaw = save[(sg_index + SG_ITM_GOLD)];
         if (witchMode){
-            if (SG[(sgIndex + SG_ITM_TYP)] == witchDesiredType){
+            if (save[(sg_index + SG_ITM_TYP)] == witchDesiredType){
                 goldRaw = (goldRaw * 2);
             } else {
                 goldRaw = 0;
@@ -28555,14 +28555,14 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
         };
         gold = int((goldRaw / 100));
         silber = int((goldRaw % 100));
-        pilze = int((SG[(sgIndex + SG_ITM_MUSH)] % 100));
+        pilze = int((save[(sg_index + SG_ITM_MUSH)] % 100));
         compareIndex = 0;
         compareFound = False;
         lossFound = False;
-        socket = int(SG[(sgIndex + SG_ITM_EXT_SOCKET)]);
-        socketPower = int(SG[(sgIndex + SG_ITM_EXT_SOCKET_POWER)]);
-        enchant = int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)]);
-        enchantPower = int(SG[(sgIndex + SG_ITM_EXT_ENCHANT_POWER)]);
+        socket = int(save[(sg_index + SG_ITM_EXT_SOCKET)]);
+        socketPower = int(save[(sg_index + SG_ITM_EXT_SOCKET_POWER)]);
+        enchant = int(save[(sg_index + SG_ITM_EXT_ENCHANT)]);
+        enchantPower = int(save[(sg_index + SG_ITM_EXT_ENCHANT_POWER)]);
         if (((!(HideBackPack)) and (!(NoPrices)))){
             shopLines[shopLines.length] = FontFormat_Popup;
             if (gold > 0){
@@ -28585,13 +28585,13 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                 actor[IF_PILZE], POPUP_END_LINE];
             };
             if (witchMode){
-                if (SG[(sgIndex + SG_ITM_TYP)] != witchDesiredType){
+                if (save[(sg_index + SG_ITM_TYP)] != witchDesiredType){
                     shopLines.append([POPUP_BEGIN_LINE,
                     texts[TXT_WITCH_WRONGTYPE], POPUP_END_LINE]);
                 };
             } else {
                 if ((((((pilze + gold) + silber) == 0))
-                    and ((SG[(sgIndex + SG_ITM_TYP)] <= 10)))){
+                    and ((save[(sg_index + SG_ITM_TYP)] <= 10)))){
                     shopLines.append([POPUP_BEGIN_LINE,
                                      texts[TXT_TOILET_ITEM], POPUP_END_LINE]);
                 };
@@ -28599,10 +28599,10 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
         };
         itm_color = 0;
         itm_class = 0;
-        itm_pic = int(SG[(sgIndex + SG['ITM']['PIC'])]);
+        itm_pic = int(save[(sg_index + SG['ITM']['PIC'])]);
         i = 0;
         while (i < 8) {
-            itm_color = (itm_color + Number(SG[((sgIndex
+            itm_color = (itm_color + Number(save[((sg_index
                          + SG['ITM']['SCHADEN_MIN']) + i)]));
             i++;
         };
@@ -28613,9 +28613,9 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
         };
         if (C_DISPLAY_ITEM_INFO){
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
-                actorURL[GetItemID(sgIndex, 0, SG)], POPUP_END_LINE];
+                actorURL[GetItemID(sg_index, 0, save)], POPUP_END_LINE];
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
-                "Typ: ", POPUP_TAB, str(SG[(sgIndex + SG_ITM_TYP)]),
+                "Typ: ", POPUP_TAB, str(save[(sg_index + SG_ITM_TYP)]),
                 POPUP_END_LINE];
             shopLines[shopLines.length] = [POPUP_BEGIN_LINE,
                 "Pic: ", POPUP_TAB, str(itm_pic), POPUP_END_LINE];
@@ -28635,11 +28635,11 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
         i = 0;
         while (i < 10) {
             suggestion_slot[slot_id] = 0;
-            if (int(SG[(sgIndex + SG_ITM_TYP)]) == CorrectItemType[i]){
+            if (int(save[(sg_index + SG_ITM_TYP)]) == CorrectItemType[i]){
                 if ((((slot_id >= CHAR_SLOT_11))
                         and ((slot_id <= CHAR_SLOT_SHAKES_6)))){
                     suggestion_slot[slot_id] = (i + CHAR_SLOT_1);
-                    if (SG[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i))
+                    if (save[((SG_INVENTORY_OFFS + (SG['ITM']['SIZE'] * i))
                             + SG_ITM_TYP)] > 0){
                         if (((compare_items) and (!(towerMode)))){
                             compareIndex = (SG_INVENTORY_OFFS
@@ -28654,13 +28654,13 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
         attribSum = 0;
         i = 0;
         while (i < 3) {
-            if ((((int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) > 0))
-                    and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
+            if ((((int(save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]) > 0))
+                    and ((int(save[((sg_index + SG_ITM_ATTRIBVAL1) + i)]) > 0)))){
                 var _temp1 = ii;
                 ii = (ii + 1);
                 var _local33 = _temp1;
                 attribLines[_local33] = POPUP_BEGIN_LINE;
-                if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) <= 6){
+                if (int(save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]) <= 6){
                     var _temp2 = ii;
                     ii = (ii + 1);
                     var _local34 = _temp2;
@@ -28675,13 +28675,13 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                 ii = (ii + 1);
                 _local34 = _temp4;
                 attribLines[_local34] = texts[(TXT_ITEM_ATTRIB_CLASSES
-                           + int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]))];
+                           + int(save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]))];
                 var _temp5 = ii;
                 ii = (ii + 1);
                 var _local35 = _temp5;
                 attribLines[_local35] = (POPUP_TAB + POPUP_TAB_ADD);
-                if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) == 11){
-                    hours = int(SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]);
+                if (int(save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]) == 11){
+                    hours = int(save[((sg_index + SG_ITM_ATTRIBVAL1) + i)]);
                     var _temp6 = ii;
                     ii = (ii + 1);
                     var _local36 = _temp6;
@@ -28694,7 +28694,7 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                            + texts[((((hours % 24) == 1))
                                     ? TXT_HOUR : TXT_HOURS)]) : ""));
                 } else {
-                    if (int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]) == 12){
+                    if (int(save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]) == 12){
                         var _temp7 = ii;
                         ii = (ii + 1);
                         _local36 = _temp7;
@@ -28702,34 +28702,34 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                         var _temp8 = ii;
                         ii = (ii + 1);
                         var _local37 = _temp8;
-                        attribLines[_local37] = (("+ " + SG[((sgIndex
+                        attribLines[_local37] = (("+ " + save[((sg_index
                                  + SG_ITM_ATTRIBVAL1) + i)]) + "%");
                     } else {
-                        if (SG[(sgIndex + SG_ITM_TYP)] == 12){
+                        if (save[(sg_index + SG_ITM_TYP)] == 12){
                             var _temp9 = ii;
                             ii = (ii + 1);
                             _local36 = _temp9;
                             attribLines[_local36] = POPUP_TAB;
-                            if (SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)] <= 25){
+                            if (save[((sg_index + SG_ITM_ATTRIBVAL1) + i)] <= 25){
                                 var _temp10 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp10;
                                 attribLines[_local37] = (("+ "
-                                     + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)])
+                                     + save[((sg_index + SG_ITM_ATTRIBVAL1) + i)])
                                     + "%");
                             } else {
                                 var _temp11 = ii;
                                 ii = (ii + 1);
                                 _local37 = _temp11;
                                 attribLines[_local37] = ("+ "
-                                 + SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)]);
+                                 + save[((sg_index + SG_ITM_ATTRIBVAL1) + i)]);
                             };
                         } else {
                             var _temp12 = ii;
                             ii = (ii + 1);
                             _local36 = _temp12;
                             attribLines[_local36] =
-                                SG[((sgIndex + SG_ITM_ATTRIBVAL1) + i)];
+                                save[((sg_index + SG_ITM_ATTRIBVAL1) + i)];
                         };
                     };
                 };
@@ -28737,18 +28737,18 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                     compareFound = False;
                     iii = 0;
                     while (iii < 3) {
-                        if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1)
-                                + iii)]) == int(SG[((sgIndex
+                        if ((((((int(save[((compareIndex + SG_ITM_ATTRIBTYP1)
+                                + iii)]) == int(save[((sg_index
                                  + SG_ITM_ATTRIBTYP1) + i)])))
-                                and ((int(SG[((compareIndex
+                                and ((int(save[((compareIndex
                                      + SG_ITM_ATTRIBVAL1) + iii)]) > 0))))
-                                and ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1)
+                                and ((int(save[((sg_index + SG_ITM_ATTRIBVAL1)
                                      + i)]) > 0)))){
-                            compareVal = (int(SG[((sgIndex
+                            compareVal = (int(save[((sg_index
                                           + SG_ITM_ATTRIBVAL1) + i)])
-                                    - int(SG[((compareIndex +
+                                    - int(save[((compareIndex +
                                      SG_ITM_ATTRIBVAL1) + iii)]));
-                            if (int(SG[((compareIndex + SG_ITM_ATTRIBTYP1)
+                            if (int(save[((compareIndex + SG_ITM_ATTRIBTYP1)
                                 + iii)]) == 6){
                                 compareVal = (compareVal * 5);
                             };
@@ -28798,16 +28798,16 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                         var _temp21 = ii;
                         ii = (ii + 1);
                         _local39 = _temp21;
-                        attribLines[_local39] = str((SG[((sgIndex
+                        attribLines[_local39] = str((save[((sg_index
                             + SG_ITM_ATTRIBVAL1) + i)]
-                            * (((SG[((sgIndex + SG_ITM_ATTRIBTYP1) + i)]
+                            * (((save[((sg_index + SG_ITM_ATTRIBTYP1) + i)]
                                == 6)) ? 5 : 1)));
                         var _temp22 = ii;
                         ii = (ii + 1);
                         _local40 = _temp22;
                         attribLines[_local40] = FontFormat_Popup;
-                        attribSum = (attribSum + (SG[((sgIndex
-                             + SG_ITM_ATTRIBVAL1) + i)] * (((SG[((sgIndex
+                        attribSum = (attribSum + (save[((sg_index
+                             + SG_ITM_ATTRIBVAL1) + i)] * (((save[((sg_index
                              + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
                     };
                 };
@@ -28816,18 +28816,18 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                 _local36 = _temp23;
                 attribLines[_local36] = POPUP_END_LINE;
             };
-            if ((((((compareIndex > 0)) and ((int(SG[((compareIndex
+            if ((((((compareIndex > 0)) and ((int(save[((compareIndex
                 + SG_ITM_ATTRIBTYP1) + i)]) > 0))))
-                and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1) + i)])
+                and ((int(save[((compareIndex + SG_ITM_ATTRIBVAL1) + i)])
                      > 0)))){
                 lossFound = False;
                 iii = 0;
                 while (iii < 3) {
-                    if ((((((int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)])
-                        == int(SG[((sgIndex + SG_ITM_ATTRIBTYP1) + iii)])))
-                         and ((int(SG[((compareIndex + SG_ITM_ATTRIBVAL1)
+                    if ((((((int(save[((compareIndex + SG_ITM_ATTRIBTYP1) + i)])
+                        == int(save[((sg_index + SG_ITM_ATTRIBTYP1) + iii)])))
+                         and ((int(save[((compareIndex + SG_ITM_ATTRIBVAL1)
                               + i)]) > 0)))) and
-                            ((int(SG[((sgIndex + SG_ITM_ATTRIBVAL1)
+                            ((int(save[((sg_index + SG_ITM_ATTRIBVAL1)
                              + iii)]) > 0)))){
                         lossFound = True;
                         break;
@@ -28843,7 +28843,7 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                     ii = (ii + 1);
                     _local34 = _temp25;
                     attribLines[_local34] = texts[(TXT_ITEM_ATTRIB_CLASSES
-                       + int(SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]))];
+                       + int(save[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]))];
                     var _temp26 = ii;
                     ii = (ii + 1);
                     _local35 = _temp26;
@@ -28867,9 +28867,9 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                     var _temp31 = ii;
                     ii = (ii + 1);
                     _local40 = _temp31;
-                    attribLines[_local40] = str((SG[((compareIndex
+                    attribLines[_local40] = str((save[((compareIndex
                                                 + SG_ITM_ATTRIBVAL1) + i)]
-                                * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1)
+                                * (((save[((compareIndex + SG_ITM_ATTRIBTYP1)
                                    + i)] == 6)) ? 5 : 1)));
                     var _temp32 = ii;
                     ii = (ii + 1);
@@ -28879,28 +28879,28 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                     ii = (ii + 1);
                     var _local42 = _temp33;
                     attribLines[_local42] = POPUP_END_LINE;
-                    attribSum = (attribSum - (SG[((compareIndex
+                    attribSum = (attribSum - (save[((compareIndex
                                  + SG_ITM_ATTRIBVAL1) + i)]
-                        * (((SG[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]
+                        * (((save[((compareIndex + SG_ITM_ATTRIBTYP1) + i)]
                            == 6)) ? 5 : 1)));
                 };
             };
             i++;
         };
-        itmName = GetItemName(sgIndex, SG);
+        itmName = GetItemName(sg_index, save);
         itmQuote = "";
         quoteArray = list();
         if (itmName.find("|") > 0){
             itmQuote = itmName.split("|")[1];
             itmName = itmName.split("|")[0];
             quoteArray[0] = POPUP_BEGIN_LINE;
-            quoteArray[1] = ((SG[(sgIndex + SG_ITM_TYP)])==14)
+            quoteArray[1] = ((save[(sg_index + SG_ITM_TYP)])==14)
                 ? FontFormat_ItemEnchantment : FontFormat_EpicItemQuote;
             quoteArray[2] = itmQuote;
             quoteArray[3] = FontFormat_Popup;
             quoteArray[4] = POPUP_END_LINE;
         };
-        if (SG[(sgIndex + SG_ITM_TYP)] < 8){
+        if (save[(sg_index + SG_ITM_TYP)] < 8){
             if ((itm_class + 1) != ((towerMode)
                 ? (copyCatSel + 1) : savegame[SG_CLASS])){
                 quoteArray.append(POPUP_BEGIN_LINE);
@@ -28911,8 +28911,8 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                 quoteArray.append(POPUP_END_LINE);
             };
         };
-        if (SG[(sgIndex + SG_ITM_EXT_ENCHANT)] > 0){
-            if (SG[(sgIndex + SG_ITM_TYP)] == 14){
+        if (save[(sg_index + SG_ITM_EXT_ENCHANT)] > 0){
+            if (save[(sg_index + SG_ITM_TYP)] == 14){
                 itmName = texts[TXT_SCROLL_NAME].split("%1").join(itmName);
             } else {
                 quoteArray.append(POPUP_BEGIN_LINE);
@@ -28920,37 +28920,37 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                 quoteArray.append(texts[TXT_ENCHANT_HINT]);
                 quoteArray.append((POPUP_TAB + POPUP_TAB_ADD));
                 quoteArray.append(texts[((TXT_ITMNAME_14
-                 + int(SG[(sgIndex + SG_ITM_EXT_ENCHANT)])) - 1)]
+                 + int(save[(sg_index + SG_ITM_EXT_ENCHANT)])) - 1)]
                     .split("|")[0]);
                 quoteArray.append(FontFormat_Popup);
                 quoteArray.append(POPUP_END_LINE);
             };
             quoteArray.append(POPUP_BEGIN_LINE);
             quoteArray.append(FontFormat_ItemEnchantment);
-            quoteArray.append(texts[((TXT_ENCHANT_NAMES + int(SG[(sgIndex
+            quoteArray.append(texts[((TXT_ENCHANT_NAMES + int(save[(sg_index
                               + SG_ITM_EXT_ENCHANT)])) - 1)]);
             quoteArray.append((POPUP_TAB + POPUP_TAB_ADD));
-            quoteArray.append(texts[((TXT_ENCHANT_VALUES + int(SG[(sgIndex
+            quoteArray.append(texts[((TXT_ENCHANT_VALUES + int(save[(sg_index
                               + SG_ITM_EXT_ENCHANT)])) - 1)].split("%1")
-                    .join(str(SG[(sgIndex + SG_ITM_EXT_ENCHANT_POWER)])));
+                    .join(str(save[(sg_index + SG_ITM_EXT_ENCHANT_POWER)])));
             quoteArray.append(FontFormat_Popup);
             quoteArray.append(POPUP_END_LINE);
         };
-        if (int(SG[(sgIndex + SG_ITM_TYP)]) == 1){
+        if (int(save[(sg_index + SG_ITM_TYP)]) == 1){
             if (compareIndex > 0){
-                compareVal = (math.round(((Number(SG[(sgIndex
+                compareVal = (math.round(((Number(save[(sg_index
                     + SG['ITM']['SCHADEN_MIN'])])
-                    + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)])) / 2))
-                    - math.round(((Number(SG[(compareIndex
+                    + Number(save[(sg_index + SG_ITM_SCHADEN_MAX)])) / 2))
+                    - math.round(((Number(save[(compareIndex
                     + SG['ITM']['SCHADEN_MIN'])]) +
-                    Number(SG[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
+                    Number(save[(compareIndex + SG_ITM_SCHADEN_MAX)])) / 2)));
                 enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
                              texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD),
-                             ((SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + "-")
-                              + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]),
-                            (("(~" + str(math.round(((Number(SG[(sgIndex
+                             ((save[(sg_index + SG['ITM']['SCHADEN_MIN'])] + "-")
+                              + save[(sg_index + SG_ITM_SCHADEN_MAX)]),
+                            (("(~" + str(math.round(((Number(save[(sg_index
                              + SG['ITM']['SCHADEN_MIN'])])
-                            + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)]))
+                            + Number(save[(sg_index + SG_ITM_SCHADEN_MAX)]))
                             / 2)))) + ")"), (((compareVal == 0))
                             ? FontFormat_Popup : (((compareVal > 0))
                             ? FontFormat_PopupCompareBetter
@@ -28962,24 +28962,24 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
             } else {
                 enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
                              texts[TXT_SCHADEN], (POPUP_TAB + POPUP_TAB_ADD),
-                             ((SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])] + "-")
-                              + SG[(sgIndex + SG_ITM_SCHADEN_MAX)]),
-                            (("(~" + str(math.round(((Number(SG[(sgIndex
+                             ((save[(sg_index + SG['ITM']['SCHADEN_MIN'])] + "-")
+                              + save[(sg_index + SG_ITM_SCHADEN_MAX)]),
+                            (("(~" + str(math.round(((Number(save[(sg_index
                              + SG['ITM']['SCHADEN_MIN'])])
-                            + Number(SG[(sgIndex + SG_ITM_SCHADEN_MAX)]))
+                            + Number(save[(sg_index + SG_ITM_SCHADEN_MAX)]))
                             / 2)))) + ")"), POPUP_END_LINE,
                             attribLines, shopLines);
             };
         } else {
-            if (int(SG[(sgIndex + SG_ITM_TYP)]) == 2){
+            if (int(save[(sg_index + SG_ITM_TYP)]) == 2){
                 if (compareIndex > 0){
-                    compareVal = (int(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])])
-                                  - int(SG[(compareIndex
+                    compareVal = (int(save[(sg_index + SG['ITM']['SCHADEN_MIN'])])
+                                  - int(save[(compareIndex
                                         + SG['ITM']['SCHADEN_MIN'])]));
                     enable_popup(slot_id, itmName, quoteArray,
                                  POPUP_BEGIN_LINE, texts[TXT_BLOCKEN],
                                  (POPUP_TAB + POPUP_TAB_ADD),
-                                 (SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]
+                                 (save[(sg_index + SG['ITM']['SCHADEN_MIN'])]
                                   + " %"),
                                  (((compareVal == 0))
                                   ? FontFormat_Popup
@@ -28997,21 +28997,21 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                     enable_popup(slot_id, itmName, quoteArray,
                                  POPUP_BEGIN_LINE, texts[TXT_BLOCKEN],
                                  (POPUP_TAB + POPUP_TAB_ADD),
-                                 (SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]
+                                 (save[(sg_index + SG['ITM']['SCHADEN_MIN'])]
                                   + " %"), POPUP_END_LINE, attribLines,
                                 shopLines);
                 };
             } else {
-                if (int(SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])]) > 0){
+                if (int(save[(sg_index + SG['ITM']['SCHADEN_MIN'])]) > 0){
                     if (compareIndex > 0){
-                        compareVal = (int(SG[(sgIndex
+                        compareVal = (int(save[(sg_index
                                   + SG['ITM']['SCHADEN_MIN'])])
-                                - int(SG[(compareIndex
+                                - int(save[(compareIndex
                                       + SG['ITM']['SCHADEN_MIN'])]));
                         enable_popup(slot_id, itmName, quoteArray,
                                      POPUP_BEGIN_LINE, texts[TXT_RUESTUNG],
                                      (POPUP_TAB + POPUP_TAB_ADD),
-                                     SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])],
+                                     save[(sg_index + SG['ITM']['SCHADEN_MIN'])],
                                      (((compareVal == 0))
                                       ? FontFormat_Popup : (((compareVal > 0))
                                       ? FontFormat_PopupCompareBetter
@@ -29027,7 +29027,7 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
                         enable_popup(slot_id, itmName, quoteArray,
                                      POPUP_BEGIN_LINE, texts[TXT_RUESTUNG],
                                      (POPUP_TAB + POPUP_TAB_ADD),
-                                     SG[(sgIndex + SG['ITM']['SCHADEN_MIN'])],
+                                     save[(sg_index + SG['ITM']['SCHADEN_MIN'])],
                                      POPUP_END_LINE, attribLines, shopLines);
                     };
                 } else {
@@ -29043,14 +29043,14 @@ def ItemPopup(slot_id, sgIndex, SG=None, HideBackPack=False, NoPrices=False,
     pass
 
 
-def get_hl_index(inStr):
+def get_hl_index(in_str):
     '''
-    return (int(decode_chat(inStr, True)));
+    return (int(decode_chat(in_str, True)));
     '''
     pass
 
 
-def decode_chat(inStr, getHLMode=False, getGBMode=False):
+def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
     '''
     var namePart:String;
     var timePart:String;
@@ -29058,302 +29058,302 @@ def decode_chat(inStr, getHLMode=False, getGBMode=False):
     var authorStr:String;
     var dateStr:String;
     if (text_dir == "right"){
-        if (inStr.find("§") != -1){
-            namePart = inStr.split("§")[0];
+        if (in_str.find("§") != -1){
+            namePart = in_str.split("§")[0];
             if (namePart[-1: 1] == ":"){
                 namePart = namePart[0: (namePart.length - 1)]
             };
             timePart = namePart[0: namePart.find(" ")]
             namePart = namePart[(namePart.find(" ") + 1):]
-            inStr = ((((inStr.split("§")[1] + " §:")
+            in_str = ((((in_str.split("§")[1] + " §:")
                      + namePart) + " ") + timePart);
         };
     };
-    inStr = inStr.split("§").join(((getHLMode) ? "§" : ""));
-    if (((!((inStr.find("#?") == -1))) and ((inStr.find("##") == -1)))){
-        crestStr = inStr.split("#?")[1];
-        authorStr = inStr.split("#?")[0];
-        dateStr = inStr[0: 5]
+    in_str = in_str.split("§").join(((get_hl_mode) ? "§" : ""));
+    if (((!((in_str.find("#?") == -1))) and ((in_str.find("##") == -1)))){
+        crestStr = in_str.split("#?")[1];
+        authorStr = in_str.split("#?")[0];
+        dateStr = in_str[0: 5]
         authorStr = authorStr[6:]
         authorStr = authorStr[0: (authorStr.length - 3)]
-        inStr = ((dateStr + " ") + texts[TXT_CREST_SUGGESTION]
+        in_str = ((dateStr + " ") + texts[TXT_CREST_SUGGESTION]
                  .split("%1").join(authorStr));
-        if (!crestSuggestion[inStr]){
-            new_crest_suggested = inStr;
+        if (!crestSuggestion[in_str]){
+            new_crest_suggested = in_str;
         };
-        crestSuggestion[inStr] = crestStr;
+        crestSuggestion[in_str] = crestStr;
     };
-    inStr = inStr.split("#{").join("/");
-    inStr = inStr.split("#}").join(";");
-    inStr = inStr.split("##").join("#");
-    inStr = inStr.split("%u20AC").join("€");
-    if (inStr[0: 1] == "#"){
+    in_str = in_str.split("#{").join("/");
+    in_str = in_str.split("#}").join(";");
+    in_str = in_str.split("##").join("#");
+    in_str = in_str.split("%u20AC").join("€");
+    if (in_str[0: 1] == "#"){
         if (text_dir == "right"){
-            if (inStr[0: 4] == "#dg#"){
-                inStr = ((((((((texts[TXT_DONATE_GOLD_2] + " ")
-                         + str((Number(inStr.split("#")[3]) / 100))) + " ")
-                        + texts[TXT_DONATE_GOLD_1]) + " ") + inStr
+            if (in_str[0: 4] == "#dg#"){
+                in_str = ((((((((texts[TXT_DONATE_GOLD_2] + " ")
+                         + str((Number(in_str.split("#")[3]) / 100))) + " ")
+                        + texts[TXT_DONATE_GOLD_1]) + " ") + in_str
                         .split("#")[2].split(" ")[1]) + " ")
-                        + inStr.split("#")[2].split(" ")[0]);
+                        + in_str.split("#")[2].split(" ")[0]);
             } else {
-                if (inStr[0: 4] == "#dm#"){
-                    inStr = ((((((((texts[TXT_DONATE_MUSH_2] + " ")
-                             + inStr.split("#")[3]) + " ")
+                if (in_str[0: 4] == "#dm#"){
+                    in_str = ((((((((texts[TXT_DONATE_MUSH_2] + " ")
+                             + in_str.split("#")[3]) + " ")
                             + texts[TXT_DONATE_MUSH_1]) + " ")
-                            + inStr.split("#")[2].split(" ")[1]) + " ")
-                            + inStr.split("#")[2].split(" ")[0]);
+                            + in_str.split("#")[2].split(" ")[1]) + " ")
+                            + in_str.split("#")[2].split(" ")[0]);
             } else {
-                if (inStr[0: 4] == "#sr#"){
+                if (in_str[0: 4] == "#sr#"){
                     if (texts[TXT_SERVER_STARTED]){
-                        inStr = texts[TXT_SERVER_STARTED].split("%1")
-                        .join(time_str(int(inStr.split("#")[2])));
+                        in_str = texts[TXT_SERVER_STARTED].split("%1")
+                        .join(time_str(int(in_str.split("#")[2])));
                     } else {
-                        inStr = "Server restarted at %1".split("%1")
-                        .join(time_str(int(inStr.split("#")[2])));
+                        in_str = "Server restarted at %1".split("%1")
+                        .join(time_str(int(in_str.split("#")[2])));
                     };
             } else {
-                if (inStr[0: 4] == "#bd#"){
-                    if (int(inStr.split("#")[3]) == 0){
-                        inStr = texts[(TXT_CATAPULT + 7)];
+                if (in_str[0: 4] == "#bd#"){
+                    if (int(in_str.split("#")[3]) == 0){
+                        in_str = texts[(TXT_CATAPULT + 7)];
                     } else {
-                        inStr = ((((texts[TXT_BUILDING_1].split("%1")
+                        in_str = ((((texts[TXT_BUILDING_1].split("%1")
                                  .join(texts[((TXT_GILDE_GEBAEUDE_NAME1
-                                       + int(inStr.split("#")[3])) - 1)])
-                                + " ") + inStr.split("#")[2].split(" ")[1])
-                                + " ") + inStr.split("#")[2].split(" ")[0]);
+                                       + int(in_str.split("#")[3])) - 1)])
+                                + " ") + in_str.split("#")[2].split(" ")[1])
+                                + " ") + in_str.split("#")[2].split(" ")[0]);
                     };
             } else {
-                if (inStr[0: 4] == "#ra#"){
-                    inStr = ((((((((texts[(TXT_RANKMSG_6
-                             + int(inStr.split("#")[3]))] + " ")
-                            + inStr.split("#")[4]) + " ")
+                if (in_str[0: 4] == "#ra#"){
+                    in_str = ((((((((texts[(TXT_RANKMSG_6
+                             + int(in_str.split("#")[3]))] + " ")
+                            + in_str.split("#")[4]) + " ")
                             + texts[(TXT_RANKMSG_1
-                            + int(inStr.split("#")[3]))]) + " ")
-                            + inStr.split("#")[2].split(" ")[1]) + " ")
-                            + inStr.split("#")[2].split(" ")[0]);
+                            + int(in_str.split("#")[3]))]) + " ")
+                            + in_str.split("#")[2].split(" ")[1]) + " ")
+                            + in_str.split("#")[2].split(" ")[0]);
             } else {
-                if (inStr[0: 4] == "#in#"){
-                    inStr = ((((texts[TXT_GUILD_JOINED] + " ")
-                        + inStr.split("#")[2].split(" ")[1]) + " ")
-                        + inStr.split("#")[2].split(" ")[0]);
+                if (in_str[0: 4] == "#in#"){
+                    in_str = ((((texts[TXT_GUILD_JOINED] + " ")
+                        + in_str.split("#")[2].split(" ")[1]) + " ")
+                        + in_str.split("#")[2].split(" ")[0]);
             } else {
-                if (inStr[0: 4] == "#ou#"){
-                    inStr = ((((texts[TXT_GUILD_QUIT] + " ") + inStr
+                if (in_str[0: 4] == "#ou#"){
+                    in_str = ((((texts[TXT_GUILD_QUIT] + " ") + in_str
                              .split("#")[2].split(" ")[1]) + " ")
-                            + inStr.split("#")[2].split(" ")[0]);
+                            + in_str.split("#")[2].split(" ")[0]);
             } else {
-                if (inStr[0: 4] == "#rv#"){
-                    inStr = texts[TXT_REVOLT_CHAT_MSG].split("%1")
-                        .join(inStr.split("#")[2]).split("%2")
-                        .join(inStr.split("#")[3]).split("%3")
-                        .join(inStr.split("#")[4]);
+                if (in_str[0: 4] == "#rv#"){
+                    in_str = texts[TXT_REVOLT_CHAT_MSG].split("%1")
+                        .join(in_str.split("#")[2]).split("%2")
+                        .join(in_str.split("#")[3]).split("%3")
+                        .join(in_str.split("#")[4]);
             } else {
-                if (inStr[0: 4] == "#a+#"){
-                    inStr = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1")
-                        .join(((inStr.split("#")[2].split(" ")[1] + " ")
-                          + inStr.split("#")[2].split(" ")[0])).split("%2")
-                            .join(inStr.split("#")[3]);
-                    if (getGBMode){
+                if (in_str[0: 4] == "#a+#"){
+                    in_str = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1")
+                        .join(((in_str.split("#")[2].split(" ")[1] + " ")
+                          + in_str.split("#")[2].split(" ")[0])).split("%2")
+                            .join(in_str.split("#")[3]);
+                    if (get_gb_mode){
                         return ("1");
                     };
             } else {
-                if (inStr[0: 4] == "#a-#"){
-                    inStr = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
-                        .join(((inStr.split("#")[2].split(" ")[1] + " ")
-                              + inStr.split("#")[2].split(" ")[0])).split("%2")
-                            .join(inStr.split("#")[3]);
-                    if (getGBMode){
+                if (in_str[0: 4] == "#a-#"){
+                    in_str = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
+                        .join(((in_str.split("#")[2].split(" ")[1] + " ")
+                              + in_str.split("#")[2].split(" ")[0])).split("%2")
+                            .join(in_str.split("#")[3]);
+                    if (get_gb_mode){
                         return ("1");
                     };
             } else {
-                if (inStr[0: 4] == "#d+#"){
-                    inStr = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1")
-                        .join(((inStr.split("#")[2].split(" ")[1] + " ")
-                          + inStr.split("#")[2].split(" ")[0])).split("%2")
-                            .join(inStr.split("#")[3]);
-                    if (getGBMode){
+                if (in_str[0: 4] == "#d+#"){
+                    in_str = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1")
+                        .join(((in_str.split("#")[2].split(" ")[1] + " ")
+                          + in_str.split("#")[2].split(" ")[0])).split("%2")
+                            .join(in_str.split("#")[3]);
+                    if (get_gb_mode){
                         return ("1");
                     };
             } else {
-                if (inStr[0: 4] == "#d-#"){
-                    inStr = texts[TXT_GUILD_DEFENSE_FAIL]
-                        .split("%1").join(((inStr.split("#")[2].split(" ")[1]
-                          + " ") + inStr.split("#")[2].split(" ")[0]))
-                            .split("%2").join(inStr.split("#")[3]);
-                    if (getGBMode){
+                if (in_str[0: 4] == "#d-#"){
+                    in_str = texts[TXT_GUILD_DEFENSE_FAIL]
+                        .split("%1").join(((in_str.split("#")[2].split(" ")[1]
+                          + " ") + in_str.split("#")[2].split(" ")[0]))
+                            .split("%2").join(in_str.split("#")[3]);
+                    if (get_gb_mode){
                         return ("1");
                     };
             } else {
-                if (inStr[0: 4] == "#r+#"){
-                    inStr = texts[TXT_GUILD_RAID_SUCCESS]
-                        .split("%1").join(((("(50/" + inStr.split("#")[2])
+                if (in_str[0: 4] == "#r+#"){
+                    in_str = texts[TXT_GUILD_RAID_SUCCESS]
+                        .split("%1").join(((("(50/" + in_str.split("#")[2])
                           + ") ") + texts[((TXT_DUNGEON_NAMES
-                          + int(inStr.split("#")[2])) - 1)]));
-                    if (getGBMode){
+                          + int(in_str.split("#")[2])) - 1)]));
+                    if (get_gb_mode){
                         return ("1");
                     };
             } else {
-                if (inStr[0: 4] == "#r-#"){
-                    inStr = texts[TXT_GUILD_RAID_FAIL].split("%1")
-                        .join(((("(50/" + inStr.split("#")[2]) + ") ")
+                if (in_str[0: 4] == "#r-#"){
+                    in_str = texts[TXT_GUILD_RAID_FAIL].split("%1")
+                        .join(((("(50/" + in_str.split("#")[2]) + ") ")
                               + texts[((TXT_DUNGEON_NAMES
-                                       + int(inStr.split("#")[2])) - 1)]));
-                    if (getGBMode){
+                                       + int(in_str.split("#")[2])) - 1)]));
+                    if (get_gb_mode){
                         return ("1");
                     };
             } else {
-                if (inStr[0: 4] == "#lu#"){
-                    inStr = texts[TXT_GUILD_LEVEL_UP].split("%1")
-                        .join(inStr.split("#")[2]).split("%2")
-                        .join(inStr.split("#")[3]);
+                if (in_str[0: 4] == "#lu#"){
+                    in_str = texts[TXT_GUILD_LEVEL_UP].split("%1")
+                        .join(in_str.split("#")[2]).split("%2")
+                        .join(in_str.split("#")[3]);
             } else {
-                if (inStr[0: 4] == "#du#"){
-                    inStr = texts[TXT_GUILD_DUNGEON_COMPLETED].split("%1")
-                        .join(inStr.split("#")[2]).split("%2")
-                        .join(texts[(((inStr.split("#")[3] == 100)) ? 9538
-                              : ((TXT_DUNGEON_NAME + (1 * inStr.split("#")[3]))
+                if (in_str[0: 4] == "#du#"){
+                    in_str = texts[TXT_GUILD_DUNGEON_COMPLETED].split("%1")
+                        .join(in_str.split("#")[2]).split("%2")
+                        .join(texts[(((in_str.split("#")[3] == 100)) ? 9538
+                              : ((TXT_DUNGEON_NAME + (1 * in_str.split("#")[3]))
                                  - 1))].split("|")[0]).split("%3")
-                                    .join(inStr.split("#")[4]);
+                                    .join(in_str.split("#")[4]);
             } else {
-                if (inStr[0: 4] == "#ep#"){
-                    inStr = texts[TXT_GUILD_EPICITEM].split("%1")
-                        .join(inStr.split("#")[2]).split("%2")
-                        .join(GetItemName(0, inStr.split("#")[3].split("/")));
+                if (in_str[0: 4] == "#ep#"){
+                    in_str = texts[TXT_GUILD_EPICITEM].split("%1")
+                        .join(in_str.split("#")[2]).split("%2")
+                        .join(GetItemName(0, in_str.split("#")[3].split("/")));
                 };
         } else {
-            if (inStr[0: 4] == "#dg#"){
-                inStr = ((((((inStr.split("#")[2] + " ")
+            if (in_str[0: 4] == "#dg#"){
+                in_str = ((((((in_str.split("#")[2] + " ")
                          + texts[TXT_DONATE_GOLD_1]) + " ")
-                        + str((Number(inStr.split("#")[3]) / 100))) + " ")
+                        + str((Number(in_str.split("#")[3]) / 100))) + " ")
                         + texts[TXT_DONATE_GOLD_2]);
         } else {
-            if (inStr[0: 4] == "#dm#"){
-                inStr = ((((((inStr.split("#")[2] + " ")
+            if (in_str[0: 4] == "#dm#"){
+                in_str = ((((((in_str.split("#")[2] + " ")
                          + texts[TXT_DONATE_MUSH_1]) + " ")
-                            + inStr.split("#")[3]) + " ")
+                            + in_str.split("#")[3]) + " ")
                             + texts[TXT_DONATE_MUSH_2]);
         } else {
-            if (inStr[0: 4] == "#sr#"){
+            if (in_str[0: 4] == "#sr#"){
                 if (texts[TXT_SERVER_STARTED]){
-                    inStr = texts[TXT_SERVER_STARTED].split("%1")
-                        .join(time_str(int(inStr.split("#")[2])));
+                    in_str = texts[TXT_SERVER_STARTED].split("%1")
+                        .join(time_str(int(in_str.split("#")[2])));
                 } else {
-                    inStr = "Server restarted at %1".split("%1")
-                        .join(time_str(int(inStr.split("#")[2])));
+                    in_str = "Server restarted at %1".split("%1")
+                        .join(time_str(int(in_str.split("#")[2])));
                 };
         } else {
-            if (inStr[0: 4] == "#bd#"){
-                if (int(inStr.split("#")[3]) == 0){
-                    inStr = ((inStr.split("#")[2] + " ")
+            if (in_str[0: 4] == "#bd#"){
+                if (int(in_str.split("#")[3]) == 0){
+                    in_str = ((in_str.split("#")[2] + " ")
                              + texts[(TXT_CATAPULT + 7)]);
                 } else {
-                    inStr = ((inStr.split("#")[2] + " ")
+                    in_str = ((in_str.split("#")[2] + " ")
                              + texts[TXT_BUILDING_1].split("%1")
                              .join(texts[((TXT_GILDE_GEBAEUDE_NAME1
-                                   + int(inStr.split("#")[3])) - 1)]));
+                                   + int(in_str.split("#")[3])) - 1)]));
                 };
         } else {
-            if (inStr[0: 4] == "#ra#"){
-                inStr = ((((((inStr.split("#")[2] + " ") + texts[
-                         (TXT_RANKMSG_1 + int(inStr.split("#")[3]))]) + " ")
-                            + inStr.split("#")[4]) + " ")
-                        + texts[(TXT_RANKMSG_6 + int(inStr.split("#")[3]))]);
+            if (in_str[0: 4] == "#ra#"){
+                in_str = ((((((in_str.split("#")[2] + " ") + texts[
+                         (TXT_RANKMSG_1 + int(in_str.split("#")[3]))]) + " ")
+                            + in_str.split("#")[4]) + " ")
+                        + texts[(TXT_RANKMSG_6 + int(in_str.split("#")[3]))]);
         } else {
-            if (inStr[0: 4] == "#in#"){
-                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_JOINED])
+            if (in_str[0: 4] == "#in#"){
+                in_str = ((in_str.split("#")[2] + " ") + texts[TXT_GUILD_JOINED])
         } else {
-            if (inStr[0: 4] == "#ou#"){
-                inStr = ((inStr.split("#")[2] + " ") + texts[TXT_GUILD_QUIT]);
+            if (in_str[0: 4] == "#ou#"){
+                in_str = ((in_str.split("#")[2] + " ") + texts[TXT_GUILD_QUIT]);
         } else {
-            if (inStr[0: 4] == "#rv#"){
-                inStr = texts[TXT_REVOLT_CHAT_MSG].split("%1")
-                    .join(inStr.split("#")[2]).split("%2")
-                    .join(inStr.split("#")[3]).split("%3")
-                    .join(inStr.split("#")[4]);
+            if (in_str[0: 4] == "#rv#"){
+                in_str = texts[TXT_REVOLT_CHAT_MSG].split("%1")
+                    .join(in_str.split("#")[2]).split("%2")
+                    .join(in_str.split("#")[3]).split("%3")
+                    .join(in_str.split("#")[4]);
         } else {
-            if (inStr[0: 4] == "#a+#"){
-                inStr = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1")
-                    .join(inStr.split("#")[2]).split("%2")
-                    .join(inStr.split("#")[3]);
-                if (getGBMode){
+            if (in_str[0: 4] == "#a+#"){
+                in_str = texts[TXT_GUILD_ATTACK_SUCCESS].split("%1")
+                    .join(in_str.split("#")[2]).split("%2")
+                    .join(in_str.split("#")[3]);
+                if (get_gb_mode){
                     return ("1");
                 };
         } else {
-            if (inStr[0: 4] == "#a-#"){
-                inStr = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
-                    .join(inStr.split("#")[2]).split("%2")
-                    .join(inStr.split("#")[3]);
-                if (getGBMode){
+            if (in_str[0: 4] == "#a-#"){
+                in_str = texts[TXT_GUILD_ATTACK_FAIL].split("%1")
+                    .join(in_str.split("#")[2]).split("%2")
+                    .join(in_str.split("#")[3]);
+                if (get_gb_mode){
                     return ("1");
                 };
         } else {
-            if (inStr[0: 4] == "#d+#"){
-                inStr = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1")
-                    .join(inStr.split("#")[2]).split("%2")
-                    .join(inStr.split("#")[3]);
-                if (getGBMode){
+            if (in_str[0: 4] == "#d+#"){
+                in_str = texts[TXT_GUILD_DEFENSE_SUCCESS].split("%1")
+                    .join(in_str.split("#")[2]).split("%2")
+                    .join(in_str.split("#")[3]);
+                if (get_gb_mode){
                     return ("1");
                 };
         } else {
-            if (inStr[0: 4] == "#d-#"){
-                inStr = texts[TXT_GUILD_DEFENSE_FAIL].split("%1")
-                    .join(inStr.split("#")[2]).split("%2")
-                    .join(inStr.split("#")[3]);
-                if (getGBMode){
+            if (in_str[0: 4] == "#d-#"){
+                in_str = texts[TXT_GUILD_DEFENSE_FAIL].split("%1")
+                    .join(in_str.split("#")[2]).split("%2")
+                    .join(in_str.split("#")[3]);
+                if (get_gb_mode){
                     return ("1");
                 };
         } else {
-            if (inStr[0: 4] == "#r+#"){
-                inStr = texts[TXT_GUILD_RAID_SUCCESS].split("%1")
-                    .join((((texts[((TXT_DUNGEON_NAMES + int(inStr
-                          .split("#")[2])) - 1)] + " (") + inStr
+            if (in_str[0: 4] == "#r+#"){
+                in_str = texts[TXT_GUILD_RAID_SUCCESS].split("%1")
+                    .join((((texts[((TXT_DUNGEON_NAMES + int(in_str
+                          .split("#")[2])) - 1)] + " (") + in_str
                             .split("#")[2]) + "/50)"));
-                if (getGBMode){
+                if (get_gb_mode){
                     return ("1");
                 };
         } else {
-            if (inStr[0:4] == "#r-#"){
-                inStr = texts[TXT_GUILD_RAID_FAIL]
+            if (in_str[0:4] == "#r-#"){
+                in_str = texts[TXT_GUILD_RAID_FAIL]
                     .split("%1").join((((texts[
-                        ((TXT_DUNGEON_NAMES + int(inStr.split("#")[2])) - 1)]
-                        + " (") + inStr.split("#")[2]) + "/50)"));
-                if (getGBMode){
+                        ((TXT_DUNGEON_NAMES + int(in_str.split("#")[2])) - 1)]
+                        + " (") + in_str.split("#")[2]) + "/50)"));
+                if (get_gb_mode){
                     return ("1");
                 };
         } else {
-            if (inStr[0:4] == "#lu#"){
-                inStr = texts[TXT_GUILD_LEVEL_UP].split("%1")
-                    .join(inStr.split("#")[2])
-                    .split("%2").join(inStr.split("#")[3]);
+            if (in_str[0:4] == "#lu#"){
+                in_str = texts[TXT_GUILD_LEVEL_UP].split("%1")
+                    .join(in_str.split("#")[2])
+                    .split("%2").join(in_str.split("#")[3]);
         } else {
-            if (inStr[0:4] == "#du#"){
-                inStr = texts[TXT_GUILD_DUNGEON_COMPLETED]
-                    .split("%1").join(inStr.split("#")[2])
-                    .split("%2").join(texts[(((inStr.split("#")[3] == 100))
-                        ? 9538 : (TXT_DUNGEON_NAME + (1 * inStr.split("#")[3]))
+            if (in_str[0:4] == "#du#"){
+                in_str = texts[TXT_GUILD_DUNGEON_COMPLETED]
+                    .split("%1").join(in_str.split("#")[2])
+                    .split("%2").join(texts[(((in_str.split("#")[3] == 100))
+                        ? 9538 : (TXT_DUNGEON_NAME + (1 * in_str.split("#")[3]))
                         - 1)].split("|")[0])
-                        .split("%3").join(inStr.split("#")[4]);
+                        .split("%3").join(in_str.split("#")[4]);
         } else {
-            if (inStr[0:4] == "#ep#"){
-                inStr = texts[TXT_GUILD_EPICITEM]
-                    .split("%1").join(inStr.split("#")[2])
+            if (in_str[0:4] == "#ep#"){
+                in_str = texts[TXT_GUILD_EPICITEM]
+                    .split("%1").join(in_str.split("#")[2])
                     .split("%2").join(
-                          GetItemName(0, inStr.split("#")[3].split("/")));
+                          GetItemName(0, in_str.split("#")[3].split("/")));
             };
         if (on_stage(LBL_GILDE_TITEL)){
             send_action(ACT_SCREEN_GILDEN);
         };
-        if (getGBMode){
+        if (get_gb_mode){
             return ("0");
         };
-        if (getHLMode){
-            return (str(inStr.length));
+        if (get_hl_mode){
+            return (str(in_str.length));
         };
     };
-    if (getHLMode){
-        return (str(inStr.find("§")));
+    if (get_hl_mode){
+        return (str(in_str.find("§")));
     };
-    return (inStr);
+    return (in_str);
     '''
     pass
 
@@ -29428,7 +29428,8 @@ def chat_line(line, is_error=False, hl_index=-1, is_whisper=False):
             };
             if (is_whisper){
                 if (text_dir == "right"){
-                    setTextFormat(FontFormat_HighlightWhisper, hl_index, length)
+                    setTextFormat(FontFormat_HighlightWhisper,
+                                  hl_index, length)
                 } else {
                     setTextFormat(FontFormat_HighlightWhisper, 0, hl_index);
                 };
@@ -29545,14 +29546,14 @@ def waiting_time(target_time):
     pass
 
 
-def waiting_progress(startTime, target_time):
+def waiting_progress(start_time, target_time):
     '''
     var tmpTime:Date;
     var tmpTime2:Date;
     tmpTime = new Date();
     tmpTime2 = new Date();
     tmpTime.setTime(((target_time * 1000) - ((1000 * 60) * 60)));
-    tmpTime2.setTime(((startTime * 1000) - ((1000 * 60) * 60)));
+    tmpTime2.setTime(((start_time * 1000) - ((1000 * 60) * 60)));
     return (((game_time.getTime() - tmpTime2.getTime())
             / (tmpTime.getTime() - tmpTime2.getTime())));
     '''
