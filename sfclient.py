@@ -916,11 +916,11 @@ def init_vars():
         texts.append("")
 
     # setup image loading timeout event
-    global whendo_loaded_fn, whendo_loaded_active, whendo_loaded_timeout
-    whendo_loaded_fn = list()
-    whendo_loaded_active = False
-    whendo_loaded_timeout = Timer(1000 * image_timeout, 1)
-    whendo_loaded_timeout.add_event_listener(
+    global when_loaded_fn, when_loaded_active, when_loaded_timeout
+    when_loaded_fn = list()
+    when_loaded_active = False
+    when_loaded_timeout = Timer(1000 * image_timeout, 1)
+    when_loaded_timeout.add_event_listener(
         TimerEvent.TIMER,
         whendo_loaded_timeout_event
     )
@@ -15054,9 +15054,9 @@ def load_language_file():
     loader = URLLoader()
     loader.data_format = URLLoaderdata_format.TEXT
     loader.add_event_listener(Event.COMPLETE, language_file_loaded)
-    loader.add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
+    loader.add_event_listener(IOErrorEvent.IO_ERROR, language_file_error)
     loader.add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
-                              LanguageFileError)
+                              language_file_error)
     if lang_code == "ar":
         text_dir = "right"
 
