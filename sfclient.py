@@ -638,6 +638,10 @@ def init_vars():
     global img_url, img_url_index
     img_url = list()
     img_url_index = 0
+
+    # TODO: remove this when configuration loading works
+    img_url.append('')
+
     # imprint_url = ""
     # indexInGuild = 0
     # indexInHall = 0
@@ -15136,7 +15140,7 @@ def configuration_filedo_loaded(evt):
                             break
 
                         if case(CFG['URL']):
-                            img_url[len(img_url)] = tmp_str
+                            img_url.append(tmp_str)
                             break
 
                         if case(CFG['SND_URL']):
