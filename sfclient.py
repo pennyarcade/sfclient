@@ -784,7 +784,10 @@ def init_vars():
     # SelectedQuest = 1
     # selecterCrestElement = -1
     # sendLock = False
-    # server = "localhost"
+
+    global server
+    server = "localhost"
+
     # server_id = 0
     # server_time = new Date()
     # session_id = ""
