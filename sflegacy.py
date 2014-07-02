@@ -179,7 +179,7 @@ class ExternalInterface(object):
         pass
 
 
-class Security(object):
+class SecurityHandler(object):
     '''
         obsolete with cli?
     '''

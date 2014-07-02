@@ -37,6 +37,7 @@ texts = dict()
 
 # TODO: should be obsolete
 whendo_loaded_fn = list()
+Security = SecurityHandler()
 
 
 class RequestFailedException(Exception):
