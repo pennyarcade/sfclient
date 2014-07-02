@@ -31,6 +31,8 @@ class URLLoader(object):
     '''
         obsolete with cli?
     '''
+    data_format = None
+
     def __exit__(self, *args):
         '''
             support with statement
@@ -40,6 +42,18 @@ class URLLoader(object):
     def __enter__(self, *args):
         '''
             support with statement
+        '''
+        pass
+
+    def add_event_listener(self, *args):
+        '''
+            obsolete
+        '''
+        pass
+
+    def load(self, *args):
+        '''
+            obsolete
         '''
         pass
 
