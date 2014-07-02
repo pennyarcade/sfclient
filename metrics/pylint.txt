@@ -105,8 +105,6 @@ W:903, 8: Unused variable 'buffed_req' (unused-variable)
 W:934, 4: Unused variable 'tv_status_dest' (unused-variable)
 W:937, 4: Unused variable 'tv_return_value' (unused-variable)
 W:457, 4: Unused variable 'defaultface' (unused-variable)
-E:976, 4: Undefined variable 'whendo_loaded' (undefined-variable)
-E:976,18: Undefined variable 'dodo_load_language_file' (undefined-variable)
 W:974, 4: Unused variable 'serverconfig' (unused-variable)
 E:1117, 8: Using variable 'slm_count' before assignment (used-before-assignment)
 E:1117,29: Undefined variable 'ststep' (undefined-variable)
@@ -1536,7 +1534,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |791    |NC       |NC         |
+|error      |789    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1560,7 +1558,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |769         |
+|undefined-variable           |767         |
 +-----------------------------+------------+
 |unused-variable              |269         |
 +-----------------------------+------------+
@@ -1613,7 +1611,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.25/10
+Your code has been rated at -2.23/10
 
 Statistics by type
 ------------------
