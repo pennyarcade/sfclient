@@ -974,6 +974,7 @@ def configure(session):
 
         @oldname Start
     '''
+    global serverconfig
     serverconfig = session.load_configuration_file()
 
     when_loaded(do_load_language_file)
@@ -2296,9 +2297,9 @@ def request_tv():
 # -----------------------------------------------------------------------------
 # Tower stuff
 
-'''
 
-def TowerBtnHandler(evt:Event){
+def TowerBtnHandler(evt):
+    '''
     var i;
     Switch (get_actor_id(evt.target)){
         if case(PREV_COPYCAT:
@@ -2319,14 +2320,20 @@ def TowerBtnHandler(evt:Event){
             ShowMainQuestScreen(100, (399 + tower_level));
             break;
     };
-}
-
-def TowerScrollGrab(evt:MouseEvent){
+    '''
+    pass
+  
+    
+def TowerScrollGrab(evt):
+    '''
     towerScrollGrabPos = evt.localY;
     towerScrollSpeed = 0;
-}
+    '''
+    pass
 
-def TowerScrollmove(evt:MouseEvent){
+    
+def TowerScrollmove(evt):
+    '''
     if (towerScrollGrabPos != -1){
         towerScrollSpeed = (evt.localY - towerScrollGrabPos);
         towerScroll = (towerScroll + (towerScrollSpeed / 375));
@@ -2334,35 +2341,50 @@ def TowerScrollmove(evt:MouseEvent){
         towerScrollTimer.start();
         towerScrollGrabPos = evt.localY;
     };
-}
+    '''
+    pass
 
-def TowerScrollRelease(evt:MouseEvent){
+    
+def TowerScrollRelease(evt):
+    '''
     if (towerScrollGrabPos != -1){
         towerScrollDest = (towerScrollDest + (towerScrollSpeed / 40));
         towerScrollTimer.start();
         towerScrollGrabPos = -1;
     };
-}
+    '''
+    pass
 
-def TowerScrollOut(evt:MouseEvent){
+
+def TowerScrollOut(evt):
+    '''
     if (towerScrollGrabPos != -1){
     };
-}
+    '''
+    pass
 
-def TowerScrollCurrent(evt:MouseEvent){
+    
+def TowerScrollCurrent(evt):
+    '''
     towerScrollDest = (towerSG[TSG_TOWER_LEVEL] + 1);
     towerScrollTimer.start();
     towerScrollGrabPos = -1;
-}
+    '''
+    pass
 
-def TowerScrollWheel(evt:MouseEvent){
+
+def TowerScrollWheel(evt):
+    '''
     towerScrollSpeed = (evt.delta * 10);
     towerScroll = (towerScroll + (towerScrollSpeed / 375));
     towerScrollDest = towerScroll;
     towerScrollTimer.start();
-}
+    '''
+    pass
 
-def TowerKeyEvent(evt:KeyboardEvent){
+
+def TowerKeyEvent(evt):
+    '''
     var evt:* = evt;
     if (on_stage(TOWER_SCROLLAREA)){
         if (evt.keyCode == Keyboard.ENTER){
@@ -2386,9 +2408,12 @@ def TowerKeyEvent(evt:KeyboardEvent){
             remove_event_listener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
         };
     };
-}
+    '''
+    pass
 
-def TowerScrollSetFocus(evt:Event){
+    
+def TowerScrollSetFocus(evt):
+    '''
     var evt:* = evt;
     if (on_stage(TOWER_SCROLLAREA)){
         stage.focus = actor[TOWER_SCROLLAREA];
@@ -2399,9 +2424,12 @@ def TowerScrollSetFocus(evt:Event){
             remove_event_listener(FocusEvent.FOCUS_OUT, TowerScrollSetFocus);
         };
     };
-}
+    '''
+    pass
 
-def TowerTimerFn(evt:Event=None){
+    
+def TowerTimerFn(evt=None):
+    '''
     var i;
     var towerScrollMax = "";
     var towerScrollLvl:Array;
@@ -2468,15 +2496,16 @@ def TowerTimerFn(evt:Event=None){
         actor[(TOWER_FACE + i)].y = (towerScrollLvl[(2 - i)] + 277);
         i++;
     };
-}
+    '''
+    pass
 
-'''
 
 # -----------------------------------------------------------------------------
 # show functions
 
-'''
-DoShowScreenAlbum = function (){
+
+def DoShowScreenAlbum():
+    '''
     var i;
     i = 0;
     while (i < 4) {
@@ -2486,9 +2515,12 @@ DoShowScreenAlbum = function (){
     Showalbum_content();
     remove_all();
     add(SCREEN_ALBUM);
-};
+    '''
+    pass
 
-def show_screen_album(){
+    
+def show_screen_album():
+    '''
     var i:* = 0;
     var DoShowScreenAlbum:* = None;
     load(FIGHT_CHAR_BORDER);
@@ -2499,9 +2531,12 @@ def show_screen_album(){
         i = (i + 1);
     };
     when_loaded(DoShowScreenAlbum);
-}
+    '''
+    pass
 
-def show_tower_screen(towerData:Array){
+    
+def show_tower_screen(towerData):
+    '''
     var thisCpc:* = 0;
     var DoShowTowerScreen:* = None;
     var thisSlot:* = 0;
@@ -2570,9 +2605,12 @@ def show_tower_screen(towerData:Array){
         load(((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399));
     };
     when_loaded(DoShowTowerScreen);
-}
+    '''
+    pass
 
-def show_demo_screen(){
+
+def show_demo_screen():
+    '''
     var DoShowDemoScreen:* = None;
     DoShowDemoScreen = function (){
         remove_all();
@@ -2586,9 +2624,12 @@ def show_demo_screen(){
     };
     load(SCREEN_DEMO);
     when_loaded(DoShowDemoScreen);
-}
+    '''
+    pass
 
-def show_option_screen(evt:Event=None){
+    
+def show_option_screen(evt=None):
+    '''
     var DoShowOptionScreen:* = None;
     var evt:* = evt;
     DoShowOptionScreen = function (){
@@ -2676,9 +2717,12 @@ def show_option_screen(evt:Event=None){
     load(PASSWORD_SMILEY_NEUTRAL);
     load(PASSWORD_SMILEY_HAPPY);
     when_loaded(DoShowOptionScreen);
-}
+    '''
+    pass
 
-DoSkipFight = function (evt:MouseEvent=None, fightDone=False){
+
+def DoSkipFight (evt=None, fightDone=False):
+    '''
     var quest_id:* = 0;
     var PilzBekommen:* = False;
     var i:* = 0;
@@ -3294,9 +3338,12 @@ DoSkipFight = function (evt:MouseEvent=None, fightDone=False){
         x = (SCREEN_TITLE_X - int((width / 2)));
     };
     arabize(LBL_FIGHT_SUMMARY);
-};
+    '''
+    pass
 
-var SetLifeBars:* = function (whichOne=0){
+
+def SetLifeBars(whichOne=0):
+    '''
     var barWidth:* = 0;
     var whichOne = whichOne;
     if ((((whichOne == 0)) or ((whichOne == 1)))){
@@ -3341,9 +3388,12 @@ var SetLifeBars:* = function (whichOne=0){
             scaleY = 1;
         };
     };
-};
+    '''
+    pass
 
-DoStrikeEvent = function (evt:TimerEvent){
+
+def DoStrikeEvent(evt):
+    '''
     if (((!(on_stage(FIGHT_BOX1))) or (strikeBreak))){
         DoStrikeTimer.stop();
         DoStrikeTimer.remove_event_listener(
@@ -3387,9 +3437,11 @@ DoStrikeEvent = function (evt:TimerEvent){
     if (!oppStrike){
         fightRound++;
     };
-};
+    '''
+    pass
 
-var WeaponStrike:* = function (opponent=False){
+def WeaponStrike(opponent=False):
+    '''
     var StrikeAniTimer:* = None;
     var StrikeAlpha:* = NaN;
     var BulletAlpha:* = NaN;
@@ -4247,9 +4299,12 @@ var WeaponStrike:* = function (opponent=False){
         TimerEvent.TIMER, StrikeAniTimerEvent);
     StrikeAniTimer.start();
     inStrikeAni = True;
-};
+    '''
+    pass
 
-DoShowFightScreen = function (evt:Event=None){
+
+def DoShowFightScreen(evt=None):
+    '''
     var i:* = 0;
     var DoStrikeTimer:* = None;
     var DoSkipFight:* = None;
@@ -4546,29 +4601,31 @@ DoShowFightScreen = function (evt:Event=None){
     var inStrikeAni:* = False;
     DoStrikeTimer.add_event_listener(TimerEvent.TIMER, DoStrikeEvent);
     DoStrikeTimer.start();
-};
+    '''
+    pass
 
 
 def show_fight_screen(
-    fighterData:Array,
-    fightData:Array,
-    getPilz:Boolean,
-    faceData:Array,
-    isPvP:Boolean,
-    weaponData:Array,
+    fighterData,
+    fightData,
+    getPilz,
+    faceData,
+    isPvP,
+    weaponData,
     HonorGain,
     GoldGain,
-    isMQ:Boolean,
+    isMQ
     isReplay=False,
     BackPackSlot=-1,
-    GuildBattleData:Array=None,
+    GuildBattleData=None,
     lastFight=False,
     guildFightExp=0,
     guildFightHonor=0,
-    ownGuild:String="", o
-    ppGuild:String="",
+    ownGuild="",
+    ppGuild="",
     raidLevel=0
-){
+):
+    '''
     var is_guildBattle:* = False;
     var charWeapon:* = 0;
     var oppWeapon:* = 0;
@@ -4966,9 +5023,12 @@ def show_fight_screen(
         };
     };
     when_loaded(DoShowFightScreen);
-}
+    '''
+    pass
 
-def show_email_nag_screen(valMode=-1){
+
+def show_email_nag_screen(valMode=-1):
+    '''
     var doShowEmailNagScreen:* = None;
     var valMode = valMode;
     doShowEmailNagScreen = function (){
@@ -5006,9 +5066,12 @@ def show_email_nag_screen(valMode=-1){
     };
     load(SCREEN_EMAIL_NAG);
     when_loaded(doShowEmailNagScreen);
-}
+    '''
+    pass
 
-def show_disconnect_screen(){
+
+def show_disconnect_screen():
+    '''
     var ReconnectTimer:* = None;
     var TryReconnect:* = None;
     TryReconnect = function (evt:TimerEvent){
@@ -5031,9 +5094,12 @@ def show_disconnect_screen(){
     ReconnectTimer = new Timer(param_reconnect);
     ReconnectTimer.add_event_listener(TimerEvent.TIMER, TryReconnect);
     ReconnectTimer.start();
-}
+    '''
+    pass
 
-def show_quest_screen(evt:Event=None){
+
+def show_quest_screen(evt=None):
+    '''
     var DoShowQuestScreen:* = None;
     var evt:* = evt;
     DoShowQuestScreen = function (evt:Event=None){
@@ -5104,9 +5170,12 @@ def show_quest_screen(evt:Event=None){
         set_btn_text(QUEST_SKIP, ("~P " + texts[TXT_SKIP_FIGHT]));
     };
     when_loaded(DoShowQuestScreen);
-}
+    '''
+    pass
 
-def show_taverne_screen(evt:Event=None){
+
+def show_taverne_screen(evt=None):
+    '''
     var DoShowTaverneScreen:* = None;
     var evt:* = evt;
     DoShowTaverneScreen = function (evt:Event=None){
@@ -5246,9 +5315,12 @@ def show_taverne_screen(evt:Event=None){
         load(((TAVERN_ADVENT + GetAdvent()) - 1));
     };
     when_loaded(DoShowTaverneScreen);
-}
+    '''
+    pass
 
-def show_stall_screen(evt:Event=None){
+
+def show_stall_screen(evt=None):
+    '''
     var i:* = 0;
     var DoShowStall:* = None;
     var evt:* = evt;
@@ -5331,9 +5403,12 @@ def show_stall_screen(evt:Event=None){
         };
     };
     when_loaded(DoShowStall);
-}
+    '''
+    pass
 
-def show_arena_screen(oppName:String, oppGilde:String, oppStufe){
+
+def show_arena_screen(oppName, oppGilde, oppStufe):
+    '''
     var tz:* = 0;
     var DoShowArenaScreen:* = None;
     var PvPDelayCheck:* = None;
@@ -5452,9 +5527,12 @@ def show_arena_screen(oppName:String, oppGilde:String, oppStufe){
             break;
     };
     when_loaded(DoShowArenaScreen);
-}
+    '''
+    pass
 
-def show_hall_screen(evt:Event=None):
+    
+def show_hall_screen(evt=None):
+    '''
     var DoShowHallScreen:* = None;
     var evt:* = evt;
     DoShowHallScreen = function (){
@@ -5472,9 +5550,12 @@ def show_hall_screen(evt:Event=None):
     };
     load(SCREEN_HALLE);
     when_loaded(DoShowHallScreen);
-}
+    '''
+    pass
 
-def show_dealer_screen(evt:Event=None, loadOnly=False){
+
+def show_dealer_screen(evt=None, loadOnly=False):
+    '''
     var papaya_firebug:* = None;
     var url:* = None;
     var DoShowDealerScreen:* = None;
@@ -5509,9 +5590,12 @@ def show_dealer_screen(evt:Event=None, loadOnly=False){
     if (!loadOnly){
         when_loaded(DoShowDealerScreen);
     };
-}
+    '''
+    pass
 
-def show_screen_gilde_gruenden(evt:Event=None){
+
+def show_screen_gilde_gruenden(evt=None):
+    '''
     var DoShowScreenGilden:* = None;
     var evt:* = evt;
     DoShowScreenGilden = function (evt:Event=None){
@@ -5530,9 +5614,12 @@ def show_screen_gilde_gruenden(evt:Event=None){
     };
     load(SCREEN_GILDE_GRUENDEN);
     when_loaded(DoShowScreenGilden);
-}
+    '''
+    pass
 
-def show_city_screen(evt:Event=None):
+    
+def show_city_screen(evt=None):
+    '''
     var StatistenBleiben:* = False;
     var doShowCityScreen:* = None;
     var evt:* = evt;
@@ -5613,9 +5700,12 @@ def show_city_screen(evt:Event=None):
     load(CITY_SANDWICH1);
     load(CITY_SANDWICH2);
     when_loaded(doShowCityScreen);
-}
+    '''
+    pass
 
-def show_post_screen(par:Array=None){
+
+def show_post_screen(par=None):
+    '''
     var DoShowPost:* = None;
     var BuildPostList:* = None;
     var par:* = par;
@@ -6014,9 +6104,12 @@ def show_post_screen(par:Array=None){
     };
     load(SCREEN_POST);
     when_loaded(DoShowPost);
-}
+    '''
+    pass
 
-def show_build_character_screen(evt:Event=None):
+
+def show_build_character_screen(evt=None):
+    '''
     var RebuildMode:* = False;
     var i:* = 0;
     var evt:* = evt;
@@ -6096,9 +6189,12 @@ def show_build_character_screen(evt:Event=None):
         KlasseGewählt = True;
     };
     LoadCharacterImage();
-}
+    '''
+    pass
 
-def show_character_screen(evt:Event=None, NoPrices=False):
+
+def show_character_screen(evt=None, NoPrices=False):
+    '''
     var DoShowCharacterScreen:* = None;
     var evt:* = evt;
     var NoPrices:Boolean = NoPrices;
@@ -6515,12 +6611,15 @@ def show_character_screen(evt:Event=None, NoPrices=False):
     };
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
     when_loaded(DoShowCharacterScreen);
-}
+    '''
+    pass
+
 
 def ShowPlayerScreen(
-    PlayerSG:Array, PlayerName:String, PlayerGilde:String,
-    PlayerComment:String
+    PlayerSG, PlayerName, PlayerGilde,
+    PlayerComment
 ):
+    '''
     var i:* = 0;
     var bin_str:* = None;
     var Playermirror_pieces:* = None;
@@ -6925,13 +7024,16 @@ def ShowPlayerScreen(
     };
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
     when_loaded(DoShowPlayerScreen);
-}
+    '''
+    pass
+
 
 def show_screen_gilden(
-    guildData:Array, guildDescr:String, guildMembers:Array,
-    ThisGilde:String, is_mine=True, GildenRang=0,
+    guildData, guildDescr, guildMembers,
+    ThisGilde, is_mine=True, GildenRang=0,
     GildenEhre=0, AttackCost=0
-){
+):
+    '''
     var DoShowScreenGilden:* = None;
     var guildData:* = guildData;
     var guildDescr:* = guildDescr;
@@ -9397,9 +9499,12 @@ def show_screen_gilden(
     load(GILDE_RANK, (GILDE_RANK + 1), (GILDE_RANK + 2));
     load(GILDE_DIALOG_INVITE, GILDE_DIALOG_KICK, GILDE_DIALOG_MASTER);
     when_loaded(DoShowScreenGilden);
-}
+    '''
+    pass
 
-def show_work_success_screen(evt:Event=None):
+
+def show_work_success_screen(evt=None):
+    '''
     show_city_screen();
     add(SCREEN_ARBEITEN_SUCCESS);
     actor[LBL_WINDOW_TITLE].text = texts[TXT_TITLE_WORK];
@@ -9415,9 +9520,12 @@ def show_work_success_screen(evt:Event=None):
     );
     play(SND_JINGLE);
     CheckWrongPage(ACT_SCREEN_ARBEITEN);
-}
+    '''
+    pass
 
-def show_work_screen(evt:Event=None):
+    
+def show_work_screen(evt=None):
+    '''
     var ArbeitCountdown:* = None;
     var DoShowWorking:* = None;
     var evt:* = evt;
@@ -9502,9 +9610,12 @@ def show_work_screen(evt:Event=None):
             ArbeitenSliderChange(1);
         };
     };
-}
+    '''
+    pass
 
-def show_main_quests_screen(NextEnemies:Array){
+
+def show_main_quests_screen(NextEnemies):
+    '''
     var i:* = 0;
     var countDone:* = 0;
     var Background:* = 0;
@@ -9905,9 +10016,12 @@ def show_main_quests_screen(NextEnemies:Array){
         i = (i + 1);
     };
     when_loaded(DoShowMainQuestsScreen);
-}
+    '''
+    pass
 
-def ShowMainQuestScreen(DungeonNr=0, Enemy=0){
+
+def ShowMainQuestScreen(DungeonNr=0, Enemy=0):
+    '''
     var DoShowMainQuestScreen:* = None;
     var MQDelayCheck:* = None;
     var DungeonNr = DungeonNr;
@@ -10086,12 +10200,15 @@ def ShowMainQuestScreen(DungeonNr=0, Enemy=0){
         load((OPPMONSTER + Enemy));
     };
     when_loaded(DoShowMainQuestScreen);
-}
+    '''
+    pass
+
 
 def show_toilet(
-    isFull, toiletLevel, toiletExp:Number, toiletMaxExp:Number,
+    isFull, toiletLevel, toiletExp, toiletMaxExp,
     itemAdded=-1
-){
+):
+    '''
     var doShowToilet:* = None;
     var isFull:* = isFull;
     var toiletLevel:* = toiletLevel;
@@ -10209,11 +10326,14 @@ def show_toilet(
     load(SCREEN_TOILET);
     show_character_screen();
     when_loaded(doShowToilet);
-}
+    '''
+    pass
+
 
 def show_witch(
-    witchData:Array, chaldronBubble=False, enchantCost=0
-){
+    witchData, chaldronBubble=False, enchantCost=0
+):
+    '''
     var doShowWitch:* = None;
     var witchData:* = witchData;
     var chaldronBubble:Boolean = chaldronBubble;
@@ -10371,9 +10491,12 @@ def show_witch(
     load(SCREEN_WITCH);
     show_character_screen(None, True);
     when_loaded(doShowWitch);
-}
+    '''
+    pass
 
-def Showalbum_content(evt:Event=None){
+
+def Showalbum_content(evt=None):
+    '''
     var i:* = 0;
     var entryText:* = None;
     var hintText:* = None;
@@ -11017,11 +11140,14 @@ def Showalbum_content(evt:Event=None){
             actor[LBL_ALBUM_COLLECTION].y = 135;
         };
     };
-}
+    '''
+    pass
+
 
 def show_login_screen(
-    evt:Event=None, noBC=False, noCookie=False
+    evt=None, noBC=False, noCookie=False
 ):
+    '''
     var playername:String;
     if (
         ((((((((!(so.data.HasAccount))
@@ -11068,9 +11194,12 @@ def show_login_screen(
         actor[INP['NAME']].getChildAt(1).text = playername;
         actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = mp_api_user_token;
     };
-}
+    '''
+    pass
 
-def show_bet_result(won:Boolean){
+
+def show_bet_result(won):
+    '''
     var doShowBetResults:* = None;
     var won:* = won;
     doShowBetResults = function (){
@@ -11153,9 +11282,12 @@ def show_bet_result(won:Boolean){
         load(HUTKUGEL);
     };
     when_loaded(doShowBetResults);
-}
+    '''
+    pass
 
-def ShowSignupScreen(evt:Event=None):
+
+def ShowSignupScreen(evt=None):
+    '''
     var i:* = 0;
     var j:* = 0;
     var jumpTimer:* = None;
@@ -11227,10 +11359,9 @@ def ShowSignupScreen(evt:Event=None):
             jumpTimer.start();
         };
     };
-}
-
-
-'''
+    '''
+    pass
+  
 
 # -----------------------------------------------------------------------------
 # low level graphic stuff
@@ -25197,6 +25328,7 @@ def build_interface():
     '''
     pass
 
+
 def main():
     '''
         main function
@@ -25208,8 +25340,8 @@ def main():
 
     init_vars()
 
-    s = Session()
-    configure(s)
+    game_session = Session()
+    configure(game_session)
 
     # response = s.login()
 
