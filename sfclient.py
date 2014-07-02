@@ -14989,7 +14989,7 @@ def language_file_error():
     )
 
 
-def language_filedo_loaded():
+def language_file_loaded():
     '''
         success handler for I18N file loader
     '''
@@ -15053,7 +15053,7 @@ def load_language_file():
     '''
     loader = URLLoader()
     loader.data_format = URLLoaderdata_format.TEXT
-    loader.add_event_listener(Event.COMPLETE, LanguageFileLoaded)
+    loader.add_event_listener(Event.COMPLETE, language_file_loaded)
     loader.add_event_listener(IOErrorEvent.IO_ERROR, LanguageFileError)
     loader.add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
                               LanguageFileError)
@@ -15072,7 +15072,7 @@ def load_language_file():
     pending_language_file = True
 
 
-def original_language_filedo_loaded(evt):
+def original_language_file_loaded(evt):
     '''
         success on loading original I18N file
     '''
@@ -15119,7 +15119,7 @@ def load_original_language_file():
     '''
     with URLLoader():
         data_format = URLLoaderdata_format.TEXT
-        add_event_listener(Event.COMPLETE, OriginalLanguageFileLoaded)
+        add_event_listener(Event.COMPLETE, Originallanguage_file_loaded)
         load(URLRequest(
             lang_url + "lang/sfgame_" + original_lang_code + ".txt"
         ))
@@ -15128,7 +15128,7 @@ def load_original_language_file():
     pending_language_file = True
 
 
-def configuration_filedo_loaded(evt):
+def configuration_file_loaded(evt):
     '''
         parse configuration file
     '''
@@ -15542,7 +15542,7 @@ def strip_slashes(source):
     return source.replace("http://", "").replace("/", "")
 
 
-def dodo_load_language_file():
+def do_load_language_file():
     '''
         load language file
     '''
@@ -15608,7 +15608,7 @@ def load(*actor_ids):
         do_load(actid)
 
 
-def whendo_loaded(function=None):
+def when_loaded(function=None):
     '''
         async loading finished
     '''
@@ -15648,7 +15648,7 @@ def whendo_loaded(function=None):
                 tmp_fn()
 
 
-def whendo_loaded_timeout_event():
+def when_loaded_timeout_event():
     '''
         loading stuff timeout
     '''
