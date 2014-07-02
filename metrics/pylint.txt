@@ -84,11 +84,12 @@ W:807, 4: Global variable 'snd_url' undefined at the module level (global-variab
 W:807, 4: Global variable 'snd_url_index' undefined at the module level (global-variable-undefined)
 C:913, 4: Invalid constant name "texts" (invalid-name)
 W:913, 4: Using the global statement (global-statement)
-C:919, 4: Invalid constant name "whendo_loaded_fn" (invalid-name)
-C:919, 4: Invalid constant name "whendo_loaded_active" (invalid-name)
-C:919, 4: Invalid constant name "whendo_loaded_timeout" (invalid-name)
-W:919, 4: Global variable 'whendo_loaded_active' undefined at the module level (global-variable-undefined)
-W:919, 4: Global variable 'whendo_loaded_timeout' undefined at the module level (global-variable-undefined)
+C:919, 4: Invalid constant name "when_loaded_fn" (invalid-name)
+C:919, 4: Invalid constant name "when_loaded_active" (invalid-name)
+C:919, 4: Invalid constant name "when_loaded_timeout" (invalid-name)
+W:919, 4: Global variable 'when_loaded_fn' undefined at the module level (global-variable-undefined)
+W:919, 4: Global variable 'when_loaded_active' undefined at the module level (global-variable-undefined)
+W:919, 4: Global variable 'when_loaded_timeout' undefined at the module level (global-variable-undefined)
 E:925, 8: Undefined variable 'whendo_loaded_timeout_event' (undefined-variable)
 R:449, 0: Too many statements (65/50) (too-many-statements)
 W:947, 4: Unused variable 'witch_ani_step' (unused-variable)
@@ -1206,8 +1207,6 @@ R:14992, 0: Too many branches (18/12) (too-many-branches)
 W:15029, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15036, 8: Unused variable 'chosen_lang_font' (unused-variable)
 W:15072, 4: Redefining name 'pending_language_file' from outer scope (line 748) (redefined-outer-name)
-E:15057,53: Undefined variable 'LanguageFileError' (undefined-variable)
-E:15059,30: Undefined variable 'LanguageFileError' (undefined-variable)
 E:15071, 4: Undefined variable 'pendingdo_loaders' (undefined-variable)
 W:15072, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15071, 4: Unused variable 'pendingdo_loaders' (unused-variable)
@@ -1320,12 +1319,15 @@ E:15586,20: Undefined variable 'LoaderContext' (undefined-variable)
 E:15588,24: Undefined variable 'ApplicationDomain' (undefined-variable)
 E:15589,24: Undefined variable 'SecurityDomain' (undefined-variable)
 E:15595,12: Undefined variable 'actorLoaded' (undefined-variable)
-W:15620, 8: Redefining name 'whendo_loaded_active' from outer scope (line 921) (redefined-outer-name)
 C:15616, 4: Invalid constant name "whendo_loaded_fn" (invalid-name)
 W:15616, 4: Using the global statement (global-statement)
+E:15621, 8: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
+E:15622, 8: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
 E:15625,11: Undefined variable 'actorLoaded' (undefined-variable)
+E:15640,12: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
 W:15682,12: Redefining name 'snd_url_index' from outer scope (line 809) (redefined-outer-name)
 W:15676,12: Redefining name 'img_url_index' from outer scope (line 641) (redefined-outer-name)
+E:15655, 4: Undefined variable 'whendo_loaded_timeout' (undefined-variable)
 E:15659,15: Undefined variable 'actorLoaded' (undefined-variable)
 E:15666,20: Undefined variable 'actorURL' (undefined-variable)
 E:15668,16: Undefined variable 'actorLoaded' (undefined-variable)
@@ -1535,7 +1537,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |428    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |790    |NC       |NC         |
+|error      |792    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1559,7 +1561,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |768         |
+|undefined-variable           |770         |
 +-----------------------------+------------+
 |unused-variable              |269         |
 +-----------------------------+------------+
@@ -1571,11 +1573,11 @@ Messages
 +-----------------------------+------------+
 |too-few-public-methods       |31          |
 +-----------------------------+------------+
-|redefined-outer-name         |25          |
+|redefined-outer-name         |24          |
 +-----------------------------+------------+
 |used-before-assignment       |18          |
 +-----------------------------+------------+
-|global-variable-undefined    |12          |
+|global-variable-undefined    |13          |
 +-----------------------------+------------+
 |too-many-branches            |11          |
 +-----------------------------+------------+
@@ -1612,7 +1614,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.24/10
+Your code has been rated at -2.27/10
 
 Statistics by type
 ------------------
