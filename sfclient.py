@@ -29735,7 +29735,7 @@ def ModifyCharacter(evt):
 
 def load_character_image(actor_id=0, load_only=False, is_volk=0,
                        is_mann=False, is_kaste=0, is_mouth=0,
-                       is_beard=0, is_nose=0, is_nose=0, is_brows=0,
+                       is_beard=0, is_nose=0, is_eyes=0, is_brows=0,
                        is_ears=0, is_hair=0, is_special=0,
                        is_special2=0):
     '''
@@ -29750,7 +29750,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
     var is_mouth = is_mouth;
     var is_beard = is_beard;
     var is_nose = is_nose;
-    var isEyes = isEyes;
+    var is_eyes = is_eyes;
     var is_brows = is_brows;
     var is_ears = is_ears;
     var is_hair = is_hair;
@@ -29869,7 +29869,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
     LoadCharacterItemImage((actor_id + 3),
                            (charPrefix + get_char_suffix(3, is_nose)), 3);
     LoadCharacterItemImage((actor_id + 4),
-                           (charPrefix + get_char_suffix(4, isEyes)), 4);
+                           (charPrefix + get_char_suffix(4, is_eyes)), 4);
     LoadCharacterItemImage((actor_id + 5),
                            (charPrefix + get_char_suffix(5, is_brows)), 5);
     LoadCharacterItemImage((actor_id + 6),
