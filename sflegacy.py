@@ -31,13 +31,13 @@ class URLLoader(object):
     '''
         obsolete with cli?
     '''
-    def __exit__(self):
+    def __exit__(self, *args):
         '''
             support with statement
         '''
         pass
 
-    def __enter__(self):
+    def __enter__(self, *args):
         '''
             support with statement
         '''
