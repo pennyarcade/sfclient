@@ -28,10 +28,10 @@ W:2266, 0: TODO: obsolete? (fixme)
 W:13997, 0: TODO: better use exceptions?? (fixme)
 W:14006, 0: TODO: hor does this work anyways? (fixme)
 W:14070, 0: TODO: hat does this do? (fixme)
-W:15755, 0: TODO: What does this do? (fixme)
-W:15771, 0: TODO: Obsolete? (fixme)
-W:15794, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (30360) (too-many-lines)
+W:15756, 0: TODO: What does this do? (fixme)
+W:15772, 0: TODO: Obsolete? (fixme)
+W:15795, 0: TODO: set via requests params (fixme)
+C:  1, 0: Too many lines in module (30361) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
 C: 34, 0: Invalid constant name "param_obj" (invalid-name)
@@ -1202,171 +1202,171 @@ E:15050,20: Undefined variable 'evt' (undefined-variable)
 R:14995, 0: Too many branches (18/12) (too-many-branches)
 W:15032, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15039, 8: Unused variable 'chosen_lang_font' (unused-variable)
-W:15075, 4: Redefining name 'pending_language_file' from outer scope (line 750) (redefined-outer-name)
-W:15074, 4: Redefining name 'pending_loaders' from outer scope (line 41) (redefined-outer-name)
-W:15075, 4: Unused variable 'pending_language_file' (unused-variable)
-W:15074, 4: Unused variable 'pending_loaders' (unused-variable)
+W:15076, 4: Redefining name 'pending_language_file' from outer scope (line 750) (redefined-outer-name)
+C:15074, 4: Invalid constant name "pending_loaders" (invalid-name)
+W:15074, 4: Using the global statement (global-statement)
+W:15076, 4: Unused variable 'pending_language_file' (unused-variable)
 W:15064, 8: Unused variable 'text_dir' (unused-variable)
-W:15114, 4: Redefining name 'pending_language_file' from outer scope (line 750) (redefined-outer-name)
-E:15082,15: Undefined variable 'loader' (undefined-variable)
-C:15089, 8: Invalid variable name "c" (invalid-name)
-E:15115,27: Undefined variable 'chosen_lang_font' (undefined-variable)
-E:15116, 4: Too many positional arguments for function call (too-many-function-args)
-W:15094,20: Unused variable 'old_str' (unused-variable)
-W:15114, 4: Unused variable 'pending_language_file' (unused-variable)
-W:15131, 4: Redefining name 'pending_language_file' from outer scope (line 750) (redefined-outer-name)
-W:15130, 4: Redefining name 'pending_loaders' from outer scope (line 41) (redefined-outer-name)
-E:15125, 8: Undefined variable 'add_event_listener' (undefined-variable)
-E:15125,43: Undefined variable 'Originallanguage_file_loaded' (undefined-variable)
-E:15127,40: Undefined variable 'original_lang_code' (undefined-variable)
-W:15131, 4: Unused variable 'pending_language_file' (unused-variable)
-W:15130, 4: Unused variable 'pending_loaders' (unused-variable)
-W:15124, 8: Unused variable 'data_format' (unused-variable)
-R:15134, 0: Too many local variables (84/15) (too-many-locals)
-W:15507,16: Redefining name 'img_url_index' from outer scope (line 642) (redefined-outer-name)
-W:15517,16: Redefining name 'snd_url_index' from outer scope (line 812) (redefined-outer-name)
-W:15172,28: Redefining name 'lang_url' from outer scope (line 659) (redefined-outer-name)
-W:15389, 4: Redefining name 'pending_configuration_files' from outer scope (line 748) (redefined-outer-name)
-W:15151,28: Redefining name 'lang_code' from outer scope (line 658) (redefined-outer-name)
-W:15168,28: Redefining name 'server' from outer scope (line 792) (redefined-outer-name)
-C:15144, 8: Invalid variable name "c" (invalid-name)
-E:15252,28: Undefined variable 'trackPixels' (undefined-variable)
-E:15282,36: Undefined variable 'IDLE_POLLING' (undefined-variable)
-E:15339,28: Undefined variable 'defined_pixel_calls' (undefined-variable)
-E:15391, 8: Undefined variable 'loader2' (undefined-variable)
-C:15394, 8: Invalid variable name "so" (invalid-name)
-E:15534,15: Undefined variable 'param_lowres_url' (undefined-variable)
-E:15535,41: Undefined variable 'param_lowres_url' (undefined-variable)
+W:15115, 4: Redefining name 'pending_language_file' from outer scope (line 750) (redefined-outer-name)
+E:15083,15: Undefined variable 'loader' (undefined-variable)
+C:15090, 8: Invalid variable name "c" (invalid-name)
+E:15116,27: Undefined variable 'chosen_lang_font' (undefined-variable)
+E:15117, 4: Too many positional arguments for function call (too-many-function-args)
+W:15095,20: Unused variable 'old_str' (unused-variable)
+W:15115, 4: Unused variable 'pending_language_file' (unused-variable)
+W:15132, 4: Redefining name 'pending_language_file' from outer scope (line 750) (redefined-outer-name)
+W:15131, 4: Redefining name 'pending_loaders' from outer scope (line 41) (redefined-outer-name)
+E:15126, 8: Undefined variable 'add_event_listener' (undefined-variable)
+E:15126,43: Undefined variable 'Originallanguage_file_loaded' (undefined-variable)
+E:15128,40: Undefined variable 'original_lang_code' (undefined-variable)
+W:15132, 4: Unused variable 'pending_language_file' (unused-variable)
+W:15131, 4: Unused variable 'pending_loaders' (unused-variable)
+W:15125, 8: Unused variable 'data_format' (unused-variable)
+R:15135, 0: Too many local variables (84/15) (too-many-locals)
+W:15508,16: Redefining name 'img_url_index' from outer scope (line 642) (redefined-outer-name)
+W:15518,16: Redefining name 'snd_url_index' from outer scope (line 812) (redefined-outer-name)
+W:15173,28: Redefining name 'lang_url' from outer scope (line 659) (redefined-outer-name)
+W:15390, 4: Redefining name 'pending_configuration_files' from outer scope (line 748) (redefined-outer-name)
+W:15152,28: Redefining name 'lang_code' from outer scope (line 658) (redefined-outer-name)
+W:15169,28: Redefining name 'server' from outer scope (line 792) (redefined-outer-name)
+C:15145, 8: Invalid variable name "c" (invalid-name)
+E:15253,28: Undefined variable 'trackPixels' (undefined-variable)
+E:15283,36: Undefined variable 'IDLE_POLLING' (undefined-variable)
+E:15340,28: Undefined variable 'defined_pixel_calls' (undefined-variable)
+E:15392, 8: Undefined variable 'loader2' (undefined-variable)
+C:15395, 8: Invalid variable name "so" (invalid-name)
+E:15535,15: Undefined variable 'param_lowres_url' (undefined-variable)
 E:15536,41: Undefined variable 'param_lowres_url' (undefined-variable)
-E:15538, 4: Too many positional arguments for function call (too-many-function-args)
-R:15134, 0: Too many branches (113/12) (too-many-branches)
-R:15134, 0: Too many statements (308/50) (too-many-statements)
-W:15271,28: Unused variable 'param_papaya_path' (unused-variable)
-W:15204,28: Unused variable 'buffed_mode' (unused-variable)
-W:15192,28: Unused variable 'legal_url' (unused-variable)
-W:15331,28: Unused variable 'param_bullshit_cid' (unused-variable)
-W:15216,28: Unused variable 'server_id' (unused-variable)
-W:15443,12: Unused variable 'sso_mode' (unused-variable)
-W:15196,28: Unused variable 'dataprot_url' (unused-variable)
-W:15401, 8: Unused variable 'disable_tv' (unused-variable)
-W:15288,28: Unused variable 'param_happy_hour' (unused-variable)
-W:15399, 8: Unused variable 'chat_sound' (unused-variable)
-W:15248,28: Unused variable 'param_php_tunnel_url' (unused-variable)
-W:15430,12: Unused variable 'view_player' (unused-variable)
-W:15200,28: Unused variable 'instr_url' (unused-variable)
-W:15323,28: Unused variable 'param_sponsor_url' (unused-variable)
-W:15224,28: Unused variable 'buffed_link_url' (unused-variable)
-W:15232,28: Unused variable 'image_timeout' (unused-variable)
-W:15439,12: Unused variable 'mp_api_user_token' (unused-variable)
-W:15433,12: Unused variable 'admin_login' (unused-variable)
-W:15400, 8: Unused variable 'compare_items' (unused-variable)
-W:15267,28: Unused variable 'param_gamestaff_email' (unused-variable)
-W:15466, 8: Unused variable 'had_account' (unused-variable)
-W:15263,28: Unused variable 'param_support_email' (unused-variable)
-W:15279,28: Unused variable 'param_fail_tries' (unused-variable)
-W:15362,28: Unused variable 'tv_function_name' (unused-variable)
-W:15327,28: Unused variable 'param_bullshit_text' (unused-variable)
-W:15259,28: Unused variable 'param_poll_tunnel_url' (unused-variable)
-W:15188,28: Unused variable 'imprint_url' (unused-variable)
-W:15425,12: Unused variable 'param_rec' (unused-variable)
-W:15180,28: Unused variable 'forum_url' (unused-variable)
-W:15316,28: Unused variable 'param_language_names' (unused-variable)
-W:15152,28: Unused variable 'original_lang_code' (unused-variable)
-W:15236,28: Unused variable 'param_sponsor' (unused-variable)
-W:15300,28: Unused variable 'param_reload_pixel' (unused-variable)
-W:15479,12: Unused variable 'param_valid' (unused-variable)
-W:15296,28: Unused variable 'param_internal_pixel' (unused-variable)
-W:15491,12: Unused variable 'param_forceport' (unused-variable)
-W:15436,12: Unused variable 'mp_api_user_id' (unused-variable)
-W:15184,28: Unused variable 'shop_url' (unused-variable)
-W:15345,28: Unused variable 'login_background_id' (unused-variable)
-W:15283,28: Unused variable 'param_idle_polling' (unused-variable)
-W:15220,28: Unused variable 'mp_project' (unused-variable)
-W:15447,12: Unused variable 'param_cid_original' (unused-variable)
-W:15422,12: Unused variable 'param_id' (unused-variable)
-W:15366,28: Unused variable 'tv_poll_normal' (unused-variable)
-W:15228,28: Unused variable 'response_timeout' (unused-variable)
-W:15287,28: Unused variable 'param_allow_skip_quest' (unused-variable)
-W:15205,28: Unused variable 'buffed_link_text' (unused-variable)
-W:15172,28: Unused variable 'lang_url' (unused-variable)
-W:15370,28: Unused variable 'tv_poll_long' (unused-variable)
-W:15292,28: Unused variable 'param_censored' (unused-variable)
-W:15312,28: Unused variable 'param_languages' (unused-variable)
-W:15335,28: Unused variable 'param_social_buttons' (unused-variable)
-W:15176,28: Unused variable 'no_crossdomain' (unused-variable)
-W:15244,28: Unused variable 'param_reconnect' (unused-variable)
-W:15275,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
-W:15304,28: Unused variable 'param_server_version_cfg' (unused-variable)
-W:15485,12: Unused variable 'param_hall' (unused-variable)
-E:15563,16: Undefined variable 'build_interface' (undefined-variable)
-E:15570, 7: Undefined variable 'actorLoaded' (undefined-variable)
-E:15572,33: Undefined variable 'actorURL' (undefined-variable)
-E:15573,29: Undefined variable 'actorURL' (undefined-variable)
-E:15574,38: Undefined variable 'actorSoundLoader' (undefined-variable)
-E:15575,12: Undefined variable 'actorLoaded' (undefined-variable)
-E:15578,39: Undefined variable 'LoaderError' (undefined-variable)
-E:15581,32: Undefined variable 'LoaderComplete' (undefined-variable)
-E:15583,33: Undefined variable 'actorURL' (undefined-variable)
-E:15584,29: Undefined variable 'actorURL' (undefined-variable)
-E:15585,17: Undefined variable 'actorURL' (undefined-variable)
-E:15586,29: Undefined variable 'no_crossdomain' (undefined-variable)
-E:15589,20: Undefined variable 'LoaderContext' (undefined-variable)
-E:15591,24: Undefined variable 'ApplicationDomain' (undefined-variable)
-E:15592,24: Undefined variable 'SecurityDomain' (undefined-variable)
-E:15598,12: Undefined variable 'actorLoaded' (undefined-variable)
-W:15623, 8: Redefining name 'when_loaded_active' from outer scope (line 924) (redefined-outer-name)
-C:15619, 4: Invalid constant name "when_loaded_fn" (invalid-name)
-W:15619, 4: Using the global statement (global-statement)
-E:15628,11: Undefined variable 'actorLoaded' (undefined-variable)
-W:15685,12: Redefining name 'snd_url_index' from outer scope (line 812) (redefined-outer-name)
-W:15679,12: Redefining name 'img_url_index' from outer scope (line 642) (redefined-outer-name)
-E:15662,15: Undefined variable 'actorLoaded' (undefined-variable)
-E:15669,20: Undefined variable 'actorURL' (undefined-variable)
-E:15671,16: Undefined variable 'actorLoaded' (undefined-variable)
-E:15674, 4: Undefined variable 'to_error_count' (undefined-variable)
-E:15692, 8: Undefined variable 'so' (undefined-variable)
+E:15537,41: Undefined variable 'param_lowres_url' (undefined-variable)
+E:15539, 4: Too many positional arguments for function call (too-many-function-args)
+R:15135, 0: Too many branches (113/12) (too-many-branches)
+R:15135, 0: Too many statements (308/50) (too-many-statements)
+W:15272,28: Unused variable 'param_papaya_path' (unused-variable)
+W:15205,28: Unused variable 'buffed_mode' (unused-variable)
+W:15193,28: Unused variable 'legal_url' (unused-variable)
+W:15332,28: Unused variable 'param_bullshit_cid' (unused-variable)
+W:15217,28: Unused variable 'server_id' (unused-variable)
+W:15444,12: Unused variable 'sso_mode' (unused-variable)
+W:15197,28: Unused variable 'dataprot_url' (unused-variable)
+W:15402, 8: Unused variable 'disable_tv' (unused-variable)
+W:15289,28: Unused variable 'param_happy_hour' (unused-variable)
+W:15400, 8: Unused variable 'chat_sound' (unused-variable)
+W:15249,28: Unused variable 'param_php_tunnel_url' (unused-variable)
+W:15431,12: Unused variable 'view_player' (unused-variable)
+W:15201,28: Unused variable 'instr_url' (unused-variable)
+W:15324,28: Unused variable 'param_sponsor_url' (unused-variable)
+W:15225,28: Unused variable 'buffed_link_url' (unused-variable)
+W:15233,28: Unused variable 'image_timeout' (unused-variable)
+W:15440,12: Unused variable 'mp_api_user_token' (unused-variable)
+W:15434,12: Unused variable 'admin_login' (unused-variable)
+W:15401, 8: Unused variable 'compare_items' (unused-variable)
+W:15268,28: Unused variable 'param_gamestaff_email' (unused-variable)
+W:15467, 8: Unused variable 'had_account' (unused-variable)
+W:15264,28: Unused variable 'param_support_email' (unused-variable)
+W:15280,28: Unused variable 'param_fail_tries' (unused-variable)
+W:15363,28: Unused variable 'tv_function_name' (unused-variable)
+W:15328,28: Unused variable 'param_bullshit_text' (unused-variable)
+W:15260,28: Unused variable 'param_poll_tunnel_url' (unused-variable)
+W:15189,28: Unused variable 'imprint_url' (unused-variable)
+W:15426,12: Unused variable 'param_rec' (unused-variable)
+W:15181,28: Unused variable 'forum_url' (unused-variable)
+W:15317,28: Unused variable 'param_language_names' (unused-variable)
+W:15153,28: Unused variable 'original_lang_code' (unused-variable)
+W:15237,28: Unused variable 'param_sponsor' (unused-variable)
+W:15301,28: Unused variable 'param_reload_pixel' (unused-variable)
+W:15480,12: Unused variable 'param_valid' (unused-variable)
+W:15297,28: Unused variable 'param_internal_pixel' (unused-variable)
+W:15492,12: Unused variable 'param_forceport' (unused-variable)
+W:15437,12: Unused variable 'mp_api_user_id' (unused-variable)
+W:15185,28: Unused variable 'shop_url' (unused-variable)
+W:15346,28: Unused variable 'login_background_id' (unused-variable)
+W:15284,28: Unused variable 'param_idle_polling' (unused-variable)
+W:15221,28: Unused variable 'mp_project' (unused-variable)
+W:15448,12: Unused variable 'param_cid_original' (unused-variable)
+W:15423,12: Unused variable 'param_id' (unused-variable)
+W:15367,28: Unused variable 'tv_poll_normal' (unused-variable)
+W:15229,28: Unused variable 'response_timeout' (unused-variable)
+W:15288,28: Unused variable 'param_allow_skip_quest' (unused-variable)
+W:15206,28: Unused variable 'buffed_link_text' (unused-variable)
+W:15173,28: Unused variable 'lang_url' (unused-variable)
+W:15371,28: Unused variable 'tv_poll_long' (unused-variable)
+W:15293,28: Unused variable 'param_censored' (unused-variable)
+W:15313,28: Unused variable 'param_languages' (unused-variable)
+W:15336,28: Unused variable 'param_social_buttons' (unused-variable)
+W:15177,28: Unused variable 'no_crossdomain' (unused-variable)
+W:15245,28: Unused variable 'param_reconnect' (unused-variable)
+W:15276,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
+W:15305,28: Unused variable 'param_server_version_cfg' (unused-variable)
+W:15486,12: Unused variable 'param_hall' (unused-variable)
+E:15564,16: Undefined variable 'build_interface' (undefined-variable)
+E:15571, 7: Undefined variable 'actorLoaded' (undefined-variable)
+E:15573,33: Undefined variable 'actorURL' (undefined-variable)
+E:15574,29: Undefined variable 'actorURL' (undefined-variable)
+E:15575,38: Undefined variable 'actorSoundLoader' (undefined-variable)
+E:15576,12: Undefined variable 'actorLoaded' (undefined-variable)
+E:15579,39: Undefined variable 'LoaderError' (undefined-variable)
+E:15582,32: Undefined variable 'LoaderComplete' (undefined-variable)
+E:15584,33: Undefined variable 'actorURL' (undefined-variable)
+E:15585,29: Undefined variable 'actorURL' (undefined-variable)
+E:15586,17: Undefined variable 'actorURL' (undefined-variable)
+E:15587,29: Undefined variable 'no_crossdomain' (undefined-variable)
+E:15590,20: Undefined variable 'LoaderContext' (undefined-variable)
+E:15592,24: Undefined variable 'ApplicationDomain' (undefined-variable)
+E:15593,24: Undefined variable 'SecurityDomain' (undefined-variable)
+E:15599,12: Undefined variable 'actorLoaded' (undefined-variable)
+W:15624, 8: Redefining name 'when_loaded_active' from outer scope (line 924) (redefined-outer-name)
+C:15620, 4: Invalid constant name "when_loaded_fn" (invalid-name)
+W:15620, 4: Using the global statement (global-statement)
+E:15629,11: Undefined variable 'actorLoaded' (undefined-variable)
+W:15686,12: Redefining name 'snd_url_index' from outer scope (line 812) (redefined-outer-name)
+W:15680,12: Redefining name 'img_url_index' from outer scope (line 642) (redefined-outer-name)
+E:15663,15: Undefined variable 'actorLoaded' (undefined-variable)
+E:15670,20: Undefined variable 'actorURL' (undefined-variable)
+E:15672,16: Undefined variable 'actorLoaded' (undefined-variable)
+E:15675, 4: Undefined variable 'to_error_count' (undefined-variable)
 E:15693, 8: Undefined variable 'so' (undefined-variable)
 E:15694, 8: Undefined variable 'so' (undefined-variable)
-E:15701, 7: Undefined variable 'evt' (undefined-variable)
-E:15701,21: Undefined variable 'LoaderInfo' (undefined-variable)
-E:15702, 8: Undefined variable 'actorLoaded' (undefined-variable)
-E:15702,20: Undefined variable 'get_actor_id' (undefined-variable)
-E:15702,33: Undefined variable 'evt' (undefined-variable)
-E:15703,29: Undefined variable 'evt' (undefined-variable)
-E:15704,19: Undefined variable 'get_actor_id' (undefined-variable)
-E:15704,32: Undefined variable 'evt' (undefined-variable)
-W:15706,12: Unused variable 'allow_smoothing' (unused-variable)
-W:15705,12: Unused variable 'force_smoothing' (unused-variable)
-W:15707,12: Unused variable 'smoothing' (unused-variable)
-W:15741,12: Redefining name 'snd_url_index' from outer scope (line 812) (redefined-outer-name)
-W:15735,12: Redefining name 'img_url_index' from outer scope (line 642) (redefined-outer-name)
-E:15715, 7: Undefined variable 'evt' (undefined-variable)
-E:15715,21: Undefined variable 'LoaderInfo' (undefined-variable)
-E:15718,19: Undefined variable 'actorLoaded' (undefined-variable)
-E:15725,24: Undefined variable 'actorURL' (undefined-variable)
-E:15727,20: Undefined variable 'actorLoaded' (undefined-variable)
-E:15730, 4: Undefined variable 'io_error_count' (undefined-variable)
-E:15748, 8: Undefined variable 'so' (undefined-variable)
+E:15695, 8: Undefined variable 'so' (undefined-variable)
+E:15702, 7: Undefined variable 'evt' (undefined-variable)
+E:15702,21: Undefined variable 'LoaderInfo' (undefined-variable)
+E:15703, 8: Undefined variable 'actorLoaded' (undefined-variable)
+E:15703,20: Undefined variable 'get_actor_id' (undefined-variable)
+E:15703,33: Undefined variable 'evt' (undefined-variable)
+E:15704,29: Undefined variable 'evt' (undefined-variable)
+E:15705,19: Undefined variable 'get_actor_id' (undefined-variable)
+E:15705,32: Undefined variable 'evt' (undefined-variable)
+W:15707,12: Unused variable 'allow_smoothing' (unused-variable)
+W:15706,12: Unused variable 'force_smoothing' (unused-variable)
+W:15708,12: Unused variable 'smoothing' (unused-variable)
+W:15742,12: Redefining name 'snd_url_index' from outer scope (line 812) (redefined-outer-name)
+W:15736,12: Redefining name 'img_url_index' from outer scope (line 642) (redefined-outer-name)
+E:15716, 7: Undefined variable 'evt' (undefined-variable)
+E:15716,21: Undefined variable 'LoaderInfo' (undefined-variable)
+E:15719,19: Undefined variable 'actorLoaded' (undefined-variable)
+E:15726,24: Undefined variable 'actorURL' (undefined-variable)
+E:15728,20: Undefined variable 'actorLoaded' (undefined-variable)
+E:15731, 4: Undefined variable 'io_error_count' (undefined-variable)
 E:15749, 8: Undefined variable 'so' (undefined-variable)
 E:15750, 8: Undefined variable 'so' (undefined-variable)
-E:15757,17: Undefined variable 'pixeldo_loader' (undefined-variable)
-W:15789, 4: Redefining name 'pixel_failed' from outer scope (line 15769) (redefined-outer-name)
-W:15788, 4: Redefining name 'pixel_success' from outer scope (line 15753) (redefined-outer-name)
-E:15801,35: Undefined variable 'had_account' (undefined-variable)
-E:15803, 7: Undefined variable 'param_reload_pixel' (undefined-variable)
-E:15805,33: Undefined variable 'param_cid' (undefined-variable)
-E:15806,30: Undefined variable 'act' (undefined-variable)
-E:15820, 8: Undefined variable 'navigate_to_url' (undefined-variable)
-E:15822,11: Undefined variable 'param_internal_pixel' (undefined-variable)
-W:15789, 4: Unused variable 'pixel_failed' (unused-variable)
-W:15819, 8: Unused variable 'log_in_after_pixel' (unused-variable)
-W:15787, 4: Unused variable 'pixeldo_loader' (unused-variable)
-W:15786, 4: Unused variable 'variables' (unused-variable)
-W:15788, 4: Unused variable 'pixel_success' (unused-variable)
-W:25198,-1: String statement has no effect (pointless-string-statement)
-W:25206, 4: Using the global statement (global-statement)
-C:25212, 4: Invalid variable name "s" (invalid-name)
-W:30360,-1: String statement has no effect (pointless-string-statement)
+E:15751, 8: Undefined variable 'so' (undefined-variable)
+E:15758,17: Undefined variable 'pixeldo_loader' (undefined-variable)
+W:15790, 4: Redefining name 'pixel_failed' from outer scope (line 15770) (redefined-outer-name)
+W:15789, 4: Redefining name 'pixel_success' from outer scope (line 15754) (redefined-outer-name)
+E:15802,35: Undefined variable 'had_account' (undefined-variable)
+E:15804, 7: Undefined variable 'param_reload_pixel' (undefined-variable)
+E:15806,33: Undefined variable 'param_cid' (undefined-variable)
+E:15807,30: Undefined variable 'act' (undefined-variable)
+E:15821, 8: Undefined variable 'navigate_to_url' (undefined-variable)
+E:15823,11: Undefined variable 'param_internal_pixel' (undefined-variable)
+W:15790, 4: Unused variable 'pixel_failed' (unused-variable)
+W:15820, 8: Unused variable 'log_in_after_pixel' (unused-variable)
+W:15788, 4: Unused variable 'pixeldo_loader' (unused-variable)
+W:15787, 4: Unused variable 'variables' (unused-variable)
+W:15789, 4: Unused variable 'pixel_success' (unused-variable)
+W:25199,-1: String statement has no effect (pointless-string-statement)
+W:25207, 4: Using the global statement (global-statement)
+C:25213, 4: Invalid variable name "s" (invalid-name)
+W:30361,-1: String statement has no effect (pointless-string-statement)
 W: 26, 0: Unused import ITM_MAX from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import DIST_DEALER_Y from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
@@ -1472,7 +1472,7 @@ R:220, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3791 statements analysed.
+3792 statements analysed.
 
 External dependencies
 ---------------------
@@ -1490,9 +1490,9 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19701  |57.24 |NC       |NC         |
+|code      |19702  |57.24 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13225  |38.43 |NC       |NC         |
+|docstring |13225  |38.42 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |2.01  |NC       |NC         |
 +----------+-------+------+---------+-----------+
@@ -1520,11 +1520,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |189    |NC       |NC         |
+|convention |190    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |71     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |430    |NC       |NC         |
+|warning    |429    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |777    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1537,9 +1537,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |89.30   |69.01    |95.24      |
+|sfclient |100.00 |89.28   |69.01    |95.26      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |10.70   |30.99    |4.23       |
+|sflegacy |0.00   |10.72   |30.99    |4.21       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1552,9 +1552,9 @@ Messages
 +=============================+============+
 |undefined-variable           |755         |
 +-----------------------------+------------+
-|unused-variable              |269         |
+|unused-variable              |268         |
 +-----------------------------+------------+
-|invalid-name                 |187         |
+|invalid-name                 |188         |
 +-----------------------------+------------+
 |unused-wildcard-import       |59          |
 +-----------------------------+------------+
@@ -1562,7 +1562,7 @@ Messages
 +-----------------------------+------------+
 |too-few-public-methods       |31          |
 +-----------------------------+------------+
-|redefined-outer-name         |27          |
+|redefined-outer-name         |26          |
 +-----------------------------+------------+
 |used-before-assignment       |18          |
 +-----------------------------+------------+
@@ -1580,9 +1580,9 @@ Messages
 +-----------------------------+------------+
 |pointless-string-statement   |5           |
 +-----------------------------+------------+
-|too-many-function-args       |4           |
+|global-statement             |5           |
 +-----------------------------+------------+
-|global-statement             |4           |
+|too-many-function-args       |4           |
 +-----------------------------+------------+
 |wildcard-import              |3           |
 +-----------------------------+------------+
@@ -1603,7 +1603,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -2.07/10
+Your code has been rated at -2.06/10
 
 Statistics by type
 ------------------
