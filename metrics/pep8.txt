@@ -1,4 +1,4 @@
-checking sfclient.py
+fchecking sfclient.py
 checking sfglobals.py
 checking sflegacy.py
 sflegacy.py:13:1: E302 expected 2 blank lines, found 1

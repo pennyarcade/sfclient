@@ -14698,6 +14698,31 @@ def next_fight(evt):
     pass
 
 
+def guild_fight_timer_fn(evt):
+  '''
+  if (guild_attack_time != 0){
+        if (!WaitingFor(guild_attack_time)){
+            if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
+                send_action(ACT_SCREEN_GILDEN);
+            } else {
+                pulse_gilde = True;
+            };
+            guild_attack_time = 0;
+        };
+    };
+    if (guild_defense_time != 0){
+        if (!WaitingFor(guild_defense_time)){
+            if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
+                send_action(ACT_SCREEN_GILDEN);
+            } else {
+                pulse_gilde = True;
+            };
+            guild_defense_time = 0;
+    '''
+    pass
+
+
+
 '''
 
 position_popup = function (evt:MouseEvent):
@@ -29116,29 +29141,6 @@ def toiletTankAdjustEvent(evt:TimerEvent=None){
         } else {
             toiletTankCurrent = toiletTankDest;
             toiletTankAdjustTimer.stop();
-        };
-    };
-}
-
-def guild_fight_timer_fn(evt:TimerEvent){
-    if (guild_attack_time != 0){
-        if (!WaitingFor(guild_attack_time)){
-            if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
-                send_action(ACT_SCREEN_GILDEN);
-            } else {
-                pulse_gilde = True;
-            };
-            guild_attack_time = 0;
-        };
-    };
-    if (guild_defense_time != 0){
-        if (!WaitingFor(guild_defense_time)){
-            if (on_stage(LBL['GILDE']['CHAT']_CAPTION)){
-                send_action(ACT_SCREEN_GILDEN);
-            } else {
-                pulse_gilde = True;
-            };
-            guild_defense_time = 0;
         };
     };
 }
