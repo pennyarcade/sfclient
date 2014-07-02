@@ -168,7 +168,7 @@ class Session(object):
                     ]))
                     return
             else:
-                if fight_lock:
+                if self.fight_lock:
                     LOG.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
                         "Ereignis stattfindet:",
@@ -712,7 +712,10 @@ def init_vars():
     # param_censored = False
     # param_cid = ""
     # param_cid_original = False
-    # param_fail_tries = 1
+
+    global param_fail_tries
+    param_fail_tries = 1
+
     # param_forceport = 0
     # param_gamestaff_email = param_support_email
     # param_hall = ""
