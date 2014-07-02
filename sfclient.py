@@ -973,7 +973,7 @@ def configure(session):
     '''
     serverconfig = session.load_configuration_file()
 
-    whendo_loaded(dodo_load_language_file)
+    when_loaded(do_load_language_file)
 
 
 # -----------------------------------------------------------------------------
