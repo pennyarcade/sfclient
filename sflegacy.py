@@ -179,6 +179,23 @@ class ExternalInterface(object):
         pass
 
 
+class Security(object):
+    '''
+        obsolete with cli?
+    '''
+    def loadPolicyFile(self, *args):
+        '''
+            obsolete
+        '''
+        pass
+
+    def allowDomain(self, *args):
+        '''
+            obsolete
+        '''
+        pass
+
+
 class Function(object):
     '''
         obsolete with cli?
