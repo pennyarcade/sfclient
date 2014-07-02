@@ -1414,7 +1414,6 @@ W:515, 0: TODO: Obsolete (fixme)
 W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
-E: 34, 4: __exit__ must accept 3 arguments: type, value, traceback (bad-context-manager)
 R: 30, 0: Too few public methods (0/2) (too-few-public-methods)
 C: 47, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
 R: 47, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1537,7 +1536,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |429    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |793    |NC       |NC         |
+|error      |792    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1545,13 +1544,13 @@ Messages by category
 % errors / warnings by module
 -----------------------------
 
-+---------+------+--------+---------+-----------+
-|module   |error |warning |refactor |convention |
-+=========+======+========+=========+===========+
-|sfclient |99.87 |89.28   |71.01    |95.19      |
-+---------+------+--------+---------+-----------+
-|sflegacy |0.13  |10.72   |28.99    |4.28       |
-+---------+------+--------+---------+-----------+
++---------+-------+--------+---------+-----------+
+|module   |error  |warning |refactor |convention |
++=========+=======+========+=========+===========+
+|sfclient |100.00 |89.28   |71.01    |95.19      |
++---------+-------+--------+---------+-----------+
+|sflegacy |0.00   |10.72   |28.99    |4.28       |
++---------+-------+--------+---------+-----------+
 
 
 
@@ -1609,14 +1608,12 @@ Messages
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
-|bad-context-manager          |1           |
-+-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -2.31/10
+Your code has been rated at -2.29/10
 
 Statistics by type
 ------------------
