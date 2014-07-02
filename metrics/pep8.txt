@@ -35,46 +35,111 @@ sfclient.py:26647:1: W293 blank line contains whitespace
     Okay: spam(1)\n#
     W291: spam(1) \n#
     W293: class Foo(object):\n    \n    bang = 12
-sfclient.py:26675:1: E302 expected 2 blank lines, found 1
-    Separate top-level function and class definitions with two blank lines.
+sfclient.py:29737:24: E128 continuation line under-indented for visual indent
+    Continuation lines indentation.
 
-    Method definitions inside a class are separated by a single blank line.
+    Continuation lines should align wrapped elements either vertically
+    using Python's implicit line joining inside parentheses, brackets
+    and braces, or using a hanging indent.
 
-    Extra blank lines may be used (sparingly) to separate groups of related
-    functions.  Blank lines may be omitted between a bunch of related
-    one-liners (e.g. a set of dummy implementations).
+    When using a hanging indent these considerations should be applied:
+    - there should be no arguments on the first line, and
+    - further indentation should be used to clearly distinguish itself as a
+      continuation line.
 
-    Use blank lines in functions, sparingly, to indicate logical sections.
+    Okay: a = (\n)
+    E123: a = (\n    )
 
-    Okay: def a():\n    pass\n\n\ndef b():\n    pass
-    Okay: def a():\n    pass\n\n\n# Foo\n# Bar\n\ndef b():\n    pass
+    Okay: a = (\n    42)
+    E121: a = (\n   42)
+    E122: a = (\n42)
+    E123: a = (\n    42\n    )
+    E124: a = (24,\n     42\n)
+    E125: if (\n    b):\n    pass
+    E126: a = (\n        42)
+    E127: a = (24,\n      42)
+    E128: a = (24,\n    42)
+    E129: if (a or\n    b):\n    pass
+    E131: a = (\n    42\n 24)
+sfclient.py:29738:24: E128 continuation line under-indented for visual indent
+    Continuation lines indentation.
 
-    E301: class Foo:\n    b = 0\n    def bar():\n        pass
-    E302: def a():\n    pass\n\ndef b(n):\n    pass
-    E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
-    E303: def a():\n\n\n\n    pass
-    E304: @decorator\n\ndef a():\n    pass
-sfclient.py:29736:1: E303 too many blank lines (3)
-    Separate top-level function and class definitions with two blank lines.
+    Continuation lines should align wrapped elements either vertically
+    using Python's implicit line joining inside parentheses, brackets
+    and braces, or using a hanging indent.
 
-    Method definitions inside a class are separated by a single blank line.
+    When using a hanging indent these considerations should be applied:
+    - there should be no arguments on the first line, and
+    - further indentation should be used to clearly distinguish itself as a
+      continuation line.
 
-    Extra blank lines may be used (sparingly) to separate groups of related
-    functions.  Blank lines may be omitted between a bunch of related
-    one-liners (e.g. a set of dummy implementations).
+    Okay: a = (\n)
+    E123: a = (\n    )
 
-    Use blank lines in functions, sparingly, to indicate logical sections.
+    Okay: a = (\n    42)
+    E121: a = (\n   42)
+    E122: a = (\n42)
+    E123: a = (\n    42\n    )
+    E124: a = (24,\n     42\n)
+    E125: if (\n    b):\n    pass
+    E126: a = (\n        42)
+    E127: a = (24,\n      42)
+    E128: a = (24,\n    42)
+    E129: if (a or\n    b):\n    pass
+    E131: a = (\n    42\n 24)
+sfclient.py:29739:24: E128 continuation line under-indented for visual indent
+    Continuation lines indentation.
 
-    Okay: def a():\n    pass\n\n\ndef b():\n    pass
-    Okay: def a():\n    pass\n\n\n# Foo\n# Bar\n\ndef b():\n    pass
+    Continuation lines should align wrapped elements either vertically
+    using Python's implicit line joining inside parentheses, brackets
+    and braces, or using a hanging indent.
 
-    E301: class Foo:\n    b = 0\n    def bar():\n        pass
-    E302: def a():\n    pass\n\ndef b(n):\n    pass
-    E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
-    E303: def a():\n\n\n\n    pass
-    E304: @decorator\n\ndef a():\n    pass
+    When using a hanging indent these considerations should be applied:
+    - there should be no arguments on the first line, and
+    - further indentation should be used to clearly distinguish itself as a
+      continuation line.
+
+    Okay: a = (\n)
+    E123: a = (\n    )
+
+    Okay: a = (\n    42)
+    E121: a = (\n   42)
+    E122: a = (\n42)
+    E123: a = (\n    42\n    )
+    E124: a = (24,\n     42\n)
+    E125: if (\n    b):\n    pass
+    E126: a = (\n        42)
+    E127: a = (24,\n      42)
+    E128: a = (24,\n    42)
+    E129: if (a or\n    b):\n    pass
+    E131: a = (\n    42\n 24)
+sfclient.py:29740:24: E128 continuation line under-indented for visual indent
+    Continuation lines indentation.
+
+    Continuation lines should align wrapped elements either vertically
+    using Python's implicit line joining inside parentheses, brackets
+    and braces, or using a hanging indent.
+
+    When using a hanging indent these considerations should be applied:
+    - there should be no arguments on the first line, and
+    - further indentation should be used to clearly distinguish itself as a
+      continuation line.
+
+    Okay: a = (\n)
+    E123: a = (\n    )
+
+    Okay: a = (\n    42)
+    E121: a = (\n   42)
+    E122: a = (\n42)
+    E123: a = (\n    42\n    )
+    E124: a = (24,\n     42\n)
+    E125: if (\n    b):\n    pass
+    E126: a = (\n        42)
+    E127: a = (24,\n      42)
+    E128: a = (24,\n    42)
+    E129: if (a or\n    b):\n    pass
+    E131: a = (\n    42\n 24)
 checking sfglobals.py
 checking sflegacy.py
-1       E302 expected 2 blank lines, found 1
-1       E303 too many blank lines (3)
+4       E128 continuation line under-indented for visual indent
 4       W293 blank line contains whitespace

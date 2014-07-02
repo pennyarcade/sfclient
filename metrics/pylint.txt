@@ -35,6 +35,18 @@ C:25472, 0: Trailing whitespace (trailing-whitespace)
 C:25545, 0: Trailing whitespace (trailing-whitespace)
 C:25623, 0: Trailing whitespace (trailing-whitespace)
 C:26647, 0: Trailing whitespace (trailing-whitespace)
+C:29737, 0: Wrong continued indentation.
+                       is_mann=False, is_kaste=0, is_mouth=0,
+                       ^ | (bad-continuation)
+C:29738, 0: Wrong continued indentation.
+                       is_beard=0, is_nose=0, is_nose=0, is_brows=0,
+                       ^ | (bad-continuation)
+C:29739, 0: Wrong continued indentation.
+                       is_ears=0, is_hair=0, is_special=0,
+                       ^ | (bad-continuation)
+C:29740, 0: Wrong continued indentation.
+                       is_special2=0):
+                       ^ | (bad-continuation)
 C:  1, 0: Too many lines in module (30687) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
@@ -382,8 +394,7 @@ W:5414,31: Unused argument 'oppGilde' (unused-argument)
 W:5414,41: Unused argument 'oppStufe' (unused-argument)
 W:5414,22: Unused argument 'oppName' (unused-argument)
 W:5538,21: Unused argument 'evt' (unused-argument)
-C:5561, 0: Invalid argument name "loadOnly" (invalid-name)
-W:5561,33: Unused argument 'loadOnly' (unused-argument)
+W:5561,33: Unused argument 'load_only' (unused-argument)
 W:5561,23: Unused argument 'evt' (unused-argument)
 W:5601,31: Unused argument 'evt' (unused-argument)
 W:5625,21: Unused argument 'evt' (unused-argument)
@@ -811,7 +822,7 @@ W:12262,12: Unused variable 'force_smoothing' (unused-variable)
 W:12305, 8: Unused variable 'y' (unused-variable)
 W:12301,12: Unused variable 'x' (unused-variable)
 R:12311, 0: Too many local variables (143/15) (too-many-locals)
-W:13125,16: Redefining name 'old_crest_str' from outer scope (line 26675) (redefined-outer-name)
+W:13125,16: Redefining name 'old_crest_str' from outer scope (line 26676) (redefined-outer-name)
 W:13206,16: Redefining built-in 'type' (redefined-builtin)
 E:12321,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
 E:12322,12: Undefined variable 'send_action' (undefined-variable)
@@ -1556,172 +1567,142 @@ W:26560,17: Unused argument 'actor_id' (unused-argument)
 C:26618, 0: Invalid function name "crestMoveFn" (invalid-name)
 W:26618,16: Unused argument 'evt' (unused-argument)
 C:26633, 0: Invalid function name "getRandomCrest" (invalid-name)
-W:26708,18: Redefining built-in 'str' (redefined-builtin)
-W:26708,18: Unused argument 'str' (unused-argument)
-C:26746, 0: Invalid function name "loadCrest" (invalid-name)
-W:26862,19: Unused argument 'evt' (unused-argument)
-C:26910, 0: Invalid function name "ArbeitenSliderChange" (invalid-name)
-W:26910,25: Unused argument 'value' (unused-argument)
-C:26934, 0: Invalid function name "DoubleClickHandler" (invalid-name)
-C:26934, 0: Invalid argument name "dispObj" (invalid-name)
-C:26934, 0: Invalid argument name "fnClick" (invalid-name)
-C:26934, 0: Invalid argument name "fnDoubleClick" (invalid-name)
-W:26934,23: Unused argument 'dispObj' (unused-argument)
-W:26934,32: Unused argument 'fnClick' (unused-argument)
-W:26934,41: Unused argument 'fnDoubleClick' (unused-argument)
-C:26977, 0: Invalid argument name "SG" (invalid-name)
-C:26977, 0: Invalid argument name "achIndex" (invalid-name)
-W:26977,14: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:26977,28: Unused argument 'almode' (unused-argument)
-W:26977,14: Unused argument 'SG' (unused-argument)
-W:26977,18: Unused argument 'achIndex' (unused-argument)
-C:27388, 0: Invalid function name "SingPlur" (invalid-name)
-W:27388,23: Unused argument 'amount' (unused-argument)
-W:27388,13: Unused argument 'inp_text' (unused-argument)
-W:27388,31: Unused argument 'sep' (unused-argument)
-C:27413, 0: Invalid function name "AnimateAch" (invalid-name)
-C:27413, 0: Invalid argument name "AchAniPow" (invalid-name)
-W:27413,25: Unused argument 'y_level' (unused-argument)
-W:27413,15: Unused argument 'actor_id' (unused-argument)
-W:27413,38: Unused argument 'AchAniPow' (unused-argument)
-C:27449, 0: Invalid function name "DoAchievements" (invalid-name)
-C:27449, 0: Invalid argument name "SG" (invalid-name)
-W:27449,19: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:27449,19: Unused argument 'SG' (unused-argument)
-C:27549, 0: Invalid function name "MirrorAniFn" (invalid-name)
-W:27549,16: Unused argument 'evt' (unused-argument)
-C:27569, 0: Invalid argument name "actorIDObj" (invalid-name)
-W:27569,18: Unused argument 'actorIDObj' (unused-argument)
-W:27569,30: Unused argument 'max_width' (unused-argument)
-C:27610, 0: Invalid function name "CheckWrongPage" (invalid-name)
-C:27610, 0: Invalid argument name "correctAct" (invalid-name)
-W:27610,19: Unused argument 'correctAct' (unused-argument)
-C:27649, 0: Invalid function name "MakeRightTextArea" (invalid-name)
-C:27649, 0: Invalid argument name "createHandler" (invalid-name)
-W:27649,32: Unused argument 'child' (unused-argument)
-W:27649,41: Unused argument 'createHandler' (unused-argument)
-W:27649,22: Unused argument 'actor_id' (unused-argument)
-C:27674, 0: Invalid argument name "SG" (invalid-name)
-C:27674, 0: Invalid argument name "NoPrices" (invalid-name)
-C:27674, 0: Invalid argument name "towerMode" (invalid-name)
-C:27674, 0: Invalid argument name "copyCatIdRaw" (invalid-name)
-C:27674, 0: Invalid argument name "witchMode" (invalid-name)
-W:27674,22: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:27674,64: Unused argument 'copyCatIdRaw' (unused-argument)
-W:27674,31: Unused argument 'NoPrices' (unused-argument)
-W:27674,22: Unused argument 'SG' (unused-argument)
-W:27675,22: Unused argument 'witchMode' (unused-argument)
-W:27674,47: Unused argument 'towerMode' (unused-argument)
-C:28510, 0: Invalid function name "ItemPopup" (invalid-name)
-C:28510, 0: Invalid argument name "sgIndex" (invalid-name)
-C:28510, 0: Invalid argument name "SG" (invalid-name)
-C:28510, 0: Invalid argument name "HideBackPack" (invalid-name)
-C:28510, 0: Invalid argument name "NoPrices" (invalid-name)
-C:28510, 0: Invalid argument name "towerMode" (invalid-name)
-C:28510, 0: Invalid argument name "witchMode" (invalid-name)
-R:28510, 0: Too many arguments (7/5) (too-many-arguments)
-W:28510,32: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
-W:28510,61: Unused argument 'NoPrices' (unused-argument)
-W:28511,14: Unused argument 'towerMode' (unused-argument)
-W:28510,32: Unused argument 'SG' (unused-argument)
-W:28510,14: Unused argument 'slot_id' (unused-argument)
-W:28510,23: Unused argument 'sgIndex' (unused-argument)
-W:28510,41: Unused argument 'HideBackPack' (unused-argument)
-W:28511,31: Unused argument 'witchMode' (unused-argument)
-C:29045, 0: Invalid argument name "inStr" (invalid-name)
-W:29045,17: Unused argument 'inStr' (unused-argument)
-C:29052, 0: Invalid argument name "inStr" (invalid-name)
-C:29052, 0: Invalid argument name "getHLMode" (invalid-name)
-C:29052, 0: Invalid argument name "getGBMode" (invalid-name)
-W:29052,23: Unused argument 'getHLMode' (unused-argument)
-W:29052,40: Unused argument 'getGBMode' (unused-argument)
-W:29052,16: Unused argument 'inStr' (unused-argument)
-C:29360, 0: Invalid argument name "isError" (invalid-name)
-C:29360, 0: Invalid argument name "hlIndex" (invalid-name)
-C:29360, 0: Invalid argument name "isWhisper" (invalid-name)
-W:29360,14: Unused argument 'line' (unused-argument)
-W:29360,35: Unused argument 'hlIndex' (unused-argument)
-W:29360,20: Unused argument 'isError' (unused-argument)
-W:29360,47: Unused argument 'isWhisper' (unused-argument)
-C:29454, 0: Invalid function name "PayMethod" (invalid-name)
-C:29454, 0: Invalid argument name "DealerMenu" (invalid-name)
-W:29454,14: Unused argument 'DealerMenu' (unused-argument)
-C:29464, 0: Invalid function name "toiletTankAdjustEvent" (invalid-name)
-W:29464,26: Unused argument 'evt' (unused-argument)
-W:29481,26: Unused argument 'arr' (unused-argument)
-W:29481,31: Unused argument 'offset' (unused-argument)
-C:29513, 0: Invalid function name "WaitingFor" (invalid-name)
-C:29513, 0: Invalid argument name "targetTime" (invalid-name)
-W:29513,15: Unused argument 'targetTime' (unused-argument)
-C:29523, 0: Invalid function name "WaitingTime" (invalid-name)
-C:29523, 0: Invalid argument name "targetTime" (invalid-name)
-W:29523,16: Unused argument 'targetTime' (unused-argument)
-C:29547, 0: Invalid function name "WaitingProgress" (invalid-name)
-C:29547, 0: Invalid argument name "startTime" (invalid-name)
-C:29547, 0: Invalid argument name "targetTime" (invalid-name)
-W:29547,31: Unused argument 'targetTime' (unused-argument)
-W:29547,20: Unused argument 'startTime' (unused-argument)
-C:29561, 0: Invalid function name "LOGonRTL" (invalid-name)
-C:29581, 0: Invalid function name "ModifyCharacter" (invalid-name)
-W:29581,20: Unused argument 'evt' (unused-argument)
-C:29736, 0: Invalid function name "LoadCharacterImage" (invalid-name)
-C:29736, 0: Invalid argument name "loadOnly" (invalid-name)
-C:29736, 0: Invalid argument name "isVolk" (invalid-name)
-C:29736, 0: Invalid argument name "isMann" (invalid-name)
-C:29736, 0: Invalid argument name "isKaste" (invalid-name)
-C:29736, 0: Invalid argument name "isMouth" (invalid-name)
-C:29736, 0: Invalid argument name "isBeard" (invalid-name)
-C:29736, 0: Invalid argument name "isNose" (invalid-name)
-C:29736, 0: Invalid argument name "isEyes" (invalid-name)
-C:29736, 0: Invalid argument name "isBrows" (invalid-name)
-C:29736, 0: Invalid argument name "isEars" (invalid-name)
-C:29736, 0: Invalid argument name "isHair" (invalid-name)
-C:29736, 0: Invalid argument name "isSpecial" (invalid-name)
-C:29736, 0: Invalid argument name "isSpecial2" (invalid-name)
+W:26709,18: Redefining built-in 'str' (redefined-builtin)
+W:26709,18: Unused argument 'str' (unused-argument)
+C:26747, 0: Invalid function name "loadCrest" (invalid-name)
+W:26863,19: Unused argument 'evt' (unused-argument)
+C:26911, 0: Invalid function name "ArbeitenSliderChange" (invalid-name)
+W:26911,25: Unused argument 'value' (unused-argument)
+C:26935, 0: Invalid function name "DoubleClickHandler" (invalid-name)
+C:26935, 0: Invalid argument name "dispObj" (invalid-name)
+C:26935, 0: Invalid argument name "fnClick" (invalid-name)
+C:26935, 0: Invalid argument name "fnDoubleClick" (invalid-name)
+W:26935,23: Unused argument 'dispObj' (unused-argument)
+W:26935,32: Unused argument 'fnClick' (unused-argument)
+W:26935,41: Unused argument 'fnDoubleClick' (unused-argument)
+C:26978, 0: Invalid argument name "SG" (invalid-name)
+C:26978, 0: Invalid argument name "achIndex" (invalid-name)
+W:26978,14: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:26978,28: Unused argument 'almode' (unused-argument)
+W:26978,14: Unused argument 'SG' (unused-argument)
+W:26978,18: Unused argument 'achIndex' (unused-argument)
+C:27389, 0: Invalid function name "SingPlur" (invalid-name)
+W:27389,23: Unused argument 'amount' (unused-argument)
+W:27389,13: Unused argument 'inp_text' (unused-argument)
+W:27389,31: Unused argument 'sep' (unused-argument)
+C:27414, 0: Invalid function name "AnimateAch" (invalid-name)
+C:27414, 0: Invalid argument name "AchAniPow" (invalid-name)
+W:27414,25: Unused argument 'y_level' (unused-argument)
+W:27414,15: Unused argument 'actor_id' (unused-argument)
+W:27414,38: Unused argument 'AchAniPow' (unused-argument)
+C:27450, 0: Invalid function name "DoAchievements" (invalid-name)
+C:27450, 0: Invalid argument name "SG" (invalid-name)
+W:27450,19: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:27450,19: Unused argument 'SG' (unused-argument)
+C:27550, 0: Invalid function name "MirrorAniFn" (invalid-name)
+W:27550,16: Unused argument 'evt' (unused-argument)
+C:27570, 0: Invalid argument name "actorIDObj" (invalid-name)
+W:27570,18: Unused argument 'actorIDObj' (unused-argument)
+W:27570,30: Unused argument 'max_width' (unused-argument)
+C:27611, 0: Invalid function name "CheckWrongPage" (invalid-name)
+C:27611, 0: Invalid argument name "correctAct" (invalid-name)
+W:27611,19: Unused argument 'correctAct' (unused-argument)
+C:27650, 0: Invalid function name "MakeRightTextArea" (invalid-name)
+C:27650, 0: Invalid argument name "createHandler" (invalid-name)
+W:27650,32: Unused argument 'child' (unused-argument)
+W:27650,41: Unused argument 'createHandler' (unused-argument)
+W:27650,22: Unused argument 'actor_id' (unused-argument)
+C:27675, 0: Invalid argument name "SG" (invalid-name)
+C:27675, 0: Invalid argument name "NoPrices" (invalid-name)
+C:27675, 0: Invalid argument name "towerMode" (invalid-name)
+C:27675, 0: Invalid argument name "copyCatIdRaw" (invalid-name)
+C:27675, 0: Invalid argument name "witchMode" (invalid-name)
+W:27675,22: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:27675,64: Unused argument 'copyCatIdRaw' (unused-argument)
+W:27675,31: Unused argument 'NoPrices' (unused-argument)
+W:27675,22: Unused argument 'SG' (unused-argument)
+W:27676,22: Unused argument 'witchMode' (unused-argument)
+W:27675,47: Unused argument 'towerMode' (unused-argument)
+C:28511, 0: Invalid function name "ItemPopup" (invalid-name)
+C:28511, 0: Invalid argument name "sgIndex" (invalid-name)
+C:28511, 0: Invalid argument name "SG" (invalid-name)
+C:28511, 0: Invalid argument name "HideBackPack" (invalid-name)
+C:28511, 0: Invalid argument name "NoPrices" (invalid-name)
+C:28511, 0: Invalid argument name "towerMode" (invalid-name)
+C:28511, 0: Invalid argument name "witchMode" (invalid-name)
+R:28511, 0: Too many arguments (7/5) (too-many-arguments)
+W:28511,32: Redefining name 'SG' from outer scope (line 26) (redefined-outer-name)
+W:28511,61: Unused argument 'NoPrices' (unused-argument)
+W:28512,14: Unused argument 'towerMode' (unused-argument)
+W:28511,32: Unused argument 'SG' (unused-argument)
+W:28511,14: Unused argument 'slot_id' (unused-argument)
+W:28511,23: Unused argument 'sgIndex' (unused-argument)
+W:28511,41: Unused argument 'HideBackPack' (unused-argument)
+W:28512,31: Unused argument 'witchMode' (unused-argument)
+C:29046, 0: Invalid argument name "inStr" (invalid-name)
+W:29046,17: Unused argument 'inStr' (unused-argument)
+C:29053, 0: Invalid argument name "inStr" (invalid-name)
+C:29053, 0: Invalid argument name "getHLMode" (invalid-name)
+C:29053, 0: Invalid argument name "getGBMode" (invalid-name)
+W:29053,23: Unused argument 'getHLMode' (unused-argument)
+W:29053,40: Unused argument 'getGBMode' (unused-argument)
+W:29053,16: Unused argument 'inStr' (unused-argument)
+C:29361, 0: Invalid argument name "isError" (invalid-name)
+C:29361, 0: Invalid argument name "hlIndex" (invalid-name)
+C:29361, 0: Invalid argument name "isWhisper" (invalid-name)
+W:29361,14: Unused argument 'line' (unused-argument)
+W:29361,35: Unused argument 'hlIndex' (unused-argument)
+W:29361,20: Unused argument 'isError' (unused-argument)
+W:29361,47: Unused argument 'isWhisper' (unused-argument)
+C:29455, 0: Invalid function name "PayMethod" (invalid-name)
+C:29455, 0: Invalid argument name "DealerMenu" (invalid-name)
+W:29455,14: Unused argument 'DealerMenu' (unused-argument)
+C:29465, 0: Invalid function name "toiletTankAdjustEvent" (invalid-name)
+W:29465,26: Unused argument 'evt' (unused-argument)
+W:29482,26: Unused argument 'arr' (unused-argument)
+W:29482,31: Unused argument 'offset' (unused-argument)
+C:29514, 0: Invalid function name "WaitingFor" (invalid-name)
+C:29514, 0: Invalid argument name "targetTime" (invalid-name)
+W:29514,15: Unused argument 'targetTime' (unused-argument)
+C:29524, 0: Invalid function name "WaitingTime" (invalid-name)
+C:29524, 0: Invalid argument name "targetTime" (invalid-name)
+W:29524,16: Unused argument 'targetTime' (unused-argument)
+C:29548, 0: Invalid function name "WaitingProgress" (invalid-name)
+C:29548, 0: Invalid argument name "startTime" (invalid-name)
+C:29548, 0: Invalid argument name "targetTime" (invalid-name)
+W:29548,31: Unused argument 'targetTime' (unused-argument)
+W:29548,20: Unused argument 'startTime' (unused-argument)
+C:29562, 0: Invalid function name "LOGonRTL" (invalid-name)
+C:29582, 0: Invalid function name "ModifyCharacter" (invalid-name)
+W:29582,20: Unused argument 'evt' (unused-argument)
+E:29736, 0: Duplicate argument name is_nose in function definition (duplicate-argument-name)
 R:29736, 0: Too many arguments (14/5) (too-many-arguments)
-W:29736,51: Unused argument 'isVolk' (unused-argument)
-W:29739,23: Unused argument 'isEars' (unused-argument)
-W:29738,54: Unused argument 'isBrows' (unused-argument)
-W:29740,23: Unused argument 'isSpecial2' (unused-argument)
-W:29737,37: Unused argument 'isKaste' (unused-argument)
-W:29738,44: Unused argument 'isEyes' (unused-argument)
-W:29738,23: Unused argument 'isBeard' (unused-argument)
-W:29737,23: Unused argument 'isMann' (unused-argument)
-W:29736,23: Unused argument 'actor_id' (unused-argument)
-W:29739,43: Unused argument 'isSpecial' (unused-argument)
-W:29736,35: Unused argument 'loadOnly' (unused-argument)
-W:29739,33: Unused argument 'isHair' (unused-argument)
-W:29737,48: Unused argument 'isMouth' (unused-argument)
-W:29738,34: Unused argument 'isNose' (unused-argument)
-C:29924, 0: Invalid function name "PositionModifyCharacterButtons" (invalid-name)
-C:29972, 0: Invalid function name "getCharSuffix" (invalid-name)
-C:29972, 0: Invalid argument name "itemIndex" (invalid-name)
-C:29972, 0: Invalid argument name "itemValue" (invalid-name)
-W:29972,29: Unused argument 'itemValue' (unused-argument)
-W:29972,18: Unused argument 'itemIndex' (unused-argument)
-C:30039, 0: Invalid function name "RandomizeCharacter" (invalid-name)
-W:30039,23: Unused argument 'evt' (unused-argument)
-C:30061, 0: Invalid function name "RandomizeCharImage" (invalid-name)
-W:30061,23: Unused argument 'evt' (unused-argument)
-C:30095, 0: Invalid function name "getCharImageBound" (invalid-name)
-C:30095, 0: Invalid argument name "isVolk" (invalid-name)
-C:30095, 0: Invalid argument name "isMann" (invalid-name)
-C:30095, 0: Invalid argument name "itemIndex" (invalid-name)
-W:30095,22: Unused argument 'isVolk' (unused-argument)
-W:30095,30: Unused argument 'isMann' (unused-argument)
-W:30095,38: Unused argument 'itemIndex' (unused-argument)
-C:30509, 0: Invalid function name "getCharPrefix" (invalid-name)
-C:30509, 0: Invalid argument name "isGut" (invalid-name)
-C:30509, 0: Invalid argument name "isinstanceVolk" (invalid-name)
-C:30509, 0: Invalid argument name "isMann" (invalid-name)
-C:30509, 0: Invalid argument name "isKaste" (invalid-name)
-W:30509,18: Unused argument 'isGut' (unused-argument)
-W:30509,41: Unused argument 'isMann' (unused-argument)
-W:30509,49: Unused argument 'isKaste' (unused-argument)
-W:30509,25: Unused argument 'isinstanceVolk' (unused-argument)
-C:30552, 0: Invalid function name "DrachenSetzen" (invalid-name)
-C:30592, 0: Invalid function name "InterfaceBtnHandler" (invalid-name)
-W:30592,24: Unused argument 'evt' (unused-argument)
+W:29738,57: Unused argument 'is_brows' (unused-argument)
+W:29736,54: Unused argument 'is_volk' (unused-argument)
+W:29736,37: Unused argument 'load_only' (unused-argument)
+W:29739,45: Unused argument 'is_special' (unused-argument)
+W:29739,34: Unused argument 'is_hair' (unused-argument)
+W:29736,25: Unused argument 'actor_id' (unused-argument)
+W:29737,23: Unused argument 'is_mann' (unused-argument)
+W:29739,23: Unused argument 'is_ears' (unused-argument)
+W:29738,35: Unused argument 'is_nose' (unused-argument)
+W:29740,23: Unused argument 'is_special2' (unused-argument)
+W:29737,38: Unused argument 'is_kaste' (unused-argument)
+W:29737,50: Unused argument 'is_mouth' (unused-argument)
+W:29738,23: Unused argument 'is_beard' (unused-argument)
+C:29924, 0: Invalid function name "position_modify_character_buttons" (invalid-name)
+W:29972,32: Unused argument 'item_value' (unused-argument)
+W:29972,20: Unused argument 'item_index' (unused-argument)
+W:30039,24: Unused argument 'evt' (unused-argument)
+W:30061,25: Unused argument 'evt' (unused-argument)
+W:30095,25: Unused argument 'is_volk' (unused-argument)
+W:30095,34: Unused argument 'is_mann' (unused-argument)
+W:30095,43: Unused argument 'item_index' (unused-argument)
+W:30509,28: Unused argument 'isinstance_volk' (unused-argument)
+W:30509,54: Unused argument 'is_kaste' (unused-argument)
+W:30509,45: Unused argument 'is_mann' (unused-argument)
+W:30509,20: Unused argument 'is_gut' (unused-argument)
+W:30592,26: Unused argument 'evt' (unused-argument)
 C:30680, 0: Invalid function name "ChatPollIntervalReset" (invalid-name)
 W: 26, 0: Unused import get_quest_random from wildcard import (unused-wildcard-import)
 W: 26, 0: Unused import get_quest_title from wildcard import (unused-wildcard-import)
@@ -1876,13 +1857,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |394    |NC       |NC         |
+|convention |367    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |671    |NC       |NC         |
+|warning    |670    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |678    |NC       |NC         |
+|error      |679    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1893,9 +1874,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |93.14   |72.50    |97.72      |
+|sfclient |100.00 |93.13   |72.50    |97.55      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |6.86    |27.50    |2.03       |
+|sflegacy |0.00   |6.87    |27.50    |2.18       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1908,11 +1889,11 @@ Messages
 +=============================+============+
 |undefined-variable           |651         |
 +-----------------------------+------------+
-|invalid-name                 |388         |
+|invalid-name                 |357         |
 +-----------------------------+------------+
 |unused-variable              |267         |
 +-----------------------------+------------+
-|unused-argument              |246         |
+|unused-argument              |245         |
 +-----------------------------+------------+
 |unused-wildcard-import       |59          |
 +-----------------------------+------------+
@@ -1942,6 +1923,8 @@ Messages
 +-----------------------------+------------+
 |trailing-whitespace          |4           |
 +-----------------------------+------------+
+|bad-continuation             |4           |
++-----------------------------+------------+
 |wildcard-import              |3           |
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
@@ -1956,12 +1939,14 @@ Messages
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
+|duplicate-argument-name      |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -1.26/10
+Your code has been rated at -1.21/10
 
 Statistics by type
 ------------------
@@ -1975,7 +1960,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |42     |NC         |NC         |100.00      |7.14     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |218    |NC         |NC         |100.00      |33.03    |
+|function |218    |NC         |NC         |100.00      |29.36    |
 +---------+-------+-----------+-----------+------------+---------+
 
 
