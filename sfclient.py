@@ -14905,7 +14905,7 @@ def guild_chat_poll_fn(evt):
     pass
 
 
-def position_popup(evt:):
+def position_popup(evt):
     '''
     var evt:* = evt
     var _local3 = actor[POPUP_INFO]
