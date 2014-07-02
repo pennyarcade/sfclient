@@ -31,22 +31,6 @@ W:14205, 0: TODO: hat does this do? (fixme)
 W:15899, 0: TODO: What does this do? (fixme)
 W:15915, 0: TODO: Obsolete? (fixme)
 W:15938, 0: TODO: set via requests params (fixme)
-C:25472, 0: Trailing whitespace (trailing-whitespace)
-C:25545, 0: Trailing whitespace (trailing-whitespace)
-C:25623, 0: Trailing whitespace (trailing-whitespace)
-C:26647, 0: Trailing whitespace (trailing-whitespace)
-C:29737, 0: Wrong continued indentation.
-                       is_mann=False, is_kaste=0, is_mouth=0,
-                       ^ | (bad-continuation)
-C:29738, 0: Wrong continued indentation.
-                       is_beard=0, is_nose=0, is_eyes=0, is_brows=0,
-                       ^ | (bad-continuation)
-C:29739, 0: Wrong continued indentation.
-                       is_ears=0, is_hair=0, is_special=0,
-                       ^ | (bad-continuation)
-C:29740, 0: Wrong continued indentation.
-                       is_special2=0):
-                       ^ | (bad-continuation)
 C:  1, 0: Too many lines in module (30687) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
@@ -1647,49 +1631,35 @@ C:29053, 0: Invalid argument name "getGBMode" (invalid-name)
 W:29053,23: Unused argument 'getHLMode' (unused-argument)
 W:29053,40: Unused argument 'getGBMode' (unused-argument)
 W:29053,16: Unused argument 'inStr' (unused-argument)
-C:29361, 0: Invalid argument name "isError" (invalid-name)
-C:29361, 0: Invalid argument name "hlIndex" (invalid-name)
-C:29361, 0: Invalid argument name "isWhisper" (invalid-name)
 W:29361,14: Unused argument 'line' (unused-argument)
-W:29361,35: Unused argument 'hlIndex' (unused-argument)
-W:29361,20: Unused argument 'isError' (unused-argument)
-W:29361,47: Unused argument 'isWhisper' (unused-argument)
-C:29455, 0: Invalid function name "PayMethod" (invalid-name)
-C:29455, 0: Invalid argument name "DealerMenu" (invalid-name)
-W:29455,14: Unused argument 'DealerMenu' (unused-argument)
-C:29465, 0: Invalid function name "toiletTankAdjustEvent" (invalid-name)
-W:29465,26: Unused argument 'evt' (unused-argument)
+W:29361,20: Unused argument 'is_error' (unused-argument)
+W:29361,36: Unused argument 'hl_index' (unused-argument)
+W:29361,49: Unused argument 'is_whisper' (unused-argument)
+W:29455,15: Unused argument 'dealer_menu' (unused-argument)
+W:29465,29: Unused argument 'evt' (unused-argument)
 W:29482,26: Unused argument 'arr' (unused-argument)
 W:29482,31: Unused argument 'offset' (unused-argument)
-C:29514, 0: Invalid function name "WaitingFor" (invalid-name)
-C:29514, 0: Invalid argument name "targetTime" (invalid-name)
-W:29514,15: Unused argument 'targetTime' (unused-argument)
-C:29524, 0: Invalid function name "WaitingTime" (invalid-name)
-C:29524, 0: Invalid argument name "targetTime" (invalid-name)
-W:29524,16: Unused argument 'targetTime' (unused-argument)
-C:29548, 0: Invalid function name "WaitingProgress" (invalid-name)
+W:29514,16: Unused argument 'target_time' (unused-argument)
+W:29524,17: Unused argument 'target_time' (unused-argument)
 C:29548, 0: Invalid argument name "startTime" (invalid-name)
-C:29548, 0: Invalid argument name "targetTime" (invalid-name)
-W:29548,31: Unused argument 'targetTime' (unused-argument)
-W:29548,20: Unused argument 'startTime' (unused-argument)
-C:29562, 0: Invalid function name "LOGonRTL" (invalid-name)
-C:29582, 0: Invalid function name "ModifyCharacter" (invalid-name)
-W:29582,20: Unused argument 'evt' (unused-argument)
+W:29548,32: Unused argument 'target_time' (unused-argument)
+W:29548,21: Unused argument 'startTime' (unused-argument)
+W:29582,21: Unused argument 'evt' (unused-argument)
 R:29736, 0: Too many arguments (14/5) (too-many-arguments)
-W:29738,57: Unused argument 'is_brows' (unused-argument)
+W:29738,59: Unused argument 'is_brows' (unused-argument)
 W:29736,54: Unused argument 'is_volk' (unused-argument)
 W:29736,37: Unused argument 'load_only' (unused-argument)
-W:29739,45: Unused argument 'is_special' (unused-argument)
-W:29738,46: Unused argument 'is_eyes' (unused-argument)
-W:29739,34: Unused argument 'is_hair' (unused-argument)
+W:29739,47: Unused argument 'is_special' (unused-argument)
+W:29738,48: Unused argument 'is_eyes' (unused-argument)
+W:29739,36: Unused argument 'is_hair' (unused-argument)
 W:29736,25: Unused argument 'actor_id' (unused-argument)
-W:29737,23: Unused argument 'is_mann' (unused-argument)
-W:29739,23: Unused argument 'is_ears' (unused-argument)
-W:29738,35: Unused argument 'is_nose' (unused-argument)
-W:29740,23: Unused argument 'is_special2' (unused-argument)
-W:29737,38: Unused argument 'is_kaste' (unused-argument)
-W:29737,50: Unused argument 'is_mouth' (unused-argument)
-W:29738,23: Unused argument 'is_beard' (unused-argument)
+W:29737,25: Unused argument 'is_mann' (unused-argument)
+W:29739,25: Unused argument 'is_ears' (unused-argument)
+W:29738,37: Unused argument 'is_nose' (unused-argument)
+W:29740,25: Unused argument 'is_special2' (unused-argument)
+W:29737,40: Unused argument 'is_kaste' (unused-argument)
+W:29737,52: Unused argument 'is_mouth' (unused-argument)
+W:29738,25: Unused argument 'is_beard' (unused-argument)
 C:29924, 0: Invalid function name "position_modify_character_buttons" (invalid-name)
 W:29972,32: Unused argument 'item_value' (unused-argument)
 W:29972,20: Unused argument 'item_index' (unused-argument)
@@ -1857,7 +1827,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |367    |NC       |NC         |
+|convention |345    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1874,9 +1844,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |93.14   |72.50    |97.55      |
+|sfclient |100.00 |93.14   |72.50    |97.39      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |6.86    |27.50    |2.18       |
+|sflegacy |0.00   |6.86    |27.50    |2.32       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1889,7 +1859,7 @@ Messages
 +=============================+============+
 |undefined-variable           |651         |
 +-----------------------------+------------+
-|invalid-name                 |357         |
+|invalid-name                 |343         |
 +-----------------------------+------------+
 |unused-variable              |267         |
 +-----------------------------+------------+
@@ -1921,10 +1891,6 @@ Messages
 +-----------------------------+------------+
 |assignment-from-no-return    |5           |
 +-----------------------------+------------+
-|trailing-whitespace          |4           |
-+-----------------------------+------------+
-|bad-continuation             |4           |
-+-----------------------------+------------+
 |wildcard-import              |3           |
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
@@ -1944,7 +1910,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -1.20/10
+Your code has been rated at -1.14/10
 
 Statistics by type
 ------------------
@@ -1958,7 +1924,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |42     |NC         |NC         |100.00      |7.14     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |218    |NC         |NC         |100.00      |29.36    |
+|function |218    |NC         |NC         |100.00      |26.15    |
 +---------+-------+-----------+-----------+------------+---------+
 
 
