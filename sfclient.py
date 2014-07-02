@@ -15597,8 +15597,9 @@ def whendo_loaded(function=None):
         async loading finished
     '''
     pending = False
+
     if isinstance(function, types.FunctionType):
-        whendo_loaded_fn[len(whendo_loaded_fn)] = function
+        whendo_loaded_fn.append(function)
         whendo_loaded_active = True
         whendo_loaded_timeout.stop()
         whendo_loaded_timeout.start()
