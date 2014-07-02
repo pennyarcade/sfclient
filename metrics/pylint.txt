@@ -1359,7 +1359,6 @@ W:15605, 8: Redefining name 'whendo_loaded_active' from outer scope (line 905) (
 C:15601, 4: Invalid constant name "whendo_loaded_fn" (invalid-name)
 W:15601, 4: Using the global statement (global-statement)
 E:15610,11: Undefined variable 'actorLoaded' (undefined-variable)
-E:15632,43: Undefined variable 'Function' (undefined-variable)
 E:15644,15: Undefined variable 'actorLoaded' (undefined-variable)
 E:15651,20: Undefined variable 'actorURL' (undefined-variable)
 E:15653,16: Undefined variable 'actorLoaded' (undefined-variable)
@@ -1451,13 +1450,13 @@ W: 26, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-imp
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:199, 0: TODO: obsolete (fixme)
-W:214, 0: TODO: obsolete (fixme)
-W:228, 0: TODO: obsolete (fixme)
-W:244, 0: TODO: obsolete (fixme)
-W:268, 0: TODO WTF? (fixme)
-W:290, 0: TODO: better way to zero fill? (fixme)
-W:477, 0: TODO: Obsolete (fixme)
+W:210, 0: TODO: obsolete (fixme)
+W:225, 0: TODO: obsolete (fixme)
+W:239, 0: TODO: obsolete (fixme)
+W:255, 0: TODO: obsolete (fixme)
+W:279, 0: TODO WTF? (fixme)
+W:301, 0: TODO: better way to zero fill? (fixme)
+W:488, 0: TODO: Obsolete (fixme)
 W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
@@ -1481,8 +1480,9 @@ R:107, 0: Too few public methods (0/2) (too-few-public-methods)
 R:114, 0: Too few public methods (0/2) (too-few-public-methods)
 R:157, 0: Too few public methods (0/2) (too-few-public-methods)
 R:164, 0: Too few public methods (0/2) (too-few-public-methods)
-C:186, 4: Invalid method name "getLocal" (invalid-name)
 R:182, 0: Too few public methods (1/2) (too-few-public-methods)
+C:197, 4: Invalid method name "getLocal" (invalid-name)
+R:193, 0: Too few public methods (1/2) (too-few-public-methods)
 W: 12, 0: Unused import CPC from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import REL from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ACT from wildcard import (unused-wildcard-import)
@@ -1526,7 +1526,7 @@ R:171, 0: Interface not implemented (interface-not-implemented)
 
 Report
 ======
-3753 statements analysed.
+3756 statements analysed.
 
 External dependencies
 ---------------------
@@ -1544,13 +1544,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19663  |57.28 |NC       |NC         |
+|code      |19666  |57.27 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13186  |38.41 |NC       |NC         |
+|docstring |13192  |38.42 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |696    |2.03  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |781    |2.28  |NC       |NC         |
+|empty     |784    |2.28  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1576,11 +1576,11 @@ Messages by category
 +===========+=======+=========+===========+
 |convention |177    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |68     |NC       |NC         |
+|refactor   |69     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |411    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |865    |NC       |NC         |
+|error      |864    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1591,9 +1591,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |88.81   |72.06    |96.05      |
+|sfclient |100.00 |88.81   |71.01    |96.05      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |11.19   |27.94    |3.39       |
+|sflegacy |0.00   |11.19   |28.99    |3.39       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1604,7 +1604,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |838         |
+|undefined-variable           |837         |
 +-----------------------------+------------+
 |unused-variable              |270         |
 +-----------------------------+------------+
@@ -1614,7 +1614,7 @@ Messages
 +-----------------------------+------------+
 |fixme                        |37          |
 +-----------------------------+------------+
-|too-few-public-methods       |28          |
+|too-few-public-methods       |29          |
 +-----------------------------+------------+
 |used-before-assignment       |23          |
 +-----------------------------+------------+
@@ -1659,7 +1659,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -3.27/10
+Your code has been rated at -3.25/10
 
 Statistics by type
 ------------------
@@ -1669,9 +1669,9 @@ Statistics by type
 +=========+=======+===========+===========+============+=========+
 |module   |3      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |34     |NC         |NC         |100.00      |14.71    |
+|class    |35     |NC         |NC         |100.00      |14.29    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |34     |NC         |NC         |100.00      |2.94     |
+|method   |35     |NC         |NC         |100.00      |2.86     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |100    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
