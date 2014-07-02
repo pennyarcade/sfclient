@@ -31,7 +31,14 @@ W:14205, 0: TODO: hat does this do? (fixme)
 W:15899, 0: TODO: What does this do? (fixme)
 W:15915, 0: TODO: Obsolete? (fixme)
 W:15938, 0: TODO: set via requests params (fixme)
-C:27579, 0: Line too long (81/80) (line-too-long)
+C:7280, 0: Line too long (80/79) (line-too-long)
+C:9152, 0: Line too long (80/79) (line-too-long)
+C:9550, 0: Line too long (80/79) (line-too-long)
+C:27579, 0: Line too long (81/79) (line-too-long)
+C:27892, 0: Line too long (80/79) (line-too-long)
+C:27897, 0: Line too long (80/79) (line-too-long)
+C:27903, 0: Line too long (80/79) (line-too-long)
+C:28158, 0: Line too long (80/79) (line-too-long)
 C:  1, 0: Too many lines in module (30697) (too-many-lines)
 W: 26, 0: Wildcard import sflegacy (wildcard-import)
 W: 27, 0: Wildcard import sfglobals (wildcard-import)
@@ -1757,7 +1764,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |314    |NC       |NC         |
+|convention |321    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |80     |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1774,9 +1781,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.89   |72.50    |97.13      |
+|sfclient |100.00 |98.89   |72.50    |97.20      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.11    |27.50    |2.55       |
+|sflegacy |0.00   |1.11    |27.50    |2.49       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1815,6 +1822,8 @@ Messages
 +-----------------------------+------------+
 |too-many-statements          |9           |
 +-----------------------------+------------+
+|line-too-long                |8           |
++-----------------------------+------------+
 |too-many-function-args       |5           |
 +-----------------------------+------------+
 |global-statement             |5           |
@@ -1833,8 +1842,6 @@ Messages
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
-|line-too-long                |1           |
-+-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
 
@@ -1842,7 +1849,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at -0.97/10
+Your code has been rated at -0.99/10
 
 Statistics by type
 ------------------
