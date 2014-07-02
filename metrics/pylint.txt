@@ -1404,41 +1404,42 @@ W: 26, 0: Unused import POPUP_END_LINE from wildcard import (unused-wildcard-imp
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:227, 0: TODO: obsolete (fixme)
-W:242, 0: TODO: obsolete (fixme)
-W:256, 0: TODO: obsolete (fixme)
-W:272, 0: TODO: obsolete (fixme)
-W:296, 0: TODO WTF? (fixme)
-W:318, 0: TODO: better way to zero fill? (fixme)
-W:505, 0: TODO: Obsolete (fixme)
+W:231, 0: TODO: obsolete (fixme)
+W:246, 0: TODO: obsolete (fixme)
+W:260, 0: TODO: obsolete (fixme)
+W:276, 0: TODO: obsolete (fixme)
+W:300, 0: TODO WTF? (fixme)
+W:322, 0: TODO: better way to zero fill? (fixme)
+W:509, 0: TODO: Obsolete (fixme)
 W: 12, 0: Wildcard import sfglobals (wildcard-import)
 R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
 R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
+E: 34, 4: __exit__ must accept 3 arguments: type, value, traceback (bad-context-manager)
 R: 30, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 37, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
-R: 37, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 44, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 51, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 58, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
-R: 58, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 65, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
-R: 65, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 72, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
-R: 72, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 79, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
-R: 79, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 86, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 93, 0: Too few public methods (0/2) (too-few-public-methods)
-R:100, 0: Too few public methods (0/2) (too-few-public-methods)
-R:107, 0: Too few public methods (0/2) (too-few-public-methods)
-R:114, 0: Too few public methods (0/2) (too-few-public-methods)
-R:157, 0: Too few public methods (0/2) (too-few-public-methods)
-R:164, 0: Too few public methods (0/2) (too-few-public-methods)
-C:186, 4: Invalid method name "loadPolicyFile" (invalid-name)
-C:192, 4: Invalid method name "allowDomain" (invalid-name)
-R:199, 0: Too few public methods (1/2) (too-few-public-methods)
-C:214, 4: Invalid method name "getLocal" (invalid-name)
-R:210, 0: Too few public methods (1/2) (too-few-public-methods)
+C: 41, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
+R: 41, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 48, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 55, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 62, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
+R: 62, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 69, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
+R: 69, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 76, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
+R: 76, 0: Too few public methods (0/2) (too-few-public-methods)
+C: 83, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
+R: 83, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 90, 0: Too few public methods (0/2) (too-few-public-methods)
+R: 97, 0: Too few public methods (0/2) (too-few-public-methods)
+R:104, 0: Too few public methods (0/2) (too-few-public-methods)
+R:111, 0: Too few public methods (0/2) (too-few-public-methods)
+R:118, 0: Too few public methods (0/2) (too-few-public-methods)
+R:161, 0: Too few public methods (0/2) (too-few-public-methods)
+R:168, 0: Too few public methods (0/2) (too-few-public-methods)
+C:190, 4: Invalid method name "loadPolicyFile" (invalid-name)
+C:196, 4: Invalid method name "allowDomain" (invalid-name)
+R:203, 0: Too few public methods (1/2) (too-few-public-methods)
+C:218, 4: Invalid method name "getLocal" (invalid-name)
+R:214, 0: Too few public methods (1/2) (too-few-public-methods)
 W: 12, 0: Unused import CPC from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import REL from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ACT from wildcard import (unused-wildcard-import)
@@ -1477,12 +1478,12 @@ W: 12, 0: Unused import CFG from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import INP from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import ITM_EMPTY from wildcard import (unused-wildcard-import)
 W: 12, 0: Unused import BTN from wildcard import (unused-wildcard-import)
-R:171, 0: Interface not implemented (interface-not-implemented)
+R:175, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-3775 statements analysed.
+3776 statements analysed.
 
 External dependencies
 ---------------------
@@ -1500,13 +1501,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |19685  |57.28 |NC       |NC         |
+|code      |19686  |57.28 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |13201  |38.41 |NC       |NC         |
+|docstring |13204  |38.42 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |2.01  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |788    |2.29  |NC       |NC         |
+|empty     |789    |2.30  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1536,7 +1537,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |429    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |792    |NC       |NC         |
+|error      |793    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1544,13 +1545,13 @@ Messages by category
 % errors / warnings by module
 -----------------------------
 
-+---------+-------+--------+---------+-----------+
-|module   |error  |warning |refactor |convention |
-+=========+=======+========+=========+===========+
-|sfclient |100.00 |89.28   |71.01    |95.19      |
-+---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |10.72   |28.99    |4.28       |
-+---------+-------+--------+---------+-----------+
++---------+------+--------+---------+-----------+
+|module   |error |warning |refactor |convention |
++=========+======+========+=========+===========+
+|sfclient |99.87 |89.28   |71.01    |95.19      |
++---------+------+--------+---------+-----------+
+|sflegacy |0.13  |10.72   |28.99    |4.28       |
++---------+------+--------+---------+-----------+
 
 
 
@@ -1608,12 +1609,14 @@ Messages
 +-----------------------------+------------+
 |interface-not-implemented    |1           |
 +-----------------------------+------------+
+|bad-context-manager          |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at -2.30/10
+Your code has been rated at -2.31/10
 
 Statistics by type
 ------------------
@@ -1625,7 +1628,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |36     |NC         |NC         |100.00      |13.89    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |37     |NC         |NC         |100.00      |8.11     |
+|method   |38     |NC         |NC         |100.00      |7.89     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |100    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
