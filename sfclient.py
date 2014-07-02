@@ -2322,8 +2322,8 @@ def TowerBtnHandler(evt):
     };
     '''
     pass
-  
-    
+
+
 def TowerScrollGrab(evt):
     '''
     towerScrollGrabPos = evt.localY;
@@ -2331,7 +2331,7 @@ def TowerScrollGrab(evt):
     '''
     pass
 
-    
+
 def TowerScrollmove(evt):
     '''
     if (towerScrollGrabPos != -1){
@@ -2344,7 +2344,7 @@ def TowerScrollmove(evt):
     '''
     pass
 
-    
+
 def TowerScrollRelease(evt):
     '''
     if (towerScrollGrabPos != -1){
@@ -2363,7 +2363,7 @@ def TowerScrollOut(evt):
     '''
     pass
 
-    
+
 def TowerScrollCurrent(evt):
     '''
     towerScrollDest = (towerSG[TSG_TOWER_LEVEL] + 1);
@@ -2411,7 +2411,7 @@ def TowerKeyEvent(evt):
     '''
     pass
 
-    
+
 def TowerScrollSetFocus(evt):
     '''
     var evt:* = evt;
@@ -2427,7 +2427,7 @@ def TowerScrollSetFocus(evt):
     '''
     pass
 
-    
+
 def TowerTimerFn(evt=None):
     '''
     var i;
@@ -2518,7 +2518,7 @@ def DoShowScreenAlbum():
     '''
     pass
 
-    
+
 def show_screen_album():
     '''
     var i:* = 0;
@@ -2534,7 +2534,7 @@ def show_screen_album():
     '''
     pass
 
-    
+
 def show_tower_screen(towerData):
     '''
     var thisCpc:* = 0;
@@ -2627,7 +2627,7 @@ def show_demo_screen():
     '''
     pass
 
-    
+
 def show_option_screen(evt=None):
     '''
     var DoShowOptionScreen:* = None;
@@ -4614,7 +4614,7 @@ def show_fight_screen(
     weaponData,
     HonorGain,
     GoldGain,
-    isMQ
+    isMQ,
     isReplay=False,
     BackPackSlot=-1,
     GuildBattleData=None,
@@ -5530,7 +5530,7 @@ def show_arena_screen(oppName, oppGilde, oppStufe):
     '''
     pass
 
-    
+
 def show_hall_screen(evt=None):
     '''
     var DoShowHallScreen:* = None;
@@ -5617,7 +5617,7 @@ def show_screen_gilde_gruenden(evt=None):
     '''
     pass
 
-    
+
 def show_city_screen(evt=None):
     '''
     var StatistenBleiben:* = False;
@@ -9523,7 +9523,7 @@ def show_work_success_screen(evt=None):
     '''
     pass
 
-    
+
 def show_work_screen(evt=None):
     '''
     var ArbeitCountdown:* = None;
@@ -11361,7 +11361,7 @@ def ShowSignupScreen(evt=None):
     };
     '''
     pass
-  
+
 
 # -----------------------------------------------------------------------------
 # low level graphic stuff
