@@ -33,6 +33,8 @@ from sfglobals import LBL
 from sfglobals import SHP
 from sfglobals import BTN
 from sfglobals import CNT
+from sfglobals import ACT
+from sfglobals import C
 
 from sflegacy import URLRequest
 from sflegacy import URLLoader
@@ -52,6 +54,8 @@ from sflegacy import FontFormat_DefaultLeft
 from sflegacy import SoundLoaderContext
 from sflegacy import ExternalInterface
 from sflegacy import Sound
+from sflegacy import Timer
+from sflegacy import TimerEvent
 
 
 # global for logger

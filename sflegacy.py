@@ -19,6 +19,13 @@ class TextField(object):
     pass
 
 
+class TextFormat(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
 class TextFieldAutoSize(object):
     '''
         obsolete with cli?
@@ -265,6 +272,13 @@ class SharedObject(object):
             obsolete
         '''
         pass
+
+
+class SoundLoaderContext(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
 
 
 def get_quest_bg():
