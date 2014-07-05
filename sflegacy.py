@@ -19,11 +19,22 @@ class AntiAliasType(object):
     ADVANCED = None
 
 
-class TextField(object):
+class MovieClip(object):
     '''
         obsolete with cli?
     '''
     pass
+
+
+class TextField(object):
+    '''
+        obsolete with cli?
+    '''
+    def add_event_listener(self, *args):
+        '''
+            obsolete
+        '''
+        pass
 
 
 class TextFormat(object):
@@ -150,7 +161,11 @@ class Bitmap(object):
     '''
         obsolete with cli?
     '''
-    pass
+    def add_event_listener(self, *args):
+        '''
+            obsolete
+        '''
+        pass
 
 
 class Timer(object):
