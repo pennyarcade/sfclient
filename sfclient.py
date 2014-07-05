@@ -23,8 +23,35 @@ import requests
 import curses
 
 # internal dependencies
-from sflegacy import *
-from sfglobals import *
+from sfglobals import CFG
+from sfglobals import TXT
+from sfglobals import SG
+from sfglobals import IMG
+from sfglobals import CA
+from sfglobals import POS
+from sfglobals import LBL
+from sfglobals import SHP
+from sfglobals import BTN
+from sfglobals import CNT
+
+from sflegacy import URLRequest
+from sflegacy import URLLoader
+from sflegacy import SecurityErrorEvent
+from sflegacy import Event
+from sflegacy import IOErrorEvent
+from sflegacy import URLLoaderdata_format
+from sflegacy import MouseEvent
+from sflegacy import KeyboardEvent
+from sflegacy import TextField
+from sflegacy import TextFieldAutoSize
+from sflegacy import DisplayObject
+from sflegacy import Bitmap
+from sflegacy import TextFormat
+from sflegacy import FontFormat_ClassError
+from sflegacy import FontFormat_DefaultLeft
+from sflegacy import SoundLoaderContext
+from sflegacy import ExternalInterface
+from sflegacy import Sound
 
 
 # global for logger
