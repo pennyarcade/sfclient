@@ -259,7 +259,7 @@ class Session(object):
                         "PHP-Request fehlgeschlagen (Versuch",
                         str(fail_try), "/",
                         str(param_fail_tries) + ").",
-                        evt, "Erneutes Senden..."
+                        "Erneutes Senden..."
                     ]))
                     LOG.info("Erneut gesendet.")
                 else:
@@ -825,7 +825,8 @@ def init_vars():
     # stundenlohn = 10
     # suggestion_slot = list()
     # suggestNames = list()
-    # text_dir = "left"
+    global text_dir
+    text_dir = "left"
     # tmp_battle_info = ""
     # tmpAmount = 0
     # to_error_count = 0
@@ -13866,6 +13867,7 @@ def action_handler(event):
 
             level_up = False
             last_level = 0
+            global old_ach
             old_ach = list()
             old_album = -1
             album_effect = False
@@ -27576,7 +27578,8 @@ def trim_too_long(actor_id_obj, max_width):
     var actor_id_obj:* = actor_id_obj;
     var max_width:* = max_width;
     Shortened = False;
-    var _local4 = (((actor_id_obj is int)) ? actor[actor_id_obj] : actor_id_obj);
+    var _local4 = (((actor_id_obj is int))
+                   ? actor[actor_id_obj] : actor_id_obj);
     with (_local4) {
         tmp_str = text;
         remainLength = tmp_str.length;
@@ -27889,18 +27892,21 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
             actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, POPUP_END_LINE];
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, texts[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
-        if ((((((tower_mode) ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 1))
+        if ((((((tower_mode)
+            ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 1))
                 and ((i == 0)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
         } else {
-        if ((((((tower_mode) ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 3))
+        if ((((((tower_mode)
+            ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 3))
                 and ((i == 1)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
                 FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER],
                 POPUP_END_LINE];
         } else {
-        if ((((((tower_mode) ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 2))
+        if ((((((tower_mode) ? (copy_cat_id_raw + 1)
+            : int(SG[SG_CLASS])) == 2))
                 and ((i == 2)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
                 FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
@@ -28155,7 +28161,8 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                          : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
     actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((tower_mode)
                                  ? ((copyCatId + CPC_ATTRIBS) + 2)
-                                 : SG_ATTR_AUSDAUER)]) + Number(SG[((tower_mode)
+                                 : SG_ATTR_AUSDAUER)])
+                                    + Number(SG[((tower_mode)
                                  ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
                                  : SG_ATTR_AUSDAUER_BONUS)])) / 2));
     actor[LBL_SCR_CHAR_RUESTUNG].default_text_format = (((tmpHealth > 0))
