@@ -12,6 +12,13 @@
 # from sfglobals import SG
 
 
+class AntiAliasType(object):
+    '''
+        obsolete with cli?
+    '''
+    ADVANCED = None
+
+
 class TextField(object):
     '''
         obsolete with cli?
@@ -279,6 +286,13 @@ class SoundLoaderContext(object):
         obsolete with cli?
     '''
     pass
+
+
+class Capabilities(object):
+    '''
+        obsolete with cli?
+    '''
+    version = None
 
 
 def get_quest_bg():
