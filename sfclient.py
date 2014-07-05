@@ -39,7 +39,7 @@ from sfglobals import GUILD
 from sfglobals import IMG
 from sfglobals import INP
 from sfglobals import LBL
-from sfglobals import POUP_INFO
+from sfglobals import POPUP_INFO
 from sfglobals import POS
 from sfglobals import REL
 from sfglobals import RESP
@@ -2458,7 +2458,8 @@ def tower_key_event(evt):
         var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
             remove_event_listener(KeyboardEvent.KEY_DOWN, tower_key_event);
-            remove_event_listener(FocusEvent.FOCUS_OUT, tower_scroll_set_focus);
+            remove_event_listener(FocusEvent.FOCUS_OUT,
+                                  tower_scroll_set_focus);
         };
     };
     '''
@@ -2474,7 +2475,8 @@ def tower_scroll_set_focus(evt):
         var _local3 = actor[TOWER_SCROLLAREA];
         with (_local3) {
             remove_event_listener(KeyboardEvent.KEY_DOWN, tower_key_event);
-            remove_event_listener(FocusEvent.FOCUS_OUT, tower_scroll_set_focus);
+            remove_event_listener(FocusEvent.FOCUS_OUT,
+                                  tower_scroll_set_focus);
         };
     };
     '''
