@@ -310,6 +310,48 @@ class Capabilities(object):
     version = None
 
 
+class LoaderError(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class LoaderComplete(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class LoaderContext(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class LoaderInfo(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class ApplicationDomain(object):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class SecurityDomain(object):
+    '''
+        obsolete with cli?
+    '''
+    currentDomain = None
+
+
 def get_quest_bg():
     '''
         Get quest background index

@@ -50,6 +50,7 @@ from sfglobals import SND
 from sfglobals import TXT
 
 from sflegacy import AntiAliasType
+from sflegacy import ApplicationDomain
 from sflegacy import Bitmap
 from sflegacy import Capabilities
 from sflegacy import DisplayObject
@@ -58,9 +59,16 @@ from sflegacy import ExternalInterface
 from sflegacy import FontFormat_ClassError
 from sflegacy import FontFormat_HallListHeading
 from sflegacy import FontFormat_DefaultLeft
+from sflegacy import Function
 from sflegacy import IOErrorEvent
 from sflegacy import KeyboardEvent
+from sflegacy import Loader
+from sflegacy import LoaderInfo
+from sflegacy import LoaderContext
+from sflegacy import LoaderError
+from sflegacy import LoaderComplete
 from sflegacy import MouseEvent
+from sflegacy import SharedObject
 from sflegacy import SecurityErrorEvent
 from sflegacy import SecurityHandler
 from sflegacy import Sound
@@ -2790,7 +2798,7 @@ def do_skip_fight(evt=None, fight_done=False):
     var fight_done:Boolean = fight_done;
     quest_id = (savegame[SG_ACTION_INDEX] - 1);
     var rewardX:* = FIGHT_REWARDGOLD_X;
-    PilzBekommen = getPilz;
+    PilzBekommen = get_pilz;
     var pilzX:* = FIGHT_REWARDGOLD_X;
     var rewardGoldText:* = "";
     var fightStyle:* = 5;
@@ -2803,23 +2811,23 @@ def do_skip_fight(evt=None, fight_done=False):
         MouseEvent.CLICK, do_skip_fight);
     actor[BATTLE_SKIPONE].remove_event_listener(
         MouseEvent.CLICK, do_skip_fight);
-    fightRound = (int((fightData.length / 6)) - 1);
-    charLife = fightData[(fightRound * 6)];
-    charDamage = fightData[((fightRound * 6) + 1)];
-    charFlag = fightData[((fightRound * 6) + 2)];
-    oppLife = fightData[((fightRound * 6) + 3)];
-    oppDamage = fightData[((fightRound * 6) + 4)];
-    oppFlag = fightData[((fightRound * 6) + 5)];
+    fightRound = (int((fight_data.length / 6)) - 1);
+    charLife = fight_data[(fightRound * 6)];
+    charDamage = fight_data[((fightRound * 6) + 1)];
+    charFlag = fight_data[((fightRound * 6) + 2)];
+    oppLife = fight_data[((fightRound * 6) + 3)];
+    oppDamage = fight_data[((fightRound * 6) + 4)];
+    oppFlag = fight_data[((fightRound * 6) + 5)];
     charWin = (charLife > 0);
     set_life_bars();
-    if (((!(is_guildBattle)) or (lastFight))){
+    if (((!(is_guildBattle)) or (last_fight))){
         remove(FIGHT_SKIP);
         remove(BATTLE_SKIP);
         remove(BATTLE_SKIPONE);
         add(LBL_FIGHT_SUMMARY);
     };
     if (is_guildBattle){
-        if (((charWin) and (lastFight))){
+        if (((charWin) and (last_fight))){
             play(SND_JINGLE);
         };
     } else {
@@ -2841,19 +2849,19 @@ def do_skip_fight(evt=None, fight_done=False):
                 winners[("name_" + thisCharName)] = 1;
             };
         };
-        if (((tower_fight_mode) and ((guildFightHonor >= 0)))){
+        if (((tower_fight_mode) and ((guild_fight_honor >= 0)))){
             SetCnt(
                 FIGHT_SLOT,
                 GetItemID(
                     SG_INVENTORY_OFFS,
-                    (guildFightHonor + 10),
+                    (guild_fight_honor + 10),
                      savegame
                  )
             );
             item_popup(
                 FIGHT_SLOT,
                 (SG_INVENTORY_OFFS
-                    + ((guildFightHonor + 10)
+                    + ((guild_fight_honor + 10)
                         * SG['ITM']['SIZE'])
                 ),
                 None,
@@ -2861,12 +2869,12 @@ def do_skip_fight(evt=None, fight_done=False):
                 True,
                 False
             );
-            guildFightHonor = 0;
+            guild_fight_honor = 0;
         } else {
             SetCnt(FIGHT_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         };
-        if (lastFight){
+        if (last_fight){
             lastHero = "";
             lastHeroWins = 0;
             heroCount = 0;
@@ -2928,12 +2936,12 @@ def do_skip_fight(evt=None, fight_done=False):
                 LBL_FIGHT_REWARDMUSH,
                 LBL_FIGHT_REWARDEXP
             );
-            if ((((guildFightExp > 0)) and (charWin))){
+            if ((((guild_fight_exp > 0)) and (charWin))){
                 if (tower_fight_mode){
                     _local4 = actor[LBL_FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
-                        text = str(guildFightExp);
+                        text = str(guild_fight_exp);
                         x = (rewardX - text_width);
                     };
                     _local4 = actor[FIGHT_REWARDGOLD];
@@ -2949,12 +2957,12 @@ def do_skip_fight(evt=None, fight_done=False):
                         visible = True;
                         if (text_dir == "right"){
                             text = (
-                                (str(math.abs(guildFightExp)) + " :")
+                                (str(math.abs(guild_fight_exp)) + " :")
                                 + texts[TXT_EXP]);
                         } else {
                             text = (
                                 (texts[TXT_EXP] + ": ")
-                                + str(math.abs(guildFightExp)));
+                                + str(math.abs(guild_fight_exp)));
                         };
                     };
                 };
@@ -2965,16 +2973,16 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            (str(math.abs(guildFightHonor)) + " ")
-                            + texts[(((guildFightHonor > 0))
+                            (str(math.abs(guild_fight_honor)) + " ")
+                            + texts[(((guild_fight_honor > 0))
                                 ? TXT_GUILD_HONOR_GAINED
                                 : TXT_GUILD_HONOR_LOST)]);
                     } else {
                         text = (
-                            (texts[(((guildFightHonor > 0))
+                            (texts[(((guild_fight_honor > 0))
                                 ? TXT_GUILD_HONOR_GAINED
                                 : TXT_GUILD_HONOR_LOST)] + " ")
-                            + str(math.abs(guildFightHonor)));
+                            + str(math.abs(guild_fight_honor)));
                     };
                     x = (rewardX - text_width);
                 };
@@ -2988,7 +2996,7 @@ def do_skip_fight(evt=None, fight_done=False):
             };
         };
     } else {
-        if (isPvP){
+        if (is_pvp){
             add(FIGHT_REWARDS);
             hide(
                 FIGHT_REWARDGOLD,
@@ -2999,26 +3007,26 @@ def do_skip_fight(evt=None, fight_done=False):
                 LBL_FIGHT_REWARDMUSH,
                 LBL_FIGHT_REWARDEXP
             );
-            if (HonorGain != 0){
+            if (honor_gain != 0){
                 _local4 = actor[LBL_FIGHT_REWARDEXP];
                 with (_local4) {
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            (str(math.abs(HonorGain)) + " ")
-                            + texts[(((HonorGain > 0))
+                            (str(math.abs(honor_gain)) + " ")
+                            + texts[(((honor_gain > 0))
                                 ? TXT_HONOR_GAINED
                                 : TXT_HONOR_LOST)]);
                     } else {
                         text = (
-                            (texts[(((HonorGain > 0))
+                            (texts[(((honor_gain > 0))
                                 ? TXT_HONOR_GAINED
                                 : TXT_HONOR_LOST)] + " ")
-                                + str(math.abs(HonorGain)));
+                                + str(math.abs(honor_gain)));
                     };
                 };
             };
-            if (GoldGain > 0){
+            if (goldG_gain > 0){
                 if (text_dir == "right"){
                     rewardGoldText = (
                         " " + texts[TXT_GOLD_GAINED]);
@@ -3026,7 +3034,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     rewardGoldText = (texts[TXT_GOLD_GAINED] + " ");
                 };
             } else {
-                if (GoldGain < 0){
+                if (goldG_gain < 0){
                     if (text_dir == "right"){
                         rewardGoldText = (" " + texts[TXT_GOLD_LOST]);
                     } else {
@@ -3034,7 +3042,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (silber_anteil(math.abs(GoldGain)) > 0){
+            if (silber_anteil(math.abs(goldG_gain)) > 0){
                 if (text_dir != "right"){
                     _local4 = actor[FIGHT_REWARDSILVER];
                     with (_local4) {
@@ -3048,14 +3056,14 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            silber_anteil(math.abs(GoldGain))
+                            silber_anteil(math.abs(goldG_gain))
                             + rewardGoldText);
                     } else {
                         text = (
-                            (((gold_anteil(math.abs(GoldGain)) > 0))
+                            (((gold_anteil(math.abs(goldG_gain)) > 0))
                                 ? ""
                                 : rewardGoldText)
-                            + silber_anteil(math.abs(GoldGain)));
+                            + silber_anteil(math.abs(goldG_gain)));
                     };
                     x = (rewardX - text_width);
                     rewardX = (x - (((text_dir == "right")) ? 8 : 14));
@@ -3069,7 +3077,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (gold_anteil(math.abs(GoldGain)) > 0){
+            if (gold_anteil(math.abs(goldG_gain)) > 0){
                 if (text_dir != "right"){
                     _local4 = actor[FIGHT_REWARDGOLD];
                     with (_local4) {
@@ -3083,13 +3091,13 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            gold_anteil(math.abs(GoldGain))
-                            + (((silber_anteil(math.abs(GoldGain))
+                            gold_anteil(math.abs(goldG_gain))
+                            + (((silber_anteil(math.abs(goldG_gain))
                                 > 0)) ? "" : rewardGoldText));
                     } else {
                         text = (
                             rewardGoldText
-                            + gold_anteil(math.abs(GoldGain)));
+                            + gold_anteil(math.abs(goldG_gain)));
                     };
                     x = (rewardX - text_width);
                     rewardX = (x - (((text_dir == "right")) ? 8 : 14));
@@ -3106,7 +3114,7 @@ def do_skip_fight(evt=None, fight_done=False):
             SetCnt(FIGHT_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         } else {
-            if (((isMQ) and (charWin))){
+            if (((is_mq) and (charWin))){
                 add(FIGHT_REWARDS);
                 hide(
                     FIGHT_REWARDGOLD,
@@ -3117,18 +3125,18 @@ def do_skip_fight(evt=None, fight_done=False):
                     LBL_FIGHT_REWARDMUSH,
                     LBL_FIGHT_REWARDEXP
                 );
-                if (HonorGain > 0){
+                if (honor_gain > 0){
                     _local4 = actor[LBL_FIGHT_REWARDEXP];
                     with (_local4) {
                         visible = True;
                         if (text_dir == "right"){
                             text = (
-                                (str(HonorGain) + " :")
+                                (str(honor_gain) + " :")
                                 + texts[TXT_EXP]);
                         } else {
                             text = (
                                 (texts[TXT_EXP] + ": ")
-                                + str(HonorGain));
+                                + str(honor_gain));
                         };
                     };
                 };
@@ -3150,7 +3158,7 @@ def do_skip_fight(evt=None, fight_done=False):
                         FIGHT_REWARDMUSH,
                         actor[FIGHT_REWARDMUSH].y);
                 };
-                if (silber_anteil(GoldGain) > 0){
+                if (silber_anteil(goldG_gain) > 0){
                     _local4 = actor[FIGHT_REWARDSILVER];
                     with (_local4) {
                         visible = True;
@@ -3160,12 +3168,12 @@ def do_skip_fight(evt=None, fight_done=False):
                     _local4 = actor[LBL_FIGHT_REWARDSILVER];
                     with (_local4) {
                         visible = True;
-                        text = silber_anteil(GoldGain);
+                        text = silber_anteil(goldG_gain);
                         x = (rewardX - text_width);
                         rewardX = (x - 14);
                     };
                 };
-                if (gold_anteil(GoldGain) > 0){
+                if (gold_anteil(goldG_gain) > 0){
                     _local4 = actor[FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
@@ -3175,21 +3183,21 @@ def do_skip_fight(evt=None, fight_done=False):
                     _local4 = actor[LBL_FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
-                        text = gold_anteil(GoldGain);
+                        text = gold_anteil(goldG_gain);
                         x = (rewardX - text_width);
                         rewardX = (x - 14);
                     };
                 };
-                if (BackPackSlot >= 0){
+                if (back_pack_slot >= 0){
                     SetCnt(
                         FIGHT_SLOT,
                         GetItemID(SG_INVENTORY_OFFS,
-                            (BackPackSlot + 10),
+                            (back_pack_slot + 10),
                             savegame));
                     item_popup(
                         FIGHT_SLOT,
                         (SG_INVENTORY_OFFS
-                            + ((BackPackSlot + 10)
+                            + ((back_pack_slot + 10)
                                 * SG['ITM']['SIZE'])),
                         None,
                         False,
@@ -3201,7 +3209,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     enable_popup(FIGHT_SLOT);
                 };
             } else {
-                if (isMQ){
+                if (is_mq){
                     hasLostMQ = True;
                 } else {
                     if (
@@ -3340,7 +3348,7 @@ def do_skip_fight(evt=None, fight_done=False):
         width = FIGHT_RESULT_TEXT_X;
         wordWrap = True;
         if (is_guildBattle){
-            if (lastFight){
+            if (last_fight){
                 if (tower_fight_mode){
                     if (charWin){
                         text = texts[
@@ -3378,7 +3386,7 @@ def do_skip_fight(evt=None, fight_done=False):
                 return;
             };
         } else {
-            if (isPvP){
+            if (is_pvp){
                 text = texts[
                     ((int((random.random() * 5)) + fightStyle)
                         + ((charWin)
@@ -3462,16 +3470,16 @@ def do_strike_event(evt):
             TimerEvent.TIMER, do_strike_event);
         return;
     };
-    if (fightRound > (int((fightData.length / 6)) - 1)){
+    if (fightRound > (int((fight_data.length / 6)) - 1)){
         do_skip_fight(None, True);
         return;
     };
-    charLife = fightData[(fightRound * 6)];
-    charDamage = fightData[((fightRound * 6) + 1)];
-    charFlag = fightData[((fightRound * 6) + 2)];
-    oppLife = fightData[((fightRound * 6) + 3)];
-    oppDamage = fightData[((fightRound * 6) + 4)];
-    oppFlag = fightData[((fightRound * 6) + 5)];
+    charLife = fight_data[(fightRound * 6)];
+    charDamage = fight_data[((fightRound * 6) + 1)];
+    charFlag = fight_data[((fightRound * 6) + 2)];
+    oppLife = fight_data[((fightRound * 6) + 3)];
+    oppDamage = fight_data[((fightRound * 6) + 4)];
+    oppFlag = fight_data[((fightRound * 6) + 5)];
     if (
         (((((((fightRound == 0))
             and (!(oppStrike))))
@@ -4187,7 +4195,7 @@ def weapon_strike(opponent=False):
             if (weaponType == 2){
                 SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
                     get_arrow_id(0, ((opponent) ? 1 : 0),
-                    weaponData, True, int((random.random() * 3))));
+                    weapon_data, True, int((random.random() * 3))));
             };
             _local3 = actor[
                 ((opponent) ? BULLET_OPP : BULLET_CHAR)];
@@ -4344,7 +4352,7 @@ def weapon_strike(opponent=False):
         if (weaponType == 2){
             onoID = get_arrow_id(
                 0, ((opponent) ? 1 : 0),
-                weaponData, True, 3);
+                weapon_data, True, 3);
         } else {
             if (weaponType == 3){
                 onoID = FIGHT_ARROW_SMASH;
@@ -4368,7 +4376,7 @@ def do_show_fight_screen(evt=None):
     var do_strike_event:* = None;
     var evt:* = evt;
     DoStrikeTimer = new Timer(200);
-    if (((((isPvP) and (!(isReplay)))) and (!(is_guildBattle)))){
+    if (((((is_pvp) and (!(is_replay)))) and (!(is_guildBattle)))){
         if (!waiting_for(savegame[SG_PVP_REROLL_TIME])){
             savegame[SG_PVP_REROLL_TIME] = (
                 int((game_time.getTime() / 1000)) + (70 * 60));
@@ -4397,7 +4405,7 @@ def do_show_fight_screen(evt=None):
             if (((isRaid) and (texts[TXT_DUNGEON_NAMES]))){
                 add(LBL_HERO_OF_THE_DAY_TITLE);
                 actor[LBL_HERO_OF_THE_DAY_TITLE].text = texts[
-                    ((TXT_DUNGEON_NAMES + raidLevel) - 1)];
+                    ((TXT_DUNGEON_NAMES + raid_level) - 1)];
                 actor[LBL_HERO_OF_THE_DAY_TITLE].x = (
                     SCREEN_TITLE_X
                     - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
@@ -4426,7 +4434,7 @@ def do_show_fight_screen(evt=None):
                 LBL_SCREEN_TITLE
             );
         } else {
-            if (isPvP){
+            if (is_pvp){
                 remove_all();
                 Switch (tz){
                     if case(0:
@@ -4441,7 +4449,7 @@ def do_show_fight_screen(evt=None):
                 };
             } else {
                 remove_all();
-                if (isMQ){
+                if (is_mq){
                     if (SelectedDungeon == 100){
                         add(SCR_TOWER_BG);
                     } else {
@@ -4557,7 +4565,7 @@ def do_show_fight_screen(evt=None):
             if (tower_fight_mode){
                 text = texts[TXT_TOWER_GUYS];
             } else {
-                text = ownGuild;
+                text = own_guild;
             };
             x = ((FIGHT_CHARX + 150) - (text_width / 2));
         };
@@ -4567,7 +4575,7 @@ def do_show_fight_screen(evt=None):
                 text = texts[TXT_TOWER_LEVEL].split(
                     "%1").join(str((tower_level + 1)));
             } else {
-                text = oppGuild;
+                text = opp_guild;
             };
             x = ((OPPX + 150) - (text_width / 2));
         };
@@ -4579,55 +4587,55 @@ def do_show_fight_screen(evt=None):
             actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = "";
             actor[(LBL_FIGHT_OPP_STAERKE + i)].text = "";
             if (((tower_fight_mode)
-                and (!((int(GuildBattleData[(i + 1)]) == 0))))){
+                and (!((int(guild_battle_data[(i + 1)]) == 0))))){
                 actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = texts[
                     ((TXT_COPYCAT_NAME
-                        + int(GuildBattleData[(i + 1)])) - 1)];
+                        + int(guild_battle_data[(i + 1)])) - 1)];
             } else {
                 actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = str(
-                    GuildBattleData[(i + 1)]);
+                    guild_battle_data[(i + 1)]);
             };
             if (tower_fight_mode){
                 actor[(LBL_FIGHT_OPP_STAERKE + i)].text = str(
-                    fighterData[(i + 7)]);
+                    fighter_data[(i + 7)]);
                 actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = texts[
                     (TXT_CHAR_STAERKE + i)];
             } else {
-                if (int(GuildBattleData[(i + 7)]) != 0){
-                    if (-(int(GuildBattleData[(i + 7)])) >= 400){
+                if (int(guild_battle_data[(i + 7)]) != 0){
+                    if (-(int(guild_battle_data[(i + 7)])) >= 400){
                         actor[
                             (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
                         ].text = texts[
                             ((TXT_TOWER_enemy_NAMES +
-                            -(int(GuildBattleData[(i + 7)]))) - 400)
+                            -(int(guild_battle_data[(i + 7)]))) - 400)
                         ].split("|")[0];
                     } else {
-                        if (-(int(GuildBattleData[(i + 7)])) > 220){
+                        if (-(int(guild_battle_data[(i + 7)])) > 220){
                             actor[
                                 (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
                             ].text = texts[
                                 ((TXT_NEW_MONSTER_NAMES
-                                    + -(int(GuildBattleData[(
+                                    + -(int(guild_battle_data[(
                                         i + 7)]))) - 221)];
                         } else {
                             actor[
                                 (LBL_FIGHT_OPP_STAERKE_CAPTION + i)
                             ].text = texts[
                                 ((TXT_MONSTER_NAME
-                                    + -(int(GuildBattleData[(i + 7)])))
+                                    + -(int(guild_battle_data[(i + 7)])))
                                     - 1)];
                         };
                     };
                 } else {
                     actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = str(
-                        GuildBattleData[(i + 7)]);
+                        guild_battle_data[(i + 7)]);
                 };
             };
         } else {
             actor[(LBL_FIGHT_CHAR_STAERKE + i)].text = str(
-                fighterData[(i + 1)]);
+                fighter_data[(i + 1)]);
             actor[(LBL_FIGHT_OPP_STAERKE + i)].text = str(
-                fighterData[(i + 7)]);
+                fighter_data[(i + 7)]);
             actor[(LBL_FIGHT_CHAR_STAERKE_CAPTION + i)].text = texts[
                 (TXT_CHAR_STAERKE + i)];
             actor[(LBL_FIGHT_OPP_STAERKE_CAPTION + i)].text = texts[
@@ -4661,25 +4669,12 @@ def do_show_fight_screen(evt=None):
     pass
 
 
-def show_fight_screen(
-        fighterData,
-        fightData,
-        getPilz,
-        faceData,
-        isPvP,
-        weaponData,
-        HonorGain,
-        GoldGain,
-        isMQ,
-        isReplay=False,
-        BackPackSlot=-1,
-        GuildBattleData=None,
-        lastFight=False,
-        guildFightExp=0,
-        guildFightHonor=0,
-        ownGuild="",
-        ppGuild="",
-        raidLevel=0
+def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
+                      weapon_data, honor_gain, goldG_gain, is_mq,
+                      is_replay=False, back_pack_slot=-1,
+                      guild_battle_data=None, last_fight=False,
+                      guild_fight_exp=0, guild_fight_honor=0, own_guild="",
+                      opp_guild="", raid_level=0
 ):
     '''
     var is_guildBattle:* = False;
@@ -4732,38 +4727,38 @@ def show_fight_screen(
     var oppStrike:* = False;
     var isRaid:* = False;
     var do_show_fight_screen:* = None;
-    var fighterData:* = fighterData;
-    var fightData:* = fightData;
-    var getPilz:* = getPilz;
-    var faceData:* = faceData;
-    var isPvP:* = isPvP;
-    var weaponData:* = weaponData;
-    var HonorGain:* = HonorGain;
-    var GoldGain:* = GoldGain;
-    var isMQ:* = isMQ;
-    var isReplay:Boolean = isReplay;
-    var BackPackSlot = BackPackSlot;
-    var GuildBattleData:* = GuildBattleData;
-    var lastFight:Boolean = lastFight;
-    var guildFightExp = guildFightExp;
-    var guildFightHonor = guildFightHonor;
-    var ownGuild:String = ownGuild;
-    var oppGuild:String = oppGuild;
-    var raidLevel = raidLevel;
+    var fighter_data:* = fighter_data;
+    var fight_data:* = fight_data;
+    var get_pilz:* = get_pilz;
+    var face_data:* = face_data;
+    var is_pvp:* = is_pvp;
+    var weapon_data:* = weapon_data;
+    var honor_gain:* = honor_gain;
+    var goldG_gain:* = goldG_gain;
+    var is_mq:* = is_mq;
+    var is_replay:Boolean = is_replay;
+    var back_pack_slot = back_pack_slot;
+    var guild_battle_data:* = guild_battle_data;
+    var last_fight:Boolean = last_fight;
+    var guild_fight_exp = guild_fight_exp;
+    var guild_fight_honor = guild_fight_honor;
+    var own_guild:String = own_guild;
+    var opp_guild:String = opp_guild;
+    var raid_level = raid_level;
 
     is_guildBattle = False;
-    if (GuildBattleData){
+    if (guild_battle_data){
         is_guildBattle = True;
     };
     hasFoughtGuildBattle = is_guildBattle;
-    charWeapon = weaponData[SG['ITM']['PIC']];
-    oppWeapon = weaponData[(SG['ITM']['SIZE'] + SG['ITM']['PIC'])];
+    charWeapon = weapon_data[SG['ITM']['PIC']];
+    oppWeapon = weapon_data[(SG['ITM']['SIZE'] + SG['ITM']['PIC'])];
     charHasWeapon = (
-        ((int(weaponData[SG_ITM_TYP]) > 0))
-        and ((int(weaponData[SG['ITM']['PIC']]) > 0)));
+        ((int(weapon_data[SG_ITM_TYP]) > 0))
+        and ((int(weapon_data[SG['ITM']['PIC']]) > 0)));
     oppHasWeapon = (
-        ((int(weaponData[(SG['ITM']['SIZE'] + SG_ITM_TYP)]) > 0))
-        and ((int(weaponData[(SG['ITM']['SIZE'] + SG['ITM']['PIC'])]) > 0)));
+        ((int(weapon_data[(SG['ITM']['SIZE'] + SG_ITM_TYP)]) > 0))
+        and ((int(weapon_data[(SG['ITM']['SIZE'] + SG['ITM']['PIC'])]) > 0)));
     charWeaponType = 1;
     oppWeaponType = 1;
     tz = tageszeit();
@@ -4791,11 +4786,11 @@ def show_fight_screen(
         oppWeapon = (oppWeapon - 1000);
         oppWeaponType = (oppWeaponType + 1);
     };
-    charShield = (int(weaponData[((SG['ITM']['SIZE'] * 2) + SG['ITM']['PIC'])])
-        * (((int(weaponData[((SG['ITM']['SIZE'] * 2)
+    charShield = (int(weapon_data[((SG['ITM']['SIZE'] * 2) + SG['ITM']['PIC'])])
+        * (((int(weapon_data[((SG['ITM']['SIZE'] * 2)
             + SG_ITM_TYP)]) == 0)) ? 0 : 1));
-    oppShield = (weaponData[((SG['ITM']['SIZE'] * 3) + SG['ITM']['PIC'])]
-        * (((int(weaponData[((SG['ITM']['SIZE'] * 3)
+    oppShield = (weapon_data[((SG['ITM']['SIZE'] * 3) + SG['ITM']['PIC'])]
+        * (((int(weapon_data[((SG['ITM']['SIZE'] * 3)
             + SG_ITM_TYP)]) == 0)) ? 0 : 1));
     if (charHasWeapon){
         load(get_weapon_sound(charWeaponType, charWeapon, 0));
@@ -4855,7 +4850,7 @@ def show_fight_screen(
         load(get_quest_bg());
     };
     if (!charHasWeapon){
-        charWeapon = int(weaponData[SG_ITM_TYP]);
+        charWeapon = int(weapon_data[SG_ITM_TYP]);
         load(get_weapon_sound(charWeaponType, charWeapon, 0));
         load(get_weapon_sound(charWeaponType, charWeapon, 1));
         if (((!((charWeaponType == 2))) and (!((oppShield == 0))))){
@@ -4875,37 +4870,37 @@ def show_fight_screen(
         if (charWeaponType == 1){
             SetCnt(
                 WEAPON_CHAR,
-                GetItemID(0, 0, weaponData),
+                GetItemID(0, 0, weapon_data),
                 -30, -30, True);
             SetCnt(BULLET_CHAR, C_EMPTY);
         } else {
             if (charWeaponType == 2){
                 SetCnt(
                     WEAPON_CHAR,
-                    GetItemID(0, 0, weaponData),
+                    GetItemID(0, 0, weapon_data),
                     30, -30, True);
                 SetCnt(
                     BULLET_CHAR, get_arrow_id(
-                        0, 0, weaponData, True, 0));
+                        0, 0, weapon_data, True, 0));
                 load(get_arrow_id(
-                    0, 0, weaponData, True, 1),
+                    0, 0, weapon_data, True, 1),
                     get_arrow_id(
-                        0, 0, weaponData, True, 2),
-                    get_arrow_id(0, 0, weaponData, True, 3));
+                        0, 0, weapon_data, True, 2),
+                    get_arrow_id(0, 0, weapon_data, True, 3));
             } else {
                 if (charWeaponType == 3){
                     SetCnt(
                         WEAPON_CHAR,
-                        GetItemID(0, 0, weaponData));
+                        GetItemID(0, 0, weapon_data));
                     SetCnt(
                         BULLET_CHAR,
-                        get_arrow_id(0, 0, weaponData, True));
+                        get_arrow_id(0, 0, weapon_data, True));
                 };
             };
         };
     };
     if (!oppHasWeapon){
-        oppWeapon = int(weaponData[(SG['ITM']['SIZE'] + SG_ITM_TYP)]);
+        oppWeapon = int(weapon_data[(SG['ITM']['SIZE'] + SG_ITM_TYP)]);
         load(get_weapon_sound(oppWeaponType, oppWeapon, 0));
         load(get_weapon_sound(oppWeaponType, oppWeapon, 1));
         if (((!((oppWeaponType == 2))) and (!((charShield == 0))))){
@@ -4932,61 +4927,61 @@ def show_fight_screen(
         oppWeaponType = 1;
     } else {
         if (oppWeaponType == 1){
-            SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), -30, -30, True);
+            SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), -30, -30, True);
             SetCnt(BULLET_OPP, C_EMPTY);
         } else {
             if (oppWeaponType == 2){
-                SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData), 30, -30, True);
-                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, True, 0));
+                SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), 30, -30, True);
+                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True, 0));
                 load(
-                    get_arrow_id(0, 1, weaponData, True, 1),
-                    get_arrow_id(0, 1, weaponData, True, 2),
-                    get_arrow_id(0, 1, weaponData, True, 3));
+                    get_arrow_id(0, 1, weapon_data, True, 1),
+                    get_arrow_id(0, 1, weapon_data, True, 2),
+                    get_arrow_id(0, 1, weapon_data, True, 3));
             } else {
                 if (oppWeaponType == 3){
-                    SetCnt(WEAPON_OPP, GetItemID(0, 1, weaponData));
-                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weaponData, True));
+                    SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data));
+                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True));
                 };
             };
         };
     };
     if (charShield > 0){
-        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weaponData), 0, 0, True);
+        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weapon_data), 0, 0, True);
     } else {
         SetCnt(SHIELD_CHAR, C_EMPTY);
     };
     if (oppShield > 0){
-        SetCnt(SHIELD_OPP, GetItemID(0, 3, weaponData), 0, 0, True);
+        SetCnt(SHIELD_OPP, GetItemID(0, 3, weapon_data), 0, 0, True);
     } else {
         SetCnt(SHIELD_OPP, C_EMPTY);
     };
-    oppVolk = int(faceData[17]);
-    oppMann = (int(faceData[18]) == 1);
-    oppKaste = int(faceData[19]);
-    thischar_volk = int(faceData[2]);
-    thischar_male = (int(faceData[3]) == 1);
-    thischar_class = int(faceData[4]);
-    thischar_mouth = int(faceData[5]);
-    thischar_beard = int(faceData[9]);
-    thischar_nose = int(faceData[10]);
-    thischar_eyes = int(faceData[8]);
-    thischar_brows = int(faceData[7]);
-    thischar_ears = int(faceData[11]);
-    thischar_hair = int(faceData[6]);
-    thischar_special = int(faceData[12]);
-    thischar_special2 = int(faceData[13]);
-    thisCharMonster = ((int(faceData[5]))<0) ? -(int(faceData[5])) : 0;
-    oppMouth = int(faceData[20]);
-    oppBeard = int(faceData[24]);
-    oppNose = int(faceData[25]);
-    oppEyes = int(faceData[23]);
-    oppBrows = int(faceData[22]);
-    oppEars = int(faceData[26]);
-    oppHair = int(faceData[21]);
-    oppSpecial = int(faceData[27]);
-    oppSpecial2 = int(faceData[28]);
-    var oppLevel:* = int(faceData[16]);
-    oppMonster = ((int(faceData[20]))<0) ? -(int(faceData[20])) : 0;
+    oppVolk = int(face_data[17]);
+    oppMann = (int(face_data[18]) == 1);
+    oppKaste = int(face_data[19]);
+    thischar_volk = int(face_data[2]);
+    thischar_male = (int(face_data[3]) == 1);
+    thischar_class = int(face_data[4]);
+    thischar_mouth = int(face_data[5]);
+    thischar_beard = int(face_data[9]);
+    thischar_nose = int(face_data[10]);
+    thischar_eyes = int(face_data[8]);
+    thischar_brows = int(face_data[7]);
+    thischar_ears = int(face_data[11]);
+    thischar_hair = int(face_data[6]);
+    thischar_special = int(face_data[12]);
+    thischar_special2 = int(face_data[13]);
+    thisCharMonster = ((int(face_data[5]))<0) ? -(int(face_data[5])) : 0;
+    oppMouth = int(face_data[20]);
+    oppBeard = int(face_data[24]);
+    oppNose = int(face_data[25]);
+    oppEyes = int(face_data[23]);
+    oppBrows = int(face_data[22]);
+    oppEars = int(face_data[26]);
+    oppHair = int(face_data[21]);
+    oppSpecial = int(face_data[27]);
+    oppSpecial2 = int(face_data[28]);
+    var oppLevel:* = int(face_data[16]);
+    oppMonster = ((int(face_data[20]))<0) ? -(int(face_data[20])) : 0;
     opp_name = "";
     if (oppMonster > 0){
         if (oppMonster >= 400){
@@ -5002,47 +4997,47 @@ def show_fight_screen(
             };
         };
     } else {
-        opp_name = faceData[15];
+        opp_name = face_data[15];
         if (!is_guildBattle){
             add_suggest_names(opp_name);
         };
     };
     thisCharName = (
-        ((faceData[0] == ""))
+        ((face_data[0] == ""))
             ? actor[INP['NAME']].getChildAt(1).text
-            : faceData[0]);
+            : face_data[0]);
     if (((is_guildBattle) and (tower_fight_mode))){
         if (thisCharMonster >= 391){
             thisCharName = texts[
                 ((TXT_COPYCAT_NAME + thisCharMonster) - 391)];
         };
     };
-    charFullLife = fighterData[0];
-    oppFullLife = fighterData[6];
+    charFullLife = fighter_data[0];
+    oppFullLife = fighter_data[6];
     charLife = (
         (is_guildBattle)
-            ? (((int(GuildBattleData[0]) < 0))
-                ? (charFullLife / -(int(GuildBattleData[0])))
-                : int(GuildBattleData[0]))
+            ? (((int(guild_battle_data[0]) < 0))
+                ? (charFullLife / -(int(guild_battle_data[0])))
+                : int(guild_battle_data[0]))
             : charFullLife);
     charDamage = 0;
     oppLife = (
         (is_guildBattle)
-            ? (((int(GuildBattleData[6]) < 0))
-                ? (oppFullLife / -(int(GuildBattleData[6])))
-                : int(GuildBattleData[6]))
+            ? (((int(guild_battle_data[6]) < 0))
+                ? (oppFullLife / -(int(guild_battle_data[6])))
+                : int(guild_battle_data[6]))
             : oppFullLife);
     var oppDamage:* = 0;
     charFlag = 0;
     oppFlag = 0;
     fightRound = 0;
     oppStrike = False;
-    var charLevel:* = int(faceData[(16 - 15)]);
+    var charLevel:* = int(face_data[(16 - 15)]);
     isRaid = False;
     if (!is_guildBattle){
         alternate_char_opp_img = False;
     };
-    if (((is_guildBattle) and ((ownGuild == "")))){
+    if (((is_guildBattle) and ((own_guild == "")))){
         isRaid = True;
     };
     if (oppMonster > 0){
@@ -8127,7 +8122,8 @@ def show_screen_gilden(
                                 enable_popup(
                                     GILDE_LIST,
                                     POPUP_BEGIN_LINE,
-                                    (((guild_members[((hoverLevel + scrollLevel)
+                                    (((guild_members[
+                                        ((hoverLevel + scrollLevel)
                                         + 1)] + " (") + texts[((TXT_RANKNAME
                                         + int(guild_data[((GUILD_MEMBERRANK
                                         + hoverLevel) + scrollLevel)])) - 1)])
@@ -8698,7 +8694,8 @@ def show_screen_gilden(
         };
         crestView = on_stage(GILDE_CREST);
         startWithCrest = (
-            (((((((((is_mine) or ((guild_data[0] == savegame[SG_GUILD_INDEX]))))
+            (((((((((is_mine)
+            or ((guild_data[0] == savegame[SG_GUILD_INDEX]))))
             and ((guild_data[5] >= 50))))
             and ((guild_data[6] >= 50))))
             and ((guild_data[7] >= 50))))
@@ -9120,7 +9117,8 @@ def show_screen_gilden(
                     (POPUP_TAB + POPUP_TAB_ADD),
                     texts[TXT_DUNGEON_NAMES
                             + int(guild_data[GUILD_RAID_LEVEL])],
-                    "(" + str((int(guild_data[GUILD_RAID_LEVEL]) + 1)) + "/50)",
+                    "(" + str((int(guild_data[
+                        GUILD_RAID_LEVEL]) + 1)) + "/50)",
                     POPUP_END_LINE,
                     POPUP_BEGIN_LINE,
                     texts[(TXT_RAID_TEXT + 16)],
@@ -9178,7 +9176,8 @@ def show_screen_gilden(
                                     (POPUP_TAB + POPUP_TAB_ADD),
                                     texts[(TXT_DUNGEON_NAMES
                                         + int(guild_data[GUILD_RAID_LEVEL]))],
-                                    ("(" + str(int(guild_data[GUILD_RAID_LEVEL])
+                                    ("(" + str(int(guild_data[
+                                        GUILD_RAID_LEVEL])
                                         + 1)) + "/50)",
                                     POPUP_END_LINE,
                                     POPUP_BEGIN_LINE,
@@ -9684,14 +9683,14 @@ def show_main_quests_screen(next_enemies):
         add(DUNGEON_CONGRATS);
     };
     DoShowMainQuestsScreen = function (){
-        var thisMQSInstance:* = 0;
+        var this_mqSInstance:* = 0;
         var DungeonLevel:* = None;
         var Nextenemy:* = None;
         var PlayUnlockSound:* = False;
         var i:* = None;
         var MainQuestsClick:* = function (evt:MouseEvent){
             var evt:* = evt;
-            if (thisMQSInstance != MQSInstance){
+            if (this_mqSInstance != MQSInstance){
                 i = 0;
                 while (i < 9) {
                     var _local3 = actor[(MQS_BUTTON + i)].content;
@@ -9710,10 +9709,12 @@ def show_main_quests_screen(next_enemies):
                     show_main_quest_screen(9, (int(next_enemies[9]) - 1));
                 } else {
                     if (countDone == 10){
-                        show_main_quest_screen(10, (int(next_enemies[10]) - 1));
+                        show_main_quest_screen(10,
+                            (int(next_enemies[10]) - 1));
                     } else {
                         if (countDone == 11){
-                            show_main_quest_screen(11, int(next_enemies[11] - 1))
+                            show_main_quest_screen(11,
+                                int(next_enemies[11] - 1))
                         } else {
                             if (countDone == 12){
                                 show_main_quest_screen(
@@ -9730,7 +9731,7 @@ def show_main_quests_screen(next_enemies):
         if (MQSInstance > 1000){
             MQSInstance = 0;
         };
-        thisMQSInstance = MQSInstance;
+        this_mqSInstance = MQSInstance;
         DungeonLevel = "";
         Nextenemy = "";
         PlayUnlockSound = False;
@@ -10296,7 +10297,8 @@ def show_toilet(
             CA_TOILET_TANK,
             texts[TXT_TOILET_HINT].split(
                 "%1").join(str(int((toiletTankDest * 100)))).split(
-                "%2").join(str(toilet_exp)).split("%3").join(str(toilet_max_exp))
+                "%2").join(str(toilet_exp)).split(
+                "%3").join(str(toilet_max_exp))
         );
         if (is_full == 0){
             hide(TOILET_IDLE);
@@ -11202,15 +11204,13 @@ def Showalbum_content(evt=None):
     pass
 
 
-def show_login_screen(
-        evt=None, noBC=False, noCookie=False
-):
+def show_login_screen(evt=None, no_bc=False, no_cookie=False):
     '''
     var player_name:String;
     if (
         ((((((((!(so.data.HasAccount))
         and (!((evt is MouseEvent)))))
-        and (!(noBC))))
+        and (!(no_bc))))
         and (!(buffed_mode))))
         and (!(sso_mode)))
     ){
@@ -11227,7 +11227,7 @@ def show_login_screen(
     actor[INP['LOGIN_PASSWORD']].add_event_listener(
         KeyboardEvent.KEY_DOWN, RequestLOGin
     );
-    if (!noCookie){
+    if (!no_cookie){
         if (so.data.userName){
             actor[INP['NAME']].getChildAt(1).text = str(so.data.userName);
         };
@@ -11344,7 +11344,7 @@ def show_bet_result(won):
     pass
 
 
-def ShowSignupScreen(evt=None):
+def show_signup_screen(evt=None):
     '''
     var i:* = 0;
     var j:* = 0;
@@ -11559,14 +11559,14 @@ def add_some(*args):
             add(arg)
 
 
-def remove_all(alsoPersistent=False):
+def remove_all(also_persistent=False):
     '''
         remove all actors
     '''
     for i in range(len(actor)):
         if actor[i]:
             if actor[i] is not list:
-                if (not actorPersistent[i]) or alsoPersistent:
+                if (not actorPersistent[i]) or also_persistent:
                     remove(i)
 
     ExternalInterface.call("hideSocial")
@@ -14718,12 +14718,12 @@ def show_popup(evt, *args):
 
     actor[POPUP_INFO] = MovieClip()
     if suggestion_slot[actor_id]:
-        actor[SLOT_SUGGESTION].x = actor[suggestion_slot[actor_id]].x
-        actor[SLOT_SUGGESTION].y = actor[suggestion_slot[actor_id]].y
-        if not on_stage(SLOT_SUGGESTION):
-            add_some(SLOT_SUGGESTION, suggestion_slot[actor_id])
-            actor[SLOT_SUGGESTION].alpha = 0
-            fade_in(SLOT_SUGGESTION)
+        actor[IMG['SLOT_SUGGESTION']].x = actor[suggestion_slot[actor_id]].x
+        actor[IMG['SLOT_SUGGESTION']].y = actor[suggestion_slot[actor_id]].y
+        if not on_stage(IMG['SLOT_SUGGESTION']):
+            add_some(IMG['SLOT_SUGGESTION'], suggestion_slot[actor_id])
+            actor[IMG['SLOT_SUGGESTION']].alpha = 0
+            fade_in(IMG['SLOT_SUGGESTION'])
 
     tmp_text_format = FontFormat_Popup
     last_text_height = 0
@@ -14759,8 +14759,8 @@ def show_popup(evt, *args):
         beginFill(0, 0)
         lineStyle(0, 0, 0)
         drawRect(0, 0, popup_width, textY)
-        beginFill(CLR_BLACK, 0.8)
-        lineStyle(1, CLR_SFORANGE, 1)
+        beginFill(CLR['BLACK'], 0.8)
+        lineStyle(1, CLR['SFORANGE'], 1)
         drawRect(1, 1, (popup_width - 1), (textY - 1))
 
     position_popup(evt)
@@ -14831,14 +14831,14 @@ def try_show_tv():
 
 def next_fight(evt):
     '''
-    var guildFightExp;
-    var guildFightHonor;
+    var guild_fight_exp;
+    var guild_fight_honor;
     var par:Array;
     var thisRoundFighterName:String;
-    var GuildBattleData:Array;
+    var guild_battle_data:Array;
     var tmp_str:*;
-    guildFightExp = 0;
-    guildFightHonor = 0;
+    guild_fight_exp = 0;
+    guild_fight_honor = 0;
     if (fights.length < 2){
         fights = list();
         return;
@@ -14889,11 +14889,11 @@ def next_fight(evt):
         };
     };
     par = fights.shift().split(";");
-    GuildBattleData = fights.shift().split("/");
+    guild_battle_data = fights.shift().split("/");
     if (fights.length == 1){
         tmp_str = fights.pop();
-        guildFightExp = tmp_str.split(";")[1];
-        guildFightHonor = tmp_str.split(";")[2];
+        guild_fight_exp = tmp_str.split(";")[1];
+        guild_fight_honor = tmp_str.split(";")[2];
     };
     post_fight_mode = False;
     fightNumber = ((guild_fight_count - int(((fights.length + 1) / 2)))
@@ -14905,8 +14905,8 @@ def next_fight(evt):
                       par[2].split("/"), (par[5] == "2"), ((par[3] + "/")
                                                        + par[4]).split("/"),
                         int(par[7]), int(par[8]), (par[5] == "3"), False,
-                        int(par[9]), GuildBattleData, (fights.length <= 1),
-                        guildFightExp, guildFightHonor, par[10], par[11],
+                        int(par[9]), guild_battle_data, (fights.length <= 1),
+                        guild_fight_exp, guild_fight_honor, par[10], par[11],
                         par[12]);
     '''
     pass
@@ -15136,7 +15136,7 @@ def set_btn_text(actor_id, caption):
     pass
 
 
-def DefineLbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
+def define_lbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
     '''
     var i:* = 0;
     var fmtUL:* = None;
@@ -15200,8 +15200,8 @@ def language_file_loaded():
     last_index = 0
 
     for i in range(len(str_data) - 1):
-        c = str_data.charCodeAt(i)
-        for case in Switch(c):
+        char = str_data.charCodeAt(i)
+        for case in Switch(char):
             if case(10, 13):
                 in_value = False
                 if len(tmp_str) > 0:
@@ -15285,8 +15285,8 @@ def original_language_file_loaded(evt):
     original_font = "Komika Text"
 
     for i in range(len(str_data) - 1):
-        c = str_data.charCodeAt(i)
-        for case in Switch(c):
+        char = str_data.charCodeAt(i)
+        for case in Switch(char):
             if case(10, 13):
                 in_value = False
                 if len(tmp_str) > 0:
@@ -15340,8 +15340,8 @@ def configuration_file_loaded(evt):
     last_index = 0
 
     for i in range(len(str_data) - 1):
-        c = str_data.charCodeAt(i)
-        for case in Switch(c):
+        char = str_data.charCodeAt(i)
+        for case in Switch(char):
             if case(13, 10):
                 in_value = False
                 if len(tmp_str) > 0:
@@ -15478,7 +15478,7 @@ def configuration_file_loaded(evt):
                             param_fail_tries = int(tmp_str)
                             break
 
-                        if case(CFG[IDLE_POLLING]):
+                        if case(CFG['IDLE_POLLING']):
                             param_idle_polling = int(tmp_str)
                             break
 
@@ -21034,7 +21034,7 @@ def build_interface():
     define_snd(SND['CLICK'], "res/sfx/click.mp3", True);
     define_snd(SND_ERROR, "res/sfx/error.mp3", False);
     define_snd(SND_JINGLE, "res/sfx/jingle.mp3", True);
-    DefineImg(IF_BACKGROUND,
+    define_img(IF_BACKGROUND,
               (("res/gfx/if/login" + login_background_id) + ".jpg"),
               True, 280, 100);
     DefineFromClass(IF_LEFT, interface_left_jpg, 0, 100);
@@ -21057,7 +21057,7 @@ def build_interface():
     i = 0;
     while (i < param_social_buttons.length) {
         DefineCnt((SOCIAL + i), (120 + (i * 40)), 2);
-        DefineImg((SOCIAL + i),
+        define_img((SOCIAL + i),
                   (("res/gfx/if/social_"
                    + param_social_buttons[i].split(":")[0]) + ".png"),
                     True, 0, 0);
@@ -21086,7 +21086,7 @@ def build_interface():
             navigate_to_url(new URLRequest(param_sponsor_url), "_blank");
         };
         DefineCnt(IF_SPONSOR, SPONSOR_X, SPONSOR_Y);
-        DefineImg(IF_SPONSOR, (("res/gfx/if/sponsor_"
+        define_img(IF_SPONSOR, (("res/gfx/if/sponsor_"
                   + param_sponsor) + ".png"), True, 0, 0);
         if (param_sponsor_url != ""){
             MakePersistent(IF_SPONSOR, IF_SPONSOR);
@@ -21111,7 +21111,7 @@ def build_interface():
     };
     DefineCnt(IF_LOGOUT,
               ((shop_url)!="") ? LOGOUT_X_WITH_SHOP : LOGOUT_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_LOGOUT,
+    define_lbl(LBL_IF_LOGOUT,
               texts[TXT_LOGOUT], 0, 0,
               FontFormat_LOGoutLink);
     add_filter(LBL_IF_LOGOUT, Filter_Shadow);
@@ -21128,7 +21128,7 @@ def build_interface():
         buttonMode = True;
     };
     DefineCnt(IF_IMPRESSUM, IMPRESSUM_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_IMPRESSUM,
+    define_lbl(LBL_IF_IMPRESSUM,
               texts[TXT_IMPRESSUM_LINK], 0, 0,
               FontFormat_LOGoutLink);
     add_filter(LBL_IF_IMPRESSUM, Filter_Shadow);
@@ -21145,7 +21145,7 @@ def build_interface():
     };
     DefineCnt(IF_FORUM,
               ((shop_url)!="") ? FORUM_X_WITH_SHOP : FORUM_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_FORUM,
+    define_lbl(LBL_IF_FORUM,
               texts[TXT_FORUM_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_FORUM, Filter_Shadow);
     MakePersistent(IF_FORUM, LBL_IF_FORUM);
@@ -21161,7 +21161,7 @@ def build_interface():
         buttonMode = True;
     };
     DefineCnt(IF_AGB, AGB_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_AGB, texts[TXT_AGB_LINK], 0, 0, FontFormat_LOGoutLink)
+    define_lbl(LBL_IF_AGB, texts[TXT_AGB_LINK], 0, 0, FontFormat_LOGoutLink)
     add_filter(LBL_IF_AGB, Filter_Shadow);
     MakePersistent(IF_AGB, LBL_IF_AGB);
     _local2 = actor[IF_AGB];
@@ -21175,7 +21175,7 @@ def build_interface():
         buttonMode = True;
     };
     DefineCnt(IF_DATENSCHUTZ, DATENSCHUTZ_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_DATENSCHUTZ,
+    define_lbl(LBL_IF_DATENSCHUTZ,
               texts[TXT_DATENSCHUTZ_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_DATENSCHUTZ, Filter_Shadow);
     MakePersistent(IF_DATENSCHUTZ, LBL_IF_DATENSCHUTZ);
@@ -21193,7 +21193,7 @@ def build_interface():
               ((shop_url)!="")
                 ? ANLEITUNG_X_WITH_SHOP
                 : ANLEITUNG_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_ANLEITUNG,
+    define_lbl(LBL_IF_ANLEITUNG,
               texts[TXT_ANLEITUNG_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_ANLEITUNG, Filter_Shadow);
     MakePersistent(IF_ANLEITUNG, LBL_IF_ANLEITUNG);
@@ -21209,7 +21209,7 @@ def build_interface():
         buttonMode = True;
     };
     DefineCnt(IF_SHOP, SHOP_X, LOGOUT_Y);
-    DefineLbl(LBL_IF_SHOP,
+    define_lbl(LBL_IF_SHOP,
               texts[TXT_SHOP_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_SHOP, Filter_Shadow);
     MakePersistent(IF_SHOP, LBL_IF_SHOP);
@@ -21223,35 +21223,35 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    DefineImg(IF_KRIEGER, "res/gfx/scr/hall/punkt_krieger.png", True, 0, 0)
-    DefineImg(IF_JAEGER, "res/gfx/scr/hall/punkt_dieb.png", True, 0, 0);
-    DefineImg(IF_MAGIER, "res/gfx/scr/hall/punkt_magier.png", True, 0, 0);
-    DefineImg(IF_GOLD, "res/gfx/if/icon_gold.png", True, 0, IF_LBL_GOLD_Y);
-    DefineLbl(LBL_IF_GOLD, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
-    DefineImg(IF_SILBER,
+    define_img(IF_KRIEGER, "res/gfx/scr/hall/punkt_krieger.png", True, 0, 0)
+    define_img(IF_JAEGER, "res/gfx/scr/hall/punkt_dieb.png", True, 0, 0);
+    define_img(IF_MAGIER, "res/gfx/scr/hall/punkt_magier.png", True, 0, 0);
+    define_img(IF_GOLD, "res/gfx/if/icon_gold.png", True, 0, IF_LBL_GOLD_Y);
+    define_lbl(LBL_IF_GOLD, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
+    define_img(IF_SILBER,
               "res/gfx/if/icon_silber.png", True,
               IF_LBL_GOLDPILZE_X, IF_LBL_GOLD_Y);
-    DefineLbl(LBL_IF_SILBER, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
+    define_lbl(LBL_IF_SILBER, "", 0, IF_LBL_GOLD_Y, FontFormat_Default);
     enable_popup(LBL_IF_SILBER, texts[TXT_SILVER_HINT]);
     enable_popup(IF_SILBER, texts[TXT_SILVER_HINT]);
-    DefineImg(IF_PILZE, "res/gfx/if/icon_pilz.png", True,
+    define_img(IF_PILZE, "res/gfx/if/icon_pilz.png", True,
               IF_LBL_GOLDPILZE_X, IF_LBL_PILZE_Y);
-    DefineLbl(LBL_IF_PILZE, "", 0, IF_LBL_PILZE_Y, FontFormat_Default);
+    define_lbl(LBL_IF_PILZE, "", 0, IF_LBL_PILZE_Y, FontFormat_Default);
     MakePersistent(LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER, IF_GOLD,
                    IF_SILBER, IF_PILZE);
     define_bunch(IF_STATS, LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER,
                  IF_GOLD, IF_SILBER, IF_PILZE);
-    DefineImg(IF_HUTMANN1,
+    define_img(IF_HUTMANN1,
               "res/gfx/scr/taverne/huetchenspieler/hatplayer1.png",
               True, 0, 0);
-    DefineImg(IF_HUTMANN2,
+    define_img(IF_HUTMANN2,
               "res/gfx/scr/taverne/huetchenspieler/hatplayer2.png",
               True, 0, 0);
-    DefineImg(IF_HUTMANN_OVL,
+    define_img(IF_HUTMANN_OVL,
               "res/gfx/scr/taverne/huetchenspieler/hatplayer_ovl.jpg",
               True, IF_HUTLINK_X, IF_HUTLINK_Y);
     DefineCnt(IF_HUTMANN, IF_HUTLINK_X, IF_HUTLINK_Y);
-    DefineImg(IF_TOILET, "res/gfx/scr/taverne/wc_sign.png", True, 0, 0);
+    define_img(IF_TOILET, "res/gfx/scr/taverne/wc_sign.png", True, 0, 0);
     DefineCnt(IF_TOILET, (IF_HUTLINK_X + 90), (IF_HUTLINK_Y + 40));
     MakePersistent(IF_HUTMANN1, IF_HUTMANN2, IF_HUTMANN_OVL, IF_HUTMANN,
                    IF_TOILET, IF_TOILET);
@@ -21358,7 +21358,7 @@ def build_interface():
     DefineFromClass(IF_WINDOW, interface_window_png, IF_WIN_X, IF_WIN_Y);
     DefineFromClass(BLACK_SQUARE, black_square, 0, 0);
     actor[BLACK_SQUARE].alpha = 0.5;
-    DefineLbl(LBL_WINDOW_TITLE, "", 0, (IF_WIN_Y + IF_WIN_WELCOME_Y),
+    define_lbl(LBL_WINDOW_TITLE, "", 0, (IF_WIN_Y + IF_WIN_WELCOME_Y),
               FontFormat_Heading);
     add_filter(LBL_WINDOW_TITLE, Filter_Shadow);
     iPosi = 0;
@@ -21366,22 +21366,22 @@ def build_interface():
     AIRRelMoveYButton = 0;
     AIRRelMoveYButton2 = 0;
     iPosi = (iPosi + 1);
-    DefineLbl(LBL_NAME, texts[TXT_NAME], (IF_WIN_X + IF_WIN_INPUTS_X),
+    define_lbl(LBL_NAME, texts[TXT_NAME], (IF_WIN_X + IF_WIN_INPUTS_X),
               (((IF_WIN_Y + IF_WIN_INPUTS_Y)
                + (IF_WIN_INPUTS_DISTANCE_Y * iPosi))
                 + AIRRelMoveY), FontFormat_Default);
-    DefineLbl(LBL_LOGIN_PASSWORD, texts[TXT_PASSWORD],
+    define_lbl(LBL_LOGIN_PASSWORD, texts[TXT_PASSWORD],
               (IF_WIN_X + IF_WIN_INPUTS_X),
               (((IF_WIN_Y + IF_WIN_INPUTS_Y)
                + (IF_WIN_INPUTS_DISTANCE_Y * iPosi)) + AIRRelMoveY),
                 FontFormat_Default);
     iPosi = (iPosi + 1);
-    DefineLbl(LBL_EMAIL, texts[TXT_EMAIL], (IF_WIN_X + IF_WIN_INPUTS_X),
+    define_lbl(LBL_EMAIL, texts[TXT_EMAIL], (IF_WIN_X + IF_WIN_INPUTS_X),
               (((IF_WIN_Y + IF_WIN_INPUTS_Y)
                + (IF_WIN_INPUTS_DISTANCE_Y * iPosi)) + AIRRelMoveY),
                 FontFormat_Default);
     iPosi = (iPosi + 1);
-    DefineLbl(LBL_PASSWORD, texts[TXT_PASSWORD],
+    define_lbl(LBL_PASSWORD, texts[TXT_PASSWORD],
               (IF_WIN_X + IF_WIN_INPUTS_X),
               (((IF_WIN_Y + IF_WIN_INPUTS_Y)
                + (IF_WIN_INPUTS_DISTANCE_Y * iPosi)) + AIRRelMoveY),
@@ -21405,18 +21405,18 @@ def build_interface():
                     (actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X),
                     (actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y),
                     2, "password");
-    DefineImg(FILLSPACE, (("res/gfx/if/file" + "space.pn") + "g"), False,
+    define_img(FILLSPACE, (("res/gfx/if/file" + "space.pn") + "g"), False,
               280, 100);
-    DefineImg(PASSWORD_SMILEY_SAD, "res/gfx/if/smiley_sad.png", False,
+    define_img(PASSWORD_SMILEY_SAD, "res/gfx/if/smiley_sad.png", False,
               (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X)
                + actor[INP['PASSWORD']].width) + 5),
                 ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
-    DefineImg(PASSWORD_SMILEY_NEUTRAL, "res/gfx/if/smiley_neutral.png",
+    define_img(PASSWORD_SMILEY_NEUTRAL, "res/gfx/if/smiley_neutral.png",
               False,
               (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X)
                + actor[INP['PASSWORD']].width) + 5),
                 ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
-    DefineImg(PASSWORD_SMILEY_HAPPY, "res/gfx/if/smiley_happy.png", False,
+    define_img(PASSWORD_SMILEY_HAPPY, "res/gfx/if/smiley_happy.png", False,
               (((actor[LBL_PASSWORD].x + IF_WIN_INPUTS_FIELD_X)
                + actor[INP['PASSWORD']].width) + 5),
                 ((actor[LBL_PASSWORD].y + IF_WIN_INPUTS_FIELD_Y) + 3));
@@ -21431,16 +21431,16 @@ def build_interface():
                                               gradePassword);
     DefineCnt(FORGOT_PASSWORD, 0,
               (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_1_Y) + AIRRelMoveY));
-    DefineLbl(LBL_FORGOT_PASSWORD, texts[TXT_FORGOT_PASSWORD], 0, 0,
+    define_lbl(LBL_FORGOT_PASSWORD, texts[TXT_FORGOT_PASSWORD], 0, 0,
               FontFormat_Default);
     add_filter(LBL_FORGOT_PASSWORD, Filter_Shadow);
     DefineCnt(GOTO_LOGIN, 0,
               ((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_2_Y) + AIRRelMoveYButton)
-    DefineLbl(LBL_GOTO_LOGIN, texts[TXT_GOTO_LOGIN], 0, 0,
+    define_lbl(LBL_GOTO_LOGIN, texts[TXT_GOTO_LOGIN], 0, 0,
               FontFormat_Default);
     DefineCnt(GOTO_SIGNUP, 0,
               (IF_WIN_Y + IF_WIN_Y + IF_WIN_LNK_2_Y) + AIRRelMoveYButton2)
-    DefineLbl(LBL_GOTO_SIGNUP, texts[TXT_GOTO_SIGNUP], 0, 0,
+    define_lbl(LBL_GOTO_SIGNUP, texts[TXT_GOTO_SIGNUP], 0, 0,
               FontFormat_Default);
     add_filter(LBL_GOTO_LOGIN, Filter_Shadow);
     add_filter(LBL_GOTO_SIGNUP, Filter_Shadow);
@@ -21489,7 +21489,7 @@ def build_interface():
                     ((IF_WIN_Y + IF_WIN_CB_Y) + AIRRelMoveY));
     actor[CB['AGB_CHECKED']].add_event_listener(MouseEvent.CLICK,
                                                 UncheckAGB);
-    DefineLbl(LBL_LOGIN_LEGAL_0,
+    define_lbl(LBL_LOGIN_LEGAL_0,
               (((texts[TXT_LOGIN_LEGAL_2] == ""))
                ? texts[TXT_LOGIN_LEGAL_1].split("%link")[0] : ""),
                 (actor[CB_AGB_UNCHECKED].x + AGB_LBL_X),
@@ -21498,7 +21498,7 @@ def build_interface():
     DefineCnt(AGB, ((actor[LBL_LOGIN_LEGAL_0].x + 6)
               + actor[LBL_LOGIN_LEGAL_0].width),
                 (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
-    DefineLbl(LBL_AGB, texts[TXT_AGB], 0, 0, FontFormat_Default);
+    define_lbl(LBL_AGB, texts[TXT_AGB], 0, 0, FontFormat_Default);
     add_filter(LBL_AGB, Filter_Shadow);
     MakePersistent(LBL_AGB);
     _local2 = actor[AGB];
@@ -21509,7 +21509,7 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    DefineLbl(LBL_LOGIN_LEGAL_1,
+    define_lbl(LBL_LOGIN_LEGAL_1,
               (((texts[TXT_LOGIN_LEGAL_2] == ""))
                ? texts[TXT_LOGIN_LEGAL_1].split("%link")[1]
                : texts[TXT_LOGIN_LEGAL_1]),
@@ -21520,7 +21520,7 @@ def build_interface():
               ((actor[LBL_LOGIN_LEGAL_1].x + 6)
                + actor[LBL_LOGIN_LEGAL_1].width),
                 (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
-    DefineLbl(LBL_DATENSCHUTZ, texts[TXT_DATENSCHUTZ], 0, 0,
+    define_lbl(LBL_DATENSCHUTZ, texts[TXT_DATENSCHUTZ], 0, 0,
               FontFormat_Default);
     add_filter(LBL_DATENSCHUTZ, Filter_Shadow);
     MakePersistent(LBL_DATENSCHUTZ);
@@ -21532,7 +21532,7 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    DefineLbl(LBL_LOGIN_LEGAL_2,
+    define_lbl(LBL_LOGIN_LEGAL_2,
               (((texts[TXT_LOGIN_LEGAL_2] == ""))
                ? texts[TXT_LOGIN_LEGAL_1].split("%link")[2]
                : texts[TXT_LOGIN_LEGAL_2]),
@@ -21557,7 +21557,7 @@ def build_interface():
                     ((IF_WIN_Y + IF_WIN_CB_Y) + 150));
     actor[CB_FUCK_CHECKED].add_event_listener(MouseEvent.CLICK,
                                               UncheckFuck);
-    DefineLbl(LBL_FUCK, param_bullshit_text, 380,
+    define_lbl(LBL_FUCK, param_bullshit_text, 380,
               ((IF_WIN_Y + IF_WIN_CB_Y) + 150), FontFormat_Bullshit);
     add_filter(LBL_FUCK, Filter_Shadow);
     _local2 = actor[LBL_FUCK];
@@ -21576,7 +21576,7 @@ def build_interface():
                RequestPassword, btn_classBasic,
                ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X),
                ((IF_WIN_Y + IF_WIN_Y) + AIRRelMoveY));
-    DefineLbl(LBL['ERROR'], "", IF_ERROR_X, IF_ERROR_Y, FontFormat_Error);
+    define_lbl(LBL['ERROR'], "", IF_ERROR_X, IF_ERROR_Y, FontFormat_Error);
     add_filter(LBL['ERROR'], Filter_Shadow);
     define_bunch(WINDOW_LOGIN, BLACK_SQUARE, IF_WINDOW, LBL_WINDOW_TITLE,
                  IF_LOGIN, LBL_NAME, INP['NAME']);
@@ -21602,11 +21602,11 @@ def build_interface():
         add_event_listener(TimerEvent.TIMER, PulseEvent);
         start();
     };
-    DefineImg(SCR_BUILDCHAR_BACKGROUND,
+    define_img(SCR_BUILDCHAR_BACKGROUND,
               "res/gfx/scr/buildchar/char_erstellung.png", False,
               SCR_BUILDCHAR_1_X, SCR_BUILDCHAR_1_Y);
     define_bunch(SCR_BUILDCHAR, SCR_BUILDCHAR_BACKGROUND, IF_MAIN);
-    DefineLbl(LBL_SCREEN_TITLE, texts[TXT_CREATE_CHARACTER],
+    define_lbl(LBL_SCREEN_TITLE, texts[TXT_CREATE_CHARACTER],
               SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
     add_filter(LBL_SCREEN_TITLE, Filter_Shadow);
     actor[LBL_SCREEN_TITLE].x = (SCREEN_TITLE_X
@@ -21615,22 +21615,22 @@ def build_interface():
                btn_classLOGin, SCREEN_RANDOM_BUTTON_X,
                SCREEN_RANDOM_BUTTON_Y);
     define_btn(CREATE_CHARACTER, texts[TXT_CREATE_CHARACTER],
-               ShowSignupScreen, btn_classBasic, SCR_BUILDCHAR_CREATE_X,
+               show_signup_screen, btn_classBasic, SCR_BUILDCHAR_CREATE_X,
                SCR_BUILDCHAR_CREATE_Y);
     define_btn(MODIFY_CHARACTER, texts[TXT_MODIFY_CHARACTER],
                RequestChangeFace, btn_classBasic, SCR_BUILDCHAR_CREATE_X,
                SCR_BUILDCHAR_CREATE_Y);
-    DefineLbl(LBL_CREATE_RACE, "", CREATE_RACE_X, CREATE_RACE_Y,
+    define_lbl(LBL_CREATE_RACE, "", CREATE_RACE_X, CREATE_RACE_Y,
               FontFormat_Default);
-    DefineLbl(LBL_CREATE_RACE_DESC, "", CREATE_RACE_X, 0,
+    define_lbl(LBL_CREATE_RACE_DESC, "", CREATE_RACE_X, 0,
               FontFormat_DefaultLeft);
     _local2 = actor[LBL_CREATE_RACE_DESC];
     with (_local2) {
         width = BUILDCHAR_LINES_X;
         wordWrap = True;
     };
-    DefineLbl(LBL_CREATE_CLASS, "", CREATE_RACE_X, 0, FontFormat_Default);
-    DefineLbl(LBL_CREATE_CLASS_DESC, "", CREATE_RACE_X, 0,
+    define_lbl(LBL_CREATE_CLASS, "", CREATE_RACE_X, 0, FontFormat_Default);
+    define_lbl(LBL_CREATE_CLASS_DESC, "", CREATE_RACE_X, 0,
               FontFormat_DefaultLeft);
     _local2 = actor[LBL_CREATE_CLASS_DESC];
     with (_local2) {
@@ -21641,7 +21641,7 @@ def build_interface():
     add_filter(LBL_CREATE_RACE_DESC, Filter_Shadow);
     add_filter(LBL_CREATE_CLASS, Filter_Shadow);
     add_filter(LBL_CREATE_CLASS_DESC, Filter_Shadow);
-    DefineLbl(LBL_CREATE_GOTO_LOGIN, texts[TXT_CREATE_GOTO_LOGIN], 0, 0,
+    define_lbl(LBL_CREATE_GOTO_LOGIN, texts[TXT_CREATE_GOTO_LOGIN], 0, 0,
               FontFormat_Default);
     add_filter(LBL_CREATE_GOTO_LOGIN, Filter_Shadow);
     MakePersistent(LBL_CREATE_GOTO_LOGIN);
@@ -21658,10 +21658,10 @@ def build_interface():
         x = (SCR_BUILDCHAR_LOGIN_X
              - actor[LBL_CREATE_GOTO_LOGIN].text_width);
     };
-    DefineImg(M_IDLE, "res/gfx/scr/buildchar/button_male_idle.jpg", False,
+    define_img(M_IDLE, "res/gfx/scr/buildchar/button_male_idle.jpg", False,
               SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
     DefineCnt(M_ACT, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
-    DefineImg(F_IDLE, "res/gfx/scr/buildchar/button_female_idle.jpg",
+    define_img(F_IDLE, "res/gfx/scr/buildchar/button_female_idle.jpg",
               False, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X),
               SCR_BUILDCHAR_GENDER_Y);
     DefineCnt(F_ACT, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X),
@@ -21674,16 +21674,16 @@ def build_interface():
         enable_popup((M_ACT + (i * 2)), texts[(TXT_GENDER_M + i)]);
         i = (i + 1);
     };
-    DefineImg(KASTE_1_IDLE,
+    define_img(KASTE_1_IDLE,
               "res/gfx/scr/buildchar/button_warrior_idle.jpg", False,
               SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
     DefineCnt(KASTE_1_ACT, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
-    DefineImg(KASTE_2_IDLE, "res/gfx/scr/buildchar/button_mage_idle.jpg",
+    define_img(KASTE_2_IDLE, "res/gfx/scr/buildchar/button_mage_idle.jpg",
               False, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X),
               SCR_BUILDCHAR_CASTE_Y);
     DefineCnt(KASTE_2_ACT, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X),
               SCR_BUILDCHAR_CASTE_Y);
-    DefineImg(KASTE_3_IDLE, "res/gfx/scr/buildchar/button_hunter_idle.jpg",
+    define_img(KASTE_3_IDLE, "res/gfx/scr/buildchar/button_hunter_idle.jpg",
               False, (SCR_BUILDCHAR_CASTE_X + (SCR_BUILDCHAR_CASTE_X * 2)),
               SCR_BUILDCHAR_CASTE_Y);
     DefineCnt(KASTE_3_ACT,
@@ -21701,7 +21701,7 @@ def build_interface():
     define_bunch(VOLK_BTNS_M);
     define_bunch(VOLK_BTNS_F);
     define_bunch(VOLK_BTNS_ALL);
-    DefineImg(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", True)
+    define_img(VOLK_MARKER, "res/gfx/scr/buildchar/button_marked.png", True)
     when_loaded(CloneMarker);
     i = 0;
     while (i <= 7) {
@@ -21734,11 +21734,11 @@ def build_interface():
                 volk = "demon";
                 break;
         };
-        DefineImg((VOLK_1_M_IDLE + i),
+        define_img((VOLK_1_M_IDLE + i),
                   "res/gfx/scr/buildchar/button_" + volk
                   + "_male_idle.jpg", False, pos_x, pos_y);
         DefineCnt((VOLK_1_M_ACT + i), pos_x, pos_y);
-        DefineImg((VOLK_1_F_IDLE + i),
+        define_img((VOLK_1_F_IDLE + i),
                   "res/gfx/scr/buildchar/button_" + volk
                   + "_female_idle.jpg", False, pos_x, pos_y);
         DefineCnt((VOLK_1_F_ACT + i), pos_x, pos_y);
@@ -21759,10 +21759,10 @@ def build_interface():
     };
     i = 0;
     while (i < 10) {
-        DefineImg((CHARBACKGROUND + i), "", False,
+        define_img((CHARBACKGROUND + i), "", False,
                   ((SCREEN_TITLE_X - 150) + CHARX),
                   (SCREEN_TITLE_Y + CHARY));
-        DefineImg((CHARBACKGROUND2 + i), "", False,
+        define_img((CHARBACKGROUND2 + i), "", False,
                   ((SCREEN_TITLE_X - 150) + CHARX),
                   (SCREEN_TITLE_Y + CHARY));
         i = (i + 1);
@@ -21789,7 +21789,7 @@ def build_interface():
     define_btn(COLOR_PLUS, "", modify_character, btn_classArrowRight);
     i = 0;
     while (i < 10) {
-        DefineLbl((LBL_MOUTH + i),
+        define_lbl((LBL_MOUTH + i),
                   (((i == 9))
                    ? texts[TXT_COLOR] : ((i)<7)
                    ? texts[(TXT_MOUTH + i)]
@@ -21837,31 +21837,31 @@ def build_interface():
         add_bunch(SCREEN_BUILDCHAR, (LBL_MOUTH + i));
         i = (i + 1);
     };
-    DefineImg(SCR_CITY_BACKG_NIGHT,
+    define_img(SCR_CITY_BACKG_NIGHT,
               "res/gfx/scr/stadt/stadt_nacht_background.jpg",
               False, STADT_BACKG_X, STADT_BACKG_Y);
-    DefineImg(SCR_CITY_BACKG_DAWN,
+    define_img(SCR_CITY_BACKG_DAWN,
               "res/gfx/scr/stadt/stadt_abend_background.jpg",
               False, STADT_BACKG_X, STADT_BACKG_Y);
-    DefineImg(SCR_CITY_BACKG_DAY,
+    define_img(SCR_CITY_BACKG_DAY,
               "res/gfx/scr/stadt/stadt_tag_background.jpg",
               False, STADT_BACKG_X, STADT_BACKG_Y);
-    DefineImg(SCR_CITY_MAIN_NIGHT,
+    define_img(SCR_CITY_MAIN_NIGHT,
               "res/gfx/scr/stadt/stadt_nacht_unten.jpg", False,
               STADT_MAIN_X, STADT_MAIN_Y);
-    DefineImg(SCR_CITY_MAIN_DAWN,
+    define_img(SCR_CITY_MAIN_DAWN,
               "res/gfx/scr/stadt/stadt_abend_unten.jpg",
               False, STADT_MAIN_X, STADT_MAIN_Y);
-    DefineImg(SCR_CITY_MAIN_DAY,
+    define_img(SCR_CITY_MAIN_DAY,
               "res/gfx/scr/stadt/stadt_tag_unten.jpg",
               False, STADT_MAIN_X, STADT_MAIN_Y);
-    DefineImg(SCR_CITY_FOREG_NIGHT,
+    define_img(SCR_CITY_FOREG_NIGHT,
               "res/gfx/scr/stadt/stadt_nacht_vordergrund.png",
               False, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
-    DefineImg(SCR_CITY_FOREG_DAWN,
+    define_img(SCR_CITY_FOREG_DAWN,
               "res/gfx/scr/stadt/stadt_abend_vordergrund.png",
               False, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
-    DefineImg(SCR_CITY_FOREG_DAY,
+    define_img(SCR_CITY_FOREG_DAY,
               "res/gfx/scr/stadt/stadt_tag_vordergrund.png",
               False, STADT_BACKG_X, (STADT_BACKG_Y + STADT_FOREG_Y));
     if (Capabilities.version[0: 3] == "IOS"){
@@ -21875,13 +21875,13 @@ def build_interface():
                      SCR_CITY_MAIN_DAY, SCR_CITY_FOREG_DAY,
                      CITY_WACHE_DAY);
     } else {
-        DefineImg(SCR_CITY_CLOUDS_NIGHT,
+        define_img(SCR_CITY_CLOUDS_NIGHT,
                   "res/gfx/scr/stadt/wolken_nacht.swf", False,
                   STADT_BACKG_X, STADT_BACKG_Y);
-        DefineImg(SCR_CITY_CLOUDS_DAWN,
+        define_img(SCR_CITY_CLOUDS_DAWN,
                   "res/gfx/scr/stadt/wolken_abend.swf", False,
                   STADT_BACKG_X, STADT_BACKG_Y);
-        DefineImg(SCR_CITY_CLOUDS_DAY,
+        define_img(SCR_CITY_CLOUDS_DAY,
                   "res/gfx/scr/stadt/wolken_tag.swf", False,
                   STADT_BACKG_X, STADT_BACKG_Y);
         define_bunch(SCREEN_CITY_NIGHT,
@@ -21895,106 +21895,106 @@ def build_interface():
                      SCR_CITY_MAIN_DAY, SCR_CITY_CLOUDS_DAY,
                      SCR_CITY_FOREG_DAY, CITY_WACHE_DAY);
     };
-    DefineImg(CITY_SHAKES,
+    define_img(CITY_SHAKES,
               "res/gfx/scr/stadt/overlay_waffenladen.png",
               False, CITY_SHAKES_X, CITY_SHAKES_Y);
-    DefineImg(CITY_ZAUBERLADEN,
+    define_img(CITY_ZAUBERLADEN,
               "res/gfx/scr/stadt/overlay_zauberladen.png",
               False, CITY_ZAUBERLADEN_X, CITY_ZAUBERLADEN_Y);
-    DefineImg(CITY_RUHMESHALLE,
+    define_img(CITY_RUHMESHALLE,
               "res/gfx/scr/stadt/overlay_ruhmeshalle.png",
               False, CITY_RUHMESHALLE_X, CITY_RUHMESHALLE_Y);
-    DefineImg(CITY_ARENA,
+    define_img(CITY_ARENA,
               "res/gfx/scr/stadt/arena_glow.png", False,
               CITY_ARENA_X, CITY_ARENA_Y);
-    DefineImg(CITY_ARENA_ONO1,
+    define_img(CITY_ARENA_ONO1,
               "res/gfx/scr/stadt/arena2.png", False, CITY_ARENA_X,
               CITY_ARENA_Y);
-    DefineImg(CITY_ARENA_ONO2,
+    define_img(CITY_ARENA_ONO2,
               "res/gfx/scr/stadt/arena3.png", False, CITY_ARENA_X,
               CITY_ARENA_Y);
-    DefineImg(CITY_ARENA_ONO3,
+    define_img(CITY_ARENA_ONO3,
               "res/gfx/scr/stadt/arena4.png",
               False, CITY_ARENA_X, CITY_ARENA_Y);
-    DefineImg(CITY_ARENA_ONO4,
+    define_img(CITY_ARENA_ONO4,
               "res/gfx/scr/stadt/arena5.png",
                False, CITY_ARENA_X, CITY_ARENA_Y);
-    DefineImg(CITY_DEALER,
+    define_img(CITY_DEALER,
               "res/gfx/scr/stadt/dealer_mouseover.png",
               False, CITY_DEALER_X, CITY_DEALER_Y);
-    DefineImg(CITY_DEALER_ANI1,
+    define_img(CITY_DEALER_ANI1,
               "res/gfx/scr/stadt/dealer1.png",
               False, CITY_DEALER_X, CITY_DEALER_Y);
-    DefineImg(CITY_DEALER_ANI2,
+    define_img(CITY_DEALER_ANI2,
               "res/gfx/scr/stadt/dealer2.png",
               False, CITY_DEALER_X, CITY_DEALER_Y);
-    DefineImg(CITY_DEALER_ANI3,
+    define_img(CITY_DEALER_ANI3,
               "res/gfx/scr/stadt/dealer3.png",
               False, CITY_DEALER_X, CITY_DEALER_Y);
-    DefineImg(CITY_DEALER_ANI4,
+    define_img(CITY_DEALER_ANI4,
               "res/gfx/scr/stadt/dealer4.png",
               False, CITY_DEALER_X, CITY_DEALER_Y);
-    DefineImg(CITY_DEALER_ANI5,
+    define_img(CITY_DEALER_ANI5,
               "res/gfx/scr/stadt/dealer5.png",
               False, CITY_DEALER_X, CITY_DEALER_Y);
-    DefineImg(CITY_ESEL1,
+    define_img(CITY_ESEL1,
               "res/gfx/scr/stadt/esel1.png",
               False, CITY_ESEL_X, CITY_ESEL_Y);
-    DefineImg(CITY_ESEL2,
+    define_img(CITY_ESEL2,
               "res/gfx/scr/stadt/esel2.png",
               True, CITY_ESEL_X, CITY_ESEL_Y);
-    DefineImg(CITY_TAVERNE,
+    define_img(CITY_TAVERNE,
               "res/gfx/scr/stadt/kneipe.png",
               False, CITY_TAVERNE_X, CITY_TAVERNE_Y);
-    DefineImg(CITY_POST,
+    define_img(CITY_POST,
               "res/gfx/scr/stadt/post.png",
               False, CITY_POST_X, CITY_POST_Y);
-    DefineImg(CITY_WACHE_DAY,
+    define_img(CITY_WACHE_DAY,
               "res/gfx/scr/stadt/stadtwache_tag.png",
               False, CITY_WACHE_X, CITY_WACHE_Y);
-    DefineImg(CITY_WACHE_NIGHT,
+    define_img(CITY_WACHE_NIGHT,
               "res/gfx/scr/stadt/stadtwache_abend_nacht.png",
               False, CITY_WACHE_X, CITY_WACHE_Y);
-    DefineImg(CITY_SCHILD1,
+    define_img(CITY_SCHILD1,
               "res/gfx/scr/stadt/schild1.png",
               True, CITY_SCHILD_X, CITY_SCHILD_Y);
-    DefineImg(CITY_SCHILD2,
+    define_img(CITY_SCHILD2,
               "res/gfx/scr/stadt/schild2.png",
               True, CITY_SCHILD_X, CITY_SCHILD_Y);
-    DefineImg(CITY_SCHILD3,
+    define_img(CITY_SCHILD3,
               "res/gfx/scr/stadt/schild3.png",
               True, CITY_SCHILD_X, CITY_SCHILD_Y);
-    DefineImg(CITY_SCHILD4,
+    define_img(CITY_SCHILD4,
               "res/gfx/scr/stadt/schild4.png",
               True, CITY_SCHILD_X, CITY_SCHILD_Y);
-    DefineImg(CITY_MAGIER1,
+    define_img(CITY_MAGIER1,
               "res/gfx/scr/stadt/magier1.png",
               False, CITY_MAGIER_X, CITY_MAGIER_Y);
-    DefineImg(CITY_MAGIER2,
+    define_img(CITY_MAGIER2,
               "res/gfx/scr/stadt/magier2.png",
               True, CITY_MAGIER_X, CITY_MAGIER_Y);
-    DefineImg(CITY_ORK1,
+    define_img(CITY_ORK1,
               "res/gfx/scr/stadt/ork1.png",
               False, CITY_ORK_X, CITY_ORK_Y);
-    DefineImg(CITY_ORK2,
+    define_img(CITY_ORK2,
               "res/gfx/scr/stadt/ork2.png",
               True, CITY_ORK_X, CITY_ORK_Y);
-    DefineImg(CITY_SANDWICH1,
+    define_img(CITY_SANDWICH1,
               "res/gfx/scr/stadt/sandwichtyp1.png",
               False, CITY_SANDWICH_X, CITY_SANDWICH_Y);
-    DefineImg(CITY_SANDWICH2,
+    define_img(CITY_SANDWICH2,
               "res/gfx/scr/stadt/sandwichtyp2.png",
               True, CITY_SANDWICH_X, CITY_SANDWICH_Y);
-    DefineImg(CITY_ZWERG1,
+    define_img(CITY_ZWERG1,
               "res/gfx/scr/stadt/zwerg2.png",
               False, CITY_ZWERG_X, CITY_ZWERG_Y);
-    DefineImg(CITY_ZWERG2,
+    define_img(CITY_ZWERG2,
               "res/gfx/scr/stadt/zwerg1.png",
               True, CITY_ZWERG_X, CITY_ZWERG_Y);
-    DefineImg(CITY_ELF1,
+    define_img(CITY_ELF1,
               "res/gfx/scr/stadt/elf1.png", False,
               CITY_ELF_X, CITY_ELF_Y);
-    DefineImg(CITY_ELF2,
+    define_img(CITY_ELF2,
               "res/gfx/scr/stadt/elf2.png",
               True, CITY_ELF_X, CITY_ELF_Y);
     define_bunch(CITY_STATISTEN, CITY_MAGIER1, CITY_MAGIER2, CITY_ORK1,
@@ -22007,38 +22007,38 @@ def build_interface():
                  CA_CITY_RUHMESHALLE, CA_CITY_ARENA, CA_CITY_DEALER,
                  CA_CITY_ESEL, CA_CITY_TAVERNE, CA_CITY_POST,
                  CA_CITY_WACHE, CA_CITY_BUH);
-    DefineClickArea(CA_CITY_SHAKES, CITY_SHAKES, interface_btn_handler,
+    define_click_area(CA_CITY_SHAKES, CITY_SHAKES, interface_btn_handler,
                     CITY_CA_SHAKES_X, CITY_CA_SHAKES_Y, CITY_CA_SHAKES_X,
                     CITY_CA_SHAKES_Y, CITY_CA_OVL);
-    DefineClickArea(CA_CITY_ZAUBERLADEN, CITY_ZAUBERLADEN,
+    define_click_area(CA_CITY_ZAUBERLADEN, CITY_ZAUBERLADEN,
                     interface_btn_handler, CITY_CA_ZAUBERLADEN_X,
                     CITY_CA_ZAUBERLADEN_Y, CITY_CA_ZAUBERLADEN_X,
                     CITY_CA_ZAUBERLADEN_Y, CITY_CA_OVL);
-    DefineClickArea(CA_CITY_RUHMESHALLE, CITY_RUHMESHALLE,
+    define_click_area(CA_CITY_RUHMESHALLE, CITY_RUHMESHALLE,
                     interface_btn_handler, CITY_CA_RUHMESHALLE_X,
                     CITY_CA_RUHMESHALLE_Y, (CITY_CA_RUHMESHALLE_X - 45),
                     CITY_CA_RUHMESHALLE_Y, CITY_CA_OVL);
-    DefineClickArea(CA_CITY_ARENA, CITY_ARENA, interface_btn_handler,
+    define_click_area(CA_CITY_ARENA, CITY_ARENA, interface_btn_handler,
                     CITY_CA_ARENA_X, CITY_CA_ARENA_Y, CITY_CA_ARENA_X,
                     CITY_CA_ARENA_Y, CITY_CA_OVL, ShowArenaOno,
                     HideArenaOno);
-    DefineClickArea(CA_CITY_DEALER, CITY_DEALER, interface_btn_handler,
+    define_click_area(CA_CITY_DEALER, CITY_DEALER, interface_btn_handler,
                     CITY_CA_DEALER_X, CITY_CA_DEALER_Y, CITY_CA_DEALER_X,
                     CITY_CA_DEALER_Y, CITY_CA_OVL, HideDealerEyes,
                     ShowDealerEyes);
-    DefineClickArea(CA_CITY_ESEL, CITY_ESEL2, interface_btn_handler,
+    define_click_area(CA_CITY_ESEL, CITY_ESEL2, interface_btn_handler,
                     CITY_CA_ESEL_X, CITY_CA_ESEL_Y, CITY_CA_ESEL_X,
                     CITY_CA_ESEL_Y, CITY_CA_OVL, EselOver, EselOut);
-    DefineClickArea(CA_CITY_TAVERNE, CITY_TAVERNE, interface_btn_handler,
+    define_click_area(CA_CITY_TAVERNE, CITY_TAVERNE, interface_btn_handler,
                     CITY_CA_TAVERNE_X, CITY_CA_TAVERNE_Y,
                     CITY_CA_TAVERNE_X, CITY_CA_TAVERNE_Y, CITY_ZWERG);
-    DefineClickArea(CA_CITY_POST, CITY_POST, interface_btn_handler,
+    define_click_area(CA_CITY_POST, CITY_POST, interface_btn_handler,
                     CITY_CA_POST_X, CITY_CA_POST_Y, CITY_CA_POST_X,
                     CITY_CA_POST_Y, CITY_ORK);
-    DefineClickArea(CA_CITY_WACHE, C_EMPTY, interface_btn_handler,
+    define_click_area(CA_CITY_WACHE, C_EMPTY, interface_btn_handler,
                     CITY_CA_WACHE_X, CITY_CA_WACHE_Y, CITY_CA_WACHE_X,
                     CITY_CA_WACHE_Y, CITY_CA_OVL, WacheOver, WacheOut);
-    DefineClickArea(CA_CITY_BUH, C_EMPTY, interface_btn_handler,
+    define_click_area(CA_CITY_BUH, C_EMPTY, interface_btn_handler,
                     CITY_CA_BUH_X, CITY_CA_BUH_Y, CITY_CA_BUH_X,
                     CITY_CA_BUH_Y, CITY_CA_OVL, BuhHover, BuhOut);
     AddMimickInterfaceButtonHoverHandler(CA_CITY_SHAKES);
@@ -22061,83 +22061,83 @@ def build_interface():
     define_bunch(CITY_ORK);
     Buh = False;
     if (lang_code == "de"){
-        DefineImg(BUBBLE_ARENA,
+        define_img(BUBBLE_ARENA,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_arena.png"),
                     False, BUBBLE_ARENA_X, BUBBLE_ARENA_Y);
-        DefineImg(BUBBLE_ESEL,
+        define_img(BUBBLE_ESEL,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_esel.png"),
                     False, BUBBLE_ESEL_X, BUBBLE_ESEL_Y);
-        DefineImg(BUBBLE_TAVERNE,
+        define_img(BUBBLE_TAVERNE,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_gasthaus.png"),
                     False, BUBBLE_TAVERNE_X, BUBBLE_TAVERNE_Y);
-        DefineImg(BUBBLE_RUHMESHALLE,
+        define_img(BUBBLE_RUHMESHALLE,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_heldenhalle.png"),
                     False, BUBBLE_RUHMESHALLE_X, BUBBLE_RUHMESHALLE_Y);
-        DefineImg(BUBBLE_KRISTALL,
+        define_img(BUBBLE_KRISTALL,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_kristall.png"),
                     False, BUBBLE_KRISTALL_X, BUBBLE_KRISTALL_Y);
-        DefineImg(BUBBLE_ORAKEL,
+        define_img(BUBBLE_ORAKEL,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_orakel.png"),
                     False, BUBBLE_ORAKEL_X, BUBBLE_ORAKEL_Y);
-        DefineImg(BUBBLE_DEALER,
+        define_img(BUBBLE_DEALER,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_pilzdealer.png"),
                     False, BUBBLE_DEALER_X, BUBBLE_DEALER_Y);
-        DefineImg(BUBBLE_POST,
+        define_img(BUBBLE_POST,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_post.png"),
                     False, BUBBLE_POST_X, BUBBLE_POST_Y);
-        DefineImg(BUBBLE_WACHE,
+        define_img(BUBBLE_WACHE,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_stadtwache.png"),
                     False, BUBBLE_WACHE_X, BUBBLE_WACHE_Y);
-        DefineImg(BUBBLE_STATUE,
+        define_img(BUBBLE_STATUE,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_statue.png"),
                     False, BUBBLE_STATUE_X, BUBBLE_STATUE_Y);
-        DefineImg(BUBBLE_SHAKES,
+        define_img(BUBBLE_SHAKES,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_waffenladen.png"),
                     False, BUBBLE_SHAKES_X, BUBBLE_SHAKES_Y);
-        DefineImg(BUBBLE_ZAUBERLADEN,
+        define_img(BUBBLE_ZAUBERLADEN,
                   (("res/gfx/scr/stadt/" + lang_code)
                    + "/bubble_zauberladen.png"), False,
                     BUBBLE_ZAUBERLADEN_X, BUBBLE_ZAUBERLADEN_Y);
     } else {
-        DefineImg(BUBBLE_ARENA,
+        define_img(BUBBLE_ARENA,
                   "res/gfx/empty.png",
                   False, BUBBLE_ARENA_X, BUBBLE_ARENA_Y);
-        DefineImg(BUBBLE_ESEL,
+        define_img(BUBBLE_ESEL,
                   "res/gfx/empty.png",
                   False, BUBBLE_ESEL_X, BUBBLE_ESEL_Y);
-        DefineImg(BUBBLE_TAVERNE,
+        define_img(BUBBLE_TAVERNE,
                   "res/gfx/empty.png",
                   False, BUBBLE_TAVERNE_X, BUBBLE_TAVERNE_Y);
-        DefineImg(BUBBLE_RUHMESHALLE,
+        define_img(BUBBLE_RUHMESHALLE,
                   "res/gfx/empty.png",
                   False, BUBBLE_RUHMESHALLE_X, BUBBLE_RUHMESHALLE_Y);
-        DefineImg(BUBBLE_KRISTALL,
+        define_img(BUBBLE_KRISTALL,
                   "res/gfx/empty.png",
                   False, BUBBLE_KRISTALL_X, BUBBLE_KRISTALL_Y);
-        DefineImg(BUBBLE_ORAKEL, "res/gfx/empty.png",
+        define_img(BUBBLE_ORAKEL, "res/gfx/empty.png",
                   False, BUBBLE_ORAKEL_X, BUBBLE_ORAKEL_Y);
-        DefineImg(BUBBLE_DEALER, "res/gfx/empty.png",
+        define_img(BUBBLE_DEALER, "res/gfx/empty.png",
                   False, BUBBLE_DEALER_X, BUBBLE_DEALER_Y);
-        DefineImg(BUBBLE_POST, "res/gfx/empty.png",
+        define_img(BUBBLE_POST, "res/gfx/empty.png",
                   False, BUBBLE_POST_X, BUBBLE_POST_Y);
-        DefineImg(BUBBLE_WACHE, "res/gfx/empty.png",
+        define_img(BUBBLE_WACHE, "res/gfx/empty.png",
                   False, BUBBLE_WACHE_X, BUBBLE_WACHE_Y);
-        DefineImg(BUBBLE_STATUE, "res/gfx/empty.png",
+        define_img(BUBBLE_STATUE, "res/gfx/empty.png",
                   False, BUBBLE_STATUE_X, BUBBLE_STATUE_Y);
-        DefineImg(BUBBLE_SHAKES, "res/gfx/empty.png",
+        define_img(BUBBLE_SHAKES, "res/gfx/empty.png",
                   False, BUBBLE_SHAKES_X, BUBBLE_SHAKES_Y);
-        DefineImg(BUBBLE_ZAUBERLADEN, "res/gfx/empty.png",
+        define_img(BUBBLE_ZAUBERLADEN, "res/gfx/empty.png",
                   False, BUBBLE_ZAUBERLADEN_X, BUBBLE_ZAUBERLADEN_Y);
     };
     define_bunch(BUBBLES, BUBBLE_ARENA, BUBBLE_ESEL, BUBBLE_TAVERNE,
@@ -22175,7 +22175,7 @@ def build_interface():
     PopupDir = False;
     define_btn(IF_EXIT, "", ExitScreen, btn_classExitScreen,
                IF_EXIT_X, IF_EXIT_Y);
-    DefineImg(SCR_HALLE_BG, "res/gfx/scr/hall/heldenhalle.jpg",
+    define_img(SCR_HALLE_BG, "res/gfx/scr/hall/heldenhalle.jpg",
               False, 280, 100);
     define_btn(HALLE_UP, "", RuhmesHalleScroll, btn_classArrowUp,
                HALLE_UPDOWN_X, HALLE_UP_Y);
@@ -22192,16 +22192,16 @@ def build_interface():
     DefineCnt(HALL_GOTO_SPIELER, 0, HALLE_GOTO_SPIELERGILDEN_Y);
     DefineCnt(HALL_GOTO_GILDEN, HALLE_GOTO_GILDEN_X,
               HALLE_GOTO_SPIELERGILDEN_Y);
-    DefineLbl(LBL_HALL_GOTO_SPIELER, texts[TXT_GOTO_SPIELER], 0, 0,
+    define_lbl(LBL_HALL_GOTO_SPIELER, texts[TXT_GOTO_SPIELER], 0, 0,
               FontFormat_LOGoutLink);
     add_filter(LBL_HALL_GOTO_SPIELER, Filter_Shadow);
-    DefineLbl(LBL_HALL_GOTO_GILDEN, texts[TXT_GOTO_GILDEN], 0, 0,
+    define_lbl(LBL_HALL_GOTO_GILDEN, texts[TXT_GOTO_GILDEN], 0, 0,
               FontFormat_LOGoutLink);
     add_filter(LBL_HALL_GOTO_GILDEN, Filter_Shadow);
-    DefineLbl(LBL_HALL_GOTO_SPIELER_HL, texts[TXT_GOTO_SPIELER], 0, 0,
+    define_lbl(LBL_HALL_GOTO_SPIELER_HL, texts[TXT_GOTO_SPIELER], 0, 0,
               FontFormat_LOGoutLinkHighLight);
     add_filter(LBL_HALL_GOTO_SPIELER_HL, Filter_Shadow);
-    DefineLbl(LBL_HALL_GOTO_GILDEN_HL, texts[TXT_GOTO_GILDEN], 0, 0,
+    define_lbl(LBL_HALL_GOTO_GILDEN_HL, texts[TXT_GOTO_GILDEN], 0, 0,
               FontFormat_LOGoutLinkHighLight);
     add_filter(LBL_HALL_GOTO_GILDEN_HL, Filter_Shadow);
     MakePersistent(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN);
@@ -22232,7 +22232,7 @@ def build_interface():
     define_bunch(SCREEN_HALLE, SCR_HALLE_BG, IF_OVL, IF_EXIT, HALLE_UP,
                  HALLE_DOWN, HALLE_GOTO, INP_HALLE_GOTO, HALL_LIST,
                  HALL_GOTO_SPIELER, HALL_GOTO_GILDEN);
-    DefineClickArea(CA_SCR_ARBEITEN_BLOCKCITY, C_EMPTY,
+    define_click_area(CA_SCR_ARBEITEN_BLOCKCITY, C_EMPTY,
                     interface_btn_handler, 280, 100, (RES_X - 280),
                     (RES_Y - 100));
     _local2 = actor[CA_SCR_ARBEITEN_BLOCKCITY];
@@ -22240,10 +22240,10 @@ def build_interface():
         useHandCursor = False;
         buttonMode = False;
     };
-    DefineLbl(LBL_SCR_ARBEITEN_TEXT, texts[TXT_ARBEIT_TEXT],
+    define_lbl(LBL_SCR_ARBEITEN_TEXT, texts[TXT_ARBEIT_TEXT],
               LBL_ARBEITEN_TEXT_X, LBL_ARBEITEN_TEXT_Y,
               FontFormat_Default);
-    DefineLbl(LBL_SCR_ARBEITEN_TEXT2, "", LBL_ARBEITEN_TEXT_X,
+    define_lbl(LBL_SCR_ARBEITEN_TEXT2, "", LBL_ARBEITEN_TEXT_X,
               LBL_ARBEITEN_TEXT2_Y, FontFormat_Default);
     actor[LBL_SCR_ARBEITEN_TEXT].width = LBL_ARBEITEN_TEXT_X;
     actor[LBL_SCR_ARBEITEN_TEXT].wordWrap = True;
@@ -22251,7 +22251,7 @@ def build_interface():
     actor[LBL_SCR_ARBEITEN_TEXT2].wordWrap = True;
     add_filter(LBL_SCR_ARBEITEN_TEXT, Filter_Shadow);
     add_filter(LBL_SCR_ARBEITEN_TEXT2, Filter_Shadow);
-    DefineLbl(LBL_SCR_ARBEITEN_TIME, "", 0,
+    define_lbl(LBL_SCR_ARBEITEN_TIME, "", 0,
               (IF_WIN_Y + LBL_ARBEITEN_TIME_Y), FontFormat_Default);
     add_filter(LBL_SCR_ARBEITEN_TIME, Filter_Shadow);
     DefineCnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X),
@@ -22280,14 +22280,14 @@ def build_interface():
     define_bunch(SCREEN_ARBEITEN_SUCCESS, CA_SCR_ARBEITEN_BLOCKCITY,
                  IF_WINDOW, LBL_WINDOW_TITLE, LBL_SCR_ARBEITEN_TEXT,
                  LBL_SCR_ARBEITEN_TEXT2, SCR_ARBEITEN_CLOSE, IF_EXIT);
-    DefineClickArea(CA_SCR_INVITE_BLOCKCITY, C_EMPTY, interface_btn_handler,
+    define_click_area(CA_SCR_INVITE_BLOCKCITY, C_EMPTY, interface_btn_handler,
                     280, 100, (RES_X - 280), (RES_Y - 100));
     _local2 = actor[CA_SCR_INVITE_BLOCKCITY];
     with (_local2) {
         useHandCursor = False;
         buttonMode = False;
     };
-    DefineLbl(LBL_INVITE_SUCCESS, "",
+    define_lbl(LBL_INVITE_SUCCESS, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (420 / 2)),
               ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY),
               FontFormat_Default);
@@ -22298,7 +22298,7 @@ def build_interface():
         width = 420;
         text = texts[TXT_INVITESUCCESS];
     };
-    DefineLbl(LBL_INVITE_TEXT, "",
+    define_lbl(LBL_INVITE_TEXT, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (420 / 2)),
               ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY),
               FontFormat_Default);
@@ -22318,7 +22318,7 @@ def build_interface():
         x = (((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2))) + 40);
         add_event_listener(KeyboardEvent.KEY_DOWN, SendPlayerInvite);
     };
-    DefineLbl(LBL_INVITE_TEXT2, texts[TXT_INVITEEMAIL], 0,
+    define_lbl(LBL_INVITE_TEXT2, texts[TXT_INVITEEMAIL], 0,
               ((actor[INP_CHAR_INVITE].y + 10) + AIRRelMoveY),
               FontFormat_Default);
     add_filter(LBL_INVITE_TEXT2, Filter_Shadow);
@@ -22333,7 +22333,7 @@ def build_interface():
         x = (((IF_WIN_X + IF_WIN_WELCOME_X) - int((width / 2))) + 40);
         add_event_listener(KeyboardEvent.KEY_DOWN, SendPlayerInvite);
     };
-    DefineLbl(LBL_INVITE_TEXT3, texts[TXT_INVITESUBJECT], 0,
+    define_lbl(LBL_INVITE_TEXT3, texts[TXT_INVITESUBJECT], 0,
               ((actor[INP_CHAR_INVITE2].y + 10) + AIRRelMoveY),
               FontFormat_Default);
     add_filter(LBL_INVITE_TEXT3, Filter_Shadow);
@@ -22354,20 +22354,20 @@ def build_interface():
                  LBL_INVITE_TEXT2, INP_CHAR_INVITE2, LBL_INVITE_TEXT3,
                  SCR_INVITE_OK);
     define_bunch(INVITE_SUCCESS, LBL_INVITE_SUCCESS, INVITE_SUCCESS_OK);
-    DefineImg(ALBUM_BG, "res/gfx/scr/album/album.jpg", False, 280, 100);
-    DefineLbl(LBL_ALBUM_PAGENUMBER_LEFT, "", 340, 690, FontFormat_Book);
-    DefineLbl(LBL_ALBUM_PAGENUMBER_RIGHT, "", 0, 690, FontFormat_Book);
-    DefineLbl(LBL_ALBUM_COLLECTION, "", 330, 135, FontFormat_BookLeft);
+    define_img(ALBUM_BG, "res/gfx/scr/album/album.jpg", False, 280, 100);
+    define_lbl(LBL_ALBUM_PAGENUMBER_LEFT, "", 340, 690, FontFormat_Book);
+    define_lbl(LBL_ALBUM_PAGENUMBER_RIGHT, "", 0, 690, FontFormat_Book);
+    define_lbl(LBL_ALBUM_COLLECTION, "", 330, 135, FontFormat_BookLeft);
     define_bunch(SCREEN_ALBUM, ALBUM_BG, IF_OVL, IF_EXIT,
                  LBL_ALBUM_PAGENUMBER_LEFT, LBL_ALBUM_PAGENUMBER_RIGHT,
                  LBL_ALBUM_COLLECTION);
-    DefineImg(UNKNOWN_enemy, "res/gfx/scr/fight/monster/unknown.jpg",
+    define_img(UNKNOWN_enemy, "res/gfx/scr/fight/monster/unknown.jpg",
               False, 0, 0);
     i = 0;
     while (i < 4) {
-        DefineLbl((LBL_ALBUM_HEADING + i), "", 0,
+        define_lbl((LBL_ALBUM_HEADING + i), "", 0,
                   (((i % 2))==0) ? 135 : 440, FontFormat_Book);
-        DefineLbl((LBL_ALBUM_HINT + i), "", 0,
+        define_lbl((LBL_ALBUM_HINT + i), "", 0,
                   (((i % 2))==0) ? 165 : 470, FontFormat_BookHint);
         DefineCnt((ALBUM_MONSTER + i),
                   ((i)<=1) ? 420 : 890, (((i % 2))==0) ? 170 : 475);
@@ -22413,10 +22413,10 @@ def build_interface():
     define_bunch(ALBUM_CAT_IN);
     i = 0;
     while (i < 5) {
-        DefineImg((ALBUM_CAT_OUT + i),
+        define_img((ALBUM_CAT_OUT + i),
                   (("res/gfx/scr/album/tab_" + str(i)) + "_out.jpg"),
                   False, 0, 0);
-        DefineImg((ALBUM_CAT_IN + i),
+        define_img((ALBUM_CAT_IN + i),
                   (("res/gfx/scr/album/tab_" + str(i)) + "_in.jpg"),
                   False, 290, (300 + (i * 80)));
         DefineCnt((ALBUM_CAT_OUT + i), 290, (300 + (i * 80)));
@@ -22442,16 +22442,16 @@ def build_interface():
     define_btn(ALBUM_NEXT, "", Showalbum_content,
                btn_classArrowRight, 1180, 715);
     add_bunch(SCREEN_ALBUM, ALBUM_PREV, ALBUM_NEXT);
-    DefineImg(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg",
+    define_img(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg",
               False, 280, 100);
-    DefineImg(SCR_CHAR_BG_GOLDEN, "res/gfx/scr/char/gold_bg.jpg",
+    define_img(SCR_CHAR_BG_GOLDEN, "res/gfx/scr/char/gold_bg.jpg",
               False, 280, 100);
-    DefineImg(SCR_CHAR_BG_RIGHT,
+    define_img(SCR_CHAR_BG_RIGHT,
               "res/gfx/scr/char/character_right_new.jpg",
               False, (280 + 500), 100);
     i = 0;
     while (i < 13) {
-        DefineImg((MIRROR_PIECE + i),
+        define_img((MIRROR_PIECE + i),
                   (("res/gfx/scr/char/mirror/mirror"
                    + str((i + 1))) + ".png"),
                     False, SCR_CHAR_CHARX, SCR_CHAR_CHARY);
@@ -22459,13 +22459,13 @@ def build_interface():
         actor[(MIRROR_PIECE + i)].mouse_enabled = False;
         i = (i + 1);
     };
-    DefineImg(GOLDEN_FRAME, "res/gfx/scr/char/gold_frame.png",
+    define_img(GOLDEN_FRAME, "res/gfx/scr/char/gold_frame.png",
               False, (SCR_CHAR_CHARX - 3), (SCR_CHAR_CHARY - 5));
-    DefineClickArea(CA_SELL_ITEM, C_EMPTY, None,
+    define_click_area(CA_SELL_ITEM, C_EMPTY, None,
                     (280 + 550), 100, 450, 700);
-    DefineClickArea(CA_USE_ITEM, C_EMPTY, None, 280, 100, 500, 415);
+    define_click_area(CA_USE_ITEM, C_EMPTY, None, 280, 100, 500, 415);
     DefineCnt(SCR_CHAR_NAME, CHAR_NAME_X, CHAR_NAME_Y);
-    DefineLbl(LBL_SCR_CHAR_NAME, "", 0, 0, FontFormat_Default);
+    define_lbl(LBL_SCR_CHAR_NAME, "", 0, 0, FontFormat_Default);
     MakePersistent(LBL_SCR_CHAR_NAME);
     _local2 = actor[SCR_CHAR_NAME];
     with (_local2) {
@@ -22490,7 +22490,7 @@ def build_interface():
     };
     DefineCnt(SCR_CHAR_GILDE, ((GILDEEHRE_X + GILDEEHRE_X) + 40),
               (GILDEEHRE_Y + GILDEEHRE_Y));
-    DefineLbl(LBL_SCR_CHAR_GILDE, "", 0, 0, FontFormat_Default);
+    define_lbl(LBL_SCR_CHAR_GILDE, "", 0, 0, FontFormat_Default);
     MakePersistent(LBL_SCR_CHAR_GILDE);
     _local2 = actor[SCR_CHAR_GILDE];
     with (_local2) {
@@ -22502,18 +22502,18 @@ def build_interface():
         useHandCursor = True;
         mouseChildren = False;
     };
-    DefineImg(SLOT_SUGGESTION, "res/gfx/scr/char/slot_suggestion.png",
+    define_img(SLOT_SUGGESTION, "res/gfx/scr/char/slot_suggestion.png",
               False, 0, 0);
     actor[SLOT_SUGGESTION].mouse_enabled = False;
-    DefineLbl(LBL_SCR_CHAR_EHRE, "", 0, (GILDEEHRE_Y + GILDEEHRE_Y),
+    define_lbl(LBL_SCR_CHAR_EHRE, "", 0, (GILDEEHRE_Y + GILDEEHRE_Y),
               FontFormat_Default);
-    DefineImg(SCR_CHAR_KLASSE_1, "res/gfx/scr/char/char_krieger.jpg",
+    define_img(SCR_CHAR_KLASSE_1, "res/gfx/scr/char/char_krieger.jpg",
               False, ((GILDEEHRE_X + GILDEEHRE_X) - 10),
               ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
-    DefineImg(SCR_CHAR_KLASSE_2, "res/gfx/scr/char/char_magier.jpg",
+    define_img(SCR_CHAR_KLASSE_2, "res/gfx/scr/char/char_magier.jpg",
               False, ((GILDEEHRE_X + GILDEEHRE_X) - 10),
               ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
-    DefineImg(SCR_CHAR_KLASSE_3, "res/gfx/scr/char/char_dieb.jpg",
+    define_img(SCR_CHAR_KLASSE_3, "res/gfx/scr/char/char_dieb.jpg",
               False, ((GILDEEHRE_X + GILDEEHRE_X) - 10),
               ((GILDEEHRE_Y + GILDEEHRE_Y) - 10));
     enable_popup(SCR_CHAR_KLASSE_1, texts[TXT_CLASSNAME]);
@@ -22540,7 +22540,7 @@ def build_interface():
         add_event_listener(FocusEvent.FOCUS_IN, Enterplayer_desc);
         add_event_listener(FocusEvent.FOCUS_OUT, Leaveplayer_desc);
     };
-    DefineLbl(LBL_CHAR_DELAY, "", 0, (100 + CHAR_DELAY_Y),
+    define_lbl(LBL_CHAR_DELAY, "", 0, (100 + CHAR_DELAY_Y),
               FontFormat_Default);
     add_filter(LBL_CHAR_DELAY, Filter_Shadow);
     define_bunch(CHAR_RIGHTPANE, SCR_CHAR_BG_RIGHT, IF_OVL,
@@ -22549,12 +22549,12 @@ def build_interface():
     add_filter(LBL_SCR_CHAR_NAME, Filter_Shadow);
     add_filter(LBL_SCR_CHAR_GILDE, Filter_Shadow);
     add_filter(LBL_SCR_CHAR_EHRE, Filter_Shadow);
-    DefineImg(SCR_CHAR_EXPBAR, "res/gfx/scr/char/experience.jpg", False,
+    define_img(SCR_CHAR_EXPBAR, "res/gfx/scr/char/experience.jpg", False,
               EXPERIENCE_BAR_X, EXPERIENCE_BAR_Y);
-    DefineLbl(LBL_SCR_CHAR_EXPLABEL, "", 0, (EXPERIENCE_BAR_Y + 2),
+    define_lbl(LBL_SCR_CHAR_EXPLABEL, "", 0, (EXPERIENCE_BAR_Y + 2),
               FontFormat_LifeBar);
     add_filter(LBL_SCR_CHAR_EXPLABEL, Filter_Shadow);
-    DefineClickArea(CA_SCR_CHAR_EXPBAR, C_EMPTY, None, EXPERIENCE_BAR_X,
+    define_click_area(CA_SCR_CHAR_EXPBAR, C_EMPTY, None, EXPERIENCE_BAR_X,
                     EXPERIENCE_BAR_Y, 254, 24);
     define_btn(CHAR_MESSAGE, texts[TXT_MESSAGE], PlayerSendMessage,
                btn_classBasic, CHAR_PLAYERX1, CHAR_PLAYERY);
@@ -22573,7 +22573,7 @@ def build_interface():
     enable_popup(CHAR_INVITE, texts[(TXT_ACH_4 + 5)]);
     i = 0;
     while (i < 8) {
-        DefineImg((CHAR_MOUNT_1 + i),
+        define_img((CHAR_MOUNT_1 + i),
                   (("res/gfx/scr/char/mount_portrait_"
                    + str((i + 1))) + ".jpg"), False,
                     (CHAR_MOUNT_X + CHAR_MOUNT_X), CHAR_MOUNT_Y);
@@ -22584,10 +22584,10 @@ def build_interface():
         add_bunch(CHAR_RIGHTPANE, (CHAR_MOUNT_1 + i));
         i = (i + 1);
     };
-    DefineLbl(LBL_CHAR_MOUNT_NAME, "", CHAR_MOUNT_X, CHAR_MOUNT_Y,
+    define_lbl(LBL_CHAR_MOUNT_NAME, "", CHAR_MOUNT_X, CHAR_MOUNT_Y,
               FontFormat_Default);
     add_filter(LBL_CHAR_MOUNT_NAME, Filter_Shadow);
-    DefineLbl(LBL_CHAR_MOUNT_DESCR, "", CHAR_MOUNT_X,
+    define_lbl(LBL_CHAR_MOUNT_DESCR, "", CHAR_MOUNT_X,
               (CHAR_MOUNT_Y + CHAR_MOUNT_LINE_Y), FontFormat_DefaultLeft);
     _local2 = actor[LBL_CHAR_MOUNT_DESCR];
     with (_local2) {
@@ -22595,20 +22595,20 @@ def build_interface():
         width = (CHAR_MOUNT_X - 5);
     };
     add_filter(LBL_CHAR_MOUNT_DESCR, Filter_Shadow);
-    DefineLbl(LBL_CHAR_MOUNT_RUNTIME, "", CHAR_MOUNT_X,
+    define_lbl(LBL_CHAR_MOUNT_RUNTIME, "", CHAR_MOUNT_X,
               (CHAR_MOUNT_Y + (CHAR_MOUNT_LINE_Y * 5)), FontFormat_Default)
     add_filter(LBL_CHAR_MOUNT_RUNTIME, Filter_Shadow);
-    DefineLbl(LBL_CHAR_MOUNT_GAIN, "", CHAR_MOUNT_X,
+    define_lbl(LBL_CHAR_MOUNT_GAIN, "", CHAR_MOUNT_X,
               (CHAR_MOUNT_Y + (CHAR_MOUNT_LINE_Y * 4)), FontFormat_Default)
     add_filter(LBL_CHAR_MOUNT_GAIN, Filter_Shadow);
-    DefineImg(CHAR_RUESTUNG, "res/gfx/scr/char/icon_schild.jpg", False,
+    define_img(CHAR_RUESTUNG, "res/gfx/scr/char/icon_schild.jpg", False,
               ((280 + 500) + CHAR_RUESTUNG_X), (100 + CHAR_RUESTUNG_Y));
-    DefineLbl(LBL_CHAR_RUESTUNG, "",
+    define_lbl(LBL_CHAR_RUESTUNG, "",
               (((280 + 500) + CHAR_RUESTUNG_X) + CHAR_RUESTUNG_TEXT_X),
               ((100 + CHAR_RUESTUNG_Y) + CHAR_RUESTUNG_TEXT_Y),
               FontFormat_Default);
     add_filter(LBL_CHAR_RUESTUNG, Filter_Shadow);
-    DefineImg(CHAR_ALBUM, "res/gfx/scr/char/icon_foliant.png", False,
+    define_img(CHAR_ALBUM, "res/gfx/scr/char/icon_foliant.png", False,
               ((280 + 500) + 350), (100 + 20));
     add_bunch(CHAR_RIGHTPANE, LBL_CHAR_MOUNT_NAME, LBL_CHAR_MOUNT_RUNTIME,
               LBL_CHAR_MOUNT_GAIN, LBL_CHAR_MOUNT_DESCR, CHAR_RUESTUNG,
@@ -22626,10 +22626,10 @@ def build_interface():
     DestroyBoostBtnTimer = False;
     i = 0;
     while (i < 5) {
-        DefineLbl((LBL_SCR_CHAR_STAERKE_CAPTION + i),
+        define_lbl((LBL_SCR_CHAR_STAERKE_CAPTION + i),
                   texts[(TXT_CHAR_STAERKE + i)], CHAR_PROP_COLUMN_1_X,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
-        DefineLbl((LBL_SCR_CHAR_STAERKE + i), "", CHAR_PROP_COLUMN_2_X,
+        define_lbl((LBL_SCR_CHAR_STAERKE + i), "", CHAR_PROP_COLUMN_2_X,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Attrib);
         define_btn((SCR_CHAR_STEIGERN1 + i), "", BoostAttribute,
                    btn_classPlus, CHAR_PROP_COLUMN_3_X,
@@ -22642,18 +22642,18 @@ def build_interface():
             add_event_listener(MouseEvent.MOUSE_OVER, BoostBtnOver);
             add_event_listener(MouseEvent.MOUSE_OUT, BoostBtnOut);
         };
-        DefineLbl((LBL_SCR_CHAR_PREIS1 + i), "", 0,
+        define_lbl((LBL_SCR_CHAR_PREIS1 + i), "", 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
         DefineCnt((SCR_CHAR_GOLD1 + i), 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)));
-        DefineLbl((LBL_SCR_CHAR_SILBER1 + i), "", 0,
+        define_lbl((LBL_SCR_CHAR_SILBER1 + i), "", 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
         DefineCnt((SCR_CHAR_SILBER1 + i), 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)));
-        DefineLbl((LBL_SCR_CHAR_SCHADEN_CAPTION + i),
+        define_lbl((LBL_SCR_CHAR_SCHADEN_CAPTION + i),
                   texts[(TXT_CHAR_SCHADEN + i)], CHAR_PROP_COLUMN_5_X,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
-        DefineLbl((LBL_SCR_CHAR_SCHADEN + i), "", CHAR_PROP_COLUMN_6_X,
+        define_lbl((LBL_SCR_CHAR_SCHADEN + i), "", CHAR_PROP_COLUMN_6_X,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Attrib);
         add_bunch(CHAR_SECONDPROP, (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
         add_bunch(SCREEN_CHAR, (SCR_CHAR_STEIGERN1 + i),
@@ -22698,16 +22698,16 @@ def build_interface():
     DefineCnt(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
     i = 0;
     while (i < 8) {
-        DefineImg((EMPTY_SLOT_1 + i),
+        define_img((EMPTY_SLOT_1 + i),
                   (("res/gfx/scr/char/slot" + str((i + 1))) + ".png"),
                   False, 0, 0);
         i = (i + 1);
     };
-    DefineImg(EMPTY_SLOT_9_1, "res/gfx/scr/char/slot9_1.png", False, 0, 0);
-    DefineImg(EMPTY_SLOT_9_2, "res/gfx/scr/char/slot9_2.png", False, 0, 0);
-    DefineImg(EMPTY_SLOT_9_3, "res/gfx/scr/char/slot9_3.png", False, 0, 0);
-    DefineImg(EMPTY_SLOT_10, "res/gfx/scr/char/slot10.png", False, 0, 0);
-    DefineImg(NO_SHIELD, "res/gfx/itm/no_shield.png", False, 0, 0);
+    define_img(EMPTY_SLOT_9_1, "res/gfx/scr/char/slot9_1.png", False, 0, 0);
+    define_img(EMPTY_SLOT_9_2, "res/gfx/scr/char/slot9_2.png", False, 0, 0);
+    define_img(EMPTY_SLOT_9_3, "res/gfx/scr/char/slot9_3.png", False, 0, 0);
+    define_img(EMPTY_SLOT_10, "res/gfx/scr/char/slot10.png", False, 0, 0);
+    define_img(NO_SHIELD, "res/gfx/itm/no_shield.png", False, 0, 0);
     itmTyp = 0;
     while (itmTyp <= 14) {
         itm_pic = 0;
@@ -22724,7 +22724,7 @@ def build_interface():
                     if case(7:
                         itm_class = 0;
                         while (itm_class < 3) {
-                            DefineImg(GetItemID(itmTyp, itm_pic, itm_color,
+                            define_img(GetItemID(itmTyp, itm_pic, itm_color,
                                       itm_class),
                                     GetItemFile(itmTyp, itm_pic,
                                                 itm_color, itm_class),
@@ -22733,7 +22733,7 @@ def build_interface():
                         };
                         break;
                     default:
-                        DefineImg(GetItemID(itmTyp, itm_pic, itm_color, 0),
+                        define_img(GetItemID(itmTyp, itm_pic, itm_color, 0),
                                   GetItemFile(itmTyp, itm_pic,
                                               itm_color, 0), False, 0, 0);
                 };
@@ -22749,7 +22749,7 @@ def build_interface():
         while (itm_pic < C_ITEMS_PER_TYPE) {
             itm_color = 0;
             while (itm_color < 5) {
-                DefineImg(get_arrow_id(itmTyp, itm_pic, itm_color),
+                define_img(get_arrow_id(itmTyp, itm_pic, itm_color),
                           (((((((("res/gfx/itm/1-" + str((itmTyp + 2)))
                            + "/shot") + (((itmTyp == 0)) ? 2 : 1)) + "-")
                             + str(itm_pic)) + "-")
@@ -22787,7 +22787,7 @@ def build_interface():
                   (SCR_CHAR_ACH_X + (((buffed_mode)
                    ? SCR_CHAR_ACH_X_BUFFED
                    : SCR_CHAR_ACH_X) * (i % 8))), SCR_CHAR_ACH_Y);
-        DefineImg((CHAR_ACH + i),
+        define_img((CHAR_ACH + i),
                   (((("res/gfx/scr/char/ach/ach-" + str(((i % 8) + 1)))
                    + "-") + str(int((i / 8)))) + ".png"), False, 0, 0);
         SetCnt((CHAR_ACH + i), (CHAR_ACH + i));
@@ -22835,7 +22835,7 @@ def build_interface():
     };
     define_btn(TOWER_TRY, texts[TXT_TOWER_TRY], tower_btn_handler,
                btn_classBasic, 940, 700);
-    DefineImg(SCR_TOWER_BG,
+    define_img(SCR_TOWER_BG,
               "res/gfx/scr/quest/locations/location_tower.jpg",
               False, 280, 100);
     define_bunch(SCREEN_TOWER, SCR_CHAR_BG, TOWER_SCROLLAREA, TOWER_TRY,
@@ -22848,10 +22848,10 @@ def build_interface():
                                                    towerBoostPriceFadeout);
     i = 0;
     while (i < 3) {
-        DefineImg((TOWER_PORTRAIT + i),
+        define_img((TOWER_PORTRAIT + i),
                   (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"),
                   False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
-        DefineImg((TOWER_NO_PORTRAIT + i),
+        define_img((TOWER_NO_PORTRAIT + i),
                   (("res/gfx/npc/copycat_" + str((i + 1))) + "_empty.jpg"),
                   False, SCR_CHAR_CHARX, (SCR_CHAR_CHARY - 1));
         define_btn((TOWER_STEIGERN1 + i), "", BoostCopycat, btn_classPlus,
@@ -22863,7 +22863,7 @@ def build_interface():
         actor[(TOWER_STEIGERN1 + i)].add_event_listener(
                             MouseEvent.MOUSE_OUT, HideTowerBoostPrices);
         enable_popup((TOWER_STEIGERN1 + i), texts[TXT_BOOST_COPYCAT]);
-        DefineLbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0,
+        define_lbl((LBL_TOWER_BOOSTPRICELABEL + i), "", 0,
                   (EXPERIENCE_BAR_Y + 2), FontFormat_Default);
         add_filter((LBL_TOWER_BOOSTPRICELABEL + i),
                   Filter_Shadow);
@@ -22887,7 +22887,7 @@ def build_interface():
     define_bunch(TOWER_BOOSTPRICE, LBL_TOWER_BOOSTPRICELABEL,
                  (LBL_TOWER_BOOSTPRICELABEL + 1),
                  (LBL_TOWER_BOOSTPRICELABEL + 2), TOWER_BOOSTCOIN);
-    DefineLbl(LBL_TOWER_EXPLABEL, "", (SCR_CHAR_CHARX + 3),
+    define_lbl(LBL_TOWER_EXPLABEL, "", (SCR_CHAR_CHARX + 3),
               (EXPERIENCE_BAR_Y + 2), FontFormat_LifeBar);
     add_filter(LBL_TOWER_EXPLABEL, Filter_Shadow);
     add_bunch(SCREEN_TOWER, PREV_COPYCAT, NEXT_COPYCAT);
@@ -22901,20 +22901,20 @@ def build_interface():
                   (LBL_SCR_CHAR_SCHADEN_CAPTION + i));
         i = (i + 1);
     };
-    DefineImg(TOWER_BG, "res/gfx/scr/tower/tower_back.jpg", False, 0, 0);
-    DefineImg(TOWER_BASE, "res/gfx/scr/tower/tower_base.png", False, 0, 0);
-    DefineImg(TOWER_LEVEL, "res/gfx/scr/tower/tower_level.png",
+    define_img(TOWER_BG, "res/gfx/scr/tower/tower_back.jpg", False, 0, 0);
+    define_img(TOWER_BASE, "res/gfx/scr/tower/tower_base.png", False, 0, 0);
+    define_img(TOWER_LEVEL, "res/gfx/scr/tower/tower_level.png",
               False, 0, 0);
-    DefineImg((TOWER_LEVEL + 1), "res/gfx/scr/tower/tower_level.png",
+    define_img((TOWER_LEVEL + 1), "res/gfx/scr/tower/tower_level.png",
      False, 0, 0);
-    DefineImg((TOWER_LEVEL + 2), "res/gfx/scr/tower/tower_level.png",
+    define_img((TOWER_LEVEL + 2), "res/gfx/scr/tower/tower_level.png",
               False, 0, 0);
-    DefineImg(TOWER_ROOF, "res/gfx/scr/tower/tower_roof.png", False, 0, 0);
-    DefineImg(TOWER_WINDOW_OPEN, "res/gfx/scr/tower/tower_window_open.png",
+    define_img(TOWER_ROOF, "res/gfx/scr/tower/tower_roof.png", False, 0, 0);
+    define_img(TOWER_WINDOW_OPEN, "res/gfx/scr/tower/tower_window_open.png",
               False, 0, 0);
-    DefineImg(TOWER_WINDOW_CLOSED,
+    define_img(TOWER_WINDOW_CLOSED,
               "res/gfx/scr/tower/tower_window_closed.png", False, 0, 0);
-    DefineImg(TOWER_WINDOW_BURNT,
+    define_img(TOWER_WINDOW_BURNT,
               "res/gfx/scr/tower/tower_window_destroyed.png", False, 0, 0);
     DefineCnt(TOWER_WINDOW, 0, 0);
     DefineCnt((TOWER_WINDOW + 1), 0, 0);
@@ -22934,61 +22934,61 @@ def build_interface():
                    (TOWER_LEVEL + 2), TOWER_ROOF);
     MakePersistent(TOWER_WINDOW, (TOWER_WINDOW + 1), (TOWER_WINDOW + 2),
                    TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2));
-    DefineImg(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", False,
+    define_img(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", False,
               SCR_SHOP_BG_X, 100);
-    DefineImg(FIDGET_AFFE1, "res/gfx/scr/shops/fidget_affe1.jpg", False,
+    define_img(FIDGET_AFFE1, "res/gfx/scr/shops/fidget_affe1.jpg", False,
               (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-    DefineImg(FIDGET_AFFE2, "res/gfx/scr/shops/fidget_affe2.jpg", False,
+    define_img(FIDGET_AFFE2, "res/gfx/scr/shops/fidget_affe2.jpg", False,
               (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
-    DefineImg(FIDGET_AFFE3, "res/gfx/scr/shops/fidget_affe3.jpg", False,
+    define_img(FIDGET_AFFE3, "res/gfx/scr/shops/fidget_affe3.jpg", False,
               (SCR_SHOP_BG_X + FIDGET_AFFE_X), (100 + FIDGET_AFFE_Y));
     actor[FIDGET_AFFE1].mouse_enabled = False;
     actor[FIDGET_AFFE2].mouse_enabled = False;
     actor[FIDGET_AFFE3].mouse_enabled = False;
     if (Capabilities.version[0: 3] != "IOS"){
-        DefineImg(FIDGET_TAGKERZE, "res/gfx/scr/shops/tagkerze.swf", False,
+        define_img(FIDGET_TAGKERZE, "res/gfx/scr/shops/tagkerze.swf", False,
                   (SCR_SHOP_BG_X + FIDGET_TAGKERZE_X),
                   (100 + FIDGET_TAGKERZE_Y));
-        DefineImg(FIDGET_NACHTKERZE, "res/gfx/scr/shops/nachtkerze.swf",
+        define_img(FIDGET_NACHTKERZE, "res/gfx/scr/shops/nachtkerze.swf",
                   False, (SCR_SHOP_BG_X + FIDGET_NACHTKERZE_X),
                   (100 + FIDGET_NACHTKERZE_Y));
         actor[FIDGET_TAGKERZE].mouse_enabled = False;
         actor[FIDGET_NACHTKERZE].mouse_enabled = False;
     };
-    DefineImg(FIDGET_DAY, "res/gfx/scr/shops/fidget_normal.jpg", False,
+    define_img(FIDGET_DAY, "res/gfx/scr/shops/fidget_normal.jpg", False,
               (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-    DefineImg(FIDGET_IDLE, "res/gfx/scr/shops/fidget_langeweile.jpg",
+    define_img(FIDGET_IDLE, "res/gfx/scr/shops/fidget_langeweile.jpg",
               False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-    DefineImg(FIDGET_SALE, "res/gfx/scr/shops/fidget_wasverkauft.jpg",
+    define_img(FIDGET_SALE, "res/gfx/scr/shops/fidget_wasverkauft.jpg",
               False, (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
-    DefineImg(FIDGET_NIGHT, "res/gfx/scr/shops/fidget_nachts.jpg", False,
+    define_img(FIDGET_NIGHT, "res/gfx/scr/shops/fidget_nachts.jpg", False,
               (SCR_SHOP_BG_X + FIDGET_X), (100 + FIDGET_Y));
     actor[FIDGET_DAY].mouse_enabled = False;
     actor[FIDGET_IDLE].mouse_enabled = False;
     actor[FIDGET_SALE].mouse_enabled = False;
     actor[FIDGET_NIGHT].mouse_enabled = False;
-    DefineImg(FIDGET_BLINZELN,
+    define_img(FIDGET_BLINZELN,
               "res/gfx/scr/shops/fidget_normal_blinzeln.jpg", False,
               ((SCR_SHOP_BG_X + FIDGET_X) + FIDGET_BLINZELN_X),
               ((100 + FIDGET_Y) + FIDGET_BLINZELN_Y));
     actor[FIDGET_BLINZELN].mouse_enabled = False;
-    DefineImg(SHAKES_DAY, "res/gfx/scr/shops/shakes_normal.jpg", False,
+    define_img(SHAKES_DAY, "res/gfx/scr/shops/shakes_normal.jpg", False,
               (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
-    DefineImg(SHAKES_NIGHT, "res/gfx/scr/shops/shakes_nacht.jpg", False,
+    define_img(SHAKES_NIGHT, "res/gfx/scr/shops/shakes_nacht.jpg", False,
               (SCR_SHOP_BG_X + SHAKES_X), (100 + SHAKES_Y));
-    DefineImg(SHAKES_IDLE, "res/gfx/scr/shops/shakes_gelangweilt.jpg",
+    define_img(SHAKES_IDLE, "res/gfx/scr/shops/shakes_gelangweilt.jpg",
               False, (SCR_SHOP_BG_X + SHAKES_IDLE_X),
               (100 + SHAKES_IDLE_Y));
-    DefineImg(SHAKES_IDLE1, "res/gfx/scr/shops/shakes_spielt1.jpg", False,
+    define_img(SHAKES_IDLE1, "res/gfx/scr/shops/shakes_spielt1.jpg", False,
               (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-    DefineImg(SHAKES_IDLE2, "res/gfx/scr/shops/shakes_spielt2.jpg", False,
+    define_img(SHAKES_IDLE2, "res/gfx/scr/shops/shakes_spielt2.jpg", False,
               (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-    DefineImg(SHAKES_IDLE3, "res/gfx/scr/shops/shakes_spielt3.jpg", False,
+    define_img(SHAKES_IDLE3, "res/gfx/scr/shops/shakes_spielt3.jpg", False,
               (SCR_SHOP_BG_X + SHAKES_IDLE2_X), (100 + SHAKES_IDLE2_Y));
-    DefineImg(SHAKES_BLINZELN1, "res/gfx/scr/shops/shakes_augen1.jpg",
+    define_img(SHAKES_BLINZELN1, "res/gfx/scr/shops/shakes_augen1.jpg",
               False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X),
               ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
-    DefineImg(SHAKES_BLINZELN2, "res/gfx/scr/shops/shakes_augen2.jpg",
+    define_img(SHAKES_BLINZELN2, "res/gfx/scr/shops/shakes_augen2.jpg",
               False, ((SCR_SHOP_BG_X + SHAKES_X) + SHAKES_BLINZELN_X),
               ((100 + SHAKES_Y) + SHAKES_BLINZELN_Y));
     if (Capabilities.version[0: 3] == "IOS"){
@@ -22998,7 +22998,7 @@ def build_interface():
         define_bunch(FIDGET_DAY, FIDGET_DAY, FIDGET_TAGKERZE);
         define_bunch(FIDGET_NIGHT, FIDGET_NIGHT, FIDGET_NACHTKERZE);
     };
-    DefineImg(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", False,
+    define_img(SCR_SHAKES_BG, "res/gfx/scr/shops/shakes.jpg", False,
               SCR_SHOP_BG_X, 100);
     define_btn(SHOPS_NEWWAREZ, texts[TXT_SHOPS_NEWWAREZ], RequestNewWarez,
                btn_classBasic, 0, NEW_WAREZ_Y);
@@ -23024,9 +23024,9 @@ def build_interface():
                  SHAKES_IDLE2, SHAKES_IDLE3, SHAKES_DAY, SHAKES_BLINZELN1,
                  SHAKES_BLINZELN2, SHAKES_NIGHT, IF_OVL, SHOPS_NEWWAREZ,
                  CA_SCR_CHAR_EXPBAR, IF_EXIT);
-    DefineImg(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png",
+    define_img(FIDGET_EPCIOVL, "res/gfx/scr/shops/epics_overlay_fidget.png",
               False, (SCR_SHOP_BG_X - 65), (100 + 210));
-    DefineImg(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png",
+    define_img(SHAKES_EPCIOVL, "res/gfx/scr/shops/epics_overlay_shakes.png",
               False, (SCR_SHOP_BG_X + 200), (100 + 250));
     AffeBlinzeln = int((random.random() * 30));
     FidgetBlinzeln = int((random.random() * 30));
@@ -23081,16 +23081,16 @@ def build_interface():
         i = (i + 1);
     };
     RollFrenzy.add_event_listener(TimerEvent.TIMER, RequestNewWarez);
-    DefineImg(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", False,
+    define_img(GOTO_WITCH_OVL, "res/gfx/scr/shops/book_down.jpg", False,
               ((280 + 500) + 360), (100 + 220));
     actor[GOTO_WITCH_OVL].mouse_enabled = False;
-    DefineClickArea(CA_GOTO_WITCH, GOTO_WITCH_OVL, RequestWitchScreen,
+    define_click_area(CA_GOTO_WITCH, GOTO_WITCH_OVL, RequestWitchScreen,
                     ((280 + 500) + 359), (100 + 215), 45, 65);
     enable_popup(CA_GOTO_WITCH, texts[TXT_WITCH_BOOK]);
     define_bunch(SCREEN_WITCH);
     define_snd(SND_WITCH_DROP, "res/sfx/toilet/drop.mp3", False);
     add_bunch(SCREEN_WITCH, SND_WITCH_DROP);
-    DefineImg(WITCH, "res/gfx/scr/shops/witch.jpg",
+    define_img(WITCH, "res/gfx/scr/shops/witch.jpg",
               False, SCR_SHOP_BG_X, 100);
     add_bunch(SCREEN_WITCH, WITCH);
     i = 0;
@@ -23100,7 +23100,7 @@ def build_interface():
     };
     i = 0;
     while (i < 15) {
-        DefineImg((WITCH_ANI + i),
+        define_img((WITCH_ANI + i),
                   (("res/gfx/scr/shops/witch_animation/witch"
                    + str(((i * 2) + 1))) + ".jpg"), False, (280 + 500),
                         (100 + 380));
@@ -23156,34 +23156,34 @@ def build_interface():
         });
         i = (i + 1);
     };
-    DefineClickArea(CA_WITCH, C_EMPTY, None, (SCR_SHOP_BG_X + 180), 400,
+    define_click_area(CA_WITCH, C_EMPTY, None, (SCR_SHOP_BG_X + 180), 400,
                     135, 155);
-    DefineClickArea(CA_CHALDRON, C_EMPTY, None, (SCR_SHOP_BG_X + 120), 585,
+    define_click_area(CA_CHALDRON, C_EMPTY, None, (SCR_SHOP_BG_X + 120), 585,
                     260, 160);
     enable_popup(CA_WITCH, texts[TXT_WITCH_HINT]);
     enable_popup(CA_CHALDRON, texts[(TXT_WITCH_HINT + 1)]);
     actor[CA_WITCH].useHandCursor = False;
     actor[CA_CHALDRON].useHandCursor = False;
     add_bunch(SCREEN_WITCH, IF_OVL, CA_WITCH, CA_CHALDRON, IF_EXIT);
-    DefineImg(SCR_DEALER_BG, "", False, 280, 100);
+    define_img(SCR_DEALER_BG, "", False, 280, 100);
     define_bunch(SCREEN_DEALER, SCR_DEALER_BG, IF_OVL, IF_EXIT);
-    DefineImg(SCR_WORLDMAP_BG, "res/gfx/scr/map/worldmap.jpg", False,
+    define_img(SCR_WORLDMAP_BG, "res/gfx/scr/map/worldmap.jpg", False,
               280, 100);
     define_bunch(SCREEN_WORLDMAP, SCR_WORLDMAP_BG, IF_OVL, IF_EXIT);
     i = 0;
     while (i < 100) {
-        DefineImg((SCR_QUEST_BG_1 + i),
+        define_img((SCR_QUEST_BG_1 + i),
                   (("res/gfx/scr/quest/locations/location" + str((i + 1)))
                    + ".jpg"), False, 280, 100);
         i = (i + 1);
     };
-    DefineImg(QUESTBAR_BG, "res/gfx/if/adventurebar.png", False,
+    define_img(QUESTBAR_BG, "res/gfx/if/adventurebar.png", False,
               QUESTBAR_X, QUESTBAR_Y);
-    DefineImg(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", False,
+    define_img(QUESTBAR_FILL, "res/gfx/if/adventurebar_inside.jpg", False,
               (QUESTBAR_X + 110), (QUESTBAR_Y + 44));
-    DefineImg(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", False,
+    define_img(QUESTBAR_LIGHT, "res/gfx/if/laden_effekt.png", False,
               ((QUESTBAR_X + 110) - 5), (QUESTBAR_Y + 44));
-    DefineLbl(LBL_QUESTBAR_TEXT, "", 0, QUESTBAR_LABEL_Y,
+    define_lbl(LBL_QUESTBAR_TEXT, "", 0, QUESTBAR_LABEL_Y,
               FontFormat_QuestBar);
     define_btn(QUEST_CANCEL, texts[TXT_QUEST_CANCEL], CancelQuest,
                btn_classBasic, 0, QUEST_CANCEL_Y);
@@ -23201,14 +23201,14 @@ def build_interface():
     actor[QUEST_SKIP].x = int(((QUEST_CANCEL_X
                               - actor[QUEST_SKIP].width) - 5));
     actor[QUESTBAR_FILL].scaleX = 0;
-    DefineImg(POST_BG, "res/gfx/scr/post/postamt.jpg", False, 280, 100);
-    DefineImg(POST_DAWN1, "res/gfx/scr/post/postamt_abend1.jpg", False,
+    define_img(POST_BG, "res/gfx/scr/post/postamt.jpg", False, 280, 100);
+    define_img(POST_DAWN1, "res/gfx/scr/post/postamt_abend1.jpg", False,
               (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
-    DefineImg(POST_DAWN2, "res/gfx/scr/post/postamt_abend2.jpg", False,
+    define_img(POST_DAWN2, "res/gfx/scr/post/postamt_abend2.jpg", False,
               (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
-    DefineImg(POST_NIGHT1, "res/gfx/scr/post/postamt_nacht1.jpg", False,
+    define_img(POST_NIGHT1, "res/gfx/scr/post/postamt_nacht1.jpg", False,
               (280 + POST_VOGEL_X), (100 + POST_VOGEL_Y));
-    DefineImg(POST_NIGHT2, "res/gfx/scr/post/postamt_nacht2.jpg", False,
+    define_img(POST_NIGHT2, "res/gfx/scr/post/postamt_nacht2.jpg", False,
               (280 + POST_FENSTER_X), (100 + POST_FENSTER_Y));
     define_bunch(POST_DAWN, POST_DAWN1, POST_DAWN2);
     define_bunch(POST_NIGHT, POST_NIGHT1, POST_NIGHT2);
@@ -23220,15 +23220,15 @@ def build_interface():
         height = POST_SQUARE_Y;
         alpha = 0.6;
     };
-    DefineLbl(LBL_POST_TITLE_INBOX, texts[TXT_POST_TITLE_INBOX],
+    define_lbl(LBL_POST_TITLE_INBOX, texts[TXT_POST_TITLE_INBOX],
               SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
     actor[LBL_POST_TITLE_INBOX].x = (SCREEN_TITLE_X
                      - int((actor[LBL_POST_TITLE_INBOX].text_width / 2)));
-    DefineLbl(LBL_POST_TITLE_READ, texts[TXT_POST_TITLE_READ],
+    define_lbl(LBL_POST_TITLE_READ, texts[TXT_POST_TITLE_READ],
               SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
     actor[LBL_POST_TITLE_READ].x = (SCREEN_TITLE_X
                     - int((actor[LBL_POST_TITLE_READ].text_width / 2)));
-    DefineLbl(LBL_POST_TITLE_WRITE, texts[TXT_POST_TITLE_WRITE],
+    define_lbl(LBL_POST_TITLE_WRITE, texts[TXT_POST_TITLE_WRITE],
               SCREEN_TITLE_X, SCREEN_TITLE_Y, FontFormat_ScreenTitle);
     actor[LBL_POST_TITLE_WRITE].x = (SCREEN_TITLE_X
                  - int((actor[LBL_POST_TITLE_WRITE].text_width / 2)));
@@ -23271,7 +23271,7 @@ def build_interface():
                ((POST_BUTTONS_X + ((actor[POST_READ].width
                 + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
     enable_popup(POST_PROFILE, texts[TXT_POPUP_PROFILE]);
-    DefineLbl(LBL_POST_FLUSH_TEXT,
+    define_lbl(LBL_POST_FLUSH_TEXT,
               texts[(TXT_POST_FLUSH_TEXT + 1)].split("#").join(chr(13)),
                ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)),
                (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
@@ -23292,7 +23292,7 @@ def build_interface():
     add_bunch(POST_FLUSHMSG, CA_POST_BLOCK, IF_WINDOW, LBL_WINDOW_TITLE,
               LBL_POST_FLUSH_TEXT, POST_FLUSH_OK, POST_FLUSH_CANCEL,
               IF_EXIT);
-    DefineClickArea(CA_POST_BLOCK, C_EMPTY, None, 280, 100, (RES_X - 280),
+    define_click_area(CA_POST_BLOCK, C_EMPTY, None, 280, 100, (RES_X - 280),
                     (RES_Y - 100));
     _local2 = actor[CA_POST_BLOCK];
     with (_local2) {
@@ -23417,11 +23417,11 @@ def build_interface():
                btn_classBasic,
                (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
                POST_SENDBUTTON_Y);
-    DefineLbl(LBL_POST_LIMIT, "", POST_SQUARE_X,
+    define_lbl(LBL_POST_LIMIT, "", POST_SQUARE_X,
               (POST_SQUARE_Y - POST_LIMIT_Y), FontFormat_Default);
     add_filter(LBL_POST_LIMIT, Filter_Shadow);
     DefineCnt(POST_GUILD, 0, (POST_ADDRESS_Y + 2));
-    DefineLbl(LBL_POST_GUILD, texts[TXT_GILDEN], 0, 0, FontFormat_Default);
+    define_lbl(LBL_POST_GUILD, texts[TXT_GILDEN], 0, 0, FontFormat_Default);
     add_filter(LBL_POST_GUILD, Filter_Shadow);
     MakePersistent(LBL_POST_GUILD);
     _local2 = actor[POST_GUILD];
@@ -23446,21 +23446,21 @@ def build_interface():
                  POST_PROFILE, POST_FORWARD);
     define_bunch(SCREEN_POST, POST_BG, IF_OVL, POST_NIGHT, POST_DAWN,
                  SHP_POST_BLACK_SQUARE, POST_LIST, IF_EXIT);
-    DefineImg(ARENA_BG_DAY, "res/gfx/scr/arena/arena_tag.jpg",
+    define_img(ARENA_BG_DAY, "res/gfx/scr/arena/arena_tag.jpg",
               False, 280, 100);
-    DefineImg(ARENA_BG_DAWN, "res/gfx/scr/arena/arena_abend.jpg",
+    define_img(ARENA_BG_DAWN, "res/gfx/scr/arena/arena_abend.jpg",
               False, 280, 100);
-    DefineImg(ARENA_BG_NIGHT, "res/gfx/scr/arena/arena_nacht.jpg",
+    define_img(ARENA_BG_NIGHT, "res/gfx/scr/arena/arena_nacht.jpg",
               False, 280, 100);
     if (Capabilities.version[0: 3] != "IOS"){
-        DefineImg(ARENA_FEUER, "res/gfx/scr/arena/arenafeuer.swf",
+        define_img(ARENA_FEUER, "res/gfx/scr/arena/arenafeuer.swf",
                   False, ARENA_FEUER_X, ARENA_FEUER_Y);
     };
-    DefineLbl(LBL_ARENA_TEXT, "",
+    define_lbl(LBL_ARENA_TEXT, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)),
               ((IF_WIN_Y + ARENA_TEXT_Y) + AIRRelMoveY),
               FontFormat_Default);
-    DefineLbl(LBL_ARENA_DELAY, "",
+    define_lbl(LBL_ARENA_DELAY, "",
               (IF_WIN_X + ARENA_DELAY_X),
               ((IF_WIN_Y + ARENA_DELAY_Y) + AIRRelMoveY),
               FontFormat_Default);
@@ -23497,66 +23497,66 @@ def build_interface():
         define_bunch(SCREEN_ARENA, ARENA_FEUER, IF_OVL, WINDOW_ARENA,
                      IF_EXIT);
     };
-    DefineImg(STALL_BG_GUT, "res/gfx/scr/stall/stall_gut.jpg",
+    define_img(STALL_BG_GUT, "res/gfx/scr/stall/stall_gut.jpg",
               False, 280, 100);
-    DefineImg(STALL_BG_BOESE, "res/gfx/scr/stall/stall_boese.jpg",
+    define_img(STALL_BG_BOESE, "res/gfx/scr/stall/stall_boese.jpg",
               False, 280, 100);
-    DefineImg(STALL_DAWN, "res/gfx/scr/stall/stall_abend.jpg",
+    define_img(STALL_DAWN, "res/gfx/scr/stall/stall_abend.jpg",
               False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
-    DefineImg(STALL_NIGHT, "res/gfx/scr/stall/stall_nacht.jpg",
+    define_img(STALL_NIGHT, "res/gfx/scr/stall/stall_nacht.jpg",
               False, (280 + STALL_TUER_X), (100 + STALL_TUER_Y));
-    DefineImg(STALL_ARME1, "res/gfx/scr/stall/stall_arme1.png",
+    define_img(STALL_ARME1, "res/gfx/scr/stall/stall_arme1.png",
               False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-    DefineImg(STALL_ARME2, "res/gfx/scr/stall/stall_arme2.png",
+    define_img(STALL_ARME2, "res/gfx/scr/stall/stall_arme2.png",
               False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-    DefineImg(STALL_ARME3, "res/gfx/scr/stall/stall_arme3.png",
+    define_img(STALL_ARME3, "res/gfx/scr/stall/stall_arme3.png",
               False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-    DefineImg(STALL_ARME4, "res/gfx/scr/stall/stall_arme4.png",
+    define_img(STALL_ARME4, "res/gfx/scr/stall/stall_arme4.png",
               False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-    DefineImg(STALL_ARME5, "res/gfx/scr/stall/stall_arme5.png",
+    define_img(STALL_ARME5, "res/gfx/scr/stall/stall_arme5.png",
               False, (280 + STALL_ARME_X), (100 + STALL_ARME_Y));
-    DefineImg(STALL_OVL_GUT1, "res/gfx/scr/stall/tiger2_mouseover.jpg",
+    define_img(STALL_OVL_GUT1, "res/gfx/scr/stall/tiger2_mouseover.jpg",
               False, (280 + STALL_OVL_GUT1_X), (100 + STALL_OVL_GUT1_Y));
-    DefineImg(STALL_OVL_GUT2, "res/gfx/scr/stall/kuh_mouseover.jpg",
+    define_img(STALL_OVL_GUT2, "res/gfx/scr/stall/kuh_mouseover.jpg",
               False, (280 + STALL_OVL_GUT2_X), (100 + STALL_OVL_GUT2_Y));
-    DefineImg(STALL_OVL_GUT3, "res/gfx/scr/stall/horse_mouseover.jpg",
+    define_img(STALL_OVL_GUT3, "res/gfx/scr/stall/horse_mouseover.jpg",
               False, (280 + STALL_OVL_GUT3_X), (100 + STALL_OVL_GUT3_Y));
-    DefineImg(STALL_OVL_GUT4, "res/gfx/scr/stall/greif_mouseover.jpg",
+    define_img(STALL_OVL_GUT4, "res/gfx/scr/stall/greif_mouseover.jpg",
               False, (280 + STALL_OVL_GUT4_X), (100 + STALL_OVL_GUT4_Y));
-    DefineImg(STALL_OVL_BOESE1, "res/gfx/scr/stall/pig_mouseover.jpg",
+    define_img(STALL_OVL_BOESE1, "res/gfx/scr/stall/pig_mouseover.jpg",
               False, (280 + STALL_OVL_BOESE1_X),
               (100 + STALL_OVL_BOESE1_Y));
-    DefineImg(STALL_OVL_BOESE2, "res/gfx/scr/stall/wolf_mouseover.jpg",
+    define_img(STALL_OVL_BOESE2, "res/gfx/scr/stall/wolf_mouseover.jpg",
               False, (280 + STALL_OVL_BOESE2_X),
               (100 + STALL_OVL_BOESE2_Y));
-    DefineImg(STALL_OVL_BOESE3, "res/gfx/scr/stall/raptor_mouseover.jpg",
+    define_img(STALL_OVL_BOESE3, "res/gfx/scr/stall/raptor_mouseover.jpg",
               False, (280 + STALL_OVL_BOESE3_X),
               (100 + STALL_OVL_BOESE3_Y));
-    DefineImg(STALL_OVL_BOESE4, "res/gfx/scr/stall/dragon_mouseover.jpg",
+    define_img(STALL_OVL_BOESE4, "res/gfx/scr/stall/dragon_mouseover.jpg",
               False, (280 + STALL_OVL_BOESE4_X),
               (100 + STALL_OVL_BOESE4_Y));
-    DefineClickArea(CA_STALL_BOX_GUT1, STALL_OVL_GUT1, ClickMount,
+    define_click_area(CA_STALL_BOX_GUT1, STALL_OVL_GUT1, ClickMount,
                     (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100),
                     STALL_BOX1_X, STALL_BOX1_Y);
-    DefineClickArea(CA_STALL_BOX_GUT2, STALL_OVL_GUT2, ClickMount,
+    define_click_area(CA_STALL_BOX_GUT2, STALL_OVL_GUT2, ClickMount,
                     (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100),
                     STALL_BOX2_X, STALL_BOX2_Y);
-    DefineClickArea(CA_STALL_BOX_GUT3, STALL_OVL_GUT3, ClickMount,
+    define_click_area(CA_STALL_BOX_GUT3, STALL_OVL_GUT3, ClickMount,
                     (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100),
                     STALL_BOX3_X, STALL_BOX3_Y);
-    DefineClickArea(CA_STALL_BOX_GUT4, STALL_OVL_GUT4, ClickMount,
+    define_click_area(CA_STALL_BOX_GUT4, STALL_OVL_GUT4, ClickMount,
                     (STALL_BOX4_X + 280), (STALL_BOX4_Y + 100),
                     STALL_BOX4_X, STALL_BOX4_Y);
-    DefineClickArea(CA_STALL_BOX_BOESE1, STALL_OVL_BOESE1, ClickMount,
+    define_click_area(CA_STALL_BOX_BOESE1, STALL_OVL_BOESE1, ClickMount,
                     (STALL_BOX1_X + 280), (STALL_BOX1_Y + 100),
                     STALL_BOX1_X, STALL_BOX1_Y);
-    DefineClickArea(CA_STALL_BOX_BOESE2, STALL_OVL_BOESE2, ClickMount,
+    define_click_area(CA_STALL_BOX_BOESE2, STALL_OVL_BOESE2, ClickMount,
                     (STALL_BOX2_X + 280), (STALL_BOX2_Y + 100),
                     STALL_BOX2_X, STALL_BOX2_Y);
-    DefineClickArea(CA_STALL_BOX_BOESE3, STALL_OVL_BOESE3, ClickMount,
+    define_click_area(CA_STALL_BOX_BOESE3, STALL_OVL_BOESE3, ClickMount,
                     (STALL_BOX3_X + 280), (STALL_BOX3_Y + 100),
                     STALL_BOX3_X, STALL_BOX3_Y);
-    DefineClickArea(CA_STALL_BOX_BOESE4, STALL_OVL_BOESE4, ClickMount,
+    define_click_area(CA_STALL_BOX_BOESE4, STALL_OVL_BOESE4, ClickMount,
                     (STALL_BOX4_X + 280), (STALL_BOX4_Y + 100),
                     STALL_BOX4_X, STALL_BOX4_Y);
     i = 0;
@@ -23582,11 +23582,11 @@ def build_interface():
         height = STALL_SQUARE_Y;
         alpha = 0.65;
     };
-    DefineLbl(LBL_STALL_TITEL, texts[TXT_STALL_TITEL],
+    define_lbl(LBL_STALL_TITEL, texts[TXT_STALL_TITEL],
               (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
               (actor[SHP_STALL_BLACK_SQUARE].y + STALL_TITEL_Y),
               FontFormat_Heading);
-    DefineLbl(LBL_STALL_TEXT, texts[TXT_STALL_TEXT],
+    define_lbl(LBL_STALL_TEXT, texts[TXT_STALL_TEXT],
               (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
               ((actor[LBL_STALL_TITEL].y
                + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y),
@@ -23596,20 +23596,20 @@ def build_interface():
         wordWrap = True;
         width = (STALL_SQUARE_X - (STALL_TITEL_X * 2));
     };
-    DefineLbl(LBL_STALL_GAIN, "",
+    define_lbl(LBL_STALL_GAIN, "",
               (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
               (((actor[LBL_STALL_TITEL].y
                + actor[LBL_STALL_TITEL].textHeight) + STALL_ZEILEN_Y)
             + STALL_GAIN_Y), FontFormat_DefaultLeft);
-    DefineLbl(LBL_STALL_SCHATZ, texts[TXT_STALL_SCHATZ], 0,
+    define_lbl(LBL_STALL_SCHATZ, texts[TXT_STALL_SCHATZ], 0,
               actor[LBL_STALL_GAIN].y, FontFormat_DefaultLeft);
-    DefineLbl(LBL_STALL_SCHATZGOLD, "", 0, actor[LBL_STALL_GAIN].y,
+    define_lbl(LBL_STALL_SCHATZGOLD, "", 0, actor[LBL_STALL_GAIN].y,
               FontFormat_DefaultLeft);
-    DefineLbl(LBL_STALL_SCHATZSILBER, "", 0, actor[LBL_STALL_GAIN].y,
+    define_lbl(LBL_STALL_SCHATZSILBER, "", 0, actor[LBL_STALL_GAIN].y,
               FontFormat_DefaultLeft);
     DefineCnt(STALL_SCHATZGOLD, 0, actor[LBL_STALL_GAIN].y);
     DefineCnt(STALL_SCHATZSILBER, 0, actor[LBL_STALL_GAIN].y);
-    DefineLbl(LBL_STALL_GOLD, "0",
+    define_lbl(LBL_STALL_GOLD, "0",
               (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), 0,
               FontFormat_Default);
     _local2 = actor[LBL_STALL_GOLD];
@@ -23618,9 +23618,9 @@ def build_interface():
              - STALL_TITEL_Y) - textHeight);
         DefineCnt(STALL_GOLD,
                   (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), y);
-        DefineLbl(LBL_STALL_MUSH, "0", 0, y, FontFormat_Default);
+        define_lbl(LBL_STALL_MUSH, "0", 0, y, FontFormat_Default);
         DefineCnt(STALL_MUSH, 0, y);
-        DefineLbl(LBL_STALL_LAUFZEIT, texts[TXT_STALL_LAUFZEIT],
+        define_lbl(LBL_STALL_LAUFZEIT, texts[TXT_STALL_LAUFZEIT],
                   (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
                   ((y - textHeight) - STALL_ZEILEN_Y),
                   FontFormat_Default);
@@ -23637,10 +23637,10 @@ def build_interface():
               LBL_STALL_TEXT, LBL_STALL_GAIN);
     SelectedMount = 0;
     OldMount = 0;
-    DefineImg(GILDEN_BG, "res/gfx/scr/gilde/gilde.jpg", False, 280, 100);
-    DefineImg(GILDE_RAHMEN, "res/gfx/scr/gilde/gilde_interface.png",
+    define_img(GILDEN_BG, "res/gfx/scr/gilde/gilde.jpg", False, 280, 100);
+    define_img(GILDE_RAHMEN, "res/gfx/scr/gilde/gilde_interface.png",
               False, 280, 100);
-    DefineLbl(LBL_GILDE_GRUENDEN_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X)
+    define_lbl(LBL_GILDE_GRUENDEN_TEXT, "", ((IF_WIN_X + IF_WIN_WELCOME_X)
               - (GILDE_GRUENDEN_TEXT_X / 2)),
             ((IF_WIN_Y + GILDE_GRUENDEN_TEXT_Y) + AIRRelMoveY),
             FontFormat_Default);
@@ -23670,39 +23670,39 @@ def build_interface():
     define_bunch(GILDE_GEBAEUDE);
     i = 0;
     while (i < 3) {
-        DefineImg((GILDE_GEBAEUDE + i),
+        define_img((GILDE_GEBAEUDE + i),
                   (("res/gfx/scr/gilde/building" + str((i + 1))) + ".png"),
                   False, GILDE_GEBAEUDE_X,
                   (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)));
-        DefineLbl((LBL_GILDE_GEBAEUDE_NAME + i),
+        define_lbl((LBL_GILDE_GEBAEUDE_NAME + i),
                   texts[(TXT_GILDE_GEBAEUDE_NAME1 + i)],
                   (GILDE_GEBAEUDE_X + GILDE_TEXT_X),
                   (GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i)),
                   FontFormat_GuildBuilding);
-        DefineLbl((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i),
+        define_lbl((LBL_GILDE_GEBAEUDE_WERT_CAPTION + i),
                   texts[(TXT_GILDE_GEBAEUDE_WERT1 + i)],
                   (GILDE_GEBAEUDE_X + GILDE_TEXT_X),
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 1)), FontFormat_GuildBuilding);
-        DefineLbl((LBL_GILDE_GEBAEUDE_WERT + i), "",
+        define_lbl((LBL_GILDE_GEBAEUDE_WERT + i), "",
                   (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X),
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 2)), FontFormat_GuildBuilding);
-        DefineLbl((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i),
+        define_lbl((LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i),
                   texts[TXT_GILDE_GEBAEUDE_STUFE],
                   (GILDE_GEBAEUDE_X + GILDE_TEXT_IMPROVE_X),
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 3)), FontFormat_GuildBuilding);
-        DefineLbl((LBL_GILDE_GEBAEUDE_STUFE + i), "",
+        define_lbl((LBL_GILDE_GEBAEUDE_STUFE + i), "",
                   ((actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].x
                    + actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION
                             + i)].text_width) + 10),
                     actor[(LBL_GILDE_GEBAEUDE_STUFE_CAPTION + i)].y,
                     FontFormat_GuildBuilding);
-        DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), "", 0,
+        define_lbl((LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i), "", 0,
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
-        DefineLbl((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), "", 0,
+        define_lbl((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), "", 0,
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
         DefineCnt((GILDE_GEBAEUDE_GOLD + i), 0,
@@ -23716,7 +23716,7 @@ def build_interface():
                    (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X),
                    ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                     + GILDE_GEBAEUDE_IMPROVE_Y));
-        DefineImg((GILDE_GEBAEUDE_IMPROVE_GRAY + i),
+        define_img((GILDE_GEBAEUDE_IMPROVE_GRAY + i),
                   "res/gfx/scr/gilde/plus_disabled.png", False,
                   (GILDE_GEBAEUDE_X + GILDE_GEBAEUDE_IMPROVE_X),
                    ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
@@ -23771,7 +23771,7 @@ def build_interface():
               (GILDE_GEBAEUDE_Y + 60));
     i = 0;
     while (i < crestElementPos.length) {
-        DefineImg((GILDE_CREST + i), "", False, 0, 0);
+        define_img((GILDE_CREST + i), "", False, 0, 0);
         actor[(GILDE_CREST + i)].mouse_enabled = False;
         MakePersistent((GILDE_CREST + i));
         crestClaI = i;
@@ -23782,7 +23782,7 @@ def build_interface():
                 crestClaI = 1;
             };
         };
-        DefineClickArea((CLA_GILDE_CREST + crestClaI), C_EMPTY,
+        define_click_area((CLA_GILDE_CREST + crestClaI), C_EMPTY,
                         GildeBtnHandler, crestElementPos[crestClaI][0],
                         crestElementPos[crestClaI][1],
                         crestElementPos[crestClaI][2],
@@ -23794,13 +23794,13 @@ def build_interface():
             addChild(actor[(GILDE_CREST + i)]);
             addChild(actor[(CLA_GILDE_CREST + crestClaI)]);
             if (i == 2){
-                DefineImg(GILDE_CREST_SHIELDCOLOR, "", False, 0, 0);
+                define_img(GILDE_CREST_SHIELDCOLOR, "", False, 0, 0);
                 actor[GILDE_CREST_SHIELDCOLOR].mouse_enabled = False;
                 MakePersistent(GILDE_CREST_SHIELDCOLOR);
                 addChild(actor[GILDE_CREST_SHIELDCOLOR]);
             };
             if (i == 3){
-                DefineLbl(LBL_GILDE_CREST_INSCRIPTION, "Gildenname", 15,
+                define_lbl(LBL_GILDE_CREST_INSCRIPTION, "Gildenname", 15,
                           210, FontFormat_Book);
                 actor[LBL_GILDE_CREST_INSCRIPTION].mouse_enabled = False;
                 MakePersistent(LBL_GILDE_CREST_INSCRIPTION);
@@ -23826,7 +23826,7 @@ def build_interface():
     define_btn(GILDE_CREST_CHANGE_NEXT, "", GildeBtnHandler,
                btn_classArrowRight, (GILDE_GEBAEUDE_X + 193),
                (GILDE_GEBAEUDE_Y + 250));
-    DefineLbl(LBL_GILDE_CREST_ELEMENT, "Element",
+    define_lbl(LBL_GILDE_CREST_ELEMENT, "Element",
               (GILDE_GEBAEUDE_X + 120), (GILDE_GEBAEUDE_Y + 0xFF),
               FontFormat_Default);
     add_filter(LBL_GILDE_CREST_ELEMENT, Filter_Shadow);
@@ -23846,11 +23846,11 @@ def build_interface():
         DefineCnt((GILDE_CREST_COLOR + i),
                   ((GILDE_GEBAEUDE_X + 23) + (i * 40)),
                   (GILDE_GEBAEUDE_Y + 296));
-        DefineImg((GILDE_CREST_COLOR_UNSELECTED + i),
+        define_img((GILDE_CREST_COLOR_UNSELECTED + i),
                   "res/gfx/scr/gilde/crest/color_idle.jpg", False, 0, 0);
-        DefineImg((GILDE_CREST_COLOR_SELECTED + i),
+        define_img((GILDE_CREST_COLOR_SELECTED + i),
                   "res/gfx/scr/gilde/crest/color_hover.jpg", False, 0, 0);
-        DefineImg((GILDE_CREST_COLOR_FILLIN + i),
+        define_img((GILDE_CREST_COLOR_FILLIN + i),
                   "res/gfx/scr/gilde/crest/color_field.jpg", False, 2, 2);
         MakePersistent((GILDE_CREST_COLOR_UNSELECTED + i));
         MakePersistent((GILDE_CREST_COLOR_SELECTED + i));
@@ -23874,10 +23874,10 @@ def build_interface():
               GILDE_CREST_COLOR_PREV, GILDE_CREST_COLOR_NEXT,
               GILDE_CREST_OK);
     add_bunch(GILDE_CREST, GILDE_CREST, GILDE_CREST_GOTO_GEBAEUDE);
-    DefineLbl(LBL_GILDE_GOLD, "", 0, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)),
+    define_lbl(LBL_GILDE_GOLD, "", 0, (GILDE_GOLD_Y + ((noMush) ? 15 : 0)),
               FontFormat_GuildMoney);
     add_filter(LBL_GILDE_GOLD, Filter_Shadow);
-    DefineLbl(LBL_GILDE_MUSH, "", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
+    define_lbl(LBL_GILDE_MUSH, "", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
               FontFormat_GuildMoney);
     add_filter(LBL_GILDE_MUSH, Filter_Shadow);
     DefineCnt(GILDE_GOLD, GILDE_GOLDMUSH_X,
@@ -23901,11 +23901,11 @@ def build_interface():
         scaleY = 0.8;
     };
     enable_popup(GILDE_MUSH, texts[TXT_GILDE_MUSH]);
-    DefineLbl(LBL_GILDE_GOLD2, "1", (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C3),
+    define_lbl(LBL_GILDE_GOLD2, "1", (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C3),
               (GILDE_GOLD_Y + ((noMush) ? 15 : 0)), FontFormat_GuildMoney);
     add_filter(LBL_GILDE_GOLD2, Filter_Shadow);
     enable_popup(LBL_GILDE_GOLD2, texts[TXT_GILDE_GOLD]);
-    DefineLbl(LBL_GILDE_MUSH2, "1", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
+    define_lbl(LBL_GILDE_MUSH2, "1", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
               FontFormat_GuildMoney);
     add_filter(LBL_GILDE_MUSH2, Filter_Shadow);
     enable_popup(LBL_GILDE_MUSH2, texts[TXT_GILDE_MUSH]);
@@ -23936,7 +23936,7 @@ def build_interface():
                  LBL_SCREEN_TITLE, GILDE_GEBAEUDE, GILDE_CREST,
                  GILDE_SCHATZ);
     DefineCnt(GILDE_RANG, GILDE_RANG_X, GILDE_RANG_Y);
-    DefineLbl(LBL_GILDE_RANG, "", 0, 0, FontFormat_Default);
+    define_lbl(LBL_GILDE_RANG, "", 0, 0, FontFormat_Default);
     add_filter(LBL_GILDE_RANG, Filter_Shadow);
     _local2 = actor[GILDE_RANG];
     with (_local2) {
@@ -23954,18 +23954,18 @@ def build_interface():
     CleanupField(INP_GILDE_TEXT);
     add_filter(INP_GILDE_TEXT, Filter_Shadow);
     DefineCnt(GILDE_LIST, GILDE_LIST_X, GILDE_LIST_Y);
-    DefineImg(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png",
+    define_img(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png",
               False, 0, 0);
-    DefineImg((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png",
+    define_img((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png",
               False, 0, 0);
-    DefineImg((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png",
+    define_img((GILDE_RANK + 2), "res/gfx/scr/gilde/punkt_normalo.png",
               False, 0, 0);
     define_btn(GILDE_SCROLL_UP, "", GildeBtnHandler, btn_classArrowUp,
                GILDE_LIST_SCROLLX, GILDE_LIST_Y);
     define_btn(GILDE_SCROLL_DOWN, "", GildeBtnHandler, btn_classArrowDown,
                GILDE_LIST_SCROLLX, GILDE_LIST_SCROLLY);
     i = 0;
-    DefineImg(GILDE_INVITE_GRAY,
+    define_img(GILDE_INVITE_GRAY,
               "res/gfx/scr/gilde/button_gilde_einladen_grau.jpg", False,
               (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
     i = (i + 1);
@@ -23974,13 +23974,13 @@ def build_interface():
     i = (i + 1);
     define_btn(GILDE_PROFILE, "", GildeBtnHandler, btn_classView,
                (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-    DefineImg(GILDE_KICK_GRAY,
+    define_img(GILDE_KICK_GRAY,
               "res/gfx/scr/gilde/button_gilde_rauswerfen_grau.jpg", False,
               (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
     i = (i + 1);
     define_btn(GILDE_KICK, "", GildeBtnHandler, btn_classKick,
                (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-    DefineImg(GILDE_PROMOTE_GRAY,
+    define_img(GILDE_PROMOTE_GRAY,
               "res/gfx/scr/gilde/button_gilde_orden_grau.jpg", False,
               (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
     define_btn(GILDE_PROMOTE, "", GildeBtnHandler, btn_classPromote,
@@ -23988,7 +23988,7 @@ def build_interface():
     i = (i + 1);
     define_btn(GILDE_DEMOTE, "", GildeBtnHandler, btn_classDemote,
                (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
-    DefineImg(GILDE_MASTER_GRAY,
+    define_img(GILDE_MASTER_GRAY,
               "res/gfx/scr/gilde/button_gilde_gildenleiter_grau.jpg",
               False, (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
     define_btn(GILDE_MASTER, "", GildeBtnHandler, btn_classMaster,
@@ -23998,26 +23998,26 @@ def build_interface():
                (GILDE_TOOLX + (i * GILDE_TOOLX)), GILDE_TOOLY);
     define_btn(GILDE_RAID, "", GildeBtnHandler, btn_classRaid,
                (GILDE_ATTACKX - 50), GILDE_TOOLY);
-    DefineImg(GILDE_RAID_GRAY,
+    define_img(GILDE_RAID_GRAY,
               "res/gfx/scr/gilde/button_gilde_raid_grey.jpg", False,
               (GILDE_ATTACKX - 50), GILDE_TOOLY);
-    DefineImg(GILDE_RAID_OK,
+    define_img(GILDE_RAID_OK,
               "res/gfx/scr/gilde/button_gilde_raid_check.jpg", False,
               (GILDE_ATTACKX - 50), GILDE_TOOLY);
     define_btn(GILDE_ATTACK, "", GildeBtnHandler, btn_classAttack,
                (GILDE_ATTACKX + 5), GILDE_TOOLY);
     define_btn(GILDE_DEFEND, "", GildeBtnHandler, btn_classDefend,
                (GILDE_DEFENDX + 5), GILDE_TOOLY);
-    DefineImg(GILDE_ATTACK_GRAY,
+    define_img(GILDE_ATTACK_GRAY,
               "res/gfx/scr/gilde/button_gilde_attack_grau.jpg", False,
               (GILDE_ATTACKX + 5), GILDE_TOOLY);
-    DefineImg(GILDE_ATTACK_OK,
+    define_img(GILDE_ATTACK_OK,
               "res/gfx/scr/gilde/button_gilde_attack_check.jpg", False,
               (GILDE_ATTACKX + 5), GILDE_TOOLY);
-    DefineImg(GILDE_DEFEND_GRAY,
+    define_img(GILDE_DEFEND_GRAY,
               "res/gfx/scr/gilde/button_gilde_defend_grau.jpg", False,
               (GILDE_DEFENDX + 5), GILDE_TOOLY);
-    DefineImg(GILDE_DEFEND_OK,
+    define_img(GILDE_DEFEND_OK,
               "res/gfx/scr/gilde/button_gilde_defend_check.jpg", False,
               (GILDE_DEFENDX + 5), GILDE_TOOLY);
     define_btn(GILDE_KATAPULT, "", GildeBtnHandler, btn_classCatapult0,
@@ -24028,16 +24028,16 @@ def build_interface():
     define_btn((GILDE_KATAPULT + 2), "", GildeBtnHandler,
                btn_classCatapult2, actor[GILDE_KATAPULT].x,
                actor[GILDE_KATAPULT].y);
-    DefineImg(GILDE_KATAPULT_GRAY,
+    define_img(GILDE_KATAPULT_GRAY,
               "res/gfx/scr/gilde/button_gilde_catapult0_grau.png",
               False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-    DefineImg(GILDE_KATAPULT_OK,
+    define_img(GILDE_KATAPULT_OK,
               "res/gfx/scr/gilde/button_gilde_catapult1_idle.png", False,
               actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-    DefineImg((GILDE_KATAPULT_OK + 1),
+    define_img((GILDE_KATAPULT_OK + 1),
               "res/gfx/scr/gilde/button_gilde_catapult2_idle.png",
               False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
-    DefineImg((GILDE_KATAPULT_OK + 2),
+    define_img((GILDE_KATAPULT_OK + 2),
               "res/gfx/scr/gilde/button_gilde_catapult3_idle.png",
               False, actor[GILDE_KATAPULT].x, actor[GILDE_KATAPULT].y);
     define_bunch(GILDE_KATAPULT, GILDE_KATAPULT, (GILDE_KATAPULT + 1),
@@ -24047,8 +24047,8 @@ def build_interface():
     DefineCnt(GILDE_ATTACK, GILDE_ATTACKLABEL_X, GILDE_TOOLY);
     DefineCnt(GILDE_DEFENCE, GILDE_ATTACKLABEL_X,
               (GILDE_TOOLY + GILDE_DEFENSELABEL_Y));
-    DefineLbl(LBL_GILDE_ATTACK, "", 0, 0, FontFormat_AttackLabel);
-    DefineLbl(LBL_GILDE_DEFENCE, "", 0, 0, FontFormat_AttackLabel);
+    define_lbl(LBL_GILDE_ATTACK, "", 0, 0, FontFormat_AttackLabel);
+    define_lbl(LBL_GILDE_DEFENCE, "", 0, 0, FontFormat_AttackLabel);
     add_filter(LBL_GILDE_ATTACK, Filter_Shadow);
     add_filter(LBL_GILDE_DEFENCE, Filter_Shadow);
     MakePersistent(LBL_GILDE_ATTACK, LBL_GILDE_DEFENCE);
@@ -24093,12 +24093,12 @@ def build_interface():
               LBL['GILDE']['CHAT']_CAPTION, GILDE_CHAT_UP, GILDE_CHAT_DOWN)
     add_bunch(SCREEN_GILDEN, INP_GILDE_CHAT, GILDE_SCROLL_UP,
               GILDE_SCROLL_DOWN, GILDE_RANG, GILDE_ATTACK, GILDE_DEFENCE);
-    DefineLbl(LBL['GILDE']['CHAT']_CAPTION, texts[TXT_CHAT_CAPTION],
+    define_lbl(LBL['GILDE']['CHAT']_CAPTION, texts[TXT_CHAT_CAPTION],
               GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
     add_filter(LBL['GILDE']['CHAT']_CAPTION, Filter_Shadow);
     hide(LBL['GILDE']['CHAT']_CAPTION);
     DefineCnt(GILDE_LINK, 0, GILDE_RANG_Y);
-    DefineLbl(LBL_GILDE_LINK, texts[TXT_FORUM_LINK], 0, 0);
+    define_lbl(LBL_GILDE_LINK, texts[TXT_FORUM_LINK], 0, 0);
     add_filter(LBL_GILDE_LINK, Filter_HeavyShadow);
     MakePersistent(LBL_GILDE_LINK);
     _local2 = actor[GILDE_LINK];
@@ -24119,7 +24119,7 @@ def build_interface():
                  GILDE_CHAT_DOWN, INP_GILDE_CHAT);
     i = 0;
     while (i < 40) {
-        DefineLbl((LBL['GILDE']['CHAT'] + i), "", GILDE_CHAT_X,
+        define_lbl((LBL['GILDE']['CHAT'] + i), "", GILDE_CHAT_X,
                   (GILDE_CHAT_Y + ((i - 35) * GILDE_CHAT_Y)));
         actor[(LBL['GILDE']['CHAT'] + i)].visible = (i >= 35);
         actor[(LBL['GILDE']['CHAT'] + i)].add_event_listener(
@@ -24147,29 +24147,29 @@ def build_interface():
     suggestionAllowed = True;
     nextSuggestionTimer.add_event_listener(TimerEvent.TIMER,
                                            nextSuggestionAllow);
-    DefineClickArea(CA_GILDE_DIALOG_BLOCK, C_EMPTY, None, 280, 100,
+    define_click_area(CA_GILDE_DIALOG_BLOCK, C_EMPTY, None, 280, 100,
                     (RES_X - 280), (RES_Y - 100));
     _local2 = actor[CA_GILDE_DIALOG_BLOCK];
     with (_local2) {
         useHandCursor = False;
         buttonMode = False;
     };
-    DefineLbl(LBL_GILDE_DIALOG_TEXT_KICK, "",
+    define_lbl(LBL_GILDE_DIALOG_TEXT_KICK, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
               (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-    DefineLbl(LBL_GILDE_DIALOG_TEXT_QUIT, "",
+    define_lbl(LBL_GILDE_DIALOG_TEXT_QUIT, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
               (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-    DefineLbl(LBL_GILDE_DIALOG_TEXT_MASTER, "",
+    define_lbl(LBL_GILDE_DIALOG_TEXT_MASTER, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
               (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-    DefineLbl(LBL_GILDE_DIALOG_TEXT_INVITE, "",
+    define_lbl(LBL_GILDE_DIALOG_TEXT_INVITE, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
               (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-    DefineLbl(LBL_GILDE_DIALOG_TEXT_REVOLT, "",
+    define_lbl(LBL_GILDE_DIALOG_TEXT_REVOLT, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
               (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
-    DefineLbl(LBL_GILDE_DIALOG_TEXT_RAID, "",
+    define_lbl(LBL_GILDE_DIALOG_TEXT_RAID, "",
               ((IF_WIN_X + IF_WIN_WELCOME_X) - (GILDE_TEXT2_X / 2)),
               (IF_WIN_Y + GILDE_TEXT_Y), FontFormat_Default);
     _local2 = actor[LBL_GILDE_DIALOG_TEXT_KICK];
@@ -24265,97 +24265,97 @@ def build_interface():
                                                   PlayerGuildInviteCancel);
     actor[GILDE_DIALOG_OK_INVITE].add_event_listener(MouseEvent.CLICK,
                                                      PlayerGuildInviteOK);
-    DefineImg(HUTMANN_BG,
+    define_img(HUTMANN_BG,
               "res/gfx/scr/taverne/huetchenspieler/huetchenspieler.jpg",
               False, 280, 100);
-    DefineImg(HUTFACE_IDLE,
+    define_img(HUTFACE_IDLE,
               "res/gfx/scr/taverne/huetchenspieler/" +
               "huetchenspieler_neutral.jpg", False,
               (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-    DefineImg(HUTFACE_HOVER,
+    define_img(HUTFACE_HOVER,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_keinelust.jpg", False,
               (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-    DefineImg(HUTFACE_WIN,
+    define_img(HUTFACE_WIN,
               "res/gfx/scr/taverne/huetchenspieler/" +
               "huetchenspieler_gewonnen.jpg", False,
               (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-    DefineImg(HUTFACE_LOSE1,
+    define_img(HUTFACE_LOSE1,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_verloren.jpg", False,
               (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-    DefineImg(HUTFACE_LOSE2,
+    define_img(HUTFACE_LOSE2,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_verloren2.jpg",
               False, (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-    DefineImg(HUTFACE_LOSE3,
+    define_img(HUTFACE_LOSE3,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_verloren3.jpg", False,
               (280 + HUTMANN_FACE_X), (100 + HUTMANN_FACE_Y));
-    DefineImg(HUTBECHER_1_IDLE,
+    define_img(HUTBECHER_1_IDLE,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher1_1.jpg", False,
               (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y));
-    DefineImg(HUTBECHER_1_HOVER,
+    define_img(HUTBECHER_1_HOVER,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher1_2.jpg", False,
               ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X2),
               ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y2));
-    DefineImg(HUTBECHER_1_CLICK,
+    define_img(HUTBECHER_1_CLICK,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher1_3.jpg", False,
               ((280 + HUTMANN_BECHER1_X) + HUTMANN_BECHER1_X3),
               ((100 + HUTMANN_BECHER1_Y) + HUTMANN_BECHER1_Y3));
     define_bunch(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTFACE_HOVER);
-    DefineClickArea(CA_HUTBECHER_1, HUTBECHER_1_HOVER, ChooseCup,
+    define_click_area(CA_HUTBECHER_1, HUTBECHER_1_HOVER, ChooseCup,
                     (280 + HUTMANN_BECHER1_X), (100 + HUTMANN_BECHER1_Y),
                     HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-    DefineImg(HUTBECHER_2_IDLE,
+    define_img(HUTBECHER_2_IDLE,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher2_1.jpg",
               False, (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y));
-    DefineImg(HUTBECHER_2_HOVER,
+    define_img(HUTBECHER_2_HOVER,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher2_2.jpg", False,
               ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X2),
               ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y2));
-    DefineImg(HUTBECHER_2_CLICK,
+    define_img(HUTBECHER_2_CLICK,
               "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher2_3.jpg", False,
               ((280 + HUTMANN_BECHER2_X) + HUTMANN_BECHER2_X3),
               ((100 + HUTMANN_BECHER2_Y) + HUTMANN_BECHER2_Y3));
     define_bunch(HUTBECHER_2_HOVER, HUTBECHER_2_HOVER, HUTFACE_HOVER);
-    DefineClickArea(CA_HUTBECHER_2, HUTBECHER_2_HOVER, ChooseCup,
+    define_click_area(CA_HUTBECHER_2, HUTBECHER_2_HOVER, ChooseCup,
                     (280 + HUTMANN_BECHER2_X), (100 + HUTMANN_BECHER2_Y),
                     HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
-    DefineImg(HUTBECHER_3_IDLE, "res/gfx/scr/taverne/huetchenspieler/"
+    define_img(HUTBECHER_3_IDLE, "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher3_1.jpg", False,
               (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y));
-    DefineImg(HUTBECHER_3_HOVER, "res/gfx/scr/taverne/huetchenspieler/"
+    define_img(HUTBECHER_3_HOVER, "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher3_2.jpg", False,
               ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X2),
               ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y2));
-    DefineImg(HUTBECHER_3_CLICK, "res/gfx/scr/taverne/huetchenspieler/"
+    define_img(HUTBECHER_3_CLICK, "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_becher3_3.jpg", False,
               ((280 + HUTMANN_BECHER3_X) + HUTMANN_BECHER3_X3),
               ((100 + HUTMANN_BECHER3_Y) + HUTMANN_BECHER3_Y3));
     define_bunch(HUTBECHER_3_HOVER, HUTBECHER_3_HOVER, HUTFACE_HOVER);
-    DefineClickArea(CA_HUTBECHER_3, HUTBECHER_3_HOVER, ChooseCup,
+    define_click_area(CA_HUTBECHER_3, HUTBECHER_3_HOVER, ChooseCup,
                     (280 + HUTMANN_BECHER3_X), (100 + HUTMANN_BECHER3_Y),
                     HUTMANN_BECHER_X, HUTMANN_BECHER_Y);
     define_bunch(HUTMANN_BECHERCHOOSE, CA_HUTBECHER_1, CA_HUTBECHER_2,
                  CA_HUTBECHER_3, HUTFACE_IDLE);
-    DefineImg(HUTKUGEL, "res/gfx/scr/taverne/huetchenspieler/"
+    define_img(HUTKUGEL, "res/gfx/scr/taverne/huetchenspieler/"
               + "huetchenspieler_ball.png", False, 0, (100 + HUTKUGEL_Y));
-    DefineLbl(LBL_HUTMANN_TEXT, texts[TXT_HUTMANN_OFFER], 0,
+    define_lbl(LBL_HUTMANN_TEXT, texts[TXT_HUTMANN_OFFER], 0,
               (100 + HUTMANN_TEXT_Y), FontFormat_Default);
     actor[LBL_HUTMANN_TEXT].x = (SCREEN_TITLE_X -
                                  (actor[LBL_HUTMANN_TEXT].text_width / 2));
     add_filter(LBL_HUTMANN_TEXT, Filter_Shadow);
-    DefineLbl(LBL_HUTMANN_GOLDBET, "", 0, HUTMANN_GOLD_Y,
+    define_lbl(LBL_HUTMANN_GOLDBET, "", 0, HUTMANN_GOLD_Y,
               FontFormat_GuildMoney);
     add_filter(LBL_HUTMANN_GOLDBET, Filter_Shadow);
-    DefineLbl(LBL_HUTMANN_MUSHBET, "", 0,
+    define_lbl(LBL_HUTMANN_MUSHBET, "", 0,
               (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
     add_filter(LBL_HUTMANN_MUSHBET, Filter_Shadow);
     DefineCnt(HUTMANN_GOLDBET, 0, HUTMANN_GOLD_Y);
@@ -24368,7 +24368,7 @@ def build_interface():
         scaleY = 0.8;
     };
     enable_popup(HUTMANN_GOLDBET, texts[TXT_HUTMANN_GOLDBET]);
-    DefineImg(HUTMANN_MUSHBET_DISABLED,
+    define_img(HUTMANN_MUSHBET_DISABLED,
               "res/gfx/scr/gilde/plus_disabled.png", False, 0,
               (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
     enable_popup(HUTMANN_MUSHBET_DISABLED, texts[TXT_MUSHBET_BOUGHT]);
@@ -24385,11 +24385,11 @@ def build_interface():
         scaleY = 0.8;
     };
     enable_popup(HUTMANN_MUSHBET, texts[TXT_HUTMANN_MUSHBET]);
-    DefineLbl(LBL_HUTMANN_GOLDBET2, "1", 0, HUTMANN_GOLD_Y,
+    define_lbl(LBL_HUTMANN_GOLDBET2, "1", 0, HUTMANN_GOLD_Y,
               FontFormat_GuildMoney);
     add_filter(LBL_HUTMANN_GOLDBET2, Filter_Shadow);
     enable_popup(LBL_HUTMANN_GOLDBET2, texts[TXT_HUTMANN_GOLDBET]);
-    DefineLbl(LBL_HUTMANN_MUSHBET2, "1", 0,
+    define_lbl(LBL_HUTMANN_MUSHBET2, "1", 0,
               (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
     add_filter(LBL_HUTMANN_MUSHBET2, Filter_Shadow);
     enable_popup(LBL_HUTMANN_MUSHBET2, texts[TXT_HUTMANN_MUSHBET]);
@@ -24399,7 +24399,7 @@ def build_interface():
                  HUTMANN_MUSHBET, LBL_HUTMANN_MUSHBET2, HUTMANN_MUSHBET2,
                  HUTMANN_GOLDBET, LBL_HUTMANN_GOLDBET2, HUTMANN_GOLDBET2,
                  HUTFACE_IDLE);
-    DefineLbl(LBL_HUTMANN_INSTR,
+    define_lbl(LBL_HUTMANN_INSTR,
               texts[TXT_HUTMANN_INSTR]
               .split("#").join(((text_dir)=="right") ? "" : chr(13)),
               HUTMANN_INSTR_X, HUTMANN_INSTR_Y, FontFormat_DefaultLeft);
@@ -24438,71 +24438,71 @@ def build_interface():
               HUTMANN_MUSHBET_DISABLED, HUTMANN_MUSHBET);
     HutFaceResetTimer = new Timer(2000, 1);
     HutFaceResetTimer.add_event_listener(TimerEvent.TIMER, HutFaceReset);
-    DefineImg(TAVERNE_BG, "res/gfx/scr/taverne/taverne.jpg",
+    define_img(TAVERNE_BG, "res/gfx/scr/taverne/taverne.jpg",
               False, 280, 100);
-    DefineImg(TAVERNE_BARKEEPER1,
+    define_img(TAVERNE_BARKEEPER1,
               "res/gfx/scr/taverne/taverne_barkeeper1.jpg", False,
               (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
-    DefineImg(TAVERNE_BARKEEPER2,
+    define_img(TAVERNE_BARKEEPER2,
               "res/gfx/scr/taverne/taverne_barkeeper2.jpg", False,
               (280 + TAVERNE_BARKEEPER_X), (100 + TAVERNE_BARKEEPER_Y));
-    DefineImg(TAVERNE_BARKEEPER_HINT,
+    define_img(TAVERNE_BARKEEPER_HINT,
               "res/gfx/scr/taverne/exclamation.png",
               False, ((280 + TAVERNE_BARKEEPER_X) + 50),
               ((100 + TAVERNE_BARKEEPER_Y) - 215));
-    DefineImg(TAVERNE_HUTMANN_BLINZELN,
+    define_img(TAVERNE_HUTMANN_BLINZELN,
               "res/gfx/scr/taverne/huetchenspieler_blink.jpg",
               False, (280 + TAVERNE_HUTAUGEN_X),
               (100 + TAVERNE_HUTAUGEN_Y));
-    DefineImg(TAVERNE_HUTMANN_OVL,
+    define_img(TAVERNE_HUTMANN_OVL,
               "res/gfx/scr/taverne/huetchenspieler_mouseover.jpg",
               False, (280 + TAVERNE_HUTAUGEN_X),
               (100 + TAVERNE_HUTAUGEN_Y));
-    DefineClickArea(CA_TAVERNE_HUTMANN,
+    define_click_area(CA_TAVERNE_HUTMANN,
                     TAVERNE_HUTMANN_OVL, ShowHutmann,
                     (TAVERNE_HUT_X + 280), (TAVERNE_HUT_Y + 100),
                     TAVERNE_HUT_X, TAVERNE_HUT_Y);
-    DefineClickArea(CA_TAVERNE_QUESTOFFER, TAVERNE_QUESTOVL,
+    define_click_area(CA_TAVERNE_QUESTOFFER, TAVERNE_QUESTOVL,
                     ShowQuestOffer, (TAVERNE_QUEST_X + 280),
                     (TAVERNE_QUEST_Y + 100), TAVERNE_QUEST_X,
                     TAVERNE_QUEST_Y);
-    DefineClickArea(CA_TAVERNE_TOILETTE, C_EMPTY, RequestToilet,
+    define_click_area(CA_TAVERNE_TOILETTE, C_EMPTY, RequestToilet,
                     (280 + 470), (100 + 195), 36, 30);
-    DefineImg(TAVERNE_KERZEN,
+    define_img(TAVERNE_KERZEN,
               "res/gfx/scr/taverne/taverne_kerzen.jpg", False,
               (280 + TAVERNE_KERZEN_X), (100 + TAVERNE_KERZEN_Y));
-    DefineImg(TAVERNE_QUESTOVL1,
+    define_img(TAVERNE_QUESTOVL1,
               "res/gfx/scr/taverne/taverne_orc_mouseover.jpg", False,
               ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL1_X),
               ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL1_Y));
-    DefineImg(TAVERNE_QUESTOVL2,
+    define_img(TAVERNE_QUESTOVL2,
               "res/gfx/scr/taverne/taverne_bauer_mouseover.jpg", False,
               ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL2_X),
               ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL2_Y));
-    DefineImg(TAVERNE_QUESTOVL3,
+    define_img(TAVERNE_QUESTOVL3,
               "res/gfx/scr/taverne/taverne_zauberin_mouseover.jpg",
               False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL3_X),
               ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL3_Y));
-    DefineImg(TAVERNE_QUESTOVL4,
+    define_img(TAVERNE_QUESTOVL4,
               "res/gfx/scr/taverne/taverne_questgeber_mouseover.jpg",
               False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL4_X),
               ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL4_Y));
-    DefineImg(TAVERNE_QUESTOVL5,
+    define_img(TAVERNE_QUESTOVL5,
               "res/gfx/scr/taverne/taverne_tourist_mouseover.jpg",
               False, ((TAVERNE_QUEST_X + 280) + TAVERNE_QUESTOVL5_X),
               ((TAVERNE_QUEST_Y + 100) + TAVERNE_QUESTOVL5_Y));
-    DefineImg(TAVERNE_BAROVL,
+    define_img(TAVERNE_BAROVL,
               "res/gfx/scr/taverne/barkeeper_mouseover.jpg", False,
               TAVERNE_BAROVL_X, TAVERNE_BAROVL_Y);
-    DefineClickArea(CA_TAVERNE_BAR, TAVERNE_BAROVL, ShowBeerOffer,
+    define_click_area(CA_TAVERNE_BAR, TAVERNE_BAROVL, ShowBeerOffer,
                     TAVERNE_BAR_X, TAVERNE_BAR_Y, TAVERNE_BAR_X,
                     TAVERNE_BAR_Y);
-    DefineImg(TIMEBAR_BG, "res/gfx/if/adventurebar.png", False,
+    define_img(TIMEBAR_BG, "res/gfx/if/adventurebar.png", False,
               TIMEBAR_X, TIMEBAR_Y);
-    DefineImg(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", False,
+    define_img(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", False,
               (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
     DefineCnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
-    DefineLbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar)
+    define_lbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar)
     add_filter(LBL_TIMEBAR_TEXT, Filter_Shadow);
     enable_popup(TIMEBAR_BG, texts[TXT_TIMEBAR]);
     enable_popup(TIMEBAR_FILL, texts[TXT_TIMEBAR]);
@@ -24513,20 +24513,20 @@ def build_interface():
                  CA_TAVERNE_BAR);
     define_bunch(TAVERNE_CAS, CA_TAVERNE_QUESTOFFER, CA_TAVERNE_HUTMANN,
                  CA_TAVERNE_TOILETTE, CA_TAVERNE_BAR);
-    DefineImg(BEERFEST,
+    define_img(BEERFEST,
               "res/gfx/scr/taverne/beerfest.png", False, 280, 100);
     actor[BEERFEST].mouse_enabled = False;
     define_bunch(BEERFEST, BEERFEST, TIMEBAR_BG, TIMEBAR_FILL,
                  TIMEBAR_FILL, LBL_TIMEBAR_TEXT, IF_OVL, IF_EXIT);
     i = 0;
     while (i < 4) {
-        DefineImg((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" +
+        define_img((TV + i), (("res/gfx/scr/taverne/tv_animation/tv" +
                   str((i + 1))) + ".png"), False, (280 + 20), (100 + 20));
         hide((TV + i));
         add_bunch(SCREEN_TAVERNE, (TV + i));
         i = (i + 1);
     };
-    DefineClickArea(CA_TV, C_EMPTY, request_tv, (280 + 20), (100 + 20),
+    define_click_area(CA_TV, C_EMPTY, request_tv, (280 + 20), (100 + 20),
                     280, 160);
     hide(CA_TV);
     add_bunch(SCREEN_TAVERNE, CA_TV);
@@ -24541,7 +24541,7 @@ def build_interface():
                  .split("|")[1].split("#").join(chr(13)), POPUP_END_LINE);
     i = 0;
     while (i < 4) {
-        DefineImg((TAVERN_ADVENT + i),
+        define_img((TAVERN_ADVENT + i),
                   (("res/gfx/scr/taverne/advent_wreath_"
                    + str((i + 1))) + ".jpg"), False, (280 + 337), 100);
         actor[(TAVERN_ADVENT + i)].mouse_enabled = False;
@@ -24549,7 +24549,7 @@ def build_interface():
     };
     i = 0;
     while (i < 5) {
-        DefineImg((SPECIAL_ACTION + i),
+        define_img((SPECIAL_ACTION + i),
                   (("res/gfx/scr/taverne/event_ovl_" + str((i + 1)))
                    + ".png"), False, 280, 100);
         define_bunch((SPECIAL_ACTION + i), (SPECIAL_ACTION + i),
@@ -24559,7 +24559,7 @@ def build_interface():
     };
     i = 0;
     while (i < 5) {
-        DefineImg((TAVERNE_QUEST1 + i),
+        define_img((TAVERNE_QUEST1 + i),
                   (("res/gfx/scr/taverne/taverne_quest"
                    + str((i + 1))) + ".jpg"), False,
                     (280 + TAVERNE_QUEST_X), (100 + TAVERNE_QUEST_Y));
@@ -24579,13 +24579,13 @@ def build_interface():
         height = QO_BLACK_SQUARE_Y;
         alpha = 0.6;
     };
-    DefineLbl(LBL_QO_CHOOSE, texts[TXT_QO_CHOOSE], (QO_BLACK_SQUARE_X
+    define_lbl(LBL_QO_CHOOSE, texts[TXT_QO_CHOOSE], (QO_BLACK_SQUARE_X
               + QO_CHOOSE_X), (QO_BLACK_SQUARE_Y + QO_CHOOSE_Y),
                 FontFormat_Default);
     i = 0;
     while (i < 3) {
-        DefineLbl((LBL_QO_CHOICE1 + i), "TEST", 0, 0, FontFormat_Default);
-        DefineLbl((LBL_QO_CHOICE1_HL + i), "TEST", 0, 0,
+        define_lbl((LBL_QO_CHOICE1 + i), "TEST", 0, 0, FontFormat_Default);
+        define_lbl((LBL_QO_CHOICE1_HL + i), "TEST", 0, 0,
                   FontFormat_Highlight);
         MakePersistent((LBL_QO_CHOICE1 + i), (LBL_QO_CHOICE1_HL + i));
         DefineCnt((QO_CHOICE1 + i), (QO_BLACK_SQUARE_X + QO_CHOOSE_X),
@@ -24603,32 +24603,32 @@ def build_interface():
         i = (i + 1);
     };
     define_bunch(QUESTOFFER);
-    DefineLbl(LBL_QO_QUESTNAME, "QuestName", 0, (QO_BLACK_SQUARE_Y +
+    define_lbl(LBL_QO_QUESTNAME, "QuestName", 0, (QO_BLACK_SQUARE_Y +
               QO_QUESTNAME_Y), FontFormat_Heading);
-    DefineLbl(LBL_QO_QUESTTEXT, "quest_text", (QO_BLACK_SQUARE_X
+    define_lbl(LBL_QO_QUESTTEXT, "quest_text", (QO_BLACK_SQUARE_X
               + QO_QUESTTEXT_X), (QO_BLACK_SQUARE_Y + QO_QUESTTEXT_Y),
                 FontFormat_DefaultLeft);
     actor[LBL_QO_QUESTTEXT].width = LBL_QO_TEXT_X;
     actor[LBL_QO_QUESTTEXT].wordWrap = True;
     actor[LBL_QO_QUESTTEXT].default_text_format.align = "right";
-    DefineLbl(LBL_QO_REWARD, texts[TXT_QO_REWARD],
+    define_lbl(LBL_QO_REWARD, texts[TXT_QO_REWARD],
               (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
               (QO_BLACK_SQUARE_Y + QO_REWARD_Y), FontFormat_Default);
     DefineCnt(QO_REWARDGOLD, 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
     DefineCnt(QO_REWARDSILVER, 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
-    DefineLbl(LBL_QO_REWARDGOLD, "", 0,
+    define_lbl(LBL_QO_REWARDGOLD, "", 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y),
               FontFormat_Default);
-    DefineLbl(LBL_QO_REWARDSILVER, "", 0,
+    define_lbl(LBL_QO_REWARDSILVER, "", 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y),
               FontFormat_Default);
-    DefineLbl(LBL_QO_REWARDEXP, "",
+    define_lbl(LBL_QO_REWARDEXP, "",
               (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 2)),
               FontFormat_Default);
-    DefineLbl(LBL_QO_TIME, "",
+    define_lbl(LBL_QO_TIME, "",
               (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + (QO_REWARDS_Y * 3)),
               FontFormat_Default);
@@ -24641,7 +24641,7 @@ def build_interface():
     define_btn(QO_RETURN, texts[TXT_QO_RETURN], ReturnQuest,
                btn_classBasic, (QO_BLACK_SQUARE_X + QO_START_X),
                (QO_BLACK_SQUARE_Y + QO_START_Y));
-    DefineLbl(LBL_QO_QUESTSTODAY, "", 0,
+    define_lbl(LBL_QO_QUESTSTODAY, "", 0,
               (QO_BLACK_SQUARE_Y + QO_QUESTSTODAY_Y),
               FontFormat_Default);
     DefineCnt(QUEST_SLOT, ((QO_BLACK_SQUARE_X + QO_SLOT_X) + 20),
@@ -24654,7 +24654,7 @@ def build_interface():
               QO_RETURN, LBL_QO_QUESTSTODAY);
     i = 0;
     while (i < 5) {
-        DefineImg((QO_PORTRAIT1 + i),
+        define_img((QO_PORTRAIT1 + i),
                   (("res/gfx/scr/taverne/portrait_questgeber_"
                    + str((i + 1))) + ".png"), False,
                     (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
@@ -24662,15 +24662,15 @@ def build_interface():
         add_bunch(QUESTOFFER, (QO_PORTRAIT1 + i));
         i = (i + 1);
     };
-    DefineImg(BO_PORTRAIT_OK,
+    define_img(BO_PORTRAIT_OK,
               "res/gfx/scr/taverne/portrait_barkeeper_2.png",
               False, (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
               (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-    DefineImg(BO_PORTRAIT_NO,
+    define_img(BO_PORTRAIT_NO,
               "res/gfx/scr/taverne/portrait_barkeeper_3.png", False,
               (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
               (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
-    DefineImg(BO_PORTRAIT_TH,
+    define_img(BO_PORTRAIT_TH,
               "res/gfx/scr/taverne/portrait_barkeeper_1.png", False,
               (QO_BLACK_SQUARE_X + QO_PORTRAIT_X),
               (QO_BLACK_SQUARE_Y + QO_PORTRAIT_Y));
@@ -24688,29 +24688,29 @@ def build_interface():
     define_snd(SND_TOILET_DROP, "res/sfx/toilet/drop.mp3", False);
     add_bunch(SCREEN_TOILET, SND_TOILET_FLUSHTRY, SND_TOILET_FLUSH,
               SND_TOILET_DROP);
-    DefineImg(TOILET, "res/gfx/scr/taverne/toilet/toilet_bg.png", False,
+    define_img(TOILET, "res/gfx/scr/taverne/toilet/toilet_bg.png", False,
               SCR_SHOP_BG_X, 100);
-    DefineImg((TOILET + 1), "res/gfx/scr/taverne/toilet/tank_content.png",
+    define_img((TOILET + 1), "res/gfx/scr/taverne/toilet/tank_content.png",
               False, (SCR_SHOP_BG_X + 170), 190);
-    DefineImg((TOILET + 2), "res/gfx/scr/taverne/toilet/toilet_ovl.png",
+    define_img((TOILET + 2), "res/gfx/scr/taverne/toilet/toilet_ovl.png",
               False, SCR_SHOP_BG_X, 100);
     i = 0;
     while (i < 3) {
         add_bunch(SCREEN_TOILET, (TOILET + i));
         i = (i + 1);
     };
-    DefineImg(TOILET_IDLE, "res/gfx/scr/taverne/toilet/bowl_idle.png",
+    define_img(TOILET_IDLE, "res/gfx/scr/taverne/toilet/bowl_idle.png",
               False, SCR_SHOP_BG_X, 100);
-    DefineImg(TOILET_DROP, "res/gfx/scr/taverne/toilet/bowl_dropitem.png",
+    define_img(TOILET_DROP, "res/gfx/scr/taverne/toilet/bowl_dropitem.png",
               False, SCR_SHOP_BG_X, 100);
     add_bunch(SCREEN_TOILET, TOILET_IDLE, TOILET_DROP);
     define_bunch(TOILET_OVERLAYS, TOILET_IDLE, TOILET_DROP);
-    DefineLbl(LBL_TOILET_AURA, "0", (SCR_SHOP_BG_X + 240), 430,
+    define_lbl(LBL_TOILET_AURA, "0", (SCR_SHOP_BG_X + 240), 430,
               FontFormat_ToiletAura);
     add_bunch(SCREEN_TOILET, LBL_TOILET_AURA);
     i = 0;
     while (i < 7) {
-        DefineImg((TOILET_FLUSH + i),
+        define_img((TOILET_FLUSH + i),
                   ("res/gfx/scr/taverne/toilet/bowl_flush_" + str((i + 1)))
                   + ".png"), False, SCR_SHOP_BG_X, 100);
         hide((TOILET_FLUSH + i));
@@ -24720,7 +24720,7 @@ def build_interface():
     };
     i = 0;
     while (i < 3) {
-        DefineImg((TOILET_CHAIN + i),
+        define_img((TOILET_CHAIN + i),
                   (("res/gfx/scr/taverne/toilet/chain_"
                    + str((i + 1))) + ".png"), False, SCR_SHOP_BG_X, 100);
         hide((TOILET_CHAIN + i));
@@ -24733,13 +24733,13 @@ def build_interface():
         add_bunch(SCREEN_TOILET, (CHAR_SLOT_1 + i));
         i = (i + 1);
     };
-    DefineClickArea(CA_TOILET_TANK, C_EMPTY, None, (SCR_SHOP_BG_X + 170),
+    define_click_area(CA_TOILET_TANK, C_EMPTY, None, (SCR_SHOP_BG_X + 170),
                     190, 156, 120);
-    DefineClickArea(CA_TOILET_CHAIN, C_EMPTY, ToiletHandler,
+    define_click_area(CA_TOILET_CHAIN, C_EMPTY, ToiletHandler,
                     (SCR_SHOP_BG_X + 320), 210, 36, 206);
-    DefineClickArea(CA_TOILET_BOWL, C_EMPTY, None, (SCR_SHOP_BG_X + 120),
+    define_click_area(CA_TOILET_BOWL, C_EMPTY, None, (SCR_SHOP_BG_X + 120),
                     540, 260, 120);
-    DefineClickArea(CA_TOILET_LID, C_EMPTY, None, (SCR_SHOP_BG_X + 180),
+    define_click_area(CA_TOILET_LID, C_EMPTY, None, (SCR_SHOP_BG_X + 180),
                     380, 135, 155);
     enable_popup(CA_TOILET_CHAIN, texts[(TXT_TOILET_HINT + 1)]);
     enable_popup(CA_TOILET_BOWL, texts[(TXT_TOILET_HINT + 2)]);
@@ -24753,16 +24753,16 @@ def build_interface():
     toiletChainTimer.add_event_listener(TimerEvent.TIMER, toiletChainAni);
     i = 0;
     while (i < 6) {
-        DefineImg((FIGHT_ONO + i), (("res/gfx/scr/fight/smash"
+        define_img((FIGHT_ONO + i), (("res/gfx/scr/fight/smash"
                   + str((i + 1))) + ".png"), False, 0, 0);
         i = (i + 1);
     };
-    DefineImg(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png",
+    define_img(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png",
               False, 0, 0);
     DefineCnt(FIGHT_ONO, 0, 0);
-    DefineLbl(LBL_FIGHT_PLAYERGUILD, "", 0, (OPPY + 5),
+    define_lbl(LBL_FIGHT_PLAYERGUILD, "", 0, (OPPY + 5),
               FontFormat_ScreenTitle);
-    DefineLbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5),
+    define_lbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5),
               FontFormat_ScreenTitle);
     add_filter(LBL_FIGHT_PLAYERGUILD, Filter_Shadow);
     add_filter(LBL_FIGHT_OPPGUILD, Filter_Shadow);
@@ -24770,9 +24770,9 @@ def build_interface():
     define_bunch(OPPIMG2);
     i = 0;
     while (i < 10) {
-        DefineImg((OPPBACKGROUND + i), "", False, OPPX, OPPY);
+        define_img((OPPBACKGROUND + i), "", False, OPPX, OPPY);
         add_bunch(OPPIMG, (OPPBACKGROUND + i));
-        DefineImg((OPPBACKGROUND2 + i), "", False, OPPX, OPPY);
+        define_img((OPPBACKGROUND2 + i), "", False, OPPX, OPPY);
         add_bunch(OPPIMG2, (OPPBACKGROUND2 + i));
         i = (i + 1);
     };
@@ -24793,11 +24793,11 @@ def build_interface():
         };
         if (i >= 399){
             monsterChecksum = MD5((str(i) + "ScriptKiddieLovesToPeek"));
-            DefineImg((OPPMONSTER + k),
+            define_img((OPPMONSTER + k),
                       (("res/gfx/scr/fight/monster/monster"
                        + monsterChecksum) + ".jpg"), False, OPPX, OPPY);
         } else {
-            DefineImg((OPPMONSTER + k),
+            define_img((OPPMONSTER + k),
                       (("res/gfx/scr/fight/monster/monster"
                        + str((i + 1))) + ".jpg"), False, OPPX, OPPY);
         };
@@ -24817,23 +24817,23 @@ def build_interface():
         };
         i = (i + 1);
     };
-    DefineLbl(LBL_NAMERANK_CHAR, "", (FIGHT_CHARX + 310), OPPY,
+    define_lbl(LBL_NAMERANK_CHAR, "", (FIGHT_CHARX + 310), OPPY,
               FontFormat_Default);
     add_filter(LBL_NAMERANK_CHAR, Filter_Shadow);
-    DefineLbl(LBL_NAMERANK_OPP, "", 0, OPPY, FontFormat_Default);
+    define_lbl(LBL_NAMERANK_OPP, "", 0, OPPY, FontFormat_Default);
     add_filter(LBL_NAMERANK_OPP, Filter_Shadow);
-    DefineImg(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", False,
+    define_img(LIFEBAR_CHAR, "res/gfx/scr/fight/lifebar.png", False,
               FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
-    DefineImg(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png",
+    define_img(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png",
               False, (FIGHT_CHARX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
     DefineCnt(LIFEBAR_OPP, OPPX, ((OPPY + 300) + LIFEBAR_Y));
     DefineCnt(LIFEBAR_FILL_OPP, (OPPX + 10), (((OPPY + 300) + 8)
               + LIFEBAR_Y));
-    DefineLbl(LBL_LIFEBAR_CHAR, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
+    define_lbl(LBL_LIFEBAR_CHAR, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
               FontFormat_LifeBar);
-    DefineLbl(LBL_LIFEBAR_OPP, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
+    define_lbl(LBL_LIFEBAR_OPP, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
               FontFormat_LifeBar);
-    DefineImg(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png",
+    define_img(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png",
               False, (FIGHT_CHARX - 10), (OPPY - 10));
     DefineCnt(FIGHT_OPP_BORDER, (OPPX - 10), (OPPY - 10));
     DefineCnt(BULLET_CHAR, 0, 0);
@@ -24848,25 +24848,25 @@ def build_interface():
     SetCnt(WEAPON_OPP, ITM_OFFS);
     DefineCnt(SHIELD_OPP, 0, 0);
     SetCnt(SHIELD_OPP, ITM_OFFS);
-    DefineImg(WEAPON_FIST, "res/gfx/itm/kampf_faust.png", False, 0, 0);
-    DefineImg(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png",
+    define_img(WEAPON_FIST, "res/gfx/itm/kampf_faust.png", False, 0, 0);
+    define_img(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png",
               False, 0, 0);
-    DefineImg(WEAPON_BONE, "res/gfx/itm/kampf_knochen.png", False, 0, 0);
-    DefineImg(WEAPON_STICK, "res/gfx/itm/kampf_stock.png", False, 0, 0);
-    DefineImg(WEAPON_CLAW, "res/gfx/itm/kampf_kralle1.png", False, 0, 0);
-    DefineImg(WEAPON_CLAW2, "res/gfx/itm/kampf_kralle2.png", False, 0, 0);
-    DefineImg(WEAPON_CLAW3, "res/gfx/itm/kampf_kralle3.png", False, 0, 0);
-    DefineImg(WEAPON_CLAW4, "res/gfx/itm/kampf_kralle4.png", False, 0, 0);
-    DefineImg(WEAPON_SWOOSH, "res/gfx/itm/kampf_swoosh1.png", False, 0, 0);
-    DefineImg(WEAPON_SWOOSH2, "res/gfx/itm/kampf_swoosh2.png", False, 0, 0)
-    DefineImg(WEAPON_SWOOSH3, "res/gfx/itm/kampf_swoosh3.png", False, 0, 0)
-    DefineImg(WEAPON_SPLAT, "res/gfx/itm/kampf_splat1.png", False, 0, 0);
-    DefineImg(WEAPON_SPLAT2, "res/gfx/itm/kampf_splat2.png", False, 0, 0);
-    DefineImg(WEAPON_SPLAT3, "res/gfx/itm/kampf_splat3.png", False, 0, 0);
-    DefineImg(WEAPON_FIRE, "res/gfx/itm/kampf_feuer1.png", False, 0, 0);
-    DefineImg(WEAPON_FIRE2, "res/gfx/itm/kampf_feuer2.png", False, 0, 0);
-    DefineImg(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", False, 0, 0);
-    DefineLbl(LBL_DAMAGE_INDICATOR, "", 0, 0, FontFormat_Damage);
+    define_img(WEAPON_BONE, "res/gfx/itm/kampf_knochen.png", False, 0, 0);
+    define_img(WEAPON_STICK, "res/gfx/itm/kampf_stock.png", False, 0, 0);
+    define_img(WEAPON_CLAW, "res/gfx/itm/kampf_kralle1.png", False, 0, 0);
+    define_img(WEAPON_CLAW2, "res/gfx/itm/kampf_kralle2.png", False, 0, 0);
+    define_img(WEAPON_CLAW3, "res/gfx/itm/kampf_kralle3.png", False, 0, 0);
+    define_img(WEAPON_CLAW4, "res/gfx/itm/kampf_kralle4.png", False, 0, 0);
+    define_img(WEAPON_SWOOSH, "res/gfx/itm/kampf_swoosh1.png", False, 0, 0);
+    define_img(WEAPON_SWOOSH2, "res/gfx/itm/kampf_swoosh2.png", False, 0, 0)
+    define_img(WEAPON_SWOOSH3, "res/gfx/itm/kampf_swoosh3.png", False, 0, 0)
+    define_img(WEAPON_SPLAT, "res/gfx/itm/kampf_splat1.png", False, 0, 0);
+    define_img(WEAPON_SPLAT2, "res/gfx/itm/kampf_splat2.png", False, 0, 0);
+    define_img(WEAPON_SPLAT3, "res/gfx/itm/kampf_splat3.png", False, 0, 0);
+    define_img(WEAPON_FIRE, "res/gfx/itm/kampf_feuer1.png", False, 0, 0);
+    define_img(WEAPON_FIRE2, "res/gfx/itm/kampf_feuer2.png", False, 0, 0);
+    define_img(WEAPON_FIRE3, "res/gfx/itm/kampf_feuer3.png", False, 0, 0);
+    define_lbl(LBL_DAMAGE_INDICATOR, "", 0, 0, FontFormat_Damage);
     add_filter(LBL_DAMAGE_INDICATOR, Filter_Shadow);
     define_btn(FIGHT_SKIP, texts[TXT_SKIP_FIGHT], SkipFight,
                btn_classBasic, 0, 0);
@@ -24896,22 +24896,22 @@ def build_interface():
         y = FIGHT_Y;
         x = (SCREEN_TITLE_X + 5);
     };
-    DefineLbl(LBL_FIGHT_SUMMARY, "", 0, FIGHT_SUMMARY_Y,
+    define_lbl(LBL_FIGHT_SUMMARY, "", 0, FIGHT_SUMMARY_Y,
               FontFormat_Default);
     add_filter(LBL_FIGHT_SUMMARY, Filter_Shadow);
-    DefineImg(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg",
+    define_img(GUILD_BATTLE_BG, "res/gfx/scr/fight/schlachtfeld.jpg",
               False, 280, 100);
-    DefineImg(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", False,
+    define_img(GUILD_RAID_BG, "res/gfx/scr/fight/raid.jpg", False,
               280, 100);
     define_bunch(SCREEN_FIGHT, BLACK_SQUARE, LBL_NAMERANK_CHAR,
                  LIFEBAR_CHAR, LIFEBAR_FILL_CHAR, LBL_LIFEBAR_CHAR,
                  LBL_NAMERANK_OPP, IF_EXIT);
     add_bunch(SCREEN_FIGHT, LIFEBAR_OPP, LIFEBAR_FILL_OPP, LBL_LIFEBAR_OPP,
               IF_OVL, FIGHT_SKIP, FIGHT_CHAR_BORDER, FIGHT_OPP_BORDER);
-    DefineImg(FIGHT_BOX1, "res/gfx/scr/fight/box1.png", False,
+    define_img(FIGHT_BOX1, "res/gfx/scr/fight/box1.png", False,
               (FIGHT_CHAR_PROP_COLUMN_1_X + FIGHT_BOX1_X),
               (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
-    DefineImg(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", False,
+    define_img(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", False,
               (SCREEN_TITLE_X - 254), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
     DefineCnt(FIGHT_BOX3, (FIGHT_CHAR_PROP_COLUMN_3_X + FIGHT_BOX3_X),
               (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
@@ -24919,16 +24919,16 @@ def build_interface():
     DefineCnt(FIGHT_REWARDGOLD, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
     DefineCnt(FIGHT_REWARDSILVER, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
     DefineCnt(FIGHT_REWARDMUSH, FIGHT_REWARDGOLD_X, FIGHT_REWARDMUSH_Y);
-    DefineLbl(LBL_FIGHT_REWARDGOLD, "", 0, FIGHT_REWARDGOLD_Y,
+    define_lbl(LBL_FIGHT_REWARDGOLD, "", 0, FIGHT_REWARDGOLD_Y,
               FontFormat_Default);
     add_filter(LBL_FIGHT_REWARDGOLD, Filter_Shadow);
-    DefineLbl(LBL_FIGHT_REWARDSILVER, "", 0, FIGHT_REWARDGOLD_Y,
+    define_lbl(LBL_FIGHT_REWARDSILVER, "", 0, FIGHT_REWARDGOLD_Y,
               FontFormat_Default);
     add_filter(LBL_FIGHT_REWARDSILVER, Filter_Shadow);
-    DefineLbl(LBL_FIGHT_REWARDMUSH, "", 0, FIGHT_REWARDMUSH_Y,
+    define_lbl(LBL_FIGHT_REWARDMUSH, "", 0, FIGHT_REWARDMUSH_Y,
               FontFormat_Default);
     add_filter(LBL_FIGHT_REWARDMUSH, Filter_Shadow);
-    DefineLbl(LBL_FIGHT_REWARDEXP, "", FIGHT_REWARDEXP_X,
+    define_lbl(LBL_FIGHT_REWARDEXP, "", FIGHT_REWARDEXP_X,
               FIGHT_REWARDGOLD_Y, FontFormat_Default);
     add_filter(LBL_FIGHT_REWARDEXP, Filter_Shadow);
     add_bunch(SCREEN_FIGHT, FIGHT_BOX1, FIGHT_BOX2, FIGHT_BOX3);
@@ -24936,13 +24936,13 @@ def build_interface():
                  LBL_FIGHT_REWARDGOLD, FIGHT_REWARDSILVER,
                  LBL_FIGHT_REWARDSILVER, FIGHT_REWARDMUSH,
                  LBL_FIGHT_REWARDMUSH, LBL_FIGHT_REWARDEXP);
-    DefineLbl(LBL_HERO_OF_THE_DAY_TITLE,
+    define_lbl(LBL_HERO_OF_THE_DAY_TITLE,
               ((texts[TXT_HERO_OF_THE_DAY_TITLE])
                ? texts[TXT_HERO_OF_THE_DAY_TITLE] : ""), 0, 120,
                 FontFormat_Heading);
     actor[LBL_HERO_OF_THE_DAY_TITLE].x = (SCREEN_TITLE_X
                       - (actor[LBL_HERO_OF_THE_DAY_TITLE].width / 2));
-    DefineLbl(LBL_HERO_OF_THE_DAY, "", 0, 160, FontFormat_Default);
+    define_lbl(LBL_HERO_OF_THE_DAY, "", 0, 160, FontFormat_Default);
     actor[LBL_HERO_OF_THE_DAY].default_text_format.align = "center";
     add_filter(LBL_HERO_OF_THE_DAY_TITLE, Filter_Shadow);
     add_filter(LBL_HERO_OF_THE_DAY, Filter_Shadow);
@@ -24950,20 +24950,20 @@ def build_interface():
                  LBL_HERO_OF_THE_DAY);
     i = 0;
     while (i < 5) {
-        DefineLbl((LBL_FIGHT_CHAR_STAERKE_CAPTION + i),
+        define_lbl((LBL_FIGHT_CHAR_STAERKE_CAPTION + i),
                   texts[(TXT_CHAR_STAERKE + i)],
                   FIGHT_CHAR_PROP_COLUMN_1_X,
                   (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
                   FontFormat_Default);
-        DefineLbl((LBL_FIGHT_CHAR_STAERKE + i), "",
+        define_lbl((LBL_FIGHT_CHAR_STAERKE + i), "",
                   FIGHT_CHAR_PROP_COLUMN_2_X,
                   (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
                   FontFormat_Attrib);
-        DefineLbl((LBL_FIGHT_OPP_STAERKE_CAPTION + i),
+        define_lbl((LBL_FIGHT_OPP_STAERKE_CAPTION + i),
                   texts[(TXT_CHAR_STAERKE + i)],
                   FIGHT_CHAR_PROP_COLUMN_3_X, (FIGHT_CHAR_PROP_Y
                    + (i * FIGHT_CHAR_PROP_Y)), FontFormat_Default);
-        DefineLbl((LBL_FIGHT_OPP_STAERKE + i), "",
+        define_lbl((LBL_FIGHT_OPP_STAERKE + i), "",
                   FIGHT_CHAR_PROP_COLUMN_4_X,
                   (FIGHT_CHAR_PROP_Y + (i * FIGHT_CHAR_PROP_Y)),
                   FontFormat_Attrib);
@@ -24977,17 +24977,17 @@ def build_interface():
                   (LBL_FIGHT_OPP_STAERKE_CAPTION + i));
         i = (i + 1);
     };
-    DefineImg(FIGHT_MUSH, "res/gfx/scr/fight/bigmush.png", False, 0, 0);
+    define_img(FIGHT_MUSH, "res/gfx/scr/fight/bigmush.png", False, 0, 0);
     define_snd(SND_CATAPULT_LAUNCH, "res/sfx/catapult_launch.mp3");
     define_snd(SND_CATAPULT_HIT, "res/sfx/catapult_hit.mp3");
     i = 0;
     while (i < 3) {
-        DefineImg((FIGHT_COPYCAT + i),
+        define_img((FIGHT_COPYCAT + i),
                   (("res/gfx/npc/copycat_" + str((i + 1))) + ".jpg"),
                   False, FIGHT_CHARX, OPPY);
         i = (i + 1);
     };
-    DefineImg(BG_DEMO, "res/gfx/scr/demo/demo.png", False, 0, DEMO_Y);
+    define_img(BG_DEMO, "res/gfx/scr/demo/demo.png", False, 0, DEMO_Y);
     define_btn(DEMO_LOGOFF, texts[TXT_OK], RequestLOGout, btn_classBasic,
                DEMO_X, DEMO_Y);
     define_bunch(SCREEN_DEMO, BG_DEMO, IF_OVL, DEMO_LOGOFF, BLACK_SQUARE);
@@ -24999,20 +24999,20 @@ def build_interface():
         height = OPTION_Y;
         alpha = 0.65;
     };
-    DefineLbl(LBL_OPTION_TITLE, texts[TXT_OPTION_TITLE], 0,
+    define_lbl(LBL_OPTION_TITLE, texts[TXT_OPTION_TITLE], 0,
               (OPTION_Y + OPTION_Y0), FontFormat_ScreenTitle);
     add_filter(LBL_OPTION_TITLE, Filter_Shadow);
-    DefineLbl(LBL_OPTION_IMAGE, texts[TXT_CHARIMG],
+    define_lbl(LBL_OPTION_IMAGE, texts[TXT_CHARIMG],
               (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y1),
               FontFormat_Heading);
     add_filter(LBL_OPTION_IMAGE, Filter_Shadow);
-    DefineImg(OPTION_IMAGEBORDER,
+    define_img(OPTION_IMAGEBORDER,
               "res/gfx/scr/option/character_border_small.png",
               False, (OPTION_X + OPTION_IMAGE_X), (OPTION_Y + OPTION_Y2));
     define_btn(OPTION_CHANGEIMG, texts[TXT_CHANGEIMG], OptionBtnHandler,
                btn_classBasic, (OPTION_X + OPTION_IMAGE_X),
                ((OPTION_Y + OPTION_Y5) - 2));
-    DefineLbl(LBL_OPTION_CHANGE, texts[TXT_CHANGE],
+    define_lbl(LBL_OPTION_CHANGE, texts[TXT_CHANGE],
               (OPTION_X + OPTION_CHANGE_X), (OPTION_Y + OPTION_Y1),
               FontFormat_Heading);
     add_filter(LBL_OPTION_CHANGE, Filter_Shadow);
@@ -25034,20 +25034,20 @@ def build_interface():
     define_btn(OPTION_LUXURY, texts[TXT_LUXURY_BUTTON],
                OptionBtnHandler, btn_classBasic,
                (OPTION_X + OPTION_CHANGE_X), ((OPTION_Y + OPTION_Y5) - 2));
-    DefineImg(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg",
+    define_img(LUXURY_SELLER, "res/gfx/scr/option/seller.jpg",
               False, 1100, 190);
     DefineFromClass(CB_LM_UNCHECKED, cb_unchecked, LM_X, LM_Y);
     actor[CB_LM_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckLM);
     DefineFromClass(CB_LM_CHECKED, cb_checked, LM_X, LM_Y);
     actor[CB_LM_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckLM);
-    DefineLbl(LBL_LM, texts[TXT_LM], (LM_X + LM_X), (LM_Y + LM_Y),
+    define_lbl(LBL_LM, texts[TXT_LM], (LM_X + LM_X), (LM_Y + LM_Y),
               FontFormat_Default);
     add_filter(LBL_LM, Filter_Shadow);
     DefineFromClass(CB_CS_UNCHECKED, cb_unchecked, LM_X, (LM_Y - 50));
     actor[CB_CS_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckCS);
     DefineFromClass(CB_CS_CHECKED, cb_checked, LM_X, (LM_Y - 50));
     actor[CB_CS_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckCS);
-    DefineLbl(LBL_CS, ((texts[TXT_CS]) ? texts[TXT_CS] : "Chat Sound"),
+    define_lbl(LBL_CS, ((texts[TXT_CS]) ? texts[TXT_CS] : "Chat Sound"),
               (LM_X + LM_X), ((LM_Y + LM_Y) - 50), FontFormat_Default);
     add_filter(LBL_CS, Filter_Shadow);
     DefineFromClass(CB_COMPARE_UNCHECKED, cb_unchecked, (LM_X + 250),
@@ -25058,20 +25058,20 @@ def build_interface():
                     (LM_Y - 50));
     actor[CB_COMPARE_CHECKED].add_event_listener(MouseEvent.CLICK,
                                                  UncheckCompare);
-    DefineLbl(LBL_COMPARE, texts[TXT_COMPARE], ((LM_X + LM_X) + 250),
+    define_lbl(LBL_COMPARE, texts[TXT_COMPARE], ((LM_X + LM_X) + 250),
               ((LM_Y + LM_Y) - 50), FontFormat_Default);
     add_filter(LBL_COMPARE, Filter_Shadow);
     DefineFromClass(CB_TV_UNCHECKED, cb_unchecked, (LM_X + 250), LM_Y);
     actor[CB_TV_UNCHECKED].add_event_listener(MouseEvent.CLICK, CheckTV);
     DefineFromClass(CB_TV_CHECKED, cb_checked, (LM_X + 250), LM_Y);
     actor[CB_TV_CHECKED].add_event_listener(MouseEvent.CLICK, UncheckTV);
-    DefineLbl(LBL_TV_CHECKBOX, texts[TXT_TV_DISABLE],
+    define_lbl(LBL_TV_CHECKBOX, texts[TXT_TV_DISABLE],
               ((LM_X + LM_X) + 250), (LM_Y + LM_Y), FontFormat_Default);
     add_filter(LBL_TV_CHECKBOX, Filter_Shadow);
-    DefineLbl(LBL_OPTION_DOCHANGE, "", (OPTION_X + OPTION_DOCHANGE_X),
+    define_lbl(LBL_OPTION_DOCHANGE, "", (OPTION_X + OPTION_DOCHANGE_X),
               (OPTION_Y + OPTION_Y1), FontFormat_Heading);
     add_filter(LBL_OPTION_DOCHANGE, Filter_Shadow);
-    DefineLbl(LBL_OPTION_FIELD1, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
+    define_lbl(LBL_OPTION_FIELD1, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
               ((OPTION_Y + OPTION_Y2) + OPTION_TEXT_Y),
               FontFormat_DefaultLeft);
     _local2 = actor[LBL_OPTION_FIELD1];
@@ -25079,9 +25079,9 @@ def build_interface():
         wordWrap = True;
         width = 300;
     };
-    DefineLbl(LBL_OPTION_FIELD2, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
+    define_lbl(LBL_OPTION_FIELD2, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
               ((OPTION_Y + OPTION_Y3) + OPTION_TEXT_Y), FontFormat_Default)
-    DefineLbl(LBL_OPTION_FIELD3, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
+    define_lbl(LBL_OPTION_FIELD3, "", (OPTION_X + OPTION_DOCHANGE_LABEL_X),
               ((OPTION_Y + OPTION_Y4) + OPTION_TEXT_Y), FontFormat_Default)
     add_filter(LBL_OPTION_FIELD1, Filter_Shadow);
     add_filter(LBL_OPTION_FIELD2, Filter_Shadow);
@@ -25124,7 +25124,7 @@ def build_interface():
     define_btn(OPTION_DOCHANGE, texts[TXT_DOCHANGE], OptionBtnHandler,
                btn_classBasic, (OPTION_X + OPTION_DOCHANGE_X),
                (OPTION_Y + OPTION_Y5));
-    DefineLbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6),
+    define_lbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6),
               FontFormat_Default);
     add_filter(LBL_OPTION_VOLUME, Filter_Shadow);
     DefineSlider(SLDR_OPTION_VOLUME, 11,
@@ -25136,7 +25136,7 @@ def build_interface():
                  INP_OPTION_FIELD2, INP_OPTION_FIELD3, OPTION_DOCHANGE);
     define_bunch(OPTION_DORESEND, LBL_OPTION_DOCHANGE, LBL_OPTION_FIELD1,
                  OPTION_DOCHANGE);
-    DefineLbl(LBL_OPTION_VER,
+    define_lbl(LBL_OPTION_VER,
               ("v1.70" + (((get_file_version() == 0)) ? ""
                : ("." + str(get_file_version())))), 0,
                 ((OPTION_Y + OPTION_VER_Y) + 110), FontFormat_Default);
@@ -25158,7 +25158,7 @@ def build_interface():
                                           "outer")];
     i = 0;
     while (i < param_languages.length) {
-        DefineImg((OPTION_FLAG + i),
+        define_img((OPTION_FLAG + i),
                   ("res/gfx/if/flags/flag_" + param_languages[i] + ".png"),
                   False,
                   ((LM_X + (35 * i)) - ((lang_code)==param_languages[i])
@@ -25176,16 +25176,16 @@ def build_interface():
         i = (i + 1);
     };
     optionMenuSelect = 0;
-    DefineLbl(LBL_HLMAINQUESTS_TITLE, texts[TXT_HL_MAINQUESTS_TITLE], 0,
+    define_lbl(LBL_HLMAINQUESTS_TITLE, texts[TXT_HL_MAINQUESTS_TITLE], 0,
               MQS_TITLE_Y, FontFormat_ScreenTitle);
     add_filter(LBL_HLMAINQUESTS_TITLE, Filter_Shadow);
-    DefineImg(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png",
+    define_img(HLMQS_DISABLED, "res/gfx/scr/dungeons/unknown.png",
               False, 0, 0);
-    DefineImg(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png",
+    define_img(HLMQS_COMPLETED, "res/gfx/scr/dungeons/done.png",
               False, 0, 0);
-    DefineImg(HLMQS_TOWER_DISABLED, "res/gfx/scr/dungeons/unknown.png",
+    define_img(HLMQS_TOWER_DISABLED, "res/gfx/scr/dungeons/unknown.png",
               False, 0, 0);
-    DefineImg(HLMQS_TOWER_COMPLETED, "res/gfx/scr/dungeons/done_tower.png",
+    define_img(HLMQS_TOWER_COMPLETED, "res/gfx/scr/dungeons/done_tower.png",
               False, 0, 0);
     define_bunch(SCREEN_HLMAINQUESTS, IF_OVL, IF_EXIT,
                  LBL_HLMAINQUESTS_TITLE, SND_MAINQUESTS_UNLOCK);
@@ -25195,7 +25195,7 @@ def build_interface():
             DefineCnt((HLMQS_BUTTON + 4),
                       ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
                       ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-            DefineImg((HLMQS_BUTTON + 4),
+            define_img((HLMQS_BUTTON + 4),
                       "res/gfx/scr/dungeons/button_tower.jpg", False,
                       ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
                       ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
@@ -25209,7 +25209,7 @@ def build_interface():
             DefineCnt((HLMQS_BUTTON + i),
                       (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
                       ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-            DefineImg((HLMQS_BUTTON + i),
+            define_img((HLMQS_BUTTON + i),
                       (("res/gfx/scr/dungeons/button" + str((60 + i)))
                        + ".jpg"), False, (MQS_BUTTON_X +
                        ((MQS_BUTTON_X * 2) * int((i % 2)))),
@@ -25239,13 +25239,13 @@ def build_interface():
                      texts[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
         i = (i + 1);
     };
-    DefineLbl(LBL_MAINQUESTS_TITLE, texts[(TXT_DUNGEON_INFO + 4)], 0,
+    define_lbl(LBL_MAINQUESTS_TITLE, texts[(TXT_DUNGEON_INFO + 4)], 0,
               MQS_TITLE_Y, FontFormat_ScreenTitle);
     add_filter(LBL_MAINQUESTS_TITLE, Filter_Shadow);
     define_snd(SND_MAINQUESTS_UNLOCK, "res/sfx/unlock.mp3", False);
-    DefineImg(MQS_DISABLED,
+    define_img(MQS_DISABLED,
               "res/gfx/scr/dungeons/unknown.png", False, 0, 0);
-    DefineImg(MQS_COMPLETED,
+    define_img(MQS_COMPLETED,
               "res/gfx/scr/dungeons/done.png", False, 0, 0);
     define_bunch(SCREEN_MAINQUESTS, IF_OVL, IF_EXIT, LBL_MAINQUESTS_TITLE,
                  SND_MAINQUESTS_UNLOCK);
@@ -25254,7 +25254,7 @@ def build_interface():
         DefineCnt((MQS_BUTTON + i),
                   (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
                   (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-        DefineImg((MQS_BUTTON + i),
+        define_img((MQS_BUTTON + i),
                   (("res/gfx/scr/dungeons/button" + str(51 + i)) + ".jpg"),
                   False, (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
                   (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
@@ -25282,9 +25282,9 @@ def build_interface():
                      texts[(TXT_DUNGEON_INFO + 2)], POPUP_END_LINE);
         i = (i + 1);
     };
-    DefineImg(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg",
+    define_img(DUNGEON_CONGRATS, "res/gfx/scr/dungeons/congrats.jpg",
               False, 280, 100);
-    DefineLbl(LBL_DUNGEON_CONGRATS,
+    define_lbl(LBL_DUNGEON_CONGRATS,
               ((texts[TXT_CONGRATS])
                ? texts[TXT_CONGRATS].split("#").join(chr(13))
                : ""), 1000, 600, FontFormat_Default);
@@ -25300,10 +25300,10 @@ def build_interface():
         height = MQ_SQUARE_Y;
         alpha = 0.6;
     };
-    DefineLbl(LBL_MAINQUEST_TITLE, "", 0, (MQ_SQUARE_Y + MQ_TITLE_Y),
+    define_lbl(LBL_MAINQUEST_TITLE, "", 0, (MQ_SQUARE_Y + MQ_TITLE_Y),
               FontFormat_ScreenTitle);
     add_filter(LBL_MAINQUEST_TITLE, Filter_Shadow);
-    DefineLbl(LBL_MAINQUEST_TEXT, "", (MQ_SQUARE_X + MQ_TEXT_X),
+    define_lbl(LBL_MAINQUEST_TEXT, "", (MQ_SQUARE_X + MQ_TEXT_X),
               (MQ_SQUARE_Y + MQ_TEXT_Y), FontFormat_DefaultLeft);
     _local2 = actor[LBL_MAINQUEST_TEXT];
     with (_local2) {
@@ -25317,7 +25317,7 @@ def build_interface():
     with (_local2) {
         x = (((MQ_SQUARE_X + MQ_SQUARE_X) - MQ_TEXT_X) - width);
     };
-    DefineLbl(LBL_MAINQUEST_MUSHHINT, texts[TXT_MQ_MUSHHINT],
+    define_lbl(LBL_MAINQUEST_MUSHHINT, texts[TXT_MQ_MUSHHINT],
               (MQ_SQUARE_X + MQ_TEXT_X),
               ((MQ_SQUARE_Y + MQ_SQUARE_Y) - MQ_MUSHHINT_Y),
               FontFormat_DefaultLeft);
@@ -25335,7 +25335,7 @@ def build_interface():
                  LBL_MAINQUEST_TITLE, LBL_MAINQUEST_TEXT,
                  MAINQUEST_enemy_BORDER, MAINQUEST_enemy,
                  LBL_MAINQUEST_MUSHHINT, MAINQUEST_START, IF_EXIT);
-    DefineLbl(LBL_DISCONNECTED, texts[TXT_DISCONNECTED],
+    define_lbl(LBL_DISCONNECTED, texts[TXT_DISCONNECTED],
               ((DISCONNECTED_X - (DISCONNECTED_X / 2)) + 10),
               (DISCONNECTED_Y + 10), FontFormat_Error);
     _local2 = actor[LBL_DISCONNECTED];
@@ -25355,12 +25355,12 @@ def build_interface():
     };
     define_bunch(SCREEN_DISCONNECTED, BLACK_SQUARE, SHP_DISCONNECTED,
                  LBL_DISCONNECTED);
-    DefineLbl(LBL_EMAIL_NAG, texts[TXT_EMAIL_NAG], EMAIL_NAG_X,
+    define_lbl(LBL_EMAIL_NAG, texts[TXT_EMAIL_NAG], EMAIL_NAG_X,
               EMAIL_NAG_Y, FontFormat_DefaultLeft);
     actor[LBL_EMAIL_NAG].width = EMAIL_NAG_TEXT_X;
     actor[LBL_EMAIL_NAG].wordWrap = True;
     add_filter(LBL_EMAIL_NAG, Filter_Shadow);
-    DefineLbl(LBL_EMAIL_RESEND, texts[TXT_EMAIL_RESEND], 0, 0,
+    define_lbl(LBL_EMAIL_RESEND, texts[TXT_EMAIL_RESEND], 0, 0,
               FontFormat_Default);
     add_filter(LBL_EMAIL_RESEND, Filter_Shadow);
     MakePersistent(LBL_EMAIL_RESEND);
@@ -25417,7 +25417,7 @@ if __name__ == "__main__":
     main()
 
 
-def DefineImg(actor_id, url, pre_load=True, pos_x=0, pos_y=0,
+def define_img(actor_id, url, pre_load=True, pos_x=0, pos_y=0,
               scale_x=1, scale_y=1, vis=True):
     '''
     var i:* = 0;
@@ -25468,39 +25468,39 @@ def DefineImg(actor_id, url, pre_load=True, pos_x=0, pos_y=0,
     pass
 
 
-def DefineClickArea(actor_id, imgActorID, fn, pos_x, pos_y, size_x,
-                    size_y, ovlActorID=0, hoverFn=None,
-                    outFn=None, stayPut=False):
+def define_click_area(actor_id, img_actor_id, fn, pos_x, pos_y, size_x,
+                    size_y, ovl_actor_id=0, hover_fn=None,
+                    out_fn=None, stay_put=False):
     '''
     var actor_id:* = actor_id;
-    var imgActorID:* = imgActorID;
+    var img_actor_id:* = img_actor_id;
     var fn:* = fn;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
     var size_x:* = size_x;
     var size_y:* = size_y;
-    var ovlActorID = ovlActorID;
-    var hoverFn:* = hoverFn;
-    var outFn:* = outFn;
-    var stayPut:Boolean = stayPut;
+    var ovl_actor_id = ovl_actor_id;
+    var hover_fn:* = hover_fn;
+    var out_fn:* = out_fn;
+    var stay_put:Boolean = stay_put;
     var ClickAreaHover:* = function (evt:MouseEvent):
-        if (imgActorID != C_EMPTY){
-            add(imgActorID);
+        if (img_actor_id != C_EMPTY){
+            add(img_actor_id);
         };
-        if (ovlActorID != C_EMPTY){
-            visible_to_front(ovlActorID);
+        if (ovl_actor_id != C_EMPTY){
+            visible_to_front(ovl_actor_id);
         };
-        if (!stayPut){
+        if (!stay_put){
             add(actor_id);
         };
-        if ((hoverFn is Function)){
-            hoverFn();
+        if ((hover_fn is Function)){
+            hover_fn();
         };
     };
     var ClickAreaOut:* = function (evt:MouseEvent):
-        remove(imgActorID);
-        if ((outFn is Function)){
-            outFn();
+        remove(img_actor_id);
+        if ((out_fn is Function)){
+            out_fn();
         };
     };
     actor[actor_id] = new MovieClip();
