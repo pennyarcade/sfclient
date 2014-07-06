@@ -1665,7 +1665,7 @@ class Item(object):
                 "Pic:", self.pic,
                 "Color:", self.color,
                 "Class:", self.cclass
-            ])
+            ]))
             return 0
 
         if is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10):
