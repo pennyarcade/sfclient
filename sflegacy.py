@@ -641,3 +641,11 @@ def set_volume(vol):
     # with (stObject):
     #     stObject.volume = vol
     print vol
+
+
+def remove_event_listener(*args):
+    '''
+        obsolete
+    '''
+    pass
+

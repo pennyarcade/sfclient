@@ -38,6 +38,7 @@ from sfglobals import ERR
 from sfglobals import GUILD
 from sfglobals import IMG
 from sfglobals import INP
+from sfglobals import ITM_MAX
 from sfglobals import LBL
 from sfglobals import POPUP_INFO
 from sfglobals import POS
@@ -236,7 +237,7 @@ class Session(object):
                     return
 
         data_str = str(action).zfill(3) + ';'.join(params)
-        last_act = action
+        #last_act = action
 
         fail_try = 1
 
@@ -562,7 +563,8 @@ def init_vars():
 
     # chosen_lang_font = "Komika Text"
     # compare_items = False
-    # contentMax = 1700
+    global content_max
+    content_max = 1700
     # copyCatSel = 0
 
     # CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
@@ -866,7 +868,8 @@ def init_vars():
     # size_mod = 0
     # skip_allowed = False
     # skip_guild_fights = 0
-    # slm_count = 0
+    global slm_count
+    slm_count = 0
     # smoothing = True
 
     global snd_url, snd_url_index
@@ -1198,7 +1201,7 @@ class Quest(object):
         harndle qurest data
     '''
     def __init__(self, qtype, qid, qlevel, qmonster,
-                 qexp, qgold, qtime, qlocation, qitems):
+                 qexp, qgold, qtime, qlocation, qitem):
         '''
             Setup Quest object
         '''
@@ -1655,10 +1658,14 @@ class Item(object):
         item_id += self.cclass
 
         if item_id >= SG['ITM']['MAX']:
-            # FIXME
-            # LOG.error("Fehler: Zu wenige Indizes für Items:", item_id,
-            # ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
-            # itm_color, "Class:", itm_class)
+            LOG.error(' '.join([
+                "Fehler: Zu wenige Indizes für Items:", item_id,
+                ITM_MAX,
+                "Typ:", self.typ,
+                "Pic:", self.pic,
+                "Color:", self.color,
+                "Class:", self.cclass
+            ])
             return 0
 
         if is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10):
@@ -2010,7 +2017,7 @@ class Savegame(object):
                     x = POS['IF']['LBL']['GOLDPILZE_X'] - text_width - 10
                     actor[IMG['IF']['SILBER']].x = x - width - 10
 
-                with (actor[LBL['IF']['SILBER']]):
+                with actor[LBL['IF']['SILBER']]:
                     if int(savegame[SG['GOLD']] % 100) < 10:
                         text = "0"
                     else:
@@ -4677,7 +4684,7 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
                       guild_battle_data=None, last_fight=False,
                       guild_fight_exp=0, guild_fight_honor=0, own_guild="",
                       opp_guild="", raid_level=0
-                      ):
+                     ):
     '''
     var is_guildBattle:* = False;
     var charWeapon:* = 0;
@@ -14668,37 +14675,36 @@ def process_arg(arg):
 
     elif arg is str:
         arg = arg.replace("#", chr(13))
-        tmp_text_field = TextField()
-        with tmp_text_field:
-            auto_size = TextFieldAutoSize.LEFT
-            background = False
-            selectable = False
-            embed_fonts = font_embedded
-            default_text_format = tmp_text_format
-            htmlText = arg
-            last_text_height = textHeight
-            if text_dir == "right":
-                auto_size = TextFieldAutoSize.RIGHT
-                if textX < popup_width:
-                    x = textX - text_width
-                    textX -= text_width + 5
-                    y = textY
-                else:
-                    x = popup_width - 5 - text_width
-                    y = textY
-                    textY += textHeight + 10
+        tmp_field = TextField()
+        tmp_field.auto_size = TextFieldAutoSize.LEFT
+        tmp_field.background = False
+        tmp_field.selectable = False
+        tmp_field.embed_fonts = font_embedded
+        tmp_field.default_text_format = tmp_text_format
+        tmp_field.htmlText = arg
+        tmp_field.last_text_height = textHeight
+        if text_dir == "right":
+            tmp_field.auto_size = TextFieldAutoSize.RIGHT
+            if tmp_field.textX < popup_width:
+                tmp_field.x = tmp_field.textX - tmp_field.text_width
+                tmp_field.textX -= tmp_field.text_width + 5
+                tmp_field.y = tmp_field.textY
             else:
-                if textX > 0:
-                    x = textX
-                    textX += text_width + 5
-                    y = textY
-                else:
-                    x = 5
-                    y = textY
-                    textY += textHeight + 10
+                tmp_field.x = popup_width - 5 - tmp_field.text_width
+                tmp_field.y = tmp_field.textY
+                tmp_field.textY += tmp_field.textHeight + 10
+        else:
+            if tmp_field.textX > 0:
+                tmp_field.x = tmp_field.textX
+                tmp_field.textX += tmp_field.text_width + 5
+                tmp_field.y = tmp_field.textY
+            else:
+                tmp_field.x = 5
+                tmp_field.y = tmp_field.textY
+                tmp_field.textY += tmp_field.textHeight + 10
 
-                if (x + text_width + 10) > popup_width:
-                    popup_width = x + text_width + 10
+            if (tmp_field.x + tmp_field.text_width + 10) > popup_width:
+                popup_width = tmp_field.x + tmp_field.text_width + 10
 
             actor[POPUP_INFO].addChild(tmp_text_field)
 
@@ -25900,7 +25906,8 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
             };
             if ((actor[img_id].content is Bitmap)){
                 actorBitmap[cnt_id] = new Bitmap();
-                actorBitmap[cnt_id].bitmapData = actor[img_id].content.bitmapData
+                actorBitmap[cnt_id].bitmapData = actor[img_id]
+                    .content.bitmapData
                 _local7 = actorBitmap[cnt_id];
                 with (_local7) {
                     allow_smoothing = True;
@@ -25912,9 +25919,10 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
                 actor[cnt_id].addChild(actorBitmap[cnt_id]);
             } else {
                 actorBitmap[cnt_id] = new Bitmap();
-                actorBitmap[cnt_id].bitmapData = BitmapData(actor[img_id].width,
-                                                           actor[img_id].height,
-                                                           True, 0);
+                actorBitmap[cnt_id].bitmapData = BitmapData(
+                                                        actor[img_id].width,
+                                                        actor[img_id].height,
+                                                        True, 0);
                 actorBitmap[cnt_id].bitmapData.draw(
                                            (actor[img_id] as IBitmapDrawable));
                 _local7 = actorBitmap[cnt_id];
@@ -26104,7 +26112,8 @@ def post_btn_handler(evt=None, actor_id=0):
                             remove_illegal_chars(semi_strip(
                                actor[INP_POST_SUBJECT].getChildAt(1).text
                                .split("/").join(""))),
-                            remove_illegal_chars(semi_strip(actor[INP_POST_TEXT]
+                            remove_illegal_chars(semi_strip(
+                                                 actor[INP_POST_TEXT]
                                                .getChildAt(1).text)));
                     };
                 };
@@ -26425,7 +26434,8 @@ def refresh_time_bar(offer_time=0):
     var _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
         if (offer_time < 0){
-            tmpX = (((Number(savegame[SG_TIMEBAR]) + offer_time) / 6000) * 555);
+            tmpX = (((Number(savegame[SG_TIMEBAR])
+                    + offer_time) / 6000) * 555);
         } else {
             tmpX = ((Number(savegame[SG_TIMEBAR]) / 6000) * 555);
         };
@@ -27443,7 +27453,7 @@ def ach_level(SG, ach_index, almode=0):
     };
     return (alresult);
     '''
-    pass
+    return None
 
 
 def sing_plur(inp_text, amount, sep="*"):
@@ -28493,7 +28503,8 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                 SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            set_cnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG))
+            set_cnt((CHAR_SLOT_FIDGET_1 + i),
+                    GetItemID(SG_FIDGET_ITEM1, i, SG))
             item_popup((CHAR_SLOT_FIDGET_1 + i),
                       (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
                       SG, hide_back_pack);
@@ -28506,7 +28517,8 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                 SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            set_cnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG))
+            set_cnt((CHAR_SLOT_SHAKES_1 + i),
+                    GetItemID(SG_SHAKES_ITEM1, i, SG))
             item_popup((CHAR_SLOT_SHAKES_1 + i),
                       (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
                       SG, hide_back_pack);
