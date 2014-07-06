@@ -648,4 +648,3 @@ def remove_event_listener(*args):
         obsolete
     '''
     pass
-

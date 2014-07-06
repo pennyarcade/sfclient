@@ -38,7 +38,6 @@ from sfglobals import ERR
 from sfglobals import GUILD
 from sfglobals import IMG
 from sfglobals import INP
-from sfglobals import ITM_MAX
 from sfglobals import LBL
 from sfglobals import POPUP_INFO
 from sfglobals import POS
@@ -69,9 +68,7 @@ from sflegacy import LoaderContext
 from sflegacy import LoaderError
 from sflegacy import LoaderComplete
 from sflegacy import MouseEvent
-from sflegacy import MovieClip
 from sflegacy import SharedObject
-from sflegacy import SecurityDomain
 from sflegacy import SecurityErrorEvent
 from sflegacy import SecurityHandler
 from sflegacy import Sound
@@ -237,7 +234,7 @@ class Session(object):
                     return
 
         data_str = str(action).zfill(3) + ';'.join(params)
-        #last_act = action
+        last_act = action
 
         fail_try = 1
 
@@ -563,19 +560,18 @@ def init_vars():
 
     # chosen_lang_font = "Komika Text"
     # compare_items = False
-    global content_max
-    content_max = 1700
+    # contentMax = 1700
     # copyCatSel = 0
 
     # CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
 
     # country_name = list()
 
-    # crest = get_random_crest()
+    # crest = getRandomCrest()
     # crestColor = [0, 0, 0, 0]
     # crestColorSelection = 0
     # crestMoveTimer = new Timer(25)
-    # crestMoveTimer.add_event_listener(TimerEvent.TIMER, crest_move_fn)
+    # crestMoveTimer.add_event_listener(TimerEvent.TIMER, crestMoveFn)
     # crestSuggested = False
     # crestSuggestion = list()
 
@@ -868,8 +864,7 @@ def init_vars():
     # size_mod = 0
     # skip_allowed = False
     # skip_guild_fights = 0
-    global slm_count
-    slm_count = 0
+    # slm_count = 0
     # smoothing = True
 
     global snd_url, snd_url_index
@@ -994,7 +989,7 @@ def init_vars():
         when_loaded_timeout_event
     )
 
-    # timer event to generate ticks
+    # timer event to generate Ticks
     time_calc = Timer(50)
     time_calc.add_event_listener(TimerEvent.TIMER, time_calc_event)
 
@@ -1201,7 +1196,7 @@ class Quest(object):
         harndle qurest data
     '''
     def __init__(self, qtype, qid, qlevel, qmonster,
-                 qexp, qgold, qtime, qlocation, qitem):
+                 qexp, qgold, qtime, qlocation, qitems):
         '''
             Setup Quest object
         '''
@@ -1658,14 +1653,10 @@ class Item(object):
         item_id += self.cclass
 
         if item_id >= SG['ITM']['MAX']:
-            LOG.error(' '.join([
-                "Fehler: Zu wenige Indizes für Items:", item_id,
-                ITM_MAX,
-                "Typ:", self.typ,
-                "Pic:", self.pic,
-                "Color:", self.color,
-                "Class:", self.cclass
-            ]))
+            # FIXME
+            # LOG.error("Fehler: Zu wenige Indizes für Items:", item_id,
+            # ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
+            # itm_color, "Class:", itm_class)
             return 0
 
         if is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10):
@@ -2017,7 +2008,7 @@ class Savegame(object):
                     x = POS['IF']['LBL']['GOLDPILZE_X'] - text_width - 10
                     actor[IMG['IF']['SILBER']].x = x - width - 10
 
-                with actor[LBL['IF']['SILBER']]:
+                with (actor[LBL['IF']['SILBER']]):
                     if int(savegame[SG['GOLD']] % 100) < 10:
                         text = "0"
                     else:
@@ -2551,7 +2542,7 @@ def tower_timer_fn(evt=None):
             thisFloor = 0;
         };
         thisFloor = (thisFloor + i);
-        set_cnt(
+        SetCnt(
             (TOWER_WINDOW + i),
             (((thisFloor < (int(towerSG[TSG_TOWER_LEVEL]) + 1)))
                 ? TOWER_WINDOW_BURNT
@@ -2559,7 +2550,7 @@ def tower_timer_fn(evt=None):
                     ? TOWER_WINDOW_OPEN
                     : TOWER_WINDOW_CLOSED))
         );
-        set_cnt(
+        SetCnt(
             (TOWER_FACE + i),
             ((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399)
         );
@@ -2581,10 +2572,10 @@ def do_show_screen_album():
     var i;
     i = 0;
     while (i < 4) {
-        set_cnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
+        SetCnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
         i++;
     };
-    showalbum_content();
+    Showalbum_content();
     remove_all();
     add(SCREEN_ALBUM);
     '''
@@ -2707,9 +2698,9 @@ def show_option_screen(evt=None):
     DoShowOptionScreen = function (){
         var i:* = 0;
         remove_all();
-        set_cnt(CHANGE_PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_SAD);
-        set_cnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_NEUTRAL);
-        set_cnt(CHANGE_PASSWORD_SMILEY_HAPPY, PASSWORD_SMILEY_HAPPY);
+        SetCnt(CHANGE_PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_SAD);
+        SetCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_NEUTRAL);
+        SetCnt(CHANGE_PASSWORD_SMILEY_HAPPY, PASSWORD_SMILEY_HAPPY);
         hide(CHANGE_PASSWORD_SMILEY_SAD);
         hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
         hide(CHANGE_PASSWORD_SMILEY_HAPPY);
@@ -2764,7 +2755,7 @@ def show_option_screen(evt=None):
             x = ((OPTION_X + int((OPTION_X / 2))) - int((text_width / 2)));
         };
         load_character_image();
-        set_slider_value(SLDR_OPTION_VOLUME, (so.data.volume + 1));
+        SetSliderValue(SLDR_OPTION_VOLUME, (so.data.volume + 1));
         if (light_mode){
             add(CB_LM_CHECKED);
         };
@@ -2859,7 +2850,7 @@ def do_skip_fight(evt=None, fight_done=False):
             };
         };
         if (((tower_fight_mode) and ((guild_fight_honor >= 0)))){
-            set_cnt(
+            SetCnt(
                 FIGHT_SLOT,
                 GetItemID(
                     SG_INVENTORY_OFFS,
@@ -2880,7 +2871,7 @@ def do_skip_fight(evt=None, fight_done=False):
             );
             guild_fight_honor = 0;
         } else {
-            set_cnt(FIGHT_SLOT, C_EMPTY);
+            SetCnt(FIGHT_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         };
         if (last_fight){
@@ -3035,7 +3026,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (gold_gain > 0){
+            if (goldG_gain > 0){
                 if (text_dir == "right"){
                     rewardGoldText = (
                         " " + texts[TXT_GOLD_GAINED]);
@@ -3043,7 +3034,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     rewardGoldText = (texts[TXT_GOLD_GAINED] + " ");
                 };
             } else {
-                if (gold_gain < 0){
+                if (goldG_gain < 0){
                     if (text_dir == "right"){
                         rewardGoldText = (" " + texts[TXT_GOLD_LOST]);
                     } else {
@@ -3051,7 +3042,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (silber_anteil(math.abs(gold_gain)) > 0){
+            if (silber_anteil(math.abs(goldG_gain)) > 0){
                 if (text_dir != "right"){
                     _local4 = actor[FIGHT_REWARDSILVER];
                     with (_local4) {
@@ -3065,14 +3056,14 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            silber_anteil(math.abs(gold_gain))
+                            silber_anteil(math.abs(goldG_gain))
                             + rewardGoldText);
                     } else {
                         text = (
-                            (((gold_anteil(math.abs(gold_gain)) > 0))
+                            (((gold_anteil(math.abs(goldG_gain)) > 0))
                                 ? ""
                                 : rewardGoldText)
-                            + silber_anteil(math.abs(gold_gain)));
+                            + silber_anteil(math.abs(goldG_gain)));
                     };
                     x = (rewardX - text_width);
                     rewardX = (x - (((text_dir == "right")) ? 8 : 14));
@@ -3086,7 +3077,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (gold_anteil(math.abs(gold_gain)) > 0){
+            if (gold_anteil(math.abs(goldG_gain)) > 0){
                 if (text_dir != "right"){
                     _local4 = actor[FIGHT_REWARDGOLD];
                     with (_local4) {
@@ -3100,13 +3091,13 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            gold_anteil(math.abs(gold_gain))
-                            + (((silber_anteil(math.abs(gold_gain))
+                            gold_anteil(math.abs(goldG_gain))
+                            + (((silber_anteil(math.abs(goldG_gain))
                                 > 0)) ? "" : rewardGoldText));
                     } else {
                         text = (
                             rewardGoldText
-                            + gold_anteil(math.abs(gold_gain)));
+                            + gold_anteil(math.abs(goldG_gain)));
                     };
                     x = (rewardX - text_width);
                     rewardX = (x - (((text_dir == "right")) ? 8 : 14));
@@ -3120,7 +3111,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            set_cnt(FIGHT_SLOT, C_EMPTY);
+            SetCnt(FIGHT_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         } else {
             if (((is_mq) and (charWin))){
@@ -3167,7 +3158,7 @@ def do_skip_fight(evt=None, fight_done=False):
                         FIGHT_REWARDMUSH,
                         actor[FIGHT_REWARDMUSH].y);
                 };
-                if (silber_anteil(gold_gain) > 0){
+                if (silber_anteil(goldG_gain) > 0){
                     _local4 = actor[FIGHT_REWARDSILVER];
                     with (_local4) {
                         visible = True;
@@ -3177,12 +3168,12 @@ def do_skip_fight(evt=None, fight_done=False):
                     _local4 = actor[LBL_FIGHT_REWARDSILVER];
                     with (_local4) {
                         visible = True;
-                        text = silber_anteil(gold_gain);
+                        text = silber_anteil(goldG_gain);
                         x = (rewardX - text_width);
                         rewardX = (x - 14);
                     };
                 };
-                if (gold_anteil(gold_gain) > 0){
+                if (gold_anteil(goldG_gain) > 0){
                     _local4 = actor[FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
@@ -3192,13 +3183,13 @@ def do_skip_fight(evt=None, fight_done=False):
                     _local4 = actor[LBL_FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
-                        text = gold_anteil(gold_gain);
+                        text = gold_anteil(goldG_gain);
                         x = (rewardX - text_width);
                         rewardX = (x - 14);
                     };
                 };
                 if (back_pack_slot >= 0){
-                    set_cnt(
+                    SetCnt(
                         FIGHT_SLOT,
                         GetItemID(SG_INVENTORY_OFFS,
                             (back_pack_slot + 10),
@@ -3214,7 +3205,7 @@ def do_skip_fight(evt=None, fight_done=False):
                         False
                     );
                 } else {
-                    set_cnt(FIGHT_SLOT, C_EMPTY);
+                    SetCnt(FIGHT_SLOT, C_EMPTY);
                     enable_popup(FIGHT_SLOT);
                 };
             } else {
@@ -3317,7 +3308,7 @@ def do_skip_fight(evt=None, fight_done=False):
                             ((SG['QUEST']['OFFER']['REWARD_ITM1']
                                 + (quest_id * SG['ITM']['SIZE']))
                                 + SG_ITM_TYP)]) > 0){
-                            set_cnt(
+                            SetCnt(
                                 FIGHT_SLOT,
                                 GetItemID(
                                     SG['QUEST']['OFFER']['REWARD_ITM1'],
@@ -3328,7 +3319,7 @@ def do_skip_fight(evt=None, fight_done=False):
                                     + (quest_id * SG['ITM']['SIZE'])),
                                 None, False, True, False);
                         } else {
-                            set_cnt(FIGHT_SLOT, C_EMPTY);
+                            SetCnt(FIGHT_SLOT, C_EMPTY);
                             enable_popup(FIGHT_SLOT);
     if (charWin){
         if ((charLife / charFullLife) > 0.8){
@@ -3684,7 +3675,7 @@ def weapon_strike(opponent=False):
                         if case(1:
                             strikeVal = (strikeVal + 0.15);
                             if (strikeVal >= 1){
-                                set_cnt(
+                                SetCnt(
                                     FIGHT_ONO, onoID, 0, 0, True);
                                 OnoAlpha = 1;
                                 strikeVal = 1;
@@ -3804,7 +3795,7 @@ def weapon_strike(opponent=False):
                             ShieldAlpha = 1;
                         };
                         if (strikeVal >= 1){
-                            set_cnt(FIGHT_ONO, onoID, 0, 0, True);
+                            SetCnt(FIGHT_ONO, onoID, 0, 0, True);
                             OnoAlpha = 1;
                             strikeVal = 1;
                             strikePhase++;
@@ -3918,7 +3909,7 @@ def weapon_strike(opponent=False):
                             ShieldAlpha = 1;
                         };
                         if (strikeVal >= 1){
-                            set_cnt(FIGHT_ONO, onoID, 0, 0, True);
+                            SetCnt(FIGHT_ONO, onoID, 0, 0, True);
                             OnoAlpha = 1;
                             strikeVal = 1;
                             strikePhase++;
@@ -4102,7 +4093,7 @@ def weapon_strike(opponent=False):
                             ((opponent)
                                 ? oppWeapon
                                 : charWeapon) == -1){
-                            set_cnt(
+                            SetCnt(
                                 ((opponent)
                                     ? WEAPON_OPP
                                     : WEAPON_CHAR),
@@ -4112,7 +4103,7 @@ def weapon_strike(opponent=False):
                                 ((opponent)
                                     ? oppWeapon
                                     : charWeapon) == -3){
-                                set_cnt(
+                                SetCnt(
                                     ((opponent)
                                         ? WEAPON_OPP
                                         : WEAPON_CHAR),
@@ -4123,14 +4114,14 @@ def weapon_strike(opponent=False):
                                     ((opponent)
                                         ? oppWeapon
                                         : charWeapon) == -7){
-                                    set_cnt(
+                                    SetCnt(
                                         ((opponent)
                                             ? WEAPON_OPP
                                             : WEAPON_CHAR),
                                         (WEAPON_FIRE
                                             + int((strikeVal * 2.9))));
                                 } else {
-                                    set_cnt(
+                                    SetCnt(
                                         ((opponent)
                                             ? WEAPON_OPP
                                             : WEAPON_CHAR),
@@ -4202,7 +4193,7 @@ def weapon_strike(opponent=False):
                             visible = True;
 
             if (weaponType == 2){
-                set_cnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
+                SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
                     get_arrow_id(0, ((opponent) ? 1 : 0),
                     weapon_data, True, int((random.random() * 3))));
             };
@@ -4468,13 +4459,13 @@ def do_show_fight_screen(evt=None):
                     if (int(savegame[SG_ACTION_STATUS]) == 2){
                         add(get_quest_bg());
 
-    set_cnt(LIFEBAR_OPP, LIFEBAR_CHAR);
-    set_cnt(LIFEBAR_FILL_OPP, LIFEBAR_FILL_CHAR);
-    set_cnt(FIGHT_OPP_BORDER, FIGHT_CHAR_BORDER);
-    set_cnt(FIGHT_BOX3, FIGHT_BOX1);
-    set_cnt(FIGHT_REWARDGOLD, IF_GOLD);
-    set_cnt(FIGHT_REWARDSILVER, IF_SILBER);
-    set_cnt(FIGHT_REWARDMUSH, IF_PILZE);
+    SetCnt(LIFEBAR_OPP, LIFEBAR_CHAR);
+    SetCnt(LIFEBAR_FILL_OPP, LIFEBAR_FILL_CHAR);
+    SetCnt(FIGHT_OPP_BORDER, FIGHT_CHAR_BORDER);
+    SetCnt(FIGHT_BOX3, FIGHT_BOX1);
+    SetCnt(FIGHT_REWARDGOLD, IF_GOLD);
+    SetCnt(FIGHT_REWARDSILVER, IF_SILBER);
+    SetCnt(FIGHT_REWARDMUSH, IF_PILZE);
     var _local3 = actor[LBL_NAMERANK_CHAR];
     with (_local3) {
         if (text_dir == "right"){
@@ -4679,7 +4670,7 @@ def do_show_fight_screen(evt=None):
 
 
 def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
-                      weapon_data, honor_gain, gold_gain, is_mq,
+                      weapon_data, honor_gain, goldG_gain, is_mq,
                       is_replay=False, back_pack_slot=-1,
                       guild_battle_data=None, last_fight=False,
                       guild_fight_exp=0, guild_fight_honor=0, own_guild="",
@@ -4743,7 +4734,7 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
     var is_pvp:* = is_pvp;
     var weapon_data:* = weapon_data;
     var honor_gain:* = honor_gain;
-    var gold_gain:* = gold_gain;
+    var goldG_gain:* = goldG_gain;
     var is_mq:* = is_mq;
     var is_replay:Boolean = is_replay;
     var back_pack_slot = back_pack_slot;
@@ -4795,8 +4786,7 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
         oppWeapon = (oppWeapon - 1000);
         oppWeaponType = (oppWeaponType + 1);
     };
-    charShield = (int(weapon_data[((SG['ITM']['SIZE'] * 2)
-                  + SG['ITM']['PIC'])])
+    charShield = (int(weapon_data[((SG['ITM']['SIZE'] * 2) + SG['ITM']['PIC'])])
         * (((int(weapon_data[((SG['ITM']['SIZE'] * 2)
             + SG_ITM_TYP)]) == 0)) ? 0 : 1));
     oppShield = (weapon_data[((SG['ITM']['SIZE'] * 3) + SG['ITM']['PIC'])]
@@ -4867,29 +4857,29 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
             load(get_weapon_sound(charWeaponType, charWeapon, 2));
         };
         load(get_weapon_sound(charWeaponType, charWeapon, 3));
-        set_cnt(
+        SetCnt(
             WEAPON_CHAR,
             (((charWeapon == 0))
                 ? WEAPON_FIST
                 : (((charWeapon == -1))
                     ? WEAPON_CLAW
                     : WEAPON_SWOOSH)), -30, -30, True);
-        set_cnt(BULLET_CHAR, C_EMPTY);
+        SetCnt(BULLET_CHAR, C_EMPTY);
         charWeaponType = 1;
     } else {
         if (charWeaponType == 1){
-            set_cnt(
+            SetCnt(
                 WEAPON_CHAR,
                 GetItemID(0, 0, weapon_data),
                 -30, -30, True);
-            set_cnt(BULLET_CHAR, C_EMPTY);
+            SetCnt(BULLET_CHAR, C_EMPTY);
         } else {
             if (charWeaponType == 2){
-                set_cnt(
+                SetCnt(
                     WEAPON_CHAR,
                     GetItemID(0, 0, weapon_data),
                     30, -30, True);
-                set_cnt(
+                SetCnt(
                     BULLET_CHAR, get_arrow_id(
                         0, 0, weapon_data, True, 0));
                 load(get_arrow_id(
@@ -4899,10 +4889,10 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
                     get_arrow_id(0, 0, weapon_data, True, 3));
             } else {
                 if (charWeaponType == 3){
-                    set_cnt(
+                    SetCnt(
                         WEAPON_CHAR,
                         GetItemID(0, 0, weapon_data));
-                    set_cnt(
+                    SetCnt(
                         BULLET_CHAR,
                         get_arrow_id(0, 0, weapon_data, True));
                 };
@@ -4918,54 +4908,52 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
         };
         load(get_weapon_sound(oppWeaponType, oppWeapon, 3));
         if (oppWeapon == -4){
-            set_cnt(WEAPON_OPP, WEAPON_STICK, -30, -30, True);
+            SetCnt(WEAPON_OPP, WEAPON_STICK, -30, -30, True);
         } else {
             if (oppWeapon == -5){
-                set_cnt(WEAPON_OPP, WEAPON_BONE, -30, -30, True);
+                SetCnt(WEAPON_OPP, WEAPON_BONE, -30, -30, True);
             } else {
                 if (oppWeapon == -6){
-                    set_cnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, True);
+                    SetCnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, True);
                 } else {
-                    set_cnt(
+                    SetCnt(
                         WEAPON_OPP,
                         (((oppWeapon == 0)) ? WEAPON_FIST : C_EMPTY),
                          -30, -30, True);
                 };
             };
         };
-        set_cnt(BULLET_OPP, C_EMPTY);
+        SetCnt(BULLET_OPP, C_EMPTY);
         oppWeaponType = 1;
     } else {
         if (oppWeaponType == 1){
-            set_cnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), -30, -30, True);
-            set_cnt(BULLET_OPP, C_EMPTY);
+            SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), -30, -30, True);
+            SetCnt(BULLET_OPP, C_EMPTY);
         } else {
             if (oppWeaponType == 2){
-                set_cnt(WEAPON_OPP,
-                       GetItemID(0, 1, weapon_data),
-                       30, -30, True);
-                set_cnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True, 0));
+                SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), 30, -30, True);
+                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True, 0));
                 load(
                     get_arrow_id(0, 1, weapon_data, True, 1),
                     get_arrow_id(0, 1, weapon_data, True, 2),
                     get_arrow_id(0, 1, weapon_data, True, 3));
             } else {
                 if (oppWeaponType == 3){
-                    set_cnt(WEAPON_OPP, GetItemID(0, 1, weapon_data));
-                    set_cnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True));
+                    SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data));
+                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True));
                 };
             };
         };
     };
     if (charShield > 0){
-        set_cnt(SHIELD_CHAR, GetItemID(0, 2, weapon_data), 0, 0, True);
+        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weapon_data), 0, 0, True);
     } else {
-        set_cnt(SHIELD_CHAR, C_EMPTY);
+        SetCnt(SHIELD_CHAR, C_EMPTY);
     };
     if (oppShield > 0){
-        set_cnt(SHIELD_OPP, GetItemID(0, 3, weapon_data), 0, 0, True);
+        SetCnt(SHIELD_OPP, GetItemID(0, 3, weapon_data), 0, 0, True);
     } else {
-        set_cnt(SHIELD_OPP, C_EMPTY);
+        SetCnt(SHIELD_OPP, C_EMPTY);
     };
     oppVolk = int(face_data[17]);
     oppMann = (int(face_data[18]) == 1);
@@ -5295,13 +5283,13 @@ def show_taverne_screen(evt=None):
         HutBlinzelTimer = new Timer(50);
         HutBlinzelStep = 0;
         BarkeeperStep = 0;
-        set_cnt(TIMEBAR_FILL, TIMEBAR_FILL);
-        set_cnt(QO_REWARDGOLD, IF_GOLD);
-        set_cnt(QO_REWARDSILVER, IF_SILBER);
+        SetCnt(TIMEBAR_FILL, TIMEBAR_FILL);
+        SetCnt(QO_REWARDGOLD, IF_GOLD);
+        SetCnt(QO_REWARDSILVER, IF_SILBER);
         remove_all();
         add(SCREEN_TAVERNE);
-        if (get_advent() != 0){
-            add(((TAVERN_ADVENT + get_advent()) - 1));
+        if (GetAdvent() != 0){
+            add(((TAVERN_ADVENT + GetAdvent()) - 1));
         };
         if (beer_fest){
             add(BEERFEST);
@@ -5331,7 +5319,7 @@ def show_taverne_screen(evt=None):
             };
             add(CA_TV);
         };
-        refresh_time_bar();
+        RefreshTimeBar();
         check_wrong_page(ACT_SCREEN_TAVERNE);
         hide(TAVERNE_HUTMANN_BLINZELN);
         hide(TAVERNE_BARKEEPER1);
@@ -5361,7 +5349,7 @@ def show_taverne_screen(evt=None):
         remove(QUESTOFFER);
         remove(BEEROFFER);
         add(TAVERNE_CAS);
-        refresh_time_bar();
+        RefreshTimeBar();
         return;
     };
     load(SCREEN_TAVERNE);
@@ -5374,8 +5362,8 @@ def show_taverne_screen(evt=None):
         load(((SPECIAL_ACTION + special_action) - 1));
         load(TAVERNE_BARKEEPER_HINT);
     };
-    if (get_advent() != 0){
-        load(((TAVERN_ADVENT + get_advent()) - 1));
+    if (GetAdvent() != 0){
+        load(((TAVERN_ADVENT + GetAdvent()) - 1));
     };
     when_loaded(DoShowTaverneScreen);
     '''
@@ -5692,7 +5680,7 @@ def show_city_screen(evt=None):
             or (on_stage(SCR_CITY_BACKG_DAWN))))
             or (on_stage(SCR_CITY_BACKG_DAY)))
         ){
-            make_persistent(CITY_STATISTEN, BUBBLES);
+            MakePersistent(CITY_STATISTEN, BUBBLES);
             StatistenBleiben = True;
         };
         remove_all();
@@ -5709,7 +5697,7 @@ def show_city_screen(evt=None):
         };
         add(SCREEN_CITY);
         if (StatistenBleiben){
-            make_temporary(CITY_STATISTEN, BUBBLES);
+            MakeTemporary(CITY_STATISTEN, BUBBLES);
             visible_to_front(CITY_STATISTEN, BUBBLES);
         } else {
             if (int((random.random() * 3)) == 0){
@@ -5812,10 +5800,10 @@ def show_post_screen(par=None):
                     (((evt.keyCode == Keyboard.DELETE))
                         or ((evt.keyCode == Keyboard.BACKSPACE)))
                 ){
-                    post_btn_handler(None, POST_DELETE);
+                    PostBtnHandler(None, POST_DELETE);
                 } else {
                     if (evt.keyCode == Keyboard.ENTER){
-                        post_btn_handler(None, POST_READ);
+                        PostBtnHandler(None, POST_READ);
                     } else {
                         if (
                             (((evt.keyCode == Keyboard.UP))
@@ -5902,11 +5890,11 @@ def show_post_screen(par=None):
                 ldSel + ((KeyboardEvent(evt).keyCode)==Keyboard.UP)
                     ? -1 : 1);
             if (sel_row < 1){
-                post_btn_handler(None, POST_UP);
+                PostBtnHandler(None, POST_UP);
                 return;
             };
             if (sel_row > 15){
-                post_btn_handler(None, POST_DOWN);
+                PostBtnHandler(None, POST_DOWN);
                 return;
             };
             if (tmp_array[((sel_row - 1) * 3)] == ""){
@@ -5997,7 +5985,7 @@ def show_post_screen(par=None):
                 mouseChildren = False;
                 alpha = (((sel_row == line)) ? 1 : 0);
             };
-            double_click_handler(tmpBalken, BuildPostList, post_btn_handler);
+            double_click_handler(tmpBalken, BuildPostList, PostBtnHandler);
             if (tmp_array[i] == ""){
                 fight_flush_mode = False;
                 return;
@@ -6162,7 +6150,7 @@ def show_post_screen(par=None):
             visible = True;
             filters = Filter_Shadow;
         };
-        double_click_handler(tmpLbl, BuildPostList, post_btn_handler);
+        double_click_handler(tmpLbl, BuildPostList, PostBtnHandler);
         actor[POST_LIST].addChild(tmpLbl);
     };
     load(SCREEN_POST);
@@ -6322,8 +6310,8 @@ def show_character_screen(evt=None, no_prices=False):
         };
         i = 0;
         while (i < 5) {
-            set_cnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
-            set_cnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
+            SetCnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
+            SetCnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
             i = (i + 1);
         };
         if (text_dir == "right"){
@@ -6751,8 +6739,8 @@ def show_player_screen(
         };
         i = 0;
         while (i < 5) {
-            set_cnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
-            set_cnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
+            SetCnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
+            SetCnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
             i = (i + 1);
         };
         if (text_dir == "right"){
@@ -7329,13 +7317,13 @@ def show_screen_gilden(
             with (_local3) {
                 if (type == TextFieldType.INPUT){
                     if (text != resolve_breaks(guild_descr)){
-                        guild_descr = semi_strip(text);
+                        guild_descr = SemiStrip(text);
                         send_action(
                             ACT_GUILD_SET_DESC,
                             actor[INP['NAME']].getChildAt(1).text,
                             gilde,
-                            ((old_crest_str + "§") + remove_illegal_chars(
-                                semi_strip(text))),
+                            ((old_crest_str + "§") + RemoveIllegalChars(
+                                SemiStrip(text))),
                             MD5(actor[INP['LOGIN_PASSWORD']]
                                 .getChildAt(1).text)
                         );
@@ -8474,8 +8462,8 @@ def show_screen_gilden(
                     (LBL_GILDE_GEBAEUDE_NAME + i)
                 ].y;
             };
-            set_cnt((GILDE_GEBAEUDE_GOLD + i), IF_GOLD);
-            set_cnt((GILDE_GEBAEUDE_MUSH + i), IF_PILZE);
+            SetCnt((GILDE_GEBAEUDE_GOLD + i), IF_GOLD);
+            SetCnt((GILDE_GEBAEUDE_MUSH + i), IF_PILZE);
             hide(
                 (LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i),
                 (GILDE_GEBAEUDE_GOLD + i)
@@ -8585,7 +8573,7 @@ def show_screen_gilden(
         };
         GoldKostenAvg = (GoldKostenAvg / 3);
         PilzKostenAvg = (PilzKostenAvg / 3);
-        actor[LBL_GILDE_GOLD2].text = get_spend_amount();
+        actor[LBL_GILDE_GOLD2].text = GetSpendAmount();
         actor[LBL_GILDE_MUSH2].text = "1";
         actor[GILDE_GOLD2].x = (
             (actor[LBL_GILDE_GOLD2].x
@@ -8594,10 +8582,10 @@ def show_screen_gilden(
         actor[GILDE_MUSH2].x = (
             (actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].text_width) + 15
         );
-        set_cnt(GILDE_GOLD, IF_GOLD);
-        set_cnt(GILDE_GOLD2, IF_GOLD);
-        set_cnt(GILDE_MUSH, IF_PILZE);
-        set_cnt(GILDE_MUSH2, IF_PILZE);
+        SetCnt(GILDE_GOLD, IF_GOLD);
+        SetCnt(GILDE_GOLD2, IF_GOLD);
+        SetCnt(GILDE_MUSH, IF_PILZE);
+        SetCnt(GILDE_MUSH2, IF_PILZE);
         RightBoxWidth = (((
             (actor[GILDE_GOLD].width + GILDE_GOLDMUSH_C1)
             + actor[LBL_GILDE_GOLD2].text_width)
@@ -8739,7 +8727,7 @@ def show_screen_gilden(
                 remove(GILDE_CREST_GOTO_GEBAEUDE);
                 actor[GILDE_CREST].mouseChildren = False;
             };
-            load_crest();
+            loadCrest();
         };
         if (!((is_mine) or ((guild_data[0] == savegame[SG_GUILD_INDEX])))){
             remove(GILDE_CREST_GOTO_GEBAEUDE);
@@ -9663,8 +9651,8 @@ def show_work_screen(evt=None):
             check_wrong_page(ACT_SCREEN_ARBEITEN);
         };
         add(SCREEN_ARBEITEN_WAIT);
-        set_cnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
-        set_cnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
+        SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
+        SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
         when_loaded(DoShowWorking);
     } else {
         if (savegame[SG_ACTION_STATUS] == 0){
@@ -9675,7 +9663,7 @@ def show_work_screen(evt=None):
                 - int((actor[LBL_WINDOW_TITLE].text_width / 2))
             );
             actor[LBL_SCR_ARBEITEN_TEXT].text = texts[TXT_ARBEIT_TEXT];
-            set_slider_value(SLDR['ARBEITEN'], 1);
+            SetSliderValue(SLDR['ARBEITEN'], 1);
             arbeiten_slider_change(1);
         };
     };
@@ -9778,8 +9766,8 @@ def show_main_quests_screen(next_enemies):
                             ];
                     };
                 };
-                set_cnt((MQS_DISABLED + i), MQS_DISABLED);
-                set_cnt((MQS_COMPLETED + i), MQS_COMPLETED);
+                SetCnt((MQS_DISABLED + i), MQS_DISABLED);
+                SetCnt((MQS_COMPLETED + i), MQS_COMPLETED);
                 _local2 = actor[(MQS_DISABLED + i)];
                 with (_local2) {
                     visible = (int(savegame[(SG_DUNGEON_LEVEL + i)]) <= 1);
@@ -9788,7 +9776,7 @@ def show_main_quests_screen(next_enemies):
                 actor[(MQS_COMPLETED + i)].visible = (
                     int(savegame[(SG_DUNGEON_LEVEL + i)]) >= 12
                 );
-                set_cnt((MQS_BUTTON + i), (MQS_BUTTON + i));
+                SetCnt((MQS_BUTTON + i), (MQS_BUTTON + i));
                 DungeonLevel = str((int(savegame[(SG_DUNGEON_LEVEL + i)]) - 1))
                 if (DungeonLevel == "0"){
                     PlayUnlockSound = True;
@@ -9824,8 +9812,8 @@ def show_main_quests_screen(next_enemies):
             i = 0;
             while (i < 5) {
                 if (i < 4){
-                    set_cnt((HLMQS_DISABLED + i), MQS_DISABLED);
-                    set_cnt((HLMQS_COMPLETED + i), MQS_COMPLETED);
+                    SetCnt((HLMQS_DISABLED + i), MQS_DISABLED);
+                    SetCnt((HLMQS_COMPLETED + i), MQS_COMPLETED);
                     if (i == 0){
                         DungeonLevel = savegame[(SG_DUNGEON_LEVEL + 9)];
                         if (countDone > 9){
@@ -10010,7 +9998,7 @@ def show_main_quests_screen(next_enemies):
                         };
                     };
                 } else {
-                    set_cnt((HLMQS_COMPLETED + i), HLMQS_TOWER_DISABLED);
+                    SetCnt((HLMQS_COMPLETED + i), HLMQS_TOWER_DISABLED);
                     Nextenemy = texts[
                         (TXT_TOWER_enemy_NAMES + tower_level)
                     ].split("|")[0];
@@ -10021,7 +10009,7 @@ def show_main_quests_screen(next_enemies):
                         actor[(HLMQS_COMPLETED + i)].visible = False;
                     };
                 };
-                set_cnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
+                SetCnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
                 enable_popup(
                     (HLMQS_BUTTON + i),
                     POPUP_BEGIN_LINE,
@@ -10179,7 +10167,7 @@ def show_main_quest_screen(dungeon_nr=0, enemy=0):
         } else {
             add(((SCR_QUEST_BG_1 + 50) + dungeon_nr));
         };
-        set_cnt(MAINQUEST_enemy_BORDER, FIGHT_CHAR_BORDER);
+        SetCnt(MAINQUEST_enemy_BORDER, FIGHT_CHAR_BORDER);
         add(SCREEN_MAINQUEST);
         if (enemy < 0){
             i = 0;
@@ -10195,7 +10183,7 @@ def show_main_quest_screen(dungeon_nr=0, enemy=0):
             };
             load_character_image();
         } else {
-            set_cnt(MAINQUEST_enemy, (OPPMONSTER + enemy));
+            SetCnt(MAINQUEST_enemy, (OPPMONSTER + enemy));
         };
         SelectedDungeon = dungeon_nr;
     };
@@ -10424,7 +10412,7 @@ def show_witch(
         i = 0;
         while (i < int(witch_data[7])) {
             load(GetItemID(14, int(witch_data[(9 + (3 * i))]), None, 0));
-            set_cnt(
+            SetCnt(
                 (WITCH_SCROLL + i),
                 GetItemID(14, int(witch_data[(9 + (3 * i))]),
                 None,
@@ -10567,7 +10555,7 @@ def show_witch(
     pass
 
 
-def showalbum_content(evt=None):
+def Showalbum_content(evt=None):
     '''
     var i:* = 0;
     var entryText:* = None;
@@ -10599,23 +10587,23 @@ def showalbum_content(evt=None):
             if (itm_class > 0){
                 itm_class--;
             };
-            set_cnt(
+            SetCnt(
                (ALBUM_WEAPON_1 + i),
                GetItemID(itmTyp, itm_pic, 0, itm_class)
             );
-            set_cnt(
+            SetCnt(
                (ALBUM_WEAPON_2 + i),
                GetItemID(itmTyp, itm_pic, 1, itm_class)
             );
-            set_cnt(
+            SetCnt(
                (ALBUM_WEAPON_3 + i),
                GetItemID(itmTyp, itm_pic, 2, itm_class)
             );
-            set_cnt(
+            SetCnt(
                 (ALBUM_WEAPON_4 + i),
                 GetItemID(itmTyp, itm_pic, 3, itm_class)
             );
-            set_cnt(
+            SetCnt(
                (ALBUM_WEAPON_5 + i),
                GetItemID(itmTyp, itm_pic, 4, itm_class)
             );
@@ -10659,7 +10647,7 @@ def showalbum_content(evt=None):
             if (itm_class > 0){
                 itm_class--;
             };
-            set_cnt(
+            SetCnt(
                (ALBUM_WEAPON_EPIC + i),
                GetItemID(itmTyp, itm_pic, 0, itm_class));
             if (showAlbumOffset){
@@ -10675,7 +10663,7 @@ def showalbum_content(evt=None):
     entryText = "";
     hintText = "";
     hunterOffs = 0;
-    album_clear();
+    AlbumClear();
     actor_id = 0;
     if (evt){
         actor_id = get_actor_id(evt.target);
@@ -10785,7 +10773,7 @@ def showalbum_content(evt=None):
                 albumPage = 62;
             };
             if (album_content[((albumPage * 4) + i)] == 1){
-                set_cnt(
+                SetCnt(
                    (ALBUM_MONSTER + i),
                    ((OPPMONSTER + (albumPage * 4)) + i)
                 );
@@ -10799,7 +10787,7 @@ def showalbum_content(evt=None):
                     ];
                 };
             } else {
-                set_cnt((ALBUM_MONSTER + i), UNKNOWN_enemy);
+                SetCnt((ALBUM_MONSTER + i), UNKNOWN_enemy);
                 entryText = texts[TXT_UNKNOWN];
             };
             if (showAlbumOffset){
@@ -12410,7 +12398,7 @@ def action_handler(event):
             break
 
         if case(RESP['TOWER']['SAVE']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_tower_screen(par)
             break
 
@@ -12458,7 +12446,7 @@ def action_handler(event):
             if act == RESP['TOILET']['DROPPED']:
                 play(SND['TOILET']['DROP'])
 
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             if len(par) > 1:
                 if act == RESP['TOILET']['FLUSHED']:
                     show_toilet(par[1], par[2], par[3], par[4], par[5])
@@ -12476,7 +12464,7 @@ def action_handler(event):
             break
 
         if case(RESP['SCREEN']['WITCH']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_witch(
                 par[1].split("/"),
                 (par[2].split("/")[0] == "1"),
@@ -12549,7 +12537,7 @@ def action_handler(event):
             break
 
         if case(ERR['JOINED_TOO_RECENTLY']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             error_message(texts[TXT['GUILD']['JOINED_TOO_RECENTLY']].replace(
                 "%1", time_str(
                     int(savegame[SG['GUILD']['JOIN_DATE']]) + 60 * 60 * 24,
@@ -12704,12 +12692,12 @@ def action_handler(event):
             break
 
         if case(RESP['BET_WON']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_bet_result(True)
             break
 
         if case(RESP['BET_LOST']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_bet_result(False)
             break
 
@@ -12981,7 +12969,7 @@ def action_handler(event):
             break
 
         if case(RESP['GUILD']['DONATE_SUCCESS']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             send_action(ACT['SCREEN']['GILDEN'])
             break
 
@@ -13006,7 +12994,7 @@ def action_handler(event):
             so.data.userName = option_new_data
             so.flush()
             actor[INP['NAME']].getChildAt(1).text = option_new_data
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_option_screen()
             error_message(texts[TXT['NAME_CHANGED']])
             break
@@ -13051,7 +13039,7 @@ def action_handler(event):
 
         if case(RESP['MAINQUEST']):
             hide(BNC['IF']['STATS'])
-            Savegame.parse_savgame(par[10])
+            parse_savgame(par[10])
             pulse_char = False
         if case(RESP['QUEST']['DONE']):
             pass
@@ -13103,7 +13091,7 @@ def action_handler(event):
         if case(RESP['QUEST']['SKIP_ALLOWED_START']):
             skip_allowed = True
         if case(RESP['QUEST']['START']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_quest_screen()
             break
 
@@ -13112,7 +13100,7 @@ def action_handler(event):
         if case(ACT['SCREEN']['TAVERNE']):
             pass
         if case(RESP['QUEST']['STOP']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             if par[1]:
                 special_action = par[1]
             else:
@@ -13165,12 +13153,12 @@ def action_handler(event):
         if case(RESP['GUILD']['JOIN_ATTACK_OK']):
             pass
         if case(RESP['GUILD']['JOIN_DEFENSE_OK']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             send_action(ACT['SCREEN']['GILDEN'])
             break
 
         if case(ACT['SCREEN']['GILDEN']):
-            Savegame.savegame[SG['GUILD']['INDEX']] = par[0].split("/")[0]
+            savegame[SG['GUILD']['INDEX']] = par[0].split("/")[0]
             gilde = par[3]
             is_mine = True
             interval_multiplier_chat = 1
@@ -13484,7 +13472,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['WELTKARTE']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_main_quests_screen(par[1].split("/"))
             break
 
@@ -13820,12 +13808,12 @@ def action_handler(event):
             break
 
         if case(RESP['ARBEIT']['START'], RESP['ARBEIT']['STOP']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             show_work_screen()
             break
 
         if case(RESP['ARBEIT']['ERLEDIGT']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             verdientes_geld = par[1]
             show_work_success_screen()
             break
@@ -13842,7 +13830,7 @@ def action_handler(event):
                 RESP['SAVEGAME']['SHARD'],
                 RESP['SAVEGAME']['MIRROR'],
                 RESP['MOVE']['TOWER_ITEM']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             if on_stage(IMG['SCR']['CHAR_BG']):
                 if act == RESP['MOVE']['TOWER_ITEM']:
                     show_tower_screen(par)
@@ -13867,7 +13855,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['CHAR']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             player_desc = resolve_breaks(par[1])
             if savegame[SG['FACE']['1']] == 0:
                 show_build_character_screen()
@@ -13876,7 +13864,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['ZAUBERLADEN']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             if par[1]:
                 special_action = par[1]
             else:
@@ -13892,7 +13880,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['SCHMIEDE']):
-            Savegame.parse_savgame(par[0])
+            parse_savgame(par[0])
             if par[1]:
                 special_action = par[1]
             else:
@@ -13938,7 +13926,7 @@ def action_handler(event):
             album_effect = False
             previous_login = True
             gilden_id = 0
-            Savegame.parse_savgame(par[0], False)
+            parse_savgame(par[0], False)
 
             dealer_aktion = 0
             if par[1]:
@@ -13962,7 +13950,7 @@ def action_handler(event):
                 LOG.error("Fehler): Charakter nicht initialisiert.")
                 request_logout()
             else:
-                Savegame.parse_savgame(par[0])
+                parse_savgame(par[0])
                 server_time = int(savegame[SG['SERVER']['TIME']])
                 email_date = int(savegame[SG['EMAIL']['DATE']])
 
@@ -14675,36 +14663,37 @@ def process_arg(arg):
 
     elif arg is str:
         arg = arg.replace("#", chr(13))
-        tmp_field = TextField()
-        tmp_field.auto_size = TextFieldAutoSize.LEFT
-        tmp_field.background = False
-        tmp_field.selectable = False
-        tmp_field.embed_fonts = font_embedded
-        tmp_field.default_text_format = tmp_text_format
-        tmp_field.htmlText = arg
-        tmp_field.last_text_height = textHeight
-        if text_dir == "right":
-            tmp_field.auto_size = TextFieldAutoSize.RIGHT
-            if tmp_field.textX < popup_width:
-                tmp_field.x = tmp_field.textX - tmp_field.text_width
-                tmp_field.textX -= tmp_field.text_width + 5
-                tmp_field.y = tmp_field.textY
+        tmp_text_field = TextField()
+        with tmp_text_field:
+            auto_size = TextFieldAutoSize.LEFT
+            background = False
+            selectable = False
+            embed_fonts = font_embedded
+            default_text_format = tmp_text_format
+            htmlText = arg
+            last_text_height = textHeight
+            if text_dir == "right":
+                auto_size = TextFieldAutoSize.RIGHT
+                if textX < popup_width:
+                    x = textX - text_width
+                    textX -= text_width + 5
+                    y = textY
+                else:
+                    x = popup_width - 5 - text_width
+                    y = textY
+                    textY += textHeight + 10
             else:
-                tmp_field.x = popup_width - 5 - tmp_field.text_width
-                tmp_field.y = tmp_field.textY
-                tmp_field.textY += tmp_field.textHeight + 10
-        else:
-            if tmp_field.textX > 0:
-                tmp_field.x = tmp_field.textX
-                tmp_field.textX += tmp_field.text_width + 5
-                tmp_field.y = tmp_field.textY
-            else:
-                tmp_field.x = 5
-                tmp_field.y = tmp_field.textY
-                tmp_field.textY += tmp_field.textHeight + 10
+                if textX > 0:
+                    x = textX
+                    textX += text_width + 5
+                    y = textY
+                else:
+                    x = 5
+                    y = textY
+                    textY += textHeight + 10
 
-            if (tmp_field.x + tmp_field.text_width + 10) > popup_width:
-                popup_width = tmp_field.x + tmp_field.text_width + 10
+                if (x + text_width + 10) > popup_width:
+                    popup_width = x + text_width + 10
 
             actor[POPUP_INFO].addChild(tmp_text_field)
 
@@ -16554,7 +16543,7 @@ def build_interface():
             MouseEvent.MOUSE_OVER,
             InterfaceButtonHover
         );
-        make_persistent(
+        MakePersistent(
             ((IF_DRAGON_1 + iPosi) - 1),
             actor_id
         );
@@ -16905,15 +16894,15 @@ def build_interface():
     };
     CloneMarker = function ():
         var i;
-        set_cnt(M_ACT, VOLK_MARKER);
-        set_cnt(F_ACT, VOLK_MARKER);
-        set_cnt(KASTE_1_ACT, VOLK_MARKER);
-        set_cnt(KASTE_2_ACT, VOLK_MARKER);
-        set_cnt(KASTE_3_ACT, VOLK_MARKER);
+        SetCnt(M_ACT, VOLK_MARKER);
+        SetCnt(F_ACT, VOLK_MARKER);
+        SetCnt(KASTE_1_ACT, VOLK_MARKER);
+        SetCnt(KASTE_2_ACT, VOLK_MARKER);
+        SetCnt(KASTE_3_ACT, VOLK_MARKER);
         i = 0;
         while (i <= 7) {
-            set_cnt((VOLK_1_M_ACT + i), VOLK_MARKER);
-            set_cnt((VOLK_1_F_ACT + i), VOLK_MARKER);
+            SetCnt((VOLK_1_M_ACT + i), VOLK_MARKER);
+            SetCnt((VOLK_1_F_ACT + i), VOLK_MARKER);
             i++;
         };
     };
@@ -17853,7 +17842,7 @@ def build_interface():
                 if (text != player_desc){
                     send_action(
                         ACT_SET_PLAYER_DESC,
-                        remove_illegal_chars(semi_strip(text))
+                        RemoveIllegalChars(SemiStrip(text))
                     );
                 };
                 if (text == ""){
@@ -18768,10 +18757,10 @@ def build_interface():
                 );
         };
         add_some(LBL_STALL_LAUFZEIT, STALL_BUY);
-        set_cnt(STALL_MUSH, IF_PILZE);
-        set_cnt(STALL_GOLD, IF_GOLD);
-        set_cnt(STALL_SCHATZGOLD, IF_GOLD);
-        set_cnt(STALL_SCHATZSILBER, IF_SILBER);
+        SetCnt(STALL_MUSH, IF_PILZE);
+        SetCnt(STALL_GOLD, IF_GOLD);
+        SetCnt(STALL_SCHATZGOLD, IF_GOLD);
+        SetCnt(STALL_SCHATZSILBER, IF_SILBER);
         actor[LBL_STALL_TITEL].text = texts[
             ((TXT_STALL_MOUNTTITEL + SelectedMount)
             + (((char_volk >= 5))
@@ -19029,10 +19018,10 @@ def build_interface():
     var CleanupField:* = function (actor_id){
         var actor_id:* = actor_id;
         var FixContent:* = function (evt:KeyboardEvent){
-            if (actor[actor_id].getChildAt(0).text != remove_illegal_chars(
+            if (actor[actor_id].getChildAt(0).text != RemoveIllegalChars(
                     actor[actor_id].getChildAt(0).text)
             ){
-                actor[actor_id].getChildAt(0).text = remove_illegal_chars(
+                actor[actor_id].getChildAt(0).text = RemoveIllegalChars(
                     actor[actor_id].getChildAt(0).text
                 );
             };
@@ -19167,7 +19156,7 @@ def build_interface():
             };
             i++;
         };
-        textToSend = remove_illegal_chars(
+        textToSend = RemoveIllegalChars(
             actor[INP_GILDE_CHAT].getChildAt(0).text
         );
         if (textToSend.length <= 0){
@@ -19186,7 +19175,7 @@ def build_interface():
                 set_alpha(GILDE_CREST_CONTROLS, 1);
                 add(GILDE_CREST_CONTROLS);
             };
-            load_crest();
+            loadCrest();
             actor[INP_GILDE_CHAT].getChildAt(0).text = old_crest_str();
             actor[INP_GILDE_CHAT].getChildAt(0).setSelection(
                 0, len(old_crest_str())
@@ -19635,7 +19624,7 @@ def build_interface():
                     };
                     i = (i + 1);
                 };
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_CREST_COLOR_PREV:
                 crestSuggested = False;
@@ -19648,7 +19637,7 @@ def build_interface():
                     crestColor[crestColorSelection] = (
                                heraldicColors.length - 1);
                 };
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_CREST_COLOR_NEXT:
                 crestSuggested = False;
@@ -19661,7 +19650,7 @@ def build_interface():
                         heraldicColors.length){
                     crestColor[crestColorSelection] = 0;
                 };
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_CREST_CHANGE_PREV:
                 crestSuggested = False;
@@ -19674,7 +19663,7 @@ def build_interface():
                     crest[selecterCrestElement] = (
                         crestElementPos[selecterCrestElement][4] - 1);
                 };
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_CREST_CHANGE_NEXT:
                 crestSuggested = False;
@@ -19687,7 +19676,7 @@ def build_interface():
                         selecterCrestElement][4]){
                     crest[selecterCrestElement] = 0;
                 };
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_CREST_OK:
                 if ((((my_own_rank == 1)) and (crestSuggested))){
@@ -19695,7 +19684,7 @@ def build_interface():
                                 actor[INP['NAME']].getChildAt(1).text,
                                 gilde,
                                 ((old_crest_str() + "§")
-                                    + remove_illegal_chars(semi_strip(
+                                    + RemoveIllegalChars(SemiStrip(
                                     actor[INP_GILDE_TEXT].getChildAt(0)
                                     .text))),
                                 MD5(actor[INP['LOGIN_PASSWORD']]
@@ -19750,7 +19739,7 @@ def build_interface():
                     load((GILDE_CREST_COLOR_FILLIN + i));
                     i = (i + 1);
                 };
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_GEBAEUDE_GOTO_CREST:
                 remove(GILDE_GEBAEUDE);
@@ -19764,7 +19753,7 @@ def build_interface():
                 };
                 crestSuggested = False;
                 set_btn_text(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST]);
-                load_crest();
+                loadCrest();
                 break;
             if case(GILDE_CREST_GOTO_GEBAEUDE:
                 set_crest_str(old_crest_str);
@@ -19928,14 +19917,14 @@ def build_interface():
                 set_btn_text(HUTMANN_OK, texts[TXT_HUTMANN_START]);
                 add(HUTMANN_OK);
                 if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (
-                        50 * int(get_spend_amount()))))
+                        50 * int(GetSpendAmount()))))
                         or (int(actor[LBL_HUTMANN_MUSHBET].text) >= 20))):
                     actor[LBL_HUTMANN_TEXT].text = texts[
                         TXT_HUTMANN_BETCOMMENT3];
                     add(HUTFACE_LOSE3);
                 } else {
                     if ((((int(actor[LBL_HUTMANN_GOLDBET].text) >= (
-                            10 * int(get_spend_amount()))))
+                            10 * int(GetSpendAmount()))))
                             or ((int(actor[LBL_HUTMANN_MUSHBET].text)
                                 >= 10)))){
                         actor[LBL_HUTMANN_TEXT].text = texts[
@@ -20124,10 +20113,10 @@ def build_interface():
             };
             actor[LBL_HUTMANN_GOLDBET].text = str(PresetGold);
             actor[LBL_HUTMANN_MUSHBET].text = str(PresetMush);
-            set_cnt(HUTMANN_GOLDBET, IF_GOLD);
-            set_cnt(HUTMANN_GOLDBET2, IF_GOLD);
-            set_cnt(HUTMANN_MUSHBET, IF_PILZE);
-            set_cnt(HUTMANN_MUSHBET2, IF_PILZE);
+            SetCnt(HUTMANN_GOLDBET, IF_GOLD);
+            SetCnt(HUTMANN_GOLDBET2, IF_GOLD);
+            SetCnt(HUTMANN_MUSHBET, IF_PILZE);
+            SetCnt(HUTMANN_MUSHBET2, IF_PILZE);
             PlaceHutBet();
             add(SCREEN_HUTMANN);
             if ((((PresetGold > 0)) or ((PresetMush > 0)))){
@@ -20144,7 +20133,7 @@ def build_interface():
         };
         load(SCREEN_HUTMANN);
         load(HUTBECHER_1_HOVER, HUTBECHER_1_HOVER, HUTBECHER_1_HOVER);
-        actor[LBL_HUTMANN_GOLDBET2].text = get_spend_amount();
+        actor[LBL_HUTMANN_GOLDBET2].text = GetSpendAmount();
         when_loaded(doShowHutmann);
     };
     BuyBeer = function (evt:Event=None){
@@ -20167,7 +20156,7 @@ def build_interface():
             canBuy = False;
             tooHealthy = True;
         };
-        refresh_time_bar(((canBuy) ? (20 * 60) : 0));
+        RefreshTimeBar(((canBuy) ? (20 * 60) : 0));
         remove(TAVERNE_CAS);
         add(BEEROFFER);
         enable_popup(QO_REWARDGOLD);
@@ -20349,7 +20338,7 @@ def build_interface():
         add(TAVERNE_CAS);
         remove(QUESTOFFER);
         remove(BEEROFFER);
-        refresh_time_bar();
+        RefreshTimeBar();
     };
 
     var ChooseQuest:* = function (evt:Event=None){
@@ -20405,7 +20394,7 @@ def build_interface():
             hide(QO_START);
             actor[LBL_QO_REWARDEXP].text = "";
             actor[LBL_QO_TIME].text = "";
-            set_cnt(QUEST_SLOT, C_EMPTY);
+            SetCnt(QUEST_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         } else {
             show(LBL_QO_REWARD);
@@ -20524,7 +20513,7 @@ def build_interface():
             };
             if (int(savegame[((SG['QUEST']['OFFER']['REWARD_ITM1']
                     + (quest_id * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) > 0){
-                set_cnt(QUEST_SLOT,
+                SetCnt(QUEST_SLOT,
                        GetItemID(SG['QUEST']['OFFER']['REWARD_ITM1'],
                                  quest_id));
                 item_popup(QUEST_SLOT,
@@ -20532,7 +20521,7 @@ def build_interface():
                            + (quest_id * SG['ITM']['SIZE'])),
                             None, False, False, False);
             } else {
-                set_cnt(QUEST_SLOT, C_EMPTY);
+                SetCnt(QUEST_SLOT, C_EMPTY);
                 enable_popup(FIGHT_SLOT);
             };
             if (text_dir == "right"){
@@ -20556,7 +20545,7 @@ def build_interface():
                     + str(int((int(savegame[(SG_QUEST_OFFER_DURATION1
                           + quest_id)]) % 60))));
             };
-            refresh_time_bar(-(int(savegame[(SG_QUEST_OFFER_DURATION1
+            RefreshTimeBar(-(int(savegame[(SG_QUEST_OFFER_DURATION1
                            + quest_id)])));
         };
     };
@@ -20663,7 +20652,7 @@ def build_interface():
             };
             so.flush();
             set_volume((so.data.volume / 10));
-            set_slider_value(SLDR_OPTION_VOLUME, (so.data.volume + 1));
+            SetSliderValue(SLDR_OPTION_VOLUME, (so.data.volume + 1));
         } else {
             so.data.volume = (value - 1);
             so.flush();
@@ -21067,16 +21056,16 @@ def build_interface():
     };
     i = 0;
     while (i < param_social_buttons.length) {
-        define_cnt((SOCIAL + i), (120 + (i * 40)), 2);
+        DefineCnt((SOCIAL + i), (120 + (i * 40)), 2);
         define_img((SOCIAL + i),
                   (("res/gfx/if/social_"
                    + param_social_buttons[i].split(":")[0]) + ".png"),
                     True, 0, 0);
-        make_persistent((SOCIAL + i), (SOCIAL + i));
+        MakePersistent((SOCIAL + i), (SOCIAL + i));
         var _local2 = actor[(SOCIAL + i)];
         with (_local2) {
             addChild(actor[(SOCIAL + i)]);
-            text_link_make_clickable(getChildAt(0).parent);
+            textLinkMakeClickable(getChildAt(0).parent);
             add_event_listener(MouseEvent.CLICK, ShowSocial);
             buttonMode = True;
             useHandCursor = True;
@@ -21096,11 +21085,11 @@ def build_interface():
         var ShowSponsor:* = function (evt:MouseEvent=None){
             navigate_to_url(new URLRequest(param_sponsor_url), "_blank");
         };
-        define_cnt(IF_SPONSOR, SPONSOR_X, SPONSOR_Y);
+        DefineCnt(IF_SPONSOR, SPONSOR_X, SPONSOR_Y);
         define_img(IF_SPONSOR, (("res/gfx/if/sponsor_"
                   + param_sponsor) + ".png"), True, 0, 0);
         if (param_sponsor_url != ""){
-            make_persistent(IF_SPONSOR, IF_SPONSOR);
+            MakePersistent(IF_SPONSOR, IF_SPONSOR);
             add_bunch(IF_MAIN, IF_SPONSOR);
             _local2 = actor[IF_SPONSOR];
             with (_local2) {
@@ -21111,7 +21100,7 @@ def build_interface():
                 buttonMode = True;
             };
         } else {
-            make_persistent(IF_SPONSOR);
+            MakePersistent(IF_SPONSOR);
             add_bunch(IF_MAIN, IF_SPONSOR);
             _local2 = actor[IF_SPONSOR];
             with (_local2) {
@@ -21120,17 +21109,17 @@ def build_interface():
             };
         };
     };
-    define_cnt(IF_LOGOUT,
+    DefineCnt(IF_LOGOUT,
               ((shop_url)!="") ? LOGOUT_X_WITH_SHOP : LOGOUT_X, LOGOUT_Y);
     define_lbl(LBL_IF_LOGOUT,
               texts[TXT_LOGOUT], 0, 0,
               FontFormat_LOGoutLink);
     add_filter(LBL_IF_LOGOUT, Filter_Shadow);
-    make_persistent(IF_LOGOUT, LBL_IF_LOGOUT);
+    MakePersistent(IF_LOGOUT, LBL_IF_LOGOUT);
     _local2 = actor[IF_LOGOUT];
     with (_local2) {
         addChild(actor[LBL_IF_LOGOUT]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (((shop_url)!="")
              ? LOGOUT_X_WITH_SHOP : LOGOUT_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, RequestLOGout);
@@ -21138,32 +21127,32 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(IF_IMPRESSUM, IMPRESSUM_X, LOGOUT_Y);
+    DefineCnt(IF_IMPRESSUM, IMPRESSUM_X, LOGOUT_Y);
     define_lbl(LBL_IF_IMPRESSUM,
               texts[TXT_IMPRESSUM_LINK], 0, 0,
               FontFormat_LOGoutLink);
     add_filter(LBL_IF_IMPRESSUM, Filter_Shadow);
-    make_persistent(IF_IMPRESSUM, LBL_IF_IMPRESSUM);
+    MakePersistent(IF_IMPRESSUM, LBL_IF_IMPRESSUM);
     _local2 = actor[IF_IMPRESSUM];
     with (_local2) {
         addChild(actor[LBL_IF_IMPRESSUM]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (IMPRESSUM_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, ShowImpressum);
         mouseChildren = False;
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(IF_FORUM,
+    DefineCnt(IF_FORUM,
               ((shop_url)!="") ? FORUM_X_WITH_SHOP : FORUM_X, LOGOUT_Y);
     define_lbl(LBL_IF_FORUM,
               texts[TXT_FORUM_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_FORUM, Filter_Shadow);
-    make_persistent(IF_FORUM, LBL_IF_FORUM);
+    MakePersistent(IF_FORUM, LBL_IF_FORUM);
     _local2 = actor[IF_FORUM];
     with (_local2) {
         addChild(actor[LBL_IF_FORUM]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (((shop_url)!="")
              ? FORUM_X_WITH_SHOP : FORUM_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, ShowForum);
@@ -21171,47 +21160,47 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(IF_AGB, AGB_X, LOGOUT_Y);
+    DefineCnt(IF_AGB, AGB_X, LOGOUT_Y);
     define_lbl(LBL_IF_AGB, texts[TXT_AGB_LINK], 0, 0, FontFormat_LOGoutLink)
     add_filter(LBL_IF_AGB, Filter_Shadow);
-    make_persistent(IF_AGB, LBL_IF_AGB);
+    MakePersistent(IF_AGB, LBL_IF_AGB);
     _local2 = actor[IF_AGB];
     with (_local2) {
         addChild(actor[LBL_IF_AGB]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (AGB_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, ShowAGB);
         mouseChildren = False;
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(IF_DATENSCHUTZ, DATENSCHUTZ_X, LOGOUT_Y);
+    DefineCnt(IF_DATENSCHUTZ, DATENSCHUTZ_X, LOGOUT_Y);
     define_lbl(LBL_IF_DATENSCHUTZ,
               texts[TXT_DATENSCHUTZ_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_DATENSCHUTZ, Filter_Shadow);
-    make_persistent(IF_DATENSCHUTZ, LBL_IF_DATENSCHUTZ);
+    MakePersistent(IF_DATENSCHUTZ, LBL_IF_DATENSCHUTZ);
     _local2 = actor[IF_DATENSCHUTZ];
     with (_local2) {
         addChild(actor[LBL_IF_DATENSCHUTZ]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (DATENSCHUTZ_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, ShowDatenschutz);
         mouseChildren = False;
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(IF_ANLEITUNG,
+    DefineCnt(IF_ANLEITUNG,
               ((shop_url)!="")
                 ? ANLEITUNG_X_WITH_SHOP
                 : ANLEITUNG_X, LOGOUT_Y);
     define_lbl(LBL_IF_ANLEITUNG,
               texts[TXT_ANLEITUNG_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_ANLEITUNG, Filter_Shadow);
-    make_persistent(IF_ANLEITUNG, LBL_IF_ANLEITUNG);
+    MakePersistent(IF_ANLEITUNG, LBL_IF_ANLEITUNG);
     _local2 = actor[IF_ANLEITUNG];
     with (_local2) {
         addChild(actor[LBL_IF_ANLEITUNG]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (((shop_url)!="")
              ? ANLEITUNG_X_WITH_SHOP : ANLEITUNG_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, ShowAnleitung);
@@ -21219,15 +21208,15 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(IF_SHOP, SHOP_X, LOGOUT_Y);
+    DefineCnt(IF_SHOP, SHOP_X, LOGOUT_Y);
     define_lbl(LBL_IF_SHOP,
               texts[TXT_SHOP_LINK], 0, 0, FontFormat_LOGoutLink);
     add_filter(LBL_IF_SHOP, Filter_Shadow);
-    make_persistent(IF_SHOP, LBL_IF_SHOP);
+    MakePersistent(IF_SHOP, LBL_IF_SHOP);
     _local2 = actor[IF_SHOP];
     with (_local2) {
         addChild(actor[LBL_IF_SHOP]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (SHOP_X - int((width / 2)));
         add_event_listener(MouseEvent.CLICK, ShowShop);
         mouseChildren = False;
@@ -21248,7 +21237,7 @@ def build_interface():
     define_img(IF_PILZE, "res/gfx/if/icon_pilz.png", True,
               IF_LBL_GOLDPILZE_X, IF_LBL_PILZE_Y);
     define_lbl(LBL_IF_PILZE, "", 0, IF_LBL_PILZE_Y, FontFormat_Default);
-    make_persistent(LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER, IF_GOLD,
+    MakePersistent(LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER, IF_GOLD,
                    IF_SILBER, IF_PILZE);
     define_bunch(IF_STATS, LBL_IF_GOLD, LBL_IF_PILZE, LBL_IF_SILBER,
                  IF_GOLD, IF_SILBER, IF_PILZE);
@@ -21261,10 +21250,10 @@ def build_interface():
     define_img(IF_HUTMANN_OVL,
               "res/gfx/scr/taverne/huetchenspieler/hatplayer_ovl.jpg",
               True, IF_HUTLINK_X, IF_HUTLINK_Y);
-    define_cnt(IF_HUTMANN, IF_HUTLINK_X, IF_HUTLINK_Y);
+    DefineCnt(IF_HUTMANN, IF_HUTLINK_X, IF_HUTLINK_Y);
     define_img(IF_TOILET, "res/gfx/scr/taverne/wc_sign.png", True, 0, 0);
-    define_cnt(IF_TOILET, (IF_HUTLINK_X + 90), (IF_HUTLINK_Y + 40));
-    make_persistent(IF_HUTMANN1, IF_HUTMANN2, IF_HUTMANN_OVL, IF_HUTMANN,
+    DefineCnt(IF_TOILET, (IF_HUTLINK_X + 90), (IF_HUTLINK_Y + 40));
+    MakePersistent(IF_HUTMANN1, IF_HUTMANN2, IF_HUTMANN_OVL, IF_HUTMANN,
                    IF_TOILET, IF_TOILET);
     _local2 = actor[IF_HUTMANN];
     with (_local2) {
@@ -21365,7 +21354,7 @@ def build_interface():
         useHandCursor = True;
         buttonMode = True;
     };
-    make_persistent(IF_BACKGROUND, IF_LEFT, IF_TOP, IF_MAIN);
+    MakePersistent(IF_BACKGROUND, IF_LEFT, IF_TOP, IF_MAIN);
     define_from_class(IF_WINDOW, interface_window_png, IF_WIN_X, IF_WIN_Y);
     define_from_class(BLACK_SQUARE, black_square, 0, 0);
     actor[BLACK_SQUARE].alpha = 0.5;
@@ -21440,28 +21429,28 @@ def build_interface():
                  texts[TXT_PASSWORD_SMILEY_HAPPY].split("#").join(chr(13)))
     actor[INP['PASSWORD']].add_event_listener(KeyboardEvent.KEY_UP,
                                               gradePassword);
-    define_cnt(FORGOT_PASSWORD, 0,
+    DefineCnt(FORGOT_PASSWORD, 0,
               (((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_1_Y) + AIRRelMoveY));
     define_lbl(LBL_FORGOT_PASSWORD, texts[TXT_FORGOT_PASSWORD], 0, 0,
               FontFormat_Default);
     add_filter(LBL_FORGOT_PASSWORD, Filter_Shadow);
-    define_cnt(GOTO_LOGIN, 0,
+    DefineCnt(GOTO_LOGIN, 0,
               ((IF_WIN_Y + IF_WIN_Y) + IF_WIN_LNK_2_Y) + AIRRelMoveYButton)
     define_lbl(LBL_GOTO_LOGIN, texts[TXT_GOTO_LOGIN], 0, 0,
               FontFormat_Default);
-    define_cnt(GOTO_SIGNUP, 0,
+    DefineCnt(GOTO_SIGNUP, 0,
               (IF_WIN_Y + IF_WIN_Y + IF_WIN_LNK_2_Y) + AIRRelMoveYButton2)
     define_lbl(LBL_GOTO_SIGNUP, texts[TXT_GOTO_SIGNUP], 0, 0,
               FontFormat_Default);
     add_filter(LBL_GOTO_LOGIN, Filter_Shadow);
     add_filter(LBL_GOTO_SIGNUP, Filter_Shadow);
-    make_persistent(LBL_FORGOT_PASSWORD, LBL_GOTO_LOGIN, LBL_GOTO_SIGNUP);
+    MakePersistent(LBL_FORGOT_PASSWORD, LBL_GOTO_LOGIN, LBL_GOTO_SIGNUP);
     _local2 = actor[FORGOT_PASSWORD];
     with (_local2) {
         x = ((IF_WIN_X + IF_WIN_WELCOME_X)
              - int((actor[LBL_FORGOT_PASSWORD].text_width / 2)));
         addChild(actor[LBL_FORGOT_PASSWORD]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, ShowForgotPasswordScreen);
         mouseChildren = False;
         useHandCursor = True;
@@ -21472,7 +21461,7 @@ def build_interface():
         x = ((IF_WIN_X + IF_GOTO_LOGIN_X)
              - int(actor[LBL_GOTO_LOGIN].text_width));
         addChild(actor[LBL_GOTO_LOGIN]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, ShowBuildCharacterScreen);
         mouseChildren = False;
         useHandCursor = True;
@@ -21483,7 +21472,7 @@ def build_interface():
         x = ((IF_WIN_X + IF_WIN_WELCOME_X)
              - int((actor[LBL_GOTO_SIGNUP].text_width / 2)));
         addChild(actor[LBL_GOTO_SIGNUP]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, DoGotoSignup);
         mouseChildren = False;
         useHandCursor = True;
@@ -21506,12 +21495,12 @@ def build_interface():
                 (actor[CB_AGB_UNCHECKED].x + AGB_LBL_X),
                 (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
     add_filter(LBL_LOGIN_LEGAL_0, Filter_Shadow);
-    define_cnt(AGB, ((actor[LBL_LOGIN_LEGAL_0].x + 6)
+    DefineCnt(AGB, ((actor[LBL_LOGIN_LEGAL_0].x + 6)
               + actor[LBL_LOGIN_LEGAL_0].width),
                 (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
     define_lbl(LBL_AGB, texts[TXT_AGB], 0, 0, FontFormat_Default);
     add_filter(LBL_AGB, Filter_Shadow);
-    make_persistent(LBL_AGB);
+    MakePersistent(LBL_AGB);
     _local2 = actor[AGB];
     with (_local2) {
         addChild(actor[LBL_AGB]);
@@ -21527,14 +21516,14 @@ def build_interface():
                 ((actor[AGB].x + 6) + actor[AGB].width),
                 (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
     add_filter(LBL_LOGIN_LEGAL_1, Filter_Shadow);
-    define_cnt(DATENSCHUTZ,
+    DefineCnt(DATENSCHUTZ,
               ((actor[LBL_LOGIN_LEGAL_1].x + 6)
                + actor[LBL_LOGIN_LEGAL_1].width),
                 (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
     define_lbl(LBL_DATENSCHUTZ, texts[TXT_DATENSCHUTZ], 0, 0,
               FontFormat_Default);
     add_filter(LBL_DATENSCHUTZ, Filter_Shadow);
-    make_persistent(LBL_DATENSCHUTZ);
+    MakePersistent(LBL_DATENSCHUTZ);
     _local2 = actor[DATENSCHUTZ];
     with (_local2) {
         addChild(actor[LBL_DATENSCHUTZ]);
@@ -21550,8 +21539,8 @@ def build_interface():
               ((actor[DATENSCHUTZ].x + 6) + actor[DATENSCHUTZ].width),
               (actor[CB_AGB_UNCHECKED].y + AGB_LBL_Y));
     add_filter(LBL_LOGIN_LEGAL_2, Filter_Shadow);
-    text_link_make_clickable(actor[AGB]);
-    text_link_make_clickable(actor[DATENSCHUTZ]);
+    textLinkMakeClickable(actor[AGB]);
+    textLinkMakeClickable(actor[DATENSCHUTZ]);
     define_from_class(SHP_FUCK_BLACK_SQUARE, black_square, 310,
                     ((IF_WIN_Y + IF_WIN_CB_Y) + 125));
     _local2 = actor[SHP_FUCK_BLACK_SQUARE];
@@ -21655,12 +21644,12 @@ def build_interface():
     define_lbl(LBL_CREATE_GOTO_LOGIN, texts[TXT_CREATE_GOTO_LOGIN], 0, 0,
               FontFormat_Default);
     add_filter(LBL_CREATE_GOTO_LOGIN, Filter_Shadow);
-    make_persistent(LBL_CREATE_GOTO_LOGIN);
-    define_cnt(CREATE_GOTO_LOGIN, 0, SCR_BUILDCHAR_LOGIN_Y);
+    MakePersistent(LBL_CREATE_GOTO_LOGIN);
+    DefineCnt(CREATE_GOTO_LOGIN, 0, SCR_BUILDCHAR_LOGIN_Y);
     _local2 = actor[CREATE_GOTO_LOGIN];
     with (_local2) {
         addChild(actor[LBL_CREATE_GOTO_LOGIN]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         mouseChildren = False;
         mouse_enabled = True;
         buttonMode = True;
@@ -21671,11 +21660,11 @@ def build_interface():
     };
     define_img(M_IDLE, "res/gfx/scr/buildchar/button_male_idle.jpg", False,
               SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
-    define_cnt(M_ACT, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
+    DefineCnt(M_ACT, SCR_BUILDCHAR_GENDER_X, SCR_BUILDCHAR_GENDER_Y);
     define_img(F_IDLE, "res/gfx/scr/buildchar/button_female_idle.jpg",
               False, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X),
               SCR_BUILDCHAR_GENDER_Y);
-    define_cnt(F_ACT, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X),
+    DefineCnt(F_ACT, (SCR_BUILDCHAR_GENDER_X + SCR_BUILDCHAR_GENDER_X),
               SCR_BUILDCHAR_GENDER_Y);
     actor[M_IDLE].add_event_listener(MouseEvent.CLICK, SelectGender);
     actor[F_IDLE].add_event_listener(MouseEvent.CLICK, SelectGender);
@@ -21688,16 +21677,16 @@ def build_interface():
     define_img(KASTE_1_IDLE,
               "res/gfx/scr/buildchar/button_warrior_idle.jpg", False,
               SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
-    define_cnt(KASTE_1_ACT, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
+    DefineCnt(KASTE_1_ACT, SCR_BUILDCHAR_CASTE_X, SCR_BUILDCHAR_CASTE_Y);
     define_img(KASTE_2_IDLE, "res/gfx/scr/buildchar/button_mage_idle.jpg",
               False, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X),
               SCR_BUILDCHAR_CASTE_Y);
-    define_cnt(KASTE_2_ACT, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X),
+    DefineCnt(KASTE_2_ACT, (SCR_BUILDCHAR_CASTE_X + SCR_BUILDCHAR_CASTE_X),
               SCR_BUILDCHAR_CASTE_Y);
     define_img(KASTE_3_IDLE, "res/gfx/scr/buildchar/button_hunter_idle.jpg",
               False, (SCR_BUILDCHAR_CASTE_X + (SCR_BUILDCHAR_CASTE_X * 2)),
               SCR_BUILDCHAR_CASTE_Y);
-    define_cnt(KASTE_3_ACT,
+    DefineCnt(KASTE_3_ACT,
               (SCR_BUILDCHAR_CASTE_X + (SCR_BUILDCHAR_CASTE_X * 2)),
               SCR_BUILDCHAR_CASTE_Y);
     actor[KASTE_1_IDLE].add_event_listener(MouseEvent.CLICK, SelectCaste);
@@ -21748,11 +21737,11 @@ def build_interface():
         define_img((VOLK_1_M_IDLE + i),
                   "res/gfx/scr/buildchar/button_" + volk
                   + "_male_idle.jpg", False, pos_x, pos_y);
-        define_cnt((VOLK_1_M_ACT + i), pos_x, pos_y);
+        DefineCnt((VOLK_1_M_ACT + i), pos_x, pos_y);
         define_img((VOLK_1_F_IDLE + i),
                   "res/gfx/scr/buildchar/button_" + volk
                   + "_female_idle.jpg", False, pos_x, pos_y);
-        define_cnt((VOLK_1_F_ACT + i), pos_x, pos_y);
+        DefineCnt((VOLK_1_F_ACT + i), pos_x, pos_y);
         add_bunch(VOLK_BTNS_M, (VOLK_1_M_IDLE + i));
         add_bunch(VOLK_BTNS_F, (VOLK_1_F_IDLE + i));
         add_bunch(VOLK_BTNS_ALL, (VOLK_1_M_IDLE + i),
@@ -22200,8 +22189,8 @@ def build_interface():
                                              RuhmesHalleScroll);
     actor[INP_HALLE_GOTO].add_event_listener(MouseEvent.CLICK,
                                              HalleSuchClick);
-    define_cnt(HALL_GOTO_SPIELER, 0, HALLE_GOTO_SPIELERGILDEN_Y);
-    define_cnt(HALL_GOTO_GILDEN, HALLE_GOTO_GILDEN_X,
+    DefineCnt(HALL_GOTO_SPIELER, 0, HALLE_GOTO_SPIELERGILDEN_Y);
+    DefineCnt(HALL_GOTO_GILDEN, HALLE_GOTO_GILDEN_X,
               HALLE_GOTO_SPIELERGILDEN_Y);
     define_lbl(LBL_HALL_GOTO_SPIELER, texts[TXT_GOTO_SPIELER], 0, 0,
               FontFormat_LOGoutLink);
@@ -22215,13 +22204,13 @@ def build_interface():
     define_lbl(LBL_HALL_GOTO_GILDEN_HL, texts[TXT_GOTO_GILDEN], 0, 0,
               FontFormat_LOGoutLinkHighLight);
     add_filter(LBL_HALL_GOTO_GILDEN_HL, Filter_Shadow);
-    make_persistent(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN);
-    make_persistent(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN_HL);
+    MakePersistent(LBL_HALL_GOTO_SPIELER, LBL_HALL_GOTO_GILDEN);
+    MakePersistent(LBL_HALL_GOTO_SPIELER_HL, LBL_HALL_GOTO_GILDEN_HL);
     _local2 = actor[HALL_GOTO_SPIELER];
     with (_local2) {
         addChild(actor[LBL_HALL_GOTO_SPIELER]);
         addChild(actor[LBL_HALL_GOTO_SPIELER_HL]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, RuhmesHalleScroll);
         x = (HALLE_GOTO_SPIELER_X
              - actor[LBL_HALL_GOTO_SPIELER].text_width);
@@ -22233,13 +22222,13 @@ def build_interface():
     with (_local2) {
         addChild(actor[LBL_HALL_GOTO_GILDEN]);
         addChild(actor[LBL_HALL_GOTO_GILDEN_HL]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, RuhmesHalleScroll);
         mouseChildren = False;
         useHandCursor = True;
         buttonMode = True;
     };
-    define_cnt(HALL_LIST, HALL_LIST_X, HALL_LIST_Y);
+    DefineCnt(HALL_LIST, HALL_LIST_X, HALL_LIST_Y);
     define_bunch(SCREEN_HALLE, SCR_HALLE_BG, IF_OVL, IF_EXIT, HALLE_UP,
                  HALLE_DOWN, HALLE_GOTO, INP_HALLE_GOTO, HALL_LIST,
                  HALL_GOTO_SPIELER, HALL_GOTO_GILDEN);
@@ -22265,11 +22254,11 @@ def build_interface():
     define_lbl(LBL_SCR_ARBEITEN_TIME, "", 0,
               (IF_WIN_Y + LBL_ARBEITEN_TIME_Y), FontFormat_Default);
     add_filter(LBL_SCR_ARBEITEN_TIME, Filter_Shadow);
-    define_cnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X),
+    DefineCnt(SCR_ARBEITEN_BAR, (IF_WIN_X + ARBEITEN_BAR_X),
               (IF_WIN_Y + ARBEITEN_BAR_Y));
-    define_cnt(SCR_ARBEITEN_FILL, (IF_WIN_X + ARBEITEN_FILL_X),
+    DefineCnt(SCR_ARBEITEN_FILL, (IF_WIN_X + ARBEITEN_FILL_X),
               (IF_WIN_Y + ARBEITEN_FILL_Y));
-    define_slider(SLDR['ARBEITEN'], 10, ARBEITEN_SLIDER_X,
+    DefineSlider(SLDR['ARBEITEN'], 10, ARBEITEN_SLIDER_X,
                  ARBEITEN_SLIDER_Y, arbeiten_slider_change);
     define_btn(SCR_ARBEITEN_OK, texts[TXT_OK], request_arbeiten,
                btn_classBasic, ((IF_WIN_X + IF_WIN_WELCOME_X) + IF_WIN_X),
@@ -22380,36 +22369,36 @@ def build_interface():
                   (((i % 2))==0) ? 135 : 440, FontFormat_Book);
         define_lbl((LBL_ALBUM_HINT + i), "", 0,
                   (((i % 2))==0) ? 165 : 470, FontFormat_BookHint);
-        define_cnt((ALBUM_MONSTER + i),
+        DefineCnt((ALBUM_MONSTER + i),
                   ((i)<=1) ? 420 : 890, (((i % 2))==0) ? 170 : 475);
-        define_cnt((ALBUM_MONSTER_FRAME + i),
+        DefineCnt((ALBUM_MONSTER_FRAME + i),
                   (actor[(ALBUM_MONSTER + i)].x - 8),
                   (actor[(ALBUM_MONSTER + i)].y - 8));
         actor[(ALBUM_MONSTER + i)].scaleX = 0.8;
         actor[(ALBUM_MONSTER + i)].scaleY = 0.8;
         actor[(ALBUM_MONSTER_FRAME + i)].scaleX = 0.8;
         actor[(ALBUM_MONSTER_FRAME + i)].scaleY = 0.8;
-        define_cnt((ALBUM_WEAPON_1 + i),
+        DefineCnt((ALBUM_WEAPON_1 + i),
                   (actor[(ALBUM_MONSTER + i)].x + 25),
                   (actor[(ALBUM_MONSTER + i)].y
                    + (((i % 2))==0) ? 10 : 130));
-        define_cnt((ALBUM_WEAPON_2 + i),
+        DefineCnt((ALBUM_WEAPON_2 + i),
                   (actor[(ALBUM_MONSTER + i)].x + 135),
                   (actor[(ALBUM_MONSTER + i)].y
                    + (((i % 2))==0) ? 10 : 130));
-        define_cnt((ALBUM_WEAPON_3 + i),
+        DefineCnt((ALBUM_WEAPON_3 + i),
                   (actor[(ALBUM_MONSTER + i)].x - 30),
                   (actor[(ALBUM_MONSTER + i)].y
                    + (((i % 2))==0) ? 130 : 10));
-        define_cnt((ALBUM_WEAPON_4 + i),
+        DefineCnt((ALBUM_WEAPON_4 + i),
                   (actor[(ALBUM_MONSTER + i)].x + 75),
                   (actor[(ALBUM_MONSTER + i)].y
                    + (((i % 2))==0) ? 130 : 10));
-        define_cnt((ALBUM_WEAPON_5 + i),
+        DefineCnt((ALBUM_WEAPON_5 + i),
                   (actor[(ALBUM_MONSTER + i)].x + 180),
                   (actor[(ALBUM_MONSTER + i)].y
                    + (((i % 2))==0) ? 130 : 10));
-        define_cnt((ALBUM_WEAPON_EPIC + i),
+        DefineCnt((ALBUM_WEAPON_EPIC + i),
                   (actor[(ALBUM_MONSTER + i)].x + 75),
                   (actor[(ALBUM_MONSTER + i)].y + 70));
         add_bunch(SCREEN_ALBUM, (LBL_ALBUM_HEADING + i),
@@ -22430,12 +22419,12 @@ def build_interface():
         define_img((ALBUM_CAT_IN + i),
                   (("res/gfx/scr/album/tab_" + str(i)) + "_in.jpg"),
                   False, 290, (300 + (i * 80)));
-        define_cnt((ALBUM_CAT_OUT + i), 290, (300 + (i * 80)));
-        make_persistent((ALBUM_CAT_OUT + i));
+        DefineCnt((ALBUM_CAT_OUT + i), 290, (300 + (i * 80)));
+        MakePersistent((ALBUM_CAT_OUT + i));
         _local2 = actor[(ALBUM_CAT_OUT + i)];
         with (_local2) {
             addChild(actor[(ALBUM_CAT_OUT + i)]);
-            add_event_listener(MouseEvent.CLICK, showalbum_content);
+            add_event_listener(MouseEvent.CLICK, Showalbum_content);
             mouseChildren = False;
             buttonMode = True;
             useHandCursor = True;
@@ -22448,9 +22437,9 @@ def build_interface():
         add_bunch(SCREEN_ALBUM, (ALBUM_CAT_OUT + i), (ALBUM_CAT_IN + i));
         i = (i + 1);
     };
-    define_btn(ALBUM_PREV, "", showalbum_content,
+    define_btn(ALBUM_PREV, "", Showalbum_content,
                btn_classArrowLeft, 340, 715);
-    define_btn(ALBUM_NEXT, "", showalbum_content,
+    define_btn(ALBUM_NEXT, "", Showalbum_content,
                btn_classArrowRight, 1180, 715);
     add_bunch(SCREEN_ALBUM, ALBUM_PREV, ALBUM_NEXT);
     define_img(SCR_CHAR_BG, "res/gfx/scr/char/charbg.jpg",
@@ -22475,13 +22464,13 @@ def build_interface():
     define_click_area(CA_SELL_ITEM, C_EMPTY, None,
                     (280 + 550), 100, 450, 700);
     define_click_area(CA_USE_ITEM, C_EMPTY, None, 280, 100, 500, 415);
-    define_cnt(SCR_CHAR_NAME, CHAR_NAME_X, CHAR_NAME_Y);
+    DefineCnt(SCR_CHAR_NAME, CHAR_NAME_X, CHAR_NAME_Y);
     define_lbl(LBL_SCR_CHAR_NAME, "", 0, 0, FontFormat_Default);
-    make_persistent(LBL_SCR_CHAR_NAME);
+    MakePersistent(LBL_SCR_CHAR_NAME);
     _local2 = actor[SCR_CHAR_NAME];
     with (_local2) {
         addChild(actor[LBL_SCR_CHAR_NAME]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, Gotoplayer_gilde);
         mouseChildren = False;
         useHandCursor = True;
@@ -22499,14 +22488,14 @@ def build_interface():
         height = GILDEEHRE_Y;
         alpha = 0.65;
     };
-    define_cnt(SCR_CHAR_GILDE, ((GILDEEHRE_X + GILDEEHRE_X) + 40),
+    DefineCnt(SCR_CHAR_GILDE, ((GILDEEHRE_X + GILDEEHRE_X) + 40),
               (GILDEEHRE_Y + GILDEEHRE_Y));
     define_lbl(LBL_SCR_CHAR_GILDE, "", 0, 0, FontFormat_Default);
-    make_persistent(LBL_SCR_CHAR_GILDE);
+    MakePersistent(LBL_SCR_CHAR_GILDE);
     _local2 = actor[SCR_CHAR_GILDE];
     with (_local2) {
         addChild(actor[LBL_SCR_CHAR_GILDE]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, JumpToPlayerHall);
         mouse_enabled = True;
         buttonMode = True;
@@ -22655,11 +22644,11 @@ def build_interface():
         };
         define_lbl((LBL_SCR_CHAR_PREIS1 + i), "", 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
-        define_cnt((SCR_CHAR_GOLD1 + i), 0,
+        DefineCnt((SCR_CHAR_GOLD1 + i), 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)));
         define_lbl((LBL_SCR_CHAR_SILBER1 + i), "", 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)), FontFormat_Default);
-        define_cnt((SCR_CHAR_SILBER1 + i), 0,
+        DefineCnt((SCR_CHAR_SILBER1 + i), 0,
                   (CHAR_PROP_Y + (i * CHAR_PROP_Y)));
         define_lbl((LBL_SCR_CHAR_SCHADEN_CAPTION + i),
                   texts[(TXT_CHAR_SCHADEN + i)], CHAR_PROP_COLUMN_5_X,
@@ -22692,21 +22681,21 @@ def build_interface():
     BoostBtnTimer.add_event_listener(TimerEvent.TIMER,
                                      BoostBtnTimerFunction);
     BoostBtnTimer.start();
-    define_cnt(CHAR_SLOT_1, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_TOP_Y);
-    define_cnt(CHAR_SLOT_2, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW2_Y);
-    define_cnt(CHAR_SLOT_3, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW3_Y);
-    define_cnt(CHAR_SLOT_4, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW4_Y);
-    define_cnt(CHAR_SLOT_5, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_TOP_Y);
-    define_cnt(CHAR_SLOT_6, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW2_Y);
-    define_cnt(CHAR_SLOT_7, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW3_Y);
-    define_cnt(CHAR_SLOT_8, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW4_Y);
-    define_cnt(CHAR_SLOT_9, CHAR_SLOTS_R4C2_X, CHAR_SLOTS_ROW4_Y);
-    define_cnt(CHAR_SLOT_10, CHAR_SLOTS_R4C3_X, CHAR_SLOTS_ROW4_Y);
-    define_cnt(CHAR_SLOT_11, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW5_Y);
-    define_cnt(CHAR_SLOT_12, CHAR_SLOTS_R5C2_X, CHAR_SLOTS_ROW5_Y);
-    define_cnt(CHAR_SLOT_13, CHAR_SLOTS_R5C3_X, CHAR_SLOTS_ROW5_Y);
-    define_cnt(CHAR_SLOT_14, CHAR_SLOTS_R5C4_X, CHAR_SLOTS_ROW5_Y);
-    define_cnt(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
+    DefineCnt(CHAR_SLOT_1, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_TOP_Y);
+    DefineCnt(CHAR_SLOT_2, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW2_Y);
+    DefineCnt(CHAR_SLOT_3, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW3_Y);
+    DefineCnt(CHAR_SLOT_4, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW4_Y);
+    DefineCnt(CHAR_SLOT_5, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_TOP_Y);
+    DefineCnt(CHAR_SLOT_6, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW2_Y);
+    DefineCnt(CHAR_SLOT_7, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW3_Y);
+    DefineCnt(CHAR_SLOT_8, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW4_Y);
+    DefineCnt(CHAR_SLOT_9, CHAR_SLOTS_R4C2_X, CHAR_SLOTS_ROW4_Y);
+    DefineCnt(CHAR_SLOT_10, CHAR_SLOTS_R4C3_X, CHAR_SLOTS_ROW4_Y);
+    DefineCnt(CHAR_SLOT_11, CHAR_SLOTS_LEFT_X, CHAR_SLOTS_ROW5_Y);
+    DefineCnt(CHAR_SLOT_12, CHAR_SLOTS_R5C2_X, CHAR_SLOTS_ROW5_Y);
+    DefineCnt(CHAR_SLOT_13, CHAR_SLOTS_R5C3_X, CHAR_SLOTS_ROW5_Y);
+    DefineCnt(CHAR_SLOT_14, CHAR_SLOTS_R5C4_X, CHAR_SLOTS_ROW5_Y);
+    DefineCnt(CHAR_SLOT_15, CHAR_SLOTS_RIGHT_X, CHAR_SLOTS_ROW5_Y);
     i = 0;
     while (i < 8) {
         define_img((EMPTY_SLOT_1 + i),
@@ -22777,7 +22766,7 @@ def build_interface():
     };
     i = 0;
     while (i < 15) {
-        set_cnt((CHAR_SLOT_1 + i), ITM_OFFS);
+        SetCnt((CHAR_SLOT_1 + i), ITM_OFFS);
         actor[(CHAR_SLOT_1 + i)].add_event_listener(MouseEvent.MOUSE_DOWN,
                                                     InventoryItemMouseDown);
         if (i >= 10){
@@ -22786,7 +22775,7 @@ def build_interface():
         };
         add_bunch(SCREEN_CHAR, (CHAR_SLOT_1 + i));
         add_bunch(SCREEN_CHAR_GOLDEN, (CHAR_SLOT_1 + i));
-        enable_drag_drop((CHAR_SLOT_1 + i), DropHandler);
+        EnableDragDrop((CHAR_SLOT_1 + i), DropHandler);
         actor[(CHAR_SLOT_1 + i)].add_event_listener(MouseEvent.MOUSE_UP,
                                                     InventoryItemMouseUp);
         i = (i + 1);
@@ -22794,15 +22783,15 @@ def build_interface():
     define_bunch(CHAR_ACH);
     i = 0;
     while (i < 40) {
-        define_cnt((CHAR_ACH + i),
+        DefineCnt((CHAR_ACH + i),
                   (SCR_CHAR_ACH_X + (((buffed_mode)
                    ? SCR_CHAR_ACH_X_BUFFED
                    : SCR_CHAR_ACH_X) * (i % 8))), SCR_CHAR_ACH_Y);
         define_img((CHAR_ACH + i),
                   (((("res/gfx/scr/char/ach/ach-" + str(((i % 8) + 1)))
                    + "-") + str(int((i / 8)))) + ".png"), False, 0, 0);
-        set_cnt((CHAR_ACH + i), (CHAR_ACH + i));
-        make_persistent((CHAR_ACH + i));
+        SetCnt((CHAR_ACH + i), (CHAR_ACH + i));
+        MakePersistent((CHAR_ACH + i));
         if (!texts[(TXT_ACH_4 + 4)]){
             if ((i % 8) == 7){
                 _local2 = actor[(CHAR_ACH + i)];
@@ -22819,7 +22808,7 @@ def build_interface():
     };
     i = 0;
     while (i < 3) {
-        define_cnt((CHAR_POTION + i), (POTION_X + (POTION_X * i)), POTION_Y)
+        DefineCnt((CHAR_POTION + i), (POTION_X + (POTION_X * i)), POTION_Y)
         _local2 = actor[(CHAR_POTION + i)];
         with (_local2) {
             scaleX = 0.5;
@@ -22835,7 +22824,7 @@ def build_interface():
     define_snd(SND_SHARD, "res/sfx/tower/shard.mp3");
     define_snd(SND_MIRROR, "res/sfx/tower/mirror.mp3");
     define_snd(SND_HATCH, "res/sfx/tower/hatch.mp3");
-    define_cnt(TOWER_SCROLLAREA, (280 + 500), 100);
+    DefineCnt(TOWER_SCROLLAREA, (280 + 500), 100);
     _local2 = actor[TOWER_SCROLLAREA];
     with (_local2) {
         scrollRect = new Rectangle(0, 0, 500, 700);
@@ -22893,7 +22882,7 @@ def build_interface():
                (SCR_CHAR_CHARX + 10), (SCR_CHAR_CHARY + 10));
     define_btn(NEXT_COPYCAT, "", tower_btn_handler, btn_classArrowRight,
                (SCR_CHAR_CHARX + 215), (SCR_CHAR_CHARY + 10));
-    define_cnt(TOWER_BOOSTCOIN, (SCR_CHAR_CHARX + 205), EXPERIENCE_BAR_Y);
+    DefineCnt(TOWER_BOOSTCOIN, (SCR_CHAR_CHARX + 205), EXPERIENCE_BAR_Y);
     actor[TOWER_BOOSTCOIN].alpha = 0;
     define_bunch(TOWER_BOOSTPRICE, LBL_TOWER_BOOSTPRICELABEL,
                  (LBL_TOWER_BOOSTPRICELABEL + 1),
@@ -22927,12 +22916,12 @@ def build_interface():
               "res/gfx/scr/tower/tower_window_closed.png", False, 0, 0);
     define_img(TOWER_WINDOW_BURNT,
               "res/gfx/scr/tower/tower_window_destroyed.png", False, 0, 0);
-    define_cnt(TOWER_WINDOW, 0, 0);
-    define_cnt((TOWER_WINDOW + 1), 0, 0);
-    define_cnt((TOWER_WINDOW + 2), 0, 0);
+    DefineCnt(TOWER_WINDOW, 0, 0);
+    DefineCnt((TOWER_WINDOW + 1), 0, 0);
+    DefineCnt((TOWER_WINDOW + 2), 0, 0);
     i = 0;
     while (i < 3) {
-        define_cnt((TOWER_FACE + i), 175, 0);
+        DefineCnt((TOWER_FACE + i), 175, 0);
         actor[(TOWER_FACE + i)].scaleX = 0.5;
         actor[(TOWER_FACE + i)].scaleY = 0.5;
         i = (i + 1);
@@ -22941,9 +22930,9 @@ def build_interface():
                  (TOWER_LEVEL + 1), (TOWER_LEVEL + 2), TOWER_ROOF);
     add_bunch(TOWER_PIECES, TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2),
               TOWER_WINDOW_OPEN, TOWER_WINDOW_CLOSED, TOWER_WINDOW_BURNT);
-    make_persistent(TOWER_BG, TOWER_BASE, TOWER_LEVEL, (TOWER_LEVEL + 1),
+    MakePersistent(TOWER_BG, TOWER_BASE, TOWER_LEVEL, (TOWER_LEVEL + 1),
                    (TOWER_LEVEL + 2), TOWER_ROOF);
-    make_persistent(TOWER_WINDOW, (TOWER_WINDOW + 1), (TOWER_WINDOW + 2),
+    MakePersistent(TOWER_WINDOW, (TOWER_WINDOW + 1), (TOWER_WINDOW + 2),
                    TOWER_FACE, (TOWER_FACE + 1), (TOWER_FACE + 2));
     define_img(SCR_FIDGET_BG, "res/gfx/scr/shops/fidget.jpg", False,
               SCR_SHOP_BG_X, 100);
@@ -23015,18 +23004,18 @@ def build_interface():
                btn_classBasic, 0, NEW_WAREZ_Y);
     actor[SHOPS_NEWWAREZ].x = (NEW_WAREZ_X
                                - int((actor[SHOPS_NEWWAREZ].width / 2)));
-    define_cnt(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
-    define_cnt(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
-    define_cnt(CHAR_SLOT_FIDGET_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
-    define_cnt(CHAR_SLOT_FIDGET_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
-    define_cnt(CHAR_SLOT_FIDGET_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
-    define_cnt(CHAR_SLOT_FIDGET_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
-    define_cnt(CHAR_SLOT_SHAKES_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
-    define_cnt(CHAR_SLOT_SHAKES_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
-    define_cnt(CHAR_SLOT_SHAKES_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
-    define_cnt(CHAR_SLOT_SHAKES_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
-    define_cnt(CHAR_SLOT_SHAKES_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
-    define_cnt(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
+    DefineCnt(CHAR_SLOT_FIDGET_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
+    DefineCnt(CHAR_SLOT_FIDGET_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
+    DefineCnt(CHAR_SLOT_FIDGET_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
+    DefineCnt(CHAR_SLOT_FIDGET_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
+    DefineCnt(CHAR_SLOT_FIDGET_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
+    DefineCnt(CHAR_SLOT_FIDGET_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
+    DefineCnt(CHAR_SLOT_SHAKES_1, SHOP_SLOTS_C1_X, SHOP_SLOTS_R1_Y);
+    DefineCnt(CHAR_SLOT_SHAKES_2, SHOP_SLOTS_C2_X, SHOP_SLOTS_R1_Y);
+    DefineCnt(CHAR_SLOT_SHAKES_3, SHOP_SLOTS_C3_X, SHOP_SLOTS_R1_Y);
+    DefineCnt(CHAR_SLOT_SHAKES_4, SHOP_SLOTS_C1_X, SHOP_SLOTS_R2_Y);
+    DefineCnt(CHAR_SLOT_SHAKES_5, SHOP_SLOTS_C2_X, SHOP_SLOTS_R2_Y);
+    DefineCnt(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
     define_bunch(SCREEN_FIDGET, SCR_FIDGET_BG, FIDGET_AFFE2, FIDGET_AFFE3,
                  FIDGET_AFFE1, FIDGET_SALE, FIDGET_IDLE, FIDGET_DAY,
                  FIDGET_BLINZELN, FIDGET_NIGHT, IF_OVL, SHOPS_NEWWAREZ,
@@ -23069,16 +23058,16 @@ def build_interface():
     };
     i = 0;
     while (i < 6) {
-        set_cnt((CHAR_SLOT_FIDGET_1 + i), ITM_OFFS);
-        set_cnt((CHAR_SLOT_SHAKES_1 + i), ITM_OFFS);
+        SetCnt((CHAR_SLOT_FIDGET_1 + i), ITM_OFFS);
+        SetCnt((CHAR_SLOT_SHAKES_1 + i), ITM_OFFS);
         add_bunch(SCREEN_FIDGET, (CHAR_SLOT_FIDGET_1 + i));
         add_bunch(SCREEN_SHAKES, (CHAR_SLOT_SHAKES_1 + i));
         actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(
                                MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
         actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(
                                MouseEvent.MOUSE_DOWN, ShopMouseDownEvent);
-        enable_drag_drop((CHAR_SLOT_FIDGET_1 + i), DropHandler);
-        enable_drag_drop((CHAR_SLOT_SHAKES_1 + i), DropHandler);
+        EnableDragDrop((CHAR_SLOT_FIDGET_1 + i), DropHandler);
+        EnableDragDrop((CHAR_SLOT_SHAKES_1 + i), DropHandler);
         actor[(CHAR_SLOT_FIDGET_1 + i)].add_event_listener(
                                MouseEvent.MOUSE_UP, ShopMouseUpEvent);
         actor[(CHAR_SLOT_SHAKES_1 + i)].add_event_listener(
@@ -23122,7 +23111,7 @@ def build_interface():
     spellClicking = False;
     i = 0;
     while (i < 10) {
-        define_cnt((WITCH_SCROLL + i),
+        DefineCnt((WITCH_SCROLL + i),
                   (((280 + 500) + 37) + ((i % 5) * 83)),
                   ((100 + 11) + (math.floor((i / 5)) * 95)));
         actor[(WITCH_SCROLL + i)].useHandCursor = True;
@@ -23246,39 +23235,39 @@ def build_interface():
     add_filter(LBL_POST_TITLE_INBOX, Filter_Shadow);
     add_filter(LBL_POST_TITLE_READ, Filter_Shadow);
     add_filter(LBL_POST_TITLE_WRITE, Filter_Shadow);
-    define_cnt(POST_LIST, POST_LIST_X, POST_LIST_Y);
-    define_btn(POST_READ, texts[TXT_POST_READ], post_btn_handler,
+    DefineCnt(POST_LIST, POST_LIST_X, POST_LIST_Y);
+    define_btn(POST_READ, texts[TXT_POST_READ], PostBtnHandler,
                btn_classBasic, POST_BUTTONS_X, POST_BUTTONS_Y);
-    define_btn(POST_DELETE, texts[TXT_POST_DELETE], post_btn_handler,
+    define_btn(POST_DELETE, texts[TXT_POST_DELETE], PostBtnHandler,
                btn_classBasic,
                (POST_BUTTONS_X
                 + ((actor[POST_READ].width + POST_BUTTONS_X) * 2)),
                 POST_BUTTONS_Y);
-    define_btn(POST_WRITE, texts[TXT_POST_WRITE], post_btn_handler,
+    define_btn(POST_WRITE, texts[TXT_POST_WRITE], PostBtnHandler,
                btn_classBasic,
                (POST_BUTTONS_X + ((actor[POST_READ].width
                 + POST_BUTTONS_X) * 1)), POST_BUTTONS_Y);
     define_btn(POST_FLUSH, texts[(TXT_POST_FLUSH_TEXT + 2)],
-               post_btn_handler, btn_classBasic,
+               PostBtnHandler, btn_classBasic,
                (POST_BUTTONS_X + ((actor[POST_READ].width
                 + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
-    define_btn(POST_DELETEREAD, texts[TXT_POST_DELETE], post_btn_handler,
+    define_btn(POST_DELETEREAD, texts[TXT_POST_DELETE], PostBtnHandler,
                btn_classBasic,
                (POST_BUTTONS_X + ((actor[POST_READ].width
                 + POST_BUTTONS_X) * 2)), POST_BUTTONS_Y);
-    define_btn(POST_FORWARD, texts[TXT_POST_FORWARD], post_btn_handler,
+    define_btn(POST_FORWARD, texts[TXT_POST_FORWARD], PostBtnHandler,
                btn_classBasic, (POST_BUTTONS_X + ((actor[POST_READ].width
                                 + POST_BUTTONS_X) * 3)), POST_BUTTONS_Y);
-    define_btn(POST_PROFILE, "", post_btn_handler, btn_classView,
+    define_btn(POST_PROFILE, "", PostBtnHandler, btn_classView,
                POST_PROFILE_X, POST_BUTTONS_Y);
-    define_btn(POST_UP, "", post_btn_handler, btn_classArrowUp,
+    define_btn(POST_UP, "", PostBtnHandler, btn_classArrowUp,
                POST_SCROLLX, POST_SCROLLUP_Y);
-    define_btn(POST_DOWN, "", post_btn_handler, btn_classArrowDown,
+    define_btn(POST_DOWN, "", PostBtnHandler, btn_classArrowDown,
                POST_SCROLLX, POST_SCROLLDOWN_Y);
-    define_btn(POST_READ_NEXT, "", post_btn_handler, btn_classArrowRight,
+    define_btn(POST_READ_NEXT, "", PostBtnHandler, btn_classArrowRight,
                ((POST_BUTTONS_X + ((actor[POST_READ].width
                 + POST_BUTTONS_X) * 4)) + 50), (POST_BUTTONS_Y + 3));
-    define_btn(POST_READ_PREV, "", post_btn_handler, btn_classArrowLeft,
+    define_btn(POST_READ_PREV, "", PostBtnHandler, btn_classArrowLeft,
                ((POST_BUTTONS_X + ((actor[POST_READ].width
                 + POST_BUTTONS_X) * 4)) + 5), (POST_BUTTONS_Y + 3));
     enable_popup(POST_PROFILE, texts[TXT_POPUP_PROFILE]);
@@ -23287,9 +23276,9 @@ def build_interface():
                ((IF_WIN_X + IF_WIN_WELCOME_X) - (ARENA_TEXT_X / 2)),
                (IF_WIN_Y + ARENA_TEXT_Y), FontFormat_DefaultLeft);
     add_filter(LBL_POST_FLUSH_TEXT, Filter_Shadow);
-    define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], post_btn_handler,
+    define_btn(POST_FLUSH_CANCEL, texts[TXT_ABBRECHEN], PostBtnHandler,
                btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
-    define_btn(POST_FLUSH_OK, texts[TXT_OK], post_btn_handler,
+    define_btn(POST_FLUSH_OK, texts[TXT_OK], PostBtnHandler,
                btn_classBasic, 0, (IF_WIN_Y + GILDE_OK_Y));
     _local2 = actor[POST_FLUSH_CANCEL];
     with (_local2) {
@@ -23408,37 +23397,37 @@ def build_interface():
                            FocusEvent.FOCUS_OUT, fillFieldContent);
     actor[INP_POST_TEXT].add_event_listener(
                             FocusEvent.FOCUS_OUT, fillFieldContent);
-    define_btn(POST_SEND, texts[TXT_POST_SEND], post_btn_handler,
+    define_btn(POST_SEND, texts[TXT_POST_SEND], PostBtnHandler,
                btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
-    define_btn(POST_CANCEL, texts[TXT_POST_CANCEL], post_btn_handler,
+    define_btn(POST_CANCEL, texts[TXT_POST_CANCEL], PostBtnHandler,
                btn_classBasic,
                ((POST_BUTTONS_X + actor[POST_SEND].width)
                 + POST_BUTTONS_X), POST_SENDBUTTON_Y);
-    define_btn(POST_RETURN, texts[TXT_POST_RETURN], post_btn_handler,
+    define_btn(POST_RETURN, texts[TXT_POST_RETURN], PostBtnHandler,
                btn_classBasic, POST_BUTTONS_X, POST_SENDBUTTON_Y);
-    define_btn(POST_ACCEPT, texts[TXT_POST_ACCEPT], post_btn_handler,
+    define_btn(POST_ACCEPT, texts[TXT_POST_ACCEPT], PostBtnHandler,
                btn_classBasic,
                (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
                POST_SENDBUTTON_Y);
-    define_btn(POST_REPLY, texts[TXT_POST_REPLY], post_btn_handler,
+    define_btn(POST_REPLY, texts[TXT_POST_REPLY], PostBtnHandler,
                btn_classBasic,
                (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
                POST_SENDBUTTON_Y);
-    define_btn(POST_VIEWFIGHT, texts[TXT_POST_VIEWFIGHT], post_btn_handler,
+    define_btn(POST_VIEWFIGHT, texts[TXT_POST_VIEWFIGHT], PostBtnHandler,
                btn_classBasic,
                (POST_BUTTONS_X + actor[POST_SEND].width + POST_BUTTONS_X),
                POST_SENDBUTTON_Y);
     define_lbl(LBL_POST_LIMIT, "", POST_SQUARE_X,
               (POST_SQUARE_Y - POST_LIMIT_Y), FontFormat_Default);
     add_filter(LBL_POST_LIMIT, Filter_Shadow);
-    define_cnt(POST_GUILD, 0, (POST_ADDRESS_Y + 2));
+    DefineCnt(POST_GUILD, 0, (POST_ADDRESS_Y + 2));
     define_lbl(LBL_POST_GUILD, texts[TXT_GILDEN], 0, 0, FontFormat_Default);
     add_filter(LBL_POST_GUILD, Filter_Shadow);
-    make_persistent(LBL_POST_GUILD);
+    MakePersistent(LBL_POST_GUILD);
     _local2 = actor[POST_GUILD];
     with (_local2) {
         addChild(actor[LBL_POST_GUILD]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         x = (((POST_INP_X + actor[INP_POST_ADDRESS].width) - width) - 5);
         add_event_listener(MouseEvent.CLICK, GuildMsgMode);
         mouseChildren = False;
@@ -23618,8 +23607,8 @@ def build_interface():
               FontFormat_DefaultLeft);
     define_lbl(LBL_STALL_SCHATZSILBER, "", 0, actor[LBL_STALL_GAIN].y,
               FontFormat_DefaultLeft);
-    define_cnt(STALL_SCHATZGOLD, 0, actor[LBL_STALL_GAIN].y);
-    define_cnt(STALL_SCHATZSILBER, 0, actor[LBL_STALL_GAIN].y);
+    DefineCnt(STALL_SCHATZGOLD, 0, actor[LBL_STALL_GAIN].y);
+    DefineCnt(STALL_SCHATZSILBER, 0, actor[LBL_STALL_GAIN].y);
     define_lbl(LBL_STALL_GOLD, "0",
               (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), 0,
               FontFormat_Default);
@@ -23627,10 +23616,10 @@ def build_interface():
     with (_local2) {
         y = (((STALL_SQUARE_Y + STALL_SQUARE_Y)
              - STALL_TITEL_Y) - textHeight);
-        define_cnt(STALL_GOLD,
+        DefineCnt(STALL_GOLD,
                   (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X), y);
         define_lbl(LBL_STALL_MUSH, "0", 0, y, FontFormat_Default);
-        define_cnt(STALL_MUSH, 0, y);
+        DefineCnt(STALL_MUSH, 0, y);
         define_lbl(LBL_STALL_LAUFZEIT, texts[TXT_STALL_LAUFZEIT],
                   (actor[SHP_STALL_BLACK_SQUARE].x + STALL_TITEL_X),
                   ((y - textHeight) - STALL_ZEILEN_Y),
@@ -23716,10 +23705,10 @@ def build_interface():
         define_lbl((LBL_GILDE_GEBAEUDE_KOSTEN_MUSH + i), "", 0,
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 4)), FontFormat_GuildBuilding);
-        define_cnt((GILDE_GEBAEUDE_GOLD + i), 0,
+        DefineCnt((GILDE_GEBAEUDE_GOLD + i), 0,
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 4)));
-        define_cnt((GILDE_GEBAEUDE_MUSH + i), 0,
+        DefineCnt((GILDE_GEBAEUDE_MUSH + i), 0,
                   ((GILDE_GEBAEUDE_Y + (GILDE_GEBAEUDE_Y * i))
                    + (GILDE_GEBAEUDE_LINE * 4)));
         define_btn((GILDE_GEBAEUDE_IMPROVE + i), "", GildeBtnHandler,
@@ -23778,13 +23767,13 @@ def build_interface():
                  texts[TXT_BUILDINGS_GOTO_CREST]);
     add_bunch(GILDE_GEBAEUDE, GILDE_GEBAEUDE_GOTO_CREST);
     define_bunch(GILDE_CREST);
-    define_cnt(GILDE_CREST, (GILDE_GEBAEUDE_X - 2),
+    DefineCnt(GILDE_CREST, (GILDE_GEBAEUDE_X - 2),
               (GILDE_GEBAEUDE_Y + 60));
     i = 0;
     while (i < crestElementPos.length) {
         define_img((GILDE_CREST + i), "", False, 0, 0);
         actor[(GILDE_CREST + i)].mouse_enabled = False;
-        make_persistent((GILDE_CREST + i));
+        MakePersistent((GILDE_CREST + i));
         crestClaI = i;
         if (crestClaI == 1){
             crestClaI = 0;
@@ -23799,7 +23788,7 @@ def build_interface():
                         crestElementPos[crestClaI][2],
                         crestElementPos[crestClaI][3],
                         0, None, None, True);
-        make_persistent((CLA_GILDE_CREST + crestClaI));
+        MakePersistent((CLA_GILDE_CREST + crestClaI));
         _local2 = actor[GILDE_CREST];
         with (_local2) {
             addChild(actor[(GILDE_CREST + i)]);
@@ -23807,14 +23796,14 @@ def build_interface():
             if (i == 2){
                 define_img(GILDE_CREST_SHIELDCOLOR, "", False, 0, 0);
                 actor[GILDE_CREST_SHIELDCOLOR].mouse_enabled = False;
-                make_persistent(GILDE_CREST_SHIELDCOLOR);
+                MakePersistent(GILDE_CREST_SHIELDCOLOR);
                 addChild(actor[GILDE_CREST_SHIELDCOLOR]);
             };
             if (i == 3){
                 define_lbl(LBL_GILDE_CREST_INSCRIPTION, "Gildenname", 15,
                           210, FontFormat_Book);
                 actor[LBL_GILDE_CREST_INSCRIPTION].mouse_enabled = False;
-                make_persistent(LBL_GILDE_CREST_INSCRIPTION);
+                MakePersistent(LBL_GILDE_CREST_INSCRIPTION);
                 addChild(actor[LBL_GILDE_CREST_INSCRIPTION]);
             };
         };
@@ -23854,7 +23843,7 @@ def build_interface():
                  texts[TXT_CREST_INFO].split("#").join(chr(13)));
     i = 1;
     while (i < 4) {
-        define_cnt((GILDE_CREST_COLOR + i),
+        DefineCnt((GILDE_CREST_COLOR + i),
                   ((GILDE_GEBAEUDE_X + 23) + (i * 40)),
                   (GILDE_GEBAEUDE_Y + 296));
         define_img((GILDE_CREST_COLOR_UNSELECTED + i),
@@ -23863,9 +23852,9 @@ def build_interface():
                   "res/gfx/scr/gilde/crest/color_hover.jpg", False, 0, 0);
         define_img((GILDE_CREST_COLOR_FILLIN + i),
                   "res/gfx/scr/gilde/crest/color_field.jpg", False, 2, 2);
-        make_persistent((GILDE_CREST_COLOR_UNSELECTED + i));
-        make_persistent((GILDE_CREST_COLOR_SELECTED + i));
-        make_persistent((GILDE_CREST_COLOR_FILLIN + i));
+        MakePersistent((GILDE_CREST_COLOR_UNSELECTED + i));
+        MakePersistent((GILDE_CREST_COLOR_SELECTED + i));
+        MakePersistent((GILDE_CREST_COLOR_FILLIN + i));
         _local2 = actor[(GILDE_CREST_COLOR + i)];
         with (_local2) {
             addChild(actor[(GILDE_CREST_COLOR_UNSELECTED + i)]);
@@ -23891,9 +23880,9 @@ def build_interface():
     define_lbl(LBL_GILDE_MUSH, "", 0, (GILDE_GOLD_Y + GILDE_MUSH_Y),
               FontFormat_GuildMoney);
     add_filter(LBL_GILDE_MUSH, Filter_Shadow);
-    define_cnt(GILDE_GOLD, GILDE_GOLDMUSH_X,
+    DefineCnt(GILDE_GOLD, GILDE_GOLDMUSH_X,
               (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
-    define_cnt(GILDE_MUSH, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + GILDE_MUSH_Y));
+    DefineCnt(GILDE_MUSH, GILDE_GOLDMUSH_X, (GILDE_GOLD_Y + GILDE_MUSH_Y));
     define_btn(GILDE_GOLD, "", GildeBtnHandler, btn_classPlus,
                (GILDE_GOLDMUSH_X + GILDE_GOLDMUSH_C2),
                (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
@@ -23923,11 +23912,11 @@ def build_interface():
     actor[LBL_GILDE_MUSH2].x = ((actor[LBL_GILDE_GOLD2].x
                                 + actor[LBL_GILDE_GOLD2].text_width)
                                     - actor[LBL_GILDE_MUSH2].text_width);
-    define_cnt(GILDE_GOLD2,
+    DefineCnt(GILDE_GOLD2,
               ((actor[LBL_GILDE_GOLD2].x
                + actor[LBL_GILDE_GOLD2].text_width) + 15),
                 (GILDE_GOLD_Y + ((noMush) ? 15 : 0)));
-    define_cnt(GILDE_MUSH2,
+    DefineCnt(GILDE_MUSH2,
               ((actor[LBL_GILDE_GOLD2].x
                + actor[LBL_GILDE_GOLD2].text_width) + 15),
                 (GILDE_GOLD_Y + GILDE_MUSH_Y));
@@ -23946,25 +23935,25 @@ def build_interface():
     define_bunch(SCREEN_GILDEN, GILDEN_BG, IF_OVL, GILDE_RAHMEN, IF_EXIT,
                  LBL_SCREEN_TITLE, GILDE_GEBAEUDE, GILDE_CREST,
                  GILDE_SCHATZ);
-    define_cnt(GILDE_RANG, GILDE_RANG_X, GILDE_RANG_Y);
+    DefineCnt(GILDE_RANG, GILDE_RANG_X, GILDE_RANG_Y);
     define_lbl(LBL_GILDE_RANG, "", 0, 0, FontFormat_Default);
     add_filter(LBL_GILDE_RANG, Filter_Shadow);
     _local2 = actor[GILDE_RANG];
     with (_local2) {
         addChild(actor[LBL_GILDE_RANG]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         mouseChildren = False;
         mouse_enabled = True;
         buttonMode = True;
         useHandCursor = True;
         add_event_listener(MouseEvent.CLICK, JumpToGuildHall);
     };
-    make_persistent(LBL_GILDE_RANG);
+    MakePersistent(LBL_GILDE_RANG);
     define_from_class(INP_GILDE_TEXT, SimpleTextAreaGuild, GILDE_TEXT_X,
                     GILDE_LIST_Y, 1, "text");
     CleanupField(INP_GILDE_TEXT);
     add_filter(INP_GILDE_TEXT, Filter_Shadow);
-    define_cnt(GILDE_LIST, GILDE_LIST_X, GILDE_LIST_Y);
+    DefineCnt(GILDE_LIST, GILDE_LIST_X, GILDE_LIST_Y);
     define_img(GILDE_RANK, "res/gfx/scr/gilde/punkt_krone.png",
               False, 0, 0);
     define_img((GILDE_RANK + 1), "res/gfx/scr/gilde/punkt_orden.png",
@@ -24055,18 +24044,18 @@ def build_interface():
                  (GILDE_KATAPULT + 2), GILDE_KATAPULT_GRAY,
                  GILDE_KATAPULT_OK, (GILDE_KATAPULT_OK + 1),
                  (GILDE_KATAPULT_OK + 2));
-    define_cnt(GILDE_ATTACK, GILDE_ATTACKLABEL_X, GILDE_TOOLY);
-    define_cnt(GILDE_DEFENCE, GILDE_ATTACKLABEL_X,
+    DefineCnt(GILDE_ATTACK, GILDE_ATTACKLABEL_X, GILDE_TOOLY);
+    DefineCnt(GILDE_DEFENCE, GILDE_ATTACKLABEL_X,
               (GILDE_TOOLY + GILDE_DEFENSELABEL_Y));
     define_lbl(LBL_GILDE_ATTACK, "", 0, 0, FontFormat_AttackLabel);
     define_lbl(LBL_GILDE_DEFENCE, "", 0, 0, FontFormat_AttackLabel);
     add_filter(LBL_GILDE_ATTACK, Filter_Shadow);
     add_filter(LBL_GILDE_DEFENCE, Filter_Shadow);
-    make_persistent(LBL_GILDE_ATTACK, LBL_GILDE_DEFENCE);
+    MakePersistent(LBL_GILDE_ATTACK, LBL_GILDE_DEFENCE);
     _local2 = actor[GILDE_ATTACK];
     with (_local2) {
         addChild(actor[LBL_GILDE_ATTACK]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         mouseChildren = False;
         useHandCursor = True;
         buttonMode = True;
@@ -24075,7 +24064,7 @@ def build_interface():
     _local2 = actor[GILDE_DEFENCE];
     with (_local2) {
         addChild(actor[LBL_GILDE_DEFENCE]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         mouseChildren = False;
         useHandCursor = True;
         buttonMode = True;
@@ -24108,14 +24097,14 @@ def build_interface():
               GILDE_CHAT_X, (GILDE_CHAT_Y - GILDE_CHAT_CAPTION_Y));
     add_filter(LBL['GILDE']['CHAT']_CAPTION, Filter_Shadow);
     hide(LBL['GILDE']['CHAT']_CAPTION);
-    define_cnt(GILDE_LINK, 0, GILDE_RANG_Y);
+    DefineCnt(GILDE_LINK, 0, GILDE_RANG_Y);
     define_lbl(LBL_GILDE_LINK, texts[TXT_FORUM_LINK], 0, 0);
     add_filter(LBL_GILDE_LINK, Filter_HeavyShadow);
-    make_persistent(LBL_GILDE_LINK);
+    MakePersistent(LBL_GILDE_LINK);
     _local2 = actor[GILDE_LINK];
     with (_local2) {
         addChild(actor[LBL_GILDE_LINK]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         add_event_listener(MouseEvent.CLICK, OpenGuildLink);
         x = ((GILDE_LIST_SCROLLX - 30) - actor[LBL_GILDE_LINK].text_width);
         mouseChildren = False;
@@ -24369,8 +24358,8 @@ def build_interface():
     define_lbl(LBL_HUTMANN_MUSHBET, "", 0,
               (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
     add_filter(LBL_HUTMANN_MUSHBET, Filter_Shadow);
-    define_cnt(HUTMANN_GOLDBET, 0, HUTMANN_GOLD_Y);
-    define_cnt(HUTMANN_MUSHBET, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
+    DefineCnt(HUTMANN_GOLDBET, 0, HUTMANN_GOLD_Y);
+    DefineCnt(HUTMANN_MUSHBET, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
     define_btn(HUTMANN_GOLDBET, "", HutBtnHandler, btn_classPlus,
                0, HUTMANN_GOLD_Y);
     _local2 = actor[HUTMANN_GOLDBET];
@@ -24404,8 +24393,8 @@ def build_interface():
               (HUTMANN_GOLD_Y + GILDE_MUSH_Y), FontFormat_GuildMoney);
     add_filter(LBL_HUTMANN_MUSHBET2, Filter_Shadow);
     enable_popup(LBL_HUTMANN_MUSHBET2, texts[TXT_HUTMANN_MUSHBET]);
-    define_cnt(HUTMANN_GOLDBET2, 0, HUTMANN_GOLD_Y);
-    define_cnt(HUTMANN_MUSHBET2, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
+    DefineCnt(HUTMANN_GOLDBET2, 0, HUTMANN_GOLD_Y);
+    DefineCnt(HUTMANN_MUSHBET2, 0, (HUTMANN_GOLD_Y + GILDE_MUSH_Y));
     define_bunch(HUTMANN_PLACEBET, HUTMANN_MUSHBET_DISABLED,
                  HUTMANN_MUSHBET, LBL_HUTMANN_MUSHBET2, HUTMANN_MUSHBET2,
                  HUTMANN_GOLDBET, LBL_HUTMANN_GOLDBET2, HUTMANN_GOLDBET2,
@@ -24512,7 +24501,7 @@ def build_interface():
               TIMEBAR_X, TIMEBAR_Y);
     define_img(TIMEBAR_FILL, "res/gfx/scr/taverne/ausdauer.jpg", False,
               (TIMEBAR_X + 110), (TIMEBAR_Y + 44));
-    define_cnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
+    DefineCnt(TIMEBAR_FILL, 0, (TIMEBAR_Y + 44));
     define_lbl(LBL_TIMEBAR_TEXT, "", 0, TIMEBAR_LABEL_Y, FontFormat_TimeBar)
     add_filter(LBL_TIMEBAR_TEXT, Filter_Shadow);
     enable_popup(TIMEBAR_BG, texts[TXT_TIMEBAR]);
@@ -24598,8 +24587,8 @@ def build_interface():
         define_lbl((LBL_QO_CHOICE1 + i), "TEST", 0, 0, FontFormat_Default);
         define_lbl((LBL_QO_CHOICE1_HL + i), "TEST", 0, 0,
                   FontFormat_Highlight);
-        make_persistent((LBL_QO_CHOICE1 + i), (LBL_QO_CHOICE1_HL + i));
-        define_cnt((QO_CHOICE1 + i), (QO_BLACK_SQUARE_X + QO_CHOOSE_X),
+        MakePersistent((LBL_QO_CHOICE1 + i), (LBL_QO_CHOICE1_HL + i));
+        DefineCnt((QO_CHOICE1 + i), (QO_BLACK_SQUARE_X + QO_CHOOSE_X),
                   ((QO_BLACK_SQUARE_Y + QO_CHOOSE_Y) +
                    ((i + 1) * QO_CHOICES_Y)));
         _local2 = actor[(QO_CHOICE1 + i)];
@@ -24625,9 +24614,9 @@ def build_interface():
     define_lbl(LBL_QO_REWARD, texts[TXT_QO_REWARD],
               (QO_BLACK_SQUARE_X + QO_QUESTTEXT_X),
               (QO_BLACK_SQUARE_Y + QO_REWARD_Y), FontFormat_Default);
-    define_cnt(QO_REWARDGOLD, 0,
+    DefineCnt(QO_REWARDGOLD, 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
-    define_cnt(QO_REWARDSILVER, 0,
+    DefineCnt(QO_REWARDSILVER, 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y));
     define_lbl(LBL_QO_REWARDGOLD, "", 0,
               ((QO_BLACK_SQUARE_Y + QO_REWARD_Y) + QO_REWARDS_Y),
@@ -24655,7 +24644,7 @@ def build_interface():
     define_lbl(LBL_QO_QUESTSTODAY, "", 0,
               (QO_BLACK_SQUARE_Y + QO_QUESTSTODAY_Y),
               FontFormat_Default);
-    define_cnt(QUEST_SLOT, ((QO_BLACK_SQUARE_X + QO_SLOT_X) + 20),
+    DefineCnt(QUEST_SLOT, ((QO_BLACK_SQUARE_X + QO_SLOT_X) + 20),
               (QO_BLACK_SQUARE_Y + QO_SLOT_Y));
     add_bunch(QUESTOFFER, SHP_QO_BLACK_SQUARE, LBL_QO_CHOOSE, QO_CHOICE1,
               QO_CHOICE2, QO_CHOICE3, LBL_QO_QUESTNAME, LBL_QO_QUESTTEXT);
@@ -24770,7 +24759,7 @@ def build_interface():
     };
     define_img(FIGHT_ARROW_SMASH, "res/gfx/scr/fight/arrowsmash.png",
               False, 0, 0);
-    define_cnt(FIGHT_ONO, 0, 0);
+    DefineCnt(FIGHT_ONO, 0, 0);
     define_lbl(LBL_FIGHT_PLAYERGUILD, "", 0, (OPPY + 5),
               FontFormat_ScreenTitle);
     define_lbl(LBL_FIGHT_OPPGUILD, "", 0, (OPPY + 5),
@@ -24837,8 +24826,8 @@ def build_interface():
               FIGHT_CHARX, ((OPPY + 300) + LIFEBAR_Y));
     define_img(LIFEBAR_FILL_CHAR, "res/gfx/scr/fight/lifebar_red.png",
               False, (FIGHT_CHARX + 10), (((OPPY + 300) + 8) + LIFEBAR_Y));
-    define_cnt(LIFEBAR_OPP, OPPX, ((OPPY + 300) + LIFEBAR_Y));
-    define_cnt(LIFEBAR_FILL_OPP, (OPPX + 10), (((OPPY + 300) + 8)
+    DefineCnt(LIFEBAR_OPP, OPPX, ((OPPY + 300) + LIFEBAR_Y));
+    DefineCnt(LIFEBAR_FILL_OPP, (OPPX + 10), (((OPPY + 300) + 8)
               + LIFEBAR_Y));
     define_lbl(LBL_LIFEBAR_CHAR, "", 0, (((OPPY + 300) + 13) + LIFEBAR_Y),
               FontFormat_LifeBar);
@@ -24846,19 +24835,19 @@ def build_interface():
               FontFormat_LifeBar);
     define_img(FIGHT_CHAR_BORDER, "res/gfx/scr/fight/character_border.png",
               False, (FIGHT_CHARX - 10), (OPPY - 10));
-    define_cnt(FIGHT_OPP_BORDER, (OPPX - 10), (OPPY - 10));
-    define_cnt(BULLET_CHAR, 0, 0);
-    set_cnt(BULLET_CHAR, ITM_OFFS);
-    define_cnt(BULLET_OPP, 0, 0);
-    set_cnt(BULLET_OPP, ITM_OFFS);
-    define_cnt(WEAPON_CHAR, 0, 0);
-    set_cnt(WEAPON_CHAR, ITM_OFFS);
-    define_cnt(SHIELD_CHAR, 0, 0);
-    set_cnt(SHIELD_CHAR, ITM_OFFS);
-    define_cnt(WEAPON_OPP, 0, 0);
-    set_cnt(WEAPON_OPP, ITM_OFFS);
-    define_cnt(SHIELD_OPP, 0, 0);
-    set_cnt(SHIELD_OPP, ITM_OFFS);
+    DefineCnt(FIGHT_OPP_BORDER, (OPPX - 10), (OPPY - 10));
+    DefineCnt(BULLET_CHAR, 0, 0);
+    SetCnt(BULLET_CHAR, ITM_OFFS);
+    DefineCnt(BULLET_OPP, 0, 0);
+    SetCnt(BULLET_OPP, ITM_OFFS);
+    DefineCnt(WEAPON_CHAR, 0, 0);
+    SetCnt(WEAPON_CHAR, ITM_OFFS);
+    DefineCnt(SHIELD_CHAR, 0, 0);
+    SetCnt(SHIELD_CHAR, ITM_OFFS);
+    DefineCnt(WEAPON_OPP, 0, 0);
+    SetCnt(WEAPON_OPP, ITM_OFFS);
+    DefineCnt(SHIELD_OPP, 0, 0);
+    SetCnt(SHIELD_OPP, ITM_OFFS);
     define_img(WEAPON_FIST, "res/gfx/itm/kampf_faust.png", False, 0, 0);
     define_img(WEAPON_STONEFIST, "res/gfx/itm/kampf_steinfaust.png",
               False, 0, 0);
@@ -24924,12 +24913,12 @@ def build_interface():
               (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
     define_img(FIGHT_BOX2, "res/gfx/scr/fight/box2.png", False,
               (SCREEN_TITLE_X - 254), (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
-    define_cnt(FIGHT_BOX3, (FIGHT_CHAR_PROP_COLUMN_3_X + FIGHT_BOX3_X),
+    DefineCnt(FIGHT_BOX3, (FIGHT_CHAR_PROP_COLUMN_3_X + FIGHT_BOX3_X),
               (FIGHT_CHAR_PROP_Y + FIGHT_BOX1_Y));
-    define_cnt(FIGHT_SLOT, (SCREEN_TITLE_X - 45), FIGHT_SLOT_Y);
-    define_cnt(FIGHT_REWARDGOLD, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
-    define_cnt(FIGHT_REWARDSILVER, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
-    define_cnt(FIGHT_REWARDMUSH, FIGHT_REWARDGOLD_X, FIGHT_REWARDMUSH_Y);
+    DefineCnt(FIGHT_SLOT, (SCREEN_TITLE_X - 45), FIGHT_SLOT_Y);
+    DefineCnt(FIGHT_REWARDGOLD, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
+    DefineCnt(FIGHT_REWARDSILVER, FIGHT_REWARDGOLD_X, FIGHT_REWARDGOLD_Y);
+    DefineCnt(FIGHT_REWARDMUSH, FIGHT_REWARDGOLD_X, FIGHT_REWARDMUSH_Y);
     define_lbl(LBL_FIGHT_REWARDGOLD, "", 0, FIGHT_REWARDGOLD_Y,
               FontFormat_Default);
     add_filter(LBL_FIGHT_REWARDGOLD, Filter_Shadow);
@@ -25116,13 +25105,13 @@ def build_interface():
                                                 gradePassword);
     actor[INP_OPTION_FIELD3].add_event_listener(KeyboardEvent.KEY_UP,
                                                 gradePassword);
-    define_cnt(CHANGE_PASSWORD_SMILEY_SAD,
+    DefineCnt(CHANGE_PASSWORD_SMILEY_SAD,
               ((OPTION_X + OPTION_DOCHANGE_X) - 50),
               (OPTION_Y + OPTION_Y5));
-    define_cnt(CHANGE_PASSWORD_SMILEY_NEUTRAL,
+    DefineCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL,
               ((OPTION_X + OPTION_DOCHANGE_X) - 50),
               (OPTION_Y + OPTION_Y5));
-    define_cnt(CHANGE_PASSWORD_SMILEY_HAPPY,
+    DefineCnt(CHANGE_PASSWORD_SMILEY_HAPPY,
               ((OPTION_X + OPTION_DOCHANGE_X) - 50),
               (OPTION_Y + OPTION_Y5));
     enable_popup(CHANGE_PASSWORD_SMILEY_SAD,
@@ -25138,7 +25127,7 @@ def build_interface():
     define_lbl(LBL_OPTION_VOLUME, "", 0, (OPTION_Y + OPTION_Y6),
               FontFormat_Default);
     add_filter(LBL_OPTION_VOLUME, Filter_Shadow);
-    define_slider(SLDR_OPTION_VOLUME, 11,
+    DefineSlider(SLDR_OPTION_VOLUME, 11,
                  ((OPTION_X + OPTION_VOLUME_X) + 250),
                  (OPTION_Y + OPTION_Y7), VolumeChange);
     define_snd(SND_TEST, "res/sfx/click.mp3");
@@ -25203,21 +25192,21 @@ def build_interface():
     i = 0;
     while (i < 5) {
         if (i == 4){
-            define_cnt((HLMQS_BUTTON + 4),
+            DefineCnt((HLMQS_BUTTON + 4),
                       ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
                       ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
             define_img((HLMQS_BUTTON + 4),
                       "res/gfx/scr/dungeons/button_tower.jpg", False,
                       ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
                       ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-            define_cnt((HLMQS_DISABLED + 4),
+            DefineCnt((HLMQS_DISABLED + 4),
                       ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
                       ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
-            define_cnt((HLMQS_COMPLETED + 4),
+            DefineCnt((HLMQS_COMPLETED + 4),
                       ((MQS_BUTTON_X + MQS_BUTTON_X) + 0),
                       ((MQS_BUTTON_Y + MQS_BUTTON_Y) - 170));
         } else {
-            define_cnt((HLMQS_BUTTON + i),
+            DefineCnt((HLMQS_BUTTON + i),
                       (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
                       ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
             define_img((HLMQS_BUTTON + i),
@@ -25225,10 +25214,10 @@ def build_interface():
                        + ".jpg"), False, (MQS_BUTTON_X +
                        ((MQS_BUTTON_X * 2) * int((i % 2)))),
                         ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-            define_cnt((HLMQS_DISABLED + i),
+            DefineCnt((HLMQS_DISABLED + i),
                       (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
                       ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
-            define_cnt((HLMQS_COMPLETED + i),
+            DefineCnt((HLMQS_COMPLETED + i),
                       (MQS_BUTTON_X + ((MQS_BUTTON_X * 2) * int((i % 2)))),
                       ((MQS_BUTTON_Y + 100) + (200 * int((i / 2)))));
         };
@@ -25262,17 +25251,17 @@ def build_interface():
                  SND_MAINQUESTS_UNLOCK);
     i = 0;
     while (i < 9) {
-        define_cnt((MQS_BUTTON + i),
+        DefineCnt((MQS_BUTTON + i),
                   (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
                   (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
         define_img((MQS_BUTTON + i),
                   (("res/gfx/scr/dungeons/button" + str(51 + i)) + ".jpg"),
                   False, (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
                   (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-        define_cnt((MQS_DISABLED + i),
+        DefineCnt((MQS_DISABLED + i),
                   (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
                   (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
-        define_cnt((MQS_COMPLETED + i),
+        DefineCnt((MQS_COMPLETED + i),
                   (MQS_BUTTON_X + (MQS_BUTTON_X * int((i % 3)))),
                   (MQS_BUTTON_Y + (MQS_BUTTON_Y * int((i / 3)))));
         add_bunch(SCREEN_MAINQUESTS, (MQS_BUTTON + i), (MQS_DISABLED + i),
@@ -25339,8 +25328,8 @@ def build_interface():
         wordWrap = True;
     };
     add_filter(LBL_MAINQUEST_MUSHHINT, Filter_Shadow);
-    define_cnt(MAINQUEST_enemy, MAINQUEST_enemy_X, MAINQUEST_enemy_Y);
-    define_cnt(MAINQUEST_enemy_BORDER, (MAINQUEST_enemy_X - MQ_BORDER_X),
+    DefineCnt(MAINQUEST_enemy, MAINQUEST_enemy_X, MAINQUEST_enemy_Y);
+    DefineCnt(MAINQUEST_enemy_BORDER, (MAINQUEST_enemy_X - MQ_BORDER_X),
               (MAINQUEST_enemy_Y - MQ_BORDER_Y));
     define_bunch(SCREEN_MAINQUEST, SHP_MAINQUEST, IF_OVL,
                  LBL_MAINQUEST_TITLE, LBL_MAINQUEST_TEXT,
@@ -25374,12 +25363,12 @@ def build_interface():
     define_lbl(LBL_EMAIL_RESEND, texts[TXT_EMAIL_RESEND], 0, 0,
               FontFormat_Default);
     add_filter(LBL_EMAIL_RESEND, Filter_Shadow);
-    make_persistent(LBL_EMAIL_RESEND);
-    define_cnt(EMAIL_RESEND, EMAIL_NAG_X, (EMAIL_NAG_Y + EMAIL_RESEND_Y));
+    MakePersistent(LBL_EMAIL_RESEND);
+    DefineCnt(EMAIL_RESEND, EMAIL_NAG_X, (EMAIL_NAG_Y + EMAIL_RESEND_Y));
     _local2 = actor[EMAIL_RESEND];
     with (_local2) {
         addChild(actor[LBL_EMAIL_RESEND]);
-        text_link_make_clickable(getChildAt(0).parent);
+        textLinkMakeClickable(getChildAt(0).parent);
         mouseChildren = False;
         mouse_enabled = True;
         buttonMode = True;
@@ -25391,7 +25380,7 @@ def build_interface():
                (IF_WIN_Y + EMAIL_NAG_Y));
     define_bunch(SCREEN_EMAIL_NAG, IF_WINDOW, LBL_WINDOW_TITLE,
                  LBL_EMAIL_NAG, EMAIL_NAG, IF_EXIT);
-    define_cnt(POPUP_INFO);
+    DefineCnt(POPUP_INFO);
     _local2 = actor[POPUP_INFO];
     with (_local2) {
     };
@@ -25580,7 +25569,7 @@ def define_from_class(actor_id, img_class, pos_x=0, pos_y=0, txt_manip=0,
     pass
 
 
-def define_cnt(actor_id, pos_x=0, pos_y=0, vis=True):
+def DefineCnt(actor_id, pos_x=0, pos_y=0, vis=True):
     '''
     var i:* = 0;
     var actor_id:* = actor_id;
@@ -25603,19 +25592,19 @@ def define_cnt(actor_id, pos_x=0, pos_y=0, vis=True):
     pass
 
 
-def text_link_make_clickable(obj):
+def textLinkMakeClickable(obj):
     '''
         does nothing?
     '''
     pass
 
 
-def define_slider(actor_id, ticks, pos_x, pos_y, fn):
+def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
     '''
     var i:* = 0;
     var oldSliderVal:* = 0;
     var actor_id:* = actor_id;
-    var ticks:* = ticks;
+    var Ticks:* = Ticks;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
     var fn:* = fn;
@@ -25626,8 +25615,8 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
             if ((((evt.localX > 35)) and ((evt.localX < (45 + 198))))){
                 tmpX = evt.localX;
                 sliderVal = (int(((((tmpX - 40) / 198)
-                             * (ticks - 1)) + 0.5)) + 1);
-                tmpX = (int((((sliderVal - 1) / (ticks - 1)) * 198)) + 40);
+                             * (Ticks - 1)) + 0.5)) + 1);
+                tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
                 evt.target.getChildAt(1).x = (tmpX - 7);
                 if (oldSliderVal != sliderVal){
                     fn(sliderVal);
@@ -25640,15 +25629,15 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
         var tmpX;
         var sliderVal;
         tmpX = (evt.stageX - actor[(actor_id + 1)].x);
-        sliderVal = (int(((((tmpX - 40) / 198) * (ticks - 1)) + 0.5)) + 1);
-        tmpX = (int((((sliderVal - 1) / (ticks - 1)) * 198)) + 40);
+        sliderVal = (int(((((tmpX - 40) / 198) * (Ticks - 1)) + 0.5)) + 1);
+        tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
         actor[(actor_id + 1)].getChildAt(1).x = (tmpX - 7);
         if (oldSliderVal != sliderVal){
             fn(sliderVal);
         };
         oldSliderVal = sliderVal;
     };
-    actorBitmap[actor_id] = ticks;
+    actorBitmap[actor_id] = Ticks;
     actorBitmap[(actor_id + 1)] = [fn];
     define_from_class((actor_id + 1), DragonSlider, pos_x, pos_y);
     define_bunch(actor_id, (actor_id + 1));
@@ -25660,10 +25649,10 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
         useHandCursor = True;
     };
     i = 1;
-    while (i <= ticks) {
+    while (i <= Ticks) {
         define_from_class(((actor_id + 1) + i), SliderTick,
                         (((pos_x + 40) + int((198 * ((i - 1)
-                         / (ticks - 1))))) - 5), (pos_y - 10));
+                         / (Ticks - 1))))) - 5), (pos_y - 10));
         _local7 = actor[((actor_id + 1) + i)];
         with (_local7) {
             add_event_listener(MouseEvent.MOUSE_DOWN, ClickTick);
@@ -25688,7 +25677,7 @@ def get_slider_value(actor_id):
     pass
 
 
-def set_slider_value(actor_id, value):
+def SetSliderValue(actor_id, value):
     '''
     var tmpX;
     var oldVal;
@@ -25703,7 +25692,7 @@ def set_slider_value(actor_id, value):
     pass
 
 
-def make_persistent(*args):
+def MakePersistent(*args):
     '''
     var i;
     var i_bunch;
@@ -25712,7 +25701,7 @@ def make_persistent(*args):
         if ((actor[_args[i]] is Array)){
             i_bunch = 0;
             while (i_bunch < actor[_args[i]].length) {
-                make_persistent(actor[_args[i]][i_bunch]);
+                MakePersistent(actor[_args[i]][i_bunch]);
                 i_bunch++;
             };
             return;
@@ -25724,7 +25713,7 @@ def make_persistent(*args):
     pass
 
 
-def make_temporary(*args):
+def MakeTemporary(*args):
     '''
     var i;
     var i_bunch;
@@ -25733,7 +25722,7 @@ def make_temporary(*args):
         if ((actor[_args[i]] is Array)){
             i_bunch = 0;
             while (i_bunch < actor[_args[i]].length) {
-                make_temporary(actor[_args[i]][i_bunch]);
+                MakeTemporary(actor[_args[i]][i_bunch]);
                 i_bunch++;
             };
             return;
@@ -25745,7 +25734,7 @@ def make_temporary(*args):
     pass
 
 
-def enable_drag_drop(actor_id, handler, *args):
+def EnableDragDrop(actor_id, handler, *args):
     '''
     var old_x:* = 0;
     var old_y:* = 0;
@@ -25866,49 +25855,48 @@ def enable_drag_drop(actor_id, handler, *args):
     pass
 
 
-def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
+def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
     '''
     var i_bunch:* = 0;
     var CntImgLoaded:* = None;
-    var cnt_id:* = cnt_id;
-    var img_id = img_id;
+    var cntID:* = cntID;
+    var ImgID = ImgID;
     var pos_x = pos_x;
     var pos_y = pos_y;
     var center:Boolean = center;
-    if (!(actor[img_id] is Loader)){
-        if (actorBitmap[cnt_id]){
-            actor[cnt_id].removeChild(actorBitmap[cnt_id]);
-            actorBitmap[cnt_id] = None;
+    if (!(actor[ImgID] is Loader)){
+        if (actorBitmap[cntID]){
+            actor[cntID].removeChild(actorBitmap[cntID]);
+            actorBitmap[cntID] = None;
         };
         return;
     };
-    if ((actor[cnt_id] is Array)){
+    if ((actor[cntID] is Array)){
         i_bunch = 0;
-        while (i_bunch < actor[cnt_id].length) {
-            set_cnt(actor[cnt_id][i_bunch], img_id);
+        while (i_bunch < actor[cntID].length) {
+            SetCnt(actor[cntID][i_bunch], ImgID);
             i_bunch = (i_bunch + 1);
         };
         return;
     };
-    if (actorBitmap[cnt_id]){
-        actor[cnt_id].removeChild(actorBitmap[cnt_id]);
-        actorBitmap[cnt_id] = None;
+    if (actorBitmap[cntID]){
+        actor[cntID].removeChild(actorBitmap[cntID]);
+        actorBitmap[cntID] = None;
     };
-    if (img_id != 0){
-        if (actorLoaded[img_id] == 2){
-            if ((((((img_id == ITM_EMPTY)) or ((img_id == ITM_OFFS))))
-                and ((actor[cnt_id].width == 0)))){
-                var _local7 = actor[cnt_id];
+    if (ImgID != 0){
+        if (actorLoaded[ImgID] == 2){
+            if ((((((ImgID == ITM_EMPTY)) or ((ImgID == ITM_OFFS))))
+                and ((actor[cntID].width == 0)))){
+                var _local7 = actor[cntID];
                 with (_local7) {
                     graphics.beginFill(0, 0);
                     graphics.drawRect(0, 0, 90, 90);
                 };
             };
-            if ((actor[img_id].content is Bitmap)){
-                actorBitmap[cnt_id] = new Bitmap();
-                actorBitmap[cnt_id].bitmapData = actor[img_id]
-                    .content.bitmapData
-                _local7 = actorBitmap[cnt_id];
+            if ((actor[ImgID].content is Bitmap)){
+                actorBitmap[cntID] = new Bitmap();
+                actorBitmap[cntID].bitmapData = actor[ImgID].content.bitmapData
+                _local7 = actorBitmap[cntID];
                 with (_local7) {
                     allow_smoothing = True;
                     force_smoothing = True;
@@ -25916,16 +25904,15 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
-                actor[cnt_id].addChild(actorBitmap[cnt_id]);
+                actor[cntID].addChild(actorBitmap[cntID]);
             } else {
-                actorBitmap[cnt_id] = new Bitmap();
-                actorBitmap[cnt_id].bitmapData = BitmapData(
-                                                        actor[img_id].width,
-                                                        actor[img_id].height,
-                                                        True, 0);
-                actorBitmap[cnt_id].bitmapData.draw(
-                                           (actor[img_id] as IBitmapDrawable));
-                _local7 = actorBitmap[cnt_id];
+                actorBitmap[cntID] = new Bitmap();
+                actorBitmap[cntID].bitmapData = BitmapData(actor[ImgID].width,
+                                                           actor[ImgID].height,
+                                                           True, 0);
+                actorBitmap[cntID].bitmapData.draw(
+                                           (actor[ImgID] as IBitmapDrawable));
+                _local7 = actorBitmap[cntID];
                 with (_local7) {
                     allow_smoothing = True;
                     force_smoothing = True;
@@ -25933,17 +25920,17 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
-                actor[cnt_id].addChild(actorBitmap[cnt_id]);
+                actor[cntID].addChild(actorBitmap[cntID]);
             };
         } else {
             CntImgLoaded = function (evt:Event):
-                actorLoaded[img_id] = 2;
-                set_cnt(cnt_id, img_id, pos_x, pos_y, center);
+                actorLoaded[ImgID] = 2;
+                SetCnt(cntID, ImgID, pos_x, pos_y, center);
             };
-            actor[img_id].contentLoaderInfo.add_event_listener(
+            actor[ImgID].contentLoaderInfo.add_event_listener(
                                               Event.COMPLETE, CntImgLoaded);
-            if (actorLoaded[img_id] == 0){
-                load(img_id);
+            if (actorLoaded[ImgID] == 0){
+                load(ImgID);
             };
         };
     };
@@ -25951,13 +25938,13 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
     pass
 
 
-def add_bmo(bunch_id, offset):
+def AddBMO(bunch_id, offset):
     '''
     var i;
     i = 0;
     while (i < actor[bunch_id].length) {
         if ((actor[actor[bunch_id][i]] is Array)){
-            add_bmo(actor[bunch_id][i], offset);
+            AddBMO(actor[bunch_id][i], offset);
         } else {
             add((actor[bunch_id][i] + offset));
         };
@@ -25967,7 +25954,7 @@ def add_bmo(bunch_id, offset):
     pass
 
 
-def remove_illegal_chars(inp_str):
+def RemoveIllegalChars(inpStr):
     '''
     var LegalChars:String;
     var i;
@@ -25976,15 +25963,15 @@ def remove_illegal_chars(inp_str):
     var outStr:String;
     var pass:Boolean;
     if (texts[TXT_LEGALCHARS] == ""){
-        return (inp_str);
+        return (inpStr);
     };
     LegalChars = texts[TXT_LEGALCHARS];
     thisChar = "";
     outStr = "";
     pass = False;
     i = 0;
-    while (i < inp_str.length) {
-        thisChar = inp_str[i: 1]
+    while (i < inpStr.length) {
+        thisChar = inpStr[i: 1]
         pass = False;
         j = 0;
         while (j < LegalChars.length) {
@@ -26009,23 +25996,23 @@ def remove_illegal_chars(inp_str):
     pass
 
 
-def semi_strip(inp_str):
+def SemiStrip(inpStr):
     '''
     var i;
     var outStr:String;
     outStr = "";
     i = 0;
-    while (i < inp_str.length) {
-        if (inp_str[i] == chr(13)){
+    while (i < inpStr.length) {
+        if (inpStr[i] == chr(13)){
             outStr = (outStr + "#");
         } else {
-            if (inp_str[i] == ";"){
+            if (inpStr[i] == ";"){
                 outStr = (outStr + ",");
             } else {
-                if (inp_str[i] == "§"){
+                if (inpStr[i] == "§"){
                     outStr = (outStr + "$");
                 } else {
-                    outStr = (outStr + inp_str[i]);
+                    outStr = (outStr + inpStr[i]);
                 };
             };
         };
@@ -26036,17 +26023,17 @@ def semi_strip(inp_str):
     pass
 
 
-def resolve_breaks(inp_str):
+def resolve_breaks(inpStr):
     '''
     var i;
     var outStr:String;
     outStr = "";
     i = 0;
-    while (i < inp_str.length) {
-        if (inp_str[i] == "#"){
+    while (i < inpStr.length) {
+        if (inpStr[i] == "#"){
             outStr = (outStr + chr(13));
         } else {
-            outStr = (outStr + inp_str[i]);
+            outStr = (outStr + inpStr[i]);
         };
         i++;
     };
@@ -26055,7 +26042,7 @@ def resolve_breaks(inp_str):
     pass
 
 
-def post_btn_handler(evt=None, actor_id=0):
+def PostBtnHandler(evt=None, actor_id=0):
     '''
     var par:* = None;
     var GuildMsg:* = False;
@@ -26108,12 +26095,11 @@ def post_btn_handler(evt=None, actor_id=0):
                         send_action(((GuildMsg)
                                     ? ACT_POST_SEND_GUILD
                                     : ACT_POST_SEND),
-                            remove_illegal_chars(semi_strip(thisRecipient)),
-                            remove_illegal_chars(semi_strip(
+                            RemoveIllegalChars(SemiStrip(thisRecipient)),
+                            RemoveIllegalChars(SemiStrip(
                                actor[INP_POST_SUBJECT].getChildAt(1).text
                                .split("/").join(""))),
-                            remove_illegal_chars(semi_strip(
-                                                 actor[INP_POST_TEXT]
+                            RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT]
                                                .getChildAt(1).text)));
                     };
                 };
@@ -26360,24 +26346,24 @@ def post_btn_handler(evt=None, actor_id=0):
     pass
 
 
-def album_clear():
+def AlbumClear():
     '''
     var i;
     i = 0;
     while (i < 4) {
         hide((ALBUM_MONSTER_FRAME + i));
-        set_cnt((ALBUM_MONSTER + i), C_EMPTY);
-        set_cnt((ALBUM_WEAPON_1 + i), C_EMPTY);
-        set_cnt((ALBUM_WEAPON_2 + i), C_EMPTY);
-        set_cnt((ALBUM_WEAPON_3 + i), C_EMPTY);
-        set_cnt((ALBUM_WEAPON_4 + i), C_EMPTY);
-        set_cnt((ALBUM_WEAPON_5 + i), C_EMPTY);
+        SetCnt((ALBUM_MONSTER + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_1 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_2 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_3 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_4 + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_5 + i), C_EMPTY);
         actor[(ALBUM_WEAPON_1 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_2 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_3 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_4 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_5 + i)].alpha = 1;
-        set_cnt((ALBUM_WEAPON_EPIC + i), C_EMPTY);
+        SetCnt((ALBUM_WEAPON_EPIC + i), C_EMPTY);
         actor[(LBL_ALBUM_HEADING + i)].text = "";
         actor[(LBL_ALBUM_HINT + i)].text = "";
         i++;
@@ -26386,7 +26372,7 @@ def album_clear():
     pass
 
 
-def get_advent():
+def GetAdvent():
     '''
     var tmpNow:Date;
     var tmpAdventEnd:Date;
@@ -26420,22 +26406,21 @@ def get_advent():
     pass
 
 
-def refresh_time_bar(offer_time=0):
+def RefreshTimeBar(OfferTime=0):
     '''
     var tmpTime:* = NaN;
     var tmpText:* = None;
-    var offer_time = offer_time;
+    var OfferTime = OfferTime;
     var tmpX:* = 0;
-    if (offer_time < 0){
-        if ((Number(savegame[SG_TIMEBAR]) + offer_time) < 0){
-            offer_time = 0;
+    if (OfferTime < 0){
+        if ((Number(savegame[SG_TIMEBAR]) + OfferTime) < 0){
+            OfferTime = 0;
         };
     };
     var _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
-        if (offer_time < 0){
-            tmpX = (((Number(savegame[SG_TIMEBAR])
-                    + offer_time) / 6000) * 555);
+        if (OfferTime < 0){
+            tmpX = (((Number(savegame[SG_TIMEBAR]) + OfferTime) / 6000) * 555);
         } else {
             tmpX = ((Number(savegame[SG_TIMEBAR]) / 6000) * 555);
         };
@@ -26444,11 +26429,11 @@ def refresh_time_bar(offer_time=0):
     };
     _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
-        if (offer_time < 0){
-            width = int(((-(offer_time) / 6000) * 555));
+        if (OfferTime < 0){
+            width = int(((-(OfferTime) / 6000) * 555));
             x = tmpX;
         } else {
-            width = int(((offer_time / 6000) * 555));
+            width = int(((OfferTime / 6000) * 555));
             x = tmpX;
         };
     };
@@ -26472,13 +26457,13 @@ def refresh_time_bar(offer_time=0):
     } else {
         tmpText = ((texts[TXT_AUSDAUER] + ": ") + tmpText);
     };
-    if (offer_time != 0){
-        tmpText = (tmpText + (" (" + (((offer_time > 0)) ? "+" : "-")));
-        tmpText = (tmpText + (str(int((math.abs(offer_time) / 60))) + ":"));
-        if ((math.abs(offer_time) % 60) < 10){
+    if (OfferTime != 0){
+        tmpText = (tmpText + (" (" + (((OfferTime > 0)) ? "+" : "-")));
+        tmpText = (tmpText + (str(int((math.abs(OfferTime) / 60))) + ":"));
+        if ((math.abs(OfferTime) % 60) < 10){
             tmpText = (tmpText + "0");
         };
-        tmpText = (tmpText + (str(int((math.abs(offer_time) % 60))) + ")"));
+        tmpText = (tmpText + (str(int((math.abs(OfferTime) % 60))) + ")"));
     };
     tmpTime = Number(savegame[SG_TIMEBAR]);
     if (text_dir == "right"){
@@ -26490,14 +26475,14 @@ def refresh_time_bar(offer_time=0):
         tmpText = (tmpText + str(Number((tmpTime / 60)).toFixed(1))
                    .split(".0")[0]);
     };
-    if (offer_time != 0){
+    if (OfferTime != 0){
         if (text_dir == "right"){
-            tmpText = (((((offer_time > 0)) ? "+" : "-") + ") ") + tmpText);
-            tmpText = (("(" + str(Number((math.abs(offer_time) / 60))
+            tmpText = (((((OfferTime > 0)) ? "+" : "-") + ") ") + tmpText);
+            tmpText = (("(" + str(Number((math.abs(OfferTime) / 60))
                        .toFixed(1)).split(".0")[0]) + tmpText);
         } else {
-            tmpText = (tmpText + (" (" + (((offer_time > 0)) ? "+" : "-")));
-            tmpText = (tmpText + (str(Number((math.abs(offer_time) / 60))
+            tmpText = (tmpText + (" (" + (((OfferTime > 0)) ? "+" : "-")));
+            tmpText = (tmpText + (str(Number((math.abs(OfferTime) / 60))
                        .toFixed(1)).split(".0")[0] + ")"));
         };
     };
@@ -26559,7 +26544,7 @@ def arabize(actor_id):
     pass
 
 
-def get_spend_amount():
+def GetSpendAmount():
     '''
     var amount;
     amount = 1;
@@ -26583,16 +26568,16 @@ def get_spend_amount():
     pass
 
 
-def add_suggest_names(add_array):
+def add_suggest_names(addArray):
     '''
     var i;
-    if (!(add_array is Array)){
-        add_array = [add_array];
+    if (!(addArray is Array)){
+        addArray = [addArray];
     };
     i = 0;
-    while (i < add_array.length) {
-        if (suggestNames.find(add_array[i]) == -1){
-            suggestNames.append(add_array[i]);
+    while (i < addArray.length) {
+        if (suggestNames.find(addArray[i]) == -1){
+            suggestNames.append(addArray[i]);
         };
         i++;
     };
@@ -26609,14 +26594,14 @@ def add_suggest_names(add_array):
     pass
 
 
-def get_actor_id(actor_obj, i_start=0, i_ende=-1):
+def get_actor_id(actorObj, iStart=0, iEnde=-1):
     '''
     var i;
     var res;
     res = C_EMPTY;
-    i = i_start;
-    while (i <= ((i_ende)==-1) ? (actor.length - 1) : i_ende) {
-        if (actor_obj == actor[i]){
+    i = iStart;
+    while (i <= ((iEnde)==-1) ? (actor.length - 1) : iEnde) {
+        if (actorObj == actor[i]){
             res = i;
             break;
         };
@@ -26627,7 +26612,7 @@ def get_actor_id(actor_obj, i_start=0, i_ende=-1):
     pass
 
 
-def get_actor_name(actor_id=0):
+def GetActorName(actor_id=0):
     '''
     var loader:* = None;
     var actor_id = actor_id;
@@ -26685,7 +26670,7 @@ def get_actor_name(actor_id=0):
     pass
 
 
-def crest_move_fn(evt):
+def crestMoveFn(evt):
     '''
     if (actor[GILDE_CREST].y > crestMoveDest){
         actor[GILDE_CREST].y = (actor[GILDE_CREST].y - 5);
@@ -26700,7 +26685,7 @@ def crest_move_fn(evt):
     pass
 
 
-def get_random_crest():
+def getRandomCrest():
     '''
     var i;
     var result:Array;
@@ -26738,7 +26723,7 @@ def set_default_crest():
         crestColor[i] = GuildRandom(heraldicColors.length);
         i = (i + 1);
     };
-    load_crest();
+    loadCrest();
     '''
     pass
 
@@ -26809,12 +26794,12 @@ def set_crest_str(str):
         crestColor[i] = val;
         i++;
     };
-    load_crest();
+    loadCrest();
     '''
     pass
 
 
-def load_crest():
+def loadCrest():
     '''
     var i:* = 0;
     var newLoad:* = False;
@@ -27453,7 +27438,7 @@ def ach_level(SG, ach_index, almode=0):
     };
     return (alresult);
     '''
-    return None
+    pass
 
 
 def sing_plur(inp_text, amount, sep="*"):
@@ -27915,7 +27900,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
             };
             i = (i + 1);
         };
-        set_cnt(TOWER_BOOSTCOIN, IF_GOLD);
+        SetCnt(TOWER_BOOSTCOIN, IF_GOLD);
     } else {
         if (!(SG is Array)){
             SG = savegame;
@@ -28357,7 +28342,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     if (!tower_mode){
         i = 0;
         while (i < 3) {
-            set_cnt((CHAR_POTION + i),
+            SetCnt((CHAR_POTION + i),
                    ((int(SG[(SG_POTION_TYPE + i)]))==0)
                    ? C_EMPTY
                    : GetItemID(12, int(SG[(SG_POTION_TYPE + i)]), 0, 0));
@@ -28454,16 +28439,16 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
             };
         };
         if ((((i > 9)) and (hide_back_pack))){
-            set_cnt((CHAR_SLOT_1 + i), C_EMPTY);
+            SetCnt((CHAR_SLOT_1 + i), C_EMPTY);
             enable_popup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
-                set_cnt((CHAR_SLOT_1 + i), get_arrow_id(((tower_mode) ?
+                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((tower_mode) ?
                        (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG,
                         True, ((tmpItmClass)==1) ? 1 : -1));
                 actor[(CHAR_SLOT_1 + i)].mouse_enabled = False;
             } else {
-                set_cnt((CHAR_SLOT_1 + i),
+                SetCnt((CHAR_SLOT_1 + i),
                        GetItemID(((tower_mode) ? (((i > 9))
                                  ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
                         : SG_INVENTORY_OFFS), ((((tower_mode) and ((i > 9))))
@@ -28503,8 +28488,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                 SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            set_cnt((CHAR_SLOT_FIDGET_1 + i),
-                    GetItemID(SG_FIDGET_ITEM1, i, SG))
+            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG))
             item_popup((CHAR_SLOT_FIDGET_1 + i),
                       (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
                       SG, hide_back_pack);
@@ -28517,8 +28501,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                 SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            set_cnt((CHAR_SLOT_SHAKES_1 + i),
-                    GetItemID(SG_SHAKES_ITEM1, i, SG))
+            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG))
             item_popup((CHAR_SLOT_SHAKES_1 + i),
                       (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
                       SG, hide_back_pack);
@@ -29971,44 +29954,44 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
     if (!load_only){
         add((CHARIMG + actorOffset));
         if ((((is_volk == 2)) and (is_mann))){
-            add_bmo(CHARSPECIALOVL_ELF_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_ELF_M, actorOffset);
         };
         if ((((is_volk == 7)) and (is_mann))){
-            add_bmo(CHARSPECIALOVL_GOBLIN_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_GOBLIN_M, actorOffset);
         };
         if ((((is_volk == 6)) and (is_mann))){
-            add_bmo(CHARSPECIALOVL_DARKELF_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_DARKELF_M, actorOffset);
         };
         if ((((is_volk == 3)) and (is_mann))){
-            add_bmo(CHARSPECIALOVL_DWARF_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_DWARF_M, actorOffset);
         };
         if ((((is_volk == 1)) and (is_mann))){
-            add_bmo(CHARSPECIALOVL_HUMAN_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_HUMAN_M, actorOffset);
         };
         if ((((is_volk == 4)) and (is_mann))){
-            add_bmo(CHARSPECIALOVL_GNOM_M, actorOffset);
+            AddBMO(CHARSPECIALOVL_GNOM_M, actorOffset);
         };
         if ((((is_volk == 7)) and (!(is_mann)))){
-            add_bmo(CHARSPECIALOVL_GOBLIN_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_GOBLIN_F, actorOffset);
         };
         if ((((is_volk == 5)) and (!(is_mann)))){
-            add_bmo(CHARSPECIALOVL_ORC_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_ORC_F, actorOffset);
         };
         if ((((is_volk == 2)) and (!(is_mann)))){
-            add_bmo(CHARSPECIALOVL_ELF_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_ELF_F, actorOffset);
         };
         if ((((is_volk == 1)) and (!(is_mann)))){
-            add_bmo(CHARSPECIALOVL_HUMAN_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_HUMAN_F, actorOffset);
         };
         if ((((is_volk == 3)) and (!(is_mann)))){
-            add_bmo(CHARSPECIALOVL_DWARF_F, actorOffset);
+            AddBMO(CHARSPECIALOVL_DWARF_F, actorOffset);
         };
     };
     '''
     pass
 
 
-def pos_modify_char_buttons():
+def position_modify_character_buttons():
     '''
     var i:* = 0;
     var positionmodify_characterBtn:* = function (actor_id):
@@ -30764,7 +30747,7 @@ def interface_btn_handler(evt):
     pass
 
 
-def chat_poll_interval_reset():
+def ChatPollIntervalReset():
     '''
     if (param_poll_tunnel_url != ""){
         guild_chat_poll.stop();
