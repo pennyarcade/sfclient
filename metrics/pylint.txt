@@ -1299,39 +1299,12 @@ C:26689, 0: Invalid function name "getRandomCrest" (invalid-name)
 W:26765,18: Redefining built-in 'str' (redefined-builtin)
 W:26765,18: Unused argument 'str' (unused-argument)
 C:26803, 0: Invalid function name "loadCrest" (invalid-name)
-W:26919,19: Unused argument 'evt' (unused-argument)
-W:26967,27: Unused argument 'value' (unused-argument)
-W:26991,35: Unused argument 'fn_click' (unused-argument)
-W:26991,25: Unused argument 'disp_obj' (unused-argument)
-W:26991,45: Unused argument 'fn_double_click' (unused-argument)
 C:27034, 0: Invalid argument name "SG" (invalid-name)
 W:27034,14: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-W:27034,18: Unused argument 'ach_index' (unused-argument)
-W:27034,29: Unused argument 'almode' (unused-argument)
-W:27034,14: Unused argument 'SG' (unused-argument)
-W:27445,24: Unused argument 'amount' (unused-argument)
-W:27445,14: Unused argument 'inp_text' (unused-argument)
-W:27445,32: Unused argument 'sep' (unused-argument)
-W:27470,26: Unused argument 'y_level' (unused-argument)
-W:27470,39: Unused argument 'ach_ani_pow' (unused-argument)
-W:27470,16: Unused argument 'actor_id' (unused-argument)
 C:27506, 0: Invalid argument name "SG" (invalid-name)
 W:27506,20: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-W:27506,20: Unused argument 'SG' (unused-argument)
-W:27606,18: Unused argument 'evt' (unused-argument)
-W:27626,18: Unused argument 'actor_id_obj' (unused-argument)
-W:27626,32: Unused argument 'max_width' (unused-argument)
-W:27668,21: Unused argument 'correct_act' (unused-argument)
-W:27707,44: Unused argument 'create_handler' (unused-argument)
-W:27707,25: Unused argument 'actor_id' (unused-argument)
-W:27707,35: Unused argument 'child' (unused-argument)
 C:27732, 0: Invalid argument name "SG" (invalid-name)
 W:27732,22: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-W:27733,22: Unused argument 'copy_cat_id_raw' (unused-argument)
-W:27732,31: Unused argument 'no_prices' (unused-argument)
-W:27732,22: Unused argument 'SG' (unused-argument)
-W:27732,48: Unused argument 'tower_mode' (unused-argument)
-W:27733,41: Unused argument 'witch_mode' (unused-argument)
 C:28572, 0: Invalid argument name "SG" (invalid-name)
 R:28572, 0: Too many arguments (7/5) (too-many-arguments)
 W:28572,34: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
@@ -1415,7 +1388,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |557    |NC       |NC         |
+|warning    |530    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1428,9 +1401,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.74   |100.00   |94.32      |
+|sfclient |100.00 |98.68   |100.00   |94.32      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.26    |0.00     |5.24       |
+|sflegacy |0.00   |1.32    |0.00     |5.24       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1447,7 +1420,7 @@ Messages
 +-----------------------------+------------+
 |invalid-name                 |227         |
 +-----------------------------+------------+
-|unused-argument              |196         |
+|unused-argument              |169         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1486,7 +1459,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 1.74/10
+Your code has been rated at 1.81/10
 
 Statistics by type
 ------------------
