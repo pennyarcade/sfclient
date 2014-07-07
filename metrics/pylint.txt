@@ -1291,14 +1291,7 @@ C:26598, 0: Invalid argument name "iEnde" (invalid-name)
 W:26598,37: Unused argument 'iEnde' (unused-argument)
 W:26598,17: Unused argument 'actorObj' (unused-argument)
 W:26598,27: Unused argument 'iStart' (unused-argument)
-C:26616, 0: Invalid function name "GetActorName" (invalid-name)
-W:26616,17: Unused argument 'actor_id' (unused-argument)
-C:26674, 0: Invalid function name "crestMoveFn" (invalid-name)
-W:26674,16: Unused argument 'evt' (unused-argument)
 C:26689, 0: Invalid function name "getRandomCrest" (invalid-name)
-W:26765,18: Redefining built-in 'str' (redefined-builtin)
-W:26765,18: Unused argument 'str' (unused-argument)
-C:26803, 0: Invalid function name "loadCrest" (invalid-name)
 C:27034, 0: Invalid argument name "SG" (invalid-name)
 W:27034,14: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
 C:27506, 0: Invalid argument name "SG" (invalid-name)
@@ -1384,11 +1377,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |229    |NC       |NC         |
+|convention |226    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |530    |NC       |NC         |
+|warning    |526    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1401,9 +1394,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.68   |100.00   |94.32      |
+|sfclient |100.00 |98.67   |100.00   |94.25      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.32    |0.00     |5.24       |
+|sflegacy |0.00   |1.33    |0.00     |5.31       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1418,9 +1411,9 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|invalid-name                 |227         |
+|invalid-name                 |224         |
 +-----------------------------+------------+
-|unused-argument              |169         |
+|unused-argument              |166         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1448,9 +1441,9 @@ Messages
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
 +-----------------------------+------------+
-|redefined-builtin            |3           |
-+-----------------------------+------------+
 |too-many-lines               |2           |
++-----------------------------+------------+
+|redefined-builtin            |2           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
@@ -1459,7 +1452,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 1.81/10
+Your code has been rated at 1.82/10
 
 Statistics by type
 ------------------
@@ -1473,7 +1466,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |48     |NC         |NC         |100.00      |6.25     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |219    |NC         |NC         |100.00      |9.59     |
+|function |219    |NC         |NC         |100.00      |8.22     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
