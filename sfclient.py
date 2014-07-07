@@ -20,7 +20,7 @@ import types
 
 # external dependencies
 import requests
-import curses
+# import curses
 
 # internal dependencies
 from sfglobals import ACT
@@ -4674,8 +4674,7 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
                       is_replay=False, back_pack_slot=-1,
                       guild_battle_data=None, last_fight=False,
                       guild_fight_exp=0, guild_fight_honor=0, own_guild="",
-                      opp_guild="", raid_level=0
-                     ):
+                      opp_guild="", raid_level=0):
     '''
     var is_guildBattle:* = False;
     var charWeapon:* = 0;
@@ -4786,7 +4785,8 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
         oppWeapon = (oppWeapon - 1000);
         oppWeaponType = (oppWeaponType + 1);
     };
-    charShield = (int(weapon_data[((SG['ITM']['SIZE'] * 2) + SG['ITM']['PIC'])])
+    charShield = (int(weapon_data[((SG['ITM']['SIZE'] * 2)
+                  + SG['ITM']['PIC'])])
         * (((int(weapon_data[((SG['ITM']['SIZE'] * 2)
             + SG_ITM_TYP)]) == 0)) ? 0 : 1));
     oppShield = (weapon_data[((SG['ITM']['SIZE'] * 3) + SG['ITM']['PIC'])]
@@ -4931,7 +4931,9 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
             SetCnt(BULLET_OPP, C_EMPTY);
         } else {
             if (oppWeaponType == 2){
-                SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), 30, -30, True);
+                SetCnt(WEAPON_OPP,
+                       GetItemID(0, 1, weapon_data),
+                       30, -30, True)
                 SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True, 0));
                 load(
                     get_arrow_id(0, 1, weapon_data, True, 1),
@@ -30747,7 +30749,7 @@ def interface_btn_handler(evt):
     pass
 
 
-def ChatPollIntervalReset():
+def chat_poll_interval_reset():
     '''
     if (param_poll_tunnel_url != ""){
         guild_chat_poll.stop();

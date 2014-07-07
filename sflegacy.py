@@ -30,6 +30,14 @@ class TextField(object):
     '''
         obsolete with cli?
     '''
+    def __init__(self, *args):
+        '''
+            obsolete with cli?
+        '''
+        self.x = None
+        self.y = None
+        self.visible = None
+
     def add_event_listener(self, *args):
         '''
             obsolete
@@ -161,6 +169,14 @@ class Bitmap(object):
     '''
         obsolete with cli?
     '''
+    def __init__(self, *args):
+        '''
+            obsolete with cli?
+        '''
+        self.x = None
+        self.y = None
+        self.visible = None
+
     def add_event_listener(self, *args):
         '''
             obsolete
@@ -647,4 +663,4 @@ def remove_event_listener(*args):
     '''
         obsolete
     '''
-    pass
+    print args
