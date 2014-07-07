@@ -1,13 +1,6 @@
 checking sfbuildinterface.py
-sfbuildinterface.py:9373:1: W391 blank line at end of file
-    Trailing blank lines are superfluous.
-
-    Okay: spam(1)
-    W391: spam(1)\n
-
-    However the last line should end with a new line (warning W292).
 checking sfclient.py
-sfclient.py:18497:80: E501 line too long (80 > 79 characters)
+sfclient.py:18499:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -18,7 +11,7 @@ sfclient.py:18497:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:18632:80: E501 line too long (80 > 79 characters)
+sfclient.py:18634:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -29,7 +22,7 @@ sfclient.py:18632:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:18826:80: E501 line too long (80 > 79 characters)
+sfclient.py:18828:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -40,7 +33,7 @@ sfclient.py:18826:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:18999:80: E501 line too long (80 > 79 characters)
+sfclient.py:19001:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -51,7 +44,7 @@ sfclient.py:18999:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:19015:80: E501 line too long (80 > 79 characters)
+sfclient.py:19017:80: E501 line too long (80 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -62,7 +55,7 @@ sfclient.py:19015:80: E501 line too long (80 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:19132:80: E501 line too long (81 > 79 characters)
+sfclient.py:19134:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -73,7 +66,7 @@ sfclient.py:19132:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:19145:80: E501 line too long (81 > 79 characters)
+sfclient.py:19147:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -84,7 +77,7 @@ sfclient.py:19145:80: E501 line too long (81 > 79 characters)
     length to 72 characters is recommended.
 
     Reports error E501.
-sfclient.py:19171:80: E501 line too long (81 > 79 characters)
+sfclient.py:19173:80: E501 line too long (81 > 79 characters)
     Limit all lines to a maximum of 79 characters.
 
     There are still many devices around that are limited to 80 character
@@ -98,4 +91,3 @@ sfclient.py:19171:80: E501 line too long (81 > 79 characters)
 checking sfglobals.py
 checking sflegacy.py
 8       E501 line too long (80 > 79 characters)
-1       W391 blank line at end of file
