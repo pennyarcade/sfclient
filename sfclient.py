@@ -29105,14 +29105,15 @@ def item_popup(slot_id, sg_index, SG=None, hide_back_pack=False,
         enable_popup(slot_id);
     };
     '''
-    pass
+    print slot_id, sg_index, SG, hide_back_pack, no_prices, tower_mode
+    print witch_mode
 
 
 def get_hl_index(in_str):
     '''
     return (int(decode_chat(in_str, True)));
     '''
-    pass
+    print in_str
 
 
 def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
@@ -29425,7 +29426,7 @@ def decode_chat(in_str, get_hl_mode=False, get_gb_mode=False):
     };
     return (in_str);
     '''
-    pass
+    print in_str, get_hl_mode, get_gb_mode
 
 
 def chat_line(line, is_error=False, hl_index=-1, is_whisper=False):
@@ -29520,7 +29521,7 @@ def chat_line(line, is_error=False, hl_index=-1, is_whisper=False):
         chat_line(nextLine, is_error, -1, is_whisper);
     };
     '''
-
+    print line, is_error, hl_index, is_whisper
 
 
 def pay_method(dealer_menu):
