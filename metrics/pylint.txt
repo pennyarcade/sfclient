@@ -31,7 +31,7 @@ W:14261, 0: TODO: hat does this do? (fixme)
 W:15955, 0: TODO: What does this do? (fixme)
 W:15971, 0: TODO: Obsolete? (fixme)
 W:15994, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (30759) (too-many-lines)
+C:  1, 0: Too many lines in module (30760) (too-many-lines)
 C: 91, 0: Invalid constant name "param_obj" (invalid-name)
 C: 92, 0: Invalid constant name "actor" (invalid-name)
 C: 93, 0: Invalid constant name "texts" (invalid-name)
@@ -1335,22 +1335,7 @@ W:27733,41: Unused argument 'witch_mode' (unused-argument)
 C:28572, 0: Invalid argument name "SG" (invalid-name)
 R:28572, 0: Too many arguments (7/5) (too-many-arguments)
 W:28572,34: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-W:28572,43: Unused argument 'hide_back_pack' (unused-argument)
-W:28572,15: Unused argument 'slot_id' (unused-argument)
-W:28573,32: Unused argument 'tower_mode' (unused-argument)
-W:28573,15: Unused argument 'no_prices' (unused-argument)
-W:28573,50: Unused argument 'witch_mode' (unused-argument)
-W:28572,34: Unused argument 'SG' (unused-argument)
-W:28572,24: Unused argument 'sg_index' (unused-argument)
-W:29111,17: Unused argument 'in_str' (unused-argument)
-W:29118,16: Unused argument 'in_str' (unused-argument)
-W:29118,24: Unused argument 'get_hl_mode' (unused-argument)
-W:29118,43: Unused argument 'get_gb_mode' (unused-argument)
-W:29431,14: Unused argument 'line' (unused-argument)
-W:29431,20: Unused argument 'is_error' (unused-argument)
-W:29431,36: Unused argument 'hl_index' (unused-argument)
-W:29431,49: Unused argument 'is_whisper' (unused-argument)
-R:29807, 0: Too many arguments (14/5) (too-many-arguments)
+R:29808, 0: Too many arguments (14/5) (too-many-arguments)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1377,7 +1362,7 @@ C:332, 4: Invalid method name "getLocal" (invalid-name)
 
 Report
 ======
-4126 statements analysed.
+4128 statements analysed.
 
 External dependencies
 ---------------------
@@ -1396,13 +1381,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5195   |14.87 |NC       |NC         |
+|code      |5197   |14.87 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |27997  |80.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |690    |1.97  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1065   |3.05  |NC       |NC         |
+|empty     |1063   |3.04  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1430,7 +1415,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |572    |NC       |NC         |
+|warning    |557    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1443,9 +1428,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.78   |100.00   |94.32      |
+|sfclient |100.00 |98.74   |100.00   |94.32      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.22    |0.00     |5.24       |
+|sflegacy |0.00   |1.26    |0.00     |5.24       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1462,7 +1447,7 @@ Messages
 +-----------------------------+------------+
 |invalid-name                 |227         |
 +-----------------------------+------------+
-|unused-argument              |211         |
+|unused-argument              |196         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1501,7 +1486,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 1.70/10
+Your code has been rated at 1.74/10
 
 Statistics by type
 ------------------
