@@ -567,7 +567,7 @@ def init_vars():
 
     # country_name = list()
 
-    # crest = getRandomCrest()
+    # crest = get_random_crest()
     # crestColor = [0, 0, 0, 0]
     # crestColorSelection = 0
     # crestMoveTimer = new Timer(25)
@@ -26569,16 +26569,16 @@ def GetSpendAmount():
     pass
 
 
-def add_suggest_names(addArray):
+def add_suggest_names(add_array):
     '''
     var i;
-    if (!(addArray is Array)){
-        addArray = [addArray];
+    if (!(add_array is Array)){
+        add_array = [add_array];
     };
     i = 0;
-    while (i < addArray.length) {
-        if (suggestNames.find(addArray[i]) == -1){
-            suggestNames.append(addArray[i]);
+    while (i < add_array.length) {
+        if (suggestNames.find(add_array[i]) == -1){
+            suggestNames.append(add_array[i]);
         };
         i++;
     };
@@ -26592,17 +26592,17 @@ def add_suggest_names(addArray):
         i++;
     };
     '''
-    pass
+    print add_array
 
 
-def get_actor_id(actorObj, iStart=0, iEnde=-1):
+def get_actor_id(actor_obj, i_start=0, i_ende=-1):
     '''
     var i;
     var res;
     res = C_EMPTY;
-    i = iStart;
-    while (i <= ((iEnde)==-1) ? (actor.length - 1) : iEnde) {
-        if (actorObj == actor[i]){
+    i = i_start;
+    while (i <= ((i_ende)==-1) ? (actor.length - 1) : i_ende) {
+        if (actor_obj == actor[i]){
             res = i;
             break;
         };
@@ -26610,7 +26610,7 @@ def get_actor_id(actorObj, iStart=0, iEnde=-1):
     };
     return (res);
     '''
-    pass
+    print actor_obj, i_start, i_ende
 
 
 def get_actor_name(actor_id=0):
@@ -26686,7 +26686,7 @@ def crest_move_fn():
     pass
 
 
-def getRandomCrest():
+def get_random_crest():
     '''
     var i;
     var result:Array;
@@ -27729,7 +27729,7 @@ def make_right_text_area(actor_id, child=0, create_handler=True):
     print actor_id, child, create_handler
 
 
-def display_inventory(SG=None, no_prices=False, tower_mode=False,
+def display_inventory(save=None, no_prices=False, tower_mode=False,
                       copy_cat_id_raw=0, witch_mode=False):
     '''
     var i:* = 0;
@@ -27759,7 +27759,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     var hasEpic:* = False;
     var DamageReduction:* = 0;
     var DamageReductionMax:* = 0;
-    var SG:* = SG;
+    var save:* = save;
     var no_prices:Boolean = no_prices;
     var tower_mode:Boolean = tower_mode;
     var copy_cat_id_raw = copy_cat_id_raw;
@@ -27778,7 +27778,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         i = 0;
         while (i < 3) {
             if (i == copy_cat_id_raw){
-                if (int(SG[(copyCatId + CPC_LEVEL)])
+                if (int(save[(copyCatId + CPC_LEVEL)])
                         >= int(savegame[SG_LEVEL])){
                     hide((TOWER_STEIGERN1 + i));
                     hide((LBL_TOWER_BOOSTPRICELABEL + i));
@@ -27796,13 +27796,13 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         while (i < 5) {
             ii = 0;
             while (ii < 12) {
-                SG[((TSG_LOOT_SACK + (i * 12)) + ii)] = savegame[
+                save[((TSG_LOOT_SACK + (i * 12)) + ii)] = savegame[
                     ((SG_BACKPACK_OFFS + (i * 12)) + ii)];
                 ii = (ii + 1);
             };
             i = (i + 1);
         };
-        if (SG[(copyCatId + CPC_LEVEL)] != 0){
+        if (save[(copyCatId + CPC_LEVEL)] != 0){
             actor[LBL_SCR_CHAR_NAME].text = texts[
                 (TXT_COPYCAT_NAME + copy_cat_id_raw)];
         } else {
@@ -27812,8 +27812,8 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                       - int((actor[LBL_SCR_CHAR_NAME].text_width / 2)));
         var _local7 = actor[SCR_CHAR_EXPBAR];
         with (_local7) {
-            width = int(((Number(SG[(copyCatId + CPC_GOLD_STOLEN)])
-                        / Number(SG[(copyCatId + CPC_GOLD_STOLEN_NEXT)]))
+            width = int(((Number(save[(copyCatId + CPC_GOLD_STOLEN)])
+                        / Number(save[(copyCatId + CPC_GOLD_STOLEN_NEXT)]))
                             * 254));
         };
         i = 0;
@@ -27834,14 +27834,14 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         };
         _local7 = actor[LBL_TOWER_EXPLABEL];
         with (_local7) {
-            if (SG[(copyCatId + CPC_LEVEL)] != 0){
+            if (save[(copyCatId + CPC_LEVEL)] != 0){
                 show((TOWER_PORTRAIT + copy_cat_id_raw));
                 if (text_dir == "right"){
-                    text = ((SG[(copyCatId + CPC_LEVEL)] + " ")
+                    text = ((save[(copyCatId + CPC_LEVEL)] + " ")
                             + texts[TXT_HALL_LIST_COLUMN_4]);
                 } else {
                     text = ((texts[TXT_HALL_LIST_COLUMN_4] + " ")
-                            + SG[(copyCatId + CPC_LEVEL)]);
+                            + save[(copyCatId + CPC_LEVEL)]);
                 };
             } else {
                 show((TOWER_NO_PORTRAIT + copy_cat_id_raw));
@@ -27856,11 +27856,11 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         };
         popupLinesCpc = list();
         popupLinesCpc.append([POPUP_BEGIN_LINE, ((texts[163] + ": ")
-                             + SG[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
-        DamageReductionCpc = int((Number(SG[(copyCatId + CPC_ARMOR)])
-                                 / Number(SG[(copyCatId + CPC_LEVEL)])));
+                             + save[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
+        DamageReductionCpc = int((Number(save[(copyCatId + CPC_ARMOR)])
+                                 / Number(save[(copyCatId + CPC_LEVEL)])));
         DamageReductionMaxCpc = 50;
-        Switch (int(SG[(copyCatId + CPC_CLASS)])){
+        Switch (int(save[(copyCatId + CPC_CLASS)])){
             if case(2:
                 DamageReductionMaxCpc = 10;
                 break;
@@ -27876,12 +27876,12 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                 FontFormat_Attrib, ((((((((("(" + texts[TXT_MAX]) + " -")
                                     + str(DamageReductionMaxCpc)) + "%) ")
                 + str(DamageReductionCpc)) + "% :")
-                + SG[(copyCatId + CPC_LEVEL)]) + " ")
+                + save[(copyCatId + CPC_LEVEL)]) + " ")
                 + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
             popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
-                                + SG[(copyCatId + CPC_LEVEL)]) + ": -")
+                                + save[(copyCatId + CPC_LEVEL)]) + ": -")
                                 + str(DamageReductionCpc))
                                 + "% (") + texts[TXT_MAX]) + " -")
                                 + str(DamageReductionMaxCpc)) + "%)"),
@@ -27903,15 +27903,15 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         };
         SetCnt(TOWER_BOOSTCOIN, IF_GOLD);
     } else {
-        if (!(SG is Array)){
-            SG = savegame;
+        if (!(save is Array)){
+            save = savegame;
         } else {
             hide_back_pack = True;
         };
     };
     i = 0;
     while (i < 5) {
-        if (int(SG[(((tower_mode)
+        if (int(save[(((tower_mode)
                 ? (copyCatId + CPC_ATTRIBS_BONUS)
                 : SG_ATTR_STAERKE_BONUS) + i)]) > 0){
             actor[(LBL_SCR_CHAR_STAERKE + i)]
@@ -27920,9 +27920,9 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
             actor[(LBL_SCR_CHAR_STAERKE + i)]
                 .default_text_format = FontFormat_Attrib;
         };
-        actor[(LBL_SCR_CHAR_STAERKE + i)].text = str((int(SG[(((tower_mode)
+        actor[(LBL_SCR_CHAR_STAERKE + i)].text = str((int(save[(((tower_mode)
                                 ? (copyCatId + CPC_ATTRIBS)
-                            : SG_ATTR_STAERKE) + i)]) + int(SG[(((tower_mode)
+                            : SG_ATTR_STAERKE) + i)]) + int(save[(((tower_mode)
                                 ? (copyCatId + CPC_ATTRIBS_BONUS)
                                 : SG_ATTR_STAERKE_BONUS) + i)])));
         popupLines = list();
@@ -27947,20 +27947,20 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, texts[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
         if ((((((tower_mode)
-            ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 1))
+            ? (copy_cat_id_raw + 1) : int(save[SG_CLASS])) == 1))
                 and ((i == 0)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
         } else {
         if ((((((tower_mode)
-            ? (copy_cat_id_raw + 1) : int(SG[SG_CLASS])) == 3))
+            ? (copy_cat_id_raw + 1) : int(save[SG_CLASS])) == 3))
                 and ((i == 1)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
                 FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER],
                 POPUP_END_LINE];
         } else {
         if ((((((tower_mode) ? (copy_cat_id_raw + 1)
-            : int(SG[SG_CLASS])) == 2))
+            : int(save[SG_CLASS])) == 2))
                 and ((i == 2)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
                 FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
@@ -27972,33 +27972,33 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
 
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
             texts[TXT_BASIS], POPUP_TAB,
-            str(int(SG[(((tower_mode)
+            str(int(save[(((tower_mode)
                 ? (copyCatId + CPC_ATTRIBS)
                 : SG_ATTR_STAERKE) + i)])), POPUP_END_LINE];
         tempBonus = 0;
-        tempBonus = int(SG[(((tower_mode)
+        tempBonus = int(save[(((tower_mode)
                         ? (copyCatId + CPC_ATTRIBS_BONUS)
                         : SG_ATTR_STAERKE_BONUS) + i)]);
         if (!tower_mode){
             ii = 0;
             while (ii < 3) {
-                if (int(SG[(SG_POTION_TYPE + ii)]) == 16){
-                    tmpHealth = int(SG[(SG_POTION_GAIN + ii)]);
+                if (int(save[(SG_POTION_TYPE + ii)]) == 16){
+                    tmpHealth = int(save[(SG_POTION_GAIN + ii)]);
                 } else {
-                    if (((int(SG[(SG_POTION_TYPE + ii)]) - 1) % 5) == i){
+                    if (((int(save[(SG_POTION_TYPE + ii)]) - 1) % 5) == i){
                         potionDuration = time_str(
-                                      SG[(SG_POTION_DURATION + ii)], True);
-                        if (int(SG[(SG_POTION_GAIN + ii)]) <= 25){
-                            tempBonus = ((int(SG[(SG_ATTR_STAERKE + i)])
-                                 + int(SG[(SG_ATTR_STAERKE_BONUS + i)]))
-                            / ((100 + int(SG[(SG_POTION_GAIN + ii)])) / 100));
+                                      save[(SG_POTION_DURATION + ii)], True);
+                        if (int(save[(SG_POTION_GAIN + ii)]) <= 25){
+                            tempBonus = ((int(save[(SG_ATTR_STAERKE + i)])
+                                 + int(save[(SG_ATTR_STAERKE_BONUS + i)]))
+                            / ((100 + int(save[(SG_POTION_GAIN + ii)])) / 100));
 
                             if (hide_back_pack){
                                 popupLines[popupLines.length] = [
                                     POPUP_BEGIN_LINE, FontFormat_AttribTemp,
                                     texts[TXT_TEMPORARY], POPUP_TAB,
                                     str(math.round(
-                                        ((int(SG[(SG_POTION_GAIN + ii)])
+                                        ((int(save[(SG_POTION_GAIN + ii)])
                                          / 100) * tempBonus))),
                                     POPUP_END_LINE];
                             } else {
@@ -28010,7 +28010,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                                         POPUP_TAB,
                                         ((((("(" + potionDuration) + " ")
                                          + texts[TXT_UNTIL]) + ") ")
-                                        + str(math.round(((int(SG[(
+                                        + str(math.round(((int(save[(
                                           SG_POTION_GAIN + ii)]) / 100)
                                         * tempBonus)))), POPUP_END_LINE];
                                 } else {
@@ -28019,7 +28019,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                                         FontFormat_AttribTemp,
                                         texts[TXT_TEMPORARY],
                                         POPUP_TAB,
-                                        (((((str(math.round(((int(SG[
+                                        (((((str(math.round(((int(save[
                                          (SG_POTION_GAIN + ii)]) / 100)
                                         * tempBonus))) + " (")
                                         + texts[TXT_UNTIL]) + " ")
@@ -28028,14 +28028,14 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                                 };
                             };
                             tempBonus = (tempBonus
-                                         - int(SG[(SG_ATTR_STAERKE + i)]));
+                                         - int(save[(SG_ATTR_STAERKE + i)]));
                         } else {
                             if (hide_back_pack){
                                 popupLines[popupLines.length] = [
                                     POPUP_BEGIN_LINE,
                                     FontFormat_AttribTemp,
                                     texts[TXT_TEMPORARY], POPUP_TAB,
-                                    str(int(SG[(SG_POTION_GAIN + ii)])),
+                                    str(int(save[(SG_POTION_GAIN + ii)])),
                                     POPUP_END_LINE];
                             } else {
                                 if (text_dir == "right"){
@@ -28046,7 +28046,8 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                                         POPUP_TAB,
                                         ((((("(" + potionDuration) + " ")
                                          + texts[TXT_UNTIL]) + ") ")
-                                        + str(int(SG[(SG_POTION_GAIN + ii)]))),
+                                        + str(int(save[
+                                              (SG_POTION_GAIN + ii)]))),
                                         POPUP_END_LINE];
                                 } else {
                                     popupLines[popupLines.length] = [
@@ -28054,14 +28055,15 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                                         FontFormat_AttribTemp,
                                         texts[TXT_TEMPORARY],
                                         POPUP_TAB,
-                                        ((((str(int(SG[(SG_POTION_GAIN + ii)]))
+                                        ((((str(int(save[
+                                         (SG_POTION_GAIN + ii)]))
                                          + " (") + texts[TXT_UNTIL]) + " ")
                                             + potionDuration) + ")"),
                                         POPUP_END_LINE];
                                 };
                             };
-                            tempBonus = (int(SG[(SG_ATTR_STAERKE_BONUS + i)])
-                                         - int(SG[(SG_POTION_GAIN + ii)]));
+                            tempBonus = (int(save[(SG_ATTR_STAERKE_BONUS + i)])
+                                         - int(save[(SG_POTION_GAIN + ii)]));
                         };
                         break;
                     };
@@ -28077,14 +28079,14 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         enable_popup((LBL_SCR_CHAR_STAERKE + i), popupLines);
         enable_popup((LBL_SCR_CHAR_STAERKE_CAPTION + i), popupLines);
         if (!tower_mode){
-            boostPrice = GetBoostPrice(SG[(SG_ATTR_STAERKE_GEKAUFT + i)]);
+            boostPrice = GetBoostPrice(save[(SG_ATTR_STAERKE_GEKAUFT + i)]);
             if (boostPrice > 9999){
                 boostPrice = (int((boostPrice / 100)) * 100);
             };
             if (boostPrice > 0x3B9ACA00){
                 boostPrice = 0x3B9ACA00;
             };
-            canBoost[i] = Boolean((boostPrice <= Number(SG[SG_GOLD])));
+            canBoost[i] = Boolean((boostPrice <= Number(save[SG_GOLD])));
             boostGold = int((boostPrice / 100));
             boostSilver = (boostPrice % 100);
             hide((LBL_SCR_CHAR_PREIS1 + i), (SCR_CHAR_GOLD1 + i),
@@ -28142,12 +28144,12 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         };
         i = (i + 1);
     };
-    tmpKritische = (math.round(((((int(SG[((tower_mode)
+    tmpKritische = (math.round(((((int(save[((tower_mode)
                     ? ((copyCatId + CPC_ATTRIBS) + 4)
-                    : SG_ATTR_WILLENSKRAFT)]) + int(SG[((tower_mode)
+                    : SG_ATTR_WILLENSKRAFT)]) + int(save[((tower_mode)
                     ? ((copyCatId + CPC_ATTRIBS_BONUS) + 4)
                     : SG_ATTR_WILLENSKRAFT_BONUS)])) * 25)
-                    / (Number(SG[((tower_mode)
+                    / (Number(save[((tower_mode)
                        ? (copyCatId + CPC_LEVEL) : SG_LEVEL)]) * 10))
                     * 100)) / 100);
     if (tmpKritische < 0){
@@ -28156,10 +28158,10 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     if (tmpKritische > 50){
         tmpKritische = 50;
     };
-    tmpDamageMin = SG[((tower_mode)
+    tmpDamageMin = save[((tower_mode)
                        ? (copyCatId + CPC_DAMAGE_MIN)
                        : SG_DAMAGE_MIN)];
-    tmpDamageMax = SG[((tower_mode)
+    tmpDamageMax = save[((tower_mode)
                        ? (copyCatId + CPC_DAMAGE_MAX)
                        : SG_DAMAGE_MAX)];
     tmpDamageFactor = 0;
@@ -28167,13 +28169,13 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     SchadenLblID = 0;
     Switch (int(((tower_mode)
             ? (copy_cat_id_raw + 1)
-            : SG[SG_CLASS]))){
+            : save[SG_CLASS]))){
         if case(1:
             SchadenLblID = LBL_SCR_CHAR_SCHADEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_SCHADEN;
-            tmpDamageFactor = (1 + ((Number(SG[((tower_mode)
+            tmpDamageFactor = (1 + ((Number(save[((tower_mode)
                                ? (copyCatId + CPC_ATTRIBS)
-                               : SG_ATTR_STAERKE)]) + Number(SG[((tower_mode)
+                               : SG_ATTR_STAERKE)]) + Number(save[((tower_mode)
                                ? (copyCatId + CPC_ATTRIBS_BONUS)
                                : SG_ATTR_STAERKE_BONUS)])) / 10));
             tmpLifeFactor = 5;
@@ -28181,9 +28183,9 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         if case(2:
             SchadenLblID = LBL_SCR_CHAR_LEBEN_CAPTION;
             SchadenID = LBL_SCR_CHAR_LEBEN;
-            tmpDamageFactor = (1 + ((Number(SG[((tower_mode)
+            tmpDamageFactor = (1 + ((Number(save[((tower_mode)
                                ? ((copyCatId + CPC_ATTRIBS) + 2)
-                               : SG_ATTR_AUSDAUER)]) + Number(SG[((tower_mode)
+                               : SG_ATTR_AUSDAUER)]) + Number(save[((tower_mode)
                                ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
                                : SG_ATTR_AUSDAUER_BONUS)])) / 10));
             tmpLifeFactor = 2;
@@ -28191,10 +28193,10 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         if case(3:
             SchadenLblID = LBL_SCR_CHAR_KAMPFWERT_CAPTION;
             SchadenID = LBL_SCR_CHAR_KAMPFWERT;
-            tmpDamageFactor = (1 + ((Number(SG[((tower_mode)
+            tmpDamageFactor = (1 + ((Number(save[((tower_mode)
                                ? ((copyCatId + CPC_ATTRIBS) + 1)
                                : SG_ATTR_BEWEGLICHKEIT)])
-                                + Number(SG[((tower_mode)
+                                + Number(save[((tower_mode)
                                      ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1)
                                      : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 10));
             tmpLifeFactor = 4;
@@ -28202,32 +28204,32 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     };
     tmpDamageMin = math.round((tmpDamageMin * tmpDamageFactor));
     tmpDamageMax = math.round((tmpDamageMax * tmpDamageFactor));
-    actor[LBL_SCR_CHAR_SCHADEN].text = int(((Number(SG[((tower_mode)
+    actor[LBL_SCR_CHAR_SCHADEN].text = int(((Number(save[((tower_mode)
                                        ? (copyCatId + CPC_ATTRIBS)
                                        : SG_ATTR_STAERKE)])
-                            + Number(SG[((tower_mode)
+                            + Number(save[((tower_mode)
                                      ? (copyCatId + CPC_ATTRIBS_BONUS)
                                      : SG_ATTR_STAERKE_BONUS)])) / 2));
-    actor[LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(SG[((tower_mode)
+    actor[LBL_SCR_CHAR_KAMPFWERT].text = int(((Number(save[((tower_mode)
                          ? ((copyCatId + CPC_ATTRIBS) + 1)
-                         : SG_ATTR_BEWEGLICHKEIT)]) + Number(SG[((tower_mode)
+                         : SG_ATTR_BEWEGLICHKEIT)]) + Number(save[((tower_mode)
                          ? ((copyCatId + CPC_ATTRIBS_BONUS) + 1)
                          : SG_ATTR_BEWEGLICHKEIT_BONUS)])) / 2));
-    actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(SG[((tower_mode)
+    actor[LBL_SCR_CHAR_LEBEN].text = int(((Number(save[((tower_mode)
                                  ? ((copyCatId + CPC_ATTRIBS) + 2)
                                  : SG_ATTR_AUSDAUER)])
-                                    + Number(SG[((tower_mode)
+                                    + Number(save[((tower_mode)
                                  ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
                                  : SG_ATTR_AUSDAUER_BONUS)])) / 2));
     actor[LBL_SCR_CHAR_RUESTUNG].default_text_format = (((tmpHealth > 0))
                             ? FontFormat_AttribBonus : FontFormat_Attrib);
-    actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(SG[((tower_mode)
+    actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(save[((tower_mode)
             ? ((copyCatId + CPC_ATTRIBS) + 3)
-            : SG_ATTR_INTELLIGENZ)]) + Number(SG[((tower_mode)
+            : SG_ATTR_INTELLIGENZ)]) + Number(save[((tower_mode)
             ? ((copyCatId + CPC_ATTRIBS_BONUS) + 3)
             : SG_ATTR_INTELLIGENZ_BONUS)])) * (tmpLifeFactor * 2))
             * (((tmpHealth > 0)) ? (Number((tmpHealth + 100)) / 100) : 1))
-            * (0.5 + (SG[((tower_mode) ? (copyCatId + CPC_LEVEL)
+            * (0.5 + (save[((tower_mode) ? (copyCatId + CPC_LEVEL)
                : SG_LEVEL)] / 2))));
     actor[LBL_SCR_CHAR_WIDERSTAND].text = (str(tmpKritische) + str("%"));
     popupLines = list();
@@ -28344,43 +28346,43 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         i = 0;
         while (i < 3) {
             SetCnt((CHAR_POTION + i),
-                   ((int(SG[(SG_POTION_TYPE + i)]))==0)
+                   ((int(save[(SG_POTION_TYPE + i)]))==0)
                    ? C_EMPTY
-                   : GetItemID(12, int(SG[(SG_POTION_TYPE + i)]), 0, 0));
-            if (int(SG[(SG_POTION_TYPE + i)]) == 0){
+                   : GetItemID(12, int(save[(SG_POTION_TYPE + i)]), 0, 0));
+            if (int(save[(SG_POTION_TYPE + i)]) == 0){
                 enable_popup((CHAR_POTION + i));
             } else {
                 if (hide_back_pack){
                     enable_popup((CHAR_POTION + i),
                                  POPUP_BEGIN_LINE,
                                  texts[((TXT_ITMNAME_12
-                                    + int(SG[(SG_POTION_TYPE + i)])) - 1)],
+                                    + int(save[(SG_POTION_TYPE + i)])) - 1)],
                                 POPUP_END_LINE, POPUP_BEGIN_LINE,
-                                texts[(((int(SG[(SG_POTION_TYPE + i)]) == 16))
+                                texts[(((int(save[(SG_POTION_TYPE + i)]) == 16))
                                ? TXT_ITEM_ATTRIB_CLASS_12
                                : (TXT_ITEM_ATTRIB_CLASS_1
-                                  + ((int(SG[(SG_POTION_TYPE + i)])
+                                  + ((int(save[(SG_POTION_TYPE + i)])
                                      - 1) % 5)))], POPUP_TAB,
-                                (("+ " + SG[(SG_POTION_GAIN + i)])
-                                 + (((((int(SG[(SG_POTION_TYPE + i)]) == 16))
-                                    or ((SG[(SG_POTION_GAIN + i)] <= 25))))
+                                (("+ " + save[(SG_POTION_GAIN + i)])
+                                 + (((((int(save[(SG_POTION_TYPE + i)]) == 16))
+                                    or ((save[(save_POTION_GAIN + i)] <= 25))))
                                 ? "%" : "")), POPUP_END_LINE);
                 } else {
                     enable_popup((CHAR_POTION + i),
                                  POPUP_BEGIN_LINE,
                                  texts[((TXT_ITMNAME_12
-                                    + int(SG[(SG_POTION_TYPE + i)])) - 1)],
+                                    + int(save[(SG_POTION_TYPE + i)])) - 1)],
                                 POPUP_END_LINE,
                                 POPUP_BEGIN_LINE,
-                                texts[(((int(SG[(SG_POTION_TYPE + i)]) == 16))
+                                texts[(((int(save[(SG_POTION_TYPE + i)]) == 16))
                                        ? TXT_ITEM_ATTRIB_CLASS_12
                                        : (TXT_ITEM_ATTRIB_CLASS_1
-                              + ((int(SG[(SG_POTION_TYPE + i)]) - 1) % 5)))],
-                            POPUP_TAB, (("+ " + SG[(SG_POTION_GAIN + i)])
-                            + (((((int(SG[(SG_POTION_TYPE + i)]) == 16))
-                       or ((SG[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")),
+                              + ((int(save[(SG_POTION_TYPE + i)]) - 1) % 5)))],
+                            POPUP_TAB, (("+ " + save[(SG_POTION_GAIN + i)])
+                            + (((((int(save[(SG_POTION_TYPE + i)]) == 16))
+                       or ((save[(SG_POTION_GAIN + i)] <= 25)))) ? "%" : "")),
                         POPUP_END_LINE, POPUP_BEGIN_LINE, texts[TXT_REMAINING],
-                        POPUP_TAB, time_str(SG[(SG_POTION_DURATION + i)],
+                        POPUP_TAB, time_str(save[(SG_POTION_DURATION + i)],
                             True), POPUP_END_LINE, POPUP_BEGIN_LINE,
                         texts[TXT_POTION_KILL_INSTRUCTIONS], POPUP_END_LINE);
                 };
@@ -28417,7 +28419,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     move(CHAR_SLOT_SHAKES_6, SHOP_SLOTS_C3_X, SHOP_SLOTS_R2_Y);
     tmpItmClass = 0;
     tmpItmPic = 0;
-    tmpItmPic = int(SG[((((tower_mode)
+    tmpItmPic = int(save[((((tower_mode)
                     ? (copyCatId + CPC_ITEMS)
                     : SG_INVENTORY_OFFS) + (8 * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])]);
@@ -28429,11 +28431,11 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
     i = 0;
     while (i < 15) {
         if ((((i < 10)) or (!(tower_mode)))){
-            if (int(SG[((((tower_mode)
+            if (int(save[((((tower_mode)
                 ? (copyCatId + CPC_ITEMS)
                 : SG_INVENTORY_OFFS) + (i * SG['ITM']['SIZE']))
                 + SG_ITM_TYP)]) == 0){
-                SG[((((tower_mode)
+                save[((((tower_mode)
                     ? (copyCatId + CPC_ITEMS)
                     : SG_INVENTORY_OFFS) +
                     (i * SG['ITM']['SIZE'])) + SG['ITM']['PIC'])] = 0;
@@ -28445,7 +28447,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
                 SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((tower_mode) ?
-                       (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, SG,
+                       (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, save,
                         True, ((tmpItmClass)==1) ? 1 : -1));
                 actor[(CHAR_SLOT_1 + i)].mouse_enabled = False;
             } else {
@@ -28453,15 +28455,15 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                        GetItemID(((tower_mode) ? (((i > 9))
                                  ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
                         : SG_INVENTORY_OFFS), ((((tower_mode) and ((i > 9))))
-                        ? (i - 10) : i), SG, ((tower_mode) ? (((i > 9)) ? -1
+                        ? (i - 10) : i), save, ((tower_mode) ? (((i > 9)) ? -1
                                          : (-(copyCatSel) - 3)) : -2)));
                 item_popup((CHAR_SLOT_1 + i), (((tower_mode) ? (((i > 9))
                           ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
                     : SG_INVENTORY_OFFS) + (((((tower_mode) and ((i > 9))))
-                         ? (i - 10) : i) * SG['ITM']['SIZE'])), SG,
+                         ? (i - 10) : i) * SG['ITM']['SIZE'])), save,
                         hide_back_pack, no_prices, tower_mode, witch_mode);
                 actor[(CHAR_SLOT_1 + i)]
-                    .mouse_enabled = !((int(SG[((((tower_mode)
+                    .mouse_enabled = !((int(save[((((tower_mode)
                     ? (((i > 9)) ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
                     : SG_INVENTORY_OFFS) + (((((tower_mode) and ((i > 9))))
                   ? (i - 10) : i) * SG['ITM']['SIZE'])) + SG_ITM_TYP)]) == 0));
@@ -28484,29 +28486,29 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         hasEpic = False;
         i = 0;
         while (i < 6) {
-            if (int(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
+            if (int(save[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                 + SG_ITM_TYP)]) == 0){
-                SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
+                save[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, SG))
+            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, save))
             item_popup((CHAR_SLOT_FIDGET_1 + i),
                       (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
-                      SG, hide_back_pack);
-            if (((IsEpic(SG[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
+                      save, hide_back_pack);
+            if (((IsEpic(save[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])])) and (on_stage(SCR_FIDGET_BG)))){
                 hasEpic = True;
             };
-            if (int(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
+            if (int(save[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG_ITM_TYP)]) == 0){
-                SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
+                save[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, SG))
+            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, save))
             item_popup((CHAR_SLOT_SHAKES_1 + i),
                       (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
-                      SG, hide_back_pack);
-            if (((IsEpic(SG[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
+                      save, hide_back_pack);
+            if (((IsEpic(save[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])])) and (on_stage(SCR_SHAKES_BG)))){
                 hasEpic = True;
             };
@@ -28523,14 +28525,14 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         };
         if (text_dir == "right"){
             actor[LBL_CHAR_RUESTUNG]
-                .text = ((SG[SG_ARMOR] + " :") + texts[TXT_RUESTUNG_SUM]);
+                .text = ((save[SG_ARMOR] + " :") + texts[TXT_RUESTUNG_SUM]);
         } else {
             actor[LBL_CHAR_RUESTUNG]
-                .text = ((texts[TXT_RUESTUNG_SUM] + ": ") + SG[SG_ARMOR]);
+                .text = ((texts[TXT_RUESTUNG_SUM] + ": ") + save[SG_ARMOR]);
         };
-        DamageReduction = int((Number(SG[SG_ARMOR]) / Number(SG[SG_LEVEL])));
+        DamageReduction = int((Number(save[SG_ARMOR]) / Number(save[SG_LEVEL])));
         DamageReductionMax = 50;
-        Switch (int(SG[SG_CLASS])){
+        Switch (int(save[SG_CLASS])){
             if case(2:
                 DamageReductionMax = 10;
                 break;
@@ -28549,12 +28551,12 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
                 FontFormat_Attrib,
                 ((((((((("(" + texts[TXT_MAX]) + " -")
                  + str(DamageReductionMax)) + "%) ")
-                    + str(DamageReduction)) + "% :") + SG[SG_LEVEL]) + " ")
+                    + str(DamageReduction)) + "% :") + save[SG_LEVEL]) + " ")
                 + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
             FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
-                + SG[SG_LEVEL]) + ": -") + str(DamageReduction)) + "% (")
+                + save[SG_LEVEL]) + ": -") + str(DamageReduction)) + "% (")
                 + texts[TXT_MAX]) + " -") + str(DamageReductionMax)) + "%)"),
             POPUP_END_LINE];
         };
@@ -28566,10 +28568,10 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         enable_popup(CHAR_RUESTUNG, popupLines);
     };
     '''
-    print SG, no_prices, tower_mode, copy_cat_id_raw, witch_mode
+    print save, no_prices, tower_mode, copy_cat_id_raw, witch_mode
 
 
-def item_popup(slot_id, sg_index, SG=None, hide_back_pack=False,
+def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                no_prices=False, tower_mode=False, witch_mode=False):
     '''
     var attribLines:Array;
@@ -29105,7 +29107,7 @@ def item_popup(slot_id, sg_index, SG=None, hide_back_pack=False,
         enable_popup(slot_id);
     };
     '''
-    print slot_id, sg_index, SG, hide_back_pack, no_prices, tower_mode
+    print slot_id, sg_index, save, hide_back_pack, no_prices, tower_mode
     print witch_mode
 
 
