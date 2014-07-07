@@ -7,6 +7,8 @@
 
     @see: (Curses Example)
             http://gnosis.cx/publish/programming/charming_python_6.html
+
+    Module to hold monster method until refactored
 '''
 
 
@@ -9370,4 +9372,3 @@ def build_interface():
     };
     '''
     pass
-

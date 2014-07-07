@@ -83,6 +83,8 @@ from sflegacy import URLLoader
 from sflegacy import URLLoaderdata_format
 from sflegacy import URLRequest
 
+from sfbuildinterface import build_interface
+
 
 # global for logger
 LOG = logging.getLogger()
