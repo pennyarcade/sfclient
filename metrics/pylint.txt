@@ -1350,19 +1350,7 @@ W:29431,14: Unused argument 'line' (unused-argument)
 W:29431,20: Unused argument 'is_error' (unused-argument)
 W:29431,36: Unused argument 'hl_index' (unused-argument)
 W:29431,49: Unused argument 'is_whisper' (unused-argument)
-W:29526,15: Unused argument 'dealer_menu' (unused-argument)
-W:29536,29: Unused argument 'evt' (unused-argument)
-W:29553,26: Unused argument 'arr' (unused-argument)
-W:29553,31: Unused argument 'offset' (unused-argument)
-W:29585,16: Unused argument 'target_time' (unused-argument)
-W:29595,17: Unused argument 'target_time' (unused-argument)
-W:29619,21: Unused argument 'start_time' (unused-argument)
-W:29619,33: Unused argument 'target_time' (unused-argument)
-W:29653,21: Unused argument 'evt' (unused-argument)
 R:29807, 0: Too many arguments (14/5) (too-many-arguments)
-W:30167,25: Unused argument 'is_volk' (unused-argument)
-W:30167,34: Unused argument 'is_mann' (unused-argument)
-W:30167,43: Unused argument 'item_index' (unused-argument)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1389,7 +1377,7 @@ C:332, 4: Invalid method name "getLocal" (invalid-name)
 
 Report
 ======
-4127 statements analysed.
+4126 statements analysed.
 
 External dependencies
 ---------------------
@@ -1408,13 +1396,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5196   |14.87 |NC       |NC         |
+|code      |5195   |14.87 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27997  |80.12 |NC       |NC         |
+|docstring |27997  |80.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |690    |1.97  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1063   |3.04  |NC       |NC         |
+|empty     |1065   |3.05  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1442,7 +1430,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |584    |NC       |NC         |
+|warning    |572    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1455,9 +1443,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.80   |100.00   |94.32      |
+|sfclient |100.00 |98.78   |100.00   |94.32      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.20    |0.00     |5.24       |
+|sflegacy |0.00   |1.22    |0.00     |5.24       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1474,7 +1462,7 @@ Messages
 +-----------------------------+------------+
 |invalid-name                 |227         |
 +-----------------------------+------------+
-|unused-argument              |223         |
+|unused-argument              |211         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1513,7 +1501,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 1.67/10
+Your code has been rated at 1.70/10
 
 Statistics by type
 ------------------
