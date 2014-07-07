@@ -1,3 +1,5 @@
+************* Module sfbuildinterface
+C:  1, 0: Too many lines in module (9373) (too-many-lines)
 ************* Module sfclient
 W: 90, 0: TODO: refactor into config object (fixme)
 W: 95, 0: TODO: should be obsolete (fixme)
@@ -31,15 +33,15 @@ W:14261, 0: TODO: hat does this do? (fixme)
 W:15955, 0: TODO: What does this do? (fixme)
 W:15971, 0: TODO: Obsolete? (fixme)
 W:15994, 0: TODO: set via requests params (fixme)
-C:27859, 0: Line too long (80/79) (line-too-long)
-C:27994, 0: Line too long (80/79) (line-too-long)
-C:28188, 0: Line too long (80/79) (line-too-long)
-C:28361, 0: Line too long (80/79) (line-too-long)
-C:28377, 0: Line too long (80/79) (line-too-long)
-C:28494, 0: Line too long (81/79) (line-too-long)
-C:28507, 0: Line too long (81/79) (line-too-long)
-C:28533, 0: Line too long (81/79) (line-too-long)
-C:  1, 0: Too many lines in module (30762) (too-many-lines)
+C:18497, 0: Line too long (80/79) (line-too-long)
+C:18632, 0: Line too long (80/79) (line-too-long)
+C:18826, 0: Line too long (80/79) (line-too-long)
+C:18999, 0: Line too long (80/79) (line-too-long)
+C:19015, 0: Line too long (80/79) (line-too-long)
+C:19132, 0: Line too long (81/79) (line-too-long)
+C:19145, 0: Line too long (81/79) (line-too-long)
+C:19171, 0: Line too long (81/79) (line-too-long)
+C:  1, 0: Too many lines in module (21400) (too-many-lines)
 C: 91, 0: Invalid constant name "param_obj" (invalid-name)
 C: 92, 0: Invalid constant name "actor" (invalid-name)
 C: 93, 0: Invalid constant name "texts" (invalid-name)
@@ -601,7 +603,7 @@ W:12341,12: Unused variable 'embed_fonts' (unused-variable)
 W:12310, 4: Unused variable 'this_field_popup' (unused-variable)
 W:12317,12: Unused variable 'force_smoothing' (unused-variable)
 R:12366, 0: Too many local variables (142/15) (too-many-locals)
-W:13180,16: Redefining name 'old_crest_str' from outer scope (line 26732) (redefined-outer-name)
+W:13180,16: Redefining name 'old_crest_str' from outer scope (line 17370) (redefined-outer-name)
 W:13261,16: Redefining built-in 'type' (redefined-builtin)
 E:12376,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
 E:12377,12: Undefined variable 'send_action' (undefined-variable)
@@ -1149,6 +1151,7 @@ W:15444,28: Unused variable 'param_reconnect' (unused-variable)
 W:15475,28: Unused variable 'param_papaya_cfg_file' (unused-variable)
 W:15504,28: Unused variable 'param_server_version_cfg' (unused-variable)
 W:15685,12: Unused variable 'param_hall' (unused-variable)
+E:15763,16: Undefined variable 'build_interface' (undefined-variable)
 E:15770, 7: Undefined variable 'actorLoaded' (undefined-variable)
 E:15772,33: Undefined variable 'actorURL' (undefined-variable)
 E:15773,29: Undefined variable 'actorURL' (undefined-variable)
@@ -1205,98 +1208,98 @@ W:16019, 8: Unused variable 'log_in_after_pixel' (unused-variable)
 W:15987, 4: Unused variable 'pixel_loader' (unused-variable)
 W:15986, 4: Unused variable 'variables' (unused-variable)
 W:15988, 4: Unused variable 'pixel_success' (unused-variable)
-W:25405, 4: Using the global statement (global-statement)
-R:25421, 0: Too many arguments (8/5) (too-many-arguments)
-W:25421,45: Unused argument 'pos_x' (unused-argument)
-W:25421,54: Unused argument 'pos_y' (unused-argument)
-W:25421,30: Unused argument 'pre_load' (unused-argument)
-W:25421,25: Unused argument 'url' (unused-argument)
-W:25422,37: Unused argument 'vis' (unused-argument)
-W:25421,15: Unused argument 'actor_id' (unused-argument)
-W:25422,15: Unused argument 'scale_x' (unused-argument)
-W:25422,26: Unused argument 'scale_y' (unused-argument)
-C:25472, 0: Invalid argument name "fn" (invalid-name)
-R:25472, 0: Too many arguments (11/5) (too-many-arguments)
-W:25472,32: Unused argument 'img_actor_id' (unused-argument)
-W:25472,50: Unused argument 'pos_x' (unused-argument)
-W:25472,57: Unused argument 'pos_y' (unused-argument)
-W:25473,46: Unused argument 'hover_fn' (unused-argument)
-W:25474,22: Unused argument 'out_fn' (unused-argument)
-W:25472,64: Unused argument 'size_x' (unused-argument)
-W:25472,22: Unused argument 'actor_id' (unused-argument)
-W:25473,30: Unused argument 'ovl_actor_id' (unused-argument)
-W:25474,35: Unused argument 'stay_put' (unused-argument)
-W:25472,46: Unused argument 'fn' (unused-argument)
-W:25473,22: Unused argument 'size_y' (unused-argument)
-R:25530, 0: Too many arguments (6/5) (too-many-arguments)
-W:25530,32: Unused argument 'img_class' (unused-argument)
-W:25530,43: Unused argument 'pos_x' (unused-argument)
-W:25530,52: Unused argument 'pos_y' (unused-argument)
-W:25530,22: Unused argument 'actor_id' (unused-argument)
-W:25531,22: Unused argument 'txt_type' (unused-argument)
-W:25530,61: Unused argument 'txt_manip' (unused-argument)
-C:25573, 0: Invalid function name "DefineCnt" (invalid-name)
-W:25573,42: Unused argument 'vis' (unused-argument)
-W:25573,24: Unused argument 'pos_x' (unused-argument)
-W:25573,33: Unused argument 'pos_y' (unused-argument)
-W:25573,14: Unused argument 'actor_id' (unused-argument)
-C:25596, 0: Invalid function name "textLinkMakeClickable" (invalid-name)
-W:25596,26: Unused argument 'obj' (unused-argument)
-C:25603, 0: Invalid function name "DefineSlider" (invalid-name)
-C:25603, 0: Invalid argument name "Ticks" (invalid-name)
-C:25603, 0: Invalid argument name "fn" (invalid-name)
-W:25603,34: Unused argument 'pos_x' (unused-argument)
-W:25603,27: Unused argument 'Ticks' (unused-argument)
-W:25603,17: Unused argument 'actor_id' (unused-argument)
-W:25603,48: Unused argument 'fn' (unused-argument)
-W:25603,41: Unused argument 'pos_y' (unused-argument)
-W:25671,21: Unused argument 'actor_id' (unused-argument)
-C:25681, 0: Invalid function name "SetSliderValue" (invalid-name)
-W:25681,19: Unused argument 'actor_id' (unused-argument)
-W:25681,29: Unused argument 'value' (unused-argument)
-C:25696, 0: Invalid function name "MakePersistent" (invalid-name)
-W:25696, 0: Unused argument 'args' (unused-argument)
-C:25717, 0: Invalid function name "MakeTemporary" (invalid-name)
-W:25717, 0: Unused argument 'args' (unused-argument)
-C:25738, 0: Invalid function name "EnableDragDrop" (invalid-name)
-W:25738,29: Unused argument 'handler' (unused-argument)
-W:25738,19: Unused argument 'actor_id' (unused-argument)
-W:25738, 0: Unused argument 'args' (unused-argument)
-C:25859, 0: Invalid function name "SetCnt" (invalid-name)
-C:25859, 0: Invalid argument name "cntID" (invalid-name)
-C:25859, 0: Invalid argument name "ImgID" (invalid-name)
-W:25859,27: Unused argument 'pos_x' (unused-argument)
-W:25859,18: Unused argument 'ImgID' (unused-argument)
-W:25859,45: Unused argument 'center' (unused-argument)
-W:25859,11: Unused argument 'cntID' (unused-argument)
-W:25859,36: Unused argument 'pos_y' (unused-argument)
-C:25942, 0: Invalid function name "AddBMO" (invalid-name)
-W:25942,11: Unused argument 'bunch_id' (unused-argument)
-W:25942,21: Unused argument 'offset' (unused-argument)
-C:25958, 0: Invalid function name "RemoveIllegalChars" (invalid-name)
-C:25958, 0: Invalid argument name "inpStr" (invalid-name)
-W:25958,23: Unused argument 'inpStr' (unused-argument)
-C:26000, 0: Invalid function name "SemiStrip" (invalid-name)
-C:26000, 0: Invalid argument name "inpStr" (invalid-name)
-W:26000,14: Unused argument 'inpStr' (unused-argument)
-C:26027, 0: Invalid argument name "inpStr" (invalid-name)
-W:26027,19: Unused argument 'inpStr' (unused-argument)
-C:26046, 0: Invalid function name "PostBtnHandler" (invalid-name)
-W:26046,19: Unused argument 'evt' (unused-argument)
-W:26046,29: Unused argument 'actor_id' (unused-argument)
-C:26350, 0: Invalid function name "AlbumClear" (invalid-name)
-C:26376, 0: Invalid function name "GetAdvent" (invalid-name)
-C:26410, 0: Invalid function name "RefreshTimeBar" (invalid-name)
-C:26410, 0: Invalid argument name "OfferTime" (invalid-name)
-W:26410,19: Unused argument 'OfferTime' (unused-argument)
-W:26499,12: Unused argument 'actor_id' (unused-argument)
-C:26548, 0: Invalid function name "GetSpendAmount" (invalid-name)
-C:27034, 0: Invalid argument name "SG" (invalid-name)
-W:27034,14: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-C:27506, 0: Invalid argument name "SG" (invalid-name)
-W:27506,20: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-R:28574, 0: Too many arguments (7/5) (too-many-arguments)
-R:29810, 0: Too many arguments (14/5) (too-many-arguments)
+W:16043, 4: Using the global statement (global-statement)
+R:16059, 0: Too many arguments (8/5) (too-many-arguments)
+W:16059,45: Unused argument 'pos_x' (unused-argument)
+W:16059,54: Unused argument 'pos_y' (unused-argument)
+W:16059,30: Unused argument 'pre_load' (unused-argument)
+W:16059,25: Unused argument 'url' (unused-argument)
+W:16060,37: Unused argument 'vis' (unused-argument)
+W:16059,15: Unused argument 'actor_id' (unused-argument)
+W:16060,15: Unused argument 'scale_x' (unused-argument)
+W:16060,26: Unused argument 'scale_y' (unused-argument)
+C:16110, 0: Invalid argument name "fn" (invalid-name)
+R:16110, 0: Too many arguments (11/5) (too-many-arguments)
+W:16110,32: Unused argument 'img_actor_id' (unused-argument)
+W:16110,50: Unused argument 'pos_x' (unused-argument)
+W:16110,57: Unused argument 'pos_y' (unused-argument)
+W:16111,46: Unused argument 'hover_fn' (unused-argument)
+W:16112,22: Unused argument 'out_fn' (unused-argument)
+W:16110,64: Unused argument 'size_x' (unused-argument)
+W:16110,22: Unused argument 'actor_id' (unused-argument)
+W:16111,30: Unused argument 'ovl_actor_id' (unused-argument)
+W:16112,35: Unused argument 'stay_put' (unused-argument)
+W:16110,46: Unused argument 'fn' (unused-argument)
+W:16111,22: Unused argument 'size_y' (unused-argument)
+R:16168, 0: Too many arguments (6/5) (too-many-arguments)
+W:16168,32: Unused argument 'img_class' (unused-argument)
+W:16168,43: Unused argument 'pos_x' (unused-argument)
+W:16168,52: Unused argument 'pos_y' (unused-argument)
+W:16168,22: Unused argument 'actor_id' (unused-argument)
+W:16169,22: Unused argument 'txt_type' (unused-argument)
+W:16168,61: Unused argument 'txt_manip' (unused-argument)
+C:16211, 0: Invalid function name "DefineCnt" (invalid-name)
+W:16211,42: Unused argument 'vis' (unused-argument)
+W:16211,24: Unused argument 'pos_x' (unused-argument)
+W:16211,33: Unused argument 'pos_y' (unused-argument)
+W:16211,14: Unused argument 'actor_id' (unused-argument)
+C:16234, 0: Invalid function name "textLinkMakeClickable" (invalid-name)
+W:16234,26: Unused argument 'obj' (unused-argument)
+C:16241, 0: Invalid function name "DefineSlider" (invalid-name)
+C:16241, 0: Invalid argument name "Ticks" (invalid-name)
+C:16241, 0: Invalid argument name "fn" (invalid-name)
+W:16241,34: Unused argument 'pos_x' (unused-argument)
+W:16241,27: Unused argument 'Ticks' (unused-argument)
+W:16241,17: Unused argument 'actor_id' (unused-argument)
+W:16241,48: Unused argument 'fn' (unused-argument)
+W:16241,41: Unused argument 'pos_y' (unused-argument)
+W:16309,21: Unused argument 'actor_id' (unused-argument)
+C:16319, 0: Invalid function name "SetSliderValue" (invalid-name)
+W:16319,19: Unused argument 'actor_id' (unused-argument)
+W:16319,29: Unused argument 'value' (unused-argument)
+C:16334, 0: Invalid function name "MakePersistent" (invalid-name)
+W:16334, 0: Unused argument 'args' (unused-argument)
+C:16355, 0: Invalid function name "MakeTemporary" (invalid-name)
+W:16355, 0: Unused argument 'args' (unused-argument)
+C:16376, 0: Invalid function name "EnableDragDrop" (invalid-name)
+W:16376,29: Unused argument 'handler' (unused-argument)
+W:16376,19: Unused argument 'actor_id' (unused-argument)
+W:16376, 0: Unused argument 'args' (unused-argument)
+C:16497, 0: Invalid function name "SetCnt" (invalid-name)
+C:16497, 0: Invalid argument name "cntID" (invalid-name)
+C:16497, 0: Invalid argument name "ImgID" (invalid-name)
+W:16497,27: Unused argument 'pos_x' (unused-argument)
+W:16497,18: Unused argument 'ImgID' (unused-argument)
+W:16497,45: Unused argument 'center' (unused-argument)
+W:16497,11: Unused argument 'cntID' (unused-argument)
+W:16497,36: Unused argument 'pos_y' (unused-argument)
+C:16580, 0: Invalid function name "AddBMO" (invalid-name)
+W:16580,11: Unused argument 'bunch_id' (unused-argument)
+W:16580,21: Unused argument 'offset' (unused-argument)
+C:16596, 0: Invalid function name "RemoveIllegalChars" (invalid-name)
+C:16596, 0: Invalid argument name "inpStr" (invalid-name)
+W:16596,23: Unused argument 'inpStr' (unused-argument)
+C:16638, 0: Invalid function name "SemiStrip" (invalid-name)
+C:16638, 0: Invalid argument name "inpStr" (invalid-name)
+W:16638,14: Unused argument 'inpStr' (unused-argument)
+C:16665, 0: Invalid argument name "inpStr" (invalid-name)
+W:16665,19: Unused argument 'inpStr' (unused-argument)
+C:16684, 0: Invalid function name "PostBtnHandler" (invalid-name)
+W:16684,19: Unused argument 'evt' (unused-argument)
+W:16684,29: Unused argument 'actor_id' (unused-argument)
+C:16988, 0: Invalid function name "AlbumClear" (invalid-name)
+C:17014, 0: Invalid function name "GetAdvent" (invalid-name)
+C:17048, 0: Invalid function name "RefreshTimeBar" (invalid-name)
+C:17048, 0: Invalid argument name "OfferTime" (invalid-name)
+W:17048,19: Unused argument 'OfferTime' (unused-argument)
+W:17137,12: Unused argument 'actor_id' (unused-argument)
+C:17186, 0: Invalid function name "GetSpendAmount" (invalid-name)
+C:17672, 0: Invalid argument name "SG" (invalid-name)
+W:17672,14: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
+C:18144, 0: Invalid argument name "SG" (invalid-name)
+W:18144,20: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
+R:19212, 0: Too many arguments (7/5) (too-many-arguments)
+R:20448, 0: Too many arguments (14/5) (too-many-arguments)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1342,13 +1345,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5197   |14.87 |NC       |NC         |
+|code      |5198   |14.87 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27999  |80.11 |NC       |NC         |
+|docstring |28007  |80.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |690    |1.97  |NC       |NC         |
+|comment   |692    |1.98  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1063   |3.04  |NC       |NC         |
+|empty     |1065   |3.05  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1372,13 +1375,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |227    |NC       |NC         |
+|convention |228    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |520    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |513    |NC       |NC         |
+|error      |514    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -1389,9 +1392,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.65   |100.00   |94.27      |
+|sfclient |100.00 |98.65   |100.00   |93.86      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.35    |0.00     |5.29       |
+|sflegacy |0.00   |1.35    |0.00     |5.26       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1402,7 +1405,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |486         |
+|undefined-variable           |487         |
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
@@ -1436,9 +1439,9 @@ Messages
 +-----------------------------+------------+
 |assignment-from-no-return    |5           |
 +-----------------------------+------------+
-|too-many-instance-attributes |3           |
+|too-many-lines               |3           |
 +-----------------------------+------------+
-|too-many-lines               |2           |
+|too-many-instance-attributes |3           |
 +-----------------------------+------------+
 |redefined-builtin            |2           |
 +-----------------------------+------------+
@@ -1449,7 +1452,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 1.84/10
+Your code has been rated at 1.82/10
 
 Statistics by type
 ------------------
@@ -1457,7 +1460,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |type     |number |old number |difference |%documented |%badname |
 +=========+=======+===========+===========+============+=========+
-|module   |3      |NC         |NC         |100.00      |0.00     |
+|module   |4      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 |class    |51     |NC         |NC         |100.00      |9.80     |
 +---------+-------+-----------+-----------+------------+---------+
