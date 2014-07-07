@@ -11,22 +11,41 @@
 
 # from sfglobals import SG
 
+class BaseClass(object):
+    '''
+        Use to fix unnessessary pylint warnings for legacy stuff
+    '''
+    Foo = 'Foo'
+    Bar = 'Bar'
 
-class AntiAliasType(object):
+    def getfoo(self):
+        '''
+          return Foo
+        '''
+        return self.Foo
+
+    def getbar(self):
+        '''
+          return Bar
+        '''
+        return self.Bar
+
+
+class AntiAliasType(BaseClass):
     '''
         obsolete with cli?
     '''
     ADVANCED = None
 
 
-class MovieClip(object):
+class MovieClip(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class TextField(object):
+class TextField(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -45,14 +64,14 @@ class TextField(object):
         pass
 
 
-class TextFormat(object):
+class TextFormat(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class TextFieldAutoSize(object):
+class TextFieldAutoSize(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -60,7 +79,7 @@ class TextFieldAutoSize(object):
     LEFT = None
 
 
-class URLLoader(object):
+class URLLoader(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -91,14 +110,14 @@ class URLLoader(object):
         pass
 
 
-class URLLoaderdata_format(object):
+class URLLoaderdata_format(BaseClass):
     '''
         obsolete with cli?
     '''
     TEXT = None
 
 
-class URLRequest(object):
+class URLRequest(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -109,63 +128,63 @@ class URLRequest(object):
         pass
 
 
-class TextFieldType(object):
+class TextFieldType(BaseClass):
     '''
         obsolete with cli?
     '''
     DYNAMIC = None
 
 
-class FontFormat_HallListHeading(object):
+class FontFormat_HallListHeading(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_GuildHallNoAttack(object):
+class FontFormat_GuildHallNoAttack(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_ClassError(object):
+class FontFormat_ClassError(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_DefaultLeft(object):
+class FontFormat_DefaultLeft(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class DisplayObject(object):
+class DisplayObject(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class Sound(object):
+class Sound(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class Loader(object):
+class Loader(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class Bitmap(object):
+class Bitmap(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -184,7 +203,7 @@ class Bitmap(object):
         pass
 
 
-class Timer(object):
+class Timer(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -215,7 +234,7 @@ class Timer(object):
         pass
 
 
-class Event(object):
+class Event(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -262,7 +281,7 @@ class SecurityErrorEvent(Event):
     SECURITY_ERROR = None
 
 
-class ExternalInterface(object):
+class ExternalInterface(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -273,7 +292,7 @@ class ExternalInterface(object):
         pass
 
 
-class SecurityHandler(object):
+class SecurityHandler(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -290,7 +309,7 @@ class SecurityHandler(object):
         pass
 
 
-class Function(object):
+class Function(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -301,7 +320,7 @@ class Function(object):
         pass
 
 
-class SharedObject(object):
+class SharedObject(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -312,56 +331,56 @@ class SharedObject(object):
         pass
 
 
-class SoundLoaderContext(object):
+class SoundLoaderContext(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class Capabilities(object):
+class Capabilities(BaseClass):
     '''
         obsolete with cli?
     '''
     version = None
 
 
-class LoaderError(object):
+class LoaderError(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class LoaderComplete(object):
+class LoaderComplete(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class LoaderContext(object):
+class LoaderContext(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class LoaderInfo(object):
+class LoaderInfo(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class ApplicationDomain(object):
+class ApplicationDomain(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class SecurityDomain(object):
+class SecurityDomain(BaseClass):
     '''
         obsolete with cli?
     '''
