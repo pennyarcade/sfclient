@@ -18496,7 +18496,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
         };
         popupLinesCpc = list();
         popupLinesCpc.append([POPUP_BEGIN_LINE, ((texts[163] + ": ")
-                             + save[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE]);
+                             + save[(copyCatId + CPC_ARMOR)]), POPUP_END_LINE])
         DamageReductionCpc = int((Number(save[(copyCatId + CPC_ARMOR)])
                                  / Number(save[(copyCatId + CPC_LEVEL)])));
         DamageReductionMaxCpc = 50;
@@ -18631,7 +18631,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                         if (int(save[(SG_POTION_GAIN + ii)]) <= 25){
                             tempBonus = ((int(save[(SG_ATTR_STAERKE + i)])
                                  + int(save[(SG_ATTR_STAERKE_BONUS + i)]))
-                            / ((100 + int(save[(SG_POTION_GAIN + ii)])) / 100));
+                            / ((100 + int(save[(SG_POTION_GAIN + ii)])) / 100))
 
                             if (hide_back_pack){
                                 popupLines[popupLines.length] = [
@@ -18825,7 +18825,8 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
             SchadenID = LBL_SCR_CHAR_LEBEN;
             tmpDamageFactor = (1 + ((Number(save[((tower_mode)
                                ? ((copyCatId + CPC_ATTRIBS) + 2)
-                               : SG_ATTR_AUSDAUER)]) + Number(save[((tower_mode)
+                               : SG_ATTR_AUSDAUER)])
+                                + Number(save[((tower_mode)
                                ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
                                : SG_ATTR_AUSDAUER_BONUS)])) / 10));
             tmpLifeFactor = 2;
@@ -18998,7 +18999,8 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                  texts[((TXT_ITMNAME_12
                                     + int(save[(SG_POTION_TYPE + i)])) - 1)],
                                 POPUP_END_LINE, POPUP_BEGIN_LINE,
-                                texts[(((int(save[(SG_POTION_TYPE + i)]) == 16))
+                                texts[(((int(save[
+                                       (SG_POTION_TYPE + i)]) == 16))
                                ? TXT_ITEM_ATTRIB_CLASS_12
                                : (TXT_ITEM_ATTRIB_CLASS_1
                                   + ((int(save[(SG_POTION_TYPE + i)])
@@ -19014,7 +19016,8 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                     + int(save[(SG_POTION_TYPE + i)])) - 1)],
                                 POPUP_END_LINE,
                                 POPUP_BEGIN_LINE,
-                                texts[(((int(save[(SG_POTION_TYPE + i)]) == 16))
+                                texts[(((int(save[
+                                       (SG_POTION_TYPE + i)]) == 16))
                                        ? TXT_ITEM_ATTRIB_CLASS_12
                                        : (TXT_ITEM_ATTRIB_CLASS_1
                               + ((int(save[(SG_POTION_TYPE + i)]) - 1) % 5)))],
@@ -19131,7 +19134,8 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                 save[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_FIDGET_1 + i), GetItemID(SG_FIDGET_ITEM1, i, save))
+            SetCnt((CHAR_SLOT_FIDGET_1 + i),
+                   GetItemID(SG_FIDGET_ITEM1, i, save))
             item_popup((CHAR_SLOT_FIDGET_1 + i),
                       (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
                       save, hide_back_pack);
@@ -19144,7 +19148,8 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                 save[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_SHAKES_1 + i), GetItemID(SG_SHAKES_ITEM1, i, save))
+            SetCnt((CHAR_SLOT_SHAKES_1 + i),
+                   GetItemID(SG_SHAKES_ITEM1, i, save))
             item_popup((CHAR_SLOT_SHAKES_1 + i),
                       (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
                       save, hide_back_pack);
@@ -19170,7 +19175,8 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
             actor[LBL_CHAR_RUESTUNG]
                 .text = ((texts[TXT_RUESTUNG_SUM] + ": ") + save[SG_ARMOR]);
         };
-        DamageReduction = int((Number(save[SG_ARMOR]) / Number(save[SG_LEVEL])));
+        DamageReduction = int((Number(save[SG_ARMOR])
+                              / Number(save[SG_LEVEL])));
         DamageReductionMax = 50;
         Switch (int(save[SG_CLASS])){
             if case(2:
