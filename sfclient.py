@@ -29520,7 +29520,7 @@ def chat_line(line, is_error=False, hl_index=-1, is_whisper=False):
         chat_line(nextLine, is_error, -1, is_whisper);
     };
     '''
-    pass
+
 
 
 def pay_method(dealer_menu):
@@ -29530,10 +29530,10 @@ def pay_method(dealer_menu):
     };
     return (pay_methods[dealer_menu]);
     '''
-    pass
+    print dealer_menu
 
 
-def toilet_tank_adjust_event(evt=None):
+def toilet_tank_adjust_event():
     '''
     actor[(TOILET + 1)].y = ((190 + 122) - (toiletTankCurrent * 118));
     if (toiletTankCurrent > (toiletTankDest + 0.01)){
@@ -29579,7 +29579,7 @@ def expand_item_structure(arr, offset):
     arr[(offset + SG_ITM_EXT_ENCHANT_POWER)] = enchantmentPower;
     arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
     '''
-    pass
+    print arr, offset
 
 
 def waiting_for(target_time):
@@ -29589,7 +29589,7 @@ def waiting_for(target_time):
     tmpTime.setTime(((target_time * 1000) - ((1000 * 60) * 60)));
     return ((game_time.getTime() < tmpTime.getTime()));
     '''
-    pass
+    print target_time
 
 
 def waiting_time(target_time):
@@ -29613,7 +29613,7 @@ def waiting_time(target_time):
                         + str(getUTCMinutes())) + ((getUTCSeconds())<10)
                     ? ":0" : ":") + str(getUTCSeconds()))));
     '''
-    pass
+    print target_time
 
 
 def waiting_progress(start_time, target_time):
@@ -29627,7 +29627,7 @@ def waiting_progress(start_time, target_time):
     return (((game_time.getTime() - tmpTime2.getTime())
             / (tmpTime.getTime() - tmpTime2.getTime())));
     '''
-    pass
+    print start_time, target_time
 
 
 def log_on_rtl():
@@ -29801,7 +29801,7 @@ def modify_character(evt):
     char_special2 = AddColorOffset(char_special2, C_SPECIAL2);
     load_character_image();
     '''
-    pass
+    print evt
 
 
 def load_character_image(actor_id=0, load_only=False, is_volk=0,
@@ -30575,7 +30575,7 @@ def get_char_image_bound(is_volk, is_mann, item_index):
     };
     return (0);
     '''
-    pass
+    print is_volk, is_mann, item_index
 
 
 def get_char_prefix(is_gut, isinstance_volk, is_mann, is_kaste):
