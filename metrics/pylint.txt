@@ -1390,65 +1390,33 @@ W:30664,26: Unused argument 'evt' (unused-argument)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:377, 0: TODO: obsolete (fixme)
-W:392, 0: TODO: obsolete (fixme)
-W:406, 0: TODO: obsolete (fixme)
-W:422, 0: TODO: obsolete (fixme)
-W:446, 0: TODO WTF? (fixme)
-W:468, 0: TODO: better way to zero fill? (fixme)
-W:655, 0: TODO: Obsolete (fixme)
-R: 15, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 22, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 38, 8: Invalid attribute name "y" (invalid-name)
-C: 37, 8: Invalid attribute name "x" (invalid-name)
-W: 33, 0: Unused argument 'args' (unused-argument)
-R: 29, 0: Too few public methods (1/2) (too-few-public-methods)
-R: 48, 0: Too few public methods (0/2) (too-few-public-methods)
-R: 55, 0: Too few public methods (0/2) (too-few-public-methods)
-C: 94, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
-R: 94, 0: Too few public methods (0/2) (too-few-public-methods)
-R:101, 0: Too few public methods (0/2) (too-few-public-methods)
-R:112, 0: Too few public methods (0/2) (too-few-public-methods)
-C:119, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
-R:119, 0: Too few public methods (0/2) (too-few-public-methods)
-C:126, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
-R:126, 0: Too few public methods (0/2) (too-few-public-methods)
-C:133, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
-R:133, 0: Too few public methods (0/2) (too-few-public-methods)
-C:140, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
-R:140, 0: Too few public methods (0/2) (too-few-public-methods)
-R:147, 0: Too few public methods (0/2) (too-few-public-methods)
-R:154, 0: Too few public methods (0/2) (too-few-public-methods)
-R:161, 0: Too few public methods (0/2) (too-few-public-methods)
-C:177, 8: Invalid attribute name "y" (invalid-name)
-C:176, 8: Invalid attribute name "x" (invalid-name)
-W:172, 0: Unused argument 'args' (unused-argument)
-R:168, 0: Too few public methods (1/2) (too-few-public-methods)
-R:218, 0: Too few public methods (0/2) (too-few-public-methods)
-R:225, 0: Too few public methods (0/2) (too-few-public-methods)
-R:232, 0: Too few public methods (0/2) (too-few-public-methods)
-R:244, 0: Too few public methods (0/2) (too-few-public-methods)
-R:251, 0: Too few public methods (0/2) (too-few-public-methods)
-R:258, 0: Too few public methods (0/2) (too-few-public-methods)
-C:280, 4: Invalid method name "loadPolicyFile" (invalid-name)
-C:286, 4: Invalid method name "allowDomain" (invalid-name)
-R:293, 0: Too few public methods (1/2) (too-few-public-methods)
-C:308, 4: Invalid method name "getLocal" (invalid-name)
-R:304, 0: Too few public methods (1/2) (too-few-public-methods)
-R:315, 0: Too few public methods (0/2) (too-few-public-methods)
-R:322, 0: Too few public methods (0/2) (too-few-public-methods)
-R:329, 0: Too few public methods (0/2) (too-few-public-methods)
-R:336, 0: Too few public methods (0/2) (too-few-public-methods)
-R:343, 0: Too few public methods (0/2) (too-few-public-methods)
-R:350, 0: Too few public methods (0/2) (too-few-public-methods)
-R:357, 0: Too few public methods (0/2) (too-few-public-methods)
-R:364, 0: Too few public methods (0/2) (too-few-public-methods)
-R:265, 0: Interface not implemented (interface-not-implemented)
+W:396, 0: TODO: obsolete (fixme)
+W:411, 0: TODO: obsolete (fixme)
+W:425, 0: TODO: obsolete (fixme)
+W:441, 0: TODO: obsolete (fixme)
+W:465, 0: TODO WTF? (fixme)
+W:487, 0: TODO: better way to zero fill? (fixme)
+W:674, 0: TODO: Obsolete (fixme)
+C: 57, 8: Invalid attribute name "y" (invalid-name)
+C: 56, 8: Invalid attribute name "x" (invalid-name)
+W: 52, 0: Unused argument 'args' (unused-argument)
+C:113, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
+C:138, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
+C:145, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
+C:152, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
+C:159, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
+C:196, 8: Invalid attribute name "y" (invalid-name)
+C:195, 8: Invalid attribute name "x" (invalid-name)
+W:191, 0: Unused argument 'args' (unused-argument)
+C:299, 4: Invalid method name "loadPolicyFile" (invalid-name)
+C:305, 4: Invalid method name "allowDomain" (invalid-name)
+C:327, 4: Invalid method name "getLocal" (invalid-name)
+R:284, 0: Interface not implemented (interface-not-implemented)
 
 
 Report
 ======
-4115 statements analysed.
+4122 statements analysed.
 
 External dependencies
 ---------------------
@@ -1467,13 +1435,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5185   |14.85 |NC       |NC         |
+|code      |5192   |14.86 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27988  |80.14 |NC       |NC         |
+|docstring |27997  |80.13 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |690    |1.98  |NC       |NC         |
+|comment   |690    |1.97  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1059   |3.03  |NC       |NC         |
+|empty     |1062   |3.04  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1499,7 +1467,7 @@ Messages by category
 +===========+=======+=========+===========+
 |convention |230    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |91     |NC       |NC         |
+|refactor   |59     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |609    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1514,9 +1482,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.52   |63.74    |94.35      |
+|sfclient |100.00 |98.52   |98.31    |94.35      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.48    |36.26    |5.22       |
+|sflegacy |0.00   |1.48    |1.69     |5.22       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1535,8 +1503,6 @@ Messages
 +-----------------------------+------------+
 |invalid-name                 |228         |
 +-----------------------------+------------+
-|too-few-public-methods       |42          |
-+-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
 |redefined-outer-name         |35          |
@@ -1550,6 +1516,8 @@ Messages
 |too-many-branches            |11          |
 +-----------------------------+------------+
 |too-many-locals              |10          |
++-----------------------------+------------+
+|too-few-public-methods       |10          |
 +-----------------------------+------------+
 |too-many-statements          |9           |
 +-----------------------------+------------+
@@ -1574,7 +1542,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 1.51/10
+Your code has been rated at 1.60/10
 
 Statistics by type
 ------------------
@@ -1584,9 +1552,9 @@ Statistics by type
 +=========+=======+===========+===========+============+=========+
 |module   |3      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |50     |NC         |NC         |100.00      |10.00    |
+|class    |51     |NC         |NC         |100.00      |9.80     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |46     |NC         |NC         |100.00      |6.52     |
+|method   |48     |NC         |NC         |100.00      |6.25     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |219    |NC         |NC         |100.00      |10.05    |
 +---------+-------+-----------+-----------+------------+---------+
