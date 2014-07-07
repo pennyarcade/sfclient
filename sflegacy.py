@@ -11,6 +11,7 @@
 
 # from sfglobals import SG
 
+
 class BaseClass(object):
     '''
         Use to fix unnessessary pylint warnings for legacy stuff
@@ -195,12 +196,13 @@ class Bitmap(BaseClass):
         self.x = None
         self.y = None
         self.visible = None
+        print args
 
     def add_event_listener(self, *args):
         '''
             obsolete
         '''
-        pass
+        print args
 
 
 class Timer(BaseClass):
@@ -281,7 +283,7 @@ class SecurityErrorEvent(Event):
     SECURITY_ERROR = None
 
 
-class ExternalInterface(BaseClass):
+class ExternalIF(BaseClass):
     '''
         obsolete with cli?
     '''

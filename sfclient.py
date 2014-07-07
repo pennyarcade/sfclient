@@ -55,7 +55,7 @@ from sflegacy import Bitmap
 from sflegacy import Capabilities
 from sflegacy import DisplayObject
 from sflegacy import Event
-from sflegacy import ExternalInterface
+from sflegacy import ExternalIF
 from sflegacy import FontFormat_ClassError
 from sflegacy import FontFormat_HallListHeading
 from sflegacy import FontFormat_DefaultLeft
@@ -965,7 +965,7 @@ def init_vars():
     # get buffered registration?
     if ('reg' in param_obj.keys()) and (param_obj["reg"] is not None):
         buffed_req = True
-        buffed_reg = ExternalInterface.call("get_base64")
+        buffed_reg = ExternalIF.call("get_base64")
         if (buffed_reg) and (buffed_reg != ""):
             buffed_stuff = buffed_reg.split("")
             if len(buffed_stuff) == 3:
@@ -2339,7 +2339,7 @@ def request_tv():
                            tv_function_name,
                            '" with parameter "showtv"!']))
 
-        ExternalInterface.call(tv_function_name,
+        ExternalIF.call(tv_function_name,
                                "showtv",
                                '_'.join(
                                    savegame[SG['PLAYER_ID']],
@@ -11250,7 +11250,7 @@ def show_login_screen(evt=None, no_bc=False, no_cookie=False):
     if (sso_mode){
         actor[INP['NAME']].getChildAt(1).type = TextFieldType.DYNAMIC;
         actor[INP['LOGIN_PASSWORD']].getChildAt(1).type = TextFieldType.DYNAMIC
-        player_name = ExternalInterface.call("sso_get_uid");
+        player_name = ExternalIF.call("sso_get_uid");
         actor[INP['NAME']].getChildAt(1).text = player_name;
         actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = mp_api_user_token;
     };
@@ -11376,9 +11376,9 @@ def show_signup_screen(evt=None):
         if (sso_mode){
             actor[INP['EMAIL']].getChildAt(1).type = TextFieldType.DYNAMIC;
             actor[INP['PASSWORD']].getChildAt(1).type = TextFieldType.DYNAMIC;
-            player_name = ExternalInterface.call("sso_get_uid");
+            player_name = ExternalIF.call("sso_get_uid");
             actor[INP['NAME']].getChildAt(1).text = player_name;
-            email = ExternalInterface.call("sso_get_email");
+            email = ExternalIF.call("sso_get_email");
             actor[INP['EMAIL']].getChildAt(1).text = email;
             actor[INP['PASSWORD']].getChildAt(1).text = mp_api_user_token;
         };
@@ -11571,7 +11571,7 @@ def remove_all(also_persistent=False):
                 if (not actorPersistent[i]) or also_persistent:
                     remove(i)
 
-    ExternalInterface.call("hideSocial")
+    ExternalIF.call("hideSocial")
 
 
 def visible(actor_id):
@@ -13897,7 +13897,7 @@ def action_handler(event):
             break
 
         if case(RESP['UPDATE']['CHECK']):
-            ExternalInterface.call("refresh")
+            ExternalIF.call("refresh")
             break
 
         if case(RESP['LOGIN']['SUCCESS']['BOUGHT'],
@@ -14114,7 +14114,7 @@ def action_handler(event):
         playerid = par[0]
 
     if defined_pixel_calls[act]:
-        ExternalInterface.call(
+        ExternalIF.call(
             defined_pixel_calls[act],
             str(act),
             param_cid,
@@ -14252,7 +14252,7 @@ def set_title_bar(msg=""):
         ")"
     ])
 
-    ExternalInterface.call("set_title", msg)
+    ExternalIF.call("set_title", msg)
 
 
 def swap_words(tmp_str):
@@ -14793,7 +14793,7 @@ def try_show_tv():
             trc((("Calling TV function \"" + tv_function_name)
                 + "\" with parameter \"requesttv\"!"));
             try {
-                tv_return_value = ExternalInterface.call(tv_function_name,
+                tv_return_value = ExternalIF.call(tv_function_name,
                      "requesttv", (((((savegame[SG['PLAYER_ID']] + "_")
                    + savegame[SG_PAYMENT_ID]) + "_") + server_id) + "_1"),
                     savegame[SG_GENDER], 0);
@@ -15958,7 +15958,7 @@ def pixel_success():
     pixel_data = pixel_loader.data
     if ((pixel_data.lower().substr(0, 7) == "http://")
             or (pixel_data.lower().substr(0, 8) == "https://")):
-        ExternalInterface.call("loadpixel", pixel_data)
+        ExternalIF.call("loadpixel", pixel_data)
 
     # pixel_loader.remove_event_listener(Event.COMPLETE, pixel_success)
     # pixel_loader.remove_event_listener(IOErrorEvent.IO_ERROR, pixel_failed)
@@ -16031,7 +16031,7 @@ def load_tracking_pixel(url=''):
             # pixel_loader.load(new URLRequest(url))
             pass
         else:
-            ExternalInterface.call("loadpixel", url)
+            ExternalIF.call("loadpixel", url)
 
 
 # -----------------------------------------------------------------------------
@@ -16238,7 +16238,7 @@ def build_interface():
     var ShowSocial:* = function (evt:MouseEvent){
         var thisActor;
         thisActor = get_actor_id(evt.target);
-        ExternalInterface.call(
+        ExternalIF.call(
             "showSocial",
             param_social_buttons[(thisActor - SOCIAL)].split(":")[0]
         )
@@ -16276,7 +16276,7 @@ def build_interface():
         var req:* = req;
         var frameName:* = frameName;
         try {
-            ExternalInterface.call("openUrl", req.url);
+            ExternalIF.call("openUrl", req.url);
         } catch(e:Error) {
             navigate_to_url(req, frameName);
         };
@@ -29922,7 +29922,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
                 };
                 i = (i + 1);
             };
-            position_modify_character_buttons();
+            pos_modify_char_buttons();
             if (!on_stage(CREATE_CHARACTER)){
                 remove(CREATE_GOTO_LOGIN, KASTE_1_IDLE, KASTE_2_IDLE,
                        KASTE_3_IDLE, KASTE_1_ACT, KASTE_2_ACT, KASTE_3_ACT,
@@ -29990,10 +29990,11 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
         };
     };
     '''
-    pass
+    print actor_id, load_only, is_volk, is_mann, is_kaste, is_mouth, is_beard,
+    print is_nose, is_eyes, is_brows, is_ears, is_hair, is_special, is_special2
 
 
-def position_modify_character_buttons():
+def pos_modify_char_buttons():
     '''
     var i:* = 0;
     var positionmodify_characterBtn:* = function (actor_id):
@@ -30105,10 +30106,10 @@ def get_char_suffix(item_index, item_value):
     };
     return ((strItem + strExt));
     '''
-    pass
+    print item_index, item_value
 
 
-def randomize_character(evt=None):
+def randomize_character():
     '''
     char_volk = (int((random.random() * 8)) + 1);
     char_male = (random.random() > 0.5);
@@ -30161,7 +30162,7 @@ def randomize_char_image(evt=None):
                      char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
     load_character_image();
     '''
-    pass
+    print evt
 
 
 def get_char_image_bound(is_volk, is_mann, item_index):
@@ -30618,7 +30619,7 @@ def get_char_prefix(is_gut, isinstance_volk, is_mann, is_kaste):
     };
     return (strTemp);
     '''
-    pass
+    print is_gut, isinstance_volk, is_mann, is_kaste
 
 
 def drachen_setzen():
@@ -30746,7 +30747,7 @@ def interface_btn_handler(evt):
         send_action(tmpAction);
     };
     '''
-    pass
+    print evt
 
 
 def chat_poll_interval_reset():
