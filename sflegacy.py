@@ -57,12 +57,14 @@ class TextField(BaseClass):
         self.x = None
         self.y = None
         self.visible = None
+        print args
 
     def add_event_listener(self, *args):
         '''
             obsolete
         '''
-        pass
+        self.visible = None
+        print args
 
 
 class TextFormat(BaseClass):
@@ -202,6 +204,7 @@ class Bitmap(BaseClass):
         '''
             obsolete
         '''
+        self.visible = None
         print args
 
 

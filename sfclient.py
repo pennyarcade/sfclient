@@ -2340,14 +2340,13 @@ def request_tv():
                            '" with parameter "showtv"!']))
 
         ExternalIF.call(tv_function_name,
-                               "showtv",
-                               '_'.join(
-                                   savegame[SG['PLAYER_ID']],
-                                   savegame[SG['PAYMENT_ID']],
-                                   server_id,
-                                   "1"),
-                               savegame[SG['GENDER']],
-                               tv_return_value)
+                        "showtv",
+                        '_'.join(savegame[SG['PLAYER_ID']],
+                                 savegame[SG['PAYMENT_ID']],
+                                 server_id,
+                                 "1"),
+                        savegame[SG['GENDER']],
+                        tv_return_value)
         tv_poll_timer.delay = tv_poll_long
     else:
         LOG.error("Error: No TV function set!")
