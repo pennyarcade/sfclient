@@ -26961,7 +26961,7 @@ def clickchat_line(evt):
     };
     stage.focus = actor[INP_GILDE_CHAT].getChildAt(0);
     '''
-    pass
+    print evt
 
 
 def arbeiten_slider_change(value):
@@ -26985,7 +26985,7 @@ def arbeiten_slider_change(value):
             + " ") + texts[TXT_ARBEIT_TEXT3]);
     };
     '''
-    pass
+    print value
 
 
 def double_click_handler(disp_obj, fn_click, fn_double_click):
@@ -27028,7 +27028,7 @@ def double_click_handler(disp_obj, fn_click, fn_double_click):
                            dblClickEvent);
     };
     '''
-    pass
+    print disp_obj, fn_click, fn_double_click
 
 
 def ach_level(SG, ach_index, almode=0):
@@ -27439,7 +27439,7 @@ def ach_level(SG, ach_index, almode=0):
     };
     return (alresult);
     '''
-    pass
+    print SG, ach_index, almode
 
 
 def sing_plur(inp_text, amount, sep="*"):
@@ -27464,7 +27464,7 @@ def sing_plur(inp_text, amount, sep="*"):
     };
     return (tmp_array.join(""));
     '''
-    pass
+    print inp_text, amount, sep
 
 
 def animate_ach(actor_id, y_level=635, ach_ani_pow=-10):
@@ -27500,7 +27500,7 @@ def animate_ach(actor_id, y_level=635, ach_ani_pow=-10):
         start();
     };
     '''
-    pass
+    print actor_id, y_level, ach_ani_pow
 
 
 def do_achievements(SG):
@@ -27600,10 +27600,10 @@ def do_achievements(SG):
     };
     return (OneUp);
     '''
-    pass
+    print SG
 
 
-def mirror_ani_fn(evt):
+def mirror_ani_fn():
     '''
     var i;
     mirror_fade_amount = (mirror_fade_amount - 0.002);
@@ -27662,7 +27662,7 @@ def trim_too_long(actor_id_obj, max_width):
     };
     return (((Shortened) ? tmp_str : ""));
     '''
-    pass
+    print actor_id_obj, max_width
 
 
 def check_wrong_page(correct_act):
@@ -27701,7 +27701,7 @@ def check_wrong_page(correct_act):
         };
     };
     '''
-    pass
+    print correct_act
 
 
 def make_right_text_area(actor_id, child=0, create_handler=True):
@@ -27726,7 +27726,7 @@ def make_right_text_area(actor_id, child=0, create_handler=True):
     actor[actor_id].getChildAt(child).default_text_format = tmp_text_format;
     actor[actor_id].getChildAt(child).setTextFormat(tmp_text_format);
     '''
-    pass
+    print actor_id, child, create_handler
 
 
 def display_inventory(SG=None, no_prices=False, tower_mode=False,
@@ -28566,7 +28566,7 @@ def display_inventory(SG=None, no_prices=False, tower_mode=False,
         enable_popup(CHAR_RUESTUNG, popupLines);
     };
     '''
-    pass
+    print SG, no_prices, tower_mode, copy_cat_id_raw, witch_mode
 
 
 def item_popup(slot_id, sg_index, SG=None, hide_back_pack=False,
