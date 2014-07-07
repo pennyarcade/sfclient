@@ -571,7 +571,7 @@ def init_vars():
     # crestColor = [0, 0, 0, 0]
     # crestColorSelection = 0
     # crestMoveTimer = new Timer(25)
-    # crestMoveTimer.add_event_listener(TimerEvent.TIMER, crestMoveFn)
+    # crestMoveTimer.add_event_listener(TimerEvent.TIMER, crest_move_fn)
     # crestSuggested = False
     # crestSuggestion = list()
 
@@ -8728,7 +8728,7 @@ def show_screen_gilden(
                 remove(GILDE_CREST_GOTO_GEBAEUDE);
                 actor[GILDE_CREST].mouseChildren = False;
             };
-            loadCrest();
+            load_crest();
         };
         if (!((is_mine) or ((guild_data[0] == savegame[SG_GUILD_INDEX])))){
             remove(GILDE_CREST_GOTO_GEBAEUDE);
@@ -19176,7 +19176,7 @@ def build_interface():
                 set_alpha(GILDE_CREST_CONTROLS, 1);
                 add(GILDE_CREST_CONTROLS);
             };
-            loadCrest();
+            load_crest();
             actor[INP_GILDE_CHAT].getChildAt(0).text = old_crest_str();
             actor[INP_GILDE_CHAT].getChildAt(0).setSelection(
                 0, len(old_crest_str())
@@ -19625,7 +19625,7 @@ def build_interface():
                     };
                     i = (i + 1);
                 };
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_CREST_COLOR_PREV:
                 crestSuggested = False;
@@ -19638,7 +19638,7 @@ def build_interface():
                     crestColor[crestColorSelection] = (
                                heraldicColors.length - 1);
                 };
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_CREST_COLOR_NEXT:
                 crestSuggested = False;
@@ -19651,7 +19651,7 @@ def build_interface():
                         heraldicColors.length){
                     crestColor[crestColorSelection] = 0;
                 };
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_CREST_CHANGE_PREV:
                 crestSuggested = False;
@@ -19664,7 +19664,7 @@ def build_interface():
                     crest[selecterCrestElement] = (
                         crestElementPos[selecterCrestElement][4] - 1);
                 };
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_CREST_CHANGE_NEXT:
                 crestSuggested = False;
@@ -19677,7 +19677,7 @@ def build_interface():
                         selecterCrestElement][4]){
                     crest[selecterCrestElement] = 0;
                 };
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_CREST_OK:
                 if ((((my_own_rank == 1)) and (crestSuggested))){
@@ -19740,7 +19740,7 @@ def build_interface():
                     load((GILDE_CREST_COLOR_FILLIN + i));
                     i = (i + 1);
                 };
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_GEBAEUDE_GOTO_CREST:
                 remove(GILDE_GEBAEUDE);
@@ -19754,7 +19754,7 @@ def build_interface():
                 };
                 crestSuggested = False;
                 set_btn_text(GILDE_CREST_OK, texts[TXT_CREST_SUGGEST]);
-                loadCrest();
+                load_crest();
                 break;
             if case(GILDE_CREST_GOTO_GEBAEUDE:
                 set_crest_str(old_crest_str);
@@ -26613,7 +26613,7 @@ def get_actor_id(actorObj, iStart=0, iEnde=-1):
     pass
 
 
-def GetActorName(actor_id=0):
+def get_actor_name(actor_id=0):
     '''
     var loader:* = None;
     var actor_id = actor_id;
@@ -26668,10 +26668,10 @@ def GetActorName(actor_id=0):
     };
     return (actorName[actor_id]);
     '''
-    pass
+    print actor_id
 
 
-def crestMoveFn(evt):
+def crest_move_fn():
     '''
     if (actor[GILDE_CREST].y > crestMoveDest){
         actor[GILDE_CREST].y = (actor[GILDE_CREST].y - 5);
@@ -26724,7 +26724,7 @@ def set_default_crest():
         crestColor[i] = GuildRandom(heraldicColors.length);
         i = (i + 1);
     };
-    loadCrest();
+    load_crest();
     '''
     pass
 
@@ -26762,15 +26762,15 @@ def old_crest_str():
     pass
 
 
-def set_crest_str(str):
+def set_crest_str(in_str):
     '''
     var i;
     var hex:String;
     var val;
     i = 0;
     while (i < crest.length) {
-        hex = str[0: 2]
-        str = str[2: 0]
+        hex = in_str[0: 2]
+        in_str = in_str[2: 0]
         val = int(("0x" + hex));
         if (val < 0){
             val = 0;
@@ -26783,8 +26783,8 @@ def set_crest_str(str):
     };
     i = 0;
     while (i < crestColor.length) {
-        hex = str[0: 2]
-        str = str[2:]
+        hex = in_str[0: 2]
+        in_str = in_str[2:]
         val = int(("0x" + hex));
         if (val < 0){
             val = 0;
@@ -26795,12 +26795,12 @@ def set_crest_str(str):
         crestColor[i] = val;
         i++;
     };
-    loadCrest();
+    load_crest();
     '''
-    pass
+    print in_str
 
 
-def loadCrest():
+def load_crest():
     '''
     var i:* = 0;
     var newLoad:* = False;
