@@ -31,7 +31,19 @@ W:14262, 0: TODO: hat does this do? (fixme)
 W:15956, 0: TODO: What does this do? (fixme)
 W:15972, 0: TODO: Obsolete? (fixme)
 W:15995, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (30759) (too-many-lines)
+C:2343, 0: Wrong continued indentation.
+                               "showtv",
+                        |      ^ (bad-continuation)
+C:2344, 0: Wrong continued indentation.
+                               '_'.join(
+                        |      ^ (bad-continuation)
+C:2349, 0: Wrong continued indentation.
+                               savegame[SG['GENDER']],
+                        |      ^ (bad-continuation)
+C:2350, 0: Wrong continued indentation.
+                               tv_return_value)
+                        |      ^ (bad-continuation)
+C:  1, 0: Too many lines in module (30760) (too-many-lines)
 C: 91, 0: Invalid constant name "param_obj" (invalid-name)
 C: 92, 0: Invalid constant name "actor" (invalid-name)
 C: 93, 0: Invalid constant name "texts" (invalid-name)
@@ -275,7 +287,7 @@ E:2323, 4: Undefined variable 'send_action' (undefined-variable)
 W:2322, 4: Unused variable 'arrow_hall_mode' (unused-variable)
 E:2337, 7: Undefined variable 'tv_function_name' (undefined-variable)
 E:2339,27: Undefined variable 'tv_function_name' (undefined-variable)
-E:2342,31: Undefined variable 'tv_function_name' (undefined-variable)
+E:2342,24: Undefined variable 'tv_function_name' (undefined-variable)
 E:2345,35: Undefined variable 'savegame' (undefined-variable)
 E:2346,35: Undefined variable 'savegame' (undefined-variable)
 E:2347,35: Undefined variable 'server_id' (undefined-variable)
@@ -1360,63 +1372,38 @@ W:29620,21: Unused argument 'start_time' (unused-argument)
 W:29620,33: Unused argument 'target_time' (unused-argument)
 W:29654,21: Unused argument 'evt' (unused-argument)
 R:29808, 0: Too many arguments (14/5) (too-many-arguments)
-W:29810,59: Unused argument 'is_brows' (unused-argument)
-W:29808,54: Unused argument 'is_volk' (unused-argument)
-W:29808,37: Unused argument 'load_only' (unused-argument)
-W:29811,47: Unused argument 'is_special' (unused-argument)
-W:29810,48: Unused argument 'is_eyes' (unused-argument)
-W:29811,36: Unused argument 'is_hair' (unused-argument)
-W:29808,25: Unused argument 'actor_id' (unused-argument)
-W:29809,25: Unused argument 'is_mann' (unused-argument)
-W:29811,25: Unused argument 'is_ears' (unused-argument)
-W:29810,37: Unused argument 'is_nose' (unused-argument)
-W:29812,25: Unused argument 'is_special2' (unused-argument)
-W:29809,40: Unused argument 'is_kaste' (unused-argument)
-W:29809,52: Unused argument 'is_mouth' (unused-argument)
-W:29810,25: Unused argument 'is_beard' (unused-argument)
-C:29996, 0: Invalid function name "position_modify_character_buttons" (invalid-name)
-W:30044,32: Unused argument 'item_value' (unused-argument)
-W:30044,20: Unused argument 'item_index' (unused-argument)
-W:30111,24: Unused argument 'evt' (unused-argument)
-W:30133,25: Unused argument 'evt' (unused-argument)
-W:30167,25: Unused argument 'is_volk' (unused-argument)
-W:30167,34: Unused argument 'is_mann' (unused-argument)
-W:30167,43: Unused argument 'item_index' (unused-argument)
-W:30581,28: Unused argument 'isinstance_volk' (unused-argument)
-W:30581,54: Unused argument 'is_kaste' (unused-argument)
-W:30581,45: Unused argument 'is_mann' (unused-argument)
-W:30581,20: Unused argument 'is_gut' (unused-argument)
-W:30664,26: Unused argument 'evt' (unused-argument)
+W:30168,25: Unused argument 'is_volk' (unused-argument)
+W:30168,34: Unused argument 'is_mann' (unused-argument)
+W:30168,43: Unused argument 'item_index' (unused-argument)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
-W:396, 0: TODO: obsolete (fixme)
-W:411, 0: TODO: obsolete (fixme)
-W:425, 0: TODO: obsolete (fixme)
-W:441, 0: TODO: obsolete (fixme)
-W:465, 0: TODO WTF? (fixme)
-W:487, 0: TODO: better way to zero fill? (fixme)
-W:674, 0: TODO: Obsolete (fixme)
-C: 57, 8: Invalid attribute name "y" (invalid-name)
-C: 56, 8: Invalid attribute name "x" (invalid-name)
-W: 52, 0: Unused argument 'args' (unused-argument)
-C:113, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
-C:138, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
-C:145, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
-C:152, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
-C:159, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
-C:196, 8: Invalid attribute name "y" (invalid-name)
-C:195, 8: Invalid attribute name "x" (invalid-name)
-W:191, 0: Unused argument 'args' (unused-argument)
-C:299, 4: Invalid method name "loadPolicyFile" (invalid-name)
-C:305, 4: Invalid method name "allowDomain" (invalid-name)
-C:327, 4: Invalid method name "getLocal" (invalid-name)
-R:284, 0: Interface not implemented (interface-not-implemented)
+W:398, 0: TODO: obsolete (fixme)
+W:413, 0: TODO: obsolete (fixme)
+W:427, 0: TODO: obsolete (fixme)
+W:443, 0: TODO: obsolete (fixme)
+W:467, 0: TODO WTF? (fixme)
+W:489, 0: TODO: better way to zero fill? (fixme)
+W:676, 0: TODO: Obsolete (fixme)
+C: 58, 8: Invalid attribute name "y" (invalid-name)
+C: 57, 8: Invalid attribute name "x" (invalid-name)
+W: 53, 0: Unused argument 'args' (unused-argument)
+C:114, 0: Invalid class name "URLLoaderdata_format" (invalid-name)
+C:139, 0: Invalid class name "FontFormat_HallListHeading" (invalid-name)
+C:146, 0: Invalid class name "FontFormat_GuildHallNoAttack" (invalid-name)
+C:153, 0: Invalid class name "FontFormat_ClassError" (invalid-name)
+C:160, 0: Invalid class name "FontFormat_DefaultLeft" (invalid-name)
+C:197, 8: Invalid attribute name "y" (invalid-name)
+C:196, 8: Invalid attribute name "x" (invalid-name)
+R:201, 4: Method could be a function (no-self-use)
+C:301, 4: Invalid method name "loadPolicyFile" (invalid-name)
+C:307, 4: Invalid method name "allowDomain" (invalid-name)
+C:329, 4: Invalid method name "getLocal" (invalid-name)
 
 
 Report
 ======
-4122 statements analysed.
+4124 statements analysed.
 
 External dependencies
 ---------------------
@@ -1435,13 +1422,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5192   |14.86 |NC       |NC         |
+|code      |5194   |14.86 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27997  |80.13 |NC       |NC         |
+|docstring |27997  |80.12 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |690    |1.97  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1062   |3.04  |NC       |NC         |
+|empty     |1063   |3.04  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -1465,11 +1452,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |230    |NC       |NC         |
+|convention |233    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |59     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |609    |NC       |NC         |
+|warning    |585    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1482,9 +1469,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.52   |98.31    |94.35      |
+|sfclient |100.00 |98.63   |98.31    |94.42      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.48    |1.69     |5.22       |
+|sflegacy |0.00   |1.37    |1.69     |5.15       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1499,9 +1486,9 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|unused-argument              |248         |
+|invalid-name                 |227         |
 +-----------------------------+------------+
-|invalid-name                 |228         |
+|unused-argument              |224         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1527,22 +1514,22 @@ Messages
 +-----------------------------+------------+
 |assignment-from-no-return    |5           |
 +-----------------------------+------------+
+|bad-continuation             |4           |
++-----------------------------+------------+
 |too-many-instance-attributes |3           |
 +-----------------------------+------------+
 |redefined-builtin            |3           |
 +-----------------------------+------------+
 |too-many-lines               |2           |
 +-----------------------------+------------+
-|no-self-use                  |1           |
-+-----------------------------+------------+
-|interface-not-implemented    |1           |
+|no-self-use                  |2           |
 +-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 1.60/10
+Your code has been rated at 1.65/10
 
 Statistics by type
 ------------------
@@ -1556,7 +1543,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |48     |NC         |NC         |100.00      |6.25     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |219    |NC         |NC         |100.00      |10.05    |
+|function |219    |NC         |NC         |100.00      |9.59     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
