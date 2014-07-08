@@ -113,7 +113,7 @@ class URLLoader(BaseClass):
         pass
 
 
-class URLLoaderdata_format(BaseClass):
+class URLLoaderdataFormat(BaseClass):
     '''
         obsolete with cli?
     '''
@@ -510,8 +510,8 @@ class Bitmap(BaseClass):
         '''
             obsolete with cli?
         '''
-        self.x = None
-        self.y = None
+        self.x_pos = None
+        self.y_pos = None
         self.visible = None
         print args
 
@@ -616,13 +616,13 @@ class SecurityHandler(BaseClass):
     '''
         obsolete with cli?
     '''
-    def loadPolicyFile(self, *args):
+    def load_policy_file(self, *args):
         '''
             obsolete
         '''
         pass
 
-    def allowDomain(self, *args):
+    def allow_domain(self, *args):
         '''
             obsolete
         '''
@@ -773,12 +773,12 @@ def load_configuration_file():
     # loader2 = URLLoader()
 
     # with loader:
-    #     data_format = URLLoaderdata_format.TEXT
+    #     data_format = URLLoaderdataFormat.TEXT
     #     add_event_listener(Event.COMPLETE, configuration_file_loaded)
     #     load(URLRequest("client_cfg.php"))
 
     # with loader2:
-    #     data_format = URLLoaderdata_format.TEXT
+    #     data_format = URLLoaderdataFormat.TEXT
     #     add_event_listener(Event.COMPLETE, configuration_file_loaded)
 
     # pending_loaders += 2

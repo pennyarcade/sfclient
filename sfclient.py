@@ -81,7 +81,7 @@ from sflegacy import TextFormat
 from sflegacy import Timer
 from sflegacy import TimerEvent
 from sflegacy import URLLoader
-from sflegacy import URLLoaderdata_format
+from sflegacy import URLLoaderdataFormat
 from sflegacy import URLRequest
 from sflegacy import FontFormatToiletAura
 from sflegacy import FontFormatGuildListTextAttackErrorHalf
@@ -15309,7 +15309,7 @@ def load_language_file():
     global text_dir, pending_language_file
 
     loader = URLLoader()
-    loader.data_format = URLLoaderdata_format.TEXT
+    loader.data_format = URLLoaderdataFormat.TEXT
     loader.add_event_listener(Event.COMPLETE, language_file_loaded)
     loader.add_event_listener(IOErrorEvent.IO_ERROR, language_file_error)
     loader.add_event_listener(SecurityErrorEvent.SECURITY_ERROR,
@@ -15377,7 +15377,7 @@ def load_original_language_file():
         I18N file loader
     '''
     loader = URLLoader()
-    loader.data_format = URLLoaderdata_format.TEXT
+    loader.data_format = URLLoaderdataFormat.TEXT
     loader.add_event_listener(Event.COMPLETE, Originallanguage_file_loaded)
     loader.load(URLRequest(
         lang_url + "lang/sfgame_" + original_lang_code + ".txt"
@@ -17371,7 +17371,7 @@ def get_actor_name(actor_id=0):
         actorName = list();
         var _local3 = loader;
         with (_local3) {
-            data_format = URLLoaderdata_format.TEXT;
+            data_format = URLLoaderdataFormat.TEXT;
             add_event_listener(Event.COMPLETE, ConstFileLoaded);
             load(new URLRequest("constants.as"));
         };
