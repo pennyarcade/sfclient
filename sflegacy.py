@@ -54,8 +54,8 @@ class TextField(BaseClass):
         '''
             obsolete with cli?
         '''
-        self.x = None
-        self.y = None
+        self.x_pos = None
+        self.y_pos = None
         self.visible = None
         print args
 

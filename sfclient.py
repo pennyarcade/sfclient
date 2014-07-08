@@ -12405,9 +12405,9 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
 
     tmp_obj.add_event_listener(MouseEvent.MOUSE_OVER, install_hall_popup)
     if text_dir == "right":
-        tmp_obj.x = pos_x - width
+        tmp_obj.x_pos = pos_x - width
     else:
-        tmp_obj.x = pos_x
+        tmp_obj.x_pos = pos_x
 
     tmp_obj.y = pos_y
     tmp_obj.visible = True
