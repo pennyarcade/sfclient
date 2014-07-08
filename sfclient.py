@@ -2003,25 +2003,27 @@ class Savegame(object):
                 char_color += 1
 
         if not no_spoil:
+            ppos = POS['IF']['LBL']['GOLDPILZE_X']
+
             if text_dir == "right":
                 actor[IMG['IF']['GOLD']].x = POS['IF']['LBL']['GOLDPILZE_X']
 
-                with actor[LBL['IF']['GOLD']]:
-                    text = str(int(savegame[SG['GOLD']] / 100))
-                    x = POS['IF']['LBL']['GOLDPILZE_X'] - text_width - 10
-                    actor[IMG['IF']['SILBER']].x = x - width - 10
+                label = actor[LBL['IF']['GOLD']]
+                label.text = str(int(savegame[SG['GOLD']] / 100))
+                label.x = ppos - label.text_width - 10
+                actor[IMG['IF']['SILBER']].x = label.x - label.width - 10
 
-                with (actor[LBL['IF']['SILBER']]):
-                    if int(savegame[SG['GOLD']] % 100) < 10:
-                        text = "0"
-                    else:
-                        text = ""
-                    text += str(int(savegame[SG['GOLD']] % 100))
-                    x = actor[IMG['IF']['SILBER']].x - text_width - 10
+                label = actor[LBL['IF']['SILBER']]
+                if int(savegame[SG['GOLD']] % 100) < 10:
+                    label.text = "0"
+                else:
+                    label.text = ""
+                label.text += str(int(savegame[SG['GOLD']] % 100))
+                label.x = actor[IMG['IF']['SILBER']].x - label.text_width - 10
 
-                with actor[LBL['IF']['PILZE']]:
-                    text = savegame[SG['MUSH']]
-                    x = POS['IF']['LBL']['GOLDPILZE']['X'] - text_width - 10
+                label = actor[LBL['IF']['PILZE']]
+                label.text = savegame[SG['MUSH']]
+                label.x = ppos - label.text_width - 10
 
                 if texts[TXT['MUSHROOMS']['BOUGHT']]:
                     enable_popup(
@@ -2031,22 +2033,22 @@ class Savegame(object):
                         )
                     )
             else:
-                with (actor[LBL['IF']['SILBER']]):
-                    if int(savegame[SG['GOLD']] % 100) < 10:
-                        text = "0"
-                    else:
-                        text = ""
-                    text += str(int(savegame[SG['GOLD']] % 100))
-                    x = POS['IF']['LBL']['GOLDPILZE']['X'] - text_width - 10
-                    actor[IMG['IF']['GOLD']].x = x - 24 - 10
+                label = actor[LBL['IF']['SILBER']]
+                if int(savegame[SG['GOLD']] % 100) < 10:
+                    label.text = "0"
+                else:
+                    label.text = ""
+                label.text += str(int(savegame[SG['GOLD']] % 100))
+                label.x = ppos - label.text_width - 10
+                actor[IMG['IF']['GOLD']].x = label.x - 24 - 10
 
-                with actor[LBL['IF']['GOLD']]:
-                    text = str(int(savegame[SG['GOLD']] / 100))
-                    x = actor[IMG['IF']['GOLD']].x - text_width - 10
+                label = actor[LBL['IF']['GOLD']]
+                label.text = str(int(savegame[SG['GOLD']] / 100))
+                label.x = actor[IMG['IF']['GOLD']].x - label.text_width - 10
 
-                with actor[LBL['IF']['PILZE']]:
-                    text = savegame[SG['MUSH']]
-                    x = POS['IF']['LBL']['GOLDPILZE']['X'] - text_width - 10
+                label = actor[LBL['IF']['PILZE']]
+                label.text = savegame[SG['MUSH']]
+                label.x = ppos - label.text_width - 10
 
                 if texts[TXT['MUSHROOMS']['BOUGHT']]:
                     enable_popup(
@@ -18085,6 +18087,7 @@ def ach_level(save, ach_index, almode=0):
     return (alresult);
     '''
     print save, ach_index, almode
+    return ''
 
 
 def sing_plur(inp_text, amount, sep="*"):
