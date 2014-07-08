@@ -15722,8 +15722,8 @@ def configuration_file_loaded(evt):
             shared_obj.data.cid = param_cid
             shared_obj.flush()
         elif shared_obj.data.cid:
-            if (shared_obj.data.cid.find("_") == -1)
-                    and (len(shared_obj.data.cid) == 15):
+            if ((shared_obj.data.cid.find("_") == -1)
+                and (len(shared_obj.data.cid) == 15)):
                 param_cid = shared_obj.data.cid + "_r"
         elif not param_no_cid_save:
             param_cid = shared_obj.data.cid
