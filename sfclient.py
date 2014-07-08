@@ -2543,7 +2543,7 @@ def tower_timer_fn(evt=None):
             thisFloor = 0;
         };
         thisFloor = (thisFloor + i);
-        SetCnt(
+        set_cnt(
             (TOWER_WINDOW + i),
             (((thisFloor < (int(towerSG[TSG_TOWER_LEVEL]) + 1)))
                 ? TOWER_WINDOW_BURNT
@@ -2551,7 +2551,7 @@ def tower_timer_fn(evt=None):
                     ? TOWER_WINDOW_OPEN
                     : TOWER_WINDOW_CLOSED))
         );
-        SetCnt(
+        set_cnt(
             (TOWER_FACE + i),
             ((OPPMONSTER + int(towerSG[TSG_TOWER_LEVEL])) + 399)
         );
@@ -2573,7 +2573,7 @@ def do_show_screen_album():
     var i;
     i = 0;
     while (i < 4) {
-        SetCnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
+        set_cnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
         i++;
     };
     Showalbum_content();
@@ -2699,9 +2699,9 @@ def show_option_screen(evt=None):
     DoShowOptionScreen = function (){
         var i:* = 0;
         remove_all();
-        SetCnt(CHANGE_PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_SAD);
-        SetCnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_NEUTRAL);
-        SetCnt(CHANGE_PASSWORD_SMILEY_HAPPY, PASSWORD_SMILEY_HAPPY);
+        set_cnt(CHANGE_PASSWORD_SMILEY_SAD, PASSWORD_SMILEY_SAD);
+        set_cnt(CHANGE_PASSWORD_SMILEY_NEUTRAL, PASSWORD_SMILEY_NEUTRAL);
+        set_cnt(CHANGE_PASSWORD_SMILEY_HAPPY, PASSWORD_SMILEY_HAPPY);
         hide(CHANGE_PASSWORD_SMILEY_SAD);
         hide(CHANGE_PASSWORD_SMILEY_NEUTRAL);
         hide(CHANGE_PASSWORD_SMILEY_HAPPY);
@@ -2851,7 +2851,7 @@ def do_skip_fight(evt=None, fight_done=False):
             };
         };
         if (((tower_fight_mode) and ((guild_fight_honor >= 0)))){
-            SetCnt(
+            set_cnt(
                 FIGHT_SLOT,
                 GetItemID(
                     SG_INVENTORY_OFFS,
@@ -2872,7 +2872,7 @@ def do_skip_fight(evt=None, fight_done=False):
             );
             guild_fight_honor = 0;
         } else {
-            SetCnt(FIGHT_SLOT, C_EMPTY);
+            set_cnt(FIGHT_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         };
         if (last_fight){
@@ -3112,7 +3112,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            SetCnt(FIGHT_SLOT, C_EMPTY);
+            set_cnt(FIGHT_SLOT, C_EMPTY);
             enable_popup(FIGHT_SLOT);
         } else {
             if (((is_mq) and (charWin))){
@@ -3190,7 +3190,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
                 if (back_pack_slot >= 0){
-                    SetCnt(
+                    set_cnt(
                         FIGHT_SLOT,
                         GetItemID(SG_INVENTORY_OFFS,
                             (back_pack_slot + 10),
@@ -3206,7 +3206,7 @@ def do_skip_fight(evt=None, fight_done=False):
                         False
                     );
                 } else {
-                    SetCnt(FIGHT_SLOT, C_EMPTY);
+                    set_cnt(FIGHT_SLOT, C_EMPTY);
                     enable_popup(FIGHT_SLOT);
                 };
             } else {
@@ -3309,7 +3309,7 @@ def do_skip_fight(evt=None, fight_done=False):
                             ((SG['QUEST']['OFFER']['REWARD_ITM1']
                                 + (quest_id * SG['ITM']['SIZE']))
                                 + SG_ITM_TYP)]) > 0){
-                            SetCnt(
+                            set_cnt(
                                 FIGHT_SLOT,
                                 GetItemID(
                                     SG['QUEST']['OFFER']['REWARD_ITM1'],
@@ -3320,7 +3320,7 @@ def do_skip_fight(evt=None, fight_done=False):
                                     + (quest_id * SG['ITM']['SIZE'])),
                                 None, False, True, False);
                         } else {
-                            SetCnt(FIGHT_SLOT, C_EMPTY);
+                            set_cnt(FIGHT_SLOT, C_EMPTY);
                             enable_popup(FIGHT_SLOT);
     if (charWin){
         if ((charLife / charFullLife) > 0.8){
@@ -3676,7 +3676,7 @@ def weapon_strike(opponent=False):
                         if case(1:
                             strikeVal = (strikeVal + 0.15);
                             if (strikeVal >= 1){
-                                SetCnt(
+                                set_cnt(
                                     FIGHT_ONO, onoID, 0, 0, True);
                                 OnoAlpha = 1;
                                 strikeVal = 1;
@@ -3796,7 +3796,7 @@ def weapon_strike(opponent=False):
                             ShieldAlpha = 1;
                         };
                         if (strikeVal >= 1){
-                            SetCnt(FIGHT_ONO, onoID, 0, 0, True);
+                            set_cnt(FIGHT_ONO, onoID, 0, 0, True);
                             OnoAlpha = 1;
                             strikeVal = 1;
                             strikePhase++;
@@ -3910,7 +3910,7 @@ def weapon_strike(opponent=False):
                             ShieldAlpha = 1;
                         };
                         if (strikeVal >= 1){
-                            SetCnt(FIGHT_ONO, onoID, 0, 0, True);
+                            set_cnt(FIGHT_ONO, onoID, 0, 0, True);
                             OnoAlpha = 1;
                             strikeVal = 1;
                             strikePhase++;
@@ -4094,7 +4094,7 @@ def weapon_strike(opponent=False):
                             ((opponent)
                                 ? oppWeapon
                                 : charWeapon) == -1){
-                            SetCnt(
+                            set_cnt(
                                 ((opponent)
                                     ? WEAPON_OPP
                                     : WEAPON_CHAR),
@@ -4104,7 +4104,7 @@ def weapon_strike(opponent=False):
                                 ((opponent)
                                     ? oppWeapon
                                     : charWeapon) == -3){
-                                SetCnt(
+                                set_cnt(
                                     ((opponent)
                                         ? WEAPON_OPP
                                         : WEAPON_CHAR),
@@ -4115,14 +4115,14 @@ def weapon_strike(opponent=False):
                                     ((opponent)
                                         ? oppWeapon
                                         : charWeapon) == -7){
-                                    SetCnt(
+                                    set_cnt(
                                         ((opponent)
                                             ? WEAPON_OPP
                                             : WEAPON_CHAR),
                                         (WEAPON_FIRE
                                             + int((strikeVal * 2.9))));
                                 } else {
-                                    SetCnt(
+                                    set_cnt(
                                         ((opponent)
                                             ? WEAPON_OPP
                                             : WEAPON_CHAR),
@@ -4194,7 +4194,7 @@ def weapon_strike(opponent=False):
                             visible = True;
 
             if (weaponType == 2){
-                SetCnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
+                set_cnt(((opponent) ? BULLET_OPP : BULLET_CHAR),
                     get_arrow_id(0, ((opponent) ? 1 : 0),
                     weapon_data, True, int((random.random() * 3))));
             };
@@ -4460,13 +4460,13 @@ def do_show_fight_screen(evt=None):
                     if (int(savegame[SG_ACTION_STATUS]) == 2){
                         add(get_quest_bg());
 
-    SetCnt(LIFEBAR_OPP, LIFEBAR_CHAR);
-    SetCnt(LIFEBAR_FILL_OPP, LIFEBAR_FILL_CHAR);
-    SetCnt(FIGHT_OPP_BORDER, FIGHT_CHAR_BORDER);
-    SetCnt(FIGHT_BOX3, FIGHT_BOX1);
-    SetCnt(FIGHT_REWARDGOLD, IF_GOLD);
-    SetCnt(FIGHT_REWARDSILVER, IF_SILBER);
-    SetCnt(FIGHT_REWARDMUSH, IF_PILZE);
+    set_cnt(LIFEBAR_OPP, LIFEBAR_CHAR);
+    set_cnt(LIFEBAR_FILL_OPP, LIFEBAR_FILL_CHAR);
+    set_cnt(FIGHT_OPP_BORDER, FIGHT_CHAR_BORDER);
+    set_cnt(FIGHT_BOX3, FIGHT_BOX1);
+    set_cnt(FIGHT_REWARDGOLD, IF_GOLD);
+    set_cnt(FIGHT_REWARDSILVER, IF_SILBER);
+    set_cnt(FIGHT_REWARDMUSH, IF_PILZE);
     var _local3 = actor[LBL_NAMERANK_CHAR];
     with (_local3) {
         if (text_dir == "right"){
@@ -4858,29 +4858,29 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
             load(get_weapon_sound(charWeaponType, charWeapon, 2));
         };
         load(get_weapon_sound(charWeaponType, charWeapon, 3));
-        SetCnt(
+        set_cnt(
             WEAPON_CHAR,
             (((charWeapon == 0))
                 ? WEAPON_FIST
                 : (((charWeapon == -1))
                     ? WEAPON_CLAW
                     : WEAPON_SWOOSH)), -30, -30, True);
-        SetCnt(BULLET_CHAR, C_EMPTY);
+        set_cnt(BULLET_CHAR, C_EMPTY);
         charWeaponType = 1;
     } else {
         if (charWeaponType == 1){
-            SetCnt(
+            set_cnt(
                 WEAPON_CHAR,
                 GetItemID(0, 0, weapon_data),
                 -30, -30, True);
-            SetCnt(BULLET_CHAR, C_EMPTY);
+            set_cnt(BULLET_CHAR, C_EMPTY);
         } else {
             if (charWeaponType == 2){
-                SetCnt(
+                set_cnt(
                     WEAPON_CHAR,
                     GetItemID(0, 0, weapon_data),
                     30, -30, True);
-                SetCnt(
+                set_cnt(
                     BULLET_CHAR, get_arrow_id(
                         0, 0, weapon_data, True, 0));
                 load(get_arrow_id(
@@ -4890,10 +4890,10 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
                     get_arrow_id(0, 0, weapon_data, True, 3));
             } else {
                 if (charWeaponType == 3){
-                    SetCnt(
+                    set_cnt(
                         WEAPON_CHAR,
                         GetItemID(0, 0, weapon_data));
-                    SetCnt(
+                    set_cnt(
                         BULLET_CHAR,
                         get_arrow_id(0, 0, weapon_data, True));
                 };
@@ -4909,54 +4909,54 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
         };
         load(get_weapon_sound(oppWeaponType, oppWeapon, 3));
         if (oppWeapon == -4){
-            SetCnt(WEAPON_OPP, WEAPON_STICK, -30, -30, True);
+            set_cnt(WEAPON_OPP, WEAPON_STICK, -30, -30, True);
         } else {
             if (oppWeapon == -5){
-                SetCnt(WEAPON_OPP, WEAPON_BONE, -30, -30, True);
+                set_cnt(WEAPON_OPP, WEAPON_BONE, -30, -30, True);
             } else {
                 if (oppWeapon == -6){
-                    SetCnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, True);
+                    set_cnt(WEAPON_OPP, WEAPON_STONEFIST, -30, -30, True);
                 } else {
-                    SetCnt(
+                    set_cnt(
                         WEAPON_OPP,
                         (((oppWeapon == 0)) ? WEAPON_FIST : C_EMPTY),
                          -30, -30, True);
                 };
             };
         };
-        SetCnt(BULLET_OPP, C_EMPTY);
+        set_cnt(BULLET_OPP, C_EMPTY);
         oppWeaponType = 1;
     } else {
         if (oppWeaponType == 1){
-            SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), -30, -30, True);
-            SetCnt(BULLET_OPP, C_EMPTY);
+            set_cnt(WEAPON_OPP, GetItemID(0, 1, weapon_data), -30, -30, True);
+            set_cnt(BULLET_OPP, C_EMPTY);
         } else {
             if (oppWeaponType == 2){
-                SetCnt(WEAPON_OPP,
+                set_cnt(WEAPON_OPP,
                        GetItemID(0, 1, weapon_data),
                        30, -30, True)
-                SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True, 0));
+                set_cnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True, 0));
                 load(
                     get_arrow_id(0, 1, weapon_data, True, 1),
                     get_arrow_id(0, 1, weapon_data, True, 2),
                     get_arrow_id(0, 1, weapon_data, True, 3));
             } else {
                 if (oppWeaponType == 3){
-                    SetCnt(WEAPON_OPP, GetItemID(0, 1, weapon_data));
-                    SetCnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True));
+                    set_cnt(WEAPON_OPP, GetItemID(0, 1, weapon_data));
+                    set_cnt(BULLET_OPP, get_arrow_id(0, 1, weapon_data, True));
                 };
             };
         };
     };
     if (charShield > 0){
-        SetCnt(SHIELD_CHAR, GetItemID(0, 2, weapon_data), 0, 0, True);
+        set_cnt(SHIELD_CHAR, GetItemID(0, 2, weapon_data), 0, 0, True);
     } else {
-        SetCnt(SHIELD_CHAR, C_EMPTY);
+        set_cnt(SHIELD_CHAR, C_EMPTY);
     };
     if (oppShield > 0){
-        SetCnt(SHIELD_OPP, GetItemID(0, 3, weapon_data), 0, 0, True);
+        set_cnt(SHIELD_OPP, GetItemID(0, 3, weapon_data), 0, 0, True);
     } else {
-        SetCnt(SHIELD_OPP, C_EMPTY);
+        set_cnt(SHIELD_OPP, C_EMPTY);
     };
     oppVolk = int(face_data[17]);
     oppMann = (int(face_data[18]) == 1);
@@ -5286,13 +5286,13 @@ def show_taverne_screen(evt=None):
         HutBlinzelTimer = new Timer(50);
         HutBlinzelStep = 0;
         BarkeeperStep = 0;
-        SetCnt(TIMEBAR_FILL, TIMEBAR_FILL);
-        SetCnt(QO_REWARDGOLD, IF_GOLD);
-        SetCnt(QO_REWARDSILVER, IF_SILBER);
+        set_cnt(TIMEBAR_FILL, TIMEBAR_FILL);
+        set_cnt(QO_REWARDGOLD, IF_GOLD);
+        set_cnt(QO_REWARDSILVER, IF_SILBER);
         remove_all();
         add(SCREEN_TAVERNE);
-        if (GetAdvent() != 0){
-            add(((TAVERN_ADVENT + GetAdvent()) - 1));
+        if (get_advent() != 0){
+            add(((TAVERN_ADVENT + get_advent()) - 1));
         };
         if (beer_fest){
             add(BEERFEST);
@@ -5365,8 +5365,8 @@ def show_taverne_screen(evt=None):
         load(((SPECIAL_ACTION + special_action) - 1));
         load(TAVERNE_BARKEEPER_HINT);
     };
-    if (GetAdvent() != 0){
-        load(((TAVERN_ADVENT + GetAdvent()) - 1));
+    if (get_advent() != 0){
+        load(((TAVERN_ADVENT + get_advent()) - 1));
     };
     when_loaded(DoShowTaverneScreen);
     '''
@@ -5700,7 +5700,7 @@ def show_city_screen(evt=None):
         };
         add(SCREEN_CITY);
         if (StatistenBleiben){
-            MakeTemporary(CITY_STATISTEN, BUBBLES);
+            make_temporary(CITY_STATISTEN, BUBBLES);
             visible_to_front(CITY_STATISTEN, BUBBLES);
         } else {
             if (int((random.random() * 3)) == 0){
@@ -6313,8 +6313,8 @@ def show_character_screen(evt=None, no_prices=False):
         };
         i = 0;
         while (i < 5) {
-            SetCnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
-            SetCnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
+            set_cnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
+            set_cnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
             i = (i + 1);
         };
         if (text_dir == "right"){
@@ -6742,8 +6742,8 @@ def show_player_screen(
         };
         i = 0;
         while (i < 5) {
-            SetCnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
-            SetCnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
+            set_cnt((SCR_CHAR_GOLD1 + i), IF_GOLD);
+            set_cnt((SCR_CHAR_SILBER1 + i), IF_SILBER);
             i = (i + 1);
         };
         if (text_dir == "right"){
@@ -7325,7 +7325,7 @@ def show_screen_gilden(
                             ACT_GUILD_SET_DESC,
                             actor[INP['NAME']].getChildAt(1).text,
                             gilde,
-                            ((old_crest_str + "§") + RemoveIllegalChars(
+                            ((old_crest_str + "§") + remove_illegal_chars(
                                 semi_strip(text))),
                             MD5(actor[INP['LOGIN_PASSWORD']]
                                 .getChildAt(1).text)
@@ -8465,8 +8465,8 @@ def show_screen_gilden(
                     (LBL_GILDE_GEBAEUDE_NAME + i)
                 ].y;
             };
-            SetCnt((GILDE_GEBAEUDE_GOLD + i), IF_GOLD);
-            SetCnt((GILDE_GEBAEUDE_MUSH + i), IF_PILZE);
+            set_cnt((GILDE_GEBAEUDE_GOLD + i), IF_GOLD);
+            set_cnt((GILDE_GEBAEUDE_MUSH + i), IF_PILZE);
             hide(
                 (LBL_GILDE_GEBAEUDE_KOSTEN_GOLD + i),
                 (GILDE_GEBAEUDE_GOLD + i)
@@ -8585,10 +8585,10 @@ def show_screen_gilden(
         actor[GILDE_MUSH2].x = (
             (actor[LBL_GILDE_GOLD2].x + actor[LBL_GILDE_GOLD2].text_width) + 15
         );
-        SetCnt(GILDE_GOLD, IF_GOLD);
-        SetCnt(GILDE_GOLD2, IF_GOLD);
-        SetCnt(GILDE_MUSH, IF_PILZE);
-        SetCnt(GILDE_MUSH2, IF_PILZE);
+        set_cnt(GILDE_GOLD, IF_GOLD);
+        set_cnt(GILDE_GOLD2, IF_GOLD);
+        set_cnt(GILDE_MUSH, IF_PILZE);
+        set_cnt(GILDE_MUSH2, IF_PILZE);
         RightBoxWidth = (((
             (actor[GILDE_GOLD].width + GILDE_GOLDMUSH_C1)
             + actor[LBL_GILDE_GOLD2].text_width)
@@ -9654,8 +9654,8 @@ def show_work_screen(evt=None):
             check_wrong_page(ACT_SCREEN_ARBEITEN);
         };
         add(SCREEN_ARBEITEN_WAIT);
-        SetCnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
-        SetCnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
+        set_cnt(SCR_ARBEITEN_BAR, QUESTBAR_BG);
+        set_cnt(SCR_ARBEITEN_FILL, QUESTBAR_FILL);
         when_loaded(DoShowWorking);
     } else {
         if (savegame[SG_ACTION_STATUS] == 0){
@@ -9769,8 +9769,8 @@ def show_main_quests_screen(next_enemies):
                             ];
                     };
                 };
-                SetCnt((MQS_DISABLED + i), MQS_DISABLED);
-                SetCnt((MQS_COMPLETED + i), MQS_COMPLETED);
+                set_cnt((MQS_DISABLED + i), MQS_DISABLED);
+                set_cnt((MQS_COMPLETED + i), MQS_COMPLETED);
                 _local2 = actor[(MQS_DISABLED + i)];
                 with (_local2) {
                     visible = (int(savegame[(SG_DUNGEON_LEVEL + i)]) <= 1);
@@ -9779,7 +9779,7 @@ def show_main_quests_screen(next_enemies):
                 actor[(MQS_COMPLETED + i)].visible = (
                     int(savegame[(SG_DUNGEON_LEVEL + i)]) >= 12
                 );
-                SetCnt((MQS_BUTTON + i), (MQS_BUTTON + i));
+                set_cnt((MQS_BUTTON + i), (MQS_BUTTON + i));
                 DungeonLevel = str((int(savegame[(SG_DUNGEON_LEVEL + i)]) - 1))
                 if (DungeonLevel == "0"){
                     PlayUnlockSound = True;
@@ -9815,8 +9815,8 @@ def show_main_quests_screen(next_enemies):
             i = 0;
             while (i < 5) {
                 if (i < 4){
-                    SetCnt((HLMQS_DISABLED + i), MQS_DISABLED);
-                    SetCnt((HLMQS_COMPLETED + i), MQS_COMPLETED);
+                    set_cnt((HLMQS_DISABLED + i), MQS_DISABLED);
+                    set_cnt((HLMQS_COMPLETED + i), MQS_COMPLETED);
                     if (i == 0){
                         DungeonLevel = savegame[(SG_DUNGEON_LEVEL + 9)];
                         if (countDone > 9){
@@ -10001,7 +10001,7 @@ def show_main_quests_screen(next_enemies):
                         };
                     };
                 } else {
-                    SetCnt((HLMQS_COMPLETED + i), HLMQS_TOWER_DISABLED);
+                    set_cnt((HLMQS_COMPLETED + i), HLMQS_TOWER_DISABLED);
                     Nextenemy = texts[
                         (TXT_TOWER_enemy_NAMES + tower_level)
                     ].split("|")[0];
@@ -10012,7 +10012,7 @@ def show_main_quests_screen(next_enemies):
                         actor[(HLMQS_COMPLETED + i)].visible = False;
                     };
                 };
-                SetCnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
+                set_cnt((HLMQS_BUTTON + i), (HLMQS_BUTTON + i));
                 enable_popup(
                     (HLMQS_BUTTON + i),
                     POPUP_BEGIN_LINE,
@@ -10170,7 +10170,7 @@ def show_main_quest_screen(dungeon_nr=0, enemy=0):
         } else {
             add(((SCR_QUEST_BG_1 + 50) + dungeon_nr));
         };
-        SetCnt(MAINQUEST_enemy_BORDER, FIGHT_CHAR_BORDER);
+        set_cnt(MAINQUEST_enemy_BORDER, FIGHT_CHAR_BORDER);
         add(SCREEN_MAINQUEST);
         if (enemy < 0){
             i = 0;
@@ -10186,7 +10186,7 @@ def show_main_quest_screen(dungeon_nr=0, enemy=0):
             };
             load_character_image();
         } else {
-            SetCnt(MAINQUEST_enemy, (OPPMONSTER + enemy));
+            set_cnt(MAINQUEST_enemy, (OPPMONSTER + enemy));
         };
         SelectedDungeon = dungeon_nr;
     };
@@ -10415,7 +10415,7 @@ def show_witch(
         i = 0;
         while (i < int(witch_data[7])) {
             load(GetItemID(14, int(witch_data[(9 + (3 * i))]), None, 0));
-            SetCnt(
+            set_cnt(
                 (WITCH_SCROLL + i),
                 GetItemID(14, int(witch_data[(9 + (3 * i))]),
                 None,
@@ -10590,23 +10590,23 @@ def Showalbum_content(evt=None):
             if (itm_class > 0){
                 itm_class--;
             };
-            SetCnt(
+            set_cnt(
                (ALBUM_WEAPON_1 + i),
                GetItemID(itmTyp, itm_pic, 0, itm_class)
             );
-            SetCnt(
+            set_cnt(
                (ALBUM_WEAPON_2 + i),
                GetItemID(itmTyp, itm_pic, 1, itm_class)
             );
-            SetCnt(
+            set_cnt(
                (ALBUM_WEAPON_3 + i),
                GetItemID(itmTyp, itm_pic, 2, itm_class)
             );
-            SetCnt(
+            set_cnt(
                 (ALBUM_WEAPON_4 + i),
                 GetItemID(itmTyp, itm_pic, 3, itm_class)
             );
-            SetCnt(
+            set_cnt(
                (ALBUM_WEAPON_5 + i),
                GetItemID(itmTyp, itm_pic, 4, itm_class)
             );
@@ -10650,7 +10650,7 @@ def Showalbum_content(evt=None):
             if (itm_class > 0){
                 itm_class--;
             };
-            SetCnt(
+            set_cnt(
                (ALBUM_WEAPON_EPIC + i),
                GetItemID(itmTyp, itm_pic, 0, itm_class));
             if (showAlbumOffset){
@@ -10666,7 +10666,7 @@ def Showalbum_content(evt=None):
     entryText = "";
     hintText = "";
     hunterOffs = 0;
-    AlbumClear();
+    album_clear();
     actor_id = 0;
     if (evt){
         actor_id = get_actor_id(evt.target);
@@ -10776,7 +10776,7 @@ def Showalbum_content(evt=None):
                 albumPage = 62;
             };
             if (album_content[((albumPage * 4) + i)] == 1){
-                SetCnt(
+                set_cnt(
                    (ALBUM_MONSTER + i),
                    ((OPPMONSTER + (albumPage * 4)) + i)
                 );
@@ -10790,7 +10790,7 @@ def Showalbum_content(evt=None):
                     ];
                 };
             } else {
-                SetCnt((ALBUM_MONSTER + i), UNKNOWN_enemy);
+                set_cnt((ALBUM_MONSTER + i), UNKNOWN_enemy);
                 entryText = texts[TXT_UNKNOWN];
             };
             if (showAlbumOffset){
@@ -16354,7 +16354,7 @@ def MakePersistent(*args):
     pass
 
 
-def MakeTemporary(*args):
+def make_temporary(*args):
     '''
     var i;
     var i_bunch;
@@ -16363,7 +16363,7 @@ def MakeTemporary(*args):
         if ((actor[_args[i]] is Array)){
             i_bunch = 0;
             while (i_bunch < actor[_args[i]].length) {
-                MakeTemporary(actor[_args[i]][i_bunch]);
+                make_temporary(actor[_args[i]][i_bunch]);
                 i_bunch++;
             };
             return;
@@ -16372,10 +16372,10 @@ def MakeTemporary(*args):
         i++;
     };
     '''
-    pass
+    print args
 
 
-def EnableDragDrop(actor_id, handler, *args):
+def enable_drag_drop(actor_id, handler, *args):
     '''
     var old_x:* = 0;
     var old_y:* = 0;
@@ -16493,51 +16493,51 @@ def EnableDragDrop(actor_id, handler, *args):
     dragResetTimer = new Timer(500);
     dragResetTimer.add_event_listener(TimerEvent.TIMER, dragReset);
     '''
-    pass
+    print actor_id, handler, args
 
 
-def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
+def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
     '''
     var i_bunch:* = 0;
     var CntImgLoaded:* = None;
-    var cntID:* = cntID;
-    var ImgID = ImgID;
+    var cnt_id:* = cnt_id;
+    var img_id = img_id;
     var pos_x = pos_x;
     var pos_y = pos_y;
     var center:Boolean = center;
-    if (!(actor[ImgID] is Loader)){
-        if (actorBitmap[cntID]){
-            actor[cntID].removeChild(actorBitmap[cntID]);
-            actorBitmap[cntID] = None;
+    if (!(actor[img_id] is Loader)){
+        if (actorBitmap[cnt_id]){
+            actor[cnt_id].removeChild(actorBitmap[cnt_id]);
+            actorBitmap[cnt_id] = None;
         };
         return;
     };
-    if ((actor[cntID] is Array)){
+    if ((actor[cnt_id] is Array)){
         i_bunch = 0;
-        while (i_bunch < actor[cntID].length) {
-            SetCnt(actor[cntID][i_bunch], ImgID);
+        while (i_bunch < actor[cnt_id].length) {
+            set_cnt(actor[cnt_id][i_bunch], img_id);
             i_bunch = (i_bunch + 1);
         };
         return;
     };
-    if (actorBitmap[cntID]){
-        actor[cntID].removeChild(actorBitmap[cntID]);
-        actorBitmap[cntID] = None;
+    if (actorBitmap[cnt_id]){
+        actor[cnt_id].removeChild(actorBitmap[cnt_id]);
+        actorBitmap[cnt_id] = None;
     };
-    if (ImgID != 0){
-        if (actorLoaded[ImgID] == 2){
-            if ((((((ImgID == ITM_EMPTY)) or ((ImgID == ITM_OFFS))))
-                and ((actor[cntID].width == 0)))){
-                var _local7 = actor[cntID];
+    if (img_id != 0){
+        if (actorLoaded[img_id] == 2){
+            if ((((((img_id == ITM_EMPTY)) or ((img_id == ITM_OFFS))))
+                and ((actor[cnt_id].width == 0)))){
+                var _local7 = actor[cnt_id];
                 with (_local7) {
                     graphics.beginFill(0, 0);
                     graphics.drawRect(0, 0, 90, 90);
                 };
             };
-            if ((actor[ImgID].content is Bitmap)){
-                actorBitmap[cntID] = new Bitmap();
-                actorBitmap[cntID].bitmapData = actor[ImgID].content.bitmapData
-                _local7 = actorBitmap[cntID];
+            if ((actor[img_id].content is Bitmap)){
+                actorBitmap[cnt_id] = new Bitmap();
+                actorBitmap[cnt_id].bitmapData = actor[img_id].content.bitmapData
+                _local7 = actorBitmap[cnt_id];
                 with (_local7) {
                     allow_smoothing = True;
                     force_smoothing = True;
@@ -16545,15 +16545,15 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
-                actor[cntID].addChild(actorBitmap[cntID]);
+                actor[cnt_id].addChild(actorBitmap[cnt_id]);
             } else {
-                actorBitmap[cntID] = new Bitmap();
-                actorBitmap[cntID].bitmapData = BitmapData(actor[ImgID].width,
-                                                           actor[ImgID].height,
+                actorBitmap[cnt_id] = new Bitmap();
+                actorBitmap[cnt_id].bitmapData = BitmapData(actor[img_id].width,
+                                                           actor[img_id].height,
                                                            True, 0);
-                actorBitmap[cntID].bitmapData.draw(
-                                           (actor[ImgID] as IBitmapDrawable));
-                _local7 = actorBitmap[cntID];
+                actorBitmap[cnt_id].bitmapData.draw(
+                                           (actor[img_id] as IBitmapDrawable));
+                _local7 = actorBitmap[cnt_id];
                 with (_local7) {
                     allow_smoothing = True;
                     force_smoothing = True;
@@ -16561,41 +16561,41 @@ def SetCnt(cntID, ImgID=0, pos_x=0, pos_y=0, center=False):
                     x = (pos_x - ((center) ? (width / 2) : 0));
                     y = (pos_y - ((center) ? (height / 2) : 0));
                 };
-                actor[cntID].addChild(actorBitmap[cntID]);
+                actor[cnt_id].addChild(actorBitmap[cnt_id]);
             };
         } else {
             CntImgLoaded = function (evt:Event):
-                actorLoaded[ImgID] = 2;
-                SetCnt(cntID, ImgID, pos_x, pos_y, center);
+                actorLoaded[img_id] = 2;
+                set_cnt(cnt_id, img_id, pos_x, pos_y, center);
             };
-            actor[ImgID].contentLoaderInfo.add_event_listener(
+            actor[img_id].contentLoaderInfo.add_event_listener(
                                               Event.COMPLETE, CntImgLoaded);
-            if (actorLoaded[ImgID] == 0){
-                load(ImgID);
+            if (actorLoaded[img_id] == 0){
+                load(img_id);
             };
         };
     };
     '''
-    pass
+    print cnt_id, img_id, pos_x, pos_y, center
 
 
-def AddBMO(bunch_id, offset):
+def add_bmo(bunch_id, offset):
     '''
     var i;
     i = 0;
     while (i < actor[bunch_id].length) {
         if ((actor[actor[bunch_id][i]] is Array)){
-            AddBMO(actor[bunch_id][i], offset);
+            add_bmo(actor[bunch_id][i], offset);
         } else {
             add((actor[bunch_id][i] + offset));
         };
         i++;
     };
     '''
-    pass
+    print bunch_id, offset
 
 
-def RemoveIllegalChars(in_str):
+def remove_illegal_chars(in_str):
     '''
     var LegalChars:String;
     var i;
@@ -16736,11 +16736,11 @@ def post_btn_handler(evt=None, actor_id=0):
                         send_action(((GuildMsg)
                                     ? ACT_POST_SEND_GUILD
                                     : ACT_POST_SEND),
-                            RemoveIllegalChars(semi_strip(thisRecipient)),
-                            RemoveIllegalChars(semi_strip(
+                            remove_illegal_chars(semi_strip(thisRecipient)),
+                            remove_illegal_chars(semi_strip(
                                actor[INP_POST_SUBJECT].getChildAt(1).text
                                .split("/").join(""))),
-                            RemoveIllegalChars(semi_strip(actor[INP_POST_TEXT]
+                            remove_illegal_chars(semi_strip(actor[INP_POST_TEXT]
                                                .getChildAt(1).text)));
                     };
                 };
@@ -16987,24 +16987,24 @@ def post_btn_handler(evt=None, actor_id=0):
     print evt, actor_id
 
 
-def AlbumClear():
+def album_clear():
     '''
     var i;
     i = 0;
     while (i < 4) {
         hide((ALBUM_MONSTER_FRAME + i));
-        SetCnt((ALBUM_MONSTER + i), C_EMPTY);
-        SetCnt((ALBUM_WEAPON_1 + i), C_EMPTY);
-        SetCnt((ALBUM_WEAPON_2 + i), C_EMPTY);
-        SetCnt((ALBUM_WEAPON_3 + i), C_EMPTY);
-        SetCnt((ALBUM_WEAPON_4 + i), C_EMPTY);
-        SetCnt((ALBUM_WEAPON_5 + i), C_EMPTY);
+        set_cnt((ALBUM_MONSTER + i), C_EMPTY);
+        set_cnt((ALBUM_WEAPON_1 + i), C_EMPTY);
+        set_cnt((ALBUM_WEAPON_2 + i), C_EMPTY);
+        set_cnt((ALBUM_WEAPON_3 + i), C_EMPTY);
+        set_cnt((ALBUM_WEAPON_4 + i), C_EMPTY);
+        set_cnt((ALBUM_WEAPON_5 + i), C_EMPTY);
         actor[(ALBUM_WEAPON_1 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_2 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_3 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_4 + i)].alpha = 1;
         actor[(ALBUM_WEAPON_5 + i)].alpha = 1;
-        SetCnt((ALBUM_WEAPON_EPIC + i), C_EMPTY);
+        set_cnt((ALBUM_WEAPON_EPIC + i), C_EMPTY);
         actor[(LBL_ALBUM_HEADING + i)].text = "";
         actor[(LBL_ALBUM_HINT + i)].text = "";
         i++;
@@ -17013,7 +17013,7 @@ def AlbumClear():
     pass
 
 
-def GetAdvent():
+def get_advent():
     '''
     var tmpNow:Date;
     var tmpAdventEnd:Date;
@@ -17061,7 +17061,7 @@ def refresh_time_bar(offer_time=0):
     var _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
         if (offer_time < 0){
-            tmpX = (((Number(savegame[SG_TIMEBAR]) + offer_time) / 6000) * 555);
+            tmpX = (((Number(savegame[SG_TIMEBAR]) + offer_time) / 6000) * 555)
         } else {
             tmpX = ((Number(savegame[SG_TIMEBAR]) / 6000) * 555);
         };
@@ -18542,7 +18542,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
             };
             i = (i + 1);
         };
-        SetCnt(TOWER_BOOSTCOIN, IF_GOLD);
+        set_cnt(TOWER_BOOSTCOIN, IF_GOLD);
     } else {
         if (!(save is Array)){
             save = savegame;
@@ -18987,7 +18987,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
     if (!tower_mode){
         i = 0;
         while (i < 3) {
-            SetCnt((CHAR_POTION + i),
+            set_cnt((CHAR_POTION + i),
                    ((int(save[(SG_POTION_TYPE + i)]))==0)
                    ? C_EMPTY
                    : GetItemID(12, int(save[(SG_POTION_TYPE + i)]), 0, 0));
@@ -19086,16 +19086,16 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
             };
         };
         if ((((i > 9)) and (hide_back_pack))){
-            SetCnt((CHAR_SLOT_1 + i), C_EMPTY);
+            set_cnt((CHAR_SLOT_1 + i), C_EMPTY);
             enable_popup((CHAR_SLOT_1 + i));
         } else {
             if ((((i == 9)) and ((tmpItmClass >= 1)))){
-                SetCnt((CHAR_SLOT_1 + i), get_arrow_id(((tower_mode) ?
+                set_cnt((CHAR_SLOT_1 + i), get_arrow_id(((tower_mode) ?
                        (copyCatId + CPC_ITEMS) : SG_INVENTORY_OFFS), 8, save,
                         True, ((tmpItmClass)==1) ? 1 : -1));
                 actor[(CHAR_SLOT_1 + i)].mouse_enabled = False;
             } else {
-                SetCnt((CHAR_SLOT_1 + i),
+                set_cnt((CHAR_SLOT_1 + i),
                        GetItemID(((tower_mode) ? (((i > 9))
                                  ? TSG_LOOT_SACK : (copyCatId + CPC_ITEMS))
                         : SG_INVENTORY_OFFS), ((((tower_mode) and ((i > 9))))
@@ -19135,7 +19135,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                 save[((SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_FIDGET_1 + i),
+            set_cnt((CHAR_SLOT_FIDGET_1 + i),
                    GetItemID(SG_FIDGET_ITEM1, i, save))
             item_popup((CHAR_SLOT_FIDGET_1 + i),
                       (SG_FIDGET_ITEM1 + (i * SG['ITM']['SIZE'])),
@@ -19149,7 +19149,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                 save[((SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE']))
                     + SG['ITM']['PIC'])] = 0;
             };
-            SetCnt((CHAR_SLOT_SHAKES_1 + i),
+            set_cnt((CHAR_SLOT_SHAKES_1 + i),
                    GetItemID(SG_SHAKES_ITEM1, i, save))
             item_popup((CHAR_SLOT_SHAKES_1 + i),
                       (SG_SHAKES_ITEM1 + (i * SG['ITM']['SIZE'])),
@@ -20605,37 +20605,37 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
     if (!load_only){
         add((CHARIMG + actorOffset));
         if ((((is_volk == 2)) and (is_mann))){
-            AddBMO(CHARSPECIALOVL_ELF_M, actorOffset);
+            add_bmo(CHARSPECIALOVL_ELF_M, actorOffset);
         };
         if ((((is_volk == 7)) and (is_mann))){
-            AddBMO(CHARSPECIALOVL_GOBLIN_M, actorOffset);
+            add_bmo(CHARSPECIALOVL_GOBLIN_M, actorOffset);
         };
         if ((((is_volk == 6)) and (is_mann))){
-            AddBMO(CHARSPECIALOVL_DARKELF_M, actorOffset);
+            add_bmo(CHARSPECIALOVL_DARKELF_M, actorOffset);
         };
         if ((((is_volk == 3)) and (is_mann))){
-            AddBMO(CHARSPECIALOVL_DWARF_M, actorOffset);
+            add_bmo(CHARSPECIALOVL_DWARF_M, actorOffset);
         };
         if ((((is_volk == 1)) and (is_mann))){
-            AddBMO(CHARSPECIALOVL_HUMAN_M, actorOffset);
+            add_bmo(CHARSPECIALOVL_HUMAN_M, actorOffset);
         };
         if ((((is_volk == 4)) and (is_mann))){
-            AddBMO(CHARSPECIALOVL_GNOM_M, actorOffset);
+            add_bmo(CHARSPECIALOVL_GNOM_M, actorOffset);
         };
         if ((((is_volk == 7)) and (!(is_mann)))){
-            AddBMO(CHARSPECIALOVL_GOBLIN_F, actorOffset);
+            add_bmo(CHARSPECIALOVL_GOBLIN_F, actorOffset);
         };
         if ((((is_volk == 5)) and (!(is_mann)))){
-            AddBMO(CHARSPECIALOVL_ORC_F, actorOffset);
+            add_bmo(CHARSPECIALOVL_ORC_F, actorOffset);
         };
         if ((((is_volk == 2)) and (!(is_mann)))){
-            AddBMO(CHARSPECIALOVL_ELF_F, actorOffset);
+            add_bmo(CHARSPECIALOVL_ELF_F, actorOffset);
         };
         if ((((is_volk == 1)) and (!(is_mann)))){
-            AddBMO(CHARSPECIALOVL_HUMAN_F, actorOffset);
+            add_bmo(CHARSPECIALOVL_HUMAN_F, actorOffset);
         };
         if ((((is_volk == 3)) and (!(is_mann)))){
-            AddBMO(CHARSPECIALOVL_DWARF_F, actorOffset);
+            add_bmo(CHARSPECIALOVL_DWARF_F, actorOffset);
         };
     };
     '''
