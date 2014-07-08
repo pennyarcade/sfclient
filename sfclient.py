@@ -991,7 +991,7 @@ def init_vars():
         when_loaded_timeout_event
     )
 
-    # timer event to generate Ticks
+    # timer event to generate ticks
     time_calc = Timer(50)
     time_calc.add_event_listener(TimerEvent.TIMER, time_calc_event)
 
@@ -2756,7 +2756,7 @@ def show_option_screen(evt=None):
             x = ((OPTION_X + int((OPTION_X / 2))) - int((text_width / 2)));
         };
         load_character_image();
-        SetSliderValue(SLDR_OPTION_VOLUME, (so.data.volume + 1));
+        set_slider_value(SLDR_OPTION_VOLUME, (so.data.volume + 1));
         if (light_mode){
             add(CB_LM_CHECKED);
         };
@@ -5683,7 +5683,7 @@ def show_city_screen(evt=None):
             or (on_stage(SCR_CITY_BACKG_DAWN))))
             or (on_stage(SCR_CITY_BACKG_DAY)))
         ){
-            MakePersistent(CITY_STATISTEN, BUBBLES);
+            make_persistent(CITY_STATISTEN, BUBBLES);
             StatistenBleiben = True;
         };
         remove_all();
@@ -9666,7 +9666,7 @@ def show_work_screen(evt=None):
                 - int((actor[LBL_WINDOW_TITLE].text_width / 2))
             );
             actor[LBL_SCR_ARBEITEN_TEXT].text = texts[TXT_ARBEIT_TEXT];
-            SetSliderValue(SLDR['ARBEITEN'], 1);
+            set_slider_value(SLDR['ARBEITEN'], 1);
             arbeiten_slider_change(1);
         };
     };
@@ -16210,7 +16210,7 @@ def define_from_class(actor_id, img_class, pos_x=0, pos_y=0, txt_manip=0,
     pass
 
 
-def DefineCnt(actor_id, pos_x=0, pos_y=0, vis=True):
+def define_cnt(actor_id, pos_x=0, pos_y=0, vis=True):
     '''
     var i:* = 0;
     var actor_id:* = actor_id;
@@ -16230,22 +16230,22 @@ def DefineCnt(actor_id, pos_x=0, pos_y=0, vis=True):
         smoothing = True;
     };
     '''
-    pass
+    print actor_id, pos_x, pos_y, vis
 
 
-def textLinkMakeClickable(obj):
+def text_link_make_clickable(obj):
     '''
         does nothing?
     '''
-    pass
+    print obj
 
 
-def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
+def define_slider(actor_id, ticks, pos_x, pos_y, fn):
     '''
     var i:* = 0;
     var oldSliderVal:* = 0;
     var actor_id:* = actor_id;
-    var Ticks:* = Ticks;
+    var ticks:* = ticks;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
     var fn:* = fn;
@@ -16256,8 +16256,8 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
             if ((((evt.localX > 35)) and ((evt.localX < (45 + 198))))){
                 tmpX = evt.localX;
                 sliderVal = (int(((((tmpX - 40) / 198)
-                             * (Ticks - 1)) + 0.5)) + 1);
-                tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
+                             * (ticks - 1)) + 0.5)) + 1);
+                tmpX = (int((((sliderVal - 1) / (ticks - 1)) * 198)) + 40);
                 evt.target.getChildAt(1).x = (tmpX - 7);
                 if (oldSliderVal != sliderVal){
                     fn(sliderVal);
@@ -16270,15 +16270,15 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
         var tmpX;
         var sliderVal;
         tmpX = (evt.stageX - actor[(actor_id + 1)].x);
-        sliderVal = (int(((((tmpX - 40) / 198) * (Ticks - 1)) + 0.5)) + 1);
-        tmpX = (int((((sliderVal - 1) / (Ticks - 1)) * 198)) + 40);
+        sliderVal = (int(((((tmpX - 40) / 198) * (ticks - 1)) + 0.5)) + 1);
+        tmpX = (int((((sliderVal - 1) / (ticks - 1)) * 198)) + 40);
         actor[(actor_id + 1)].getChildAt(1).x = (tmpX - 7);
         if (oldSliderVal != sliderVal){
             fn(sliderVal);
         };
         oldSliderVal = sliderVal;
     };
-    actorBitmap[actor_id] = Ticks;
+    actorBitmap[actor_id] = ticks;
     actorBitmap[(actor_id + 1)] = [fn];
     define_from_class((actor_id + 1), DragonSlider, pos_x, pos_y);
     define_bunch(actor_id, (actor_id + 1));
@@ -16290,10 +16290,10 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
         useHandCursor = True;
     };
     i = 1;
-    while (i <= Ticks) {
+    while (i <= ticks) {
         define_from_class(((actor_id + 1) + i), SliderTick,
                         (((pos_x + 40) + int((198 * ((i - 1)
-                         / (Ticks - 1))))) - 5), (pos_y - 10));
+                         / (ticks - 1))))) - 5), (pos_y - 10));
         _local7 = actor[((actor_id + 1) + i)];
         with (_local7) {
             add_event_listener(MouseEvent.MOUSE_DOWN, ClickTick);
@@ -16305,7 +16305,7 @@ def DefineSlider(actor_id, Ticks, pos_x, pos_y, fn):
     };
     fn(get_slider_value(actor_id));
     '''
-    pass
+    print actor_id, ticks, pos_x, pos_y, fn
 
 
 def get_slider_value(actor_id):
@@ -16315,10 +16315,10 @@ def get_slider_value(actor_id):
     return ((int(((((tmpX - 40) / 198) * (actorBitmap[actor_id] - 1))
             + 0.5)) + 1));
     '''
-    pass
+    print actor_id
 
 
-def SetSliderValue(actor_id, value):
+def set_slider_value(actor_id, value):
     '''
     var tmpX;
     var oldVal;
@@ -16330,10 +16330,10 @@ def SetSliderValue(actor_id, value):
         _local5[0](value);
     };
     '''
-    pass
+    print actor_id, value
 
 
-def MakePersistent(*args):
+def make_persistent(*args):
     '''
     var i;
     var i_bunch;
@@ -16342,7 +16342,7 @@ def MakePersistent(*args):
         if ((actor[_args[i]] is Array)){
             i_bunch = 0;
             while (i_bunch < actor[_args[i]].length) {
-                MakePersistent(actor[_args[i]][i_bunch]);
+                make_persistent(actor[_args[i]][i_bunch]);
                 i_bunch++;
             };
             return;
@@ -16351,7 +16351,7 @@ def MakePersistent(*args):
         i++;
     };
     '''
-    pass
+    print args
 
 
 def make_temporary(*args):
@@ -16536,7 +16536,8 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
             };
             if ((actor[img_id].content is Bitmap)){
                 actorBitmap[cnt_id] = new Bitmap();
-                actorBitmap[cnt_id].bitmapData = actor[img_id].content.bitmapData
+                actorBitmap[cnt_id].bitmapData =
+                    actor[img_id].content.bitmapData
                 _local7 = actorBitmap[cnt_id];
                 with (_local7) {
                     allow_smoothing = True;
@@ -16548,9 +16549,10 @@ def set_cnt(cnt_id, img_id=0, pos_x=0, pos_y=0, center=False):
                 actor[cnt_id].addChild(actorBitmap[cnt_id]);
             } else {
                 actorBitmap[cnt_id] = new Bitmap();
-                actorBitmap[cnt_id].bitmapData = BitmapData(actor[img_id].width,
-                                                           actor[img_id].height,
-                                                           True, 0);
+                actorBitmap[cnt_id].bitmapData =
+                                BitmapData(actor[img_id].width,
+                                           actor[img_id].height,
+                                           True, 0);
                 actorBitmap[cnt_id].bitmapData.draw(
                                            (actor[img_id] as IBitmapDrawable));
                 _local7 = actorBitmap[cnt_id];
