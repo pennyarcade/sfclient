@@ -13305,184 +13305,184 @@ def action_handler(event):
                 invitegilden_id = int(par[4])
                 add(BTN['POST']['ACCEPT'])
 
-            with actor[INP['POST']['ADDRESS']].getChildAt(1):
-                type = TextFieldType.DYNAMIC
-                text = (' '.join(
-                    texts[TXT['POST']['FROM']],
-                    par[0],
-                    texts[TXT['POST']['TIME']],
-                    time_str(par[2])
-                ))
+            current = actor[INP['POST']['ADDRESS']].getChildAt(1)
+            current.type = TextFieldType.DYNAMIC
+            current.text = (' '.join(
+                texts[TXT['POST']['FROM']],
+                par[0],
+                texts[TXT['POST']['TIME']],
+                time_str(par[2])
+            ))
 
-            with actor[INP['POST']['SUBJECT']].getChildAt(1):
-                type = TextFieldType.DYNAMIC
-                reply_address = par[0]
-                for case in switch(par[1]):
-                    if case("1  ", "2  ", "3  ", "4  ", "5  ",
-                            "6  ", "7  ", "8  ", "9  "):
-                        par[1] = "Moo!"
-                        par[3] = "Holy Cow!"
-                        break
+            current = actor[INP['POST']['SUBJECT']].getChildAt(1)
+            current.type = TextFieldType.DYNAMIC
+            current.reply_address = par[0]
+            for case in switch(par[1]):
+                if case("1  ", "2  ", "3  ", "4  ", "5  ",
+                        "6  ", "7  ", "8  ", "9  "):
+                    par[1] = "Moo!"
+                    par[3] = "Holy Cow!"
+                    break
 
-                    if case("1"):
-                        par[1] = texts[TXT['SUBJECT']['GUILD_DELETED']]
-                        par[3] = texts[TXT['BODY']['GUILD_DELETED']].replace(
+                if case("1"):
+                    par[1] = texts[TXT['SUBJECT']['GUILD_DELETED']]
+                    par[3] = texts[TXT['BODY']['GUILD_DELETED']].replace(
+                        "%1", par[0]
+                    ).replace(
+                        "%2", par[3]
+                    )
+                    break
+
+                if case("2"):
+                    par[1] = texts[
+                        TXT['SUBJECT']['GUILD']['DELETED_BY_ADMIN']
+                    ]
+                    par[3] = texts[
+                        TXT['BODY']['GUILD']['DELETED_BY_ADMIN']
+                    ].replace("%1", par[0]).replace("%2", par[3])
+                    break
+
+                if case("3"):
+                    par[1] = texts[TXT['SUBJECT']['GUILD_EXPELLED']]
+                    par[3] = texts[
+                        TXT['BODY']['GUILD_EXPELLED']
+                    ].replace(
+                        "%1", par[0]
+                    ).replace(
+                        "%2", par[3]
+                    )
+                    break
+
+                if case("4"):
+                    par[1] = texts[
+                        TXT['SUBJECT']['GUILD_EXPELLED_BY_ADMIN']
+                    ]
+                    par[3] = texts[
+                        TXT['BODY']['GUILD_EXPELLED_BY_ADMIN']
+                    ].replace(
+                        "%1", par[0]
+                    ).replace(
+                        "%2", par[3]
+                    )
+                    break
+
+                if case("5"):
+                    par[1] = texts[TXT['SUBJECT']['GUILD_INVITE']]
+                    par[3] = texts[TXT['BODY']['GUILD_INVITE']].replace(
+                        "%1", par[0]
+                    ).replace(
+                        "%2", par[3]
+                    )
+                    break
+
+                if case("6", "7"):
+                    par[1] = texts[TXT['SUBJECT']['PVP']].replace(
+                        "%1", par[0]
+                    )
+                    tmp_battle_info = par[3]
+                    tmp_fighter_array = tmp_battle_info.split(
+                        "#"
+                    )[0].split("/")
+                    ich_anfg = tmp_fighter_array[0]
+                    er_anfg = tmp_fighter_array[6]
+
+                    tmp_fight_array = tmp_battle_info.split(
+                        "#"
+                    )[1].split("/")
+                    ich_ende = tmp_fight_array[len(tmp_fight_array) - 7]
+                    er_ende = tmp_fight_array[len(tmp_fight_array) - 4]
+                    runden_zahl = int(len(tmp_fight_array) / 6)
+                    tmp_honor = abs(tmp_battle_info.split("#")[7])
+                    tmp_gold = abs(int(
+                        tmp_battle_info.split("#")[8] / 100))
+                    tmp_silver = abs(
+                        int(tmp_battle_info.split("#")[8] % 100)
+                    )
+
+                    outcome = TXT['DU_VERLOREN']
+                    if ich_ende > er_ende:
+                        outcome = TXT['DU_GEWONNEN']
+                    plural = texts[TXT['ROUNDS_PLURAL']]
+                    if runden_zahl == 1:
+                        plural = ""
+                    wonlost = TXT['DU']['WAS_VERLOREN']
+                    if ich_ende > er_ende:
+                        wonlost = TXT['DU']['WAS_GEWONNEN']
+
+                    par[3] = texts[TXT['BODY']['PVP']].replace(
+                        "%1", par[0]
+                    ).replace(
+                        "%2", par[3]
+                    ).replace(
+                        "%3", str(ich_anfg)
+                    ).replace(
+                        "%4", str(er_anfg)
+                    ).replace(
+                        "%5", str(ich_ende)
+                    ).replace(
+                        "%6", str(er_ende)
+                    ).replace(
+                        "%7", str(runden_zahl)
+                    ).replace(
+                        "%8", texts[outcome]
+                    ).replace(
+                        "%9", plural
+                    ).replace(
+                        "%10", str(tmp_honor)
+                    ).replace(
+                        "%11", str(tmp_gold)
+                    ).replace(
+                        "%12", str(tmp_silver)
+                    ).replace(
+                        "%13", texts[wonlost]
+                    ).replace(
+                        "#", chr(13)
+                    )
+                    add(BTN['POST']['VIEWFIGHT'])
+                    break
+
+                if case("8"):
+                    if texts[TXT['INV']['ACC_TITLE']] != "":
+                        par[1] = texts[TXT['INV']['ACC_TITLE']]
+                        par[3] = texts[TXT['INV']['ACC_TEXT']].replace(
                             "%1", par[0]
-                        ).replace(
-                            "%2", par[3]
                         )
-                        break
+                    else:
+                        par[1] = "FRIEND_LINK_ACCEPTED"
+                        par[3] = (''.join([
+                            "You are seeing this message in",
+                            "english because it has not been translated",
+                            "for your location yet. ",
+                            par[0],
+                            " has accepted your invitation to the game."
+                            "Please wait for ",
+                            par[0],
+                            " to verify"
+                            "email address in order to get your bonus."
+                        ]))
+                    add(BTN['POST']['REPLY'])
+                    break
 
-                    if case("2"):
-                        par[1] = texts[
-                            TXT['SUBJECT']['GUILD']['DELETED_BY_ADMIN']
-                        ]
-                        par[3] = texts[
-                            TXT['BODY']['GUILD']['DELETED_BY_ADMIN']
-                        ].replace("%1", par[0]).replace("%2", par[3])
-                        break
-
-                    if case("3"):
-                        par[1] = texts[TXT['SUBJECT']['GUILD_EXPELLED']]
-                        par[3] = texts[
-                            TXT['BODY']['GUILD_EXPELLED']
-                        ].replace(
-                            "%1", par[0]
-                        ).replace(
-                            "%2", par[3]
-                        )
-                        break
-
-                    if case("4"):
-                        par[1] = texts[
-                            TXT['SUBJECT']['GUILD_EXPELLED_BY_ADMIN']
-                        ]
-                        par[3] = texts[
-                            TXT['BODY']['GUILD_EXPELLED_BY_ADMIN']
-                        ].replace(
-                            "%1", par[0]
-                        ).replace(
-                            "%2", par[3]
-                        )
-                        break
-
-                    if case("5"):
-                        par[1] = texts[TXT['SUBJECT']['GUILD_INVITE']]
-                        par[3] = texts[TXT['BODY']['GUILD_INVITE']].replace(
-                            "%1", par[0]
-                        ).replace(
-                            "%2", par[3]
-                        )
-                        break
-
-                    if case("6", "7"):
-                        par[1] = texts[TXT['SUBJECT']['PVP']].replace(
+                if case("9"):
+                    if texts[TXT['INV']['VAL_TITLE']] != "":
+                        par[1] = texts[TXT['INV']['VAL_TITLE']]
+                        par[3] = texts[TXT['INV']['VAL_TEXT']].replace(
                             "%1", par[0]
                         )
-                        tmp_battle_info = par[3]
-                        tmp_fighter_array = tmp_battle_info.split(
-                            "#"
-                        )[0].split("/")
-                        ich_anfg = tmp_fighter_array[0]
-                        er_anfg = tmp_fighter_array[6]
+                    else:
+                        par[1] = "FRIEND_EMAIL_VERIFIED"
+                        par[3] = ''.join([
+                            par[0],
+                            " has verified his/her email address."
+                        ])
+                    add(BTN['POST']['REPLY'])
+                    break
 
-                        tmp_fight_array = tmp_battle_info.split(
-                            "#"
-                        )[1].split("/")
-                        ich_ende = tmp_fight_array[len(tmp_fight_array) - 7]
-                        er_ende = tmp_fight_array[len(tmp_fight_array) - 4]
-                        runden_zahl = int(len(tmp_fight_array) / 6)
-                        tmp_honor = abs(tmp_battle_info.split("#")[7])
-                        tmp_gold = abs(int(
-                            tmp_battle_info.split("#")[8] / 100))
-                        tmp_silver = abs(
-                            int(tmp_battle_info.split("#")[8] % 100)
-                        )
+                if case():
+                    add(BTN['POST']['REPLY'])
 
-                        outcome = TXT['DU_VERLOREN']
-                        if ich_ende > er_ende:
-                            outcome = TXT['DU_GEWONNEN']
-                        plural = texts[TXT['ROUNDS_PLURAL']]
-                        if runden_zahl == 1:
-                            plural = ""
-                        wonlost = TXT['DU']['WAS_VERLOREN']
-                        if ich_ende > er_ende:
-                            wonlost = TXT['DU']['WAS_GEWONNEN']
-
-                        par[3] = texts[TXT['BODY']['PVP']].replace(
-                            "%1", par[0]
-                        ).replace(
-                            "%2", par[3]
-                        ).replace(
-                            "%3", str(ich_anfg)
-                        ).replace(
-                            "%4", str(er_anfg)
-                        ).replace(
-                            "%5", str(ich_ende)
-                        ).replace(
-                            "%6", str(er_ende)
-                        ).replace(
-                            "%7", str(runden_zahl)
-                        ).replace(
-                            "%8", texts[outcome]
-                        ).replace(
-                            "%9", plural
-                        ).replace(
-                            "%10", str(tmp_honor)
-                        ).replace(
-                            "%11", str(tmp_gold)
-                        ).replace(
-                            "%12", str(tmp_silver)
-                        ).replace(
-                            "%13", texts[wonlost]
-                        ).replace(
-                            "#", chr(13)
-                        )
-                        add(BTN['POST']['VIEWFIGHT'])
-                        break
-
-                    if case("8"):
-                        if texts[TXT['INV']['ACC_TITLE']] != "":
-                            par[1] = texts[TXT['INV']['ACC_TITLE']]
-                            par[3] = texts[TXT['INV']['ACC_TEXT']].replace(
-                                "%1", par[0]
-                            )
-                        else:
-                            par[1] = "FRIEND_LINK_ACCEPTED"
-                            par[3] = (''.join([
-                                "You are seeing this message in",
-                                "english because it has not been translated",
-                                "for your location yet. ",
-                                par[0],
-                                " has accepted your invitation to the game."
-                                "Please wait for ",
-                                par[0],
-                                " to verify"
-                                "email address in order to get your bonus."
-                            ]))
-                        add(BTN['POST']['REPLY'])
-                        break
-
-                    if case("9"):
-                        if texts[TXT['INV']['VAL_TITLE']] != "":
-                            par[1] = texts[TXT['INV']['VAL_TITLE']]
-                            par[3] = texts[TXT['INV']['VAL_TEXT']].replace(
-                                "%1", par[0]
-                            )
-                        else:
-                            par[1] = "FRIEND_EMAIL_VERIFIED"
-                            par[3] = ''.join([
-                                par[0],
-                                " has verified his/her email address."
-                            ])
-                        add(BTN['POST']['REPLY'])
-                        break
-
-                    if case():
-                        add(BTN['POST']['REPLY'])
-
-                reply_subject = par[1]
-                text = par[1].replace("%u20AC", "€")
+            current.reply_subject = par[1]
+            current.text = par[1].replace("%u20AC", "€")
 
             post_read_text = par[3]
             if texts[TXT['ALERT_WORDS']]:
@@ -13496,13 +13496,13 @@ def action_handler(event):
                         )
                         break
 
-            with (actor[INP['POST_TEXT']].getChildAt(1)):
-                type = TextFieldType.DYNAMIC
-                text = swap_words(post_read_text).replace(
-                    "#", chr(13)
-                ).replace(
-                    "%u20AC", "€"
-                )
+            current = (actor[INP['POST_TEXT']].getChildAt(1))
+            current.type = TextFieldType.DYNAMIC
+            current.text = swap_words(post_read_text).replace(
+                "#", chr(13)
+            ).replace(
+                "%u20AC", "€"
+            )
 
             forward_text = post_read_text
             break
@@ -13554,9 +13554,9 @@ def action_handler(event):
             if not on_stage(IMG['SCR']['HALLE']['BG']):
                 show_hall_screen()
 
-            with actor[CNT['HALL_LIST']]:
-                while numChildren > 0:
-                    removeChildAt(0)
+            current = actor[CNT['HALL_LIST']]:
+            while current.numChildren > 0:
+                current.removeChildAt(0)
 
             if text_dir == "right":
                 hall_list_add_field(

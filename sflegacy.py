@@ -292,13 +292,6 @@ class FontFormatHallListText(FontFormat):
     pass
 
 
-class FontFormatGuildHallNoAttack(FontFormat):
-    '''
-        obsolete with cli?
-    '''
-    pass
-
-
 class FontFormatHallListHighLight(FontFormat):
     '''
         obsolete with cli?
