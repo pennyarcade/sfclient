@@ -644,7 +644,7 @@ class SharedObject(BaseClass):
     '''
         obsolete with cli?
     '''
-    def getLocal(self, *args):
+    def get_local(self, *args):
         '''
             obsolete
         '''

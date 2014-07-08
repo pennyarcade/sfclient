@@ -2167,8 +2167,8 @@ def request_signup(evt):
     if get_child_by_name(actor[CB['AGB_CHECKED']].name):
         if (param_bullshit_text != "") and (on_stage(CB['FUCK']['CHECKED'])):
             param_cid = param_bullshit_cid
-            so.data.cid = param_cid
-            so.flush()
+            shared_obj.data.cid = param_cid
+            shared_obj.flush()
 
         if buffed_req:
             bufftxt = "buf" + buffed_id
@@ -2274,11 +2274,11 @@ def request_logout(keep_data=False):
     next_pxl = 0
     actor[LBL['ERROR']].text = ""
     if not keep_data:
-        so.data.userName = ""
-        so.data.password = ""
+        shared_obj.data.userName = ""
+        shared_obj.data.password = ""
         actor[INP['NAME']].getChildAt(1).text = ""
         actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = ""
-        so.flush()
+        shared_obj.flush()
         actor[INP['EMAIL']].getChildAt(1).text = ""
         actor[INP['PASSWORD']].getChildAt(1).text = ""
 
@@ -2809,7 +2809,7 @@ def show_option_screen(evt=None):
             x = ((OPTION_X + int((OPTION_X / 2))) - int((text_width / 2)));
         };
         load_character_image();
-        set_slider_value(SLDR_OPTION_VOLUME, (so.data.volume + 1));
+        set_slider_value(SLDR_OPTION_VOLUME, (shared_obj.data.volume + 1));
         if (light_mode){
             add(CB_LM_CHECKED);
         };
@@ -5687,7 +5687,7 @@ def show_dealer_screen(evt=None, load_only=False):
             + savegame[SG_PAYMENT_ID]) + "&server_id=") + server_id)
             + "&serverdomain=") + server) + "&session_id=") + session_id)
             + "&special=") + dealer_aktion) + "&langcode=") + lang_code)
-            + "&volume=") + str((so.data.volume / 10))) + "&mp_project=")
+            + "&volume=") + str((shared_obj.data.volume / 10))) + "&mp_project=")
             + mp_project) + "&cfgfile=") + param_papaya_cfg_file)
             + "&firebug=") + papaya_firebug);
     if (actorURL[SCR_DEALER_BG] != url){
@@ -6235,19 +6235,19 @@ def show_build_character_screen(evt=None):
         and ((((get_actor_id(evt.target) == GOTO_LOGIN))
         or ((get_actor_id(evt.target) == GOTO_SIGNUP)))))
     ){
-        so.data.skipAutoLOGin = True;
+        shared_obj.data.skipAutoLOGin = True;
     };
     if (
-        ((((so.data.HasAccount)
-        and (!(so.data.skipAutoLOGin))))
+        ((((shared_obj.data.HasAccount)
+        and (!(shared_obj.data.skipAutoLOGin))))
         and (!(RebuildMode)))
     ){
-        if (so.data.userName){
-            actor[INP['NAME']].getChildAt(1).text = str(so.data.userName);
+        if (shared_obj.data.userName){
+            actor[INP['NAME']].getChildAt(1).text = str(shared_obj.data.userName);
         };
-        if (so.data.password){
+        if (shared_obj.data.password){
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = str(
-                so.data.password);
+                shared_obj.data.password);
         };
         add(BLACK_SQUARE);
         request_login();
@@ -6535,9 +6535,9 @@ def show_character_screen(evt=None, no_prices=False):
         vanityRandom = random.random();
         if (
             (((((((uint(savegame[SG_NEW_FLAGS]) & 32))
-            and ((int(so.data.vanityMode) == 0))))
-            or ((int(so.data.vanityMode) == 2))))
-            or ((((int(so.data.vanityMode) == 3))
+            and ((int(shared_obj.data.vanityMode) == 0))))
+            or ((int(shared_obj.data.vanityMode) == 2))))
+            or ((((int(shared_obj.data.vanityMode) == 3))
             and ((vanityRandom < 0.5)))))
         ){
             add(SCREEN_CHAR_GOLDEN);
@@ -6557,9 +6557,9 @@ def show_character_screen(evt=None, no_prices=False):
         };
         if (
             (((((((uint(savegame[SG_NEW_FLAGS]) & 32))
-                and ((int(so.data.vanityMode) == 0))))
-                or ((int(so.data.vanityMode) == 2))))
-                or ((((int(so.data.vanityMode) == 3))
+                and ((int(shared_obj.data.vanityMode) == 0))))
+                or ((int(shared_obj.data.vanityMode) == 2))))
+                or ((((int(shared_obj.data.vanityMode) == 3))
                 and ((vanityRandom < 0.5)))))
             ){
             add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
@@ -6714,8 +6714,8 @@ def show_character_screen(evt=None, no_prices=False):
     };
     if (
         (((((uint(savegame[SG_NEW_FLAGS]) & 32))
-        and ((int(so.data.vanityMode) == 0))))
-        or ((int(so.data.vanityMode) > 1)))
+        and ((int(shared_obj.data.vanityMode) == 0))))
+        or ((int(shared_obj.data.vanityMode) > 1)))
     ){
         load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
@@ -6925,9 +6925,9 @@ def show_player_screen(player_sg, player_name, player_gilde, player_comment):
         vanityRandom = random.random();
         if (
             (((((((uint(player_sg[SG_NEW_FLAGS]) & 32))
-            and ((int(so.data.vanityMode) == 0))))
-            or ((int(so.data.vanityMode) == 2))))
-            or ((((int(so.data.vanityMode) == 3))
+            and ((int(shared_obj.data.vanityMode) == 0))))
+            or ((int(shared_obj.data.vanityMode) == 2))))
+            or ((((int(shared_obj.data.vanityMode) == 3))
             and ((vanityRandom < 0.5)))))
         ){
             add(SCREEN_CHAR_GOLDEN);
@@ -7002,9 +7002,9 @@ def show_player_screen(player_sg, player_name, player_gilde, player_comment):
         add_some(SCR_CHAR_NAME, SCR_CHAR_GILDE);
         if (
             (((((((uint(player_sg[SG_NEW_FLAGS]) & 32))
-            and ((int(so.data.vanityMode) == 0))))
-            or ((int(so.data.vanityMode) == 2))))
-            or ((((int(so.data.vanityMode) == 3))
+            and ((int(shared_obj.data.vanityMode) == 0))))
+            or ((int(shared_obj.data.vanityMode) == 2))))
+            or ((((int(shared_obj.data.vanityMode) == 3))
             and ((vanityRandom < 0.5)))))
         ){
             add_some(GOLDEN_FRAME, SCR_CHAR_NAME);
@@ -7124,8 +7124,8 @@ def show_player_screen(player_sg, player_name, player_gilde, player_comment):
     };
     if (
         (((((uint(player_sg[SG_NEW_FLAGS]) & 32))
-        and ((int(so.data.vanityMode) == 0))))
-        or ((int(so.data.vanityMode) > 1)))
+        and ((int(shared_obj.data.vanityMode) == 0))))
+        or ((int(shared_obj.data.vanityMode) > 1)))
     ){
         load(SCR_CHAR_BG_GOLDEN, GOLDEN_FRAME);
     };
@@ -11262,7 +11262,7 @@ def show_login_screen(evt=None, no_bc=False, no_cookie=False):
     '''
     var player_name:String;
     if (
-        ((((((((!(so.data.HasAccount))
+        ((((((((!(shared_obj.data.HasAccount))
         and (!((evt is MouseEvent)))))
         and (!(no_bc))))
         and (!(buffed_mode))))
@@ -11282,12 +11282,12 @@ def show_login_screen(evt=None, no_bc=False, no_cookie=False):
         KeyboardEvent.KEY_DOWN, RequestLOGin
     );
     if (!no_cookie){
-        if (so.data.userName){
-            actor[INP['NAME']].getChildAt(1).text = str(so.data.userName);
+        if (shared_obj.data.userName){
+            actor[INP['NAME']].getChildAt(1).text = str(shared_obj.data.userName);
         };
-        if (so.data.password){
+        if (shared_obj.data.password){
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = str(
-                so.data.password
+                shared_obj.data.password
             );
         };
     };
@@ -12897,7 +12897,7 @@ def action_handler(event):
                                   get_hl_index(tmp_array[i]))
 
                         if (((tmp_array[i].find("§") != -1)
-                             or (not so.data.noPulseOnSysMsg))
+                             or (not shared_obj.data.noPulseOnSysMsg))
                                 and pulse_gilde_on_history):
                             pulse_gilde = True
 
@@ -12927,7 +12927,7 @@ def action_handler(event):
                             )
 
                             if (((tmp_array[i].find("§") != -1)
-                                 or (not so.data.noPulseOnSysMsg))
+                                 or (not shared_obj.data.noPulseOnSysMsg))
                                     and (pulse_gilde_on_history)):
                                 pulse_gilde = True
 
@@ -13035,16 +13035,16 @@ def action_handler(event):
             break
 
         if case(RESP['CHANGE']['PASS_OK']):
-            so.data.password = option_new_data
-            so.flush()
+            shared_obj.data.password = option_new_data
+            shared_obj.flush()
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = option_new_data
             show_option_screen()
             error_message(texts[TXT['PASSWORD_CHANGED']])
             break
 
         if case(RESP['CHANGE']['NAME_OK']):
-            so.data.userName = option_new_data
-            so.flush()
+            shared_obj.data.userName = option_new_data
+            shared_obj.flush()
             actor[INP['NAME']].getChildAt(1).text = option_new_data
             parse_savgame(par[0])
             show_option_screen()
@@ -13989,14 +13989,14 @@ def action_handler(event):
             if dealer_aktion > 0:
                 pulse_dealer = True
 
-            so.data.skipAutoLOGin = False
-            if not so.data.HasAccount:
-                so.data.PaymentMethod = 4
+            shared_obj.data.skipAutoLOGin = False
+            if not shared_obj.data.HasAccount:
+                shared_obj.data.PaymentMethod = 4
 
-            so.data.HasAccount = True
-            so.data.userName = actor[INP['NAME']].getChildAt(1).text
-            so.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
-            so.flush()
+            shared_obj.data.HasAccount = True
+            shared_obj.data.userName = actor[INP['NAME']].getChildAt(1).text
+            shared_obj.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
+            shared_obj.flush()
             add(CNT['IF']['LOGOUT'])
 
             if savegame[SG['FACE']['1']] == 0:
@@ -14076,13 +14076,13 @@ def action_handler(event):
             actor[
                 INP['LOGIN_PASSWORD']
             ].getChildAt(1).text = actor[INP['PASSWORD']].getChildAt(1).text
-            so.data.skipAutoLOGin = False
-            so.data.HasAccount = True
-            so.data.had_account = True
-            so.data.userName = actor[INP['NAME']].getChildAt(1).text
-            so.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
-            so.data.advpar = param_obj
-            so.flush()
+            shared_obj.data.skipAutoLOGin = False
+            shared_obj.data.HasAccount = True
+            shared_obj.data.had_account = True
+            shared_obj.data.userName = actor[INP['NAME']].getChildAt(1).text
+            shared_obj.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
+            shared_obj.data.advpar = param_obj
+            shared_obj.flush()
             log_in_after_pixel = True
             break
 
@@ -14107,9 +14107,9 @@ def action_handler(event):
             break
 
         if case(ERR['LOGIN_FAILED']):
-            so.data.skipAutoLlogin = True
-            so.data.password = ""
-            so.flush()
+            shared_obj.data.skipAutoLlogin = True
+            shared_obj.data.password = ""
+            shared_obj.flush()
             actor[INP['EMAIL']].getChildAt(1).text = ""
             actor[INP['PASSWORD']].getChildAt(1).text = ""
             char_volk = 0
@@ -14171,7 +14171,7 @@ def action_handler(event):
             param_cid,
             playerid,
             param_obj,
-            so.data.advpar
+            shared_obj.data.advpar
         )
 
     pas = list()
@@ -14200,15 +14200,15 @@ def action_handler(event):
                     "%mushbought%", str(mush_bought / 100)
                 )
 
-                if so.data.advpar:
+                if shared_obj.data.advpar:
                     pxl_arr = pxl_str.replace("<", ">").split(">")
                     pxl_str = ""
                     in_var = False
 
                     for pxl_itm in pxl_arr:
                         if in_var:
-                            if so.data.advpar[pxl_itm]:
-                                pxl_str += str(so.data.advpar[pxl_itm])
+                            if shared_obj.data.advpar[pxl_itm]:
+                                pxl_str += str(shared_obj.data.advpar[pxl_itm])
                             else:
                                 LOG.warning(''.join([
                                     "Warning: Constructing tracking pixel ",
@@ -15647,30 +15647,31 @@ def configuration_file_loaded(evt):
         loader2.load(URLRequest("config_txt"))
     else:
         pending_configuration_files = False
-        so = SharedObject.getLocal("SFGame/" + server.replace(".", "/"), "/")
-        if so.data.lang_code:
-            lang_code = so.data.lang_code
+        global shared_obj
+        shared_obj = SharedObject.get_local("SFGame/" + server.replace(".", "/"), "/")
+        if shared_obj.data.lang_code:
+            lang_code = shared_obj.data.lang_code
 
         light_mode = light_mode_default
         chat_sound = False
         compare_items = False
         disable_tv = False
 
-        if so.data.light_mode is False:
+        if shared_obj.data.light_mode is False:
             light_mode = False
-        if so.data.light_mode is True:
+        if shared_obj.data.light_mode is True:
             light_mode = True
-        if so.data.chat_sound is False:
+        if shared_obj.data.chat_sound is False:
             chat_sound = False
-        if so.data.chat_sound is True:
+        if shared_obj.data.chat_sound is True:
             chat_sound = True
-        if so.data.compare_items is False:
+        if shared_obj.data.compare_items is False:
             compare_items = False
-        if so.data.compare_items is True:
+        if shared_obj.data.compare_items is True:
             compare_items = True
-        if so.data.disable_tv is False:
+        if shared_obj.data.disable_tv is False:
             disable_tv = False
-        if so.data.disable_tv is True:
+        if shared_obj.data.disable_tv is True:
             disable_tv = True
         if param_obj["lang"] is not None:
             lang_code = param_obj["lang"]
@@ -15679,7 +15680,7 @@ def configuration_file_loaded(evt):
 
         if param_obj["rec"] is not None:
             param_rec = str(param_obj["rec"])
-            if so.data.had_account:
+            if shared_obj.data.had_account:
                 param_rec = ""
 
         if param_obj["viewplayer"] is not None:
@@ -15701,35 +15702,35 @@ def configuration_file_loaded(evt):
         if param_obj["cid"] is not None:
             param_cid = str(param_obj["cid"])
             param_cid_original = True
-            so.data.cid = param_cid
-            so.flush()
+            shared_obj.data.cid = param_cid
+            shared_obj.flush()
         elif param_obj["CID"] is not None:
             param_cid = str(param_obj["CID"])
             param_cid_original = True
-            so.data.cid = param_cid
-            so.flush()
+            shared_obj.data.cid = param_cid
+            shared_obj.flush()
         elif param_obj["Cid"] is not None:
             param_cid = str(param_obj["Cid"])
             param_cid_original = True
-            so.data.cid = param_cid
-            so.flush()
-        elif so.data.cid:
-            if (so.data.cid.find("_") == -1) and (len(so.data.cid) == 15):
-                param_cid = so.data.cid + "_r"
+            shared_obj.data.cid = param_cid
+            shared_obj.flush()
+        elif shared_obj.data.cid:
+            if (shared_obj.data.cid.find("_") == -1) and (len(shared_obj.data.cid) == 15):
+                param_cid = shared_obj.data.cid + "_r"
         elif not param_no_cid_save:
-            param_cid = so.data.cid
+            param_cid = shared_obj.data.cid
 
-        had_account = so.data.had_account
+        had_account = shared_obj.data.had_account
         if param_obj["adv"] is not None:
             param_adv = str(param_obj["adv"])
-            so.data.adv = param_adv
-            so.data.advpar = param_obj
-            so.flush()
+            shared_obj.data.adv = param_adv
+            shared_obj.data.advpar = param_obj
+            shared_obj.flush()
         elif param_obj["cid"] is not None:
-            so.data.advpar = param_obj
-            so.flush()
-        elif so.data.adv:
-            param_adv = so.data.adv
+            shared_obj.data.advpar = param_obj
+            shared_obj.flush()
+        elif shared_obj.data.adv:
+            param_adv = shared_obj.data.adv
 
         if param_obj["valid"] is not None:
             param_valid = str(param_obj["valid"])
@@ -15746,11 +15747,11 @@ def configuration_file_loaded(evt):
         if param_obj["port"] is not None:
             param_forceport = int(param_obj["port"])
 
-        force_reroll = (param_reroll_img > int(so.data.force_reroll))
+        force_reroll = (param_reroll_img > int(shared_obj.data.force_reroll))
 
         if force_reroll:
-            so.data.force_reroll = param_reroll_img
-            so.flush()
+            shared_obj.data.force_reroll = param_reroll_img
+            shared_obj.flush()
 
         if len(img_url) == 0:
             img_url[0] = ""
@@ -15759,22 +15760,22 @@ def configuration_file_loaded(evt):
             snd_url[0] = ""
 
         global img_url_index, snd_url_index
-        if so.data.img_url_index:
+        if shared_obj.data.img_url_index:
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
-            elif (so.data.img_url_index <= len(img_url)) and not force_reroll:
-                img_url_index = so.data.img_url_index - 1
+            elif (shared_obj.data.img_url_index <= len(img_url)) and not force_reroll:
+                img_url_index = shared_obj.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
         else:
             img_url_index = int((random.random() * len(img_url)))
 
-        if so.data.snd_url_index:
+        if shared_obj.data.snd_url_index:
             if param_imgsvr > 0:
                 snd_url_index = param_imgsvr - 1
-            elif ((so.data.snd_url_index <= len(snd_url))
+            elif ((shared_obj.data.snd_url_index <= len(snd_url))
                   and (not force_reroll)):
-                snd_url_index = so.data.snd_url_index - 1
+                snd_url_index = shared_obj.data.snd_url_index - 1
             else:
                 snd_url_index = int(random.random() * len(snd_url))
         else:
@@ -15783,9 +15784,9 @@ def configuration_file_loaded(evt):
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
 
-        so.data.img_url_index = img_url_index + 1
-        so.data.snd_url_index = snd_url_index + 1
-        so.flush()
+        shared_obj.data.img_url_index = img_url_index + 1
+        shared_obj.data.snd_url_index = snd_url_index + 1
+        shared_obj.flush()
 
         if light_mode:
             if param_lowres_url != "":
@@ -15806,11 +15807,11 @@ def do_load_language_file():
     '''
         load language file
     '''
-    Security.loadPolicyFile(img_url[img_url_index] + "crossdomain.xml")
-    Security.loadPolicyFile(snd_url[snd_url_index] + "crossdomain.xml")
-    Security.loadPolicyFile(lang_url + "crossdomain.xml")
-    Security.loadPolicyFile("http://" + server + "/crossdomain.xml")
-    Security.allowDomain(
+    Security.load_policy_file(img_url[img_url_index] + "crossdomain.xml")
+    Security.load_policy_file(snd_url[snd_url_index] + "crossdomain.xml")
+    Security.load_policy_file(lang_url + "crossdomain.xml")
+    Security.load_policy_file("http://" + server + "/crossdomain.xml")
+    Security.allow_domain(
         strip_slashes(img_url[img_url_index]),
         strip_slashes(snd_url[snd_url_index]),
         strip_slashes(lang_url),
@@ -15826,7 +15827,7 @@ def do_load(actor_id):
     '''
     if actorLoaded[actor_id] == 0:
         if actor[actor_id] is Sound:
-            Security.allowDomain(actorURL[actor_id])
+            Security.allow_domain(actorURL[actor_id])
             req = URLRequest(actorURL[actor_id])
             actor[actor_id].load(req, actorSoundLoader[actor_id])
             actorLoaded[actor_id] = 2
@@ -15837,7 +15838,7 @@ def do_load(actor_id):
             actor[actor_id].contentLoaderInfo.add_event_listener(
                 Event.COMPLETE, LoaderComplete
             )
-            Security.allowDomain(actorURL[actor_id])
+            Security.allow_domain(actorURL[actor_id])
             req = URLRequest(actorURL[actor_id])
             if ((actorURL[actor_id][-4:] == ".png")
                     and (not no_crossdomain)):
@@ -15949,9 +15950,9 @@ def when_loaded_timeout_event():
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
 
-        so.data.img_url_index = img_url_index + 1
-        so.data.snd_url_index = snd_url_index + 1
-        so.flush()
+        shared_obj.data.img_url_index = img_url_index + 1
+        shared_obj.data.snd_url_index = snd_url_index + 1
+        shared_obj.flush()
 
 
 def loader_complete(evt):
@@ -15960,7 +15961,7 @@ def loader_complete(evt):
     '''
     if evt.target is LoaderInfo:
         actorLoaded[get_actor_id(evt.target.loader)] = 2
-        Security.allowDomain(evt.target.loaderURL)
+        Security.allow_domain(evt.target.loaderURL)
 
         content = actor[get_actor_id(evt.target.loader)].content
         content.force_smoothing = True
@@ -16008,9 +16009,9 @@ def loader_error(evt):
         if len(img_url) == len(snd_url):
             snd_url_index = img_url_index
 
-        so.data.img_url_index = img_url_index + 1
-        so.data.snd_url_index = snd_url_index + 1
-        so.flush()
+        shared_obj.data.img_url_index = img_url_index + 1
+        shared_obj.data.snd_url_index = snd_url_index + 1
+        shared_obj.flush()
 
 
 def pixel_success():
