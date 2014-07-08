@@ -33,7 +33,8 @@ W:14263, 0: TODO: hat does this do? (fixme)
 W:15957, 0: TODO: What does this do? (fixme)
 W:15973, 0: TODO: Obsolete? (fixme)
 W:15996, 0: TODO: set via requests params (fixme)
-C:  1, 0: Too many lines in module (21408) (too-many-lines)
+C:17064, 0: Line too long (80/79) (line-too-long)
+C:  1, 0: Too many lines in module (21409) (too-many-lines)
 C: 93, 0: Invalid constant name "param_obj" (invalid-name)
 C: 94, 0: Invalid constant name "actor" (invalid-name)
 C: 95, 0: Invalid constant name "texts" (invalid-name)
@@ -1268,29 +1269,10 @@ C:16582, 0: Invalid function name "AddBMO" (invalid-name)
 W:16582,11: Unused argument 'bunch_id' (unused-argument)
 W:16582,21: Unused argument 'offset' (unused-argument)
 C:16598, 0: Invalid function name "RemoveIllegalChars" (invalid-name)
-C:16598, 0: Invalid argument name "inpStr" (invalid-name)
-W:16598,23: Unused argument 'inpStr' (unused-argument)
-C:16640, 0: Invalid function name "SemiStrip" (invalid-name)
-C:16640, 0: Invalid argument name "inpStr" (invalid-name)
-W:16640,14: Unused argument 'inpStr' (unused-argument)
-C:16667, 0: Invalid argument name "inpStr" (invalid-name)
-W:16667,19: Unused argument 'inpStr' (unused-argument)
-C:16686, 0: Invalid function name "PostBtnHandler" (invalid-name)
-W:16686,19: Unused argument 'evt' (unused-argument)
-W:16686,29: Unused argument 'actor_id' (unused-argument)
 C:16990, 0: Invalid function name "AlbumClear" (invalid-name)
 C:17016, 0: Invalid function name "GetAdvent" (invalid-name)
-C:17050, 0: Invalid function name "RefreshTimeBar" (invalid-name)
-C:17050, 0: Invalid argument name "OfferTime" (invalid-name)
-W:17050,19: Unused argument 'OfferTime' (unused-argument)
-W:17139,12: Unused argument 'actor_id' (unused-argument)
-C:17188, 0: Invalid function name "GetSpendAmount" (invalid-name)
-C:17674, 0: Invalid argument name "SG" (invalid-name)
-W:17674,14: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-C:18146, 0: Invalid argument name "SG" (invalid-name)
-W:18146,20: Redefining name 'SG' from outer scope (line 46) (redefined-outer-name)
-R:19220, 0: Too many arguments (7/5) (too-many-arguments)
-R:20456, 0: Too many arguments (14/5) (too-many-arguments)
+R:19221, 0: Too many arguments (7/5) (too-many-arguments)
+R:20457, 0: Too many arguments (14/5) (too-many-arguments)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1339,7 +1321,7 @@ Raw metrics
 +==========+=======+======+=========+===========+
 |code      |5198   |14.86 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |28015  |80.11 |NC       |NC         |
+|docstring |28016  |80.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |1.98  |NC       |NC         |
 +----------+-------+------+---------+-----------+
@@ -1367,11 +1349,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |220    |NC       |NC         |
+|convention |211    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |520    |NC       |NC         |
+|warning    |511    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1384,9 +1366,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.65   |100.00   |93.64      |
+|sfclient |100.00 |98.63   |100.00   |93.36      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.35    |0.00     |5.45       |
+|sflegacy |0.00   |1.37    |0.00     |5.69       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1401,13 +1383,13 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|invalid-name                 |217         |
+|invalid-name                 |207         |
 +-----------------------------+------------+
-|unused-argument              |162         |
+|unused-argument              |155         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
-|redefined-outer-name         |33          |
+|redefined-outer-name         |31          |
 +-----------------------------+------------+
 |used-before-assignment       |17          |
 +-----------------------------+------------+
@@ -1437,12 +1419,14 @@ Messages
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
+|line-too-long                |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 1.86/10
+Your code has been rated at 1.90/10
 
 Statistics by type
 ------------------
@@ -1456,7 +1440,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |48     |NC         |NC         |100.00      |6.25     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |219    |NC         |NC         |100.00      |7.76     |
+|function |219    |NC         |NC         |100.00      |5.94     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
