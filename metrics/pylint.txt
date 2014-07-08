@@ -33,7 +33,10 @@ W:14263, 0: TODO: hat does this do? (fixme)
 W:15957, 0: TODO: What does this do? (fixme)
 W:15973, 0: TODO: Obsolete? (fixme)
 W:15996, 0: TODO: set via requests params (fixme)
-C:17064, 0: Line too long (80/79) (line-too-long)
+C:16539, 0: Line too long (81/79) (line-too-long)
+C:16551, 0: Line too long (80/79) (line-too-long)
+C:16552, 0: Line too long (80/79) (line-too-long)
+C:16743, 0: Line too long (80/79) (line-too-long)
 C:  1, 0: Too many lines in module (21409) (too-many-lines)
 C: 93, 0: Invalid constant name "param_obj" (invalid-name)
 C: 94, 0: Invalid constant name "actor" (invalid-name)
@@ -1251,26 +1254,6 @@ W:16321,19: Unused argument 'actor_id' (unused-argument)
 W:16321,29: Unused argument 'value' (unused-argument)
 C:16336, 0: Invalid function name "MakePersistent" (invalid-name)
 W:16336, 0: Unused argument 'args' (unused-argument)
-C:16357, 0: Invalid function name "MakeTemporary" (invalid-name)
-W:16357, 0: Unused argument 'args' (unused-argument)
-C:16378, 0: Invalid function name "EnableDragDrop" (invalid-name)
-W:16378,29: Unused argument 'handler' (unused-argument)
-W:16378,19: Unused argument 'actor_id' (unused-argument)
-W:16378, 0: Unused argument 'args' (unused-argument)
-C:16499, 0: Invalid function name "SetCnt" (invalid-name)
-C:16499, 0: Invalid argument name "cntID" (invalid-name)
-C:16499, 0: Invalid argument name "ImgID" (invalid-name)
-W:16499,27: Unused argument 'pos_x' (unused-argument)
-W:16499,18: Unused argument 'ImgID' (unused-argument)
-W:16499,45: Unused argument 'center' (unused-argument)
-W:16499,11: Unused argument 'cntID' (unused-argument)
-W:16499,36: Unused argument 'pos_y' (unused-argument)
-C:16582, 0: Invalid function name "AddBMO" (invalid-name)
-W:16582,11: Unused argument 'bunch_id' (unused-argument)
-W:16582,21: Unused argument 'offset' (unused-argument)
-C:16598, 0: Invalid function name "RemoveIllegalChars" (invalid-name)
-C:16990, 0: Invalid function name "AlbumClear" (invalid-name)
-C:17016, 0: Invalid function name "GetAdvent" (invalid-name)
 R:19221, 0: Too many arguments (7/5) (too-many-arguments)
 R:20457, 0: Too many arguments (14/5) (too-many-arguments)
 ************* Module sfglobals
@@ -1349,11 +1332,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |211    |NC       |NC         |
+|convention |205    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |511    |NC       |NC         |
+|warning    |500    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1366,9 +1349,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.63   |100.00   |93.36      |
+|sfclient |100.00 |98.60   |100.00   |93.17      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.37    |0.00     |5.69       |
+|sflegacy |0.00   |1.40    |0.00     |5.85       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1383,9 +1366,9 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|invalid-name                 |207         |
+|invalid-name                 |198         |
 +-----------------------------+------------+
-|unused-argument              |155         |
+|unused-argument              |144         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1411,6 +1394,8 @@ Messages
 +-----------------------------+------------+
 |assignment-from-no-return    |5           |
 +-----------------------------+------------+
+|line-too-long                |4           |
++-----------------------------+------------+
 |too-many-lines               |3           |
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
@@ -1419,14 +1404,12 @@ Messages
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
-|line-too-long                |1           |
-+-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 1.90/10
+Your code has been rated at 1.94/10
 
 Statistics by type
 ------------------
@@ -1440,7 +1423,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |48     |NC         |NC         |100.00      |6.25     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |219    |NC         |NC         |100.00      |5.94     |
+|function |219    |NC         |NC         |100.00      |2.74     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
