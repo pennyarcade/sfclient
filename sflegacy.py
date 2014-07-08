@@ -138,28 +138,147 @@ class TextFieldType(BaseClass):
     DYNAMIC = None
 
 
-class FontFormat_HallListHeading(BaseClass):
+class FontFormat(BaseClass):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_GuildHallNoAttack(BaseClass):
+class FontFormat_ToiletAura(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_ClassError(BaseClass):
+class FontFormat_GuildListTextAttackErrorHalf(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_DefaultLeft(BaseClass):
+class FontFormat_GuildListTextAttackErrorOnlineHalf(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_Error(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_Default(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_HighStakes(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_HighStakesHighLight(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_HighStakesHighLightGrayed(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_Book(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_BookHint(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_BookLeft(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_Bullshit(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_AttackLabel(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_Speech(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_Grayed(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_GrayedHighLight(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_HallListHeading(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_GuildHallNoAttack(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_ClassError(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormat_DefaultLeft(FontFormat):
     '''
         obsolete with cli?
     '''

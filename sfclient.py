@@ -83,6 +83,23 @@ from sflegacy import TimerEvent
 from sflegacy import URLLoader
 from sflegacy import URLLoaderdata_format
 from sflegacy import URLRequest
+from sflegacy import FontFormat_ToiletAura
+from sflegacy import FontFormat_GuildListTextAttackErrorHalf
+from sflegacy import FontFormat_GuildListTextAttackErrorOnlineHalf
+from sflegacy import FontFormat_Error
+from sflegacy import FontFormat_Default
+from sflegacy import FontFormat_HighStakes
+from sflegacy import FontFormat_HighStakesHighLight
+from sflegacy import FontFormat_HighStakesHighLight
+from sflegacy import FontFormat_HighStakesHighLightGrayed
+from sflegacy import FontFormat_Book
+from sflegacy import FontFormat_BookHint
+from sflegacy import FontFormat_BookLeft
+from sflegacy import FontFormat_Bullshit
+from sflegacy import FontFormat_AttackLabel
+from sflegacy import FontFormat_Speech
+from sflegacy import FontFormat_Grayed
+from sflegacy import FontFormat_GrayedHighLight
 
 from sfbuildinterface import build_interface
 
@@ -3030,7 +3047,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (goldG_gain > 0){
+            if (gold_gain > 0){
                 if (text_dir == "right"){
                     rewardGoldText = (
                         " " + texts[TXT_GOLD_GAINED]);
@@ -3038,7 +3055,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     rewardGoldText = (texts[TXT_GOLD_GAINED] + " ");
                 };
             } else {
-                if (goldG_gain < 0){
+                if (gold_gain < 0){
                     if (text_dir == "right"){
                         rewardGoldText = (" " + texts[TXT_GOLD_LOST]);
                     } else {
@@ -3046,7 +3063,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (silber_anteil(math.abs(goldG_gain)) > 0){
+            if (silber_anteil(math.abs(gold_gain)) > 0){
                 if (text_dir != "right"){
                     _local4 = actor[FIGHT_REWARDSILVER];
                     with (_local4) {
@@ -3060,14 +3077,14 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            silber_anteil(math.abs(goldG_gain))
+                            silber_anteil(math.abs(gold_gain))
                             + rewardGoldText);
                     } else {
                         text = (
-                            (((gold_anteil(math.abs(goldG_gain)) > 0))
+                            (((gold_anteil(math.abs(gold_gain)) > 0))
                                 ? ""
                                 : rewardGoldText)
-                            + silber_anteil(math.abs(goldG_gain)));
+                            + silber_anteil(math.abs(gold_gain)));
                     };
                     x = (rewardX - text_width);
                     rewardX = (x - (((text_dir == "right")) ? 8 : 14));
@@ -3081,7 +3098,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     };
                 };
             };
-            if (gold_anteil(math.abs(goldG_gain)) > 0){
+            if (gold_anteil(math.abs(gold_gain)) > 0){
                 if (text_dir != "right"){
                     _local4 = actor[FIGHT_REWARDGOLD];
                     with (_local4) {
@@ -3095,13 +3112,13 @@ def do_skip_fight(evt=None, fight_done=False):
                     visible = True;
                     if (text_dir == "right"){
                         text = (
-                            gold_anteil(math.abs(goldG_gain))
-                            + (((silber_anteil(math.abs(goldG_gain))
+                            gold_anteil(math.abs(gold_gain))
+                            + (((silber_anteil(math.abs(gold_gain))
                                 > 0)) ? "" : rewardGoldText));
                     } else {
                         text = (
                             rewardGoldText
-                            + gold_anteil(math.abs(goldG_gain)));
+                            + gold_anteil(math.abs(gold_gain)));
                     };
                     x = (rewardX - text_width);
                     rewardX = (x - (((text_dir == "right")) ? 8 : 14));
@@ -3162,7 +3179,7 @@ def do_skip_fight(evt=None, fight_done=False):
                         FIGHT_REWARDMUSH,
                         actor[FIGHT_REWARDMUSH].y);
                 };
-                if (silber_anteil(goldG_gain) > 0){
+                if (silber_anteil(gold_gain) > 0){
                     _local4 = actor[FIGHT_REWARDSILVER];
                     with (_local4) {
                         visible = True;
@@ -3172,12 +3189,12 @@ def do_skip_fight(evt=None, fight_done=False):
                     _local4 = actor[LBL_FIGHT_REWARDSILVER];
                     with (_local4) {
                         visible = True;
-                        text = silber_anteil(goldG_gain);
+                        text = silber_anteil(gold_gain);
                         x = (rewardX - text_width);
                         rewardX = (x - 14);
                     };
                 };
-                if (gold_anteil(goldG_gain) > 0){
+                if (gold_anteil(gold_gain) > 0){
                     _local4 = actor[FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
@@ -3187,7 +3204,7 @@ def do_skip_fight(evt=None, fight_done=False):
                     _local4 = actor[LBL_FIGHT_REWARDGOLD];
                     with (_local4) {
                         visible = True;
-                        text = gold_anteil(goldG_gain);
+                        text = gold_anteil(gold_gain);
                         x = (rewardX - text_width);
                         rewardX = (x - 14);
                     };
@@ -4674,7 +4691,7 @@ def do_show_fight_screen(evt=None):
 
 
 def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
-                      weapon_data, honor_gain, goldG_gain, is_mq,
+                      weapon_data, honor_gain, gold_gain, is_mq,
                       is_replay=False, back_pack_slot=-1,
                       guild_battle_data=None, last_fight=False,
                       guild_fight_exp=0, guild_fight_honor=0, own_guild="",
@@ -4737,7 +4754,7 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
     var is_pvp:* = is_pvp;
     var weapon_data:* = weapon_data;
     var honor_gain:* = honor_gain;
-    var goldG_gain:* = goldG_gain;
+    var gold_gain:* = gold_gain;
     var is_mq:* = is_mq;
     var is_replay:Boolean = is_replay;
     var back_pack_slot = back_pack_slot;
@@ -5081,7 +5098,10 @@ def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
     };
     when_loaded(do_show_fight_screen);
     '''
-    pass
+    print fighter_data, fight_data, get_pilz, face_data, is_pvp, weapon_data
+    print honor_gain, gold_gain, is_mq, is_replay, back_pack_slot,
+    print guild_battle_data, last_fight, guild_fight_exp, guild_fight_honor,
+    print own_guild, opp_guild, raid_level
 
 
 def show_email_nag_screen(val_mode=-1):
@@ -11690,28 +11710,28 @@ def set_font(font_name):
 
     LOG.info("Font chosen: " + font_name)
 
-    with (FontFormat_ToiletAura):
-        font = font_name
-        size = size_mod + 35
-        color = CLR['BLACK']
-        align = "center"
-        leftMargin = 0
-        kerning = True
+    fmt = FontFormat_ToiletAura
+    fmt.font = font_name
+    fmt.size = size_mod + 35
+    fmt.color = CLR['BLACK']
+    fmt.align = "center"
+    fmt.left_margin = 0
+    fmt.kerning = True
 
-    with FontFormat_GuildListTextAttackErrorHalf:
-        font = font_name
-        size = size_mod + 24
-        color = CLR['ATTACK']['ERROR']['OFFLINE_HALF']
-        align = text_dir
-        leftMargin = 0
-        kerning = True
+    fmt = FontFormat_GuildListTextAttackErrorHalf
+    fmt.font = font_name
+    fmt.size = size_mod + 24
+    fmt.color = CLR['ATTACK']['ERROR']['OFFLINE_HALF']
+    fmt.align = text_dir
+    fmt.left_margin = 0
+    fmt.kerning = True
 
     with FontFormat_GuildListTextAttackErrorOnlineHalf:
         font = font_name
         size = size_mod + 24
         color = CLR['ATTACK']['ERROR']['ONLINE_HALF']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Error:
@@ -11719,7 +11739,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['ERROR']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Default:
@@ -11727,7 +11747,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HighStakes:
@@ -11735,7 +11755,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['RED']
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HighStakesHighLight:
@@ -11743,7 +11763,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_HIGHLIGHT']
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HighStakesHighLight:
@@ -11751,7 +11771,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_GRAYED']
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HighStakesHighLightGrayed:
@@ -11759,7 +11779,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_HIGHLIGHT_GRAYED']
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Book:
@@ -11767,7 +11787,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = 0
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_BookHint:
@@ -11775,7 +11795,7 @@ def set_font(font_name):
         size = size_mod + 18
         color = 136
         align = "center"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_BookLeft:
@@ -11783,7 +11803,7 @@ def set_font(font_name):
         size = size_mod + 16
         color = 0
         align = "left"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Bullshit:
@@ -11791,7 +11811,7 @@ def set_font(font_name):
         size = 14
         color = CLR['SFORANGE']
         align = "left"
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_AttackLabel:
@@ -11799,7 +11819,7 @@ def set_font(font_name):
         size = size_mod + 19
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Speech:
@@ -11807,7 +11827,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['WHITE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Grayed:
@@ -11815,7 +11835,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['GRAYED']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GrayedHighLight:
@@ -11823,7 +11843,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['GRAYED_HL']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_ClassError:
@@ -11831,7 +11851,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['ERROR']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with font_format_chat:
@@ -11839,7 +11859,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with font_format_chatWhisper:
@@ -11847,7 +11867,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['CHAT_WHISPER']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with font_format_chatError:
@@ -11855,7 +11875,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['ERROR']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildBuilding:
@@ -11863,7 +11883,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildMoney:
@@ -11871,7 +11891,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_DefaultLeft:
@@ -11879,7 +11899,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Highlight:
@@ -11887,7 +11907,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFHIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HighlightWhisper:
@@ -11895,7 +11915,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFHIGHLIGHT_WHISPER']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Heading:
@@ -11903,7 +11923,7 @@ def set_font(font_name):
         size = (size_mod + 30)
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_ScreenTitle:
@@ -11911,7 +11931,7 @@ def set_font(font_name):
         size = size_mod + 34
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Popup:
@@ -11919,7 +11939,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PopupCompare:
@@ -11927,7 +11947,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PopupCompareSum:
@@ -11935,7 +11955,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PopupCompareBetter:
@@ -11943,7 +11963,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG_GREEN']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PopupCompareWorse:
@@ -11951,7 +11971,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['RED']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PopupCompareBetterHL:
@@ -11959,7 +11979,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['GREEN_HIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PopupCompareWorseHL:
@@ -11967,7 +11987,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_HIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_EpicItemQuote:
@@ -11975,7 +11995,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['EPICITEMQUOTE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_ItemEnchantment:
@@ -11983,7 +12003,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['ITEMENCHANTMENT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_LOGoutLink:
@@ -11991,7 +12011,7 @@ def set_font(font_name):
         size = (size_mod + 22)
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_LOGoutLinkHighLight:
@@ -11999,7 +12019,7 @@ def set_font(font_name):
         size = (size_mod + 22)
         color = CLR['SFHIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HallListHeading:
@@ -12007,7 +12027,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HallListText:
@@ -12015,7 +12035,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildHallNoAttack:
@@ -12023,7 +12043,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['NOATTACK']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_HallListHighLight:
@@ -12031,7 +12051,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['SFHIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_AttribBonus:
@@ -12039,7 +12059,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['ATTRIBBONUS']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_AttribTemp:
@@ -12047,7 +12067,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['SYSMSG']['GREEN']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Attrib:
@@ -12055,7 +12075,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PayIcon:
@@ -12063,7 +12083,7 @@ def set_font(font_name):
         size = (size_mod + 19)
         color = CLR['WHITE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListHeading:
@@ -12072,7 +12092,7 @@ def set_font(font_name):
         color = CLR['SFORANGE']
         align = text_dir
         bold = True
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListText:
@@ -12080,7 +12100,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SFORANGE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListTextSys:
@@ -12088,7 +12108,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SYSMSG']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListText:
@@ -12096,7 +12116,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['OFFLINE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListTextOnline:
@@ -12104,7 +12124,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['ONLINE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListTextAttackError:
@@ -12112,7 +12132,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['ATTACK']['ERROR']['OFFLINE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListTextAttackErrorOnline:
@@ -12120,7 +12140,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['ATTACK']['ERROR']['ONLINE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListTextAttackErrorOnlinePopup:
@@ -12128,7 +12148,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['ATTACK']['ERROR']['ONLINE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListTextAttackOk:
@@ -12136,7 +12156,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['ATTACK']['OK']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_GuildListTextAttackOkPopup:
@@ -12144,7 +12164,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['ATTACK']['OK']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListHighLight:
@@ -12152,7 +12172,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SFHIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListHighLightSys:
@@ -12160,7 +12180,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SYSMSG']['HIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListTextSysRed:
@@ -12168,7 +12188,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SYSMSG']['RED']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListHighLightSysRed:
@@ -12176,7 +12196,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SYSMSG']['RED_HIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListTextSysGreen:
@@ -12184,7 +12204,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SYSMSG']['GREEN']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_PostListHighLightSysGreen:
@@ -12192,7 +12212,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['SYSMSG']['GREEN_HIGHLIGHT']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_QuestBar:
@@ -12200,7 +12220,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['WHITE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_TimeBar:
@@ -12208,7 +12228,7 @@ def set_font(font_name):
         size = size_mod + 24
         color = CLR['WHITE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_LifeBar:
@@ -12216,7 +12236,7 @@ def set_font(font_name):
         size = size_mod + 20
         color = CLR['WHITE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_Damage:
@@ -12224,7 +12244,7 @@ def set_font(font_name):
         size = (size_mod + 30)
         color = CLR['WHITE']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_CriticalDamage:
@@ -12232,7 +12252,7 @@ def set_font(font_name):
         size = size_mod + 34
         color = CLR['RED']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
     with FontFormat_CatapultDamage:
@@ -12240,7 +12260,7 @@ def set_font(font_name):
         size = size_mod + 38
         color = CLR['ATTACK']['ERROR']['ONLINE_HALF']
         align = text_dir
-        leftMargin = 0
+        left_margin = 0
         kerning = True
 
 
@@ -14136,13 +14156,13 @@ def action_handler(event):
                 and (next_pxl == int(pixel[0]))):
             pas = list()
 
-            for pa in pixel[1].split(","):
-                if pa.find("-") != -1:
-                    parange = pa.split("-")
+            for pxa in pixel[1].split(","):
+                if pxa.find("-") != -1:
+                    parange = pxa.split("-")
                     for i in range(int(parange[0]), int(parange[1])+1):
                         pas.append(int(i))
                 else:
-                    pas.append(int(pa))
+                    pas.append(int(pxa))
 
             if (pixel[1] == "") or (not pas.index(int(param_adv)) != -1):
                 pxl_str = pixel[2].replace(
@@ -16747,7 +16767,8 @@ def post_btn_handler(evt=None, actor_id=0):
                             remove_illegal_chars(semi_strip(
                                actor[INP_POST_SUBJECT].getChildAt(1).text
                                .split("/").join(""))),
-                            remove_illegal_chars(semi_strip(actor[INP_POST_TEXT]
+                            remove_illegal_chars(
+                                             semi_strip(actor[INP_POST_TEXT]
                                                .getChildAt(1).text)));
                     };
                 };
