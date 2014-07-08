@@ -15724,7 +15724,7 @@ def configuration_file_loaded(evt):
         elif shared_obj.data.cid:
             if ((shared_obj.data.cid.find("_") == -1)
                 and (len(shared_obj.data.cid) == 15)):
-                param_cid = shared_obj.data.cid + "_r"
+                    param_cid = shared_obj.data.cid + "_r"
         elif not param_no_cid_save:
             param_cid = shared_obj.data.cid
 
@@ -15772,8 +15772,8 @@ def configuration_file_loaded(evt):
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
             elif (shared_obj.data.img_url_index <= len(img_url))
-                    and not force_reroll:
-                img_url_index = shared_obj.data.img_url_index - 1
+                  and not force_reroll:
+                    img_url_index = shared_obj.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
         else:
