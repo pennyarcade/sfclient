@@ -33,8 +33,8 @@ W:14263, 0: TODO: hat does this do? (fixme)
 W:15957, 0: TODO: What does this do? (fixme)
 W:15973, 0: TODO: Obsolete? (fixme)
 W:15996, 0: TODO: set via requests params (fixme)
-C:16745, 0: Line too long (80/79) (line-too-long)
-C:  1, 0: Too many lines in module (21411) (too-many-lines)
+C:16746, 0: Line too long (80/79) (line-too-long)
+C:  1, 0: Too many lines in module (21412) (too-many-lines)
 C: 93, 0: Invalid constant name "param_obj" (invalid-name)
 C: 94, 0: Invalid constant name "actor" (invalid-name)
 C: 95, 0: Invalid constant name "texts" (invalid-name)
@@ -596,7 +596,7 @@ W:12343,12: Unused variable 'embed_fonts' (unused-variable)
 W:12312, 4: Unused variable 'this_field_popup' (unused-variable)
 W:12319,12: Unused variable 'force_smoothing' (unused-variable)
 R:12368, 0: Too many local variables (142/15) (too-many-locals)
-W:13182,16: Redefining name 'old_crest_str' from outer scope (line 17374) (redefined-outer-name)
+W:13182,16: Redefining name 'old_crest_str' from outer scope (line 17375) (redefined-outer-name)
 W:13263,16: Redefining built-in 'type' (redefined-builtin)
 E:12378,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
 E:12379,12: Undefined variable 'send_action' (undefined-variable)
@@ -1202,37 +1202,10 @@ W:15988, 4: Unused variable 'variables' (unused-variable)
 W:15990, 4: Unused variable 'pixel_success' (unused-variable)
 W:16045, 4: Using the global statement (global-statement)
 R:16061, 0: Too many arguments (8/5) (too-many-arguments)
-W:16061,45: Unused argument 'pos_x' (unused-argument)
-W:16061,54: Unused argument 'pos_y' (unused-argument)
-W:16061,30: Unused argument 'pre_load' (unused-argument)
-W:16061,25: Unused argument 'url' (unused-argument)
-W:16062,37: Unused argument 'vis' (unused-argument)
-W:16061,15: Unused argument 'actor_id' (unused-argument)
-W:16062,15: Unused argument 'scale_x' (unused-argument)
-W:16062,26: Unused argument 'scale_y' (unused-argument)
-C:16112, 0: Invalid argument name "fn" (invalid-name)
 R:16112, 0: Too many arguments (11/5) (too-many-arguments)
-W:16112,32: Unused argument 'img_actor_id' (unused-argument)
-W:16112,50: Unused argument 'pos_x' (unused-argument)
-W:16112,57: Unused argument 'pos_y' (unused-argument)
-W:16113,46: Unused argument 'hover_fn' (unused-argument)
-W:16114,22: Unused argument 'out_fn' (unused-argument)
-W:16112,64: Unused argument 'size_x' (unused-argument)
-W:16112,22: Unused argument 'actor_id' (unused-argument)
-W:16113,30: Unused argument 'ovl_actor_id' (unused-argument)
-W:16114,35: Unused argument 'stay_put' (unused-argument)
-W:16112,46: Unused argument 'fn' (unused-argument)
-W:16113,22: Unused argument 'size_y' (unused-argument)
-R:16170, 0: Too many arguments (6/5) (too-many-arguments)
-W:16170,32: Unused argument 'img_class' (unused-argument)
-W:16170,43: Unused argument 'pos_x' (unused-argument)
-W:16170,52: Unused argument 'pos_y' (unused-argument)
-W:16170,22: Unused argument 'actor_id' (unused-argument)
-W:16171,22: Unused argument 'txt_type' (unused-argument)
-W:16170,61: Unused argument 'txt_manip' (unused-argument)
-C:16243, 0: Invalid argument name "fn" (invalid-name)
-R:19223, 0: Too many arguments (7/5) (too-many-arguments)
-R:20459, 0: Too many arguments (14/5) (too-many-arguments)
+R:16171, 0: Too many arguments (6/5) (too-many-arguments)
+R:19224, 0: Too many arguments (7/5) (too-many-arguments)
+R:20460, 0: Too many arguments (14/5) (too-many-arguments)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1259,7 +1232,7 @@ C:332, 4: Invalid method name "getLocal" (invalid-name)
 
 Report
 ======
-4129 statements analysed.
+4130 statements analysed.
 
 External dependencies
 ---------------------
@@ -1279,7 +1252,7 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5198   |14.86 |NC       |NC         |
+|code      |5199   |14.86 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |28018  |80.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
@@ -1309,11 +1282,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |196    |NC       |NC         |
+|convention |194    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |486    |NC       |NC         |
+|warning    |461    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1326,9 +1299,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.56   |100.00   |92.86      |
+|sfclient |100.00 |98.48   |100.00   |92.78      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.44    |0.00     |6.12       |
+|sflegacy |0.00   |1.52    |0.00     |6.19       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1343,9 +1316,9 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|invalid-name                 |192         |
+|invalid-name                 |190         |
 +-----------------------------+------------+
-|unused-argument              |130         |
+|unused-argument              |105         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1386,7 +1359,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 2.00/10
+Your code has been rated at 2.06/10
 
 Statistics by type
 ------------------
