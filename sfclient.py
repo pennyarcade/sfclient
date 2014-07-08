@@ -14747,8 +14747,7 @@ def show_popup(evt, *args):
         if current.getChildAt(i).x < 5:
             dist = 5 - current.getChildAt(i).x
 
-            for j in range(current.numChildren):
-                cur_child = current.getChildAt(j)
+            for cur_child in current.numChildren:
                 cur_child.x += dist
                 if (cur_child.x + cur_child.width + 5) > popup_width:
                     popup_width = cur_child.x + cur_child.width + 5
