@@ -5322,7 +5322,7 @@ def show_taverne_screen(evt=None):
             };
             add(CA_TV);
         };
-        RefreshTimeBar();
+        refresh_time_bar();
         check_wrong_page(ACT_SCREEN_TAVERNE);
         hide(TAVERNE_HUTMANN_BLINZELN);
         hide(TAVERNE_BARKEEPER1);
@@ -5352,7 +5352,7 @@ def show_taverne_screen(evt=None):
         remove(QUESTOFFER);
         remove(BEEROFFER);
         add(TAVERNE_CAS);
-        RefreshTimeBar();
+        refresh_time_bar();
         return;
     };
     load(SCREEN_TAVERNE);
@@ -5803,10 +5803,10 @@ def show_post_screen(par=None):
                     (((evt.keyCode == Keyboard.DELETE))
                         or ((evt.keyCode == Keyboard.BACKSPACE)))
                 ){
-                    PostBtnHandler(None, POST_DELETE);
+                    post_btn_handler(None, POST_DELETE);
                 } else {
                     if (evt.keyCode == Keyboard.ENTER){
-                        PostBtnHandler(None, POST_READ);
+                        post_btn_handler(None, POST_READ);
                     } else {
                         if (
                             (((evt.keyCode == Keyboard.UP))
@@ -5893,11 +5893,11 @@ def show_post_screen(par=None):
                 ldSel + ((KeyboardEvent(evt).keyCode)==Keyboard.UP)
                     ? -1 : 1);
             if (sel_row < 1){
-                PostBtnHandler(None, POST_UP);
+                post_btn_handler(None, POST_UP);
                 return;
             };
             if (sel_row > 15){
-                PostBtnHandler(None, POST_DOWN);
+                post_btn_handler(None, POST_DOWN);
                 return;
             };
             if (tmp_array[((sel_row - 1) * 3)] == ""){
@@ -5988,7 +5988,7 @@ def show_post_screen(par=None):
                 mouseChildren = False;
                 alpha = (((sel_row == line)) ? 1 : 0);
             };
-            double_click_handler(tmpBalken, BuildPostList, PostBtnHandler);
+            double_click_handler(tmpBalken, BuildPostList, post_btn_handler);
             if (tmp_array[i] == ""){
                 fight_flush_mode = False;
                 return;
@@ -6153,7 +6153,7 @@ def show_post_screen(par=None):
             visible = True;
             filters = Filter_Shadow;
         };
-        double_click_handler(tmpLbl, BuildPostList, PostBtnHandler);
+        double_click_handler(tmpLbl, BuildPostList, post_btn_handler);
         actor[POST_LIST].addChild(tmpLbl);
     };
     load(SCREEN_POST);
@@ -7320,13 +7320,13 @@ def show_screen_gilden(
             with (_local3) {
                 if (type == TextFieldType.INPUT){
                     if (text != resolve_breaks(guild_descr)){
-                        guild_descr = SemiStrip(text);
+                        guild_descr = semi_strip(text);
                         send_action(
                             ACT_GUILD_SET_DESC,
                             actor[INP['NAME']].getChildAt(1).text,
                             gilde,
                             ((old_crest_str + "§") + RemoveIllegalChars(
-                                SemiStrip(text))),
+                                semi_strip(text))),
                             MD5(actor[INP['LOGIN_PASSWORD']]
                                 .getChildAt(1).text)
                         );
@@ -8576,7 +8576,7 @@ def show_screen_gilden(
         };
         GoldKostenAvg = (GoldKostenAvg / 3);
         PilzKostenAvg = (PilzKostenAvg / 3);
-        actor[LBL_GILDE_GOLD2].text = GetSpendAmount();
+        actor[LBL_GILDE_GOLD2].text = get_spend_amount();
         actor[LBL_GILDE_MUSH2].text = "1";
         actor[GILDE_GOLD2].x = (
             (actor[LBL_GILDE_GOLD2].x
@@ -16595,7 +16595,7 @@ def AddBMO(bunch_id, offset):
     pass
 
 
-def RemoveIllegalChars(inpStr):
+def RemoveIllegalChars(in_str):
     '''
     var LegalChars:String;
     var i;
@@ -16604,15 +16604,15 @@ def RemoveIllegalChars(inpStr):
     var outStr:String;
     var pass:Boolean;
     if (texts[TXT_LEGALCHARS] == ""){
-        return (inpStr);
+        return (in_str);
     };
     LegalChars = texts[TXT_LEGALCHARS];
     thisChar = "";
     outStr = "";
     pass = False;
     i = 0;
-    while (i < inpStr.length) {
-        thisChar = inpStr[i: 1]
+    while (i < in_str.length) {
+        thisChar = in_str[i: 1]
         pass = False;
         j = 0;
         while (j < LegalChars.length) {
@@ -16634,26 +16634,26 @@ def RemoveIllegalChars(inpStr):
     };
     return (outStr);
     '''
-    pass
+    print in_str
 
 
-def SemiStrip(inpStr):
+def semi_strip(in_str):
     '''
     var i;
     var outStr:String;
     outStr = "";
     i = 0;
-    while (i < inpStr.length) {
-        if (inpStr[i] == chr(13)){
+    while (i < in_str.length) {
+        if (in_str[i] == chr(13)){
             outStr = (outStr + "#");
         } else {
-            if (inpStr[i] == ";"){
+            if (in_str[i] == ";"){
                 outStr = (outStr + ",");
             } else {
-                if (inpStr[i] == "§"){
+                if (in_str[i] == "§"){
                     outStr = (outStr + "$");
                 } else {
-                    outStr = (outStr + inpStr[i]);
+                    outStr = (outStr + in_str[i]);
                 };
             };
         };
@@ -16661,29 +16661,29 @@ def SemiStrip(inpStr):
     };
     return (outStr);
     '''
-    pass
+    print in_str
 
 
-def resolve_breaks(inpStr):
+def resolve_breaks(in_str):
     '''
     var i;
     var outStr:String;
     outStr = "";
     i = 0;
-    while (i < inpStr.length) {
-        if (inpStr[i] == "#"){
+    while (i < in_str.length) {
+        if (in_str[i] == "#"){
             outStr = (outStr + chr(13));
         } else {
-            outStr = (outStr + inpStr[i]);
+            outStr = (outStr + in_str[i]);
         };
         i++;
     };
     return (outStr);
     '''
-    pass
+    print in_str
 
 
-def PostBtnHandler(evt=None, actor_id=0):
+def post_btn_handler(evt=None, actor_id=0):
     '''
     var par:* = None;
     var GuildMsg:* = False;
@@ -16736,11 +16736,11 @@ def PostBtnHandler(evt=None, actor_id=0):
                         send_action(((GuildMsg)
                                     ? ACT_POST_SEND_GUILD
                                     : ACT_POST_SEND),
-                            RemoveIllegalChars(SemiStrip(thisRecipient)),
-                            RemoveIllegalChars(SemiStrip(
+                            RemoveIllegalChars(semi_strip(thisRecipient)),
+                            RemoveIllegalChars(semi_strip(
                                actor[INP_POST_SUBJECT].getChildAt(1).text
                                .split("/").join(""))),
-                            RemoveIllegalChars(SemiStrip(actor[INP_POST_TEXT]
+                            RemoveIllegalChars(semi_strip(actor[INP_POST_TEXT]
                                                .getChildAt(1).text)));
                     };
                 };
@@ -16984,7 +16984,7 @@ def PostBtnHandler(evt=None, actor_id=0):
             };
     };
     '''
-    pass
+    print evt, actor_id
 
 
 def AlbumClear():
@@ -17047,21 +17047,21 @@ def GetAdvent():
     pass
 
 
-def RefreshTimeBar(OfferTime=0):
+def refresh_time_bar(offer_time=0):
     '''
     var tmpTime:* = NaN;
     var tmpText:* = None;
-    var OfferTime = OfferTime;
+    var offer_time = offer_time;
     var tmpX:* = 0;
-    if (OfferTime < 0){
-        if ((Number(savegame[SG_TIMEBAR]) + OfferTime) < 0){
-            OfferTime = 0;
+    if (offer_time < 0){
+        if ((Number(savegame[SG_TIMEBAR]) + offer_time) < 0){
+            offer_time = 0;
         };
     };
     var _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
-        if (OfferTime < 0){
-            tmpX = (((Number(savegame[SG_TIMEBAR]) + OfferTime) / 6000) * 555);
+        if (offer_time < 0){
+            tmpX = (((Number(savegame[SG_TIMEBAR]) + offer_time) / 6000) * 555);
         } else {
             tmpX = ((Number(savegame[SG_TIMEBAR]) / 6000) * 555);
         };
@@ -17070,11 +17070,11 @@ def RefreshTimeBar(OfferTime=0):
     };
     _local3 = actor[TIMEBAR_FILL];
     with (_local3) {
-        if (OfferTime < 0){
-            width = int(((-(OfferTime) / 6000) * 555));
+        if (offer_time < 0){
+            width = int(((-(offer_time) / 6000) * 555));
             x = tmpX;
         } else {
-            width = int(((OfferTime / 6000) * 555));
+            width = int(((offer_time / 6000) * 555));
             x = tmpX;
         };
     };
@@ -17098,13 +17098,13 @@ def RefreshTimeBar(OfferTime=0):
     } else {
         tmpText = ((texts[TXT_AUSDAUER] + ": ") + tmpText);
     };
-    if (OfferTime != 0){
-        tmpText = (tmpText + (" (" + (((OfferTime > 0)) ? "+" : "-")));
-        tmpText = (tmpText + (str(int((math.abs(OfferTime) / 60))) + ":"));
-        if ((math.abs(OfferTime) % 60) < 10){
+    if (offer_time != 0){
+        tmpText = (tmpText + (" (" + (((offer_time > 0)) ? "+" : "-")));
+        tmpText = (tmpText + (str(int((math.abs(offer_time) / 60))) + ":"));
+        if ((math.abs(offer_time) % 60) < 10){
             tmpText = (tmpText + "0");
         };
-        tmpText = (tmpText + (str(int((math.abs(OfferTime) % 60))) + ")"));
+        tmpText = (tmpText + (str(int((math.abs(offer_time) % 60))) + ")"));
     };
     tmpTime = Number(savegame[SG_TIMEBAR]);
     if (text_dir == "right"){
@@ -17116,14 +17116,14 @@ def RefreshTimeBar(OfferTime=0):
         tmpText = (tmpText + str(Number((tmpTime / 60)).toFixed(1))
                    .split(".0")[0]);
     };
-    if (OfferTime != 0){
+    if (offer_time != 0){
         if (text_dir == "right"){
-            tmpText = (((((OfferTime > 0)) ? "+" : "-") + ") ") + tmpText);
-            tmpText = (("(" + str(Number((math.abs(OfferTime) / 60))
+            tmpText = (((((offer_time > 0)) ? "+" : "-") + ") ") + tmpText);
+            tmpText = (("(" + str(Number((math.abs(offer_time) / 60))
                        .toFixed(1)).split(".0")[0]) + tmpText);
         } else {
-            tmpText = (tmpText + (" (" + (((OfferTime > 0)) ? "+" : "-")));
-            tmpText = (tmpText + (str(Number((math.abs(OfferTime) / 60))
+            tmpText = (tmpText + (" (" + (((offer_time > 0)) ? "+" : "-")));
+            tmpText = (tmpText + (str(Number((math.abs(offer_time) / 60))
                        .toFixed(1)).split(".0")[0] + ")"));
         };
     };
@@ -17133,7 +17133,7 @@ def RefreshTimeBar(OfferTime=0):
         x = int((TIMEBAR_LABEL_X - (text_width / 2)));
     };
     '''
-    pass
+    print offer_time
 
 
 def arabize(actor_id):
@@ -17182,10 +17182,10 @@ def arabize(actor_id):
         i++;
     };
     '''
-    pass
+    print actor_id
 
 
-def GetSpendAmount():
+def get_spend_amount():
     '''
     var amount;
     amount = 1;
@@ -17671,7 +17671,7 @@ def double_click_handler(disp_obj, fn_click, fn_double_click):
     print disp_obj, fn_click, fn_double_click
 
 
-def ach_level(SG, ach_index, almode=0):
+def ach_level(save, ach_index, almode=0):
     '''
     var alresult;
     var alnext;
@@ -17680,363 +17680,363 @@ def ach_level(SG, ach_index, almode=0):
     Switch (ach_index){
         if case(0:
             alnext = 2;
-            if (int(SG[SG_ACHIEVEMENTS]) >= 2){
+            if (int(save[SG_ACHIEVEMENTS]) >= 2){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 5){
+            if (int(save[SG_ACHIEVEMENTS]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 10){
+            if (int(save[SG_ACHIEVEMENTS]) >= 10){
                 alresult = 3;
                 alnext = 20;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 20){
+            if (int(save[SG_ACHIEVEMENTS]) >= 20){
                 alresult = 4;
                 alnext = 30;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 30){
+            if (int(save[SG_ACHIEVEMENTS]) >= 30){
                 alresult = 5;
                 alnext = 40;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 40){
+            if (int(save[SG_ACHIEVEMENTS]) >= 40){
                 alresult = 6;
                 alnext = 50;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 50){
+            if (int(save[SG_ACHIEVEMENTS]) >= 50){
                 alresult = 7;
                 alnext = 60;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 60){
+            if (int(save[SG_ACHIEVEMENTS]) >= 60){
                 alresult = 8;
                 alnext = 70;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 70){
+            if (int(save[SG_ACHIEVEMENTS]) >= 70){
                 alresult = 9;
                 alnext = 80;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 80){
+            if (int(save[SG_ACHIEVEMENTS]) >= 80){
                 alresult = 10;
                 alnext = 90;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 90){
+            if (int(save[SG_ACHIEVEMENTS]) >= 90){
                 alresult = 11;
                 alnext = 100;
             };
-            if (int(SG[SG_ACHIEVEMENTS]) >= 100){
+            if (int(save[SG_ACHIEVEMENTS]) >= 100){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(1:
             alnext = 1;
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 1){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 5){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 10){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 10){
                 alresult = 3;
                 alnext = 20;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 20){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 20){
                 alresult = 4;
                 alnext = 30;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 30){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 30){
                 alresult = 5;
                 alnext = 40;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 40){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 40){
                 alresult = 6;
                 alnext = 50;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 50){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 50){
                 alresult = 7;
                 alnext = 60;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 60){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 60){
                 alresult = 8;
                 alnext = 70;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 70){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 70){
                 alresult = 9;
                 alnext = 80;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 80){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 80){
                 alresult = 10;
                 alnext = 90;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 90){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 90){
                 alresult = 11;
                 alnext = 100;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 1)]) >= 100){
+            if (int(save[(SG_ACHIEVEMENTS + 1)]) >= 100){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(2:
             alnext = 1;
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 1){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 5){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 10){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 10){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 25){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 25){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 50){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 50){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 100){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 100){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 250){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 250){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 500){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 500){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 1000){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 1000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 2500){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 2500){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 5000){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 5000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 2)]) >= 10000){
+            if (int(save[(SG_ACHIEVEMENTS + 2)]) >= 10000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(3:
             alnext = 1;
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 1){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 5){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 10){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 10){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 25){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 25){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 50){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 50){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 100){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 100){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 250){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 250){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 500){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 500){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 1000){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 1000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 2500){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 2500){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 5000){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 5000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 3)]) >= 10000){
+            if (int(save[(SG_ACHIEVEMENTS + 3)]) >= 10000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(4:
             alnext = 1;
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 1){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 1){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 5){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 5){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 10){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 10){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 25){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 25){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 50){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 50){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 100){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 100){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 250){
+            if (int(save[(save_ACHIEVEMENTS + 4)]) >= 250){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 500){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 500){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 1000){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 1000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 2500){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 2500){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 5000){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 5000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 4)]) >= 10000){
+            if (int(save[(SG_ACHIEVEMENTS + 4)]) >= 10000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(5:
             alnext = 1;
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 100){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 100){
                 alresult = 1;
                 alnext = 5;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 500){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 500){
                 alresult = 2;
                 alnext = 10;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 1000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 1000){
                 alresult = 3;
                 alnext = 25;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 2500){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 2500){
                 alresult = 4;
                 alnext = 50;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 5000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 5000){
                 alresult = 5;
                 alnext = 100;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 10000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 10000){
                 alresult = 6;
                 alnext = 250;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 25000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 25000){
                 alresult = 7;
                 alnext = 500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 50000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 50000){
                 alresult = 8;
                 alnext = 1000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 100000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 100000){
                 alresult = 9;
                 alnext = 2500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 250000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 250000){
                 alresult = 10;
                 alnext = 5000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 500000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 500000){
                 alresult = 11;
                 alnext = 10000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 5)]) >= 1000000){
+            if (int(save[(SG_ACHIEVEMENTS + 5)]) >= 1000000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(6:
             alnext = 1000;
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 1000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 1000){
                 alresult = 1;
                 alnext = 1500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 1500){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 1500){
                 alresult = 2;
                 alnext = 2500;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 2500){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 2500){
                 alresult = 3;
                 alnext = 5000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 5000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 5000){
                 alresult = 4;
                 alnext = 10000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 10000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 10000){
                 alresult = 5;
                 alnext = 15000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 15000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 15000){
                 alresult = 6;
                 alnext = 20000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 20000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 20000){
                 alresult = 7;
                 alnext = 25000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 25000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 25000){
                 alresult = 8;
                 alnext = 30000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 30000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 30000){
                 alresult = 9;
                 alnext = 35000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 35000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 35000){
                 alresult = 10;
                 alnext = 40000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 40000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 40000){
                 alresult = 11;
                 alnext = 50000;
             };
-            if (int(SG[(SG_ACHIEVEMENTS + 6)]) >= 50000){
+            if (int(save[(SG_ACHIEVEMENTS + 6)]) >= 50000){
                 alresult = 12;
                 alnext = 0;
             };
             break;
         if case(7:
-            alresult = int(SG[(SG_ACHIEVEMENTS + 7)]);
+            alresult = int(save[(SG_ACHIEVEMENTS + 7)]);
             alnext = (alresult + 1);
             if (alresult >= 12){
                 alresult = 12;
@@ -18066,20 +18066,20 @@ def ach_level(SG, ach_index, almode=0):
     };
     if (almode == 4){
         if (ach_index == 1){
-            return ((((int(SG[(SG_ACHIEVEMENTS + ach_index)])
-                    + (((int(SG[SG_NEW_DUNGEONS]) >= 2))
-                       ? (int(SG[SG_NEW_DUNGEONS]) - 2) : 0))
-                    + (((int(SG[(SG_NEW_DUNGEONS + 1)]) >= 2))
-                       ? (int(SG[(SG_NEW_DUNGEONS + 1)]) - 2) : 0))
-                    + (((int(SG[SG_DUNGEON_13]) >= 122))
-                       ? (int(SG[SG_DUNGEON_13]) - 122) : 0)));
+            return ((((int(save[(SG_ACHIEVEMENTS + ach_index)])
+                    + (((int(save[SG_NEW_DUNGEONS]) >= 2))
+                       ? (int(save[save_NEW_DUNGEONS]) - 2) : 0))
+                    + (((int(save[(SG_NEW_DUNGEONS + 1)]) >= 2))
+                       ? (int(save[(SG_NEW_DUNGEONS + 1)]) - 2) : 0))
+                    + (((int(save[save_DUNGEON_13]) >= 122))
+                       ? (int(save[SG_DUNGEON_13]) - 122) : 0)));
         };
-        return ((int(SG[(SG_ACHIEVEMENTS + ach_index)]) / (((ach_index == 5))
+        return ((int(save[(SG_ACHIEVEMENTS + ach_index)]) / (((ach_index == 5))
                 ? 100 : 1)));
     };
     return (alresult);
     '''
-    print SG, ach_index, almode
+    print save, ach_index, almode
 
 
 def sing_plur(inp_text, amount, sep="*"):
@@ -18143,7 +18143,7 @@ def animate_ach(actor_id, y_level=635, ach_ani_pow=-10):
     print actor_id, y_level, ach_ani_pow
 
 
-def do_achievements(SG):
+def do_achievements(save):
     '''
     var i;
     var achPop:Array;
@@ -18160,7 +18160,7 @@ def do_achievements(SG):
     OneUp = False;
     i = 0;
     while (i < ((buffed_mode) ? 7 : 8)) {
-        achAusf = ach_level(SG, (i % 8), 1);
+        achAusf = ach_level(save, (i % 8), 1);
         add(((CHAR_ACH + i) + (achAusf * 8)));
         if (old_ach[(i % 8)] < 0){
             old_ach[(i % 8)] = -(old_ach[(i % 8)]);
@@ -18177,12 +18177,12 @@ def do_achievements(SG):
                 achAusfM = (texts[((TXT_ACH_5 + (achAusf * 2)) - 1)] + " ");
                 achAusfF = (texts[(TXT_ACH_5 + (achAusf * 2))] + " ");
                 achCurrentGrade = texts[(TXT_ACH_2 + (i % 8))].split("%1")
-                    .join(str(ach_level(SG, (i % 8), 0))).split("%2")
-                    .join(str(ach_level(SG, (i % 8), 4)));
+                    .join(str(ach_level(save, (i % 8), 0))).split("%2")
+                    .join(str(ach_level(save, (i % 8), 4)));
                 if (i == 6){
                     achCurrentGrade = texts[TXT_NEW_HONOR_ACH]
-                        .split("%1").join(str(ach_level(SG, (i % 8), 0)))
-                        .split("%2").join(str(ach_level(SG, (i % 8), 4)));
+                        .split("%1").join(str(ach_level(save, (i % 8), 0)))
+                        .split("%2").join(str(ach_level(save, (i % 8), 4)));
                 };
         };
         achPop = list();
@@ -18197,9 +18197,9 @@ def do_achievements(SG):
                      .split("%1").join(friend_link));
         };
         achPop[achPop.length] = sing_plur(achCurrentGrade,
-                                         ach_level(SG, (i % 8), 4));
+                                         ach_level(save, (i % 8), 4));
         if (i == 1){
-            if (SG[SG['PLAYER_ID']] == savegame[SG['PLAYER_ID']]){
+            if (save[SG['PLAYER_ID']] == savegame[SG['PLAYER_ID']]){
                 if (tower_level > 0){
                     achPop[achPop.length] = sing_plur(texts[(TXT_ACH_2 + 8)].
                                                      split("%1")
@@ -18215,32 +18215,33 @@ def do_achievements(SG):
                 };
             };
         };
-        if (ach_level(SG, (i % 8), 2) > 0){
+        if (ach_level(save, (i % 8), 2) > 0){
             if (i == 6){
                 achPop[achPop.length] = sing_plur(texts[TXT_NEW_HONOR_ACH2]
                                                  .split("%1")
                                                  .join(str(ach_level(
-                                                       SG, (i % 8), 2)))
+                                                       save, (i % 8), 2)))
             .split("%2").join(texts[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]),
-            ach_level(SG, (i % 8), 2));
+            ach_level(save, (i % 8), 2));
             } else {
                 achPop[achPop.length] = sing_plur(texts[(TXT_ACH_3 + (i % 8))]
                                                  .split("%1")
-                .join(str(ach_level(SG, (i % 8), 2))).split("%2")
+                .join(str(ach_level(save, (i % 8), 2))).split("%2")
                 .join(texts[(TXT_ACH_4 + (((achAusf == 0)) ? 1 : 2))]),
-                ach_level(SG, (i % 8), 2));
+                ach_level(save, (i % 8), 2));
             };
         };
-        if (ach_level(SG, (i % 8), 3) > 0){
+        if (ach_level(save, (i % 8), 3) > 0){
             achPop[achPop.length] = texts[TXT_ACH_4]
-                .split("%1").join(str(ach_level(SG, (i % 8), 3)));
+                .split("%1").join(str(ach_level(save, (i % 8), 3)));
         };
-        enable_popup((CHAR_ACH + i + (ach_level(SG, (i % 8), 1) * 8)), achPop);
+        enable_popup((CHAR_ACH + i + (ach_level(save, (i % 8), 1) * 8)),
+                     achPop);
         i++;
     };
     return (OneUp);
     '''
-    print SG
+    print save
 
 
 def mirror_ani_fn():
