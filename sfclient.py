@@ -14748,11 +14748,10 @@ def show_popup(evt, *args):
             dist = 5 - current.getChildAt(i).x
 
             for j in range(current.numChildren):
-                current.getChildAt(j).x += dist
-                if (current.getChildAt(j).x
-                        + current.getChildAt(j).width + 5) > popup_width:
-                    popup_width = current.getChildAt(j).x
-                        + current.getChildAt(j).width + 5
+                cur_child = current.getChildAt(j)
+                cur_child.x += dist
+                if (cur_child.x + cur_child.width + 5) > popup_width:
+                    popup_width = cur_child.x + cur_child.width + 5
 
     current.mouse_enabled = False
     current.mouseChildren = False
