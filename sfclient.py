@@ -90,7 +90,6 @@ from sflegacy import FontFormatError
 from sflegacy import FontFormatDefault
 from sflegacy import FontFormatHighStakes
 from sflegacy import FontFormatHighStakesHighLight
-from sflegacy import FontFormatHighStakesHighLight
 from sflegacy import FontFormatHighStakesHighLightGrayed
 from sflegacy import FontFormatBook
 from sflegacy import FontFormatBookHint
