@@ -14430,7 +14430,7 @@ def error_message(msg=""):
         LOG.error("Error message: " + msg)
 
         if on_stage(SHP['FUCK']['BLACK_SQUARE']):
-            label = actor[LBL['ERROR']]:
+            label = actor[LBL['ERROR']]
             label.text = msg
             label.scaleX = 1
             label.scaleY = 1
