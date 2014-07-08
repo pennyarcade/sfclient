@@ -5634,7 +5634,7 @@ def show_arena_screen(opp_name, opp_gilde, opp_stufe):
     };
     when_loaded(DoShowArenaScreen);
     '''
-    pass
+    print opp_name, opp_gilde, opp_stufe
 
 
 def show_hall_screen(evt=None):
@@ -5657,7 +5657,7 @@ def show_hall_screen(evt=None):
     load(SCREEN_HALLE);
     when_loaded(DoShowHallScreen);
     '''
-    pass
+    print evt
 
 
 def show_dealer_screen(evt=None, load_only=False):
@@ -5697,7 +5697,7 @@ def show_dealer_screen(evt=None, load_only=False):
         when_loaded(DoShowDealerScreen);
     };
     '''
-    pass
+    print evt, load_only
 
 
 def show_screen_gilde_gruenden(evt=None):
@@ -5721,7 +5721,7 @@ def show_screen_gilde_gruenden(evt=None):
     load(SCREEN_GILDE_GRUENDEN);
     when_loaded(DoShowScreenGilden);
     '''
-    pass
+    print evt
 
 
 def show_city_screen(evt=None):
@@ -5807,7 +5807,7 @@ def show_city_screen(evt=None):
     load(CITY_SANDWICH2);
     when_loaded(doShowCityScreen);
     '''
-    pass
+    print evt
 
 
 def show_post_screen(par=None):
@@ -6211,7 +6211,7 @@ def show_post_screen(par=None):
     load(SCREEN_POST);
     when_loaded(DoShowPost);
     '''
-    pass
+    print par
 
 
 def show_build_character_screen(evt=None):
