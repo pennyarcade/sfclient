@@ -1,20 +1,4 @@
 checking sfbuildinterface.py
 checking sfclient.py
-sfclient.py:13558:13: E112 expected an indented block
-    Use 4 spaces per indentation level.
-
-    For really old code that you don't want to mess up, you can continue to
-    use 8-space tabs.
-
-    Okay: a = 1
-    Okay: if a == 0:\n    a = 1
-    E111:   a = 1
-
-    Okay: for item in items:\n    pass
-    E112: for item in items:\npass
-
-    Okay: a = 1\nb = 2
-    E113: a = 1\n    b = 2
 checking sfglobals.py
 checking sflegacy.py
-1       E112 expected an indented block
