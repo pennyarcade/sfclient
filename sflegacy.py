@@ -285,6 +285,209 @@ class FontFormatDefaultLeft(FontFormat):
     pass
 
 
+class FontFormatHallListText(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildHallNoAttack(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatHallListHighLight(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatAttribBonus(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatAttribTemp(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatAttrib(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPayIcon(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListHeading(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListText(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListTextSys(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListText(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListTextOnline(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListTextAttackError(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListTextAttackErrorOnline(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListTextAttackErrorOnlinePopup(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListTextAttackOk(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatGuildListTextAttackOkPopup(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListHighLight(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListHighLightSys(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListTextSysRed(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListHighLightSysRed(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListTextSysGreen(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatPostListHighLightSysGreen(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatQuestBar(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatTimeBar(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatLifeBar(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatDamage(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatCriticalDamage(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
+class FontFormatCatapultDamage(FontFormat):
+    '''
+        obsolete with cli?
+    '''
+    pass
+
+
 class DisplayObject(BaseClass):
     '''
         obsolete with cli?

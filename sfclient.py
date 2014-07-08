@@ -100,6 +100,35 @@ from sflegacy import FontFormatAttackLabel
 from sflegacy import FontFormatSpeech
 from sflegacy import FontFormatGrayed
 from sflegacy import FontFormatGrayedHighLight
+from sflegacy import FontFormatHallListText
+from sflegacy import FontFormatGuildHallNoAttack
+from sflegacy import FontFormatHallListHighLight
+from sflegacy import FontFormatAttribBonus
+from sflegacy import FontFormatAttribTemp
+from sflegacy import FontFormatAttrib
+from sflegacy import FontFormatPayIcon
+from sflegacy import FontFormatPostListHeading
+from sflegacy import FontFormatPostListText
+from sflegacy import FontFormatPostListTextSys
+from sflegacy import FontFormatGuildListText
+from sflegacy import FontFormatGuildListTextOnline
+from sflegacy import FontFormatGuildListTextAttackError
+from sflegacy import FontFormatGuildListTextAttackErrorOnline
+from sflegacy import FontFormatGuildListTextAttackErrorOnlinePopup
+from sflegacy import FontFormatGuildListTextAttackOk
+from sflegacy import FontFormatGuildListTextAttackOkPopup
+from sflegacy import FontFormatPostListHighLight
+from sflegacy import FontFormatPostListHighLightSys
+from sflegacy import FontFormatPostListTextSysRed
+from sflegacy import FontFormatPostListHighLightSysRed
+from sflegacy import FontFormatPostListTextSysGreen
+from sflegacy import FontFormatPostListHighLightSysGreen
+from sflegacy import FontFormatQuestBar
+from sflegacy import FontFormatTimeBar
+from sflegacy import FontFormatLifeBar
+from sflegacy import FontFormatDamage
+from sflegacy import FontFormatCriticalDamage
+from sflegacy import FontFormatCatapultDamage
 
 from sfbuildinterface import build_interface
 
