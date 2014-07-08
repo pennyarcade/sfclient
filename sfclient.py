@@ -15771,8 +15771,8 @@ def configuration_file_loaded(evt):
         if shared_obj.data.img_url_index:
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
-            elif (shared_obj.data.img_url_index <= len(img_url))
-                  and not force_reroll:
+            elif ((shared_obj.data.img_url_index <= len(img_url))
+                  and not force_reroll):
                     img_url_index = shared_obj.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
