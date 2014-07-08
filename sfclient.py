@@ -68,6 +68,7 @@ from sflegacy import LoaderContext
 from sflegacy import LoaderError
 from sflegacy import LoaderComplete
 from sflegacy import MouseEvent
+from sflegacy import MovieClip
 from sflegacy import SharedObject
 from sflegacy import SecurityErrorEvent
 from sflegacy import SecurityHandler
@@ -14429,12 +14430,12 @@ def error_message(msg=""):
         LOG.error("Error message: " + msg)
 
         if on_stage(SHP['FUCK']['BLACK_SQUARE']):
-            with actor[LBL['ERROR']]:
-                text = msg
-                scaleX = 1
-                scaleY = 1
-                x = POS['IF']['ERROR_X'] - int(text_width / 2)
-                y = POS['IF']['ERROR_Y'] + 60
+            label = actor[LBL['ERROR']]:
+            label.text = msg
+            label.scaleX = 1
+            label.scaleY = 1
+            label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+            label.y = POS['IF']['ERROR_Y'] + 60
 
             add(LBL['ERROR'])
         else:
@@ -14444,46 +14445,47 @@ def error_message(msg=""):
             else:
                 if ((on_stage(BTN['CREATE_CHARACTER'])
                      and (not on_stage(IMG['IF']['WINDOW'])))):
-                    with actor[LBL['CREATE']['RACE_DESC']]:
-                        default_text_format = FontFormat_ClassError
-                        text = msg
-                        default_text_format = FontFormat_DefaultLeft
+                    label = actor[LBL['CREATE']['RACE_DESC']]
+                    label.default_text_format = FontFormat_ClassError
+                    label.text = msg
+                    label.default_text_format = FontFormat_DefaultLeft
 
                     actor[LBL['CREATE']['CLASS']].text = ""
                     actor[LBL['CREATE']['CLASS_DESC']].text = ""
 
                 else:
-                    with actor[LBL['ERROR']]:
-                        text = msg
-                        scaleX = 1
-                        scaleY = 1
-                        if on_stage(BTN['SHOPS_NEWWAREZ']):
-                            x = POS['SHOP']['ERROR_X'] - int(text_width / 2)
-                            y = POS['SHOP']['ERROR_Y']
-                        elif on_stage(IMG['TOILET']):
-                            x = (POS['SHOP']['ERROR_X'] - 15
-                                 - int(text_width / 2))
-                            y = 720
-                        elif on_stage(BTN['QUEST']['CANCEL']):
-                            x = POS['IF']['ERROR_X'] - int(text_width / 2)
-                            y = POS['QUEST']['ERROR_Y']
-                        elif on_stage(IMG['POST_BG']):
-                            x = POS['IF']['ERROR_X'] - int(text_width / 2)
-                            y = POS['QUEST']['ERROR_Y']
-                        elif on_stage(LBL['STALL_TITEL']):
-                            x = POS['IF']['ERROR_X'] - int(text_width / 2)
-                            y = POS['QUEST']['ERROR_Y']
-                        elif on_stage(BTN['CHAR_ATTACK']):
-                            scaleX = 0.7
-                            scaleY = 0.7
-                            x = 280 + 500 + 235 - width / 2
-                            y = 100 + 657
-                        elif on_stage(SHP['MAINQUEST']):
-                            x = POS['IF']['ERROR_X'] - int(text_width / 2)
-                            y = POS['MQ']['ERROR_Y']
-                        else:
-                            x = POS['IF']['ERROR_X'] - int(text_width / 2)
-                            y = POS['IF']['ERROR_Y']
+                    label = actor[LBL['ERROR']]
+                    label.text = msg
+                    label.scaleX = 1
+                    label.scaleY = 1
+                    if on_stage(BTN['SHOPS_NEWWAREZ']):
+                        label.x = POS['SHOP']['ERROR_X'] - int(text_width / 2)
+                        label.y = POS['SHOP']['ERROR_Y']
+                    elif on_stage(IMG['TOILET']):
+                        label.x = (POS['SHOP']['ERROR_X'] - 15
+                                   - int(text_width / 2))
+                        label.y = 720
+                    elif on_stage(BTN['QUEST']['CANCEL']):
+                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.y = POS['QUEST']['ERROR_Y']
+                    elif on_stage(IMG['POST_BG']):
+                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.y = POS['QUEST']['ERROR_Y']
+                    elif on_stage(LBL['STALL_TITEL']):
+                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.y = POS['QUEST']['ERROR_Y']
+                    elif on_stage(BTN['CHAR_ATTACK']):
+                        label.scaleX = 0.7
+                        label.scaleY = 0.7
+                        label.x = 280 + 500 + 235 - width / 2
+                        label.y = 100 + 657
+                    elif on_stage(SHP['MAINQUEST']):
+                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.y = POS['MQ']['ERROR_Y']
+                    else:
+                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.y = POS['IF']['ERROR_Y']
+
 
                     add(LBL['ERROR'])
 
@@ -14741,30 +14743,31 @@ def show_popup(evt, *args):
     for arg in args:
         process_arg(arg)
 
-    with actor[POPUP_INFO]:
-        for i in range(numChildren):
-            if getChildAt(i).x < 5:
-                dist = 5 - getChildAt(i).x
+    current = actor[POPUP_INFO]
+    for i in range(numChildren):
+        if current.getChildAt(i).x < 5:
+            dist = 5 - current.getChildAt(i).x
 
-                for j in range(numChildren):
-                    getChildAt(j).x += dist
-                    if (getChildAt(j).x
-                            + getChildAt(j).width + 5) > popup_width:
-                        popup_width = getChildAt(j).x + getChildAt(j).width + 5
+            for j in range(current.numChildren):
+                current.getChildAt(j).x += dist
+                if (current.getChildAt(j).x
+                        + current.getChildAt(j).width + 5) > popup_width:
+                    popup_width = current.getChildAt(j).x
+                            + current.getChildAt(j).width + 5
 
-        mouse_enabled = False
-        mouseChildren = False
-        allow_smoothing = True
-        force_smoothing = True
-        smoothing = True
+    current.mouse_enabled = False
+    current.mouseChildren = False
+    current.allow_smoothing = True
+    current.force_smoothing = True
+    current.smoothing = True
 
-    with actor[POPUP_INFO].graphics:
-        beginFill(0, 0)
-        lineStyle(0, 0, 0)
-        drawRect(0, 0, popup_width, textY)
-        beginFill(CLR['BLACK'], 0.8)
-        lineStyle(1, CLR['SFORANGE'], 1)
-        drawRect(1, 1, (popup_width - 1), (textY - 1))
+    current = actor[POPUP_INFO].graphics
+    current.beginFill(0, 0)
+    current.lineStyle(0, 0, 0)
+    current.drawRect(0, 0, popup_width, textY)
+    current.beginFill(CLR['BLACK'], 0.8)
+    current.lineStyle(1, CLR['SFORANGE'], 1)
+    current.drawRect(1, 1, (popup_width - 1), (textY - 1))
 
     position_popup(evt)
     add(POPUP_INFO)
@@ -14772,7 +14775,6 @@ def show_popup(evt, *args):
 
 def try_show_tv():
     '''
-
     var evt:* = evt;
     if (tvTest){
         tv_status_dest = 1;
@@ -14832,7 +14834,7 @@ def try_show_tv():
     pass
 
 
-def next_fight(evt):
+def next_fight():
     '''
     var guild_fight_exp;
     var guild_fight_honor;
@@ -14915,7 +14917,7 @@ def next_fight(evt):
     pass
 
 
-def guild_fight_timer_fn(evt):
+def guild_fight_timer_fn():
     '''
     if (guild_attack_time != 0){
         if (!waiting_for(guild_attack_time)){
@@ -14939,7 +14941,7 @@ def guild_fight_timer_fn(evt):
     pass
 
 
-def guild_chat_poll_fn(evt):
+def guild_chat_poll_fn():
     '''
     if (param_poll_tunnel_url == ""){
         if (gilde == ""){
@@ -15003,10 +15005,10 @@ def position_popup(evt):
         };
     };
     '''
-    pass
+    print evt
 
 
-def hide_popup(evt):
+def hide_popup():
     '''
     remove(SLOT_SUGGESTION);
     remove(POPUP_INFO);
