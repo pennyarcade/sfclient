@@ -10286,12 +10286,11 @@ def show_main_quest_screen(dungeon_nr=0, enemy=0):
     };
     when_loaded(Doshow_main_quest_screen);
     '''
-    pass
+    print dungeon_nr, enemy
 
 
 def show_toilet(
-        is_full, toilet_level, toilet_exp, toilet_max_exp,
-        item_added=-1
+        is_full, toilet_level, toilet_exp, toilet_max_exp, item_added=-1
 ):
     '''
     var doShowToilet:* = None;
@@ -10413,12 +10412,10 @@ def show_toilet(
     show_character_screen();
     when_loaded(doShowToilet);
     '''
-    pass
+    print is_full, toilet_level, toilet_exp, toilet_max_exp, item_added
 
 
-def show_witch(
-        witch_data, chaldron_bubble=False, enchant_cost=0
-):
+def show_witch(witch_data, chaldron_bubble=False, enchant_cost=0):
     '''
     var doShowWitch:* = None;
     var witch_data:* = witch_data;
@@ -10578,7 +10575,7 @@ def show_witch(
     show_character_screen(None, True);
     when_loaded(doShowWitch);
     '''
-    pass
+    print witch_data, chaldron_bubble, enchant_cost
 
 
 def Showalbum_content(evt=None):
@@ -11227,7 +11224,7 @@ def Showalbum_content(evt=None):
         };
     };
     '''
-    pass
+    print evt
 
 
 def show_login_screen(evt=None, no_bc=False, no_cookie=False):
@@ -11279,7 +11276,7 @@ def show_login_screen(evt=None, no_bc=False, no_cookie=False):
         actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = mp_api_user_token;
     };
     '''
-    pass
+    print evt, no_bc, no_cookie
 
 
 def show_bet_result(won):
@@ -11367,7 +11364,7 @@ def show_bet_result(won):
     };
     when_loaded(doShowBetResults);
     '''
-    pass
+    print won
 
 
 def show_signup_screen(evt=None):
@@ -11444,7 +11441,7 @@ def show_signup_screen(evt=None):
         };
     };
     '''
-    pass
+    print evt
 
 
 # -----------------------------------------------------------------------------
@@ -11481,8 +11478,7 @@ def show(*actor_ids):
                     show(i_bunch)
                 return
 
-            with actor[actor_id]:
-                visible = True
+            actor[actor_id].visible = True
 
 
 def hide(*actor_ids):
@@ -11496,8 +11492,7 @@ def hide(*actor_ids):
                     hide(i_bunch)
                 return
 
-            with actor[actor_id]:
-                visible = False
+            actor[actor_id].visible = False
 
 
 def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
@@ -11520,21 +11515,20 @@ def add(actor_id, pos_x=None, pos_y=None, scale_x=None,
         if actorLoaded[actor_id] == 0:
             load(actor_id)
 
-    with actor[actor_id]:
-        if pos_x:
-            x = pos_x
+    if pos_x:
+        actor[actor_id].x = pos_x
 
-        if pos_y:
-            y = pos_y
+    if pos_y:
+        actor[actor_id].y = pos_y
 
-        if scale_x:
-            scaleX = size_x
+    if scale_x:
+        actor[actor_id].scaleX = size_x
 
-        if scale_y:
-            scaleY = size_y
+    if scale_y:
+        actor[actor_id].scaleY = size_y
 
-        if vis is not None:
-            visible = bool(vis)
+    if vis is not None:
+        actor[actor_id].visible = bool(vis)
 
     if container_id == -1:
         addChild(actor[actor_id])
@@ -11555,7 +11549,7 @@ def visible_to_front(*actor_ids):
 
             with actor[actor_id]:
                 if on_stage(actor_id):
-                    add(actor_id)
+                    actor[actor_id].add(actor_id)
 
 
 def move(actor_id, pos_x, pos_y):
