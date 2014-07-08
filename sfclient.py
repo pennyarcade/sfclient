@@ -11714,11 +11714,11 @@ def fade_out(actor_id, timer_interval=20, alpha_step=0.05,
     set_alpha(actor_id, current_alpha)
 
 
-def add_filter(actor_id, filter):
+def add_filter(actor_id, filter_obj):
     '''
         add filter to actor
     '''
-    actor[actor_id].filters = filter
+    actor[actor_id].filters = filter_obj
 
 
 def set_font(font_name):
@@ -15225,6 +15225,7 @@ def language_file_error():
     '''
         error handling for I18N file loader
     '''
+    global lang_code, text_dir
     LOG.error("Chosen language " + lang_code + " not available!")
     if lang_code == original_lang_code:
         lang_code = original_lang_code
@@ -15274,6 +15275,7 @@ def language_file_loaded(evt):
             if case():
                 tmp_str += str_data[i]
 
+    global pending_language_file
     pending_language_file = False
     if lang_code == original_lang_code:
         if texts[TXT['FONT_NAME']] != "":
@@ -15299,6 +15301,8 @@ def load_language_file():
     '''
         I18N file loader
     '''
+    global text_dir, pending_language_file
+
     loader = URLLoader()
     loader.data_format = URLLoaderdata_format.TEXT
     loader.add_event_listener(Event.COMPLETE, language_file_loaded)
@@ -15357,6 +15361,7 @@ def original_language_file_loaded(evt):
             if case():
                 tmp_str += str_data[i]
 
+    global pending_language_file
     pending_language_file = False
     set_font(superior_font(chosen_lang_font, original_font))
     loader_complete(evt)
@@ -15395,6 +15400,7 @@ def configuration_file_loaded(evt):
                 if len(tmp_str) > 0:
                     for case in Switch(last_index):
                         if case(CFG['LANG_CODE']):
+                            global lang_code
                             lang_code = tmp_str
                             original_lang_code = lang_code
                             break
@@ -15412,10 +15418,12 @@ def configuration_file_loaded(evt):
                             break
 
                         if case(CFG['SERVER']):
+                            global server
                             server = tmp_str
                             break
 
                         if case(CFG['LANG_URL']):
+                            global lang_url
                             lang_url = tmp_str
                             break
 
@@ -15523,6 +15531,7 @@ def configuration_file_loaded(evt):
                             break
 
                         if case(CFG['RESEND_COUNT']):
+                            global param_fail_tries
                             param_fail_tries = int(tmp_str)
                             break
 
@@ -15633,6 +15642,7 @@ def configuration_file_loaded(evt):
             if case():
                 tmp_str += str_data[i]
 
+    global pending_configuration_files
     pending_configuration_files -= 1
     if pending_configuration_files == 1:
         loader2.load(URLRequest("config_txt"))
@@ -15749,6 +15759,7 @@ def configuration_file_loaded(evt):
         if len(snd_url) == 0:
             snd_url[0] = ""
 
+        global img_url_index, snd_url_index
         if so.data.img_url_index:
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
@@ -15867,6 +15878,7 @@ def when_loaded(function=None):
 
     if isinstance(function, types.FunctionType):
         when_loaded_fn.append(function)
+        global when_loaded_active
         when_loaded_active = True
         when_loaded_timeout.stop()
         when_loaded_timeout.start()
