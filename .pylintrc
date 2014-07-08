@@ -64,6 +64,10 @@ evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / stateme
 # evaluation report (RP0004).
 comment=no
 
+# Template used to display messages. This is a python new-style format string
+# used to format the message information. See doc for all details
+msg-template='{msg_id}:{line:3d},{column}: {obj}: {msg}'
+
 
 [SIMILARITIES]
 

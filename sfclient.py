@@ -56,9 +56,9 @@ from sflegacy import Capabilities
 from sflegacy import DisplayObject
 from sflegacy import Event
 from sflegacy import ExternalIF
-from sflegacy import FontFormat_ClassError
-from sflegacy import FontFormat_HallListHeading
-from sflegacy import FontFormat_DefaultLeft
+from sflegacy import FontFormatClassError
+from sflegacy import FontFormatHallListHeading
+from sflegacy import FontFormatDefaultLeft
 from sflegacy import Function
 from sflegacy import IOErrorEvent
 from sflegacy import KeyboardEvent
@@ -83,23 +83,23 @@ from sflegacy import TimerEvent
 from sflegacy import URLLoader
 from sflegacy import URLLoaderdata_format
 from sflegacy import URLRequest
-from sflegacy import FontFormat_ToiletAura
-from sflegacy import FontFormat_GuildListTextAttackErrorHalf
-from sflegacy import FontFormat_GuildListTextAttackErrorOnlineHalf
-from sflegacy import FontFormat_Error
-from sflegacy import FontFormat_Default
-from sflegacy import FontFormat_HighStakes
-from sflegacy import FontFormat_HighStakesHighLight
-from sflegacy import FontFormat_HighStakesHighLight
-from sflegacy import FontFormat_HighStakesHighLightGrayed
-from sflegacy import FontFormat_Book
-from sflegacy import FontFormat_BookHint
-from sflegacy import FontFormat_BookLeft
-from sflegacy import FontFormat_Bullshit
-from sflegacy import FontFormat_AttackLabel
-from sflegacy import FontFormat_Speech
-from sflegacy import FontFormat_Grayed
-from sflegacy import FontFormat_GrayedHighLight
+from sflegacy import FontFormatToiletAura
+from sflegacy import FontFormatGuildListTextAttackErrorHalf
+from sflegacy import FontFormatGuildListTextAttackErrorOnlineHalf
+from sflegacy import FontFormatError
+from sflegacy import FontFormatDefault
+from sflegacy import FontFormatHighStakes
+from sflegacy import FontFormatHighStakesHighLight
+from sflegacy import FontFormatHighStakesHighLight
+from sflegacy import FontFormatHighStakesHighLightGrayed
+from sflegacy import FontFormatBook
+from sflegacy import FontFormatBookHint
+from sflegacy import FontFormatBookLeft
+from sflegacy import FontFormatBullshit
+from sflegacy import FontFormatAttackLabel
+from sflegacy import FontFormatSpeech
+from sflegacy import FontFormatGrayed
+from sflegacy import FontFormatGrayedHighLight
 
 from sfbuildinterface import build_interface
 
@@ -617,72 +617,72 @@ def init_vars():
     # font_format_chat = new TextFormat()
     # font_format_chatError = new TextFormat()
     # font_format_chatWhisper = new TextFormat()
-    # FontFormat_AttackLabel = new TextFormat()
-    # FontFormat_Attrib = new TextFormat()
-    # FontFormat_AttribBonus = new TextFormat()
-    # FontFormat_AttribTemp = new TextFormat()
-    # FontFormat_Book = new TextFormat()
-    # FontFormat_BookHint = new TextFormat()
-    # FontFormat_BookLeft = new TextFormat()
-    # FontFormat_Bullshit = new TextFormat()
-    # FontFormat_CatapultDamage = new TextFormat()
-    # FontFormat_ClassError = new TextFormat()
-    # FontFormat_CriticalDamage = new TextFormat()
-    # FontFormat_Damage = new TextFormat()
-    # FontFormat_Default = new TextFormat()
-    # FontFormat_DefaultLeft = new TextFormat()
-    # FontFormat_EpicItemQuote = new TextFormat()
-    # FontFormat_Error = new TextFormat()
-    # FontFormat_Grayed = new TextFormat()
-    # FontFormat_GrayedHighLight = new TextFormat()
-    # FontFormat_GuildBuilding = new TextFormat()
-    # FontFormat_GuildHallNoAttack = new TextFormat()
-    # FontFormat_GuildListText = new TextFormat()
-    # FontFormat_GuildListTextAttackError = new TextFormat()
-    # FontFormat_GuildListTextAttackErrorHalf = new TextFormat()
-    # FontFormat_GuildListTextAttackErrorOnline = new TextFormat()
-    # FontFormat_GuildListTextAttackErrorOnlineHalf = new TextFormat()
-    # FontFormat_GuildListTextAttackErrorOnlinePopup = new TextFormat()
-    # FontFormat_GuildListTextAttackOk = new TextFormat()
-    # FontFormat_GuildListTextAttackOkPopup = new TextFormat()
-    # FontFormat_GuildListTextOnline = new TextFormat()
-    # FontFormat_GuildMoney = new TextFormat()
-    # FontFormat_HallListHeading = new TextFormat()
-    # FontFormat_HallListHighLight = new TextFormat()
-    # FontFormat_HallListText = new TextFormat()
-    # FontFormat_Heading = new TextFormat()
-    # FontFormat_Highlight = new TextFormat()
-    # FontFormat_HighlightWhisper = new TextFormat()
-    # FontFormat_HighStakes = new TextFormat()
-    # FontFormat_HighStakesGrayed = new TextFormat()
-    # FontFormat_HighStakesHighLight = new TextFormat()
-    # FontFormat_HighStakesHighLightGrayed = new TextFormat()
-    # FontFormat_ItemEnchantment = new TextFormat()
-    # FontFormat_LifeBar = new TextFormat()
-    # FontFormat_LOGoutLink = new TextFormat()
-    # FontFormat_LOGoutLinkHighLight = new TextFormat()
-    # FontFormat_PayIcon = new TextFormat()
-    # FontFormat_Popup = new TextFormat()
-    # FontFormat_PopupCompare = new TextFormat()
-    # FontFormat_PopupCompareBetter = new TextFormat()
-    # FontFormat_PopupCompareBetterHL = new TextFormat()
-    # FontFormat_PopupCompareSum = new TextFormat()
-    # FontFormat_PopupCompareWorse = new TextFormat()
-    # FontFormat_PopupCompareWorseHL = new TextFormat()
-    # FontFormat_PostListHeading = new TextFormat()
-    # FontFormat_PostListHighLight = new TextFormat()
-    # FontFormat_PostListHighLightSys = new TextFormat()
-    # FontFormat_PostListHighLightSysGreen = new TextFormat()
-    # FontFormat_PostListHighLightSysRed = new TextFormat()
-    # FontFormat_PostListText = new TextFormat()
-    # FontFormat_PostListTextSys = new TextFormat()
-    # FontFormat_PostListTextSysGreen = new TextFormat()
-    # FontFormat_PostListTextSysRed = new TextFormat()
-    # FontFormat_QuestBar = new TextFormat()
-    # FontFormat_ScreenTitle = new TextFormat()
-    # FontFormat_Speech = new TextFormat()
-    # FontFormat_TimeBar = new TextFormat()
-    # FontFormat_ToiletAura = new TextFormat()
+    # FontFormatAttackLabel = new TextFormat()
+    # FontFormatAttrib = new TextFormat()
+    # FontFormatAttribBonus = new TextFormat()
+    # FontFormatAttribTemp = new TextFormat()
+    # FontFormatBook = new TextFormat()
+    # FontFormatBookHint = new TextFormat()
+    # FontFormatBookLeft = new TextFormat()
+    # FontFormatBullshit = new TextFormat()
+    # FontFormatCatapultDamage = new TextFormat()
+    # FontFormatClassError = new TextFormat()
+    # FontFormatCriticalDamage = new TextFormat()
+    # FontFormatDamage = new TextFormat()
+    # FontFormatDefault = new TextFormat()
+    # FontFormatDefaultLeft = new TextFormat()
+    # FontFormatEpicItemQuote = new TextFormat()
+    # FontFormatError = new TextFormat()
+    # FontFormatGrayed = new TextFormat()
+    # FontFormatGrayedHighLight = new TextFormat()
+    # FontFormatGuildBuilding = new TextFormat()
+    # FontFormatGuildHallNoAttack = new TextFormat()
+    # FontFormatGuildListText = new TextFormat()
+    # FontFormatGuildListTextAttackError = new TextFormat()
+    # FontFormatGuildListTextAttackErrorHalf = new TextFormat()
+    # FontFormatGuildListTextAttackErrorOnline = new TextFormat()
+    # FontFormatGuildListTextAttackErrorOnlineHalf = new TextFormat()
+    # FontFormatGuildListTextAttackErrorOnlinePopup = new TextFormat()
+    # FontFormatGuildListTextAttackOk = new TextFormat()
+    # FontFormatGuildListTextAttackOkPopup = new TextFormat()
+    # FontFormatGuildListTextOnline = new TextFormat()
+    # FontFormatGuildMoney = new TextFormat()
+    # FontFormatHallListHeading = new TextFormat()
+    # FontFormatHallListHighLight = new TextFormat()
+    # FontFormatHallListText = new TextFormat()
+    # FontFormatHeading = new TextFormat()
+    # FontFormatHighlight = new TextFormat()
+    # FontFormatHighlightWhisper = new TextFormat()
+    # FontFormatHighStakes = new TextFormat()
+    # FontFormatHighStakesGrayed = new TextFormat()
+    # FontFormatHighStakesHighLight = new TextFormat()
+    # FontFormatHighStakesHighLightGrayed = new TextFormat()
+    # FontFormatItemEnchantment = new TextFormat()
+    # FontFormatLifeBar = new TextFormat()
+    # FontFormatLOGoutLink = new TextFormat()
+    # FontFormatLOGoutLinkHighLight = new TextFormat()
+    # FontFormatPayIcon = new TextFormat()
+    # FontFormatPopup = new TextFormat()
+    # FontFormatPopupCompare = new TextFormat()
+    # FontFormatPopupCompareBetter = new TextFormat()
+    # FontFormatPopupCompareBetterHL = new TextFormat()
+    # FontFormatPopupCompareSum = new TextFormat()
+    # FontFormatPopupCompareWorse = new TextFormat()
+    # FontFormatPopupCompareWorseHL = new TextFormat()
+    # FontFormatPostListHeading = new TextFormat()
+    # FontFormatPostListHighLight = new TextFormat()
+    # FontFormatPostListHighLightSys = new TextFormat()
+    # FontFormatPostListHighLightSysGreen = new TextFormat()
+    # FontFormatPostListHighLightSysRed = new TextFormat()
+    # FontFormatPostListText = new TextFormat()
+    # FontFormatPostListTextSys = new TextFormat()
+    # FontFormatPostListTextSysGreen = new TextFormat()
+    # FontFormatPostListTextSysRed = new TextFormat()
+    # FontFormatQuestBar = new TextFormat()
+    # FontFormatScreenTitle = new TextFormat()
+    # FontFormatSpeech = new TextFormat()
+    # FontFormatTimeBar = new TextFormat()
+    # FontFormatToiletAura = new TextFormat()
 
     # force_adventure = False
     # force_smoothing = True
@@ -4282,13 +4282,13 @@ def weapon_strike(opponent=False):
                 visible = True;
                 alpha = DamageAlpha;
                 if (((opponent) ? oppFlag : charFlag) == 4){
-                    default_text_format = FontFormat_CatapultDamage;
+                    default_text_format = FontFormatCatapultDamage;
                 } else {
                     if (((opponent) ? oppFlag : charFlag) == 3){
                         default_text_format =
-                             FontFormat_CriticalDamage;
+                             FontFormatCriticalDamage;
                     } else {
-                        default_text_format = FontFormat_Damage;
+                        default_text_format = FontFormatDamage;
                     };
                 };
                 text = text;
@@ -5900,9 +5900,9 @@ def show_post_screen(par=None):
         var _local3 = actor[LBL_POST_LIMIT];
         with (_local3) {
             if (int(savegame[SG_MSG_COUNT]) >= 100){
-                default_text_format = FontFormat_Error;
+                default_text_format = FontFormatError;
             } else {
-                default_text_format = FontFormat_Default;
+                default_text_format = FontFormatDefault;
             };
             text = (savegame[SG_MSG_COUNT] + " / 100");
             x = (((POST_SQUARE_X + POST_SQUARE_X) - width) + POST_LIMIT_X);
@@ -5948,38 +5948,38 @@ def show_post_screen(par=None):
                 (POST_LIST_COLUMN_1_X + 180),
                 POST_LIST_LINES_Y,
                 texts[TXT_POST_LIST_COLUMN_1],
-                FontFormat_PostListHeading
+                FontFormatPostListHeading
             );
             PostListAddField(
                 (POST_LIST_COLUMN_2_X + 470),
                 POST_LIST_LINES_Y,
                 texts[TXT_POST_LIST_COLUMN_2],
-                FontFormat_PostListHeading
+                FontFormatPostListHeading
             );
             PostListAddField(
                 (POST_LIST_COLUMN_3_X + 180),
                 POST_LIST_LINES_Y,
                 texts[TXT_POST_LIST_COLUMN_3],
-                FontFormat_PostListHeading
+                FontFormatPostListHeading
             );
         } else {
             PostListAddField(
                 POST_LIST_COLUMN_1_X,
                 POST_LIST_LINES_Y,
                 texts[TXT_POST_LIST_COLUMN_1],
-                FontFormat_PostListHeading
+                FontFormatPostListHeading
             );
             PostListAddField(
                 POST_LIST_COLUMN_2_X,
                 POST_LIST_LINES_Y,
                 texts[TXT_POST_LIST_COLUMN_2],
-                FontFormat_PostListHeading
+                FontFormatPostListHeading
             );
             PostListAddField(
                 POST_LIST_COLUMN_3_X,
                 POST_LIST_LINES_Y,
                 texts[TXT_POST_LIST_COLUMN_3],
-                FontFormat_PostListHeading
+                FontFormatPostListHeading
             );
         };
         post_sel = sel_row;
@@ -5988,9 +5988,9 @@ def show_post_screen(par=None):
         i = 0;
         while (i < ((tmp_array.length - 1) - 3)) {
             if (sel_row == line){
-                tmp_fmt = FontFormat_PostListHighLightSys;
+                tmp_fmt = FontFormatPostListHighLightSys;
             } else {
-                tmp_fmt = FontFormat_PostListTextSys;
+                tmp_fmt = FontFormatPostListTextSys;
             };
             tmpBalken = new MovieClip();
             _local3 = tmpBalken.graphics;
@@ -6043,9 +6043,9 @@ def show_post_screen(par=None):
                     tmp_array[(i + 1)] = texts[TXT_SUBJECT_PVP].replace(
                         "%1", tmp_array[i]);
                     if (sel_row == line){
-                        tmp_fmt = FontFormat_PostListHighLightSysRed;
+                        tmp_fmt = FontFormatPostListHighLightSysRed;
                     } else {
-                        tmp_fmt = FontFormat_PostListTextSysRed;
+                        tmp_fmt = FontFormatPostListTextSysRed;
                     };
                     break;
                 if case("7":
@@ -6058,9 +6058,9 @@ def show_post_screen(par=None):
                     tmp_array[(i + 1)] = texts[TXT_SUBJECT_PVP].replace(
                         "%1", tmp_array[i]);
                     if (sel_row == line){
-                        tmp_fmt = FontFormat_PostListHighLightSysGreen;
+                        tmp_fmt = FontFormatPostListHighLightSysGreen;
                     } else {
-                        tmp_fmt = FontFormat_PostListTextSysGreen;
+                        tmp_fmt = FontFormatPostListTextSysGreen;
                     };
                     break;
                 if case("8":
@@ -6089,9 +6089,9 @@ def show_post_screen(par=None):
                     tmp_array[(i + 1)] = "Moo!";
                 default:
                     if (sel_row == line){
-                        tmp_fmt = FontFormat_PostListHighLight;
+                        tmp_fmt = FontFormatPostListHighLight;
                     } else {
-                        tmp_fmt = FontFormat_PostListText;
+                        tmp_fmt = FontFormatPostListText;
                     };
             };
             actor[POST_LIST].addChild(tmpBalken);
@@ -7890,7 +7890,7 @@ def show_screen_gilden(
                                         texts[TXT_HALL_LIST_COLUMN_4]),
                                     POPUP_END_LINE,
                                     POPUP_BEGIN_LINE,
-                                FontFormat_GuildListTextAttackErrorOnlinePopup,
+                                FontFormatGuildListTextAttackErrorOnlinePopup,
                                     attackHint,
                                     POPUP_END_LINE
                                 );
@@ -7912,7 +7912,7 @@ def show_screen_gilden(
                                         + str(lvl)),
                                     POPUP_END_LINE,
                                     POPUP_BEGIN_LINE,
-                            FontFormat_GuildListTextAttackErrorOnlinePopup,
+                            FontFormatGuildListTextAttackErrorOnlinePopup,
                                     attackHint,
                                     POPUP_END_LINE
                                 );
@@ -7979,7 +7979,7 @@ def show_screen_gilden(
                                     + hoverLevel) + scrollLevel)]),
                                 POPUP_END_LINE,
                                 POPUP_BEGIN_LINE,
-                    FontFormat_GuildListTextAttackErrorOnlinePopup,
+                    FontFormatGuildListTextAttackErrorOnlinePopup,
                                 texts[(TXT_ATTACK_STATUS + attackStatus)],
                                 POPUP_END_LINE
                             );
@@ -8010,7 +8010,7 @@ def show_screen_gilden(
                                     + hoverLevel) + scrollLevel)]),
                                 POPUP_END_LINE,
                                 POPUP_BEGIN_LINE,
-                        FontFormat_GuildListTextAttackErrorOnlinePopup,
+                        FontFormatGuildListTextAttackErrorOnlinePopup,
                                 texts[(TXT_ATTACK_STATUS + attackStatus)],
                                 POPUP_END_LINE
                             );
@@ -8109,7 +8109,7 @@ def show_screen_gilden(
                                         + hoverLevel) + scrollLevel)]),
                                     POPUP_END_LINE,
                                     POPUP_BEGIN_LINE,
-                                    FontFormat_GuildListTextAttackOkPopup,
+                                    FontFormatGuildListTextAttackOkPopup,
                                     texts[(TXT_ATTACK_OK_STATUS +
                                         attackStatus)],
                                     POPUP_END_LINE
@@ -8172,7 +8172,7 @@ def show_screen_gilden(
                                         + hoverLevel) + scrollLevel)]),
                                     POPUP_END_LINE,
                                     POPUP_BEGIN_LINE,
-                                    FontFormat_GuildListTextAttackOkPopup,
+                                    FontFormatGuildListTextAttackOkPopup,
                                     texts[TXT_ATTACK_OK_STATUS + attackStatus],
                                     POPUP_END_LINE
                                 );
@@ -8208,14 +8208,14 @@ def show_screen_gilden(
                             ){
                                 tmp_obj.default_text_format = (
                                     (onlineStatus)
-                                ? FontFormat_GuildListTextAttackErrorOnlineHalf
-                                : FontFormat_GuildListTextAttackErrorHalf
+                                ? FontFormatGuildListTextAttackErrorOnlineHalf
+                                : FontFormatGuildListTextAttackErrorHalf
                                 );
                             } else {
                                 tmp_obj.default_text_format = (
                                     (onlineStatus)
-                                    ? FontFormat_GuildListTextAttackErrorOnline
-                                    : FontFormat_GuildListTextAttackError
+                                    ? FontFormatGuildListTextAttackErrorOnline
+                                    : FontFormatGuildListTextAttackError
                                 );
                             };
                         } else {
@@ -8224,17 +8224,17 @@ def show_screen_gilden(
                                 and ((thisAttackStatus & 2)))
                             ){
                                 tmp_obj.default_text_format =
-                                    FontFormat_GuildListTextAttackErrorHalf;
+                                    FontFormatGuildListTextAttackErrorHalf;
                             } else {
                                 tmp_obj.default_text_format =
-                                    FontFormat_GuildListTextAttackError;
+                                    FontFormatGuildListTextAttackError;
                             };
                         };
                     } else {
                         tmp_obj.default_text_format = (
                             (((onlineStatus) and (is_mine)))
-                                ? FontFormat_GuildListTextOnline
-                                : FontFormat_GuildListText
+                                ? FontFormatGuildListTextOnline
+                                : FontFormatGuildListText
                             );
                     };
                     auto_size = TextFieldAutoSize.LEFT;
@@ -9815,9 +9815,9 @@ def show_main_quests_screen(next_enemies):
                     texts[(TXT_DUNGEON_NAME + i)].split("|")[0],
                     POPUP_END_LINE,
                     POPUP_BEGIN_LINE,
-                    FontFormat_EpicItemQuote,
+                    FontFormatEpicItemQuote,
                     texts[(TXT_DUNGEON_NAME + i)].split("|")[1],
-                    FontFormat_Popup,
+                    FontFormatPopup,
                     POPUP_END_LINE,
                     POPUP_BEGIN_LINE,
                     texts[TXT_DUNGEON_INFO].split(
@@ -10041,9 +10041,9 @@ def show_main_quests_screen(next_enemies):
                     POPUP_BEGIN_LINE,
                     texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[0],
                     POPUP_END_LINE, POPUP_BEGIN_LINE,
-                    FontFormat_EpicItemQuote,
+                    FontFormatEpicItemQuote,
                     texts[(TXT_HL_MAINQUESTS_NAME + i)].split("|")[1],
-                    FontFormat_Popup,
+                    FontFormatPopup,
                     POPUP_END_LINE,
                     POPUP_BEGIN_LINE,
                     texts[(((i == 4))
@@ -11704,7 +11704,7 @@ def set_font(font_name):
 
     LOG.info("Font chosen: " + font_name)
 
-    fmt = FontFormat_ToiletAura
+    fmt = FontFormatToiletAura
     fmt.font = font_name
     fmt.size = size_mod + 35
     fmt.color = CLR['BLACK']
@@ -11712,7 +11712,7 @@ def set_font(font_name):
     fmt.left_margin = 0
     fmt.kerning = True
 
-    fmt = FontFormat_GuildListTextAttackErrorHalf
+    fmt = FontFormatGuildListTextAttackErrorHalf
     fmt.font = font_name
     fmt.size = size_mod + 24
     fmt.color = CLR['ATTACK']['ERROR']['OFFLINE_HALF']
@@ -11720,7 +11720,7 @@ def set_font(font_name):
     fmt.left_margin = 0
     fmt.kerning = True
 
-    with FontFormat_GuildListTextAttackErrorOnlineHalf:
+    with FontFormatGuildListTextAttackErrorOnlineHalf:
         font = font_name
         size = size_mod + 24
         color = CLR['ATTACK']['ERROR']['ONLINE_HALF']
@@ -11728,7 +11728,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Error:
+    with FontFormatError:
         font = font_name
         size = size_mod + 24
         color = CLR['ERROR']
@@ -11736,7 +11736,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Default:
+    with FontFormatDefault:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11744,7 +11744,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HighStakes:
+    with FontFormatHighStakes:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['RED']
@@ -11752,7 +11752,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HighStakesHighLight:
+    with FontFormatHighStakesHighLight:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_HIGHLIGHT']
@@ -11760,7 +11760,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HighStakesHighLight:
+    with FontFormatHighStakesHighLight:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_GRAYED']
@@ -11768,7 +11768,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HighStakesHighLightGrayed:
+    with FontFormatHighStakesHighLightGrayed:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_HIGHLIGHT_GRAYED']
@@ -11776,7 +11776,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Book:
+    with FontFormatBook:
         font = font_name
         size = size_mod + 20
         color = 0
@@ -11784,7 +11784,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_BookHint:
+    with FontFormatBookHint:
         font = font_name
         size = size_mod + 18
         color = 136
@@ -11792,7 +11792,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_BookLeft:
+    with FontFormatBookLeft:
         font = font_name
         size = size_mod + 16
         color = 0
@@ -11800,7 +11800,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Bullshit:
+    with FontFormatBullshit:
         font = font_name
         size = 14
         color = CLR['SFORANGE']
@@ -11808,7 +11808,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_AttackLabel:
+    with FontFormatAttackLabel:
         font = font_name
         size = size_mod + 19
         color = CLR['SFORANGE']
@@ -11816,7 +11816,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Speech:
+    with FontFormatSpeech:
         font = font_name
         size = size_mod + 20
         color = CLR['WHITE']
@@ -11824,7 +11824,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Grayed:
+    with FontFormatGrayed:
         font = font_name
         size = size_mod + 20
         color = CLR['GRAYED']
@@ -11832,7 +11832,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GrayedHighLight:
+    with FontFormatGrayedHighLight:
         font = font_name
         size = size_mod + 20
         color = CLR['GRAYED_HL']
@@ -11840,7 +11840,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_ClassError:
+    with FontFormatClassError:
         font = font_name
         size = size_mod + 20
         color = CLR['ERROR']
@@ -11872,7 +11872,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildBuilding:
+    with FontFormatGuildBuilding:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11880,7 +11880,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildMoney:
+    with FontFormatGuildMoney:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11888,7 +11888,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_DefaultLeft:
+    with FontFormatDefaultLeft:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11896,7 +11896,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Highlight:
+    with FontFormatHighlight:
         font = font_name
         size = size_mod + 20
         color = CLR['SFHIGHLIGHT']
@@ -11904,7 +11904,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HighlightWhisper:
+    with FontFormatHighlightWhisper:
         font = font_name
         size = size_mod + 20
         color = CLR['SFHIGHLIGHT_WHISPER']
@@ -11912,7 +11912,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Heading:
+    with FontFormatHeading:
         font = font_name
         size = (size_mod + 30)
         color = CLR['SFORANGE']
@@ -11920,7 +11920,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_ScreenTitle:
+    with FontFormatScreenTitle:
         font = font_name
         size = size_mod + 34
         color = CLR['SFORANGE']
@@ -11928,7 +11928,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Popup:
+    with FontFormatPopup:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11936,7 +11936,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PopupCompare:
+    with FontFormatPopupCompare:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11944,7 +11944,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PopupCompareSum:
+    with FontFormatPopupCompareSum:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11952,7 +11952,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PopupCompareBetter:
+    with FontFormatPopupCompareBetter:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG_GREEN']
@@ -11960,7 +11960,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PopupCompareWorse:
+    with FontFormatPopupCompareWorse:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['RED']
@@ -11968,7 +11968,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PopupCompareBetterHL:
+    with FontFormatPopupCompareBetterHL:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['GREEN_HIGHLIGHT']
@@ -11976,7 +11976,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PopupCompareWorseHL:
+    with FontFormatPopupCompareWorseHL:
         font = font_name
         size = size_mod + 20
         color = CLR['SYSMSG']['RED_HIGHLIGHT']
@@ -11984,7 +11984,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_EpicItemQuote:
+    with FontFormatEpicItemQuote:
         font = font_name
         size = size_mod + 20
         color = CLR['EPICITEMQUOTE']
@@ -11992,7 +11992,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_ItemEnchantment:
+    with FontFormatItemEnchantment:
         font = font_name
         size = size_mod + 20
         color = CLR['ITEMENCHANTMENT']
@@ -12000,7 +12000,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_LOGoutLink:
+    with FontFormatLOGoutLink:
         font = font_name
         size = (size_mod + 22)
         color = CLR['SFORANGE']
@@ -12008,7 +12008,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_LOGoutLinkHighLight:
+    with FontFormatLOGoutLinkHighLight:
         font = font_name
         size = (size_mod + 22)
         color = CLR['SFHIGHLIGHT']
@@ -12016,7 +12016,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HallListHeading:
+    with FontFormatHallListHeading:
         font = font_name
         size = (size_mod + 19)
         color = CLR['SFORANGE']
@@ -12024,7 +12024,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HallListText:
+    with FontFormatHallListText:
         font = font_name
         size = (size_mod + 19)
         color = CLR['SFORANGE']
@@ -12032,7 +12032,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildHallNoAttack:
+    with FontFormatGuildHallNoAttack:
         font = font_name
         size = (size_mod + 19)
         color = CLR['NOATTACK']
@@ -12040,7 +12040,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_HallListHighLight:
+    with FontFormatHallListHighLight:
         font = font_name
         size = (size_mod + 19)
         color = CLR['SFHIGHLIGHT']
@@ -12048,7 +12048,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_AttribBonus:
+    with FontFormatAttribBonus:
         font = font_name
         size = (size_mod + 19)
         color = CLR['ATTRIBBONUS']
@@ -12056,7 +12056,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_AttribTemp:
+    with FontFormatAttribTemp:
         font = font_name
         size = (size_mod + 19)
         color = CLR['SYSMSG']['GREEN']
@@ -12064,7 +12064,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Attrib:
+    with FontFormatAttrib:
         font = font_name
         size = (size_mod + 19)
         color = CLR['SFORANGE']
@@ -12072,7 +12072,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PayIcon:
+    with FontFormatPayIcon:
         font = font_name
         size = (size_mod + 19)
         color = CLR['WHITE']
@@ -12080,7 +12080,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListHeading:
+    with FontFormatPostListHeading:
         font = font_name
         size = (size_mod + 26)
         color = CLR['SFORANGE']
@@ -12089,7 +12089,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListText:
+    with FontFormatPostListText:
         font = font_name
         size = size_mod + 24
         color = CLR['SFORANGE']
@@ -12097,7 +12097,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListTextSys:
+    with FontFormatPostListTextSys:
         font = font_name
         size = size_mod + 24
         color = CLR['SYSMSG']
@@ -12105,7 +12105,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListText:
+    with FontFormatGuildListText:
         font = font_name
         size = size_mod + 24
         color = CLR['OFFLINE']
@@ -12113,7 +12113,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListTextOnline:
+    with FontFormatGuildListTextOnline:
         font = font_name
         size = size_mod + 24
         color = CLR['ONLINE']
@@ -12121,7 +12121,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListTextAttackError:
+    with FontFormatGuildListTextAttackError:
         font = font_name
         size = size_mod + 24
         color = CLR['ATTACK']['ERROR']['OFFLINE']
@@ -12129,7 +12129,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListTextAttackErrorOnline:
+    with FontFormatGuildListTextAttackErrorOnline:
         font = font_name
         size = size_mod + 24
         color = CLR['ATTACK']['ERROR']['ONLINE']
@@ -12137,7 +12137,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListTextAttackErrorOnlinePopup:
+    with FontFormatGuildListTextAttackErrorOnlinePopup:
         font = font_name
         size = size_mod + 20
         color = CLR['ATTACK']['ERROR']['ONLINE']
@@ -12145,7 +12145,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListTextAttackOk:
+    with FontFormatGuildListTextAttackOk:
         font = font_name
         size = size_mod + 24
         color = CLR['ATTACK']['OK']
@@ -12153,7 +12153,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_GuildListTextAttackOkPopup:
+    with FontFormatGuildListTextAttackOkPopup:
         font = font_name
         size = size_mod + 20
         color = CLR['ATTACK']['OK']
@@ -12161,7 +12161,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListHighLight:
+    with FontFormatPostListHighLight:
         font = font_name
         size = size_mod + 24
         color = CLR['SFHIGHLIGHT']
@@ -12169,7 +12169,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListHighLightSys:
+    with FontFormatPostListHighLightSys:
         font = font_name
         size = size_mod + 24
         color = CLR['SYSMSG']['HIGHLIGHT']
@@ -12177,7 +12177,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListTextSysRed:
+    with FontFormatPostListTextSysRed:
         font = font_name
         size = size_mod + 24
         color = CLR['SYSMSG']['RED']
@@ -12185,7 +12185,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListHighLightSysRed:
+    with FontFormatPostListHighLightSysRed:
         font = font_name
         size = size_mod + 24
         color = CLR['SYSMSG']['RED_HIGHLIGHT']
@@ -12193,7 +12193,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListTextSysGreen:
+    with FontFormatPostListTextSysGreen:
         font = font_name
         size = size_mod + 24
         color = CLR['SYSMSG']['GREEN']
@@ -12201,7 +12201,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_PostListHighLightSysGreen:
+    with FontFormatPostListHighLightSysGreen:
         font = font_name
         size = size_mod + 24
         color = CLR['SYSMSG']['GREEN_HIGHLIGHT']
@@ -12209,7 +12209,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_QuestBar:
+    with FontFormatQuestBar:
         font = font_name
         size = size_mod + 24
         color = CLR['WHITE']
@@ -12217,7 +12217,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_TimeBar:
+    with FontFormatTimeBar:
         font = font_name
         size = size_mod + 24
         color = CLR['WHITE']
@@ -12225,7 +12225,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_LifeBar:
+    with FontFormatLifeBar:
         font = font_name
         size = size_mod + 20
         color = CLR['WHITE']
@@ -12233,7 +12233,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_Damage:
+    with FontFormatDamage:
         font = font_name
         size = (size_mod + 30)
         color = CLR['WHITE']
@@ -12241,7 +12241,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_CriticalDamage:
+    with FontFormatCriticalDamage:
         font = font_name
         size = size_mod + 34
         color = CLR['RED']
@@ -12249,7 +12249,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with FontFormat_CatapultDamage:
+    with FontFormatCatapultDamage:
         font = font_name
         size = size_mod + 38
         color = CLR['ATTACK']['ERROR']['ONLINE_HALF']
@@ -13534,7 +13534,7 @@ def action_handler(event):
                     col_idx['6_X'] + 40,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['1']],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 modetxt = TXT['HALL']['LIST']['COLUMN']['2']
@@ -13544,13 +13544,13 @@ def action_handler(event):
                     col_idx['6_X'] - 10,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
                 hall_list_add_field(
                     col_idx['2_X'] - 10,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['5']],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 modetxt = TXT['GUILDHALL']['LEADER']
@@ -13560,7 +13560,7 @@ def action_handler(event):
                     col_idx['4_X'] + 20,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 modetxt = TXT['GUILDHALL']['MEMBERS']
@@ -13570,14 +13570,14 @@ def action_handler(event):
                     col_idx['3_X'] + 25,
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
             else:
                 hall_list_add_field(
                     col_idx['1_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['1']],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 modetxt = TXT['HALL']['LIST']['COLUMN']['2']
@@ -13587,14 +13587,14 @@ def action_handler(event):
                     col_idx['2_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 hall_list_add_field(
                     col_idx['6_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[TXT['HALL']['LIST']['COLUMN']['5']],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 modetxt = TXT['GUILDHALL']['LEADER']
@@ -13604,7 +13604,7 @@ def action_handler(event):
                     col_idx['4_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
                 modetxt = TXT['GUILDHALL']['MEMBERS']
@@ -13614,7 +13614,7 @@ def action_handler(event):
                     col_idx['5_X'],
                     REL['HALL']['LIST']['LINES']['Y'],
                     texts[modetxt],
-                    FontFormat_HallListHeading
+                    FontFormatHallListHeading
                 )
 
             hall_list_name = list()
@@ -13638,15 +13638,15 @@ def action_handler(event):
                 if ((not guild_hall_mode)
                         and (not ruhmes_halle_such_name)
                         and (tmp_str == tmp_array[tmpidx].lower())):
-                    tmp_fmt = FontFormat_HallListHighLight
+                    tmp_fmt = FontFormatHallListHighLight
                 elif guild_hall_mode and (int(tmp_array[i + 3]) < 0):
-                    tmp_fmt = FontFormat_GuildHallNoAttack
+                    tmp_fmt = FontFormatGuildHallNoAttack
                 elif ((not guild_hall_mode)
                       and (not lastAttacked.find(
                           tmp_array[i + 1].lower()) == -1)):
-                    tmp_fmt = FontFormat_GuildHallNoAttack
+                    tmp_fmt = FontFormatGuildHallNoAttack
                 else:
-                    tmp_fmt = FontFormat_HallListText
+                    tmp_fmt = FontFormatHallListText
 
                 last_hall_members.append(tmp_array[i + 1])
                 arrow_hall_mode = True
@@ -14462,9 +14462,9 @@ def error_message(msg=""):
                 if ((on_stage(BTN['CREATE_CHARACTER'])
                      and (not on_stage(IMG['IF']['WINDOW'])))):
                     label = actor[LBL['CREATE']['RACE_DESC']]
-                    label.default_text_format = FontFormat_ClassError
+                    label.default_text_format = FontFormatClassError
                     label.text = msg
-                    label.default_text_format = FontFormat_DefaultLeft
+                    label.default_text_format = FontFormatDefaultLeft
 
                     actor[LBL['CREATE']['CLASS']].text = ""
                     actor[LBL['CREATE']['CLASS_DESC']].text = ""
@@ -14745,7 +14745,7 @@ def show_popup(evt, *args):
             actor[IMG['SLOT_SUGGESTION']].alpha = 0
             fade_in(IMG['SLOT_SUGGESTION'])
 
-    tmp_text_format = FontFormat_Popup
+    tmp_text_format = FontFormatPopup
     last_text_height = 0
 
     popup_width = 0
@@ -15167,7 +15167,7 @@ def define_lbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
     i = actor_id;
     actor[i] = new TextField();
     if (!fmt){
-        fmt = FontFormat_Default;
+        fmt = FontFormatDefault;
     };
     var _local8 = actor[i];
     with (_local8) {
@@ -18537,14 +18537,14 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
         };
         if (text_dir == "right"){
             popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib, ((((((((("(" + texts[TXT_MAX]) + " -")
+                FontFormatAttrib, ((((((((("(" + texts[TXT_MAX]) + " -")
                                     + str(DamageReductionMaxCpc)) + "%) ")
                 + str(DamageReductionCpc)) + "% :")
                 + save[(copyCatId + CPC_LEVEL)]) + " ")
                 + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
             popupLinesCpc[popupLinesCpc.length] = [POPUP_BEGIN_LINE,
-            FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
+            FontFormatAttrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
                                 + save[(copyCatId + CPC_LEVEL)]) + ": -")
                                 + str(DamageReductionCpc))
                                 + "% (") + texts[TXT_MAX]) + " -")
@@ -18553,7 +18553,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
         };
         if (texts[TXT_SHIELD_FORMULA]){
             popupLinesCpc[popupLinesCpc.length] = [
-                POPUP_BEGIN_LINE, FontFormat_Attrib,
+                POPUP_BEGIN_LINE, FontFormatAttrib,
                 texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
         enable_popup(LBL_TOWER_EXPLABEL, popupLinesCpc);
@@ -18579,10 +18579,10 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                 ? (copyCatId + CPC_ATTRIBS_BONUS)
                 : SG_ATTR_STAERKE_BONUS) + i)]) > 0){
             actor[(LBL_SCR_CHAR_STAERKE + i)]
-                .default_text_format = FontFormat_AttribBonus;
+                .default_text_format = FontFormatAttribBonus;
         } else {
             actor[(LBL_SCR_CHAR_STAERKE + i)]
-                .default_text_format = FontFormat_Attrib;
+                .default_text_format = FontFormatAttrib;
         };
         actor[(LBL_SCR_CHAR_STAERKE + i)].text = str((int(save[(((tower_mode)
                                 ? (copyCatId + CPC_ATTRIBS)
@@ -18591,50 +18591,50 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                 : SG_ATTR_STAERKE_BONUS) + i)])));
         popupLines = list();
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-            FontFormat_Attrib, texts[(TXT_CHAR_SCHADEN + i)], POPUP_END_LINE];
+            FontFormatAttrib, texts[(TXT_CHAR_SCHADEN + i)], POPUP_END_LINE];
         if (text_dir == "right"){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib,
+                FontFormatAttrib,
                 (actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text + " ÷ 2 ="),
                 POPUP_END_LINE];
         } else {
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-            FontFormat_Attrib,
+            FontFormatAttrib,
             (("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text) + " / 2"),
             POPUP_END_LINE];
         };
         enable_popup((LBL_SCR_CHAR_SCHADEN + i), popupLines);
         enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + i), popupLines);
         popupLines = list();
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             actor[(LBL_SCR_CHAR_STAERKE_CAPTION + i)].text, POPUP_END_LINE];
         popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-            FontFormat_Attrib, texts[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
+            FontFormatAttrib, texts[(TXT_ATTRIBHELP + i)], POPUP_END_LINE];
         if ((((((tower_mode)
             ? (copy_cat_id_raw + 1) : int(save[SG_CLASS])) == 1))
                 and ((i == 0)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-            FontFormat_Attrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
+            FontFormatAttrib, texts[TXT_ATTRIBHELP_WARRIOR], POPUP_END_LINE];
         } else {
         if ((((((tower_mode)
             ? (copy_cat_id_raw + 1) : int(save[SG_CLASS])) == 3))
                 and ((i == 1)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib, texts[TXT_ATTRIBHELP_HUNTER],
+                FontFormatAttrib, texts[TXT_ATTRIBHELP_HUNTER],
                 POPUP_END_LINE];
         } else {
         if ((((((tower_mode) ? (copy_cat_id_raw + 1)
             : int(save[SG_CLASS])) == 2))
                 and ((i == 2)))){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
+                FontFormatAttrib, texts[TXT_ATTRIBHELP_MAGE], POPUP_END_LINE];
         } else {
         if (i <= 2){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib, texts[(TXT_ATTRIBHELP_EXT + i)],
+                FontFormatAttrib, texts[(TXT_ATTRIBHELP_EXT + i)],
                 POPUP_END_LINE];
 
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             texts[TXT_BASIS], POPUP_TAB,
             str(int(save[(((tower_mode)
                 ? (copyCatId + CPC_ATTRIBS)
@@ -18659,7 +18659,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
 
                             if (hide_back_pack){
                                 popupLines[popupLines.length] = [
-                                    POPUP_BEGIN_LINE, FontFormat_AttribTemp,
+                                    POPUP_BEGIN_LINE, FontFormatAttribTemp,
                                     texts[TXT_TEMPORARY], POPUP_TAB,
                                     str(math.round(
                                         ((int(save[(SG_POTION_GAIN + ii)])
@@ -18669,7 +18669,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                 if (text_dir == "right"){
                                     popupLines[popupLines.length] =
                                         [POPUP_BEGIN_LINE,
-                                        FontFormat_AttribTemp,
+                                        FontFormatAttribTemp,
                                         texts[TXT_TEMPORARY],
                                         POPUP_TAB,
                                         ((((("(" + potionDuration) + " ")
@@ -18680,7 +18680,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                 } else {
                                     popupLines[popupLines.length] = [
                                         POPUP_BEGIN_LINE,
-                                        FontFormat_AttribTemp,
+                                        FontFormatAttribTemp,
                                         texts[TXT_TEMPORARY],
                                         POPUP_TAB,
                                         (((((str(math.round(((int(save[
@@ -18697,7 +18697,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                             if (hide_back_pack){
                                 popupLines[popupLines.length] = [
                                     POPUP_BEGIN_LINE,
-                                    FontFormat_AttribTemp,
+                                    FontFormatAttribTemp,
                                     texts[TXT_TEMPORARY], POPUP_TAB,
                                     str(int(save[(SG_POTION_GAIN + ii)])),
                                     POPUP_END_LINE];
@@ -18705,7 +18705,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                 if (text_dir == "right"){
                                     popupLines[popupLines.length] =
                                         [POPUP_BEGIN_LINE,
-                                        FontFormat_AttribTemp,
+                                        FontFormatAttribTemp,
                                         texts[TXT_TEMPORARY],
                                         POPUP_TAB,
                                         ((((("(" + potionDuration) + " ")
@@ -18716,7 +18716,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                 } else {
                                     popupLines[popupLines.length] = [
                                         POPUP_BEGIN_LINE,
-                                        FontFormat_AttribTemp,
+                                        FontFormatAttribTemp,
                                         texts[TXT_TEMPORARY],
                                         POPUP_TAB,
                                         ((((str(int(save[
@@ -18737,7 +18737,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
         };
         if (tempBonus > 0){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_AttribBonus, texts[TXT_BONUS],
+                FontFormatAttribBonus, texts[TXT_BONUS],
                 POPUP_TAB, str(tempBonus), POPUP_END_LINE];
         };
         enable_popup((LBL_SCR_CHAR_STAERKE + i), popupLines);
@@ -18887,7 +18887,7 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
                                  ? ((copyCatId + CPC_ATTRIBS_BONUS) + 2)
                                  : SG_ATTR_AUSDAUER_BONUS)])) / 2));
     actor[LBL_SCR_CHAR_RUESTUNG].default_text_format = (((tmpHealth > 0))
-                            ? FontFormat_AttribBonus : FontFormat_Attrib);
+                            ? FontFormatAttribBonus : FontFormatAttrib);
     actor[LBL_SCR_CHAR_RUESTUNG].text = int(((((Number(save[((tower_mode)
             ? ((copyCatId + CPC_ATTRIBS) + 3)
             : SG_ATTR_INTELLIGENZ)]) + Number(save[((tower_mode)
@@ -18899,15 +18899,15 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
     actor[LBL_SCR_CHAR_WIDERSTAND].text = (str(tmpKritische) + str("%"));
     popupLines = list();
     popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-        FontFormat_Attrib, texts[TXT_SCHADEN], POPUP_END_LINE];
+        FontFormatAttrib, texts[TXT_SCHADEN], POPUP_END_LINE];
     if (text_dir == "right"){
         popupLines[popupLines.length] = [
-            POPUP_BEGIN_LINE, FontFormat_Attrib,
+            POPUP_BEGIN_LINE, FontFormatAttrib,
             (((texts[TXT_WAFFENSCHADEN] + " × (1 + ") +
              actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID) -
               LBL_SCR_CHAR_SCHADEN)].text) + " ÷ 10) ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             (((("= " + texts[TXT_WAFFENSCHADEN]) + " * (1 + ")
              + actor[((LBL_SCR_CHAR_STAERKE_CAPTION + SchadenID)
                   - LBL_SCR_CHAR_SCHADEN)].text) + " / 10)"), POPUP_END_LINE];
@@ -18915,17 +18915,17 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
     enable_popup(SchadenID, popupLines);
     enable_popup(SchadenLblID, popupLines);
     popupLines = list();
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
         actor[LBL_SCR_CHAR_RUESTUNG_CAPTION].text, POPUP_END_LINE];
     if (text_dir == "right"){
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             (((((((((((tmpHealth > 0)) ? "(" : "")
              + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " × ")
             + str(tmpLifeFactor)) + " × (") + texts[TXT_HALL_LIST_COLUMN_4])
             + " + 1)") + (((tmpHealth > 0)) ? ((") + " + str(tmpHealth))
             + "%") : "")) + " ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             (((((((("= " + (((tmpHealth > 0)) ? "(" : ""))
              + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 3)].text) + " * ")
             + str(tmpLifeFactor)) + " * (") + texts[TXT_HALL_LIST_COLUMN_4])
@@ -18935,19 +18935,19 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
     enable_popup((LBL_SCR_CHAR_SCHADEN + 3), popupLines);
     enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + 3), popupLines);
     popupLines = list();
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
                 actor[LBL_SCR_CHAR_WIDERSTAND_CAPTION].text, POPUP_END_LINE];
     if (text_dir == "right"){
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
                 (((actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text + " × 5 ÷ (")
                  + texts[TXT_GEGNERSTUFE]) + " × 2) ="), POPUP_END_LINE];
     } else {
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
                 (((("= " + actor[(LBL_SCR_CHAR_STAERKE_CAPTION + 4)].text)
                  + " * 5 / (") + texts[TXT_GEGNERSTUFE]) + " * 2)"),
                 POPUP_END_LINE];
     };
-    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+    popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             texts[TXT_KRITISCHMINMAX], POPUP_END_LINE];
     enable_popup((LBL_SCR_CHAR_SCHADEN + 4), popupLines);
     enable_popup((LBL_SCR_CHAR_SCHADEN_CAPTION + 4), popupLines);
@@ -19214,25 +19214,25 @@ def display_inventory(save=None, no_prices=False, tower_mode=False,
             DamageReduction = DamageReductionMax;
         };
         popupLines = list();
-        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormat_Attrib,
+        popupLines[popupLines.length] = [POPUP_BEGIN_LINE, FontFormatAttrib,
             texts[TXT_RUESTUNG_SUM], POPUP_END_LINE];
         if (text_dir == "right"){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib,
+                FontFormatAttrib,
                 ((((((((("(" + texts[TXT_MAX]) + " -")
                  + str(DamageReductionMax)) + "%) ")
                     + str(DamageReduction)) + "% :") + save[SG_LEVEL]) + " ")
                 + texts[TXT_RUESTUNG_SUM_HINT]), POPUP_END_LINE];
         } else {
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-            FontFormat_Attrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
+            FontFormatAttrib, (((((((((texts[TXT_RUESTUNG_SUM_HINT] + " ")
                 + save[SG_LEVEL]) + ": -") + str(DamageReduction)) + "% (")
                 + texts[TXT_MAX]) + " -") + str(DamageReductionMax)) + "%)"),
             POPUP_END_LINE];
         };
         if (texts[TXT_SHIELD_FORMULA]){
             popupLines[popupLines.length] = [POPUP_BEGIN_LINE,
-                FontFormat_Attrib, texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
+                FontFormatAttrib, texts[TXT_SHIELD_FORMULA], POPUP_END_LINE];
         };
         enable_popup(LBL_CHAR_RUESTUNG, popupLines);
         enable_popup(CHAR_RUESTUNG, popupLines);
@@ -19297,7 +19297,7 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
         enchant = int(save[(sg_index + SG_ITM_EXT_ENCHANT)]);
         enchantPower = int(save[(sg_index + SG_ITM_EXT_ENCHANT_POWER)]);
         if (((!(hide_back_pack)) and (!(no_prices)))){
-            shopLines[shopLines.length] = FontFormat_Popup;
+            shopLines[shopLines.length] = FontFormatPopup;
             if (gold > 0){
                 if (silber > 0){
                     shopLines[shopLines.length] = [POPUP_BEGIN_LINE, str(gold),
@@ -19397,12 +19397,12 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                     var _temp2 = ii;
                     ii = (ii + 1);
                     var _local34 = _temp2;
-                    attribLines[_local34] = FontFormat_Popup;
+                    attribLines[_local34] = FontFormatPopup;
                 } else {
                     var _temp3 = ii;
                     ii = (ii + 1);
                     _local34 = _temp3;
-                    attribLines[_local34] = FontFormat_Popup;
+                    attribLines[_local34] = FontFormatPopup;
                 };
                 var _temp4 = ii;
                 ii = (ii + 1);
@@ -19491,9 +19491,9 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                             ii = (ii + 1);
                             _local36 = _temp13;
                             attribLines[_local36] = (((compareVal == 0))
-                                 ? FontFormat_Popup : (((compareVal > 0))
-                               ? FontFormat_PopupCompareBetter
-                               : FontFormat_PopupCompareWorse));
+                                 ? FontFormatPopup : (((compareVal > 0))
+                               ? FontFormatPopupCompareBetter
+                               : FontFormatPopupCompareWorse));
                             var _temp14 = ii;
                             ii = (ii + 1);
                             _local37 = _temp14;
@@ -19510,7 +19510,7 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                             var _temp17 = ii;
                             ii = (ii + 1);
                             var _local40 = _temp17;
-                            attribLines[_local40] = FontFormat_Popup;
+                            attribLines[_local40] = FontFormatPopup;
                             compareFound = True;
                             break;
                         };
@@ -19520,7 +19520,7 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                         var _temp18 = ii;
                         ii = (ii + 1);
                         _local36 = _temp18;
-                        attribLines[_local36] = FontFormat_PopupCompareBetter;
+                        attribLines[_local36] = FontFormatPopupCompareBetter;
                         var _temp19 = ii;
                         ii = (ii + 1);
                         _local37 = _temp19;
@@ -19539,7 +19539,7 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                         var _temp22 = ii;
                         ii = (ii + 1);
                         _local40 = _temp22;
-                        attribLines[_local40] = FontFormat_Popup;
+                        attribLines[_local40] = FontFormatPopup;
                         attribSum = (attribSum + (save[((sg_index
                              + SG_ITM_ATTRIBVAL1) + i)] * (((save[((sg_index
                              + SG_ITM_ATTRIBTYP1) + i)] == 6)) ? 5 : 1)));
@@ -19589,7 +19589,7 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                     var _temp28 = ii;
                     ii = (ii + 1);
                     _local37 = _temp28;
-                    attribLines[_local37] = FontFormat_PopupCompareWorse;
+                    attribLines[_local37] = FontFormatPopupCompareWorse;
                     var _temp29 = ii;
                     ii = (ii + 1);
                     _local38 = _temp29;
@@ -19608,7 +19608,7 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                     var _temp32 = ii;
                     ii = (ii + 1);
                     var _local41 = _temp32;
-                    attribLines[_local41] = FontFormat_Popup;
+                    attribLines[_local41] = FontFormatPopup;
                     var _temp33 = ii;
                     ii = (ii + 1);
                     var _local42 = _temp33;
@@ -19629,19 +19629,19 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
             itmName = itmName.split("|")[0];
             quoteArray[0] = POPUP_BEGIN_LINE;
             quoteArray[1] = ((save[(sg_index + SG_ITM_TYP)])==14)
-                ? FontFormat_ItemEnchantment : FontFormat_EpicItemQuote;
+                ? FontFormatItemEnchantment : FontFormatEpicItemQuote;
             quoteArray[2] = itmQuote;
-            quoteArray[3] = FontFormat_Popup;
+            quoteArray[3] = FontFormatPopup;
             quoteArray[4] = POPUP_END_LINE;
         };
         if (save[(sg_index + SG_ITM_TYP)] < 8){
             if ((itm_class + 1) != ((tower_mode)
                 ? (copyCatSel + 1) : savegame[SG_CLASS])){
                 quoteArray.append(POPUP_BEGIN_LINE);
-                quoteArray.append(FontFormat_Error);
+                quoteArray.append(FontFormatError);
                 quoteArray.append(texts[TXT_NECESSARY_CLASS].split("%1")
                       .join(texts[((TXT_NECESSARY_CLASS + itm_class) + 1)]));
-                quoteArray.append(FontFormat_Popup);
+                quoteArray.append(FontFormatPopup);
                 quoteArray.append(POPUP_END_LINE);
             };
         };
@@ -19650,24 +19650,24 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                 itmName = texts[TXT_SCROLL_NAME].split("%1").join(itmName);
             } else {
                 quoteArray.append(POPUP_BEGIN_LINE);
-                quoteArray.append(FontFormat_ItemEnchantment);
+                quoteArray.append(FontFormatItemEnchantment);
                 quoteArray.append(texts[TXT_ENCHANT_HINT]);
                 quoteArray.append((POPUP_TAB + POPUP_TAB_ADD));
                 quoteArray.append(texts[((TXT_ITMNAME_14
                  + int(save[(sg_index + SG_ITM_EXT_ENCHANT)])) - 1)]
                     .split("|")[0]);
-                quoteArray.append(FontFormat_Popup);
+                quoteArray.append(FontFormatPopup);
                 quoteArray.append(POPUP_END_LINE);
             };
             quoteArray.append(POPUP_BEGIN_LINE);
-            quoteArray.append(FontFormat_ItemEnchantment);
+            quoteArray.append(FontFormatItemEnchantment);
             quoteArray.append(texts[((TXT_ENCHANT_NAMES + int(save[(sg_index
                               + SG_ITM_EXT_ENCHANT)])) - 1)]);
             quoteArray.append((POPUP_TAB + POPUP_TAB_ADD));
             quoteArray.append(texts[((TXT_ENCHANT_VALUES + int(save[(sg_index
                               + SG_ITM_EXT_ENCHANT)])) - 1)].split("%1")
                     .join(str(save[(sg_index + SG_ITM_EXT_ENCHANT_POWER)])));
-            quoteArray.append(FontFormat_Popup);
+            quoteArray.append(FontFormatPopup);
             quoteArray.append(POPUP_END_LINE);
         };
         if (int(save[(sg_index + SG_ITM_TYP)]) == 1){
@@ -19686,12 +19686,12 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                              + SG['ITM']['SCHADEN_MIN'])])
                             + Number(save[(sg_index + SG_ITM_SCHADEN_MAX)]))
                             / 2)))) + ")"), (((compareVal == 0))
-                            ? FontFormat_Popup : (((compareVal > 0))
-                            ? FontFormat_PopupCompareBetter
-                            : FontFormat_PopupCompareWorse)), COMPARE_TAB,
+                            ? FontFormatPopup : (((compareVal > 0))
+                            ? FontFormatPopupCompareBetter
+                            : FontFormatPopupCompareWorse)), COMPARE_TAB,
                             ((((compareVal >= 0)) ? (((compareVal == 0))
                              ? "+- " : "+ ") : "- ")
-                            + str(math.abs(compareVal))), FontFormat_Popup,
+                            + str(math.abs(compareVal))), FontFormatPopup,
                             POPUP_END_LINE, attribLines, shopLines);
             } else {
                 enable_popup(slot_id, itmName, quoteArray, POPUP_BEGIN_LINE,
@@ -19717,16 +19717,16 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                                  (save[(sg_index + SG['ITM']['SCHADEN_MIN'])]
                                   + " %"),
                                  (((compareVal == 0))
-                                  ? FontFormat_Popup
+                                  ? FontFormatPopup
                                   : (((compareVal > 0))
-                                     ? FontFormat_PopupCompareBetter
-                                     : FontFormat_PopupCompareWorse)),
+                                     ? FontFormatPopupCompareBetter
+                                     : FontFormatPopupCompareWorse)),
                                  COMPARE_TAB,
                                  ((((compareVal >= 0))
                                     ? (((compareVal == 0))
                                        ? "+- " : "+ ") : "- ")
                                     + str(math.abs(compareVal))),
-                                    FontFormat_Popup, POPUP_END_LINE,
+                                    FontFormatPopup, POPUP_END_LINE,
                                     attribLines, shopLines);
                 } else {
                     enable_popup(slot_id, itmName, quoteArray,
@@ -19749,15 +19749,15 @@ def item_popup(slot_id, sg_index, save=None, hide_back_pack=False,
                                      save[sg_index
                                      + SG['ITM']['SCHADEN_MIN']],
                                      (((compareVal == 0))
-                                      ? FontFormat_Popup : (((compareVal > 0))
-                                      ? FontFormat_PopupCompareBetter
-                                      : FontFormat_PopupCompareWorse)),
+                                      ? FontFormatPopup : (((compareVal > 0))
+                                      ? FontFormatPopupCompareBetter
+                                      : FontFormatPopupCompareWorse)),
                                     COMPARE_TAB,
                                     ((((compareVal >= 0))
                                      ? (((compareVal == 0))
                                         ? "+- " : "+ ") : "- ")
                                         + str(math.abs(compareVal))),
-                                        FontFormat_Popup, POPUP_END_LINE,
+                                        FontFormatPopup, POPUP_END_LINE,
                                         attribLines, shopLines);
                     } else {
                         enable_popup(slot_id, itmName, quoteArray,
@@ -20171,16 +20171,16 @@ def chat_line(line, is_error=False, hl_index=-1, is_whisper=False):
             };
             if (is_whisper){
                 if (text_dir == "right"){
-                    setTextFormat(FontFormat_HighlightWhisper,
+                    setTextFormat(FontFormatHighlightWhisper,
                                   hl_index, length)
                 } else {
-                    setTextFormat(FontFormat_HighlightWhisper, 0, hl_index);
+                    setTextFormat(FontFormatHighlightWhisper, 0, hl_index);
                 };
             } else {
                 if (text_dir == "right"){
-                    setTextFormat(FontFormat_Highlight, hl_index, length);
+                    setTextFormat(FontFormatHighlight, hl_index, length);
                 } else {
-                    setTextFormat(FontFormat_Highlight, 0, hl_index);
+                    setTextFormat(FontFormatHighlight, 0, hl_index);
                 };
             };
         };

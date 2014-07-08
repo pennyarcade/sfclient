@@ -145,140 +145,140 @@ class FontFormat(BaseClass):
     pass
 
 
-class FontFormat_ToiletAura(FontFormat):
+class FontFormatToiletAura(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_GuildListTextAttackErrorHalf(FontFormat):
+class FontFormatGuildListTextAttackErrorHalf(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_GuildListTextAttackErrorOnlineHalf(FontFormat):
+class FontFormatGuildListTextAttackErrorOnlineHalf(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_Error(FontFormat):
+class FontFormatError(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_Default(FontFormat):
+class FontFormatDefault(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_HighStakes(FontFormat):
+class FontFormatHighStakes(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_HighStakesHighLight(FontFormat):
+class FontFormatHighStakesHighLight(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_HighStakesHighLightGrayed(FontFormat):
+class FontFormatHighStakesHighLightGrayed(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_Book(FontFormat):
+class FontFormatBook(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_BookHint(FontFormat):
+class FontFormatBookHint(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_BookLeft(FontFormat):
+class FontFormatBookLeft(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_Bullshit(FontFormat):
+class FontFormatBullshit(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_AttackLabel(FontFormat):
+class FontFormatAttackLabel(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_Speech(FontFormat):
+class FontFormatSpeech(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_Grayed(FontFormat):
+class FontFormatGrayed(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_GrayedHighLight(FontFormat):
+class FontFormatGrayedHighLight(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_HallListHeading(FontFormat):
+class FontFormatHallListHeading(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_GuildHallNoAttack(FontFormat):
+class FontFormatGuildHallNoAttack(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_ClassError(FontFormat):
+class FontFormatClassError(FontFormat):
     '''
         obsolete with cli?
     '''
     pass
 
 
-class FontFormat_DefaultLeft(FontFormat):
+class FontFormatDefaultLeft(FontFormat):
     '''
         obsolete with cli?
     '''
