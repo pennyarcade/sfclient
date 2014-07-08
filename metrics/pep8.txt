@@ -1,20 +1,5 @@
 checking sfbuildinterface.py
 checking sfclient.py
-sfclient.py:14434:13: E112 expected an indented block
-    Use 4 spaces per indentation level.
-
-    For really old code that you don't want to mess up, you can continue to
-    use 8-space tabs.
-
-    Okay: a = 1
-    Okay: if a == 0:\n    a = 1
-    E111:   a = 1
-
-    Okay: for item in items:\n    pass
-    E112: for item in items:\npass
-
-    Okay: a = 1\nb = 2
-    E113: a = 1\n    b = 2
 sfclient.py:14490:21: E303 too many blank lines (2)
     Separate top-level function and class definitions with two blank lines.
 
@@ -51,6 +36,5 @@ sfclient.py:14756:29: E113 unexpected indentation
     E113: a = 1\n    b = 2
 checking sfglobals.py
 checking sflegacy.py
-1       E112 expected an indented block
 1       E113 unexpected indentation
 1       E303 too many blank lines (2)
