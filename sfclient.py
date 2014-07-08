@@ -805,7 +805,8 @@ def init_vars():
     # noMush = False
     # notFirstVolChange = True
     # notSecondVolChange = True
-    # offline_guild_members = list()
+    global offline_guild_members
+    offline_guild_members = list()
     # old_album = -1
     # old_crest_str = ""
     # oldSel = 0
@@ -17450,7 +17451,7 @@ def old_crest_str():
     };
     return (result);
     '''
-    pass
+    return ''
 
 
 def set_crest_str(in_str):
@@ -18356,6 +18357,7 @@ def trim_too_long(actor_id_obj, max_width):
     return (((Shortened) ? tmp_str : ""));
     '''
     print actor_id_obj, max_width
+    return ''
 
 
 def check_wrong_page(correct_act):
