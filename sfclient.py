@@ -408,8 +408,8 @@ class Face(object):
     '''
         character face
     '''
-    def __init__(self, beard=1, brows=1, cclass=1, color=1, eyes=1, hair=1,
-                 male=True, mouth=1, nose=1, special=1, special2=1, volk=0):
+    def __init__(self, beard=1, brows=1, cclass=1, color=1, eyes=1, ears=1,
+                 hair=1, mouth=1, nose=1, special=1, special2=1, volk=0):
         '''
             setup face object
         '''
@@ -418,6 +418,7 @@ class Face(object):
         self.cclass = cclass
         self.color = color
         self.eyes = eyes
+        self.ears = ears
         self.hair = hair
         self.male = male
         self.mouth = mouth
@@ -2028,25 +2029,27 @@ class Savegame(object):
         old_album = savegame[SG['ALBUM']]
 
         if fill_face_variables:
-            char_volk = savegame[SG['RACE']]
-            char_male = (savegame[SG['GENDER']] == 1)
-            char_class = savegame[SG['CLASS']]
-            char_mouth = savegame[SG['FACE']['1']]
-            char_beard = savegame[SG['FACE']['5']]
-            char_nose = savegame[SG['FACE']['6']]
-            char_eyes = savegame[SG['FACE']['4']]
-            char_brows = savegame[SG['FACE']['3']]
-            char_ears = savegame[SG['FACE']['7']]
-            char_hair = savegame[SG['FACE']['2']]
-            char_special = savegame[SG['FACE']['8']]
-            char_special2 = savegame[SG['FACE']['9']]
-
             i = char_hair
-
             char_color = 0
             while i > 100:
                 i -= 100
                 char_color += 1
+
+            char_face = Face(
+                savegame[SG['FACE']['5']],
+                savegame[SG['FACE']['3']],
+                savegame[SG['CLASS']],
+                char_hair,
+                savegame[SG['FACE']['4']],
+                savegame[SG['FACE']['7']],
+                savegame[SG['FACE']['2']],
+                (savegame[SG['GENDER']] == 1),
+                savegame[SG['FACE']['1']],
+                savegame[SG['FACE']['6']],
+                savegame[SG['FACE']['8']],
+                savegame[SG['FACE']['9']],
+                savegame[SG['RACE']]
+            )
 
         if not no_spoil:
             ppos = POS['IF']['LBL']['GOLDPILZE_X']
@@ -2435,7 +2438,7 @@ def tower_btn_handler(evt):
     print evt
 
 
-def tower_scroll_grab(evt):
+def tower_scroll_grab():
     '''
     tower_scroll_grabPos = evt.localY;
     towerScrollSpeed = 0;
@@ -12414,6 +12417,7 @@ def action_handler(event):
     '''
         handle server reply
     '''
+    global oldcreststring
     data_str = str(event.data)
     is_mine = False
     log_in_after_pixel = False
@@ -13224,6 +13228,7 @@ def action_handler(event):
                 else:
                     last_guild_data = par[0].split("/")
                     set_default_crest()
+
                 oldcreststring = old_crest_str()
             else:
                 if par[1].find("§") != -1:
