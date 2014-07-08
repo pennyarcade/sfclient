@@ -33,11 +33,8 @@ W:14263, 0: TODO: hat does this do? (fixme)
 W:15957, 0: TODO: What does this do? (fixme)
 W:15973, 0: TODO: Obsolete? (fixme)
 W:15996, 0: TODO: set via requests params (fixme)
-C:16539, 0: Line too long (81/79) (line-too-long)
-C:16551, 0: Line too long (80/79) (line-too-long)
-C:16552, 0: Line too long (80/79) (line-too-long)
-C:16743, 0: Line too long (80/79) (line-too-long)
-C:  1, 0: Too many lines in module (21409) (too-many-lines)
+C:16745, 0: Line too long (80/79) (line-too-long)
+C:  1, 0: Too many lines in module (21411) (too-many-lines)
 C: 93, 0: Invalid constant name "param_obj" (invalid-name)
 C: 94, 0: Invalid constant name "actor" (invalid-name)
 C: 95, 0: Invalid constant name "texts" (invalid-name)
@@ -599,7 +596,7 @@ W:12343,12: Unused variable 'embed_fonts' (unused-variable)
 W:12312, 4: Unused variable 'this_field_popup' (unused-variable)
 W:12319,12: Unused variable 'force_smoothing' (unused-variable)
 R:12368, 0: Too many local variables (142/15) (too-many-locals)
-W:13182,16: Redefining name 'old_crest_str' from outer scope (line 17372) (redefined-outer-name)
+W:13182,16: Redefining name 'old_crest_str' from outer scope (line 17374) (redefined-outer-name)
 W:13263,16: Redefining built-in 'type' (redefined-builtin)
 E:12378,11: Using variable 'guild_blink_ready' before assignment (used-before-assignment)
 E:12379,12: Undefined variable 'send_action' (undefined-variable)
@@ -1233,29 +1230,9 @@ W:16170,52: Unused argument 'pos_y' (unused-argument)
 W:16170,22: Unused argument 'actor_id' (unused-argument)
 W:16171,22: Unused argument 'txt_type' (unused-argument)
 W:16170,61: Unused argument 'txt_manip' (unused-argument)
-C:16213, 0: Invalid function name "DefineCnt" (invalid-name)
-W:16213,42: Unused argument 'vis' (unused-argument)
-W:16213,24: Unused argument 'pos_x' (unused-argument)
-W:16213,33: Unused argument 'pos_y' (unused-argument)
-W:16213,14: Unused argument 'actor_id' (unused-argument)
-C:16236, 0: Invalid function name "textLinkMakeClickable" (invalid-name)
-W:16236,26: Unused argument 'obj' (unused-argument)
-C:16243, 0: Invalid function name "DefineSlider" (invalid-name)
-C:16243, 0: Invalid argument name "Ticks" (invalid-name)
 C:16243, 0: Invalid argument name "fn" (invalid-name)
-W:16243,34: Unused argument 'pos_x' (unused-argument)
-W:16243,27: Unused argument 'Ticks' (unused-argument)
-W:16243,17: Unused argument 'actor_id' (unused-argument)
-W:16243,48: Unused argument 'fn' (unused-argument)
-W:16243,41: Unused argument 'pos_y' (unused-argument)
-W:16311,21: Unused argument 'actor_id' (unused-argument)
-C:16321, 0: Invalid function name "SetSliderValue" (invalid-name)
-W:16321,19: Unused argument 'actor_id' (unused-argument)
-W:16321,29: Unused argument 'value' (unused-argument)
-C:16336, 0: Invalid function name "MakePersistent" (invalid-name)
-W:16336, 0: Unused argument 'args' (unused-argument)
-R:19221, 0: Too many arguments (7/5) (too-many-arguments)
-R:20457, 0: Too many arguments (14/5) (too-many-arguments)
+R:19223, 0: Too many arguments (7/5) (too-many-arguments)
+R:20459, 0: Too many arguments (14/5) (too-many-arguments)
 ************* Module sfglobals
 C:  1, 0: Too many lines in module (4067) (too-many-lines)
 ************* Module sflegacy
@@ -1304,7 +1281,7 @@ Raw metrics
 +==========+=======+======+=========+===========+
 |code      |5198   |14.86 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |28016  |80.11 |NC       |NC         |
+|docstring |28018  |80.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |692    |1.98  |NC       |NC         |
 +----------+-------+------+---------+-----------+
@@ -1332,11 +1309,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |205    |NC       |NC         |
+|convention |196    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |500    |NC       |NC         |
+|warning    |486    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |513    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -1349,9 +1326,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |98.60   |100.00   |93.17      |
+|sfclient |100.00 |98.56   |100.00   |92.86      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |1.40    |0.00     |5.85       |
+|sflegacy |0.00   |1.44    |0.00     |6.12       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -1366,9 +1343,9 @@ Messages
 +-----------------------------+------------+
 |unused-variable              |263         |
 +-----------------------------+------------+
-|invalid-name                 |198         |
+|invalid-name                 |192         |
 +-----------------------------+------------+
-|unused-argument              |144         |
+|unused-argument              |130         |
 +-----------------------------+------------+
 |fixme                        |39          |
 +-----------------------------+------------+
@@ -1394,8 +1371,6 @@ Messages
 +-----------------------------+------------+
 |assignment-from-no-return    |5           |
 +-----------------------------+------------+
-|line-too-long                |4           |
-+-----------------------------+------------+
 |too-many-lines               |3           |
 +-----------------------------+------------+
 |too-many-instance-attributes |3           |
@@ -1404,12 +1379,14 @@ Messages
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
+|line-too-long                |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 1.94/10
+Your code has been rated at 2.00/10
 
 Statistics by type
 ------------------
@@ -1423,7 +1400,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |method   |48     |NC         |NC         |100.00      |6.25     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |219    |NC         |NC         |100.00      |2.74     |
+|function |219    |NC         |NC         |100.00      |0.46     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
