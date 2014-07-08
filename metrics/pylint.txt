@@ -772,14 +772,7 @@ W0612:15504,28: configuration_file_loaded: Unused variable 'param_reconnect'
 W0612:15535,28: configuration_file_loaded: Unused variable 'param_papaya_cfg_file'
 W0612:15565,28: configuration_file_loaded: Unused variable 'param_server_version_cfg'
 W0612:15750,12: configuration_file_loaded: Unused variable 'param_hall'
-E1101:15819,4: do_load_language_file: Instance of 'SecurityHandler' has no 'load_policy_file' member
-E1101:15820,4: do_load_language_file: Instance of 'SecurityHandler' has no 'load_policy_file' member
-E1101:15821,4: do_load_language_file: Instance of 'SecurityHandler' has no 'load_policy_file' member
-E1101:15822,4: do_load_language_file: Instance of 'SecurityHandler' has no 'load_policy_file' member
-E1101:15823,4: do_load_language_file: Instance of 'SecurityHandler' has no 'allow_domain' member
-E1101:15839,12: do_load: Instance of 'SecurityHandler' has no 'allow_domain' member
 E0602:15841,38: do_load: Undefined variable 'actorSoundLoader'
-E1101:15850,12: do_load: Instance of 'SecurityHandler' has no 'allow_domain' member
 E0602:15853,29: do_load: Undefined variable 'no_crossdomain'
 E0602:15859,24: do_load: Undefined variable 'SecurityDomain'
 C0103:15886,4: when_loaded: Invalid constant name "when_loaded_fn"
@@ -791,7 +784,6 @@ C0103:15926,4: when_loaded_timeout_event: Invalid constant name "img_url_index"
 W0601:15926,4: when_loaded_timeout_event: Global variable 'snd_url_index' undefined at the module level
 W0601:15926,4: when_loaded_timeout_event: Global variable 'img_url_index' undefined at the module level
 E0602:15944,4: when_loaded_timeout_event: Undefined variable 'to_error_count'
-E1101:15973,8: loader_complete: Instance of 'SecurityHandler' has no 'allow_domain' member
 C0103:15986,4: loader_error: Invalid constant name "snd_url_index"
 C0103:15986,4: loader_error: Invalid constant name "img_url_index"
 W0601:15986,4: loader_error: Global variable 'snd_url_index' undefined at the module level
@@ -825,11 +817,10 @@ W0511:994,0: : TODO: Obsolete
 C0302:  1,0: : Too many lines in module (1005)
 C0103: 58,8: TextField.__init__: Invalid attribute name "y"
 C0103: 57,8: TextField.__init__: Invalid attribute name "x"
-C0103:116,0: URLLoaderdata_format: Invalid class name "URLLoaderdata_format"
-C0103:514,8: Bitmap.__init__: Invalid attribute name "y"
-C0103:513,8: Bitmap.__init__: Invalid attribute name "x"
-C0103:619,4: SecurityHandler.loadPolicyFile: Invalid method name "loadPolicyFile"
-C0103:625,4: SecurityHandler.allowDomain: Invalid method name "allowDomain"
+C0103:12412,4: hall_list_add_field: Invalid attribute name "y"
+C0103:12408,8: hall_list_add_field: Invalid attribute name "x"
+W0201:12412,4: hall_list_add_field: Attribute 'y' defined outside __init__
+W0201:12410,8: hall_list_add_field: Attribute 'x' defined outside __init__
 
 
 Report
@@ -842,13 +833,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |105    |NC       |NC         |
+|convention |102    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |56     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |295    |NC       |NC         |
+|warning    |297    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |370    |NC       |NC         |
+|error      |362    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -859,9 +850,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |97.63   |100.00   |90.48      |
+|sfclient |100.00 |96.97   |100.00   |93.14      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |2.37    |0.00     |7.62       |
+|sflegacy |0.00   |3.03    |0.00     |4.90       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -869,57 +860,57 @@ Messages by category
 Messages
 --------
 
-+-----------------------------+------------+
-|message id                   |occurrences |
-+=============================+============+
-|undefined-variable           |341         |
-+-----------------------------+------------+
-|unused-variable              |205         |
-+-----------------------------+------------+
-|invalid-name                 |100         |
-+-----------------------------+------------+
-|global-variable-undefined    |41          |
-+-----------------------------+------------+
-|fixme                        |40          |
-+-----------------------------+------------+
-|used-before-assignment       |17          |
-+-----------------------------+------------+
-|too-many-arguments           |14          |
-+-----------------------------+------------+
-|too-many-branches            |11          |
-+-----------------------------+------------+
-|too-few-public-methods       |10          |
-+-----------------------------+------------+
-|too-many-statements          |9           |
-+-----------------------------+------------+
-|too-many-locals              |8           |
-+-----------------------------+------------+
-|no-member                    |8           |
-+-----------------------------+------------+
-|too-many-lines               |4           |
-+-----------------------------+------------+
-|global-statement             |4           |
-+-----------------------------+------------+
-|unused-argument              |3           |
-+-----------------------------+------------+
-|too-many-instance-attributes |3           |
-+-----------------------------+------------+
-|too-many-function-args       |3           |
-+-----------------------------+------------+
-|bad-indentation              |2           |
-+-----------------------------+------------+
-|no-self-use                  |1           |
-+-----------------------------+------------+
-|bad-continuation             |1           |
-+-----------------------------+------------+
-|assignment-from-no-return    |1           |
-+-----------------------------+------------+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|undefined-variable             |341         |
++-------------------------------+------------+
+|unused-variable                |205         |
++-------------------------------+------------+
+|invalid-name                   |97          |
++-------------------------------+------------+
+|global-variable-undefined      |41          |
++-------------------------------+------------+
+|fixme                          |40          |
++-------------------------------+------------+
+|used-before-assignment         |17          |
++-------------------------------+------------+
+|too-many-arguments             |14          |
++-------------------------------+------------+
+|too-many-branches              |11          |
++-------------------------------+------------+
+|too-few-public-methods         |10          |
++-------------------------------+------------+
+|too-many-statements            |9           |
++-------------------------------+------------+
+|too-many-locals                |8           |
++-------------------------------+------------+
+|too-many-lines                 |4           |
++-------------------------------+------------+
+|global-statement               |4           |
++-------------------------------+------------+
+|unused-argument                |3           |
++-------------------------------+------------+
+|too-many-instance-attributes   |3           |
++-------------------------------+------------+
+|too-many-function-args         |3           |
++-------------------------------+------------+
+|bad-indentation                |2           |
++-------------------------------+------------+
+|attribute-defined-outside-init |2           |
++-------------------------------+------------+
+|no-self-use                    |1           |
++-------------------------------+------------+
+|bad-continuation               |1           |
++-------------------------------+------------+
+|assignment-from-no-return      |1           |
++-------------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 4.60/10
+Your code has been rated at 4.70/10
 
 Raw metrics
 -----------
@@ -971,9 +962,9 @@ Statistics by type
 +=========+=======+===========+===========+============+=========+
 |module   |4      |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |96     |NC         |NC         |100.00      |1.04     |
+|class    |96     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |48     |NC         |NC         |100.00      |4.17     |
+|method   |48     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |219    |NC         |NC         |100.00      |0.46     |
 +---------+-------+-----------+-----------+------------+---------+
