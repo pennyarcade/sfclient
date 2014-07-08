@@ -522,15 +522,15 @@ def init_vars():
     # values album_*
     col_album = Album()
 
-    global actor
+    global actor, actorLoaded, actorURL
     actor = list()
 
     # actorBitmap = list()
-    # actorLoaded = list()
+    actorLoaded = list()
     # actorPersistent = list()
     # actorpopup_stamp = list()
     # actorSoundLoader = list()
-    # actorURL = list()
+    actorURL = list()
 
     # admin_login = ""
 
@@ -15090,7 +15090,7 @@ def center_text_field(obj, aoffsx=0, aoffsy=0):
         };
     };
     '''
-    pass
+    print obj, aoffsx, aoffsy
 
 
 def set_btn_text(actor_id, caption):
@@ -15136,7 +15136,7 @@ def set_btn_text(actor_id, caption):
     center_text_field(actor[i].overState);
     center_text_field(actor[i].hitTestState);
     '''
-    pass
+    print actor_id, caption
 
 
 def define_lbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
@@ -15170,7 +15170,7 @@ def define_lbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
         visible = Boolean(vis);
     };
     '''
-    pass
+    print actor_id, caption, pos_x, pos_y, fmt, vis
 
 
 # -----------------------------------------------------------------------------
@@ -15193,7 +15193,7 @@ def language_file_error():
     )
 
 
-def language_file_loaded():
+def language_file_loaded(evt):
     '''
         success handler for I18N file loader
     '''
@@ -15322,13 +15322,14 @@ def load_original_language_file():
     '''
         I18N file loader
     '''
-    with URLLoader():
-        data_format = URLLoaderdata_format.TEXT
-        add_event_listener(Event.COMPLETE, Originallanguage_file_loaded)
-        load(URLRequest(
-            lang_url + "lang/sfgame_" + original_lang_code + ".txt"
-        ))
+    loader = URLLoader()
+    loader.data_format = URLLoaderdata_format.TEXT
+    loader.add_event_listener(Event.COMPLETE, Originallanguage_file_loaded)
+    loader.load(URLRequest(
+        lang_url + "lang/sfgame_" + original_lang_code + ".txt"
+    ))
 
+    global pending_language_file, pending_loaders
     pending_loaders += 1
     pending_language_file = True
 
@@ -15857,6 +15858,8 @@ def when_loaded_timeout_event():
     '''
         loading stuff timeout
     '''
+    global snd_url_index, img_url_index
+
     when_loaded_timeout.stop()
 
     for i in range(len(actor)):
@@ -15896,24 +15899,27 @@ def when_loaded_timeout_event():
         so.flush()
 
 
-def loader_complete():
+def loader_complete(evt):
     '''
         loading success
     '''
     if evt.target is LoaderInfo:
         actorLoaded[get_actor_id(evt.target.loader)] = 2
         Security.allowDomain(evt.target.loaderURL)
-        with actor[get_actor_id(evt.target.loader)].content:
-            force_smoothing = True
-            allow_smoothing = True
-            smoothing = True
+
+        content = actor[get_actor_id(evt.target.loader)].content
+        content.force_smoothing = True
+        content.allow_smoothing = True
+        content.smoothing = True
     when_loaded()
 
 
-def loader_error():
+def loader_error(evt):
     '''
         loading failed
     '''
+    global snd_url_index, img_url_index
+
     if evt.target is LoaderInfo:
         for i in range(len(actor)):
             if actor[i] is Loader:
@@ -15984,12 +15990,9 @@ def load_tracking_pixel(url=''):
     '''
         load tracking pixel
     '''
-    req = None
-    variables = None
-    pixel_loader = None
-    pixel_success = None
-    pixel_failed = None
-    url = url
+    # req = None
+    # variables = None
+    # pixel_loader = None
 
     LOG.debug("Tracking Pixel Load:" + url)
 
