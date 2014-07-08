@@ -347,7 +347,7 @@ E0602:12352,42: install_hall_popup: Undefined variable 'this_field_popup'
 R0913:12357,0: hall_list_add_field: Too many arguments (6/5)
 R0914:12357,0: hall_list_add_field: Too many local variables (19/15)
 E0602:12393,26: hall_list_add_field: Undefined variable 'font_embedded'
-E0602:12408,28: hall_list_add_field: Undefined variable 'width'
+E0602:12408,32: hall_list_add_field: Undefined variable 'width'
 W0612:12370,12: hall_list_add_field: Unused variable 'smoothing'
 W0612:12371,12: hall_list_add_field: Unused variable 'mouse_enabled'
 W0612:12395,12: hall_list_add_field: Unused variable 'text'
@@ -815,12 +815,10 @@ W0511:785,0: : TODO WTF?
 W0511:807,0: : TODO: better way to zero fill?
 W0511:994,0: : TODO: Obsolete
 C0302:  1,0: : Too many lines in module (1005)
-C0103: 58,8: TextField.__init__: Invalid attribute name "y"
-C0103: 57,8: TextField.__init__: Invalid attribute name "x"
 C0103:12412,4: hall_list_add_field: Invalid attribute name "y"
-C0103:12408,8: hall_list_add_field: Invalid attribute name "x"
 W0201:12412,4: hall_list_add_field: Attribute 'y' defined outside __init__
-W0201:12410,8: hall_list_add_field: Attribute 'x' defined outside __init__
+C0103:12412,4: hall_list_add_field: Invalid attribute name "y"
+W0201:12412,4: hall_list_add_field: Attribute 'y' defined outside __init__
 
 
 Report
@@ -833,7 +831,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |102    |NC       |NC         |
+|convention |100    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |56     |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -850,9 +848,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |96.97   |100.00   |93.14      |
+|sfclient |100.00 |96.97   |100.00   |95.00      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |3.03    |0.00     |4.90       |
+|sflegacy |0.00   |3.03    |0.00     |3.00       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -867,7 +865,7 @@ Messages
 +-------------------------------+------------+
 |unused-variable                |205         |
 +-------------------------------+------------+
-|invalid-name                   |97          |
+|invalid-name                   |95          |
 +-------------------------------+------------+
 |global-variable-undefined      |41          |
 +-------------------------------+------------+
