@@ -804,10 +804,10 @@ def init_vars():
     # noMush = False
     # notFirstVolChange = True
     # notSecondVolChange = True
-    global offline_guild_members
+    global offline_guild_members, oldcreststring
     offline_guild_members = list()
     # old_album = -1
-    # old_crest_str = ""
+    oldcreststring = ""
     # oldSel = 0
     # option_new_data = ""
     # original_lang_code = "de"
@@ -1245,7 +1245,7 @@ class Quest(object):
         harndle qurest data
     '''
     def __init__(self, qtype, qid, qlevel, qmonster,
-                 qexp, qgold, qtime, qlocation, qitems):
+                 qexp, qgold, qtime, qlocation, qitem):
         '''
             Setup Quest object
         '''
@@ -2432,7 +2432,7 @@ def tower_btn_handler(evt):
             break;
     };
     '''
-    pass
+    print evt
 
 
 def tower_scroll_grab(evt):
@@ -2453,10 +2453,10 @@ def tower_scroll_move(evt):
         tower_scroll_grabPos = evt.localY;
     };
     '''
-    pass
+    print evt
 
 
-def tower_scroll_relase(evt):
+def tower_scroll_relase():
     '''
     if (tower_scroll_grabPos != -1){
         towerScrollDest = (towerScrollDest + (towerScrollSpeed / 40));
@@ -2467,15 +2467,16 @@ def tower_scroll_relase(evt):
     pass
 
 
-def tower_scroll_release(evt):
+def tower_scroll_release():
     '''
     if (tower_scroll_grabPos != -1){
+        TODO: Something missing here
     };
     '''
     pass
 
 
-def tower_scroll_curent(evt):
+def tower_scroll_curent():
     '''
     towerScrollDest = (towerSG[TSG_TOWER_LEVEL] + 1);
     towerScrollTimer.start();
@@ -2484,7 +2485,7 @@ def tower_scroll_curent(evt):
     pass
 
 
-def tower_scroll_wheel(evt):
+def tower_scroll_wheel():
     '''
     towerScrollSpeed = (evt.delta * 10);
     towerScroll = (towerScroll + (towerScrollSpeed / 375));
@@ -2521,10 +2522,10 @@ def tower_key_event(evt):
         };
     };
     '''
-    pass
+    print evt
 
 
-def tower_scroll_set_focus(evt):
+def tower_scroll_set_focus():
     '''
     var evt:* = evt;
     if (on_stage(TOWER_SCROLLAREA)){
@@ -2610,7 +2611,7 @@ def tower_timer_fn(evt=None):
         i++;
     };
     '''
-    pass
+    print evt
 
 
 # -----------------------------------------------------------------------------
@@ -2719,7 +2720,7 @@ def show_tower_screen(tower_data):
     };
     when_loaded(DoShowTowerScreen);
     '''
-    pass
+    print tower_data
 
 
 def show_demo_screen():
@@ -2831,7 +2832,7 @@ def show_option_screen(evt=None):
     load(PASSWORD_SMILEY_HAPPY);
     when_loaded(DoShowOptionScreen);
     '''
-    pass
+    print evt
 
 
 def do_skip_fight(evt=None, fight_done=False):
@@ -3452,7 +3453,7 @@ def do_skip_fight(evt=None, fight_done=False):
     };
     arabize(LBL_FIGHT_SUMMARY);
     '''
-    pass
+    print evt, fight_done
 
 
 def set_life_bars(which_one=0):
@@ -3502,7 +3503,7 @@ def set_life_bars(which_one=0):
         };
     };
     '''
-    pass
+    print which_one
 
 
 def do_strike_event(evt):
@@ -3551,7 +3552,7 @@ def do_strike_event(evt):
         fightRound++;
     };
     '''
-    pass
+    print evt
 
 
 def weapon_strike(opponent=False):
@@ -4414,7 +4415,7 @@ def weapon_strike(opponent=False):
     StrikeAniTimer.start();
     in_strikeAni = True;
     '''
-    pass
+    print opponent
 
 
 def do_show_fight_screen(evt=None):
@@ -4716,7 +4717,7 @@ def do_show_fight_screen(evt=None):
     DoStrikeTimer.add_event_listener(TimerEvent.TIMER, do_strike_event);
     DoStrikeTimer.start();
     '''
-    pass
+    print evt
 
 
 def show_fight_screen(fighter_data, fight_data, get_pilz, face_data, is_pvp,
@@ -5173,7 +5174,7 @@ def show_email_nag_screen(val_mode=-1):
     load(SCREEN_EMAIL_NAG);
     when_loaded(doShowEmailNagScreen);
     '''
-    pass
+    print val_mode
 
 
 def show_disconnect_screen():
@@ -5277,7 +5278,7 @@ def show_quest_screen(evt=None):
     };
     when_loaded(DoShowQuestScreen);
     '''
-    pass
+    print evt
 
 
 def show_taverne_screen(evt=None):
@@ -5422,7 +5423,7 @@ def show_taverne_screen(evt=None):
     };
     when_loaded(DoShowTaverneScreen);
     '''
-    pass
+    print evt
 
 
 def show_stall_screen(evt=None):
@@ -5510,7 +5511,7 @@ def show_stall_screen(evt=None):
     };
     when_loaded(DoShowStall);
     '''
-    pass
+    print evt
 
 
 def show_arena_screen(opp_name, opp_gilde, opp_stufe):
@@ -7374,7 +7375,7 @@ def show_screen_gilden(
                             ACT_GUILD_SET_DESC,
                             actor[INP['NAME']].getChildAt(1).text,
                             gilde,
-                            ((old_crest_str + "§") + remove_illegal_chars(
+                            ((oldcreststring + "§") + remove_illegal_chars(
                                 semi_strip(text))),
                             MD5(actor[INP['LOGIN_PASSWORD']]
                                 .getChildAt(1).text)
@@ -11657,7 +11658,7 @@ def get_alpha(actor_id):
     return 0
 
 
-def fade_in_event(evt):
+def fade_in_event():
     '''
         update alpha for fade in
     '''
@@ -11683,7 +11684,7 @@ def fade_in(actor_id, timer_interval=20, alpha_step=0.05, alpha_max=1):
     set_alpha(actor_id, current_alpha)
 
 
-def fade_out_event(evt):
+def fade_out_event():
     '''
         update alpha for fade out
     '''
@@ -13216,20 +13217,20 @@ def action_handler(event):
             if (not on_stage(BNC['GILDE']['CREST'])
                     or (act == RESP['OTHER_GUILD'])
                     or (last_guild_crest_id != par[0].split("/")[0])
-                    or (is_mine and (old_crest_str == old_crest_str()))):
+                    or (is_mine and (oldcreststring == old_crest_str()))):
                 if par[1].find("§") != -1:
                     set_crest_str(par[1].split("§")[0])
                     par[1] = par[1][(par[1].find("§") + 1):]
                 else:
                     last_guild_data = par[0].split("/")
                     set_default_crest()
-                old_crest_str = old_crest_str()
+                oldcreststring = old_crest_str()
             else:
                 if par[1].find("§") != -1:
                     par[1] = par[1][(par[1].find("§") + 1):]
 
             if last_guild_crest_id != par[0].split("/")[0]:
-                old_crest_str = old_crest_str()
+                oldcreststring = old_crest_str()
 
             if (not is_mine) and par[1].find("///") > -1:
                 par[1] = par[1] .split("///")[1]
