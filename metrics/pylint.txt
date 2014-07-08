@@ -1,7 +1,7 @@
 ************* Module sfbuildinterface
 C0302:  1,0: : Too many lines in module (9374)
 ************* Module sfclient
-E0001:15725,0: : invalid syntax
+E0001:15774,0: : invalid syntax
 ************* Module sfglobals
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
