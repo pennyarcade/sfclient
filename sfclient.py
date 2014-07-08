@@ -5687,7 +5687,7 @@ def show_dealer_screen(evt=None, load_only=False):
             + savegame[SG_PAYMENT_ID]) + "&server_id=") + server_id)
             + "&serverdomain=") + server) + "&session_id=") + session_id)
             + "&special=") + dealer_aktion) + "&langcode=") + lang_code)
-            + "&volume=") + str((shared_obj.data.volume / 10))) + "&mp_project=")
+            + "&volume=") + str(shared_obj.data.volume / 10)) + "&mp_project=")
             + mp_project) + "&cfgfile=") + param_papaya_cfg_file)
             + "&firebug=") + papaya_firebug);
     if (actorURL[SCR_DEALER_BG] != url){
@@ -6243,7 +6243,8 @@ def show_build_character_screen(evt=None):
         and (!(RebuildMode)))
     ){
         if (shared_obj.data.userName){
-            actor[INP['NAME']].getChildAt(1).text = str(shared_obj.data.userName);
+            actor[INP['NAME']].getChildAt(1).text = str(
+                shared_obj.data.userName)
         };
         if (shared_obj.data.password){
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = str(
@@ -11283,7 +11284,8 @@ def show_login_screen(evt=None, no_bc=False, no_cookie=False):
     );
     if (!no_cookie){
         if (shared_obj.data.userName){
-            actor[INP['NAME']].getChildAt(1).text = str(shared_obj.data.userName);
+            actor[INP['NAME']].getChildAt(1).text = str(
+                shared_obj.data.userName);
         };
         if (shared_obj.data.password){
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text = str(
@@ -13995,7 +13997,9 @@ def action_handler(event):
 
             shared_obj.data.HasAccount = True
             shared_obj.data.userName = actor[INP['NAME']].getChildAt(1).text
-            shared_obj.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
+            shared_obj.data.password = actor[
+                INP['LOGIN_PASSWORD']
+            ].getChildAt(1).text
             shared_obj.flush()
             add(CNT['IF']['LOGOUT'])
 
@@ -14080,7 +14084,9 @@ def action_handler(event):
             shared_obj.data.HasAccount = True
             shared_obj.data.had_account = True
             shared_obj.data.userName = actor[INP['NAME']].getChildAt(1).text
-            shared_obj.data.password = actor[INP['LOGIN_PASSWORD']].getChildAt(1).text
+            shared_obj.data.password = actor[
+                INP['LOGIN_PASSWORD']
+            ].getChildAt(1).text
             shared_obj.data.advpar = param_obj
             shared_obj.flush()
             log_in_after_pixel = True
@@ -15648,7 +15654,8 @@ def configuration_file_loaded(evt):
     else:
         pending_configuration_files = False
         global shared_obj
-        shared_obj = SharedObject.get_local("SFGame/" + server.replace(".", "/"), "/")
+        shared_obj = SharedObject.get_local(
+            "SFGame/" + server.replace(".", "/"), "/")
         if shared_obj.data.lang_code:
             lang_code = shared_obj.data.lang_code
 
@@ -15715,7 +15722,8 @@ def configuration_file_loaded(evt):
             shared_obj.data.cid = param_cid
             shared_obj.flush()
         elif shared_obj.data.cid:
-            if (shared_obj.data.cid.find("_") == -1) and (len(shared_obj.data.cid) == 15):
+            if (shared_obj.data.cid.find("_") == -1)
+                    and (len(shared_obj.data.cid) == 15):
                 param_cid = shared_obj.data.cid + "_r"
         elif not param_no_cid_save:
             param_cid = shared_obj.data.cid
@@ -15763,7 +15771,8 @@ def configuration_file_loaded(evt):
         if shared_obj.data.img_url_index:
             if param_imgsvr > 0:
                 img_url_index = param_imgsvr - 1
-            elif (shared_obj.data.img_url_index <= len(img_url)) and not force_reroll:
+            elif (shared_obj.data.img_url_index <= len(img_url))
+                    and not force_reroll:
                 img_url_index = shared_obj.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
