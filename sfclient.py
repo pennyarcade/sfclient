@@ -6296,7 +6296,7 @@ def show_build_character_screen(evt=None):
     };
     load_character_image();
     '''
-    pass
+    print evt
 
 
 def show_character_screen(evt=None, no_prices=False):
@@ -6718,13 +6718,10 @@ def show_character_screen(evt=None, no_prices=False):
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
     when_loaded(DoShowCharacterScreen);
     '''
-    pass
+    print evt, no_prices
 
 
-def show_player_screen(
-        player_sg, player_name, player_gilde,
-        player_comment
-):
+def show_player_screen(player_sg, player_name, player_gilde, player_comment):
     '''
     var i:* = 0;
     var bin_str:* = None;
@@ -7131,7 +7128,7 @@ def show_player_screen(
     load(SCR_CHAR_BG, SCR_CHAR_EXPBAR, SCR_CHAR_BG_RIGHT);
     when_loaded(Doshow_player_screen);
     '''
-    pass
+    print player_sg, player_name, player_gilde, player_comment
 
 
 def show_screen_gilden(
@@ -9611,10 +9608,11 @@ def show_screen_gilden(
     load(GILDE_DIALOG_INVITE, GILDE_DIALOG_KICK, GILDE_DIALOG_MASTER);
     when_loaded(DoShowScreenGilden);
     '''
-    pass
+    print guild_data, guild_descr, guild_members, this_gilde, is_mine,
+    print gilden_rang, gilden_ehre, attack_cost
 
 
-def show_work_success_screen(evt=None):
+def show_work_success_screen():
     '''
     show_city_screen();
     add(SCREEN_ARBEITEN_SUCCESS);
@@ -9723,7 +9721,7 @@ def show_work_screen(evt=None):
         };
     };
     '''
-    pass
+    print evt
 
 
 def show_main_quests_screen(next_enemies):
@@ -10131,7 +10129,7 @@ def show_main_quests_screen(next_enemies):
     };
     when_loaded(DoShowMainQuestsScreen);
     '''
-    pass
+    print next_enemies
 
 
 def show_main_quest_screen(dungeon_nr=0, enemy=0):
@@ -14446,22 +14444,22 @@ def define_btn(actor_id, caption, handler, btn_class,
 
     actor[i] = btn_class()
 
-    with actor[actor_id]:
-        add_event_listener(MouseEvent.MOUSE_DOWN, play_click_sound)
-        if btn_class == btn_classPlus:
-            add_event_listener(MouseEvent.MOUSE_DOWN, handler)
-        else:
-            add_event_listener(MouseEvent.CLICK, handler)
+    current = actor[actor_id]
+    current.add_event_listener(MouseEvent.MOUSE_DOWN, play_click_sound)
+    if btn_class == btn_classPlus:
+        current.add_event_listener(MouseEvent.MOUSE_DOWN, handler)
+    else:
+        current.add_event_listener(MouseEvent.CLICK, handler)
 
-        x = pos_x
-        y = pos_y
-        scaleX = scale_x
-        scaleY = scale_y
-        visible = bool(vis)
-        tab_enabled = False
-        allow_smoothing = True
-        force_smoothing = True
-        smoothing = True
+    current.x = pos_x
+    current.y = pos_y
+    current.scaleX = scale_x
+    current.scaleY = scale_y
+    current.visible = bool(vis)
+    current.tab_enabled = False
+    current.allow_smoothing = True
+    current.force_smoothing = True
+    current.smoothing = True
 
     if caption != "":
         set_btn_text(actor_id, caption)
@@ -14543,9 +14541,6 @@ def enable_popup(actor_id, *args):
     textY = 0
     textX = 0
     my_stamp = 0
-    show_popup = None
-    position_popup = None
-    hide_popup = None
 
     my_stamp, popup_stamp = popup_stamp + 1
     if popup_stamp > 10000:
@@ -14645,8 +14640,6 @@ def play(actor_id, endless=False):
     '''
         play a sound
     '''
-    sound_loaded = None
-
     if actorLoaded[actor_id] == 2:
         duration = 0
         if endless:
