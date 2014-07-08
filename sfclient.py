@@ -14486,7 +14486,6 @@ def error_message(msg=""):
                         label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
                         label.y = POS['IF']['ERROR_Y']
 
-
                     add(LBL['ERROR'])
 
 
@@ -14753,7 +14752,7 @@ def show_popup(evt, *args):
                 if (current.getChildAt(j).x
                         + current.getChildAt(j).width + 5) > popup_width:
                     popup_width = current.getChildAt(j).x
-                            + current.getChildAt(j).width + 5
+                        + current.getChildAt(j).width + 5
 
     current.mouse_enabled = False
     current.mouseChildren = False
