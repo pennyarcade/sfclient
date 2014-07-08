@@ -16106,16 +16106,16 @@ def define_img(actor_id, url, pre_load=True, pos_x=0, pos_y=0,
         load(i);
     };
     '''
-    pass
+    print actor_id, url, pre_load, pos_x, pos_y, scale_x, scale_y, vis
 
 
-def define_click_area(actor_id, img_actor_id, fn, pos_x, pos_y, size_x,
+def define_click_area(actor_id, img_actor_id, function, pos_x, pos_y, size_x,
                       size_y, ovl_actor_id=0, hover_fn=None,
                       out_fn=None, stay_put=False):
     '''
     var actor_id:* = actor_id;
     var img_actor_id:* = img_actor_id;
-    var fn:* = fn;
+    var function:* = function;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
     var size_x:* = size_x;
@@ -16155,16 +16155,17 @@ def define_click_area(actor_id, img_actor_id, fn, pos_x, pos_y, size_x,
         alpha = ((C_SHOW_CA) ? 0.3 : 0);
         mouseChildren = False;
         mouse_enabled = True;
-        if ((fn is Function)){
+        if ((function is Function)){
             add_event_listener(MouseEvent.MOUSE_OVER, ClickAreaHover);
             add_event_listener(MouseEvent.MOUSE_OUT, ClickAreaOut);
-            add_event_listener(MouseEvent.CLICK, fn);
+            add_event_listener(MouseEvent.CLICK, function);
             useHandCursor = True;
             buttonMode = True;
         };
     };
     '''
-    pass
+    print actor_id, img_actor_id, function, pos_x, pos_y, size_x, size_y
+    print ovl_actor_id, hover_fn, out_fn, stay_put
 
 
 def define_from_class(actor_id, img_class, pos_x=0, pos_y=0, txt_manip=0,
@@ -16207,7 +16208,7 @@ def define_from_class(actor_id, img_class, pos_x=0, pos_y=0, txt_manip=0,
         };
     };
     '''
-    pass
+    print actor_id, img_class, pos_x, pos_y, txt_manip, txt_type
 
 
 def define_cnt(actor_id, pos_x=0, pos_y=0, vis=True):
@@ -16240,7 +16241,7 @@ def text_link_make_clickable(obj):
     print obj
 
 
-def define_slider(actor_id, ticks, pos_x, pos_y, fn):
+def define_slider(actor_id, ticks, pos_x, pos_y, function):
     '''
     var i:* = 0;
     var oldSliderVal:* = 0;
@@ -16248,7 +16249,7 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
     var ticks:* = ticks;
     var pos_x:* = pos_x;
     var pos_y:* = pos_y;
-    var fn:* = fn;
+    var function:* = function;
     var SliderMove:* = function (evt:MouseEvent):
         var tmpX;
         var sliderVal;
@@ -16260,7 +16261,7 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
                 tmpX = (int((((sliderVal - 1) / (ticks - 1)) * 198)) + 40);
                 evt.target.getChildAt(1).x = (tmpX - 7);
                 if (oldSliderVal != sliderVal){
-                    fn(sliderVal);
+                    function(sliderVal);
                 };
                 oldSliderVal = sliderVal;
             };
@@ -16274,12 +16275,12 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
         tmpX = (int((((sliderVal - 1) / (ticks - 1)) * 198)) + 40);
         actor[(actor_id + 1)].getChildAt(1).x = (tmpX - 7);
         if (oldSliderVal != sliderVal){
-            fn(sliderVal);
+            function(sliderVal);
         };
         oldSliderVal = sliderVal;
     };
     actorBitmap[actor_id] = ticks;
-    actorBitmap[(actor_id + 1)] = [fn];
+    actorBitmap[(actor_id + 1)] = [function];
     define_from_class((actor_id + 1), DragonSlider, pos_x, pos_y);
     define_bunch(actor_id, (actor_id + 1));
     var _local7 = actor[(actor_id + 1)];
@@ -16303,9 +16304,9 @@ def define_slider(actor_id, ticks, pos_x, pos_y, fn):
         add_bunch(actor_id, ((actor_id + 1) + i));
         i = (i + 1);
     };
-    fn(get_slider_value(actor_id));
+    function(get_slider_value(actor_id));
     '''
-    print actor_id, ticks, pos_x, pos_y, fn
+    print actor_id, ticks, pos_x, pos_y, function
 
 
 def get_slider_value(actor_id):
