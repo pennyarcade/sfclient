@@ -13554,7 +13554,7 @@ def action_handler(event):
             if not on_stage(IMG['SCR']['HALLE']['BG']):
                 show_hall_screen()
 
-            current = actor[CNT['HALL_LIST']]:
+            current = actor[CNT['HALL_LIST']]
             while current.numChildren > 0:
                 current.removeChildAt(0)
 
