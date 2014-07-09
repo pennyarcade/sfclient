@@ -2631,7 +2631,7 @@ def do_show_screen_album():
         set_cnt((ALBUM_MONSTER_FRAME + i), FIGHT_CHAR_BORDER);
         i++;
     };
-    Showalbum_content();
+    showalbum_content();
     remove_all();
     add(SCREEN_ALBUM);
     '''
@@ -10612,7 +10612,7 @@ def show_witch(witch_data, chaldron_bubble=False, enchant_cost=0):
     print witch_data, chaldron_bubble, enchant_cost
 
 
-def Showalbum_content(evt=None):
+def showalbum_content(evt=None):
     '''
     var i:* = 0;
     var entryText:* = None;
@@ -11595,9 +11595,8 @@ def move(actor_id, pos_x, pos_y):
         for current in actor[actor_id]:
             move(current, pos_x, pos_y)
     else:
-        with actor[actor_id]:
-            x = pos_x
-            y = pos_y
+        actor[actor_id].x_pos = pos_x
+        actor[actor_id].y_pos = pos_y
 
 
 def add_some(*args):
@@ -12468,16 +12467,16 @@ def action_handler(event):
             enable_popup(LBL['QO']['REWARDSILVER'])
             enable_popup(LBL['QO']['REWARDEXP'])
 
-            with actor[LBL['QO']['QUESTNAME']]:
-                text = texts[(TXT['TOILET']['HINT'] + 5)]
-                x = (POS['QO']['BLACK']['SQUARE_X']
-                     + REL['QO']['QUESTNAME_X']
-                     - text_width / 2)
+            current = actor[LBL['QO']['QUESTNAME']]
+            current.text = texts[(TXT['TOILET']['HINT'] + 5)]
+            current.x_pos = (POS['QO']['BLACK']['SQUARE_X']
+                             + REL['QO']['QUESTNAME_X']
+                             - current.text_width / 2)
 
-            with actor[LBL['QO']['QUESTTEXT']]:
-                text = texts[TXT['TOILET']['HINT'] + 6].replace(
-                    "#", chr(13)
-                )
+            current = actor[LBL['QO']['QUESTTEXT']]
+            current.text = texts[TXT['TOILET']['HINT'] + 6].replace(
+                "#", chr(13)
+            )
 
             arabize(LBL['QO']['QUESTTEXT'])
             actor[LBL['QO']['TIME']].text = ""
@@ -14354,9 +14353,9 @@ def swap_words(tmp_str):
                 if punct2 != "":
                     tmpidx = 1
 
-                tmpidx2 = len(tmp_arr[w]) - len(punct1 + punct2) + punct2
+                tmpidx2 = len(tmp_arr[k]) - len(punct1 + punct2) + punct2
 
-                tmp_arr[w] = punct1 + tmp_arr[w][tmpidx: tmpidx2]
+                tmp_arr[k] = punct1 + tmp_arr[k][tmpidx: tmpidx2]
 
         tmp_str = tmp_arr.join(" ")
         tmp_str = tmp_str.replace(
@@ -14552,8 +14551,8 @@ def enable_popup(actor_id, *args):
     '''
     i = 0
     popup_width = 0
-    textY = 0
-    textX = 0
+    text_y = 0
+    text_x = 0
     my_stamp = 0
 
     my_stamp, popup_stamp = popup_stamp + 1
@@ -14681,15 +14680,15 @@ def process_arg(arg):
         if arg < 0:
             popup_width = -arg
         elif arg == 0:
-            textX = 0
+            text_x = 0
             if text_dir == "right":
-                textX = popup_width
+                text_x = popup_width
 
-            textY += last_text_height + 10
+            text_y += last_text_height + 10
         elif text_dir == "right":
-            textX = popup_width - arg
+            text_x = popup_width - arg
         else:
-            textX = arg
+            text_x = arg
 
     elif arg is TextFormat:
         tmp_text_format = arg
@@ -14697,23 +14696,23 @@ def process_arg(arg):
     elif arg is DisplayObject:
         tmp_do = Bitmap(arg.content.bitmapData.clone())
         if text_dir == "right":
-            if textX < popup_width:
-                tmp_do.x_pos = textX - tmp_do.width
-                textX = textX - tmp_do.width + 5
-                tmp_do.y_pos = textY
+            if text_x < popup_width:
+                tmp_do.x_pos = text_x - tmp_do.width
+                text_x = text_x - tmp_do.width + 5
+                tmp_do.y_pos = text_y
             else:
                 tmp_do.x_pos = popup_width - 5 - tmp_do.width
-                tmp_do.y_pos = textY
-                textY = textY + tmp_do.textHeight + 10
+                tmp_do.y_pos = text_y
+                text_y = text_y + tmp_do.textHeight + 10
         else:
-            if textX > 0:
-                tmp_do.x_pos = textX
-                textX = textX + tmp_do.width + 5
-                tmp_do.y_pos = textY
+            if text_x > 0:
+                tmp_do.x_pos = text_x
+                text_x = text_x + tmp_do.width + 5
+                tmp_do.y_pos = text_y
             else:
                 tmp_do.x_pos = 5
-                tmp_do.y_pos = textY
-                textY = textY + tmp_do.textHeight + 10
+                tmp_do.y_pos = text_y
+                text_y = text_y + tmp_do.textHeight + 10
         actor[POPUP_INFO].addChild(tmp_do)
 
     elif arg is str:
@@ -14729,23 +14728,23 @@ def process_arg(arg):
         last_text_height = textHeight
         if text_dir == "right":
             tmp_text_field.auto_size = TextFieldAutoSize.RIGHT
-            if textX < popup_width:
-                tmp_text_field.x_pos = textX - text_width
-                textX -= text_width + 5
-                tmp_text_field.y_pos = textY
+            if text_x < popup_width:
+                tmp_text_field.x_pos = text_x - text_width
+                text_x -= text_width + 5
+                tmp_text_field.y_pos = text_y
             else:
                 tmp_text_field.x_pos = popup_width - 5 - text_width
-                tmp_text_field.y_pos = textY
-                textY += tmp_text_field.textHeight + 10
+                tmp_text_field.y_pos = text_y
+                text_y += tmp_text_field.textHeight + 10
         else:
-            if textX > 0:
-                tmp_text_field.x_pos = textX
-                textX += text_width + 5
-                tmp_text_field.y_pos = textY
+            if text_x > 0:
+                tmp_text_field.x_pos = text_x
+                text_x += text_width + 5
+                tmp_text_field.y_pos = text_y
             else:
                 tmp_text_field.x_pos = 5
-                tmp_text_field.y_pos = textY
-                textY += tmp_text_field.textHeight + 10
+                tmp_text_field.y_pos = text_y
+                text_y += tmp_text_field.textHeight + 10
 
             if (tmp_text_field.x + text_width + 10) > popup_width:
                 popup_width = tmp_text_field.x + text_width + 10
@@ -14786,9 +14785,9 @@ def show_popup(evt, *args):
     popup_width = 0
     if text_dir == "right":
         popup_width = 50
-        textX = popup_width
+        text_x = popup_width
 
-    textY = 10
+    text_y = 10
 
     for arg in args:
         process_arg(arg)
@@ -14812,10 +14811,10 @@ def show_popup(evt, *args):
     current = actor[POPUP_INFO].graphics
     current.beginFill(0, 0)
     current.lineStyle(0, 0, 0)
-    current.drawRect(0, 0, popup_width, textY)
+    current.drawRect(0, 0, popup_width, text_y)
     current.beginFill(CLR['BLACK'], 0.8)
     current.lineStyle(1, CLR['SFORANGE'], 1)
-    current.drawRect(1, 1, (popup_width - 1), (textY - 1))
+    current.drawRect(1, 1, (popup_width - 1), (text_y - 1))
 
     position_popup(evt)
     add(POPUP_INFO)
@@ -15022,7 +15021,7 @@ def position_popup(evt):
     var _local3 = actor[POPUP_INFO]
     with (_local3) {
         x = (evt.stageX - int((popup_width / 2)))
-        y = ((evt.stageY - 20) - textY)
+        y = ((evt.stageY - 20) - text_y)
         if (x < 0){
             x = 0
         }
@@ -15032,20 +15031,20 @@ def position_popup(evt):
         if (x > (RES_X - popup_width)){
             x = (RES_X - popup_width);
         };
-        if (y > (RES_Y - textY)){
-            y = (RES_Y - textY);
+        if (y > (RES_Y - text_y)){
+            y = (RES_Y - text_y);
         };
         if ((((((((evt.stageX > (x - 20)))
             and ((evt.stageX < ((x + popup_width) + 15)))))
             and ((evt.stageY > (y - 20)))))
-            and ((evt.stageY < ((y + textY) + 15))))){
-            if (evt.stageY < (textY + 20)){
+            and ((evt.stageY < ((y + text_y) + 15))))){
+            if (evt.stageY < (text_y + 20)){
                 y = (evt.stageY + 40);
             };
             if ((((((((evt.stageX > (x - 20)))
                 and ((evt.stageX < ((x + popup_width) + 15)))))
                 and ((evt.stageY > (y - 20)))))
-                and ((evt.stageY < ((y + textY) + 15))))){
+                and ((evt.stageY < ((y + text_y) + 15))))){
                 if (evt.stageX > ((RES_X - popup_width) - 20)){
                     x = ((evt.stageX - popup_width) - 20);
                 };
@@ -15724,8 +15723,8 @@ def configuration_file_loaded(evt):
             shared_obj.flush()
         elif shared_obj.data.cid:
             if ((shared_obj.data.cid.find("_") == -1)
-                and (len(shared_obj.data.cid) == 15)):
-                    param_cid = shared_obj.data.cid + "_r"
+                    and (len(shared_obj.data.cid) == 15)):
+                param_cid = shared_obj.data.cid + "_r"
         elif not param_no_cid_save:
             param_cid = shared_obj.data.cid
 
@@ -15774,7 +15773,7 @@ def configuration_file_loaded(evt):
                 img_url_index = param_imgsvr - 1
             elif ((shared_obj.data.img_url_index <= len(img_url))
                   and not force_reroll):
-                    img_url_index = shared_obj.data.img_url_index - 1
+                img_url_index = shared_obj.data.img_url_index - 1
             else:
                 img_url_index = int(random.random() * len(img_url))
         else:
