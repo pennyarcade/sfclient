@@ -587,10 +587,10 @@ E0602:14688,12: process_arg: Undefined variable 'textY'
 E0601:14688,21: process_arg: Using variable 'last_text_height' before assignment
 C0103:14690,12: process_arg: Invalid variable name "textX"
 C0103:14692,12: process_arg: Invalid variable name "textX"
-E1101:14701,35: process_arg: Instance of 'Bitmap' has no 'width' member
+E1101:14701,39: process_arg: Instance of 'Bitmap' has no 'width' member
 C0103:14702,16: process_arg: Invalid variable name "textX"
 E1101:14702,32: process_arg: Instance of 'Bitmap' has no 'width' member
-E1101:14705,45: process_arg: Instance of 'Bitmap' has no 'width' member
+E1101:14705,49: process_arg: Instance of 'Bitmap' has no 'width' member
 C0103:14707,16: process_arg: Invalid variable name "textY"
 E1101:14707,32: process_arg: Instance of 'Bitmap' has no 'textHeight' member
 C0103:14711,16: process_arg: Invalid variable name "textX"
@@ -776,38 +776,28 @@ R0913:20532,0: load_character_image: Too many arguments (14/5)
 ************* Module sfglobals
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
-W0511:691,0: : TODO: obsolete
-W0511:706,0: : TODO: obsolete
-W0511:720,0: : TODO: obsolete
-W0511:736,0: : TODO: obsolete
-W0511:760,0: : TODO WTF?
-W0511:782,0: : TODO: better way to zero fill?
-W0511:969,0: : TODO: Obsolete
-C0103: 23,8: BaseClass.__init__: Invalid attribute name "Foo"
-C0103: 24,8: BaseClass.__init__: Invalid attribute name "Bar"
+W0511:698,0: : TODO: obsolete
+W0511:713,0: : TODO: obsolete
+W0511:727,0: : TODO: obsolete
+W0511:743,0: : TODO: obsolete
+W0511:767,0: : TODO WTF?
+W0511:789,0: : TODO: better way to zero fill?
+W0511:976,0: : TODO: Obsolete
+C0102: 23,8: BaseClass.__init__: Black listed name "foo"
+C0102: 24,8: BaseClass.__init__: Black listed name "bar"
 R0201: 39,4: BaseClass.add_event_listener: Method could be a function
-W0231: 50,4: Actor.__init__: __init__ method from base class 'BaseClass' is not called
-C0103:14728,8: process_arg: Invalid attribute name "htmlText"
+C0103: 61,8: Actor.__init__: Invalid attribute name "htmlText"
+R0902: 46,0: Actor: Too many instance attributes (9/7)
 C0103:14735,16: process_arg: Invalid attribute name "y"
 C0103:14733,16: process_arg: Invalid attribute name "x"
-R0902: 74,0: TextField: Too many instance attributes (11/7)
-W0201:14726,8: process_arg: Attribute 'embed_fonts' defined outside __init__
-W0201:14728,8: process_arg: Attribute 'htmlText' defined outside __init__
-W0201:14724,8: process_arg: Attribute 'background' defined outside __init__
+R0902: 81,0: TextField: Too many instance attributes (11/7)
 W0201:14747,16: process_arg: Attribute 'y' defined outside __init__
 W0201:14746,16: process_arg: Attribute 'x' defined outside __init__
-W0201:14725,8: process_arg: Attribute 'selectable' defined outside __init__
-W0201:14727,8: process_arg: Attribute 'default_text_format' defined outside __init__
-W0201:14731,12: process_arg: Attribute 'auto_size' defined outside __init__
-C0103:14703,16: process_arg: Invalid attribute name "y"
-C0103:14701,16: process_arg: Invalid attribute name "x"
-W0201:14715,16: process_arg: Attribute 'y' defined outside __init__
-W0201:14714,16: process_arg: Attribute 'x' defined outside __init__
 
 
 Report
 ======
-4260 statements analysed.
+4266 statements analysed.
 
 Messages by category
 --------------------
@@ -815,11 +805,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |87     |NC       |NC         |
+|convention |85     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |57     |NC       |NC         |
+|refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |299    |NC       |NC         |
+|warning    |290    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |356    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -832,9 +822,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |93.98   |96.49    |89.66      |
+|sfclient |100.00 |96.90   |94.83    |91.76      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |6.02    |3.51     |8.05       |
+|sflegacy |0.00   |3.10    |5.17     |5.88       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -849,7 +839,7 @@ Messages
 +-------------------------------+------------+
 |unused-variable                |198         |
 +-------------------------------+------------+
-|invalid-name                   |83          |
+|invalid-name                   |79          |
 +-------------------------------+------------+
 |global-variable-undefined      |41          |
 +-------------------------------+------------+
@@ -863,15 +853,13 @@ Messages
 +-------------------------------+------------+
 |too-few-public-methods         |10          |
 +-------------------------------+------------+
-|attribute-defined-outside-init |10          |
-+-------------------------------+------------+
 |too-many-statements            |9           |
 +-------------------------------+------------+
 |no-member                      |8           |
 +-------------------------------+------------+
 |too-many-locals                |7           |
 +-------------------------------+------------+
-|too-many-instance-attributes   |4           |
+|too-many-instance-attributes   |5           |
 +-------------------------------+------------+
 |global-statement               |4           |
 +-------------------------------+------------+
@@ -883,9 +871,11 @@ Messages
 +-------------------------------+------------+
 |no-self-use                    |2           |
 +-------------------------------+------------+
+|blacklisted-name               |2           |
++-------------------------------+------------+
 |bad-indentation                |2           |
 +-------------------------------+------------+
-|super-init-not-called          |1           |
+|attribute-defined-outside-init |2           |
 +-------------------------------+------------+
 |bad-continuation               |1           |
 +-------------------------------+------------+
@@ -896,7 +886,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 4.78/10
+Your code has been rated at 4.81/10
 
 Raw metrics
 -----------
@@ -904,9 +894,9 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5340   |15.11 |NC       |NC         |
+|code      |5346   |15.13 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |28147  |79.67 |NC       |NC         |
+|docstring |28147  |79.65 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |688    |1.95  |NC       |NC         |
 +----------+-------+------+---------+-----------+
