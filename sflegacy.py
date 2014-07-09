@@ -16,8 +16,12 @@ class BaseClass(object):
     '''
         Use to fix unnessessary pylint warnings for legacy stuff
     '''
-    Foo = 'Foo'
-    Bar = 'Bar'
+    def __init__(self, *args):
+        '''
+            obsolete with cli?
+        '''
+        Foo = 'Foo'
+        Bar = 'Bar'
 
     def getfoo(self):
         '''
@@ -30,6 +34,26 @@ class BaseClass(object):
           return Bar
         '''
         return self.Bar
+
+    def add_event_listener(self, *args):
+        '''
+            obsolete
+        '''
+        print args
+
+
+class Actor(BaseClass):
+    '''
+        Use to fix unnessessary pylint warnings for legacy stuff
+    '''
+    def __init__(self, *args):
+        '''
+            obsolete with cli?
+        '''
+        self.x_pos = None
+        self.y_pos = None
+        self.visible = None
+        print args
 
 
 class AntiAliasType(BaseClass):
@@ -46,25 +70,11 @@ class MovieClip(BaseClass):
     pass
 
 
-class TextField(BaseClass):
+class TextField(Actor):
     '''
         obsolete with cli?
     '''
-    def __init__(self, *args):
-        '''
-            obsolete with cli?
-        '''
-        self.x_pos = None
-        self.y_pos = None
-        self.visible = None
-        print args
-
-    def add_event_listener(self, *args):
-        '''
-            obsolete
-        '''
-        self.visible = None
-        print args
+    pass
 
 
 class TextFormat(BaseClass):
@@ -74,7 +84,7 @@ class TextFormat(BaseClass):
     pass
 
 
-class TextFieldAutoSize(BaseClass):
+class TextFieldAutoSize(Actor):
     '''
         obsolete with cli?
     '''
@@ -100,12 +110,6 @@ class URLLoader(BaseClass):
         '''
         pass
 
-    def add_event_listener(self, *args):
-        '''
-            obsolete
-        '''
-        pass
-
     def load(self, *args):
         '''
             obsolete
@@ -124,11 +128,7 @@ class URLRequest(BaseClass):
     '''
         obsolete with cli?
     '''
-    def __init__(self, *args):
-        '''
-            obsolete with cli?
-        '''
-        pass
+    pass
 
 
 class TextFieldType(BaseClass):
@@ -502,25 +502,11 @@ class Loader(BaseClass):
     pass
 
 
-class Bitmap(BaseClass):
+class Bitmap(Actor):
     '''
         obsolete with cli?
     '''
-    def __init__(self, *args):
-        '''
-            obsolete with cli?
-        '''
-        self.x_pos = None
-        self.y_pos = None
-        self.visible = None
-        print args
-
-    def add_event_listener(self, *args):
-        '''
-            obsolete
-        '''
-        self.visible = None
-        print args
+    pass
 
 
 class Timer(BaseClass):
@@ -528,18 +514,6 @@ class Timer(BaseClass):
         obsolete with cli?
     '''
     TIMER = None
-
-    def __init__(self, *args):
-        '''
-            obsolete
-        '''
-        pass
-
-    def add_event_listener(self, *args):
-        '''
-            obsolete
-        '''
-        pass
 
     def start(self, *args):
         '''

@@ -114,6 +114,7 @@ from sflegacy import LoaderError
 from sflegacy import LoaderInfo
 from sflegacy import MouseEvent
 from sflegacy import MovieClip
+from sflegacy import remove_event_listener
 from sflegacy import SecurityDomain
 from sflegacy import SecurityErrorEvent
 from sflegacy import SecurityHandler
