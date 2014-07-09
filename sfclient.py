@@ -56,22 +56,68 @@ from sflegacy import Capabilities
 from sflegacy import DisplayObject
 from sflegacy import Event
 from sflegacy import ExternalIF
+from sflegacy import FontFormatAttackLabel
+from sflegacy import FontFormatAttrib
+from sflegacy import FontFormatAttribBonus
+from sflegacy import FontFormatAttribTemp
+from sflegacy import FontFormatBook
+from sflegacy import FontFormatBookHint
+from sflegacy import FontFormatBookLeft
+from sflegacy import FontFormatBullshit
+from sflegacy import FontFormatCatapultDamage
 from sflegacy import FontFormatClassError
-from sflegacy import FontFormatHallListHeading
+from sflegacy import FontFormatCriticalDamage
+from sflegacy import FontFormatDamage
+from sflegacy import FontFormatDefault
 from sflegacy import FontFormatDefaultLeft
+from sflegacy import FontFormatError
+from sflegacy import FontFormatGrayed
+from sflegacy import FontFormatGrayedHighLight
+from sflegacy import FontFormatGuildHallNoAttack
+from sflegacy import FontFormatGuildListText
+from sflegacy import FontFormatGuildListTextAttackError
+from sflegacy import FontFormatGuildListTextAttackErrorHalf
+from sflegacy import FontFormatGuildListTextAttackErrorOnline
+from sflegacy import FontFormatGuildListTextAttackErrorOnlineHalf
+from sflegacy import FontFormatGuildListTextAttackErrorOnlinePopup
+from sflegacy import FontFormatGuildListTextAttackOk
+from sflegacy import FontFormatGuildListTextAttackOkPopup
+from sflegacy import FontFormatGuildListTextOnline
+from sflegacy import FontFormatHallListHeading
+from sflegacy import FontFormatHallListHighLight
+from sflegacy import FontFormatHallListText
+from sflegacy import FontFormatHighStakes
+from sflegacy import FontFormatHighStakesHighLight
+from sflegacy import FontFormatHighStakesHighLightGrayed
+from sflegacy import FontFormatLifeBar
+from sflegacy import FontFormatPayIcon
+from sflegacy import FontFormatPostListHeading
+from sflegacy import FontFormatPostListHighLight
+from sflegacy import FontFormatPostListHighLightSys
+from sflegacy import FontFormatPostListHighLightSysGreen
+from sflegacy import FontFormatPostListHighLightSysRed
+from sflegacy import FontFormatPostListText
+from sflegacy import FontFormatPostListTextSys
+from sflegacy import FontFormatPostListTextSysGreen
+from sflegacy import FontFormatPostListTextSysRed
+from sflegacy import FontFormatQuestBar
+from sflegacy import FontFormatSpeech
+from sflegacy import FontFormatTimeBar
+from sflegacy import FontFormatToiletAura
 from sflegacy import Function
 from sflegacy import IOErrorEvent
 from sflegacy import KeyboardEvent
 from sflegacy import Loader
-from sflegacy import LoaderInfo
+from sflegacy import LoaderComplete
 from sflegacy import LoaderContext
 from sflegacy import LoaderError
-from sflegacy import LoaderComplete
+from sflegacy import LoaderInfo
 from sflegacy import MouseEvent
 from sflegacy import MovieClip
-from sflegacy import SharedObject
+from sflegacy import SecurityDomain
 from sflegacy import SecurityErrorEvent
 from sflegacy import SecurityHandler
+from sflegacy import SharedObject
 from sflegacy import Sound
 from sflegacy import SoundLoaderContext
 from sflegacy import TextField
@@ -83,51 +129,6 @@ from sflegacy import TimerEvent
 from sflegacy import URLLoader
 from sflegacy import URLLoaderdataFormat
 from sflegacy import URLRequest
-from sflegacy import FontFormatToiletAura
-from sflegacy import FontFormatGuildListTextAttackErrorHalf
-from sflegacy import FontFormatGuildListTextAttackErrorOnlineHalf
-from sflegacy import FontFormatError
-from sflegacy import FontFormatDefault
-from sflegacy import FontFormatHighStakes
-from sflegacy import FontFormatHighStakesHighLight
-from sflegacy import FontFormatHighStakesHighLightGrayed
-from sflegacy import FontFormatBook
-from sflegacy import FontFormatBookHint
-from sflegacy import FontFormatBookLeft
-from sflegacy import FontFormatBullshit
-from sflegacy import FontFormatAttackLabel
-from sflegacy import FontFormatSpeech
-from sflegacy import FontFormatGrayed
-from sflegacy import FontFormatGrayedHighLight
-from sflegacy import FontFormatHallListText
-from sflegacy import FontFormatGuildHallNoAttack
-from sflegacy import FontFormatHallListHighLight
-from sflegacy import FontFormatAttribBonus
-from sflegacy import FontFormatAttribTemp
-from sflegacy import FontFormatAttrib
-from sflegacy import FontFormatPayIcon
-from sflegacy import FontFormatPostListHeading
-from sflegacy import FontFormatPostListText
-from sflegacy import FontFormatPostListTextSys
-from sflegacy import FontFormatGuildListText
-from sflegacy import FontFormatGuildListTextOnline
-from sflegacy import FontFormatGuildListTextAttackError
-from sflegacy import FontFormatGuildListTextAttackErrorOnline
-from sflegacy import FontFormatGuildListTextAttackErrorOnlinePopup
-from sflegacy import FontFormatGuildListTextAttackOk
-from sflegacy import FontFormatGuildListTextAttackOkPopup
-from sflegacy import FontFormatPostListHighLight
-from sflegacy import FontFormatPostListHighLightSys
-from sflegacy import FontFormatPostListTextSysRed
-from sflegacy import FontFormatPostListHighLightSysRed
-from sflegacy import FontFormatPostListTextSysGreen
-from sflegacy import FontFormatPostListHighLightSysGreen
-from sflegacy import FontFormatQuestBar
-from sflegacy import FontFormatTimeBar
-from sflegacy import FontFormatLifeBar
-from sflegacy import FontFormatDamage
-from sflegacy import FontFormatCriticalDamage
-from sflegacy import FontFormatCatapultDamage
 
 from sfbuildinterface import build_interface
 
@@ -12409,7 +12410,7 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
     else:
         tmp_obj.x_pos = pos_x
 
-    tmp_obj.y = pos_y
+    tmp_obj.y_pos = pos_y
     tmp_obj.visible = True
 
     actor[CNT['HALL']['LIST']].addChild(tmp_obj)
@@ -14694,62 +14695,61 @@ def process_arg(arg):
 
     elif arg is DisplayObject:
         tmp_do = Bitmap(arg.content.bitmapData.clone())
-        with tmp_do:
-            if text_dir == "right":
-                if textX < popup_width:
-                    x = textX - width
-                    textX = textX - width + 5
-                    y = textY
-                else:
-                    x = popup_width - 5 - width
-                    y = textY
-                    textY = textY + textHeight + 10
+        if text_dir == "right":
+            if textX < popup_width:
+                tmp_do.x = textX - tmp_do.width
+                textX = textX - tmp_do.width + 5
+                tmp_do.y = textY
             else:
-                if textX > 0:
-                    x = textX
-                    textX = textX + width + 5
-                    y = textY
-                else:
-                    x = 5
-                    y = textY
-                    textY = textY + textHeight + 10
+                tmp_do.x = popup_width - 5 - tmp_do.width
+                tmp_do.y = textY
+                textY = textY + tmp_do.textHeight + 10
+        else:
+            if textX > 0:
+                tmp_do.x = textX
+                textX = textX + tmp_do.width + 5
+                tmp_do.y = textY
+            else:
+                tmp_do.x = 5
+                tmp_do.y = textY
+                textY = textY + tmp_do.textHeight + 10
         actor[POPUP_INFO].addChild(tmp_do)
 
     elif arg is str:
         arg = arg.replace("#", chr(13))
+
         tmp_text_field = TextField()
-        with tmp_text_field:
-            auto_size = TextFieldAutoSize.LEFT
-            background = False
-            selectable = False
-            embed_fonts = font_embedded
-            default_text_format = tmp_text_format
-            htmlText = arg
-            last_text_height = textHeight
-            if text_dir == "right":
-                auto_size = TextFieldAutoSize.RIGHT
-                if textX < popup_width:
-                    x = textX - text_width
-                    textX -= text_width + 5
-                    y = textY
-                else:
-                    x = popup_width - 5 - text_width
-                    y = textY
-                    textY += textHeight + 10
+        tmp_text_field.auto_size = TextFieldAutoSize.LEFT
+        tmp_text_field.background = False
+        tmp_text_field.selectable = False
+        tmp_text_field.embed_fonts = font_embedded
+        tmp_text_field.default_text_format = tmp_text_format
+        tmp_text_field.htmlText = arg
+        last_text_height = textHeight
+        if text_dir == "right":
+            tmp_text_field.auto_size = TextFieldAutoSize.RIGHT
+            if textX < popup_width:
+                tmp_text_field.x = textX - text_width
+                textX -= text_width + 5
+                tmp_text_field.y = textY
             else:
-                if textX > 0:
-                    x = textX
-                    textX += text_width + 5
-                    y = textY
-                else:
-                    x = 5
-                    y = textY
-                    textY += textHeight + 10
+                tmp_text_field.x = popup_width - 5 - text_width
+                tmp_text_field.y = textY
+                textY += tmp_text_field.textHeight + 10
+        else:
+            if textX > 0:
+                tmp_text_field.x = textX
+                textX += text_width + 5
+                tmp_text_field.y = textY
+            else:
+                tmp_text_field.x = 5
+                tmp_text_field.y = textY
+                textY += tmp_text_field.textHeight + 10
 
-                if (x + text_width + 10) > popup_width:
-                    popup_width = x + text_width + 10
+            if (tmp_text_field.x + text_width + 10) > popup_width:
+                popup_width = tmp_text_field.x + text_width + 10
 
-            actor[POPUP_INFO].addChild(tmp_text_field)
+        actor[POPUP_INFO].addChild(tmp_text_field)
 
 
 def show_popup(evt, *args):
