@@ -1,6 +1,6 @@
 checking sfbuildinterface.py
 checking sfclient.py
-sfclient.py:15726:5: E129 visually indented line with same indent as next logical line
+sfclient.py:15727:5: E129 visually indented line with same indent as next logical line
     Continuation lines indentation.
 
     Continuation lines should align wrapped elements either vertically
