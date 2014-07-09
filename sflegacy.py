@@ -51,17 +51,24 @@ class Actor(BaseClass):
         '''
             obsolete with cli?
         '''
+        self.allow_smoothing = None
+        self.anti_alias_type = None
+        self.auto_size = None
+        self.background = None
+        self.default_text_format = None
+        self.embed_fonts = None
+        self.force_smoothing = None
+        self.html_text = None
+        self.mouse_enabled = None
+        self.selectable = None
+        self.smoothing = None
+        self.text = None
+        self.text_height = None
+        self.text_width = None
+        self.visible = None
+        self.width = None
         self.x_pos = None
         self.y_pos = None
-        self.visible = None
-        self.auto_size = None
-        self.default_text_format = None
-        self.selectable = None
-        self.background = None
-        self.html_text = None
-        self.embed_fonts = None
-        self.text_height = None
-        self.width = None
 
         super(Actor, self).__init__(args)
 
@@ -697,7 +704,7 @@ def get_quest_bg():
 
         @return int
 
-        TODO: obsolete
+        obsolete
     '''
     # action = savegame[SG['ACTION']['INDEX']]
     # location = savegame[SG['QUEST']['OFFER']['LOCATION1'] + action - 1]
@@ -712,7 +719,7 @@ def get_quest_title(quest_id):
         @param int quest_id
         @return string
 
-        TODO: obsolete
+        obsolete
     '''
     # quest = Quest.from_sg(quest_id, savegame)
     # return quest.get_title()
@@ -726,7 +733,7 @@ def get_quest_text(quest_id):
         @param int quest_id
         @return str
 
-        TODO: obsolete
+        obsolete
     '''
     # quest = Quest.from_sg(quest_id, savegame)
     # quest.get_text()
@@ -742,7 +749,7 @@ def get_quest_random(quest_id, random_range, random_mod):
         @param int random_mod
         @return int
 
-        TODO: obsolete
+        obsolete
     '''
     # quest = Quest.from_sg(quest_id, savegame)
     # return quest.get_random(random_range, random_mod)
@@ -787,10 +794,7 @@ def parse_savegame(str_save_game, fill_face_variables=True, no_spoil=False):
 
     # # Extract mirror pieces from gender entry
     # bin_str = int(savegame[SG['GENDER']]).tostr(2)
-
-    # # TODO: better way to zero fill?
-    # while len(bin_str) < 32:
-    #     bin_str = "0" + bin_str
+    # bin_str.zfill(32)
 
     # mirror_pieces = list()
     # for i in range(13):
@@ -975,7 +979,7 @@ def set_volume(vol):
     '''
         set volume
 
-        TODO: Obsolete
+        Obsolete
     '''
     # with (stObject):
     #     stObject.volume = vol

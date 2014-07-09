@@ -14731,7 +14731,7 @@ def process_arg(arg):
         tmp_tf.embed_fonts = font_embedded
         tmp_tf.default_text_format = tmp_text_format
         tmp_tf.html_text = arg
-        last_text_height = tmp_tf.textHeight
+        last_text_height = tmp_tf.text_height
         if text_dir == "right":
             tmp_tf.auto_size = TextFieldAutoSize.RIGHT
             if text_x < popup_width:
