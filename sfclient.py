@@ -14739,12 +14739,12 @@ def process_arg(arg):
                 textY += tmp_text_field.textHeight + 10
         else:
             if textX > 0:
-                tmp_text_field.x = textX
+                tmp_text_field.x_pos = textX
                 textX += text_width + 5
-                tmp_text_field.y = textY
+                tmp_text_field.y_pos = textY
             else:
-                tmp_text_field.x = 5
-                tmp_text_field.y = textY
+                tmp_text_field.x_pos = 5
+                tmp_text_field.y_pos = textY
                 textY += tmp_text_field.textHeight + 10
 
             if (tmp_text_field.x + text_width + 10) > popup_width:

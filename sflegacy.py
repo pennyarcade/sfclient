@@ -20,27 +20,27 @@ class BaseClass(object):
         '''
             obsolete with cli?
         '''
-        self.foo = 'Foo'
-        self.bar = 'Bar'
+        self.param1 = 'Foo'
+        self.param2 = 'Bar'
         print args
 
     def getfoo(self):
         '''
           return Foo
         '''
-        return self.foo
+        return self.param1
 
     def getbar(self):
         '''
           return Bar
         '''
-        return self.bar
+        return self.param2
 
     def add_event_listener(self, *args):
         '''
             obsolete
         '''
-        print args
+        print args, self.param1
 
 
 class Actor(BaseClass):
@@ -58,7 +58,7 @@ class Actor(BaseClass):
         self.default_text_format = None
         self.selectable = None
         self.background = None
-        self.htmlText = None
+        self.html_text = None
         self.embed_fonts = None
 
         super(Actor, self).__init__(args)
