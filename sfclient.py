@@ -14698,21 +14698,21 @@ def process_arg(arg):
         tmp_do = Bitmap(arg.content.bitmapData.clone())
         if text_dir == "right":
             if textX < popup_width:
-                tmp_do.x = textX - tmp_do.width
+                tmp_do.x_pos = textX - tmp_do.width
                 textX = textX - tmp_do.width + 5
-                tmp_do.y = textY
+                tmp_do.y_pos = textY
             else:
-                tmp_do.x = popup_width - 5 - tmp_do.width
-                tmp_do.y = textY
+                tmp_do.x_pos = popup_width - 5 - tmp_do.width
+                tmp_do.y_pos = textY
                 textY = textY + tmp_do.textHeight + 10
         else:
             if textX > 0:
-                tmp_do.x = textX
+                tmp_do.x_pos = textX
                 textX = textX + tmp_do.width + 5
-                tmp_do.y = textY
+                tmp_do.y_pos = textY
             else:
-                tmp_do.x = 5
-                tmp_do.y = textY
+                tmp_do.x_pos = 5
+                tmp_do.y_pos = textY
                 textY = textY + tmp_do.textHeight + 10
         actor[POPUP_INFO].addChild(tmp_do)
 

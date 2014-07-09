@@ -20,21 +20,21 @@ class BaseClass(object):
         '''
             obsolete with cli?
         '''
-        self.Foo = 'Foo'
-        self.Bar = 'Bar'
+        self.foo = 'Foo'
+        self.bar = 'Bar'
         print args
 
     def getfoo(self):
         '''
           return Foo
         '''
-        return self.Foo
+        return self.foo
 
     def getbar(self):
         '''
           return Bar
         '''
-        return self.Bar
+        return self.bar
 
     def add_event_listener(self, *args):
         '''
@@ -54,7 +54,14 @@ class Actor(BaseClass):
         self.x_pos = None
         self.y_pos = None
         self.visible = None
-        print args
+        self.auto_size = None
+        self.default_text_format = None
+        self.selectable = None
+        self.background = None
+        self.htmlText = None
+        self.embed_fonts = None
+
+        super(Actor, self).__init__(args)
 
 
 class AntiAliasType(BaseClass):
