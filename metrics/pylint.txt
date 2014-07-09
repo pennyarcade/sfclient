@@ -776,26 +776,21 @@ R0913:20532,0: load_character_image: Too many arguments (14/5)
 ************* Module sfglobals
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
-W0511:690,0: : TODO: obsolete
-W0511:705,0: : TODO: obsolete
-W0511:719,0: : TODO: obsolete
-W0511:735,0: : TODO: obsolete
-W0511:759,0: : TODO WTF?
-W0511:781,0: : TODO: better way to zero fill?
-W0511:968,0: : TODO: Obsolete
-C0103: 23,8: BaseClass.__init__: Invalid variable name "Foo"
-C0103: 24,8: BaseClass.__init__: Invalid variable name "Bar"
-W0613: 19,0: BaseClass.__init__: Unused argument 'args'
-W0612: 24,8: BaseClass.__init__: Unused variable 'Bar'
-W0612: 23,8: BaseClass.__init__: Unused variable 'Foo'
-E1101: 30,15: BaseClass.getfoo: Instance of 'BaseClass' has no 'Foo' member
-E1101: 36,15: BaseClass.getbar: Instance of 'BaseClass' has no 'Bar' member
-R0201: 38,4: BaseClass.add_event_listener: Method could be a function
-W0231: 49,4: Actor.__init__: __init__ method from base class 'BaseClass' is not called
+W0511:691,0: : TODO: obsolete
+W0511:706,0: : TODO: obsolete
+W0511:720,0: : TODO: obsolete
+W0511:736,0: : TODO: obsolete
+W0511:760,0: : TODO WTF?
+W0511:782,0: : TODO: better way to zero fill?
+W0511:969,0: : TODO: Obsolete
+C0103: 23,8: BaseClass.__init__: Invalid attribute name "Foo"
+C0103: 24,8: BaseClass.__init__: Invalid attribute name "Bar"
+R0201: 39,4: BaseClass.add_event_listener: Method could be a function
+W0231: 50,4: Actor.__init__: __init__ method from base class 'BaseClass' is not called
 C0103:14728,8: process_arg: Invalid attribute name "htmlText"
 C0103:14735,16: process_arg: Invalid attribute name "y"
 C0103:14733,16: process_arg: Invalid attribute name "x"
-R0902: 73,0: TextField: Too many instance attributes (11/7)
+R0902: 74,0: TextField: Too many instance attributes (11/7)
 W0201:14726,8: process_arg: Attribute 'embed_fonts' defined outside __init__
 W0201:14728,8: process_arg: Attribute 'htmlText' defined outside __init__
 W0201:14724,8: process_arg: Attribute 'background' defined outside __init__
@@ -812,7 +807,7 @@ W0201:14714,16: process_arg: Attribute 'x' defined outside __init__
 
 Report
 ======
-4259 statements analysed.
+4260 statements analysed.
 
 Messages by category
 --------------------
@@ -824,9 +819,9 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |57     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |302    |NC       |NC         |
+|warning    |299    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |358    |NC       |NC         |
+|error      |356    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -834,13 +829,13 @@ Messages by category
 % errors / warnings by module
 -----------------------------
 
-+---------+------+--------+---------+-----------+
-|module   |error |warning |refactor |convention |
-+=========+======+========+=========+===========+
-|sfclient |99.44 |93.05   |96.49    |89.66      |
-+---------+------+--------+---------+-----------+
-|sflegacy |0.56  |6.95    |3.51     |8.05       |
-+---------+------+--------+---------+-----------+
++---------+-------+--------+---------+-----------+
+|module   |error  |warning |refactor |convention |
++=========+=======+========+=========+===========+
+|sfclient |100.00 |93.98   |96.49    |89.66      |
++---------+-------+--------+---------+-----------+
+|sflegacy |0.00   |6.02    |3.51     |8.05       |
++---------+-------+--------+---------+-----------+
 
 
 
@@ -852,7 +847,7 @@ Messages
 +===============================+============+
 |undefined-variable             |327         |
 +-------------------------------+------------+
-|unused-variable                |200         |
+|unused-variable                |198         |
 +-------------------------------+------------+
 |invalid-name                   |83          |
 +-------------------------------+------------+
@@ -868,19 +863,19 @@ Messages
 +-------------------------------+------------+
 |too-few-public-methods         |10          |
 +-------------------------------+------------+
-|no-member                      |10          |
-+-------------------------------+------------+
 |attribute-defined-outside-init |10          |
 +-------------------------------+------------+
 |too-many-statements            |9           |
 +-------------------------------+------------+
-|too-many-locals                |7           |
+|no-member                      |8           |
 +-------------------------------+------------+
-|unused-argument                |4           |
+|too-many-locals                |7           |
 +-------------------------------+------------+
 |too-many-instance-attributes   |4           |
 +-------------------------------+------------+
 |global-statement               |4           |
++-------------------------------+------------+
+|unused-argument                |3           |
 +-------------------------------+------------+
 |too-many-lines                 |3           |
 +-------------------------------+------------+
@@ -901,7 +896,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 4.75/10
+Your code has been rated at 4.78/10
 
 Raw metrics
 -----------
@@ -909,7 +904,7 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5339   |15.11 |NC       |NC         |
+|code      |5340   |15.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |28147  |79.67 |NC       |NC         |
 +----------+-------+------+---------+-----------+
