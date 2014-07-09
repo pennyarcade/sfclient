@@ -14725,17 +14725,17 @@ def process_arg(arg):
         tmp_text_field.selectable = False
         tmp_text_field.embed_fonts = font_embedded
         tmp_text_field.default_text_format = tmp_text_format
-        tmp_text_field.htmlText = arg
+        tmp_text_field.html_text = arg
         last_text_height = textHeight
         if text_dir == "right":
             tmp_text_field.auto_size = TextFieldAutoSize.RIGHT
             if textX < popup_width:
-                tmp_text_field.x = textX - text_width
+                tmp_text_field.x_pos = textX - text_width
                 textX -= text_width + 5
-                tmp_text_field.y = textY
+                tmp_text_field.y_pos = textY
             else:
-                tmp_text_field.x = popup_width - 5 - text_width
-                tmp_text_field.y = textY
+                tmp_text_field.x_pos = popup_width - 5 - text_width
+                tmp_text_field.y_pos = textY
                 textY += tmp_text_field.textHeight + 10
         else:
             if textX > 0:
