@@ -60,6 +60,8 @@ class Actor(BaseClass):
         self.background = None
         self.html_text = None
         self.embed_fonts = None
+        self.text_height = None
+        self.width = None
 
         super(Actor, self).__init__(args)
 

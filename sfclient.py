@@ -411,7 +411,8 @@ class Face(object):
         character face
     '''
     def __init__(self, beard=1, brows=1, cclass=1, color=1, eyes=1, ears=1,
-                 hair=1, mouth=1, nose=1, special=1, special2=1, volk=0):
+                 hair=1, male=True, mouth=1, nose=1, special=1, special2=1,
+                 volk=0):
         '''
             setup face object
         '''
@@ -12365,35 +12366,31 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
     if txt == "[K]":
         tmp_obj = Bitmap(
             actor[IMG['IF']['KRIEGER']].content.bitmapData.clone())
-        with (tmp_obj):
-            allow_smoothing = True
-            force_smoothing = True
-            smoothing = True
-            mouse_enabled = True
+        tmp_obj.allow_smoothing = True
+        tmp_obj.force_smoothing = True
+        tmp_obj.smoothing = True
+        tmp_obj.mouse_enabled = True
     elif txt == "[M]":
         tmp_obj = Bitmap(actor[IMG['IF']['MAGIER']].content.bitmapData.clone())
-        with (tmp_obj):
-            allow_smoothing = True
-            force_smoothing = True
-            smoothing = True
-            mouse_enabled = True
+        tmp_obj.allow_smoothing = True
+        tmp_obj.force_smoothing = True
+        tmp_obj.smoothing = True
+        tmp_obj.mouse_enabled = True
     elif txt == "[J]":
         tmp_obj = Bitmap(actor[IMG['IF']['JAEGER']].content.bitmapData.clone())
-        with tmp_obj:
-            allow_smoothing = True
-            force_smoothing = True
-            smoothing = True
-            mouse_enabled = True
+        tmp_obj.allow_smoothing = True
+        tmp_obj.force_smoothing = True
+        tmp_obj.smoothing = True
+        tmp_obj.mouse_enabled = True
     else:
         tmp_obj = TextField()
-        with tmp_obj:
-            default_text_format = fmt
-            auto_size = TextFieldAutoSize.LEFT
-            background = False
-            selectable = False
-            embed_fonts = font_embedded
-            anti_alias_type = AntiAliasType.ADVANCED
-            text = txt
+        tmp_obj.default_text_format = fmt
+        tmp_obj.auto_size = TextFieldAutoSize.LEFT
+        tmp_obj.background = False
+        tmp_obj.selectable = False
+        tmp_obj.embed_fonts = font_embedded
+        tmp_obj.anti_alias_type = AntiAliasType.ADVANCED
+        tmp_obj.text = txt
 
         if max_width > 0:
             this_field_popup = trim_too_long(tmp_obj, max_width)
@@ -13176,9 +13173,13 @@ def action_handler(event):
             break
 
         if case(RESP['GUILD']['FOUND_SUCCESS']):
-            with (actor[LBL['IF']['GOLD']]):
-                text = str((int(text) - 10))
-                x = actor[IMG['IF']['GOLD']].x - text_width - 10
+            actor[LBL['IF']['GOLD']].text = str(
+                (int(actor[LBL['IF']['GOLD']].text) - 10)
+            )
+            actor[LBL['IF']['GOLD']].x = (
+                actor[IMG['IF']['GOLD']].x
+                - actor[LBL['IF']['GOLD']].text_width - 10
+            )
         if case(RESP['GUILD']['RENAME_SUCCESS']):
             pass
         if case(RESP['GUILD']['IMPROVE_SUCCESS']):
@@ -14515,31 +14516,37 @@ def error_message(msg=""):
                     label.scaleX = 1
                     label.scaleY = 1
                     if on_stage(BTN['SHOPS_NEWWAREZ']):
-                        label.x = POS['SHOP']['ERROR_X'] - int(text_width / 2)
+                        label.x = (POS['SHOP']['ERROR_X']
+                                   - int(label.text_width / 2))
                         label.y = POS['SHOP']['ERROR_Y']
                     elif on_stage(IMG['TOILET']):
                         label.x = (POS['SHOP']['ERROR_X'] - 15
-                                   - int(text_width / 2))
+                                   - int(label.text_width / 2))
                         label.y = 720
                     elif on_stage(BTN['QUEST']['CANCEL']):
-                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.x = (POS['IF']['ERROR_X']
+                                   - int(label.text_width / 2))
                         label.y = POS['QUEST']['ERROR_Y']
                     elif on_stage(IMG['POST_BG']):
-                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.x = (POS['IF']['ERROR_X']
+                                   - int(label.text_width / 2))
                         label.y = POS['QUEST']['ERROR_Y']
                     elif on_stage(LBL['STALL_TITEL']):
-                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.x = (POS['IF']['ERROR_X']
+                                   - int(label.text_width / 2))
                         label.y = POS['QUEST']['ERROR_Y']
                     elif on_stage(BTN['CHAR_ATTACK']):
                         label.scaleX = 0.7
                         label.scaleY = 0.7
-                        label.x = 280 + 500 + 235 - width / 2
+                        label.x = 280 + 500 + 235 - label.width / 2
                         label.y = 100 + 657
                     elif on_stage(SHP['MAINQUEST']):
-                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.x = (POS['IF']['ERROR_X']
+                                   - int(label.text_width / 2))
                         label.y = POS['MQ']['ERROR_Y']
                     else:
-                        label.x = POS['IF']['ERROR_X'] - int(text_width / 2)
+                        label.x = (POS['IF']['ERROR_X']
+                                   - int(label.text_width / 2))
                         label.y = POS['IF']['ERROR_Y']
 
                     add(LBL['ERROR'])
@@ -14549,7 +14556,6 @@ def enable_popup(actor_id, *args):
     '''
         enable popup actor
     '''
-    i = 0
     popup_width = 0
     text_y = 0
     text_x = 0
@@ -14703,7 +14709,7 @@ def process_arg(arg):
             else:
                 tmp_do.x_pos = popup_width - 5 - tmp_do.width
                 tmp_do.y_pos = text_y
-                text_y = text_y + tmp_do.textHeight + 10
+                text_y = text_y + tmp_do.text_height + 10
         else:
             if text_x > 0:
                 tmp_do.x_pos = text_x
@@ -14712,44 +14718,44 @@ def process_arg(arg):
             else:
                 tmp_do.x_pos = 5
                 tmp_do.y_pos = text_y
-                text_y = text_y + tmp_do.textHeight + 10
+                text_y = text_y + tmp_do.text_height + 10
         actor[POPUP_INFO].addChild(tmp_do)
 
     elif arg is str:
         arg = arg.replace("#", chr(13))
 
-        tmp_text_field = TextField()
-        tmp_text_field.auto_size = TextFieldAutoSize.LEFT
-        tmp_text_field.background = False
-        tmp_text_field.selectable = False
-        tmp_text_field.embed_fonts = font_embedded
-        tmp_text_field.default_text_format = tmp_text_format
-        tmp_text_field.html_text = arg
-        last_text_height = textHeight
+        tmp_tf = TextField()
+        tmp_tf.auto_size = TextFieldAutoSize.LEFT
+        tmp_tf.background = False
+        tmp_tf.selectable = False
+        tmp_tf.embed_fonts = font_embedded
+        tmp_tf.default_text_format = tmp_text_format
+        tmp_tf.html_text = arg
+        last_text_height = tmp_tf.textHeight
         if text_dir == "right":
-            tmp_text_field.auto_size = TextFieldAutoSize.RIGHT
+            tmp_tf.auto_size = TextFieldAutoSize.RIGHT
             if text_x < popup_width:
-                tmp_text_field.x_pos = text_x - text_width
-                text_x -= text_width + 5
-                tmp_text_field.y_pos = text_y
+                tmp_tf.x_pos = text_x - tmp_tf.text_width
+                text_x -= tmp_tf.text_width + 5
+                tmp_tf.y_pos = text_y
             else:
-                tmp_text_field.x_pos = popup_width - 5 - text_width
-                tmp_text_field.y_pos = text_y
-                text_y += tmp_text_field.textHeight + 10
+                tmp_tf.x_pos = popup_width - 5 - tmp_tf.text_width
+                tmp_tf.y_pos = text_y
+                text_y += tmp_tf.text_height + 10
         else:
             if text_x > 0:
-                tmp_text_field.x_pos = text_x
-                text_x += text_width + 5
-                tmp_text_field.y_pos = text_y
+                tmp_tf.x_pos = text_x
+                text_x += tmp_tf.text_width + 5
+                tmp_tf.y_pos = text_y
             else:
-                tmp_text_field.x_pos = 5
-                tmp_text_field.y_pos = text_y
-                text_y += tmp_text_field.textHeight + 10
+                tmp_tf.x_pos = 5
+                tmp_tf.y_pos = text_y
+                text_y += tmp_tf.text_height + 10
 
-            if (tmp_text_field.x + text_width + 10) > popup_width:
-                popup_width = tmp_text_field.x + text_width + 10
+            if (tmp_tf.x_pos + tmp_tf.text_width + 10) > popup_width:
+                popup_width = tmp_tf.x_pos + tmp_tf.text_width + 10
 
-        actor[POPUP_INFO].addChild(tmp_text_field)
+        actor[POPUP_INFO].addChild(tmp_tf)
 
 
 def show_popup(evt, *args):
