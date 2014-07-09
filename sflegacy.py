@@ -20,8 +20,9 @@ class BaseClass(object):
         '''
             obsolete with cli?
         '''
-        Foo = 'Foo'
-        Bar = 'Bar'
+        self.Foo = 'Foo'
+        self.Bar = 'Bar'
+        print args
 
     def getfoo(self):
         '''
