@@ -541,13 +541,6 @@ E0602:14666,42: play: Undefined variable 'stObject'
 E0602:14693,12: process_arg: Undefined variable 'text_y'
 E0601:14693,22: process_arg: Using variable 'last_text_height' before assignment
 E0602:14731,29: process_arg: Undefined variable 'font_embedded'
-E1101:14734,27: process_arg: Instance of 'TextField' has no 'textHeight' member
-E1101:14738,40: process_arg: Instance of 'TextField' has no 'text_width' member
-E1101:14739,26: process_arg: Instance of 'TextField' has no 'text_width' member
-E1101:14742,49: process_arg: Instance of 'TextField' has no 'text_width' member
-E1101:14748,26: process_arg: Instance of 'TextField' has no 'text_width' member
-E1101:14755,31: process_arg: Instance of 'TextField' has no 'text_width' member
-E1101:14756,45: process_arg: Instance of 'TextField' has no 'text_width' member
 R0912:14675,0: process_arg: Too many branches (23/12)
 R0915:14675,0: process_arg: Too many statements (71/50)
 E0602:14768,7: show_popup: Undefined variable 'actorpopup_stamp'
@@ -711,26 +704,14 @@ R0913:20537,0: load_character_image: Too many arguments (14/5)
 ************* Module sfglobals
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
-W0511:700,0: : TODO: obsolete
-W0511:715,0: : TODO: obsolete
-W0511:729,0: : TODO: obsolete
-W0511:745,0: : TODO: obsolete
-W0511:769,0: : TODO WTF?
-W0511:791,0: : TODO: better way to zero fill?
-W0511:978,0: : TODO: Obsolete
-R0902: 46,0: Actor: Too many instance attributes (11/7)
-R0902: 83,0: TextField: Too many instance attributes (11/7)
-W0201:12392,8: hall_list_add_field: Attribute 'anti_alias_type' defined outside __init__
-W0201:12393,8: hall_list_add_field: Attribute 'text' defined outside __init__
-W0201:12384,8: hall_list_add_field: Attribute 'mouse_enabled' defined outside __init__
-W0201:12383,8: hall_list_add_field: Attribute 'smoothing' defined outside __init__
-W0201:12382,8: hall_list_add_field: Attribute 'force_smoothing' defined outside __init__
-W0201:12381,8: hall_list_add_field: Attribute 'allow_smoothing' defined outside __init__
+W0511:776,0: : TODO WTF?
+R0902: 46,0: Actor: Too many instance attributes (18/7)
+R0902: 90,0: TextField: Too many instance attributes (11/7)
 
 
 Report
 ======
-4261 statements analysed.
+4268 statements analysed.
 
 Messages by category
 --------------------
@@ -742,9 +723,9 @@ Messages by category
 +-----------+-------+---------+-----------+
 |refactor   |56     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |278    |NC       |NC         |
+|warning    |266    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |333    |NC       |NC         |
+|error      |326    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -755,9 +736,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |95.32   |96.43    |96.49      |
+|sfclient |100.00 |99.62   |96.43    |96.49      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |4.68    |3.57     |0.00       |
+|sflegacy |0.00   |0.38    |3.57     |0.00       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -765,55 +746,51 @@ Messages by category
 Messages
 --------
 
-+-------------------------------+------------+
-|message id                     |occurrences |
-+===============================+============+
-|undefined-variable             |306         |
-+-------------------------------+------------+
-|unused-variable                |184         |
-+-------------------------------+------------+
-|invalid-name                   |54          |
-+-------------------------------+------------+
-|global-variable-undefined      |41          |
-+-------------------------------+------------+
-|fixme                          |40          |
-+-------------------------------+------------+
-|used-before-assignment         |17          |
-+-------------------------------+------------+
-|too-many-arguments             |14          |
-+-------------------------------+------------+
-|too-many-branches              |11          |
-+-------------------------------+------------+
-|too-few-public-methods         |10          |
-+-------------------------------+------------+
-|too-many-statements            |9           |
-+-------------------------------+------------+
-|no-member                      |7           |
-+-------------------------------+------------+
-|too-many-locals                |6           |
-+-------------------------------+------------+
-|attribute-defined-outside-init |6           |
-+-------------------------------+------------+
-|too-many-instance-attributes   |5           |
-+-------------------------------+------------+
-|global-statement               |4           |
-+-------------------------------+------------+
-|unused-argument                |3           |
-+-------------------------------+------------+
-|too-many-lines                 |3           |
-+-------------------------------+------------+
-|too-many-function-args         |2           |
-+-------------------------------+------------+
-|no-self-use                    |1           |
-+-------------------------------+------------+
-|assignment-from-no-return      |1           |
-+-------------------------------+------------+
++-----------------------------+------------+
+|message id                   |occurrences |
++=============================+============+
+|undefined-variable           |306         |
++-----------------------------+------------+
+|unused-variable              |184         |
++-----------------------------+------------+
+|invalid-name                 |54          |
++-----------------------------+------------+
+|global-variable-undefined    |41          |
++-----------------------------+------------+
+|fixme                        |34          |
++-----------------------------+------------+
+|used-before-assignment       |17          |
++-----------------------------+------------+
+|too-many-arguments           |14          |
++-----------------------------+------------+
+|too-many-branches            |11          |
++-----------------------------+------------+
+|too-few-public-methods       |10          |
++-----------------------------+------------+
+|too-many-statements          |9           |
++-----------------------------+------------+
+|too-many-locals              |6           |
++-----------------------------+------------+
+|too-many-instance-attributes |5           |
++-----------------------------+------------+
+|global-statement             |4           |
++-----------------------------+------------+
+|unused-argument              |3           |
++-----------------------------+------------+
+|too-many-lines               |3           |
++-----------------------------+------------+
+|too-many-function-args       |2           |
++-----------------------------+------------+
+|no-self-use                  |1           |
++-----------------------------+------------+
+|assignment-from-no-return    |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 5.17/10
+Your code has been rated at 5.29/10
 
 Raw metrics
 -----------
@@ -821,13 +798,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5353   |15.15 |NC       |NC         |
+|code      |5360   |15.16 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |28147  |79.64 |NC       |NC         |
+|docstring |28147  |79.63 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |688    |1.95  |NC       |NC         |
+|comment   |686    |1.94  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1156   |3.27  |NC       |NC         |
+|empty     |1155   |3.27  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
