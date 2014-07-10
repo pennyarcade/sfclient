@@ -147,7 +147,6 @@ E0602:2087,57: Savegame.parse: Undefined variable 'session_id'
 E0601:2089,50: Savegame.parse: Using variable 'gilden_id' before assignment
 E0602:2092,16: Savegame.parse: Undefined variable 'send_action'
 E0601:2104,11: Savegame.parse: Using variable 'next_pxl' before assignment
-R0201:1904,4: Savegame.parse: Method could be a function
 R0912:1904,4: Savegame.parse: Too many branches (37/12)
 R0915:1904,4: Savegame.parse: Too many statements (105/50)
 W0612:1966,8: Savegame.parse: Unused variable 'debug_info'
@@ -676,7 +675,7 @@ Messages by category
 +===========+=======+=========+===========+
 |convention |60     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |56     |NC       |NC         |
+|refactor   |55     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |257    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -691,9 +690,9 @@ Messages by category
 +---------+-------+--------+---------+-----------+
 |module   |error  |warning |refactor |convention |
 +=========+=======+========+=========+===========+
-|sfclient |100.00 |99.61   |96.43    |96.67      |
+|sfclient |100.00 |99.61   |96.36    |96.67      |
 +---------+-------+--------+---------+-----------+
-|sflegacy |0.00   |0.39    |3.57     |0.00       |
+|sflegacy |0.00   |0.39    |3.64     |0.00       |
 +---------+-------+--------+---------+-----------+
 
 
@@ -739,8 +738,6 @@ Messages
 |too-many-function-args       |2           |
 +-----------------------------+------------+
 |redefined-outer-name         |1           |
-+-----------------------------+------------+
-|no-self-use                  |1           |
 +-----------------------------+------------+
 |assignment-from-no-return    |1           |
 +-----------------------------+------------+
