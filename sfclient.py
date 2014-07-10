@@ -1901,7 +1901,7 @@ class Savegame(object):
         '''
         pass
 
-    def parse(self, str_save_game, fill_face_variables=True, no_spoil=False):
+    def parse(str_save_game, fill_face_variables=True, no_spoil=False):
         '''
             parse raw response into Savegame object
         '''
@@ -16712,7 +16712,7 @@ def resolve_breaks(in_str):
     };
     return (outStr);
     '''
-    print in_str
+    return in_str
 
 
 def post_btn_handler(evt=None, actor_id=0):
