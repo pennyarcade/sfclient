@@ -5,7 +5,7 @@ from time import time
 
 result = []
 for i in range(16):
-    result.appent('foo')
+    result.append('foo')
 
 result[0](str(int(time())))
 
