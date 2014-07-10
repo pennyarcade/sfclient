@@ -1905,7 +1905,7 @@ class Savegame(object):
         '''
             parse raw response into Savegame object
         '''
-        save_obj = Savegame()
+        save_obj = self.__init__()
 
         # parse into array of (mostly) numbers
         savegame = ("0/" + str_save_game).split("/")
