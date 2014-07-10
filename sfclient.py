@@ -170,6 +170,7 @@ Security = SecurityHandler()
 pending_loaders = None
 SAVE = None
 
+
 class RequestFailedException(Exception):
     '''
         Request to server failed
@@ -1904,6 +1905,8 @@ class Savegame(object):
         '''
             parse raw response into Savegame object
         '''
+        save_obj = Savegame()
+
         # parse into array of (mostly) numbers
         savegame = ("0/" + str_save_game).split("/")
 
@@ -2100,6 +2103,8 @@ class Savegame(object):
 
         if next_pxl < 0:
             next_pxl = abs(next_pxl)
+
+        return save_obj
 
 
 # -----------------------------------------------------------------------------
@@ -12409,7 +12414,7 @@ def action_handler(event):
             break
 
         if case(RESP['TOWER']['SAVE']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_tower_screen(par)
             break
 
@@ -12457,7 +12462,7 @@ def action_handler(event):
             if act == RESP['TOILET']['DROPPED']:
                 play(SND['TOILET']['DROP'])
 
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             if len(par) > 1:
                 if act == RESP['TOILET']['FLUSHED']:
                     show_toilet(par[1], par[2], par[3], par[4], par[5])
@@ -12475,7 +12480,7 @@ def action_handler(event):
             break
 
         if case(RESP['SCREEN']['WITCH']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_witch(
                 par[1].split("/"),
                 (par[2].split("/")[0] == "1"),
@@ -12548,7 +12553,7 @@ def action_handler(event):
             break
 
         if case(ERR['JOINED_TOO_RECENTLY']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             error_message(texts[TXT['GUILD']['JOINED_TOO_RECENTLY']].replace(
                 "%1", time_str(
                     int(savegame[SG['GUILD']['JOIN_DATE']]) + 60 * 60 * 24,
@@ -12703,12 +12708,12 @@ def action_handler(event):
             break
 
         if case(RESP['BET_WON']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_bet_result(True)
             break
 
         if case(RESP['BET_LOST']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_bet_result(False)
             break
 
@@ -12980,7 +12985,7 @@ def action_handler(event):
             break
 
         if case(RESP['GUILD']['DONATE_SUCCESS']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             send_action(ACT['SCREEN']['GILDEN'])
             break
 
@@ -13005,7 +13010,7 @@ def action_handler(event):
             shared_obj.data.userName = option_new_data
             shared_obj.flush()
             actor[INP['NAME']].getChildAt(1).text = option_new_data
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_option_screen()
             error_message(texts[TXT['NAME_CHANGED']])
             break
@@ -13016,7 +13021,7 @@ def action_handler(event):
             break
 
         if case(RESP['CHANGE']['FACE_OK']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
 
         if case(ACT['SCREEN']['OPTIONEN']):
             show_option_screen()
@@ -13050,7 +13055,7 @@ def action_handler(event):
 
         if case(RESP['MAINQUEST']):
             hide(BNC['IF']['STATS'])
-            SAVE = Savgame.parse(par[10])
+            SAVE = Savegame.parse(par[10])
             pulse_char = False
         if case(RESP['QUEST']['DONE']):
             pass
@@ -13093,7 +13098,7 @@ def action_handler(event):
             winners = list()
             last_round_fighter_name = ""
             fights = par_str.split("§")
-            SAVE = Savgame.parse(fights.pop(), True, True)
+            SAVE = Savegame.parse(fights.pop(), True, True)
             guild_fight_count = int(((len(fights) - 1) / 2))
             skip_guild_fights = 0
             next_fight_timer.start()
@@ -13102,7 +13107,7 @@ def action_handler(event):
         if case(RESP['QUEST']['SKIP_ALLOWED_START']):
             skip_allowed = True
         if case(RESP['QUEST']['START']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_quest_screen()
             break
 
@@ -13111,7 +13116,7 @@ def action_handler(event):
         if case(ACT['SCREEN']['TAVERNE']):
             pass
         if case(RESP['QUEST']['STOP']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             if par[1]:
                 special_action = par[1]
             else:
@@ -13168,7 +13173,7 @@ def action_handler(event):
         if case(RESP['GUILD']['JOIN_ATTACK_OK']):
             pass
         if case(RESP['GUILD']['JOIN_DEFENSE_OK']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             send_action(ACT['SCREEN']['GILDEN'])
             break
 
@@ -13488,7 +13493,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['WELTKARTE']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_main_quests_screen(par[1].split("/"))
             break
 
@@ -13824,12 +13829,12 @@ def action_handler(event):
             break
 
         if case(RESP['ARBEIT']['START'], RESP['ARBEIT']['STOP']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             show_work_screen()
             break
 
         if case(RESP['ARBEIT']['ERLEDIGT']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             verdientes_geld = par[1]
             show_work_success_screen()
             break
@@ -13846,7 +13851,7 @@ def action_handler(event):
                 RESP['SAVEGAME']['SHARD'],
                 RESP['SAVEGAME']['MIRROR'],
                 RESP['MOVE']['TOWER_ITEM']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             if on_stage(IMG['SCR']['CHAR_BG']):
                 if act == RESP['MOVE']['TOWER_ITEM']:
                     show_tower_screen(par)
@@ -13871,7 +13876,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['CHAR']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             player_desc = resolve_breaks(par[1])
             if savegame[SG['FACE']['1']] == 0:
                 show_build_character_screen()
@@ -13880,7 +13885,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['ZAUBERLADEN']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             if par[1]:
                 special_action = par[1]
             else:
@@ -13896,7 +13901,7 @@ def action_handler(event):
             break
 
         if case(ACT['SCREEN']['SCHMIEDE']):
-            SAVE = Savgame.parse(par[0])
+            SAVE = Savegame.parse(par[0])
             if par[1]:
                 special_action = par[1]
             else:
@@ -13942,7 +13947,7 @@ def action_handler(event):
             album_effect = False
             previous_login = True
             gilden_id = 0
-            SAVE = Savgame.parse(par[0], False)
+            SAVE = Savegame.parse(par[0], False)
 
             dealer_aktion = 0
             if par[1]:
@@ -13968,7 +13973,7 @@ def action_handler(event):
                 LOG.error("Fehler): Charakter nicht initialisiert.")
                 request_logout()
             else:
-                SAVE = Savgame.parse(par[0])
+                SAVE = Savegame.parse(par[0])
                 server_time = int(savegame[SG['SERVER']['TIME']])
                 email_date = int(savegame[SG['EMAIL']['DATE']])
 
