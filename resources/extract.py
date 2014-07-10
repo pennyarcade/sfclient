@@ -20,7 +20,7 @@ for line in sys.stdin:
             result[1] = line.split(' ')[0].strip()
 
         if line.find('|code') == 0:
-            result[2] = line.split('|')[2].strip()
+            result[6] = line.split('|')[2].strip()
 
         if line.find('|docstring') == 0:
             result[3] = line.split('|')[2].strip()
