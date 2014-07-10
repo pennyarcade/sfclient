@@ -7,7 +7,7 @@ result = []
 for i in range(16):
     result.append('foo')
 
-result[0](str(int(time())))
+result[0] = str(int(time()))
 
 report = False
 
