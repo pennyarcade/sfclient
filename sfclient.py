@@ -2138,8 +2138,9 @@ def request_signup(evt):
             genderparam = 2
 
         faceparam = '/'.join(
-            char_mouth, char_hair, char_brows, char_eyes, char_beard,
-            char_nose, char_ears, char_special, char_special2
+            charface.mouth, charface.hair, charface.brows, charface.eyes,
+            charface.beard, charface.nose, charface.ears, charface.special,
+            charface.special2
         )
 
         # Create account
@@ -2150,9 +2151,9 @@ def request_signup(evt):
             actor[INP['EMAIL']].getChildAt(1).text,
             param_rec,
             bufftxt,
-            char_volk,
+            charface.volk,
             genderparam,
-            char_class,
+            charface.cclass,
             faceparam,
             param_cid
         )
@@ -2288,40 +2289,40 @@ def request_change_face():
     '''
         prepare to change profile picture
     '''
-    if ((char_volk == revertchar_volk)
-            and (char_male == revertchar_male)
-            and (char_color == revertchar_color)
-            and (char_mouth == revertchar_mouth)
-            and (char_beard == revertchar_beard)
-            and (char_nose == revertchar_nose)
-            and (char_eyes == revertchar_eyes)
-            and (char_brows == revertchar_brows)
-            and (char_ears == revertchar_ears)
-            and (char_hair == revertchar_hair)
-            and (char_special == revertchar_special)
-            and (char_special2 == revertchar_special2)):
+    if ((charface.volk == revertchar.volk)
+            and (charface.male == revertchar.male)
+            and (charface.color == revertchar.color)
+            and (charface.mouth == revertchar.mouth)
+            and (charface.beard == revertchar.beard)
+            and (charface.nose == revertchar.nose)
+            and (charface.eyes == revertchar.eyes)
+            and (charface.brows == revertchar.brows)
+            and (charface.ears == revertchar.ears)
+            and (charface.hair == revertchar.hair)
+            and (charface.special == revertchar.special)
+            and (charface.special2 == revertchar.special2)):
         send_action(ACT['SCREEN']['OPTIONEN'])
     else:
         tmp_gender = 2
-        if char_male:
+        if charface.male:
             tmp_gender = 1
 
         send_action(
             ACT['CHANGE']['FACE'],
             actor[INP['NAME']].getChildAt(1).text,
             actor[INP['LOGIN_PASSWORD']].getChildAt(1).text,
-            char_volk,
+            charface.volk,
             tmp_gender,
             '/'.join(
-                char_mouth,
-                char_hair,
-                char_brows,
-                char_eyes,
-                char_beard,
-                char_nose,
-                char_ears,
-                char_special,
-                char_special2
+                charface.mouth,
+                charface.hair,
+                charface.brows,
+                charface.eyes,
+                charface.beard,
+                charface.nose,
+                charface.ears,
+                charface.special,
+                charface.special2
             ) + "/"
         )
 
@@ -6237,23 +6238,23 @@ def show_build_character_screen(evt=None):
     if (DemoMode){
         remove(CREATE_GOTO_LOGIN, IF_LOGOUT);
     };
-    if (char_volk == 0){
+    if (charface.volk == 0){
         randomize_character();
     };
     if (RebuildMode){
         remove(CREATE_CHARACTER);
-        revertchar_volk = char_volk;
-        revertchar_male = char_male;
-        revertchar_color = char_color;
-        revertchar_mouth = char_mouth;
-        revertchar_beard = char_beard;
-        revertchar_nose = char_nose;
-        revertchar_eyes = char_eyes;
-        revertchar_brows = char_brows;
-        revertchar_ears = char_ears;
-        revertchar_hair = char_hair;
-        revertchar_special = char_special;
-        revertchar_special2 = char_special2;
+        revertchar.volk = charface.volk;
+        revertchar.male = charface.male;
+        revertchar.color = charface.color;
+        revertchar.mouth = charface.mouth;
+        revertchar.beard = charface.beard;
+        revertchar.nose = charface.nose;
+        revertchar.eyes = charface.eyes;
+        revertchar.brows = charface.brows;
+        revertchar.ears = charface.ears;
+        revertchar.hair = charface.hair;
+        revertchar.special = charface.special;
+        revertchar.special2 = charface.special2;
         KlasseGewählt = True;
     };
     load_character_image();
@@ -14074,25 +14075,14 @@ def action_handler(event):
             shared_obj.flush()
             actor[INP['EMAIL']].getChildAt(1).text = ""
             actor[INP['PASSWORD']].getChildAt(1).text = ""
-            char_volk = 0
+            charface.volk = 0
             show_login_screen(None, True, True)
             error_message(texts[TXT['ERROR']['LOGIN_FAILED']])
             break
 
         if case(ERR['TOO_EXPENSIVE']):
             if on_stage(BTN['MODIFY_CHARACTER']):
-                char_volk = revertchar_volk
-                char_male = revertchar_male
-                char_color = revertchar_color
-                char_mouth = revertchar_mouth
-                char_beard = revertchar_beard
-                char_nose = revertchar_nose
-                char_eyes = revertchar_eyes
-                char_brows = revertchar_brows
-                char_ears = revertchar_ears
-                char_hair = revertchar_hair
-                char_special = revertchar_special
-                char_special2 = revertchar_special2
+                charface = revertface
                 show_option_screen()
 
             error_message(texts[TXT['ERROR']['TOO_EXPENSIVE']])
@@ -20339,7 +20329,7 @@ def modify_character(evt):
     var actor_id:* = 0;
     var evt:* = evt;
     var RemoveColorOffset:* = function (val, type){
-        if ((get_char_image_bound(char_volk, char_male, 11) & type)){
+        if ((get_char_image_bound(charface.volk, charface.male, 11) & type)){
             while (val >= 100) {
                 val = (val - 100);
             };
@@ -20347,142 +20337,162 @@ def modify_character(evt):
         return (val);
     };
     var AddColorOffset:* = function (val, type){
-        if ((get_char_image_bound(char_volk, char_male, 11) & type)){
-            val = (val + (100 * char_color));
+        if ((get_char_image_bound(charface.volk, charface.male, 11) & type)){
+            val = (val + (100 * charface.color));
         };
         return (val);
     };
     actor_id = get_actor_id(evt.target);
-    char_hair = RemoveColorOffset(char_hair, C_HAIR);
-    char_brows = RemoveColorOffset(char_brows, C_BROWS);
-    char_beard = RemoveColorOffset(char_beard, C_BEARD);
-    char_special2 = RemoveColorOffset(char_special2, C_SPECIAL2);
+    charface.hair = RemoveColorOffset(charface.hair, C_HAIR);
+    charface.brows = RemoveColorOffset(charface.brows, C_BROWS);
+    charface.beard = RemoveColorOffset(charface.beard, C_BEARD);
+    charface.special2 = RemoveColorOffset(charface.special2, C_SPECIAL2);
     Switch (actor_id){
         if case(MOUTH_MINUS:
-            char_mouth--;
-            if (char_mouth < 1){
-                char_mouth = get_char_image_bound(char_volk, char_male, 1);
+            charface.mouth--;
+            if (charface.mouth < 1){
+                charface.mouth = get_char_image_bound(charface.volk,
+                                                      charface.male, 1);
             };
             break;
         if case(MOUTH_PLUS:
-            char_mouth++;
-            if (char_mouth > get_char_image_bound(char_volk, char_male, 1)){
-                char_mouth = 1;
+            charface.mouth++;
+            if (charface.mouth > get_char_image_bound(charface.volk,
+                charface.male, 1)){
+                charface.mouth = 1;
             };
             break;
         if case(HAIR_MINUS:
-            char_hair--;
-            if (char_hair < 1){
-                char_hair = get_char_image_bound(char_volk, char_male, 7);
+            charface.hair--;
+            if (charface.hair < 1){
+                charface.hair = get_char_image_bound(charface.volk,
+                                                     charface.male, 7);
             };
             break;
         if case(HAIR_PLUS:
-            char_hair++;
-            if (char_hair > get_char_image_bound(char_volk, char_male, 7)){
-                char_hair = 1;
+            charface.hair++;
+            if (charface.hair > get_char_image_bound(charface.volk,
+                charface.male, 7)){
+                charface.hair = 1;
             };
             break;
         if case(BROWS_MINUS:
-            char_brows--;
-            if (char_brows < 1){
-                char_brows = get_char_image_bound(char_volk, char_male, 5);
+            charface.brows--;
+            if (charface.brows < 1){
+                charface.brows = get_char_image_bound(charface.volk,
+                                                      charface.male, 5);
             };
             break;
         if case(BROWS_PLUS:
-            char_brows++;
-            if (char_brows > get_char_image_bound(char_volk, char_male, 5)){
-                char_brows = 1;
+            charface.brows++;
+            if (charface.brows > get_char_image_bound(charface.volk,
+                charface.male, 5)){
+                charface.brows = 1;
             };
             break;
         if case(EYES_MINUS:
-            char_eyes--;
-            if (char_eyes < 1){
-                char_eyes = get_char_image_bound(char_volk, char_male, 4);
+            charface.eyes--;
+            if (charface.eyes < 1){
+                charface.eyes = get_char_image_bound(charface.volk,
+                                                     charface.male, 4);
             };
             break;
         if case(EYES_PLUS:
-            char_eyes++;
-            if (char_eyes > get_char_image_bound(char_volk, char_male, 4)){
-                char_eyes = 1;
+            charface.eyes++;
+            if (charface.eyes > get_char_image_bound(charface.volk,
+                                                     charface.male, 4)){
+                charface.eyes = 1;
             };
             break;
         if case(BEARD_MINUS:
-            char_beard--;
-            if (char_beard < 1){
-                char_beard = get_char_image_bound(char_volk, char_male, 2);
+            charface.beard--;
+            if (charface.beard < 1){
+                charface.beard = get_char_image_bound(charface.volk,
+                                                      charface.male, 2);
             };
             break;
         if case(BEARD_PLUS:
-            char_beard++;
-            if (char_beard > get_char_image_bound(char_volk, char_male, 2)){
-                char_beard = 1;
+            charface.beard++;
+            if (charface.beard > get_char_image_bound(charface.volk,
+                charface.male, 2)){
+                charface.beard = 1;
             };
             break;
         if case(NOSE_MINUS:
-            char_nose--;
-            if (char_nose < 1){
-                char_nose = get_char_image_bound(char_volk, char_male, 3);
+            charface.nose--;
+            if (charface.nose < 1){
+                charface.nose = get_char_image_bound(charface.volk,
+                                                     charface.male, 3);
             };
             break;
         if case(NOSE_PLUS:
-            char_nose++;
-            if (char_nose > get_char_image_bound(char_volk, char_male, 3)){
-                char_nose = 1;
+            charface.nose++;
+            if (charface.nose > get_char_image_bound(charface.volk,
+                charface.male, 3)){
+                charface.nose = 1;
             };
             break;
         if case(EARS_MINUS:
-            char_ears--;
-            if (char_ears < 1){
-                char_ears = get_char_image_bound(char_volk, char_male, 6);
+            charface.ears--;
+            if (charface.ears < 1){
+                charface.ears = get_char_image_bound(charface.volk,
+                                                     charface.male, 6);
             };
             break;
         if case(EARS_PLUS:
-            char_ears++;
-            if (char_ears > get_char_image_bound(char_volk, char_male, 6)){
-                char_ears = 1;
+            charface.ears++;
+            if (charface.ears > get_char_image_bound(charface.volk,
+                charface.male, 6)){
+                charface.ears = 1;
             };
             break;
         if case(SPECIAL_MINUS:
-            char_special--;
-            if (char_special < 1){
-                char_special = get_char_image_bound(char_volk, char_male, 8);
+            charface.special--;
+            if (charface.special < 1){
+                charface.special = get_char_image_bound(charface.volk,
+                                                        charface.male, 8);
             };
             break;
         if case(SPECIAL_PLUS:
-            char_special++;
-            if (char_special > get_char_image_bound(char_volk, char_male, 8)){
-                char_special = 1;
+            charface.special++;
+            if (charface.special > get_char_image_bound(charface.volk,
+                charface.male, 8)){
+                charface.special = 1;
             };
             break;
         if case(SPECIAL2_MINUS:
-            char_special2--;
-            if (char_special2 < 1){
-                char_special2 = get_char_image_bound(char_volk, char_male, 9);
+            charface.special2--;
+            if (charface.special2 < 1){
+                charface.special2 = get_char_image_bound(charface.volk,
+                                                         charface.male, 9);
             };
             break;
         if case(SPECIAL2_PLUS:
-            char_special2++;
-            if (char_special2 > get_char_image_bound(char_volk, char_male, 9)){
-                char_special2 = 1;
+            charface.special2++;
+            if (charface.special2 > get_char_image_bound(charface.volk,
+                charface.male, 9)){
+                charface.special2 = 1;
             };
             break;
         if case(COLOR_PLUS:
-            char_color++;
-            if (char_color > get_char_image_bound(char_volk, char_male, 10)){
-                char_color = 1;
+            charface.color++;
+            if (charface.color > get_char_image_bound(charface.volk,
+                charface.male, 10)){
+                charface.color = 1;
             };
             break;
         if case(COLOR_MINUS:
-            char_color--;
-            if (char_color < 1){
-                char_color = get_char_image_bound(char_volk, char_male, 10);
+            charface.color--;
+            if (charface.color < 1){
+                charface.color = get_char_image_bound(charface.volk,
+                                                      charface.male, 10);
             };
             break;
     };
-    char_hair = AddColorOffset(char_hair, C_HAIR);
-    char_brows = AddColorOffset(char_brows, C_BROWS);
-    char_beard = AddColorOffset(char_beard, C_BEARD);
-    char_special2 = AddColorOffset(char_special2, C_SPECIAL2);
+    charface.hair = AddColorOffset(charface.hair, C_HAIR);
+    charface.brows = AddColorOffset(charface.brows, C_BROWS);
+    charface.beard = AddColorOffset(charface.beard, C_BEARD);
+    charface.special2 = AddColorOffset(charface.special2, C_SPECIAL2);
     load_character_image();
     '''
     print evt
@@ -20532,7 +20542,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
         if (on_stage(SCR_BUILDCHAR_BACKGROUND)){
             var _local16 = actor[LBL_CREATE_RACE];
             with (_local16) {
-                text = texts[((TXT_RACENAME + char_volk) - 1)];
+                text = texts[((TXT_RACENAME + charface.volk) - 1)];
                 if (text_dir == "right"){
                     x = ((actor[LBL_CREATE_RACE_DESC].x
                          + actor[LBL_CREATE_RACE_DESC].width) - text_width);
@@ -20540,7 +20550,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
             };
             _local16 = actor[LBL_CREATE_RACE_DESC];
             with (_local16) {
-                text = texts[((TXT_RACEDESC + char_volk) - 1)];
+                text = texts[((TXT_RACEDESC + charface.volk) - 1)];
                 y = ((actor[LBL_CREATE_RACE].y
                      + actor[LBL_CREATE_RACE].textHeight) + BUILDCHAR_LINES_Y);
             };
@@ -20548,7 +20558,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
             _local16 = actor[LBL_CREATE_CLASS];
             with (_local16) {
                 text = texts[((KlasseGewählt)
-                              ? ((TXT_CLASSNAME + char_class) - 1)
+                              ? ((TXT_CLASSNAME + charface.class) - 1)
                               : TXT_NOCLASS)];
                 y = ((actor[LBL_CREATE_RACE_DESC].y
                      + actor[LBL_CREATE_RACE_DESC].textHeight)
@@ -20561,7 +20571,7 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
             _local16 = actor[LBL_CREATE_CLASS_DESC];
             with (_local16) {
                 text = texts[((KlasseGewählt)
-                              ? ((TXT_CLASSDESC + char_class) - 1)
+                              ? ((TXT_CLASSDESC + charface.class) - 1)
                               : TXT_NOCLASS_DESC)];
                 y = ((actor[LBL_CREATE_CLASS].y +
                      actor[LBL_CREATE_CLASS].textHeight)
@@ -20569,28 +20579,31 @@ def load_character_image(actor_id=0, load_only=False, is_volk=0,
             };
             arabize(LBL_CREATE_CLASS_DESC);
         };
-        load_character_image(CHARBACKGROUND, load_only, char_volk, char_male,
-                           char_class, char_mouth, char_beard, char_nose,
-                           char_eyes, char_brows, char_ears, char_hair,
-                           char_special, char_special2);
+        load_character_image(CHARBACKGROUND, load_only, charface.volk,
+                             charface.male,
+                           charface.class, charface.mouth, charface.beard,
+                           charface.nose,
+                           charface.eyes, charface.brows, charface.ears,
+                           charface.hair,
+                           charface.special, charface.special2);
         if (on_stage(SCR_BUILDCHAR_BACKGROUND)){
             remove(VOLK_BTNS_ALL);
             add(F_IDLE);
             add(M_IDLE);
-            if (char_male){
+            if (charface.male){
                 add(VOLK_BTNS_M);
-                add(((VOLK_1_M_ACT + char_volk) - 1));
+                add(((VOLK_1_M_ACT + charface.volk) - 1));
                 add(M_ACT);
             } else {
                 add(VOLK_BTNS_F);
-                add(((VOLK_1_F_ACT + char_volk) - 1));
+                add(((VOLK_1_F_ACT + charface.volk) - 1));
                 add(F_ACT);
             };
             add(KASTE_1_IDLE);
             add(KASTE_2_IDLE);
             add(KASTE_3_IDLE);
             if (KlasseGewählt){
-                add((KASTE_1_ACT + ((char_class - 1) * 2)));
+                add((KASTE_1_ACT + ((charface.class - 1) * 2)));
             };
             i = 1;
             while (i < 11) {
