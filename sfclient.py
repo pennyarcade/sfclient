@@ -17,6 +17,7 @@ import md5
 import logging
 import math
 import types
+import base64
 
 # external dependencies
 import requests
@@ -665,77 +666,9 @@ def init_vars():
     # fights = list()
     # Filter_Shadow = [
     # first_chat_fill = False
-    # font_embedded = True
 
-    # font_format_chat = new TextFormat()
-    # font_format_chatError = new TextFormat()
-    # font_format_chatWhisper = new TextFormat()
-    # FontFormatAttackLabel = new TextFormat()
-    # FontFormatAttrib = new TextFormat()
-    # FontFormatAttribBonus = new TextFormat()
-    # FontFormatAttribTemp = new TextFormat()
-    # FontFormatBook = new TextFormat()
-    # FontFormatBookHint = new TextFormat()
-    # FontFormatBookLeft = new TextFormat()
-    # FontFormatBullshit = new TextFormat()
-    # FontFormatCatapultDamage = new TextFormat()
-    # FontFormatClassError = new TextFormat()
-    # FontFormatCriticalDamage = new TextFormat()
-    # FontFormatDamage = new TextFormat()
-    # FontFormatDefault = new TextFormat()
-    # FontFormatDefaultLeft = new TextFormat()
-    # FontFormatEpicItemQuote = new TextFormat()
-    # FontFormatError = new TextFormat()
-    # FontFormatGrayed = new TextFormat()
-    # FontFormatGrayedHighLight = new TextFormat()
-    # FontFormatGuildBuilding = new TextFormat()
-    # FontFormatGuildHallNoAttack = new TextFormat()
-    # FontFormatGuildListText = new TextFormat()
-    # FontFormatGuildListTextAttackError = new TextFormat()
-    # FontFormatGuildListTextAttackErrorHalf = new TextFormat()
-    # FontFormatGuildListTextAttackErrorOnline = new TextFormat()
-    # FontFormatGuildListTextAttackErrorOnlineHalf = new TextFormat()
-    # FontFormatGuildListTextAttackErrorOnlinePopup = new TextFormat()
-    # FontFormatGuildListTextAttackOk = new TextFormat()
-    # FontFormatGuildListTextAttackOkPopup = new TextFormat()
-    # FontFormatGuildListTextOnline = new TextFormat()
-    # FontFormatGuildMoney = new TextFormat()
-    # FontFormatHallListHeading = new TextFormat()
-    # FontFormatHallListHighLight = new TextFormat()
-    # FontFormatHallListText = new TextFormat()
-    # FontFormatHeading = new TextFormat()
-    # FontFormatHighlight = new TextFormat()
-    # FontFormatHighlightWhisper = new TextFormat()
-    # FontFormatHighStakes = new TextFormat()
-    # FontFormatHighStakesGrayed = new TextFormat()
-    # FontFormatHighStakesHighLight = new TextFormat()
-    # FontFormatHighStakesHighLightGrayed = new TextFormat()
-    # FontFormatItemEnchantment = new TextFormat()
-    # FontFormatLifeBar = new TextFormat()
-    # FontFormatLOGoutLink = new TextFormat()
-    # FontFormatLOGoutLinkHighLight = new TextFormat()
-    # FontFormatPayIcon = new TextFormat()
-    # FontFormatPopup = new TextFormat()
-    # FontFormatPopupCompare = new TextFormat()
-    # FontFormatPopupCompareBetter = new TextFormat()
-    # FontFormatPopupCompareBetterHL = new TextFormat()
-    # FontFormatPopupCompareSum = new TextFormat()
-    # FontFormatPopupCompareWorse = new TextFormat()
-    # FontFormatPopupCompareWorseHL = new TextFormat()
-    # FontFormatPostListHeading = new TextFormat()
-    # FontFormatPostListHighLight = new TextFormat()
-    # FontFormatPostListHighLightSys = new TextFormat()
-    # FontFormatPostListHighLightSysGreen = new TextFormat()
-    # FontFormatPostListHighLightSysRed = new TextFormat()
-    # FontFormatPostListText = new TextFormat()
-    # FontFormatPostListTextSys = new TextFormat()
-    # FontFormatPostListTextSysGreen = new TextFormat()
-    # FontFormatPostListTextSysRed = new TextFormat()
-    # FontFormatQuestBar = new TextFormat()
-    # FontFormatScreenTitle = new TextFormat()
-    # FontFormatSpeech = new TextFormat()
-    # FontFormatTimeBar = new TextFormat()
-    # FontFormatToiletAura = new TextFormat()
+    global font_embedded
+    font_embedded = True
 
     # force_adventure = False
     # force_smoothing = True
@@ -11904,7 +11837,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with font_format_chat:
+    with FontFormatChat:
         font = font_name
         size = size_mod + 20
         color = CLR['SFORANGE']
@@ -11912,7 +11845,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with font_format_chatWhisper:
+    with FontFormatChatWhisper:
         font = font_name
         size = size_mod + 20
         color = CLR['CHAT_WHISPER']
@@ -11920,7 +11853,7 @@ def set_font(font_name):
         left_margin = 0
         kerning = True
 
-    with font_format_chatError:
+    with FontFormatChatError:
         font = font_name
         size = size_mod + 20
         color = CLR['ERROR']
@@ -12424,7 +12357,7 @@ def hall_list_add_field(pos_x, pos_y, txt, fmt, max_width=0, is_guild=False):
 
     tmp_obj.add_event_listener(MouseEvent.MOUSE_OVER, install_hall_popup)
     if text_dir == "right":
-        tmp_obj.x_pos = pos_x - width
+        tmp_obj.x_pos = pos_x - tmp_obj.width
     else:
         tmp_obj.x_pos = pos_x
 
@@ -12567,7 +12500,7 @@ def action_handler(event):
             break
 
         if case(RESP['ALBUM']):
-            tmp_byte_array = Base64.decodeToByteArray(par.join("/"))
+            tmp_byte_array = base64.b64decode(par.join("/"))
             bit_array = list()
 
             for i in range(len(tmp_byte_array)):
