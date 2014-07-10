@@ -12382,6 +12382,8 @@ def action_handler(event):
     global oldcreststring
     global SAVE
 
+    SAVE = Savegame()
+
     data_str = str(event.data)
     is_mine = False
     log_in_after_pixel = False
@@ -12990,7 +12992,7 @@ def action_handler(event):
             break
 
         if case(RESP['NO_LOGIN']):
-            request_logout(None, True)
+            request_logout(True)
             show_login_screen()
             break
 
