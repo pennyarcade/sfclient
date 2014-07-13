@@ -16,7 +16,7 @@ from sfglobals import SG
 from sfglobals import TXT
 from sfglobals import C
 from sfglobals import IMG
-
+from sfglobals import ITM_MAX
 
 class Item(object):
     '''
@@ -107,7 +107,7 @@ class Item(object):
             damage['min'], color, attr, slot_id, logger
         )
 
-    def get_name(self):
+    def get_name(self, texts):
         '''
             get item name snippet
 
@@ -119,8 +119,6 @@ class Item(object):
 
             @oldname GetItemName
         '''
-        global texts
-
         txt_idx = TXT['ITMNAME']
         txt_base = 0
         txt_suffix = ""

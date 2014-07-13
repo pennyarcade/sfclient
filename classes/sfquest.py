@@ -67,14 +67,12 @@ class Quest(object):
             qgold, qtime, qlocation, qitem
         )
 
-    def get_title(self):
+    def get_title(self, texts):
         '''
             gets quest title snippet
 
             @return string
         '''
-        global texts
-
         # check for cached value
         if not self.qtitle:
             qst = TXT['QUEST']
@@ -110,14 +108,12 @@ class Quest(object):
 
         return self.qtitle
 
-    def get_text(self):
+    def get_text(self, texts):
         '''
             get quest description
 
             @return str
         '''
-        global texts
-
         if not self.qtext:
             # Constants
             idx = TXT['QUEST']

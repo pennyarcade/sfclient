@@ -156,6 +156,8 @@ from sflegacyfonts import FontFormatToiletAura
 from classes.sfsavegame import Savegame
 from classes.sfswitch import Switch
 from classes.sfface import Face
+from classes.sfsession import Session
+from classes.sfalbum import Album
 # from classes.sfcharacter import Character
 
 # global for logger

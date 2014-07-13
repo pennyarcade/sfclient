@@ -15,6 +15,9 @@ import time
 import requests
 
 from sfglobals import ACT
+from sfglobals import CNT
+
+from classes.sfexceptions import RequestFailedException
 
 
 class Session(object):

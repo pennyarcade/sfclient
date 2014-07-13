@@ -19,6 +19,7 @@ from sfglobals import LBL
 from sfglobals import TXT
 from sfglobals import ACT
 from sfglobals import CNT
+from sfglobals import BNC
 
 from classes.sfmirror import Mirror
 from classes.sfface import Face
@@ -28,7 +29,7 @@ class Savegame(object):
     '''
         handle savegame data
     '''
-    def __init__(self, logger, actor):
+    def __init__(self, logger):
         '''
             setup savegame
         '''
@@ -79,12 +80,11 @@ class Savegame(object):
         self.has_mirror = bin_str.substr(23, 1) == "1"
         self.can_rob = bin_str.substr(22, 1) == "1"
 
-    def parse(self, str_save_game, fill_face_variables=True, no_spoil=False):
+    def parse(self, str_save_game, fill_face_variables=True, no_spoil=False
+              actor=None, texts=None):
         '''
             parse raw response into Savegame object
         '''
-        global actor, texts
-
         save_obj = self.__init__()
 
         # parse into array of (mostly) numbers
