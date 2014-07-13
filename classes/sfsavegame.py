@@ -80,7 +80,7 @@ class Savegame(object):
         self.has_mirror = bin_str.substr(23, 1) == "1"
         self.can_rob = bin_str.substr(22, 1) == "1"
 
-    def parse(self, str_save_game, fill_face_variables=True, no_spoil=False
+    def parse(self, str_save_game, fill_face_variables=True, no_spoil=False,
               actor=None, texts=None):
         '''
             parse raw response into Savegame object
@@ -260,32 +260,21 @@ class Savegame(object):
 
 
 def expand_item_structure(arr, offset):
-    '''
-    var typeOriginal:Number;
-    var picOriginal:Number;
-    var mushOriginal:Number;
-    var enchantment;
-    var socket;
-    var enchantmentPower;
-    var socketPower;
-    typeOriginal = arr[(offset + SG_ITM_TYP)];
-    picOriginal = arr[(offset + SG['ITM']['PIC'])];
-    mushOriginal = arr[(offset + SG_ITM_MUSH)];
-    enchantment = int((typeOriginal / math.pow(2, 24)));
-    socket = (typeOriginal - (enchantment * math.pow(2, 24)));
-    socket = (socket / math.pow(2, 16));
-    typeOriginal = ((typeOriginal - (enchantment * math.pow(2, 24)))
-                    - (socket * math.pow(2, 16)));
-    enchantmentPower = int((picOriginal / math.pow(2, 16)));
-    picOriginal = (picOriginal - (enchantmentPower * math.pow(2, 16)));
-    socketPower = int((mushOriginal / math.pow(2, 16)));
-    mushOriginal = (mushOriginal - (socketPower * math.pow(2, 16)));
-    arr[(offset + SG_ITM_TYP)] = typeOriginal;
-    arr[(offset + SG['ITM']['PIC'])] = picOriginal;
-    arr[(offset + SG_ITM_MUSH)] = mushOriginal;
-    arr[(offset + SG_ITM_EXT_SOCKET)] = socket;
-    arr[(offset + SG_ITM_EXT_ENCHANT)] = enchantment;
-    arr[(offset + SG_ITM_EXT_ENCHANT_POWER)] = enchantmentPower;
-    arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
-    '''
-    print arr, offset
+    type_original = arr[offset + SG['ITM']['TYP']]
+    pic_original = arr[offset + SG['ITM']['PIC']]
+    mush_original = arr[offset + SG['ITM']['MUSH']]
+    enchantment = int(type_original / math.pow(2, 24))
+    socket = type_original - enchantment * math.pow(2, 24)
+    socket = socket / math.pow(2, 16)
+    type_original -= enchantment * math.pow(2, 24) - socket * math.pow(2, 16)
+    enchantment_power = int(pic_original / math.pow(2, 16))
+    pic_original -= enchantment_power * math.pow(2, 16)
+    socket_power = int(mush_original / math.pow(2, 16))
+    mush_original -= socket_power * math.pow(2, 16)
+    arr[offset + SG['ITM']['TYP']] = type_original
+    arr[offset + SG['ITM']['PIC']] = pic_original
+    arr[offset + SG['ITM']['MUSH']] = mush_original
+    arr[offset + SG['ITM']['EXT_SOCKET']] = socket
+    arr[offset + SG['ITM']['EXT_ENCHANT']] = enchantment
+    arr[offset + SG['ITM']['EXT_ENCHANT_POWER']] = enchantment_power
+    arr[offset + SG['ITM']['EXT_SOCKET_POWER']] = socket_power
