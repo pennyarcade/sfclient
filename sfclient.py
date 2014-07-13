@@ -12164,7 +12164,7 @@ def action_handler(event):
     global oldcreststring
     global SAVE
 
-    SAVE = Savegame()
+    SAVE = Savegame(LOG)
 
     data_str = str(event.data)
     is_mine = False

@@ -18,7 +18,6 @@ from sfglobals import TXT
 from sfglobals import ACT
 from sfglobals import CNT
 
-from sfclient import LOG
 from sfclient import Mirror
 from sfclient import expand_item_structure
 from sfclient import actor
@@ -30,7 +29,7 @@ class Savegame(object):
     '''
         handle savegame data
     '''
-    def __init__(self):
+    def __init__(self, logger):
         '''
             setup savegame
         '''
@@ -38,6 +37,8 @@ class Savegame(object):
         self.has_mirror = False
         self.can_rob = False
         tower_level = 0
+
+        self.log = logger
 
     def __get_face(self, savegame):
         '''
@@ -227,13 +228,13 @@ class Savegame(object):
             time_calc.start()
 
         if session_id == "":
-            LOG.error(''.join([
+            self.log.error(''.join([
                 "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
                 "PHP-Tunneling wird deaktiviert."
             ]))
             show_login_screen()
         else:
-            LOG.debug("Session ID für PHP Tunneling:" + session_id)
+            self.log.debug("Session ID für PHP Tunneling:" + session_id)
 
         if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
             gilden_id = int(savegame[SG['GUILD']['INDEX']])
