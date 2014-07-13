@@ -3,4 +3,3 @@ checking sfclient.py
 checking sfglobals.py
 checking sflegacyfonts.py
 checking sflegacy.py
-checking sfsavegame.py
