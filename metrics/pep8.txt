@@ -4,11 +4,48 @@ checking sfglobals.py
 checking sflegacyfonts.py
 checking sflegacy.py
 checking sfsavegame.py
-sfsavegame.py:245:1: W391 blank line at end of file
-    Trailing blank lines are superfluous.
+sfsavegame.py:39:23: E222 multiple spaces after operator
+    Avoid extraneous whitespace around an operator.
 
-    Okay: spam(1)
-    W391: spam(1)\n
+    Okay: a = 12 + 3
+    E221: a = 4  + 5
+    E222: a = 4 +  5
+    E223: a = 4\t+ 5
+    E224: a = 4 +\t5
+sfsavegame.py:46:13: E113 unexpected indentation
+    Use 4 spaces per indentation level.
 
-    However the last line should end with a new line (warning W292).
-1       W391 blank line at end of file
+    For really old code that you don't want to mess up, you can continue to
+    use 8-space tabs.
+
+    Okay: a = 1
+    Okay: if a == 0:\n    a = 1
+    E111:   a = 1
+
+    Okay: for item in items:\n    pass
+    E112: for item in items:\npass
+
+    Okay: a = 1\nb = 2
+    E113: a = 1\n    b = 2
+sfsavegame.py:69:5: E303 too many blank lines (2)
+    Separate top-level function and class definitions with two blank lines.
+
+    Method definitions inside a class are separated by a single blank line.
+
+    Extra blank lines may be used (sparingly) to separate groups of related
+    functions.  Blank lines may be omitted between a bunch of related
+    one-liners (e.g. a set of dummy implementations).
+
+    Use blank lines in functions, sparingly, to indicate logical sections.
+
+    Okay: def a():\n    pass\n\n\ndef b():\n    pass
+    Okay: def a():\n    pass\n\n\n# Foo\n# Bar\n\ndef b():\n    pass
+
+    E301: class Foo:\n    b = 0\n    def bar():\n        pass
+    E302: def a():\n    pass\n\ndef b(n):\n    pass
+    E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
+    E303: def a():\n\n\n\n    pass
+    E304: @decorator\n\ndef a():\n    pass
+1       E113 unexpected indentation
+1       E222 multiple spaces after operator
+1       E303 too many blank lines (2)
