@@ -10,6 +10,8 @@
 
 '''
 
+from datetime import datetime
+
 from sfglobals import SG
 from sfglobals import IMG
 from sfglobals import POS
@@ -26,16 +28,17 @@ class Savegame(object):
     '''
         handle savegame data
     '''
-    def __init__(self, logger):
+    def __init__(self, logger, actor):
         '''
             setup savegame
         '''
         self.mirror = Mirror()
         self.has_mirror = False
         self.can_rob = False
-        tower_level = 0
+        self.tower_level = 0
 
         self.log = logger
+
 
     def __get_face(self, savegame):
         '''
@@ -80,6 +83,8 @@ class Savegame(object):
         '''
             parse raw response into Savegame object
         '''
+        global actor, texts
+
         save_obj = self.__init__()
 
         # parse into array of (mostly) numbers

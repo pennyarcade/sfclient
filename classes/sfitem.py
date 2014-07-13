@@ -82,7 +82,6 @@ class Item(object):
             typ = int(save[sg_index + SG['ITM']['TYP']])
             gold = int(save[sg_index + SG['ITM']['GOLD']])
             mush = int(save[sg_index + SG['ITM']['MUSH']])
-            slot_id = itm_class + itm_pic * SG['ITM']['SIZE']
 
             damage['max'] = int(save[sg_index + SG['ITM']['SCHADEN_MAX']])
             damage['min'] = int(save[sg_index + SG['ITM']['SCHADEN_MIN']])
@@ -101,6 +100,7 @@ class Item(object):
                 cclass += 1
             cclass -= 1
 
+            slot_id = cclass + pic * SG['ITM']['SIZE']
 
         return self.__init__(
             pic, typ, cclass, gold, mush, damage['max'],
@@ -119,6 +119,7 @@ class Item(object):
 
             @oldname GetItemName
         '''
+        global texts
 
         txt_idx = TXT['ITMNAME']
         txt_base = 0
@@ -237,7 +238,6 @@ class Item(object):
         no_shield_flag = False
 
         if self.cclass < 0:
-            slot_id = self.typ + self.pic * SG['ITM']['SIZE']
             slot_num = self.pic + 1
 
             if self.cclass == -2:
@@ -253,10 +253,13 @@ class Item(object):
         item_id += self.cclass
 
         if item_id >= SG['ITM']['MAX']:
-            # FIXME
-            # self.log.error("Fehler: Zu wenige Indizes für Items:", item_id,
-            # ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
-            # itm_color, "Class:", itm_class)
+            self.log.error(' '.join([
+                "Fehler: Zu wenige Indizes für Items:", item_id, ITM_MAX,
+                "Typ:", self.typ,
+                "Pic:", self.pic,
+                "Color:", self.color,
+                "Class:", self.cclass
+            ]))
             return 0
 
         if is_sg and (self.typ == 0) and (slot_num > 0) and (slot_num <= 10):
@@ -280,7 +283,7 @@ class Item(object):
 
         return item_id
 
-    def get_arrow_id(self, itm_class, itm_pic, some_obj=False, slot_mode=False,
+    def get_arrow_id(self, some_obj=False, slot_mode=False,
                      color_override=-1):
         '''
             calculate id for arrow/bolt shots

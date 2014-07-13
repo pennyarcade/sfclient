@@ -21,7 +21,7 @@ class Session(object):
     '''
         Session object to handle request stuff
     '''
-    def __init__(self):
+    def __init__(self, logger):
         '''
             Constructor to Session object
         '''
@@ -45,6 +45,8 @@ class Session(object):
         self.user = 'chocokiko'
         self.pwdmd5 = 'c33def595b633a53fbb6a3987ab54a05'
         random.seed()
+
+        self.log = logger
 
     def login(self):
         '''
@@ -97,7 +99,7 @@ class Session(object):
                         ACT['REQUEST']['GUILD_NAMES'],
                         ACT['REQUEST']['CHAR'],
                         ACT['POST']['SEND'])):
-                    LOG.warning(''.join([
+                    self.log.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil noch auf eine ",
                         "Serverantwort gewartet wird: ",
                         str(action)
@@ -105,7 +107,7 @@ class Session(object):
                     return
             else:
                 if self.fight_lock:
-                    LOG.warning(''.join([
+                    self.log.warning(''.join([
                         "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
                         "Ereignis stattfindet:",
                         str(action)
@@ -120,9 +122,9 @@ class Session(object):
         if self.session_id == "":
             self.session_id = "00000000000000000000000000000000"
 
-            LOG.debug("SID: " + str(self.session_id))
-            LOG.debug("Action: " + str(action))
-            LOG.debug("Action+Daten: " + str(data_str))
+            self.log.debug("SID: " + str(self.session_id))
+            self.log.debug("Action: " + str(action))
+            self.log.debug("Action+Daten: " + str(data_str))
 
         # TODO: This "if" switches base URL
         # self.param_poll_tunnel_url / param_php_tunnel_url
@@ -166,7 +168,7 @@ class Session(object):
 
         while fail_try < param_fail_tries:
             resp = requests.get(self.baseuri, params=payload)
-            LOG.debug(resp.url)
+            self.log.debug(resp.url)
 
             # TODO : test success of request here !!
             success = True
@@ -180,10 +182,10 @@ class Session(object):
 
                 data = resp.text()
 
-                LOG.debug(str("Antwort auf %s: %s" % (action, data)))
+                self.log.debug(str("Antwort auf %s: %s" % (action, data)))
 
                 if data == "":
-                    LOG.error(
+                    self.log.error(
                         "Fehler: Keine (leere) Antwort vom Tunnelskript.")
                     success = False
                 else:
@@ -191,15 +193,15 @@ class Session(object):
 
             if not success:
                 if fail_try < param_fail_tries:
-                    LOG.warning(''.join([
+                    self.log.warning(''.join([
                         "PHP-Request fehlgeschlagen (Versuch",
                         str(fail_try), "/",
                         str(param_fail_tries) + ").",
                         "Erneutes Senden..."
                     ]))
-                    LOG.info("Erneut gesendet.")
+                    self.log.info("Erneut gesendet.")
                 else:
-                    LOG.warning(''.join([
+                    self.log.warning(''.join([
                         "PHP Tunneling fehlgeschlagen. ",
                         "Versuche, neu zu verbinden."
                     ]))

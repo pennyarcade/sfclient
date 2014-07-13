@@ -20,7 +20,7 @@ import types
 import base64
 
 # external dependencies
-import requests
+# import requests
 # import curses
 
 # internal dependencies
@@ -156,7 +156,7 @@ from sflegacyfonts import FontFormatToiletAura
 from classes.sfsavegame import Savegame
 from classes.sfswitch import Switch
 from classes.sfface import Face
-#from classes.sfcharacter import Character
+# from classes.sfcharacter import Character
 
 # global for logger
 LOG = logging.getLogger()
