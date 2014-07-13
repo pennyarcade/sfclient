@@ -65,6 +65,19 @@ class Savegame(object):
             savegame[SG['RACE']]
         )
 
+    def __get_mirror(self, bin_str):
+        '''
+            extract mirror status from savegame
+        '''
+        self.mirror = Mirror()
+
+        self.mirror.pieces = list()
+        for i in range(13):
+            self.mirror.pieces[i] = bin_str.substr(i + 1, 1) == "1"
+
+        self.has_mirror = bin_str.substr(23, 1) == "1"
+        self.can_rob = bin_str.substr(22, 1) == "1"
+
     def parse(self, str_save_game, fill_face_variables=True, no_spoil=False):
         '''
             parse raw response into Savegame object
@@ -85,15 +98,6 @@ class Savegame(object):
         bin_str = bin(int(savegame[SG['GENDER']]))
 
         bin_str.zfill(32)
-
-        self.mirror = Mirror()
-
-        self.mirror.pieces = list()
-        for i in range(13):
-            self.mirror.pieces[i] = bin_str.substr(i + 1, 1) == "1"
-
-        self.has_mirror = bin_str.substr(23, 1) == "1"
-        self.can_rob = bin_str.substr(22, 1) == "1"
 
         # TODO: save in character object
         if bin_str.substr(31) == "1":
