@@ -10,6 +10,13 @@
 
 '''
 
+from sfglobals import SG
+from sfglobals import TXT
+from sfglobals import LBL
+
+from classes.sfswitch import Switch
+
+
 class Quest(object):
     '''
         harndle qurest data

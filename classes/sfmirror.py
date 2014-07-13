@@ -10,6 +10,7 @@
 
 '''
 
+
 class Mirror(object):
     '''
         handle magic mirror
@@ -18,4 +19,4 @@ class Mirror(object):
         '''
             setup mirror object
         '''
-        pass
+        pieces = None

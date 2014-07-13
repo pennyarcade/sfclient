@@ -10,17 +10,27 @@
 
 '''
 
+from sfglobals import ARROW_MAX
+from sfglobals import ARROW_OFFS
+from sfglobals import SG
+from sfglobals import TXT
+from sfglobals import C
+from sfglobals import IMG
+
+
 class Item(object):
     '''
         handle Item data
     '''
     def __init__(self, pic=0, typ=0, cclass=1, gold=0,
-                 maxd=0, mind=0, color=0, attr=False):
+                 maxd=0, mind=0, color=0, attr=False, logger=None):
         '''
             setup Item object
 
             TODO: documentation
         '''
+        self.log = logger
+
         self.pic = pic
         self.typ = typ
         self.cclass = cclass
@@ -235,7 +245,7 @@ class Item(object):
 
         if item_id >= SG['ITM']['MAX']:
             # FIXME
-            # LOG.error("Fehler: Zu wenige Indizes für Items:", item_id,
+            # self.log.error("Fehler: Zu wenige Indizes für Items:", item_id,
             # ITM_MAX, "Typ:", itmTyp, "Pic:", itm_pic, "Color:",
             # itm_color, "Class:", itm_class)
             return 0
@@ -297,7 +307,7 @@ def get_arrow_id(itm_class, itm_pic, some_obj=False, slot_mode=False,
     arrow_id += arrow_id + itm_color
 
     if arrow_id >= ARROW_MAX:
-        LOG.error(' '.join(
+        self.log.error(' '.join(
             "Fehler: Zu wenige Indizes für Pfeile:",
             arrow_id,
             ">=",
@@ -312,4 +322,3 @@ def get_arrow_id(itm_class, itm_pic, some_obj=False, slot_mode=False,
         return 0
 
     return arrow_id
-
