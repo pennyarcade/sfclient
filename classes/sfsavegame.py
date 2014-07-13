@@ -18,7 +18,6 @@ from sfglobals import TXT
 from sfglobals import ACT
 from sfglobals import CNT
 
-from sfclient import expand_item_structure
 from sfclient import actor
 from sfclient import enable_popup
 from sfclient import add
@@ -257,3 +256,35 @@ class Savegame(object):
             next_pxl = abs(next_pxl)
 
         return save_obj
+
+
+def expand_item_structure(arr, offset):
+    '''
+    var typeOriginal:Number;
+    var picOriginal:Number;
+    var mushOriginal:Number;
+    var enchantment;
+    var socket;
+    var enchantmentPower;
+    var socketPower;
+    typeOriginal = arr[(offset + SG_ITM_TYP)];
+    picOriginal = arr[(offset + SG['ITM']['PIC'])];
+    mushOriginal = arr[(offset + SG_ITM_MUSH)];
+    enchantment = int((typeOriginal / math.pow(2, 24)));
+    socket = (typeOriginal - (enchantment * math.pow(2, 24)));
+    socket = (socket / math.pow(2, 16));
+    typeOriginal = ((typeOriginal - (enchantment * math.pow(2, 24)))
+                    - (socket * math.pow(2, 16)));
+    enchantmentPower = int((picOriginal / math.pow(2, 16)));
+    picOriginal = (picOriginal - (enchantmentPower * math.pow(2, 16)));
+    socketPower = int((mushOriginal / math.pow(2, 16)));
+    mushOriginal = (mushOriginal - (socketPower * math.pow(2, 16)));
+    arr[(offset + SG_ITM_TYP)] = typeOriginal;
+    arr[(offset + SG['ITM']['PIC'])] = picOriginal;
+    arr[(offset + SG_ITM_MUSH)] = mushOriginal;
+    arr[(offset + SG_ITM_EXT_SOCKET)] = socket;
+    arr[(offset + SG_ITM_EXT_ENCHANT)] = enchantment;
+    arr[(offset + SG_ITM_EXT_ENCHANT_POWER)] = enchantmentPower;
+    arr[(offset + SG_ITM_EXT_SOCKET_POWER)] = socketPower;
+    '''
+    print arr, offset
