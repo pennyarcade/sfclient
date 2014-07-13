@@ -32,8 +32,8 @@ W0511:15771,0: : TODO: What does this do?
 W0511:15787,0: : TODO: Obsolete?
 W0511:15807,0: : TODO: set via requests params
 C0302:  1,0: : Too many lines in module (21249)
-F0401:158,0: : Unable to import 'sfsavegame' (unexpected indent (<string>, line 46))
-Unhandled exception in VariablesChecker: unexpected indent (<string>, line 46)
+F0401:158,0: : Unable to import 'sfsavegame' (invalid syntax (<string>, line 52))
+Unhandled exception in VariablesChecker: invalid syntax (<string>, line 52)
 C0103:164,0: : Invalid constant name "param_obj"
 C0103:165,0: : Invalid constant name "actor"
 C0103:166,0: : Invalid constant name "texts"
@@ -610,7 +610,7 @@ W0511:433,0: : TODO WTF?
 R0902: 46,0: Actor: Too many instance attributes (18/7)
 R0902: 90,0: TextField: Too many instance attributes (11/7)
 ************* Module sfsavegame
-E0001: 46,0: : unexpected indent
+E0001: 52,0: : invalid syntax
 
 
 Report
