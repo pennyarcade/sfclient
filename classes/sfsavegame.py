@@ -11,6 +11,7 @@
 '''
 
 from datetime import datetime
+import math
 
 from sfglobals import SG
 from sfglobals import IMG
@@ -24,12 +25,14 @@ from sfglobals import BNC
 from classes.sfmirror import Mirror
 from classes.sfface import Face
 
+from sflegacy import on_stage
+
 
 class Savegame(object):
     '''
         handle savegame data
     '''
-    def __init__(self, logger):
+    def __init__(self, logger, session):
         '''
             setup savegame
         '''
@@ -39,6 +42,7 @@ class Savegame(object):
         self.tower_level = 0
 
         self.log = logger
+        self.session = session
 
 
     def __get_face(self, savegame):
@@ -229,7 +233,7 @@ class Savegame(object):
             local_time = datetime.now()
             time_calc.start()
 
-        if session_id == "":
+        if self.session.id == "":
             self.log.error(''.join([
                 "Fehler: Keine Session ID für PHP-Tunneling vergeben. ",
                 "PHP-Tunneling wird deaktiviert."
@@ -241,7 +245,7 @@ class Savegame(object):
         if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
             gilden_id = int(savegame[SG['GUILD']['INDEX']])
             if gilden_id != 0:
-                send_action(
+                self.session.send_action(
                     ACT['REQUEST']['GUILD'],
                     savegame[SG['GUILD']['INDEX']]
                 )
@@ -260,6 +264,9 @@ class Savegame(object):
 
 
 def expand_item_structure(arr, offset):
+    '''
+        process item records in savegames
+    '''
     type_original = arr[offset + SG['ITM']['TYP']]
     pic_original = arr[offset + SG['ITM']['PIC']]
     mush_original = arr[offset + SG['ITM']['MUSH']]

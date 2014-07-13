@@ -81,6 +81,7 @@ from sflegacy import TimerEvent
 from sflegacy import URLLoader
 from sflegacy import URLLoaderdataFormat
 from sflegacy import URLRequest
+from sflegacy import on_stage
 
 from sfbuildinterface import build_interface
 
@@ -13418,15 +13419,6 @@ def enable_popup(actor_id, *args):
         actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, hide_popup)
 
     actorpopup_stamp[actor_id] = my_stamp
-
-
-def on_stage(actor_id):
-    '''
-        actor is schon on screen?
-    '''
-    if actor[actor_id] is DisplayObject:
-        return bool(get_child_by_name(actor[actor_id].name))
-    return False
 
 
 def tv_timer_event_handler():

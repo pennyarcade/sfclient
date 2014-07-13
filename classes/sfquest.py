@@ -22,7 +22,7 @@ class Quest(object):
         harndle qurest data
     '''
     def __init__(self, qtype, qid, qlevel, qmonster,
-                 qexp, qgold, qtime, qlocation, qitem):
+                 qexp, qgold, qtime, qlocation, qitem, texts):
         '''
             Setup Quest object
         '''
@@ -42,8 +42,8 @@ class Quest(object):
         self.qtext = ''
 
         # set derived members
-        self.get_title()
-        self.get_text()
+        self.get_title(texts)
+        self.get_text(texts)
 
     def from_sg(self, qid, save):
         '''

@@ -648,3 +648,12 @@ def remove_event_listener(*args):
         obsolete
     '''
     print args
+
+
+def on_stage(actor_id):
+    '''
+        actor is schon on screen?
+    '''
+    if actor[actor_id] is DisplayObject:
+        return bool(get_child_by_name(actor[actor_id].name))
+    return False
