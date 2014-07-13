@@ -49,7 +49,7 @@ class Savegame(object):
             i -= 100
             char_color += 1
 
-        return = Face(
+        return Face(
             savegame[SG['FACE']['5']],
             savegame[SG['FACE']['3']],
             savegame[SG['CLASS']],
