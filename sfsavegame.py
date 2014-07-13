@@ -36,35 +36,34 @@ class Savegame(object):
         '''
         self.mirror = Mirror()
         self.has_mirror = False
-        self.can_rob =  False
+        self.can_rob = False
         tower_level = 0
 
     def __get_face(self, savegame):
         '''
             extract face from savegame
         '''
-            i = char_hair
-            char_color = 0
-            while i > 100:
-                i -= 100
-                char_color += 1
+        i = char_hair
+        char_color = 0
+        while i > 100:
+            i -= 100
+            char_color += 1
 
-            return = Face(
-                savegame[SG['FACE']['5']],
-                savegame[SG['FACE']['3']],
-                savegame[SG['CLASS']],
-                char_hair,
-                savegame[SG['FACE']['4']],
-                savegame[SG['FACE']['7']],
-                savegame[SG['FACE']['2']],
-                (savegame[SG['GENDER']] == 1),
-                savegame[SG['FACE']['1']],
-                savegame[SG['FACE']['6']],
-                savegame[SG['FACE']['8']],
-                savegame[SG['FACE']['9']],
-                savegame[SG['RACE']]
-            )
-
+        return = Face(
+            savegame[SG['FACE']['5']],
+            savegame[SG['FACE']['3']],
+            savegame[SG['CLASS']],
+            char_hair,
+            savegame[SG['FACE']['4']],
+            savegame[SG['FACE']['7']],
+            savegame[SG['FACE']['2']],
+            (savegame[SG['GENDER']] == 1),
+            savegame[SG['FACE']['1']],
+            savegame[SG['FACE']['6']],
+            savegame[SG['FACE']['8']],
+            savegame[SG['FACE']['9']],
+            savegame[SG['RACE']]
+        )
 
     def parse(self, str_save_game, fill_face_variables=True, no_spoil=False):
         '''
