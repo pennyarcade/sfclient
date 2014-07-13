@@ -19,4 +19,4 @@ class Mirror(object):
         '''
             setup mirror object
         '''
-        pieces = None
+        self.pieces = None

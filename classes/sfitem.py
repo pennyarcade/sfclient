@@ -23,7 +23,7 @@ class Item(object):
         handle Item data
     '''
     def __init__(self, pic=0, typ=0, cclass=1, gold=0,
-                 maxd=0, mind=0, color=0, attr=False, logger=None):
+                 maxd=0, mind=0, color=0, attr=False, slot_id=0, logger=None):
         '''
             setup Item object
 
@@ -31,6 +31,7 @@ class Item(object):
         '''
         self.log = logger
 
+        self.slot_id = slot_id
         self.pic = pic
         self.typ = typ
         self.cclass = cclass
@@ -52,7 +53,7 @@ class Item(object):
             self.pic -= 1000
             self.cclass += 1
 
-    def from_sg(self, sg_index=0, save=False):
+    def from_sg(self, sg_index=0, save=False, logger=None):
         '''
             setup item object from savegame
 
@@ -64,10 +65,11 @@ class Item(object):
         # Preset values
         pic = 0
         typ = 0
-        cclass = 1
+        cclass = 0
         gold = 0
         color = 0
         mush = 0
+        slot_id = 0
         damage = {'max': 0, 'min': 0}
         attr = [
             {'typ': 0, 'val': 0},
@@ -78,9 +80,10 @@ class Item(object):
         if type(save) is list:
             pic = int(save[sg_index + SG['ITM']['PIC']])
             typ = int(save[sg_index + SG['ITM']['TYP']])
-
             gold = int(save[sg_index + SG['ITM']['GOLD']])
             mush = int(save[sg_index + SG['ITM']['MUSH']])
+            slot_id = itm_class + itm_pic * SG['ITM']['SIZE']
+
             damage['max'] = int(save[sg_index + SG['ITM']['SCHADEN_MAX']])
             damage['min'] = int(save[sg_index + SG['ITM']['SCHADEN_MIN']])
 
@@ -93,9 +96,15 @@ class Item(object):
 
             color = color % 5
 
+            while pic >= 1000:
+                pic -= 1000
+                cclass += 1
+            cclass -= 1
+
+
         return self.__init__(
             pic, typ, cclass, gold, mush, damage['max'],
-            damage['min'], color, attr
+            damage['min'], color, attr, slot_id, logger
         )
 
     def get_name(self):
@@ -271,54 +280,38 @@ class Item(object):
 
         return item_id
 
+    def get_arrow_id(self, itm_class, itm_pic, some_obj=False, slot_mode=False,
+                     color_override=-1):
+        '''
+            calculate id for arrow/bolt shots
+        '''
+        arrow_id = ARROW_OFFS
 
-def get_arrow_id(itm_class, itm_pic, some_obj=False, slot_mode=False,
-                 color_override=-1):
-    '''
-        calculate id for arrow/bolt shots
-    '''
-    arrow_id = ARROW_OFFS
-    if slot_mode:
-        if not type(some_obj) is list:
-            some_obj = savegame
+        color = self.color
 
-        slot_id = itm_class + itm_pic * SG['ITM']['SIZE']
-        itm_pic = some_obj[slot_id + SG['ITM']['PIC']]
-        itm_color = 0
+        if not slot_mode:
+            color = int(some_obj)
 
-        for i in range(8):
-            itm_color += int(some_obj[slot_id + SG['ITM']['SCHADEN_MIN'] + i])
+        if color_override >= 0:
+            color = color_override
 
-        itm_color = itm_color % 5
+        arrow_id += self.cclass * 5 * 100
+        arrow_id += self.pic * 5
+        arrow_id += color
 
-        itm_class = 0
-        while itm_pic >= 1000:
-            itm_pic -= 1000
-            itm_class += 1
-        itm_class -= 1
-    else:
-        itm_color = int(some_obj)
+        if arrow_id >= ARROW_MAX:
+            self.log.error(' '.join(
+                "Fehler: Zu wenige Indizes für Pfeile:",
+                arrow_id,
+                ">=",
+                ARROW_MAX,
+                "Pic:",
+                self.pic,
+                "Color:",
+                color,
+                "Class:",
+                self.cclass
+            ))
+            return 0
 
-    if color_override >= 0:
-        itm_color = color_override
-
-    arrow_id += itm_class * 5 * 100
-    arrow_id += itm_pic * 5
-    arrow_id += arrow_id + itm_color
-
-    if arrow_id >= ARROW_MAX:
-        self.log.error(' '.join(
-            "Fehler: Zu wenige Indizes für Pfeile:",
-            arrow_id,
-            ">=",
-            ARROW_MAX,
-            "Pic:",
-            itm_pic,
-            "Color:",
-            itm_color,
-            "Class:",
-            itm_class
-        ))
-        return 0
-
-    return arrow_id
+        return arrow_id
