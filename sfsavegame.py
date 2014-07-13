@@ -15,10 +15,10 @@ from sfglobals import IMG
 from sfglobals import POS
 from sfglobals import LBL
 from sfglobals import TXT
-from sfglobals import LOG
 from sfglobals import ACT
 from sfglobals import CNT
 
+from sfclient import LOG
 from sfclient import Mirror
 from sfclient import expand_item_structure
 from sfclient import actor
@@ -34,7 +34,37 @@ class Savegame(object):
         '''
             setup savegame
         '''
-        pass
+        self.mirror = Mirror()
+        self.has_mirror = False
+        self.can_rob =  False
+        tower_level = 0
+
+    def __get_face(self, savegame):
+        '''
+            extract face from savegame
+        '''
+            i = char_hair
+            char_color = 0
+            while i > 100:
+                i -= 100
+                char_color += 1
+
+            return = Face(
+                savegame[SG['FACE']['5']],
+                savegame[SG['FACE']['3']],
+                savegame[SG['CLASS']],
+                char_hair,
+                savegame[SG['FACE']['4']],
+                savegame[SG['FACE']['7']],
+                savegame[SG['FACE']['2']],
+                (savegame[SG['GENDER']] == 1),
+                savegame[SG['FACE']['1']],
+                savegame[SG['FACE']['6']],
+                savegame[SG['FACE']['8']],
+                savegame[SG['FACE']['9']],
+                savegame[SG['RACE']]
+            )
+
 
     def parse(self, str_save_game, fill_face_variables=True, no_spoil=False):
         '''
@@ -52,7 +82,6 @@ class Savegame(object):
 
         savegame[SG['MOUNT']] -= self.tower_level * 65536
 
-        # TODO: Mirror object
         # Extract mirror pieces from gender entry
         bin_str = bin(int(savegame[SG['GENDER']]))
 
@@ -128,27 +157,7 @@ class Savegame(object):
         old_album = savegame[SG['ALBUM']]
 
         if fill_face_variables:
-            i = char_hair
-            char_color = 0
-            while i > 100:
-                i -= 100
-                char_color += 1
-
-            char_face = Face(
-                savegame[SG['FACE']['5']],
-                savegame[SG['FACE']['3']],
-                savegame[SG['CLASS']],
-                char_hair,
-                savegame[SG['FACE']['4']],
-                savegame[SG['FACE']['7']],
-                savegame[SG['FACE']['2']],
-                (savegame[SG['GENDER']] == 1),
-                savegame[SG['FACE']['1']],
-                savegame[SG['FACE']['6']],
-                savegame[SG['FACE']['8']],
-                savegame[SG['FACE']['9']],
-                savegame[SG['RACE']]
-            )
+            char_face = self.__get_face(savegame)
 
         if not no_spoil:
             ppos = POS['IF']['LBL']['GOLDPILZE_X']
@@ -242,4 +251,3 @@ class Savegame(object):
             next_pxl = abs(next_pxl)
 
         return save_obj
-
