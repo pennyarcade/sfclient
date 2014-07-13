@@ -53,7 +53,7 @@ R0903:482,0: Guild: Too few public methods (0/2)
 R0903:493,0: Toilet: Too few public methods (0/2)
 R0903:504,0: Witch: Too few public methods (0/2)
 ************* Module sfsavegame
-W0201: 74,8: Savegame.__get_mirror: Attribute 'pieces' defined outside __init__
+W0201: 75,8: Savegame.__get_mirror: Attribute 'pieces' defined outside __init__
 R0903:515,0: Mirror: Too few public methods (0/2)
 R0914:583,0: init_vars: Too many local variables (22/15)
 C0103:594,4: init_vars: Invalid constant name "revertface"
@@ -610,64 +610,64 @@ C0302:  1,0: : Too many lines in module (4067)
 W0511:433,0: : TODO WTF?
 R0902: 46,0: Actor: Too many instance attributes (18/7)
 R0902: 90,0: TextField: Too many instance attributes (11/7)
-W0511: 90,0: : TODO: Tower object
-W0511:102,0: : TODO: save in character object
-W0612: 40,8: Savegame.__init__: Unused variable 'tower_level'
-E0602: 46,12: Savegame.__get_face: Undefined variable 'char_hair'
-E0602: 52,15: Savegame.__get_face: Undefined variable 'Face'
-E0602: 56,12: Savegame.__get_face: Undefined variable 'char_hair'
-R0201: 42,4: Savegame.__get_face: Method could be a function
-W0612: 47,8: Savegame.__get_face: Unused variable 'char_color'
-R0914: 81,4: Savegame.parse: Too many local variables (23/15)
-E0602:108,45: Savegame.parse: Undefined variable 'content_max'
-E0602:109,36: Savegame.parse: Undefined variable 'content_max'
-E0601:139,12: Savegame.parse: Using variable 'last_level' before assignment
-E0602:145,34: Savegame.parse: Undefined variable 'server'
-E0602:148,15: Savegame.parse: Undefined variable 'old_ach'
-E0602:150,19: Savegame.parse: Undefined variable 'ach_level'
-E0602:150,44: Savegame.parse: Undefined variable 'old_ach'
-E0602:151,20: Savegame.parse: Undefined variable 'old_ach'
-E0602:151,38: Savegame.parse: Undefined variable 'ach_level'
-E0602:153,20: Savegame.parse: Undefined variable 'old_ach'
-E0602:153,33: Savegame.parse: Undefined variable 'ach_level'
-E0602:156,16: Savegame.parse: Undefined variable 'old_ach'
-E0602:156,29: Savegame.parse: Undefined variable 'ach_level'
-E0601:158,12: Savegame.parse: Using variable 'old_album' before assignment
-E0602:168,15: Savegame.parse: Undefined variable 'text_dir'
-E0602:188,19: Savegame.parse: Undefined variable 'texts'
-E0602:191,24: Savegame.parse: Undefined variable 'texts'
-E0602:213,19: Savegame.parse: Undefined variable 'texts'
-E0602:216,24: Savegame.parse: Undefined variable 'texts'
-E0602:221,12: Savegame.parse: Undefined variable 'BNC'
-E0602:223,12: Savegame.parse: Undefined variable 'server_time'
-E0602:226,25: Savegame.parse: Undefined variable 'datetime'
-E0602:227,12: Savegame.parse: Undefined variable 'time_calc'
-E0602:229,11: Savegame.parse: Undefined variable 'session_id'
-E0602:234,12: Savegame.parse: Undefined variable 'show_login_screen'
-E0602:236,57: Savegame.parse: Undefined variable 'session_id'
-E0601:238,50: Savegame.parse: Using variable 'gilden_id' before assignment
-E0602:241,16: Savegame.parse: Undefined variable 'send_action'
-E0602:247,48: Savegame.parse: Undefined variable 'on_stage'
-E0602:251,12: Savegame.parse: Undefined variable 'request_logout'
-E0601:253,11: Savegame.parse: Using variable 'next_pxl' before assignment
-R0912: 81,4: Savegame.parse: Too many branches (35/12)
-R0915: 81,4: Savegame.parse: Too many statements (97/50)
-W0612:135,8: Savegame.parse: Unused variable 'debug_info'
-W0612:145,8: Savegame.parse: Unused variable 'friend_link'
-W0612:159,12: Savegame.parse: Unused variable 'album_effect'
-W0612:248,12: Savegame.parse: Unused variable 'pulse_post'
-W0612:141,12: Savegame.parse: Unused variable 'pulse_char'
-W0612:140,12: Savegame.parse: Unused variable 'level_up'
-W0612:226,12: Savegame.parse: Unused variable 'local_time'
-W0612:163,12: Savegame.parse: Unused variable 'char_face'
-W0201: 93,12: Savegame.parse: Attribute 'tower_level' defined outside __init__
-R0903: 29,0: Savegame: Too few public methods (1/2)
+W0511: 91,0: : TODO: Tower object
+W0511:103,0: : TODO: save in character object
+W0612: 39,8: Savegame.__init__: Unused variable 'tower_level'
+E0602: 47,12: Savegame.__get_face: Undefined variable 'char_hair'
+E0602: 53,15: Savegame.__get_face: Undefined variable 'Face'
+E0602: 57,12: Savegame.__get_face: Undefined variable 'char_hair'
+R0201: 43,4: Savegame.__get_face: Method could be a function
+W0612: 48,8: Savegame.__get_face: Unused variable 'char_color'
+R0914: 82,4: Savegame.parse: Too many local variables (23/15)
+E0602:109,45: Savegame.parse: Undefined variable 'content_max'
+E0602:110,36: Savegame.parse: Undefined variable 'content_max'
+E0601:140,12: Savegame.parse: Using variable 'last_level' before assignment
+E0602:146,34: Savegame.parse: Undefined variable 'server'
+E0602:149,15: Savegame.parse: Undefined variable 'old_ach'
+E0602:151,19: Savegame.parse: Undefined variable 'ach_level'
+E0602:151,44: Savegame.parse: Undefined variable 'old_ach'
+E0602:152,20: Savegame.parse: Undefined variable 'old_ach'
+E0602:152,38: Savegame.parse: Undefined variable 'ach_level'
+E0602:154,20: Savegame.parse: Undefined variable 'old_ach'
+E0602:154,33: Savegame.parse: Undefined variable 'ach_level'
+E0602:157,16: Savegame.parse: Undefined variable 'old_ach'
+E0602:157,29: Savegame.parse: Undefined variable 'ach_level'
+E0601:159,12: Savegame.parse: Using variable 'old_album' before assignment
+E0602:169,15: Savegame.parse: Undefined variable 'text_dir'
+E0602:189,19: Savegame.parse: Undefined variable 'texts'
+E0602:192,24: Savegame.parse: Undefined variable 'texts'
+E0602:214,19: Savegame.parse: Undefined variable 'texts'
+E0602:217,24: Savegame.parse: Undefined variable 'texts'
+E0602:222,12: Savegame.parse: Undefined variable 'BNC'
+E0602:224,12: Savegame.parse: Undefined variable 'server_time'
+E0602:227,25: Savegame.parse: Undefined variable 'datetime'
+E0602:228,12: Savegame.parse: Undefined variable 'time_calc'
+E0602:230,11: Savegame.parse: Undefined variable 'session_id'
+E0602:235,12: Savegame.parse: Undefined variable 'show_login_screen'
+E0602:237,62: Savegame.parse: Undefined variable 'session_id'
+E0601:239,50: Savegame.parse: Using variable 'gilden_id' before assignment
+E0602:242,16: Savegame.parse: Undefined variable 'send_action'
+E0602:248,48: Savegame.parse: Undefined variable 'on_stage'
+E0602:252,12: Savegame.parse: Undefined variable 'request_logout'
+E0601:254,11: Savegame.parse: Using variable 'next_pxl' before assignment
+R0912: 82,4: Savegame.parse: Too many branches (35/12)
+R0915: 82,4: Savegame.parse: Too many statements (97/50)
+W0612:136,8: Savegame.parse: Unused variable 'debug_info'
+W0612:146,8: Savegame.parse: Unused variable 'friend_link'
+W0612:160,12: Savegame.parse: Unused variable 'album_effect'
+W0612:249,12: Savegame.parse: Unused variable 'pulse_post'
+W0612:142,12: Savegame.parse: Unused variable 'pulse_char'
+W0612:141,12: Savegame.parse: Unused variable 'level_up'
+W0612:227,12: Savegame.parse: Unused variable 'local_time'
+W0612:164,12: Savegame.parse: Unused variable 'char_face'
+W0201: 94,12: Savegame.parse: Attribute 'tower_level' defined outside __init__
+R0903: 28,0: Savegame: Too few public methods (1/2)
 R0401:  1,0: : Cyclic import (sfclient -> sfsavegame)
 R0801:  1,0: : Similar lines in 4 files
 ==sfclient:12438
 ==sfclient:12526
 ==sfclient:15602
-==sfsavegame:192
+==sfsavegame:193
                         )
                     )
                 else:
