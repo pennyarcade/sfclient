@@ -1891,6 +1891,7 @@ def get_weapon_level(wpn_class, wpn_pic):
 # -----------------------------------------------------------------------------
 # request functions
 
+
 # TODO: How to do Event stuff?
 def request_signup(evt):
     '''

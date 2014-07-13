@@ -11,6 +11,19 @@
 '''
 
 from sfglobals import SG
+from sfglobals import IMG
+from sfglobals import POS
+from sfglobals import LBL
+from sfglobals import TXT
+from sfglobals import LOG
+from sfglobals import ACT
+from sfglobals import CNT
+
+from sfclient import Mirror
+from sfclient import expand_item_structure
+from sfclient import actor
+from sfclient import enable_popup
+from sfclient import add
 
 
 class Savegame(object):
