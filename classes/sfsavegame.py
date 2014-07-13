@@ -18,11 +18,13 @@ from sfglobals import TXT
 from sfglobals import ACT
 from sfglobals import CNT
 
-from sfclient import Mirror
 from sfclient import expand_item_structure
 from sfclient import actor
 from sfclient import enable_popup
 from sfclient import add
+
+from classes.sfmirror import Mirror
+from classes.sfface import Face
 
 
 class Savegame(object):
