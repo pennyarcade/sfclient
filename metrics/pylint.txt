@@ -260,6 +260,7 @@ R0914:11265,0: action_handler: Too many local variables (127/15)
 C0103:11269,4: action_handler: Invalid constant name "oldcreststring"
 W0601:11269,4: action_handler: Global variable 'oldcreststring' undefined at the module level
 W0603:11270,4: action_handler: Using the global statement
+E1120:11272,11: action_handler: No value for argument 'actor' in constructor call
 E0601:11280,11: action_handler: Using variable 'guild_blink_ready' before assignment
 E0602:11281,12: action_handler: Undefined variable 'send_action'
 E0602:11440,16: action_handler: Undefined variable 'param_reconnect'
@@ -571,7 +572,6 @@ R0913:15028,0: define_click_area: Too many arguments (11/5)
 R0913:15087,0: define_from_class: Too many arguments (6/5)
 R0913:18143,0: item_popup: Too many arguments (7/5)
 R0913:19367,0: load_character_image: Too many arguments (14/5)
-W0611: 23,0: : Unused import requests
 ************* Module sfglobals
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
@@ -582,102 +582,93 @@ R0902: 90,0: TextField: Too many instance attributes (11/7)
 R0903: 14,0: Mirror: Too few public methods (0/2)
 ************* Module classes.sfsession
 W0511: 28,0: : TODO: Check if needed?
-W0511: 53,0: : TODO: refactor to use sendAction()
-W0511: 62,0: : TODO: rework random number generation
-W0511:127,0: : TODO: This "if" switches base URL
-W0511:131,0: : TODO: move payload creation to method
-W0511:171,0: : TODO : test success of request here !!
-R0902: 20,0: Session: Too many instance attributes (14/7)
-E0602: 83,19: Session.send_action: Undefined variable 'on_stage'
-E0602: 83,28: Session.send_action: Undefined variable 'CNT'
-E0602:100,20: Session.send_action: Undefined variable 'LOG'
-E0602:108,20: Session.send_action: Undefined variable 'LOG'
-E0602:123,12: Session.send_action: Undefined variable 'LOG'
-E0602:124,12: Session.send_action: Undefined variable 'LOG'
-E0602:125,12: Session.send_action: Undefined variable 'LOG'
-E0602:167,25: Session.send_action: Undefined variable 'param_fail_tries'
-E0602:169,12: Session.send_action: Undefined variable 'LOG'
-E0602:183,16: Session.send_action: Undefined variable 'LOG'
-E0602:186,20: Session.send_action: Undefined variable 'LOG'
-E0602:193,30: Session.send_action: Undefined variable 'param_fail_tries'
-E0602:194,20: Session.send_action: Undefined variable 'LOG'
-E0602:197,28: Session.send_action: Undefined variable 'param_fail_tries'
-E0602:200,20: Session.send_action: Undefined variable 'LOG'
-E0602:202,20: Session.send_action: Undefined variable 'LOG'
-E0602:213,26: Session.send_action: Undefined variable 'RequestFailedException'
-R0912: 78,4: Session.send_action: Too many branches (25/12)
-R0915: 78,4: Session.send_action: Too many statements (65/50)
-W0612:116,8: Session.send_action: Unused variable 'last_act'
+W0511: 55,0: : TODO: refactor to use sendAction()
+W0511: 64,0: : TODO: rework random number generation
+W0511:129,0: : TODO: This "if" switches base URL
+W0511:133,0: : TODO: move payload creation to method
+W0511:173,0: : TODO : test success of request here !!
+R0902: 20,0: Session: Too many instance attributes (15/7)
+E0602: 85,19: Session.send_action: Undefined variable 'on_stage'
+E0602: 85,28: Session.send_action: Undefined variable 'CNT'
+E0602:169,25: Session.send_action: Undefined variable 'param_fail_tries'
+E0602:195,30: Session.send_action: Undefined variable 'param_fail_tries'
+E0602:199,28: Session.send_action: Undefined variable 'param_fail_tries'
+E0602:215,26: Session.send_action: Undefined variable 'RequestFailedException'
+R0912: 80,4: Session.send_action: Too many branches (25/12)
+R0915: 80,4: Session.send_action: Too many statements (65/50)
+W0612:118,8: Session.send_action: Unused variable 'last_act'
 ************* Module classes.sfalbum
 R0903: 14,0: Album: Too few public methods (0/2)
 ************* Module classes.sfwitch
 R0903: 14,0: Witch: Too few public methods (0/2)
 ************* Module classes.sfsavegame
-W0511: 88,0: : TODO: Tower object
-W0511:100,0: : TODO: save in character object
-W0612: 36,8: Savegame.__init__: Unused variable 'tower_level'
-E0602: 44,12: Savegame.__get_face: Undefined variable 'char_hair'
-E0602: 54,12: Savegame.__get_face: Undefined variable 'char_hair'
-R0201: 40,4: Savegame.__get_face: Method could be a function
-W0612: 45,8: Savegame.__get_face: Unused variable 'char_color'
-R0914: 79,4: Savegame.parse: Too many local variables (23/15)
-E0602:106,45: Savegame.parse: Undefined variable 'content_max'
-E0602:107,36: Savegame.parse: Undefined variable 'content_max'
-E0601:137,12: Savegame.parse: Using variable 'last_level' before assignment
-E0602:143,34: Savegame.parse: Undefined variable 'server'
-E0602:146,15: Savegame.parse: Undefined variable 'old_ach'
-E0602:148,19: Savegame.parse: Undefined variable 'ach_level'
-E0602:148,44: Savegame.parse: Undefined variable 'old_ach'
-E0602:149,20: Savegame.parse: Undefined variable 'old_ach'
-E0602:149,38: Savegame.parse: Undefined variable 'ach_level'
-E0602:151,20: Savegame.parse: Undefined variable 'old_ach'
-E0602:151,33: Savegame.parse: Undefined variable 'ach_level'
-E0602:154,16: Savegame.parse: Undefined variable 'old_ach'
-E0602:154,29: Savegame.parse: Undefined variable 'ach_level'
-E0601:156,12: Savegame.parse: Using variable 'old_album' before assignment
-E0602:166,15: Savegame.parse: Undefined variable 'text_dir'
-E0602:167,16: Savegame.parse: Undefined variable 'actor'
-E0602:169,24: Savegame.parse: Undefined variable 'actor'
+W0511: 93,0: : TODO: Tower object
+W0511:105,0: : TODO: save in character object
+W0613: 31,31: Savegame.__init__: Unused argument 'actor'
+E0602: 47,12: Savegame.__get_face: Undefined variable 'char_hair'
+E0602: 57,12: Savegame.__get_face: Undefined variable 'char_hair'
+R0201: 43,4: Savegame.__get_face: Method could be a function
+W0612: 48,8: Savegame.__get_face: Unused variable 'char_color'
+R0914: 82,4: Savegame.parse: Too many local variables (23/15)
+C0103: 86,8: Savegame.parse: Invalid constant name "actor"
+C0103: 86,8: Savegame.parse: Invalid constant name "texts"
+W0602: 86,8: Savegame.parse: Using global for 'actor' but no assignment is done
+W0602: 86,8: Savegame.parse: Using global for 'texts' but no assignment is done
+E0602:111,45: Savegame.parse: Undefined variable 'content_max'
+E0602:112,36: Savegame.parse: Undefined variable 'content_max'
+E0601:142,12: Savegame.parse: Using variable 'last_level' before assignment
+E0602:148,34: Savegame.parse: Undefined variable 'server'
+E0602:151,15: Savegame.parse: Undefined variable 'old_ach'
+E0602:153,19: Savegame.parse: Undefined variable 'ach_level'
+E0602:153,44: Savegame.parse: Undefined variable 'old_ach'
+E0602:154,20: Savegame.parse: Undefined variable 'old_ach'
+E0602:154,38: Savegame.parse: Undefined variable 'ach_level'
+E0602:156,20: Savegame.parse: Undefined variable 'old_ach'
+E0602:156,33: Savegame.parse: Undefined variable 'ach_level'
+E0602:159,16: Savegame.parse: Undefined variable 'old_ach'
+E0602:159,29: Savegame.parse: Undefined variable 'ach_level'
+E0601:161,12: Savegame.parse: Using variable 'old_album' before assignment
+E0602:171,15: Savegame.parse: Undefined variable 'text_dir'
 E0602:172,16: Savegame.parse: Undefined variable 'actor'
 E0602:174,24: Savegame.parse: Undefined variable 'actor'
-E0602:180,26: Savegame.parse: Undefined variable 'actor'
-E0602:182,24: Savegame.parse: Undefined variable 'actor'
-E0602:186,19: Savegame.parse: Undefined variable 'texts'
-E0602:187,20: Savegame.parse: Undefined variable 'enable_popup'
-E0602:189,24: Savegame.parse: Undefined variable 'texts'
-E0602:194,24: Savegame.parse: Undefined variable 'actor'
-E0602:201,16: Savegame.parse: Undefined variable 'actor'
-E0602:203,24: Savegame.parse: Undefined variable 'actor'
-E0602:205,26: Savegame.parse: Undefined variable 'actor'
-E0602:207,24: Savegame.parse: Undefined variable 'actor'
-E0602:211,19: Savegame.parse: Undefined variable 'texts'
-E0602:212,20: Savegame.parse: Undefined variable 'enable_popup'
-E0602:214,24: Savegame.parse: Undefined variable 'texts'
-E0602:219,8: Savegame.parse: Undefined variable 'add'
-E0602:219,12: Savegame.parse: Undefined variable 'BNC'
-E0602:221,12: Savegame.parse: Undefined variable 'server_time'
-E0602:224,25: Savegame.parse: Undefined variable 'datetime'
-E0602:225,12: Savegame.parse: Undefined variable 'time_calc'
-E0602:227,11: Savegame.parse: Undefined variable 'session_id'
-E0602:232,12: Savegame.parse: Undefined variable 'show_login_screen'
-E0602:234,62: Savegame.parse: Undefined variable 'session_id'
-E0601:236,50: Savegame.parse: Using variable 'gilden_id' before assignment
-E0602:239,16: Savegame.parse: Undefined variable 'send_action'
-E0602:245,48: Savegame.parse: Undefined variable 'on_stage'
-E0602:249,12: Savegame.parse: Undefined variable 'request_logout'
-E0601:251,11: Savegame.parse: Using variable 'next_pxl' before assignment
-R0912: 79,4: Savegame.parse: Too many branches (35/12)
-R0915: 79,4: Savegame.parse: Too many statements (97/50)
-W0612:133,8: Savegame.parse: Unused variable 'debug_info'
-W0612:143,8: Savegame.parse: Unused variable 'friend_link'
-W0612:157,12: Savegame.parse: Unused variable 'album_effect'
-W0612:246,12: Savegame.parse: Unused variable 'pulse_post'
-W0612:139,12: Savegame.parse: Unused variable 'pulse_char'
-W0612:138,12: Savegame.parse: Unused variable 'level_up'
-W0612:224,12: Savegame.parse: Unused variable 'local_time'
-W0612:161,12: Savegame.parse: Unused variable 'char_face'
-W0201: 91,12: Savegame.parse: Attribute 'tower_level' defined outside __init__
-R0903: 25,0: Savegame: Too few public methods (1/2)
+E0602:177,16: Savegame.parse: Undefined variable 'actor'
+E0602:179,24: Savegame.parse: Undefined variable 'actor'
+E0602:185,26: Savegame.parse: Undefined variable 'actor'
+E0602:187,24: Savegame.parse: Undefined variable 'actor'
+E0602:191,19: Savegame.parse: Undefined variable 'texts'
+E0602:192,20: Savegame.parse: Undefined variable 'enable_popup'
+E0602:194,24: Savegame.parse: Undefined variable 'texts'
+E0602:199,24: Savegame.parse: Undefined variable 'actor'
+E0602:206,16: Savegame.parse: Undefined variable 'actor'
+E0602:208,24: Savegame.parse: Undefined variable 'actor'
+E0602:210,26: Savegame.parse: Undefined variable 'actor'
+E0602:212,24: Savegame.parse: Undefined variable 'actor'
+E0602:216,19: Savegame.parse: Undefined variable 'texts'
+E0602:217,20: Savegame.parse: Undefined variable 'enable_popup'
+E0602:219,24: Savegame.parse: Undefined variable 'texts'
+E0602:224,8: Savegame.parse: Undefined variable 'add'
+E0602:224,12: Savegame.parse: Undefined variable 'BNC'
+E0602:226,12: Savegame.parse: Undefined variable 'server_time'
+E0602:230,12: Savegame.parse: Undefined variable 'time_calc'
+E0602:232,11: Savegame.parse: Undefined variable 'session_id'
+E0602:237,12: Savegame.parse: Undefined variable 'show_login_screen'
+E0602:239,62: Savegame.parse: Undefined variable 'session_id'
+E0601:241,50: Savegame.parse: Using variable 'gilden_id' before assignment
+E0602:244,16: Savegame.parse: Undefined variable 'send_action'
+E0602:250,48: Savegame.parse: Undefined variable 'on_stage'
+E0602:254,12: Savegame.parse: Undefined variable 'request_logout'
+E0601:256,11: Savegame.parse: Using variable 'next_pxl' before assignment
+R0912: 82,4: Savegame.parse: Too many branches (35/12)
+R0915: 82,4: Savegame.parse: Too many statements (98/50)
+W0612:138,8: Savegame.parse: Unused variable 'debug_info'
+W0612:148,8: Savegame.parse: Unused variable 'friend_link'
+W0612:162,12: Savegame.parse: Unused variable 'album_effect'
+W0612:251,12: Savegame.parse: Unused variable 'pulse_post'
+W0612:144,12: Savegame.parse: Unused variable 'pulse_char'
+W0612:143,12: Savegame.parse: Unused variable 'level_up'
+W0612:229,12: Savegame.parse: Unused variable 'local_time'
+W0612:166,12: Savegame.parse: Unused variable 'char_face'
+R0903: 27,0: Savegame: Too few public methods (1/2)
 ************* Module classes.sfguild
 R0903: 14,0: Guild: Too few public methods (0/2)
 ************* Module classes.sfface
@@ -694,55 +685,55 @@ R0903: 14,0: Account: Too few public methods (0/2)
 ************* Module classes.sfquest
 R0902: 20,0: Quest: Too many instance attributes (11/7)
 R0913: 24,4: Quest.__init__: Too many arguments (10/5)
-E0602:101,15: Quest.get_title: Undefined variable 'texts'
-E0602:102,30: Quest.get_title: Undefined variable 'texts'
-E0602:123,16: Quest.get_text: Undefined variable 'texts'
-E0602:130,24: Quest.get_text: Undefined variable 'texts'
-E0602:131,24: Quest.get_text: Undefined variable 'texts'
+C0103: 76,8: Quest.get_title: Invalid constant name "texts"
+W0602: 76,8: Quest.get_title: Using global for 'texts' but no assignment is done
+E0602:103,15: Quest.get_title: Undefined variable 'texts'
+E0602:104,30: Quest.get_title: Undefined variable 'texts'
+C0103:119,8: Quest.get_text: Invalid constant name "texts"
+W0602:119,8: Quest.get_text: Using global for 'texts' but no assignment is done
+E0602:127,16: Quest.get_text: Undefined variable 'texts'
 E0602:134,24: Quest.get_text: Undefined variable 'texts'
-E0602:143,24: Quest.get_text: Undefined variable 'texts'
-E0602:146,24: Quest.get_text: Undefined variable 'texts'
+E0602:135,24: Quest.get_text: Undefined variable 'texts'
+E0602:138,24: Quest.get_text: Undefined variable 'texts'
 E0602:147,24: Quest.get_text: Undefined variable 'texts'
-E0602:159,24: Quest.get_text: Undefined variable 'texts'
-E0602:162,24: Quest.get_text: Undefined variable 'texts'
+E0602:150,24: Quest.get_text: Undefined variable 'texts'
+E0602:151,24: Quest.get_text: Undefined variable 'texts'
 E0602:163,24: Quest.get_text: Undefined variable 'texts'
 E0602:166,24: Quest.get_text: Undefined variable 'texts'
-E0602:175,24: Quest.get_text: Undefined variable 'texts'
-E0602:176,24: Quest.get_text: Undefined variable 'texts'
+E0602:167,24: Quest.get_text: Undefined variable 'texts'
+E0602:170,24: Quest.get_text: Undefined variable 'texts'
 E0602:179,24: Quest.get_text: Undefined variable 'texts'
-E0602:188,24: Quest.get_text: Undefined variable 'texts'
-E0602:191,24: Quest.get_text: Undefined variable 'texts'
-E0602:194,24: Quest.get_text: Undefined variable 'texts'
-E0602:204,24: Quest.get_text: Undefined variable 'texts'
-E0602:207,24: Quest.get_text: Undefined variable 'texts'
-E0602:210,24: Quest.get_text: Undefined variable 'texts'
+E0602:180,24: Quest.get_text: Undefined variable 'texts'
+E0602:183,24: Quest.get_text: Undefined variable 'texts'
+E0602:192,24: Quest.get_text: Undefined variable 'texts'
+E0602:195,24: Quest.get_text: Undefined variable 'texts'
+E0602:198,24: Quest.get_text: Undefined variable 'texts'
+E0602:208,24: Quest.get_text: Undefined variable 'texts'
+E0602:211,24: Quest.get_text: Undefined variable 'texts'
+E0602:214,24: Quest.get_text: Undefined variable 'texts'
 ************* Module classes.sfitem
 W0511: 30,0: : TODO: documentation
-W0511:202,0: : TODO: itm_color ???
-W0511:256,0: : FIXME
+W0511:203,0: : TODO: itm_color ???
 R0902: 21,0: Item: Too many instance attributes (9/7)
 R0913: 25,4: Item.__init__: Too many arguments (11/5)
-E0602: 85,22: Item.from_sg: Undefined variable 'itm_class'
-E0602: 85,34: Item.from_sg: Undefined variable 'itm_pic'
-E0602:158,29: Item.get_name: Undefined variable 'texts'
-E0602:172,11: Item.get_name: Undefined variable 'texts'
-E0602:177,11: Item.get_name: Undefined variable 'texts'
-E0602:180,25: Item.get_name: Undefined variable 'texts'
-E0602:183,11: Item.get_name: Undefined variable 'texts'
-E0602:184,46: Item.get_name: Undefined variable 'texts'
-E0602:186,25: Item.get_name: Undefined variable 'texts'
-E0602:189,17: Item.get_name: Undefined variable 'texts'
-E0602:191,21: Item.get_name: Undefined variable 'texts'
+C0103:122,8: Item.get_name: Invalid constant name "texts"
+W0602:122,8: Item.get_name: Using global for 'texts' but no assignment is done
+E0602:159,29: Item.get_name: Undefined variable 'texts'
+E0602:173,11: Item.get_name: Undefined variable 'texts'
+E0602:178,11: Item.get_name: Undefined variable 'texts'
+E0602:181,25: Item.get_name: Undefined variable 'texts'
+E0602:184,11: Item.get_name: Undefined variable 'texts'
+E0602:185,46: Item.get_name: Undefined variable 'texts'
+E0602:187,25: Item.get_name: Undefined variable 'texts'
+E0602:190,17: Item.get_name: Undefined variable 'texts'
+E0602:192,21: Item.get_name: Undefined variable 'texts'
 R0912:110,4: Item.get_name: Too many branches (20/12)
-R0912:225,4: Item.get_id: Too many branches (14/12)
-W0612:240,12: Item.get_id: Unused variable 'slot_id'
-R0913:283,4: Item.get_arrow_id: Too many arguments (6/5)
-W0613:283,38: Item.get_arrow_id: Unused argument 'itm_pic'
-W0613:283,27: Item.get_arrow_id: Unused argument 'itm_class'
+E0602:257,66: Item.get_id: Undefined variable 'ITM_MAX'
+R0912:226,4: Item.get_id: Too many branches (14/12)
 ************* Module classes.sfcharacter
 R0903: 14,0: Character: Too few public methods (0/2)
 R0801:  1,0: : Similar lines in 4 files
-==classes.sfsavegame:190
+==classes.sfsavegame:195
 ==sfclient:11543
 ==sfclient:11631
 ==sfclient:14707
@@ -753,7 +744,7 @@ R0801:  1,0: : Similar lines in 4 files
 
 Report
 ======
-4356 statements analysed.
+4361 statements analysed.
 
 Messages by category
 --------------------
@@ -761,13 +752,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |60     |NC       |NC         |
+|convention |65     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |59     |NC       |NC         |
+|refactor   |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |259    |NC       |NC         |
+|warning    |258    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |349    |NC       |NC         |
+|error      |337    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -778,19 +769,19 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |72.21 |89.19   |50.85    |96.67      |
+|sfclient           |75.07 |89.15   |51.72    |89.23      |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |13.47 |5.02    |8.47     |0.00       |
+|classes.sfsavegame |13.65 |5.43    |8.62     |3.08       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfquest    |6.30  |0.00    |3.39     |0.00       |
+|classes.sfquest    |6.53  |0.78    |3.45     |3.08       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsession  |4.87  |2.70    |5.08     |0.00       |
+|classes.sfitem     |2.97  |1.16    |6.90     |1.54       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfitem     |3.15  |2.32    |8.47     |0.00       |
+|classes.sfsession  |1.78  |2.71    |5.17     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|sflegacy           |0.00  |0.39    |3.39     |0.00       |
+|sflegacy           |0.00  |0.39    |3.45     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfswitch   |0.00  |0.39    |1.69     |0.00       |
+|classes.sfswitch   |0.00  |0.39    |1.72     |0.00       |
 +-------------------+------+--------+---------+-----------+
 
 
@@ -798,57 +789,57 @@ Messages by category
 Messages
 --------
 
-+-------------------------------+------------+
-|message id                     |occurrences |
-+===============================+============+
-|undefined-variable             |330         |
-+-------------------------------+------------+
-|unused-variable                |169         |
-+-------------------------------+------------+
-|invalid-name                   |57          |
-+-------------------------------+------------+
-|global-variable-undefined      |44          |
-+-------------------------------+------------+
-|fixme                          |33          |
-+-------------------------------+------------+
-|used-before-assignment         |18          |
-+-------------------------------+------------+
-|too-many-arguments             |15          |
-+-------------------------------+------------+
-|too-many-branches              |11          |
-+-------------------------------+------------+
-|too-few-public-methods         |10          |
-+-------------------------------+------------+
-|too-many-statements            |9           |
-+-------------------------------+------------+
-|too-many-locals                |6           |
-+-------------------------------+------------+
-|too-many-instance-attributes   |6           |
-+-------------------------------+------------+
-|unused-argument                |5           |
-+-------------------------------+------------+
-|global-statement               |5           |
-+-------------------------------+------------+
-|too-many-lines                 |3           |
-+-------------------------------+------------+
-|unused-import                  |1           |
-+-------------------------------+------------+
-|too-many-function-args         |1           |
-+-------------------------------+------------+
-|redefined-outer-name           |1           |
-+-------------------------------+------------+
-|no-self-use                    |1           |
-+-------------------------------+------------+
-|duplicate-code                 |1           |
-+-------------------------------+------------+
-|attribute-defined-outside-init |1           |
-+-------------------------------+------------+
++-----------------------------+------------+
+|message id                   |occurrences |
++=============================+============+
+|undefined-variable           |317         |
++-----------------------------+------------+
+|unused-variable              |167         |
++-----------------------------+------------+
+|invalid-name                 |62          |
++-----------------------------+------------+
+|global-variable-undefined    |44          |
++-----------------------------+------------+
+|fixme                        |32          |
++-----------------------------+------------+
+|used-before-assignment       |18          |
++-----------------------------+------------+
+|too-many-arguments           |14          |
++-----------------------------+------------+
+|too-many-branches            |11          |
++-----------------------------+------------+
+|too-few-public-methods       |10          |
++-----------------------------+------------+
+|too-many-statements          |9           |
++-----------------------------+------------+
+|too-many-locals              |6           |
++-----------------------------+------------+
+|too-many-instance-attributes |6           |
++-----------------------------+------------+
+|global-variable-not-assigned |5           |
++-----------------------------+------------+
+|global-statement             |5           |
++-----------------------------+------------+
+|unused-argument              |4           |
++-----------------------------+------------+
+|too-many-lines               |3           |
++-----------------------------+------------+
+|too-many-function-args       |1           |
++-----------------------------+------------+
+|redefined-outer-name         |1           |
++-----------------------------+------------+
+|no-value-for-parameter       |1           |
++-----------------------------+------------+
+|no-self-use                  |1           |
++-----------------------------+------------+
+|duplicate-code               |1           |
++-----------------------------+------------+
 
 
 
 Global evaluation
 -----------------
-Your code has been rated at 5.13/10
+Your code has been rated at 5.26/10
 
 Raw metrics
 -----------
@@ -856,13 +847,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5460   |15.29 |NC       |NC         |
+|code      |5466   |15.30 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |28363  |79.43 |NC       |NC         |
+|docstring |28368  |79.43 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |641    |1.80  |NC       |NC         |
+|comment   |640    |1.79  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1244   |3.48  |NC       |NC         |
+|empty     |1241   |3.47  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -884,8 +875,8 @@ External dependencies
 ---------------------
 ::
 
-    datetime (sfclient)
-    requests (sfclient,classes.sfsession)
+    datetime (sfclient,classes.sfsavegame)
+    requests (classes.sfsession)
     sfbuildinterface (sfclient)
     sfglobals (sfclient,classes.sfquest,classes.sfsavegame,classes.sfsession,classes.sfitem)
     sflegacy (sflegacyfonts,sfclient)
