@@ -1,68 +1,42 @@
 checking sfbuildinterface.py
 checking sfclient.py
+sfclient.py:159:1: E265 block comment should start with '# '
+    Separate inline comments by at least two spaces.
+
+    An inline comment is a comment on the same line as a statement.  Inline
+    comments should be separated by at least two spaces from the statement.
+    They should start with a # and a single space.
+
+    Each line of a block comment starts with a # and a single space
+    (unless it is indented text inside the comment).
+
+    Okay: x = x + 1  # Increment x
+    Okay: x = x + 1    # Increment x
+    Okay: # Block comment
+    E261: x = x + 1 # Increment x
+    E262: x = x + 1  #Increment x
+    E262: x = x + 1  #  Increment x
+    E265: #Block comment
 checking sfglobals.py
 checking sflegacyfonts.py
 checking sflegacy.py
 directory classes
 checking classes/__init__.py
-classes/__init__.py:11:4: W292 no newline at end of file
-    Trailing blank lines are superfluous.
-
-    Okay: spam(1)
-    W391: spam(1)\n
-
-    However the last line should end with a new line (warning W292).
+checking classes/sfaccount.py
+checking classes/sfalbum.py
 checking classes/sfcharacter.py
+checking classes/sfexceptions.py
 checking classes/sfface.py
+checking classes/sfguild.py
 checking classes/sfitem.py
-classes/sfitem.py:13:1: E302 expected 2 blank lines, found 1
-    Separate top-level function and class definitions with two blank lines.
-
-    Method definitions inside a class are separated by a single blank line.
-
-    Extra blank lines may be used (sparingly) to separate groups of related
-    functions.  Blank lines may be omitted between a bunch of related
-    one-liners (e.g. a set of dummy implementations).
-
-    Use blank lines in functions, sparingly, to indicate logical sections.
-
-    Okay: def a():\n    pass\n\n\ndef b():\n    pass
-    Okay: def a():\n    pass\n\n\n# Foo\n# Bar\n\ndef b():\n    pass
-
-    E301: class Foo:\n    b = 0\n    def bar():\n        pass
-    E302: def a():\n    pass\n\ndef b(n):\n    pass
-    E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
-    E303: def a():\n\n\n\n    pass
-    E304: @decorator\n\ndef a():\n    pass
-classes/sfitem.py:315:1: W391 blank line at end of file
-    Trailing blank lines are superfluous.
-
-    Okay: spam(1)
-    W391: spam(1)\n
-
-    However the last line should end with a new line (warning W292).
 checking classes/sfmirror.py
-classes/sfmirror.py:13:1: E302 expected 2 blank lines, found 1
-    Separate top-level function and class definitions with two blank lines.
-
-    Method definitions inside a class are separated by a single blank line.
-
-    Extra blank lines may be used (sparingly) to separate groups of related
-    functions.  Blank lines may be omitted between a bunch of related
-    one-liners (e.g. a set of dummy implementations).
-
-    Use blank lines in functions, sparingly, to indicate logical sections.
-
-    Okay: def a():\n    pass\n\n\ndef b():\n    pass
-    Okay: def a():\n    pass\n\n\n# Foo\n# Bar\n\ndef b():\n    pass
-
-    E301: class Foo:\n    b = 0\n    def bar():\n        pass
-    E302: def a():\n    pass\n\ndef b(n):\n    pass
-    E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
-    E303: def a():\n\n\n\n    pass
-    E304: @decorator\n\ndef a():\n    pass
 checking classes/sfquest.py
-classes/sfquest.py:13:1: E302 expected 2 blank lines, found 1
+checking classes/sfsavegame.py
+checking classes/sfsession.py
+checking classes/sfswitch.py
+checking classes/sftoilet.py
+checking classes/sfwitch.py
+classes/sfwitch.py:13:1: E302 expected 2 blank lines, found 1
     Separate top-level function and class definitions with two blank lines.
 
     Method definitions inside a class are separated by a single blank line.
@@ -81,8 +55,5 @@ classes/sfquest.py:13:1: E302 expected 2 blank lines, found 1
     E303: def a():\n    pass\n\n\n\ndef b(n):\n    pass
     E303: def a():\n\n\n\n    pass
     E304: @decorator\n\ndef a():\n    pass
-checking classes/sfsavegame.py
-checking classes/sfswitch.py
-3       E302 expected 2 blank lines, found 1
-1       W292 no newline at end of file
-1       W391 blank line at end of file
+1       E265 block comment should start with '# '
+1       E302 expected 2 blank lines, found 1
