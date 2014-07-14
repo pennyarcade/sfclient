@@ -1,186 +1,187 @@
 ************* Module sfbuildinterface
 C0302:  1,0: : Too many lines in module (9374)
 ************* Module sfclient
-W0511:169,0: : TODO: refactor into config object
-W0511:174,0: : TODO: should be obsolete
-W0511:199,0: : TODO: make configurable
-W0511:243,0: : TODO: check vars if needed
-W0511:366,0: : TODO: remove this when configuration loading works
-W0511:540,0: : TODO: remove this when configuration loading works
-W0511:700,0: : TODO: check event stuff??
-W0511:767,0: : TODO: make this a parameter?
-W0511:788,0: : TODO: make this a parameter?
-W0511:1005,0: : TODO: How to do Event stuff?
-W0511:1008,0: : TODO: Documentation
-W0511:1183,0: : TODO: obsolete?
-W0511:1240,0: : TODO: obsolete?
-W0511:1334,0: : TODO: Something missing here
-W0511:12970,0: : TODO: better use exceptions??
-W0511:12979,0: : TODO: hor does this work anyways?
-W0511:13043,0: : TODO: hat does this do?
-W0511:14723,0: : TODO: What does this do?
-W0511:14739,0: : TODO: Obsolete?
-W0511:14759,0: : TODO: set via requests params
-C0302:  1,0: : Too many lines in module (19270)
-C0103:170,0: : Invalid constant name "param_obj"
-C0103:171,0: : Invalid constant name "actor"
-C0103:172,0: : Invalid constant name "texts"
-C0103:175,0: : Invalid constant name "when_loaded_fn"
-C0103:176,0: : Invalid constant name "Security"
-C0103:177,0: : Invalid constant name "pending_loaders"
-R0914:238,0: init_vars: Too many local variables (22/15)
-C0103:249,4: init_vars: Invalid constant name "revertface"
-W0601:249,4: init_vars: Global variable 'revertface' undefined at the module level
-C0103:253,4: init_vars: Invalid constant name "col_album"
-W0601:253,4: init_vars: Global variable 'col_album' undefined at the module level
-C0103:256,4: init_vars: Invalid constant name "actor"
-C0103:256,4: init_vars: Invalid constant name "actorLoaded"
-C0103:256,4: init_vars: Invalid constant name "actorURL"
-W0601:256,4: init_vars: Global variable 'actorLoaded' undefined at the module level
-W0601:256,4: init_vars: Global variable 'actorURL' undefined at the module level
-C0103:329,4: init_vars: Invalid constant name "font_embedded"
-W0601:329,4: init_vars: Global variable 'font_embedded' undefined at the module level
-C0103:362,4: init_vars: Invalid constant name "img_url"
-C0103:362,4: init_vars: Invalid constant name "img_url_index"
-W0601:362,4: init_vars: Global variable 'img_url' undefined at the module level
-W0601:362,4: init_vars: Global variable 'img_url_index' undefined at the module level
-C0103:379,4: init_vars: Invalid constant name "lang_code"
-C0103:379,4: init_vars: Invalid constant name "lang_url"
-W0601:379,4: init_vars: Global variable 'lang_code' undefined at the module level
-W0601:379,4: init_vars: Global variable 'lang_url' undefined at the module level
-C0103:424,4: init_vars: Invalid constant name "offline_guild_members"
-C0103:424,4: init_vars: Invalid constant name "oldcreststring"
-W0601:424,4: init_vars: Global variable 'offline_guild_members' undefined at the module level
-W0601:424,4: init_vars: Global variable 'oldcreststring' undefined at the module level
-C0103:439,4: init_vars: Invalid constant name "param_fail_tries"
-W0601:439,4: init_vars: Global variable 'param_fail_tries' undefined at the module level
-C0103:472,4: init_vars: Invalid constant name "pending_configuration_files"
-C0103:472,4: init_vars: Invalid constant name "pending_debug_file"
-W0601:472,4: init_vars: Global variable 'pending_configuration_files' undefined at the module level
-W0601:472,4: init_vars: Global variable 'pending_debug_file' undefined at the module level
-C0103:473,4: init_vars: Invalid constant name "pending_language_file"
-C0103:473,4: init_vars: Invalid constant name "pending_loaders"
-W0601:473,4: init_vars: Global variable 'pending_language_file' undefined at the module level
-C0103:517,4: init_vars: Invalid constant name "server"
-W0601:517,4: init_vars: Global variable 'server' undefined at the module level
-C0103:536,4: init_vars: Invalid constant name "snd_url"
-C0103:536,4: init_vars: Invalid constant name "snd_url_index"
-W0601:536,4: init_vars: Global variable 'snd_url' undefined at the module level
-W0601:536,4: init_vars: Global variable 'snd_url_index' undefined at the module level
-C0103:551,4: init_vars: Invalid constant name "text_dir"
-W0601:551,4: init_vars: Global variable 'text_dir' undefined at the module level
-C0103:643,4: init_vars: Invalid constant name "texts"
-W0603:643,4: init_vars: Using the global statement
-C0103:649,4: init_vars: Invalid constant name "when_loaded_fn"
-C0103:649,4: init_vars: Invalid constant name "when_loaded_active"
-C0103:649,4: init_vars: Invalid constant name "when_loaded_timeout"
-W0601:649,4: init_vars: Global variable 'when_loaded_active' undefined at the module level
-W0601:649,4: init_vars: Global variable 'when_loaded_timeout' undefined at the module level
-R0915:238,0: init_vars: Too many statements (79/50)
-W0612:677,4: init_vars: Unused variable 'witch_ani_step'
-W0612:640,16: init_vars: Unused variable 'buffed_email'
-W0612:674,4: init_vars: Unused variable 'pvp_delay_timer'
-W0612:666,4: init_vars: Unused variable 'tv_ani'
-W0612:246,4: init_vars: Unused variable 'defaultface'
-W0612:638,16: init_vars: Unused variable 'buffed_id'
-W0612:665,4: init_vars: Unused variable 'tv_wobble'
-W0612:663,4: init_vars: Unused variable 'tv_status'
-W0612:639,16: init_vars: Unused variable 'buffed_name'
-W0612:633,8: init_vars: Unused variable 'buffed_req'
-W0612:664,4: init_vars: Unused variable 'tv_status_dest'
-W0612:667,4: init_vars: Unused variable 'tv_return_value'
-C0103:704,4: configure: Invalid constant name "serverconfig"
-W0601:704,4: configure: Global variable 'serverconfig' undefined at the module level
-E0601:848,8: time_calc_event: Using variable 'slm_count' before assignment
-E0602:848,29: time_calc_event: Undefined variable 'ststep'
-E0602:852,4: time_calc_event: Undefined variable 'game_time'
-E0602:853,33: time_calc_event: Undefined variable 'server_time'
-E0602:853,57: time_calc_event: Undefined variable 'local_time'
-R0912:901,0: get_weapon_level: Too many branches (44/12)
-R0915:901,0: get_weapon_level: Too many statements (85/50)
-E0602:1024,13: request_signup: Undefined variable 'param_bullshit_text'
-E0602:1026,24: request_signup: Undefined variable 'param_bullshit_cid'
-E0602:1030,11: request_signup: Undefined variable 'buffed_req'
-E0602:1031,30: request_signup: Undefined variable 'buffed_id'
-E0602:1033,22: request_signup: Undefined variable 'param_adv'
-E0602:1035,11: request_signup: Undefined variable 'char_male'
-E0602:1041,12: request_signup: Undefined variable 'charface'
-E0602:1041,28: request_signup: Undefined variable 'charface'
-E0602:1041,43: request_signup: Undefined variable 'charface'
-E0602:1041,59: request_signup: Undefined variable 'charface'
+W0511:170,0: : TODO: refactor into config object
+W0511:175,0: : TODO: should be obsolete
+W0511:200,0: : TODO: make configurable
+W0511:244,0: : TODO: check vars if needed
+W0511:367,0: : TODO: remove this when configuration loading works
+W0511:541,0: : TODO: remove this when configuration loading works
+W0511:701,0: : TODO: check event stuff??
+W0511:768,0: : TODO: make this a parameter?
+W0511:789,0: : TODO: make this a parameter?
+W0511:1006,0: : TODO: How to do Event stuff?
+W0511:1009,0: : TODO: Documentation
+W0511:1184,0: : TODO: obsolete?
+W0511:1241,0: : TODO: obsolete?
+W0511:1335,0: : TODO: Something missing here
+W0511:12971,0: : TODO: better use exceptions??
+W0511:12980,0: : TODO: hor does this work anyways?
+W0511:13044,0: : TODO: hat does this do?
+W0511:14724,0: : TODO: What does this do?
+W0511:14740,0: : TODO: Obsolete?
+W0511:14760,0: : TODO: set via requests params
+C0302:  1,0: : Too many lines in module (19271)
+F0401:161,0: : Unable to import 'classes.sfface' (invalid syntax (<string>, line 83))
+E0611:161,0: : No name 'sfface' in module 'classes'
+C0103:171,0: : Invalid constant name "param_obj"
+C0103:172,0: : Invalid constant name "actor"
+C0103:173,0: : Invalid constant name "texts"
+C0103:176,0: : Invalid constant name "when_loaded_fn"
+C0103:177,0: : Invalid constant name "Security"
+C0103:178,0: : Invalid constant name "pending_loaders"
+R0914:239,0: init_vars: Too many local variables (22/15)
+C0103:250,4: init_vars: Invalid constant name "revertface"
+W0601:250,4: init_vars: Global variable 'revertface' undefined at the module level
+C0103:254,4: init_vars: Invalid constant name "col_album"
+W0601:254,4: init_vars: Global variable 'col_album' undefined at the module level
+C0103:257,4: init_vars: Invalid constant name "actor"
+C0103:257,4: init_vars: Invalid constant name "actorLoaded"
+C0103:257,4: init_vars: Invalid constant name "actorURL"
+W0601:257,4: init_vars: Global variable 'actorLoaded' undefined at the module level
+W0601:257,4: init_vars: Global variable 'actorURL' undefined at the module level
+C0103:330,4: init_vars: Invalid constant name "font_embedded"
+W0601:330,4: init_vars: Global variable 'font_embedded' undefined at the module level
+C0103:363,4: init_vars: Invalid constant name "img_url"
+C0103:363,4: init_vars: Invalid constant name "img_url_index"
+W0601:363,4: init_vars: Global variable 'img_url' undefined at the module level
+W0601:363,4: init_vars: Global variable 'img_url_index' undefined at the module level
+C0103:380,4: init_vars: Invalid constant name "lang_code"
+C0103:380,4: init_vars: Invalid constant name "lang_url"
+W0601:380,4: init_vars: Global variable 'lang_code' undefined at the module level
+W0601:380,4: init_vars: Global variable 'lang_url' undefined at the module level
+C0103:425,4: init_vars: Invalid constant name "offline_guild_members"
+C0103:425,4: init_vars: Invalid constant name "oldcreststring"
+W0601:425,4: init_vars: Global variable 'offline_guild_members' undefined at the module level
+W0601:425,4: init_vars: Global variable 'oldcreststring' undefined at the module level
+C0103:440,4: init_vars: Invalid constant name "param_fail_tries"
+W0601:440,4: init_vars: Global variable 'param_fail_tries' undefined at the module level
+C0103:473,4: init_vars: Invalid constant name "pending_configuration_files"
+C0103:473,4: init_vars: Invalid constant name "pending_debug_file"
+W0601:473,4: init_vars: Global variable 'pending_configuration_files' undefined at the module level
+W0601:473,4: init_vars: Global variable 'pending_debug_file' undefined at the module level
+C0103:474,4: init_vars: Invalid constant name "pending_language_file"
+C0103:474,4: init_vars: Invalid constant name "pending_loaders"
+W0601:474,4: init_vars: Global variable 'pending_language_file' undefined at the module level
+C0103:518,4: init_vars: Invalid constant name "server"
+W0601:518,4: init_vars: Global variable 'server' undefined at the module level
+C0103:537,4: init_vars: Invalid constant name "snd_url"
+C0103:537,4: init_vars: Invalid constant name "snd_url_index"
+W0601:537,4: init_vars: Global variable 'snd_url' undefined at the module level
+W0601:537,4: init_vars: Global variable 'snd_url_index' undefined at the module level
+C0103:552,4: init_vars: Invalid constant name "text_dir"
+W0601:552,4: init_vars: Global variable 'text_dir' undefined at the module level
+C0103:644,4: init_vars: Invalid constant name "texts"
+W0603:644,4: init_vars: Using the global statement
+C0103:650,4: init_vars: Invalid constant name "when_loaded_fn"
+C0103:650,4: init_vars: Invalid constant name "when_loaded_active"
+C0103:650,4: init_vars: Invalid constant name "when_loaded_timeout"
+W0601:650,4: init_vars: Global variable 'when_loaded_active' undefined at the module level
+W0601:650,4: init_vars: Global variable 'when_loaded_timeout' undefined at the module level
+R0915:239,0: init_vars: Too many statements (79/50)
+W0612:678,4: init_vars: Unused variable 'witch_ani_step'
+W0612:641,16: init_vars: Unused variable 'buffed_email'
+W0612:675,4: init_vars: Unused variable 'pvp_delay_timer'
+W0612:667,4: init_vars: Unused variable 'tv_ani'
+W0612:247,4: init_vars: Unused variable 'defaultface'
+W0612:639,16: init_vars: Unused variable 'buffed_id'
+W0612:666,4: init_vars: Unused variable 'tv_wobble'
+W0612:664,4: init_vars: Unused variable 'tv_status'
+W0612:640,16: init_vars: Unused variable 'buffed_name'
+W0612:634,8: init_vars: Unused variable 'buffed_req'
+W0612:665,4: init_vars: Unused variable 'tv_status_dest'
+W0612:668,4: init_vars: Unused variable 'tv_return_value'
+C0103:705,4: configure: Invalid constant name "serverconfig"
+W0601:705,4: configure: Global variable 'serverconfig' undefined at the module level
+E0601:849,8: time_calc_event: Using variable 'slm_count' before assignment
+E0602:849,29: time_calc_event: Undefined variable 'ststep'
+E0602:853,4: time_calc_event: Undefined variable 'game_time'
+E0602:854,33: time_calc_event: Undefined variable 'server_time'
+E0602:854,57: time_calc_event: Undefined variable 'local_time'
+R0912:902,0: get_weapon_level: Too many branches (44/12)
+R0915:902,0: get_weapon_level: Too many statements (85/50)
+E0602:1025,13: request_signup: Undefined variable 'param_bullshit_text'
+E0602:1027,24: request_signup: Undefined variable 'param_bullshit_cid'
+E0602:1031,11: request_signup: Undefined variable 'buffed_req'
+E0602:1032,30: request_signup: Undefined variable 'buffed_id'
+E0602:1034,22: request_signup: Undefined variable 'param_adv'
+E0602:1036,11: request_signup: Undefined variable 'char_male'
 E0602:1042,12: request_signup: Undefined variable 'charface'
 E0602:1042,28: request_signup: Undefined variable 'charface'
 E0602:1042,43: request_signup: Undefined variable 'charface'
-E0602:1042,58: request_signup: Undefined variable 'charface'
+E0602:1042,59: request_signup: Undefined variable 'charface'
 E0602:1043,12: request_signup: Undefined variable 'charface'
-E0602:1047,8: request_signup: Undefined variable 'send_action'
-E0602:1052,12: request_signup: Undefined variable 'param_rec'
-E0602:1054,12: request_signup: Undefined variable 'charface'
-E0602:1056,12: request_signup: Undefined variable 'charface'
-E0602:1073,15: request_player_screen: Undefined variable 'hall_list_name'
-E0602:1074,16: request_player_screen: Undefined variable 'hall_list_guild'
-E0602:1077,4: request_player_screen: Undefined variable 'send_action'
-W0612:1074,4: request_player_screen: Unused variable 'sel_guild'
-E0602:1089,15: request_player_guild_screen: Undefined variable 'hall_list_name'
-E0602:1090,16: request_player_guild_screen: Undefined variable 'hall_list_guild'
-E0602:1098,20: request_player_guild_screen: Undefined variable 'gilde'
-E0602:1099,8: request_player_guild_screen: Undefined variable 'send_action'
-E0602:1101,8: request_player_guild_screen: Undefined variable 'send_action'
-W0612:1089,4: request_player_guild_screen: Unused variable 'sel_name'
-E0602:1119,4: request_login: Undefined variable 'send_action'
-R0914:1127,0: request_logout: Too many local variables (21/15)
-E0602:1143,4: request_logout: Undefined variable 'send_action'
-W0612:1146,4: request_logout: Unused variable 'gilde'
-W0612:1132,4: request_logout: Unused variable 'next_pxl'
-W0612:1149,4: request_logout: Unused variable 'my_own_guild_money'
-W0612:1145,4: request_logout: Unused variable 'char_volk'
-W0612:1144,4: request_logout: Unused variable 'savegame'
-W0612:1153,4: request_logout: Unused variable 'guild_attacking'
-W0612:1159,4: request_logout: Unused variable 'pulse_dealer'
-W0612:1156,4: request_logout: Unused variable 'pulse_gilde'
-W0612:1158,4: request_logout: Unused variable 'pulse_post'
-W0612:1152,4: request_logout: Unused variable 'guild_attacked'
-W0612:1154,4: request_logout: Unused variable 'pulse_taverne'
-W0612:1150,4: request_logout: Unused variable 'guild_attack_time'
-W0612:1162,4: request_logout: Unused variable 'fight_flush_mode'
-W0612:1160,4: request_logout: Unused variable 'guild_blink_ready'
-W0612:1161,4: request_logout: Unused variable 'session_id'
-W0612:1147,4: request_logout: Unused variable 'my_own_rank'
-W0612:1151,4: request_logout: Unused variable 'guild_defense_time'
-W0612:1157,4: request_logout: Unused variable 'pulse_gilde_on_history'
-W0612:1148,4: request_logout: Unused variable 'my_own_attack_target'
-W0612:1155,4: request_logout: Unused variable 'pulse_arbeiten'
-E0602:1171,4: request_cancel_arbeiten: Undefined variable 'send_action'
-E0602:1178,4: request_arbeiten: Undefined variable 'send_action'
-E0602:1192,9: request_change_face: Undefined variable 'charface'
-E0602:1192,26: request_change_face: Undefined variable 'revertchar'
-E0602:1193,17: request_change_face: Undefined variable 'charface'
-E0602:1193,34: request_change_face: Undefined variable 'revertchar'
+E0602:1043,28: request_signup: Undefined variable 'charface'
+E0602:1043,43: request_signup: Undefined variable 'charface'
+E0602:1043,58: request_signup: Undefined variable 'charface'
+E0602:1044,12: request_signup: Undefined variable 'charface'
+E0602:1048,8: request_signup: Undefined variable 'send_action'
+E0602:1053,12: request_signup: Undefined variable 'param_rec'
+E0602:1055,12: request_signup: Undefined variable 'charface'
+E0602:1057,12: request_signup: Undefined variable 'charface'
+E0602:1074,15: request_player_screen: Undefined variable 'hall_list_name'
+E0602:1075,16: request_player_screen: Undefined variable 'hall_list_guild'
+E0602:1078,4: request_player_screen: Undefined variable 'send_action'
+W0612:1075,4: request_player_screen: Unused variable 'sel_guild'
+E0602:1090,15: request_player_guild_screen: Undefined variable 'hall_list_name'
+E0602:1091,16: request_player_guild_screen: Undefined variable 'hall_list_guild'
+E0602:1099,20: request_player_guild_screen: Undefined variable 'gilde'
+E0602:1100,8: request_player_guild_screen: Undefined variable 'send_action'
+E0602:1102,8: request_player_guild_screen: Undefined variable 'send_action'
+W0612:1090,4: request_player_guild_screen: Unused variable 'sel_name'
+E0602:1120,4: request_login: Undefined variable 'send_action'
+R0914:1128,0: request_logout: Too many local variables (21/15)
+E0602:1144,4: request_logout: Undefined variable 'send_action'
+W0612:1147,4: request_logout: Unused variable 'gilde'
+W0612:1133,4: request_logout: Unused variable 'next_pxl'
+W0612:1150,4: request_logout: Unused variable 'my_own_guild_money'
+W0612:1146,4: request_logout: Unused variable 'char_volk'
+W0612:1145,4: request_logout: Unused variable 'savegame'
+W0612:1154,4: request_logout: Unused variable 'guild_attacking'
+W0612:1160,4: request_logout: Unused variable 'pulse_dealer'
+W0612:1157,4: request_logout: Unused variable 'pulse_gilde'
+W0612:1159,4: request_logout: Unused variable 'pulse_post'
+W0612:1153,4: request_logout: Unused variable 'guild_attacked'
+W0612:1155,4: request_logout: Unused variable 'pulse_taverne'
+W0612:1151,4: request_logout: Unused variable 'guild_attack_time'
+W0612:1163,4: request_logout: Unused variable 'fight_flush_mode'
+W0612:1161,4: request_logout: Unused variable 'guild_blink_ready'
+W0612:1162,4: request_logout: Unused variable 'session_id'
+W0612:1148,4: request_logout: Unused variable 'my_own_rank'
+W0612:1152,4: request_logout: Unused variable 'guild_defense_time'
+W0612:1158,4: request_logout: Unused variable 'pulse_gilde_on_history'
+W0612:1149,4: request_logout: Unused variable 'my_own_attack_target'
+W0612:1156,4: request_logout: Unused variable 'pulse_arbeiten'
+E0602:1172,4: request_cancel_arbeiten: Undefined variable 'send_action'
+E0602:1179,4: request_arbeiten: Undefined variable 'send_action'
+E0602:1193,9: request_change_face: Undefined variable 'charface'
+E0602:1193,26: request_change_face: Undefined variable 'revertchar'
 E0602:1194,17: request_change_face: Undefined variable 'charface'
-E0602:1194,35: request_change_face: Undefined variable 'revertchar'
+E0602:1194,34: request_change_face: Undefined variable 'revertchar'
 E0602:1195,17: request_change_face: Undefined variable 'charface'
 E0602:1195,35: request_change_face: Undefined variable 'revertchar'
 E0602:1196,17: request_change_face: Undefined variable 'charface'
 E0602:1196,35: request_change_face: Undefined variable 'revertchar'
 E0602:1197,17: request_change_face: Undefined variable 'charface'
-E0602:1197,34: request_change_face: Undefined variable 'revertchar'
+E0602:1197,35: request_change_face: Undefined variable 'revertchar'
 E0602:1198,17: request_change_face: Undefined variable 'charface'
 E0602:1198,34: request_change_face: Undefined variable 'revertchar'
 E0602:1199,17: request_change_face: Undefined variable 'charface'
-E0602:1199,35: request_change_face: Undefined variable 'revertchar'
+E0602:1199,34: request_change_face: Undefined variable 'revertchar'
 E0602:1200,17: request_change_face: Undefined variable 'charface'
-E0602:1200,34: request_change_face: Undefined variable 'revertchar'
+E0602:1200,35: request_change_face: Undefined variable 'revertchar'
 E0602:1201,17: request_change_face: Undefined variable 'charface'
 E0602:1201,34: request_change_face: Undefined variable 'revertchar'
 E0602:1202,17: request_change_face: Undefined variable 'charface'
-E0602:1202,37: request_change_face: Undefined variable 'revertchar'
+E0602:1202,34: request_change_face: Undefined variable 'revertchar'
 E0602:1203,17: request_change_face: Undefined variable 'charface'
-E0602:1203,38: request_change_face: Undefined variable 'revertchar'
-E0602:1204,8: request_change_face: Undefined variable 'send_action'
-E0602:1207,11: request_change_face: Undefined variable 'charface'
-E0602:1210,8: request_change_face: Undefined variable 'send_action'
-E0602:1214,12: request_change_face: Undefined variable 'charface'
-E0602:1217,16: request_change_face: Undefined variable 'charface'
+E0602:1203,37: request_change_face: Undefined variable 'revertchar'
+E0602:1204,17: request_change_face: Undefined variable 'charface'
+E0602:1204,38: request_change_face: Undefined variable 'revertchar'
+E0602:1205,8: request_change_face: Undefined variable 'send_action'
+E0602:1208,11: request_change_face: Undefined variable 'charface'
+E0602:1211,8: request_change_face: Undefined variable 'send_action'
+E0602:1215,12: request_change_face: Undefined variable 'charface'
 E0602:1218,16: request_change_face: Undefined variable 'charface'
 E0602:1219,16: request_change_face: Undefined variable 'charface'
 E0602:1220,16: request_change_face: Undefined variable 'charface'
@@ -189,381 +190,380 @@ E0602:1222,16: request_change_face: Undefined variable 'charface'
 E0602:1223,16: request_change_face: Undefined variable 'charface'
 E0602:1224,16: request_change_face: Undefined variable 'charface'
 E0602:1225,16: request_change_face: Undefined variable 'charface'
-E0602:1235,4: request_char_screen: Undefined variable 'send_action'
-W0612:1234,4: request_char_screen: Unused variable 'arrow_hall_mode'
-E0602:1249,7: request_tv: Undefined variable 'tv_function_name'
-E0602:1251,27: request_tv: Undefined variable 'tv_function_name'
-E0602:1254,24: request_tv: Undefined variable 'tv_function_name'
-E0602:1256,33: request_tv: Undefined variable 'savegame'
+E0602:1226,16: request_change_face: Undefined variable 'charface'
+E0602:1236,4: request_char_screen: Undefined variable 'send_action'
+W0612:1235,4: request_char_screen: Unused variable 'arrow_hall_mode'
+E0602:1250,7: request_tv: Undefined variable 'tv_function_name'
+E0602:1252,27: request_tv: Undefined variable 'tv_function_name'
+E0602:1255,24: request_tv: Undefined variable 'tv_function_name'
 E0602:1257,33: request_tv: Undefined variable 'savegame'
-E0602:1258,33: request_tv: Undefined variable 'server_id'
-E0602:1260,24: request_tv: Undefined variable 'savegame'
-E0602:1261,24: request_tv: Undefined variable 'tv_return_value'
-E0602:1262,8: request_tv: Undefined variable 'tv_poll_timer'
-E0602:1262,30: request_tv: Undefined variable 'tv_poll_long'
-W0612:1266,4: request_tv: Unused variable 'tv_status_dest'
-R0913:3584,0: show_fight_screen: Too many arguments (18/5)
-R0914:3584,0: show_fight_screen: Too many local variables (18/15)
-R0913:5997,0: show_screen_gilden: Too many arguments (8/5)
-E0602:10231,19: remove: Undefined variable 'parent'
-E0602:10232,20: remove: Undefined variable 'parent'
-R0913:10263,0: add: Too many arguments (7/5)
-E0602:10290,33: add: Undefined variable 'size_x'
-E0602:10293,33: add: Undefined variable 'size_y'
-E0602:10299,8: add: Undefined variable 'addChild'
-R0912:10263,0: add: Too many branches (13/12)
-E0602:10353,24: remove_all: Undefined variable 'actorPersistent'
-E0602:10401,4: fade_in_event: Undefined variable 'current_alpha'
-E0602:10401,21: fade_in_event: Undefined variable 'alpha_step'
-E0602:10402,24: fade_in_event: Undefined variable 'alpha_max'
+E0602:1258,33: request_tv: Undefined variable 'savegame'
+E0602:1259,33: request_tv: Undefined variable 'server_id'
+E0602:1261,24: request_tv: Undefined variable 'savegame'
+E0602:1262,24: request_tv: Undefined variable 'tv_return_value'
+E0602:1263,8: request_tv: Undefined variable 'tv_poll_timer'
+E0602:1263,30: request_tv: Undefined variable 'tv_poll_long'
+W0612:1267,4: request_tv: Unused variable 'tv_status_dest'
+R0913:3585,0: show_fight_screen: Too many arguments (18/5)
+R0914:3585,0: show_fight_screen: Too many local variables (18/15)
+R0913:5998,0: show_screen_gilden: Too many arguments (8/5)
+E0602:10232,19: remove: Undefined variable 'parent'
+E0602:10233,20: remove: Undefined variable 'parent'
+R0913:10264,0: add: Too many arguments (7/5)
+E0602:10291,33: add: Undefined variable 'size_x'
+E0602:10294,33: add: Undefined variable 'size_y'
+E0602:10300,8: add: Undefined variable 'addChild'
+R0912:10264,0: add: Too many branches (13/12)
+E0602:10354,24: remove_all: Undefined variable 'actorPersistent'
+E0602:10402,4: fade_in_event: Undefined variable 'current_alpha'
+E0602:10402,21: fade_in_event: Undefined variable 'alpha_step'
 E0602:10403,24: fade_in_event: Undefined variable 'alpha_max'
-E0602:10404,8: fade_in_event: Undefined variable 'fade_timer'
+E0602:10404,24: fade_in_event: Undefined variable 'alpha_max'
 E0602:10405,8: fade_in_event: Undefined variable 'fade_timer'
-E0602:10406,14: fade_in_event: Undefined variable 'actor_id'
-W0613:10409,58: fade_in: Unused argument 'alpha_max'
-E0602:10427,4: fade_out_event: Undefined variable 'current_alpha'
-E0602:10427,21: fade_out_event: Undefined variable 'alpha_step'
-E0602:10428,24: fade_out_event: Undefined variable 'alpha_min'
+E0602:10406,8: fade_in_event: Undefined variable 'fade_timer'
+E0602:10407,14: fade_in_event: Undefined variable 'actor_id'
+W0613:10410,58: fade_in: Unused argument 'alpha_max'
+E0602:10428,4: fade_out_event: Undefined variable 'current_alpha'
+E0602:10428,21: fade_out_event: Undefined variable 'alpha_step'
 E0602:10429,24: fade_out_event: Undefined variable 'alpha_min'
-E0602:10430,8: fade_out_event: Undefined variable 'fade_timer'
+E0602:10430,24: fade_out_event: Undefined variable 'alpha_min'
 E0602:10431,8: fade_out_event: Undefined variable 'fade_timer'
-E0602:10432,11: fade_out_event: Undefined variable 'hide_then'
-E0602:10433,17: fade_out_event: Undefined variable 'actor_id'
-E0602:10434,14: fade_out_event: Undefined variable 'actor_id'
-W0613:10438,13: fade_out: Unused argument 'alpha_min'
-W0613:10438,26: fade_out: Unused argument 'hide_then'
-W0621:10464,4: set_font: Redefining name 'font_embedded' from outer scope (line 330)
-R0915:10459,0: set_font: Too many statements (491/50)
-W0612:10464,4: set_font: Unused variable 'font_embedded'
-W0612:10488,8: set_font: Unused variable 'font'
-W0612:10852,8: set_font: Unused variable 'bold'
-W0612:10490,8: set_font: Unused variable 'color'
-W0612:10492,8: set_font: Unused variable 'left_margin'
-W0612:10493,8: set_font: Unused variable 'kerning'
-W0612:10463,4: set_font: Unused variable 'game_font'
-W0612:10491,8: set_font: Unused variable 'align'
-W0612:10489,8: set_font: Unused variable 'size'
-E0602:11038,7: do_act_zauberladen: Undefined variable 'savegame'
-E0602:11040,8: do_act_zauberladen: Undefined variable 'special_action'
-E0602:11040,33: do_act_zauberladen: Undefined variable 'special_action'
-E0602:11048,11: do_act_zauberladen: Undefined variable 'light_mode'
-E0602:11063,8: do_act_schmiede: Undefined variable 'special_action'
-E0602:11063,33: do_act_schmiede: Undefined variable 'special_action'
-E0602:11082,7: install_hall_popup: Undefined variable 'this_field_popup'
-E0602:11083,42: install_hall_popup: Undefined variable 'this_field_popup'
-R0913:11088,0: hall_list_add_field: Too many arguments (6/5)
-W0612:11093,4: hall_list_add_field: Unused variable 'this_field_popup'
-R0914:11145,0: action_handler: Too many local variables (128/15)
-C0103:11149,4: action_handler: Invalid constant name "oldcreststring"
-W0601:11149,4: action_handler: Global variable 'oldcreststring' undefined at the module level
-W0603:11150,4: action_handler: Using the global statement
-E0601:11160,11: action_handler: Using variable 'guild_blink_ready' before assignment
-E0602:11161,12: action_handler: Undefined variable 'send_action'
-E0602:11237,20: action_handler: Undefined variable 'show_toilet'
-E0602:11239,20: action_handler: Undefined variable 'show_toilet'
-E0602:11320,16: action_handler: Undefined variable 'param_reconnect'
-E0602:11328,24: action_handler: Undefined variable 'savegame'
-E0601:11354,26: action_handler: Using variable 'last_guild_data' before assignment
-E0602:11401,56: action_handler: Undefined variable 'offense'
-E0602:11499,38: action_handler: Undefined variable 'param_support_email'
-E0602:11501,40: action_handler: Undefined variable 'param_gamestaff_email'
-E0602:11523,16: action_handler: Undefined variable 'send_action'
-E0602:11529,16: action_handler: Undefined variable 'send_action'
-E0602:11574,25: action_handler: Undefined variable 'tmpAmount'
-E0602:11576,20: action_handler: Undefined variable 'tmpAmount'
-E0602:11580,12: action_handler: Undefined variable 'navigate_to_url'
-E0601:11598,25: action_handler: Using variable 'last_chat_hist' before assignment
-E0601:11612,15: action_handler: Using variable 'last_chat_index' before assignment
-E0602:11617,46: action_handler: Undefined variable 'font_format_chat'
-E0602:11643,40: action_handler: Undefined variable 'send_action'
-E0602:11647,55: action_handler: Undefined variable 'chat_sound'
-E0602:11672,40: action_handler: Undefined variable 'send_action'
-E0602:11686,19: action_handler: Undefined variable 'chat_sound'
-E0602:11708,36: action_handler: Undefined variable 'send_action'
-E0601:11713,17: action_handler: Using variable 'new_crest_suggested' before assignment
-E0602:11722,30: action_handler: Undefined variable 'last_whisper_target'
-E0602:11758,12: action_handler: Undefined variable 'send_action'
-E0602:11771,39: action_handler: Undefined variable 'option_new_data'
-E0602:11773,62: action_handler: Undefined variable 'option_new_data'
-E0602:11779,39: action_handler: Undefined variable 'option_new_data'
-E0602:11781,52: action_handler: Undefined variable 'option_new_data'
-E1121:11804,12: action_handler: Too many positional arguments for function call
-E0601:11806,16: action_handler: Using variable 'sel_name' before assignment
-E0602:11818,25: action_handler: Undefined variable 'savegame'
-E0602:11822,12: action_handler: Undefined variable 'send_action'
-E0602:11860,12: action_handler: Undefined variable 'next_fight_timer'
-E0602:11873,12: action_handler: Undefined variable 'next_fight_timer'
-E0602:11929,12: action_handler: Undefined variable 'send_action'
-E0602:11946,12: action_handler: Undefined variable 'send_action'
-E0602:11950,12: action_handler: Undefined variable 'savegame'
-E0602:11960,24: action_handler: Undefined variable 'last_guild_crest_id'
-E0602:11974,15: action_handler: Undefined variable 'last_guild_crest_id'
-E0602:12021,30: action_handler: Undefined variable 'last_message_target'
-E0602:12039,16: action_handler: Undefined variable 'post_sel'
-E0602:12039,27: action_handler: Undefined variable 'post_scroll'
-E0602:12042,16: action_handler: Undefined variable 'post_sel'
-E0602:12042,27: action_handler: Undefined variable 'post_scroll'
-E0602:12042,47: action_handler: Undefined variable 'savegame'
-E0602:12061,24: action_handler: Undefined variable 'switch'
-E0601:12304,20: action_handler: Using variable 'col_idx' before assignment
-E0602:12415,31: action_handler: Undefined variable 'lastAttacked'
-E0602:12631,24: action_handler: Undefined variable 'mirror_ani_timer'
-E0602:12641,27: action_handler: Undefined variable 'mirror_pieces'
-E0602:12650,15: action_handler: Undefined variable 'savegame'
-C0103:12713,12: action_handler: Invalid constant name "old_ach"
-W0601:12713,12: action_handler: Global variable 'old_ach' undefined at the module level
-E0602:12741,15: action_handler: Undefined variable 'savegame'
-E0602:12746,34: action_handler: Undefined variable 'savegame'
-E0602:12747,33: action_handler: Undefined variable 'savegame'
-E0602:12749,19: action_handler: Undefined variable 'view_player'
-E0602:12750,31: action_handler: Undefined variable 'view_player'
-E0602:12751,20: action_handler: Undefined variable 'send_action'
-E0602:12751,56: action_handler: Undefined variable 'view_player'
-E0602:12752,21: action_handler: Undefined variable 'param_hall'
-E0602:12753,20: action_handler: Undefined variable 'send_action'
-E0602:12753,61: action_handler: Undefined variable 'param_hall'
-E0602:12755,27: action_handler: Undefined variable 'savegame'
-E0602:12758,24: action_handler: Undefined variable 'send_action'
-E0602:12762,25: action_handler: Undefined variable 'savegame'
-E0602:12768,20: action_handler: Undefined variable 'send_action'
-E0601:12856,12: action_handler: Using variable 'charface' before assignment
-E0602:12893,15: action_handler: Undefined variable 'savegame'
-E0602:12897,7: action_handler: Undefined variable 'defined_pixel_calls'
-E0602:12899,12: action_handler: Undefined variable 'defined_pixel_calls'
-E0602:12911,17: action_handler: Undefined variable 'trackPixels'
-E0601:12912,40: action_handler: Using variable 'next_pxl' before assignment
-E0602:12924,54: action_handler: Undefined variable 'param_adv'
-E0602:12926,34: action_handler: Undefined variable 'savegame'
-E0602:12954,23: action_handler: Undefined variable 'savegame'
-R0912:11145,0: action_handler: Too many branches (369/12)
-R0915:11145,0: action_handler: Too many statements (1118/50)
-W0612:11819,16: action_handler: Unused variable 'gilde'
-W0612:11618,24: action_handler: Unused variable 'text'
-W0612:11935,12: action_handler: Unused variable 'my_own_attack_target'
-W0612:11934,12: action_handler: Unused variable 'my_own_rank'
-W0612:11834,12: action_handler: Unused variable 'fight_lock'
-W0612:11434,12: action_handler: Unused variable 'guild_attacking'
-W0612:11531,16: action_handler: Unused variable 'pulse_gilde'
-W0612:12630,24: action_handler: Unused variable 'mirror_fade_amount'
-W0612:11521,12: action_handler: Unused variable 'destroy_guild_btn_timer'
-W0612:11179,4: action_handler: Unused variable 'skip_allowed'
-W0612:12712,12: action_handler: Unused variable 'last_level'
-W0612:11617,24: action_handler: Unused variable 'default_text_format'
-W0612:11828,12: action_handler: Unused variable 'pulse_char'
-W0612:11473,12: action_handler: Unused variable 'force_adventure'
-W0612:11858,12: action_handler: Unused variable 'guild_fight_count'
-W0612:12422,16: action_handler: Unused variable 'arrow_hall_mode'
-W0612:12715,12: action_handler: Unused variable 'old_album'
-W0612:12705,16: action_handler: Unused variable 'param_server_version_act'
-W0612:11295,12: action_handler: Unused variable 'album_content'
-W0612:11899,16: action_handler: Unused variable 'prevent_tv'
-W0612:11432,12: action_handler: Unused variable 'guild_defense_time'
-W0612:12711,12: action_handler: Unused variable 'level_up'
-W0612:12700,12: action_handler: Unused variable 'beer_fest'
-W0612:12248,12: action_handler: Unused variable 'forward_text'
-W0612:12270,12: action_handler: Unused variable 'last_guild_shown'
-W0612:11853,12: action_handler: Unused variable 'alternate_char_opp_img'
-W0612:11856,12: action_handler: Unused variable 'last_round_fighter_name'
-W0612:12260,12: action_handler: Unused variable 'pulse_dealer'
-W0612:11433,12: action_handler: Unused variable 'guild_attacked'
-W0612:11936,12: action_handler: Unused variable 'my_own_guild_money'
-W0612:11835,12: action_handler: Unused variable 'post_fight_mode'
-W0612:12694,12: action_handler: Unused variable 'admin_login'
-W0612:12046,16: action_handler: Unused variable 'invitegilden_id'
-W0612:11859,12: action_handler: Unused variable 'skip_guild_fights'
-W0612:11811,12: action_handler: Unused variable 'player_desc'
-W0612:12716,12: action_handler: Unused variable 'album_effect'
-W0612:11855,12: action_handler: Unused variable 'winners'
-W0612:11852,12: action_handler: Unused variable 'tower_fight_mode'
-W0612:11996,12: action_handler: Unused variable 'stundenlohn'
-W0612:12717,12: action_handler: Unused variable 'previous_login'
-W0612:12718,12: action_handler: Unused variable 'gilden_id'
-W0612:11431,12: action_handler: Unused variable 'guild_attack_time'
-W0612:12607,12: action_handler: Unused variable 'verdientes_geld'
-W0612:11440,12: action_handler: Unused variable 'fight_flush_mode'
-W0612:11439,12: action_handler: Unused variable 'session_id'
-E0602:12998,16: get_my_path: Undefined variable 'loader_info'
-W0612:13047,8: swap_words: Unused variable 'tmp_str2'
-W0612:13048,8: swap_words: Unused variable 'tmp_char'
-E0602:13163,4: define_snd: Undefined variable 'actorSoundLoader'
-R0913:13170,0: define_btn: Too many arguments (9/5)
-E0602:13181,10: define_btn: Undefined variable 'i'
-E0602:13185,20: define_btn: Undefined variable 'btn_classPlus'
-R0912:13204,0: error_message: Too many branches (14/12)
-R0915:13204,0: error_message: Too many statements (53/50)
-E0602:13281,4: tv_timer_event_handler: Undefined variable 'tv_wobble'
-E0601:13284,8: tv_timer_event_handler: Using variable 'tv_status_dest' before assignment
-E0601:13284,25: tv_timer_event_handler: Using variable 'tv_status' before assignment
-E0602:13291,4: tv_timer_event_handler: Undefined variable 'tv_ani'
-E0602:13311,8: tv_timer_event_handler: Undefined variable 'tv_timer'
-E0602:13324,4: witch_timer_event_handler: Undefined variable 'witch_ani_step'
-E0602:13336,8: witch_timer_event_handler: Undefined variable 'witch_ani_timer'
-E0602:13343,25: sound_loaded: Undefined variable 'actor_id'
-E0602:13344,10: sound_loaded: Undefined variable 'actor_id'
-E0602:13344,38: sound_loaded: Undefined variable 'stObject'
-E0602:13355,42: play: Undefined variable 'stObject'
-E0602:13382,12: process_arg: Undefined variable 'text_y'
-E0601:13382,22: process_arg: Using variable 'last_text_height' before assignment
-R0912:13364,0: process_arg: Too many branches (23/12)
-R0915:13364,0: process_arg: Too many statements (71/50)
-E0602:13457,7: show_popup: Undefined variable 'actorpopup_stamp'
-E0602:13457,24: show_popup: Undefined variable 'actor_id'
-E0602:13457,37: show_popup: Undefined variable 'my_stamp'
-E0602:13469,7: show_popup: Undefined variable 'suggestion_slot'
-E0602:13469,23: show_popup: Undefined variable 'actor_id'
-E0602:13470,48: show_popup: Undefined variable 'suggestion_slot'
-E0602:13470,64: show_popup: Undefined variable 'actor_id'
+E0602:10432,8: fade_out_event: Undefined variable 'fade_timer'
+E0602:10433,11: fade_out_event: Undefined variable 'hide_then'
+E0602:10434,17: fade_out_event: Undefined variable 'actor_id'
+E0602:10435,14: fade_out_event: Undefined variable 'actor_id'
+W0613:10439,13: fade_out: Unused argument 'alpha_min'
+W0613:10439,26: fade_out: Unused argument 'hide_then'
+W0621:10465,4: set_font: Redefining name 'font_embedded' from outer scope (line 331)
+R0915:10460,0: set_font: Too many statements (491/50)
+W0612:10465,4: set_font: Unused variable 'font_embedded'
+W0612:10489,8: set_font: Unused variable 'font'
+W0612:10853,8: set_font: Unused variable 'bold'
+W0612:10491,8: set_font: Unused variable 'color'
+W0612:10493,8: set_font: Unused variable 'left_margin'
+W0612:10494,8: set_font: Unused variable 'kerning'
+W0612:10464,4: set_font: Unused variable 'game_font'
+W0612:10492,8: set_font: Unused variable 'align'
+W0612:10490,8: set_font: Unused variable 'size'
+E0602:11039,7: do_act_zauberladen: Undefined variable 'savegame'
+E0602:11041,8: do_act_zauberladen: Undefined variable 'special_action'
+E0602:11041,33: do_act_zauberladen: Undefined variable 'special_action'
+E0602:11049,11: do_act_zauberladen: Undefined variable 'light_mode'
+E0602:11064,8: do_act_schmiede: Undefined variable 'special_action'
+E0602:11064,33: do_act_schmiede: Undefined variable 'special_action'
+E0602:11083,7: install_hall_popup: Undefined variable 'this_field_popup'
+E0602:11084,42: install_hall_popup: Undefined variable 'this_field_popup'
+R0913:11089,0: hall_list_add_field: Too many arguments (6/5)
+W0612:11094,4: hall_list_add_field: Unused variable 'this_field_popup'
+R0914:11146,0: action_handler: Too many local variables (128/15)
+C0103:11150,4: action_handler: Invalid constant name "oldcreststring"
+W0601:11150,4: action_handler: Global variable 'oldcreststring' undefined at the module level
+W0603:11151,4: action_handler: Using the global statement
+E0601:11161,11: action_handler: Using variable 'guild_blink_ready' before assignment
+E0602:11162,12: action_handler: Undefined variable 'send_action'
+E0602:11321,16: action_handler: Undefined variable 'param_reconnect'
+E0602:11329,24: action_handler: Undefined variable 'savegame'
+E0601:11355,26: action_handler: Using variable 'last_guild_data' before assignment
+E0602:11402,56: action_handler: Undefined variable 'offense'
+E0602:11500,38: action_handler: Undefined variable 'param_support_email'
+E0602:11502,40: action_handler: Undefined variable 'param_gamestaff_email'
+E0602:11524,16: action_handler: Undefined variable 'send_action'
+E0602:11530,16: action_handler: Undefined variable 'send_action'
+E0602:11575,25: action_handler: Undefined variable 'tmpAmount'
+E0602:11577,20: action_handler: Undefined variable 'tmpAmount'
+E0602:11581,12: action_handler: Undefined variable 'navigate_to_url'
+E0601:11599,25: action_handler: Using variable 'last_chat_hist' before assignment
+E0601:11613,15: action_handler: Using variable 'last_chat_index' before assignment
+E0602:11618,46: action_handler: Undefined variable 'font_format_chat'
+E0602:11644,40: action_handler: Undefined variable 'send_action'
+E0602:11648,55: action_handler: Undefined variable 'chat_sound'
+E0602:11673,40: action_handler: Undefined variable 'send_action'
+E0602:11687,19: action_handler: Undefined variable 'chat_sound'
+E0602:11709,36: action_handler: Undefined variable 'send_action'
+E0601:11714,17: action_handler: Using variable 'new_crest_suggested' before assignment
+E0602:11723,30: action_handler: Undefined variable 'last_whisper_target'
+E0602:11759,12: action_handler: Undefined variable 'send_action'
+E0602:11772,39: action_handler: Undefined variable 'option_new_data'
+E0602:11774,62: action_handler: Undefined variable 'option_new_data'
+E0602:11780,39: action_handler: Undefined variable 'option_new_data'
+E0602:11782,52: action_handler: Undefined variable 'option_new_data'
+E1121:11805,12: action_handler: Too many positional arguments for function call
+E0601:11807,16: action_handler: Using variable 'sel_name' before assignment
+E0602:11819,25: action_handler: Undefined variable 'savegame'
+E0602:11823,12: action_handler: Undefined variable 'send_action'
+E0602:11861,12: action_handler: Undefined variable 'next_fight_timer'
+E0602:11874,12: action_handler: Undefined variable 'next_fight_timer'
+E0602:11930,12: action_handler: Undefined variable 'send_action'
+E0602:11947,12: action_handler: Undefined variable 'send_action'
+E0602:11951,12: action_handler: Undefined variable 'savegame'
+E0602:11961,24: action_handler: Undefined variable 'last_guild_crest_id'
+E0602:11975,15: action_handler: Undefined variable 'last_guild_crest_id'
+E0602:12022,30: action_handler: Undefined variable 'last_message_target'
+E0602:12040,16: action_handler: Undefined variable 'post_sel'
+E0602:12040,27: action_handler: Undefined variable 'post_scroll'
+E0602:12043,16: action_handler: Undefined variable 'post_sel'
+E0602:12043,27: action_handler: Undefined variable 'post_scroll'
+E0602:12043,47: action_handler: Undefined variable 'savegame'
+E0602:12062,24: action_handler: Undefined variable 'switch'
+E0601:12305,20: action_handler: Using variable 'col_idx' before assignment
+E0602:12416,31: action_handler: Undefined variable 'lastAttacked'
+E0602:12632,24: action_handler: Undefined variable 'mirror_ani_timer'
+E0602:12642,27: action_handler: Undefined variable 'mirror_pieces'
+E0602:12651,15: action_handler: Undefined variable 'savegame'
+C0103:12714,12: action_handler: Invalid constant name "old_ach"
+W0601:12714,12: action_handler: Global variable 'old_ach' undefined at the module level
+E0602:12742,15: action_handler: Undefined variable 'savegame'
+E0602:12747,34: action_handler: Undefined variable 'savegame'
+E0602:12748,33: action_handler: Undefined variable 'savegame'
+E0602:12750,19: action_handler: Undefined variable 'view_player'
+E0602:12751,31: action_handler: Undefined variable 'view_player'
+E0602:12752,20: action_handler: Undefined variable 'send_action'
+E0602:12752,56: action_handler: Undefined variable 'view_player'
+E0602:12753,21: action_handler: Undefined variable 'param_hall'
+E0602:12754,20: action_handler: Undefined variable 'send_action'
+E0602:12754,61: action_handler: Undefined variable 'param_hall'
+E0602:12756,27: action_handler: Undefined variable 'savegame'
+E0602:12759,24: action_handler: Undefined variable 'send_action'
+E0602:12763,25: action_handler: Undefined variable 'savegame'
+E0602:12769,20: action_handler: Undefined variable 'send_action'
+E0601:12857,12: action_handler: Using variable 'charface' before assignment
+E0602:12894,15: action_handler: Undefined variable 'savegame'
+E0602:12898,7: action_handler: Undefined variable 'defined_pixel_calls'
+E0602:12900,12: action_handler: Undefined variable 'defined_pixel_calls'
+E0602:12912,17: action_handler: Undefined variable 'trackPixels'
+E0601:12913,40: action_handler: Using variable 'next_pxl' before assignment
+E0602:12925,54: action_handler: Undefined variable 'param_adv'
+E0602:12927,34: action_handler: Undefined variable 'savegame'
+E0602:12955,23: action_handler: Undefined variable 'savegame'
+R0912:11146,0: action_handler: Too many branches (369/12)
+R0915:11146,0: action_handler: Too many statements (1118/50)
+W0612:11820,16: action_handler: Unused variable 'gilde'
+W0612:11619,24: action_handler: Unused variable 'text'
+W0612:11936,12: action_handler: Unused variable 'my_own_attack_target'
+W0612:11935,12: action_handler: Unused variable 'my_own_rank'
+W0612:11835,12: action_handler: Unused variable 'fight_lock'
+W0612:11435,12: action_handler: Unused variable 'guild_attacking'
+W0612:11532,16: action_handler: Unused variable 'pulse_gilde'
+W0612:12631,24: action_handler: Unused variable 'mirror_fade_amount'
+W0612:11522,12: action_handler: Unused variable 'destroy_guild_btn_timer'
+W0612:11180,4: action_handler: Unused variable 'skip_allowed'
+W0612:12713,12: action_handler: Unused variable 'last_level'
+W0612:11618,24: action_handler: Unused variable 'default_text_format'
+W0612:11829,12: action_handler: Unused variable 'pulse_char'
+W0612:11474,12: action_handler: Unused variable 'force_adventure'
+W0612:11859,12: action_handler: Unused variable 'guild_fight_count'
+W0612:12423,16: action_handler: Unused variable 'arrow_hall_mode'
+W0612:12716,12: action_handler: Unused variable 'old_album'
+W0612:12706,16: action_handler: Unused variable 'param_server_version_act'
+W0612:11296,12: action_handler: Unused variable 'album_content'
+W0612:11900,16: action_handler: Unused variable 'prevent_tv'
+W0612:11433,12: action_handler: Unused variable 'guild_defense_time'
+W0612:12712,12: action_handler: Unused variable 'level_up'
+W0612:12701,12: action_handler: Unused variable 'beer_fest'
+W0612:12249,12: action_handler: Unused variable 'forward_text'
+W0612:12271,12: action_handler: Unused variable 'last_guild_shown'
+W0612:11854,12: action_handler: Unused variable 'alternate_char_opp_img'
+W0612:11857,12: action_handler: Unused variable 'last_round_fighter_name'
+W0612:12261,12: action_handler: Unused variable 'pulse_dealer'
+W0612:11434,12: action_handler: Unused variable 'guild_attacked'
+W0612:11937,12: action_handler: Unused variable 'my_own_guild_money'
+W0612:11836,12: action_handler: Unused variable 'post_fight_mode'
+W0612:12695,12: action_handler: Unused variable 'admin_login'
+W0612:12047,16: action_handler: Unused variable 'invitegilden_id'
+W0612:11860,12: action_handler: Unused variable 'skip_guild_fights'
+W0612:11812,12: action_handler: Unused variable 'player_desc'
+W0612:12717,12: action_handler: Unused variable 'album_effect'
+W0612:11856,12: action_handler: Unused variable 'winners'
+W0612:11853,12: action_handler: Unused variable 'tower_fight_mode'
+W0612:11997,12: action_handler: Unused variable 'stundenlohn'
+W0612:12718,12: action_handler: Unused variable 'previous_login'
+W0612:12719,12: action_handler: Unused variable 'gilden_id'
+W0612:11432,12: action_handler: Unused variable 'guild_attack_time'
+W0612:12608,12: action_handler: Unused variable 'verdientes_geld'
+W0612:11441,12: action_handler: Unused variable 'fight_flush_mode'
+W0612:11440,12: action_handler: Unused variable 'session_id'
+E0602:12999,16: get_my_path: Undefined variable 'loader_info'
+W0612:13048,8: swap_words: Unused variable 'tmp_str2'
+W0612:13049,8: swap_words: Unused variable 'tmp_char'
+E0602:13164,4: define_snd: Undefined variable 'actorSoundLoader'
+R0913:13171,0: define_btn: Too many arguments (9/5)
+E0602:13182,10: define_btn: Undefined variable 'i'
+E0602:13186,20: define_btn: Undefined variable 'btn_classPlus'
+R0912:13205,0: error_message: Too many branches (14/12)
+R0915:13205,0: error_message: Too many statements (53/50)
+E0602:13282,4: tv_timer_event_handler: Undefined variable 'tv_wobble'
+E0601:13285,8: tv_timer_event_handler: Using variable 'tv_status_dest' before assignment
+E0601:13285,25: tv_timer_event_handler: Using variable 'tv_status' before assignment
+E0602:13292,4: tv_timer_event_handler: Undefined variable 'tv_ani'
+E0602:13312,8: tv_timer_event_handler: Undefined variable 'tv_timer'
+E0602:13325,4: witch_timer_event_handler: Undefined variable 'witch_ani_step'
+E0602:13337,8: witch_timer_event_handler: Undefined variable 'witch_ani_timer'
+E0602:13344,25: sound_loaded: Undefined variable 'actor_id'
+E0602:13345,10: sound_loaded: Undefined variable 'actor_id'
+E0602:13345,38: sound_loaded: Undefined variable 'stObject'
+E0602:13356,42: play: Undefined variable 'stObject'
+E0602:13383,12: process_arg: Undefined variable 'text_y'
+E0601:13383,22: process_arg: Using variable 'last_text_height' before assignment
+R0912:13365,0: process_arg: Too many branches (23/12)
+R0915:13365,0: process_arg: Too many statements (71/50)
+E0602:13458,7: show_popup: Undefined variable 'actorpopup_stamp'
+E0602:13458,24: show_popup: Undefined variable 'actor_id'
+E0602:13458,37: show_popup: Undefined variable 'my_stamp'
+E0602:13470,7: show_popup: Undefined variable 'suggestion_slot'
+E0602:13470,23: show_popup: Undefined variable 'actor_id'
 E0602:13471,48: show_popup: Undefined variable 'suggestion_slot'
 E0602:13471,64: show_popup: Undefined variable 'actor_id'
-E0602:13473,45: show_popup: Undefined variable 'suggestion_slot'
-E0602:13473,61: show_popup: Undefined variable 'actor_id'
-E0602:13491,19: show_popup: Undefined variable 'numChildren'
-W0612:13478,4: show_popup: Unused variable 'last_text_height'
-W0612:13477,4: show_popup: Unused variable 'tmp_text_format'
-W0612:13483,8: show_popup: Unused variable 'text_x'
-R0913:13886,0: define_lbl: Too many arguments (6/5)
-C0103:13928,4: language_file_error: Invalid constant name "lang_code"
-C0103:13928,4: language_file_error: Invalid constant name "text_dir"
-W0601:13928,4: language_file_error: Global variable 'lang_code' undefined at the module level
-W0601:13928,4: language_file_error: Global variable 'text_dir' undefined at the module level
-E0602:13930,20: language_file_error: Undefined variable 'original_lang_code'
+E0602:13472,48: show_popup: Undefined variable 'suggestion_slot'
+E0602:13472,64: show_popup: Undefined variable 'actor_id'
+E0602:13474,45: show_popup: Undefined variable 'suggestion_slot'
+E0602:13474,61: show_popup: Undefined variable 'actor_id'
+E0602:13492,19: show_popup: Undefined variable 'numChildren'
+W0612:13479,4: show_popup: Unused variable 'last_text_height'
+W0612:13478,4: show_popup: Unused variable 'tmp_text_format'
+W0612:13484,8: show_popup: Unused variable 'text_x'
+R0913:13887,0: define_lbl: Too many arguments (6/5)
+C0103:13929,4: language_file_error: Invalid constant name "lang_code"
+C0103:13929,4: language_file_error: Invalid constant name "text_dir"
+W0601:13929,4: language_file_error: Global variable 'lang_code' undefined at the module level
+W0601:13929,4: language_file_error: Global variable 'text_dir' undefined at the module level
 E0602:13931,20: language_file_error: Undefined variable 'original_lang_code'
-E0602:13936,4: language_file_error: Undefined variable 'loader'
-E0602:13945,15: language_file_loaded: Undefined variable 'loader'
-C0103:13978,4: language_file_loaded: Invalid constant name "pending_language_file"
-W0601:13978,4: language_file_loaded: Global variable 'pending_language_file' undefined at the module level
-E0602:13980,20: language_file_loaded: Undefined variable 'original_lang_code'
-E0602:13993,12: language_file_loaded: Undefined variable 'country_name'
-R0912:13941,0: language_file_loaded: Too many branches (18/12)
-W0612:13986,8: language_file_loaded: Unused variable 'chosen_lang_font'
-C0103:14004,4: load_language_file: Invalid constant name "text_dir"
-C0103:14004,4: load_language_file: Invalid constant name "pending_language_file"
-W0601:14004,4: load_language_file: Global variable 'text_dir' undefined at the module level
-W0601:14004,4: load_language_file: Global variable 'pending_language_file' undefined at the module level
-C0103:14023,4: load_language_file: Invalid constant name "pending_loaders"
-W0603:14023,4: load_language_file: Using the global statement
-E0602:14032,15: original_language_file_loaded: Undefined variable 'loader'
-C0103:14064,4: original_language_file_loaded: Invalid constant name "pending_language_file"
-W0601:14064,4: original_language_file_loaded: Global variable 'pending_language_file' undefined at the module level
-E0602:14066,27: original_language_file_loaded: Undefined variable 'chosen_lang_font'
-W0612:14044,20: original_language_file_loaded: Unused variable 'old_str'
-E0602:14076,46: load_original_language_file: Undefined variable 'Originallanguage_file_loaded'
-E0602:14078,36: load_original_language_file: Undefined variable 'original_lang_code'
-C0103:14081,4: load_original_language_file: Invalid constant name "pending_language_file"
-C0103:14081,4: load_original_language_file: Invalid constant name "pending_loaders"
-W0601:14081,4: load_original_language_file: Global variable 'pending_language_file' undefined at the module level
-R0914:14086,0: configuration_file_loaded: Too many local variables (76/15)
-C0103:14103,28: configuration_file_loaded: Invalid constant name "lang_code"
-W0601:14103,28: configuration_file_loaded: Global variable 'lang_code' undefined at the module level
-C0103:14121,28: configuration_file_loaded: Invalid constant name "server"
-W0601:14121,28: configuration_file_loaded: Global variable 'server' undefined at the module level
-C0103:14126,28: configuration_file_loaded: Invalid constant name "lang_url"
-W0601:14126,28: configuration_file_loaded: Global variable 'lang_url' undefined at the module level
-E0602:14207,28: configuration_file_loaded: Undefined variable 'trackPixels'
-C0103:14234,28: configuration_file_loaded: Invalid constant name "param_fail_tries"
-W0601:14234,28: configuration_file_loaded: Global variable 'param_fail_tries' undefined at the module level
-E0602:14295,28: configuration_file_loaded: Undefined variable 'defined_pixel_calls'
-C0103:14345,4: configuration_file_loaded: Invalid constant name "pending_configuration_files"
-W0601:14345,4: configuration_file_loaded: Global variable 'pending_configuration_files' undefined at the module level
-E0602:14348,8: configuration_file_loaded: Undefined variable 'loader2'
-C0103:14351,8: configuration_file_loaded: Invalid constant name "shared_obj"
-W0601:14351,8: configuration_file_loaded: Global variable 'shared_obj' undefined at the module level
-C0103:14465,8: configuration_file_loaded: Invalid constant name "img_url_index"
-C0103:14465,8: configuration_file_loaded: Invalid constant name "snd_url_index"
-W0601:14465,8: configuration_file_loaded: Global variable 'img_url_index' undefined at the module level
-W0601:14465,8: configuration_file_loaded: Global variable 'snd_url_index' undefined at the module level
-E0602:14496,15: configuration_file_loaded: Undefined variable 'param_lowres_url'
-E0602:14497,41: configuration_file_loaded: Undefined variable 'param_lowres_url'
+E0602:13932,20: language_file_error: Undefined variable 'original_lang_code'
+E0602:13937,4: language_file_error: Undefined variable 'loader'
+E0602:13946,15: language_file_loaded: Undefined variable 'loader'
+C0103:13979,4: language_file_loaded: Invalid constant name "pending_language_file"
+W0601:13979,4: language_file_loaded: Global variable 'pending_language_file' undefined at the module level
+E0602:13981,20: language_file_loaded: Undefined variable 'original_lang_code'
+E0602:13994,12: language_file_loaded: Undefined variable 'country_name'
+R0912:13942,0: language_file_loaded: Too many branches (18/12)
+W0612:13987,8: language_file_loaded: Unused variable 'chosen_lang_font'
+C0103:14005,4: load_language_file: Invalid constant name "text_dir"
+C0103:14005,4: load_language_file: Invalid constant name "pending_language_file"
+W0601:14005,4: load_language_file: Global variable 'text_dir' undefined at the module level
+W0601:14005,4: load_language_file: Global variable 'pending_language_file' undefined at the module level
+C0103:14024,4: load_language_file: Invalid constant name "pending_loaders"
+W0603:14024,4: load_language_file: Using the global statement
+E0602:14033,15: original_language_file_loaded: Undefined variable 'loader'
+C0103:14065,4: original_language_file_loaded: Invalid constant name "pending_language_file"
+W0601:14065,4: original_language_file_loaded: Global variable 'pending_language_file' undefined at the module level
+E0602:14067,27: original_language_file_loaded: Undefined variable 'chosen_lang_font'
+W0612:14045,20: original_language_file_loaded: Unused variable 'old_str'
+E0602:14077,46: load_original_language_file: Undefined variable 'Originallanguage_file_loaded'
+E0602:14079,36: load_original_language_file: Undefined variable 'original_lang_code'
+C0103:14082,4: load_original_language_file: Invalid constant name "pending_language_file"
+C0103:14082,4: load_original_language_file: Invalid constant name "pending_loaders"
+W0601:14082,4: load_original_language_file: Global variable 'pending_language_file' undefined at the module level
+R0914:14087,0: configuration_file_loaded: Too many local variables (76/15)
+C0103:14104,28: configuration_file_loaded: Invalid constant name "lang_code"
+W0601:14104,28: configuration_file_loaded: Global variable 'lang_code' undefined at the module level
+C0103:14122,28: configuration_file_loaded: Invalid constant name "server"
+W0601:14122,28: configuration_file_loaded: Global variable 'server' undefined at the module level
+C0103:14127,28: configuration_file_loaded: Invalid constant name "lang_url"
+W0601:14127,28: configuration_file_loaded: Global variable 'lang_url' undefined at the module level
+E0602:14208,28: configuration_file_loaded: Undefined variable 'trackPixels'
+C0103:14235,28: configuration_file_loaded: Invalid constant name "param_fail_tries"
+W0601:14235,28: configuration_file_loaded: Global variable 'param_fail_tries' undefined at the module level
+E0602:14296,28: configuration_file_loaded: Undefined variable 'defined_pixel_calls'
+C0103:14346,4: configuration_file_loaded: Invalid constant name "pending_configuration_files"
+W0601:14346,4: configuration_file_loaded: Global variable 'pending_configuration_files' undefined at the module level
+E0602:14349,8: configuration_file_loaded: Undefined variable 'loader2'
+C0103:14352,8: configuration_file_loaded: Invalid constant name "shared_obj"
+W0601:14352,8: configuration_file_loaded: Global variable 'shared_obj' undefined at the module level
+C0103:14466,8: configuration_file_loaded: Invalid constant name "img_url_index"
+C0103:14466,8: configuration_file_loaded: Invalid constant name "snd_url_index"
+W0601:14466,8: configuration_file_loaded: Global variable 'img_url_index' undefined at the module level
+W0601:14466,8: configuration_file_loaded: Global variable 'snd_url_index' undefined at the module level
+E0602:14497,15: configuration_file_loaded: Undefined variable 'param_lowres_url'
 E0602:14498,41: configuration_file_loaded: Undefined variable 'param_lowres_url'
-R0912:14086,0: configuration_file_loaded: Too many branches (113/12)
-R0915:14086,0: configuration_file_loaded: Too many statements (315/50)
-W0612:14226,28: configuration_file_loaded: Unused variable 'param_papaya_path'
-W0612:14159,28: configuration_file_loaded: Unused variable 'buffed_mode'
-W0612:14147,28: configuration_file_loaded: Unused variable 'legal_url'
-W0612:14287,28: configuration_file_loaded: Unused variable 'param_bullshit_cid'
-W0612:14171,28: configuration_file_loaded: Unused variable 'server_id'
-W0612:14402,12: configuration_file_loaded: Unused variable 'sso_mode'
-W0612:14151,28: configuration_file_loaded: Unused variable 'dataprot_url'
-W0612:14360,8: configuration_file_loaded: Unused variable 'disable_tv'
-W0612:14244,28: configuration_file_loaded: Unused variable 'param_happy_hour'
-W0612:14358,8: configuration_file_loaded: Unused variable 'chat_sound'
-W0612:14203,28: configuration_file_loaded: Unused variable 'param_php_tunnel_url'
-W0612:14389,12: configuration_file_loaded: Unused variable 'view_player'
-W0612:14155,28: configuration_file_loaded: Unused variable 'instr_url'
-W0612:14279,28: configuration_file_loaded: Unused variable 'param_sponsor_url'
-W0612:14179,28: configuration_file_loaded: Unused variable 'buffed_link_url'
-W0612:14398,12: configuration_file_loaded: Unused variable 'mp_api_user_token'
-W0612:14392,12: configuration_file_loaded: Unused variable 'admin_login'
-W0612:14359,8: configuration_file_loaded: Unused variable 'compare_items'
-W0612:14222,28: configuration_file_loaded: Unused variable 'param_gamestaff_email'
-W0612:14426,8: configuration_file_loaded: Unused variable 'had_account'
-W0612:14218,28: configuration_file_loaded: Unused variable 'param_support_email'
-W0612:14243,28: configuration_file_loaded: Unused variable 'param_allow_skip_quest'
-W0612:14318,28: configuration_file_loaded: Unused variable 'tv_function_name'
-W0612:14283,28: configuration_file_loaded: Unused variable 'param_bullshit_text'
-W0612:14214,28: configuration_file_loaded: Unused variable 'param_poll_tunnel_url'
-W0612:14143,28: configuration_file_loaded: Unused variable 'imprint_url'
-W0612:14384,12: configuration_file_loaded: Unused variable 'param_rec'
-W0612:14135,28: configuration_file_loaded: Unused variable 'forum_url'
-W0612:14272,28: configuration_file_loaded: Unused variable 'param_language_names'
-W0612:14105,28: configuration_file_loaded: Unused variable 'original_lang_code'
-W0612:14191,28: configuration_file_loaded: Unused variable 'param_sponsor'
-W0612:14256,28: configuration_file_loaded: Unused variable 'param_reload_pixel'
-W0612:14439,12: configuration_file_loaded: Unused variable 'param_valid'
-W0612:14187,28: configuration_file_loaded: Unused variable 'image_timeout'
-W0612:14252,28: configuration_file_loaded: Unused variable 'param_internal_pixel'
-W0612:14451,12: configuration_file_loaded: Unused variable 'param_forceport'
-W0612:14395,12: configuration_file_loaded: Unused variable 'mp_api_user_id'
-W0612:14139,28: configuration_file_loaded: Unused variable 'shop_url'
-W0612:14301,28: configuration_file_loaded: Unused variable 'login_background_id'
-W0612:14239,28: configuration_file_loaded: Unused variable 'param_idle_polling'
-W0612:14175,28: configuration_file_loaded: Unused variable 'mp_project'
-W0612:14406,12: configuration_file_loaded: Unused variable 'param_cid_original'
-W0612:14381,12: configuration_file_loaded: Unused variable 'param_id'
-W0612:14322,28: configuration_file_loaded: Unused variable 'tv_poll_normal'
-W0612:14183,28: configuration_file_loaded: Unused variable 'response_timeout'
-W0612:14160,28: configuration_file_loaded: Unused variable 'buffed_link_text'
-W0612:14326,28: configuration_file_loaded: Unused variable 'tv_poll_long'
-W0612:14248,28: configuration_file_loaded: Unused variable 'param_censored'
-W0612:14268,28: configuration_file_loaded: Unused variable 'param_languages'
-W0612:14291,28: configuration_file_loaded: Unused variable 'param_social_buttons'
-W0612:14131,28: configuration_file_loaded: Unused variable 'no_crossdomain'
-W0612:14199,28: configuration_file_loaded: Unused variable 'param_reconnect'
-W0612:14230,28: configuration_file_loaded: Unused variable 'param_papaya_cfg_file'
-W0612:14260,28: configuration_file_loaded: Unused variable 'param_server_version_cfg'
-W0612:14445,12: configuration_file_loaded: Unused variable 'param_hall'
-E0602:14536,38: do_load: Undefined variable 'actorSoundLoader'
-E0602:14548,29: do_load: Undefined variable 'no_crossdomain'
-C0103:14581,4: when_loaded: Invalid constant name "when_loaded_fn"
-W0603:14581,4: when_loaded: Using the global statement
-C0103:14585,8: when_loaded: Invalid constant name "when_loaded_active"
-W0601:14585,8: when_loaded: Global variable 'when_loaded_active' undefined at the module level
-C0103:14621,4: when_loaded_timeout_event: Invalid constant name "snd_url_index"
-C0103:14621,4: when_loaded_timeout_event: Invalid constant name "img_url_index"
-W0601:14621,4: when_loaded_timeout_event: Global variable 'snd_url_index' undefined at the module level
-W0601:14621,4: when_loaded_timeout_event: Global variable 'img_url_index' undefined at the module level
-E0602:14639,4: when_loaded_timeout_event: Undefined variable 'to_error_count'
-C0103:14681,4: loader_error: Invalid constant name "snd_url_index"
-C0103:14681,4: loader_error: Invalid constant name "img_url_index"
-W0601:14681,4: loader_error: Global variable 'snd_url_index' undefined at the module level
-W0601:14681,4: loader_error: Global variable 'img_url_index' undefined at the module level
-E0602:14698,4: loader_error: Undefined variable 'io_error_count'
-E0602:14725,17: pixel_success: Undefined variable 'pixel_loader'
-E0602:14766,35: load_tracking_pixel: Undefined variable 'had_account'
-E0602:14768,7: load_tracking_pixel: Undefined variable 'param_reload_pixel'
-E0602:14770,33: load_tracking_pixel: Undefined variable 'param_cid'
-E0602:14771,30: load_tracking_pixel: Undefined variable 'act'
-E0602:14785,8: load_tracking_pixel: Undefined variable 'navigate_to_url'
-E0602:14785,24: load_tracking_pixel: Undefined variable 'req'
-E0602:14787,11: load_tracking_pixel: Undefined variable 'param_internal_pixel'
-W0612:14784,8: load_tracking_pixel: Unused variable 'log_in_after_pixel'
-W0603:14808,4: main: Using the global statement
-E1120:14814,19: main: No value for argument 'logger' in constructor call
-R0913:14824,0: define_img: Too many arguments (8/5)
-R0913:14875,0: define_click_area: Too many arguments (11/5)
-R0913:14934,0: define_from_class: Too many arguments (6/5)
-R0913:17578,0: item_popup: Too many arguments (7/5)
-R0913:18785,0: load_character_image: Too many arguments (14/5)
+E0602:14499,41: configuration_file_loaded: Undefined variable 'param_lowres_url'
+R0912:14087,0: configuration_file_loaded: Too many branches (113/12)
+R0915:14087,0: configuration_file_loaded: Too many statements (315/50)
+W0612:14227,28: configuration_file_loaded: Unused variable 'param_papaya_path'
+W0612:14160,28: configuration_file_loaded: Unused variable 'buffed_mode'
+W0612:14148,28: configuration_file_loaded: Unused variable 'legal_url'
+W0612:14288,28: configuration_file_loaded: Unused variable 'param_bullshit_cid'
+W0612:14172,28: configuration_file_loaded: Unused variable 'server_id'
+W0612:14403,12: configuration_file_loaded: Unused variable 'sso_mode'
+W0612:14152,28: configuration_file_loaded: Unused variable 'dataprot_url'
+W0612:14361,8: configuration_file_loaded: Unused variable 'disable_tv'
+W0612:14245,28: configuration_file_loaded: Unused variable 'param_happy_hour'
+W0612:14359,8: configuration_file_loaded: Unused variable 'chat_sound'
+W0612:14204,28: configuration_file_loaded: Unused variable 'param_php_tunnel_url'
+W0612:14390,12: configuration_file_loaded: Unused variable 'view_player'
+W0612:14156,28: configuration_file_loaded: Unused variable 'instr_url'
+W0612:14280,28: configuration_file_loaded: Unused variable 'param_sponsor_url'
+W0612:14180,28: configuration_file_loaded: Unused variable 'buffed_link_url'
+W0612:14399,12: configuration_file_loaded: Unused variable 'mp_api_user_token'
+W0612:14393,12: configuration_file_loaded: Unused variable 'admin_login'
+W0612:14360,8: configuration_file_loaded: Unused variable 'compare_items'
+W0612:14223,28: configuration_file_loaded: Unused variable 'param_gamestaff_email'
+W0612:14427,8: configuration_file_loaded: Unused variable 'had_account'
+W0612:14219,28: configuration_file_loaded: Unused variable 'param_support_email'
+W0612:14244,28: configuration_file_loaded: Unused variable 'param_allow_skip_quest'
+W0612:14319,28: configuration_file_loaded: Unused variable 'tv_function_name'
+W0612:14284,28: configuration_file_loaded: Unused variable 'param_bullshit_text'
+W0612:14215,28: configuration_file_loaded: Unused variable 'param_poll_tunnel_url'
+W0612:14144,28: configuration_file_loaded: Unused variable 'imprint_url'
+W0612:14385,12: configuration_file_loaded: Unused variable 'param_rec'
+W0612:14136,28: configuration_file_loaded: Unused variable 'forum_url'
+W0612:14273,28: configuration_file_loaded: Unused variable 'param_language_names'
+W0612:14106,28: configuration_file_loaded: Unused variable 'original_lang_code'
+W0612:14192,28: configuration_file_loaded: Unused variable 'param_sponsor'
+W0612:14257,28: configuration_file_loaded: Unused variable 'param_reload_pixel'
+W0612:14440,12: configuration_file_loaded: Unused variable 'param_valid'
+W0612:14188,28: configuration_file_loaded: Unused variable 'image_timeout'
+W0612:14253,28: configuration_file_loaded: Unused variable 'param_internal_pixel'
+W0612:14452,12: configuration_file_loaded: Unused variable 'param_forceport'
+W0612:14396,12: configuration_file_loaded: Unused variable 'mp_api_user_id'
+W0612:14140,28: configuration_file_loaded: Unused variable 'shop_url'
+W0612:14302,28: configuration_file_loaded: Unused variable 'login_background_id'
+W0612:14240,28: configuration_file_loaded: Unused variable 'param_idle_polling'
+W0612:14176,28: configuration_file_loaded: Unused variable 'mp_project'
+W0612:14407,12: configuration_file_loaded: Unused variable 'param_cid_original'
+W0612:14382,12: configuration_file_loaded: Unused variable 'param_id'
+W0612:14323,28: configuration_file_loaded: Unused variable 'tv_poll_normal'
+W0612:14184,28: configuration_file_loaded: Unused variable 'response_timeout'
+W0612:14161,28: configuration_file_loaded: Unused variable 'buffed_link_text'
+W0612:14327,28: configuration_file_loaded: Unused variable 'tv_poll_long'
+W0612:14249,28: configuration_file_loaded: Unused variable 'param_censored'
+W0612:14269,28: configuration_file_loaded: Unused variable 'param_languages'
+W0612:14292,28: configuration_file_loaded: Unused variable 'param_social_buttons'
+W0612:14132,28: configuration_file_loaded: Unused variable 'no_crossdomain'
+W0612:14200,28: configuration_file_loaded: Unused variable 'param_reconnect'
+W0612:14231,28: configuration_file_loaded: Unused variable 'param_papaya_cfg_file'
+W0612:14261,28: configuration_file_loaded: Unused variable 'param_server_version_cfg'
+W0612:14446,12: configuration_file_loaded: Unused variable 'param_hall'
+E0602:14537,38: do_load: Undefined variable 'actorSoundLoader'
+E0602:14549,29: do_load: Undefined variable 'no_crossdomain'
+C0103:14582,4: when_loaded: Invalid constant name "when_loaded_fn"
+W0603:14582,4: when_loaded: Using the global statement
+C0103:14586,8: when_loaded: Invalid constant name "when_loaded_active"
+W0601:14586,8: when_loaded: Global variable 'when_loaded_active' undefined at the module level
+C0103:14622,4: when_loaded_timeout_event: Invalid constant name "snd_url_index"
+C0103:14622,4: when_loaded_timeout_event: Invalid constant name "img_url_index"
+W0601:14622,4: when_loaded_timeout_event: Global variable 'snd_url_index' undefined at the module level
+W0601:14622,4: when_loaded_timeout_event: Global variable 'img_url_index' undefined at the module level
+E0602:14640,4: when_loaded_timeout_event: Undefined variable 'to_error_count'
+C0103:14682,4: loader_error: Invalid constant name "snd_url_index"
+C0103:14682,4: loader_error: Invalid constant name "img_url_index"
+W0601:14682,4: loader_error: Global variable 'snd_url_index' undefined at the module level
+W0601:14682,4: loader_error: Global variable 'img_url_index' undefined at the module level
+E0602:14699,4: loader_error: Undefined variable 'io_error_count'
+E0602:14726,17: pixel_success: Undefined variable 'pixel_loader'
+E0602:14767,35: load_tracking_pixel: Undefined variable 'had_account'
+E0602:14769,7: load_tracking_pixel: Undefined variable 'param_reload_pixel'
+E0602:14771,33: load_tracking_pixel: Undefined variable 'param_cid'
+E0602:14772,30: load_tracking_pixel: Undefined variable 'act'
+E0602:14786,8: load_tracking_pixel: Undefined variable 'navigate_to_url'
+E0602:14786,24: load_tracking_pixel: Undefined variable 'req'
+E0602:14788,11: load_tracking_pixel: Undefined variable 'param_internal_pixel'
+W0612:14785,8: load_tracking_pixel: Unused variable 'log_in_after_pixel'
+W0603:14809,4: main: Using the global statement
+E1120:14815,19: main: No value for argument 'logger' in constructor call
+R0913:14825,0: define_img: Too many arguments (8/5)
+R0913:14876,0: define_click_area: Too many arguments (11/5)
+R0913:14935,0: define_from_class: Too many arguments (6/5)
+R0913:17579,0: item_popup: Too many arguments (7/5)
+R0913:18786,0: load_character_image: Too many arguments (14/5)
 ************* Module sfglobals
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
@@ -594,9 +594,8 @@ R0903: 14,0: Witch: Too few public methods (0/2)
 ************* Module classes.sfsavegame
 W0511:108,0: : TODO: Tower object
 W0511:120,0: : TODO: save in character object
-C0330:266,0: : Wrong continued indentation before block.
-            and (not on_stage(CNT['POST']['LIST'], actor))):
-            ^   |
+F0401: 26,0: : Unable to import 'classes.sfface' (invalid syntax (<string>, line 83))
+E0611: 26,0: : No name 'sfface' in module 'classes'
 R0902: 32,0: Savegame: Too many instance attributes (9/7)
 R0201: 51,4: Savegame.__get_face: Method could be a function
 R0913: 97,4: Savegame.parse: Too many arguments (6/5)
@@ -637,16 +636,14 @@ W0201:158,12: Savegame.parse: Attribute 'level_up' defined outside __init__
 ************* Module classes.sfguild
 R0903: 14,0: Guild: Too few public methods (0/2)
 ************* Module classes.sfface
-C0301: 80,0: : Line too long (80/79)
-C0301: 82,0: : Line too long (82/79)
-R0902: 18,0: Face: Too many instance attributes (14/7)
-R0913: 22,4: Face.__init__: Too many arguments (14/5)
-E0602: 41,36: Face.__init__: Undefined variable 'param_obj'
-C0111: 43,4: Face.randomize_character: Missing method docstring
-E0602: 47,11: Face.randomize_character: Undefined variable 'param_obj'
-E0602: 48,30: Face.randomize_character: Undefined variable 'param_obj'
+E0001: 83,0: : invalid syntax
 ************* Module classes.sftoilet
-R0903: 14,0: Toilet: Too few public methods (0/2)
+C0301: 72,0: : Line too long (81/79)
+C0301: 79,0: : Line too long (81/79)
+C0301: 95,0: : Line too long (83/79)
+C0301: 96,0: : Line too long (83/79)
+C0301:104,0: : Line too long (80/79)
+R0913: 18,4: Toilet.__init__: Too many arguments (6/5)
 ************* Module classes.sfaccount
 R0903: 14,0: Account: Too few public methods (0/2)
 ************* Module classes.sfquest
@@ -654,23 +651,27 @@ R0902: 20,0: Quest: Too many instance attributes (11/7)
 R0913: 24,4: Quest.__init__: Too many arguments (11/5)
 ************* Module classes.sfitem
 W0511: 31,0: : TODO: documentation
-W0511:206,0: : TODO: itm_color ???
+W0511:213,0: : TODO: itm_color ???
 R0902: 22,0: Item: Too many instance attributes (9/7)
 R0913: 26,4: Item.__init__: Too many arguments (11/5)
+R0201: 57,4: Item.__get_attr_offs: Method could be a function
+W0612: 62,12: Item.__get_attr_offs: Unused variable 'attr_val_offs'
 ************* Module classes.sfcharacter
+F0401: 13,0: : Unable to import 'classes.sfface' (invalid syntax (<string>, line 83))
+E0611: 13,0: : No name 'sfface' in module 'classes'
 R0801:  1,0: : Similar lines in 4 files
 ==classes.sfsavegame:210
-==sfclient:11423
-==sfclient:11511
-==sfclient:14554
+==sfclient:11424
+==sfclient:11512
+==sfclient:14555
+                        )
                     )
-                )
             else:
 
 
 Report
 ======
-4407 statements analysed.
+4374 statements analysed.
 
 Messages by category
 --------------------
@@ -678,13 +679,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |65     |NC       |NC         |
+|convention |66     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |54     |NC       |NC         |
+|refactor   |53     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |246    |NC       |NC         |
+|warning    |247    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |278    |NC       |NC         |
+|error      |277    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -692,21 +693,23 @@ Messages by category
 % errors / warnings by module
 -----------------------------
 
-+-------------------+------+--------+---------+-----------+
-|module             |error |warning |refactor |convention |
-+===================+======+========+=========+===========+
-|sfclient           |89.21 |92.28   |55.56    |89.23      |
-+-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |8.27  |4.07    |11.11    |1.54       |
-+-------------------+------+--------+---------+-----------+
-|classes.sfsession  |1.44  |2.44    |5.56     |0.00       |
-+-------------------+------+--------+---------+-----------+
-|classes.sfface     |1.08  |0.00    |3.70     |4.62       |
-+-------------------+------+--------+---------+-----------+
-|classes.sfitem     |0.00  |0.81    |3.70     |0.00       |
-+-------------------+------+--------+---------+-----------+
-|sflegacy           |0.00  |0.41    |3.70     |1.54       |
-+-------------------+------+--------+---------+-----------+
++--------------------+------+--------+---------+-----------+
+|module              |error |warning |refactor |convention |
++====================+======+========+=========+===========+
+|sfclient            |89.17 |91.90   |56.60    |87.88      |
++--------------------+------+--------+---------+-----------+
+|classes.sfsavegame  |8.66  |4.05    |11.32    |0.00       |
++--------------------+------+--------+---------+-----------+
+|classes.sfsession   |1.44  |2.43    |5.66     |0.00       |
++--------------------+------+--------+---------+-----------+
+|classes.sfcharacter |0.36  |0.00    |1.89     |0.00       |
++--------------------+------+--------+---------+-----------+
+|classes.sfface      |0.36  |0.00    |0.00     |0.00       |
++--------------------+------+--------+---------+-----------+
+|classes.sfitem      |0.00  |1.21    |5.66     |0.00       |
++--------------------+------+--------+---------+-----------+
+|sflegacy            |0.00  |0.40    |3.77     |1.52       |
++--------------------+------+--------+---------+-----------+
 
 
 
@@ -716,9 +719,9 @@ Messages
 +-------------------------------+------------+
 |message id                     |occurrences |
 +===============================+============+
-|undefined-variable             |260         |
+|undefined-variable             |255         |
 +-------------------------------+------------+
-|unused-variable                |161         |
+|unused-variable                |162         |
 +-------------------------------+------------+
 |invalid-name                   |57          |
 +-------------------------------+------------+
@@ -734,11 +737,13 @@ Messages
 +-------------------------------+------------+
 |too-many-branches              |9           |
 +-------------------------------+------------+
-|too-many-instance-attributes   |7           |
-+-------------------------------+------------+
 |too-many-locals                |6           |
 +-------------------------------+------------+
-|too-few-public-methods         |6           |
+|too-many-instance-attributes   |6           |
++-------------------------------+------------+
+|too-few-public-methods         |5           |
++-------------------------------+------------+
+|line-too-long                  |5           |
 +-------------------------------+------------+
 |global-statement               |5           |
 +-------------------------------+------------+
@@ -746,21 +751,21 @@ Messages
 +-------------------------------+------------+
 |unused-argument                |3           |
 +-------------------------------+------------+
-|line-too-long                  |2           |
+|no-name-in-module              |3           |
++-------------------------------+------------+
+|import-error                   |3           |
++-------------------------------+------------+
+|no-self-use                    |2           |
 +-------------------------------+------------+
 |too-many-function-args         |1           |
++-------------------------------+------------+
+|syntax-error                   |1           |
 +-------------------------------+------------+
 |redefined-outer-name           |1           |
 +-------------------------------+------------+
 |no-value-for-parameter         |1           |
 +-------------------------------+------------+
-|no-self-use                    |1           |
-+-------------------------------+------------+
-|missing-docstring              |1           |
-+-------------------------------+------------+
 |duplicate-code                 |1           |
-+-------------------------------+------------+
-|bad-continuation               |1           |
 +-------------------------------+------------+
 |attribute-defined-outside-init |1           |
 +-------------------------------+------------+
@@ -769,7 +774,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.02/10
+Your code has been rated at 6.00/10
 
 Raw metrics
 -----------
@@ -777,13 +782,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5538   |15.65 |NC       |NC         |
+|code      |5471   |15.51 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27931  |78.94 |NC       |NC         |
+|docstring |27899  |79.11 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |661    |1.87  |NC       |NC         |
+|comment   |653    |1.85  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1252   |3.54  |NC       |NC         |
+|empty     |1241   |3.52  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -808,7 +813,7 @@ External dependencies
     datetime (sfclient,classes.sfsavegame)
     requests (classes.sfsession)
     sfbuildinterface (sfclient)
-    sfglobals (classes.sfsavegame,classes.sfquest,classes.sfface,classes.sfitem,classes.sfsession,sfclient)
+    sfglobals (sfclient,classes.sfquest,classes.sfsavegame,classes.sfsession,classes.sfitem)
     sflegacy (sflegacyfonts,sfclient,classes.sfsavegame,classes.sfsession)
     sflegacyfonts (sfclient)
     types (sfclient)
@@ -821,13 +826,13 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |type     |number |old number |difference |%documented |%badname |
 +=========+=======+===========+===========+============+=========+
-|module   |20     |NC         |NC         |100.00      |0.00     |
+|module   |19     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |117    |NC         |NC         |100.00      |0.00     |
+|class    |116    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |55     |NC         |NC         |98.18       |0.00     |
+|method   |54     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |216    |NC         |NC         |100.00      |0.00     |
+|function |214    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 
 
