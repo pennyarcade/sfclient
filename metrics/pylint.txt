@@ -99,6 +99,7 @@ E0602:853,57: time_calc_event: Undefined variable 'local_time'
 R0912:901,0: get_weapon_level: Too many branches (44/12)
 R0915:901,0: get_weapon_level: Too many statements (85/50)
 E0602:1024,12: request_signup: Undefined variable 'param_bullshit_text'
+E1120:1024,44: request_signup: No value for argument 'actor' in function call
 E0602:1025,24: request_signup: Undefined variable 'param_bullshit_cid'
 E0602:1029,11: request_signup: Undefined variable 'buffed_req'
 E0602:1030,30: request_signup: Undefined variable 'buffed_id'
@@ -212,6 +213,7 @@ E0602:10415,33: add: Undefined variable 'size_x'
 E0602:10418,33: add: Undefined variable 'size_y'
 E0602:10424,8: add: Undefined variable 'addChild'
 R0912:10388,0: add: Too many branches (13/12)
+E1120:10441,19: visible_to_front: No value for argument 'actor' in function call
 E0602:10478,24: remove_all: Undefined variable 'actorPersistent'
 E0602:10526,4: fade_in_event: Undefined variable 'current_alpha'
 E0602:10526,21: fade_in_event: Undefined variable 'alpha_step'
@@ -250,10 +252,7 @@ E0602:11173,11: do_act_zauberladen: Undefined variable 'light_mode'
 E0602:11188,8: do_act_schmiede: Undefined variable 'special_action'
 E0602:11188,33: do_act_schmiede: Undefined variable 'special_action'
 E0602:11207,7: install_hall_popup: Undefined variable 'this_field_popup'
-E1120:11208,8: install_hall_popup: No value for argument 'actorpopup_stamp' in function call
 E0602:11208,42: install_hall_popup: Undefined variable 'this_field_popup'
-E1120:11210,8: install_hall_popup: No value for argument 'actor' in function call
-E1120:11210,8: install_hall_popup: No value for argument 'actorpopup_stamp' in function call
 R0913:11213,0: hall_list_add_field: Too many arguments (6/5)
 W0612:11218,4: hall_list_add_field: Unused variable 'this_field_popup'
 R0914:11270,0: action_handler: Too many local variables (128/15)
@@ -262,30 +261,16 @@ W0601:11274,4: action_handler: Global variable 'oldcreststring' undefined at the
 W0603:11275,4: action_handler: Using the global statement
 E0601:11285,11: action_handler: Using variable 'guild_blink_ready' before assignment
 E0602:11286,12: action_handler: Undefined variable 'send_action'
-E1120:11319,12: action_handler: No value for argument 'actor' in function call
-E1120:11319,12: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11320,12: action_handler: No value for argument 'actor' in function call
-E1120:11320,12: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11321,12: action_handler: No value for argument 'actor' in function call
-E1120:11321,12: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11322,12: action_handler: No value for argument 'actor' in function call
-E1120:11322,12: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11323,12: action_handler: No value for argument 'actor' in function call
-E1120:11323,12: action_handler: No value for argument 'actorpopup_stamp' in function call
+E1120:11297,7: action_handler: No value for argument 'actor' in function call
 E0602:11445,16: action_handler: Undefined variable 'param_reconnect'
 E0602:11453,24: action_handler: Undefined variable 'savegame'
 E0601:11479,26: action_handler: Using variable 'last_guild_data' before assignment
 E0602:11526,56: action_handler: Undefined variable 'offense'
-E1120:11538,24: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11543,20: action_handler: No value for argument 'actor' in function call
-E1120:11543,20: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11545,20: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11552,20: action_handler: No value for argument 'actorpopup_stamp' in function call
-E1120:11554,16: action_handler: No value for argument 'actor' in function call
-E1120:11554,16: action_handler: No value for argument 'actorpopup_stamp' in function call
 E0602:11624,38: action_handler: Undefined variable 'param_support_email'
 E0602:11626,40: action_handler: Undefined variable 'param_gamestaff_email'
+E1120:11647,15: action_handler: No value for argument 'actor' in function call
 E0602:11648,16: action_handler: Undefined variable 'send_action'
+E1120:11653,15: action_handler: No value for argument 'actor' in function call
 E0602:11654,16: action_handler: Undefined variable 'send_action'
 E0602:11699,25: action_handler: Undefined variable 'tmpAmount'
 E0602:11701,20: action_handler: Undefined variable 'tmpAmount'
@@ -293,13 +278,18 @@ E0602:11705,12: action_handler: Undefined variable 'navigate_to_url'
 E0601:11723,25: action_handler: Using variable 'last_chat_hist' before assignment
 E0601:11737,15: action_handler: Using variable 'last_chat_index' before assignment
 E0602:11742,46: action_handler: Undefined variable 'font_format_chat'
+E1120:11767,39: action_handler: No value for argument 'actor' in function call
 E0602:11768,40: action_handler: Undefined variable 'send_action'
 E0602:11772,55: action_handler: Undefined variable 'chat_sound'
+E1120:11796,39: action_handler: No value for argument 'actor' in function call
 E0602:11797,40: action_handler: Undefined variable 'send_action'
 E0602:11811,19: action_handler: Undefined variable 'chat_sound'
+E1120:11832,35: action_handler: No value for argument 'actor' in function call
 E0602:11833,36: action_handler: Undefined variable 'send_action'
 E0601:11838,17: action_handler: Using variable 'new_crest_suggested' before assignment
+E1120:11840,25: action_handler: No value for argument 'actor' in function call
 E0602:11847,30: action_handler: Undefined variable 'last_whisper_target'
+E1120:11877,19: action_handler: No value for argument 'actor' in function call
 E0602:11883,12: action_handler: Undefined variable 'send_action'
 E0602:11896,39: action_handler: Undefined variable 'option_new_data'
 E0602:11898,62: action_handler: Undefined variable 'option_new_data'
@@ -314,6 +304,7 @@ E0602:11998,12: action_handler: Undefined variable 'next_fight_timer'
 E0602:12054,12: action_handler: Undefined variable 'send_action'
 E0602:12071,12: action_handler: Undefined variable 'send_action'
 E0602:12075,12: action_handler: Undefined variable 'savegame'
+E1120:12083,20: action_handler: No value for argument 'actor' in function call
 E0602:12085,24: action_handler: Undefined variable 'last_guild_crest_id'
 E0602:12099,15: action_handler: Undefined variable 'last_guild_crest_id'
 E0602:12146,30: action_handler: Undefined variable 'last_message_target'
@@ -323,11 +314,16 @@ E0602:12167,16: action_handler: Undefined variable 'post_sel'
 E0602:12167,27: action_handler: Undefined variable 'post_scroll'
 E0602:12167,47: action_handler: Undefined variable 'savegame'
 E0602:12186,24: action_handler: Undefined variable 'switch'
+E1120:12420,19: action_handler: No value for argument 'actor' in function call
 E0601:12429,20: action_handler: Using variable 'col_idx' before assignment
 E0602:12540,31: action_handler: Undefined variable 'lastAttacked'
+E1120:12749,15: action_handler: No value for argument 'actor' in function call
 E0602:12756,24: action_handler: Undefined variable 'mirror_ani_timer'
+E1120:12762,30: action_handler: No value for argument 'actor' in function call
 E0602:12766,27: action_handler: Undefined variable 'mirror_pieces'
 E0602:12775,15: action_handler: Undefined variable 'savegame'
+E1120:12789,15: action_handler: No value for argument 'actor' in function call
+E1120:12804,15: action_handler: No value for argument 'actor' in function call
 C0103:12838,12: action_handler: Invalid constant name "old_ach"
 W0601:12838,12: action_handler: Global variable 'old_ach' undefined at the module level
 E0602:12866,15: action_handler: Undefined variable 'savegame'
@@ -345,6 +341,7 @@ E0602:12883,24: action_handler: Undefined variable 'send_action'
 E0602:12887,25: action_handler: Undefined variable 'savegame'
 E0602:12893,20: action_handler: Undefined variable 'send_action'
 E0601:12981,12: action_handler: Using variable 'charface' before assignment
+E1120:12987,15: action_handler: No value for argument 'actor' in function call
 E0602:13018,15: action_handler: Undefined variable 'savegame'
 E0602:13022,7: action_handler: Undefined variable 'defined_pixel_calls'
 E0602:13024,12: action_handler: Undefined variable 'defined_pixel_calls'
@@ -407,14 +404,27 @@ E0602:13288,4: define_snd: Undefined variable 'actorSoundLoader'
 R0913:13295,0: define_btn: Too many arguments (9/5)
 E0602:13306,10: define_btn: Undefined variable 'i'
 E0602:13310,20: define_btn: Undefined variable 'btn_classPlus'
+E1120:13336,11: error_message: No value for argument 'actor' in function call
+E1120:13346,15: error_message: No value for argument 'actor' in function call
+E1120:13350,21: error_message: No value for argument 'actor' in function call
+E1120:13351,30: error_message: No value for argument 'actor' in function call
+E1120:13365,23: error_message: No value for argument 'actor' in function call
+E1120:13369,25: error_message: No value for argument 'actor' in function call
+E1120:13373,25: error_message: No value for argument 'actor' in function call
+E1120:13377,25: error_message: No value for argument 'actor' in function call
+E1120:13381,25: error_message: No value for argument 'actor' in function call
+E1120:13385,25: error_message: No value for argument 'actor' in function call
+E1120:13390,25: error_message: No value for argument 'actor' in function call
 R0912:13329,0: error_message: Too many branches (14/12)
 R0915:13329,0: error_message: Too many statements (53/50)
 E0602:13406,4: tv_timer_event_handler: Undefined variable 'tv_wobble'
 E0601:13409,8: tv_timer_event_handler: Using variable 'tv_status_dest' before assignment
 E0601:13409,25: tv_timer_event_handler: Using variable 'tv_status' before assignment
 E0602:13416,4: tv_timer_event_handler: Undefined variable 'tv_ani'
+E1120:13435,11: tv_timer_event_handler: No value for argument 'actor' in function call
 E0602:13436,8: tv_timer_event_handler: Undefined variable 'tv_timer'
 E0602:13449,4: witch_timer_event_handler: Undefined variable 'witch_ani_step'
+E1120:13460,11: witch_timer_event_handler: No value for argument 'actor' in function call
 E0602:13461,8: witch_timer_event_handler: Undefined variable 'witch_ani_timer'
 E0602:13468,25: sound_loaded: Undefined variable 'actor_id'
 E0602:13469,10: sound_loaded: Undefined variable 'actor_id'
@@ -427,12 +437,14 @@ R0915:13489,0: process_arg: Too many statements (71/50)
 E0602:13582,7: show_popup: Undefined variable 'actorpopup_stamp'
 E0602:13582,24: show_popup: Undefined variable 'actor_id'
 E0602:13582,37: show_popup: Undefined variable 'my_stamp'
+E1120:13590,7: show_popup: No value for argument 'actor' in function call
 E0602:13594,7: show_popup: Undefined variable 'suggestion_slot'
 E0602:13594,23: show_popup: Undefined variable 'actor_id'
 E0602:13595,48: show_popup: Undefined variable 'suggestion_slot'
 E0602:13595,64: show_popup: Undefined variable 'actor_id'
 E0602:13596,48: show_popup: Undefined variable 'suggestion_slot'
 E0602:13596,64: show_popup: Undefined variable 'actor_id'
+E1120:13597,15: show_popup: No value for argument 'actor' in function call
 E0602:13598,45: show_popup: Undefined variable 'suggestion_slot'
 E0602:13598,61: show_popup: Undefined variable 'actor_id'
 E0602:13616,19: show_popup: Undefined variable 'numChildren'
@@ -586,33 +598,27 @@ R0913:18927,0: load_character_image: Too many arguments (14/5)
 C0302:  1,0: : Too many lines in module (4067)
 ************* Module sflegacy
 W0511:440,0: : TODO WTF?
-C0302:  1,0: : Too many lines in module (1102)
+C0302:  1,0: : Too many lines in module (1103)
 R0902: 46,0: Actor: Too many instance attributes (18/7)
 R0902: 90,0: TextField: Too many instance attributes (11/7)
-E0602:664,7: on_stage: Undefined variable 'actor'
-E0602:665,38: on_stage: Undefined variable 'actor'
-E0601:1090,28: enable_popup: Using variable 'popup_stamp' before assignment
-E0602:1095,66: enable_popup: Undefined variable 'show_popup'
-E0602:1097,43: enable_popup: Undefined variable 'position_popup'
-E0602:1098,65: enable_popup: Undefined variable 'hide_popup'
-E0602:1099,66: enable_popup: Undefined variable 'hide_popup'
-E0602:1100,64: enable_popup: Undefined variable 'hide_popup'
+W0613:1081,0: enable_popup: Unused argument 'args'
+W0613:1081,17: enable_popup: Unused argument 'actor_id'
 ************* Module classes.sfmirror
 R0903: 14,0: Mirror: Too few public methods (0/2)
 ************* Module classes.sfsession
 W0511: 33,0: : TODO: Check if needed?
-W0511: 60,0: : TODO: refactor to use sendAction()
-W0511: 69,0: : TODO: rework random number generation
-W0511:134,0: : TODO: This "if" switches base URL
-W0511:138,0: : TODO: move payload creation to method
-W0511:178,0: : TODO : test success of request here !!
-R0902: 25,0: Session: Too many instance attributes (15/7)
-E0602:174,25: Session.send_action: Undefined variable 'param_fail_tries'
-E0602:200,30: Session.send_action: Undefined variable 'param_fail_tries'
-E0602:204,28: Session.send_action: Undefined variable 'param_fail_tries'
-R0912: 85,4: Session.send_action: Too many branches (25/12)
-R0915: 85,4: Session.send_action: Too many statements (65/50)
-W0612:123,8: Session.send_action: Unused variable 'last_act'
+W0511: 61,0: : TODO: refactor to use sendAction()
+W0511: 70,0: : TODO: rework random number generation
+W0511:133,0: : TODO: This "if" switches base URL
+W0511:137,0: : TODO: move payload creation to method
+W0511:177,0: : TODO : test success of request here !!
+R0902: 25,0: Session: Too many instance attributes (16/7)
+E1120: 91,19: Session.send_action: No value for argument 'actor' in function call
+E0602:173,25: Session.send_action: Undefined variable 'param_fail_tries'
+E0602:199,30: Session.send_action: Undefined variable 'param_fail_tries'
+E0602:203,28: Session.send_action: Undefined variable 'param_fail_tries'
+R0912: 86,4: Session.send_action: Too many branches (24/12)
+R0915: 86,4: Session.send_action: Too many statements (64/50)
 ************* Module classes.sfalbum
 R0903: 14,0: Album: Too few public methods (0/2)
 ************* Module classes.sfwitch
@@ -639,14 +645,13 @@ E0602:174,16: Savegame.parse: Undefined variable 'old_ach'
 E0602:174,29: Savegame.parse: Undefined variable 'ach_level'
 E0601:176,12: Savegame.parse: Using variable 'old_album' before assignment
 E0602:186,15: Savegame.parse: Undefined variable 'text_dir'
-E1120:207,20: Savegame.parse: No value for argument 'actorpopup_stamp' in function call
-E1120:232,20: Savegame.parse: No value for argument 'actorpopup_stamp' in function call
 E0602:239,8: Savegame.parse: Undefined variable 'add'
 E0602:241,12: Savegame.parse: Undefined variable 'server_time'
 E0602:245,12: Savegame.parse: Undefined variable 'time_calc'
 E0602:252,12: Savegame.parse: Undefined variable 'show_login_screen'
 E0602:254,62: Savegame.parse: Undefined variable 'session_id'
 E0602:256,50: Savegame.parse: Undefined variable 'gilden_id'
+E1120:265,48: Savegame.parse: No value for argument 'actor' in function call
 E0602:269,12: Savegame.parse: Undefined variable 'request_logout'
 E0601:271,11: Savegame.parse: Using variable 'next_pxl' before assignment
 R0912: 97,4: Savegame.parse: Too many branches (35/12)
@@ -666,8 +671,8 @@ R0902: 14,0: Face: Too many instance attributes (13/7)
 R0913: 18,4: Face.__init__: Too many arguments (14/5)
 R0903: 14,0: Face: Too few public methods (0/2)
 ************* Module classes.sfswitch
-W0511: 17,0: : TODO: Credits for this classs?
-R0903: 14,0: Switch: Too few public methods (1/2)
+C0301: 11,0: : Line too long (80/79)
+C0301: 22,0: : Line too long (80/79)
 ************* Module classes.sftoilet
 R0903: 14,0: Toilet: Too few public methods (0/2)
 ************* Module classes.sfaccount
@@ -675,13 +680,13 @@ R0903: 14,0: Account: Too few public methods (0/2)
 ************* Module classes.sfquest
 R0902: 20,0: Quest: Too many instance attributes (11/7)
 R0913: 24,4: Quest.__init__: Too many arguments (11/5)
+E1101:106,21: Quest.get_title: Instance of 'Quest' has no 'get_offs' member
+E1101:107,36: Quest.get_title: Instance of 'Quest' has no 'get_offs' member
 ************* Module classes.sfitem
 W0511: 31,0: : TODO: documentation
-W0511:202,0: : TODO: itm_color ???
+W0511:205,0: : TODO: itm_color ???
 R0902: 22,0: Item: Too many instance attributes (9/7)
 R0913: 26,4: Item.__init__: Too many arguments (11/5)
-R0912:111,4: Item.get_name: Too many branches (20/12)
-R0912:225,4: Item.get_id: Too many branches (14/12)
 ************* Module classes.sfcharacter
 R0801:  1,0: : Similar lines in 4 files
 ==classes.sfsavegame:210
@@ -695,7 +700,7 @@ R0801:  1,0: : Similar lines in 4 files
 
 Report
 ======
-4398 statements analysed.
+4388 statements analysed.
 
 Messages by category
 --------------------
@@ -703,13 +708,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |61     |NC       |NC         |
+|convention |63     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |58     |NC       |NC         |
+|refactor   |55     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |248    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |302    |NC       |NC         |
+|error      |308    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -720,17 +725,17 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |88.08 |91.53   |51.72    |95.08      |
+|sfclient           |90.26 |91.53   |54.55    |92.06      |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |8.28  |4.03    |10.34    |0.00       |
+|classes.sfsavegame |7.79  |4.03    |10.91    |0.00       |
 +-------------------+------+--------+---------+-----------+
-|sflegacy           |2.65  |0.40    |3.45     |1.64       |
+|classes.sfsession  |1.30  |2.42    |5.45     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsession  |0.99  |2.82    |5.17     |0.00       |
+|classes.sfquest    |0.65  |0.00    |3.64     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfitem     |0.00  |0.81    |6.90     |0.00       |
+|sflegacy           |0.00  |1.21    |3.64     |1.59       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfswitch   |0.00  |0.40    |1.72     |0.00       |
+|classes.sfitem     |0.00  |0.81    |3.64     |0.00       |
 +-------------------+------+--------+---------+-----------+
 
 
@@ -741,37 +746,41 @@ Messages
 +-------------------------------+------------+
 |message id                     |occurrences |
 +===============================+============+
-|undefined-variable             |261         |
+|undefined-variable             |254         |
 +-------------------------------+------------+
-|unused-variable                |162         |
+|unused-variable                |161         |
 +-------------------------------+------------+
 |invalid-name                   |57          |
 +-------------------------------+------------+
 |global-variable-undefined      |44          |
 +-------------------------------+------------+
-|fixme                          |32          |
+|no-value-for-parameter         |35          |
 +-------------------------------+------------+
-|no-value-for-parameter         |23          |
+|fixme                          |31          |
 +-------------------------------+------------+
-|used-before-assignment         |17          |
+|used-before-assignment         |16          |
 +-------------------------------+------------+
 |too-many-arguments             |15          |
 +-------------------------------+------------+
-|too-many-branches              |11          |
-+-------------------------------+------------+
 |too-many-statements            |9           |
 +-------------------------------+------------+
-|too-few-public-methods         |8           |
+|too-many-branches              |9           |
 +-------------------------------+------------+
 |too-many-instance-attributes   |7           |
 +-------------------------------+------------+
+|too-few-public-methods         |7           |
++-------------------------------+------------+
 |too-many-locals                |6           |
++-------------------------------+------------+
+|unused-argument                |5           |
 +-------------------------------+------------+
 |global-statement               |5           |
 +-------------------------------+------------+
 |too-many-lines                 |4           |
 +-------------------------------+------------+
-|unused-argument                |3           |
+|no-member                      |2           |
++-------------------------------+------------+
+|line-too-long                  |2           |
 +-------------------------------+------------+
 |too-many-function-args         |1           |
 +-------------------------------+------------+
@@ -788,7 +797,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 5.73/10
+Your code has been rated at 5.66/10
 
 Raw metrics
 -----------
@@ -796,13 +805,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5504   |15.40 |NC       |NC         |
+|code      |5487   |15.34 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |28355  |79.31 |NC       |NC         |
+|docstring |28371  |79.32 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |644    |1.80  |NC       |NC         |
+|comment   |655    |1.83  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1247   |3.49  |NC       |NC         |
+|empty     |1253   |3.50  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -844,7 +853,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |117    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |49     |NC         |NC         |100.00      |0.00     |
+|method   |52     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |219    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
