@@ -161,6 +161,7 @@ from classes.sfswitch import Switch
 from classes.sfface import Face
 from classes.sfsession import Session
 from classes.sfalbum import Album
+from classes.sftoilet import Toilet
 # from classes.sfcharacter import Character
 
 # global for logger
@@ -11234,9 +11235,9 @@ def action_handler(event, session):
             SAVE.parse(par[0])
             if len(par) > 1:
                 if act == RESP['TOILET']['FLUSHED']:
-                    show_toilet(par[1], par[2], par[3], par[4], par[5])
+                    Toilet(par[1], par[2], par[3], par[4], par[5]).show()
                 else:
-                    show_toilet(par[1], par[2], par[3], par[4])
+                    Toilet(par[1], par[2], par[3], par[4]).show()
 
             if act == RESP['TOILET']['FULL']:
                 error_message(texts[TXT['TOILET']['FULL']])

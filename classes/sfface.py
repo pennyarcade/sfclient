@@ -38,9 +38,20 @@ class Face(object):
         self.special = special
         self.special2 = special2
         self.volk = volk
-        self.klasse_gewaehlt = bool(param_obj["playerclass"])
+        self.klasse_gewaehlt = False
 
-    def randomize_character(self):
+    def __color_offset(item_id):
+        '''
+            get color offset
+        '''
+        if self.get_char_image_bound(11) and item_id:
+            return self.color * 100
+        return 0
+
+    def randomize_character(self, param_obj):
+        '''
+            get random character
+        '''
         self.volk = int(random.random() * 8) + 1
         self.male = random.random() > 0.5
 
@@ -58,12 +69,8 @@ class Face(object):
         self.randomize_char_image()
 
     def randomize_char_image(self):
-        # var ColorOffset:* = function (ItemID){
-        #     if ((get_char_image_bound(char_volk, char_male, 11) & ItemID)){
-        #         return ((char_color * 100));
-        #     };
-        #     return (0);
-        # };
+        '''
+            get random character image
         '''
         self.color = int(random.random() * self.get_char_image_bound(10) + 1)
         self.mouth = int(random.random() * self.get_char_image_bound(1) + 1)
@@ -73,15 +80,13 @@ class Face(object):
         self.eyes = int(random.random() * self.get_char_image_bound(4) + 1)
         self.brows = int(random.random() * get_char_image_bound(5) + 1
                          + ColorOffset(C['BROWS'])
-        # self.ears = int(((random.random() * get_char_image_bound(char_volk,
-        #                 char_male, 6)) + 1));
-        # self.hair = (int(((random.random() * get_char_image_bound(char_volk,
-        #              char_male, 7)) + 1)) + ColorOffset(C_HAIR));
-        # self.special = int(((random.random() * get_char_image_bound(char_volk,
-        #                    char_male, 8)) + 1));
-        # self.special2 = (int(((random.random() * get_char_image_bound(char_volk,
-        #                  char_male, 9)) + 1)) + ColorOffset(C_SPECIAL2));
-        '''
+        self.ears = int(random.random() * get_char_image_bound(6) + 1)
+        self.hair = int(random.random() * get_char_image_bound(7) + 1
+                        + ColorOffset(C_HAIR))
+        self.special = int(random.random() * get_char_image_bound(8) + 1)
+        self.special2 = int(random.random() * get_char_image_bound(9) + 1
+                            + ColorOffset(C_SPECIAL2))
+
         # load_character_image()
 
     def get_char_image_bound(self, item_index):

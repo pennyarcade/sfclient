@@ -54,6 +54,22 @@ class Item(object):
             self.pic -= 1000
             self.cclass += 1
 
+    def __get_attr_offs(self, dom_attr_val):
+        '''
+            get attr offset
+        '''
+        if dom_attr_val >= 25:
+            attr_val_offs = 250
+        elif dom_attr_val >= 16:
+            attr_val_offs = 200
+        elif dom_attr_val >= 11:
+            attr_val_offs = 150
+        elif dom_attr_val >= 6:
+            attr_val_offs = 100
+        elif dom_attr_val >= 3:
+            attr_val_offs = 50
+
+
     def __get_suffix(self, texts):
         '''
             get attr suffix for item name
@@ -74,16 +90,7 @@ class Item(object):
 
         attr_val_code = pow(2, dom_attr_typ - 1)
 
-        if dom_attr_val >= 25:
-            attr_val_offs = 250
-        elif dom_attr_val >= 16:
-            attr_val_offs = 200
-        elif dom_attr_val >= 11:
-            attr_val_offs = 150
-        elif dom_attr_val >= 6:
-            attr_val_offs = 100
-        elif dom_attr_val >= 3:
-            attr_val_offs = 50
+        attr_val_offs = self.__get_attr_offs(dom_attr_val)
 
         if attr_val_code > 0:
             return texts[txt_idx['EXT'] + attr_val_code + attr_val_offs]
