@@ -17,6 +17,8 @@ import requests
 from sfglobals import ACT
 from sfglobals import CNT
 
+from sflegacy import on_stage
+
 from classes.sfexceptions import RequestFailedException
 
 

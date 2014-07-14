@@ -44,7 +44,6 @@ class Savegame(object):
         self.log = logger
         self.session = session
 
-
     def __get_face(self, savegame):
         '''
             extract face from savegame

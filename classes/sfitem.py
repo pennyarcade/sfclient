@@ -18,6 +18,7 @@ from sfglobals import C
 from sfglobals import IMG
 from sfglobals import ITM_MAX
 
+
 class Item(object):
     '''
         handle Item data
