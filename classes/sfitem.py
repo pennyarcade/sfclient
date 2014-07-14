@@ -60,32 +60,33 @@ class Item(object):
         '''
         txt_idx = TXT['ITMNAME']
 
-        if self.cclass <= 0:
-            dom_attr_typ = -1
-            dom_attr_val = 0
-            attr_val_code = 0
-            attr_val_offs = 0
+        if self.cclass > 0:
+            return ''
 
-            for i in range(3):
-                if self.attr[i]['val'] > dom_attr_val:
-                    dom_attr_typ = self.attr[i]['typ']
-                    dom_attr_val = self.attr[i]['val']
+        dom_attr_typ = -1
+        dom_attr_val = 0
+        attr_val_offs = 0
 
-            attr_val_code = pow(2, dom_attr_typ - 1)
+        for i in range(3):
+            if self.attr[i]['val'] > dom_attr_val:
+                dom_attr_typ = self.attr[i]['typ']
+                dom_attr_val = self.attr[i]['val']
 
-            if dom_attr_val >= 25:
-                attr_val_offs = 250
-            elif dom_attr_val >= 16:
-                attr_val_offs = 200
-            elif dom_attr_val >= 11:
-                attr_val_offs = 150
-            elif dom_attr_val >= 6:
-                attr_val_offs = 100
-            elif dom_attr_val >= 3:
-                attr_val_offs = 50
+        attr_val_code = pow(2, dom_attr_typ - 1)
 
-            if attr_val_code > 0:
-                return texts[txt_idx['EXT'] + attr_val_code + attr_val_offs]
+        if dom_attr_val >= 25:
+            attr_val_offs = 250
+        elif dom_attr_val >= 16:
+            attr_val_offs = 200
+        elif dom_attr_val >= 11:
+            attr_val_offs = 150
+        elif dom_attr_val >= 6:
+            attr_val_offs = 100
+        elif dom_attr_val >= 3:
+            attr_val_offs = 50
+
+        if attr_val_code > 0:
+            return texts[txt_idx['EXT'] + attr_val_code + attr_val_offs]
 
         return ''
 

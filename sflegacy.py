@@ -1092,12 +1092,12 @@ def enable_popup(actor_id, *args):
     #     popup_stamp = 0
 
     # if len(args) > 0:
-        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_OVER, show_popup)
-        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_MOVE,
-        #                                    position_popup)
-        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_OUT, hide_popup)
-        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, hide_popup)
-        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, hide_popup)
+    #     actor[actor_id].add_event_listener(MouseEvent.MOUSE_OVER, show_popup)
+    #     actor[actor_id].add_event_listener(MouseEvent.MOUSE_MOVE,
+    #                                        position_popup)
+    #     actor[actor_id].add_event_listener(MouseEvent.MOUSE_OUT, hide_popup)
+    #     actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, hide_popup)
+    #     actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, hide_popup)
 
     # actorpopup_stamp[actor_id] = my_stamp
-    pass
+    print actor_id, args

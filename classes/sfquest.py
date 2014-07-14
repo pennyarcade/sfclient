@@ -103,8 +103,8 @@ class Quest(object):
         '''
         # check for cached value
         if not self.qtitle:
-            if texts[self.get_offs()]:
-                self.qtitle = texts[self.get_offs()]
+            if texts[self.__get_offs()]:
+                self.qtitle = texts[self.__get_offs()]
 
             # Error msg if no quest title found
             # return 'ERR QID=%d QT=%d OFS=%d' % (

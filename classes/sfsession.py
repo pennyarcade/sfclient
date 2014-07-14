@@ -88,7 +88,7 @@ class Session(object):
             Send formatted request to server
         '''
         if action == ACT['GET_CHAT_HISTORY']:
-            if not on_stage(CNT['IF_LOGOUT']):
+            if not on_stage(CNT['IF_LOGOUT'], actor):
                 return
             if (self.param_poll_tunnel_url != "") and self.poll_lock:
                 return

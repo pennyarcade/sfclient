@@ -262,7 +262,8 @@ class Savegame(object):
                 )
 
         sg_idx = SG['UNREAD']['MESSAGES']
-        if (int(savegame[sg_idx]) > 0) and (not on_stage(CNT['POST']['LIST'])):
+        if ((int(savegame[sg_idx]) > 0)
+            and (not on_stage(CNT['POST']['LIST'], actor))):
             pulse_post = True
 
         if int(savegame[SG['LOCKDURATION']]) != 0:

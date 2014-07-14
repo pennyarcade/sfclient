@@ -1021,7 +1021,8 @@ def request_signup(evt):
             return
 
     if get_child_by_name(actor[CB['AGB_CHECKED']].name):
-        if (param_bullshit_text != "") and (on_stage(CB['FUCK']['CHECKED'])):
+        if ((param_bullshit_text != "")
+            and (on_stage(CB['FUCK']['CHECKED'], actor))):
             param_cid = param_bullshit_cid
             shared_obj.data.cid = param_cid
             shared_obj.flush()
@@ -10438,7 +10439,7 @@ def visible_to_front(*actor_ids):
                 return
 
             with actor[actor_id]:
-                if on_stage(actor_id):
+                if on_stage(actor_id, actor):
                     actor[actor_id].add(actor_id)
 
 
@@ -11294,7 +11295,7 @@ def action_handler(event, session):
         par_str = data_str[3:]
 
     par = par_str.split("")
-    if on_stage(BTN['FIGHT_SKIP']):
+    if on_stage(BTN['FIGHT_SKIP'], actor):
         return
 
     set_title_bar()
@@ -11644,13 +11645,13 @@ def action_handler(event, session):
 
         if case(RESP['REQUEST']['GUILD_QUIET']):
             destroy_guild_btn_timer = True
-            if on_stage(LBL['GILDE']['CHAT_CAPTION']):
+            if on_stage(LBL['GILDE']['CHAT_CAPTION'], actor):
                 send_action(ACT['SCREEN']['GILDEN'])
             break
 
         if case(RESP['REQUEST']['GUILD']):
             destroy_guild_btn_timer = True
-            if on_stage(LBL['GILDE']['CHAT_CAPTION']):
+            if on_stage(LBL['GILDE']['CHAT_CAPTION'], actor):
                 send_action(ACT['SCREEN']['GILDEN'])
             else:
                 pulse_gilde = True
@@ -11764,7 +11765,7 @@ def action_handler(event, session):
                                 tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
                                 if tmp_array[i].lower().find(tmp_str) != -1:
-                                    if on_stage(INP['GILDE_CHAT']):
+                                    if on_stage(INP['GILDE_CHAT'], actor):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
                     else:
@@ -11793,7 +11794,7 @@ def action_handler(event, session):
                                 tmp_str = offline_guild_members[j].lower()
                                 tmp_str += ":§"
                                 if tmp_array[i].lower().find(tmp_str) != -1:
-                                    if on_stage(INP['GILDE_CHAT']):
+                                    if on_stage(INP['GILDE_CHAT'], actor):
                                         send_action(ACT['SCREEN']['GILDEN'])
                                     break
 
@@ -11829,7 +11830,7 @@ def action_handler(event, session):
                             tmp_str = offline_guild_members[j].lower()
                             tmp_str += ":§"
                             if tmp_array[i].lower().find(tmp_str) != -1:
-                                if on_stage(INP['GILDE_CHAT']):
+                                if on_stage(INP['GILDE_CHAT'], actor):
                                     send_action(ACT['SCREEN']['GILDEN'])
                                 break
 
@@ -11837,7 +11838,7 @@ def action_handler(event, session):
 
             if ((new_crest_suggested != "")
                     and (not first_chat_fill)
-                    and (on_stage(INP['GILDE_CHAT']))):
+                    and (on_stage(INP['GILDE_CHAT'], actor))):
                 clickchat_line(new_crest_suggested)
 
             new_crest_suggested = ""
@@ -11874,7 +11875,7 @@ def action_handler(event, session):
 
             chat_line(decode_chat(par[0]), False, get_hl_index(par[0]))
 
-            if not on_stage(INP['GILDE_CHAT']):
+            if not on_stage(INP['GILDE_CHAT'], actor):
                 pulse_gilde = True
             break
 
@@ -12080,7 +12081,7 @@ def action_handler(event, session):
         if case(RESP['OTHER_GUILD']):
             destroy_guild_btn_timer = True
 
-            if (not on_stage(BNC['GILDE']['CREST'])
+            if (not on_stage(BNC['GILDE']['CREST'], actor)
                     or (act == RESP['OTHER_GUILD'])
                     or (last_guild_crest_id != par[0].split("/")[0])
                     or (is_mine and (oldcreststring == old_crest_str()))):
@@ -12417,7 +12418,7 @@ def action_handler(event, session):
                 ruhmes_halle_such_string = par[1]
                 ruhmes_halle_such_name = True
 
-            if not on_stage(IMG['SCR']['HALLE']['BG']):
+            if not on_stage(IMG['SCR']['HALLE']['BG'], actor):
                 show_hall_screen()
 
             current = actor[CNT['HALL_LIST']]
@@ -12746,7 +12747,7 @@ def action_handler(event, session):
                 RESP['SAVEGAME']['MIRROR'],
                 RESP['MOVE']['TOWER_ITEM']):
             SAVE.parse(par[0])
-            if on_stage(IMG['SCR']['CHAR_BG']):
+            if on_stage(IMG['SCR']['CHAR_BG'], actor):
                 if act == RESP['MOVE']['TOWER_ITEM']:
                     show_tower_screen(par)
                 else:
@@ -12759,7 +12760,7 @@ def action_handler(event, session):
                         play(SND['MIRROR'])
 
                     display_inventory(
-                        None, on_stage(IMG['SCR']['CHAR_BG_RIGHT'])
+                        None, on_stage(IMG['SCR']['CHAR_BG_RIGHT'], actor)
                     )
 
                     for i in range(13):
@@ -12786,7 +12787,7 @@ def action_handler(event, session):
                 special_action = 0
 
             LOG.info("Magic shop says special action is" + special_action)
-            if on_stage(IMG['SCR']['FIDGET_BG']):
+            if on_stage(IMG['SCR']['FIDGET_BG'], actor):
                 display_inventory()
             else:
                 load(IMG['SCR']['FIDGET_BG'])
@@ -12801,7 +12802,7 @@ def action_handler(event, session):
             else:
                 special_action = 0
             LOG.info("Weapon shop says special action is" + special_action)
-            if on_stage(IMG['SCR']['SHAKES_BG']):
+            if on_stage(IMG['SCR']['SHAKES_BG'], actor):
                 display_inventory()
             else:
                 load(IMG['SCR']['SHAKES_BG'])
@@ -12984,7 +12985,7 @@ def action_handler(event, session):
             break
 
         if case(ERR['TOO_EXPENSIVE']):
-            if on_stage(BTN['MODIFY_CHARACTER']):
+            if on_stage(BTN['MODIFY_CHARACTER'], actor):
                 charface = revertface
                 show_option_screen()
 
@@ -13333,7 +13334,7 @@ def error_message(msg=""):
     if msg != "":
         LOG.error("Error message: " + msg)
 
-        if on_stage(SHP['FUCK']['BLACK_SQUARE']):
+        if on_stage(SHP['FUCK']['BLACK_SQUARE'], actor):
             label = actor[LBL['ERROR']]
             label.text = msg
             label.scaleX = 1
@@ -13343,12 +13344,12 @@ def error_message(msg=""):
 
             add(LBL['ERROR'])
         else:
-            if on_stage(CNT['GILDE']['LIST']):
+            if on_stage(CNT['GILDE']['LIST'], actor):
                 if msg.replace(" ", "") != "":
                     chat_line(msg, True)
             else:
-                if ((on_stage(BTN['CREATE_CHARACTER'])
-                     and (not on_stage(IMG['IF']['WINDOW'])))):
+                if ((on_stage(BTN['CREATE_CHARACTER'], actor)
+                     and (not on_stage(IMG['IF']['WINDOW'], actor)))):
                     label = actor[LBL['CREATE']['RACE_DESC']]
                     label.default_text_format = FontFormatClassError
                     label.text = msg
@@ -13362,32 +13363,32 @@ def error_message(msg=""):
                     label.text = msg
                     label.scaleX = 1
                     label.scaleY = 1
-                    if on_stage(BTN['SHOPS_NEWWAREZ']):
+                    if on_stage(BTN['SHOPS_NEWWAREZ'], actor):
                         label.x = (POS['SHOP']['ERROR_X']
                                    - int(label.text_width / 2))
                         label.y = POS['SHOP']['ERROR_Y']
-                    elif on_stage(IMG['TOILET']):
+                    elif on_stage(IMG['TOILET'], actor):
                         label.x = (POS['SHOP']['ERROR_X'] - 15
                                    - int(label.text_width / 2))
                         label.y = 720
-                    elif on_stage(BTN['QUEST']['CANCEL']):
+                    elif on_stage(BTN['QUEST']['CANCEL'], actor):
                         label.x = (POS['IF']['ERROR_X']
                                    - int(label.text_width / 2))
                         label.y = POS['QUEST']['ERROR_Y']
-                    elif on_stage(IMG['POST_BG']):
+                    elif on_stage(IMG['POST_BG'], actor):
                         label.x = (POS['IF']['ERROR_X']
                                    - int(label.text_width / 2))
                         label.y = POS['QUEST']['ERROR_Y']
-                    elif on_stage(LBL['STALL_TITEL']):
+                    elif on_stage(LBL['STALL_TITEL'], actor):
                         label.x = (POS['IF']['ERROR_X']
                                    - int(label.text_width / 2))
                         label.y = POS['QUEST']['ERROR_Y']
-                    elif on_stage(BTN['CHAR_ATTACK']):
+                    elif on_stage(BTN['CHAR_ATTACK'], actor):
                         label.scaleX = 0.7
                         label.scaleY = 0.7
                         label.x = 280 + 500 + 235 - label.width / 2
                         label.y = 100 + 657
-                    elif on_stage(SHP['MAINQUEST']):
+                    elif on_stage(SHP['MAINQUEST'], actor):
                         label.x = (POS['IF']['ERROR_X']
                                    - int(label.text_width / 2))
                         label.y = POS['MQ']['ERROR_Y']
@@ -13432,7 +13433,7 @@ def tv_timer_event_handler():
         else:
             hide(IMG['TV'] + i)
 
-    if not on_stage(IMG['TV']):
+    if not on_stage(IMG['TV'], actor):
         tv_timer.stop()
 
         for i in range(4):
@@ -13457,7 +13458,7 @@ def witch_timer_event_handler():
         else:
             hide(IMG['WITCH_ANI'] + i)
 
-    if not on_stage(IMG['WITCH']):
+    if not on_stage(IMG['WITCH'], actor):
         witch_ani_timer.stop()
 
 
@@ -13587,14 +13588,14 @@ def show_popup(evt, *args):
         remove_event_listener(MouseEvent.MOUSE_UP, hide_popup)
         return
 
-    if on_stage(POPUP_INFO):
+    if on_stage(POPUP_INFO, actor):
         remove(POPUP_INFO)
 
     actor[POPUP_INFO] = MovieClip()
     if suggestion_slot[actor_id]:
         actor[IMG['SLOT_SUGGESTION']].x = actor[suggestion_slot[actor_id]].x
         actor[IMG['SLOT_SUGGESTION']].y = actor[suggestion_slot[actor_id]].y
-        if not on_stage(IMG['SLOT_SUGGESTION']):
+        if not on_stage(IMG['SLOT_SUGGESTION'], actor):
             add_some(IMG['SLOT_SUGGESTION'], suggestion_slot[actor_id])
             actor[IMG['SLOT_SUGGESTION']].alpha = 0
             fade_in(IMG['SLOT_SUGGESTION'])
