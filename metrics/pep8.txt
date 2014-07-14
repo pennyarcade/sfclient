@@ -34,7 +34,7 @@ classes/sfitem.py:21:1: E302 expected 2 blank lines, found 1
 checking classes/sfmirror.py
 checking classes/sfquest.py
 checking classes/sfsavegame.py
-classes/sfsavegame.py:44:5: E303 too many blank lines (2)
+classes/sfsavegame.py:48:5: E303 too many blank lines (2)
     Separate top-level function and class definitions with two blank lines.
 
     Method definitions inside a class are separated by a single blank line.
