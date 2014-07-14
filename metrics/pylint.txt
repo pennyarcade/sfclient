@@ -259,7 +259,7 @@ R0914:11268,0: action_handler: Too many local variables (127/15)
 C0103:11272,4: action_handler: Invalid constant name "oldcreststring"
 W0601:11272,4: action_handler: Global variable 'oldcreststring' undefined at the module level
 W0603:11273,4: action_handler: Using the global statement
-E1120:11275,11: action_handler: No value for argument 'session' in constructor call
+E0602:11275,25: action_handler: Undefined variable 'session'
 E0601:11283,11: action_handler: Using variable 'guild_blink_ready' before assignment
 E0602:11284,12: action_handler: Undefined variable 'send_action'
 E0602:11443,16: action_handler: Undefined variable 'param_reconnect'
@@ -728,7 +728,7 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|undefined-variable           |264         |
+|undefined-variable           |265         |
 +-----------------------------+------------+
 |unused-variable              |167         |
 +-----------------------------+------------+
@@ -758,11 +758,11 @@ Messages
 +-----------------------------+------------+
 |too-many-lines               |3           |
 +-----------------------------+------------+
-|no-value-for-parameter       |2           |
-+-----------------------------+------------+
 |too-many-function-args       |1           |
 +-----------------------------+------------+
 |redefined-outer-name         |1           |
++-----------------------------+------------+
+|no-value-for-parameter       |1           |
 +-----------------------------+------------+
 |no-self-use                  |1           |
 +-----------------------------+------------+
