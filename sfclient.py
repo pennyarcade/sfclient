@@ -11272,7 +11272,7 @@ def action_handler(event):
     global oldcreststring
     global SAVE
 
-    SAVE = Savegame(LOG)
+    SAVE = Savegame(LOG, session)
 
     data_str = str(event.data)
     is_mine = False
