@@ -37,6 +37,7 @@ class Session(object):
         self.fight_lock = False
         self.mp_api_user_id = 'notset'
         self.mp_api_user_token = 'notset'
+        self.last_act = None
 
         self.server = 's31.sfgame.de'
 
@@ -89,38 +90,36 @@ class Session(object):
         if action == ACT['GET_CHAT_HISTORY']:
             if not on_stage(CNT['IF_LOGOUT']):
                 return
-            if self.param_poll_tunnel_url != "":
-                if self.poll_lock:
-                    return
-            else:
-                if self.poll_lock or self.send_lock or self.fight_lock:
-                    return action
-        else:
-            if self.send_lock:
-                if (action not in (
-                        ACT['VALIDATE'],
-                        ACT['SEND_CHAT'],
-                        ACT['GUILD']['DONATE'],
-                        ACT['REQUEST']['GUILD_NAMES'],
-                        ACT['REQUEST']['CHAR'],
-                        ACT['POST']['SEND'])):
-                    self.log.warning(''.join([
-                        "Aktionsbefehl wird ignoriert, weil noch auf eine ",
-                        "Serverantwort gewartet wird: ",
-                        str(action)
-                    ]))
-                    return
-            else:
-                if self.fight_lock:
-                    self.log.warning(''.join([
-                        "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
-                        "Ereignis stattfindet:",
-                        str(action)
-                    ]))
-                    return
+            if (self.param_poll_tunnel_url != "") and self.poll_lock:
+                return
+            elif self.poll_lock or self.send_lock or self.fight_lock:
+                return action
+
+        elif self.send_lock:
+            if (action not in (
+                    ACT['VALIDATE'],
+                    ACT['SEND_CHAT'],
+                    ACT['GUILD']['DONATE'],
+                    ACT['REQUEST']['GUILD_NAMES'],
+                    ACT['REQUEST']['CHAR'],
+                    ACT['POST']['SEND'])):
+                self.log.warning(''.join([
+                    "Aktionsbefehl wird ignoriert, weil noch auf eine ",
+                    "Serverantwort gewartet wird: ",
+                    str(action)
+                ]))
+                return
+
+        elif self.fight_lock:
+            self.log.warning(''.join([
+                "Aktionsbefehl wird ignoriert, weil ein wichtiges ",
+                "Ereignis stattfindet:",
+                str(action)
+            ]))
+            return
 
         data_str = str(action).zfill(3) + ';'.join(params)
-        last_act = action
+        self.last_act = action
 
         fail_try = 1
 

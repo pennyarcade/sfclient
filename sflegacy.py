@@ -657,7 +657,7 @@ def remove_event_listener(*args):
     print args
 
 
-def on_stage(actor_id):
+def on_stage(actor_id, actor):
     '''
         actor is schon on screen?
     '''
@@ -1078,7 +1078,7 @@ def ach_level(save, ach_index, almode=0):
     return ''
 
 
-def enable_popup(actor_id, actor, actorpopup_stamp, *args):
+def enable_popup(actor_id, *args):
     '''
         enable popup actor
     '''
@@ -1087,16 +1087,17 @@ def enable_popup(actor_id, actor, actorpopup_stamp, *args):
     # text_x = 0
     # my_stamp = 0
 
-    my_stamp, popup_stamp = popup_stamp + 1
-    if popup_stamp > 10000:
-        popup_stamp = 0
+    # my_stamp, popup_stamp = popup_stamp + 1
+    # if popup_stamp > 10000:
+    #     popup_stamp = 0
 
-    if len(args) > 0:
-        actor[actor_id].add_event_listener(MouseEvent.MOUSE_OVER, show_popup)
-        actor[actor_id].add_event_listener(MouseEvent.MOUSE_MOVE,
-                                           position_popup)
-        actor[actor_id].add_event_listener(MouseEvent.MOUSE_OUT, hide_popup)
-        actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, hide_popup)
-        actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, hide_popup)
+    # if len(args) > 0:
+        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_OVER, show_popup)
+        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_MOVE,
+        #                                    position_popup)
+        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_OUT, hide_popup)
+        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_DOWN, hide_popup)
+        # actor[actor_id].add_event_listener(MouseEvent.MOUSE_UP, hide_popup)
 
-    actorpopup_stamp[actor_id] = my_stamp
+    # actorpopup_stamp[actor_id] = my_stamp
+    pass

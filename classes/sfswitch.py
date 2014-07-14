@@ -7,14 +7,21 @@
     by Chocokiko
 
     Switch Object
-
+        Taken from Activestate.command
+        @author: Brien Beck [http://code.activestate.com/recipes/users/2425329/]
+        @see: http://code.activestate.com/recipes/
+                410692-readable-switch-construction-without-lambdas-or-di/
 '''
 
 
 class Switch(object):
     '''
         Make Switch statements possible
-        TODO: Credits for this classs?
+
+        Taken from Activestate.command
+        @author: Brien Beck [http://code.activestate.com/recipes/users/2425329/]
+        @see: http://code.activestate.com/recipes/
+                410692-readable-switch-construction-without-lambdas-or-di/
     '''
     def __init__(self, value):
         '''
@@ -42,3 +49,9 @@ class Switch(object):
             return True
         else:
             return False
+
+    def get_value(self):
+        '''
+            return switch value
+        '''
+        return self.value

@@ -54,6 +54,41 @@ class Item(object):
             self.pic -= 1000
             self.cclass += 1
 
+    def __get_suffix(self, texts):
+        '''
+            get attr suffix for item name
+        '''
+        txt_idx = TXT['ITMNAME']
+
+        if self.cclass <= 0:
+            dom_attr_typ = -1
+            dom_attr_val = 0
+            attr_val_code = 0
+            attr_val_offs = 0
+
+            for i in range(3):
+                if self.attr[i]['val'] > dom_attr_val:
+                    dom_attr_typ = self.attr[i]['typ']
+                    dom_attr_val = self.attr[i]['val']
+
+            attr_val_code = pow(2, dom_attr_typ - 1)
+
+            if dom_attr_val >= 25:
+                attr_val_offs = 250
+            elif dom_attr_val >= 16:
+                attr_val_offs = 200
+            elif dom_attr_val >= 11:
+                attr_val_offs = 150
+            elif dom_attr_val >= 6:
+                attr_val_offs = 100
+            elif dom_attr_val >= 3:
+                attr_val_offs = 50
+
+            if attr_val_code > 0:
+                return texts[txt_idx['EXT'] + attr_val_code + attr_val_offs]
+
+        return ''
+
     def from_sg(self, sg_index=0, save=False, logger=None):
         '''
             setup item object from savegame
@@ -122,42 +157,8 @@ class Item(object):
         '''
         txt_idx = TXT['ITMNAME']
         txt_base = 0
-        txt_suffix = ""
 
-        if self.cclass <= 0:
-            dom_attr_typ = -1
-            dom_attr_val = 0
-            attr_val_code = 0
-            attr_val_offs = 0
-
-            attrim_in = list()
-            for i in range(10):
-                attrim_in[i] = False
-
-            for i in range(3):
-                if self.attr[i]['val'] > dom_attr_val:
-                    dom_attr_typ = self.attr[i]['typ']
-                    dom_attr_val = self.attr[i]['val']
-                if (self.attr[i]['typ'] > 0) and (self.attr[i]['val'] > 0):
-                    attrim_in[self.attr[i]['typ'] - 1] = True
-
-            attr_val_code = pow(2, dom_attr_typ - 1)
-
-            if dom_attr_val >= 25:
-                attr_val_offs = 250
-            elif dom_attr_val >= 16:
-                attr_val_offs = 200
-            elif dom_attr_val >= 11:
-                attr_val_offs = 150
-            elif dom_attr_val >= 6:
-                attr_val_offs = 100
-            elif dom_attr_val >= 3:
-                attr_val_offs = 50
-
-            if attr_val_code > 0:
-                txt_suffix = texts[
-                    txt_idx['EXT'] + attr_val_code + attr_val_offs
-                ]
+        txt_suffix = self.__get_suffix(texts)
 
         if self.typ >= 8:
             txt_base = txt_idx[str(self.typ)]
@@ -187,8 +188,10 @@ class Item(object):
             return result
 
         result = texts[txt_base + self.pic - 1] + " " + txt_suffix
+
         if txt_suffix == "":
             result = texts[txt_base + self.pic - 1]
+
         return result
 
     def get_file(self, itm_color):
@@ -268,17 +271,14 @@ class Item(object):
                 if owner_class == 1:
                     if slot_num == 9:
                         item_id = IMG['EMPTY']['SLOT']['9_1']
+                    elif no_shield_flag:
+                        item_id = IMG['NO_SHIELD']
                     else:
-                        if no_shield_flag:
-                            item_id = IMG['NO_SHIELD']
-                        else:
-                            item_id = IMG['EMPTY']['SLOT']['10']
-                elif owner_class == 2:
-                    if slot_num == 9:
-                        item_id = IMG['EMPTY']['SLOT']['9_2']
-                elif owner_class == 3:
-                    if slot_num == 9:
-                        item_id = IMG['EMPTY']['SLOT']['9_3']
+                        item_id = IMG['EMPTY']['SLOT']['10']
+                elif (owner_class == 2) and (slot_num == 9):
+                    item_id = IMG['EMPTY']['SLOT']['9_2']
+                elif (owner_class == 3) and (slot_num == 9):
+                    item_id = IMG['EMPTY']['SLOT']['9_3']
 
         return item_id
 

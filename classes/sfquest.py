@@ -45,6 +45,34 @@ class Quest(object):
         self.get_title(texts)
         self.get_text(texts)
 
+    def __get_offs(self):
+        '''
+            get texts offset
+        '''
+        qst = TXT['QUEST']
+        offs = qst['SCOUT']['TITLE']
+
+        for case in Switch(self.qtype):
+            if case(1):
+                offs = qst['SCOUT']['TITLE'] + self.get_random(20, 0)
+                break
+            if case(2):
+                offs = qst['COLLECT']['TITLE'] + self.get_random(20, 0)
+                break
+            if case(3):
+                offs = qst['FETCH']['TITLE'] + self.get_random(20, 0)
+            if case(4):
+                offs = qst['KILL']['TITLE'] - self.qmonster - 1
+                break
+            if case(5):
+                offs = qst['TRANSPORT']['TITLE'] + self.get_random(21, 0)
+                break
+            if case(6):
+                offs = qst['ESCORT']['TITLE'] + self.get_random(23, 0)
+                break
+
+        return offs
+
     def from_sg(self, qid, save):
         '''
             setup Quest object from savegame
@@ -75,35 +103,12 @@ class Quest(object):
         '''
         # check for cached value
         if not self.qtitle:
-            qst = TXT['QUEST']
-            offs = qst['SCOUT']['TITLE']
-
-            for case in Switch(self.qtype):
-                if case(1):
-                    offs = qst['SCOUT']['TITLE'] + self.get_random(20, 0)
-                    break
-                if case(2):
-                    offs = qst['COLLECT']['TITLE'] + self.get_random(20, 0)
-                    break
-                if case(3):
-                    offs = qst['FETCH']['TITLE'] + self.get_random(20, 0)
-                if case(4):
-                    offs = qst['KILL']['TITLE']
-                    offs -= self.qmonster - 1
-                    break
-                if case(5):
-                    offs = qst['TRANSPORT']['TITLE'] + self.get_random(21, 0)
-                    break
-                if case(6):
-                    offs = qst['ESCORT']['TITLE'] + self.get_random(23, 0)
-                    break
-
-            if texts[offs]:
-                self.qtitle = texts[offs]
+            if texts[self.get_offs()]:
+                self.qtitle = texts[self.get_offs()]
 
             # Error msg if no quest title found
             # return 'ERR QID=%d QT=%d OFS=%d' % (
-            #     quest_id, quest_type, offs
+            #     quest_id, quest_type, self.get_offs()
             # )
 
         return self.qtitle
