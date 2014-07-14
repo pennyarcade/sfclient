@@ -22,8 +22,6 @@ W0511:14724,0: : TODO: What does this do?
 W0511:14740,0: : TODO: Obsolete?
 W0511:14760,0: : TODO: set via requests params
 C0302:  1,0: : Too many lines in module (19271)
-F0401:161,0: : Unable to import 'classes.sfface' (invalid syntax (<string>, line 83))
-E0611:161,0: : No name 'sfface' in module 'classes'
 C0103:171,0: : Invalid constant name "param_obj"
 C0103:172,0: : Invalid constant name "actor"
 C0103:173,0: : Invalid constant name "texts"
@@ -594,8 +592,6 @@ R0903: 14,0: Witch: Too few public methods (0/2)
 ************* Module classes.sfsavegame
 W0511:108,0: : TODO: Tower object
 W0511:120,0: : TODO: save in character object
-F0401: 26,0: : Unable to import 'classes.sfface' (invalid syntax (<string>, line 83))
-E0611: 26,0: : No name 'sfface' in module 'classes'
 R0902: 32,0: Savegame: Too many instance attributes (9/7)
 R0201: 51,4: Savegame.__get_face: Method could be a function
 R0913: 97,4: Savegame.parse: Too many arguments (6/5)
@@ -636,7 +632,22 @@ W0201:158,12: Savegame.parse: Attribute 'level_up' defined outside __init__
 ************* Module classes.sfguild
 R0903: 14,0: Guild: Too few public methods (0/2)
 ************* Module classes.sfface
-E0001: 83,0: : invalid syntax
+R0902: 18,0: Face: Too many instance attributes (14/7)
+R0913: 22,4: Face.__init__: Too many arguments (14/5)
+E0213: 43,4: Face.__color_offset: Method should have "self" as first argument
+E0602: 47,11: Face.__color_offset: Undefined variable 'self'
+E0602: 48,19: Face.__color_offset: Undefined variable 'self'
+E1121: 78,27: Face.randomize_char_image: Too many positional arguments for method call
+E0602: 81,43: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
+E1121: 82,27: Face.randomize_char_image: Too many positional arguments for method call
+E0602: 83,42: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
+E0602: 84,42: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
+E1121: 85,26: Face.randomize_char_image: Too many positional arguments for method call
+E0602: 85,46: Face.randomize_char_image: Undefined variable 'C_HAIR'
+E0602: 86,45: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
+E0602: 87,46: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
+E1121: 88,30: Face.randomize_char_image: Too many positional arguments for method call
+E0602: 88,50: Face.randomize_char_image: Undefined variable 'C_SPECIAL2'
 ************* Module classes.sftoilet
 C0301: 72,0: : Line too long (81/79)
 C0301: 79,0: : Line too long (81/79)
@@ -657,8 +668,6 @@ R0913: 26,4: Item.__init__: Too many arguments (11/5)
 R0201: 57,4: Item.__get_attr_offs: Method could be a function
 W0612: 62,12: Item.__get_attr_offs: Unused variable 'attr_val_offs'
 ************* Module classes.sfcharacter
-F0401: 13,0: : Unable to import 'classes.sfface' (invalid syntax (<string>, line 83))
-E0611: 13,0: : No name 'sfface' in module 'classes'
 R0801:  1,0: : Similar lines in 4 files
 ==classes.sfsavegame:210
 ==sfclient:11424
@@ -671,7 +680,7 @@ R0801:  1,0: : Similar lines in 4 files
 
 Report
 ======
-4374 statements analysed.
+4428 statements analysed.
 
 Messages by category
 --------------------
@@ -681,11 +690,11 @@ Messages by category
 +===========+=======+=========+===========+
 |convention |66     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |53     |NC       |NC         |
+|refactor   |55     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |warning    |247    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |277    |NC       |NC         |
+|error      |287    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -693,23 +702,21 @@ Messages by category
 % errors / warnings by module
 -----------------------------
 
-+--------------------+------+--------+---------+-----------+
-|module              |error |warning |refactor |convention |
-+====================+======+========+=========+===========+
-|sfclient            |89.17 |91.90   |56.60    |87.88      |
-+--------------------+------+--------+---------+-----------+
-|classes.sfsavegame  |8.66  |4.05    |11.32    |0.00       |
-+--------------------+------+--------+---------+-----------+
-|classes.sfsession   |1.44  |2.43    |5.66     |0.00       |
-+--------------------+------+--------+---------+-----------+
-|classes.sfcharacter |0.36  |0.00    |1.89     |0.00       |
-+--------------------+------+--------+---------+-----------+
-|classes.sfface      |0.36  |0.00    |0.00     |0.00       |
-+--------------------+------+--------+---------+-----------+
-|classes.sfitem      |0.00  |1.21    |5.66     |0.00       |
-+--------------------+------+--------+---------+-----------+
-|sflegacy            |0.00  |0.40    |3.77     |1.52       |
-+--------------------+------+--------+---------+-----------+
++-------------------+------+--------+---------+-----------+
+|module             |error |warning |refactor |convention |
++===================+======+========+=========+===========+
+|sfclient           |85.71 |91.90   |54.55    |87.88      |
++-------------------+------+--------+---------+-----------+
+|classes.sfsavegame |8.01  |4.05    |10.91    |0.00       |
++-------------------+------+--------+---------+-----------+
+|classes.sfface     |4.88  |0.00    |3.64     |0.00       |
++-------------------+------+--------+---------+-----------+
+|classes.sfsession  |1.39  |2.43    |5.45     |0.00       |
++-------------------+------+--------+---------+-----------+
+|classes.sfitem     |0.00  |1.21    |5.45     |0.00       |
++-------------------+------+--------+---------+-----------+
+|sflegacy           |0.00  |0.40    |3.64     |1.52       |
++-------------------+------+--------+---------+-----------+
 
 
 
@@ -719,7 +726,7 @@ Messages
 +-------------------------------+------------+
 |message id                     |occurrences |
 +===============================+============+
-|undefined-variable             |255         |
+|undefined-variable             |264         |
 +-------------------------------+------------+
 |unused-variable                |162         |
 +-------------------------------+------------+
@@ -731,15 +738,17 @@ Messages
 +-------------------------------+------------+
 |used-before-assignment         |16          |
 +-------------------------------+------------+
-|too-many-arguments             |15          |
+|too-many-arguments             |16          |
 +-------------------------------+------------+
 |too-many-statements            |9           |
 +-------------------------------+------------+
 |too-many-branches              |9           |
 +-------------------------------+------------+
+|too-many-instance-attributes   |7           |
++-------------------------------+------------+
 |too-many-locals                |6           |
 +-------------------------------+------------+
-|too-many-instance-attributes   |6           |
+|too-many-function-args         |5           |
 +-------------------------------+------------+
 |too-few-public-methods         |5           |
 +-------------------------------+------------+
@@ -751,19 +760,13 @@ Messages
 +-------------------------------+------------+
 |unused-argument                |3           |
 +-------------------------------+------------+
-|no-name-in-module              |3           |
-+-------------------------------+------------+
-|import-error                   |3           |
-+-------------------------------+------------+
 |no-self-use                    |2           |
-+-------------------------------+------------+
-|too-many-function-args         |1           |
-+-------------------------------+------------+
-|syntax-error                   |1           |
 +-------------------------------+------------+
 |redefined-outer-name           |1           |
 +-------------------------------+------------+
 |no-value-for-parameter         |1           |
++-------------------------------+------------+
+|no-self-argument               |1           |
 +-------------------------------+------------+
 |duplicate-code                 |1           |
 +-------------------------------+------------+
@@ -774,7 +777,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.00/10
+Your code has been rated at 5.93/10
 
 Raw metrics
 -----------
@@ -782,13 +785,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5471   |15.51 |NC       |NC         |
+|code      |5563   |15.72 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27899  |79.11 |NC       |NC         |
+|docstring |27925  |78.89 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |653    |1.85  |NC       |NC         |
+|comment   |656    |1.85  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1241   |3.52  |NC       |NC         |
+|empty     |1252   |3.54  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -813,7 +816,7 @@ External dependencies
     datetime (sfclient,classes.sfsavegame)
     requests (classes.sfsession)
     sfbuildinterface (sfclient)
-    sfglobals (sfclient,classes.sfquest,classes.sfsavegame,classes.sfsession,classes.sfitem)
+    sfglobals (classes.sfsavegame,classes.sfquest,classes.sfface,classes.sfitem,classes.sfsession,sfclient)
     sflegacy (sflegacyfonts,sfclient,classes.sfsavegame,classes.sfsession)
     sflegacyfonts (sfclient)
     types (sfclient)
@@ -826,11 +829,11 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |type     |number |old number |difference |%documented |%badname |
 +=========+=======+===========+===========+============+=========+
-|module   |19     |NC         |NC         |100.00      |0.00     |
+|module   |20     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |116    |NC         |NC         |100.00      |0.00     |
+|class    |117    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |54     |NC         |NC         |100.00      |0.00     |
+|method   |59     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 |function |214    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
