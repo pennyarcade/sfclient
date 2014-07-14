@@ -83,6 +83,7 @@ from sflegacy import URLLoaderdataFormat
 from sflegacy import URLRequest
 from sflegacy import on_stage
 from sflegacy import get_child_by_name
+from sflegacy import enable_popup
 
 from sfbuildinterface import build_interface
 

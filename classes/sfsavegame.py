@@ -26,6 +26,7 @@ from classes.sfmirror import Mirror
 from classes.sfface import Face
 
 from sflegacy import on_stage
+from sflegacy import enable_popup
 
 
 class Savegame(object):
@@ -41,14 +42,18 @@ class Savegame(object):
         self.can_rob = False
         self.tower_level = 0
 
+        self.gilden_id = 0
+
         self.log = logger
         self.session = session
+        self.arr = list()
 
     def __get_face(self, savegame):
         '''
             extract face from savegame
         '''
-        i = char_hair
+
+        i = savegame[SG['FACE']['2']]
         char_color = 0
         while i > 100:
             i -= 100
@@ -58,7 +63,7 @@ class Savegame(object):
             savegame[SG['FACE']['5']],
             savegame[SG['FACE']['3']],
             savegame[SG['CLASS']],
-            char_hair,
+            char_color,
             savegame[SG['FACE']['4']],
             savegame[SG['FACE']['7']],
             savegame[SG['FACE']['2']],
@@ -83,6 +88,12 @@ class Savegame(object):
         self.has_mirror = bin_str.substr(23, 1) == "1"
         self.can_rob = bin_str.substr(22, 1) == "1"
 
+    def get_array(self):
+        '''
+            return (unprocessed) array
+        '''
+        return self.arr
+
     def parse(self, str_save_game, fill_face_variables=True, no_spoil=False,
               actor=None, texts=None):
         '''
@@ -92,6 +103,7 @@ class Savegame(object):
 
         # parse into array of (mostly) numbers
         savegame = ("0/" + str_save_game).split("/")
+        self.arr = savegame
 
         # TODO: Tower object
         # Extract tower level from mount id
@@ -143,7 +155,7 @@ class Savegame(object):
             debug_info += str(i) + "=" + savegame[i] + ", "
 
         if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
-            level_up = True
+            self.level_up = True
             pulse_char = True
 
         last_level = int(savegame[SG['LEVEL']])
@@ -242,8 +254,8 @@ class Savegame(object):
             self.log.debug("Session ID für PHP Tunneling:" + session_id)
 
         if int(savegame[SG['GUILD']['INDEX']]) != gilden_id:
-            gilden_id = int(savegame[SG['GUILD']['INDEX']])
-            if gilden_id != 0:
+            self.gilden_id = int(savegame[SG['GUILD']['INDEX']])
+            if self.gilden_id != 0:
                 self.session.send_action(
                     ACT['REQUEST']['GUILD'],
                     savegame[SG['GUILD']['INDEX']]

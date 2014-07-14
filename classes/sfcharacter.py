@@ -10,6 +10,8 @@
 
 '''
 
+from classes.sfface import Face
+
 
 class Character(object):
     '''
@@ -19,3 +21,17 @@ class Character(object):
         '''
             Setup Character object
         '''
+        self.face = Face()
+        self.revertface = Face()
+
+    def set_face(self, sface):
+        '''
+            set Face
+        '''
+        self.face = sface
+
+    def set_revertface(self, sface):
+        '''
+            set Face backup for reverting
+        '''
+        self.revertface = sface

@@ -355,11 +355,11 @@ class SecurityDomain(BaseClass):
     currentDomain = None
 
 
-def get_child_by_name():
+def get_child_by_name(*args):
     '''
         obsolete?
     '''
-    pass
+    print args
 
 
 def get_quest_bg():
@@ -1078,14 +1078,14 @@ def ach_level(save, ach_index, almode=0):
     return ''
 
 
-def enable_popup(actor_id, *args):
+def enable_popup(actor_id, actor, actorpopup_stamp, *args):
     '''
         enable popup actor
     '''
-    popup_width = 0
-    text_y = 0
-    text_x = 0
-    my_stamp = 0
+    # popup_width = 0
+    # text_y = 0
+    # text_x = 0
+    # my_stamp = 0
 
     my_stamp, popup_stamp = popup_stamp + 1
     if popup_stamp > 10000:
