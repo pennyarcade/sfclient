@@ -14808,7 +14808,7 @@ def main():
 
     init_vars()
 
-    game_session = Session()
+    game_session = Session(LOG)
     configure(game_session)
 
     # response = s.login()
