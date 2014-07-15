@@ -10,9 +10,9 @@
 
 '''
 
-from sfglobals import SG
-from sfglobals import TXT
-from sfglobals import LBL
+from legacy.sfglobals import SG
+from legacy.sfglobals import TXT
+from legacy.sfglobals import LBL
 
 from classes.sfswitch import Switch
 

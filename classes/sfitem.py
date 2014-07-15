@@ -10,13 +10,13 @@
 
 '''
 
-from sfglobals import ARROW_MAX
-from sfglobals import ARROW_OFFS
-from sfglobals import SG
-from sfglobals import TXT
-from sfglobals import C
-from sfglobals import IMG
-from sfglobals import ITM_MAX
+from legacy.sfglobals import ARROW_MAX
+from legacy.sfglobals import ARROW_OFFS
+from legacy.sfglobals import SG
+from legacy.sfglobals import TXT
+from legacy.sfglobals import C
+from legacy.sfglobals import IMG
+from legacy.sfglobals import ITM_MAX
 
 
 class Item(object):

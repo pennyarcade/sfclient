@@ -9,7 +9,7 @@
     Module for obsolete legacy stuff
 '''
 
-from sflegacy import BaseClass
+from legacy.sflegacy import BaseClass
 
 
 class FontFormat(BaseClass):

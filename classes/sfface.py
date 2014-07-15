@@ -12,7 +12,7 @@
 
 import random
 
-from sfglobals import C
+from legacy.sfglobals import C
 
 
 class Face(object):

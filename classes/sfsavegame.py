@@ -13,20 +13,21 @@
 from datetime import datetime
 import math
 
-from sfglobals import SG
-from sfglobals import IMG
-from sfglobals import POS
-from sfglobals import LBL
-from sfglobals import TXT
-from sfglobals import ACT
-from sfglobals import CNT
-from sfglobals import BNC
+from legacy.sfglobals import SG
+from legacy.sfglobals import IMG
+from legacy.sfglobals import POS
+from legacy.sfglobals import LBL
+from legacy.sfglobals import TXT
+from legacy.sfglobals import ACT
+from legacy.sfglobals import CNT
+from legacy.sfglobals import BNC
 
 from classes.sfmirror import Mirror
 from classes.sfface import Face
 
-from sflegacy import on_stage
-from sflegacy import enable_popup
+from legacy.sflegacy import on_stage
+from legacy.sflegacy import enable_popup
+from legacy.sflegacy import ach_level
 
 
 class Savegame(object):

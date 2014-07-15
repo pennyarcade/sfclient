@@ -14,10 +14,10 @@ import random
 import time
 import requests
 
-from sfglobals import ACT
-from sfglobals import CNT
+from legacy.sfglobals import ACT
+from legacy.sfglobals import CNT
 
-from sflegacy import on_stage
+from legacy.sflegacy import on_stage
 
 from classes.sfexceptions import RequestFailedException
 
