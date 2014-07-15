@@ -58,6 +58,8 @@ class Item(object):
         '''
             get attr offset
         '''
+        attr_val_offs = 0
+
         if dom_attr_val >= 25:
             attr_val_offs = 250
         elif dom_attr_val >= 16:
@@ -69,6 +71,7 @@ class Item(object):
         elif dom_attr_val >= 3:
             attr_val_offs = 50
 
+        return attr_val_offs
 
     def __get_suffix(self, texts):
         '''
@@ -81,7 +84,6 @@ class Item(object):
 
         dom_attr_typ = -1
         dom_attr_val = 0
-        attr_val_offs = 0
 
         for i in range(3):
             if self.attr[i]['val'] > dom_attr_val:

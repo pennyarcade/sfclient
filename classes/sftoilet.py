@@ -69,14 +69,14 @@ class Toilet(object):
             actor[LBL_TOILET_AURA].text = texts[(TXT_TOILET_HINT + 4)].split(
                 "#").join(chr(13)).split("%1").join(str(toilet_level));
             actor[LBL_TOILET_AURA].x = (
-                (SCR_SHOP_BG_X + 248) - (actor[LBL_TOILET_AURA].text_width / 2));
+                (SCR_SHOP_BG_X + 248) - actor[LBL_TOILET_AURA].text_width / 2))
             toilet_tank_adjust_event();
             if (toiletTankDest != toiletTankCurrent){
                 toiletTankAdjustTimer.start();
             };
             if (item_added >= 0){
                 toiletItemAddFrameEvent = function (evt:TimerEvent){
-                    if ((((toiletItemAddFrame >= 50)) or (!(on_stage(TOILET))))){
+                    if (((toiletItemAddFrame >= 50) or (!(on_stage(TOILET))))):
                         actor[gatheredItemId].x = itemDestX;
                         actor[gatheredItemId].y = itemDestY;
                         actor[gatheredItemId].alpha = 1;
@@ -92,8 +92,10 @@ class Toilet(object):
                             actor[gatheredItemId].y = (
                                 (actor[gatheredItemId].y + itemDestY) / 2);
                         } else {
-                            actor[gatheredItemId].alpha = (toiletItemAddFrame / 35)
-                            actor[gatheredItemId].y = (actor[gatheredItemId].y - 5)
+                            actor[gatheredItemId].alpha =
+                                (toiletItemAddFrame / 35)
+                            actor[gatheredItemId].y =
+                                (actor[gatheredItemId].y - 5)
                         };
                     };
                     i = 0;
@@ -101,7 +103,7 @@ class Toilet(object):
                         hide((TOILET_FLUSH + i));
                         i++;
                     };
-                    show((TOILET_FLUSH + int(((toiletItemAddFrame / 50) * 7))));
+                    show(TOILET_FLUSH + int(((toiletItemAddFrame / 50) * 7)))
                     toiletItemAddFrame++;
                 };
                 toiletItemAddFrame = 0;
