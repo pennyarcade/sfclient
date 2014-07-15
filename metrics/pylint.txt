@@ -575,8 +575,6 @@ R0903: 14,0: Witch: Too few public methods (0/2)
 ************* Module classes.sfsavegame
 W0511:116,0: : TODO: Tower object
 W0511:128,0: : TODO: save in character object
-F0401: 18,0: : Unable to import 'legacy.sfserberglobals'
-E0611: 18,0: : No name 'sfserberglobals' in module 'legacy'
 R0902: 34,0: Savegame: Too many instance attributes (14/7)
 R0201: 59,4: Savegame.__get_face: Method could be a function
 R0913:105,4: Savegame.parse: Too many arguments (6/5)
@@ -645,7 +643,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |242    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |256    |NC       |NC         |
+|error      |255    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -656,9 +654,9 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |95.70 |93.39   |54.72    |100.00     |
+|sfclient           |96.08 |93.39   |54.72    |100.00     |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |4.30  |3.31    |11.32    |0.00       |
+|classes.sfsavegame |3.92  |3.31    |11.32    |0.00       |
 +-------------------+------+--------+---------+-----------+
 |classes.sfsession  |0.00  |2.48    |5.66     |0.00       |
 +-------------------+------+--------+---------+-----------+
@@ -709,10 +707,6 @@ Messages
 +-------------------------------+------------+
 |redefined-outer-name           |1           |
 +-------------------------------+------------+
-|no-name-in-module              |1           |
-+-------------------------------+------------+
-|import-error                   |1           |
-+-------------------------------+------------+
 |duplicate-code                 |1           |
 +-------------------------------+------------+
 |attribute-defined-outside-init |1           |
@@ -722,7 +716,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.03/10
+Your code has been rated at 6.04/10
 
 Raw metrics
 -----------
@@ -767,7 +761,7 @@ External dependencies
       \-sflegacy (sfclient,classes.sfsavegame,classes.sfsession)
       \-sflegacyfonts (sfclient)
       \-sfposrel (sfclient,classes.sfsavegame)
-      \-sfserverglobals (sfclient,classes.sfsession)
+      \-sfserverglobals (sfclient,classes.sfsavegame,classes.sfsession)
       \-sftextidx (sfclient,classes.sfquest,classes.sfsavegame,classes.sfitem)
     requests (classes.sfsession)
     types (sfclient)
