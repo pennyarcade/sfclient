@@ -17,7 +17,6 @@ from legacy.sfglobals import SG
 from legacy.sfglobals import IMG
 from legacy.sfglobals import POS
 from legacy.sfglobals import LBL
-from legacy.sfglobals import TXT
 from legacy.sfglobals import ACT
 from legacy.sfglobals import CNT
 from legacy.sfglobals import BNC
@@ -28,6 +27,8 @@ from classes.sfface import Face
 from legacy.sflegacy import on_stage
 from legacy.sflegacy import enable_popup
 from legacy.sflegacy import ach_level
+
+from legacy.sftextidx import TXT
 
 
 class Savegame(object):

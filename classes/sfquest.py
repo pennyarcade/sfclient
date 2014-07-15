@@ -11,10 +11,11 @@
 '''
 
 from legacy.sfglobals import SG
-from legacy.sfglobals import TXT
 from legacy.sfglobals import LBL
 
 from classes.sfswitch import Switch
+
+from legacy.sftextidx import TXT
 
 
 class Quest(object):
