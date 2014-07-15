@@ -35,12 +35,9 @@ from legacy.sfglobals import CLR
 from legacy.sfglobals import CNT
 from legacy.sfglobals import ERR
 from legacy.sfglobals import GUILD
-from legacy.sfglobals import IMG
 from legacy.sfglobals import INP
 from legacy.sfglobals import LBL
 from legacy.sfglobals import POPUP_INFO
-from legacy.sfglobals import POS
-from legacy.sfglobals import REL
 from legacy.sfglobals import RESP
 from legacy.sfglobals import SG
 from legacy.sfglobals import SHP
@@ -48,6 +45,10 @@ from legacy.sfglobals import SLDR
 from legacy.sfglobals import SND
 
 from legacy.sftextidx import TXT
+from legacy.sfimgidx import IMG
+from legacy.sfposrel import POS
+from legacy.sfposrel import REL
+
 
 from legacy.sflegacy import AntiAliasType
 from legacy.sflegacy import ApplicationDomain

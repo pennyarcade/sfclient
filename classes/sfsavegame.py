@@ -14,8 +14,6 @@ from datetime import datetime
 import math
 
 from legacy.sfglobals import SG
-from legacy.sfglobals import IMG
-from legacy.sfglobals import POS
 from legacy.sfglobals import LBL
 from legacy.sfglobals import ACT
 from legacy.sfglobals import CNT
@@ -29,6 +27,8 @@ from legacy.sflegacy import enable_popup
 from legacy.sflegacy import ach_level
 
 from legacy.sftextidx import TXT
+from legacy.sfimgidx import IMG
+from legacy.sfposrel import POS
 
 
 class Savegame(object):

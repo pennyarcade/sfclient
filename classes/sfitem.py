@@ -14,10 +14,10 @@ from legacy.sfglobals import ARROW_MAX
 from legacy.sfglobals import ARROW_OFFS
 from legacy.sfglobals import SG
 from legacy.sfglobals import C
-from legacy.sfglobals import IMG
 from legacy.sfglobals import ITM_MAX
 
 from legacy.sftextidx import TXT
+from legacy.sfimgidx import IMG
 
 
 class Item(object):
