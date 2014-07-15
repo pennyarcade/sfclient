@@ -14,8 +14,8 @@ from datetime import datetime
 import math
 
 from legacy.sfglobals import SG
-from legacy.sfglobals import LBL
-from legacy.sfglobals import ACT
+from legacy.sfinputglobals import LBL
+from legacy.sfserberglobals import ACT
 from legacy.sfglobals import CNT
 from legacy.sfglobals import BNC
 

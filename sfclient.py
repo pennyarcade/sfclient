@@ -24,31 +24,30 @@ import base64
 # import curses
 
 # internal dependencies
-from legacy.sfglobals import ACT
 from legacy.sfglobals import BNC
-from legacy.sfglobals import BTN
 from legacy.sfglobals import C
 from legacy.sfglobals import CA
 from legacy.sfglobals import CB
 from legacy.sfglobals import CFG
 from legacy.sfglobals import CLR
 from legacy.sfglobals import CNT
-from legacy.sfglobals import ERR
 from legacy.sfglobals import GUILD
-from legacy.sfglobals import INP
-from legacy.sfglobals import LBL
 from legacy.sfglobals import POPUP_INFO
-from legacy.sfglobals import RESP
 from legacy.sfglobals import SG
-from legacy.sfglobals import SHP
-from legacy.sfglobals import SLDR
 from legacy.sfglobals import SND
 
 from legacy.sftextidx import TXT
 from legacy.sfimgidx import IMG
+from legacy.sfimgidx import SHP
 from legacy.sfposrel import POS
 from legacy.sfposrel import REL
-
+from legacy.sfserverglobals import ACT
+from legacy.sfserverglobals import RESP
+from legacy.sfserverglobals import ERR
+from legacy.sfinputglobals import SLDR
+from legacy.sfinputglobals import INP
+from legacy.sfinputglobals import LBL
+from legacy.sfinputglobals import BTN
 
 from legacy.sflegacy import AntiAliasType
 from legacy.sflegacy import ApplicationDomain

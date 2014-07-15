@@ -11,7 +11,7 @@
 '''
 
 from legacy.sfglobals import SG
-from legacy.sfglobals import LBL
+from legacy.sfinputglobals import LBL
 
 from classes.sfswitch import Switch
 

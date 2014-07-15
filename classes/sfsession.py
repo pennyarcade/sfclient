@@ -14,7 +14,7 @@ import random
 import time
 import requests
 
-from legacy.sfglobals import ACT
+from legacy.sfserverglobals import ACT
 from legacy.sfglobals import CNT
 
 from legacy.sflegacy import on_stage

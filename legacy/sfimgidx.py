@@ -8,7 +8,7 @@
     @see: (Curses Example)
             http://gnosis.cx/publish/programming/charming_python_6.html
 
-    Image Ids
+    Image, Shape Ids
 '''
 
 
@@ -567,4 +567,19 @@ IMG = {
     "UNKNOWN_ENEMY": 24439,
     "WITCH": 25637,
     "WITCH_ANI": 25673,
+}
+
+
+# Shape indices
+SHP = {
+    "BLACK_CHARDESC": 22958,
+    "BLACK_GILDEEHRE": 22951,
+    "DISCONNECTED": 24367,
+    "FIGHT_BLACK_SQUARE": 23831,
+    "FUCK_BLACK_SQUARE": 82,
+    "MAINQUEST": 24357,
+    "OPTION_BLACK": 24245,
+    "POST_BLACK_SQUARE": 23265,
+    "QO_BLACK_SQUARE": 23589,
+    "STALL_BLACK_SQUARE": 23343
 }
