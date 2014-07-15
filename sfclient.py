@@ -294,7 +294,6 @@ def init_vars():
 
     # chosen_lang_font = "Komika Text"
     # compare_items = False
-    # contentMax = 1700
     # copyCatSel = 0
 
     # CorrectItemType = [6, 3, 5, 4, 8, 7, 9, 10, 1, 2]
@@ -436,9 +435,6 @@ def init_vars():
     # param_censored = False
     # param_cid = ""
     # param_cid_original = False
-
-    global param_fail_tries
-    param_fail_tries = 1
 
     # param_forceport = 0
     # param_gamestaff_email = param_support_email

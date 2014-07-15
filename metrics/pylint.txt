@@ -579,7 +579,7 @@ W0511:133,0: : TODO: This "if" switches base URL
 W0511:137,0: : TODO: move payload creation to method
 W0511:177,0: : TODO : test success of request here !!
 R0902: 25,0: Session: Too many instance attributes (16/7)
-E0602: 91,46: Session.send_action: Undefined variable 'actor'
+E0602: 91,46: Session.send _action: Undefined variable 'actor'
 E0602:173,25: Session.send_action: Undefined variable 'param_fail_tries'
 E0602:199,30: Session.send_action: Undefined variable 'param_fail_tries'
 E0602:203,28: Session.send_action: Undefined variable 'param_fail_tries'

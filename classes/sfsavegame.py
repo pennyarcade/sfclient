@@ -48,6 +48,12 @@ class Savegame(object):
         self.session = session
         self.arr = list()
 
+        self.content_max = 1700
+        self.last_level = 0
+        self.friend_link = ''
+        self.old_ach = 0
+        self.old_album = 0
+
     def __get_face(self, savegame):
         '''
             extract face from savegame
@@ -123,8 +129,8 @@ class Savegame(object):
         else:
             savegame[SG['GENDER']] = 2
 
-        if (savegame[SG['ALBUM']] - 10000) > content_max:
-            savegame[SG['ALBUM']] = content_max + 10000
+        if (savegame[SG['ALBUM']] - 10000) > self.content_max:
+            savegame[SG['ALBUM']] = self.content_max + 10000
 
         for i in range(SG['BACKPACK']['SIZE']):
             expand_item_structure(
@@ -153,29 +159,31 @@ class Savegame(object):
         debug_info = ""
         for i in range(len(savegame)):
             debug_info += str(i) + "=" + savegame[i] + ", "
+        self.log.debug(debug_info)
 
-        if (last_level != 0) and (int(savegame[SG['LEVEL']]) > last_level):
+        if ((self.last_level != 0)
+                and (int(savegame[SG['LEVEL']]) > self.last_level)):
             self.level_up = True
             pulse_char = True
 
-        last_level = int(savegame[SG['LEVEL']])
+        self.last_level = int(savegame[SG['LEVEL']])
 
-        friend_link = "http://" + server + "/index.php?rec="
-        friend_link += savegame[SG['PLAYER']['ID']]
+        self.friend_link = "http://" + server + "/index.php?rec="
+        self.friend_link += savegame[SG['PLAYER']['ID']]
 
-        if len(old_ach) != 0:
+        if len(self.old_ach) != 0:
             for i in range(8):
-                if ach_level(savegame, i) > old_ach[i]:
-                    old_ach[i] = -1 * ach_level(savegame, i)
+                if ach_level(savegame, i) > self.old_ach[i]:
+                    self.old_ach[i] = -1 * ach_level(savegame, i)
                 else:
-                    old_ach[i] = ach_level(savegame, i)
+                    self.old_ach[i] = ach_level(savegame, i)
         else:
             for i in range(8):
-                old_ach[i] = ach_level(savegame, i)
+                self.old_ach[i] = ach_level(savegame, i)
 
-        if (old_album >= 0) and (savegame[SG['ALBUM']] > old_album):
+        if (self.old_album >= 0) and (savegame[SG['ALBUM']] > self.old_album):
             album_effect = True
-        old_album = savegame[SG['ALBUM']]
+        self.old_album = savegame[SG['ALBUM']]
 
         if fill_face_variables:
             char_face = self.__get_face(savegame)

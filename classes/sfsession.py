@@ -32,6 +32,8 @@ class Session(object):
         '''
         # TODO: Check if needed?
         self.param_poll_tunnel_url = ""
+        self.param_fail_tries = 1
+
         self.poll_lock = False
         self.send_lock = False
         self.fight_lock = False
@@ -83,7 +85,7 @@ class Session(object):
 
         return resp.text.split('/')
 
-    def send_action(self, action, *params):
+    def send_action(self, action, actor, *params):
         '''
             Send formatted request to server
         '''
@@ -170,7 +172,7 @@ class Session(object):
         if self.mp_api_user_token != "notset":
             payload['mp_api_user_token'] = self.mp_api_user_token
 
-        while fail_try < param_fail_tries:
+        while fail_try < self.param_fail_tries:
             resp = requests.get(self.baseuri, params=payload)
             self.log.debug(resp.url)
 
@@ -196,11 +198,11 @@ class Session(object):
                     return data
 
             if not success:
-                if fail_try < param_fail_tries:
+                if fail_try < self.param_fail_tries:
                     self.log.warning(''.join([
                         "PHP-Request fehlgeschlagen (Versuch",
                         str(fail_try), "/",
-                        str(param_fail_tries) + ").",
+                        str(self.param_fail_tries) + ").",
                         "Erneutes Senden..."
                     ]))
                     self.log.info("Erneut gesendet.")
