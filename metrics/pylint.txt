@@ -1,5 +1,3 @@
-************* Module sfbuildinterface
-C0302:  1,0: : Too many lines in module (9374)
 ************* Module sfclient
 W0511:170,0: : TODO: refactor into config object
 W0511:175,0: : TODO: should be obsolete
@@ -560,13 +558,6 @@ R0913:14872,0: define_click_area: Too many arguments (11/5)
 R0913:14931,0: define_from_class: Too many arguments (6/5)
 R0913:17575,0: item_popup: Too many arguments (7/5)
 R0913:18782,0: load_character_image: Too many arguments (14/5)
-************* Module sfglobals
-C0302:  1,0: : Too many lines in module (4067)
-************* Module sflegacy
-W0511:440,0: : TODO WTF?
-C0302:  1,0: : Too many lines in module (1103)
-R0902: 46,0: Actor: Too many instance attributes (18/7)
-R0902: 90,0: TextField: Too many instance attributes (11/7)
 ************* Module classes.sfmirror
 R0903: 14,0: Mirror: Too few public methods (0/2)
 ************* Module classes.sfsession
@@ -584,34 +575,30 @@ R0903: 14,0: Album: Too few public methods (0/2)
 ************* Module classes.sfwitch
 R0903: 14,0: Witch: Too few public methods (0/2)
 ************* Module classes.sfsavegame
-W0511:114,0: : TODO: Tower object
-W0511:126,0: : TODO: save in character object
-R0902: 32,0: Savegame: Too many instance attributes (14/7)
-R0201: 57,4: Savegame.__get_face: Method could be a function
-R0913:103,4: Savegame.parse: Too many arguments (6/5)
-R0914:103,4: Savegame.parse: Too many local variables (20/15)
-E0602:171,39: Savegame.parse: Undefined variable 'server'
-E0602:176,19: Savegame.parse: Undefined variable 'ach_level'
-E0602:177,43: Savegame.parse: Undefined variable 'ach_level'
-E0602:179,38: Savegame.parse: Undefined variable 'ach_level'
-E0602:182,34: Savegame.parse: Undefined variable 'ach_level'
-E0602:194,15: Savegame.parse: Undefined variable 'text_dir'
-E0602:247,8: Savegame.parse: Undefined variable 'add'
-E0602:249,12: Savegame.parse: Undefined variable 'server_time'
-E0602:253,12: Savegame.parse: Undefined variable 'time_calc'
-E0602:260,12: Savegame.parse: Undefined variable 'show_login_screen'
-E0602:262,62: Savegame.parse: Undefined variable 'session_id'
-E0602:264,50: Savegame.parse: Undefined variable 'gilden_id'
-E0602:278,12: Savegame.parse: Undefined variable 'request_logout'
-E0601:280,11: Savegame.parse: Using variable 'next_pxl' before assignment
-R0912:103,4: Savegame.parse: Too many branches (35/12)
-R0915:103,4: Savegame.parse: Too many statements (99/50)
-W0612:185,12: Savegame.parse: Unused variable 'album_effect'
-W0612:275,12: Savegame.parse: Unused variable 'pulse_post'
-W0612:167,12: Savegame.parse: Unused variable 'pulse_char'
-W0612:252,12: Savegame.parse: Unused variable 'local_time'
-W0612:189,12: Savegame.parse: Unused variable 'char_face'
-W0201:166,12: Savegame.parse: Attribute 'level_up' defined outside __init__
+W0511:115,0: : TODO: Tower object
+W0511:127,0: : TODO: save in character object
+R0902: 33,0: Savegame: Too many instance attributes (14/7)
+R0201: 58,4: Savegame.__get_face: Method could be a function
+R0913:104,4: Savegame.parse: Too many arguments (6/5)
+R0914:104,4: Savegame.parse: Too many local variables (20/15)
+E0602:172,39: Savegame.parse: Undefined variable 'server'
+E0602:195,15: Savegame.parse: Undefined variable 'text_dir'
+E0602:248,8: Savegame.parse: Undefined variable 'add'
+E0602:250,12: Savegame.parse: Undefined variable 'server_time'
+E0602:254,12: Savegame.parse: Undefined variable 'time_calc'
+E0602:261,12: Savegame.parse: Undefined variable 'show_login_screen'
+E0602:263,62: Savegame.parse: Undefined variable 'session_id'
+E0602:265,50: Savegame.parse: Undefined variable 'gilden_id'
+E0602:279,12: Savegame.parse: Undefined variable 'request_logout'
+E0601:281,11: Savegame.parse: Using variable 'next_pxl' before assignment
+R0912:104,4: Savegame.parse: Too many branches (35/12)
+R0915:104,4: Savegame.parse: Too many statements (99/50)
+W0612:186,12: Savegame.parse: Unused variable 'album_effect'
+W0612:276,12: Savegame.parse: Unused variable 'pulse_post'
+W0612:168,12: Savegame.parse: Unused variable 'pulse_char'
+W0612:253,12: Savegame.parse: Unused variable 'local_time'
+W0612:190,12: Savegame.parse: Unused variable 'char_face'
+W0201:167,12: Savegame.parse: Attribute 'level_up' defined outside __init__
 ************* Module classes.sfguild
 R0903: 14,0: Guild: Too few public methods (0/2)
 ************* Module classes.sfface
@@ -632,7 +619,7 @@ R0913: 26,4: Item.__init__: Too many arguments (11/5)
 R0201: 57,4: Item.__get_attr_offs: Method could be a function
 ************* Module classes.sfcharacter
 R0801:  1,0: : Similar lines in 4 files
-==classes.sfsavegame:218
+==classes.sfsavegame:219
 ==sfclient:11420
 ==sfclient:11508
 ==sfclient:14551
@@ -643,7 +630,7 @@ R0801:  1,0: : Similar lines in 4 files
 
 Report
 ======
-4434 statements analysed.
+4111 statements analysed.
 
 Messages by category
 --------------------
@@ -651,13 +638,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |60     |NC       |NC         |
+|convention |57     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|refactor   |55     |NC       |NC         |
+|refactor   |53     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |243    |NC       |NC         |
+|warning    |242    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |260    |NC       |NC         |
+|error      |256    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -668,15 +655,13 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |94.62 |93.00   |54.55    |95.00      |
+|sfclient           |96.09 |93.39   |56.60    |100.00     |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |5.38  |3.29    |10.91    |0.00       |
+|classes.sfsavegame |3.91  |3.31    |11.32    |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsession  |0.00  |2.47    |5.45     |0.00       |
+|classes.sfsession  |0.00  |2.48    |5.66     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfitem     |0.00  |0.82    |5.45     |0.00       |
-+-------------------+------+--------+---------+-----------+
-|sflegacy           |0.00  |0.41    |3.64     |1.67       |
+|classes.sfitem     |0.00  |0.83    |5.66     |0.00       |
 +-------------------+------+--------+---------+-----------+
 
 
@@ -687,7 +672,7 @@ Messages
 +-------------------------------+------------+
 |message id                     |occurrences |
 +===============================+============+
-|undefined-variable             |244         |
+|undefined-variable             |240         |
 +-------------------------------+------------+
 |unused-variable                |159         |
 +-------------------------------+------------+
@@ -695,7 +680,7 @@ Messages
 +-------------------------------+------------+
 |global-variable-undefined      |43          |
 +-------------------------------+------------+
-|fixme                          |31          |
+|fixme                          |30          |
 +-------------------------------+------------+
 |too-many-arguments             |16          |
 +-------------------------------+------------+
@@ -705,19 +690,19 @@ Messages
 +-------------------------------+------------+
 |too-many-branches              |9           |
 +-------------------------------+------------+
-|too-many-instance-attributes   |7           |
-+-------------------------------+------------+
 |too-many-locals                |6           |
++-------------------------------+------------+
+|too-many-instance-attributes   |5           |
 +-------------------------------+------------+
 |too-few-public-methods         |5           |
 +-------------------------------+------------+
 |global-statement               |5           |
 +-------------------------------+------------+
-|too-many-lines                 |4           |
-+-------------------------------+------------+
 |unused-argument                |3           |
 +-------------------------------+------------+
 |no-self-use                    |2           |
++-------------------------------+------------+
+|too-many-lines                 |1           |
 +-------------------------------+------------+
 |too-many-function-args         |1           |
 +-------------------------------+------------+
@@ -734,7 +719,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.26/10
+Your code has been rated at 6.03/10
 
 Raw metrics
 -----------
@@ -742,13 +727,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5570   |15.73 |NC       |NC         |
+|code      |4807   |23.59 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27927  |78.88 |NC       |NC         |
+|docstring |14222  |69.78 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |655    |1.85  |NC       |NC         |
+|comment   |428    |2.10  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1251   |3.53  |NC       |NC         |
+|empty     |923    |4.53  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
@@ -761,7 +746,7 @@ Duplication
 +=========================+======+=========+===========+
 |nb duplicated lines      |9     |NC       |NC         |
 +-------------------------+------+---------+-----------+
-|percent duplicated lines |0.025 |NC       |NC         |
+|percent duplicated lines |0.043 |NC       |NC         |
 +-------------------------+------+---------+-----------+
 
 
@@ -771,11 +756,12 @@ External dependencies
 ::
 
     datetime (sfclient,classes.sfsavegame)
+    legacy 
+      \-sfbuildinterface (sfclient)
+      \-sfglobals (classes.sfsavegame,classes.sfquest,classes.sfface,classes.sfitem,classes.sfsession,sfclient)
+      \-sflegacy (sfclient,classes.sfsavegame,classes.sfsession)
+      \-sflegacyfonts (sfclient)
     requests (classes.sfsession)
-    sfbuildinterface (sfclient)
-    sfglobals (classes.sfsavegame,classes.sfquest,classes.sfface,classes.sfitem,classes.sfsession,sfclient)
-    sflegacy (sflegacyfonts,sfclient,classes.sfsavegame,classes.sfsession)
-    sflegacyfonts (sfclient)
     types (sfclient)
 
 
@@ -786,13 +772,13 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |type     |number |old number |difference |%documented |%badname |
 +=========+=======+===========+===========+============+=========+
-|module   |20     |NC         |NC         |100.00      |0.00     |
+|module   |16     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |117    |NC         |NC         |100.00      |0.00     |
+|class    |14     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |59     |NC         |NC         |100.00      |0.00     |
+|method   |44     |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|function |214    |NC         |NC         |100.00      |0.00     |
+|function |201    |NC         |NC         |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
 
 

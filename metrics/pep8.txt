@@ -1,8 +1,4 @@
-checking sfbuildinterface.py
 checking sfclient.py
-checking sfglobals.py
-checking sflegacyfonts.py
-checking sflegacy.py
 directory classes
 checking classes/__init__.py
 checking classes/sfaccount.py
