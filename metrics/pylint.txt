@@ -634,26 +634,7 @@ R0903: 14,0: Guild: Too few public methods (0/2)
 ************* Module classes.sfface
 R0902: 18,0: Face: Too many instance attributes (14/7)
 R0913: 22,4: Face.__init__: Too many arguments (14/5)
-E0213: 43,4: Face.__color_offset: Method should have "self" as first argument
-E0602: 47,11: Face.__color_offset: Undefined variable 'self'
-E0602: 48,19: Face.__color_offset: Undefined variable 'self'
-E1121: 78,27: Face.randomize_char_image: Too many positional arguments for method call
-E0602: 81,43: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
-E1121: 82,27: Face.randomize_char_image: Too many positional arguments for method call
-E0602: 83,42: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
-E0602: 84,42: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
-E1121: 85,26: Face.randomize_char_image: Too many positional arguments for method call
-E0602: 85,46: Face.randomize_char_image: Undefined variable 'C_HAIR'
-E0602: 86,45: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
-E0602: 87,46: Face.randomize_char_image: Undefined variable 'get_char_image_bound'
-E1121: 88,30: Face.randomize_char_image: Too many positional arguments for method call
-E0602: 88,50: Face.randomize_char_image: Undefined variable 'C_SPECIAL2'
 ************* Module classes.sftoilet
-C0301: 72,0: : Line too long (81/79)
-C0301: 79,0: : Line too long (81/79)
-C0301: 95,0: : Line too long (83/79)
-C0301: 96,0: : Line too long (83/79)
-C0301:104,0: : Line too long (80/79)
 R0913: 18,4: Toilet.__init__: Too many arguments (6/5)
 ************* Module classes.sfaccount
 R0903: 14,0: Account: Too few public methods (0/2)
@@ -662,11 +643,10 @@ R0902: 20,0: Quest: Too many instance attributes (11/7)
 R0913: 24,4: Quest.__init__: Too many arguments (11/5)
 ************* Module classes.sfitem
 W0511: 31,0: : TODO: documentation
-W0511:213,0: : TODO: itm_color ???
+W0511:215,0: : TODO: itm_color ???
 R0902: 22,0: Item: Too many instance attributes (9/7)
 R0913: 26,4: Item.__init__: Too many arguments (11/5)
 R0201: 57,4: Item.__get_attr_offs: Method could be a function
-W0612: 62,12: Item.__get_attr_offs: Unused variable 'attr_val_offs'
 ************* Module classes.sfcharacter
 R0801:  1,0: : Similar lines in 4 files
 ==classes.sfsavegame:210
@@ -680,7 +660,7 @@ R0801:  1,0: : Similar lines in 4 files
 
 Report
 ======
-4428 statements analysed.
+4429 statements analysed.
 
 Messages by category
 --------------------
@@ -688,13 +668,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |66     |NC       |NC         |
+|convention |61     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |55     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |247    |NC       |NC         |
+|warning    |246    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |287    |NC       |NC         |
+|error      |273    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -705,17 +685,15 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |85.71 |91.90   |54.55    |87.88      |
+|sfclient           |90.11 |92.28   |54.55    |95.08      |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |8.01  |4.05    |10.91    |0.00       |
+|classes.sfsavegame |8.42  |4.07    |10.91    |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfface     |4.88  |0.00    |3.64     |0.00       |
+|classes.sfsession  |1.47  |2.44    |5.45     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsession  |1.39  |2.43    |5.45     |0.00       |
+|classes.sfitem     |0.00  |0.81    |5.45     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfitem     |0.00  |1.21    |5.45     |0.00       |
-+-------------------+------+--------+---------+-----------+
-|sflegacy           |0.00  |0.40    |3.64     |1.52       |
+|sflegacy           |0.00  |0.41    |3.64     |1.64       |
 +-------------------+------+--------+---------+-----------+
 
 
@@ -726,9 +704,9 @@ Messages
 +-------------------------------+------------+
 |message id                     |occurrences |
 +===============================+============+
-|undefined-variable             |264         |
+|undefined-variable             |255         |
 +-------------------------------+------------+
-|unused-variable                |162         |
+|unused-variable                |161         |
 +-------------------------------+------------+
 |invalid-name                   |57          |
 +-------------------------------+------------+
@@ -748,11 +726,7 @@ Messages
 +-------------------------------+------------+
 |too-many-locals                |6           |
 +-------------------------------+------------+
-|too-many-function-args         |5           |
-+-------------------------------+------------+
 |too-few-public-methods         |5           |
-+-------------------------------+------------+
-|line-too-long                  |5           |
 +-------------------------------+------------+
 |global-statement               |5           |
 +-------------------------------+------------+
@@ -762,11 +736,11 @@ Messages
 +-------------------------------+------------+
 |no-self-use                    |2           |
 +-------------------------------+------------+
+|too-many-function-args         |1           |
++-------------------------------+------------+
 |redefined-outer-name           |1           |
 +-------------------------------+------------+
 |no-value-for-parameter         |1           |
-+-------------------------------+------------+
-|no-self-argument               |1           |
 +-------------------------------+------------+
 |duplicate-code                 |1           |
 +-------------------------------+------------+
@@ -777,7 +751,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 5.93/10
+Your code has been rated at 6.10/10
 
 Raw metrics
 -----------
@@ -785,13 +759,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |5563   |15.72 |NC       |NC         |
+|code      |5564   |15.72 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |27925  |78.89 |NC       |NC         |
+|docstring |27927  |78.89 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |comment   |656    |1.85  |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |1252   |3.54  |NC       |NC         |
+|empty     |1251   |3.53  |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
