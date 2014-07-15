@@ -552,7 +552,6 @@ E0602:14782,24: load_tracking_pixel: Undefined variable 'req'
 E0602:14784,11: load_tracking_pixel: Undefined variable 'param_internal_pixel'
 W0612:14781,8: load_tracking_pixel: Unused variable 'log_in_after_pixel'
 W0603:14805,4: main: Using the global statement
-E1120:14811,19: main: No value for argument 'logger' in constructor call
 R0913:14821,0: define_img: Too many arguments (8/5)
 R0913:14872,0: define_click_area: Too many arguments (11/5)
 R0913:14931,0: define_from_class: Too many arguments (6/5)
@@ -644,7 +643,7 @@ Messages by category
 +-----------+-------+---------+-----------+
 |warning    |242    |NC       |NC         |
 +-----------+-------+---------+-----------+
-|error      |256    |NC       |NC         |
+|error      |255    |NC       |NC         |
 +-----------+-------+---------+-----------+
 
 
@@ -655,9 +654,9 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |96.09 |93.39   |56.60    |100.00     |
+|sfclient           |96.08 |93.39   |56.60    |100.00     |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |3.91  |3.31    |11.32    |0.00       |
+|classes.sfsavegame |3.92  |3.31    |11.32    |0.00       |
 +-------------------+------+--------+---------+-----------+
 |classes.sfsession  |0.00  |2.48    |5.66     |0.00       |
 +-------------------+------+--------+---------+-----------+
@@ -708,8 +707,6 @@ Messages
 +-------------------------------+------------+
 |redefined-outer-name           |1           |
 +-------------------------------+------------+
-|no-value-for-parameter         |1           |
-+-------------------------------+------------+
 |duplicate-code                 |1           |
 +-------------------------------+------------+
 |attribute-defined-outside-init |1           |
@@ -719,7 +716,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.03/10
+Your code has been rated at 6.04/10
 
 Raw metrics
 -----------
