@@ -15,7 +15,7 @@ import math
 
 from legacy.sfglobals import SG
 from legacy.sfinputglobals import LBL
-from legacy.sfserberglobals import ACT
+from legacy.sfserverglobals import ACT
 from legacy.sfglobals import CNT
 from legacy.sfglobals import BNC
 
