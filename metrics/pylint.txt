@@ -16,13 +16,10 @@ W0511:1332,0: : TODO: Something missing here
 W0511:12968,0: : TODO: better use exceptions??
 W0511:12977,0: : TODO: hor does this work anyways?
 W0511:13041,0: : TODO: hat does this do?
-W0511:14723,0: : TODO: What does this do?
-W0511:14739,0: : TODO: Obsolete?
-W0511:14759,0: : TODO: set via requests params
-C0330:13924,0: : Wrong continued indentation.
-):
-^                      |
-C0302:  1,0: : Too many lines in module (18730)
+W0511:14722,0: : TODO: What does this do?
+W0511:14738,0: : TODO: Obsolete?
+W0511:14758,0: : TODO: set via requests params
+C0302:  1,0: : Too many lines in module (18729)
 C0103:172,0: : Invalid constant name "param_obj"
 C0103:173,0: : Invalid constant name "actor"
 C0103:174,0: : Invalid constant name "texts"
@@ -412,146 +409,141 @@ W0612:13476,4: show_popup: Unused variable 'last_text_height'
 W0612:13475,4: show_popup: Unused variable 'tmp_text_format'
 W0612:13481,8: show_popup: Unused variable 'text_x'
 R0913:13884,0: define_lbl: Too many arguments (6/5)
-W0621:13922,32: language_file_error: Redefining name 'lang_code' from outer scope (line 381)
-W0621:13923,24: language_file_error: Redefining name 'text_dir' from outer scope (line 550)
-W0621:13923,42: language_file_error: Redefining name 'lang_url' from outer scope (line 382)
-C0103:13928,4: language_file_error: Invalid constant name "lang_code"
-C0103:13928,4: language_file_error: Invalid constant name "text_dir"
-W0601:13928,4: language_file_error: Global variable 'lang_code' undefined at the module level
-W0601:13928,4: language_file_error: Global variable 'text_dir' undefined at the module level
-W0613:13923,24: language_file_error: Unused argument 'text_dir'
-E0602:13945,15: language_file_loaded: Undefined variable 'loader'
-C0103:13978,4: language_file_loaded: Invalid constant name "pending_language_file"
-W0601:13978,4: language_file_loaded: Global variable 'pending_language_file' undefined at the module level
-E0602:13980,20: language_file_loaded: Undefined variable 'original_lang_code'
-E0602:13993,12: language_file_loaded: Undefined variable 'country_name'
-R0912:13941,0: language_file_loaded: Too many branches (18/12)
-W0612:13986,8: language_file_loaded: Unused variable 'chosen_lang_font'
-C0103:14004,4: load_language_file: Invalid constant name "text_dir"
-C0103:14004,4: load_language_file: Invalid constant name "pending_language_file"
-W0601:14004,4: load_language_file: Global variable 'text_dir' undefined at the module level
-W0601:14004,4: load_language_file: Global variable 'pending_language_file' undefined at the module level
-C0103:14023,4: load_language_file: Invalid constant name "pending_loaders"
-W0603:14023,4: load_language_file: Using the global statement
-E0602:14032,15: original_language_file_loaded: Undefined variable 'loader'
-C0103:14064,4: original_language_file_loaded: Invalid constant name "pending_language_file"
-W0601:14064,4: original_language_file_loaded: Global variable 'pending_language_file' undefined at the module level
-E0602:14066,27: original_language_file_loaded: Undefined variable 'chosen_lang_font'
-W0612:14044,20: original_language_file_loaded: Unused variable 'old_str'
-E0602:14078,36: load_original_language_file: Undefined variable 'original_lang_code'
-C0103:14081,4: load_original_language_file: Invalid constant name "pending_language_file"
-C0103:14081,4: load_original_language_file: Invalid constant name "pending_loaders"
-W0601:14081,4: load_original_language_file: Global variable 'pending_language_file' undefined at the module level
-R0914:14086,0: configuration_file_loaded: Too many local variables (76/15)
-C0103:14103,28: configuration_file_loaded: Invalid constant name "lang_code"
-W0601:14103,28: configuration_file_loaded: Global variable 'lang_code' undefined at the module level
-C0103:14121,28: configuration_file_loaded: Invalid constant name "server"
-W0601:14121,28: configuration_file_loaded: Global variable 'server' undefined at the module level
-C0103:14126,28: configuration_file_loaded: Invalid constant name "lang_url"
-W0601:14126,28: configuration_file_loaded: Global variable 'lang_url' undefined at the module level
-E0602:14207,28: configuration_file_loaded: Undefined variable 'trackPixels'
-C0103:14234,28: configuration_file_loaded: Invalid constant name "param_fail_tries"
-W0601:14234,28: configuration_file_loaded: Global variable 'param_fail_tries' undefined at the module level
-E0602:14295,28: configuration_file_loaded: Undefined variable 'defined_pixel_calls'
-C0103:14345,4: configuration_file_loaded: Invalid constant name "pending_configuration_files"
-W0601:14345,4: configuration_file_loaded: Global variable 'pending_configuration_files' undefined at the module level
-E0602:14348,8: configuration_file_loaded: Undefined variable 'loader2'
-C0103:14351,8: configuration_file_loaded: Invalid constant name "shared_obj"
-W0601:14351,8: configuration_file_loaded: Global variable 'shared_obj' undefined at the module level
-C0103:14465,8: configuration_file_loaded: Invalid constant name "img_url_index"
-C0103:14465,8: configuration_file_loaded: Invalid constant name "snd_url_index"
-W0601:14465,8: configuration_file_loaded: Global variable 'img_url_index' undefined at the module level
-W0601:14465,8: configuration_file_loaded: Global variable 'snd_url_index' undefined at the module level
-E0602:14496,15: configuration_file_loaded: Undefined variable 'param_lowres_url'
+W0621:13923,24: language_file_error: Redefining name 'lang_url' from outer scope (line 382)
+C0103:13932,8: language_file_error: Invalid constant name "text_dir"
+W0601:13932,8: language_file_error: Global variable 'text_dir' undefined at the module level
+E0602:13944,15: language_file_loaded: Undefined variable 'loader'
+C0103:13977,4: language_file_loaded: Invalid constant name "pending_language_file"
+W0601:13977,4: language_file_loaded: Global variable 'pending_language_file' undefined at the module level
+E0602:13979,20: language_file_loaded: Undefined variable 'original_lang_code'
+E0602:13992,12: language_file_loaded: Undefined variable 'country_name'
+R0912:13940,0: language_file_loaded: Too many branches (18/12)
+W0612:13985,8: language_file_loaded: Unused variable 'chosen_lang_font'
+C0103:14003,4: load_language_file: Invalid constant name "text_dir"
+C0103:14003,4: load_language_file: Invalid constant name "pending_language_file"
+W0601:14003,4: load_language_file: Global variable 'text_dir' undefined at the module level
+W0601:14003,4: load_language_file: Global variable 'pending_language_file' undefined at the module level
+C0103:14022,4: load_language_file: Invalid constant name "pending_loaders"
+W0603:14022,4: load_language_file: Using the global statement
+E0602:14031,15: original_language_file_loaded: Undefined variable 'loader'
+C0103:14063,4: original_language_file_loaded: Invalid constant name "pending_language_file"
+W0601:14063,4: original_language_file_loaded: Global variable 'pending_language_file' undefined at the module level
+E0602:14065,27: original_language_file_loaded: Undefined variable 'chosen_lang_font'
+W0612:14043,20: original_language_file_loaded: Unused variable 'old_str'
+E0602:14077,36: load_original_language_file: Undefined variable 'original_lang_code'
+C0103:14080,4: load_original_language_file: Invalid constant name "pending_language_file"
+C0103:14080,4: load_original_language_file: Invalid constant name "pending_loaders"
+W0601:14080,4: load_original_language_file: Global variable 'pending_language_file' undefined at the module level
+R0914:14085,0: configuration_file_loaded: Too many local variables (76/15)
+C0103:14102,28: configuration_file_loaded: Invalid constant name "lang_code"
+W0601:14102,28: configuration_file_loaded: Global variable 'lang_code' undefined at the module level
+C0103:14120,28: configuration_file_loaded: Invalid constant name "server"
+W0601:14120,28: configuration_file_loaded: Global variable 'server' undefined at the module level
+C0103:14125,28: configuration_file_loaded: Invalid constant name "lang_url"
+W0601:14125,28: configuration_file_loaded: Global variable 'lang_url' undefined at the module level
+E0602:14206,28: configuration_file_loaded: Undefined variable 'trackPixels'
+C0103:14233,28: configuration_file_loaded: Invalid constant name "param_fail_tries"
+W0601:14233,28: configuration_file_loaded: Global variable 'param_fail_tries' undefined at the module level
+E0602:14294,28: configuration_file_loaded: Undefined variable 'defined_pixel_calls'
+C0103:14344,4: configuration_file_loaded: Invalid constant name "pending_configuration_files"
+W0601:14344,4: configuration_file_loaded: Global variable 'pending_configuration_files' undefined at the module level
+E0602:14347,8: configuration_file_loaded: Undefined variable 'loader2'
+C0103:14350,8: configuration_file_loaded: Invalid constant name "shared_obj"
+W0601:14350,8: configuration_file_loaded: Global variable 'shared_obj' undefined at the module level
+C0103:14464,8: configuration_file_loaded: Invalid constant name "img_url_index"
+C0103:14464,8: configuration_file_loaded: Invalid constant name "snd_url_index"
+W0601:14464,8: configuration_file_loaded: Global variable 'img_url_index' undefined at the module level
+W0601:14464,8: configuration_file_loaded: Global variable 'snd_url_index' undefined at the module level
+E0602:14495,15: configuration_file_loaded: Undefined variable 'param_lowres_url'
+E0602:14496,41: configuration_file_loaded: Undefined variable 'param_lowres_url'
 E0602:14497,41: configuration_file_loaded: Undefined variable 'param_lowres_url'
-E0602:14498,41: configuration_file_loaded: Undefined variable 'param_lowres_url'
-R0912:14086,0: configuration_file_loaded: Too many branches (113/12)
-R0915:14086,0: configuration_file_loaded: Too many statements (315/50)
-W0612:14226,28: configuration_file_loaded: Unused variable 'param_papaya_path'
-W0612:14159,28: configuration_file_loaded: Unused variable 'buffed_mode'
-W0612:14147,28: configuration_file_loaded: Unused variable 'legal_url'
-W0612:14287,28: configuration_file_loaded: Unused variable 'param_bullshit_cid'
-W0612:14171,28: configuration_file_loaded: Unused variable 'server_id'
-W0612:14402,12: configuration_file_loaded: Unused variable 'sso_mode'
-W0612:14151,28: configuration_file_loaded: Unused variable 'dataprot_url'
-W0612:14360,8: configuration_file_loaded: Unused variable 'disable_tv'
-W0612:14244,28: configuration_file_loaded: Unused variable 'param_happy_hour'
-W0612:14358,8: configuration_file_loaded: Unused variable 'chat_sound'
-W0612:14203,28: configuration_file_loaded: Unused variable 'param_php_tunnel_url'
-W0612:14389,12: configuration_file_loaded: Unused variable 'view_player'
-W0612:14155,28: configuration_file_loaded: Unused variable 'instr_url'
-W0612:14279,28: configuration_file_loaded: Unused variable 'param_sponsor_url'
-W0612:14179,28: configuration_file_loaded: Unused variable 'buffed_link_url'
-W0612:14398,12: configuration_file_loaded: Unused variable 'mp_api_user_token'
-W0612:14392,12: configuration_file_loaded: Unused variable 'admin_login'
-W0612:14359,8: configuration_file_loaded: Unused variable 'compare_items'
-W0612:14222,28: configuration_file_loaded: Unused variable 'param_gamestaff_email'
-W0612:14426,8: configuration_file_loaded: Unused variable 'had_account'
-W0612:14218,28: configuration_file_loaded: Unused variable 'param_support_email'
-W0612:14243,28: configuration_file_loaded: Unused variable 'param_allow_skip_quest'
-W0612:14318,28: configuration_file_loaded: Unused variable 'tv_function_name'
-W0612:14283,28: configuration_file_loaded: Unused variable 'param_bullshit_text'
-W0612:14214,28: configuration_file_loaded: Unused variable 'param_poll_tunnel_url'
-W0612:14143,28: configuration_file_loaded: Unused variable 'imprint_url'
-W0612:14384,12: configuration_file_loaded: Unused variable 'param_rec'
-W0612:14135,28: configuration_file_loaded: Unused variable 'forum_url'
-W0612:14272,28: configuration_file_loaded: Unused variable 'param_language_names'
-W0612:14105,28: configuration_file_loaded: Unused variable 'original_lang_code'
-W0612:14191,28: configuration_file_loaded: Unused variable 'param_sponsor'
-W0612:14256,28: configuration_file_loaded: Unused variable 'param_reload_pixel'
-W0612:14439,12: configuration_file_loaded: Unused variable 'param_valid'
-W0612:14187,28: configuration_file_loaded: Unused variable 'image_timeout'
-W0612:14252,28: configuration_file_loaded: Unused variable 'param_internal_pixel'
-W0612:14451,12: configuration_file_loaded: Unused variable 'param_forceport'
-W0612:14395,12: configuration_file_loaded: Unused variable 'mp_api_user_id'
-W0612:14139,28: configuration_file_loaded: Unused variable 'shop_url'
-W0612:14301,28: configuration_file_loaded: Unused variable 'login_background_id'
-W0612:14239,28: configuration_file_loaded: Unused variable 'param_idle_polling'
-W0612:14175,28: configuration_file_loaded: Unused variable 'mp_project'
-W0612:14406,12: configuration_file_loaded: Unused variable 'param_cid_original'
-W0612:14381,12: configuration_file_loaded: Unused variable 'param_id'
-W0612:14322,28: configuration_file_loaded: Unused variable 'tv_poll_normal'
-W0612:14183,28: configuration_file_loaded: Unused variable 'response_timeout'
-W0612:14160,28: configuration_file_loaded: Unused variable 'buffed_link_text'
-W0612:14326,28: configuration_file_loaded: Unused variable 'tv_poll_long'
-W0612:14248,28: configuration_file_loaded: Unused variable 'param_censored'
-W0612:14268,28: configuration_file_loaded: Unused variable 'param_languages'
-W0612:14291,28: configuration_file_loaded: Unused variable 'param_social_buttons'
-W0612:14131,28: configuration_file_loaded: Unused variable 'no_crossdomain'
-W0612:14199,28: configuration_file_loaded: Unused variable 'param_reconnect'
-W0612:14230,28: configuration_file_loaded: Unused variable 'param_papaya_cfg_file'
-W0612:14260,28: configuration_file_loaded: Unused variable 'param_server_version_cfg'
-W0612:14445,12: configuration_file_loaded: Unused variable 'param_hall'
-E0602:14536,38: do_load: Undefined variable 'actorSoundLoader'
-E0602:14548,29: do_load: Undefined variable 'no_crossdomain'
-C0103:14581,4: when_loaded: Invalid constant name "when_loaded_fn"
-W0603:14581,4: when_loaded: Using the global statement
-C0103:14585,8: when_loaded: Invalid constant name "when_loaded_active"
-W0601:14585,8: when_loaded: Global variable 'when_loaded_active' undefined at the module level
-C0103:14621,4: when_loaded_timeout_event: Invalid constant name "snd_url_index"
-C0103:14621,4: when_loaded_timeout_event: Invalid constant name "img_url_index"
-W0601:14621,4: when_loaded_timeout_event: Global variable 'snd_url_index' undefined at the module level
-W0601:14621,4: when_loaded_timeout_event: Global variable 'img_url_index' undefined at the module level
-E0602:14639,4: when_loaded_timeout_event: Undefined variable 'to_error_count'
-C0103:14681,4: loader_error: Invalid constant name "snd_url_index"
-C0103:14681,4: loader_error: Invalid constant name "img_url_index"
-W0601:14681,4: loader_error: Global variable 'snd_url_index' undefined at the module level
-W0601:14681,4: loader_error: Global variable 'img_url_index' undefined at the module level
-E0602:14698,4: loader_error: Undefined variable 'io_error_count'
-E0602:14725,17: pixel_success: Undefined variable 'pixel_loader'
-E0602:14766,35: load_tracking_pixel: Undefined variable 'had_account'
-E0602:14768,7: load_tracking_pixel: Undefined variable 'param_reload_pixel'
-E0602:14770,33: load_tracking_pixel: Undefined variable 'param_cid'
-E0602:14771,30: load_tracking_pixel: Undefined variable 'act'
-E0602:14785,8: load_tracking_pixel: Undefined variable 'navigate_to_url'
-E0602:14785,24: load_tracking_pixel: Undefined variable 'req'
-E0602:14787,11: load_tracking_pixel: Undefined variable 'param_internal_pixel'
-W0612:14784,8: load_tracking_pixel: Unused variable 'log_in_after_pixel'
-W0603:14808,4: main: Using the global statement
-R0913:14824,0: define_img: Too many arguments (8/5)
-R0913:14875,0: define_click_area: Too many arguments (11/5)
-R0913:14934,0: define_from_class: Too many arguments (6/5)
-R0913:18245,0: load_character_image: Too many arguments (14/5)
+R0912:14085,0: configuration_file_loaded: Too many branches (113/12)
+R0915:14085,0: configuration_file_loaded: Too many statements (315/50)
+W0612:14225,28: configuration_file_loaded: Unused variable 'param_papaya_path'
+W0612:14158,28: configuration_file_loaded: Unused variable 'buffed_mode'
+W0612:14146,28: configuration_file_loaded: Unused variable 'legal_url'
+W0612:14286,28: configuration_file_loaded: Unused variable 'param_bullshit_cid'
+W0612:14170,28: configuration_file_loaded: Unused variable 'server_id'
+W0612:14401,12: configuration_file_loaded: Unused variable 'sso_mode'
+W0612:14150,28: configuration_file_loaded: Unused variable 'dataprot_url'
+W0612:14359,8: configuration_file_loaded: Unused variable 'disable_tv'
+W0612:14243,28: configuration_file_loaded: Unused variable 'param_happy_hour'
+W0612:14357,8: configuration_file_loaded: Unused variable 'chat_sound'
+W0612:14202,28: configuration_file_loaded: Unused variable 'param_php_tunnel_url'
+W0612:14388,12: configuration_file_loaded: Unused variable 'view_player'
+W0612:14154,28: configuration_file_loaded: Unused variable 'instr_url'
+W0612:14278,28: configuration_file_loaded: Unused variable 'param_sponsor_url'
+W0612:14178,28: configuration_file_loaded: Unused variable 'buffed_link_url'
+W0612:14397,12: configuration_file_loaded: Unused variable 'mp_api_user_token'
+W0612:14391,12: configuration_file_loaded: Unused variable 'admin_login'
+W0612:14358,8: configuration_file_loaded: Unused variable 'compare_items'
+W0612:14221,28: configuration_file_loaded: Unused variable 'param_gamestaff_email'
+W0612:14425,8: configuration_file_loaded: Unused variable 'had_account'
+W0612:14217,28: configuration_file_loaded: Unused variable 'param_support_email'
+W0612:14242,28: configuration_file_loaded: Unused variable 'param_allow_skip_quest'
+W0612:14317,28: configuration_file_loaded: Unused variable 'tv_function_name'
+W0612:14282,28: configuration_file_loaded: Unused variable 'param_bullshit_text'
+W0612:14213,28: configuration_file_loaded: Unused variable 'param_poll_tunnel_url'
+W0612:14142,28: configuration_file_loaded: Unused variable 'imprint_url'
+W0612:14383,12: configuration_file_loaded: Unused variable 'param_rec'
+W0612:14134,28: configuration_file_loaded: Unused variable 'forum_url'
+W0612:14271,28: configuration_file_loaded: Unused variable 'param_language_names'
+W0612:14104,28: configuration_file_loaded: Unused variable 'original_lang_code'
+W0612:14190,28: configuration_file_loaded: Unused variable 'param_sponsor'
+W0612:14255,28: configuration_file_loaded: Unused variable 'param_reload_pixel'
+W0612:14438,12: configuration_file_loaded: Unused variable 'param_valid'
+W0612:14186,28: configuration_file_loaded: Unused variable 'image_timeout'
+W0612:14251,28: configuration_file_loaded: Unused variable 'param_internal_pixel'
+W0612:14450,12: configuration_file_loaded: Unused variable 'param_forceport'
+W0612:14394,12: configuration_file_loaded: Unused variable 'mp_api_user_id'
+W0612:14138,28: configuration_file_loaded: Unused variable 'shop_url'
+W0612:14300,28: configuration_file_loaded: Unused variable 'login_background_id'
+W0612:14238,28: configuration_file_loaded: Unused variable 'param_idle_polling'
+W0612:14174,28: configuration_file_loaded: Unused variable 'mp_project'
+W0612:14405,12: configuration_file_loaded: Unused variable 'param_cid_original'
+W0612:14380,12: configuration_file_loaded: Unused variable 'param_id'
+W0612:14321,28: configuration_file_loaded: Unused variable 'tv_poll_normal'
+W0612:14182,28: configuration_file_loaded: Unused variable 'response_timeout'
+W0612:14159,28: configuration_file_loaded: Unused variable 'buffed_link_text'
+W0612:14325,28: configuration_file_loaded: Unused variable 'tv_poll_long'
+W0612:14247,28: configuration_file_loaded: Unused variable 'param_censored'
+W0612:14267,28: configuration_file_loaded: Unused variable 'param_languages'
+W0612:14290,28: configuration_file_loaded: Unused variable 'param_social_buttons'
+W0612:14130,28: configuration_file_loaded: Unused variable 'no_crossdomain'
+W0612:14198,28: configuration_file_loaded: Unused variable 'param_reconnect'
+W0612:14229,28: configuration_file_loaded: Unused variable 'param_papaya_cfg_file'
+W0612:14259,28: configuration_file_loaded: Unused variable 'param_server_version_cfg'
+W0612:14444,12: configuration_file_loaded: Unused variable 'param_hall'
+E0602:14535,38: do_load: Undefined variable 'actorSoundLoader'
+E0602:14547,29: do_load: Undefined variable 'no_crossdomain'
+C0103:14580,4: when_loaded: Invalid constant name "when_loaded_fn"
+W0603:14580,4: when_loaded: Using the global statement
+C0103:14584,8: when_loaded: Invalid constant name "when_loaded_active"
+W0601:14584,8: when_loaded: Global variable 'when_loaded_active' undefined at the module level
+C0103:14620,4: when_loaded_timeout_event: Invalid constant name "snd_url_index"
+C0103:14620,4: when_loaded_timeout_event: Invalid constant name "img_url_index"
+W0601:14620,4: when_loaded_timeout_event: Global variable 'snd_url_index' undefined at the module level
+W0601:14620,4: when_loaded_timeout_event: Global variable 'img_url_index' undefined at the module level
+E0602:14638,4: when_loaded_timeout_event: Undefined variable 'to_error_count'
+C0103:14680,4: loader_error: Invalid constant name "snd_url_index"
+C0103:14680,4: loader_error: Invalid constant name "img_url_index"
+W0601:14680,4: loader_error: Global variable 'snd_url_index' undefined at the module level
+W0601:14680,4: loader_error: Global variable 'img_url_index' undefined at the module level
+E0602:14697,4: loader_error: Undefined variable 'io_error_count'
+E0602:14724,17: pixel_success: Undefined variable 'pixel_loader'
+E0602:14765,35: load_tracking_pixel: Undefined variable 'had_account'
+E0602:14767,7: load_tracking_pixel: Undefined variable 'param_reload_pixel'
+E0602:14769,33: load_tracking_pixel: Undefined variable 'param_cid'
+E0602:14770,30: load_tracking_pixel: Undefined variable 'act'
+E0602:14784,8: load_tracking_pixel: Undefined variable 'navigate_to_url'
+E0602:14784,24: load_tracking_pixel: Undefined variable 'req'
+E0602:14786,11: load_tracking_pixel: Undefined variable 'param_internal_pixel'
+W0612:14783,8: load_tracking_pixel: Unused variable 'log_in_after_pixel'
+W0603:14807,4: main: Using the global statement
+R0913:14823,0: define_img: Too many arguments (8/5)
+R0913:14874,0: define_click_area: Too many arguments (11/5)
+R0913:14933,0: define_from_class: Too many arguments (6/5)
+R0913:18244,0: load_character_image: Too many arguments (14/5)
 ************* Module classes.sfmirror
 R0903: 14,0: Mirror: Too few public methods (0/2)
 ************* Module classes.sfsession
@@ -617,7 +609,7 @@ R0801:  1,0: : Similar lines in 4 files
 ==classes.sfsavegame:220
 ==sfclient:11421
 ==sfclient:11509
-==sfclient:14554
+==sfclient:14553
                         )
                     )
             else:
@@ -633,11 +625,11 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |60     |NC       |NC         |
+|convention |58     |NC       |NC         |
 +-----------+-------+---------+-----------+
 |refactor   |53     |NC       |NC         |
 +-----------+-------+---------+-----------+
-|warning    |246    |NC       |NC         |
+|warning    |242    |NC       |NC         |
 +-----------+-------+---------+-----------+
 |error      |242    |NC       |NC         |
 +-----------+-------+---------+-----------+
@@ -650,13 +642,13 @@ Messages by category
 +-------------------+------+--------+---------+-----------+
 |module             |error |warning |refactor |convention |
 +===================+======+========+=========+===========+
-|sfclient           |95.87 |93.50   |54.72    |100.00     |
+|sfclient           |95.87 |93.39   |54.72    |100.00     |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsavegame |4.13  |3.25    |11.32    |0.00       |
+|classes.sfsavegame |4.13  |3.31    |11.32    |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfsession  |0.00  |2.44    |5.66     |0.00       |
+|classes.sfsession  |0.00  |2.48    |5.66     |0.00       |
 +-------------------+------+--------+---------+-----------+
-|classes.sfitem     |0.00  |0.81    |7.55     |0.00       |
+|classes.sfitem     |0.00  |0.83    |7.55     |0.00       |
 +-------------------+------+--------+---------+-----------+
 
 
@@ -671,9 +663,9 @@ Messages
 +-------------------------------+------------+
 |unused-variable                |159         |
 +-------------------------------+------------+
-|invalid-name                   |58          |
+|invalid-name                   |57          |
 +-------------------------------+------------+
-|global-variable-undefined      |43          |
+|global-variable-undefined      |42          |
 +-------------------------------+------------+
 |fixme                          |30          |
 +-------------------------------+------------+
@@ -693,9 +685,9 @@ Messages
 +-------------------------------+------------+
 |global-statement               |5           |
 +-------------------------------+------------+
-|unused-argument                |4           |
+|unused-argument                |3           |
 +-------------------------------+------------+
-|redefined-outer-name           |4           |
+|redefined-outer-name           |2           |
 +-------------------------------+------------+
 |no-self-use                    |2           |
 +-------------------------------+------------+
@@ -705,8 +697,6 @@ Messages
 +-------------------------------+------------+
 |duplicate-code                 |1           |
 +-------------------------------+------------+
-|bad-continuation               |1           |
-+-------------------------------+------------+
 |attribute-defined-outside-init |1           |
 +-------------------------------+------------+
 
@@ -714,7 +704,7 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.18/10
+Your code has been rated at 6.20/10
 
 Raw metrics
 -----------
@@ -722,7 +712,7 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |4808   |23.59 |NC       |NC         |
+|code      |4807   |23.59 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 |docstring |14222  |69.78 |NC       |NC         |
 +----------+-------+------+---------+-----------+
