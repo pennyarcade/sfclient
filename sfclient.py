@@ -13334,7 +13334,7 @@ def witch_timer_event_handler():
         witch_ani_timer.stop()
 
 
-def sound_loaded(duration):
+def sound_loaded(duration, actor_id, stObject=None):
     '''
         load sound success callback
     '''
@@ -13342,7 +13342,7 @@ def sound_loaded(duration):
     actor[actor_id].play(0, duration, stObject)
 
 
-def play(actor_id, endless=False):
+def play(actor_id, endless=False, stObject=None):
     '''
         play a sound
     '''
@@ -13445,7 +13445,7 @@ def process_arg(arg):
         actor[POPUP_INFO].addChild(tmp_tf)
 
 
-def show_popup(evt, *args):
+def show_popup(evt, actor_id, *args):
     '''
         Show popup window
     '''
@@ -13919,7 +13919,9 @@ def define_lbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
 # (File) Loaders
 
 
-def language_file_error():
+def language_file_error(loader, lang_code=None, original_lang_code=None,
+                        text_dir='right', lang_url=None
+):
     '''
         error handling for I18N file loader
     '''
@@ -14071,7 +14073,7 @@ def load_original_language_file():
     '''
     loader = URLLoader()
     loader.data_format = URLLoaderdataFormat.TEXT
-    loader.add_event_listener(Event.COMPLETE, Originallanguage_file_loaded)
+    loader.add_event_listener(Event.COMPLETE, original_language_file_loaded)
     loader.load(URLRequest(
         lang_url + "lang/sfgame_" + original_lang_code + ".txt"
     ))
