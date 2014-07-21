@@ -13919,22 +13919,21 @@ def define_lbl(actor_id, caption, pos_x=0, pos_y=0, fmt=None, vis=True):
 # (File) Loaders
 
 
-def language_file_error(loader, lang_code=None, original_lang_code=None,
-                        text_dir='right', lang_url=None
-):
+def language_file_error(loader, langcode=None, original_lang_code=None,
+                        lang_url=None):
     '''
         error handling for I18N file loader
     '''
-    global lang_code, text_dir
-    LOG.error("Chosen language " + lang_code + " not available!")
-    if lang_code == original_lang_code:
-        lang_code = original_lang_code
+    LOG.error("Chosen language " + langcode + " not available!")
+    if langcode == original_lang_code:
+        langcode = original_lang_code
 
-    if lang_code == "ar":
+    if langcode == "ar":
+        global text_dir
         text_dir = "right"
 
     loader.load(
-        URLRequest(lang_url + "lang/sfgame_" + lang_code + ".txt")
+        URLRequest(lang_url + "lang/sfgame_" + langcode + ".txt")
     )
 
 
